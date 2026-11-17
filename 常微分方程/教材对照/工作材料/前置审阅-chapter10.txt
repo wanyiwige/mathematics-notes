@@ -1,0 +1,264 @@
+\setchapterimage{figure/Chapter10封面图.jpg}
+\setchapterintro{相图分类必须先说明允许怎样改变坐标。本章区分线性、可微与拓扑共轭，构造适配的 Lyapunov 二次型，再研究纯虚谱带来的环面运动。}
+\chapter{线性系统的共轭分类与环面运动}\label{chap:linear-conjugacy}
+
+第四章和第六章已经按 Jordan 结构计算并分类线性解，第~\ref{chap:arnold-geometry}~章又说明坐标变换如何改变向量场。本章进一步区分允许的变换类别：线性或可微变换保留较多代数信息，同胚变换则允许更粗的相图分类。
+
+\section{三种等价关系}
+\begin{definition}
+流 $\varphi^t,\psi^t$ 若满足
+$h\varphi^t=\psi^th$，称被 $h$ 共轭。
+当 $h$ 分别为线性同构、$C^1$ 微分同胚、同胚时，称线性等价、可微等价、拓扑等价。
+同胚是自身和逆均连续的双射。这里始终保留同一个时间 $t$，
+区别于只把定向轨道映成定向轨道的轨道等价。
+\end{definition}
+\begin{theorem}
+实线性系统 $x'=Ax,y'=By$ 线性等价当且仅当 $A,B$ 相似。
+它们可微等价当且仅当线性等价。
+\end{theorem}
+\begin{proof}
+线性换元 $y=Hx$ 给出 
+\[
+ B=HAH^{-1},
+\]
+充分性也由同式直接验证。
+若 $h$ 为可微共轭，令 $c=h(0)$。由 $Be^{tB}c=Bc=0$ 或直接固定点性质知 $Bc=0$。
+平移 $h$ 为 $h_1(x)=h(x)-c$，则它仍共轭并固定零点。
+对 $h_1e^{tA}=e^{tB}h_1$ 在 $x=0$ 求导，得
+\[
+ He^{tA}=e^{tB}H,
+\]
+其中 $H=Dh_1(0)$ 可逆。
+再对 $t=0$ 求导，得到 $HA=BH$，即相似。
+\end{proof}
+简单谱时相似类由相同的特征值决定；重根时还要比较 Jordan 块。
+例如 $I$ 与 $\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)$ 特征值相同却不相似。
+
+\section{适配二次型与拓扑分类}
+\begin{definition}
+矩阵无实部为零的特征值时称为双曲。
+所有负实部广义特征空间的实直和称为稳定子空间 $E^s$，正实部对应者称为不稳定子空间 $E^u$。
+记其维数为 $m_-,m_+$。
+\end{definition}
+由前文的广义特征空间分解，$\R^n=E^s\oplus E^u$，且这两个子空间均不变。
+在 $E^s$ 上 $e^{tA}x\to0$（$t\to+\infty$），在 $E^u$ 上反向时间趋于零。
+
+\begin{lemma}[几乎特征基]
+复矩阵 $A$ 对任意 $\varepsilon>0$ 都存在一组基，使矩阵上三角且每个严格上三角元的绝对值小于 $\varepsilon$。
+\end{lemma}
+\begin{proof}
+先由 Jordan 形取上三角基 $e_1,\ldots,e_n$，再令 $e_j'=\delta^je_j$。
+新矩阵元为 $a'_{ij}=a_{ij}\delta^{j-i}$。
+当 $j>i$，选足够小 $\delta>0$ 使所有这些有限个元同时小于 $\varepsilon$。
+对角元保持为特征值，下三角仍为零。
+\end{proof}
+\begin{lemma}[正定二次型的开性]
+若 $Q$ 为正定二次型，则存在 $c,C>0$，使
+$c|x|^2\leq Q(x)\leq C|x|^2$；系数足够小的二次型扰动仍正定。
+\end{lemma}
+\begin{proof}
+在单位球面上 $Q$ 连续且严格为正，由紧性取到正的最小值和有限最大值。
+齐次性给出上下界。
+若扰动各系数绝对值不超过 $\eta$，单位球面上的扰动绝对值不超过 $n^2\eta$，
+取其小于 $c$ 即可。
+\end{proof}
+\begin{theorem}[Lyapunov 椭球]
+若 $A$ 的全部特征值实部为正，则存在正定实二次型 $Q$，使
+$L_{Ax}Q$ 正定。因此存在 $0<c<C$，满足
+\[
+ cQ(x)\leq L_{Ax}Q(x)\leq CQ(x).
+\]
+负实部情形，对 $-A$ 应用同一结论即可。
+\end{theorem}
+\begin{proof}
+令 $\gamma=\min_j\operatorname{Re}\lambda_j>0$。
+在几乎特征基中，严格上三角元都可取为绝对值不超过 $\eta$。
+设 $Q(z)=\sum_j|z_j|^2$，沿 $z'=Az$ 有
+\[
+ \dot Q=2\sum_j\operatorname{Re}\lambda_j|z_j|^2
+ +2\operatorname{Re}\sum_{i<j}a_{ij}z_j\overline z_i.
+\]
+利用 $2|z_i||z_j|\leq|z_i|^2+|z_j|^2$，交叉项绝对值满足
+\[
+ \left|2\operatorname{Re}\sum_{i<j}a_{ij}z_j\overline z_i\right|
+ \leq\eta\sum_{i<j}(|z_i|^2+|z_j|^2)
+ =\eta(n-1)Q(z).
+\]
+故取 $\eta(n-1)<\gamma$ 即有 $\dot Q\geq\gamma Q$（$n=1$ 时无交叉项）。
+上界同理由有限个矩阵元得到，例如
+$\dot Q\leq[2\max_j\operatorname{Re}\lambda_j+\eta(n-1)]Q$。
+
+虽然构造使用了复基，原实空间在复化后仍是一个实线性子空间，且在实矩阵 $A$ 下不变。
+将 $Q$ 限制在该子空间，再用原来的实坐标表示，就得到实正定二次型。
+上述沿流导数不等式在限制后仍成立。
+若上界常数与下界相同，可将下界减半、上界增大，取得所需 $0<c<C$。
+\end{proof}
+\begin{theorem}[双曲线性系统的拓扑分类]\label{thm:arnold-linear-topology}
+两个同维双曲实线性系统拓扑共轭，当且仅当 $m_-$ 相同。
+\end{theorem}
+\begin{proof}
+先设全部特征值实部为正，取 Lyapunov 二次型 $Q$，令 $S=\{Q=1\}$。
+对非零 $x$ 记 $q(t)=Q(e^{tA}x)>0$。导数估计给出
+$c\leq (\log q)'\leq C$。因此对 $t\geq0$，
+\[
+ e^{ct}Q(x)\leq Q(e^{tA}x)\leq e^{Ct}Q(x),
+\]
+对 $t\leq0$ 则有 
+\[
+ e^{Ct}Q(x)\leq Q(e^{tA}x)\leq e^{ct}Q(x).
+\]
+所以 $q$ 严格递增，负向趋零、正向趋无穷。介值定理和严格单调性说明
+每条非零轨道恰经过 $S$ 一次，且每个非零点唯一写成 $x=e^{tA}\xi$，$\xi\in S$。
+
+以此表示定义 $h(e^{tA}\xi)=e^t\xi$，并置 $h(0)=0$。
+因为每条从零点出发的射线也恰交 $S$ 一次，$e^t\xi$ 同样唯一表示任意非零点，
+故 $h$ 是双射。确定时间的方程为 
+\[
+ Q(e^{-tA}x)=1,
+\]
+其对 $t$ 的导数
+为 $-L_{Ax}Q(e^{-tA}x)<0$。隐函数定理保证 $t=t(x)$ 在非零点光滑，
+$\xi=e^{-t(x)A}x$ 亦然；逆映射由射线坐标给出，也在非零点连续。
+
+还须检查零点。若 $x=e^{tA}\xi\to0$，则 $Q(x)\to0$，最终 $t<0$。
+上面的估计给出 $e^{Ct}\leq Q(x)$，故
+\[
+ t\leq C^{-1}\log Q(x)\to-\infty.
+\]
+椭球 $S$ 紧，因而 $h(x)=e^t\xi\to0$。
+反之，若 $y=e^t\xi\to0$，$S$ 上的 Euclidean 长度有正常数下界，故 $t\to-\infty$；
+再由 $Q(e^{tA}\xi)\leq e^{ct}$ 得 $h^{-1}(y)\to0$。
+因此 $h$ 在全空间为同胚。最后直接计算
+\[
+ h(e^{sA}e^{tA}\xi)=e^{t+s}\xi=e^sh(e^{tA}\xi),
+\]
+故它把原系统保时间地共轭到 $y'=y$。
+
+对负实部部分反向时间，得到与 $u'=-u$ 的共轭。
+一般双曲系统分解为稳定与不稳定两个不变子空间，在各部分应用上述构造，
+再取两个同胚的直积，得到标准系统 $u'=-u,v'=v$。
+两个系统的稳定维数相同且总维数相同，便有同一个标准系统，充分性得证。
+
+反过来，设存在共轭。双曲矩阵可逆，所以两系统的唯一平衡点均为零，共轭必固定零。
+由连续性，$e^{tA}x\to0$ 蕴含 $e^{tB}h(x)\to0$；应用逆共轭得反向蕴含。
+对于双曲线性系统，趋零点集恰为稳定子空间：不稳定分量只要非零，正向就不能趋零。
+于是共轭将 $E_A^s$ 同胚到 $E_B^s$。由拓扑维数不变性
+（Euclidean 空间 $\R^p,\R^q$ 同胚必有 $p=q$），两稳定维数相同。
+\end{proof}
+上述共轭通常不是可微的。比如一维 $x'=x$ 与 $y'=2y$ 可由
+$y=\operatorname{sgn}(x)|x|^2$ 共轭，但逆在零点不可微。
+平面稳定焦点与稳定结点也拓扑共轭，尽管不是线性共轭。
+
+\begin{remark}[非线性情形的边界]
+非线性双曲平衡点附近也存在保持时间的局部拓扑共轭。该结论称为 Hartman--Grobman 定理，其证明将在不变流形与进阶专题一章给出。
+\end{remark}
+
+\section{纯虚谱、不变环面与周期不变量}
+\begin{proposition}
+共轭保持每条非恒定周期解的最小正周期。
+因此两个二维线性中心 $x''+\omega_i^2x=0$（$\omega_i>0$）
+按保时间的拓扑共轭等价，当且仅当 $\omega_1=\omega_2$。
+\end{proposition}
+\begin{proof}
+若 $\varphi^T(x)=x$，共轭给出 $\psi^T(hx)=hx$。
+应用逆共轭，两个点的周期集合相同，最小正周期相同。
+中心的所有非零轨道最小周期为 $2\pi/\omega_i$，故必要性成立；
+频率相同时两个矩阵实相似，给出充分性。
+\end{proof}
+\begin{definition}
+$m$ 维环面为 $\mathbb T^m=(\R/2\pi\Z)^m$。
+环面上的线性流为 $\theta(t)=\theta_0+\omega t\pmod{2\pi}$。
+频率 $\omega_1,\ldots,\omega_m$ 称为有理独立，若
+$k\cdot\omega=0$、$k\in\Z^m$ 只能推出 $k=0$。
+\end{definition}
+实线性系统在纯虚特征值均半单时分成若干独立旋转平面。
+固定各平面非零振幅得到不变环面；振幅为零的平面不贡献一个圆因子。
+在重根非半单时可能出现 $t\sin\omega t$ 等项，不能套用有界环面图像。
+
+\begin{lemma}[无理旋转]
+若 $\alpha/(2\pi)$ 无理，则序列 $\theta+n\alpha\pmod{2\pi}$（$n\geq0$）在圆上稠密。
+\end{lemma}
+\begin{proof}
+先看整数 $n\in\Z$ 的全部轨道，其闭包为圆的闭子群的一个陪集。
+把 $N+1$ 个点放入 $N$ 个等分弧，抽屉原理给出非零整数倍角度距零小于 $2\pi/N$。
+无理性确保这个距离不为零；任意小步长的整数倍能逼近圆上任一点，
+所以双向轨道稠密。
+还须说明负次迭代也在正次轨道的闭包中。
+紧性给出越来越大的正整数 $n_j$，使 $n_j\alpha\pmod{2\pi}\to0$；
+若这样的回归整数有界，无理性将被违反。
+对固定正整数 $r$，$(n_j-r)\alpha\to-r\alpha$，且最终 $n_j-r\geq0$。
+所以负次点也在正次闭包中，正向稠密性成立。
+\end{proof}
+无理性在这里保证了小步长不为零；回归序列则把双向轨道的稠密性转为正向轨道的稠密性。
+
+\begin{theorem}[二维环面]
+若非零频率 $\omega_1,\omega_2$ 有理相关，则所有环面轨道闭合；
+若有理独立，则每条轨道在整个二维环面稠密。
+\end{theorem}
+\begin{proof}
+有理相关时存在 $T>0$ 使 $\omega_iT\in2\pi\Z$，故运动周期。
+有理独立时 $\omega_2/\omega_1$ 无理。
+轨道依次穿过经线 $\theta_1=0$ 的纬度是一个无理旋转序列，故在该经线上稠密。
+沿流把经线上的小开段移动一段时间，可以到达环面上任意指定小开集，
+于是轨道与任意非空开集相交，正是稠密性。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-torus-flow} 中，轨道从一条边离开后从对边继续。有理斜率给出闭轨，无理斜率的完整轨道稠密。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{将环面沿经纬线展开为正方形；同向箭头标明需粘合的对边，右图只画有限轨道段。}
+\label{fig:ode-tikz-torus-flow}
+\end{minipage}
+\end{center}
+
+\section{均匀分布与高维推广}
+\begin{definition}
+圆上的序列 $\theta_n$ 称为均匀分布，若对每条弧 $J$，
+$\#\{0\leq n<N:\theta_n\in J\}/N\to|J|/(2\pi)$。
+连续环面流的均匀分布，是指落入每个坐标矩形的时间比例趋于该矩形的归一化体积。
+\end{definition}
+\begin{lemma}[三角多项式逼近]
+环面上的连续函数可被三角多项式一致逼近。
+\end{lemma}
+\begin{proof}
+圆上取 Fejér 核
+\[
+ K_N(s)=\frac1N\left|\sum_{j=0}^{N-1}e^{ijs}\right|^2.
+\]
+它非负、积分为 $2\pi$，是三角多项式；离开零点的固定邻域时，
+$K_N(s)\leq[N\sin^2(s/2)]^{-1}$，积分质量趋于零。
+卷积 $f*K_N/(2\pi)$ 与 $f$ 的差，
+在零点附近由一致连续性控制，在远处由上述质量界控制，所以一致趋于零。
+高维取各坐标核的乘积，重复同一估计即可。
+\end{proof}
+\begin{theorem}
+无理圆周旋转序列均匀分布。
+若 $\omega$ 有理独立，则环面线性流均匀分布，因而每条轨道稠密。
+\end{theorem}
+\begin{proof}
+对非零整数 $k$，无理旋转的指数平均是有限等比和除以 $N$：
+\[
+ \frac1N\sum_{n=0}^{N-1}e^{ik(\theta+n\alpha)}\longrightarrow0,
+\]
+因为分母 $1-e^{ik\alpha}\ne0$ 而分子有界。
+对高维连续流，若 $k\ne0$，则 $k\cdot\omega\ne0$，所以
+\[
+ \frac1T\int_0^Te^{ik\cdot(\theta_0+\omega t)}\,\dd t\longrightarrow0.
+\]
+常数项的平均为自身。于是对三角多项式，轨道平均等于空间平均的极限。
+由一致逼近，把这一结论推广到所有连续函数。
+
+弧或矩形的示性函数不连续，但其边界体积为零。
+在边界宽度 $\delta$ 的小带内做分段线性过渡，构造上下连续函数夹住示性函数，
+二者空间积分之差随 $\delta\to0$ 趋于零。
+对上下函数先取时间平均再夹逼，得到所需频率公式。
+任意非空开集包含正体积小矩形，因而轨道必与之相交，故稠密。
+\end{proof}
+例如 $\log_{10}2$ 无理（否则 $2^q=10^p$ 违反整数的唯一分解）。
+所以 $2^n$ 的首位为 $d$ 的频率为
+$\log_{10}(1+1/d)$；更一般的任意合法前缀也会出现。
+这说明“稠密”只保证能逼近，而“均匀分布”还给出了访问比例。

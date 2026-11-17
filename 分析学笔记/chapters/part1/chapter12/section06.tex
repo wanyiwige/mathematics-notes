@@ -1,0 +1,400 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.6 Stone-Weierstrass定理
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{Stone-Weierstrass定理}
+\begin{definition}(Bernstein 多项式)
+	$Y$ 是多项式全体构成的集合,定义映射
+	\[
+	B_n:C[0,1]\longrightarrow Y
+	\]
+	为
+	\[
+	f(t)\longmapsto B_n(f,x)=\sum_{k=0}^{n} f\left(\frac{k}{n}\right) C_n^k x^k(1-x)^{n-k}.
+	\]
+	这里 $B_n(f,x)$ 表示 $f\in X$ 在映射 $B_n$ 作用下的像,它是以 $x$ 为变量的 $n$ 次多项式,称为 $f$ 的 Bernstein 多项式.
+\end{definition}
+
+关于映射 $B_n$,直接从定义出发,可以证明它有下述基本性质与基本关系.
+
+	对 $B_n$ 有
+	\begin{enumerate}
+		\item $B_n$ 是线性映射,即对任意 $f,g\in X$ 与 $\alpha,\beta\in\mathbb{R}$,成立
+		\[
+		B_n(\alpha f+\beta g,x)=\alpha B_n(f,x)+\beta B_n(g,x).
+		\]
+		\item $B_n$ 具有单调性,即若 $f(t)\geqslant g(t)$ 对一切 $t\in[0,1]$ 成立,则
+		\[
+		B_n(f,x)\geqslant B_n(g,x)
+		\]
+		对一切 $x\in[0,1]$ 成立.
+		\item 对一切 $x\in[0,1]$,成立
+		\[
+		B_n(1,x)=1,\qquad B_n(t,x)=x,\qquad B_n(t^2,x)=x^2+\frac{x-x^2}{n}.
+		\]
+		进一步,对任意常数 $s$,有
+		\[
+		B_n((t-s)^2,x)=\frac{x-x^2}{n}+(x-s)^2.
+		\]
+	\end{enumerate}
+
+
+
+\begin{theorem}(Weierstrass 第一逼近定理)\label{weierstrass第一逼近定理}
+	设 $f(x)$ 是闭区间 $[a,b]$ 上的连续函数,则对任意给定的 $\varepsilon>0$,存在多项式 $P(x)$,使得
+	\[
+	|P(x)-f(x)|<\varepsilon
+	\]
+	对一切 $x\in[a,b]$ 成立.
+\end{theorem}
+这个证明来自于苏联的Korovkin
+\begin{proof}
+	一般性地,我们先证 $[a,b]=[0,1]$ 的情形.
+	
+	由于 $f$ 在 $[0,1]$ 上连续,所以必定有界,即存在 $M>0$,使得对一切 $t\in[0,1]$ 成立
+	\[
+	|f(t)|\leqslant M.
+	\]
+	又由 Cantor 定理, $f$ 在 $[0,1]$ 上一致连续.于是对任意给定的 $\varepsilon>0$,存在 $\delta>0$,使得对一切 $t,s\in[0,1]$,当 $|t-s|<\delta$ 时,成立
+	\[
+	|f(t)-f(s)|<\frac{\varepsilon}{2}.
+	\]
+	当 $|t-s|\geqslant\delta$ 时,有
+	\[
+	|f(t)-f(s)|\leqslant 2M\leqslant\frac{2M}{\delta^2}(t-s)^2.
+	\]
+	也就是说,对一切 $t,s\in[0,1]$,成立
+	\[
+	-\frac{\varepsilon}{2}-\frac{2M}{\delta^2}(t-s)^2
+	\leqslant f(t)-f(s)\leqslant
+	\frac{\varepsilon}{2}+\frac{2M}{\delta^2}(t-s)^2.
+	\]
+	把上式看作关于 $t$ 的连续函数不等式,并对其作用 $B_n$,由 $B_n$ 的单调性得到对一切 $x,s\in[0,1]$,
+	\[
+	-\frac{\varepsilon}{2}-\frac{2M}{\delta^2}\left[\frac{x-x^2}{n}+(x-s)^2\right]
+	\leqslant B_n(f,x)-f(s)
+	\leqslant
+	\frac{\varepsilon}{2}+\frac{2M}{\delta^2}\left[\frac{x-x^2}{n}+(x-s)^2\right].
+	\]
+	令 $s=x$,并注意到 $x(1-x)\leqslant\dfrac14$,即得
+	\[
+	\left|\sum_{k=0}^{n} f\left(\frac{k}{n}\right)C_n^k x^k(1-x)^{n-k}-f(x)\right|
+	\leqslant \frac{\varepsilon}{2}+\frac{M}{2n\delta^2}.
+	\]
+	取
+	\[
+	N=\left[\frac{M}{\delta^2\varepsilon}\right]+1,
+	\]
+	当 $n>N$ 时,有
+	\[
+	\left|\sum_{k=0}^{n} f\left(\frac{k}{n}\right)C_n^k x^k(1-x)^{n-k}-f(x)\right|<\varepsilon
+	\]
+	对一切 $x\in[0,1]$ 成立.而左边的求和正是多项式 $B_n(f,x)$ 与 $f(x)$ 的差.
+	
+	一般闭区间 $[a,b]$ 的情形,只需对区间作线性变换化为 $[0,1]$ 即可.
+\end{proof}
+
+\begin{proposition}(Weierstrass 定理的序列形式)\label{weierstrass序列形式}
+	如果 $f$ 是 $[a,b]$ 上的一个连续函数,那么存在多项式 $P_n$ 的序列,使得
+	\[
+	\lim_{n\to\infty}P_n(x)=f(x)
+	\]
+	在 $[a,b]$ 上一致地成立.如果 $f$ 是实函数,那么 $P_n$ 可以取为实多项式.
+\end{proposition}
+
+\begin{proof}
+	由定理\ref{weierstrass第一逼近定理},取 $\varepsilon=\dfrac1n$,则存在多项式 $P_n(x)$,使得对一切 $x\in[a,b]$,
+	\[
+	|P_n(x)-f(x)|<\frac1n.
+	\]
+	于是 $P_n\rightrightarrows f$ 于 $[a,b]$.
+	
+	反过来,若已经有多项式列 $P_n\rightrightarrows f$,则对任意 $\varepsilon>0$,存在 $N$,使得当 $n>N$ 时
+	\[
+	\sup_{x\in[a,b]}|P_n(x)-f(x)|<\varepsilon.
+	\]
+	取 $P=P_{N+1}$,便得到定理\ref{weierstrass第一逼近定理} 的形式.
+\end{proof}
+
+下面给出定理\ref{weierstrass序列形式} 的另一种证明,也就是 Rudin 中的证明方法.
+
+\begin{proof}[另一种证明]
+	仍不妨设 $[a,b]=[0,1]$.还可以假定 $f(0)=f(1)=0$. 因为若一般情形已经化为这种情形,只需考虑
+	\[
+	g(x)=f(x)-f(0)-x[f(1)-f(0)],\qquad 0\leqslant x\leqslant 1.
+	\]
+	则 $g(0)=g(1)=0$,而 $f-g$ 是一次函数,所以 $g$ 若为一致收敛多项式列的极限,则 $f$ 也是.
+	
+	在 $[0,1]$ 以外的点上定义 $f(x)=0$,则 $f$ 在整个实轴上一致连续.令
+	\[
+	Q_n(x)=c_n(1-x^2)^n\qquad (n=1,2,3,\cdots),
+	\]
+	其中 $c_n$ 由下式确定:
+	\[
+	\int_{-1}^{1}Q_n(x)\dd x=1.
+	\]
+	于是
+	\[
+	\frac1{c_n}=\int_{-1}^{1}(1-x^2)^n\dd x
+	\geqslant \int_{-1/\sqrt n}^{1/\sqrt n}(1-x^2)^n\dd x
+	\geqslant \int_{-1/\sqrt n}^{1/\sqrt n}(1-nx^2)\dd x
+	=\frac{4}{3\sqrt n}.
+	\]
+	从而
+	\[
+	c_n<\sqrt n.
+	\]
+	上式中用到的不等式 $(1-x^2)^n\geqslant 1-nx^2$ 是显然的.这说明对任意 $\delta>0$,
+	\[
+	Q_n(x)\leqslant \sqrt n(1-\delta^2)^n,
+	\qquad \delta\leqslant |x|\leqslant 1,
+	\]
+	于是 $Q_n(x)\to0$ 在 $\delta\leqslant |x|\leqslant1$ 上一致成立.
+	
+	现在令
+	\[
+	P_n(x)=\int_{-1}^{1}f(x+t)Q_n(t)\dd t,
+	\qquad 0\leqslant x\leqslant1.
+	\]
+	利用 $f$ 的定义并作变量代换,可得
+	\[
+	\begin{aligned}
+		P_n(x)&=\int_{x-1}^{x+1}f(u)Q_n(u-x)\dd u\\
+		&=\int_0^1 f(u)Q_n(u-x)\dd u.
+	\end{aligned}
+	\]
+	由于 $Q_n(u-x)=c_n[1-(u-x)^2]^n$ 关于 $x$ 是多项式,所以 $P_n(x)$ 也是关于 $x$ 的多项式.
+	
+	给定 $\varepsilon>0$.由 $f$ 的一致连续性,存在 $\delta>0$,使得当 $|t|<\delta$ 时,
+	\[
+	|f(x+t)-f(x)|<\frac{\varepsilon}{2}
+	\]
+	对所有 $x$ 成立.记 $M=\max |f|$.由 $\int_{-1}^{1}Q_n(t)\dd t=1$,有
+	\[
+	\begin{aligned}
+		|P_n(x)-f(x)|
+		&\leqslant \int_{-1}^{1}|f(x+t)-f(x)|Q_n(t)\dd t\\
+		&\leqslant \int_{-\delta}^{\delta}|f(x+t)-f(x)|Q_n(t)\dd t
+		+\int_{\delta\leqslant |t|\leqslant1}|f(x+t)-f(x)|Q_n(t)\dd t\\
+		&\leqslant \frac{\varepsilon}{2}+2M\int_{\delta\leqslant |t|\leqslant1}Q_n(t)\dd t.
+	\end{aligned}
+	\]
+	而后一项随 $n\to\infty$ 一致趋于 $0$,故对充分大的 $n$,
+	\[
+	|P_n(x)-f(x)|<\varepsilon
+	\]
+	对一切 $x\in[0,1]$ 成立.
+\end{proof}
+
+\begin{corollary}\label{绝对值多项式逼近}
+	在每个区间 $[-a,a]$ 上,必有实多项式 $P_n$ 的序列,合于 $P_n(0)=0$,而且
+	\[
+	\lim_{n\to\infty}P_n(x)=|x|
+	\]
+	在 $[-a,a]$ 上一致地成立.
+\end{corollary}
+
+\begin{proof}
+	由 Weierstrass 定理,存在实多项式 $Q_n$ 使 $Q_n\rightrightarrows |x|$ 于 $[-a,a]$.令
+	\[
+	P_n(x)=Q_n(x)-Q_n(0).
+	\]
+	则 $P_n(0)=0$,并且
+	\[
+	\sup_{x\in[-a,a]}|P_n(x)-|x||
+	\leqslant \sup_{x\in[-a,a]}|Q_n(x)-|x||+|Q_n(0)|\to0.
+	\]
+\end{proof}
+
+\begin{definition}
+	称定义在集 $E$ 上的函数族 $\mathscr{A}$ 为代数,如果对于一切 $f,g\in\mathscr{A}$ 来说,
+	\begin{enumerate}
+		\item $f+g\in\mathscr{A}$;
+		\item $fg\in\mathscr{A}$;
+		\item 对于一切常数 $c$,有 $cf\in\mathscr{A}$.
+	\end{enumerate}
+	也就是说,$\mathscr{A}$ 对加法、乘法以及数量乘法封闭.
+	
+	如果代数 $\mathscr{A}$ 有如下性质:只要 $f_n\in\mathscr{A}\,(n=1,2,3,\cdots)$,并且 $f_n\to f$ 在 $E$ 上一致成立,便有 $f\in\mathscr{A}$,则称 $\mathscr{A}$ 是一致闭的.
+	
+	设$\mathscr{B}$是由$\mathscr{A}$内的所有已知收敛的函数序列的极限函数组成的集，便称$\mathscr{B}$是$\mathscr{A}$的一致闭包
+\end{definition}
+
+所有多项式的集合是一个代数.因此 Weierstrass 定理也可以叙述为:$[a,b]$ 上连续函数的集合是 $[a,b]$ 上多项式代数的一致闭包.
+
+\begin{proposition}
+	设 $\mathscr{A}$ 是定义在 $E$ 上的有界函数代数,$\mathscr{B}$ 是 $\mathscr{A}$ 的一致闭包,那么 $\mathscr{B}$ 也是一致闭的代数.
+\end{proposition}
+
+\begin{proof}
+	若 $f,g\in\mathscr{B}$,则存在 $\mathscr{A}$ 中的函数列 $f_n,g_n$,使得
+	\[
+	f_n\rightrightarrows f,
+	\qquad
+	g_n\rightrightarrows g.
+	\]
+	由于这里讨论的是有界函数,不难证明
+	\[
+	f_n+g_n\rightrightarrows f+g,
+	\qquad
+	f_ng_n\rightrightarrows fg,
+	\qquad
+	cf_n\rightrightarrows cf.
+	\]
+	而 $f_n+g_n,f_ng_n,cf_n\in\mathscr{A}$,故 $f+g,fg,cf\in\mathscr{B}$.因此 $\mathscr{B}$ 是代数.
+	
+	再证一致闭性.若 $h_m\in\mathscr{B}$ 且 $h_m\rightrightarrows h$,则对每个 $m$,可取 $a_m\in\mathscr{A}$,使得
+	\[
+	\sup_{x\in E}|a_m(x)-h_m(x)|<\frac1m.
+	\]
+	于是 $a_m\rightrightarrows h$,从而 $h\in\mathscr{B}$.故 $\mathscr{B}$ 是一致闭的.
+\end{proof}
+
+\begin{definition}
+	设 $\mathscr{A}$ 是集 $E$ 上的函数族.说 $\mathscr{A}$ 能分离 $E$ 的点,就是说对应于每对不同的点 $x_1,x_2\in E$,总有一个函数 $f\in\mathscr{A}$,使得
+	\[
+	f(x_1)\neq f(x_2).
+	\]
+	如果对 $E$ 的每个 $x$,有一个函数 $g\in\mathscr{A}$,使得 $g(x)\neq0$,我们就说 $\mathscr{A}$ 不在 $E$ 的点消失.
+\end{definition}
+
+\begin{proposition}\label{两点插值引理}
+	设 $\mathscr{A}$ 是定义在集 $E$ 上的函数代数,$\mathscr{A}$ 能分离 $E$ 的点,又不在 $E$ 的点消失.设 $x_1,x_2$ 是 $E$ 中的不同两点,$c_1,c_2$ 是常数,如果 $\mathscr{A}$ 是实代数,则 $c_1,c_2$ 也取实数.那么 $\mathscr{A}$ 里有一个函数 $f$,使得
+	\[
+	f(x_1)=c_1,
+	\qquad
+	f(x_2)=c_2.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由假设可取 $g,h,k\in\mathscr{A}$,使得
+	\[
+	g(x_1)\neq g(x_2),
+	\qquad
+	h(x_1)\neq0,
+	\qquad
+	k(x_2)\neq0.
+	\]
+	令
+	\[
+	u=(g-g(x_1))k,
+	\qquad
+	v=(g-g(x_2))h.
+	\]
+	则 $u,v\in\mathscr{A}$,且
+	\[
+	u(x_1)=v(x_2)=0,
+	\qquad
+	u(x_2)\neq0,
+	\qquad
+	v(x_1)\neq0.
+	\]
+	于是
+	\[
+	f=\frac{c_1v}{v(x_1)}+\frac{c_2u}{u(x_2)}
+	\]
+	便满足所需的性质.
+\end{proof}
+
+\begin{theorem}(Stone-Weierstrass 定理,实形式)\label{Stone-Weierstrass实形式}
+	设 $K$ 是紧集,$\mathscr{A}$ 是 $K$ 上的实连续函数的代数.假如 $\mathscr{A}$ 能分离 $K$ 的点,且 $\mathscr{A}$ 不在 $K$ 的点消失,那么 $\mathscr{A}$ 的一致闭包 $\mathscr{B}$ 是由 $K$ 上所有实连续函数组成的.
+\end{theorem}
+
+\begin{proof}
+	由上一定理,$\mathscr{B}$ 是一致闭的代数.我们分四步证明.
+	
+	第一步,如果 $f\in\mathscr{B}$,那么 $|f|\in\mathscr{B}$.
+	
+	记
+	\[
+	\alpha=\sup |f(x)|\qquad (x\in K).
+	\]
+	给定 $\varepsilon>0$,根据推论\ref{绝对值多项式逼近},有实数 $c_1,\cdots,c_n$,使得
+	\[
+	\left|\sum_{i=1}^{n}c_i y^i-|y|\right|<\varepsilon,
+	\qquad -\alpha\leqslant y\leqslant \alpha.
+	\]
+	因为 $\mathscr{B}$ 是代数,所以函数
+	\[
+	g=\sum_{i=1}^{n}c_i f^i
+	\]
+	属于 $\mathscr{B}$.由上式可得
+	\[
+	|g(x)-|f(x)||<\varepsilon\qquad (x\in K).
+	\]
+	因 $\mathscr{B}$ 一致闭,故 $|f|\in\mathscr{B}$.
+	
+	第二步,如果 $f,g\in\mathscr{B}$,那么 $\max(f,g)\in\mathscr{B}$,$\min(f,g)\in\mathscr{B}$.
+	事实上,
+	\[
+	\max(f,g)=\frac{f+g+|f-g|}{2},
+	\qquad
+	\min(f,g)=\frac{f+g-|f-g|}{2}.
+	\]
+	由第一步立即得到结论.进而,由归纳法可知,有限多个 $\mathscr{B}$ 中函数的最大值与最小值仍属于 $\mathscr{B}$.
+	
+	第三步,给定一个在 $K$ 上连续的实函数 $f$,对每个 $x\in K$ 与 $\varepsilon>0$,存在函数 $g_x\in\mathscr{B}$,使得
+	\[
+	g_x(x)=f(x),
+	\qquad
+	g_x(t)>f(t)-\varepsilon\qquad (t\in K).
+	\]
+	固定 $x\in K$.由于 $\mathscr{A}\subset\mathscr{B}$,所以 $\mathscr{B}$ 仍能分离 $K$ 的点,且不在 $K$ 的点消失.于是对每个 $y\in K$,由定理\ref{两点插值引理},可取 $h_y\in\mathscr{B}$,使得
+	\[
+	h_y(x)=f(x),
+	\qquad
+	h_y(y)=f(y).
+	\]
+	因 $h_y$ 与 $f$ 连续,存在 $y$ 的一个邻域 $J_y$,使得
+	\[
+	h_y(t)>f(t)-\varepsilon\qquad (t\in J_y).
+	\]
+	因为 $K$ 是紧的,存在有限个点 $y_1,\cdots,y_n$,使得
+	\[
+	K\subset J_{y_1}\cup\cdots\cup J_{y_n}.
+	\]
+	令
+	\[
+	g_x=\max(h_{y_1},\cdots,h_{y_n}).
+	\]
+	根据第二步 $g_x\in\mathscr{B}$,并且它满足上面的两个性质.
+	
+	第四步,证明任意连续实函数 $f$ 都属于 $\mathscr{B}$.
+	
+	在第三步中,对每个 $x\in K$,取到函数 $g_x\in\mathscr{B}$.由于 $g_x(x)=f(x)$ 且二者连续,存在 $x$ 的一个邻域 $V_x$,使得
+	\[
+	g_x(t)<f(t)+\varepsilon\qquad (t\in V_x).
+	\]
+	因为 $K$ 是紧的,有有限覆盖
+	\[
+	K\subset V_{x_1}\cup\cdots\cup V_{x_m}.
+	\]
+	令
+	\[
+	h=\min(g_{x_1},\cdots,g_{x_m}).
+	\]
+	根据第二步 $h\in\mathscr{B}$.由第三步得
+	\[
+	h(t)>f(t)-\varepsilon\qquad (t\in K),
+	\]
+	又由有限覆盖的选取可得
+	\[
+	h(t)<f(t)+\varepsilon\qquad (t\in K).
+	\]
+	因此
+	\[
+	|h(t)-f(t)|<\varepsilon\qquad (t\in K).
+	\]
+	由于 $\varepsilon>0$ 任意,而 $\mathscr{B}$ 一致闭,故 $f\in\mathscr{B}$.这就证明了 $\mathscr{B}$ 由 $K$ 上所有实连续函数组成.
+\end{proof}
+
+
+	如果在 Stone-Weierstrass 定理中取由
+	\[
+	1,\sin x,\cos x,\sin^2x,\cos^2x,\sin x\cos x,\cdots
+	\]
+	生成的实代数,也就是三角多项式代数,便可以得到 Weierstrass 第二逼近定理:
+	\begin{theorem}
+		连续以$2\pi$为周期的函数可以由三角多项式一致逼近.
+	\end{theorem}

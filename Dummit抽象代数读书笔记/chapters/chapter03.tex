@@ -1,0 +1,289 @@
+% !TEX root = ../main.tex
+\setchapterimage{}
+\setchapterintro{}
+\chapter{商群与同态}
+
+\section{商群}
+本章引入群 $G$ 的\textbf{商群}概念，这是从群 $G$ 得到一个“较小”群的另一种方法；正如我们对待子群那样，我们将用商群来研究 $G$ 的结构。
+\begin{definition}
+	若 $\varphi$ 是从 $G$ 到群 $H$ 的同态，则 $\varphi$ 的\textbf{纤维}是 $G$ 中映到 $H$ 的单个元素上的元素集合。
+	
+	就是说$\varphi$ 在 $a\in H$ 上方的纤维定义为
+	\[\{x\in G :\varphi (x) = a\in H\}\]
+\end{definition}
+	可以把这种情形图示为图 1，其中点 $a$ 上方方框中的竖线表示 $\varphi$ 在 $a$ 上方的纤维。
+\begin{center}
+	\begin{tikzpicture}[scale=.95, every node/.style={inner sep=1pt}]
+		\draw (-3.8,1) rectangle (3.8,2.4);
+		\foreach \x in {-3.1,-2.8,-.55,.55,2.8,3.1}{\draw (\x,1.15)--(\x,2.25);} 
+		\node at (-1.65,1.7) {$\cdots$};
+		\node at (1.65,1.7) {$\cdots$};
+		\node[right] at (4.0,1.7) {$G$};
+		\draw (-3.8,0)--(3.8,0);
+		\foreach \x in {-3.1,-2.8,0,2.8,3.1}{\fill (\x,0) circle (1.7pt);}
+		\foreach \x in {-3.1,-2.8,0,2.8,3.1}{\draw[->] (\x,1.0)--(\x,.13);} 
+		\node[below] at (0,0) {$a$};
+		\node[right] at (4.0,0) {$H$};
+		\node at (3.95,-.55) {图 1};
+	\end{tikzpicture}
+\end{center}
+
+$H$ 中的群运算给出一种方法来相乘 $\varphi$ 的像中的两个元素。若 $X_a$ 是 $a$ 上方的纤维，$X_b$ 是 $b$ 上方的纤维，则定义 $X_a$ 与 $X_b$ 的乘积为 $ab$ 上方的纤维 $X_{ab}$，即
+\[
+X_aX_b=X_{ab}.
+\]
+这种乘法是结合的，因为 $H$ 中的乘法结合；单位元是 $H$ 的单位元上方的纤维；$a$ 上方纤维的逆是 $a^{-1}$ 上方的纤维。例如，结合律证明如下：
+\[
+(X_aX_b)X_c=(X_{ab})X_c=X_{(ab)c},\qquad
+X_a(X_bX_c)=X_a(X_{bc})=X_{a(bc)}.
+\]
+由于 $(ab)c=a(bc)$ 在 $H$ 中成立，故 $(X_aX_b)X_c=X_a(X_bX_c)$。粗略地说，群 $G$ 被分划成若干片（纤维），而这些片本身具有群结构，称为 $G$ 的商群（正式定义见下面）。
+
+\begin{definition}
+	 若 $\varphi:G\to H$ 是同态，则 $\varphi$ 的\textbf{核}是集合
+	\[
+	\{g\in G\mid \varphi(g)=1\},
+	\]
+	记为 $\ker\varphi$（这里 $1$ 是 $H$ 的单位元）。
+\end{definition}
+\begin{proposition}\label{核的群性质}
+	设 $G$ 和 $H$ 是群，$\varphi:G\to H$ 是同态。
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\varphi(1_G)=1_H$，其中 $1_G$ 与 $1_H$ 分别为 $G$ 与 $H$ 的单位元。
+		\item 对所有 $g\in G$，$\varphi(g^{-1})=\varphi(g)^{-1}$。
+		\item 对所有 $n\in\ZZ$，$\varphi(g^n)=\varphi(g)^n$。
+		\item $\ker\varphi$ 是 $G$ 的子群。
+		\item $\im(\varphi)$，即 $G$ 在 $\varphi$ 下的像，是 $H$ 的子群。
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	(1) 由于
+	\[
+	\varphi(1_G)=\varphi(1_G1_G)=\varphi(1_G)\varphi(1_G),
+	\]
+	由消去律得 $\varphi(1_G)=1_H$。
+	
+	(2) 由 (1)，
+	\[
+	1_H=\varphi(1_G)=\varphi(gg^{-1})=\varphi(g)\varphi(g^{-1}).
+	\]
+	左乘 $\varphi(g)^{-1}$ 并化简，得结论。
+	
+	(3) 当 $n\in\ZZ^+$ 时由归纳法即可；负整数情形由 (2) 推出。
+	
+	(4) 由 (1)，$1_G\in\ker\varphi$，所以核非空。若 $x,y\in\ker\varphi$，则 $\varphi(x)=\varphi(y)=1_H$，于是
+	\[
+	\varphi(xy^{-1})=\varphi(x)\varphi(y^{-1})
+	=\varphi(x)\varphi(y)^{-1}=1_H1_H^{-1}=1_H.
+	\]
+	所以 $xy^{-1}\in\ker\varphi$。由子群判别法，$\ker\varphi\leq G$。
+	
+	(5) 由 $\varphi(1_G)=1_H$，$H$ 的单位元属于 $\im(\varphi)$。若 $x,y\in\im(\varphi)$，设 $x=\varphi(a)$，$y=\varphi(b)$，则由 (2)，$y^{-1}=\varphi(b^{-1})$，所以
+	\[
+	xy^{-1}=\varphi(a)\varphi(b^{-1})=\varphi(ab^{-1})
+	\]
+	仍在像中。由子群判别法，$\im(\varphi)\leq H$。
+\end{proof}
+
+\begin{definition}
+	设 $\varphi:G\to H$ 是同态，其核为 $K$。\textbf{商群}或\textbf{因子群} $G/K$（读作 $G$ 模 $K$，或简称 $G$ mod $K$）是一个群，其元素是 $\varphi$ 的纤维，群运算定义如上：若 $X$ 是 $a$ 上方的纤维，$Y$ 是 $b$ 上方的纤维，则 $X$ 与 $Y$ 的乘积定义为 $ab$ 上方的纤维。
+\end{definition}
+
+\begin{proposition}\label{核的左右陪集相等}
+	设 $\varphi:G\to H$ 是群同态，核为 $K$。设 $X\in G/K$ 是 $a$ 上方的纤维，即 $X=\varphi^{-1}(a)$。则
+\begin{enumerate}[label=(\arabic*)]
+	\item 对任意 $u\in X$，有 $X=\{uk\mid k\in K\}$；
+	\item 对任意 $u\in X$，有 $X=\{ku\mid k\in K\}$。
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+	(1) 取 $u\in X$，于是 $\varphi(u)=a$。令
+	\[
+	uK=\{uk\mid k\in K\}.
+	\]
+	先证 $uK\subseteq X$。若 $k\in K$，则
+	\[
+	\varphi(uk)=\varphi(u)\varphi(k)=\varphi(u)1=a,
+	\]
+	所以 $uk\in X$。反过来，设 $g\in X$，令 $k=u^{-1}g$。则
+	\[
+	\varphi(k)=\varphi(u^{-1})\varphi(g)=\varphi(u)^{-1}\varphi(g)=a^{-1}a=1.
+	\]
+	因此 $k\in K$。又 $k=u^{-1}g$，故 $g=uk\in uK$。于是 $X=uK$。
+	
+	(2) 类似地，取 $u\in X$， $\varphi(u)=a$。令
+	\[
+	Ku=\{ku\mid k\in K\}.
+	\]
+	先证 $Ku\subseteq X$。若 $k\in K$，则
+	\[
+	\varphi(ku)=\varphi(k)\varphi(u)=1\varphi(u)=a,
+	\]
+	所以 $ku\in X$。反过来，设 $g\in X$，令 $k=gu^{-1}$。则
+	\[
+	\varphi(k)=\varphi(g)\varphi(u^{-1})=\varphi(g)\varphi(u)^{-1}=aa^{-1}=1.
+	\]
+	因此 $k\in K$。又 $k=gu^{-1}$，故 $g=ku\in Ku$。于是 $X=Ku$。
+\end{proof}
+综上，我们看到了对一个同态$\varphi $的核$K$，其在$a$上的纤维有
+\[X = uK = Ku,\qquad u\in X\]
+
+\begin{definition}
+	任意 $N\leq G$ 和任意 $g\in G$，令
+\[
+gN=\{gn\mid n\in N\},\qquad Ng=\{ng\mid n\in N\},
+\]
+分别称为 $N$ 在 $G$ 中的\textbf{左陪集}和\textbf{右陪集}。陪集中的任意元素称为该陪集的一个\textbf{代表元}。
+
+\end{definition}
+若 $G$ 是加法群，我们写 $g+N$ 和 $N+g$ 分别表示代表元为 $g$ 的左、右陪集。一般地，可把左陪集 $gN$ 看作 $N$ 被 $g$ 左平移所得的集合。
+
+
+用这个定义来说，\ref{核的左右陪集相等}表明同态的纤维是核的左陪集（也是核的右陪集），即商 $G/K$ 的元素是左陪集 $gK$，$g\in G$。
+
+
+
+\begin{proposition}\label{陪集的乘积是良定的}
+	设 $G$ 是群，$K$ 是从 $G$ 到另一群的某个同态的核。则 $K$ 在 $G$ 中的左陪集组成的集合，在运算
+\[
+uK\circ vK=(uv)K
+\]
+下构成群 $G/K$。特别地，此运算是良定义的：若 $u_1$ 是 $uK$ 中任意元素，$v_1$ 是 $vK$ 中任意元素，则 $u_1v_1\in uvK$，即 $u_1v_1K=uvK$，所以乘法不依赖于陪集代表元的选择。把“左陪集”换成“右陪集”也有相同结论
+\end{proposition}
+
+\begin{proof}
+	设 $X,Y\in G/K$，令 $Z=XY$。由\ref{核的左右陪集相等}(1)，$X,Y,Z$ 都是 $K$ 的左陪集。按假设，$K$ 是某个同态 $\varphi:G\to H$ 的核，所以 $X=\varphi^{-1}(a)$，$Y=\varphi^{-1}(b)$，其中 $a,b\in H$。根据 $G/K$ 中的运算定义，$Z=\varphi^{-1}(ab)$。任取 $X$、$Y$ 的代表元 $u$、$v$，则 $\varphi(u)=a$，$\varphi(v)=b$，且 $X=uK$、$Y=vK$。要证 $uv\in Z$。确实，
+	\[
+	uv\in Z \Longleftrightarrow uv\in\varphi^{-1}(ab)
+	\Longleftrightarrow \varphi(uv)=ab
+	\Longleftrightarrow \varphi(u)\varphi(v)=ab,
+	\]
+	而最后一个等式成立。故 $uv\in Z$，因此 $Z=uvK$。这证明了对任意代表元 $u\in X$、$v\in Y$，$X$ 与 $Y$ 的乘积都是陪集 $uvK$。最后关于右陪集的断言由\ref{核的左右陪集相等} 中 $uK=Ku$、$vK=Kv$ 立即推出。
+\end{proof}
+
+用代表元作 $G/K$ 中的乘法，可如图 3 所示。
+
+\begin{center}
+	\begin{tikzpicture}[scale=.9, every node/.style={inner sep=1pt}]
+		\draw (-3.8,1) rectangle (3.8,2.55);
+		\foreach \x in {-3.1,-.6,2.6}{\draw (\x,1.1)--(\x,2.45);} 
+		\node at (.85,1.78) {$\cdots$};
+		\node at (-3.1,2.62) {$u$}; \node at (-.6,2.62) {$v$}; \node at (2.6,2.62) {$uv$};
+		\draw[dashed,->] (-3.0,2.35) .. controls (-2.0,2.95) and (-1.2,2.95) .. (-.65,2.35);
+		\draw[dashed,->] (-.55,2.35) .. controls (.4,2.95) and (1.7,2.95) .. (2.55,2.35);
+		\node[right] at (4.0,1.78) {$G$};
+		\draw (-3.8,0)--(3.8,0);
+		\foreach \x/\lab in {-3.1/a,-.6/b,2.6/ab}{\fill (\x,0) circle (1.7pt); \node[below] at (\x,0) {$\lab$}; \draw[->] (\x,1.0)--(\x,.13);} 
+		\draw[dashed,->] (-3.0,.3) .. controls (-2.0,.75) and (1.2,.75) .. (2.55,.3);
+		\draw[dashed,->] (-.55,.25) .. controls (.6,.55) and (1.55,.55) .. (2.55,.25);
+		\node[right] at (4.0,0) {$H$};
+		\node at (3.9,-.55) {图 3};
+	\end{tikzpicture}
+\end{center}
+
+由定理\ref{陪集的乘积是良定的}，若给定群 $G$ 的子群 $K$，并知道 $K$ 是某个同态的核，则可不借助该同态而通过乘法 $uK\cdot vK=uvK$ 定义商 $G/K$。这引出一个问题：是否可对 $G$ 的任意子群 $N$ 都类似地定义商群 $G/N$？答案一般是否定的，因为这种乘法一般不是良定义的。
+\begin{proposition}\label{一般子群的陪集}
+	设 $N$ 是群 $G$ 的任意子群。$N$ 在 $G$ 中的左陪集组成 $G$ 的一个\textbf{分划}\footnote{也就是说，$G$可以被分成$N$ 在 $G$ 中的左陪集的不交并.}。此外，对所有 $u,v\in G$，
+	\[
+	uN=vN\quad\Longleftrightarrow\quad v^{-1}u\in N,
+	\]
+	特别地，$uN=vN$ 当且仅当 $u$ 和 $v$ 是同一陪集的代表元。
+\end{proposition}
+\begin{proof}
+	首先，由于 $N$ 是 $G$ 的子群，$1\in N$。因此对所有 $g\in G$，$g=g\cdot1\in gN$，所以
+	\[
+	G=\bigcup_{g\in G} gN.
+	\]
+	为证明不同左陪集不交，设 $uN\cap vN\neq\varnothing$。取 $x\in uN\cap vN$，写作
+	\[
+	x=un=vm,
+	\]
+	其中 $n,m\in N$。在等式右端两边右乘 $n^{-1}$，得
+	\[
+	u=vmn^{-1}=vm_1,
+	\]
+	其中 $m_1=mn^{-1}\in N$。于是对 $uN$ 的任意元素 $ut$（$t\in N$），有
+	\[
+	ut=(vm_1)t=v(m_1t)\in vN.
+	\]
+	故 $uN\subseteq vN$。交换 $u$ 与 $v$ 可得 $vN\subseteq uN$。因此有非空交的两个陪集相等。
+	
+	由前面的结论，$uN=vN$ 当且仅当 $u\in vN$，当且仅当 $u=vn$ 对某个 $n\in N$ 成立，当且仅当 $v^{-1}u\in N$。最后，$v\in uN$ 等价于说 $v$ 是 $uN$ 的代表元，所以 $uN=vN$ 当且仅当 $u$ 与 $v$ 是同一个陪集的代表元。
+\end{proof}
+
+\begin{proposition}\label{一般子群的陪集成群的充要条件}
+	设 $G$ 是群，$N$ 是 $G$ 的子群。
+	\begin{enumerate}[label=(\arabic*)]
+		\item 在 $N$ 的左陪集集合上由
+		\[
+		uN\cdot vN=(uv)N
+		\]
+		描述的运算是良定义的，当且仅当对所有 $g\in G$ 和所有 $n\in N$，都有 $gng^{-1}\in N$。
+		\item 若上述运算是良定义的，则它使 $N$ 的左陪集集合成为一个群。特别地，该群的单位元是陪集 $1N$，$gN$ 的逆是 $g^{-1}N$，即 $(gN)^{-1}=g^{-1}N$。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	(1) 先假设该运算良定义。取任意 $g\in G$ 与 $n\in N$。
+	\[gng^{-1}\in \iff ng^{-1}N=g^{-1}N\iff N\cdot g^{-1}N=g^{-1}N\]
+	令 $u=1$，$u_1=n$，且 $v=v_1=g^{-1}$。由良定义性得
+	\[
+	1g^{-1}N=ng^{-1}N,
+	\]
+	即 $g^{-1}N=ng^{-1}N$。由于 $1\in N$，$ng^{-1}\in ng^{-1}N$，所以 $ng^{-1}\in g^{-1}N$，即 $ng^{-1}=g^{-1}n_1$，其中 $n_1\in N$。左乘 $g$，得 $gng^{-1}=n_1\in N$。
+	
+	反过来，假设 $gng^{-1}\in N$ 对所有 $g\in G$ 和 $n\in N$ 成立。设 $u_1\in uN$，$v_1\in vN$。写作 $u_1=un$，$v_1=vm$，其中 $n,m\in N$。要证 $u_1v_1\in uvN$：
+	\[
+	u_1v_1=(un)(vm)=u(vv^{-1})nvm=(uv)(v^{-1}nv)m=(uv)(n_1m),
+	\]
+	其中 $n_1=v^{-1}nv\in N$。由于 $N$ 对乘积封闭，$n_1m\in N$。故 $u_1v_1=(uv)n_2$，其中 $n_2\in N$。于是左陪集 $uvN$ 与 $u_1v_1N$ 有公共元素 $u_1v_1$，由\ref{一般子群的陪集} 它们相等。运算良定义。
+	
+	(2) 若陪集上的运算良定义，则群公理由 $G$ 中对应公理诱导。例如，对所有 $u,v,w\in G$，
+	\begin{align*}
+		(uN)(vNwN)&=uN(vwN)=u(vw)N\\
+		&=(uv)wN=(uNvN)(wN),
+	\end{align*}
+	因为 $u(vw)=(uv)w$ 在 $G$ 中成立。由乘法定义可立即看出单位元是 $1N$，$gN$ 的逆是 $g^{-1}N$。
+\end{proof}
+
+
+
+\begin{definition}
+	 元素 $gng^{-1}$ 称为 $n\in N$ 关于 $g$ 的\textbf{共轭}。集合
+\[
+gNg^{-1}=\{gng^{-1}\mid n\in N\}
+\]
+称为 $N$ 关于 $g$ 的\textbf{共轭}。若 $gNg^{-1}=N$，则称 $g$ \textbf{正规化} $N$。群 $G$ 的子群 $N$ 称为\textbf{正规子群}，如果 $G$ 的每个元素都正规化 $N$，即对所有 $g\in G$ 都有 $gNg^{-1}=N$。若 $N$ 是 $G$ 的正规子群，记为 $N\normal G$。
+
+\end{definition}
+\textbf{注意，}当 $N$ 是正规子群时，$G$ 的结构反映在商 $G/N$ 的结构中（例如，$G/N$ 中乘法的结合律由 $G$ 中的结合律诱导，$G/N$ 中的逆由 $G$ 中的逆诱导）。第 3 节讨论同构定理时，我们会看到更多 $G$ 与其商 $G/N$ 的关系。
+
+\begin{theorem}
+	设 $N$ 是群 $G$ 的子群。以下条件等价：
+\begin{enumerate}[label=(\arabic*)]
+	\item $N\normal G$；
+	\item $N_G(N)=G$；
+	\item 对所有 $g\in G$，$gN=Ng$；
+	\item 命题 5 中描述的左陪集运算使左陪集集合成为群；
+	\item 对所有 $g\in G$，$gNg^{-1}\subseteq N$。
+\end{enumerate}
+
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

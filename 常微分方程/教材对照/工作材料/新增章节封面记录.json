@@ -1,0 +1,128 @@
+[
+  {
+    "Chapter": 7,
+    "Source": "0014.png",
+    "Output": "Chapter7封面图.jpg",
+    "Crop": [
+      286,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 8,
+    "Source": "0066.png",
+    "Output": "Chapter8封面图.jpg",
+    "Crop": [
+      86,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 9,
+    "Source": "0161.png",
+    "Output": "Chapter9封面图.jpg",
+    "Crop": [
+      572,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 10,
+    "Source": "0228.png",
+    "Output": "Chapter10封面图.jpg",
+    "Crop": [
+      286,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 11,
+    "Source": "0286.png",
+    "Output": "Chapter11封面图.jpg",
+    "Crop": [
+      515,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 12,
+    "Source": "0303.png",
+    "Output": "Chapter12封面图.jpg",
+    "Crop": [
+      286,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 13,
+    "Source": "0305.png",
+    "Output": "Chapter13封面图.jpg",
+    "Crop": [
+      343,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 14,
+    "Source": "0358.png",
+    "Output": "Chapter14封面图.jpg",
+    "Crop": [
+      286,
+      5,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  },
+  {
+    "Chapter": 15,
+    "Source": "0473.png",
+    "Output": "Chapter15封面图.jpg",
+    "Crop": [
+      286,
+      4,
+      3268,
+      2150
+    ],
+    "Width": 2280,
+    "Height": 1500,
+    "Ratio": 1.52
+  }
+]

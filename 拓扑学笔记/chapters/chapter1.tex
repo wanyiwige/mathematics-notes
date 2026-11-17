@@ -1,0 +1,205 @@
+\chapter{ZFC集合论与实数公理}
+The meaning of a word is its use in the language. — Ludwig Wittgenstein
+1
+\section{集合，映射与关系}
+集合作为初始的数学概念, 不予定义.按照集合论创始人康托 (Georg Cantor) 的说法, 一个集合可理解为一
+些事物放在一起并看作一个整体.
+
+若一个对象 $x$ 在集合 $X$ 中，则说 $x$ 是 $X$ 的一个元素，记为$$
+x \in X,
+$$
+念作＂$x$ 属于 $X$＂；若 $x$ 不在集合 $X$ 中，则说 $x$ 不是 $X$ 的元素，记为
+$$
+x \notin X,
+$$
+念作＂$x$ 不属于 $X$＂．
+
+直观上一个集合表示满足某种性质的对象的全体．人们自然希望，若 $P$ 是某种性质，则
+
+$$
+\{x: P(x)\}
+$$
+但是, 1901 年罗素 (Bertrand Russell) 发现, 把这一 “希
+望” 应用于任意的 “性质 P” 会导致一个悖论, 这就是以他的名字命名的\textbf{罗素悖论}
+(Russell’s paradox)
+\begin{paradox}
+	考虑如下性质 $P$ ：一个对象 $x$ 具有性质 $P$ 当且仅当 $x$ 是一个集合并且 $x$ 不是它自己的元素，即 $x \notin x$ ．令
+	$$
+	R=\{x: P(x)\} .
+	$$
+	换言之，$R$ 由全体不是自己元素的集合构成．如果 $R$ 是一个集合，我们问 $R$ 是否是它自己的元素，即 $R \in R$ 是否成立．
+\end{paradox}
+若 $R$ 是它自己的元素，则由定义得 $R \notin R$ ，这不可能．若 $R$ 不是它自己的元素，则由定义得 $R \in R$ ，这也不可能．这说明 $R$ 既不能是它自己的元素，又不能不是它自己的元素，这就是著名的罗素悖论．
+
+粗略地说,罗素悖论告诉我们,
+$$\{x: P(x)\} $$
+不能作为产生集合的规则, 我们得小心对待产生集合的规则. 集合产生规则的研究导
+致了公理集合论, 每一条集论公理本质上就是断言满足某种性质的集合存在与否.
+
+公理集合论的出发点是, 给出一组集合 “应该” 满足并且不会导致矛盾的公理,
+在此基础上展开研究. 集合论里普遍采用的公理体系是 \textbf{ZFC}, 它由 Zermelo-Fraenkel\textbf{集论公理 }(ZF) 加上\textbf{选择公理} (Axiom of Choice) 构成.我们先对ZF公理进行介绍.
+\begin{axiom}ZF公理包含以下八条
+	\begin{enumerate}
+		\item \textbf{外延公理}：如果两个集合拥有完全相同的元素，则它们相等$$
+		\forall x \forall y[\forall z(z \in x \leftrightarrow z \in y) \rightarrow x=y]
+		$$
+		\item \textbf{空集公理}：存在一个没有任何元素的集合$$\exists x\forall y(y\notin x)$$
+		
+		这个唯一的集合记为$\varnothing$
+		\item \textbf{配对公理}：对任意两个集合$a$和 $b$，存在一个集合$\{a,b\}$，它恰好只包含$a$和 $b$
+		$$\forall a\forall b\exists c\forall x(x\in c\leftrightarrow x=a\vee x=b)$$
+		\item \textbf{并集公理}:对任意集合 $x$ ，存在一个集合，其元素恰好是 所有$x$ 中的所有元素。
+		
+		$$
+		\forall x \exists y \forall z[z \in y \leftrightarrow \exists w(w \in x \wedge z \in w)]
+		$$记为 $\bigcup x$ 。
+		\item 
+		\item 
+		\item 
+		\item  
+	\end{enumerate}
+\end{axiom}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{实数公理}
+\section{集合的基数}
+\section{选择公理与集族的乘积}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

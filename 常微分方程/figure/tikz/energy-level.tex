@@ -1,0 +1,25 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.2cm,y=1.45cm]
+ \draw[->,gray] (-2,0)--(2.2,0) node[right]{$x$};
+ \draw[->,gray] (0,-.18)--(0,2) node[above]{$U$};
+ \draw[GreenMain,thick,domain=-1.8:1.8,samples=60] plot (\x,{\x*\x/2});
+ \draw[GoldMain,thick] (-1.95,1)--(1.95,1) node[right]{$E$};
+ \foreach \a/\lab in {-1.4142/a,1.4142/b}{
+  \draw[dashed,gray] (\a,0)--(\a,1);
+  \fill[GoldMain] (\a,1) circle(1.5pt);
+  \node[below] at (\a,0){$\lab$};
+ }
+ \node at (0,-.55){允许位置：$a\leq x\leq b$};
+\end{scope}
+\begin{scope}[shift={(7,1.15)},scale=1.05]
+ \draw[->,gray] (-1.85,0)--(1.95,0) node[right]{$x$};
+ \draw[->,gray] (0,-1.8)--(0,1.9) node[above]{$y$};
+ \draw[GreenMain,thick] (0,0) circle(1.4142);
+ \draw[->,GreenMain,thick] (105:1.4142) arc[start angle=105,end angle=75,radius=1.4142];
+ \draw[->,GreenMain,thick] (285:1.4142) arc[start angle=285,end angle=255,radius=1.4142];
+ \fill[GoldMain] (-1.4142,0) circle(1.6pt) node[below left]{$(a,0)$};
+ \fill[GoldMain] (1.4142,0) circle(1.6pt) node[below right]{$(b,0)$};
+ \node at (0,-2.1){$y^2/2+U(x)=E$};
+\end{scope}
+\end{tikzpicture}

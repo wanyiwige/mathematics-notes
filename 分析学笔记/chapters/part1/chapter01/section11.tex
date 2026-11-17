@@ -1,0 +1,147 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.11 复数域
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{复数域}
+\begin{definition}
+	
+	在 $ \mathbb{R} \times \mathbb{R}$  上定义如下等价关系 
+	$$(a, b) \sim(c, d):=a=c \text { 且 } b=d$$
+	$$\mathbb{C}:=\mathbb{R} \times \mathbb{R} / \sim$$
+	
+	
+	设 $x=(a, b), y=(c, d)$ 是两个复数．我们定义：
+	
+	$$
+	\begin{aligned}
+		x+y & =(a+c, b+d) \\
+		x y & =(a c-b d, a d+b c)
+	\end{aligned}
+	$$
+	$(\C,+,\cdot)$是一个域，$(1,0)$视作$1$,$(0,0)$视作$0$
+	$$\dfrac{1}{x}:=(\dfrac{a}{a^2+b^2},-\dfrac{b}{a^2+b^2})$$
+	规定$(0,1)=i,(0,1)\cdot(0,1)=i^2=(-1,0)$
+	
+	习惯上，记$(a,b)=a+bi$
+\end{definition}
+\begin{definition}
+	如果 $a, b$ 是实数，而 $z=a+b i$ ，就把复数 $\bar{z}=a-b i$ 叫做 $z$ 的共轭数.数 $a, b$ 分别叫做 $z$ 的实部和虚部.
+	
+	有时写成
+	
+	$$
+	a=\operatorname{Re}(z), \quad b=\operatorname{Im}(z)
+	$$
+	
+	
+\end{definition}
+\begin{proposition}
+	\label{proofcon}
+	如果 $z$ 及 $w$ 是复数，那么
+	
+	（a）$\overline{z+w}=\bar{z}+\bar{w}$ ，
+	
+	（b）$\overline{z w}=\bar{z} \cdot \bar{w}$ ，
+	
+	（c）$z+\bar{z}=2 \operatorname{Re}(z), \quad z- \bar{z}=2 i \operatorname{Im}(z)$ ．
+	
+	（d）$z \bar{z}$ 是实数且是正数（除了 $z=0$ 时）
+\end{proposition}
+
+\begin{proof}
+	证（a），（b），（c）都十分明显，今证（d）．将 $z$ 写成 $z=a+b i$ ，并注意 $z \bar{z}= a^2+b^2$ .就行了.
+\end{proof}
+\begin{definition}
+	如果 $z$ 是一复数，它的绝对值 $|z|$ 是 $z \bar{z}$ 的非负平方根；即 $|z|=(z \bar{z})^{1 / 2}$ .
+	
+\end{definition}
+
+\begin{remark}
+	当 $x$ 是实数时 $\bar{x}=x$ ，因此，$|x|=\sqrt{x^2}$ ．于是，如果 $x \geqslant 0,|x|=x$ ：如果 $x<0,|x|=-x$
+\end{remark} 
+\begin{proposition}
+		设 $z$ 和 $w$ 都是复数，那么
+	
+	（a）$|z|>0$ 除非 $z=0,|0|=0$ ，
+	
+	（b）$|\bar{z}|=|z|$ ，
+	
+	（c）$|z w|=|z||w|$ ，
+	
+	（d）$|\operatorname{Re} z| \leqslant|z|$ ，
+	
+	（e）$|z+w| \leqslant|z|+|w|$ ．
+\end{proposition}
+
+\begin{proof}
+	（a）及（b）是显然的．设 $z=a+b i, w=c+d i, a, b, c, d$ 为实数．
+	
+	于是
+	
+	$$
+	\begin{aligned}
+		|z w|^2 & =(a c-b d)^2+(a d+b c)^2 \\
+		& =\left(a^2+b^2\right)\left(c^2+d^2\right)=|z|^2|w|^2
+	\end{aligned}
+	$$
+	
+	
+	或 $|z w|^2=(|z||w|)^2$ .由定理$1.8.12$所说的惟一性，便能推得（c）.
+	
+	今证（d），注意 $a^2 \leqslant a^2+b^2$ ，由此，
+	
+	$$
+	|a|=\sqrt{a^2} \leqslant \sqrt{a^2+b^2} .
+	$$
+	
+	
+	今证（e），注意 $\bar{z} w$ 是 $z \bar{w}$ 的共轭数，所以 $z \bar{w}+\bar{z} w=2 \operatorname{Re}(z \bar{w})$ .由此，
+	
+	$$
+	\begin{aligned}
+		|z+w|^2 & =(z+w)(\bar{z}+\bar{w})=\bar{z}+z \bar{w}+\bar{z} w+w \bar{w} \\
+		& =|z|^2+2 \operatorname{Re}(z \bar{w})+|w|^2 \\
+		& \leqslant|z|^2+2|z \bar{w}|+|w|^2 \\
+		& =|z|^2+2|z||w|+|w|^2=(|z|+|w|)^2 .
+	\end{aligned}
+	$$
+	
+	
+	两端开平方即得（e）.
+\end{proof}
+\begin{proposition}
+	(Cauchy-Schawtz不等式)
+	如果 $a_1, a_2, \cdots, a_n$ 及 $b_1, b_2, \cdots, b_n$ 都是复数，那么
+	
+	$$
+	\left|\sum_{j=1}^n a_j \bar{b}_j\right|^2 \leqslant \sum_{j=1}^n\left|a_j\right|^2 \sum_{j=1}^n\left|b_j\right|^2 .
+	$$
+	\label{Cauchy-Schawtz不等式}
+\end{proposition}
+
+\begin{proof}
+	设 $A=\Sigma\left|a_j\right|^2, B=\Sigma\left|b_j\right|^2, C=\Sigma a_j \bar{b}_j$（在本证明的所有和中，$j$ 遍历 $1, \cdots, n$ 诸值）.
+	
+	如果 $B=0$ ，那么 $b_1=\cdots=b_n=0$ ，而定理的结论是明显的.
+	
+	因此，可假定 $B>0$ ．由定理 \ref{proofcon}，有
+	
+	$$
+	\begin{aligned}
+		\sum\left|B a_j-C b_j\right|^2 & =\sum\left(B a_j-C b_j\right)\left(B \bar{a}_j-\bar{Cb_j}\right) \\
+		& =B^2 \sum\left|a_j\right|^2-B \bar{C} \sum a_j \bar{b}_j-B C \sum \bar{a}_j b_j+|C|^2 \sum\left|b_j\right|^2 \\
+		& =B^2 A-B|C|^2 \\
+		& =B\left(A B-|C|^2\right) .
+	\end{aligned}
+	$$
+	
+	
+	因第一个和中的每一项非负，而知
+	
+	$$
+	B\left(A B-|C|^2\right) \geqslant 0 .
+	$$
+	
+	
+	由 $B>0$ 推得 $A B-|C|^2 \geqslant 0$ ．这就是要证的不等式．
+\end{proof}

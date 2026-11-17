@@ -1,0 +1,265 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.4 幂级数
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{幂级数}
+
+\begin{definition}
+	形如
+	\[
+	\sum_{n = 0}^{\infty} a_n (x - x_0)^n
+	= a_0 + a_1(x - x_0) + \cdots + a_n(x - x_0)^n + \cdots
+	\]
+	的函数项级数称为幂级数,其中 \(a_0,a_1,\cdots,a_n,\cdots \in \mathbb{R}\),且 \(x_0 \in \mathbb{R}\).
+\end{definition}
+
+
+
+由于讨论收敛性时可以作平移 \(x-x_0 \mapsto x\),所以只需讨论
+\[
+\sum_{n = 0}^{\infty} a_n x^n
+= a_0 + a_1x + a_2x^2 + \cdots + a_nx^n + \cdots .
+\]
+为了研究其绝对收敛性,考虑正项级数 \(\sum\limits_{n=0}^{\infty}|a_nx^n|\).由 Cauchy 根值判别法,
+\[
+\varlimsup_{n\to\infty}\sqrt[n]{|a_nx^n|}
+=
+|x|\varlimsup_{n\to\infty}\sqrt[n]{|a_n|}.
+\]
+记
+\[
+A=\varlimsup_{n\to\infty}\sqrt[n]{|a_n|}.
+\]
+于是对级数 \(\sum |a_nx^n|\),根值判别法中需要考察的量就是 \(A|x|\).
+
+\begin{proposition}[Cauchy--Hadamard 定理]
+	设幂级数为 \(\sum\limits_{n=0}^{\infty}a_nx^n\),令
+	\[
+	A=\varlimsup_{n\to\infty}\sqrt[n]{|a_n|}.
+	\]
+	定义
+	\[
+	R=
+	\begin{cases}
+		+\infty, & A=0,\\[4pt]
+		\dfrac{1}{A}, & 0<A<+\infty,\\[8pt]
+		0, & A=+\infty.
+	\end{cases}
+	\]
+	则当 \(|x|<R\) 时,幂级数绝对收敛;当 \(|x|>R\) 时,幂级数发散;当 \(|x|=R\) 时,需要进一步判断.
+\end{proposition}
+
+\begin{proof}
+	先设 \(0<A<+\infty\),此时 \(R=\dfrac{1}{A}\).对任意固定的 \(x\),由上面的计算有
+	\[
+	\varlimsup_{n\to\infty}\sqrt[n]{|a_nx^n|}=A|x|.
+	\]
+	若 \(|x|<R\),则 \(A|x|<1\).因此由 Cauchy 根值判别法,\(\sum\limits_{n=0}^{\infty}|a_nx^n|\) 收敛,从而原幂级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 绝对收敛.
+	
+	若 \(|x|>R\),则 \(A|x|>1\).记 \(L=A|x|\),取 \(\varepsilon>0\) 使得 \(1+\varepsilon<L\).由上极限的性质,存在无穷多个 \(n\),使
+	\[
+	\sqrt[n]{|a_nx^n|}>1+\varepsilon.
+	\]
+	于是对这些 \(n\),有 \(|a_nx^n|>(1+\varepsilon)^n\),故 \(|a_nx^n|\) 不可能趋于 \(0\).于是通项 \(a_nx^n\) 不趋于 \(0\),由级数收敛的必要条件可知 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 发散.
+	
+	若 \(|x|=R\),则 \(A|x|=1\),此时 Cauchy 根值判别法不能判断,所以端点处需要另行讨论.
+	
+	下面讨论 \(A=0\) 与 \(A=+\infty\) 的情形.若 \(A=0\),则对任意 \(x\in\mathbb{R}\),都有 \(\varlimsup\limits_{n\to\infty}\sqrt[n]{|a_nx^n|}=0<1\),故幂级数在任意 \(x\) 处绝对收敛,此时 \(R=+\infty\).
+	
+	若 \(A=+\infty\),则对任意 \(x\neq 0\),都有 \(\varlimsup\limits_{n\to\infty}\sqrt[n]{|a_nx^n|}=+\infty>1\),故幂级数在任意 \(x\neq 0\) 处发散.而当 \(x=0\) 时,级数退化为常数项 \(a_0\),故收敛.因此此时 \(R=0\).
+\end{proof}
+
+\begin{definition}
+	上述 \(R\) 称为幂级数 \(\sum_{n=0}^{\infty}a_nx^n\) 的收敛半径.
+\end{definition}
+这样我们可以给出Cauchy--Hadamard 定理
+\begin{theorem}
+	对幂级数$\sum\limits_{n=1}^\infty a_n x^n$
+	,当 \(|x|<R\) 时,幂级数绝对收敛;当 \(|x|>R\) 时,幂级数发散;当 \(|x|=R\) 时,即端点 \(x=-R\) 与 \(x=R\),需要进一步判断.
+\end{theorem}
+
+
+因此,当 \(0<R<+\infty\) 时,幂级数 \(\sum_{n=0}^{\infty}a_nx^n\) 的收敛域只能是以下四种形式之一:
+\[
+(-R,R),\qquad [-R,R),\qquad (-R,R],\qquad [-R,R].
+\]
+
+对于一般中心为 \(x_0\) 的幂级数 \(\sum_{n=0}^{\infty}a_n(x-x_0)^n\),收敛半径仍由
+\[
+A=\varlimsup_{n\to\infty}\sqrt[n]{|a_n|}
+\]
+决定,即
+\[
+R=
+\begin{cases}
+	+\infty, & A=0,\\[4pt]
+	\dfrac{1}{A}, & 0<A<+\infty,\\[8pt]
+	0, & A=+\infty.
+\end{cases}
+\]
+当 \(0<R<+\infty\) 时,其收敛域只能是
+\[
+(x_0-R,x_0+R),\qquad [x_0-R,x_0+R),\qquad
+(x_0-R,x_0+R],\qquad [x_0-R,x_0+R].
+\]
+
+由\ref{Cauchy 判别法是包含 d'Alembert 判别法},
+收敛半径也可以有以下的定义
+\[A = \lim\limits_{n\to \infty}|\frac{a_{n+1}}{a_n}|\qquad R=\frac{1}{A}\]
+
+为了进一步求出收敛域，我们需要进一步讨论数项级数\[\sum a_n(R)^n\text{与}\sum a_n(-R)^n\]的敛散性
+
+
+
+\begin{example}
+	求幂级数
+	\[
+	\sum_{n=0}^{\infty}\frac{n^n x^n}{n!}
+	\]
+	的收敛域.
+\end{example}
+
+\begin{solution}
+	首项不影响收敛性,故从 \(n\geq 1\) 起讨论.令 \(a_n=\dfrac{n^n}{n!}\),则
+	\[
+	\left|\frac{a_{n+1}}{a_n}\right|
+	=
+	\frac{(n+1)^{n+1}}{(n+1)!}\cdot\frac{n!}{n^n}
+	=
+	\left(1+\frac{1}{n}\right)^n
+	\longrightarrow e.
+	\]
+	因此收敛半径为 \(R=\dfrac{1}{e}\).
+	
+	下面讨论端点.
+	
+	当 \(x=\dfrac{1}{e}\) 时,有
+	\[
+	\sum_{n=1}^{\infty}\frac{n^n}{e^n n!}.
+	\]
+	由 Stirling 公式 \(n!\sim \sqrt{2\pi n}\left(\dfrac{n}{e}\right)^n\),得
+	\[
+	\frac{n^n}{e^n n!}\sim \frac{1}{\sqrt{2\pi n}}.
+	\]
+	而 \(\sum\limits_{n=1}^{\infty}\dfrac{1}{\sqrt{n}}\) 发散,故由极限比较判别法知该端点处级数发散.
+	
+	当 \(x=-\dfrac{1}{e}\) 时,有
+	\[
+	\sum_{n=1}^{\infty}(-1)^n\frac{n^n}{e^n n!}.
+	\]
+	记 \(u_n=\dfrac{n^n}{e^n n!}\).由 Stirling 公式可知 \(u_n\to 0\).又
+	\[
+	\frac{u_{n+1}}{u_n}
+	=
+	\frac{1}{e}\left(1+\frac{1}{n}\right)^n<1,
+	\]
+	故 \(\{u_n\}\) 单调递减.由 Leibniz 判别法可知,该端点处级数收敛.
+	
+	综上,原幂级数的收敛域为
+	\[
+	\left[-\frac{1}{e},\frac{1}{e}\right).
+	\]
+\end{solution}
+
+\begin{theorem}（Abel 第二定理）
+	设幂级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 的收敛半径为 \(R\).
+	
+	\begin{enumerate}
+		\item 若闭区间 \([\alpha,\beta]\subset(-R,R)\),则 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 在 \([\alpha,\beta]\) 上一致收敛,也即是说在$(-R,R)$内部一致收敛
+		
+		\item 若 \(\sum\limits_{n=0}^{\infty}a_nR^n\) 收敛,则对任意 \(\alpha\in(-R,R]\),级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 在 \([\alpha,R]\) 上一致收敛.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	先证第一点.取 \(\rho=\max\{|\alpha|,|\beta|\}\),则 \(\rho<R\).对任意 \(x\in[\alpha,\beta]\),有
+	\[
+	|a_nx^n|\leq |a_n|\rho^n.
+	\]
+	由于 \(\rho<R\),幂级数在 \(x=\rho\) 处绝对收敛,即 \(\sum\limits_{n=0}^{\infty}|a_n|\rho^n\) 收敛.由 Weierstrass 判别法可知,\(\sum\limits_{n=0}^{\infty}a_nx^n\) 在 \([\alpha,\beta]\) 上一致收敛.
+	
+	再证第二点.先讨论 \([0,R]\).令 \(b_n=a_nR^n\),则$\sum\limits_{n=0}^\infty b_nR^n$ 由\(\sum_{n=0}^{\infty}b_n\) 收敛，且$(\dfrac{x}{R})^n$单调下降且一致有界，由Abel判别法，\(\sum\limits_{n=0}^{\infty}a_nx^n\)在$[0,R]$上一致收敛
+	
+	若$-R<a \leqslant 0$,考虑$[a,R] = [a,0]\cup[0,R]$即可
+\end{proof}
+
+因此,幂级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 在包含于其收敛域的任一闭子区间上一致收敛.特别地,若其收敛域为 \([-R,R]\),则它在 \([-R,R]\) 上一致收敛.
+
+设幂级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 的收敛半径为 \(R\),其和函数记为
+\[
+S(x)=\sum_{n=0}^{\infty}a_nx^n.
+\]
+\begin{proposition}
+	幂级数的和函数 \(S(x)\) 在其收敛域内连续.更准确地说,在收敛域的内点处连续;若端点属于收敛域,则在端点处为单侧连续.
+\end{proposition}
+
+\begin{proof}
+	设 \(x_0\) 为收敛域中的一点.若 \(x_0\in(-R,R)\),则可取闭区间 \([a,b]\subset(-R,R)\),使得 \(x_0\in[a,b]\).由 Abel 第二定理,幂级数 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 在 \([a,b]\) 上一致收敛.又每一项 \(a_nx^n\in C[a,b]\),故其和函数 \(S(x)\in C[a,b]\),于是 \(S(x)\) 在 \(x_0\) 处连续.
+	
+	若 \(x_0=R\) 且 \(\sum\limits_{n=0}^{\infty}a_nR^n\) 收敛,则由 Abel 第二定理,对任意 \(\alpha\in(-R,R]\),幂级数在 \([\alpha,R]\) 上一致收敛.取 \(\alpha=0\) 时,可知 \(S(x)\) 在 \([0,R]\) 上连续,特别地在 \(x=R\) 处左连续.同理,若 \(x_0=-R\) 且端点级数收敛,则 \(S(x)\) 在 \(x=-R\) 处右连续.
+\end{proof}
+
+\begin{example}
+	由
+	\[
+	\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots,\qquad |x|<1,
+	\]
+	且右端幂级数在 \(x=\pm1\) 处均收敛,可知其在 \([-1,1]\) 上一致收敛.因此和函数在 \([-1,1]\) 上连续.令 \(x\to1^{-}\),得到
+	\[
+	\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots .
+	\]
+\end{example}
+\begin{proposition}
+		若闭区间 \([a,b]\) 包含于幂级数 \(\sum_{n=0}^{\infty}a_nx^n\) 的收敛域,则
+	\[
+	\int_a^b S(x)\,\mathrm{d}x
+	=
+	\sum_{n=0}^{\infty}\int_a^b a_nx^n\,\mathrm{d}x
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 \([a,b]\) 包含于收敛域,由 Abel 第二定理可知 \(\sum\limits_{n=0}^{\infty}a_nx^n\) 在 \([a,b]\) 上一致收敛.又每一项 \(a_nx^n\) 在 \([a,b]\) 上连续,故可对一致收敛的函数项级数逐项积分.于是
+	\[
+	\int_a^b\sum_{n=0}^{\infty}a_nx^n\,\mathrm{d}x
+	=
+	\sum_{n=0}^{\infty}\int_a^b a_nx^n\,\mathrm{d}x,
+	\]
+	从而得到结论.
+\end{proof}
+\begin{proposition}
+		若 \(x_0\in(-R,R)\),则和函数 \(S(x)\) 在 \(x_0\) 处可导,且
+	\[
+	S'(x_0)=\sum_{n=1}^{\infty}na_nx_0^{\,n-1}.
+	\]
+	更一般地,在任意闭区间 \([a,b]\subset(-R,R)\) 上,都有
+	\[
+	S'(x)=\sum_{n=1}^{\infty}na_nx^{n-1}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	取闭区间 \([a,b]\subset(-R,R)\),使得 \(x_0\in[a,b]\).由 Abel 第二定理,原幂级数 \(\sum_{n=0}^{\infty}a_nx^n\) 在 \([a,b]\) 上一致收敛.
+	
+	下面证明导数项级数也在 \([a,b]\) 上一致收敛.设
+	\[
+	A=\varlimsup_{n\to\infty}\sqrt[n]{|a_n|}.
+	\]
+	由 Cauchy--Hadamard 定理,原幂级数的收敛半径为 \(R\).而对导数项级数 \(\sum_{n=1}^{\infty}na_nx^{n-1}\),有
+	\[
+	\varlimsup_{n\to\infty}\sqrt[n-1]{|na_n|}
+	=
+	\varlimsup_{n\to\infty}n^{1/(n-1)}\left(\sqrt[n]{|a_n|}\right)^{n/(n-1)}
+	=A.
+	\]
+	故导数项级数的收敛半径仍为 \(R\).因此 \(\sum_{n=1}^{\infty}na_nx^{n-1}\) 在 \([a,b]\) 上一致收敛.
+	
+	又每一项 \(a_nx^n\) 在 \([a,b]\) 上可导,且 \((a_nx^n)'=na_nx^{n-1}\).由函数项级数逐项求导定理可知,和函数 \(S(x)\) 在 \([a,b]\) 上可导,并且
+	\[
+	S'(x)=\sum_{n=1}^{\infty}na_nx^{n-1}.
+	\]
+	特别地,取 \(x=x_0\),即得所需结论.
+\end{proof}
+
+因此,幂级数在其收敛区间内部可以逐项积分、逐项求导;若涉及收敛端点,逐项积分仍可借助一致收敛成立,而逐项求导一般只保证在 \((-R,R)\) 内成立.
+

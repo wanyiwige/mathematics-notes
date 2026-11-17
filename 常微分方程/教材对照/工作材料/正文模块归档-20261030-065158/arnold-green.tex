@@ -1,0 +1,83 @@
+\subsection*{集中脉冲与影响函数}
+\phantomsection\label{sec:green-response}
+定理~\ref{thm:常数变易公式} 已把非齐次解写成初值演化与外部作用的积分。下面从标量情形 $y'=a(t)y+f(t)$ 出发，说明每个时刻的外部作用
+如何影响以后时刻的状态。为分离这些作用，先研究集中在一个时刻的扰动。
+
+\begin{definition}[$\delta$ 型序列]
+设 $h_N\geq0$ 为光滑函数，$\displaystyle\int_\R h_N(s)\,\dd s=1$，
+且存在 $\varepsilon_N\downarrow0$，使 $h_N$ 在 $[-\varepsilon_N,\varepsilon_N]$ 外为零。
+称 $(h_N)$ 为一个 $\delta$ 型序列。记号 $\delta$ 表示其对测试函数积分的极限，
+不是一个处处有限的通常函数。
+\end{definition}
+\begin{lemma}
+若 $f$ 在 $\xi$ 附近连续，则
+\[
+ \lim_{N\to\infty}\int_\R h_N(s-\xi)f(s)\,\dd s=f(\xi).
+\]
+\end{lemma}
+\begin{proof}
+因为脉冲非负且积分为 1，先把常数 $f(\xi)$ 写成
+$f(\xi)\displaystyle\int h_N(s-\xi)\,ds$。于是
+\begin{align*}
+ \left|\int h_N(s-\xi)f(s)\,ds-f(\xi)\right|
+ &=\left|\int h_N(s-\xi)(f(s)-f(\xi))\,ds\right|\\
+ &\leq\sup_{|s-\xi|\leq\varepsilon_N}|f(s)-f(\xi)|
+       \int h_N(s-\xi)\,ds\\
+ &=\sup_{|s-\xi|\leq\varepsilon_N}|f(s)-f(\xi)|.
+\end{align*}
+这里用支集条件把所有非零贡献限制在 $\xi$ 的小邻域内。
+给定任意 $\eta>0$，连续性给出 $\delta>0$，使 $|s-\xi|<\delta$ 时
+$|f(s)-f(\xi)|<\eta$。充分大的 $N$ 满足 $\varepsilon_N<\delta$，
+所以上述差小于 $\eta$，极限成立。
+\end{proof}
+
+\begin{definition}[推迟影响函数]
+对 $y'=a(t)y+f(t)$，给定零初值 $y(t_0)=0$。
+在 $\xi>t_0$ 加入单位集中脉冲所产生的极限响应，称为在 $\xi$ 施加扰动的
+\textbf{影响函数}，亦称推迟 Green 函数，记作 $G(t,\xi)$。
+“推迟”表示扰动发生之前响应为零。
+\end{definition}
+\begin{theorem}
+设 $a$ 连续，则在 $t\ne\xi$ 时
+\[
+ G(t,\xi)=
+ \begin{cases}
+ 0,&t<\xi,\\
+ \exp\displaystyle\int_\xi^t a(s)\,\dd s,&t>\xi.
+ \end{cases}
+\]
+在 $t=\xi$ 处的右极限与左极限之差为 1。对连续 $f$ 和 $t\geq t_0$，
+\[
+ y(t)=\int_{t_0}^tG(t,\xi)f(\xi)\,\dd\xi
+\]
+是零初值问题的唯一解。
+\end{theorem}
+\begin{proof}
+把 $f(t)$ 换成 $h_N(t-\xi)$。由本章已证的常数变易公式，响应为
+\[
+ y_N(t)=\int_{t_0}^t
+ \exp\left(\int_s^t a(u)\,\dd u\right)h_N(s-\xi)\,\dd s.
+\]
+固定 $t<\xi$ 时，充分大的 $N$ 使积分区间与脉冲支集不相交，因此极限为零。
+固定 $t>\xi$ 时，脉冲支集最终包含在积分区间内部，前一引理给出所述指数函数。
+由 $a$ 连续，指数在 $t\downarrow\xi$ 时趋于 1，所以跳跃为 1。
+
+最后的积分公式正是原有常数变易公式。也可对它求导：变动上限产生 $f(t)$，
+核对 $t$ 的导数产生 $a(t)y(t)$，在 $t=t_0$ 积分为零。唯一性由
+定理~\ref{thm:线性方程组的存在唯一性} 保证。
+\end{proof}
+\begin{remark}
+边界点 $t=\xi$ 处的单点赋值不影响上式积分。
+如果脉冲恰好位于初值时刻，应另外约定左右侧初值，不能把脉冲跨越的跳跃忽略。
+向量情形把指数核换成状态转移矩阵 $X(t)X(s)^{-1}$，证明不变。
+\end{remark}
+
+图~\ref{fig:ode-tikz-pulse-green} 将光滑脉冲的集中过程与极限响应分开表示；空心点不指定 $t=\xi$ 处的单点取值。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+\input{figure/tikz/pulse-green}
+\captionof{figure}{左：单位面积光滑集中脉冲。右：$a=-0.7$ 时推迟影响函数在扰动时刻产生单位跳跃。}
+\label{fig:ode-tikz-pulse-green}
+\end{minipage}
+\end{center}

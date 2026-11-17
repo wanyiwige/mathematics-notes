@@ -1,0 +1,95 @@
+% main.tex
+% ============================================
+% 
+%  编译：XeLaTeX
+%  公式规则：无需编号或交叉引用的独立公式使用 \[...\]；
+%            仅在确需 \label / \eqref 时使用 equation 环境。
+% ============================================
+\documentclass{book}
+
+% ── 加载所有配置 ──
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+\addbibresource{bibliography/references.bib}
+
+% ============================================
+%  封面配置
+% ============================================
+\seriestitle{Huginn Notes in Mathematics}
+\booktitle{常微分方程与动力系统笔记}
+\bookauthor{Huginn Wong}
+
+\coverimage{figure/封面.png}
+
+\begin{document}
+
+% ── 生成封面 ──
+\hypersetup{pageanchor=false}
+\makecover
+
+% ── 前言部分 ──
+\frontmatter
+\hypersetup{pageanchor=true}
+
+\chapter*{前言}
+\addcontentsline{toc}{chapter}{前言}
+这份笔记是我在2026年的暑假，提前对学校的常微分方程进行自学写出的。花了大概10天左右的时间，把这本书（四川大学的常微分方程）粗略地读了一遍，只做了一部分的习题。接下来要整理和记的内容主要是，开学课堂的笔记，以及接下来会读的这本微分方程定性理论，或许还有，那本Gernald的常微分方程和动力系统。但是可惜的是，关于已经结课的线性代数，我忘记了许多的内容。所以在开学期间，我需要花一定的时间对线性代数进行复习，或许会以在某网站录课做费曼学习法的形式。
+\begin{flushright}
+	Huginn Wong\\
+	2026年8月24日
+\end{flushright}
+
+% ── 目录 ──
+
+\tableofcontents
+\newpage
+
+% ============================================
+%  正文部分
+% ============================================
+\mainmatter
+\setcounter{page}{1}
+
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+\include{chapters/chapter4}
+\include{chapters/chapter5}
+\include{chapters/chapter6}
+
+
+\include{chapters/chapter7}
+\include{chapters/chapter8}
+\include{chapters/chapter9}
+\include{chapters/chapter10}
+\include{chapters/chapter11}
+\include{chapters/chapter12}
+\include{chapters/chapter13}
+\include{chapters/chapter14}
+\include{chapters/chapter15}
+
+% ============================================
+%  参考文献
+% ============================================
+\nocite{*}
+
+\begingroup
+\setlength{\emergencystretch}{1em}
+\providecommand{\phantomsection}{}
+\defbibheading{normalbib}[\bibname]{%
+	\clearpage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{#1}%
+	{\noindent\huge\bfseries #1\par}%
+	\vspace{1.5em}%
+}
+\printbibliography[heading=normalbib, title={参考文献}]
+\endgroup
+
+\end{document}

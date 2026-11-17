@@ -1,0 +1,452 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第5章：$\R^d$上的Fourier变换
+% 节：5.3 径向对称与 Bessel 函数
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{径向对称与 Bessel 函数}
+
+这一节的核心内容是研究径向函数的 Fourier 变换。若
+\[
+f(x)=f_0(\abs{x}),
+\]
+则由推论 \ref{cor:fourier-radial-Rd}，$\widehat f$ 也是径向的，因而可写成
+\[
+\widehat f(\xi)=F_0(\abs{\xi}).
+\]
+下面研究 $f_0$ 与 $F_0$ 之间的关系。
+
+\subsection*{低维情形}
+
+在一维和三维的情形，上述问题有简单的答案。
+
+\begin{proposition}\label{prop:radial-fourier-d1}
+	当 $d=1$ 时，
+	\[
+	F_0(\rho)=2\int_0^\infty
+	\cos(2\pi\rho r)f_0(r)\dd r.
+	\]
+\end{proposition}
+
+\begin{proof}
+	在 $\R$ 上，径向函数恰为偶函数。因此，当 $\abs{\xi}=\rho$ 时，
+	\[
+	\begin{aligned}
+	F_0(\rho)
+	&=\widehat f(\abs{\xi})
+	=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\abs{\xi}}\dd x\\
+	&=\int_0^\infty f_0(r)
+	\left(e^{-2\pi i r\abs{\xi}}+e^{2\pi i r\abs{\xi}}\right)\dd r\\
+	&=2\int_0^\infty\cos(2\pi\rho r)f_0(r)\dd r.
+	\end{aligned}
+	\]
+\end{proof}
+
+为了处理 $d=3$ 的情形，先计算球面面积元的 Fourier 变换。
+
+\begin{lemma}\label{lem:sphere-fourier-d3}
+	对 $z\in\R^3$，有
+	\[
+	\frac{1}{4\pi}\int_{S^2}e^{-2\pi i z\cdot\gamma}
+	\dd\sigma(\gamma)
+	=\frac{\sin(2\pi\abs{z})}{2\pi\abs{z}},
+	\]
+	其中 $z=0$ 时右端按极限理解为 $1$。
+\end{lemma}
+
+\begin{proof}
+	左端仅依赖于 $\abs{z}$。事实上，若 $\mathcal R$ 是旋转变换，则由变量替换
+	$\gamma\mapsto\mathcal R^{-1}\gamma$，
+	\[
+	\int_{S^2}e^{-2\pi i(\mathcal Rz)\cdot\gamma}\dd\sigma(\gamma)
+	=\int_{S^2}e^{-2\pi i z\cdot\gamma}\dd\sigma(\gamma).
+	\]
+	令 $\abs{z}=\rho$。当 $\rho=0$ 时结论显然；当 $\rho>0$ 时，可取
+	$z=(0,0,\rho)$。利用球面坐标并令 $u=-\cos\theta$，得到
+	\[
+	\begin{aligned}
+	\frac{1}{4\pi}\int_{S^2}e^{-2\pi i z\cdot\gamma}\dd\sigma(\gamma)
+	&=\frac{1}{4\pi}\int_0^{2\pi}\int_0^\pi
+	e^{-2\pi i\rho\cos\theta}\sin\theta\dd\theta\dd\varphi\\
+	&=\frac12\int_{-1}^1e^{2\pi i\rho u}\dd u
+	=\frac{\sin(2\pi\rho)}{2\pi\rho}.
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{proposition}\label{prop:radial-fourier-d3}
+	当 $d=3$ 时，
+	\[
+	F_0(\rho)=2\rho^{-1}\int_0^\infty
+	\sin(2\pi\rho r)f_0(r)r\dd r.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由极坐标公式和引理 \ref{lem:sphere-fourier-d3}，
+	\[
+	\begin{aligned}
+	F_0(\rho)
+	&=\widehat f(\xi)
+	=\int_{\R^3}f(x)e^{-2\pi i x\cdot\xi}\dd x\\
+	&=\int_0^\infty f_0(r)
+	\left(\int_{S^2}e^{-2\pi i r\gamma\cdot\xi}
+	\dd\sigma(\gamma)\right)r^2\dd r\\
+	&=\int_0^\infty f_0(r)
+	\frac{2\sin(2\pi\rho r)}{\rho r}r^2\dd r\\
+	&=2\rho^{-1}\int_0^\infty
+	\sin(2\pi\rho r)f_0(r)r\dd r.
+	\end{aligned}
+	\]
+\end{proof}
+
+\subsection*{整数阶 Bessel 函数}
+
+更一般地，$f_0$ 与 $F_0$ 的关系可以借助一族特殊函数描述，这类函数在具有径向对称性的问题中自然出现。
+
+\begin{definition}\label{def:bessel-integer}
+	设 $n\in\Z$。函数 $e^{i\rho\sin\theta}$ 的第 $n$ 个 Fourier 系数称为 $n$ 阶 Bessel 函数，记为 $J_n(\rho)$，即
+	\[
+	J_n(\rho)=\frac{1}{2\pi}\int_0^{2\pi}
+	e^{i\rho\sin\theta}e^{-in\theta}\dd\theta.
+	\]
+	因此
+	\[
+	e^{i\rho\sin\theta}
+	=\sum_{n=-\infty}^{\infty}J_n(\rho)e^{in\theta}.
+	\]
+\end{definition}
+
+\begin{proposition}\label{prop:radial-fourier-d2}
+	当 $d=2$ 时，
+	\[
+	F_0(\rho)=2\pi\int_0^\infty
+	J_0(2\pi r\rho)f_0(r)r\dd r.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 $\widehat f$ 是径向的，可取 $\xi=(0,-\rho)$。利用极坐标和定义 \ref{def:bessel-integer}，
+	\[
+	\begin{aligned}
+	\widehat f(\xi)
+	&=\int_{\R^2}f(x)e^{-2\pi i x\cdot\xi}\dd x\\
+	&=\int_0^{2\pi}\int_0^\infty
+	f_0(r)e^{2\pi i r\rho\sin\theta}r\dd r\dd\theta\\
+	&=2\pi\int_0^\infty
+	J_0(2\pi r\rho)f_0(r)r\dd r.
+	\end{aligned}
+	\]
+\end{proof}
+
+下面列出整数阶 Bessel 函数的一些基本性质。
+
+\begin{proposition}\label{prop:bessel-identities}
+	设 $n\in\Z$，则：
+	\begin{enumerate}[label=(\alph*)]
+		\item 对实数 $\rho$，$J_n(\rho)$ 为实数；
+
+		\item
+		\[
+		J_{-n}(\rho)=(-1)^nJ_n(\rho);
+		\]
+
+		\item
+		\[
+		2J_n'(\rho)=J_{n-1}(\rho)-J_{n+1}(\rho);
+		\]
+
+		\item
+		\[
+		\frac{2n}{\rho}J_n(\rho)
+		=J_{n-1}(\rho)+J_{n+1}(\rho);
+		\]
+
+		\item
+		\[
+		\left(\rho^{-n}J_n(\rho)\right)'
+		=-\rho^{-n}J_{n+1}(\rho);
+		\]
+
+		\item
+		\[
+		\left(\rho^nJ_n(\rho)\right)'
+		=\rho^nJ_{n-1}(\rho);
+		\]
+
+		\item $J_n$ 满足 Bessel 微分方程
+		\[
+		J_n''(\rho)+\frac1\rho J_n'(\rho)
+		+\left(1-\frac{n^2}{\rho^2}\right)J_n(\rho)=0;
+		\]
+
+		\item 当 $n\geq0$ 时，
+		\[
+		J_n(\rho)
+		=\left(\frac{\rho}{2}\right)^n
+		\sum_{m=0}^\infty(-1)^m
+		\frac{\rho^{2m}}{2^{2m}m!(n+m)!};
+		\]
+
+		\item 对任意整数 $n$ 及实数 $a,b$，
+		\[
+		J_n(a+b)=\sum_{\ell\in\Z}J_\ell(a)J_{n-\ell}(b).
+		\]
+	\end{enumerate}
+\end{proposition}
+\newpage
+\begin{proof}
+	由定义 \ref{def:bessel-integer}，对实数 $\rho$，
+	\[
+	\overline{J_n(\rho)}
+	=\frac{1}{2\pi}\int_0^{2\pi}
+	e^{-i\rho\sin\theta}e^{in\theta}\dd\theta.
+	\]
+	作代换 $\varphi=2\pi-\theta$，可得
+	$\overline{J_n(\rho)}=J_n(\rho)$，故 (a) 成立。再在 $J_{-n}$ 的积分中将变量平移 $\pi$，并利用周期性，得到
+	\[
+	J_{-n}(\rho)=(-1)^n\overline{J_n(\rho)}
+	=(-1)^nJ_n(\rho),
+	\]
+	即 (b)。
+
+	在积分号下求导，并使用
+	$i\sin\theta=(e^{i\theta}-e^{-i\theta})/2$，得到
+	\[
+	2J_n'(\rho)=J_{n-1}(\rho)-J_{n+1}(\rho),
+	\]
+	即 (c)。另一方面，由被积函数的周期性，
+	\[
+	0=\int_0^{2\pi}\frac{\dd}{\dd\theta}
+	\left(e^{i\rho\sin\theta}e^{-in\theta}\right)\dd\theta.
+	\]
+	展开导数并写成 Bessel 函数，便得
+	\[
+	\frac{2n}{\rho}J_n(\rho)
+	=J_{n-1}(\rho)+J_{n+1}(\rho),
+	\]
+	所以 (d) 成立。
+
+	联立 (c) 与 (d)，有
+	\[
+	J_n'(\rho)
+	=\frac n\rho J_n(\rho)-J_{n+1}(\rho)
+	=J_{n-1}(\rho)-\frac n\rho J_n(\rho).
+	\]
+	两边分别乘以 $\rho^{-n}$ 与 $\rho^n$ 后求导，即得 (e) 和 (f)。进一步，
+	\[
+	\begin{aligned}
+	J_n''(\rho)
+	&=\frac n\rho J_n'(\rho)-\frac n{\rho^2}J_n(\rho)
+	-J_{n+1}'(\rho)\\
+	&=\frac n\rho J_n'(\rho)-\frac n{\rho^2}J_n(\rho)
+	-J_n(\rho)+\frac{n+1}{\rho}J_{n+1}(\rho).
+	\end{aligned}
+	\]
+	再代入 $J_{n+1}=nJ_n/\rho-J_n'$，整理即得 (g)。
+
+	为了证明 (h)，注意
+	\[
+	e^{i\rho\sin\theta}
+	=\exp\left(\frac\rho2e^{i\theta}\right)
+	 \exp\left(-\frac\rho2e^{-i\theta}\right).
+	\]
+	将两因子作 Taylor 展开，得到
+	\[
+	e^{i\rho\sin\theta}
+	=\sum_{k,\ell\geq0}
+	\frac{(-1)^\ell(\rho/2)^{k+\ell}}{k!\ell!}
+	e^{i(k-\ell)\theta}.
+	\]
+	$J_n(\rho)$ 是 $e^{in\theta}$ 的 Fourier 系数。对 $n\geq0$，令
+	$k=n+m$、$\ell=m$，便得到 (h)。
+
+	最后，分别展开
+	\[
+	e^{ia\sin\theta}=\sum_{\ell\in\Z}J_\ell(a)e^{i\ell\theta},
+	\qquad
+	e^{ib\sin\theta}=\sum_{k\in\Z}J_k(b)e^{ik\theta}.
+	\]
+	比较恒等式
+	$e^{i(a+b)\sin\theta}=e^{ia\sin\theta}e^{ib\sin\theta}$
+	两边 $e^{in\theta}$ 的系数，即得 (i)。
+\end{proof}
+
+\subsection*{非整数阶 Bessel 函数}
+
+\begin{definition}\label{def:bessel-general-order}
+	对实数 $\nu>-1/2$，定义
+	\[
+	\mathcal{J}_\nu(\rho)
+	=\frac{(\rho/2)^\nu}
+	{\Gamma(\nu+1/2)\sqrt\pi}
+	\int_{-1}^1e^{i\rho t}
+	(1-t^2)^{\nu-1/2}\dd t.
+	\]
+\end{definition}
+	上述定义满足：
+\begin{proposition}\label{prop:bessel-general-order-properties}
+
+	\begin{enumerate}[label=(\alph*)]
+		\item 当 $\nu=n\geq0$ 为整数时，它与定义
+		\ref{def:bessel-integer} 中的 $J_n(\rho)$ 一致；
+
+		\item
+		\[
+		\mathcal{J}_{1/2}(\rho)
+		=\sqrt{\frac2\pi}\,\rho^{-1/2}\sin\rho;
+		\]
+
+		\item
+		\[
+		\lim_{\nu\to-1/2^+}\mathcal{J}_\nu(\rho)
+		=\sqrt{\frac2\pi}\,\rho^{-1/2}\cos\rho.
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	当 $\nu=0$ 时，由 $\Gamma(1/2)=\sqrt\pi$，令 $t=\sin\theta$，可得
+	\[
+	\begin{aligned}
+	J_0(\rho)
+	&=\frac1\pi\int_{-1}^1
+	e^{i\rho t}(1-t^2)^{-1/2}\dd t\\
+	&=\frac1\pi\int_{-\pi/2}^{\pi/2}
+	e^{i\rho\sin\theta}\dd\theta
+	=\frac1{2\pi}\int_0^{2\pi}
+	e^{i\rho\sin\theta}\dd\theta.
+	\end{aligned}
+	\]
+	故它与整数阶 $J_0$ 一致。
+
+	记
+	\[
+	C_\nu=\frac{2^{-\nu}}
+	{\Gamma(\nu+1/2)\sqrt\pi}.
+	\]
+	由定义，
+	\[
+	\rho^{-\nu}J_\nu(\rho)
+	=C_\nu\int_{-1}^1e^{i\rho t}
+	(1-t^2)^{\nu-1/2}\dd t.
+	\]
+	在积分号下求导，利用
+	\[
+	t(1-t^2)^{\nu-1/2}
+	=-\frac1{2\nu+1}\frac{\dd}{\dd t}
+	(1-t^2)^{\nu+1/2},
+	\]
+	并作分部积分，再由 Gamma 函数的递推公式
+	$\Gamma(\nu+3/2)=(\nu+1/2)\Gamma(\nu+1/2)$，得到
+	\[
+	\left(\rho^{-\nu}J_\nu(\rho)\right)'
+	=-\rho^{-\nu}J_{\nu+1}(\rho).
+	\]
+	这正是命题 \ref{prop:bessel-identities} 中的递推公式 (e)。从 $J_0$ 出发归纳，即得 (a)。
+
+	当 $\nu=1/2$ 时，直接代入定义可得
+	\[
+	\begin{aligned}
+	J_{1/2}(\rho)
+	&=\frac{(\rho/2)^{1/2}}{\sqrt\pi}
+	\int_{-1}^1e^{i\rho t}\dd t\\
+	&=\sqrt{\frac2\pi}\,\rho^{-1/2}\sin\rho,
+	\end{aligned}
+	\]
+	故 (b) 成立。
+
+	最后，令 $\alpha=\nu+1/2>0$。由于积分的虚部为奇函数，令 $u=t^2$ 后有
+	\[
+	\int_{-1}^1e^{i\rho t}(1-t^2)^{\alpha-1}\dd t
+	=\int_0^1\cos(\rho\sqrt u)
+	u^{-1/2}(1-u)^{\alpha-1}\dd u.
+	\]
+	使用端点集中性质
+	\[
+	\lim_{\alpha\to0^+}\frac1{\Gamma(\alpha)}
+	\int_0^1h(u)(1-u)^{\alpha-1}\dd u=h(1),
+	\]
+	其中 $h$ 在 $[0,1]$ 上可积且在 $u=1$ 处连续。取
+	$h(u)=u^{-1/2}\cos(\rho\sqrt u)$，并令
+	$\alpha\to0^+$，便得到 (c)。
+\end{proof}
+
+现在可以给出一般维数中的径向 Fourier 变换公式。
+
+\begin{theorem}\label{thm:radial-fourier-general-d}
+	设 $f\in\mathcal S(\R^d)$ 为径向函数，并且
+	\[
+	f(x)=f_0(\abs{x}),
+	\qquad
+	\widehat f(\xi)=F_0(\abs{\xi}).
+	\]
+	则
+	\[
+	F_0(\rho)
+	=2\pi\rho^{1-d/2}\int_0^\infty
+	J_{d/2-1}(2\pi\rho r)f_0(r)r^{d/2}\dd r.
+	\]
+\end{theorem}
+
+\begin{proof}
+	当 $d=1$ 时，按命题 \ref{prop:bessel-general-order-properties}(c)
+	定义 $J_{-1/2}$，结论即为命题 \ref{prop:radial-fourier-d1}。
+	以下设 $d\geq2$。
+
+	由极坐标公式，
+	\[
+	F_0(\rho)
+	=\int_0^\infty f_0(r)r^{d-1}
+	\left(\int_{S^{d-1}}e^{-2\pi i r\gamma\cdot\xi}
+	\dd\sigma(\gamma)\right)\dd r.
+	\]
+	球面积分仅依赖于 $\abs{\xi}=\rho$。令
+	\[
+	A_d(t)=\int_{S^{d-1}}e^{-it\gamma\cdot e_1}
+	\dd\sigma(\gamma),
+	\qquad e_1=(1,0,\ldots,0).
+	\]
+	将 $\gamma\in S^{d-1}$ 写成
+	\[
+	\gamma=(\cos\theta,\sin\theta\,\eta),
+	\qquad 0\leq\theta\leq\pi,
+	\qquad \eta\in S^{d-2}.
+	\]
+	此时
+	\[
+	\dd\sigma(\gamma)
+	=(\sin\theta)^{d-2}\dd\theta\dd\sigma(\eta).
+	\]
+	因此，令 $s=\cos\theta$，
+	\[
+	\begin{aligned}
+	A_d(t)
+	&=\abs{S^{d-2}}\int_0^\pi
+	e^{-it\cos\theta}(\sin\theta)^{d-2}\dd\theta\\
+	&=\abs{S^{d-2}}\int_{-1}^1
+	e^{-its}(1-s^2)^{(d-3)/2}\dd s.
+	\end{aligned}
+	\]
+	取 $\nu=d/2-1$。由定义 \ref{def:bessel-general-order} 以及球面面积公式
+	\[
+	\abs{S^{d-2}}
+	=\frac{2\pi^{(d-1)/2}}
+	{\Gamma((d-1)/2)},
+	\]
+	得到
+	\[
+	A_d(t)=(2\pi)^{d/2}t^{1-d/2}
+	J_{d/2-1}(t).
+	\]
+	最后在极坐标公式中令 $t=2\pi\rho r$，便有
+	\[
+	\begin{aligned}
+	F_0(\rho)
+	&=\int_0^\infty f_0(r)r^{d-1}
+	A_d(2\pi\rho r)\dd r\\
+	&=2\pi\rho^{1-d/2}\int_0^\infty
+	J_{d/2-1}(2\pi\rho r)f_0(r)r^{d/2}\dd r.
+	\end{aligned}
+	\]
+\end{proof}
+
+

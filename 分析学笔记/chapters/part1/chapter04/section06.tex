@@ -1,0 +1,428 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第4章：数列极限的应用与一些反例
+% 节：4.6 上下极限
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{上下极限}
+我们回顾上下极限的定义.
+\begin{definition}
+	对实数序列 $\{x_n\}$，定义 $E$ 为所有 $\{x_n\}$ 子列极限构成的集合，$E \subset \mathbb{R}^*$（$\mathbb{R}^*$ 为广义实数系）.
+	
+	$\{x_n\}$ 的上极限定义为：
+	\[
+	\varlimsup_{n \to \infty} x_n = \sup E
+	\]
+	
+	下极限定义为：
+	\[
+	\varliminf_{n \to \infty} x_n = \inf E
+	\]
+	
+\end{definition}
+\begin{proposition}
+	任意一个数列 $\{x_n\}$，其上下极限都存在于 $\mathbb{R}^*$ 中
+\end{proposition}
+\begin{proof}
+	先证$E$ 不是空集，
+	
+	若 $\{x_n\}$ 有界：
+	由Bolzano-Weierstrass定理，存在收敛子列 $\{x_{n_k}\}$，其收敛值 $a \in E$.这样的 $E$ 至少有一个元素.
+	
+	若 $\{x_n\}$ 无界：
+	\begin{itemize}
+		\item 上无界时：存在 $\{x_{n_k}\}$ 使得 $x_{n_k} \to +\infty$，所以 $ +\infty\in E$.
+		\item 下无界时：存在 $\{x_{n_k}\}$ 使得 $x_{n_k} \to -\infty$，所以 $ -\infty\in E$.
+	\end{itemize}
+	
+	下证存在一个子列，收敛到上极限 $\sup E$（$\sup E \in E$）.
+	
+	记 $x^* = \sup E$，
+	
+	若 $x^* = +\infty$：则 $\{x_n\}$ 中可以取出子列趋于 $+\infty$，即 $+\infty \in E$
+	
+	若 $x^* = -\infty$：则 $E$ 中只有 $-\infty$，所以 $x_n \to -\infty$，即 $-\infty \in E$
+	
+	若 $x^* \in \mathbb{R}$：
+	$x^* = \sup E$，$\forall k \in \mathbb{N}$，$\exists y_k \in E$，使得
+	\[
+	x^* - \frac{1}{k} < y_k < x^*
+	\]
+	
+	由于 $y_k \in E$，在 $\{x_n\}$ 的子列收敛于 $y_k$.
+	
+	下面构造一个收敛于 $x^*$ 的子列.
+	
+	取 $\varepsilon = 1$，$\exists y_1 \in E$，使得 $x^* - 1 < y_1 < x^*$.
+	
+	$\{x_n\}$ 中存在子列 $\{x_n^{(1)}\}$ 收敛于 $y_1$，在这子列中存在一项 $x_{m_1}$，满足
+	\[
+	|x_{m_1} - y_1| < 1
+	\]
+	
+	再取 $\varepsilon = \dfrac{1}{2}$，$\exists y_2 \in E$，使得 $x^* - \dfrac{1}{2} < y_2 < x^*$.
+	
+	$\{x_n\}$ 中有在子列 $\{x_n^{(2)}\}$ 收敛于 $y_2$，在这子列中存在一项 $x_{m_2}$，满足 $m_2 > m_1$，
+	\[
+	|x_{m_2} - y_2| < \frac{1}{2}
+	\]
+	
+	以此类推，取出 $x_{m_3}, x_{m_4}, \ldots$，$m_1 < m_2 < m_3 < \ldots$，和 $y_1, y_2, y_3, \ldots$，满足
+	\[
+	x^* - \frac{1}{k} < y_k < x^*, \quad |x_{m_k} - y_k| < \frac{1}{k}
+	\]
+	
+	于是，
+	\[
+	0 < |x_{m_k} - x^*| \leqslant |x_{m_k} - y_k| + |y_k - x^*| < \frac{1}{k} + \left(x^* - y_k\right) < \frac{2}{k}
+	\]
+	
+	因此 $x_{m_k} \to x^*$，即 $x^* \in E$.
+	
+	对于 $\inf E$ 同理，得证
+	
+\end{proof}
+下面我们给出一个上下极限的等价定义,并证明其等价性.
+\begin{proposition}
+	对数列 $\{x_n\}$，定义
+	\[
+	A_n = \sup_{k \geqslant n} x_k, \quad B_n = \inf_{k \geqslant n} x_k
+	\]
+	
+	那么
+	\[
+	\varlimsup_{n \to \infty} x_n = \lim_{n \to \infty} A_n, \quad \varliminf_{n \to \infty} x_n = \lim_{n \to \infty} B_n
+	\]
+\end{proposition}
+
+\begin{proof}
+	记 $L^* = \sup E$，$L = \lim\limits_{n \to \infty} A_n$
+	
+	(i) $L^* \leqslant L$:
+	
+	\begin{itemize}
+		\item 若 $L = +\infty$，显然 $L^* \leqslant L = +\infty$.
+		\item 若 $L = -\infty$，则$\forall M$，$\exists N$，$\forall n \geqslant N$，$A_n < -M$，即 $\sup\limits_{k \geqslant n} x_k < -M$，所以$\forall k \geqslant n$，$x_k < -M$，因此 $E$ 中无实数,唯一的子列极限是$-\infty$,于是$L^*=-\infty$,所以$L=L^*$
+		\item 若 $L$ 是有限的，取任意 $t \in E$，则存在子列 $x_{n_k} \to t$.
+		对每个 $n$，当 $n_k \geqslant n$ 时，$x_{n_k} \leqslant A_n$.当 $k \to +\infty$ 时得到 $t \leqslant A_n$.
+		再令 $n \to \infty$ 得 $t \leqslant L$，所以 $E$ 中任意元素 $\leqslant L$， 因此$L^* \leqslant L$.
+	\end{itemize}
+	
+	(ii) $L \leqslant L^*$:
+	\begin{itemize}
+		\item 若 $L^* = +\infty$，则存在子列 $x_{n_k} \to +\infty$，显然 $A_n$ 大于等于这些$x_{n_k}$中下标大于等于$n$的项， 因此 $A_n \to +\infty$，即 $L = +\infty$.
+		\item 若 $L^* = -\infty$，则所有子列的极限为 $-\infty$，即 $x_n \to -\infty$，$\forall M$，$\exists N$，$\forall n \geqslant N$，$x_n < -M$，因此 $A_n < -M$，于是 $L = -\infty$.
+		\item 若 $L^*$ 有限，要证 $L \leqslant L^*$
+		，使用反证法，若 $L>L^*$ ，取 $c \in \mathbb{R}$ ，使得$L^*<c<L$ ．
+		因为 $A_n \to L$ 且 $A_n$ 递减，故对足够大的 $n$ ，有 $A_n>c$ ，即  $\sup\limits_{k \geqslant n} x_k>c$ ，所以存在 $k_n \geqslant n$ 使得 $x_{k_n}>c$,这样我们得到一个子列$\{x_{k_n}\}$ 满足$x_{k_n}>c$,这个子列的收敛子列的收敛值$\geqslant c>L^*$,与$L^*$是$E$的上确界矛盾
+	\end{itemize}
+	综上$L=L^*$,对$B_n$与下确界的情况同理.
+	
+\end{proof}
+下面给出上下极限的$\eps$语言定义，我们常常在证明中使用到,\textbf{\red{不要使用子列提取法}}
+\begin{proposition}\label{3.6.4}
+	设 $\left\{x_n\right\}$ 是有界数列．则
+	
+	（1）$\varlimsup\limits_{n \rightarrow \infty} x_n=H$ 的充分必要条件是：对任意给定的 $\varepsilon>0$ ，
+	
+	（i）存在正整数 $N$ ，使得
+	$$
+	x_n<H+\varepsilon
+	$$
+	对一切 $n>N$ 成立；
+	
+	（ii）$\left\{x_n\right\}$ 中有无穷多项，满足
+	
+	$$
+	x_n>H-\varepsilon .
+	$$
+	
+	（2）$\varliminf\limits_{n \rightarrow \infty} x_n=h$ 的充分必要条件是：对任意给定的 $\varepsilon>0$ ，
+	
+	（i）存在正整数 $N$ ，使得
+	$$
+	x_n>h-\varepsilon
+	$$
+	对一切 $n>N$ 成立；
+	
+	（ii）$\left\{x_n\right\}$ 中有无穷多项，满足
+	$$
+	x_n<h+\varepsilon .
+	$$
+	
+\end{proposition}
+\begin{proof}
+	下面只给出（1）的证明，（2）的证明类似.
+	
+	必要性：由于 $H$ 是 $\left\{x_n\right\}$ 的最大极限点，因此对于任意给定的 $\varepsilon>0$ ，在区间 $[H+\varepsilon$ ， $+\infty)$ 上至多只有 $\left\{x_n\right\}$ 中的有限项．设这有限项中最大的下标为 $n_0$ ．显然，只要取 $N=n_0$ ，当 $n>N$ 时，必有
+	
+	$$
+	x_n<H+\varepsilon \text {, }
+	$$
+	
+	
+	这就证明了（i）.
+	
+	
+	由于 $H$ 是 $\left\{x_n\right\}$ 的极限点，因此 $\left\{x_n\right\}$ 中有无穷多项属于 $H$ 的 $\varepsilon$ 邻域，因此这无穷多个项满足
+	
+	$$
+	x_n>H-\varepsilon,
+	$$
+	
+	
+	这就证明了（ii）．
+	
+	充分性：由（i），对任意给定的 $\varepsilon>0$ ，存在正整数 $N$ ，使得当 $n>N$ 时，成立 $x_n<H+\varepsilon$ ，于是 $\varlimsup\limits_{n \rightarrow \infty} x_n \leqslant H+\varepsilon$ ．由 $\varepsilon$ 的任意性知
+	
+	$$
+	\varlimsup\limits_{n \rightarrow \infty} x_n \leqslant H .
+	$$
+	
+	
+	由（ii），$\left\{x_n\right\}$ 中有无穷多项，满足 $x_n>H-\varepsilon$ ，于是 $\varlimsup\limits_{n \rightarrow \infty} x_n \geqslant H-\varepsilon$ ．由 $\varepsilon$ 的任意性又可知
+	
+	$$
+	\varlimsup\limits_{n \rightarrow \infty} x_n \geqslant H .
+	$$
+	
+	
+	结合上述两式，就得到
+	
+	$$
+	\varlimsup_{n \rightarrow \infty} x_n=H .
+	$$
+	
+	
+	
+\end{proof}
+下面我们默认$\{x_n\}$有界
+\begin{proposition}
+	\begin{enumerate}
+		\item  $\varlimsup\limits_{n \to \infty} (-x_n) = -\varliminf\limits_{n \to \infty} x_n$
+		\item  $\varliminf\limits_{n \to \infty} (-x_n) = -\varlimsup\limits_{n \to \infty} x_n$
+		\item 对于 $c > 0$，$\varlimsup\limits_{n \to \infty} (cx_n) = c \varlimsup\limits_{n \to \infty} x_n$
+		\item 对于 $c < 0$，$\varlimsup\limits_{n \to \infty} (cx_n) = c \varliminf\limits_{n \to \infty} x_n$
+		
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	对于1,2我们只证明1
+	
+	1.~设 $\varliminf\limits_{n \rightarrow \infty} x_n=\eta$ ，则对任意给定的 $\varepsilon>0$ ，存在正整数 $N$ ，使得 $x_n>\eta-\varepsilon$ 对一切 $n> N$ 成立，且 $\left\{x_n\right\}$ 中有无穷多项，满足 $x_n<\eta+\varepsilon$ ；于是 $-x_n<-\eta+\varepsilon$ 对一切 $n>N$ 成立，且 $\left\{-x_n\right\}$ 中有无穷多项，满足 $-x_n>-\eta-\varepsilon$ ；于是
+	$$
+	\varlimsup_{n \rightarrow \infty}\left(-x_n\right)=-\eta=-\varliminf\limits _{n \rightarrow \infty} x_n .
+	$$
+	
+	3. ~$c>0, \varlimsup\limits_{n \rightarrow \infty} x_n=\xi$ ，则对任意给定的 $\varepsilon>0$ ，存在正整数 $N$ ，使得 $x_n<\xi+\dfrac{\varepsilon}{c}$ 对一切 $n>N$ 成立，且 $\left\{x_n\right\}$ 中有无穷多项，满足 $x_n>\xi-\dfrac{\varepsilon}{c}$ ；于是 $c x_n<c \xi+\varepsilon$ 对一切 $n>N$ 成立，且 $\left\{c x_n\right\}$ 中有无穷多项，满足 $c x_n>c \xi-\varepsilon$ ；所以
+	$$
+	\varlimsup_{n \rightarrow \infty}\left(c x_n\right)=c \xi=c \varlimsup_{n \rightarrow \infty} x_n .
+	$$
+	
+	
+	4.~$c<0, \varliminf\limits_{n \rightarrow \infty} x_n=\eta$ ，则对任意给定的 $\varepsilon>0$ ，存在正整数 $N$ ，使得 $x_n>\eta+\dfrac{\varepsilon}{c}$ 对一切 $n>N$ 成立，且 $\left\{x_n\right\}$ 中有无穷多项，满足 $x_n<\eta-\dfrac{\varepsilon}{c}$ ；于是 $c x_n<c \eta+\varepsilon$ 对一切 $n>N$ 成立，且 $\left\{c x_n\right\}$ 中有无穷多项，满足 $c x_n>c \eta-\varepsilon$ ；所以
+	$$
+	\varlimsup_{n \rightarrow \infty}\left(c x_n\right)=c \eta=c \varliminf\limits _{n \rightarrow \infty} x_n .
+	$$
+\end{proof}
+\begin{proposition}\label{3.6.6}
+	\begin{enumerate}
+		\item $\forall$数列 $\{x_{n}\},\{y_{n}\}$，有
+		
+		$\varliminf\limits_{n\rightarrow\infty}x_{n}+\varliminf\limits_{n\rightarrow\infty}y_{n}\leqslant\varliminf\limits_{n\rightarrow\infty}(x_{n}+y_{n})\leqslant\varlimsup\limits_{n\rightarrow\infty}(x_{n}+y_{n})\leqslant\varlimsup\limits_{n\rightarrow\infty}x_{n}+\varlimsup\limits_{n\rightarrow\infty}y_{n}$
+		
+		假设，右端没有 $+\infty +(-\infty)$ 这种不定式
+		\item 任对正项数列 $\{x_{n}\},\{y_{n}\}$
+		
+		$\varliminf\limits_{n\rightarrow\infty}x_{n}\cdot\varliminf\limits_{n\rightarrow\infty}y_{n}\leqslant\varliminf\limits_{n\rightarrow\infty}(x_{n}y_{n})\leqslant\varlimsup\limits_{n\rightarrow\infty}(x_{n}y_{n})\leqslant\varlimsup\limits_{n\rightarrow\infty}x_{n}\cdot\varlimsup\limits_{n\rightarrow\infty}y_{n}$
+		
+		假设乘积中无 $0\cdot(+\infty)$ 的不定式
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	记$\varlimsup\limits_{n\rightarrow\infty}x_{n}=H_1,\varlimsup\limits_{n\rightarrow\infty}y_{n}=H_2$
+	
+	1.~对任意给定的 \(\varepsilon > 0\), 存在正整数 \(N\), 对一切 \(n > N\) 成立
+	\[
+	x_n < H_1 + \varepsilon, \quad y_n < H_2 + \varepsilon,
+	\]
+	即
+	\[
+	x_n + y_n < H_1 + H_2 + 2\varepsilon.
+	\]
+	
+	所以
+	
+	\[
+	\lim_{n \to \infty} (x_n + y_n) \leq H_1 + H_2 + 2\varepsilon.
+	\]
+	
+	由 \(\varepsilon\) 的任意性, 即得到
+	
+	\[
+	\lim_{n \to \infty} (x_n + y_n) \leq H_1 + H_2 = \lim_{n \to \infty} x_n + \lim_{n \to \infty} y_n.
+	\]
+	
+	这就是 1 的右端的式子,中间的式子显然,左端的式子的式子同理
+	
+	2的证明与1同理，使用\ref{3.6.4}即可
+\end{proof}
+\begin{proposition}
+	设$\left\{x_n\right\},\left\{y_n\right\}$ 是两数列，则
+	
+	若 $\lim\limits_{n \rightarrow \infty} x_n$ 存在，则
+	$$
+	\varlimsup_{n \rightarrow \infty}\left(x_n+y_n\right)=\lim _{n \rightarrow \infty} x_n+\varlimsup_{n \rightarrow \infty} y_n, \varliminf\limits_{n \rightarrow \infty}\left(x_n+y_n\right)=\lim _{n \rightarrow \infty} x_n+\varliminf\limits_{n \rightarrow \infty} y_n .
+	$$
+	
+	（要求上述诸式的右端不是待定型，即不为 $(+\infty)+(-\infty)$ 等．）
+\end{proposition}
+\begin{proof}
+	对第一个式子
+	
+	若 \(\lim\limits_{n \to \infty} x_n\) 存在，则由\ref{3.6.6} 
+	\[
+	\varlimsup\limits_{n \to \infty} y_n = \varlimsup\limits_{n \to \infty} \left[ (x_n + y_n) - x_n \right] \leq \varlimsup\limits_{n \to \infty} (x_n + y_n) + \varlimsup\limits_{n \to \infty} (-x_n),
+	\]
+	此式即为
+	\[
+	\varlimsup\limits_{n \to \infty} (x_n + y_n) \geq \lim_{n \to \infty} x_n + \varlimsup\limits_{n \to \infty} y_n.
+	\]
+	将上述结合
+	\[
+	\varlimsup\limits_{n \to \infty} (x_n + y_n) \leq \lim_{n \to \infty} x_n + \varlimsup\limits_{n \to \infty} y_n,
+	\]
+	即得
+	
+	第二个式子同理
+\end{proof}
+\begin{proposition}
+	\begin{enumerate}
+		\item 若 $\lim\limits _{n \rightarrow \infty} x_n=x, 0<x<+\infty$ ，则
+		$$
+		\begin{aligned}
+			& \varlimsup_{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varlimsup_{n \rightarrow \infty} y_n, \\
+			& \varliminf\limits_{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varliminf\limits_{n \rightarrow \infty} y_n .
+		\end{aligned}
+		$$
+		\item 若 $\lim\limits _{n \rightarrow \infty} x_n=x, 0>x>-\infty$ ，则
+		$$
+		\begin{aligned}
+			& \varlimsup_{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varliminf_{n \rightarrow \infty} y_n, \\
+			& \varliminf\limits_{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varlimsup\limits_{n \rightarrow \infty} y_n .
+		\end{aligned}
+		$$
+	\end{enumerate}
+	
+	
+	
+	
+	
+\end{proposition}
+\begin{proof}
+	1.~由 \(\lim\limits_{n \to \infty} x_n = x, 0 < x < +\infty\)，可知对任意给定的 \(\varepsilon (0 < \varepsilon < x)\)，存在正整数 \(N_1\)，对一切 \(n > N_1\) 成立
+	\[
+	0 < x - \varepsilon < x_n < x + \varepsilon.
+	\]
+	记 \(\varliminf\limits_{n \to \infty} y_n = h_2,\varlimsup\limits_{n \to \infty} y_n = H_2\)，由\ref{3.6.4}，对上述 \(\varepsilon (0 < \varepsilon < x)\)，存在正整数 \(N_2\)，对一切 \(n > N_2\) 成立
+	
+	\[
+	h_2-\eps <y_n < H_2 + \varepsilon.
+	\]
+	
+	取 \(N = \max \{N_1, N_2\}\)，则当 \(n > N\) 时，成立
+	\[
+	x_n y_n < \max \{ (x - \varepsilon) (H_2 + \varepsilon), (x + \varepsilon) (H_2 + \varepsilon) \},
+	\]
+	\[
+	x_n y_n > \min \{ (x - \varepsilon) (h_2 - \varepsilon), (x + \varepsilon) (h_2 - \varepsilon) \},
+	\]
+	于是有
+	
+	\[
+	\varlimsup\limits_{n \to \infty} (x_n y_n) \leq \max \{ (x - \varepsilon) (H_2 + \varepsilon), (x + \varepsilon) (H_2 + \varepsilon) \},
+	\]
+	\[
+	\varliminf\limits_{n \to \infty} (x_n y_n) \geq  \min \{ (x - \varepsilon) (h_2 - \varepsilon), (x + \varepsilon) (h_2 - \varepsilon) \},
+	\]
+	由 \(\varepsilon\) 的任意性，即得到
+	
+	\[
+	\varlimsup\limits_{n \to \infty} (x_n y_n) \leq x \cdot H_2 = \lim_{n \to \infty} x_n \cdot \varlimsup\limits_{n \to \infty} y_n.
+	\]
+	\[
+	\varliminf\limits_{n \to \infty} (x_n y_n) \geq x \cdot h_2 = \lim_{n \to \infty} x_n \cdot \varliminf\limits_{n \to \infty} y_n.
+	\]
+	由于
+	\[
+	\varlimsup\limits_{n \to \infty} y_n = \varlimsup\limits_{n \to \infty} \left[ (x_n y_n) \cdot \frac{1}{x_n} \right] \leq \varlimsup\limits_{n \to \infty} (x_n y_n) \cdot \lim_{n \to \infty} \frac{1}{x_n},
+	\]
+	\[
+	\varliminf\limits_{n \to \infty} y_n = \varliminf\limits_{n \to \infty} \left[ (x_n y_n) \cdot \frac{1}{x_n} \right] \geq \varliminf\limits_{n \to \infty} (x_n y_n) \cdot \lim_{n \to \infty} \frac{1}{x_n},
+	\]
+	即
+	
+	\[
+	\varlimsup\limits_{n \to \infty} (x_n y_n) \geq \lim_{n \to \infty} x_n \cdot \varlimsup\limits_{n \to \infty} y_n,
+	\]
+	\[
+	\varliminf\limits_{n \to \infty} (x_n y_n) \leq \lim_{n \to \infty} x_n \cdot \varliminf\limits_{n \to \infty} y_n,
+	\]
+	两式结合即得
+	
+	2.~ 由 $\lim\limits _{n \rightarrow \infty} x_n=x,-\infty<x<0$ ，可知对任意给定的 $\varepsilon(0<\varepsilon<-x)$ ，存在正整数 $N_1$ ，对一切 $n>N_1$ ，成立
+	$$
+	x-\varepsilon<x_n<x+\varepsilon<0
+	$$
+	记 $\varlimsup\limits_{n \rightarrow \infty} y_n=H, \varliminf\limits _{n \rightarrow \infty} y_n=h$ ，则对上述 $\varepsilon(0<\varepsilon<-x)$ ，存在正整数 $N_2$ ，对一切 $n>N_2$ ，成立
+	$$
+	h-\varepsilon<y_n<H+\varepsilon
+	$$
+	取 $N=\max \left\{N_1, N_2\right\}$ ，则当 $n>N$ 时，成立
+	$$
+	\min \{(x-\varepsilon)(H+\varepsilon),(x+\varepsilon)(H+\varepsilon)\}<x_n y_n<\max \{(x-\varepsilon)(h-\varepsilon),(x+\varepsilon)(h-\varepsilon)\},
+	$$
+	于是
+	$$
+	\begin{aligned}
+		& \varliminf\limits _{n \rightarrow \infty}\left(x_n y_n\right) \geqslant \min \{(x-\varepsilon)(H+\varepsilon),(x+\varepsilon)(H+\varepsilon)\}, \\
+		& \varlimsup\limits_{n \rightarrow \infty}\left(x_n y_n\right) \leqslant \max \{(x-\varepsilon)(h-\varepsilon),(x+\varepsilon)(h-\varepsilon)\},
+	\end{aligned}
+	$$
+	
+	
+	由 $\varepsilon$ 的任意性，即得到
+	
+	$$
+	\begin{aligned}
+		& \varliminf\limits _{n \rightarrow \infty}\left(x_n y_n\right) \geqslant x H=\lim _{n \rightarrow \infty} x_n \cdot \varlimsup\limits _{n \rightarrow \infty} y_n, \\
+		& \varlimsup\limits_{n \rightarrow \infty}\left(x_n y_n\right) \leqslant x h=\lim _{n \rightarrow \infty} x_n \cdot \varliminf\limits_{n \rightarrow \infty} y_n .
+	\end{aligned}
+	$$
+	
+	
+	由于
+	
+	$$
+	\begin{aligned}
+		& \varliminf\limits _{n \rightarrow \infty} y_n=\varliminf\limits _{n \rightarrow \infty}\left[\frac{1}{x_n} \cdot\left(x_n y_n\right)\right] \geqslant \lim _{n \rightarrow \infty} \frac{1}{x_n} \cdot \varlimsup_{n \rightarrow \infty}\left(x_n y_n\right), \\
+		& \varlimsup_{n \rightarrow \infty} y_n=\varlimsup_{n \rightarrow \infty}\left[\frac{1}{x_n} \cdot\left(x_n y_n\right)\right] \leqslant \lim _{n \rightarrow \infty} \frac{1}{x_n} \cdot \varliminf\limits_{n \rightarrow \infty}\left(x_n y_n\right),
+	\end{aligned}
+	$$
+	又得到
+	$$
+	\begin{aligned}
+		& \varliminf\limits _{n \rightarrow \infty}\left(x_n y_n\right) \leqslant \lim _{n \rightarrow \infty} x_n \cdot \varlimsup_{n \rightarrow \infty} y_n, \\
+		& \varlimsup_{n \rightarrow \infty}\left(x_n y_n\right) \geqslant \lim _{n \rightarrow \infty} x_n \cdot \varliminf\limits _{n \rightarrow \infty} y_n .
+	\end{aligned}
+	$$
+	
+	
+	将此两式与前面两式结合，即得到
+	
+	$$
+	\begin{aligned}
+		& \varlimsup_{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varliminf\limits _{n \rightarrow \infty} y_n, \\
+		& \varliminf\limits _{n \rightarrow \infty}\left(x_n y_n\right)=\lim _{n \rightarrow \infty} x_n \cdot \varlimsup_{n \rightarrow \infty} y_n .
+	\end{aligned}
+	$$
+\end{proof}
+

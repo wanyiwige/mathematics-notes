@@ -1,0 +1,90 @@
+% main.tex
+% 概率论笔记
+% 编译：XeLaTeX
+\documentclass[10pt]{book}
+
+% ── 加载所有配置 ──
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+\addbibresource{bibliography/references.bib}
+
+% ── 文档元信息与封面 ──
+\title{概率论笔记}
+\author{Notes on Probability Theory}
+\date{\today}
+\coverimage{figure/封面(1).jpg}
+
+\begin{document}
+
+\makecover
+
+\frontmatter
+
+\chapter*{前言}
+\addcontentsline{toc}{chapter}{前言}
+
+
+\begin{flushright}
+	Huginn Wong\\
+	\today
+\end{flushright}
+
+\tableofcontents
+\newpage
+
+\mainmatter
+\setcounter{page}{1}
+
+% ═══════════════════════════════════════════════════════
+%  Part I：概率论基础
+% ═══════════════════════════════════════════════════════
+\setpartimage{}
+\setpartintro{}
+\part{概率论基础}
+
+\setchapterimage{}
+\setchapterintro{}
+\include{chapters/chapter1}
+
+\setchapterimage{}
+\setchapterintro{}
+\include{chapters/chapter2}
+
+\setchapterimage{}
+\setchapterintro{}
+\include{chapters/chapter3}
+
+% \setchapterimage{}
+% \setchapterintro{本章介绍概率论中最重要的极限定理，包括大数定律与中心极限定理，并讨论依概率收敛、几乎必然收敛等收敛模式的相互关系。}
+% \include{chapters/chapter4}
+
+% ═══════════════════════════════════════════════════════
+%  Part II：随机过程初步
+% ═══════════════════════════════════════════════════════
+% \setpartimage{}
+% \setpartintro{从条件期望和鞅的基本概念出发，介绍 Markov 链、Brown 运动与 Poisson 过程等经典随机过程的基本理论。}
+% \part{随机过程初步}
+
+\backmatter
+\nocite{*}
+
+\begingroup
+\setlength{\emergencystretch}{1em}
+\providecommand{\phantomsection}{}
+\defbibheading{normalbib}[\bibname]{%
+	\clearpage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{#1}%
+	{\noindent\huge\bfseries #1\par}%
+	\vspace{1.5em}%
+}
+\printbibliography[heading=normalbib, title={参考文献}]
+\endgroup
+
+\end{document}

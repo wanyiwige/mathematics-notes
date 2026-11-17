@@ -1,0 +1,190 @@
+% preamble/theorems.tex
+% ============================================
+% 定理环境体系 —— 绛紫 + 香槟金
+% 使用 \newtcbtheorem，每个环境接受 {标题}{标签} 两个参数
+% 标题栏格式：环境名 + 编号 + "：" + 自定义小标题
+%   调用示例：
+%     \begin{theorem}{存在唯一性定理}{thm:exist}
+%       设 $f$ 在区域 $G\subset\R\times\R^n$ 上连续且关于 $x$ 满足
+%       Lipschitz 条件，则初值问题存在唯一解。
+%     \end{theorem}
+%     \begin{definition}{词项的定义}{def:term}
+%       ……
+%     \end{definition}
+% ============================================
+
+% ---- 全局正文定理样式：原书为无框、无色栏的行内标题 ----
+\tcbset{
+  qttheo/.style={
+    breakable, enhanced, frame hidden, detach title,
+    arc=0pt, boxrule=0pt, leftrule=0pt,
+    fonttitle=\bfseries\theoremFont,
+    fontupper=\theoremFont,
+    colback=white, colbacktitle=white, coltitle=black,
+    left=0pt, right=0pt, top=0pt, bottom=0pt,
+    before skip=8pt, after skip=4pt,
+    before upper={\tcbtitle\quad},
+  }
+}
+
+% ---- 彩条标题格式：环境名 + 编号 + (有自定义标题时) "：" + 自定义标题 ----
+\newcommand{\qttheotitle}[3]{%
+  #1\ #2\IfBlankT{#3}{：#3}%
+}
+
+% ============================================================
+% 类别 I — LogicBlue (绛紫主色)
+% 定理 / 推论 / 命题 / 原理
+% 编号采用章内计数（number within=chapter），与原书"定理 1.x"约定一致
+% ============================================================
+\newtcbtheorem[number within=section]{theorem}{定理}{
+  qttheo,
+  colback=white, colframe=LogicBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{thm}
+
+\newtcbtheorem[use counter from=theorem]{corollary}{推论}{
+  qttheo,
+  colback=white, colframe=LogicBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{cor}
+
+\newtcbtheorem[use counter from=theorem]{proposition}{命题}{
+  qttheo,
+  colback=white, colframe=LogicBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{prp}
+
+\newtcbtheorem[use counter from=theorem]{prp}{原理}{
+  qttheo,
+  colback=white, colframe=LogicBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{prn}
+
+% ============================================================
+% 类别 II — LogicDarkBlue (深绛紫)
+% 公理 / 问题 / 引理 / 注记
+% ============================================================
+\newtcbtheorem[use counter from=theorem]{axiom}{公理}{
+  qttheo,
+  colback=white, colframe=LogicDarkBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{ax}
+
+\newtcbtheorem[use counter from=theorem]{problem}{问题}{
+  qttheo,
+  colback=white, colframe=LogicDarkBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{pb}
+
+\newtcbtheorem[use counter from=theorem]{lemma}{引理}{
+  qttheo,
+  colback=white, colframe=LogicDarkBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{lem}
+
+\newtcbtheorem[use counter from=theorem]{remark}{注记}{
+  qttheo,
+  colback=white, colframe=LogicDarkBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{rem}
+
+% ============================================================
+% 类别 III — GoldMain (香槟金)
+% 定义 —— 金色边框 + 淡紫底 + 深紫标题文字
+% ============================================================
+\newtcbtheorem[use counter from=theorem]{definition}{定义}{
+  qttheo,
+  colback=PurplePale, colframe=GoldMain,
+  fonttitle=\bfseries\theoremFont\color{PurpleDeep},
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{def}
+
+% ============================================================
+% 类别 IV — LogicLightBlue (浅绛紫)
+% 构造 / 记号 / 说明
+% ============================================================
+\newtcbtheorem[use counter from=theorem]{construction}{构造}{
+  qttheo,
+  colback=white, colframe=LogicLightBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{con}
+
+\newtcbtheorem[use counter from=theorem]{note}{记号}{
+  qttheo,
+  colback=white, colframe=LogicLightBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{no}
+
+\newtcbtheorem[use counter from=theorem]{ill}{说明}{
+  qttheo,
+  colback=white, colframe=LogicLightBlue,
+  separator sign={},
+  title={\qttheotitle{\thmt@thmname}{\thmt@thmnumber}{\thmt@tmptitle}},
+}{il}
+
+% ============================================================
+% 类别 V
+% 示例 —— 无框正文，按节独立连续编号
+% 调用方式仍为 \begin{example}{标题}{标签} ... \end{example}
+% ============================================================
+\newcounter{example}[section]
+\renewcommand{\theexample}{\thesection.\arabic{example}}
+
+\NewDocumentEnvironment{example}{m m}{%
+  \par\medskip
+  \refstepcounter{example}%
+  \ifstrempty{#2}{}{\label{ex:#2}}%
+  \noindent{\bfseries\theoremFont
+    示例~\theexample\ifstrempty{#1}{}{：#1}}\quad
+  \theoremFont
+}{%
+  \par\medskip
+}
+
+% ============================================================
+%  解 (Solution) 环境（无编号）
+% ============================================================
+\newcounter{solution}
+\renewcommand{\thesolution}{\arabic{solution}}
+\NewDocumentEnvironment{solution}{}{%
+  \par\proofFont
+  \refstepcounter{solution}%
+  \noindent\textbf{解.}\quad
+}{%
+  \hfill $\square$\par
+}
+
+% ============================================================
+%  证明 (Proof) 环境（可自定义小标题，如 证明（充分性））
+%  amsthm 已定义 proof，此处用标准语法重定义
+% ============================================================
+\renewenvironment{proof}[1][证明]{%
+  \par\proofFont
+  \noindent\textbf{#1}\quad
+}{%
+  \par
+}
+
+% ---- 行距 ----
+\setstretch{1.2}
+
+% ============================================================
+%  附注 / 命名定理 / 命名引理（无编号，行内加粗，仿原书）
+%  用于 附注 1/2/3、Cauchy-Peano 定理、Gronwall 引理 等
+% ============================================================
+\newcommand{\fuzhu}[2]{\par\medskip\noindent\textbf{附注~#1}\quad #2\par\medskip}
+\newcommand{\namedthm}[2]{\par\medskip\noindent\textbf{#1~定理}\quad #2\par\medskip}
+\newcommand{\namedlem}[2]{\par\medskip\noindent\textbf{#1~引理}\quad #2\par\medskip}
+\newcommand{\namedcor}[2]{\par\medskip\noindent\textbf{推论~#1}\quad #2\par\medskip}

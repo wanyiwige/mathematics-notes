@@ -1,0 +1,148 @@
+\section{西罗定理}
+
+拉格朗日定理说明，有限群的每个子群的阶都整除群的阶。反过来，一个整除群阶的正整数是否一定是某个子群的阶？一般而言并非如此。例如$A_4$的阶为12，有二阶、三阶和四阶子群，却没有六阶子群：若有六阶子群，它的指数为2，因而正规；但六阶群中必有三阶元素，该正规子群便包含$A_4$中的全部八个3-轮换，产生矛盾。这里也可直接由$A_4$的子群分类得到此反例。
+
+下面证明，当这个因子为素数的幂时，相应子群一定存在，并进一步讨论这些子群的包含、共轭及个数。
+
+\begin{lemma}
+设$n=p^lm$，其中$p$为素数、$p\nmid m$，$0\leq k\leq l$。则
+\[
+p^{l-k}\mid\binom n{p^k},\qquad
+p^{l-k+1}\nmid\binom n{p^k}.
+\]
+也就是说，该组合数含有的$p$因子的个数恰为$l-k$。
+\end{lemma}
+\begin{proof}
+当$k=0$时，组合数为$n$，结论成立。设$k\geq1$，展开为
+\[
+\binom n{p^k}
+=\frac{n}{p^k}\,
+\frac{(n-1)(n-2)\cdots(n-p^k+1)}{(p^k-1)(p^k-2)\cdots1}.
+\]
+比较后一分式中相配的$n-i$与$p^k-i$。对$0<i<p^k$，写$i=p^ti'$，其中$p\nmid i'$，则$0\leq t<k\leq l$。于是
+\begin{align*}
+n-i&=p^t(p^{l-t}m-i'),\\
+p^k-i&=p^t(p^{k-t}-i').
+\end{align*}
+因为$l-t>0$、$k-t>0$而$p\nmid i'$，两个括号内的整数都不被$p$整除。因此这两个因子各含恰好$t$个$p$因子。
+
+将所有对应因子中的$p$约去，后一分式化为分子、分母均与$p$互素的有理数。所以组合数中的全部$p$因子恰来自
+\[
+\frac n{p^k}=p^{l-k}m,
+\]
+其个数为$l-k$。
+\end{proof}
+
+\begin{theorem}\label{p2:sylow-one}
+\textbf{西罗第一定理：}设$G$为有限群，$p$为素数。若$p^k\mid|G|$，$k\geq0$，则$G$有一个$p^k$阶子群。
+\end{theorem}
+\begin{proof}
+写$|G|=n=p^lm$，其中$p\nmid m$。由条件$k\leq l$。令$X$为$G$中所有含$p^k$个元素的子集组成的集合，故
+\[
+|X|=\binom n{p^k}.
+\]
+对$g\in G$及$A\in X$，定义$g\cdot A=gA$。左乘$g$是$G$的双射，所以$gA$仍有$p^k$个元素；又$eA=A$、$(g_1g_2)A=g_1(g_2A)$，这确实给出作用。
+
+将$X$分成轨道。若每个轨道的大小都被$p^{l-k+1}$整除，则其总和$|X|$也被整除，与引理矛盾。因此存在$A\in X$，其轨道$O_A$满足
+\[
+p^{l-k+1}\nmid|O_A|.
+\]
+记$A$的稳定子群为$H_A=\{g\in G:gA=A\}$。由轨道计数公式，
+\[
+|G|=|O_A|\,|H_A|.
+\]
+设$|O_A|$中$p$因子的个数为$t$，则$t\leq l-k$，所以$|H_A|$中至少含$k$个$p$因子，即$p^k\mid|H_A|$。
+
+另一方面，取$a\in A$。若$h\in H_A$，则$ha\in hA=A$，从而$H_Aa\subseteq A$。映射$h\mapsto ha$为双射$H_A\to H_Aa$，所以
+\[
+|H_A|=|H_Aa|\leq|A|=p^k.
+\]
+结合整除关系，必有$|H_A|=p^k$，它就是所求子群。
+\end{proof}
+
+\begin{definition}
+若$|G|=p^lm$且$p\nmid m$，则$G$中$p^l$阶的子群称为$G$的\textbf{西罗$p$子群}。它的阶包含$|G|$中的全部$p$因子，第一定理保证其存在。
+\end{definition}
+
+\begin{theorem}\label{p2:sylow-two}
+\textbf{西罗第二定理：}设$P$为有限群$G$的一个西罗$p$子群。若$H$为$G$的$p$幂阶子群，则存在$g\in G$使
+\[
+H\leq gPg^{-1}.
+\]
+因此，任意两个西罗$p$子群互相共轭。
+\end{theorem}
+\begin{proof}
+写$|G|=p^lm$，$p\nmid m$。让$H$作用于$P$的左陪集集合$\mathcal L_G(P)$，作用为
+\[
+h\cdot(gP)=hgP.
+\]
+该集合有$[G:P]=m$个元素，且$p\nmid m$。若$H=\{e\}$，结论直接成立；否则$H$为有限$p$群，由不动点结论可取一个被$H$中全部元素固定的陪集$gP$。因此
+\[
+hgP=gP\qquad(\forall h\in H),
+\]
+等价地$g^{-1}hg\in P$对全部$h\in H$成立。所以$g^{-1}Hg\leq P$，即$H\leq gPg^{-1}$。
+
+若$H$本身也是西罗$p$子群，则它与$gPg^{-1}$阶相同，有限子群的包含关系因而成为等号。这证明了共轭性。
+\end{proof}
+
+特别地，西罗$p$子群唯一当且仅当它正规：唯一时每个共轭子群都只能等于它；正规时，它的全部共轭子群均相同，再由第二定理知没有其他西罗$p$子群。
+
+以下沿用正规化子的概念。为与本节的记号一致，简写
+\[
+N(H)=N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+
+\begin{corollary}\label{p2:sylow-normalizer}
+若$P$为$G$的西罗$p$子群，则$N(P)$不含$G$的其他西罗$p$子群，且
+\[
+N(N(P))=N(P).
+\]
+\end{corollary}
+\begin{proof}
+因为$P\leq N(P)\leq G$，$P$也是$N(P)$的西罗$p$子群。由定义$P\trianglelefteq N(P)$，所以它是$N(P)$中唯一的西罗$p$子群。任何包含在$N(P)$内的$G$的西罗$p$子群都有同样的阶，故只能等于$P$。
+
+若$g\in N(N(P))$，则$gN(P)g^{-1}=N(P)$。此时$gPg^{-1}$也是$N(P)$内的西罗$p$子群，由唯一性得$gPg^{-1}=P$，故$g\in N(P)$。这证明一个方向的包含；反向由子群的元素都正规化该子群成立。
+\end{proof}
+
+\begin{proposition}
+设$G$的西罗$p$子群有$k$个，则对任一个这样的子群$P$，
+\[
+k=[G:N(P)].
+\]
+特别地，$k$整除$|G|$。
+\end{proposition}
+\begin{proof}
+令$X$为全部西罗$p$子群组成的集合，$G$通过共轭作用于$X$。第二定理说明此作用传递，$P$的稳定子群正是$N(P)$，故由轨道计数公式得到等式。
+\end{proof}
+
+\begin{theorem}\label{p2:sylow-three}
+\textbf{西罗第三定理：}设$p\mid|G|$，$k$为$G$的西罗$p$子群个数，则
+\[
+k\equiv1\pmod p.
+\]
+若$|G|=p^lm$、$p\nmid m$，则还有$k\mid m$。
+\end{theorem}
+\begin{proof}
+令$X$为全部西罗$p$子群组成的集合，固定其中一个$P$，只让$P$通过共轭作用于$X$。$P$自身是不动点。若$Q\in X$也是不动点，则
+\[
+gQg^{-1}=Q\qquad(\forall g\in P),
+\]
+即$P\leq N(Q)$。由前面的正规化子推论，$N(Q)$不能含$G$的另一个西罗$p$子群，因此$P=Q$。所以此作用恰有一个不动点。由$p$群作用的同余公式，$k=|X|\equiv1\pmod p$。
+
+再由$P\leq N(P)$及指数乘法公式，
+\[
+m=[G:P]=[G:N(P)]\,[N(P):P]=k[N(P):P].
+\]
+故$k\mid m$。
+\end{proof}
+
+\begin{example}
+\textbf{72阶群不是单群：}设$|G|=72=2^3\cdot3^2$。西罗3子群的个数$k$满足$k\mid8$、$k\equiv1\pmod3$，因此$k=1$或$4$。
+
+若$k=1$，唯一的西罗3子群为9阶非平凡真正规子群。
+若$k=4$，记四个西罗3子群为$P_1,P_2,P_3,P_4$。共轭作用给出同态
+\[
+\varphi:G\longrightarrow S_4.
+\]
+由于$72>24=|S_4|$，它不可能单射，所以$\ker\varphi\ne\{e\}$。又因$G$在这四个子群上的共轭作用传递，像不能只有恒等置换，所以$\ker\varphi\ne G$。核因此又是非平凡真正规子群。
+\end{example}

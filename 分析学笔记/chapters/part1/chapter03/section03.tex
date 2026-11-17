@@ -1,0 +1,141 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.3 极限点，邻域与连通性
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{极限点，邻域与连通性}
+\begin{definition}\label{defoflimpoint}
+	设$A$为拓扑空间$(\X,\T)$的子集，把拓扑空间中的元素称为点，点$x\in\X$称为$A$的极限点(聚点)，若每个包含$x$的开集$U$中包含$A$中不同于$x$的一个点.
+\end{definition}
+\begin{proposition}
+	令 $A$ 为拓扑空间 $(\X, \T)$ 的一个子集. $A$ 在 $(\X, \T)$ 中是闭的当且仅当 $A$ 包含它所有的极限点.
+\end{proposition}
+
+\begin{proof}
+	必要性：已知 $A$ 在$(\X, \T)$中是闭的.若存在一个 $A$ 的极限点不属于 $A$ ，换言之，存在一个 $A$ 的极限点 $p, p \in A^C$ 且 $A^C$ 是开集，由极限点的定义，$A^C$ 中有一个$A$中不同于 $x$ 的点，矛盾.
+	
+	充分性：$\forall z \in A^C$ ，$z$ 不是 $A$ 极限点，$\exists$ 开集 $U_z(z\in U_z)$ ，使得．$U_z \cap A=\varnothing$也即 $U_z\subset A^C$ ，因此 $A^C=\bigcup\limits_{z \in A^C} U_z$ ，$A^C$ 是开集的并因此也是开的，因此补集 $A$ 是闭的
+\end{proof}
+\begin{proposition}
+	令$A$为$(\X,\T)$的子集并且$A^{\prime}$是$A$的所有的极限点构成的集合，则$A\cup A^{\prime}$是闭集
+\end{proposition}
+
+\begin{proof}
+	只需证$A\cup A^{\prime}$包含它本身所有的极限点即可
+	
+	如不然，$\exists p$是$A\cup A^{\prime}$的极限点，但$p\in(A\cup A^{\prime})^C$
+	
+	设$p\in(A\cup A^{\prime})^C$，由$p\notin A^{\prime}$,得$p$不是$A$的极限点，$\exists$开集$U,p\in U$,使得
+	
+	\[U\cap A=\{p\}\text{或}\varnothing\]
+	而$p\notin A$,故$U\cap A=\varnothing$
+	
+	同理，$p$不是$A^{\prime}$的极限点，且$p\notin A^{\prime}$,可以使上述的$U\cap A^{\prime}=\varnothing$
+	
+	那么$U\cap(A\cup A^{\prime})=\varnothing,p\in U$
+	
+	如此，$p$不是$A\cup A^{\prime}$的极限点，$A\cup A^{\prime}$是闭集
+\end{proof}
+\begin{definition}
+	$A$ 是 $(\X, \T)$ 的子集，$A^{\prime}$ 是 $A$ 所有极限点的集合，称 $A \cup A^{\prime}$是 $A$ 的闭包，记为 $\bar{A}$
+	
+	
+\end{definition}
+\begin{definition}
+	$A$ 是 $(\X, \T)$ 的子集，$A$ 在 $\X$ 中处处稠密，若 $\bar{A}=\X$
+\end{definition}
+\begin{proposition}
+	$\mathbb{Q}$ 在 $\mathbb{R}$ 中处处稠密
+	
+\end{proposition}
+\begin{proof}
+	只需 $\overline{\mathbb{Q}}=\mathbb{R}$ ，若 $\overline{\mathbb{Q}} \neq \mathbb{R}, \exists x \in \mathbb{R}\setminus \overline{\mathbb{Q}}$ .由 $\mathbb{R}\setminus \overline{\mathbb{Q}}$ 在$\R$中是开的 ,$\exists(a, b) \subset \R\setminus \overline{\mathbb{Q}}$ .但是在每一个$(a, b)$ 存在一个 $ q \in \mathbb{Q}$ ，那么
+	
+	$$
+	q \in(a, b) \subset \mathbb{R}\setminus \overline{\mathbb{Q}} \Rightarrow q \subset \mathbb{R}\setminus \mathbb{Q}
+	$$
+	
+	
+	矛盾.
+\end{proof}
+显然地，若 $A$ 在 $\X$ 中稠密则 $A^C$ 中全部是 $A$ 的极限点.
+\begin{proposition}
+	$A$ 是$(\X,\T)$的子集，$A$ 在 $\X$ 中稠密当且仅当 $\forall U \in \T$且 $U\neq \varnothing, A \cap U \neq \varnothing$
+\end{proposition}
+
+\begin{proof}
+	必要性：已知 $A$ 在$\X$中处处稠密，则 $A \cup A^{\prime}=\X$
+	
+	假设 $U \cap A=\varnothing . \forall x \in U, x \notin A$ 则 $x$ 不是 $A$ 的极限点，这与 $A^C$ 中全部是 $A$的极限点矛盾.
+	
+	充分性：己知 $\forall U \in\T$ 且 $U \neq \varnothing, A \cap U \neq \varnothing$
+	
+	若 $A=\X$ ，显然 $A$ 在$\X$中稠密
+	
+	若 $A \neq \X$ ，设 $x \in A^C$ .如果 $U \in \T$ ，且 $x \in U$ ，那么 $U \cap A \neq \varnothing$ ，于是 $x$ 是 $A$ 的一极限点. $\forall x \in A^C$ ，$x$ 都是 $A$ 的极限点，也即 $x \in A^{\prime}$ ，于是 $A^C \subset A^{\prime}$ ，则 $\bar{A}=A^{\prime} \cup A=\X$
+	
+\end{proof}
+\begin{definition}
+	$(\X,\T)$是一个拓扑空间，$N$ 是 $
+	\X$ 的子集且 $p \in N$ .若对 $p$ ，存在一个开集$U$，使得，$p \in U \subset N$ ，称 $N$ 为 $p$ 的邻域.
+\end{definition}
+\begin{proposition}
+	$A$ 是$(\X,\T)$的子集，点 $x \in \X$ 是 $A$ 的极限点当且仅当 $x$ 的每个邻域包含一个不同于$\X$属于$A$的点
+	
+\end{proposition}
+
+\begin{proof}
+	根据定义显然
+\end{proof}
+\begin{corollary}
+	
+	（1）$A$ 是 $(\X, \T)$ 的子集，$A$ 是闭的当且仅当 $\forall x \in A^C$ ，$\exists x$ 的邻域 $N$满足 $N \subset A^C$
+	
+	（2）$U$是$(\X, \T)$ 的子集，$U$是开的当且仅当 $\forall x \in U$ ，$\exists x$ 的邻域满足$N\subset U$
+	
+	（3）$U$是$(\X, \T)$ 的子集，$U \in \T$ 当且仅当 $\forall x \in U, \exists V \in \T$ ，使得$x \in V\subset U$
+\end{corollary}
+\begin{definition}
+	在 $\mathbb{R}$ 上，球型邻域定义为
+	
+	$$
+	\left(x_0-\delta, x_0+\delta\right)
+	$$
+	
+	
+	记为 $N\left(x_0, \delta\right)$ 或 $O\left(x_0, \delta\right)$ 
+	
+	下文中，在 $\mathbb{R}$上 的邻域默认为球型邻域
+\end{definition}
+\begin{lemma}
+	$S$是$\R$上有界的子集，$S$是闭的则$p=\sup S\in S$
+\end{lemma}
+\begin{proof}
+	设$p\in S^C$,$S^C$是开的，故$\exists(a,b)$,使得$p\in(a,b)\subset S^C$
+	
+	$p=\sup S$,而$a<p$.$\exists x\in S$,使得$x>a$,且$x<p<b$,那么$x\in(a,b)\subset S^C$,矛盾
+\end{proof}
+\begin{definition}
+	对$(\X,\T)$,称$X$是连通的，若闭开集只用$\X$与$\varnothing$
+\end{definition}
+\begin{proposition}
+	\label{con_of_R}
+	$\R$是连通的
+\end{proposition}
+
+\begin{proof}
+	也即 $\mathbb{R}$ 上的闭开集只有 $\mathbb{R}$ 与 $\varnothing$
+	
+	假设 $T \neq \mathbb{R}$ 且 $T \neq \varnothing$ ，且$T$ 是闭开的. $\exists x \in T,  z \in T^c$
+	不失一般性， 假设 $x<z$ .令 $S=T \cap[x, z]$ ，$S$ 是闭的.
+	
+	$z$ 是 $S$ 的上界，$S$ 有上确界，令 $p=\sup S$ ，故 $p \in S$ ，因此 $p \in[x, z], p \leqslant z$，又 $p \in T, z \in T^c, p \neq Z$ 故 $p<Z$ .
+	
+	又 $T$ 是开集，$p \in T . \exists(a, b), p \in(a, b)\subset T$
+	
+	取 $t$,使得$p<t<\min (b, z)$ ，有 $t \in T$ 且 $t \in[p, z]$
+	
+	因此 $t \in T \cap[x, z]=S$ ，而 $t > p=\sup S$ ，矛盾
+	
+	故 $T=\mathbb{R}$ 或 $\varnothing$
+\end{proof}
+

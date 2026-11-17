@@ -1,0 +1,183 @@
+% preamble/theorems.tex
+% 数学物理方法笔记 —— 定理环境
+
+% ------------------------------------
+% theorem 样式
+% ------------------------------------
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+headpunct=,
+postheadspace=0.5em,
+bodyfont=\normalfont,
+headformat=\NAME
+]{mycolored}
+
+\declaretheorem[style=mycolored, name=, within=section]{theorem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{lemma}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{corollary}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{proposition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{definition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{remark}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{example}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{construction}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{problem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{axiom}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{prp}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{note}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{ill}
+
+% ------------------------------------
+% 修正编号：title 中使用计数器+1
+% ------------------------------------
+\newcommand{\NextTheoremNum}{\thesection.\number\numexpr\value{theorem}+1\relax}
+\newcommand{\NextLemmaNum}{\thesection.\number\numexpr\value{lemma}+1\relax}
+\newcommand{\NextCorNum}{\thesection.\number\numexpr\value{corollary}+1\relax}
+\newcommand{\NextPropNum}{\thesection.\number\numexpr\value{proposition}+1\relax}
+\newcommand{\NextDefNum}{\thesection.\number\numexpr\value{definition}+1\relax}
+\newcommand{\NextRemNum}{\thesection.\number\numexpr\value{remark}+1\relax}
+\newcommand{\NextExNum}{\thesection.\number\numexpr\value{example}+1\relax}
+\newcommand{\NextConNum}{\thesection.\number\numexpr\value{construction}+1\relax}
+\newcommand{\NextAxiomNum}{\thesection.\number\numexpr\value{axiom}+1\relax}
+\newcommand{\NextPrpNum}{\thesection.\number\numexpr\value{prp}+1\relax}
+\newcommand{\NextNoteNum}{\thesection.\number\numexpr\value{note}+1\relax}
+\newcommand{\NextIllNum}{\thesection.\number\numexpr\value{ill}+1\relax}
+\newcommand{\NextProblemNum}{\thesection.\number\numexpr\value{problem}+1\relax}
+
+% ------------------------------------
+% 彩色 tcolorbox 定理环境
+% ------------------------------------
+% PhysTeal (主青蓝): 定理、推论、命题
+\AtBeginEnvironment{theorem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysTeal,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定理 \NextTheoremNum]}
+	\AtEndEnvironment{theorem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{corollary}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysTeal,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=推论 \NextCorNum]}
+	\AtEndEnvironment{corollary}{\end{tcolorbox}}
+
+\AtBeginEnvironment{proposition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysTeal,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=命题 \NextPropNum]}
+	\AtEndEnvironment{proposition}{\end{tcolorbox}}
+
+% PhysDark (深青蓝): 公理、问题、定义
+\AtBeginEnvironment{axiom}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysDark,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=公理 \NextAxiomNum]}
+	\AtEndEnvironment{axiom}{\end{tcolorbox}}
+
+\AtBeginEnvironment{problem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysDark,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=问题 \NextProblemNum]}
+	\AtEndEnvironment{problem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{definition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysDark,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定义 \NextDefNum]}
+	\AtEndEnvironment{definition}{\end{tcolorbox}}
+
+% PhysCyan (浅青蓝): 引理、注记、示例、构造、记号、说明
+\AtBeginEnvironment{lemma}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysCyan,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=引理 \NextLemmaNum]}
+	\AtEndEnvironment{lemma}{\end{tcolorbox}}
+
+\AtBeginEnvironment{remark}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysCyan,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=注记 \NextRemNum]}
+	\AtEndEnvironment{remark}{\end{tcolorbox}}
+
+\AtBeginEnvironment{example}{%
+	\theoremFont
+	\noindent\textbf{示例 \NextExNum}\quad}
+\AtEndEnvironment{example}{}
+
+\AtBeginEnvironment{construction}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysCyan,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=构造 \NextConNum]}
+	\AtEndEnvironment{construction}{\end{tcolorbox}}
+
+\AtBeginEnvironment{note}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysCyan,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=记号 \NextNoteNum]}
+	\AtEndEnvironment{note}{\end{tcolorbox}}
+
+\AtBeginEnvironment{ill}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=PhysCyan,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=说明 \NextIllNum]}
+	\AtEndEnvironment{ill}{\end{tcolorbox}}
+
+% 练习环境
+\newcounter{exercise}
+\renewcommand{\theexercise}{\arabic{exercise}}
+\newenvironment{exercise}{%
+	\par\theoremFont
+	\refstepcounter{exercise}%
+	\noindent\textbf{练习 \theexercise.}\quad
+}{%
+	\par
+}
+
+% 解答环境
+\newcounter{solution}
+\renewcommand{\thesolution}{\arabic{solution}}
+\newenvironment{solution}{%
+	\par\proofFont
+	\refstepcounter{solution}%
+	\noindent\textbf{解.}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% ------------------------------------
+% 证明环境：无色块 + 中文楷体
+% ------------------------------------
+\renewenvironment{proof}[1][证明]{%
+	\par\proofFont
+	\noindent\textbf{#1.}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% 添加星号版本（无编号）
+\declaretheorem[numberwithin=chapter, name=定理, sibling=theorem]{theorem*}
+\declaretheorem[numberwithin=chapter, name=问题, sibling=problem]{problem*}
+\declaretheorem[numberwithin=chapter, name=解, sibling=solution]{solution*}
+
+\setstretch{1.2}

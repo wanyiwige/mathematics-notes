@@ -1,0 +1,13 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,scale=2.15]
+ \fill[GreenPale,opacity=.3] (0,0) circle(1);
+ \draw[GreenMain,thick] (0,0) circle(1);
+ \draw[->,gray] (-1.45,0)--(2.55,0) node[right]{投影平面};
+ \draw[gray,dashed] (0,-1.15)--(0,1.25);
+ \draw[GoldMain,thick] (0,1)--(2,0);
+ \draw[GoldMain,->,thick] (.95,.525)--(1.35,.325);
+ \fill (0,1) circle(1pt) node[above left]{$N$};
+ \fill[GreenMain] (.8,.6) circle(1pt) node[above right]{$P$};
+ \fill[GoldMain] (2,0) circle(1pt) node[below]{$q$};
+ \node[below left] at (0,0){$0$};
+\end{tikzpicture}

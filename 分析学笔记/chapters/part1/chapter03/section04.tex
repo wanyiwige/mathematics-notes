@@ -1,0 +1,126 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.4 同胚关系与同胚映射
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{同胚关系与同胚映射}
+
+\begin{definition}
+	令 $Y$ 是 拓扑空间 $(\X, \T)$ 的一个非子集.族 $\T_Y=\{O \cap Y: O \in \T\}$ 由 $Y$ 的子集组成，是一个定义在 $Y$ 上的拓扑,称之为子空间拓扑，$\left(Y, \T_Y\right)$ 称为 $(\X, \T)$ 的子空间
+\end{definition}
+\begin{definition}
+	对$(\X,\T_1),(Y,\T_2)$,若函数$f:\X\rightarrow Y$满足：
+	
+	（i）$f$ 是$1-1$的且是满射
+	
+	（ii）$\forall U \in \T_2, f^{-1}(U) \in \T_1$
+	
+	（iii）$\forall V \in \T_1, f(V) \in \T_2$
+	
+	就称 $\left(x, \T_1\right),\left(Y, \T_2\right)$ 是同胚的.称 $f$ 是 $\left(\X, \T_1\right),\left(Y, \T_2\right)$ 之间的一个同胚映射，记为 $\left(\X, \T_1\right)\cong\left(Y, \T_2\right)$
+\end{definition}
+\begin{proposition}
+	同胚关系是一个等价关系.
+\end{proposition}
+\begin{proof}
+	应有
+	
+	（1）$\left(\X, \T_1\right) \cong\left(\X, \T_1\right)$
+	
+	(2)$\left(\X, \T_1\right) \cong\left(Y, \T_2\right) \Leftrightarrow\left(\Y, \T_2\right) \cong\left(\X, \T_1\right)$
+	
+	（3）$\left(\X, \T_1\right) \cong\left(Y, \T_2\right),\left(Y, 
+	\T_2\right) \cong\left(Z, \T_3\right) \Rightarrow\left(\X, \T_1\right) \cong\left(Z, \T_3\right)$
+	
+	只需验证恒等映射，逆映射，复合映射满足（i），（ii），（iii）即可.显然地，得证
+\end{proof}
+\begin{example}
+	
+	(a) $(0,1) \cong(a, b)$
+	
+	(b) $(-1,1) \cong \mathbb{R}$
+	
+	(c) $[a, b] \cong \mathbb{R}^*$
+	
+	(d) $[c, d) \cong(c, d]$
+\end{example}
+\begin{proof}
+	（a）$f(x)=a(1-x)+b x$
+	
+	（i）显然地，$f$ 是 $1-1$ 的，且为满射
+	
+	
+	(iii)	$$\begin{aligned}
+		f((0,1) \text { 中开集}) & =f((0,1) \text { 中开区同的并 }) \\
+		& =(a, b) \text { 中开区间的并 } \\
+		& =(a, b) \text { 中开集 }
+	\end{aligned}
+	$$
+	
+	
+	对（ii）考查 $f^{-1}$ 即可.
+	
+	故 $f$ 是 $(0,1) \rightarrow(a, b)$ 上的同胚映射.
+	
+	故 $(0,1) \cong(a, b)$
+	
+	（b）$$f(x)=\dfrac{x}{1-|x|}$$
+	
+	（c）考虑 $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$ ，易知 $[a, b] \cong\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$
+	
+	$$
+	\begin{gathered}
+		f(x)=\tan ^{-1}(x) \quad x \in \mathbb{R}^* \\
+		f: \mathbb{R}^* \rightarrow\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]
+	\end{gathered}
+	$$
+	
+	（d）$f(x)=c+d-x$\end{proof}
+\begin{theorem}
+	同胚于连通空间的拓扑空间是连通的
+\end{theorem}
+\begin{proof}
+	设 $\left(\X, \T_1\right) \cong\left(\Y, \T_2\right)$ ，已知 $\left(\X, \T_1\right)$ 连通，
+	
+	设 $\left(\Y, \T_2\right)$ 不连通，$\exists Y_1 \subset Y, Y_1 \neq Y$ 或 $\varnothing$ ，使得$Y_1$ 是闭开的，则 $f^{-1}\left(Y_1\right) \subset \X$ ，是 $\X$ 的闭开子集，矛盾，故 $\left(Y, \T_2\right)$ 连通 
+\end{proof}
+
+\begin{definition}
+	$\mathbb{R}$ 中的子集 $S$ 称为区间，若它满足如下性质：也果 $x \in S$ ， $z \in S, y \in \mathbb{R}$ ，使得$x<y<z$ ，那 么$ y \in S$
+\end{definition}
+
+每个区间具下列形式之一：
+\[\{a\},[a, b],(a, b),[a, b),(a, b],(-\infty, a),(-\infty, a],(a,+\infty),[a,+\infty),(-\infty,+\infty)\]
+
+\begin{proposition}\label{2.4.7}
+	$\R$的子空间$S$是连通的当且仅当$S$是一个区间
+\end{proposition}
+\begin{proof}
+	充分性：证明类似于\ref{con_of_R} 略
+	
+	必要性：S是连通的，假定 $x \in S,  z \in S,  x<y<z$ ，且 $y \notin S$ .
+	
+	则 $(-\infty, y) \cap S=(-\infty, y] \cap S$ ，是 $S$ 的闭开子集,需证 $(-\infty, y) \cap S$ 是真且非空子集.由 $x \in S, x<y$ 得 $x \in(-\infty, y) \cap S$ ，它是真子集.由于 $z \in S$ ，但 $z \notin(-\infty, y) \cap S$ 于是 $S$ 不连通，矛盾
+\end{proof}
+\begin{theorem}
+	$f:\left(\X, \T_1\right) \rightarrow\left(Y, T_2\right)$ 是同胚映射，令$a \in X$ ，考虑 $x\setminus \{a\}$与其子空间拓扑 $\T_1^{\prime}$ ，对 $f(a)$ ，考虑$Y\setminus \{f(a)\}$ 与其子空间拓扑 $\T_2^{\prime}$ ，则$(\X\setminus \{a\}, \T_1^{\prime})\text{与}\left(Y\setminus \{f(a)\}, \T_2^{\prime}\right)$ 同胚
+\end{theorem}
+\begin{proof}
+	构造 $g:\left(X\setminus \{a\}, \T_1^{\prime}\right) \rightarrow\left(Y\setminus \{f(a)\}, \T_2^{\prime}\right)$ 即可，$g=f(x \neq a)$容易得$g$是一个同胚映射.
+	
+	
+\end{proof}
+\begin{corollary}
+	
+	（i）$(a, b)$不同胚于$[c, d)$
+	
+	（ii）$(a, b) $不同胚于 $[c, d]$
+	
+	（iii）$[a, b)$不同胚于$[c, d]$
+	
+\end{corollary}
+\begin{proof}
+	（i）：$X=[c, d),  Y=(a, b)$ ，假设 $X \cong Y$
+	考虑 $X\setminus \{c\} \cong Y\setminus \{y\}$
+	那么 $(c, d)$ 是一个区间，由\ref{2.4.7}, $(c, d)$ 是连通的，且 $Y\setminus \{y\}$ 是连通的，但 $(a, b)$ 去掉任何一个点都会导致它不连通，故$\X$不同胚于$Y$
+	（ii），（iii）同理
+\end{proof}

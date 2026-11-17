@@ -1,0 +1,30 @@
+% preamble/geometry.tex
+\geometry{
+	textheight=9in,
+	textwidth=5.5in,
+	top=1in,
+	headheight=12pt,
+	headsep=25pt,
+	footskip=30pt
+}
+% -------------------------------
+% 全局正文字体（英文 + 中文）
+% -------------------------------
+\setmainfont{Times New Roman}    % 英文正文
+\setCJKmainfont{SimSun}          % 中文正文：宋体
+
+% -------------------------------
+% 定理环境中文字体：仿宋
+% -------------------------------
+\setCJKfamilyfont{theoremCJK}{FangSong}
+\newcommand{\theoremFont}{\CJKfamily{theoremCJK}}
+
+% -------------------------------
+% 证明环境中文字体：楷体
+% -------------------------------
+\setCJKfamilyfont{proofCJK}{KaiTi}
+\newcommand{\proofFont}{\CJKfamily{proofCJK}}
+
+\setCJKmainfont{SimSun}[AutoFakeBold={3}]
+\setCJKfamilyfont{theoremCJK}{FangSong}[AutoFakeBold={2.5}]
+\setCJKfamilyfont{proofCJK}{KaiTi}[AutoFakeBold={2.5}]

@@ -1,0 +1,387 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第3章：重积分
+% 节：3.4 反常重积分
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{反常重积分}
+
+两类：一是无穷区域，二是有界区域上的无界函数。
+
+\subsection*{无穷区域上的反常二重积分}
+
+设 $D\subset\R^2$ 为无穷区域，其边界由有限条光滑曲线组成（或没有边界）。
+被积函数 $f(x,y)$ 在 $D$ 中有界，在 $D$ 中任意一个有界区域内都有通常意义下的二重积分。
+从 $D$ 中用一条零面积闭曲线 $\Gamma$ 截取一个有界区域，记为 $D_\Gamma\subset D$。
+这里取曲线截取的内部部分，截断曲线向外推移时，区域随之扩大。
+记 $\Gamma$ 到原点的距离为
+\[
+d(\Gamma)=\inf\{\sqrt{x^2+y^2}:(x,y)\in\Gamma\}.
+\]
+当 $d(\Gamma)\to+\infty$ 时，若
+\[
+\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y
+\]
+有一个与 $\Gamma$ 无关的有限极限，则称 $f(x,y)$ 在 $D$ 上的反常二重积分收敛，
+或称 $f(x,y)$ 在 $D$ 上可积，并记
+\[
+I=\displaystyle\iint_Df(x,y)\,\dd x\,\dd y.
+\]
+否则称 $f(x,y)$ 在 $D$ 上的反常二重积分发散。
+其精确的 $\varepsilon$--$M$ 表述如下。
+
+\begin{definition}[无穷区域上的反常二重积分]
+若存在有限数 $I$，使任给 $\varepsilon>0$，都存在 $M>0$，
+对所有满足 $d(\Gamma)>M$ 的上述截断曲线，都有
+\[
+\left|\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y-I\right|<\varepsilon,
+\]
+则称 $f$ 在 $D$ 上的反常二重积分收敛，或称 $f$ 在 $D$ 上可积，记为
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{d(\Gamma)\to+\infty}\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y=I.
+\]
+若不存在这样的有限极限，则称反常二重积分发散。
+\end{definition}
+
+这里的极限必须与截断曲线的选择无关；仅沿某一种截域算出极限，
+对一般的变号函数还不能据此断定反常重积分收敛。
+
+\begin{lemma}\label{p2-improper-exhaustion}
+设 $f(x,y)$ 为无界区域 $D$ 上的非负函数。
+取一列曲线 $\Gamma_n$，它们割出的 $D$ 的有界子区域 $D_n$ 满足
+\[
+D_1\subset D_2\subset\cdots\subset D_n\subset\cdots,
+\qquad\lim_{n\to\infty}d(\Gamma_n)=+\infty.
+\]
+则反常积分 $\displaystyle\iint_Df(x,y)\,\dd x\,\dd y$ 在 $D$ 上收敛的充分必要条件是数列
+\[
+I_n=\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y
+\]
+收敛。在收敛时成立
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{n\to\infty}\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y.
+\]
+\end{lemma}
+\begin{proof}
+由 $f\ge0$ 及 $D_n\subset D_{n+1}$，$I_n$ 单调不减。
+
+\textbf{必要性。}若 $f$ 在 $D$ 上的反常积分收敛，
+那么对任意 $d(\Gamma)\to+\infty$ 的截断曲线，相应积分均收敛于同一数。
+特别取 $\Gamma=\Gamma_n$，便得 $I_n$ 收敛。
+
+\textbf{充分性。}设 $I_n\to I$。任取一条截断曲线 $\Gamma$，
+它所围出的 $D_\Gamma$ 是有界区域，因此可取
+\[
+\rho=\sup\{\sqrt{x^2+y^2}:(x,y)\in D_\Gamma\}<+\infty.
+\]
+由 $d(\Gamma_n)\to+\infty$，存在 $n_0$，使 $n\ge n_0$ 时 $d(\Gamma_n)>\rho$，
+因而 $D_n\supset D_\Gamma$。由 $f\ge0$，有
+\[
+I_n=\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y
+\ge\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y.
+\]
+令 $n\to\infty$，得到
+\[
+I\ge\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y.
+\]
+
+另一方面，由 $I_n\to I$，对任意 $\varepsilon>0$，存在 $N$，使 $n\ge N$ 时 $I_n>I-\varepsilon$。
+固定这个 $D_N$，取
+\[
+M=\sup\{\sqrt{x^2+y^2}:(x,y)\in D_N\}.
+\]
+当 $d(\Gamma)>M$ 时，$D_\Gamma\supset D_N$，因此
+\[
+\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y
+\ge\displaystyle\iint_{D_N}f(x,y)\,\dd x\,\dd y
+=I_N>I-\varepsilon.
+\]
+结合上面的上界，得到对所有 $d(\Gamma)>M$ 的截断曲线，都有
+\[
+I-\varepsilon<\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y\le I.
+\]
+所以
+\[
+\lim_{d(\Gamma)\to+\infty}\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y=I.
+\]
+即反常二重积分收敛。
+\end{proof}
+
+\begin{theorem}[比较判别法]\label{p2-improper-comparison}
+设 $0\le f(x,y)\le g(x,y)$，且两函数在每个有界截域上可积。
+\begin{enumerate}
+\item 若 $\displaystyle\iint_Dg$ 收敛，则 $\displaystyle\iint_Df$ 收敛。
+\item 若 $\displaystyle\iint_Df$ 发散，则 $\displaystyle\iint_Dg$ 发散。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+对上述穷尽序列，有
+\[
+0\le\displaystyle\iint_{D_n}f\le\displaystyle\iint_{D_n}g.
+\]
+若右侧有上界，左侧也有上界，第一条由引理得到。
+若 $\displaystyle\iint_Df$ 发散而 $\displaystyle\iint_Dg$ 收敛，第一条又会推出 $\displaystyle\iint_Df$ 收敛，
+产生矛盾，故第二条成立。
+\end{proof}
+
+\begin{theorem}[收敛与绝对收敛]\label{p2-improper-absolute}
+设 $f$ 在 $D$ 的每个有界截域上可积，则
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y\text{ 收敛}
+\quad\Longleftrightarrow\quad
+\displaystyle\iint_D|f(x,y)|\,\dd x\,\dd y\text{ 收敛}.
+\]
+\end{theorem}
+\begin{proof}
+设
+\[
+f^+(x,y)=\begin{cases}f(x,y),&f(x,y)\ge0,\\0,&f(x,y)<0,\end{cases}
+\qquad f^+(x,y)=\max(f(x,y),0),
+\]
+\[
+f^-(x,y)=\begin{cases}-f(x,y),&f(x,y)\le0,\\0,&f(x,y)>0,\end{cases}
+\qquad f^-(x,y)=\max(-f(x,y),0).
+\]
+两函数均非负，且
+\[
+|f|=f^++f^-,\qquad f=f^+-f^-.
+\]
+
+\textbf{充分性。}设 $|f|$ 在 $D$ 上可积。
+由 $0\le f^\pm\le f^++f^-=|f|$ 及比较判别法，$f^+$、$f^-$ 均在 $D$ 上可积。
+再由 $f=f^+-f^-$，得到 $f$ 在 $D$ 上可积。
+
+\textbf{必要性。}设 $f$ 在 $D$ 上可积，而 $|f|$ 在 $D$ 上不可积。
+由 $|f|=f^++f^-$，$f^+$、$f^-$ 的反常积分至少有一个发散。
+不妨设 $\displaystyle\iint_Df^+$ 发散。那么对任意 $k>0$，可找到一条截断曲线 $\Gamma'$，使
+\[
+\displaystyle\iint_{D_{\Gamma'}}f^+(x,y)\,\dd x\,\dd y>k.
+\]
+
+任取截断曲线 $\Gamma_1$，记它截取的区域为 $D_1$。
+再取截断曲线，使 $D_2\supset D_1$，且 $D_2$ 上的正部积分足够大。
+如此逐步选取，得到一列曲线 $\{\Gamma_n\}$，满足
+\[
+D_1\subset D_2\subset\cdots\subset D_n\subset\cdots,\qquad
+d(\Gamma_n)\longrightarrow+\infty,
+\]
+并且
+\[
+\displaystyle\iint_{D_{n+1}}f^+(x,y)\,\dd x\,\dd y
+>2\displaystyle\iint_{D_n}|f(x,y)|\,\dd x\,\dd y+n.
+\]
+选取时可同时要求 $D_{n+1}$ 包含 $D_n$ 及一个足够大的圆内的区域；
+由非负性，扩大区域不会减小正部积分，所以这些要求能够同时满足。
+由 $f^+\le|f|$，有
+\begin{align*}
+\displaystyle\iint_{D_{n+1}\setminus D_n}f^+
+&>2\displaystyle\iint_{D_n}|f|+n-\displaystyle\iint_{D_n}f^+\\
+&\ge\displaystyle\iint_{D_n}|f|+n.
+\end{align*}
+
+对 $D_{n+1}\setminus D_n$ 作划分，分成有限个可求面积的小区域，
+各小区域的面积记为 $\Delta\sigma_k$，$f^+$ 在其中的下确界记为 $m_k$。
+它们组成 $f^+$ 的一个 Darboux 下和。
+由可积性，可使下和与积分之差小于 $1$，故
+\[
+\sum_{k=1}^{\ell}m_k\Delta\sigma_k
+>\displaystyle\iint_{D_{n+1}\setminus D_n}f^+-1
+>\displaystyle\iint_{D_n}|f|+n-1.
+\]
+
+把这些小区域分成两类：第 (I) 类为 $m_k>0$ 的小区域，
+第 (II) 类为 $m_k=0$ 的小区域。
+在第 (I) 类上 $f^+>0$，所以 $f=f^+$；
+第 (II) 类对下和的贡献为零。
+记所有第 (I) 类小区域的并为 $P_n$，则
+\begin{align*}
+\sum_{k=1}^{\ell}m_k\Delta\sigma_k
+&=\sum_{\text{第 (I) 类}}m_k\Delta\sigma_k\\
+&\le\displaystyle\iint_{P_n}f^+
+=\displaystyle\iint_{P_n}f.
+\end{align*}
+
+令 $E_n=D_n\cup P_n$，则
+\begin{align*}
+\displaystyle\iint_{E_n}f
+&=\displaystyle\iint_{E_n}f^+-\displaystyle\iint_{E_n}f^-\\
+&\ge\displaystyle\iint_{D_n}|f|+n-1-\displaystyle\iint_{E_n}f^-\\
+&=\displaystyle\iint_{D_n}|f|+n-1-\displaystyle\iint_{D_n}f^-\\
+&\ge n-1.
+\end{align*}
+这里因为 $P_n$ 上 $f^-=0$，所以第三行把 $E_n$ 上的负部积分换成了 $D_n$ 上的负部积分。
+
+问题是 $E_n=D_n\cup P_n$ 不一定连通。
+这时我们可以用一些狭小的“走廊”将其连通后得到区域 $\widetilde E_n$，
+并且让这些“走廊”的总面积能充分小，使得
+\[
+\displaystyle\iint_{\widetilde E_n}f(x,y)\,\dd x\,\dd y>n-2,
+\qquad n=1,2,\ldots.
+\]
+这里连接有限个小区域只需有限条区域内部的曲线；
+在包含这些曲线的有界区域内 $f$ 有界，因而可把走廊取得使新增部分的 $|f|$ 积分小于 $1$。
+$\widetilde E_n$ 包含 $D_n$，所以其截断也趋于无穷。
+上述积分却无界，这说明 $f$ 在 $D$ 上不可积，与假设矛盾。
+\end{proof}
+
+
+\begin{example}[无穷远处的幂函数]
+设 $a>0$，
+\[
+D=\{(x,y):a^2\le x^2+y^2<+\infty\},\qquad
+r=\sqrt{x^2+y^2},\qquad f(x,y)=r^{-p}\quad(p>0).
+\]
+则 $\displaystyle\iint_Df$ 在 $p>2$ 时收敛，在 $p\le2$ 时发散。
+\end{example}
+\begin{solution}
+取 $\Gamma_\rho:\ x^2+y^2=\rho^2$（$\rho>a$），相应截域为
+\[
+D_\rho=\{(x,y):a^2\le x^2+y^2\le\rho^2\}.
+\]
+用极坐标变换，
+\begin{align*}
+\displaystyle\iint_{D_\rho}f(x,y)\,\dd x\,\dd y
+&=\int_0^{2\pi}\dd\theta\int_a^\rho r^{-p}r\,\dd r\\
+&=2\pi\int_a^\rho r^{1-p}\,\dd r.
+\end{align*}
+当 $p\ne2$ 时，右边为 $2\pi(\rho^{2-p}-a^{2-p})/(2-p)$；
+当 $p=2$ 时，为 $2\pi\log(\rho/a)$。
+所以 $p>2$ 时极限为 $2\pi a^{2-p}/(p-2)$，$p\le2$ 时趋于 $+\infty$。
+由非负函数的穷尽判据，得到所述结论。
+\end{solution}
+
+\begin{corollary}[Cauchy 判别法]
+设 $D$ 用极坐标表示为
+\[
+D=\{(r,\theta):a\le r<+\infty,\ \alpha\le\theta\le\beta\},
+\quad a>0,\quad 0\le\alpha<\beta\le2\pi.
+\]
+设 $f$ 在每个有界截域上可积。
+\begin{enumerate}
+\item 若存在 $M>0$，使 $|f(x,y)|\le M/r^p$，其中 $p>2$，则 $\displaystyle\iint_Df$ 收敛。
+\item 若存在 $m>0$，使 $|f(x,y)|\ge m/r^p$，其中 $p\le2$，则 $\displaystyle\iint_Df$ 发散。
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+在这个扇形区域上，幂函数截域积分为
+\[
+\displaystyle\iint_{D_\rho}r^{-p}\,\dd x\,\dd y
+=(\beta-\alpha)\int_a^\rho r^{1-p}\,\dd r.
+\]
+由于 $\beta-\alpha>0$，其敛散性与上例相同。
+第一条先由比较判别法得 $\displaystyle\iint_D|f|$ 收敛，再用绝对收敛定理。
+第二条由比较判别法得 $\displaystyle\iint_D|f|$ 发散，
+若 $\displaystyle\iint_Df$ 收敛，则绝对收敛定理又要求它绝对收敛，矛盾。
+这里要求角度区间有正长度；零面积的退化情形不属于第二条的结论。
+\end{proof}
+一般地，我们有对于反常二重积分的累次积分公式与变量代换公式.
+\begin{theorem}[化为累次反常积分]\label{p2-improper-iterated}
+设 $f$ 在 $D=[a,+\infty)\times[c,+\infty)$ 上连续，且累次反常积分
+\[
+\int_a^{+\infty}\dd x\int_c^{+\infty}f(x,y)\,\dd y,
+\qquad
+\int_a^{+\infty}\dd x\int_c^{+\infty}|f(x,y)|\,\dd y
+\]
+均存在（内层积分对每个 $x$ 存在，所得函数的外层反常积分也存在）。
+则 $f$ 在 $D$ 上可积，并且
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\int_a^{+\infty}\dd x\int_c^{+\infty}f(x,y)\,\dd y.
+\]
+\end{theorem}
+
+
+\begin{theorem}[反常二重积分的变量代换]
+设 $T:D\to T(D)$ 是一一对应的连续可导坐标变换，
+\[
+x=x(u,v),\qquad y=y(u,v),\qquad
+\frac{\partial(x,y)}{\partial(u,v)}\ne0.
+\]
+在相应截域穷尽各自区域、并避开可能的奇点的意义下，有
+\[
+\displaystyle\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\displaystyle\iint_Df\bigl(x(u,v),y(u,v)\bigr)
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,\dd u\,\dd v.
+\]
+只要其中一边收敛，另一边也收敛，且两者相等。
+\end{theorem}
+
+\begin{example}[Poisson 积分]
+计算 $\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y$，并求
+$\displaystyle\int_0^{+\infty}e^{-x^2}\,\dd x$。
+\end{example}
+\begin{solution}
+利用极坐标变换 $x=r\cos\theta$、$y=r\sin\theta$，$\R^2$ 就变换为
+\[
+D=\{(r,\theta):0\le r<+\infty,\ 0\le\theta\le2\pi\}.
+\]
+因此利用变量代换法得
+\begin{align*}
+\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y
+&=\displaystyle\iint_D e^{-r^2}r\,\dd r\,\dd\theta\\
+&=\int_0^{2\pi}\dd\theta\int_0^{+\infty}e^{-r^2}r\,\dd r\\
+&=2\pi\left[-\frac12e^{-r^2}\right]_0^{+\infty}=\pi.
+\end{align*}
+
+
+又由于 $\R^2=(-\infty,+\infty)\times(-\infty,+\infty)$，所以利用化累次积分法得
+\begin{align*}
+\pi
+&=\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y\\
+&=\int_{-\infty}^{+\infty}\dd x\int_{-\infty}^{+\infty}
+ e^{-(x^2+y^2)}\,\dd y\\
+&=\left(\int_{-\infty}^{+\infty}e^{-x^2}\,\dd x\right)
+  \left(\int_{-\infty}^{+\infty}e^{-y^2}\,\dd y\right)=J^2.
+\end{align*}
+由 $J>0$ 得 $J=\sqrt\pi$。又因被积函数为偶函数，
+\[
+\int_0^{+\infty}e^{-x^2}\,\dd x=\frac{\sqrt\pi}{2}.
+\]
+最后这个积分称为 Poisson 积分，在概率统计等领域中有重要应用。
+\end{solution}
+
+\subsection*{无界函数的反常重积分}
+
+设 $D$ 为有界区域，$P_0\in D$。
+若 $f$ 在 $D\setminus\{P_0\}$ 上有定义，
+但在 $P_0$ 的任意去心邻域内都无界，则称 $P_0$ 为 $f$ 的一个\textbf{奇点}。
+设 $\gamma$ 为内部包含 $P_0$ 的零面积闭曲线，$\sigma$ 为它围成的区域。
+总假设删去这个邻域后的通常积分
+\[
+\displaystyle\iint_{D\setminus\sigma}f(x,y)\,\dd x\,\dd y
+\]
+存在。这里删除的是奇点附近的一整块区域，不是只删除奇点本身。
+
+\begin{definition}[单个奇点的反常二重积分]
+记
+\[
+\rho(\gamma)=\sup\{|P-P_0|:P\in\gamma\}.
+\]
+若当 $\rho(\gamma)\to0$ 时，$\displaystyle\iint_{D\setminus\sigma}f$ 对所有这样的删域方式
+都趋于同一个有限极限，则称反常二重积分收敛，并记
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{\rho(\gamma)\to0}\displaystyle\iint_{D\setminus\sigma}f(x,y)\,\dd x\,\dd y.
+\]
+若该有限极限不存在，则称反常二重积分发散。
+\end{definition}
+
+如果函数 $f(x,y)$ 在区域 $D$ 上有奇线 $\Gamma_0$，
+即 $f(x,y)$ 在 $D\setminus\Gamma_0$ 上有定义，但在任何包含曲线 $\Gamma_0$ 的区域上无界，
+则可与上面的定义一样规定 $f(x,y)$ 在 $D$ 上的反常二重积分。
+
+\textbf{奇线情形的定义}
+若奇点不是单个点，而是 $D$ 内的一条零面积曲线 $\Gamma_0$，也可以按同样的方式定义。
+取包含 $\Gamma_0$ 的闭邻域 $\sigma$，要求 $\Gamma_0$ 包含于 $\sigma$ 的内部，
+且删域的边界分段光滑。用
+\[
+\rho(\sigma)=\sup_{P\in\sigma}\operatorname{dist}(P,\Gamma_0),\qquad
+\operatorname{dist}(P,\Gamma_0)=\inf_{Q\in\Gamma_0}|P-Q|
+\]
+衡量邻域的宽度；这里点到集合的距离由右边的下确界定义。
+当 $\rho(\sigma)\to0$ 时，若 $\displaystyle\iint_{D\setminus\sigma}f$ 对任意这样的邻域
+都有同一个有限极限，就把它定义为 $f$ 在 $D$ 上的反常二重积分。
+对有限个奇点或有限条奇异曲线，分别删去它们的邻域并令各邻域同时缩小，定义相同。
+
+
+

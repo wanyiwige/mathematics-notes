@@ -1,0 +1,3342 @@
+% !TEX root = ../../main.tex
+\setchapterimage{figure/chapter3封面图.jpg}
+\setchapterintro{}
+\chapter{线性映射，矩阵与行列式}
+\section{向量空间上的线性映射}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l7}
+	对映射 $f:\F^n\to\F^m$，$\forall\alpha,\beta\in\F^n$，若 $f$ 满足
+	\begin{enumerate}
+		\item $f(\alpha+\beta)=f(\alpha)+f(\beta)$；
+		\item $f(k\alpha)=k f(\alpha)$，$k\in\F$，
+	\end{enumerate}
+	就称 $f$ 为一个线性映射。用 $\operatorname{Hom}(\F^n,\F^m)$ 表示所有从 $\F^n$ 到 $\F^m$ 的线性映射构成的集合，并且
+	\[
+	\operatorname{End}(\F^n)=\operatorname{Hom}(\F^n,\F^n)
+	\]
+	
+	零映射
+	\[
+	0:\alpha\in\F^n\longmapsto 0\in\F^m
+	\]
+	满足线性性，故 $0\in\operatorname{Hom}(\F^n,\F^m)$，因此 $\operatorname{Hom}(\F^n,\F^m)$ 不是空集。
+	
+
+\end{definition}
+	在 $\F^n$ 中，取单位向量
+\[
+\varepsilon_1=\begin{pmatrix}1\\0\\\vdots\\0\end{pmatrix},
+\quad \cdots \quad,
+\varepsilon_n=\begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix}.
+\]
+在 $\F^m$ 中，相应也有
+\[
+\varepsilon'_1=\begin{pmatrix}1\\0\\\vdots\\0\end{pmatrix},
+\quad \cdots \quad,
+\varepsilon'_m=\begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix}.
+\]
+$\forall\alpha\in\F^n$，
+\[
+\alpha=a_1\varepsilon_1+\cdots+a_n\varepsilon_n
+=\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}.
+\]
+由线性性，
+\[
+f(\alpha)=a_1f(\varepsilon_1)+\cdots+a_nf(\varepsilon_n).
+\]
+所以一个线性映射 $f$ 可以完全由它单位向量的像决定。
+
+在 $\varepsilon'_1,\cdots,\varepsilon'_m$ 下，我们表示
+\[
+\left\{
+\begin{aligned}
+	f(\varepsilon_1)&=(a_{11},\cdots,a_{m1})
+	=a_{11}\varepsilon'_1+\cdots+a_{m1}\varepsilon'_m,\\
+	f(\varepsilon_2)&=(a_{12},\cdots,a_{m2})
+	=a_{12}\varepsilon'_1+\cdots+a_{m2}\varepsilon'_m,\\
+	&\vdots\\
+	f(\varepsilon_n)&=(a_{1n},\cdots,a_{mn})
+	=a_{1n}\varepsilon'_1+\cdots+a_{mn}\varepsilon'_m.
+\end{aligned}
+\right.
+\]
+把 $f(\varepsilon_j)$ 写成一个列向量
+\[
+\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}.
+\]
+将所有这样的向量放在一起，我们得到一个矩阵
+\[
+A=\bigl(f(\varepsilon_1)\ f(\varepsilon_2)\ \cdots\ f(\varepsilon_n)\bigr)
+=\begin{pmatrix}
+	a_{11}&a_{12}&\cdots&a_{1n}\\
+	a_{21}&a_{22}&\cdots&a_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}.
+\]
+\phantomsection\label{p1:concept:c3-l77}我们称 $A$ 为 $f$ 的矩阵，或者说矩阵 $A$ 决定了一个线性映射 $f$，记为 $f_A$。
+自然地，我们得到一个映射
+\[
+\rho:M_{m\times n}(\F)\longrightarrow \operatorname{Hom}(\F^n,\F^m),
+\quad A\longmapsto f_A.
+\]
+\begin{proposition}
+	上述的映射 $\rho$ 是单射且是满射。
+\end{proposition}
+\begin{proof}
+	先证 $\rho$ 是单射，即证明 $\rho(A)=\rho(B)\Rightarrow A=B$。
+	设 $f_A=f_B$，即 $\forall x\in\F^n$，都有
+	\[
+	Ax=Bx.
+	\]
+	取 $x=\varepsilon_i\in\F^n$，$i=1,\cdots,n$，那么
+	\[
+	A\varepsilon_i=B\varepsilon_i.
+	\]
+	即 $A$ 与 $B$ 的第 $i$ 列相同，故 $A=B$。
+\end{proof}
+关于$\rho$是满射的证明，我们需要一些准备工作
+\begin{proposition}(线性映射的性质)
+	设 $f\in\operatorname{Hom}(\F^n,\F^m)$，则
+	\begin{enumerate}
+		\item $f(0)=0\in\F^m$；
+		\item $f\left(\sum_{i=1}^{s}k_i\alpha_i\right)=\sum_{i=1}^{s}k_i f(\alpha_i)$；
+		若 $\alpha_1,\cdots,\alpha_s$ 线性相关，则 $f(\alpha_1),\cdots,f(\alpha_s)$ 亦线性相关；
+		\item $f$ 保无关，当且仅当 $f$ 是单射。
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	$1,2$ 显然。
+	
+	$3.$ 必要性：若 $\alpha_1\neq\alpha_2$，则 $\alpha_1-\alpha_2\neq0$，而 $\{\alpha_1-\alpha_2\}$ 线性无关。
+	故 $\{f(\alpha_1-\alpha_2)\}$ 线性无关，也即
+	\[
+	f(\alpha_1-\alpha_2)\neq0.
+	\]
+	于是 $f(\alpha_1)\neq f(\alpha_2)$，故 $f$ 是单射。
+	
+	充分性：对无关组 $\alpha_1,\cdots,\alpha_n$，考虑
+	\[
+	k_1f(\alpha_1)+\cdots+k_nf(\alpha_n)=0.
+	\]
+	则
+	\[
+	f(k_1\alpha_1+
+	\cdots+k_n\alpha_n)=0.
+	\]
+	由 $f$ 是单射，
+	\[
+	k_1\alpha_1+\cdots+k_n\alpha_n=0.
+	\]
+	故 $k_1=\cdots=k_n=0$，因此 $f(\alpha_1),\cdots,f(\alpha_n)$ 线性无关。
+\end{proof}
+
+\begin{lemma}
+	$\varepsilon_1,\cdots,\varepsilon_n$ 是 $\F^n$ 的一组单位向量。
+	\begin{enumerate}
+		\item 若 $f,g\in\operatorname{Hom}(\F^n,\F^m)$，且
+		\[
+		f(\varepsilon_i)=g(\varepsilon_i),\quad i=1,\cdots,n,
+		\]
+		则 $f=g$；
+		\item $\forall f\in\operatorname{Hom}(\F^n,\F^m)$，且
+		\[
+		f(\varepsilon_i)=\begin{pmatrix}a_{1i}\\\vdots\\a_{mi}\end{pmatrix},
+		\]
+		则
+		\[
+		f\left(\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\right)
+		=
+		\begin{pmatrix}
+			a_{11}x_1+\cdots+a_{1n}x_n\\
+			\vdots\\
+			a_{m1}x_1+
+			\cdots+a_{mn}x_n
+		\end{pmatrix}.
+		\]
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$1.$ 对任意 $\alpha=\sum k_i\varepsilon_i$，有
+	\[
+	f(\alpha)=\sum k_i f(\varepsilon_i)
+	=\sum k_i g(\varepsilon_i)
+	=g\left(\sum k_i\varepsilon_i\right)=g(\alpha),
+	\]
+	故 $f=g$。
+	
+	$2.$ 因为
+	\[
+	\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}
+	=x_1\varepsilon_1+\cdots+x_n\varepsilon_n,
+	\]
+	所以
+	\[
+	\begin{aligned}
+		f\left(\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\right)
+		&=x_1f(\varepsilon_1)+\cdots+x_nf(\varepsilon_n)\\
+		&=x_1\begin{pmatrix}a_{11}\\\vdots\\a_{m1}\end{pmatrix}
+		+\cdots+
+		x_n\begin{pmatrix}a_{1n}\\\vdots\\a_{mn}\end{pmatrix}\\
+		&=\begin{pmatrix}
+			a_{11}x_1+\cdots+a_{1n}x_n\\
+			\vdots\\
+			a_{m1}x_1+\cdots+a_{mn}x_n
+		\end{pmatrix}.
+	\end{aligned}
+	\]
+\end{proof}
+
+下面，证明 $\rho$ 是一个满射。
+\begin{proof}[证明]
+	$\rho$ 是满射，也即 $\forall T\in\operatorname{Hom}(\F^n,\F^m)$，存在 $A\in M_{m\times n}(\F)$，使得
+	\[
+	f_A=T.
+	\]
+	$\forall T\in\operatorname{Hom}(\F^n,\F^m)$，取 $\varepsilon_i\in\F^n$，$i=1,\cdots,n$，计算 $T\varepsilon_i$，构造矩阵
+	\[
+	A=\bigl(T\varepsilon_1\ \cdots\ T\varepsilon_n\bigr).
+	\]
+	下证 $f_A=T$，只需 $\forall i$，$f_A(\varepsilon_i)=T\varepsilon_i$。
+	事实上，
+	\[
+	f_A(\varepsilon_i)=A\varepsilon_i
+	=\bigl(T\varepsilon_1\ \cdots\ T\varepsilon_n\bigr)\varepsilon_i
+	=T\varepsilon_i.
+	\]
+\end{proof}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l209}
+	$f\in\operatorname{Hom}(\F^n,\F^m)$，定义 $f$ 的核 $\ker f$ 为
+	\[
+	\ker f:=f^{-1}(0)=\{\alpha\in\F^n:f(\alpha)=0\}.
+	\]
+	显然，$0\in\ker f$，故 $\varnothing\neq\ker f$。
+\end{definition}
+
+\begin{lemma}\label{3.1.6}
+	$f\in\operatorname{Hom}(\F^n,\F^m)$，则 $f$ 是单射，当且仅当 $\ker f=\{0\}$。
+\end{lemma}
+\begin{proof}
+	必要性：若 $\alpha\in\F^n$ 且 $f(\alpha)=f(0)=0$，则由 $f$ 是单射，$\alpha=0$，故 $\ker f=\{0\}$。
+	
+	充分性：若 $f(\alpha_1)=f(\alpha_2)$ 且 $\alpha_1\neq\alpha_2$，则
+	\[
+	f(\alpha_1-\alpha_2)=0.
+	\]
+	由 $\ker f=\{0\}$，$\alpha_1-\alpha_2=0$，故 $\alpha_1=\alpha_2$，矛盾。因此 $f$ 是单射。
+\end{proof}
+
+考虑由 $f$ 生成的矩阵 $A$，不难得到以下结论。
+\begin{proposition}\label{3.1.7}
+	$f\in\operatorname{Hom}(\F^n,\F^m)$，且 $A\in M_{m\times n}(\F)$ 是 $f$ 生成的矩阵。
+	那么，对 $\alpha\in\F^n$，$\alpha\in\ker f$ 当且仅当 $\alpha$ 是以 $A$ 为系数矩阵的齐次线性方程组的解，也即
+	\[
+	Ax=0\text{ 的解空间}=\ker f.
+	\]
+\end{proposition}
+\begin{proof}
+	显然。
+\end{proof}
+
+利用 \ref{2.4.12}、\ref{3.1.6} 与 \ref{3.1.7}，我们得到以下结论。
+\begin{corollary}
+	$f$ 是单射，当且仅当 $r(A)=n$。
+\end{corollary}
+\phantomsection\label{p1:concept:c3-l246}我们称 $r(A)=n$ 的情况为列满秩的。
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l248}
+	对 $f\in\operatorname{Hom}(\F^n,\F^m)$，定义 $f$ 的像 $\operatorname{im}(f)$ 为
+	\[
+	\operatorname{im}(f):=\{\beta\in\F^m:\exists\alpha\in\F^n\text{ 使得 } f(\alpha)=\beta\}.
+	\]
+	考虑 $f$ 对应的 $A\in M_{m\times n}(\F)$，若 $\beta\in\operatorname{im}(f_A)$，当且仅当 $\exists x\in\F^n$ 使得
+	\[
+	Ax=\beta,
+	\]
+	也即 $\beta$ 可由 $A$ 的列向量线性表示。
+\end{definition}
+
+\begin{proposition}
+	$f_A$ 是满射（或 $\operatorname{im}(f_A)=\F^m$），当且仅当 $r(A)=m$。
+\end{proposition}
+\phantomsection\label{p1:concept:c3-l263}我们称 $r(A)=m$ 的情况为行满秩的。
+\begin{proof}
+	必要性：
+	\[
+	\operatorname{im}(f_A)=\F^m
+	\Longleftrightarrow
+	\forall\beta\in\F^m\text{ 可由 }\alpha_1,\cdots,\alpha_n\text{ 表出}.
+	\]
+	取 $\F^m$ 的单位向量 $\varepsilon_1,\cdots,\varepsilon_m$，那么 $\varepsilon_1,\cdots,\varepsilon_m$ 可由 $\alpha_1,\cdots,\alpha_n$ 表出。
+	由基本引理，
+	\[
+	r(\varepsilon_1,\cdots,\varepsilon_m)=m
+	\leq r(\alpha_1,\cdots,\alpha_n)\leq m.
+	\]
+	故
+	\[
+	r(\alpha_1,\cdots,\alpha_n)=m.
+	\]
+	充分性：已知 $r(A)=m$，证明 $\beta\in\F^m$ 都能找到
+	\[
+	x_1\alpha_1+\cdots+x_n\alpha_n=\beta
+	\]
+	的解 $x_1,\cdots,x_n$。那么
+	\[
+	r(\alpha_1,\cdots,\alpha_n)=r(\alpha_1,\cdots,\alpha_n,\beta)=m,
+	\]
+	故有解。
+	
+
+\end{proof}
+	因此，$f_A$ 既是单射又是满射，当且仅当
+\[
+r(A)=m=n.
+\]
+
+\section{线性映射的运算与矩阵的运算}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l300}
+	$\operatorname{Hom}(\F^n,\F^m)$ 上的加法与数乘定义如下。
+	对 $f,g\in\operatorname{Hom}(\F^n,\F^m)$，$\alpha\in\F^n$，定义
+	\[
+	f+g:=\alpha\longmapsto f(\alpha)+g(\alpha),
+	\]
+	也即
+	\[
+	(f+g)(\alpha)=f(\alpha)+g(\alpha).
+	\]
+	显然，也有
+	\[
+	f+g\in\operatorname{Hom}(\F^n,\F^m).
+	\]
+	对 $k\in\F$，定义
+	\[
+	kf:=\alpha\longmapsto kf(\alpha),
+	\]
+	则
+	\[
+	kf\in\operatorname{Hom}(\F^n,\F^m).
+	\]
+	
+\end{definition}
+因此 $\operatorname{Hom}(\F^n,\F^m)$ 在上述的加法与数乘上是一个线性空间(Chapter 4)。
+
+下面考虑
+映射的复合。
+\begin{definition}\phantomsection\label{p1:concept:c3-l328}
+	设
+	\[
+	g\in\operatorname{Hom}(\F^n,\F^m),\qquad
+	f\in\operatorname{Hom}(\F^m,\F^\ell),\qquad
+	\alpha\in\F^n.
+	\]
+	定义
+	\[
+	fg:=\alpha\longmapsto f(g(\alpha)).
+	\]
+	这里 $\alpha\in\F^n$，$g(\alpha)\in\F^m$，$f(g(\alpha))\in\F^\ell$。
+	显然，也有
+	\[
+	fg\in\operatorname{Hom}(\F^n,\F^\ell).
+	\]
+	
+\end{definition}
+考虑 $fg,g,f$ 的核与像，有
+\[
+\ker g\subset \ker(fg),
+\qquad
+\operatorname{im}(fg)\subset \operatorname{im}f.
+\]
+也就有
+\[
+fg\text{ 单射}\Rightarrow g\text{ 单射},
+\qquad
+fg\text{ 满射}\Rightarrow f\text{ 满射}.
+\]
+当 $n=m=\ell$ 时，$f,g\in\operatorname{End}(\F^n)$，$fg$ 称为 $\F^n$ 上的乘法。
+\phantomsection\label{p1:concept:c3-l359}$\operatorname{End}(\F^n)$ 是一个环，同称为 $\F^n$ 的自同态环。
+加上数乘，$\operatorname{End}(\F^n)$ 是一个结合代数，$n\geq 2$ 时通常是非交换的。
+
+对 $f\in\operatorname{Hom}(\F^n,\F^m)$，$g\in\operatorname{Hom}(\F^m,\F^\ell)$，当 $n,m,\ell$ 中至少有一个大于 $1$ 时，$fg$ 与 $gf$ 一般也不满足交换律。
+\begin{definition}\phantomsection\label{p1:concept:c3-l363}
+	对 $f\in\operatorname{End}(\F^n)$，定义 $f$ 的幂与多项式。
+	\[
+	f^2=ff,
+	\qquad
+	f^3=fff,
+	\qquad \cdots
+	\]
+	就有链
+	\[
+	\ker f\subset \ker f^2\subset \ker f^3\subset\cdots,
+	\]
+	\[
+	\operatorname{im}(f)\supset \operatorname{im}(f^2)\supset \operatorname{im}(f^3)\supset\cdots.
+	\]
+	规定
+	\[
+	f^0=\operatorname{id}_{\F^n}:\alpha\longmapsto \alpha.
+	\]
+	对
+	\[
+	h(x)=a_0+a_1x+\cdots+a_mx^m\in\F[x],
+	\]
+	定义
+	\[
+	h(f):=a_0\operatorname{id}+a_1f+\cdots+a_mf^m\in\operatorname{End}(\F^n).
+	\]
+	称 $h(f)$ 为 $f$ 的一个多项式。$\forall h\in\F[x]$，$h(f)$ 与 $f$ 是可交换的。
+\end{definition}
+
+对矩阵的运算，我们采取映射的视角。
+
+\begin{definition}[矩阵加法]\phantomsection\label{p1:concept:c3-l395}
+	设 $A,B\in M_{m\times n}(\F)$，$f,g$ 分别是 $A,B$ 对应的映射，
+	$f,g\in\operatorname{Hom}(\F^n,\F^m)$。取 $\F^n$ 的单位向量
+	$\varepsilon_1,\cdots,\varepsilon_n$，那么
+	\[
+	A=\bigl(f(\varepsilon_1)\ \cdots\ f(\varepsilon_n)\bigr),
+	\qquad
+	B=\bigl(g(\varepsilon_1)\ \cdots\ g(\varepsilon_n)\bigr).
+	\]
+	定义
+	\[
+	A+B:=\bigl(f(\varepsilon_1)+g(\varepsilon_1)\ \cdots\
+	f(\varepsilon_n)+g(\varepsilon_n)\bigr).
+	\]
+	若
+	\[
+	f(\varepsilon_i)=
+	\begin{pmatrix}
+		A(1,i)\\ \vdots\\ A(m,i)
+	\end{pmatrix},
+	\qquad
+	g(\varepsilon_i)=
+	\begin{pmatrix}
+		B(1,i)\\ \vdots\\ B(m,i)
+	\end{pmatrix},
+	\]
+	那么 $A+B$ 的 $(i,j)$ 元定义为
+	\[
+	(A+B)(i,j)=A(i,j)+B(i,j).
+	\]
+	这由 $\F$ 上加法的性质，不难得出
+	$M_{m\times n}(\F)$ 对加法构成一个交换群，也即满足交换律、结合律，存在单位元与逆元。
+	
+
+\end{definition}
+	若使用矩阵的行向量形式与列向量形式，$A+B$ 可以写成
+\[
+(\alpha_1\ \cdots\ \alpha_n)+(\gamma_1\ \cdots\ \gamma_n)
+=(\alpha_1+\gamma_1\ \cdots\ \alpha_n+\gamma_n),
+\]
+或
+\[
+\begin{pmatrix}
+	\beta_1\\ \vdots\\ \beta_m
+\end{pmatrix}
++
+\begin{pmatrix}
+	\delta_1\\ \vdots\\ \delta_m
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\beta_1+\delta_1\\ \vdots\\ \beta_m+\delta_m
+\end{pmatrix}.
+\]
+\begin{proposition}
+	若 $A,B\in M_{m\times n}(\F)$，那么
+	\[
+	r(A+B)\leq r(A)+r(B).
+	\]
+\end{proposition}
+
+\begin{proof}
+	记
+	\[
+	A=(\alpha_1\ \cdots\ \alpha_n),\qquad
+	B=(\beta_1\ \cdots\ \beta_n),
+	\]
+	那么
+	\[
+	A+B=(\alpha_1+\beta_1\ \cdots\ \alpha_n+\beta_n).
+	\]
+	考虑向量组
+	\[
+	\begin{array}{ll}
+		(\mathrm{I})&\alpha_1,\cdots,\alpha_n,\\
+		(\mathrm{II})&\beta_1,\cdots,\beta_n,\\
+		(\mathrm{III})&\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n,\\
+		(\mathrm{IV})&\alpha_1,\cdots,\alpha_n,\beta_1,\cdots,\beta_n.
+	\end{array}
+	\]
+	$(\mathrm{III})$ 可由 $(\mathrm{IV})$ 表出，故
+	\[
+	r(A+B)
+	\leq r(\alpha_1,\cdots,\alpha_n,\beta_1,\cdots,\beta_n)
+	\leq r(A)+r(B).
+	\]
+\end{proof}
+
+\begin{definition}[矩阵的数乘]\phantomsection\label{p1:concept:c3-l483}
+	设 $A\in M_{m\times n}(\F)$，$k\in\F$，且 $A$ 对应的映射为 $f$。
+	若
+	\[
+	A=\bigl(f(\varepsilon_1)\ \cdots\ f(\varepsilon_n)\bigr),
+	\]
+	则定义
+	\[
+	kA:=\bigl(kf(\varepsilon_1)\ \cdots\ kf(\varepsilon_n)\bigr).
+	\]
+	结合加法，矩阵的数乘满足
+	\begin{enumerate}
+		\item $1A=A$；
+		\item 结合律：$k(\ell A)=(k\ell)A$；
+		\item $(k+\ell)A=kA+\ell A$；
+		\item $k(A+B)=kA+kB$。
+	\end{enumerate}
+\end{definition}
+
+对 $B\in M_{m\times n}(\F)$，$A\in M_{\ell\times m}(\F)$，我们定义矩阵的乘法。
+
+\begin{definition}[矩阵的乘法]\phantomsection\label{p1:concept:c3-l504}
+	设 $B$ 对应于 $g$，$A$ 对应于 $f$，即
+	\[
+	\F^n\xrightarrow{\ g\leftrightarrow B\ }\F^m
+	\xrightarrow{\ f\leftrightarrow A\ }\F^\ell,
+	\qquad
+	\F^n\xrightarrow{\ fg\ }\F^\ell.
+	\]
+	取单位向量
+	\[
+	\varepsilon_1,\cdots,\varepsilon_n\in\F^n,
+	\qquad
+	\eta_1,\cdots,\eta_m\in\F^m.
+	\]
+	则
+	\[
+	\begin{aligned}
+		fg(\varepsilon_j)
+		&=f(g(\varepsilon_j))
+		=f\left(
+		\begin{pmatrix}
+			B(1,j)\\ \vdots\\ B(m,j)
+		\end{pmatrix}
+		\right)\\
+		&=f\bigl(B(1,j)\eta_1+\cdots+B(m,j)\eta_m\bigr)\\
+		&=B(1,j)f(\eta_1)+\cdots+B(m,j)f(\eta_m)\\
+		&=B(1,j)
+		\begin{pmatrix}
+			A(1,1)\\ \vdots\\ A(\ell,1)
+		\end{pmatrix}
+		+\cdots+
+		B(m,j)
+		\begin{pmatrix}
+			A(1,m)\\ \vdots\\ A(\ell,m)
+		\end{pmatrix}\\
+		&=
+		\begin{pmatrix}
+			\sum_{k=1}^{m}A(1,k)B(k,j)\\
+			\vdots\\
+			\sum_{k=1}^{m}A(\ell,k)B(k,j)
+		\end{pmatrix}.
+	\end{aligned}
+	\]
+	于是
+	\[
+	AB=
+	\begin{pmatrix}
+		\sum_{k=1}^{m}A(1,k)B(k,1)&\cdots&\sum_{k=1}^{m}A(1,k)B(k,n)\\
+		\vdots&\ddots&\vdots\\
+		\sum_{k=1}^{m}A(\ell,k)B(k,1)&\cdots&\sum_{k=1}^{m}A(\ell,k)B(k,n)
+	\end{pmatrix}
+	\in M_{\ell\times n}(\F).
+	\]
+
+\end{definition}
+	矩阵乘法满足
+\begin{enumerate}
+	\item 结合律：$(AB)C=A(BC)$；
+	\item 左右分配律：$A(B+C)=AB+AC$，$(B+C)A=BA+CA$；
+	\item 与数乘的结合律：$kAB=A(kB)$；
+	\item 在 $M_{n\times n}(\F)$ 中，存在单位元
+	\[
+	E_n=\begin{pmatrix}
+		1& &0\\
+		&\ddots& \\
+		0& &1
+	\end{pmatrix};
+	\]
+	\item 无交换律：$AB$ 一般不等于 $BA$，例如
+	\[
+	\begin{pmatrix}0&1\\0&0\end{pmatrix}
+	\begin{pmatrix}1&0\\0&0\end{pmatrix}
+	=
+	\begin{pmatrix}0&0\\0&0\end{pmatrix},
+	\qquad
+	\begin{pmatrix}1&0\\0Ħ0\end{pmatrix}
+	\begin{pmatrix}0&1\\0&0\end{pmatrix}
+	=
+	\begin{pmatrix}0&1\\0&0\end{pmatrix}.
+	\]
+	若 $AB=BA$，则称 $A,B$ 可交换；
+	\item 无消去律，也即存在 $A,B\neq0$，使 $AB=0$，例如
+	\[
+	\begin{pmatrix}0&1\\0&0\end{pmatrix}
+	\begin{pmatrix}0&1\\0&0\end{pmatrix}
+	=
+	\begin{pmatrix}0&0\\0&0\end{pmatrix}.
+	\]
+\end{enumerate}
+采取二元运算的视角，$AB=C$ 可以理解成
+\[
+M_{\ell\times m}(\F)\times M_{m\times n}(\F)
+\longrightarrow M_{\ell\times n}(\F).
+\]
+对于 $n$ 阶方阵构成的集合 $M_n(\F)$，对上述的加法、乘法构成一个非交换环；加上数乘，构成一个非交换代数。
+
+采取行向量或列向量形式，我们不难得到以下命题。
+
+\begin{proposition}
+	若 $A\in M_{m\times n}(\F)$，$B\in M_{n\times \ell}(\F)$，那么
+	\[
+	r(AB)\leq \min\{r(A),r(B)\}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	先设
+	\[
+	A=\begin{pmatrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&\ddots&\vdots\\
+		a_{m1}&\cdots&a_{mn}
+	\end{pmatrix},
+	\qquad
+	B=\begin{pmatrix}
+		\beta_1\\ \vdots\\ \beta_n
+	\end{pmatrix}.
+	\]
+	则
+	\[
+	AB=\begin{pmatrix}
+		a_{11}\beta_1+\cdots+a_{1n}\beta_n\\
+		\vdots\\
+		a_{m1}\beta_1+\cdots+a_{mn}\beta_n
+	\end{pmatrix}.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		r(AB)
+		&=r(a_{11}\beta_1+
+		\cdots+a_{1n}\beta_n,\cdots,
+		a_{m1}\beta_1+
+		\cdots+a_{mn}\beta_n)\\
+		&\leq r(\beta_1,\cdots,\beta_n)=r(B).
+	\end{aligned}
+	\]
+	再取 $A$ 的列向量形式即可得
+	\[
+	r(AB)\leq r(A).
+	\]
+	故
+	\[
+	r(AB)\leq \min\{r(A),r(B)\}.
+	\]
+\end{proof}
+
+下面，我们给出 Kronecker 记号，并以此定义基本矩阵。
+\phantomsection\label{p1:concept:c3-l652}Kronecker 记号是由两个元决定的 $\delta_{ij}$，定义为
+\[
+\delta_{ij}=\begin{cases}
+	1,&i=j,\\
+	0,&i\neq j.
+\end{cases}
+\]
+
+\begin{definition}[基本矩阵]\phantomsection\label{p1:concept:c3-l660}
+	在 $M_{m\times n}(\F)$ 上，基本矩阵 $E_{ij}$ 的 $(k,l)$ 元定义为
+	\[
+	E_{ij}(k,l)=\delta_{ik}\delta_{jl}.
+	\]
+	也即 $E_{ij}$ 是只有 $(i,j)$ 元为 $1$，其余位置都为 $0$ 的矩阵。
+	
+
+\end{definition}
+	那么 $\forall A\in M_{m\times n}(\F)$，其 $(i,j)$ 元为 $A(i,j)$，就有
+\[
+A=\sum_{\substack{1\leq i\leq m\\1\leq j\leq n}} A(i,j)E_{ij}.\tag{1}
+\]
+也就是说，$A$ 可由 $E_{ij}$（$1\leq i\leq m,1\leq j\leq n$）线性表出。
+可以看到，$E_{ij}$ 构成了一个矩阵意义下的极大无关组。
+那么 $M_{m\times n}(\F)$ 中任意 $mn+1$ 个矩阵必然相关。
+
+利用基本矩阵，我们可以得到另一种矩阵乘法的定义方式：
+\[
+E_{ij}E_{kl}=\delta_{jk}E_{il}.
+\]
+其中 $E_{ij}\in M_{s\times m}(\F)$，$E_{kl}\in M_{m\times n}(\F)$。
+那么 $\forall A\in M_{s\times m}(\F)$，$B\in M_{m\times n}(\F)$，找出它们如 $(1)$ 的形式，再做乘法的分配即可定义 $AB$。
+\begin{definition}(矩阵的转置)\phantomsection\label{p1:concept:c3-l683}
+	设 $A\in M_{m\times n}(\F)$，且
+	\[
+	A=(A(i,j)).
+	\]
+	定义 $A$ 的转置 $A'$（或 $A^T$）为
+	\[
+	A'\in M_{n\times m}(\F),
+	\qquad
+	A'=(A(j,i)).
+	\]
+	特别地，在 $\mathbb C$ 上，我们有复共轭转置
+	\[
+	A^*=(\overline{A(j,i)}).
+	\]
+\end{definition}
+
+\begin{proposition}[转置的性质]
+	转置满足
+	\begin{enumerate}
+		\item $A'+B'=(A+B)'$；
+		\item $kA'=(kA)'$；
+		\item $(AB)'=B'A'$；
+		\item $(A')'=A$。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	$1,2,4$ 显然。对 $3$，考虑基本矩阵即可，证明略。
+\end{proof}
+
+
+\section{方阵}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l717}
+	设 $A\in M_n(\F)$，那么 $A^k\in M_n(\F)$，$k\in\mathbb Z_+$。
+	规定
+	\[
+	A^0=E_n=
+	\begin{pmatrix}
+		1&&0\\
+		&\ddots&\\
+		0&&1
+	\end{pmatrix}.
+	\]
+	若存在 $k\in\mathbb Z_+$，使得
+	\[
+	A^k=0,
+	\]
+	则称 $A$ 是幂零的。
+	
+\end{definition}
+类似于数的幂，矩阵的幂同样有
+\[
+(A^k)^\ell=A^{k\ell},
+\qquad
+A^kA^\ell=A^{k+\ell}.
+\]
+但是
+\[
+(AB)^k\neq A^kB^k,
+\]
+因为无交换律。
+\begin{proposition}
+	$\forall f,g\in\F[x]$ 且 $f,g\neq0$，都有
+	\[
+	f(A)g(A)=g(A)f(A).
+	\]
+\end{proposition}
+
+\begin{proof}
+	由多项式乘法的交换律与矩阵幂的交换关系得到。
+\end{proof}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l757}
+	若 $f\neq0$ 且 $f(A)=0$，则称 $f$ 是 $A$ 的零化多项式。
+	若 $f$ 是 $A$ 的零化多项式，则 $\forall k\in\F$，$kf$ 亦是 $A$ 的零化多项式。
+\end{definition}
+
+\begin{proposition}
+	$\forall A\in M_n(\F)$，存在 $f\in\F[x]$，使得
+	\[
+	f(A)=0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	考虑
+	\[
+	A^0,A^1,\cdots,A^{n^2}
+	\]
+	共 $n^2+1$ 个矩阵，必线性相关。故存在
+	$k_0,\cdots,k_{n^2}$ 不全为 $0$，使得
+	\[
+	k_0A^0+k_1A^1+\cdots+k_{n^2}A^{n^2}=0.
+	\]
+	令
+	\[
+	f(x)=k_0+k_1x+\cdots+k_{n^2}x^{n^2}\in\F[x],
+	\]
+	且 $f\neq0$，故 $f(x)$ 为 $A$ 的零化多项式。
+\end{proof}
+
+\begin{proposition}
+	\phantomsection\label{p1:concept:c3-l787}$\forall A\in M_n(\F)$，$A$ 的次数最低的且首一的零化多项式存在且唯一，称为 $A$ 的极小多项式。
+\end{proposition}
+
+\begin{proof}
+	取 $m_1,m_2\in\F[x]$ 是 $A$ 的次数最低的且首一的零化多项式。
+	做带余除法
+	\[
+	m_1=m_2q+r,
+	\]
+	于是
+	\[
+	0=m_1(A)=m_2(A)q(A)+r(A).
+	\]
+	若 $r(x)\neq0$，则由 $r(A)=0$ 且 $\deg r<\deg m_2$，矛盾。
+	故 $r=0$，$m_2\mid m_1$。
+	同理 $m_1\mid m_2$，故 $m_1=m_2$。
+\end{proof}
+
+极小多项式至少一次，$A$ 的任意零化多项式可被极小多项式整除。
+
+显然地，$n$ 阶数量阵 $aE_n$ 与任意 $n$ 阶方阵可交换。
+那么除了 $aE_n$ 外，其它的矩阵是否满足上述条件？Schur 引理告诉我们只有 $aE_n$ 与任意 $A$ 可交换。
+
+\begin{lemma}(Schur 引理)
+	若 $n$ 阶方阵 $A$ 与任意 $n$ 阶方阵可交换，则 $A$ 本身是数量阵。
+\end{lemma}
+
+\begin{proof}
+	对 $A$，$\forall B\in M_n(\F)$，有
+	\[
+	AB=BA.
+	\]
+	取 $B=E_{ij}$，$1\leq i,j\leq n$ 即可。
+	事实上，比较 $AE_{ij}=E_{ij}A$ 的各个元素，可得 $A$ 的非对角元全为 $0$，并且所有对角元相等，故
+	\[
+	A=aE_n.
+	\]
+\end{proof}
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l826}
+	$\forall A\in M_n(\F)$，$A=(a_{ij})$，定义 $A$ 的迹 $\operatorname{tr}(A)$ 为
+	\[
+	\operatorname{tr}(A)=\sum_i a_{ii}.
+	\]
+	
+\end{definition}
+$\operatorname{tr}(A)$ 是一个映射
+\[
+\operatorname{tr}:M_n(\F)\longrightarrow\F.
+\]
+显然也有
+\begin{enumerate}
+	\item $\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$；
+	\item $\operatorname{tr}(kA)=k\operatorname{tr}(A)$；
+	\item $\operatorname{tr}(A)=\operatorname{tr}(A')$；
+	\item $\operatorname{tr}(AB)=\operatorname{tr}(BA)$。
+\end{enumerate}
+进一步，
+\[
+\operatorname{tr}(ABC)=\operatorname{tr}(CAB)=\operatorname{tr}(BCA),
+\]
+但一般
+\[
+\operatorname{tr}(AB)\neq\operatorname{tr}(A)\operatorname{tr}(B).
+\]
+从 $4$ 来看，当 $A,B\in M_n(\F)$ 时，不能有
+\[
+AB-BA=E_n.
+\]
+\begin{definition}\phantomsection\label{p1:concept:c3-l856}
+	设 $A\in M_n(\F)$。
+	若
+	\[
+	A'=A,
+	\]
+	则称 $A$ 是对称阵；若
+	\[
+	A'=-A,
+	\]
+	则称 $A$ 是反对称阵。
+	对称阵 $A$ 是 $E_{ij}+E_{ji}$ 与 $E_{ii}$ 的线性组合；反对称阵 $A$ 是 $E_{ij}-E_{ji}$ 的线性组合。
+	显然，$\forall A\in M_n(\F)$，存在 $S,T$，$S'=S$，$T'=-T$，使得
+	\[
+	A=S+T.
+	\]
+	令
+	\[
+	S=\frac{A+A'}{2},
+	\qquad
+	T=\frac{A-A'}{2}
+	\]
+	即可。
+\end{definition}
+
+\begin{definition}(三角阵)\phantomsection\label{p1:concept:c3-l881}
+	设 $A\in M_n(\F)$，若 $\forall i,j$，当 $i>j$ 时都有 $A(i,j)=0$，则称 $A$ 是一个上三角阵，即形如
+	\[
+	\begin{pmatrix}
+		*&\cdots&*&\cdots&*\\
+		0&*&\cdots& &\vdots\\
+		\vdots&\ddots&\ddots&\ddots&\vdots\\
+		0&\cdots&0&*&*\\
+		0&\cdots&\cdots&0&*
+	\end{pmatrix}.
+	\]
+	类似地，我们定义出下三角阵。
+\end{definition}
+
+$\F$ 上所有 $n$ 阶上三角阵关于加法、数乘、乘法封闭。
+对加法与数乘显然，对乘法证明如下。
+对 $i>j$，有
+\[
+\begin{aligned}
+	(AB)(i,j)
+	&=\sum_{k=1}^{n}A(i,k)B(k,j)\\
+	&=\sum_{k<i}\underbrace{A(i,k)}_{0}B(k,j)
+	+\sum_{k\geq i}A(i,k)\underbrace{B(k,j)}_{0}\\
+	&=0.
+\end{aligned}
+\]
+
+\begin{definition}\phantomsection\label{p1:concept:c3-l908}
+	称非对角元都是 $0$ 的矩阵为对角阵，记作
+	\[
+	\operatorname{diag}[a_1,\cdots,a_n]=
+	\begin{pmatrix}
+		a_1&&0\\
+		&\ddots&\\
+		0&&a_n
+	\end{pmatrix}.
+	\]
+\end{definition}
+
+\begin{definition}(初等阵)\label{3.3.11}\phantomsection\label{p1:concept:c3-l920}
+	由单位阵经过一次初等变换得到的矩阵称为一个初等阵。
+	三类初等变换分别对应一类初等阵：
+	\[
+	P(i,j),\qquad P(a(i)+(j)),\qquad P(c(i)).
+	\]
+
+\end{definition}
+	显然，有
+\[
+P(i,j)^2=E_n,
+\]
+\[
+P(a(i)+(j))P(-a(i)+(j))=E_n,
+\]
+\[
+P(c(i))P(c^{-1}(i))=E_n.
+\]
+\begin{theorem}
+	$\forall M\in M_{m\times n}(\F)$，有
+	\begin{enumerate}
+		\item 对 $M$ 做一次初等行变换得到的矩阵，等于用相应的初等阵左乘 $M$ 得到的矩阵；
+		\item 对 $M$ 做一次初等列变换得到的矩阵，等于用相应的初等阵右乘 $M$ 得到的矩阵。
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	我们只对 $P(i,j)$ 的情况证明。
+	对行变换，设
+	\[
+	A=
+	\begin{pmatrix}
+		\alpha_1\\
+		\vdots\\
+		\alpha_i\\
+		\vdots\\
+		\alpha_j\\
+		\vdots\\
+		\alpha_m
+	\end{pmatrix}.
+	\]
+	则
+	\[
+	P(i,j)A=
+	\begin{pmatrix}
+		\alpha_1\\
+		\vdots\\
+		\alpha_j\\
+		\vdots\\
+		\alpha_i\\
+		\vdots\\
+		\alpha_m
+	\end{pmatrix}.
+	\]
+	对列变换，设
+	\[
+	P(i,j)=
+	\begin{pmatrix}
+		\varepsilon_1\\
+		\vdots\\
+		\varepsilon_j\\
+		\vdots\\
+		\varepsilon_i\\
+		\vdots\\
+		\varepsilon_n
+	\end{pmatrix},
+	\qquad
+	A=(\alpha_1\ \cdots\ \alpha_i\ \cdots\ \alpha_j\ \cdots\ \alpha_n).
+	\]
+	则
+	\[
+	AP(i,j)=(\alpha_1\ \cdots\ \alpha_j\ \cdots\ \alpha_i\ \cdots\ \alpha_n).
+	\]
+	其它两类初等变换同理。
+\end{proof}
+
+根据 Gauss 消元法以及上述定理，我们得到以下推论。
+\begin{corollary}
+	设 $M,N\in M_{m\times n}(\F)$。
+	$M$ 与 $N$ 相抵，当且仅当存在 $m$ 阶初等阵 $P_1,\cdots,P_s$ 与 $n$ 阶初等阵 $Q_1,\cdots,Q_t$，使得
+	\[
+	M=P_1\cdots P_sNQ_1\cdots Q_t.
+	\]
+	特别地，$\forall M\in M_{m\times n}(\F)$，且 $r(M)=r$，存在 $m$ 阶初等阵 $P_1,\cdots,P_s$ 与 $n$ 阶初等阵 $Q_1,\cdots,Q_t$，使得
+	\[
+	M=P_1\cdots P_s
+	\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix}
+	Q_1\cdots Q_t.
+	\]
+\end{corollary}
+
+\section{矩阵的逆}
+
+\begin{definition}\label{3.4.1}\phantomsection\label{p1:concept:c3-l1016}
+	对 $A\in M_n(\F)$，若 $\exists B\in M_n(\F)$，使得
+	\[
+	AB=BA=E_n,
+	\]
+	则称 $A$ 是可逆的。
+	
+	对可逆矩阵 $A$，满足 $AB=BA=E_n$ 的矩阵是唯一的。证明使用同一法：设
+	\[
+	AB_1=B_1A=E_n=AB_2=B_2A,
+	\]
+	则
+	\[
+	B_1=B_1E_n=B_1AB_2=E_nB_2=B_2.
+	\]
+	这样，记 $B=A^{-1}$，称为 $A$ 的逆。
+\end{definition}
+
+对于逆矩阵，我们给出以下这些经典的例子。
+\begin{example}\label{3.4.2}
+	\begin{enumerate}
+		\item $A$ 可逆，则
+		\[
+		f_A:x\longmapsto Ax
+		\]
+		有逆映射，显然其逆映射为
+		\[
+		f_{A^{-1}}:x\longmapsto A^{-1}x.
+		\]
+		若 $A$ 可逆，对方程 $Ax=\beta$，其有唯一一解
+		\[
+		x=A^{-1}\beta.
+		\]
+		
+		\item 若 $A$ 有零行，则 $A$ 必不可逆。因为 $\forall B\in M_n(\F)$，$AB$ 有一行全为 $0$，不可能等于 $E_n$。
+		
+		\item $aE_n$ 可逆当且仅当 $a\neq0$，且
+		\[
+		(aE_n)^{-1}=a^{-1}E_n.
+		\]
+		
+		\item 根据 \ref{3.3.11}，
+		\[
+		P(i,j)^{-1}=P(i,j),
+		\]
+		\[
+		P(a(i)+(j))^{-1}=P(-a(i)+(j)),
+		\]
+		\[
+		P(c(i))^{-1}=P(c^{-1}(i)).
+		\]
+		
+		\item 若 $A\in M_n(\F)$ 可逆，则 $r(A)=n$。由
+		\[
+		n=r(E_n)=r(AA^{-1})\leq r(A)\leq n
+		\]
+		即可。
+	\end{enumerate}
+\end{example}
+
+
+\begin{proposition}\label{3.4.3}
+	设 $A$ 可逆,则$A$ 可逆当且仅当 $A$ 的极小多项式$m(x)$的常数项不等于 $0$，且 $A^{-1}$ 是 $A$ 的多项式。
+\end{proposition}
+
+\begin{proof}
+	由 $m(A)=0$，有
+	\[
+	0=m(A)=A^k+a_{k-1}A^{k-1}+\cdots+a_1A+a_0E_n.
+	\]
+	若 $a_0=0$，则
+	\[
+	A\left(A^{k-1}+a_{k-1}A^{k-2}+\cdots+a_1E_n\right)=0.
+	\]
+	此时由消去律，得
+	\[
+	A^{k-1}+a_{k-1}A^{k-2}+\cdots+a_1E_n=0,
+	\]
+	矛盾，故 $a_0\neq0$。
+	于是
+	\[
+	A\left(A^{k-1}+a_{k-1}A^{k-2}+\cdots+a_1E_n\right)=-a_0E_n,
+	\]
+	即
+	\[
+	A\left(-\frac1{a_0}\left(A^{k-1}+a_{k-1}A^{k-2}+\cdots+a_1E_n\right)\right)=E_n.
+	\]
+	故
+	\[
+	A^{-1}=-\frac1{a_0}\left(A^{k-1}+a_{k-1}A^{k-2}+\cdots+a_1E_n\right).
+	\]
+\end{proof}
+
+\begin{proposition}\label{3.4.4}
+	设 $A,B\in M_n(\F)$ 且 $A,B$ 可逆，则
+	\begin{enumerate}
+		\item $A+B$ 不一定可逆；
+		\item $A'$ 可逆，且
+		\[
+		(A')^{-1}=(A^{-1})';
+		\]
+		\item $AB,BA$ 可逆，且
+		\[
+		(AB)^{-1}=B^{-1}A^{-1},\qquad (BA)^{-1}=A^{-1}B^{-1};
+		\]
+		\item $(A^{-1})^{-1}=A$。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	$1.$ 令
+	\[
+	A=\begin{pmatrix}1&1\\0&1\end{pmatrix},
+	\qquad
+	B=\begin{pmatrix}-1&-1\\0&1\end{pmatrix}.
+	\]
+	则
+	\[
+	A+B=\begin{pmatrix}0&0\\0&2\end{pmatrix}
+	\]
+	不可逆。
+	
+	$2.$ 由
+	\[
+	A^{-1}A=AA^{-1}=E_n
+	\]
+	可得
+	\[
+	(A^{-1}A)'=(AA^{-1})'=E_n,
+	\]
+	即
+	\[
+	A'(A^{-1})'=(A^{-1})'A'=E_n.
+	\]
+	故
+	\[
+	(A')^{-1}=(A^{-1})'.
+	\]
+	
+	$3.$ 有
+	\[
+	(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=E_n,
+	\]
+	且
+	\[
+	(B^{-1}A^{-1})(AB)=B^{-1}(A^{-1}A)B=E_n.
+	\]
+	所以 $(AB)^{-1}=B^{-1}A^{-1}$。同理
+	\[
+	(BA)^{-1}=A^{-1}B^{-1}.
+	\]
+	
+	$4.$ 显然。
+\end{proof}
+
+\begin{definition}\label{3.4.5}\phantomsection\label{p1:concept:c3-l1171}
+	把所有可逆阵构成的集合记为 $\operatorname{GL}_n(\F)$，即
+	\[
+	\operatorname{GL}_n(\F):=\{A\in M_n(\F):A\text{ 可逆}\}.
+	\]
+\end{definition}
+
+\begin{proposition}\label{3.4.6}
+	对 $A\in M_n(\F)$，$r(A)=n$ 当且仅当 $A$ 可逆。
+\end{proposition}
+
+\begin{proof}
+	必要性：若 $A$ 可逆，则
+	\[
+	n=r(E_n)=r(AA^{-1})\leq r(A)\leq n.
+	\]
+	故 $r(A)=n$。
+	
+	充分性：由 $n=r(A)$，得 $E_n$ 与 $A$ 相抵。存在
+	\[
+	P=P_1\cdots P_s,
+	\qquad
+	Q=Q_1\cdots Q_t,
+	\]
+	其中 $P_1,\cdots,P_s$ 与 $Q_1,\cdots,Q_t$ 是初等阵，使得
+	\[
+	PA=AQ=E_n.
+	\]
+	那么
+	\[
+	P=PE_n=PAQ=E_nQ=Q.
+	\]
+	故存在 $B$，使得
+	\[
+	BA=AB=E_n.
+	\]
+\end{proof}
+
+\begin{corollary}\label{3.4.7}
+	$A\in M_n(\F)$，则 $A$ 可逆当且仅当存在 $B\in M_n(\F)$，使得
+	\[
+	AB=E_n\quad\text{或}\quad BA=E_n.
+	\]
+\end{corollary}
+
+\begin{proposition}\label{3.4.8}
+	$f,g\in\F[x]$ 且 $(f,g)=1$。设 $f$ 是 $A$ 的零化多项式，则 $g(A)$ 可逆，并且 $g(A)^{-1}$ 是 $A$ 的多项式。
+\end{proposition}
+
+\begin{proof}
+	由 $(f,g)=1$，存在 $u,v\in\F[x]$，使得
+	\[
+	uf+vg=1.
+	\]
+	作用于 $A$，有
+	\[
+	u(A)f(A)+v(A)g(A)=E_n.
+	\]
+	又 $f(A)=0$，故
+	\[
+	g(A)^{-1}=v(A).
+	\]
+	从而 $g(A)$ 可逆且其逆是 $A$ 的多项式。
+\end{proof}
+
+\begin{proposition}\label{3.4.9}
+	$s$ 个 $n$ 阶方阵 $A_i(1\leq i\leq s)$ 的乘积可逆，当且仅当每一个 $A_i$ 可逆。
+\end{proposition}
+
+\begin{proof}
+	必要性：不然，至少存在一个 $A_k$ 不可逆，由 \ref{3.4.3}(3) 矛盾。
+	
+	充分性：对 \ref{3.4.3}(3) 使用归纳法即可。
+\end{proof}
+
+利用 \ref{3.4.2} 中的 4，我们可以得到以下推论。
+
+\begin{corollary}\label{3.4.10}
+	$A$ 可逆当且仅当 $A$ 可以写成 $\F$ 上若干个初等阵的乘积。
+\end{corollary}
+
+这样，我们就可以得到矩阵求逆的 Gauss--Jordan 算法。
+
+\begin{algo}
+	对 $A\in\operatorname{GL}_n(\F)$，存在初等阵 $P_1,\cdots,P_s$，使得
+	\[
+	P_1\cdots P_sA=E_n.
+	\]
+	那么
+	\[
+	A^{-1}=P_1\cdots P_s.
+	\]
+	也就是说，我们对 $A$ 与 $E_n$ 做一样的初等行变换，使 $A\to E_n$ 时 $E_n\to A^{-1}$，也即
+	\[
+	(A\ E_n)\longrightarrow (E_n\ A^{-1}).
+	\]
+	用初等列变换，有
+	\[
+	\left(\begin{array}{c}
+		A\\ 
+		E_n
+	\end{array}\right)
+	\longrightarrow
+	\left(\begin{array}{c}
+		E_n\\ 
+		A^{-1}
+	\end{array}\right).
+	\]
+\end{algo}
+
+
+\begin{corollary}\label{3.4.12}
+	左乘或右乘可逆阵不改变矩阵的秩。
+	若 $A\in M_{m\times n}(\F)$，$P\in\operatorname{GL}_m(\F)$，$Q\in\operatorname{GL}_n(\F)$，则
+	\[
+	r(PA)=r(A)=r(AQ).
+	\]
+\end{corollary}
+
+\begin{proof}
+	有
+	\[
+	r(PA)\leq r(A)=r(P^{-1}PA)\leq r(PA),
+	\]
+	从而 $r(PA)=r(A)$。同理
+	\[
+	r(AQ)\leq r(A)=r(AQQ^{-1})\leq r(AQ),
+	\]
+	从而 $r(AQ)=r(A)$。
+\end{proof}
+
+\begin{corollary}\label{3.4.13}
+	$M,N\in M_{m\times n}(\F)$，则 $M$ 与 $N$ 相抵当且仅当存在
+	$P\in\operatorname{GL}_m(\F)$，$Q\in\operatorname{GL}_n(\F)$，使得
+	\[
+	M=PNQ.
+	\]
+	特别地，$M\in M_{m\times n}(\F)$，$r(M)=r$，当且仅当存在
+	$P\in\operatorname{GL}_m(\F)$，$Q\in\operatorname{GL}_n(\F)$，使得
+	\[
+	PMQ=\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix}.
+	\]
+\end{corollary}
+
+
+
+\section{分块矩阵}
+
+\begin{definition}\label{3.5.1}\phantomsection\label{p1:concept:c3-l1322}
+	称 $s\times t$ 型表格
+	\[
+	A=
+	\begin{pmatrix}
+		A_{11}&\cdots&A_{1t}\\
+		\vdots&\ddots&\vdots\\
+		A_{s1}&\cdots&A_{st}
+	\end{pmatrix}
+	\]
+	是一个 $s\times t$ 分块矩阵。对每个 $i$，$A_{i1},\cdots,A_{it}$ 行数相同；对每个 $j$，$A_{1j},\cdots,A_{sj}$ 列数相同。$A_{ij}$ 称为 $A$ 的 $(i,j)$-块。
+	
+	对 $A$ 与 $B$，$A=B$ 当且仅当
+	\[
+	A_{ij}=B_{ij}.
+	\]
+	定义准上三角阵为
+	\[
+	\begin{pmatrix}
+		A_{11}&A_{12}&\cdots&A_{1s}\\
+		0&A_{22}&\cdots&A_{2s}\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&A_{ss}
+	\end{pmatrix},
+	\]
+	准对角阵为
+	\[
+	\begin{pmatrix}
+		A_{11}&&&\\
+		&A_{22}&&\\
+		&&\ddots&\\
+		&&&A_{ss}
+	\end{pmatrix}.
+	\]
+\end{definition}
+
+\begin{proposition}\label{3.5.2}
+	\begin{enumerate}
+		\item
+		\[
+		r\begin{pmatrix}
+			A&0\\
+			0&B
+		\end{pmatrix}=r(A)+r(B).
+		\]
+		\item
+		\[
+		r\begin{pmatrix}
+			A&C\\
+			0&B
+		\end{pmatrix}\geq r(A)+r(B).
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	对 $1$，考虑 $A$ 的列向量组 $\alpha_1,\cdots,\alpha_n$ 的伸长组
+	\[
+	\begin{pmatrix}\alpha_1\\0\end{pmatrix},\cdots,
+	\begin{pmatrix}\alpha_n\\0\end{pmatrix},
+	\]
+	以及 $B$ 的列向量组 $\beta_1,\cdots,\beta_m$ 的伸长组
+	\[
+	\begin{pmatrix}0\\\beta_1\end{pmatrix},\cdots,
+	\begin{pmatrix}0\\\beta_m\end{pmatrix}.
+	\]
+	若 $\alpha_{i_1},\cdots,\alpha_{i_r}$ 是 $\alpha_1,\cdots,\alpha_n$ 的极大无关组，
+	$\beta_{j_1},\cdots,\beta_{j_q}$ 是 $\beta_1,\cdots,\beta_m$ 的极大无关组，则
+	\[
+	\begin{pmatrix}\alpha_{i_1}\\0\end{pmatrix},\cdots,
+	\begin{pmatrix}\alpha_{i_r}\\0\end{pmatrix},
+	\begin{pmatrix}0\\\beta_{j_1}\end{pmatrix},\cdots,
+	\begin{pmatrix}0\\\beta_{j_q}\end{pmatrix}
+	\]
+	无关，故
+	\[
+	r\begin{pmatrix}
+		A&0\\0&B
+	\end{pmatrix}=r(A)+r(B).
+	\]
+	
+	对 $2$，考虑
+	\[
+	\begin{pmatrix}
+		A&C\\0&B
+	\end{pmatrix}.
+	\]
+	取 $A$ 的列向量组中一个极大无关组 $\alpha_{i_1},\cdots,\alpha_{i_r}$，
+	取 $B$ 的列向量组中一个极大无关组 $\beta_{j_1},\cdots,\beta_{j_q}$。若 $C$ 的相应列记为
+	$\gamma_{j_1},\cdots,\gamma_{j_q}$，
+	\[
+	\begin{pmatrix}\alpha_{i_1}\\0\end{pmatrix},\cdots,
+	\begin{pmatrix}\alpha_{i_r}\\0\end{pmatrix},
+	\begin{pmatrix}\gamma_{j_1}\\\beta_{j_1}\end{pmatrix},\cdots,
+	\begin{pmatrix}\gamma_{j_q}\\\beta_{j_q}\end{pmatrix}
+	\]
+	可能存在$\gamma_i$使$ \alpha_{i_1},\cdots,\alpha_{i_r},\gamma_i$无关，故
+	\[
+	r\begin{pmatrix}
+		A&C\\0&B
+	\end{pmatrix}\geq r(A)+r(B).
+	\]
+\end{proof}
+
+一个常用的分块方式是将 $(1,1)$-元或 $(m,n)$-元单分一行，也即
+\[
+A=\begin{pmatrix}
+	a_{11}&\alpha'\\
+	\beta&A_1
+\end{pmatrix}
+=\begin{pmatrix}
+	A'_1&\alpha\\
+	\beta'&a_{mn}
+\end{pmatrix}.
+\]
+
+分块矩阵的运算定义如下。
+
+\begin{definition}\label{3.5.3}\phantomsection\label{p1:concept:c3-l1440}
+	\begin{enumerate}
+		\item 转置：
+		\[
+		\begin{pmatrix}
+			A_{11}&\cdots&A_{1t}\\
+			\vdots&\ddots&\vdots\\
+			A_{s1}&\cdots&A_{st}
+		\end{pmatrix}'
+		=
+		\begin{pmatrix}
+			A_{11}'&\cdots&A_{s1}'\\
+			\vdots&\ddots&\vdots\\
+			A_{1t}'&\cdots&A_{st}'
+		\end{pmatrix}.
+		\]
+		
+		\item 数乘：
+		\[
+		k\begin{pmatrix}
+			A_{11}&\cdots&A_{1t}\\
+			\vdots&\ddots&\vdots\\
+			A_{s1}&\cdots&A_{st}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			kA_{11}&\cdots&kA_{1t}\\
+			\vdots&\ddots&\vdots\\
+			kA_{s1}&\cdots&kA_{st}
+		\end{pmatrix}.
+		\]
+		
+		\item 加法：对 $A=(A_{ij})$，$B=(B_{ij})$，分块的方式保证 $A_{ij}+B_{ij}$ 对任意 $i,j$ 有定义，则
+		\[
+		\begin{pmatrix}
+			A_{11}&\cdots&A_{1t}\\
+			\vdots&\ddots&\vdots\\
+			A_{s1}&\cdots&A_{st}
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			B_{11}&\cdots&B_{1t}\\
+			\vdots&\ddots&\vdots\\
+			B_{s1}&\cdots&B_{st}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			A_{11}+B_{11}&\cdots&A_{1t}+B_{1t}\\
+			\vdots&\ddots&\vdots\\
+			A_{s1}+B_{s1}&\cdots&A_{st}+B_{st}
+		\end{pmatrix}.
+		\]
+		
+		\item 乘法：对 $C=AB$，$A=(A_{ij})_{s,t}$，$B=(B_{ij})_{t,r}$，$C=(C_{ij})_{s,r}$，
+		\[
+		\begin{pmatrix}
+			A_{11}&\cdots&A_{1t}\\
+			\vdots&\ddots&\vdots\\
+			A_{s1}&\cdots&A_{st}
+		\end{pmatrix}
+		\begin{pmatrix}
+			B_{11}&\cdots&B_{1r}\\
+			\vdots&\ddots&\vdots\\
+			B_{t1}&\cdots&B_{tr}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			C_{11}&\cdots&C_{1r}\\
+			\vdots&\ddots&\vdots\\
+			C_{s1}&\cdots&C_{sr}
+		\end{pmatrix},
+		\]
+		其中
+		\[
+		C_{pq}=A_{p1}B_{1q}+\cdots+A_{pt}B_{tq}.
+		\]
+		$A,B$ 的分块方式保证所有的矩阵乘法与加法有定义。
+	\end{enumerate}
+\end{definition}
+
+那么，我们也可以定义出分块矩阵上的初等变换。
+
+根据上面的定义，不难得出下面的推论。
+
+\begin{corollary}\label{3.5.4}
+	\[
+	\begin{pmatrix}
+		A_{11}&A_{12}&\cdots&A_{1s}\\
+		0&A_{22}&\cdots&A_{2s}\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&A_{ss}
+	\end{pmatrix}^{k}
+	=
+	\begin{pmatrix}
+		A_{11}^{k}&*&\cdots&*\\
+		0&A_{22}^{k}&\cdots&*\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&A_{ss}^{k}
+	\end{pmatrix}.
+	\]
+	可以看到，准上三角阵的任意多项式仍是准上三角阵。
+\end{corollary}
+下面可以看到一些使用分块矩阵的应用
+\begin{proposition}\label{3.5.5}
+	对 $A\in M_{m\times n}(\F)$，$B\in M_{n\times s}(\F)$ 且 $AB=0$，则
+	\[
+	r(A)+r(B)\leq n.
+	\]
+\end{proposition}
+
+\begin{proof}
+	记
+	\[
+	B=(\eta_1\ \cdots\ \eta_s).
+	\]
+	则
+	\[
+	AB=(A\eta_1\ \cdots\ A\eta_s)=0,
+	\]
+	也即
+	\[
+	\left\{
+	\begin{aligned}
+		A\eta_1&=0,\\
+		&\vdots\\
+		A\eta_s&=0.
+	\end{aligned}
+	\right.
+	\]
+	那么 $\eta_i(1\leq i\leq s)$ 是 $Ax=0$ 的解。任取 $Ax=0$ 的基础解系，取其中 $n-r(A)$ 个无关的解向量
+	\[
+	\xi_1,\cdots,\xi_{n-r(A)}.
+	\]
+	$\eta_1,\cdots,\eta_s$ 可由 $\xi_1,\cdots,\xi_{n-r(A)}$ 表出，由基本引理，
+	\[
+	r(\eta_1,\cdots,\eta_s)=r(B)\leq n-r(A),
+	\]
+	故
+	\[
+	r(A)+r(B)\leq n.
+	\]
+\end{proof}
+
+\begin{proposition}\label{3.5.6}
+	$f,g\in\F[x]$ 且 $(f,g)=1$，$A\in M_n(\F)$，则
+	\[
+	f(A)g(A)=0
+	\]
+	当且仅当
+	\[
+	r(f(A))+r(g(A))=n.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由 $(f,g)=1$，存在 $u,v\in\F[x]$，使得
+	\[
+	fu+gv=1.
+	\]
+	代入 $A$，有
+	\[
+	f(A)u(A)+g(A)v(A)=E_n.
+	\]
+	考虑以下初等变换
+	\[
+	\begin{pmatrix}
+		f(A)&0\\
+		0&g(A)
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		f(A)&f(A)u(A)\\
+		0&g(A)
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		f(A)&E_n\\
+		0&g(A)
+	\end{pmatrix}
+	\]
+	\[
+	\longrightarrow
+	\begin{pmatrix}
+		f(A)&E_n\\
+		-f(A)g(A)&0
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		0&E_n\\
+		-f(A)g(A)&0
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		f(A)g(A)&0\\
+		0&E_n
+	\end{pmatrix}.
+	\]
+	故有
+	\[
+	r(f(A))+r(g(A))=r(f(A)g(A))+n,
+	\]
+	从而得证。
+\end{proof}
+
+在上一章中，我们给出 $Ax=\beta$ 有解的必要条件是
+\[
+r(A\ \beta)=r(A).
+\]
+对矩阵方程 $AX=B$，其有解的必要条件是
+\[
+r(A\ B)=r(A).
+\]
+
+\begin{proposition}\label{3.5.7}
+	$A\in M_{m\times n}(\F)$，$B\in M_{m\times s}(\F)$，则存在 $X\in M_{n\times s}(\F)$ 是 $AX=B$ 的解的必要条件是
+	\[
+	r(A\ B)=r(A).
+	\]
+\end{proposition}
+
+\begin{proof}
+	记
+	\[
+	A=(\alpha_1\ \cdots\ \alpha_n),
+	\qquad
+	B=(\eta_1\ \cdots\ \eta_s).
+	\]
+	那么
+	\[
+	(\alpha_1\ \cdots\ \alpha_n)
+	\begin{pmatrix}
+		x_{11}&\cdots&x_{1s}\\
+		\vdots&\ddots&\vdots\\
+		x_{n1}&\cdots&x_{ns}
+	\end{pmatrix}
+	=(\eta_1\ \cdots\ \eta_s).
+	\]
+	于是
+	\[
+	\eta_i=x_{1i}\alpha_1+\cdots+x_{ni}\alpha_n,
+	\]
+	也即 $\eta_1,\cdots,\eta_s$ 可由 $\alpha_1,\cdots,\alpha_n$ 表出，故
+	\[
+	r(A\ B)=r(A).
+	\]
+\end{proof}
+
+\begin{lemma}\label{3.5.8}
+	$\forall A\in M_{m\times n}(\mathbb R)$，则有
+	\[
+	r(A'A)=r(A).
+	\]
+\end{lemma}
+
+\begin{proof}
+	考虑
+	\[
+	\text{(I)}\quad Ax=0,
+	\]
+	其基础解系中含 $n-r(A)$ 个向量；以及
+	\[
+	\text{(II)}\quad A'Ax=0,
+	\]
+	其基础解系中含 $n-r(A'A)$ 个向量。
+	显然，(I) 的解都是 (II) 的解。下证 (II) 的解都是 (I) 的解。
+	
+	对 $\xi\in\mathbb R^n$ 且 $A'A\xi=0$，证明 $A\xi=0$。
+	由 $A'A\xi=0$，左乘 $\xi'$，得
+	\[
+	\xi'A'A\xi=0\quad\Longleftrightarrow\quad (A\xi)'A\xi=0.
+	\]
+	设
+	\[
+	A\xi=(a_1\ \cdots\ a_m)'\in\mathbb R^m,
+	\]
+	则
+	\[
+	a_1^2+\cdots+a_m^2=0,
+	\qquad a_1,\cdots,a_m\in\mathbb R.
+	\]
+	故 $a_1=\cdots=a_m=0$，也即 $A\xi=0$。
+	综上，(I)、(II) 的解空间相同，故
+	\[
+	n-r(A)=n-r(A'A),
+	\]
+	即
+	\[
+	r(A)=r(A'A).
+	\]
+\end{proof}
+
+\begin{proposition}\label{3.5.9}
+	$A\in M_{m\times n}(\mathbb R)$，$\forall\beta\in\mathbb R^m$，方程
+	\[
+	A'Ax=A'\beta
+	\]
+	总是有解。
+\end{proposition}
+
+\begin{proof}
+	只需证
+	\[
+	r(A'A)=r(A'A\ ~~ A'\beta),
+	\]
+	而
+	\[
+	(A'A\ ~~ A'\beta)=A'(A\ \beta),
+	\]
+	故
+	\[
+	r(A'A)\leq r(A'A\ ~~ A'\beta)
+	= r\bigl(A'(A\ \beta)\bigr)
+	\leq r(A')=r(A)=r(A'A).
+	\]
+	得证。
+\end{proof}
+
+对分块矩阵
+\[
+\begin{pmatrix}
+	A&B\\
+	C&D
+\end{pmatrix},
+\]
+若 $A\in\operatorname{GL}_m(\F)$，考虑其上的 Gauss 消元法：
+\[
+\begin{pmatrix}
+	E_m&0\\
+	-CA^{-1}&E_n
+\end{pmatrix}
+\begin{pmatrix}
+	A&B\\
+	C&D
+\end{pmatrix}
+=
+\begin{pmatrix}
+	A&B\\
+	0&D-CA^{-1}B
+\end{pmatrix},
+\]
+\[
+\begin{pmatrix}
+	A&B\\
+	C&D
+\end{pmatrix}
+\begin{pmatrix}
+	E_m&-A^{-1}B\\
+	0&E_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+	A&0\\
+	C&D-CA^{-1}B
+\end{pmatrix}.
+\]
+
+使用这个算法，也可以推出准上三角阵的逆。若
+\[
+M=\begin{pmatrix}
+	A&B\\
+	0&C
+\end{pmatrix},
+\]
+且 $A,C$ 可逆，则 $M$ 可逆且
+\[
+M^{-1}=\begin{pmatrix}
+	A^{-1}&-A^{-1}BC^{-1}\\
+	0&C^{-1}
+\end{pmatrix}.
+\]
+\section{行列式}
+
+\begin{definition}\label{3.6.1}\phantomsection\label{p1:concept:c3-l1812}
+	把任意 $n$ 个给定的互异的对象按任意顺序排成一列，就得到这 $n$ 个对象的一个排列，称为一个 $n$ 元排列。
+	
+	把这 $n$ 个不同的对象编号为 $1,2,\cdots,n$，因此一个 $n$ 元排列可以写成
+	\[
+	i_1i_2\cdots i_n,
+	\]
+	其中 $i_k$ 表示第 $k$ 个位置上的数。
+	排列 $12\cdots n$ 称为自然排列。
+	
+	$S_n$ 表示所有 $n$ 元排列构成的集合，$S_n$ 称为 $n$ 元置换群，且
+	\[
+	|S_n|=n!.
+	\]
+	$S_n$ 是一个有限群。
+\end{definition}
+实际上，$i_1\cdots i_n$ 可以看作一个双射，也即置换：
+\[
+i_1\cdots i_n
+\Longleftrightarrow
+\begin{pmatrix}
+	1&2&\cdots&n\\
+	i_1&i_2&\cdots&i_n
+\end{pmatrix}.
+\]
+该置换表示把
+\[
+1\mapsto i_1,
+\quad
+2\mapsto i_2,
+\quad\cdots\quad,
+n\mapsto i_n.
+\]
+\begin{definition}\label{3.6.2}\phantomsection\label{p1:concept:c3-l1845}
+	对 $i_1\cdots i_n\in S_n$，若 $j<k$ 但 $i_j>i_k$，称 $(i_j,i_k)$ 是一个逆对。
+	$i_1\cdots i_n$ 所有逆对的个数称为逆序数，记为
+	\[
+	\tau(i_1\cdots i_n).
+	\]
+	称
+	\[
+	(-1)^{\tau(i_1\cdots i_n)}
+	\]
+	为排列 $i_1\cdots i_n$ 的符号。
+	
+	若 $\tau(i_1\cdots i_n)$ 为奇数，则称 $i_1\cdots i_n$ 为奇排列；若 $\tau(i_1\cdots i_n)$ 为偶数，则称 $i_1\cdots i_n$ 为偶排列。
+	
+\end{definition}
+例如
+\[
+\tau(12\cdots n)=0,
+\qquad
+\tau\bigl(n(n-1)\cdots 21\bigr)=C_n^2,
+\]
+并且
+\[
+\tau(31542)=2+0+2+1=5.
+\]
+\begin{definition}\label{3.6.3}\phantomsection\label{p1:concept:c3-l1870}
+	对 $1\leq j,k\leq n$，定义一个从 $S_n$ 到 $S_n$ 的映射，称为对换：
+	\[
+	(j\ k):
+	(i_1\cdots i_j\cdots i_k\cdots i_n)
+	\longmapsto
+	(i_1\cdots i_k\cdots i_j\cdots i_n).
+	\]
+\end{definition}
+
+\begin{lemma}\label{3.6.4}
+	对换改变一个排列的奇偶性。
+\end{lemma}
+
+\begin{proof}
+	设 $k=j+s$。先考虑相邻对换 $(j\ j+1)$，显然相邻两项交换会改变逆对个数的奇偶性。
+	再看 $(j\ j+2)$，它可看成三次相邻对换的复合：
+	\[
+	(j\ j+2)=(j\ j+1)(j+1\ j+2)(j\ j+1).
+	\]
+	一般地，由归纳可知
+	\[
+	(j\ j+s)
+	\]
+	是 $2s-1$ 次相邻对换的复合。由于 $2s-1$ 为奇数，故任意对换都会改变排列的奇偶性。
+\end{proof}
+
+\begin{lemma}\label{3.6.5}
+	$\forall i_1\cdots i_n\in S_n$，可以经过若干次对换得到 $12\cdots n$。
+\end{lemma}
+
+\begin{proof}
+	使用归纳法。$n=2$ 时显然。设 $n=m$ 时结论成立。
+	若在排列 $i_1\cdots i_m$ 中有 $i_k=m$，则作对换 $(k\ m)$，把 $m$ 换到最后一个位置。
+	然后对剩下的 $m-1$ 个数由归纳假设可经若干次对换得到自然排列。
+	故任意排列均可经过若干次对换得到 $12\cdots n$。
+\end{proof}
+
+\begin{definition}\label{3.6.6}\phantomsection\label{p1:concept:c3-l1908}
+	给定域 $\F$。对任意 $A\in M_n(\F)$，$A=(a_{ij})$，任选 $j_1\cdots j_n\in S_n$，考虑
+	\[
+	a_{1j_1}a_{2j_2}\cdots a_{nj_n}\in\F,
+	\]
+	就有
+	\[
+	(-1)^{\tau(j_1\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}
+	\]
+	一共 $n!$ 个这样的项。定义 $A$ 的行列式 $\det A$ 为
+	\[
+	\det A=
+	\sum_{j_1\cdots j_n\in S_n}
+	(-1)^{\tau(j_1\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}.
+	\]
+	也记为
+	\[
+	|A|,
+	\qquad
+	\det(a_{ij}),
+	\qquad
+	\left|
+	\begin{matrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&\ddots&\vdots\\
+		a_{n1}&\cdots&a_{nn}
+	\end{matrix}
+	\right|,
+	\]
+	称为 $n$ 阶行列式。
+\end{definition}
+
+下面给出几6个关于行列式的例子。
+
+\begin{example}
+	对 $f_1,\cdots,f_n\in D^{n-1}(a,b)$，考虑 $f_1,\cdots,f_n$ 的线性相关性：
+	\[
+	\left\{
+	\begin{aligned}
+		k_1f_1+\cdots+k_nf_n&=0,\\
+		k_1f_1'+\cdots+k_nf_n'&=0,\\
+		&\vdots\\
+		k_1f_1^{(n-1)}+\cdots+k_nf_n^{(n-1)}&=0.
+	\end{aligned}
+	\right.
+	\]
+	设
+	\[
+	W(f_1,\cdots,f_n)=
+	\left|
+	\begin{matrix}
+		f_1&f_2&\cdots&f_n\\
+		f_1'&f_2'&\cdots&f_n'\\
+		\vdots&\vdots&\ddots&\vdots\\
+		f_1^{(n-1)}&f_2^{(n-1)}&\cdots&f_n^{(n-1)}
+	\end{matrix}
+	\right|.
+	\]
+	后面我们将看到 $W(f_1,\cdots,f_n)$ 的值决定了 $f_1,\cdots,f_n$ 是否相关。
+\end{example}
+
+
+\begin{example}
+	设 $A=(a_{ij})\in M_n(\F)$，$\lambda$ 是不定元，令
+	\[
+	\begin{aligned}
+		f(\lambda)
+		&=|\lambda E_n-A|\\
+		&=
+		\left|
+		\begin{matrix}
+			\lambda-a_{11}&-a_{12}&\cdots&-a_{1n}\\
+			-a_{21}&\lambda-a_{22}&\cdots&-a_{2n}\\
+			\vdots&\vdots&\ddots&\vdots\\
+			-a_{n1}&-a_{n2}&\cdots&\lambda-a_{nn}
+		\end{matrix}
+		\right|.
+	\end{aligned}
+	\]
+	\phantomsection\label{p1:concept:c3-l1987}$f(\lambda)$ 是 $\F$ 上的首一的 $n$ 次多项式，$f(\lambda)$ 称为 $A$ 的特征多项式。
+\end{example}
+
+\begin{example}
+	对 $S_1=\{1\}$，有
+	\[
+	\det(a)=a.
+	\]
+	对 $S_2=\{12,21\}$，有
+	\[
+	\begin{aligned}
+		\det
+		\begin{pmatrix}
+			a_{11}&a_{12}\\
+			a_{21}&a_{22}
+		\end{pmatrix}
+		&=(-1)^{\tau(12)}a_{11}a_{22}
+		+(-1)^{\tau(21)}a_{12}a_{21}\\
+		&=a_{11}a_{22}-a_{12}a_{21}.
+	\end{aligned}
+	\]
+	$n=3$ 时，
+	\[
+	\begin{aligned}
+		\det
+		\begin{pmatrix}
+			a_{11}&a_{12}&a_{13}\\
+			a_{21}&a_{22}&a_{23}\\
+			a_{31}&a_{32}&a_{33}
+		\end{pmatrix}
+		=&(-1)^{\tau(123)}a_{11}a_{22}a_{33}
+		+(-1)^{\tau(132)}a_{11}a_{23}a_{32}\\
+		&+(-1)^{\tau(213)}a_{12}a_{21}a_{33}
+		+(-1)^{\tau(231)}a_{12}a_{23}a_{31}\\
+		&+(-1)^{\tau(312)}a_{13}a_{21}a_{32}
+		+(-1)^{\tau(321)}a_{13}a_{22}a_{31}.
+	\end{aligned}
+	\]
+\end{example}
+
+
+若 $A$ 有零行或零列，则 $|A|=0$。反之不一定，例如
+\[
+A=\begin{pmatrix}1&1\\1&1\end{pmatrix},
+\qquad
+|A|=0.
+\]
+
+对上三角矩阵，
+\[
+\left|
+\begin{matrix}
+	a_{11}&a_{12}&\cdots&a_{1n}\\
+	0&a_{22}&\cdots&a_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&0&\cdots&a_{nn}
+\end{matrix}
+\right|
+=a_{11}a_{22}\cdots a_{nn}.
+\]
+
+\section{行列式的性质}
+
+\begin{lemma}\label{3.7.1}
+	设 $A=(a_{ij})\in M_n(\F)$，$i_1\cdots i_n\in S_n$，则
+	\[
+	(-1)^{\tau(i_1\cdots i_n)+\tau(j_1\cdots j_n)}
+	a_{i_1j_1}\cdots a_{i_nj_n}
+	\]
+	是 $\det A$ 的一个和项。
+\end{lemma}
+
+\begin{proof}
+	对 $i_1\cdots i_n$，经过 $s$ 次对换后变为 $1\cdots n$，则
+	\[
+	(-1)^s=(-1)^{\tau(i_1\cdots i_n)}.
+	\]
+	设 $j_1\cdots j_n$ 经过相应的 $s$ 次对换后变为 $k_1\cdots k_n$，则
+	\[
+	(-1)^s(-1)^{\tau(j_1\cdots j_n)}=(-1)^{\tau(k_1\cdots k_n)}.
+	\]
+	由乘法交换律得
+	\[
+	a_{i_1j_1}\cdots a_{i_nj_n}=a_{1k_1}\cdots a_{nk_n},
+	\]
+	且
+	\[
+	(-1)^{\tau(i_1\cdots i_n)+\tau(j_1\cdots j_n)}
+	=(-1)^s(-1)^{\tau(j_1\cdots j_n)}
+	=(-1)^{\tau(k_1\cdots k_n)}.
+	\]
+	故该项是 $\det A$ 的一个和项。
+\end{proof}
+
+\begin{proposition}\label{3.7.2}
+	设 $A=(a_{ij})\in M_n(\F)$。
+	\begin{enumerate}
+		\item 对任意 $i_1\cdots i_n\in S_n$，
+		\[
+		|A|=(-1)^{\tau(i_1\cdots i_n)}
+		\sum_{j_1\cdots j_n\in S_n}
+		(-1)^{\tau(j_1\cdots j_n)}
+		a_{i_1j_1}\cdots a_{i_nj_n}.
+		\]
+		\item 对任意 $j_1\cdots j_n\in S_n$，
+		\[
+		|A|=(-1)^{\tau(j_1\cdots j_n)}
+		\sum_{i_1\cdots i_n\in S_n}
+		(-1)^{\tau(i_1\cdots i_n)}
+		a_{i_1j_1}\cdots a_{i_nj_n}.
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	对 $1$，左右两侧的项数一样，由上引理易得。
+	$2$ 同理。
+\end{proof}
+
+我们可以得到以下推论。
+
+\begin{corollary}\label{3.7.3}
+	\[
+	|A|=
+	\sum_{i_1\cdots i_n\in S_n}
+	(-1)^{\tau(i_1\cdots i_n)}
+	a_{i_11}\cdots a_{i_nn}.
+	\]
+\end{corollary}
+
+\begin{corollary}\label{3.7.4}
+	\[
+	|A|=|A'|.
+	\]
+\end{corollary}
+
+下面，考虑初等变换对矩阵行列式的影响，让我们一类一类地考虑对应的矩阵。
+
+\begin{proposition}\label{3.7.5}
+	设 $A\in M_n(\F)$，则
+	\[
+	|P(i,j)A|=-|A|=|AP(i,j)|.
+	\]
+\end{proposition}
+
+\begin{proof}
+	只证 $|P(i,j)A|=-|A|$。设 $P(i,j)A=B$，则
+	\[
+	\begin{aligned}
+		|B|
+		&=\sum_{k_1\cdots k_i\cdots k_j\cdots k_n\in S_n}
+		(-1)^{\tau(k_1\cdots k_i\cdots k_j\cdots k_n)}
+		B(1,k_1)\cdots B(i,k_i)\cdots B(j,k_j)\cdots B(n,k_n)\\
+		&=\sum_{k_1\cdots k_i\cdots k_j\cdots k_n\in S_n}
+		(-1)^{\tau(k_1\cdots k_i\cdots k_j\cdots k_n)}
+		A(1,k_1)\cdots A(j,k_i)\cdots A(i,k_j)\cdots A(n,k_n)\\
+		&=\sum_{k_1\cdots k_i\cdots k_j\cdots k_n\in S_n}
+		(-1)^{\tau(k_1\cdots k_i\cdots k_j\cdots k_n)}
+		\frac{(-1)^{\tau(k_1\cdots k_j\cdots k_i\cdots k_n)}}
+		{(-1)^{\tau(k_1\cdots k_j\cdots k_i\cdots k_n)}}\\
+		&\qquad\qquad\cdot
+		A(1,k_1)\cdots A(i,k_j)\cdots A(j,k_i)\cdots A(n,k_n)\\
+		&=-|A|.
+	\end{aligned}
+	\]
+	同理可证 $|AP(i,j)|=-|A|$。
+\end{proof}
+
+应用这一命题，不难得出：若有两行或两列相同，则 $|A|=0$。类似于对 $P(i,j)$ 相同的做法，不难有 $P(c(i))$ 的公式。
+
+\begin{proposition}\label{3.7.6}
+	\[
+	|P(c(i))A|=c|A|=|AP(c(i))|.
+	\]
+\end{proposition}
+
+\begin{proposition}\label{3.7.7}
+	设 $A=(\alpha_1\ \cdots\ \alpha_n)\in M_n(\F)$，且 $\alpha_i=\beta+\gamma$，则
+	\[
+	\det(\alpha_1\ \cdots\ \alpha_i\ \cdots\ \alpha_n)
+	=
+	\det(\alpha_1\ \cdots\ \beta\ \cdots\ \alpha_n)
+	+
+	\det(\alpha_1\ \cdots\ \gamma\ \cdots\ \alpha_n).
+	\]
+\end{proposition}
+
+由 \ref{3.7.7}，我们可以得到以下推论。
+
+\begin{corollary}\label{3.7.8}
+	\[
+	|P(c(i)+(j))A|=|AP(c(i)+(j))|=|A|.
+	\]
+\end{corollary}
+
+可以看到，对初等矩阵 $P$，有
+\[
+|PA|=|P||A|=|AP|.
+\]
+
+\begin{theorem}\label{3.7.9}
+	设 $A\in M_n(\F)$，则 $A$ 可逆当且仅当 $|A|\neq0$。
+\end{theorem}
+
+\begin{proof}
+	必要性：若 $A$ 可逆，则 $r(A)=n$，于是 $A$ 与 $E_n$ 相抵，而 $|E_n|=1$，故 $|A|\neq0$。
+	
+	充分性：若 $|A|\neq0$。若 $r(A)=r<n$，则 $A$ 与
+	\[
+	\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix}
+	\]
+	相抵，而
+	\[
+	\left|
+	\begin{matrix}
+		E_r&0\\
+		0&0
+	\end{matrix}
+	\right|=0.
+	\]
+	这样推出 $|A|=0$，矛盾，故 $r(A)=n$，$A$ 可逆。
+\end{proof}
+
+注意，一般来讲 $|A+B|\neq |A|+|B|$。利用上面的公式，例如
+\[
+\begin{aligned}
+	&\det(a_1\xi_1+a_2\xi_2,
+	a_3\xi_3+a_4\xi_4)\\
+	&=\det(a_1\xi_1,
+	a_3\xi_3+a_4\xi_4)
+	+\det(a_2\xi_2,
+	a_3\xi_3+a_4\xi_4)\\
+	&=\det(a_1\xi_1,a_3\xi_3)
+	+\det(a_1\xi_1,a_4\xi_4)
+	+\det(a_2\xi_2,a_3\xi_3)
+	+\det(a_2\xi_2,a_4\xi_4).
+\end{aligned}
+\]
+
+\begin{proposition}\label{3.7.10}
+	设 $A,B\in M_n(\F)$，则
+	\begin{enumerate}
+		\item $|kA|=k^n|A|$；
+		\item $|AB|=|A||B|$；
+		\item $|A^{-1}|=|A|^{-1}$；
+		\item $|A^k|=|A|^k$。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	$1$ 由 \ref{3.7.6} 可得。
+	$3,4$ 由 $2$ 得。这里采用扰动法证明 $2$。
+	
+	若 $A$ 可逆，则 $A=P_1\cdots P_s$，其中 $P_1,\cdots,P_s$ 是初等阵。那么
+	\[
+	\begin{aligned}
+		|AB|&=|P_1\cdots P_sB|\\
+		&=|P_1|\cdots|P_s||B|\\
+		&=|P_1\cdots P_s||B|\\
+		&=|A||B|.
+	\end{aligned}
+	\]
+	若 $A$ 不可逆，断言存在 $t$，使 $tE_n+A$ 可逆。
+	考虑
+	\[
+	f(t)=|tE_n+A|
+	\]
+	是一个首一的非零多项式，那么 $f(t)$ 只有有限多个零点，则存在 $t$，使 $|tE_n+A|\neq0$，此时 $tE_n+A$ 可逆。
+	取无穷小量 $t$，使 $tE_n+A$ 可逆，从而
+	\[
+	|(tE_n+A)B|=|tE_n+A||B|.
+	\]
+	令 $t\to0$，得
+	\[
+	|AB|=|A||B|.
+	\]
+\end{proof}
+
+用行列式的语言，重新考虑线性齐次方程组的解，有
+\[
+Ax=0\quad\text{且}\quad A\in M_n(\F)
+\quad\text{有非平凡解}\quad\Longleftrightarrow\quad |A|=0.
+\]
+
+\begin{corollary}\label{3.7.11}
+	设 $A\in M_{m\times n}(\F)$，$B\in M_{n\times m}(\F)$，且 $m\neq n$，则 $|AB|$ 与 $|BA|$ 中至少有一个是 $0$。
+\end{corollary}
+
+\begin{proof}
+	若 $m<n$，则 $BA\in M_n(\F)$，并且
+	\[
+	r(BA)\leq\min\{m,n\}=m<n.
+	\]
+	故 $BA$ 不满秩，从而 $|BA|=0$。
+	$m>n$ 同理。
+\end{proof}
+
+定义
+\[
+SL_n(\F):=\{A\in M_n(\F):\det A=1\},
+\]
+\phantomsection\label{p1:concept:c3-l2291}称为 $n$ 阶特殊线性群，在抽象代数中进一步介绍。
+
+关于扰动法，这里再指出一例。
+\begin{example}
+	对任意 $X,Y\in M_n(\F)$，证明
+	\[
+	|E_n-XY|=|E_n-YX|.
+	\]
+\end{example} 
+
+\begin{proof}
+	若 $X$ 可逆，则
+	\[
+	E_n-XY=X(X^{-1}-Y),
+	\]
+	且
+	\[
+	E_n-YX=(X^{-1}-Y)X.
+	\]
+	那么
+	\[
+	|E_n-XY|=|X||X^{-1}-Y|=|X^{-1}-Y||X|=|E_n-YX|.
+	\]
+	若 $X$ 不可逆，考虑
+	\[
+	X_t=X+tE_n.
+	\]
+	总存在 $t$ 使 $X_t$ 可逆，那么
+	\[
+	|E_n-(X+tE_n)Y|=|E_n-Y(X+tE_n)|.
+	\]
+	令 $t\to0$，得
+	\[
+	|E_n-XY|=|E_n-YX|.
+	\]
+\end{proof}
+
+
+\section{Laplace 定理}
+
+\begin{definition}\label{3.8.1}\phantomsection\label{p1:concept:c3-l2331}
+	设 $A\in M_n(\F)$，$n>1$。对 $A(i,j)$，把 $|A|$ 划去第 $i$ 行、第 $j$ 列留下的 $n-1$ 阶行列式记为 $M_{ij}$，称为 $A(i,j)$ 的余子式；称
+	\[
+	(-1)^{i+j}M_{ij}
+	\]
+	为 $A(i,j)$ 的代数余子式，记为 $C_{ij}$。
+\end{definition}
+
+\begin{theorem}(Laplace 定理的展开式形式)\label{3.8.2}
+	对任意 $A\in M_n(\F)$，有
+	\[
+	\begin{aligned}
+		\text{任取第 }i\text{ 行，}
+		\quad |A|&=A(i,1)C_{i1}+\cdots+A(i,n)C_{in},\\
+		\text{任取第 }j\text{ 列，}
+		\quad |A|&=A(1,j)C_{1j}+\cdots+A(n,j)C_{nj}.
+	\end{aligned}
+	\]
+\end{theorem}
+
+\begin{proof}
+	只证第 $i$ 行的情况。由定义，
+	\[
+	\begin{aligned}
+		|A|
+		&=\sum_{ j_1\cdots  j_n\in S_n}
+		(-1)^{\tau( j_1\cdots j_n)}
+		A(1, j_1)\cdots A(i-1, j_{i-1})A(i, j_i)A(i+1, j_{i+1})\cdots A(n, j_n)\\
+		&=\sum_{k=1}^{n}A(i,k)
+		\sum_{ j_1\cdots j_{i-1} j_{i+1}\cdots j_n\in S_{n,k}}
+		(-1)^{\tau( j_1\cdots j_{i-1}k j_{i+1}\cdots j_n)}\\
+		&\qquad\qquad\cdot
+		A(1, j_1)\cdots A(i-1, j_{i-1})A(i+1, j_{i+1})\cdots A(n, j_n),
+	\end{aligned}
+	\]
+	其中
+	\[
+	S_{n,k}=\{1,2,\ldots,k-1,k+1,\ldots,n\}
+	\]
+	是$n-1$ 元排列。
+	比较
+	\[
+	(-1)^{\tau( j_1\cdots j_{i-1}k j_{i+1}\cdots j_n)}
+	\quad\text{与}\quad
+	(-1)^{\tau( j_1\cdots j_{i-1} j_{i+1}\cdots j_n)}.
+	\]
+	把 $k$ 对换到首位，需要 $i-1$ 次，故
+	\[
+	\begin{aligned}
+		(-1)^{\tau( j_1\cdots j_{i-1}k j_{i+1}\cdots j_n)}
+		&=(-1)^{i-1}(-1)^{\tau(k j_1\cdots j_{i-1} j_{i+1}\cdots j_n)}\\
+		&=(-1)^{i-1}(-1)^{k-1}
+		(-1)^{\tau( j_1\cdots j_{i-1} j_{i+1}\cdots j_n)}\\
+		&=(-1)^{i+k}
+		(-1)^{\tau( j_1\cdots j_{i-1} j_{i+1}\cdots j_n)}.
+	\end{aligned}
+	\]
+	这样
+	\[
+	|A|=\sum_{k=1}^{n}A(i,k)C_{ik}.
+	\]
+	列的情况同理。
+\end{proof}
+\begin{example}
+	（Vandermonde 行列式）设
+	\[
+	V(x_1,\cdots,x_n)=
+	\begin{vmatrix}
+		1&1&\cdots&1\\
+		x_1&x_2&\cdots&x_n\\
+		x_1^2&x_2^2&\cdots&x_n^2\\
+		\vdots&\vdots&\ddots&\vdots\\
+		x_1^{n-1}&x_2^{n-1}&\cdots&x_n^{n-1}
+	\end{vmatrix}.
+	\]当 $n>2$ 时，
+	\[
+	V(x_1,\cdots,x_n)\neq0
+	\quad\Longleftrightarrow\quad
+	x_1,\cdots,x_n\text{ 互不相同}.
+	\]
+	事实上，
+	\[
+	\begin{aligned}
+		V(x_1,\cdots,x_n)
+		&=
+		\begin{vmatrix}
+			1&1&\cdots&1\\
+			x_1&x_2&\cdots&x_n\\
+			\vdots&\vdots&\ddots&\vdots\\
+			x_1^{n-1}&x_2^{n-1}&\cdots&x_n^{n-1}
+		\end{vmatrix}\\
+		&=
+		\begin{vmatrix}
+			1&1&\cdots&1\\
+			0&x_2-x_1&\cdots&x_n-x_1\\
+			\vdots&\vdots&\ddots&\vdots\\
+			0&x_2^{n-1}-x_1x_2^{n-2}&\cdots&x_n^{n-1}-x_1x_n^{n-2}
+		\end{vmatrix}\\
+		&=
+		\begin{vmatrix}
+			x_2-x_1&x_3-x_1&\cdots&x_n-x_1\\
+			x_2^2-x_1x_2&x_3^2-x_1x_3&\cdots&x_n^2-x_1x_n\\
+			\vdots&\vdots&\ddots&\vdots\\
+			x_2^{n-1}-x_1x_2^{n-2}&x_3^{n-1}-x_1x_3^{n-2}&\cdots&x_n^{n-1}-x_1x_n^{n-2}
+		\end{vmatrix}\\
+		&=(x_2-x_1)\cdots(x_n-x_1)
+		\begin{vmatrix}
+			1&1&\cdots&1\\
+			x_2&x_3&\cdots&x_n\\
+			\vdots&\vdots&\ddots&\vdots\\
+			x_2^{n-2}&x_3^{n-2}&\cdots&x_n^{n-2}
+		\end{vmatrix}\\
+		&=(x_2-x_1)\cdots(x_n-x_1)V(x_2,\cdots,x_n)\\
+		&=\prod_{i<j}(x_j-x_i).
+	\end{aligned}
+	\]
+\end{example}
+
+
+\begin{corollary}\label{3.8.4}
+	设 $A=(a_{ij})\in M_n(\F)$，任取 $A$ 的第 $i$ 行，则对任意 $k_1,\cdots,k_n$ 有
+	\[
+	k_1C_{i1}+\cdots+k_nC_{in}
+	=
+	\begin{vmatrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&&\vdots\\
+		a_{i-1,1}&\cdots&a_{i-1,n}\\
+		k_1&\cdots&k_n\\
+		a_{i+1,1}&\cdots&a_{i+1,n}\\
+		\vdots&&\vdots\\
+		a_{n1}&\cdots&a_{nn}
+	\end{vmatrix}.
+	\]
+	对列形式同理。
+\end{corollary}
+
+\begin{corollary}\label{3.8.5}
+	在 $|A|$ 中，$n>2$，取第 $i,j$ 行，有
+	\[
+	\bigl(A(i,1)\ \cdots\ A(i,n)\bigr)
+	\begin{pmatrix}
+		C_{j1}\\
+		\vdots\\
+		C_{jn}
+	\end{pmatrix}
+	=\delta_{ij}|A|.
+	\]
+\end{corollary}
+
+\begin{definition}\label{3.8.6}\phantomsection\label{p1:concept:c3-l2481}
+	对 $A\in M_n(\F)$，其伴随矩阵 $A^*$ 定义为
+	\[
+	A^*(i,j)=C_{ji}.
+	\]
+	也即
+	\[
+	A=\begin{pmatrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&\ddots&\vdots\\
+		a_{n1}&\cdots&a_{nn}
+	\end{pmatrix}
+	\quad\Longrightarrow\quad
+	A^*=\begin{pmatrix}
+		C_{11}&\cdots&C_{n1}\\
+		\vdots&\ddots&\vdots\\
+		C_{1n}&\cdots&C_{nn}
+	\end{pmatrix}.
+	\]
+\end{definition}
+
+\begin{theorem}[Laplace 定理的矩阵形式]\label{3.8.7}
+	\[
+	A^*A=AA^*=|A|E_n.
+	\]
+\end{theorem}
+
+\begin{proof}
+	由 \ref{3.8.5}，取 $i=j$ 即得 $AA^*=|A|E_n$，用 \ref{3.8.5} 相应的列形式，即得 $A^*A=|A|E_n$。
+	
+	
+\end{proof}
+当 $A$ 可逆时，
+\[
+A^{-1}=A^*|A|^{-1}.
+\]
+考虑 $|A^*|$，由 $A^*A=|A|E_n$，得
+\[
+|A^*||A|=|A|^n,
+\qquad |A^*|=|A|^{n-1}.
+\]
+\begin{proposition}\label{3.8.8}
+	设 $A\in M_n(\F)$，则
+	\[
+	r(A^*)=
+	\begin{cases}
+		n, & r(A)=n,\\
+		1, & r(A)=n-1,\\
+		0, & r(A)<n-1.
+	\end{cases}
+	\]
+\end{proposition}
+
+\begin{proof}
+	当 $r(A)=n$ 时，$r(A^{-1})=n$，由 $A^{-1}=A^*|A|^{-1}$，故 $r(A^*)=n$。
+	当 $r(A)<n$ 时，由 $AA^*=0$，从而由 \ref{3.5.5} 有
+	\[
+	r(A)+r(A^*)\leq n.
+	\]
+	若 $r(A)=n-1$，则 $r(A^*)\leq1$，而 $A^*$ 不是零矩阵，故 $r(A^*)=1$。
+	若 $r(A)<n-1$，则 $A^*=0$，故 $r(A^*)=0$。
+\end{proof}
+
+\begin{definition}\label{3.8.9}\phantomsection\label{p1:concept:c3-l2544}
+	取
+	\[
+	i_1<\cdots<i_k,
+	\qquad
+	j_1<\cdots<j_k.
+	\]
+	用
+	\[
+	A(i_1,\cdots,i_k\mid j_1,\cdots,j_k)
+	\]
+	表示取出 $A$ 的 $(i_p,j_q)$ 元构成的矩阵，称为 $A$ 的子矩阵。
+\end{definition}
+
+\begin{theorem}(Laplace 定理的子矩阵形式)\label{3.8.10}
+	设
+	\[
+	i_1<\cdots<i_k,
+	\]
+	则
+	\[
+	\begin{aligned}
+		|A|
+		&=(-1)^{i_1+\cdots+i_k}
+		\sum_{1\leq j_1<\cdots<j_k\leq n}
+		(-1)^{j_1+\cdots+j_k}
+		\left|A(i_1,\cdots,i_k\mid j_1,\cdots,j_k)\right|\\
+		&\qquad\qquad\qquad\cdot
+		\left|A(i'_1,\cdots,i'_{n-k}\mid j'_1,\cdots,j'_{n-k})\right|.
+	\end{aligned}
+	\]
+	其中
+	\[
+	1\leq i'_1<\cdots<i'_{n-k}\in\{1,2,\ldots,n\}\setminus\{i_1,\cdots,i_k\}
+	\]
+	由 $i_1,\cdots,i_k$ 唯一确定，
+	\[
+	1\leq j'_1<\cdots<j'_{n-k}\in\{1,2,\ldots,n\}\setminus\{j_1,\cdots,j_k\}
+	\]
+	由 $j_1,\cdots,j_k$ 唯一确定。
+\end{theorem}
+
+下面，考虑分块矩阵的行列式。
+
+\begin{proposition}\label{3.8.11}
+	若 $A,C$ 是方阵，则
+	\[
+	\begin{vmatrix}
+		A&B\\
+		0&C
+	\end{vmatrix}
+	=|A|\,|C|.
+	\]
+\end{proposition}
+
+\begin{proof}
+	当 $A$ 可逆时，
+	\[
+	\begin{pmatrix}
+		A&0\\
+		0&E
+	\end{pmatrix}
+	\begin{pmatrix}
+		E&A^{-1}B\\
+		0&C
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		A&B\\
+		0&C
+	\end{pmatrix},
+	\]
+	即得结论。一般情形可由扰动法得到。
+\end{proof}
+
+更进一步，对准上三角阵，
+\[
+\begin{vmatrix}
+	A_{11}&*&\cdots&*\\
+	0&A_{22}&\cdots&*\\
+	\vdots&\vdots&\ddots&\vdots\\
+	0&0&\cdots&A_{nn}
+\end{vmatrix}
+=|A_{11}|\,|A_{22}|\cdots|A_{nn}|.
+\]
+
+\section{一些应用与习题}
+
+\begin{definition}\label{3.9.1}\phantomsection\label{p1:concept:c3-l2632}
+	设 $A\in M_{m\times n}(\F)$。$A$ 的任意 $s\times s$ 型子矩阵的行列式称为 $A$ 的一个子式。
+	若取行指标 $i_1<\cdots<i_s$，列指标 $j_1<\cdots<j_s$，则相应的 $s$ 阶子式记为
+	\[
+	\left|A(i_1,\cdots,i_s\mid j_1,\cdots,j_s)\right|.
+	\]
+\end{definition}
+
+\begin{proposition}\label{3.9.2}
+	设 $A\in M_{m\times n}(\F)$，则
+	\begin{enumerate}
+		\item $r(A)\geq r\Longleftrightarrow A$ 至少有一个 $r$ 阶子式不为 $0$；
+		\item $r(A)\leq r\Longleftrightarrow A$ 所有阶数大于 $r$ 的子式全为 $0$。
+	\end{enumerate}
+	特别地，
+	\[
+	r(A)=r
+	\Longleftrightarrow
+	A\text{ 至少有一个 }r\text{ 阶子式不为 }0,
+	\text{ 且所有大于 }r\text{ 阶的子式全为 }0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	$1.$ 若 $r(A)\geq r$，则 $A$ 有 $r$ 个线性无关的行
+	\[
+	\beta_{j_1},\cdots,\beta_{j_r}.
+	\]
+	取出子矩阵
+	\[
+	A_1=\begin{pmatrix}
+		\beta_{j_1}\\
+		\vdots\\
+		\beta_{j_r}
+	\end{pmatrix},
+	\]
+	那么 $r(A_1)\geq r$，故 $A_1$ 有 $r$ 个无关的列。设为第 $k_1,\cdots,k_r$ 列，取出
+	\[
+	A(j_1,\cdots,j_r\mid k_1,\cdots,k_r)\in M_r(\F).
+	\]
+	这个矩阵满秩，且是一个方阵，即 $A$ 有一个 $r$ 阶子式不为 $0$。
+	当 $r(A)=r$ 时，$A$ 也至少有一个 $r$ 阶子式不为 $0$。
+	
+	$2.$ 若 $r(A)\leq r$，先考虑 $r(A)<r$。设 $A$ 有一个 $r$ 阶子式不为 $0$，即
+	\[
+	|A_2|=\left|A(j_1,\cdots,j_r\mid k_1,\cdots,k_r)\right|\neq0.
+	\]
+	则 $A_2$ 的行向量无关。对应地，这些行向量是 $A$ 行向量的缩短组，那么 $A$ 的相应行向量无关，即 $r(A)\geq r$，矛盾。
+	故 $r(A)<r$ 时，任意 $r$ 阶子式为 $0$，从而任意大于 $r$ 阶的子式为 $0$。
+	
+	对 $r(A)=r$，取
+	\[
+	A(j_1,\cdots,j_{r+1}\mid k_1,\cdots,k_{r+1})
+	\]
+	的行向量，必然线性相关，其子式为 $0$。从而大于 $r$ 阶的子式为 $0$。
+\end{proof}
+
+在这一命题中，可以再定义 $A$ 的秩 $r(A)$。在一些情况下时有用的：
+\[
+\text{$A$ 的秩 }r(A)\text{ 定义为 $A$ 的非零子式的最高阶数。}
+\]
+
+\begin{proposition}(Cramer 法则)\label{3.9.3}
+	设 $A\in M_n(\F)$ 可逆，则 $Ax=\beta$ 的唯一解为
+	\[
+	x=\frac{1}{|A|}
+	\begin{pmatrix}
+		D_1\\
+		\vdots\\
+		D_n
+	\end{pmatrix},
+	\]
+	其中 $D_j$ 是用 $\beta$ 代替 $A$ 的第 $j$ 列后得到的 $n$ 阶行列式。
+\end{proposition}
+
+\begin{proof}
+	由 $A$ 可逆，$Ax=\beta$ 的唯一解为
+	\[
+	x=A^{-1}\beta
+	=\frac{1}{|A|}A^*\beta.
+	\]
+	设 $\beta=(b_1,\cdots,b_n)^T$，则
+	\[
+	\begin{aligned}
+		x
+		&=\frac{1}{|A|}
+		\begin{pmatrix}
+			C_{11}&C_{21}&\cdots&C_{n1}\\
+			C_{12}&C_{22}&\cdots&C_{n2}\\
+			\vdots&\vdots&\ddots&\vdots\\
+			C_{1n}&C_{2n}&\cdots&C_{nn}
+		\end{pmatrix}
+		\begin{pmatrix}
+			b_1\\
+			\vdots\\
+			b_n
+		\end{pmatrix}\\
+		&=\frac{1}{|A|}
+		\begin{pmatrix}
+			C_{11}b_1+\cdots+C_{n1}b_n\\
+			\vdots\\
+			C_{1n}b_1+\cdots+C_{nn}b_n
+		\end{pmatrix}.
+	\end{aligned}
+	\]
+	由推论 \ref{3.8.4}，上式每一个分量正是用 $\beta$ 替换 $A$ 的相应列后所得的行列式 $D_j$，故
+	\[
+	x=\frac{1}{|A|}
+	\begin{pmatrix}
+		D_1\\
+		\vdots\\
+		D_n
+	\end{pmatrix}.
+	\]
+\end{proof}
+
+\begin{problem}
+ 若一个方阵的每个元素都介于 $0$ 与 $1$ 之间，并且每一行元素之和均为 $1$，则称该方阵为 \textbf{Markov 矩阵}。证明：Markov 矩阵的乘积仍为 Markov 矩阵。
+\end{problem}
+
+\begin{proof}
+	设 $A=(a_{ij})$、$B=(b_{ij})$ 是 $n$ 阶 Markov 矩阵，并令
+	\[
+	C=(c_{ij})=AB.
+	\]
+	固定 $j$，记
+	\[
+	b_j=\max\{b_{kj}:1\leq k\leq n\}\leq1.
+	\]
+	由于 $a_{ik},b_{kj}\geq0$ 且 $\sum_{k=1}^{n}a_{ik}=1$，对任意 $1\leq i,j\leq n$，有
+	\begin{equation}\tag{1}
+		0\leq c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}
+		\leq b_j\sum_{k=1}^{n}a_{ik}=b_j\leq1.
+	\end{equation}
+	另一方面，对任意 $1\leq i\leq n$，交换有限求和的次序可得
+	\begin{equation}\tag{2}
+		\begin{aligned}
+			\sum_{j=1}^{n}c_{ij}
+			&=\sum_{j=1}^{n}\sum_{k=1}^{n}a_{ik}b_{kj}
+			=\sum_{k=1}^{n}a_{ik}\left(\sum_{j=1}^{n}b_{kj}\right)\\
+			&=\sum_{k=1}^{n}a_{ik}=1.
+		\end{aligned}
+	\end{equation}
+	由 $(1),(2)$，$C=AB$ 是 Markov 矩阵。
+\end{proof}
+
+\begin{problem}
+ 设 $A,B$ 为实方阵，且
+	\[
+	A^{T}=A,\qquad B^{T}=-B,\qquad A^{2}=B^{2}.
+	\]
+	证明 $A=B=0$。
+\end{problem}
+
+\begin{proof}
+	令 $C=A^{2}=B^{2}$。对任意 $1\leq i\leq n$，由 $A(i,j)=A(j,i)$，得
+	\begin{equation}\tag{1}
+		C(i,i)=A^{2}(i,i)
+		=\sum_{j=1}^{n}A(i,j)A(j,i)
+		=\sum_{j=1}^{n}A(i,j)^{2}.
+	\end{equation}
+	由 $B(j,i)=-B(i,j)$，得
+	\begin{equation}\tag{2}
+		C(i,i)=B^{2}(i,i)
+		=\sum_{j=1}^{n}B(i,j)B(j,i)
+		=-\sum_{j=1}^{n}B(i,j)^{2}.
+	\end{equation}
+	由 $(1),(2)$，
+	\begin{equation}\tag{3}
+		\sum_{j=1}^{n}A(i,j)^{2}+\sum_{j=1}^{n}B(i,j)^{2}=0.
+	\end{equation}
+	各项均为非负实数，故 $A(i,j)=B(i,j)=0$。于是 $A=B=0$。
+\end{proof}
+
+\begin{problem}
+	\begin{enumerate}
+		\item 设 $f,g:V_1\to V_2$ 为线性映射，并定义
+		\[
+		\operatorname{im}(f)+\operatorname{im}(g)
+		=\{\gamma:\gamma=\alpha+\beta,
+		\ \alpha\in\operatorname{im}(f),\ \beta\in\operatorname{im}(g)\}.
+		\]
+		证明
+		\[
+		\operatorname{im}(f+g)\subseteq
+		\operatorname{im}(f)+\operatorname{im}(g),
+		\qquad
+		\ker f\cap\ker g\subseteq\ker(f+g).
+		\]
+		
+		\item 设 $f:V_1\to V_2$、$g:V_2\to V_3$ 为线性映射。若 $g\circ f=0$，证明
+		\[
+		\operatorname{im}(f)\subseteq\ker g.
+		\]
+	\end{enumerate}
+\end{problem}
+
+\begin{proof}
+	$(1)$ 任取 $\gamma\in\operatorname{im}(f+g)$，则存在 $\alpha\in V_1$，使得
+	\[
+	\gamma=(f+g)(\alpha)=f(\alpha)+g(\alpha)
+	\in\operatorname{im}(f)+\operatorname{im}(g).
+	\]
+	故
+	\[
+	\operatorname{im}(f+g)\subseteq
+	\operatorname{im}(f)+\operatorname{im}(g).
+	\]
+	任取 $\xi\in\ker f\cap\ker g$，则 $f(\xi)=g(\xi)=0$，从而
+	\[
+	(f+g)(\xi)=f(\xi)+g(\xi)=0,
+	\]
+	故 $\xi\in\ker(f+g)$，即
+	\[
+	\ker f\cap\ker g\subseteq\ker(f+g).
+	\]
+	
+	$(2)$ 任取 $\alpha\in\operatorname{im}(f)$，则存在 $\beta\in V_1$，使得 $\alpha=f(\beta)$。由 $g\circ f=0$，
+	\[
+	g(\alpha)=g(f(\beta))=(g\circ f)(\beta)=0.
+	\]
+	因此 $\alpha\in\ker g$，从而
+	\[
+	\operatorname{im}(f)\subseteq\ker g.
+	\]
+\end{proof}
+
+\begin{problem}
+ 设 $A$ 为 $m\times n$ 矩阵，$B$ 为 $n\times\ell$ 矩阵。证明
+	\[
+	r(AB)\geq r(A)+r(B)-n.
+	\]
+\end{problem}
+
+\begin{proof}
+	考虑分块矩阵
+	\[
+	X=\begin{pmatrix}
+		E_n&B\\
+		A&0
+	\end{pmatrix}.
+	\]
+	$A$ 与 $B$ 分别位于互不相交的行、列块中，故
+	\begin{equation}\tag{1}
+		r(X)\geq r(A)+r(B).
+	\end{equation}
+	对 $X$ 作可逆的分块初等变换：
+	\[
+	\begin{aligned}
+		Y
+		&=\begin{pmatrix}
+			E_n&0\\
+			-A&E_m
+		\end{pmatrix}
+		\begin{pmatrix}
+			E_n&B\\
+			A&0
+		\end{pmatrix}
+		\begin{pmatrix}
+			E_n&-B\\
+			0&E_{\ell}
+		\end{pmatrix}\\
+		&=\begin{pmatrix}
+			E_n&0\\
+			0&-AB
+		\end{pmatrix}.
+	\end{aligned}
+	\]
+	左右两个矩阵均可逆，故 $r(Y)=r(X)$。于是
+	\[
+	n+r(AB)=r(Y)=r(X)\geq r(A)+r(B),
+	\]
+	即
+	\[
+	r(AB)\geq r(A)+r(B)-n.
+	\]
+\end{proof}
+
+\begin{problem}
+设
+	\[
+	A=(a_{ij})_{m\times n},\qquad B=(b_{ij})_{s\times t}
+	\]
+	\phantomsection\label{p1:concept:c3-l2915}是数域 $\F$ 上的两个矩阵。定义它们的 \textbf{Kronecker 积}（或张量积）为如下 $ms\times nt$ 分块矩阵：
+	\[
+	A\otimes B=
+	\begin{pmatrix}
+		a_{11}B&\cdots&a_{1n}B\\
+		\vdots&&\vdots\\
+		a_{m1}B&\cdots&a_{mn}B
+	\end{pmatrix}.
+	\]
+	证明：
+	\begin{enumerate}
+		\item 对任意 $k\in\F$，
+		\[
+		(kA)\otimes B=k(A\otimes B),
+		\qquad
+		A\otimes(kB)=k(A\otimes B).
+		\]
+		
+		\item
+		\[
+		(A\otimes B)^T=A^T\otimes B^T,
+		\]
+		但一般并没有 $A\otimes B=B\otimes A$。
+		
+		\item 当矩阵乘法有意义时，
+		\[
+		(A\otimes B)(C\otimes D)=AC\otimes BD.
+		\]
+		
+		\item 若 $A,B$ 均可逆，则 $A\otimes B$ 可逆，且
+		\[
+		(A\otimes B)^{-1}=A^{-1}\otimes B^{-1}.
+		\]
+		
+		\item 若 $A$ 为 $n\times n$ 矩阵，$B$ 为 $m\times m$ 矩阵，则
+		\[
+		\det(A\otimes B)=(\det A)^m(\det B)^n.
+		\]
+	\end{enumerate}
+\end{problem}
+
+\begin{proof}
+	$(1)$ 由分块矩阵的定义直接得到。
+	
+	$(2)$ 将 $A\otimes B$ 的第 $(i,j)$ 个块 $a_{ij}B$ 转置后，位于第 $(j,i)$ 个块，且
+	\[
+	(a_{ij}B)^T=a_{ij}B^T,
+	\]
+	故 $(A\otimes B)^T=A^T\otimes B^T$。一般交换律不成立。例如
+	\[
+	A=\begin{pmatrix}1&0\\0&0\end{pmatrix},
+	\qquad
+	B=\begin{pmatrix}0&1\\0&0\end{pmatrix},
+	\]
+	则 $A\otimes B$ 的非零元位于第 $(1,2)$ 个位置，而 $B\otimes A$ 的非零元位于第 $(1,3)$ 个位置，故二者不相等。
+	
+	$(3)$ 设 $A=(a_{ij})$、$C=(c_{jk})$。乘积的第 $(i,k)$ 个块为
+	\[
+	\sum_j(a_{ij}B)(c_{jk}D)
+	=\left(\sum_j a_{ij}c_{jk}\right)BD,
+	\]
+	这正是 $AC\otimes BD$ 的第 $(i,k)$ 个块。
+	
+	$(4)$ 由 $(3)$，
+	\[
+	(A\otimes B)(A^{-1}\otimes B^{-1})
+	=E_n\otimes E_m=E_{nm},
+	\]
+	反向乘积同理，故结论成立。
+	
+	$(5)$ 由 $(3)$，
+	\[
+	A\otimes B=(A\otimes E_m)(E_n\otimes B).
+	\]
+	其中 $E_n\otimes B$ 是含有 $n$ 个对角块 $B$ 的分块对角阵，故
+	\[
+	\det(E_n\otimes B)=(\det B)^n.
+	\]
+	又存在一个置换矩阵 $P$，使得
+	\[
+	P^{-1}(A\otimes E_m)P=E_m\otimes A.
+	\]
+	因此
+	\[
+	\det(A\otimes E_m)=\det(E_m\otimes A)=(\det A)^m.
+	\]
+	两式相乘即得
+	\[
+	\det(A\otimes B)=(\det A)^m(\det B)^n.
+	\]
+\end{proof}
+
+\begin{problem}
+设 $A,B$ 为 $n\times n$ 矩阵。若 $E_n+AB$ 可逆，证明 $E_n+BA$ 也可逆，并且
+	\[
+	(E_n+BA)^{-1}=E_n-B(E_n+AB)^{-1}A.
+	\]
+\end{problem}
+
+\begin{proof}
+	记
+	\[
+	X=E_n-B(E_n+AB)^{-1}A.
+	\]
+	则
+	\[
+	\begin{aligned}
+		(E_n+BA)X
+		&=E_n-B(E_n+AB)^{-1}A+BA
+		-BAB(E_n+AB)^{-1}A\\
+		&=E_n+BA
+		-B\bigl((E_n+AB)^{-1}+AB(E_n+AB)^{-1}\bigr)A\\
+		&=E_n+BA
+		-B\bigl((E_n+AB)(E_n+AB)^{-1}\bigr)A\\
+		&=E_n+BA-BE_nA\\
+		&=E_n.
+	\end{aligned}
+	\]
+	因此 $X$ 是方阵 $E_n+BA$ 的左逆，故 $E_n+BA$ 可逆，且
+	\[
+	(E_n+BA)^{-1}=X
+	=E_n-B(E_n+AB)^{-1}A.
+	\]
+\end{proof}
+
+
+形式上，考虑
+\[\begin{aligned}
+	(1+ba)^{-1}&=1-(ba)+(ba)^2-(ba)^3+\cdots\\
+	&=1-ba+b(ab)a-b(ab)^2a+\cdots\\
+	&=1-b(1-ab+(ab)^2+\cdots)a\\
+	&=1-b(1+ab)^{-1}a
+\end{aligned}  \]
+可以猜到上面的公式
+
+\begin{problem}
+设 $A,B$ 为方阵，且 $A,B,AB-E_n$ 均可逆。证明 $A-B^{-1}$ 与
+	\[
+	(A-B^{-1})^{-1}-A^{-1}
+	\]
+	均可逆，并且
+	\[
+	\left((A-B^{-1})^{-1}-A^{-1}\right)^{-1}=ABA-A.
+	\]
+\end{problem}
+
+\begin{proof}
+	由
+	\[
+	(A-B^{-1})B=AB-E_n
+	\]
+	以及 $B$、$AB-E_n$ 均可逆，知 $A-B^{-1}$ 可逆。对上式两边取逆，得
+	\[
+	B^{-1}(A-B^{-1})^{-1}=(AB-E_n)^{-1},
+	\]
+	从而
+	\[
+	(A-B^{-1})^{-1}=B(AB-E_n)^{-1}.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		&\left((A-B^{-1})^{-1}-A^{-1}\right)(ABA-A)\\
+		&\quad=\left(B(AB-E_n)^{-1}-A^{-1}\right)(AB-E_n)A\\
+		&\quad=B(AB-E_n)^{-1}(AB-E_n)A
+		-A^{-1}(AB-E_n)A\\
+		&\quad=BA-(B-A^{-1})A\\
+		&\quad=E_n.
+	\end{aligned}
+	\]
+	故 $(A-B^{-1})^{-1}-A^{-1}$ 可逆，且其逆矩阵为 $ABA-A$。
+\end{proof}
+
+\begin{problem}
+设
+	\[
+	P_1=(a_1,a_2),\qquad P_2=(b_1,b_2)
+	\]
+	是实平面 $\R^2$ 中与原点 $O$ 不共线的两点。设 $\varphi$ 是由 $P_1,P_2,O$ 确定的平行四边形。证明 $\varphi$ 的面积等于行列式
+	\[
+	\begin{vmatrix}
+		a_1&a_2\\
+		b_1&b_2
+	\end{vmatrix}
+	\]
+	的绝对值，并将此结论推广到 $\R^n\ (n>2)$。
+\end{problem}
+
+\begin{proof}
+	设 $\alpha$ 为 $\overrightarrow{OP_1}$ 与 $\overrightarrow{OP_2}$ 的夹角。由余弦定理与内积公式，平行四边形的面积 $S$ 为
+	\[
+	\begin{aligned}
+		S
+		&=\lVert\overrightarrow{OP_1}\rVert
+		\lVert\overrightarrow{OP_2}\rVert\sin\alpha\\
+		&=\sqrt{
+			\lVert\overrightarrow{OP_1}\rVert^2
+			\lVert\overrightarrow{OP_2}\rVert^2
+			-(\overrightarrow{OP_1}\cdot\overrightarrow{OP_2})^2}\\
+		&=\sqrt{(a_1^2+a_2^2)(b_1^2+b_2^2)
+			-(a_1b_1+a_2b_2)^2}\\
+		&=\sqrt{(a_1b_2-a_2b_1)^2}\\
+		&=|a_1b_2-a_2b_1|\\
+		&=\left|
+		\begin{vmatrix}
+			a_1&a_2\\
+			b_1&b_2
+		\end{vmatrix}
+		\right|.
+	\end{aligned}
+	\]
+	
+	一般地，设 $\alpha_i=(a_{i1},\ldots,a_{in})\in\R^n$，$1\leq i\leq n$，并令 $M=(a_{ij})$。由 Gram--Schmidt 正交化，$\alpha_1,\ldots,\alpha_n$ 张成的平行多面体体积满足
+	\[
+	V^2=\det(MM^T)=(\det M)^2.
+	\]
+	因此
+	\[
+	V=|\det M|.
+	\]
+	当 $n=3$ 时，这就是由三个向量张成的平行六面体体积公式。
+\end{proof}
+
+\begin{problem}
+设 $A$ 为奇数阶方阵。证明
+	\[
+	\det(A-A^T)=0.
+	\]
+\end{problem}
+
+\begin{proof}
+	令 $X=A-A^T$，则 $X^T=-X$，即 $X$ 为反对称矩阵。若 $X$ 为 $n$ 阶且 $n$ 为奇数，则
+	\[
+	\det X=\det X^T=\det(-X)=(-1)^n\det X=-\det X.
+	\]
+	故 $\det X=0$，从而
+	\[
+	\det(A-A^T)=0.
+	\]
+\end{proof}
+
+\begin{problem}
+令
+	\[
+	s_k=x_1^k+x_2^k+\cdots+x_n^k,
+	\qquad x_i\in\Z,\quad k\geq0,
+	\]
+	并设
+	\[
+	A=\begin{pmatrix}
+		s_0&s_1&s_2&\cdots&s_{n-1}\\
+		s_1&s_2&s_3&\cdots&s_n\\
+		s_2&s_3&s_4&\cdots&s_{n+1}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		s_{n-1}&s_n&s_{n+1}&\cdots&s_{2n-2}
+	\end{pmatrix}.
+	\]
+	证明
+	\[
+	\det A=\prod_{1\leq i<j\leq n}(x_i-x_j)^2.
+	\]
+\end{problem}
+
+\begin{proof}
+	考虑 Vandermonde 矩阵
+	\[
+	V(x_1,x_2,\ldots,x_n)
+	=\begin{pmatrix}
+		1&1&\cdots&1\\
+		x_1&x_2&\cdots&x_n\\
+		\vdots&\vdots&\ddots&\vdots\\
+		x_1^{n-1}&x_2^{n-1}&\cdots&x_n^{n-1}
+	\end{pmatrix}.
+	\]
+	由 $s_k=\sum_{j=1}^{n}x_j^k$，逐项计算可得
+	\[
+	A=V(x_1,\ldots,x_n)V(x_1,\ldots,x_n)^T.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		\det A
+		&=\det\bigl(VV^T\bigr)\\
+		&=(\det V)^2\\
+		&=\prod_{1\leq i<j\leq n}(x_i-x_j)^2.
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{problem}
+设可逆矩阵 $A$ 的每一行元素之和均为 $k$。证明：$A^{-1}$ 的每一行元素之和均为 $1/k$。
+\end{problem}
+
+\begin{proof}
+	令
+	\[
+	\delta=(1,1,\ldots,1)^T\in\F^n.
+	\]
+	对任意矩阵 $B=(b_{ij})_{n\times n}$，向量 $B\delta$ 的第 $i$ 个分量正是 $B$ 的第 $i$ 行元素之和。因此，$A$ 的各行元素之和均为 $k$ 等价于
+	\[
+	A\delta=k\delta.
+	\]
+	因为 $A$ 可逆且 $\delta\neq0$，必有 $k\neq0$。在等式两边左乘 $A^{-1}$，得
+	\[
+	\delta=kA^{-1}\delta,
+	\qquad\text{即}
+	\qquad
+	A^{-1}\delta=\frac1k\delta.
+	\]
+	这表明 $A^{-1}$ 的每一行元素之和均为 $1/k$。
+\end{proof}
+
+\begin{problem}
+	\textbf{分块行列式公式.}\quad 设 $A,B,C,D$ 均为同阶方阵。若 $A$ 可逆且 $AC=CA$，证明
+	\[
+	\begin{vmatrix}
+		A&B\\
+		C&D
+	\end{vmatrix}
+	=\det(AD-CB).
+	\]
+\end{problem}
+
+\begin{proof}
+	对分块矩阵作可逆的分块初等行变换：
+	\[
+	\begin{pmatrix}
+		E_n&0\\
+		-CA^{-1}&E_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		A&B\\
+		C&D
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		A&B\\
+		0&D-CA^{-1}B
+	\end{pmatrix}.
+	\]
+	左侧第一个矩阵的行列式为 $1$，故
+	\begin{equation}\tag{1}
+		\begin{vmatrix}
+			A&B\\
+			C&D
+		\end{vmatrix}
+		=\det A\,\det(D-CA^{-1}B).
+	\end{equation}
+	由 $AC=CA$ 及 $A$ 可逆，得 $ACA^{-1}=C$。于是
+	\begin{equation}\tag{2}
+		\begin{aligned}
+			\det A\,\det(D-CA^{-1}B)
+			&=\det\bigl(A(D-CA^{-1}B)\bigr)\\
+			&=\det(AD-ACA^{-1}B)\\
+			&=\det(AD-CB).
+		\end{aligned}
+	\end{equation}
+	由 $(1),(2)$ 即得结论。
+\end{proof}
+
+\begin{remark}
+	若在相应的交换条件下需要处理不可逆情形，可考虑以 $A+tE_n$ 代替 $A$，先对除有限个 $t$ 之外的情形应用上述公式，再利用行列式关于 $t$ 的多项式恒等性令 $t\to0$。
+\end{remark}
+
+\begin{problem}
+ 设 $n,m\geq1$，且
+	\[
+	f(x)=a_0x^n+a_1x^{n-1}+\cdots+a_n,
+	\qquad
+	g(x)=b_0x^m+b_1x^{m-1}+\cdots+b_m,
+	\]
+	\phantomsection\label{p1:concept:c3-l3286}其中 $a_0b_0\neq0$。定义 $f,g$ 的结式矩阵为如下 $(m+n)\times(m+n)$ 矩阵：
+	\[
+	R(f,g)=
+	\begin{pmatrix}
+		a_0&a_1&\cdots&a_n&0&\cdots&0\\
+		0&a_0&a_1&\cdots&a_n&\ddots&\vdots\\
+		\vdots&\ddots&\ddots&\ddots&&\ddots&0\\
+		0&\cdots&0&a_0&a_1&\cdots&a_n\\[2mm]
+		b_0&b_1&\cdots&b_m&0&\cdots&0\\
+		0&b_0&b_1&\cdots&b_m&\ddots&\vdots\\
+		\vdots&\ddots&\ddots&\ddots&&\ddots&0\\
+		0&\cdots&0&b_0&b_1&\cdots&b_m
+	\end{pmatrix},
+	\]
+	其中上面由 $f$ 的系数组成的移位行共有 $m$ 行，下面由 $g$ 的系数组成的移位行共有 $n$ 行。证明：$f,g$ 互素，当且仅当 $R(f,g)$ 可逆。
+\end{problem}
+
+\begin{proof}
+	记 $d=(f,g)$。若 $f,g$ 不互素，则 $\deg d>0$。令
+	\[
+	f_1(x)=\frac{f(x)}{d(x)},
+	\qquad
+	g_1(x)=\frac{g(x)}{d(x)}.
+	\]
+	则
+	\[
+	f_1(x)g(x)=g_1(x)f(x),
+	\]
+	且
+	\[
+	\deg f_1<n,
+	\qquad
+	\deg g_1<m.
+	\]
+	把 $f_1,g_1$ 的系数依次排成列向量，比较上式两边各次幂的系数，即得到一个以 $R(f,g)^T$ 为系数矩阵的非零齐次解。因此 $R(f,g)$ 不可逆。
+	
+	反之，若 $R(f,g)$ 不可逆，则存在不全为零的多项式 $u,v$，满足
+	\[
+	\deg u<m,
+	\qquad
+	\deg v<n,
+	\qquad
+	u(x)f(x)+v(x)g(x)=0.
+	\]
+	这里的等式正是齐次方程组
+	\[
+	R(f,g)^T
+	\begin{pmatrix}
+		\text{$u$ 的系数}\\
+		\text{$v$ 的系数}
+	\end{pmatrix}=0
+	\]
+	所表达的系数关系。若 $f,g$ 互素，则由 $f\mid vg$ 可得 $f\mid v$。但 $\deg v<n=\deg f$，故 $v=0$；再由 $uf=0$ 得 $u=0$，与二者不全为零矛盾。因此 $f,g$ 不互素。
+	
+	综上，$f,g$ 互素当且仅当 $R(f,g)$ 可逆。
+\end{proof}
+

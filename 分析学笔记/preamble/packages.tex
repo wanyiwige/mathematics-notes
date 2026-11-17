@@ -1,0 +1,30 @@
+% preamble/packages.tex
+\usepackage{ctex}
+\usepackage{lipsum}
+\usepackage{amsmath, amsthm, amssymb, amsfonts,mathrsfs}
+\usepackage{enumitem}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{yhmath}
+% 章节编号会在每个 Part 开始时重置；将 Part 编号纳入 PDF 锚点，
+% 避免 Part 2/3 的 chapter.1、section.1.1 等目标与 Part 1 重名。
+\renewcommand*{\theHchapter}{\thepart.\arabic{chapter}}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-cd}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{listings}
+\usetikzlibrary{matrix, arrows.meta} % 矩阵和箭头库6
+\usepackage[style=ieee]{biblatex} 
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}

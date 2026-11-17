@@ -1,0 +1,516 @@
+% ============================================================
+%  chapter05.tex — 第五章 无穷远奇点
+%  对应原书第五章。
+%  通过 Poincaré 变换将平面紧化为圆盘，研究无穷远奇点与平面系统的
+%  全局结构，并用无穷远奇点辅助判断极限环的存在性。
+% ============================================================
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{无穷远奇点}
+
+\newcommand{\chFiveFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{2.4cm}图~#1\\（图片占位）\vspace{2.4cm}}}
+  \end{center}%
+}
+
+% ============================================================
+%  §1  Poincare变换
+% ============================================================
+\section{Poincare变换}
+
+为了研究平面动力系统的全局结构，除了分析奇点、闭轨线和分界线外，还必须研究当
+$|x|+|y|\to\infty$ 时轨线的性态，亦即轨线在“无穷远”的性态。而“无穷远”的
+性态往往对分界线的走向和闭轨线的存在性等问题也能提供有用的信息。本章主要讨论
+无穷远奇点，主要讨论多项式系统。参考文献见第二章的~[23]。
+
+\subsection*{\S 1.\quad Poincar\'e 变换}
+
+在三维欧氏空间 $\mathbb{R}^3$ 上作单位球面
+\[
+  \Sigma:\quad X^2+Y^2+Z^2=1.
+\]
+设相平面 $\alpha:(x,y)$ 与 $\Sigma$ 在南极 $S(0,0,-1)$ 相切。对平面
+$\alpha$ 上任一点 $N(x,y)$，联接单位球的中心 $O$ 与 $N$ 的直线必交
+$\Sigma$ 于两对径点 $N'$ 与 $N''$。反之，$\Sigma$ 上任意两个不落在大圆
+$Z=0$, $X^2+Y^2=1$ 上的对径点，它们的联线延长后必交平面 $\alpha$ 于一点。
+大圆 $Z=0$ 称为赤道，记作 $W$。这样，除赤道 $W$ 上的点外，就建立了单位球面
+上的对径点与相平面 $\alpha$ 上的点之间的对应关系；$\alpha$ 上的点 $(x,y)$ 的
+$x^2+y^2$ 越大，它在 $\Sigma$ 上的对应对径点越接近赤道。
+
+我们把赤道 $W$ 上的对径点与 $\alpha$ 上和此对径点联线相平行的方向上的无穷远点
+相对应。这样在相平面 $\alpha$ 上引进无穷多无穷远点后，将它与单位球上对径点
+相对应，这样的单位球叫做 Poincar\'e 球。将单位球面上对径点叠合而得到的流型是
+射影平面；实际上是在相平面 $\alpha$ 上引进无穷多无穷远点，然后使它与射影平面
+相对应。由赤道将单位球面分成两半，因而上述对应也可以看作将相平面 $\alpha$ 映射
+到下半开球，然后使无穷远点与赤道上对径点相对应。
+
+\chFiveFigurePlaceholder{5.1}
+
+设 $X$ 轴与赤道 $W$ 相交于 $C,C'$ 两点，$Y$ 轴与赤道 $W$ 相交于 $D,D'$ 两点。
+作平面 $X=1$ 与 $\Sigma$ 相切于 $C$ 点，将此平面记作 $\alpha^*$。在 $\alpha^*$
+上以 $C$ 为原点引进坐标系 $(u,z)$，$u$ 轴与 $Y$ 轴平行且同向，$z$ 轴与 $Z$ 轴
+平行但方向相反。由三点 $O(0,0,0)$、$N^*(1,u,-z)$、$N(x,y,-1)$ 共线，得
+\[
+  x=\dfrac{1}{z},\qquad y=\dfrac{u}{z}, \tag{1.2}
+\]
+或
+\[
+  u=\dfrac{y}{x},\qquad z=\dfrac{1}{x}. \tag{1.3}
+\]
+同样，为研究 $D,D'$ 附近的情形，在坐标平面 $Y=1$ 上得到
+\[
+  x=\dfrac{v}{z},\qquad y=\dfrac{1}{z}, \tag{1.4}
+\]
+或
+\[
+  v=\dfrac{x}{y},\qquad z=\dfrac{1}{y}. \tag{1.5}
+\]
+变换~(1.2) 与~(1.4) 都叫做 Poincar\'e 变换。
+
+给定平面动力系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=P(x,y),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=Q(x,y). \tag{1.6}
+\]
+经变换~(1.2)，式~(1.6) 化为
+\[
+  \begin{cases}
+    \dfrac{\mathrm{d}u}{\mathrm{d}t}=-uzP\left(\dfrac{1}{z},\dfrac{u}{z}\right)
+      +zQ\left(\dfrac{1}{z},\dfrac{u}{z}\right),\\[4pt]
+    \dfrac{\mathrm{d}z}{\mathrm{d}t}=-z^2P\left(\dfrac{1}{z},\dfrac{u}{z}\right).
+  \end{cases} \tag{A$_1$}
+\]
+当 $z\ne0$ 时，方程组 $(A_1)$ 在 $\alpha^*$ 平面上确定的轨线是方程组~(1.6)
+在相平面 $\alpha$ 上确定的轨线的投影。设 $P,Q$ 是 $x,y$ 的不可约多项式，将
+$(A_1)$ 改写成
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}t}=\dfrac{P^*(u,z)}{z^n},\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}t}=\dfrac{Q^*(u,z)}{z^n}, \tag{A$_2$}
+\]
+其中 $P^*,Q^*$ 是不可约多项式，$n$ 为非负整数。作时间变换
+\[
+  \mathrm{d}\tau=\dfrac{\mathrm{d}t}{z^n},
+\]
+即得在 $z=0$ 上有定义的系统
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}\tau}=P^*(u,z),\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=Q^*(u,z). \tag{A$_3$}
+\]
+当 $n$ 为奇数时，用 $(A_3)$ 替代 $(A_2)$ 后，在 $z<0$ 半平面上轨线走向恰好相反。
+赤道 $W$ 上除 $D,D'$ 外的奇点对应于 $(A_3)$ 在 $u$ 轴上的奇点，亦即
+\[
+  P^*(u,0)=0,\qquad Q^*(u,0)=0.
+\]
+当 $P,Q$ 不可约时，$P^*,Q^*$ 也不可约，故赤道 $W$ 上只有有限个奇点。
+
+经变换~(1.4)，同理可得
+\[
+  \begin{cases}
+    \dfrac{\mathrm{d}v}{\mathrm{d}t}=zP\left(\dfrac{v}{z},\dfrac{1}{z}\right)
+      -zvQ\left(\dfrac{v}{z},\dfrac{1}{z}\right),\\[4pt]
+    \dfrac{\mathrm{d}z}{\mathrm{d}t}=-z^2Q\left(\dfrac{v}{z},\dfrac{1}{z}\right),
+  \end{cases} \tag{B$_1$}
+\]
+并经相应的时间变换得到
+\[
+  \dfrac{\mathrm{d}v}{\mathrm{d}\tau}=\widehat P(v,z),\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=\widehat Q(v,z). \tag{B$_3$}
+\]
+系统 $(A_3)$、$(B_3)$ 可以用来研究整个赤道 $W$ 附近的图形。将下半开球垂直投影到
+相平面 $\alpha$ 上以 $S$ 为中心的单位圆周 $\Gamma$ 的内部，记作 $\overline K$，便
+得到原平面系统的一个紧化模型。
+
+\chFiveFigurePlaceholder{5.2}
+\chFiveFigurePlaceholder{5.3}
+
+上述讨论可归结为如下步骤：
+
+\begin{enumerate}
+  \item 作 Poincar\'e 变换 $x=1/z$, $y=u/z$，把系统化为 $(A_3)$；求 $z=0$ 上
+  的全部奇点，并讨论每个奇点的性质。
+  \item 求出每个 $B(u,0)$ 在 $\overline K$ 上的对径对应点；当所取幂次为奇数时，
+  将 $z\le0$ 一侧映到圆盘时轨线走向须翻转。
+  \item 再作变换 $x=v/z$, $y=1/z$，讨论点 $D(0,0)$ 及其半邻域；在幂次为奇数时
+  同样要翻转一侧轨线的走向。
+\end{enumerate}
+
+\begin{example}{无穷远奇点}{ch5-1-1}
+求系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=x(3-x-ny),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=y(-1+x+y),\quad n>3 \tag{1.7}
+\]
+的无穷远奇点。
+\end{example}
+\begin{solution}
+作变换 $x=1/z$, $y=u/z$，再令 $\mathrm{d}\tau=\mathrm{d}t/z$，得
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}\tau}=2u-4uz+(n+1)u^2,\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=z+nzu-3z^2. \tag{1.9}
+\]
+在 $z=0$ 上有奇点 $C(0,0)$ 及 $B\bigl(-2/(n+1),0\bigr)$，其中 $C$ 是不稳定结点，
+$B$ 是稳定结点。再以 $x=v/z$, $y=1/z$ 变换，得
+\[
+  \dfrac{\mathrm{d}v}{\mathrm{d}\tau}=-(n+1)v+4zv-2v^2,\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=-z-vz+z^2. \tag{1.11}
+\]
+在该坐标平面上 $D(0,0)$ 为稳定结点。由时间变换及赤道 $z=0$ 是系统~(1.9) 的
+解，便得到 $\overline K$ 边界附近的图形。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.4}
+
+\begin{example}{四次系统}{ch5-1-2}
+求系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=2x(1+x^2-2y^2),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-y(1-4x^2+3y^2) \tag{1.12}
+\]
+的无穷远奇点。
+\end{example}
+\begin{solution}
+在 $x=1/z$, $y=u/z$ 坐标中，令 $\mathrm{d}\tau=\mathrm{d}t/z^2$，得到
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}\tau}=2u-3uz^2+u^3,\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=-2z+4zu^2-2z^3. \tag{1.14}
+\]
+$z=0$ 上的唯一奇点 $C(0,0)$ 是鞍点。作第二个 Poincar\'e 变换可得 $D(0,0)$
+也是鞍点；据此给出 $\Gamma$ 附近的图形。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.5}
+
+\begin{example}{赤道不是轨线的情形}{ch5-1-3}
+求系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=x^2y+x+y,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=xy^2+x-y \tag{1.17}
+\]
+的无穷远奇点。
+\end{example}
+\begin{solution}
+作变换并令 $\mathrm{d}\tau=\mathrm{d}t/z$，可得
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}\tau}=z(1-zu-u^2),\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=-u-z^2-uz^2. \tag{1.18}
+\]
+在 $z=0$ 上仅有奇点 $C(0,0)$。再作第二个变换可知 $D(0,0)$ 也是奇点；但除
+$C,D$ 两点外，$z=0$ 上各点的方向都垂直于 $z$ 轴，因此赤道不再由奇点和轨线连成。
+\end{solution}
+
+\begin{example}{没有无穷远奇点的系统}{ch5-1-4}
+求系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=x(x+2y+1),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=y(x+2y-2) \tag{1.19}
+\]
+的无穷远奇点。
+\end{example}
+\begin{solution}
+两种 Poincar\'e 变换分别给出
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}\tau}=-3u,\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=-1-2u-z, \tag{1.20}
+\]
+和
+\[
+  \dfrac{\mathrm{d}v}{\mathrm{d}\tau}=3v,\qquad
+  \dfrac{\mathrm{d}z}{\mathrm{d}\tau}=-2-v+2z. \tag{1.21}
+\]
+二者在 $z=0$ 上均无奇点，故系统~(1.19) 没有无穷远奇点。其在两个坐标平面上
+各有一个有限稳定性不同的奇点；与 $O(0,0,0)$ 合并后，原系统的有限奇点为鞍点
+$O(0,0,0)$、不稳定结点 $E_2(0,1,-1)$ 及稳定结点 $E_1(-1,0,-1)$。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.6}
+\chFiveFigurePlaceholder{5.7}
+\chFiveFigurePlaceholder{5.8}
+\chFiveFigurePlaceholder{5.9}
+
+% ============================================================
+%  §2  平面系统的全局结构
+% ============================================================
+\section{平面系统的全局结构}
+
+在相平面 $\alpha$ 的单位圆盘 $\overline K$ 上，可以画出平面系统的全局结构。由
+第 1 节的两个坐标平面得到的无穷远奇点，在 $\overline K$ 的边界上表示为同一个
+对径点。当变换中出现的两个幂次均为偶数时，所得系统在 Poincar\'e 球上诱导出
+连续向量场；当幂次为奇数时，赤道对径点处的向量场方向可能不确定，故该模型不再
+是射影平面。
+
+\begin{example}{二参数二次系统的全局结构}{ch5-2-1}
+讨论系统
+\[
+  \begin{cases}
+    \dfrac{\mathrm{d}x}{\mathrm{d}t}=y=P(x,y),\\[3pt]
+    \dfrac{\mathrm{d}y}{\mathrm{d}t}=-x-\alpha y+\mu x^2-y^2=Q(x,y),
+  \end{cases}\qquad \alpha>0,\quad \mu<0. \tag{2.1}
+\]
+的轨线全局结构。
+\end{example}
+\begin{solution}
+有限平面上的奇点为
+\[
+  O(0,0),\qquad E\left(\dfrac{1}{\mu},0\right).
+\]
+在 $O$ 点的特征方程为 $\lambda^2+\alpha\lambda+1=0$，故当
+$\alpha\ge2$ 时 $O$ 是稳定结点；当 $0<\alpha<2$ 时 $O$ 是稳定焦点。
+对 $E$ 点以及无穷远奇点，分别作两种 Poincar\'e 变换，按第 1 节的步骤讨论其
+线性部分和半邻域中的轨线走向。由各奇点类型、分界线及 $\overline K$ 边界上的
+轨线，可以得到参数 $\alpha,\mu$ 在相应区域内的全局相图。原书将这些相图分别
+列于图~5.10--5.16。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.10}
+\chFiveFigurePlaceholder{5.11}
+\chFiveFigurePlaceholder{5.12}
+\chFiveFigurePlaceholder{5.13}
+\chFiveFigurePlaceholder{5.14}
+\chFiveFigurePlaceholder{5.15}
+\chFiveFigurePlaceholder{5.16}
+
+在这一例中，先由有限奇点的特征根判定局部类型，再由 $z=0$ 上的方程确定无穷远
+奇点及其扇形区域。将局部图形沿着 $\overline K$ 的边界拼接，并利用分界线的走向，
+即得到各参数区域所对应的全局图形。这种作法也适用于一般多项式平面系统。
+
+% ============================================================
+%  §3  用无穷远奇点研究极限环的存在性
+% ============================================================
+\section{用无穷远奇点研究极限环的存在性}
+
+对无穷远的研究，有时可回答某些系统的极限环存在性问题。例如，若已知无穷远奇点
+都是远离型的，而在有限平面内唯一奇点是不稳定的焦点，则由 Poincar\'e--Bendixson
+环域的外境界线或相平面的 Poincar\'e 球面上的流型可知，至少存在一个稳定极限环。
+
+\begin{example}{Liénard 型系统}{ch5-3-1}
+给定系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-(a_1x+a_2x^2+a_3x^3),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-x. \tag{3.1}
+\]
+当 $a_1a_3<0$ 时，至少存在一个极限环。
+\end{example}
+\begin{solution}
+不妨令 $a_1<0$, $a_3>0$。原点是唯一有限奇点；其线性化特征方程为
+$\lambda^2+a_1\lambda+1=0$，故原点是不稳定结点或不稳定焦点。作
+Poincar\'e 变换并令 $\mathrm{d}\tau=\mathrm{d}t/z^2$，可知无穷远奇点均为远离的；
+圆盘边界上还出现相应的有限个奇点。于是有限平面的唯一奇点不稳定，而无穷远处
+轨线向外，构成环域，故至少存在一个极限环。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.17}
+
+\begin{example}{二次系统}{ch5-3-2}
+给定二次系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=a_{11}x+a_{12}y+y^2,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=a_{21}x+a_{22}y-xy+cy^2. \tag{3.4}
+\]
+若
+\[
+  a_{11}<0,\quad |c|<2,\qquad
+  (a_{12}-a_{11}+ca_{12})^2<4(a_{11}a_{22}-a_{21}a_{12}),\qquad
+  a_{11}>a_{22},
+\]
+则系统至少存在一个极限环。
+\end{example}
+\begin{solution}
+由条件可知有限平面上原点为唯一不稳定焦点。作 Poincar\'e 变换后，赤道上的
+奇点由一个三次方程决定；在 $|c|<2$ 时，该方程在相应坐标图中只有一个实根，
+从而得到无穷远处唯一的鞍点结构。回到单位圆盘并注意时间变换的幂次，边界图形
+给出原点外侧的环域，故至少存在一个极限环。
+\end{solution}
+
+\chFiveFigurePlaceholder{5.18}
+\chFiveFigurePlaceholder{5.19}
+
+\begin{example}{至少有两个极限环的系统}{ch5-3-3}
+系统
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=-y-3x^2+xy+y^2,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=x\left(1+\dfrac{x}{6}-3y\right)
+\]
+至少存在两个极限环。
+\end{example}
+
+有限平面上有两个奇点 $O(0,0)$ 与 $N(0,1)$；$O$ 是稳定焦点，$N$ 是不稳定焦点。
+直线 $y=\dfrac13$ 上有 $\dfrac{\mathrm{d}y}{\mathrm{d}t}>0$，因而该直线的象将
+$\overline K$ 分成两部分。结合无穷远鞍点及分界线的走向，在两个区域内分别构造
+Poincar\'e--Bendixson 环域，故至少有两个极限环。
+
+\chFiveFigurePlaceholder{5.20}
+
+% ============================================================
+%  §4  二维紧致曲面S2，P2和T2上连续向量场的奇点指数和
+% ============================================================
+\section{二维紧致曲面S2，P2和T2上连续向量场的奇点指数和}
+
+本节着重讨论二维球面 $S^2$、射影平面 $P^2$ 和二维环面 $T^2$ 上所定义的连续
+向量场的奇点指数和。以下假设 $S^2,P^2,T^2$ 上奇点孤立，且根据前面各章的叙述，
+在黎曼球面和射影平面上只有有限个奇点。
+
+设向量场在 $\mathbb R^2$ 上的表达式为
+\[
+  X=X(x). \tag{4.1}
+\]
+
+\begin{definition}{奇点的指数}{ch5-index}
+设 $l\subset\mathbb R^2$ 是光滑 Jordan 闭曲线，$G$ 是 $l$ 所围区域，且
+$X(x)$ 在 $G$ 上除孤立奇点外连续。若存在包含 $G$ 的开集 $G_1$，使 $X$ 在
+$G_1$ 内无零点，则称 $l$ 上的奇点指数为 $J(l)$。
+\end{definition}
+
+若 $P$ 是奇点，取以 $P$ 为中心的小圆周 $l$，则记 $J(P)=J(l)$。在光滑坐标
+变换下，奇点指数不变。
+
+\begin{theorem}{平面区域中的指数公式}{ch5-index-plane}
+设 $G\subset\mathbb R^2$ 为有界区域，$\partial G$ 为光滑 Jordan 闭曲线。若
+$G$ 内有有限个奇点 $P_1,\ldots,P_k$，且 $G$ 的外边界及各内边界上均无奇点，
+则
+\[
+  J(\partial G)=1-\dfrac12\sum_{i=1}^k I(P_i)+\sum_{i=1}^k J(P_i),
+\]
+其中 $I(P_i)=1$ 当 $P_i$ 为内切点，$I(P_i)=-1$ 当 $P_i$ 为外切点，其他情形为
+$0$。
+\end{theorem}
+
+上述公式是 Bendixson 公式在平面区域上的形式。它给出曲线所围区域内向量场的
+旋转数与其中奇点指数之间的关系。
+
+\begin{definition}{曲面上奇点的指数}{ch5-surface-index}
+设 $X$ 是曲面 $M$ 上的连续向量场，$Q$ 是其孤立奇点。取 $Q$ 的一个局部坐标
+邻域，把邻域内的向量场化到平面上；所得平面向量场在相应点的指数称为 $Q$ 的指数，
+记作 $J(Q)$。
+\end{definition}
+
+\begin{theorem}{球面上的指数和}{ch5-s2-index}
+在 $S^2$ 上的任一连续向量场，若有有限个孤立奇点，则所有奇点的指数和为
+\[
+  \sum J(P_i)=2.
+\]
+\end{theorem}
+
+\begin{theorem}{射影平面上的指数和}{ch5-p2-index}
+在 $P^2$ 上的任一连续向量场，若有有限个孤立奇点，则所有奇点的指数和为
+\[
+  \sum J(P_i)=1.
+\]
+\end{theorem}
+
+\begin{theorem}{环面上的指数和}{ch5-t2-index}
+在 $T^2$ 上的任一连续向量场，若有有限个孤立奇点，则所有奇点的指数和为
+\[
+  \sum J(P_i)=0.
+\]
+\end{theorem}
+
+这些结论可分别由曲面的局部坐标覆盖、Bendixson 公式以及边界识别得到。对于
+$P^2$，将 $S^2$ 上的对径点粘合，再使用局部微分同胚，所得指数和减半；对于
+$T^2$，把正方形的对应边粘合，其边界上向量场的旋转贡献彼此抵消，因而指数和为零。
+
+\chFiveFigurePlaceholder{5.21}
+\chFiveFigurePlaceholder{5.22}
+
+由射影平面模型上的奇点指数和为 $1$，并将对径的两个奇点合为一个（在坐标平面
+$\alpha^*$ 或 $\widehat\alpha$ 上看），可知两种计算所得的指数和相等。这个结论
+对于平面系统的全局分析很有用：可以用它检验奇点计算是否有误，也可排除许多不可能
+出现的奇点分布。
+
+\begin{corollary}{存在奇点}{ch5-singularity-exists}
+球面 $S^2$ 和射影平面 $P^2$ 上的任何连续向量场必有奇点。
+\end{corollary}
+
+\section*{习题和参考文献}
+\subsection*{习题}
+
+\begin{enumerate}
+  \item 讨论下列方程组的轨线的全局结构：
+  \begin{enumerate}
+    \item 第 1 节中示例 1.2；
+    \item \[
+      \dfrac{\mathrm{d}x}{\mathrm{d}t}=x(3-x-y),\qquad
+      \dfrac{\mathrm{d}y}{\mathrm{d}t}=y(x-1);
+    \]
+    \item \[
+      \dfrac{\mathrm{d}x}{\mathrm{d}t}=y(x+2)+x^2+y^2-1,\qquad
+      \dfrac{\mathrm{d}y}{\mathrm{d}t}=-x(x+2);
+    \]
+    \item \[
+      \dfrac{\mathrm{d}x}{\mathrm{d}t}=x\bigl[(x^2+y^2+1)(x^2+y^2-1)-4y^2\bigr],
+    \]
+    \[
+      \dfrac{\mathrm{d}y}{\mathrm{d}t}=y\bigl[(x^2+y^2+1)(x^2+y^2-1)+4x^2\bigr];
+    \]
+    \item \[
+      \dfrac{\mathrm{d}x}{\mathrm{d}t}=(x-y)^2-1,\qquad
+      \dfrac{\mathrm{d}y}{\mathrm{d}t}=(x+y)^2-1;
+    \]
+    \item \[
+      \dfrac{\mathrm{d}x}{\mathrm{d}t}=x(x+by+1),\qquad
+      \dfrac{\mathrm{d}y}{\mathrm{d}t}=y(x+by-b),\qquad -\infty<b<+\infty.
+    \]
+    当 $b=2$ 时即为第 1 节中示例 1.4。
+  \end{enumerate}
+
+  \item 求证方程组
+  \[
+    \dfrac{\mathrm{d}x}{\mathrm{d}t}=-y+\lambda x,\qquad
+    \dfrac{\mathrm{d}y}{\mathrm{d}t}=x+\lambda y
+  \]
+  以无穷远赤道为它的极限环线。
+
+  \item 求证方程组
+  \[
+    \dfrac{\mathrm{d}x}{\mathrm{d}t}=a_{12}y+y^2,\qquad
+    \dfrac{\mathrm{d}y}{\mathrm{d}t}=a_{22}y-xy+cy^2
+  \]
+  当 $|c|<2$ 时所有的解都是有界的；这时方程组就叫做有界的。
+
+  \item 求证方程组
+  \[
+    \dfrac{\mathrm{d}x}{\mathrm{d}t}=a_{12}y+y^2,\qquad
+    \dfrac{\mathrm{d}y}{\mathrm{d}t}=a_{21}x+a_{22}y-xy+cy^2
+  \]
+  当 $|c|<2$、$a_{21}\ne0$、$a_{12}+a_{21}=0$ 及
+  $ca_{21}+a_{22}\le0$ 时是有界的。
+
+  \item 在方程
+  \[
+    P(x,y)\,\mathrm{d}y-Q(x,y)\,\mathrm{d}x=0
+  \]
+  中，$P(x,y)$、$Q(x,y)$ 分别是 $p,q$ 次不可约多项式。试证：若引入射影坐标
+  \[
+    x=\dfrac{X}{Z},\qquad y=\dfrac{Y}{Z},
+  \]
+  并设
+  \[
+    P^*(X,Y,Z)=Z^pP\left(\dfrac{X}{Z},\dfrac{Y}{Z}\right),\qquad
+    Q^*(X,Y,Z)=Z^qQ\left(\dfrac{X}{Z},\dfrac{Y}{Z}\right),
+  \]
+  则该方程化为
+  \[
+    \begin{vmatrix}
+      \mathrm{d}X & \mathrm{d}Y & \mathrm{d}Z\\
+      X & Y & Z\\
+      Z^{n-p}P^* & Z^{n-q}Q^* & 0
+    \end{vmatrix}=0,
+  \]
+  其中 $n$ 为非负整数，使得 $Z^{n-p}P^*$ 和 $Z^{n-q}Q^*$ 为不可约整多项式。
+  若在上式中令 $X=1$，则相当于从第 1 节 $(A_3)$ 中消去 $\tau$；若令 $Y=1$，
+  则相当于从第 1 节 $(B_3)$ 中消去 $\tau$。
+
+  \item 试用旋转向量场理论，证明方程组~(2.9) 在 $\alpha\ne0$ 时不存在闭轨线。
+
+  \item 试用在模型 $\overline K$ 上奇点指数和为 $1$ 的结论，逐个检查本章的各个
+  示例及习题 1。
+\end{enumerate}
+
+\subsection*{本章参考文献}
+\begin{enumerate}
+  \item Arnold, V.~I., \textit{Ordinary Differential Equations}, Translated from the Russian,
+  M.~I.~T., 1973.
+\end{enumerate}
+
+\endinput

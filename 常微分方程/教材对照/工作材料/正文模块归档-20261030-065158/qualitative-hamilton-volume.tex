@@ -1,0 +1,14 @@
+\begin{corollary}[Hamilton相流保持体积]\label{cor:hamilton-volume}
+若 Hamilton 函数 $H$ 属于 $C^2$，则 Hamilton 相流保持相空间体积。
+\end{corollary}
+\begin{proof}
+对 Hamilton 场 $v=(H_p,-H_q)$，逐坐标计算得
+\[
+ \operatorname{div}v
+ =\sum_i\left(\frac{\partial^2H}{\partial q_i\partial p_i}
+ -\frac{\partial^2H}{\partial p_i\partial q_i}\right)=0.
+\]
+最后一步使用 $H\in C^2$ 时混合偏导相等，因而散度恒为零。
+
+再应用定理~\ref{thm:nonlinear-liouville} 即得结论。
+\end{proof}

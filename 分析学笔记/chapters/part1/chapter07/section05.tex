@@ -1,0 +1,245 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.5 微分中值定理
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{微分中值定理}
+\begin{definition}
+	设函数 \( y = f(x) \) 定义在 \((a, b)\) 上，设 \( x_0 \in (a, b) \)，若 \(\exists \delta > 0\)，使得 \((x_0 - \delta, x_0 + \delta) \subset (a, b)\)，满足
+	
+	1. \(\forall x \in O(x_0, \delta)\)，\(f(x) \leqslant f(x_0)\)，称 \(x = x_0\) 为 \(f(x)\) 的极大值点，
+	
+	2. \(\forall x \in O(x_0, \delta)\)，\(f(x) \geqslant f(x_0)\)，称 \(x = x_0\) 为 \(f(x)\) 的极小值点.
+	
+	3. \(\forall x \in O(x_0, \delta)\setminus\{x_0\}\)，\(f(x) <f(x_0)\)，称 \(x = x_0\) 为 \(f(x)\) 的严格极大值点，
+	
+	4. \(\forall x \in O(x_0, \delta)\setminus\{x_0\}\)，\(f(x) > f(x_0)\)，称 \(x = x_0\) 为 \(f(x)\) 的严格极小值点.
+\end{definition}
+注意区分极值点与最值点
+\begin{lemma}(费马引理)
+	设函数 \( y = f(x) \) 在 \( x = x_0 \) 处为极值点，且 在$x=x_0$处可导 ，则 \( f'(x_0) = 0 \).
+\end{lemma}
+\begin{proof}
+	不妨设 \( x = x_0 \) 为 \( y = f(x) \) 的极大值点.那么存在 \(\delta > 0\) 使得 \( f(x) \) 在邻域 \( O(x_0, \delta) \) 内有定义，且对于所有 \( x \in O(x_0, \delta) \)，有 \( f(x) \leqslant f(x_0) \).
+	
+	取 \(\Delta x > 0\) 且满足 \( x_0 + \Delta x < x_0 + \delta \)，则
+	\[f(x_0+\Delta x)\leqslant f(x_0)\Leftarrow
+	\frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} \leqslant 0
+	\]
+	令 \(\Delta x \to 0^+\)，由保序性，得到右导数 \( f'_+(x_0) \leqslant 0 \).
+	
+	同理，取 \(\Delta x < 0\) ，得到左导数 \( f'_-(x_0) \geqslant 0 \).
+	
+	由于 \( f'(x_0) \) 存在，所以 \( f'_+(x_0) = f'_-(x_0) = f'(x_0) \)，因此 \( f'(x_0) = 0 \).
+\end{proof}
+一条显而易见的推论是
+\begin{corollary}
+	$y=f(x)$在$x=x_0$处为极值点，且$x=x_0$处可导，若$x_0$是极大值点，则$f(x)$在某$(x_0-\delta,x_0)$内增，在某$(x_0,x_0+\delta)$内减
+\end{corollary}
+\begin{theorem}
+	(Rolle 中值定理)设函数 \( f(x) \in C[a, b] \cap D(a, b) \)，且 \( f(a) = f(b) \)，那么 \(\exists \xi \in (a, b)\) 使得 \( f'(\xi) = 0 \).
+\end{theorem}
+\begin{proof}
+	\( f(x) \) 在闭区间 \([a, b]\) 上连续，那么
+	\[
+	m = \min_{x \in [a, b]} f(x), \quad M = \max_{x \in [a, b]} f(x)
+	\]
+	
+	有两种情况：
+	
+	1. 若 \( m = M \)，则 \( f(x) \equiv M \)，即 \( f(x) \) 是常数函数，此时对于任意 \(\xi \in (a, b)\)，都有 \( f'(\xi) = 0 \).
+	
+	2. 若 \( m < M \)，由于 \( f(a) = f(b) \)，\( m \) 和 \( M \) 不可能同时在端点 \( a, b \) 处取得，因此至少存在一个点 \(\xi \in (a, b)\) 使得 \( f(x) \) 在该点取得极值.根据费马引理，\( f'(\xi) = 0 \).
+\end{proof}
+\begin{corollary}
+	
+	1. 若 \( f(x) \in C(\mathbb{R}) \cap D(\mathbb{R}) \)，且 \( f(+\infty) = f(-\infty) \)，则 \(\exists \xi \in \mathbb{R}\) 使得 \( f'(\xi) = 0 \).
+	
+	2. 若 \( f(x) \in C[a, +\infty) \cap D[a, +\infty) \)，且 \( f(a) = f(+\infty) \)，则 \(\exists \xi \in [a, +\infty) \) 使得 \( f'(\xi) = 0 \).
+	
+	3. 若 \( f(x) \in C(-\infty, b] \cap D(-\infty, b] \)，且 \( f(-\infty) = f(b) \)，则 \(\exists \xi \in (-\infty, b] \) 使得 \( f'(\xi) = 0 \).
+	
+	
+\end{corollary}
+
+\begin{proof}
+	不妨设 \( f(+\infty) = f(-\infty) = L \)（或 \( f(a) = f(+\infty) = L \), \( f(-\infty) = f(b) = L \)）.
+	
+	1. 分两种情况
+	\begin{itemize}
+		\item 如果 \( f(x) \equiv L \)，则结论显然成立.
+		\item 如果 \( f(x) \neq L \)，则 \(\exists x_0\) 使得 \( f(x_0) \neq L \)，不失一般性的，设$f(x_0)>L$
+		
+		由\( \lim\limits_{x \to -\infty} f(x) = L ,f(x_0)>L\)，取
+		\[
+		\varepsilon = \frac{f(x_0) - L}{2} > 0
+		\]		
+		\(\exists a < x_0\) 使得
+		\[
+		|f(a) - L| < \varepsilon \Rightarrow f(a) < f(x_0)
+		\]
+		
+		由 \(\lim\limits_{x \to +\infty} f(x) = L\)， \(\exists b > x_0 \) 使得
+		\[
+		|f(b) - L| < \eps \Rightarrow f(b) < f(x_0)
+		\]
+		
+		考虑区间 \([a, b]\)，\( f \) 在 \([a, b]\) 上连续，所以在 \([a, b]\) 上可以取得最大值.
+		因为 \( f(a) < f(x_0) \) 和 \( f(b) < f(x_0) \)，最大值不在端点处取得，故存在 \( \xi \in (a, b) \) 使得 \( f(\xi) \) 是最大值.由费马引理，\( f'(\xi) = 0 \).
+	\end{itemize}
+	
+	2.$f(x)\equiv L$，平凡 
+	
+	若 \( f(x) \not\equiv L \) ， \(\exists x_0>a \) 使得 \( f(x_0) \neq L \)，不失一般性的，设$f(x_0)>L$，取
+	\[
+	\varepsilon = \frac{ f(x_0)- L}{2} > 0
+	\]
+	
+	由于 \( \lim\limits_{x \to +\infty} f(x) = L \)，存在 \( b > x_0 \) 使得
+	\[
+	|f(b) - L| < \varepsilon \Rightarrow f(b) > f(x_0)
+	\]
+	
+	在 \([a, b]\) 上，\( f(a) = L > f(x_0) \) 且 \( f(b) > f(x_0) \).最大值不在端点处取得，存在 \( \xi \in (a, b) \) 使得 \( f(\xi) \) 是最大值，由费马引理，\( f'(\xi) = 0 \).
+	
+	3. 同 2.
+\end{proof}
+\begin{theorem}
+	（Lagrange 中值定理）
+	
+	设函数 \( f(x) \in C[a, b] \cap D(a, b) \)，则 \(\exists \xi \in (a, b)\) 使得
+	\[
+	f'(\xi) = \frac{f(b) - f(a)}{b - a}
+	\]
+	
+	
+\end{theorem}
+\begin{proof}
+	
+	
+	取直线 \( y = f(a) + \dfrac{f(b) - f(a)}{b - a}(x - a) \)，并定义
+	\[
+	\varphi(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)
+	\]
+	
+	显然，\(\varphi(a) = \varphi(b) = 0\)，且 \(\varphi(x) \in C[a, b] \cap D(a, b)\)，根据罗尔定理（Rolle's Theorem），\(\exists \xi \in (a, b)\) 使得
+	\[
+	\varphi'(\xi) = 0
+	\]
+	
+	因此，
+	\[
+	\varphi'(\xi) = f'(\xi) - \frac{f(b) - f(a)}{b - a} = 0
+	\]
+	
+	即
+	\[
+	f'(\xi) = \frac{f(b) - f(a)}{b - a}
+	\]
+	
+	证毕.
+\end{proof}
+\begin{corollary}
+	若 \( f(x) \in D(a, b) \)，且 \( f'(x) \equiv 0 \)，则 \( f(x) \) 为常数函数.
+\end{corollary}
+\begin{proof}
+	对于任意 \( x_1, x_2 \in (a, b) \)，不妨设 \( x_1 < x_2 \)，在区间 \([x_1, x_2]\) 上，根据拉格朗日中值定理，存在 \( \xi \in (x_1, x_2) \) 使得
+	\[
+	(x_1 - x_2) f'(\xi) = f(x_1) - f(x_2)
+	\]
+	
+	由于 \( f'(x) \equiv 0 \)，所以
+	\[
+	f(x_1) - f(x_2) = 0 \implies f(x_1) = f(x_2)
+	\]
+	
+	因此，\( f(x) \) 在区间 \((a, b)\) 上为常数函数.
+\end{proof}
+
+\begin{proposition}
+	设函数 \( f(x) \) 在区间 \( I \) 上连续且可导，则 \( f(x) \) 在 \( I \) 上单调上升的充要条件是 \( \forall x \in I, f'(x) \geqslant 0 \).类似地，\( f(x) \) 在 \( I \) 上单调下降的充要条件是 \( \forall x \in I, f'(x) \leqslant 0 \).
+\end{proposition}
+\begin{proof}
+	先考虑单调上升的情况.
+	
+	充分性: \( \forall x \in I, f'(x) \geqslant 0 \)，任取 \( x_1, x_2 \in I \) 且 \( x_1 < x_2 \)，在 \([x_1, x_2]\) 上用 Lagrange 中值定理，\( \exists \xi \in (x_1, x_2) \) 使得
+	\[
+	f(x_1) - f(x_2) = f'(\xi)(x_1 - x_2) \leqslant 0
+	\]
+	故 \( f(x_1) \leqslant f(x_2) \)，即 \( f(x) \) 在 \( I \) 上单调递增.
+	
+	若$f'(x)>0$,则$f(x_1)< f(x_2)$，$f(x)$在$I$上严格单调递增
+	
+	必要性：设 \( f(x) \) 在 \( I \) 上单调递增，\( \forall x \in I \)，\( \Delta x > 0 \) 且 \( x + \Delta x \in I \)，则有
+	\[
+	\frac{f(x + \Delta x) - f(x)}{\Delta x} \geqslant 0
+	\]
+	令 \( \Delta x \to 0 \)，\( f'_+(x) \geqslant 0 \).
+	
+	对于 \( \Delta x < 0 \)，保持 \( \Delta x + x \in I \) 同理，\( f'_-(x) \geqslant 0 \).
+	
+	综上：$f'(x)\geqslant 0$
+	
+	
+\end{proof}
+注意，已知 \( f(x) \) 在 \( I \) 上严格单调增，推不出 \( f'(x) > 0 \).
+\begin{theorem}\label{dabu1}
+	(Darboux 定理)
+	设函数 \( f(x) \in D(a,b) \)，\( x_1, x_2 \in (a,b) \) 且 \( x_1 < x_2 \)，若 \( f'(x_1) \cdot f'(x_2) < 0 \)，则$\exists \xi \in (a,b), \text{使得 } f'(\xi) = 0$
+\end{theorem}
+\begin{proof}
+	不妨一般性地，不妨设
+	\[
+	f'(x_1) > 0, \quad f'(x_2) < 0
+	\]
+	
+	则 \( f'_+(x_1) > 0 \)，即
+	\[
+	\lim_{x \to x_1^+} \frac{f(x) - f(x_1)}{x - x_1} >0
+	\]
+	
+	取 \( x_3 \in (x_1, x_1 + \delta) \)，使 \( f(x_3) > f(x_1) \)，同理，\( x_4 \in (x_2 - \delta, x_2) \) 有 \( f(x_4) > f(x_2) \).从而 \( x_1, x_2 \) 不是 \( f(x) \) 的极大值点.\( \exists \xi \in [x_1, x_2] \)，\( f(\xi) \) 是极大值，\( f'(\xi) = 0 \).
+	
+\end{proof}
+\begin{theorem}(Cauchy 中值定理)
+	设函数 \( f(x), g(x) \in C[a,b] \cap D(a,b) \)，\( \forall x \in (a,b), g'(x) \neq 0 \)，\( \exists \xi \in (a,b) \)，使得
+	\[
+	\frac{f'( \xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+	\]
+\end{theorem}
+\begin{proof}
+	由于 \( g'(x) \neq 0 \)，\( \forall x \in (a,b) \)，断言 \( g'(x) \) 在 \((a,b)\) 上不变号.
+	
+	若不然，\( \exists x_1, x_2 \) 使 \( g'(x_1)g'(x_2) < 0 \)，由\ref{dabu1}，\( \exists \eta \) 使得 \( g'(\eta) = 0 \)，矛盾.不失一般性地，设 \( g'(x) > 0 \)，\( \forall x \in (a,b) \).
+	
+	引入参数形式的函数：
+	\[
+	\begin{cases}
+		x = g(t) \\
+		y = f(t)
+	\end{cases}
+	\quad t \in [a,b]
+	\]
+	
+	由\( g'(t) >0 \)，\( g(t) \) 在 \([a,b]\) 上严格单调增，设 \( \alpha = g(a) \)，\( \beta = g(b) \)，\( x = g(t) \) 有反函数 \( t = g^{-1}(x) \)，\( x \in [\alpha, \beta] \)，\( g'(x) \) 连续且可导，
+	
+	\[
+	\frac{\dd t}{\dd x} = \frac{1}{g'(t)}
+	\]
+	这样，\( y = f(g^{-1}(x)) \)，\( x \in [\alpha, \beta] \)，\( y(x) \) 是连续且可导.
+	
+	由 Lagrange 中值定理，\( \exists \eta \in (\alpha, \beta) \)，使得
+	\[
+	y'(\eta) = \frac{y(\beta) - y(\alpha)}{\beta - \alpha}
+	\]
+	
+	即
+	\[
+	f'(g^{-1}(x))(g^{-1}(x))'\big|_{x=\eta} = \frac{f(g(\beta)) - f(g(\alpha))}{\beta - \alpha}
+	\]
+	
+	令 \( g^{-1}(\eta) = \xi \)，
+	\[
+	\frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+	\]
+	
+\end{proof}

@@ -1,0 +1,67 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.10 集合的势
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{集合的势}
+\begin{definition}
+	设 $A$, $B$ 是两个集合. 如果存在 $A$ 到 $B$ 的双射（即一一对应），则称 $A$ 与 $B$ \textbf{等势}，记作 $A \approx B$.
+	
+	集合的\textbf{势}（或基数）是集合在等势关系下的等价类，记作 $\operatorname{Card}(A)$ 或 $|A|$.
+\end{definition}
+
+容易验证 $\approx$ 是一个等价关系. 有限集的势就是其元素的个数；无限集的势则刻画了"无穷"的不同层次.
+
+\begin{definition}
+	设 $A$, $B$ 为集合. 若存在 $A$ 到 $B$ 的单射，则称 $A$ 的势\textbf{小于等于} $B$ 的势，记作 $\operatorname{Card}(A) \leqslant \operatorname{Card}(B)$.
+	
+	若 $\operatorname{Card}(A) \leqslant \operatorname{Card}(B)$ 且 $\operatorname{Card}(A) \neq \operatorname{Card}(B)$，则称 $A$ 的势\textbf{严格小于} $B$ 的势，记作 $\operatorname{Card}(A) < \operatorname{Card}(B)$.
+\end{definition}
+
+\begin{theorem}(Cantor--Bernstein 定理)
+	若 $\operatorname{Card}(A) \leqslant \operatorname{Card}(B)$ 且 $\operatorname{Card}(B) \leqslant \operatorname{Card}(A)$，则 $\operatorname{Card}(A) = \operatorname{Card}(B)$.
+\end{theorem}
+这个证明我们在将来的拓扑学笔记中给出
+\begin{definition}
+	可数无穷集的势记作 $\aleph_0$（阿列夫零）. 即
+	\[
+	\aleph_0 := \operatorname{Card}(\N).
+	\]
+	势不超过 $\aleph_0$ 的集合称为\textbf{至多可数}的.
+\end{definition}
+
+由前几节的讨论，我们有
+\[
+\operatorname{Card}(\Z) = \operatorname{Card}(\Q) = \aleph_0.
+\]
+更一般地，可数个可数集的并仍是可数的.
+
+\begin{definition}
+	实数集 $\R$ 的势称为\textbf{连续统势}，记作 $\mathfrak{c}$（即 $2^{\aleph_0}$）.
+	\[
+	\mathfrak{c} := \operatorname{Card}(\R) = 2^{\aleph_0}.
+	\]
+\end{definition}
+
+我们已经用对角线法证明了 $\R$ 不可数，因此 $\aleph_0 < \mathfrak{c}$.
+
+\begin{theorem}[Cantor]
+	对任意集合 $A$，有 $\operatorname{Card}(A) < \operatorname{Card}(\mathcal{P}(A))$，其中 $\mathcal{P}(A)$ 是 $A$ 的幂集. 特别地，
+	\[
+	\aleph_0 < 2^{\aleph_0} < 2^{2^{\aleph_0}} < \cdots,
+	\]
+	即存在无穷多个不同的无穷基数.
+\end{theorem}
+
+\textbf{注：}
+	是否存在一个集合，其势严格介于 $\aleph_0$ 与 $\mathfrak{c}$ 之间？Cantor 猜测不存在这样的集合，即 $\mathfrak{c} = \aleph_1$（$\aleph_1$ 是大于 $\aleph_0$ 的最小基数）. 这一猜想称为\textbf{连续统假设}（Continuum Hypothesis, CH）.
+	
+	G\"{o}del (1940) 证明了 CH 与 ZFC 公理系统相容（不可证伪）；Cohen (1963) 证明了 CH 的否定也与 ZFC 相容（不可证明）. 因此，CH 独立于 ZFC —— 在标准的集合论公理下，它既不能被证明，也不能被否定.
+
+
+
+	有限集的势显然小于 $\aleph_0$. 因此基数的无界递增链为
+	\[
+	0, 1, 2, \ldots, n, \ldots < \aleph_0 < 2^{\aleph_0} < 2^{2^{\aleph_0}} < \cdots.
+	\]
+
+

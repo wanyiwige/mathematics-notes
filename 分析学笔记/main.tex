@@ -1,0 +1,154 @@
+% main.tex
+\documentclass{book}
+
+% 加载所有配置
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+\addbibresource{bibliography/references.bib}
+
+% ── 文档元信息与封面 ──
+\title{分析学笔记}
+\author{Huginn Wong}
+\date{\today}
+\coverimage{figure/分析封面.jpg}
+
+\begin{document}
+
+\makecover
+	
+	\frontmatter
+	
+	\chapter*{前言}
+	\addcontentsline{toc}{chapter}{前言}
+	
+	这份笔记是我在学习分析学时所使用的笔记，今天是26年1月8日，完成了第一章，第三章除最后一节外的书写，快期末了，希望假期能把前7章的内容写完审完。
+	
+	\vspace{1cm}
+	\begin{flushright}
+		Huginn Wong\\
+		2026年1月8日
+	\end{flushright}
+	
+	今天是2026年的5月18日，在AI的辅助下，我已经完成了单变量分析的除了函数项数列与级数的大部分主题内容，在这一学期的行课结束后，我将完成函数项数列与级数那一章，接下来我的主要工作就是刷题与总结了，总结出的相应的内容会在后续逐步记在笔记里。之后还有代数的内容要整理，希望在假期期间我能够做足够的工作吧
+		\vspace{1cm}
+	\begin{flushright}
+		Huginn Wong\\
+		2026年5月18日
+	\end{flushright}
+	
+	这里是2026年的6月4日晚上10点，改善了工作流之后，我们的产出效率得到了极大的提升，今天我完成了part1的主体部分的笔记，之后我们在刷题的过程中会不断的补充part1的内容，同时代数的笔记也快速的根上了进度，我想我或许可以开始继续学习更多的内容了
+	\begin{flushright}
+		Huginn Wong\\
+		2026年6月4日
+	\end{flushright}
+	
+	今天是2026年的7月6日上午8点15分，也是放假的第三天，经过三天的努力我已经把分析学Part的笔记中能够从我已经读过的书中的知识整理了出来，在接下来的时间里我需要逐渐的去读去做，谢惠民，于品和Baby Rudin，把那里面的一些想法和知识记录进来，这个学期的数分拿了一个不错的分数，希望下个学期在我的新工作流下，我能有更高的学习效率，取得更好的成绩
+	\begin{flushright}
+		Huginn Wong\\
+		2026年7月6日
+	\end{flushright}
+	\newpage
+	今天是2026年的8月13日晚上11点，经过半个假期的努力，我读完了Stein 的Fourier分析，接下来，我得读ODE和代数了。不得不说，线性代数里的一些东西我已经忘了，还是得融入血液啊。
+	\begin{flushright}
+		Huginn Wong\\
+		2026年8月13日
+	\end{flushright}
+	\tableofcontents
+	\newpage
+	
+
+	
+	
+	
+	\mainmatter
+	\setcounter{page}{1}
+	
+%\setpartimage{figure/part1封面图.png}
+%\setpartintro{这一部分从 Peano 公理出发，建立实数系，进而研究数列与函数的极限、连续性和微积分基本理论，是全部分析学的根基所在。}
+%\part{单变量分析学}
+%\setcounter{chapter}{0}
+%\include{chapters/part1/chapter1}
+%\include{chapters/part1/chapter2}
+%\include{chapters/part1/chapter3}
+%\include{chapters/part1/chapter4}
+%\include{chapters/part1/chapter5}
+%\include{chapters/part1/chapter6}
+%\include{chapters/part1/chapter7}
+%\include{chapters/part1/chapter8}
+%\include{chapters/part1/chapter9}
+%\include{chapters/part1/chapter10}
+%\include{chapters/part1/chapter11}
+%\include{chapters/part1/chapter12}
+\setpartimage{figure/part2封面图.png}
+\setpartintro{这一部分从 高维Euclid空间的拓扑学出发，研究多变量微分，多重积分，曲线积分等理论，是第一部分的进一步应用}
+\part{多变量分析学}
+\setcounter{chapter}{0}
+%\include{chapters/part2/chapter1}
+%\include{chapters/part2/chapter2}
+%\include{chapters/part2/chapter3}
+\include{chapters/part2/chapter4}
+%\include{chapters/part2/chapter5}
+
+
+
+%\part{复分析}
+
+
+%\setpartimage{figure/part4封面图.png}
+%\setpartintro{这一部分介绍简单的Fourier分析，核心是用三角级数逼近一个函数}
+%\part{Fouier分析}
+%\setcounter{chapter}{0}
+%\include{chapters/part4/chapter1}
+%\include{chapters/part4/chapter2}
+%\include{chapters/part4/chapter3}	
+%\include{chapters/part4/chapter4}	
+%\include{chapters/part4/chapter5}	
+%\include{chapters/part4/chapter6}
+%\include{chapters/part4/chapter7}
+%\part{实分析}
+%\part{泛函分析}
+%\part{调和分析}
+%\setpartimage{figure/part末封面图.png}
+%\setpartintro{这一部分收录一些分散在全笔记中各个部分的一些问题整理出的小短篇。}
+%\part*{一些短篇——分析篇}
+%
+%\include{chapters/partm/article1}
+%\include{chapters/partm/article2}
+%\setpartimage{figure/Pt/partt封面图.png}
+%\setpartintro{这一部分收录一些分散在全笔记中各个部分的一些特殊函数及其性质。}
+%\part*{特殊函数}
+
+
+
+
+
+
+	\nocite{*}
+	
+	\begingroup
+	\setlength{\emergencystretch}{1em}
+	\markboth{}{}
+	\providecommand{\phantomsection}{}
+	\defbibheading{normalbib}[\bibname]{%
+		\clearpage
+		\phantomsection
+		\addcontentsline{toc}{chapter}{#1}%
+		{\noindent\huge\bfseries #1\par}%
+		\vspace{1.5em}%
+	}
+	
+	\printbibliography[
+	heading=normalbib,
+	title={参考文献}
+	]
+	
+	\endgroup
+	
+	
+\end{document}

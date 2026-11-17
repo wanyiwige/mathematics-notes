@@ -1,0 +1,1987 @@
+\documentclass[UTF8,11pt,a4paper,fontset=none]{ctexart}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+% TeX Gyre 字体（Times/Helvetica 的自由克隆）在 TeX Live 自带 OTF 中，
+% 但本机未将其安装为系统字体，XeLaTeX 按字体名找不到，故改为按文件路径直接加载。
+% 若 TeX Live 安装路径或年份不同，请相应修改下面的 Path。
+\setmainfont{TeX Gyre Termes}[
+  Path = d:/texlive/2025/texmf-dist/fonts/opentype/public/tex-gyre/,
+  Extension = .otf,
+  UprightFont = texgyretermes-regular,
+  BoldFont = texgyretermes-bold,
+  ItalicFont = texgyretermes-italic,
+  BoldItalicFont = texgyretermes-bolditalic
+]
+\setsansfont{TeX Gyre Heros}[
+  Path = d:/texlive/2025/texmf-dist/fonts/opentype/public/tex-gyre/,
+  Extension = .otf,
+  UprightFont = texgyreheros-regular,
+  BoldFont = texgyreheros-bold,
+  ItalicFont = texgyreheros-italic,
+  BoldItalicFont = texgyreheros-bolditalic
+]
+
+% 本机未安装 DejaVu Sans Mono，改用 Windows 自带的 Consolas
+\setmonofont{Consolas}
+
+% 中文字体：本机装的 Noto Serif/Sans 都是"变量字体(VF)"，当前 TeX Live 2025 的
+% xdvipdfmx 无法嵌入变量字体（报 Invalid font: -1）。故改用系统自带的静态中文字体：
+%   正文(衬线)：宋体 SimSun；无衬线/等宽：微软雅黑 Microsoft YaHei。
+% 若日后想把正文换成更现代的衬线，可安装静态的 Noto Serif SC 或非变量字体后替换此处。
+\setCJKmainfont[
+  AutoFakeSlant=0.18,
+  AutoFakeBold=2.0
+]{SimSun}
+\setCJKsansfont{Microsoft YaHei}
+\setCJKmonofont{Microsoft YaHei}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\geometry{top=22mm,bottom=23mm,left=24mm,right=24mm,headheight=15pt,headsep=8mm}
+\usepackage{setspace}
+\setstretch{1.22}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+  unicode=true,
+  colorlinks=false,
+  pdfborder={0 0 0},
+  pdftitle={关于模1的数的均匀分布（中文全译本）},
+  pdfauthor={Hermann Weyl}
+}
+\usepackage{bookmark}
+\usepackage{microtype}
+\microtypesetup{protrusion=false,expansion=false}
+\allowdisplaybreaks[2]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Hermann Weyl}
+\fancyhead[R]{关于模 1 的数的均匀分布}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.18em}
+\setlength{\footnotesep}{0.7em}
+\setlist{nosep,leftmargin=2.2em}
+
+\newtheoremstyle{weylthm}
+  {0.7em}{0.7em}{\itshape}{}% above/below/body/indent
+  {\bfseries}{.}{0.5em}{}
+\theoremstyle{weylthm}
+\newtheorem{theorem}{定理}
+\newtheorem*{lemma*}{引理}
+
+\newcommand{\e}{\operatorname{e}}
+\newcommand{\modone}{\pmod{1}}
+\newcommand{\origpage}[1]{%
+  \par\vspace{0.7em}\noindent\hfill{\small\itshape〔原刊第 #1 页〕}\par\vspace{0.25em}}
+\newcommand{\transnote}[1]{\footnote{译者注：#1}}
+
+\title{\bfseries 关于模 1 的数的均匀分布\\[0.35em]
+\large \textit{Über die Gleichverteilung von Zahlen mod. Eins}\textsuperscript{*}}
+\author{Hermann Weyl（赫尔曼·外尔）\\[0.3em]\normalsize 中文全译本}
+\date{原文刊于 \textit{Mathematische Annalen}, 77（1916），313--352}
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+\begingroup
+\renewcommand{\thefootnote}{*}
+\footnotetext{与本文讨论同一主题的作者短札，曾刊于《哥廷根学报》（1914 年 6 月 13 日会议）。}
+\endgroup
+
+\begin{center}
+\small
+本译本依据原刊扫描件逐页翻译，保留原文的章节、定理、公式编号、脚注及原刊页码标记。
+原文记号 \(\e(x)=e^{2\pi i x}\) 沿用不改；原文以 \((\alpha)\) 表示实数 \(\alpha\) 模 \(1\) 的约化代表。
+\end{center}
+\vspace{0.8em}
+
+\tableofcontents
+\clearpage
+
+\origpage{313}
+
+\section*{§ 1. 基础：线性情形}
+\addcontentsline{toc}{section}{§ 1. 基础：线性情形}
+
+设在实数直线上标出无限多个点
+\[
+  \alpha_1,\alpha_2,\alpha_3,\ldots.
+\]
+我们把这条直线卷绕到一个周长为 \(1\) 的圆上，并问：位于 \(\alpha_n\) 处的这些标记，最终是否会以处处同样的密度覆盖整个圆周。若在前 \(n\) 个标记
+\(
+\alpha_1,\alpha_2,\ldots,\alpha_n
+\)
+中，卷绕以后落在圆周弧段 \(a\) 内的标记数为 \(n_a\)，那么上述情形应当意味着
+\begin{equation}
+  \lim_{n\to\infty}\frac{n_a}{n}=|a|,
+  \tag{1}
+\end{equation}
+其中 \(|a|\) 表示弧段 \(a\) 的长度。当且仅当这个极限关系对每一个弧段 \(a\) 都成立时，我们才说这些标记在圆周上作均匀稠密分布。
+
+把直线卷绕到圆上，等价于把实数按模 \(1\) 来考察；也就是说，两个数只要相差一个整数，就视为相同。在所有与给定的 \(\alpha\) 模 \(1\) 同余的数中，恰有一个满足
+\[
+  0\leq x<1;
+\]
+这个数称为 \(\alpha\) 模 \(1\) 的约化数，并记为 \((\alpha)\)。
+
+为了得到均匀分布的一个判据，先假定数列 \(\alpha_n\) 模 \(1\) 满足上述规律。于是我断言：对于每一个有界的、黎曼可积的、以 \(1\) 为周期的函数 \(f(x)\)，均有
+\begin{equation}
+  \lim_{n\to\infty}\frac1n\sum_{h=1}^{n}f(\alpha_h)
+  =\int_0^1 f(x)\,dx.
+  \tag{2}
+\end{equation}
+也就是说，由离散数值 \(\alpha_n\) 所形成的函数平均值，与连续平均值
+\(\int_0^1f(x)\,dx\) 相同。
+
+事实上，我们的假设首先说明（2）对每一个以 \(1\) 为周期的分段常值函数成立。给定区间 \(0\leq x\leq1\) 上任意一个有界黎曼可积函数 \(f(x)\)，可找到两个分段常值函数 \(f_1,f_2\)，使
+\[
+  f_1\leq f\leq f_2,
+\]
+并且它们的积分可以彼此任意接近。若这两个积分之差为 \(\varepsilon\)，则
+\[
+  \lim_{n\to\infty}\frac1n\sum_{h=1}^{n}f_1(\alpha_h)
+  =\int_0^1f_1(x)\,dx
+  \geq\int_0^1f(x)\,dx-\varepsilon.
+\]
+因此，当 \(n\) 充分大时，
+\[
+  \frac1n\sum_{h=1}^{n}f_1(\alpha_h)
+  >\int_0^1f(x)\,dx-2\varepsilon,
+\]
+从而更有
+\[
+  \frac1n\sum_{h=1}^{n}f(\alpha_h)
+  >\int_0^1f(x)\,dx-2\varepsilon.
+\]
+同理，利用 \(f_2\) 可知，当 \(n\) 充分大时，左端小于
+\(\int_0^1f(x)\,dx+2\varepsilon\)。因此断言得证。
+
+\origpage{314}
+
+周期为 \(1\) 的最简单函数是
+\[
+  e^{2\pi i x}=\e(x);
+\]
+它是模 \(1\) 数类的真正解析不变量。把复数 \(\e(x)\) 配给实数 \(x\)，无非是以解析方式执行把数轴卷到周长为 \(1\) 的圆上的过程。对于每个整数 \(m\)，函数 \(\e(mx)\) 也以 \(1\) 为周期；因此，在上述假设下，特别对每个整数 \(m\neq0\) 都有
+\[
+  \lim_{n\to\infty}\frac1n\sum_{h=1}^{n}\e(m\alpha_h)
+  =\int_0^1\e(mx)\,dx=0.
+\]
+傅里叶级数理论告诉我们，每个周期函数都可以由这些特殊函数 \(\e(mx)\) 线性组合而成。由此可以推出上述结果的逆命题。
+
+\begin{theorem}
+若对每个整数 \(m\neq0\) 都有
+\[
+  \sum_{h=1}^{n}\e(m\alpha_h)=o(n),
+\]
+则数列 \(\alpha_n\) 模 \(1\) 服从处处均匀稠密分布的规律。
+\end{theorem}
+
+事实上，（2）对函数 \(\e(0x)=1\) 显然成立；由定理 1 的假设，它也对每个有限三角级数
+\[
+  f(x)=\frac{a_0}{2}+(a_1\cos2\pi x+b_1\sin2\pi x)+\cdots
+  +(a_m\cos2\pi mx+b_m\sin2\pi mx)
+\]
+成立。若 \(f(x)\) 是任意一个以 \(1\) 为周期的连续函数，则众所周知，对每个正数 \(\varepsilon\)，都可找到一个有限三角级数 \(T\)，使
+\(|f-T|<\varepsilon\)。于是 \(T-\varepsilon\) 与 \(T+\varepsilon\) 是夹住 \(f\) 的两个三角级数，其积分相差 \(2\varepsilon\)。与前面相同即可推出（2）对 \(f\) 成立。最后，若 \(f\) 是一个以 \(1\) 为周期的分段连续函数，则把它在跳跃处用连续的直线斜坡稍加修整，便可找到两个连续函数夹住 \(f\)，而其积分彼此任意接近。因此（2）对这样的函数也成立。于是，定理 1 给出了一个在解析上十分好用的模 \(1\) 数列均匀分布判据。
+
+下面立即给出一个应用。
+
+\begin{theorem}
+若 \(\xi\) 是无理数，则它的整数倍
+\[
+  \xi,\ 2\xi,\ 3\xi,\ldots
+\]
+模 \(1\) 处处均匀稠密。
+\end{theorem}
+
+\origpage{315}
+
+令 \(m\neq0\) 为整数，并置 \(m\xi=\eta\)。只须证明
+\[
+  \sum_{h=1}^{n}\e(h\eta)=o(n).
+\]
+但左端是几何级数，且其绝对值满足
+\[
+  \left|\sum_{h=1}^{n}\e(h\eta)\right|
+  =\left|\frac{\e((n+1)\eta)-\e(\eta)}{\e(\eta)-1}\right|
+  \leq\frac{2}{|\e(\eta)-1|}
+  =\frac{1}{|\sin\pi\eta|}.
+\]
+由于 \(\eta\) 不是整数，这个量不仅是 \(o(n)\)，而且始终不超过一个有限常数。
+
+定理 2 曾由 Bohl、Sierpiński 与我在 1909--1910 年间利用如下事实证明：无理数 \(\xi\) 可以由一个分母为 \(o(n)\)、误差为 \(o(1/n)\) 的分数逼近。\footnote{P. Bohl, \textit{Cr. J.} 135（1909），第 189--283 页，尤其第 222 页；W. Sierpiński, Krakau, Ak. Anz., math.-naturw. Kl., A, 1910 年 1 月，第 9 页；H. Weyl, \textit{Rend. Circ. Mat. Palermo} 30（1910），第 406 页。} 另有一个更初等的证明，即不利用指数函数的证明，出自 H. Bohr 先生。\footnote{参见 H. Bohr 与 J. E. Littlewood, \textit{The Riemann Zeta-function and the Theory of Prime Numbers}（Cambridge Tracts in Mathematics and Mathematical Physics；当时尚未出版）。} 其方法如下。
+
+取一个很大的整数 \(H\)，并以 \(\varepsilon\) 表示与
+\(\xi,2\xi,\ldots,H\xi\) 中某一个模 \(1\) 同余的数里绝对值最小者。设
+\[
+  J\xi\equiv\varepsilon\pmod1.
+\]
+再取两个等长区间
+\[
+  [1]=a_1b_1,
+  \qquad
+  [2]=a_2b_2.
+\]
+可选取一个正整数 \(L\)，使 \(a_1+L\varepsilon\) 模 \(1\) 位于
+\(a_2-\varepsilon\)（不含）与 \(a_2\)（含）之间。把从
+\(a_1+L\varepsilon\) 到 \(b_1+L\varepsilon\) 的区间记为 \([2']\)。每当
+\(n\xi\) 模 \(1\) 落在区间 \([1]\) 中时，
+\((n+LJ)\xi\) 模 \(1\) 就落在 \([2']\) 中，反之亦然。记 \(n_1\) 为前 \(n\) 个数
+\begin{equation}
+  \xi,\ 2\xi,\ 3\xi,\ldots,n\xi
+  \tag{3}
+\end{equation}
+中模 \(1\) 落入 \([1]\) 的个数，并以 \(n_2,n_{2'}\) 分别表示区间 \([2]\)、\([2']\) 的相应数目，则对所有 \(n\) 都有
+\[
+  |n_1-n_{2'}|<C,
+\]
+其中 \(C\) 是一个有限常数。
+
+区间 \([2']\) 超出 \([2]\) 的那一小段记为 \(\delta\)，其长度小于 \(|\varepsilon|\)。若有两个数 \(h\xi\) 与 \(k\xi\)（\(h<k\)）模 \(1\) 都落在 \(\delta\) 内，则
+\((k-h)\xi\) 模 \(1\) 的绝对值小于 \(\varepsilon\)，因而必有 \(k-h>H\)。所以在数列（3）中，落入 \(\delta\) 的数至多有
+\(\lfloor n/H\rfloor+1\) 个。于是
+\[
+  n_2\geq n_{2'}-\left\lfloor\frac nH\right\rfloor-1
+  \geq n_1-\left\lfloor\frac nH\right\rfloor-1-C.
+\]
+因此
+\[
+  \limsup_{n\to\infty}\frac{n_1-n_2}{n}\leq\frac1H.
+\]
+由于 \(H\) 可以任意大，便有
+\[
+  \limsup_{n\to\infty}\frac{n_1-n_2}{n}\leq0.
+\]
+交换区间 \([1]\) 与 \([2]\) 后同样成立，故
+\[
+  \lim_{n\to\infty}\frac{n_1-n_2}{n}=0.
+\]
+也就是说，任意两个等长区间中，数列（3）的点渐近地同样多。
+
+现在把整个区间 \([0,1]\) 分成有限个等长小区间 \(D\)，每个长度为 \(\delta\)。由于每个 \(D\) 中渐近地含有同样多的约化数（3），而每个数恰落入一个 \(D\)，故每个 \(D\) 中的数目都渐近为 \(\delta n\)。于是（1）首先对由有限个这样的区间 \(D\) 组成的每个区间 \(a\) 成立；再令 \(\delta\) 任意小，便对每个任意区间成立。
+
+最后回到一般问题，还应指出：若（1）对给定数列 \(\alpha_n\) 的每个区间 \(a\) 成立，那么它实际上对所有长度小于 \(1\) 的区间是一致成立的。事实上，把 \([0,1]\) 分成有限个长度为 \(\delta\) 的区间 \(D\)；则当 \(n\) 超过某一界限时，对所有这些 \(D\) 都有
+\[
+  \delta(1-\delta)n\leq n_D\leq\delta(1+\delta)n.
+\]
+对任意给定区间 \(a\)，一方面考察完全包含于 \(a\) 内的那些 \(D\)（其总长度大于 \(|a|-2\delta\)），另一方面考察与 \(a\) 至少有一点相交的那些 \(D\)（其总长度小于 \(|a|+2\delta\)），便得到
+\[
+  (|a|-2\delta)(1-\delta)n
+  \leq n_a\leq
+  (|a|+2\delta)(1+\delta)n,
+\]
+从而
+\[
+  \left|\frac{n_a}{n}-|a|\right|
+  \leq3\delta+2\delta^2.
+\]
+
+\origpage{318}
+
+\section*{§ 2. 推广到多维：应用}
+\addcontentsline{toc}{section}{§ 2. 推广到多维：应用}
+
+给 \(p\) 个变量 \(x_1,x_2,\ldots,x_p\) 指定数值
+\[
+  x_1=\alpha_1,\quad x_2=\alpha_2,\quad\ldots,\quad x_p=\alpha_p,
+\]
+便得到 \(p\) 维空间中的一点 \((\alpha)\)，其中 \(\alpha_i\) 是它的坐标。若两个点的相应坐标彼此模 \(1\) 同余，我们就称这两个点（模 \(1\)）同余。在与给定点 \((\alpha)\) 同余的诸点中，即满足
+\[
+  x_1\equiv\alpha_1,\quad x_2\equiv\alpha_2,\quad\ldots,\quad
+  x_p\equiv\alpha_p\pmod1
+\]
+的诸点中，恰有一个属于单位立方体
+\[
+  0\leq x_1,x_2,\ldots,x_p<1;
+\]
+称它为约化点。若把相互同余的点识别起来，或者把每一族同余点视为一个“点”，则由通常的 \(p\) 维空间得到一个闭的 \(p\) 维流形 \(\mathfrak R_p\)。通常空间中一个体积为 \(V\) 的区域——即按 Cantor--Jordan 意义有确定体积、封闭且有界，并且不含两个相互同余点的点集——在 \(\mathfrak R_p\) 中也给出一个体积为 \(V\) 的（单层覆盖的）区域。
+
+线性变换
+\[
+  x_i=\sum_{k=1}^{p}a_{ik}x'_k+a_i,
+  \qquad (i=1,2,\ldots,p)
+\]
+当且仅当它是整数且幺模的，才可视为 \(\mathfrak R_p\) 的一个变换；也就是说，系数 \(a_{ik}\) 是整数，并且它们的行列式为 \(\pm1\)。\footnote{常数 \(a_i\) 可以是任意实数。}
+
+现给定 \(\mathfrak R_p\) 中一个无限点列
+\[
+  \alpha(n):\quad
+  x_1\equiv\alpha_1(n),\quad x_2\equiv\alpha_2(n),\quad\ldots,\quad
+  x_p\equiv\alpha_p(n)\pmod1,
+  \qquad n=1,2,3,\ldots.
+\]
+我们像在 \(p=1\) 的情形那样问：这个点列何时在 \(\mathfrak R_p\) 中处处均匀稠密？也就是说，对任意给定的、体积为 \(V\) 的有界区域，前 \(n\) 个点中落入该区域的点数何时渐近为 \(Vn\)？完全同前面一样，可以证明如下判据。
+
+\origpage{319}
+
+\begin{theorem}
+点列 \(\alpha(n)\) 在 \(\mathfrak R_p\) 中处处均匀稠密，当且仅当对每一组不全为零的整数
+\(m_1,m_2,\ldots,m_p\)，都有
+\[
+  \sum_{h=1}^{n}
+  \e\bigl(m_1\alpha_1(h)+m_2\alpha_2(h)+\cdots+m_p\alpha_p(h)\bigr)
+  =o(n).
+\]
+\end{theorem}
+
+由此立即得到定理 2 的如下推广。
+
+\begin{theorem}
+设 \(\xi_1,\xi_2,\ldots,\xi_p\) 是任意 \(p\) 个数，并且它们之间不存在整系数线性关系；也就是说，不存在
+\[
+  l_1\xi_1+l_2\xi_2+\cdots+l_p\xi_p=l,
+\]
+其中 \(l_1,l_2,\ldots,l_p,l\) 是不全为零的整数。则点列
+\[
+  (n\xi_1,n\xi_2,\ldots,n\xi_p),
+  \qquad n=1,2,3,\ldots,
+\]
+模 \(1\) 在 \(\mathfrak R_p\) 中处处均匀稠密。
+\end{theorem}
+
+这个点列处处稠密，是 Kronecker 著名逼近定理的内容。\footnote{Kronecker, “Die Periodensysteme von Funktionen reeller Variablen”, \textit{Berichte d. K. Preuß. Ak. d. W. zu Berlin} 1884，第 1071--1080 页；以及“Näherungsweise ganzzahlige Auflösung linearer Gleichungen”，同刊 1884，第 1179--1193、1271--1299 页（\textit{Werke} III 1，第 32--109 页）。} 上面这个强得多的定理，是我在 1913 年夏季哥廷根数学会的一次报告中首次提出的，并以与这里类似的方法证明。Sierpiński、Bohl 与我此前对定理 2 所给的证明，本质上彼此相同，不能推广到多维情形；但 Bohr 的初等证明却可以推广。关于 Bohr 先生利用 Kronecker 定理以及本文这个更强的定理对黎曼 \(\zeta\) 函数理论所作的惊人应用，可参阅前面所引 H. Bohr 与 J. E. Littlewood 的著作。若 \(\xi_i\) 之间存在一个或多个整系数关系，陈述应如何修改，将在 §5 中讨论。
+
+在定理 4 中，参数 \(n\) 离散地取遍正整数。也可把它换成一个连续参数 \(t\)，并把它解释为时间，于是得到如下结果。
+
+\begin{theorem}
+设 \(\mathfrak R_p\) 中一点以恒定速度沿直线运动：
+\begin{equation}
+  x_i\equiv\alpha_i+\gamma_i t\pmod1,
+  \qquad (i=1,2,\ldots,p),
+  \tag{4}
+\end{equation}
+其中 \(\alpha_i,\gamma_i\) 为常数。若速度分量 \(\gamma_i\) 之间不存在整系数齐次线性关系，则该点在任意区域中的相对停留时间，等于该区域的体积。
+\end{theorem}
+
+\origpage{320}
+
+设从 \(t=0\) 到 \(t=T\) 的长观察时间内，运动点停留在体积为 \(V\) 的区域 \(G\) 中的总时长为 \(T_G\)，则区域 \(G\) 中的相对停留时间是
+\[
+  \lim_{T\to\infty}\frac{T_G}{T}.
+\]
+区域 \(G\) 在 \(\mathfrak R_p\) 中的体积可以看作任意选取一点落入 \(G\) 的先验概率。因此，上一定理的意思是：对一条以恒定速度作直线运动的轨道，\emph{相对停留时间等于先验概率}。它同统计力学的联系显而易见。
+
+取不全为零的任意整数 \(m_1,m_2,\ldots,m_p\)，并置
+\[
+  m_1\alpha_1+m_2\alpha_2+\cdots+m_p\alpha_p=\alpha,
+  \qquad
+  m_1\gamma_1+m_2\gamma_2+\cdots+m_p\gamma_p=\gamma.
+\]
+把我们的“原理”（定理 3）改写成适用于连续变化参数 \(t\) 的形式，可知证明定理 5 只需有
+\[
+  \int_0^T\e(\alpha+\gamma t)\,dt=o(T).
+\]
+这是显然的，因为左端等于
+\[
+  \frac{\e(\alpha+\gamma T)-\e(\alpha)}{\gamma}=O(1).
+\]
+
+定理 5 还可用多种不同的方式表述。所谓\emph{闭欧几里得空间}，是指任何闭的 \(p\) 维流形，它具有如下性质：每一点都有一个邻域，其中欧几里得几何成立。\footnote{如何把欧几里得与非欧几里得几何的公理表述为只谈论每一点的某个邻域（邻域大小不预先规定），并进而研究在拓扑意义上哪些不同空间满足这些公理，这一问题按其提出者称为“Clifford--Klein 空间形式问题”。尤其参见 Klein, “Über Nicht-Euklidische Geometrie”, \textit{Math. Ann.} 37。} \(\mathfrak R_p\) 就是这样的闭欧几里得空间。设 \(\Gamma_0\) 是 \(\mathfrak R_p\) 的一个有限群，由有限多个整的、幺模的线性变换构成；把 \(\mathfrak R_p\) 中按 \(\Gamma_0\) 等价的每一族点视为一个点，就从 \(\mathfrak R_p\) 得到一个闭欧几里得空间 \(\mathfrak R_p^{\Gamma_0}\)，前提是 \(\Gamma_0\) 中没有一个变换在 \(\mathfrak R_p\) 中具有不动点。可以严格证明——我将在附录中完成——每一个闭欧几里得空间都是这种形式。因此可以断言：
+
+\origpage{321}
+
+\begin{theorem}
+在一个闭欧几里得空间中，除去容易刻画的例外直线以外，每一条直线都任意逼近空间中的每一点；并且它在任意两个等体积区域中的平均停留时间相同。
+\end{theorem}
+
+在 \(\mathfrak R_p\) 中，把坐标除符号外模 \(1\) 相同的两点识别起来，即由同余关系
+\[
+  x_1\equiv\pm\alpha_1,
+  \quad x_2\equiv\pm\alpha_2,
+  \quad\ldots,\quad
+  x_p\equiv\pm\alpha_p\pmod1
+\]
+在允许全部 \(2^p\) 种符号组合时确定一个点；则每一个这样的点在边长为 \(1/2\) 的立方体
+\[
+  0\leq x_1,x_2,\ldots,x_p\leq\frac12
+\]
+中恰有一个代表。在这个立方体里，以恒定速度运行的直线（4）表现为一条折线路径；它正是一个质点在 \(p\) 维立方体内按通常反射定律被各壁反射时所走的轨道（当 \(p=2\) 时，就是台球在方桌内的轨道）。若各速度分量之间相对于坐标轴不存在整系数齐次线性关系，则按此规律运动的点在立方体内任意两个等体积区域中平均停留同样久。由于它任意逼近立方体中的每一点，Kronecker 逼近定理也能推出这一点；D. König 与 A. Szücs 两位先生早已作过说明。\footnote{“Mouvement d'un point abandonné à l'intérieur d'un cube”, \textit{Rend. Circ. Mat. Palermo} 36（1913）。} 对两位作者也提到的各种可能例外情形作完整讨论，并无困难。
+
+众所周知，\(\mathfrak R_2\) 可以一一且保角地映到环面上；直线变成环面上的等角线，即处处以同一角度与子午线相交的曲线。这里可以得到任意形状的环面：在我们的讨论中，把 \(\mathfrak R_2\) 换成如下二维流形即可——两点 \((x',y')\)、\((x'',y'')\) 当且仅当
+\[
+  x'\equiv x''\pmod a,
+  \qquad
+  y'\equiv y''\pmod b
+\]
+时被识别，其中 \(a,b\) 是任意两个固定实数。每一个这样的流形都可通过先对坐标作一个仿射变换而化为 \(\mathfrak R_2\)。
+
+\origpage{322}
+
+设环面由半径为 \(r\) 的圆旋转而成，并以 \(\kappa\) 表示其表面各点的高斯曲率。于是可以说：环面上的一条等角线，除去容易刻画的闭曲线例外，运行时会处处稠密地覆盖环面；但覆盖密度在不同位置并不相同，而与
+\[
+  1-r^2\kappa
+\]
+成比例（所以在朝向旋转轴的一侧大于背离旋转轴的一侧）。
+
+对于 \(p=2\)，定理 5 显然还可表述如下：若 \(\overrightarrow{\beta\delta}\) 是 \(\mathfrak R_2\) 中一条不与运动点的直线轨道（4）平行的线段，\footnote{在 \(\mathfrak R_p\) 中，一条线段 \(\overrightarrow{\beta\delta}\) 自然不能仅由起点 \(\beta\) 与终点 \(\delta\) 唯一确定。} 则运动点平均每单位时间越过这条线段的次数，等于由线段 \(\overrightarrow{\beta\delta}\) 与速度向量 \((\gamma_1,\gamma_2)\) 构成的平行四边形面积；这里假定速度分量之比 \(\gamma_1:\gamma_2\) 为无理数。
+
+这一表述出自 Bohl 先生，并由他从定理 2 推出。他用它解决了拉格朗日所提出的一个关于\emph{振动叠加}的问题。由 \(m\) 个简谐振动叠加而成的振动过程由公式
+\begin{equation}
+  z=\sum_{i=1}^{m}C_i\e(\alpha_i+\gamma_i t)
+  \tag{5}
+\end{equation}
+描述，其中 \(\alpha_i,\gamma_i\) 是实数，\(C_i\) 是正常数；在复 \(z\) 平面中，它在几何上是一条外摆线。写
+\[
+  z=r\e(\sigma),
+\]
+其中 \(r\geq0\) 是绝对值，\(\sigma\) 是 \(z\) 的方位角。拉格朗日提出的问题是：\(\sigma\) 是否平均以恒定速率增长，也就是说，极限
+\[
+  \lim_{t\to\infty}\frac{\sigma}{t}
+\]
+是否存在。在一个特殊情形中，拉格朗日本人已经回答了这个问题；即当——
+
+\origpage{323}
+
+也就是说，若某个 \(C_i\)，例如 \(C_m\)，大于其余各项之和，那么——甚至当把各相位
+\(\alpha_i+\gamma_i t\) 替换为彼此独立的变量时——恒有
+\[
+  \left|\sigma-(\alpha_m+\gamma_m t)\right|<\frac14,
+  \qquad
+  \lim_{t\to\infty}\frac{\sigma}{t}=\gamma_m.
+\]
+
+Bohl 先生还处理了 \(m=3\) 时不属于拉格朗日情形的情况。他证明：若
+\(\pi A_i\) 是由三条边 \(C_i\) 构成的三角形的三个角，则
+\begin{equation}
+  \lim_{t\to\infty}\frac{\sigma}{t}
+  =\gamma_1A_1+\gamma_2A_2+\gamma_3A_3.
+  \tag{6}
+\end{equation}
+这里假定诸 \(\gamma_i\) 之间不存在整系数的齐次线性关系。证明时可令
+\(\alpha_3=\gamma_3=0\)。作为 \(x_1,x_2\) 的函数，
+\begin{equation}
+  z=r\e(\sigma)=C_1\e(x_1)+C_2\e(x_2)+C_3
+  \tag{7}
+\end{equation}
+在 \(\mathfrak R_2\) 中恰在下列两点消失：
+\[
+\begin{array}{lll}
+\beta: & x_1\equiv\beta_1=\dfrac{1-A_2}{2},
+& x_2\equiv\beta_2=\dfrac{1+A_1}{2} \pmod 1,\\[0.9em]
+\delta: & x_1\equiv\delta_1=\dfrac{1+A_2}{2},
+& x_2\equiv\delta_2=\dfrac{1-A_1}{2} \pmod 1.
+\end{array}
+\]
+若沿线段 \(\overrightarrow{\beta\delta}\) 割开 \(\mathfrak R_2\)，其中该线段由
+\[
+\overrightarrow{\beta\delta}:\quad
+\begin{cases}
+ x_1\equiv\beta_1\tau+\delta_1(1-\tau),\\
+ x_2\equiv\beta_2\tau+\delta_2(1-\tau)
+\end{cases}
+\pmod 1,
+\qquad 0\leq\tau\leq 1,
+\]
+给出，那么通过一个非常简单的几何考察即可看出：由（7）定义、并在
+\(\beta,\delta\) 周围发生分支的函数
+\(\sigma=\sigma(x_1,x_2)\)，在割开的 \(\mathfrak R_2\) 上成为连续的单值函数；但越过切口
+\(\overrightarrow{\beta\delta}\) 时，它发生大小为 \(1\) 的跃变。Bohl 的规律由此立即得到。
+
+对每个 \(p\) 都成立的定理 5，使我们不仅能够在 \(m=3\) 时，而且能够对任意
+\(m\) 完全回答拉格朗日的问题（Bohl 先生尚未做到这一点）。当 \(m=4\) 时，非拉格朗日情形又分为两个子情形。这里仅给出其中一个子情形的结果：\footnote{参见我在瑞士数学会 1914 年春季会议上的报告：``Une application de la théorie des nombres à la mécanique statistique et à la théorie des perturbations'', \emph{Enseignement mathématique}, 第 6 号，1914 年第 16 年卷。}
+
+\begin{theorem}
+设给定四个正数
+\[
+ C_1<C_2<C_3<C_4,
+\]
+并且
+\[
+ C_1+C_4>C_2+C_3,
+ \qquad
+ C_4<C_1+C_2+C_3.
+\]
+则边长为 \(C_i\) 的平面铰接四边形，能够在一个周期内遍历边长为这些
+\(C_i\) 的平面四边形所能具有的全部彼此不合同的状态。以
+\(2\pi\xi_i\) 表示这种四边形的边 \(C_i\) 与其平面内任取的一条固定直线所成的角；遍历一个这样的周期以后，所有角差
+\(2\pi(\xi_i-\xi_k)\) 都回到各自的初始值。定义遍及一个周期的积分
+\[
+\begin{aligned}
+ A_1=\frac12\int\bigl[&
+   (\xi_2\,d\xi_3-\xi_3\,d\xi_2)
+  +(\xi_3\,d\xi_4-\xi_4\,d\xi_3)\\
+ &+(\xi_4\,d\xi_2-\xi_2\,d\xi_4)
+ \bigr],
+\end{aligned}
+\]
+并类似地定义 \(A_2,A_3,A_4\)。这些积分既不依赖于平面铰接四边形遍历其全部不合同状态的具体方式，也不依赖于用来量取角
+\(2\pi\xi_i\) 的那条固定直线。我称它们为铰接四边形的\emph{积分不变量}；其和等于 \(1\)。把振幅为 \(C_i\) 的四个简谐振动叠加，得到
+\[
+ z=r\e(\sigma)=\sum_{i=1}^{4}C_i\e(\alpha_i+\gamma_i t).
+\]
+若诸 \(\gamma_i\) 之间不存在整系数的齐次线性关系，则其方位角 \(\sigma\) 每单位时间的平均增长量为
+\[
+ \sum_{i=1}^{4}\gamma_iA_i.
+\]
+\end{theorem}
+
+\origpage{324}
+
+这些积分不变量 \(A_i\) 与铰接四边形的边 \(C_i\) 之间，似乎具有一种类似于平面三角学中三角形的角与边之间的关系。
+
+拉格朗日的问题在天文学中具有特殊意义。此时 \(r\) 表示行星轨道的数值离心率，\(\sigma\) 表示近日点经度；或者，\(r\) 表示轨道相对于行星系统不变平面的倾角之正弦，而 \(\sigma\) 表示交点经度。因此，形如（5）的公式尤其描述近日点经度和交点经度的长期进动。在我们的太阳系中，非拉格朗日情形只出现于金星与地球。
+
+\section*{§ 3. 多项式 \(\varphi\) 的和 \(\sum \e(\varphi(n))\)}
+\addcontentsline{toc}{section}{§ 3. 多项式 \(\varphi\) 的和}
+
+迄今为止，我们所考察的 \(\mathfrak R_p\) 中的点，都是以线性方式依赖于一个连续变化或依次取遍全部整数值的参数。现在转向更一般的情形：这种依赖关系由高次多项式给出。
+
+\origpage{325}
+
+先令参数 \(t\)（时间）连续地取遍所有值。相应的问题可立即由公式
+\begin{equation}
+  \int_0^t \e(\varphi(u))\,du=o(t)
+  \tag{8}
+\end{equation}
+解决；这里 \(\varphi(t)\) 是任意一个不能约化为常数的 \(t\) 的多项式。
+
+在线性情形已经讨论以后，我们可以假定 \(\varphi(t)\) 的次数大于 \(1\)。取 \(t_0\)，使得对 \(t\geq t_0\)，导数 \(\varphi'(t)\) 始终保持同一符号，例如为正。在积分
+\[
+  2\pi i\int_{t_0}^{t}\e(\varphi(u))\,du
+  \qquad (t>t_0)
+\]
+中作代换 \(x=\varphi(u)\)，便得到
+\[
+  2\pi i\int_{t_0}^{t}\e(x)\frac{dx}{\varphi'(u)}
+  =\int_{t_0}^{t}\frac{d\e(x)}{\varphi'(u)}.
+\]
+分部积分给出
+\[
+ \left[\frac{\e(x)}{\varphi'(u)}\right]_{t_0}^{t}
+ +\int_{t_0}^{t}
+   \frac{\varphi''(u)}{\bigl(\varphi'(u)\bigr)^2}\,
+   \e(\varphi(u))\,du.
+\]
+由于
+\[
+ \int_{t_0}^{\infty}
+ \left|\frac{\varphi''(u)}{(\varphi'(u))^2}\right|du
+\]
+收敛，因而
+\[
+ \int_{t_0}^{\infty}\e(\varphi(u))\,du
+\]
+也收敛。所以（8）实际上已经以更强的形式
+\[
+ \int_0^t\e(\varphi(u))\,du=O(1)
+\]
+得到证明。借助我们的原理，可由此推出：
+
+\begin{theorem}
+设 \(\varphi_1(t),\varphi_2(t),\ldots,\varphi_p(t)\) 是任意 \(p\) 个多项式，并且由它们以不全为零的整系数所作的任何线性组合，都不能约化为一个纯常数。则在 \(\mathfrak R_p\) 中按规律
+\[
+ x_i\equiv\varphi_i(t)\pmod 1,
+ \qquad (i=1,2,\ldots,p)
+\]
+运动的点，在任意两个等体积区域内，于无限长的观察时间中平均停留同样长的时间。
+\end{theorem}
+
+\origpage{326}
+
+当把连续参数 \(t\) 换成依次取遍自然数的离散参数 \(n\) 时，考察就困难得多。一切归结为证明下列结果。
+
+\begin{theorem}
+设 \(\varphi(z)\) 是一个 \(q\) 次多项式
+\[
+ \varphi(z)=\alpha_qz^q+\alpha_{q-1}z^{q-1}+\cdots+\alpha_0.
+\]
+若系数 \(\alpha_q,\alpha_{q-1},\ldots,\alpha_1\) 中至少有一个是无理数，则
+\begin{equation}
+ \sum_{h=0}^{n}\e(\varphi(h))=o(n).
+ \tag{9}
+\end{equation}
+\end{theorem}
+
+\noindent\textit{补充说明。}
+若在所有无理系数中，\(\alpha_l\) 的指标 \(l\) 最大，则在固定 \(\alpha_l\) 时，（9）对于其后的全部系数
+\(\alpha_{l-1},\ldots,\alpha_1,\alpha_0\) 的所有取值是一致成立的。
+
+对于 \(\varphi(z)=\alpha z^q\)，本定理最先由 Hardy 和 Littlewood 两位先生在剑桥（1912）的一次报告中提出。\footnote{见其报告 ``Some problems of Diophantine approximation''；参阅大会报告。} 对二次多项式 \(\varphi(z)\)，两位作者后来在 \emph{Acta Mathematica} 上发表了一个以柯西积分定理为基础的证明。\footnote{\emph{Acta Mathematica} 37，第 193--238 页，定理 2，14，第 213 页。该文是从第 155 页开始的论文 ``Some problems of Diophantine approximations'' 的续篇；其第三部分在原文写作时尚未出版。} 据 Hardy 先生友好告知，他们也恰在我认识到定理 9 的同一范围内认识到了它的有效性；他们的证明与我的证明略有不同，并将在 \emph{Acta Mathematica} 上发表。
+
+在通常的 \(q\) 维空间中，考虑全部格点
+\[
+ \mathbf r=(r_1,r_2,\ldots,r_q),
+\]
+即所有坐标 \(r_i\) 都为整数、并属于“八面体”区域
+\[
+ |\mathbf r|=|r_1|+|r_2|+\cdots+|r_q|\leq n
+\]
+的点。把它们的数目记为 \(n_q\)。其精确值为
+\[
+ n_q
+ =2^q\binom{n}{q}
+ +2^{q-1}\binom{n}{q-1}\binom{q}{1}
+ +2^{q-2}\binom{n}{q-2}\binom{q}{2}
+ +\cdots+1,
+\]
+不过精确值并不重要；我们只需要对无限增大的 \(n\) 显然成立的渐近公式
+\[
+ n_q\sim\frac{(2n)^q}{q!}.
+\]
+在证明定理 9 以前，先给出下列辅助引理。
+
+\origpage{327}
+
+\begin{lemma*}
+设 \(\xi\) 为无理数。在属于八面体区域 \(|\mathbf r|\leq n\) 的 \(n_q\) 个格点
+\[
+ \mathbf r=(r_1,r_2,\ldots,r_q)
+\]
+中，考察那些使数
+\[
+ r_1r_2\cdots r_q\xi\pmod 1
+\]
+落在任意预先给定的区间 \(ab\) 内的格点，其中该区间的长度为
+\(c=b-a<1\)。这些格点的数目渐近等于 \(c\,n_q\)。
+\end{lemma*}
+
+依照定理 1 所建立的原理，只须证明极限关系
+\begin{equation}
+ \lim_{n\to\infty}\frac1{n_q}
+ \sum_{|\mathbf r|\leq n}
+ \e(r_1r_2\cdots r_q\xi)=0.
+ \tag{10}
+\end{equation}
+事实上，若它对每个无理数 \(\xi\) 成立，就也对每个非零整数倍
+\(m\xi\) 成立；而在 \(m=1\) 时，它正是所断言的关系。因此可以从
+\(q-1\) 到 \(q\) 作归纳证明。
+
+在（10）左端的和中，先对 \(r_q\) 求和，再对其余的 \(r\) 求和。用
+\(\mathbf r'=(r_1,r_2,\ldots,r_{q-1})\) 表示在 \((q-1)\) 维坐标空间中的“投影”格点（即令 \(r_q=0\)），则
+\[
+ \sum_{\mathbf r}=\sum_{\mathbf r'}\sum_{r_q}.
+\]
+外层求和遍及八面体区域 \(|\mathbf r'|\leq n\)；对每个这样的
+\(\mathbf r'\)，内层求和遍及所有满足
+\[
+ |r_q|\leq n-|\mathbf r'|
+\]
+的整数。内层和是几何级数。若置
+\[
+ R=r_1r_2\cdots r_{q-1},
+\]
+则有
+\[
+ \left|\sum_{r_q}\e(r_qR\xi)\right|
+ \leq\frac1{|\sin(\pi R\xi)|}.
+\]
+由于该和至多有 \(2n+1\) 项，另有粗略估计
+\[
+ \left|\sum_{r_q}\e(r_qR\xi)\right|\leq 2n+1.
+\]
+
+取一个正数 \(\varepsilon<\tfrac12\)。假设我们的命题对 \(q-1\) 已经成立；则使
+\(R\xi\pmod 1\) 落在 \(-\varepsilon\) 与 \(+\varepsilon\) 之间的
+\(n_{q-1}\) 个格点 \(\mathbf r'\) 的数目渐近等于
+\(2\varepsilon n_{q-1}\)，因而对充分大的 \(n\) 小于
+\(3\varepsilon n_{q-1}\)。对于这些 \(\mathbf r'\)，采用上面的第二个估计；对其余格点，采用第一个估计：
+\[
+ \left|\sum_{r_q}\e(r_qR\xi)\right|
+ \leq\frac1{\sin\pi\varepsilon}.
+\]
+于是总计有
+\[
+\begin{aligned}
+ \left|\sum_{\mathbf r}\e(r_1r_2\cdots r_q\xi)\right|
+ &=\left|\sum_{\mathbf r'}\sum_{r_q}\right|\\
+ &\leq\sum_{\mathbf r'}\left|\sum_{r_q}\right|\\
+ &\leq n_{q-1}
+ \left\{3\varepsilon(2n+1)+\frac1{\sin\pi\varepsilon}\right\}.
+\end{aligned}
+\]
+
+\origpage{328}
+
+又因为
+\[
+ \lim_{n\to\infty}\frac{n_{q-1}(2n+1)}{n_q}=q,
+\]
+所以对充分大的 \(n\)，
+\[
+ \frac1{n_q}
+ \left|\sum_{\mathbf r}\e(r_1r_2\cdots r_q\xi)\right|
+ <\varepsilon(3q+1),
+\]
+这就证明了引理。
+
+在证明定理 9 时，我们要使用该引理的下述推论：满足
+\[
+ |\mathbf r'|=|r_1|+|r_2|+\cdots+|r_{q-1}|\leq n,
+\]
+并使
+\[
+ R\xi=r_1r_2\cdots r_{q-1}\xi\pmod 1
+\]
+落在 \(-\varepsilon\) 与 \(+\varepsilon\) 之间的整数组
+\(r_1,r_2,\ldots,r_{q-1}\)，对充分大的 \(n\) 而言，其数目小于
+\(3\varepsilon n_{q-1}\)。
+
+作完这些准备以后，来研究和
+\[
+ \sigma_n=\sum_{h=0}^{n}\e(\varphi(h)).
+\]
+先假定 \(\varphi(z)\) 的最高次系数 \(\alpha_q\) 是无理数。
+
+\medskip
+\noindent\textbf{第一步。}
+\(\sigma_n\) 的共轭复数为
+\[
+ \overline{\sigma_n}=\sum_{h=0}^{n}\e(-\varphi(h));
+\]
+从而
+\[
+\begin{aligned}
+ |\sigma_n|^2
+ &=\sigma_n\overline{\sigma_n}
+ =\sum_{h=0}^{n}\sum_{k=0}^{n}
+   \e(\varphi(h))\e(-\varphi(k))\\
+ &=\sum_{h,k}\e(\varphi(h)-\varphi(k)).
+\end{aligned}
+\]
+置 \(h=k+r\)，则
+\[
+ \varphi(h)-\varphi(k)=r\,\varphi(r,k).
+\]
+这里的 \(\varphi(r,k)\) 是 \(k,r\) 的一个整有理函数，即多项式；它只含不高于 \(q-1\) 次的项，且按 \(k\) 的降幂排列时以
+\(q\alpha_qk^{q-1}\) 开始。因此
+\[
+ |\sigma_n|^2=\sum_r\sum_k\e\bigl(r\varphi(r,k)\bigr).
+\]
+求和区域由
+\[
+ 0\leq k\leq n,
+ \qquad
+ 0\leq k+r\leq n
+\]
+描述。所以 \(r\) 遍历从 \(-n\) 到 \(+n\) 的整个区间；对每个这样的
+\(r\)，内层的 \(k\) 遍历由 \(n-|r|+1\) 个整数构成的区间
+\([0,n-|r|]\) 或 \([|r|,n]\)，视 \(r\geq0\) 或 \(r\leq0\) 而定。
+
+\origpage{329}
+
+\medskip
+\noindent\textbf{第二步。}
+仍以 \(n_q\)（\(q=1,2,\ldots\)）表示辅助引理中的数目。由上式和 Schwarz 不等式，得到
+\[
+ |\sigma_n|^4
+ \leq n_1\sum_r
+ \left|\sum_k\e\bigl(r\varphi(r,k)\bigr)\right|^2.
+\]
+现在重复第一步所采用的方法：
+\[
+ \left|\sum_k\e\bigl(r\varphi(r,k)\bigr)\right|^2
+ =\sum_{k,l}\e\bigl(r\varphi(r,k)-r\varphi(r,l)\bigr).
+\]
+再写
+\[
+ k=l+s,
+ \qquad
+ \varphi(r,k)-\varphi(r,l)=s\varphi(r,s,l).
+\]
+整个整有理函数 \(\varphi(r,s,l)\) 只含不高于 \(q-2\) 次的项；按
+\(l\) 的降幂排列时，它以
+\(q(q-1)\alpha_ql^{q-2}\) 开始，且系数 \(\alpha_0,\alpha_1\) 已不再出现。在目前阶段，
+\[
+ |\sigma_n|^4
+ \leq n_1\sum_{r,s}\sum_l
+ \e\bigl(rs\varphi(r,s,l)\bigr).
+\]
+这里 \((r,s)\) 遍历二维“八面体”
+\(|r|+|s|\leq n\)，而 \(l\) 遍历一个由上述求和区间中依次删去
+\(|s|\) 个整数所得到的区间；删去前端还是后端，取决于
+\(s\geq0\) 还是 \(s\leq0\)。
+
+\medskip
+\noindent\textbf{第三步。}
+再次应用 Schwarz 不等式，得到
+\[
+ |\sigma_n|^8
+ \leq n_1^2n_2\sum_{r,s}
+ \left|\sum_l\e\bigl(rs\varphi(r,s,l)\bigr)\right|^2,
+\]
+然后与上面完全相同地继续下去。
+
+我们必须把这一过程一直进行到第 \((q-1)\) 步。为此，用下标区分求和字母
+\(h,k,l,\ldots;r,s,\ldots\)，可写成
+\[
+\begin{aligned}
+ h_1&=r_1+h_2,
+ &\varphi(h_1)&=\varphi(h_2)+r_1\varphi(r_1,h_2),\\
+ h_2&=r_2+h_3,
+ &\varphi(r_1,h_2)&=\varphi(r_1,h_3)+r_2\varphi(r_1,r_2,h_3),\\
+ &\vdotswithin{=}
+ & &\vdotswithin{=}\\
+ h_{q-1}&=r_{q-1}+h,
+ &\varphi(r_1,\ldots,r_{q-2},h_{q-1})
+ &=\varphi(r_1,\ldots,r_{q-2},h)
+   +r_{q-1}\varphi(r_1,\ldots,r_{q-1},h).
+\end{aligned}
+\]
+
+\origpage{330}
+
+最后这个依赖于 \(q\) 个变量
+\(r_1,r_2,\ldots,r_{q-1},h\) 的 \(\varphi\)，只含零次与一次项；其中乘在
+\(h\) 前的系数为 \(q!\alpha_q\)：
+\[
+ \varphi(r_1,r_2,\ldots,r_{q-1},h)
+ =q!\alpha_q h
+ +(\beta_0+\beta_1r_1+\beta_2r_2+\cdots+\beta_{q-1}r_{q-1}).
+\]
+常数系数 \(\beta\) 可由 \(\varphi(z)\) 的前两个系数
+\(\alpha_q,\alpha_{q-1}\) 算出，其具体形式在这里无须关心。引入缩写
+\[
+\begin{gathered}
+ R=r_1r_2\cdots r_{q-1},\qquad
+ \rho=R(\beta_0+\beta_1r_1+\beta_2r_2+\cdots+\beta_{q-1}r_{q-1}),\\
+ \xi=q!\alpha_q,
+ \qquad
+ Q=2^{q-1},\\
+ N=(n_1)^{2^{q-3}}(n_2)^{2^{q-4}}\cdots n_{q-3}^{2}n_{q-2}
+ \qquad(q=2\text{ 时规定 }N=1).
+\end{gathered}
+\]
+最终得到不等式
+\begin{equation}
+ |\sigma_n|^Q
+ \leq N\sum_{\mathbf r'}
+ \left|\e(\rho)\sum_h\e(R\xi h)\right|,
+ \tag{11}
+\end{equation}
+其中 \(\mathbf r'=(r_1,r_2,\ldots,r_{q-1})\) 遍历八面体
+\(|\mathbf r'|\leq n\)，而 \(h\) 则遍历一个依赖于 \(\mathbf r'\)、由
+\(n+1-|\mathbf r'|\) 个整数构成的连续区间。这个区间由
+\(0,1,\ldots,n\) 依次删去 \(|r_i|\) 个尾端或首端的整数而得，删去哪一端取决于
+\(r_i\geq0\) 还是 \(r_i\leq0\)。
+
+若在 \(N\) 的表达式中把每个 \(n_i\) 换成其渐近式，则 \(N\) 成为
+\(n\) 的一个幂，其指数是
+\[
+ 1\cdot2^{q-3}+2\cdot2^{q-4}+3\cdot2^{q-5}+\cdots+(q-2)\cdot2^0
+ =Q-q.
+\]
+所以 \(N\) 本身具有渐近公式
+\[
+ N\sim\varkappa\,n^{Q-q},
+\]
+其中 \(\varkappa\) 是只依赖于 \(q\) 的常数。
+
+在（11）中，内层关于 \(h\) 的和是几何级数，因而可以计算。对所有使
+\(R\xi\pmod1\) 不落在 \(-\varepsilon\) 与 \(+\varepsilon\) 之间的
+\(\mathbf r'\)，有
+\[
+ \left|\sum_h\right|\leq\frac1{\sin\pi\varepsilon};
+\]
+对其余的 \(\mathbf r'\)，其数目在充分大的 \(n\) 时小于
+\(3\varepsilon n_{q-1}\)，则采用粗略估计
+\[
+ \left|\sum_h\right|\leq n+1.
+\]
+
+\origpage{331}
+
+由公式（11）遂得
+\[
+ |\sigma_n|^Q
+ \leq Nn_{q-1}
+ \left\{3\varepsilon(n+1)+\frac1{\sin\pi\varepsilon}\right\}.
+\]
+当 \(n\) 充分大时，因而
+\[
+ \left|\frac{\sigma_n}{n}\right|^Q
+ \leq 3\varepsilon
+ \left(\frac{\varkappa\,2^{q-1}}{(q-1)!}+1\right),
+\]
+证明完成。
+
+如果最高次系数不是无理数，例如
+\(\alpha_q,\alpha_{q-1},\ldots,\alpha_{l+1}\) 都是有理数，而
+\(\alpha_l\) 是无理数，令 \(G\) 为这些分数
+\(\alpha_q,\alpha_{q-1},\ldots,\alpha_{l+1}\) 的公分母。按照求和指标模
+\(G\) 的余数，把总和分为 \(G\) 部分；也就是说，把求和指标写成
+\(Gh+r\)，得到
+\[
+ \sum_{h=0}^{Gn-1}\e(\varphi(h))
+ =\sum_{r=0}^{G-1}\sum_{h=0}^{n-1}
+   \e\bigl(\varphi(Gh+r)\bigr).
+\]
+\transnote{原文此式内层求和的上限排作 \(n\)，但与左端的指标范围相配时应为 \(n-1\)。这里按其显然的计数含义排作 \(n-1\)。}
+对每个 \(r=0,1,\ldots,G-1\)，多项式 \(\varphi(Gz+r)\) 模 \(1\) 同余于一个
+\(l\) 次多项式 \(\psi_r(z)\)，其最高次系数
+\(\alpha_lG^l\) 是无理数。因此，我们把原来的和分解成的每一个和都是
+\(o(n)\)。
+
+除 \(\sigma_n\) 外，还可以考察诸如
+\[
+ \sum_n n\e(\varphi(n)),
+ \qquad
+ \sum_n\frac1n\e(\varphi(n)),
+\]
+或更一般的
+\[
+ \sum_n a_n\e(\varphi(n)),
+\]
+其中 \(a_1,a_2,a_3,\ldots\) 是总和发散的正数列。
+
+\begin{theorem}
+极限关系
+\[
+ \sum_{h=0}^{n}a_h\e(\varphi(h))
+ =o\!\left(\sum_{h=0}^{n}a_h\right)
+\]
+对每个正项单调递减的发散级数
+\(a_0+a_1+a_2+\cdots\) 成立。若各项单调递增，则只要
+\[
+ na_n=O\!\left(\sum_{h=0}^{n}a_h\right),
+\]
+同一结论也成立；例如，当 \(a_n\) 按 \(n\) 的某个幂增长时总是如此。
+\end{theorem}
+
+\origpage{332}
+
+这由分部求和按通常方式得到。事实上，
+\[
+ \sum_{h=0}^{n}a_h\e(\varphi(h))
+ =a_n\sigma_n+
+ \sum_{h=0}^{n-1}\sigma_h(a_h-a_{h+1}).
+\]
+任给正数 \(\varepsilon\)，从某个指标起有
+\(|\sigma_h|<\varepsilon h\)，故
+\[
+ \left|\sum_{h=0}^{n}a_h\e(\varphi(h))\right|
+ \leq C_{\varepsilon}+\varepsilon na_n
+ +\varepsilon\sum_{h=0}^{n-1}h|a_h-a_{h+1}|,
+\]
+其中 \(C_{\varepsilon}\) 是可以依赖于 \(\varepsilon\)、但不依赖于
+\(n\) 的常数。
+
+若 \(a_n\) 单调递减，则右端最后一个和为
+\[
+ \sum_{h=0}^{n-1}h(a_h-a_{h+1})
+ =\sum_{h=1}^{n}a_h-na_n,
+\]
+于是
+\[
+ \left|\sum_{h=0}^{n}a_h\e(\varphi(h))\right|
+ \leq C_{\varepsilon}+\varepsilon\sum_{h=0}^{n}a_h.
+\]
+这就处理了这一情形。反之，若 \(a_n\) 单调递增，则右端最后一个和为
+\[
+ \sum_{h=0}^{n-1}h(a_{h+1}-a_h)
+ =na_n-\sum_{h=1}^{n}a_h<na_n,
+\]
+从而
+\[
+ \left|\sum_{h=0}^{n}a_h\e(\varphi(h))\right|
+ \leq C_{\varepsilon}+2\varepsilon na_n.
+\]
+
+特别应当提出的是公式
+\[
+ \sum_{h=1}^{n}\frac{\e(\varphi(h))}{h}=o(\lg n).
+\]
+\par\medskip
+\noindent\rule{0.28\textwidth}{0.4pt}\par
+\begingroup\small
+\noindent\textsuperscript{*}\,Hardy--Littlewood 研究的原始目标，是为黎曼 \(\zeta\) 函数建立极限关系
+\[
+ \zeta(1+ti)=o(\lg t),
+\]
+即
+\[
+ \sum_{n=1}^{t}\frac{e^{ti\lg n}}{n}=o(\lg t).
+\]
+这同样可以用本文对 \(\sum \e(\varphi(n))\) 所采用的方法证明。依我看来，这一命题甚至没有定理 9 那样深，因为推出上式并不需要借助“原理”（定理 1）。我将在以后——也许接续 Hardy 和 Littlewood 两位先生关于这一问题的论文——发表我的证明。\emph{原注的末句续至原刊第 333 页。}
+\endgroup
+
+
+\origpage{333}
+
+级数 \(a_0+a_1+a_2+\cdots\) 收敛的情形也很重要。例如，考察最简单的 \(\vartheta\)-函数：
+\[
+  \vartheta(v;z)=\sum_{n=-\infty}^{+\infty}z^{n^2}e^{2\pi i n v},
+  \qquad (|z|<1),
+\]
+其中辐角 \(v\) 为实数（\(z\) 是通常以 \(q\) 表示的模）。令 \(|z|=r\)，写成
+\(z=re^{2\pi i\alpha}\)，并且暂时只保留和式中从 \(n=0\) 到 \(+\infty\) 的部分，则
+\(\vartheta\)-级数化为
+\[
+  \sum_{n=0}^{\infty}r^{n^2}\e(\varphi(n)),
+  \qquad \{\varphi(n)=\alpha n^2+vn\}.
+\]
+
+我们要研究当模 \(z\) 沿一条半径趋近单位圆上一点时 \(\vartheta\)-函数的行为；换言之，在固定 \(\alpha\) 和 \(v\) 的情况下，使 \(r\) 从小于 \(1\) 的值趋于 \(1\)。上述级数可写成
+\[
+  \sum_{n=0}^{\infty}c_n r^n,
+\]
+其中，当 \(n\) 不是平方数时令 \(c_n=0\)；若 \(n=m^2\)，则令
+\(c_n=\e(\varphi(m))\)。分部求和给出
+\[
+  \sum_{n=0}^{\infty}c_n r^n
+  =\sum_{n=0}^{\infty}C_n(r^n-r^{n+1})
+  =(1-r)\sum_{n=0}^{\infty}C_n r^n,
+\]
+其中
+\[
+  C_n=c_0+c_1+\cdots+c_n
+  =\sum_{m=0}^{\sqrt n}\e(\varphi(m)).
+\]
+若 \(\alpha\) 为无理数，则
+\[
+  C_n=o(\sqrt n),
+  \qquad\text{或者}\qquad
+  C_n=o\!\left(\frac{3\cdot5\cdots(2n+1)}{2\cdot4\cdots 2n}\right).
+\]
+由于
+\[
+  \sum_{n=0}^{\infty}
+  \frac{3\cdot5\cdots(2n+1)}{2\cdot4\cdots 2n}\,r^n
+  =(1-r)^{-3/2},
+\]
+故有
+\[
+  \lim_{r\to1^-}\left\{
+    \sqrt{1-r}\sum_{n=0}^{\infty}c_n r^n
+  \right\}=0.
+\]
+
+\origpage{334}
+
+因此，对于 \(\vartheta\)-函数我们得到：\footnote{参见 Hardy 与 Littlewood，剑桥报告中的定理 7。}
+\[
+  \vartheta(z;v)=o\!\left(\frac{1}{\sqrt{1-|z|}}\right).
+\]
+对更一般的函数也有相应的结论：
+\[
+  \vartheta(z;v_1,v_2,\ldots,v_{q-1})
+  =\sum_{n=-\infty}^{+\infty}
+    z^{n^q}\e(v_1n+v_2n^2+\cdots+v_{q-1}n^{q-1}).
+\]
+
+\begin{theorem}
+若使 \(z\) 沿一个固定方位角趋近单位圆，并且该方位角与 \(2\pi\) 不可公度，则
+\[
+  \vartheta(z;v_1,v_2,\ldots,v_{q-1})
+  =o\!\left(\frac{1}{\sqrt[q]{1-|z|}}\right),
+\]
+且这一估计关于所有实辐角 \(v\) 是一致的。
+\end{theorem}
+
+\section*{§ 4. \(\mathfrak R_p\) 中点的均匀分布之推论}
+\addcontentsline{toc}{section}{§ 4. 点的均匀分布之推论}
+
+依据我们全部研究所建立的原理，定理 9 立即给出下列推论。
+
+\begin{theorem}
+设 \(\varphi(z)\) 是常数项为 \(\alpha_0\) 的多项式，并且
+\(\varphi(z)-\alpha_0\) 的系数并非全为有理数，则数列
+\[
+  \varphi(1),\ \varphi(2),\ \varphi(3),\ldots
+\]
+按模 \(1\) 处处均匀稠密。
+\end{theorem}
+
+特别地：
+
+\begin{theorem}
+若 \(\xi\) 是无理数，则把数轴卷绕到周长为 \(1\) 的圆上时，点列
+\[
+  1\xi,\ 4\xi,\ 9\xi,\ 16\xi,\ 25\xi,\ldots
+\]
+处处以均匀密度覆盖圆周。把平方数换成立方数、四次幂等等，也有同样的结论。
+\end{theorem}
+
+更一般地：
+
+\begin{theorem}
+设
+\[
+  \varphi_1(z),\ \varphi_2(z),\ldots,\varphi_p(z)
+\]
+为任意 \(p\) 个多项式，并且由它们以任意不全为零的整系数作成的线性组合，都不成为一个按模 \(1\) 与常数同余的多项式。则点列
+\[
+  x_1\equiv\varphi_1(n),\quad
+  x_2\equiv\varphi_2(n),\quad\ldots,\quad
+  x_p\equiv\varphi_p(n)\pmod 1,
+  \qquad \{n=1,2,3,\ldots\}
+\]
+在 \(\mathfrak R_p\) 中处处均匀稠密。
+\end{theorem}
+
+\origpage{335}
+
+事实上，对于任一组不全为零的整数
+\(m_1,m_2,\ldots,m_p\)，多项式
+\[
+  \varphi(z)=m_1\varphi_1(z)+m_2\varphi_2(z)+\cdots+m_p\varphi_p(z)
+\]
+满足定理 9 的假设。
+
+定理 14 包含下列一些特殊事实。
+
+\begin{theorem}
+设 \(\xi\) 为无理数，并在单位区间 \(01\) 中任取 \(q\) 个区间
+\(a_i b_i\ (i=1,2,\ldots,q)\)。在前 \(n\) 个正整数
+\(h=1,2,\ldots,n\) 中，使模 \(1\) 约化数 \((h\xi)\) 落在
+\(a_1b_1\) 内，同时使 \((h^2\xi)\) 落在 \(a_2b_2\) 内，……，使
+\((h^q\xi)\) 落在 \(a_qb_q\) 内的那些 \(h\) 的数目，在
+\(n\to\infty\) 时渐近等于
+\[
+  (b_1-a_1)(b_2-a_2)\cdots(b_q-a_q)n.
+\]
+\end{theorem}
+
+\begin{theorem}
+设 \(\xi_1,\xi_2,\ldots,\xi_p\) 是任意 \(p\) 个数，它们之间不存在整系数线性关系；并在单位区间中任取 \(pq\) 个区间
+\(a_{ij}b_{ij}\)。则在 \(h=1,2,\ldots,n\) 中，同时满足全部不等式
+\[
+\begin{array}{llll}
+ a_{11}\leq(h\xi_1)\leq b_{11},&
+ a_{21}\leq(h^2\xi_1)\leq b_{21},&\ldots,&
+ a_{q1}\leq(h^q\xi_1)\leq b_{q1},\\
+ a_{12}\leq(h\xi_2)\leq b_{12},&
+ a_{22}\leq(h^2\xi_2)\leq b_{22},&\ldots,&
+ a_{q2}\leq(h^q\xi_2)\leq b_{q2},\\[-0.2em]
+ \multicolumn{4}{c}{\dotfill}\\[-0.2em]
+ a_{1p}\leq(h\xi_p)\leq b_{1p},&
+ a_{2p}\leq(h^2\xi_p)\leq b_{2p},&\ldots,&
+ a_{qp}\leq(h^q\xi_p)\leq b_{qp}
+\end{array}
+\]
+的那些 \(h\)，其数目渐近等于
+\[
+  n\prod_{i=1}^{q}\prod_{j=1}^{p}(b_{ij}-a_{ij}).
+\]
+\end{theorem}
+
+Hardy 与 Littlewood 两位先生在其发表于 \emph{Acta Mathematica} 的第一篇论文中，也曾用初等方法证明：定理 15、16 所要求的性质确实存在于某些整数 \(h\) 上；他们的这一事实，需要用定理 9 的证明才能推出。然而，他们只猜测了这里所陈述的定理；而我们是从方向相反、用另一种直接方法证明的定理 9 推导出这些结论的。
+
+定理 14 的另一个有趣特例是：
+
+\begin{theorem}
+设 \(\varphi(z)\) 是一个多项式，其中 \(z^l\) 是出现的、带有无理系数的最高次幂。考察如下事件在何时以及以何种频率发生：数列
+\[
+  \varphi(1),\ \varphi(2),\ \varphi(3),\ldots
+\]
+中每 \(l\) 个相继的数，按模 \(1\) 依次落入预先给定的 \(l\) 个区间
+\(a_i b_i\)。则这种事件的相对频率等于其先验概率
+\[
+  \prod_{i=1}^{l}(b_i-a_i).
+\]
+\end{theorem}
+
+\origpage{336}
+
+为此须检验：是否可能存在 \(l\) 个整数
+\(m_0,m_1,\ldots,m_{l-1}\)，使得
+\[
+  \sum_{r=0}^{l-1}m_r\varphi(z+r)
+\]
+成为一个除常数项外所有系数均为有理数的多项式。检验这一问题时，可以用从
+\(\varphi\) 中删去一切次数高于 \(z^l\) 的项所得的截短多项式来代替
+\(\varphi\)。若该截短多项式为
+\[
+  \varphi(z)=\alpha z^l+\alpha_1z^{l-1}+\cdots+\alpha_l,
+  \qquad (\alpha\text{ 为无理数}),
+\]
+则
+\[
+\begin{aligned}
+ \varphi(z+r)={}&\alpha z^l
+ +\left(\alpha\binom l1r+\alpha_1\right)z^{l-1}\\
+ &+\left(\alpha\binom l2r^2
+   +\alpha_1\binom{l-1}{1}r+\alpha_2\right)z^{l-2}
+ +\cdots.
+\end{aligned}
+\]
+若数 \(m_r\) 具有所要求的性质，则依次得到方程
+\[
+\left\{
+\begin{aligned}
+ \sum_{r=0}^{l-1}m_r&=0,\\
+ \sum_{r=0}^{l-1}r m_r&=0,\\
+ &\ \vdots\\
+ \sum_{r=0}^{l-1}r^{l-1}m_r&=0,
+\end{aligned}
+\right.
+\]
+由此推出
+\[
+  m_0=m_1=\cdots=m_{l-1}=0.
+\]
+同时也可看出：若考察多于 \(l\) 个相继的 \(\varphi(n)\)，上述定理便不再可能成立。
+
+\section*{§ 5. 例外情形}
+\addcontentsline{toc}{section}{§ 5. 例外情形}
+
+仍设
+\[
+  \varphi_1(z),\ \varphi_2(z),\ldots,\varphi_p(z)
+\]
+为任意 \(p\) 个实系数且无常数项的多项式。\footnote{最后这一假设只是为了使表达较为方便。} 现在假定存在整数
+\(\ell_i\)，使
+\[
+  \ell_1\varphi_1(z)+\ell_2\varphi_2(z)+\cdots+\ell_p\varphi_p(z)
+\]
+成为一个所有系数均为有理数的多项式。凡使这一情形发生的整数系统
+\(\boldsymbol\ell=(\ell_1,\ell_2,\ldots,\ell_p)\)，均称为一个“点
+\(\boldsymbol\ell\)”。这些点 \(\boldsymbol\ell\) 构成一个格：也就是说，若
+\(\boldsymbol\ell\) 是一点，则 \(-\boldsymbol\ell\) 也是一点；若
+\(\boldsymbol\ell',\boldsymbol\ell''\) 是两点，则
+\(\boldsymbol\ell'+\boldsymbol\ell''\) 也是一点。\footnote{这里以数因子乘点以及把点相加的意义，几乎无须另作说明。}
+
+按照一个熟知的方法——Minkowski 称之为“把一个数格适配到其所包含的格”\footnote{参见 Minkowski，\emph{Diophantische Approximationen}（Leipzig，1907），§14；这一方法的较短叙述亦见我的著作 \emph{Die Idee der Riemannschen Fläche}（Leipzig，1913）第 78 页。}——可以选出数目
+\(q\leq p\) 的点
+\[
+  \boldsymbol\ell_k=(\ell_{k1},\ell_{k2},\ldots,\ell_{kp}),
+  \qquad (k=1,2,\ldots,q),
+\]
+使它们之间不存在关系
+\[
+  \sum_{k=1}^{q}y_k\boldsymbol\ell_k=0
+\]
+（其中系数 \(y_k\) 任意但不全为零），而所有点
+\(\boldsymbol\ell\) 都能以整系数 \(h_k\) 由这些点组合而成：
+\[
+  \boldsymbol\ell=\sum_{k=1}^{q}h_k\boldsymbol\ell_k.
+\]
+
+凡能以任意实系数 \(y_k\) 写成
+\[
+  \mathbf x=\sum_{k=1}^{q}y_k\boldsymbol\ell_k,
+  \qquad \mathbf x=(x_1,x_2,\ldots,x_p),
+\]
+的点，在通常的 \(p\) 维空间中构成一个 \(q\) 维线性流形
+\(\mathcal Y\)。所谓格点，是指坐标 \(x_i\) 均为整数的点。现在断言：点
+\(\boldsymbol\ell\) 恰好就是位于线性流形 \(\mathcal Y\) 上的全部格点。
+
+\origpage{338}
+
+由于点 \(\boldsymbol\ell_k\) 之间不存在任何线性关系，矩阵
+\[
+\begin{pmatrix}
+ \ell_{11}&\ell_{12}&\cdots&\ell_{1p}\\
+ \vdots&\vdots&&\vdots\\
+ \ell_{q1}&\ell_{q2}&\cdots&\ell_{qp}
+\end{pmatrix}
+\]
+中存在一个不为零的 \(q\) 阶行列式，例如
+\[
+  L=\det(\ell_{ki})_{\substack{i=1,2,\ldots,q\\k=1,2,\ldots,q}}.
+\]
+若 \(\mathbf x=(x_i)\) 是 \(\mathcal Y\) 上的格点，则从方程
+\[
+  x_i=\sum_{k=1}^{q}y_k\ell_{ki},
+  \qquad(i=1,2,\ldots,p)
+\]
+的前 \(q\) 个解出 \(y\)，可知各 \(y_k\) 都是分母为 \(L\) 的有理数。因此
+\(L\mathbf x\) 是一点 \(\boldsymbol\ell\)；回到点
+\(\boldsymbol\ell\) 的定义可知，\(\mathbf x\) 本身也同样是一点。于是，按照点
+\(\boldsymbol\ell_k\) 的选取方式，系数 \(y_k\) 必须是整数。
+
+既然 \(\mathcal Y\) 上的全部格点都能以整系数 \(y_k\) 写成
+\(\sum_{k=1}^{q}y_k\boldsymbol\ell_k\)，继续进行上述适配过程可知：还可以在格点
+\(\boldsymbol\ell_1,\boldsymbol\ell_2,\ldots,\boldsymbol\ell_q\) 之外添加
+\(r=p-q\) 个格点
+\[
+  \mathbf m_h=(m_{h1},m_{h2},\ldots,m_{hp}),
+  \qquad(h=1,2,\ldots,r),
+\]
+使每个格点 \(\mathbf x\) 都容许用整数系数 \(y_k,z_h\) 表示为
+\begin{equation}
+  \mathbf x=
+  (y_1\boldsymbol\ell_1+y_2\boldsymbol\ell_2+\cdots+y_q\boldsymbol\ell_q)
+  +(z_1\mathbf m_1+\cdots+z_r\mathbf m_r).
+  \tag{12}
+\end{equation}
+换成坐标即为
+\[
+  x_i=(\ell_{1i}y_1+\ell_{2i}y_2+\cdots+\ell_{qi}y_q)
+     +(m_{1i}z_1+\cdots+m_{ri}z_r).
+\]
+因此，（12）给出从坐标 \(x\) 到新坐标 \(y,z\) 的一个整系数幺模线性变换，并保持格点系统不变。相应的逆变换也可以写成对偶形式
+\begin{equation}
+\left\{
+\begin{aligned}
+ y_k&=\sum_{i=1}^{p}\ell_{ki}x_i,
+ &&(k=1,2,\ldots,q),\\
+ z_h&=\sum_{i=1}^{p}m_{hi}x_i,
+ &&(h=1,2,\ldots,r).
+\end{aligned}
+\right.
+\tag{13}
+\end{equation}
+这些公式因而表示 \(\mathfrak R_p\) 中的一个线性变换。
+
+\origpage{339}
+
+特别构造多项式
+\[
+\left\{
+\begin{aligned}
+ f_k(z)&=\sum_{i=1}^{p}\ell_{ki}\varphi_i(z),
+ &&(k=1,2,\ldots,q),\\
+ \psi_h(z)&=\sum_{i=1}^{p}m_{hi}\varphi_i(z),
+ &&(h=1,2,\ldots,r).
+\end{aligned}
+\right.
+\]
+前 \(q\) 个多项式的系数全为有理数，以 \(G\) 表示这些系数的公分母。对于后
+\(r\) 个多项式则有：除非所有 \(t_h=0\)，否则由整数
+\(t_1,t_2,\ldots,t_r\) 作成的组合
+\(\sum_{h=1}^{r}t_h\psi_h(z)\) 不会成为一个具有有理系数的多项式。
+
+我们的任务是研究由
+\[
+  x_i\equiv\varphi_i(n)\pmod 1,
+  \qquad(i=1,2,\ldots,p)
+\]
+定义的 \(\mathfrak R_p\) 中的点，其中 \(n\) 依次取遍所有正整数。经过上述整系数幺模变换，这一问题化为考察点 \((y,z)\)：
+\[
+\begin{array}{ll}
+ y_k\equiv f_k(n), &(k=1,2,\ldots,q),\\
+ z_h\equiv\psi_h(n), &(h=1,2,\ldots,r)
+\end{array}
+\qquad\pmod 1.
+\]
+对每个整数 \(n\)，仅由同余式
+\[
+  y_1\equiv f_1(n),\quad y_2\equiv f_2(n),\quad\ldots,\quad
+  y_q\equiv f_q(n)\pmod 1
+\]
+便在以坐标 \(y,z\) 表示的 \(\mathfrak R_p\) 中定义一个确定的
+\(r\) 维线性流形 \(\mathfrak C_n\)。所有 \(\mathfrak C_n\) 彼此平行，因为它们均平行于
+\[
+  y_1\equiv0,\quad y_2\equiv0,\quad\ldots,\quad y_q\equiv0\pmod 1
+\]
+这一 \(r\) 维流形。此外，当整数 \(n,m\) 按模 \(G\) 同余时，
+\(\mathfrak C_n\) 与 \(\mathfrak C_m\) 相同；故只须考察一个周期
+\begin{equation}
+  \mathfrak C_1,\ \mathfrak C_2,\ldots,\mathfrak C_G.
+  \tag{14}
+\end{equation}
+在这些 \(\mathfrak C_n\) 中只有有限多个彼此不同者，记作
+\(\mathfrak C',\mathfrak C'',\ldots\)；它们在一个周期（14）中可以分别出现
+\(m',m'',\ldots\) 次，其中
+\(m'+m''+\cdots=G\)。我们断言：点
+\begin{equation}
+\begin{array}{ll}
+ y_k\equiv f_k(n), &(k=1,2,\ldots,q),\\
+ z_h\equiv\psi_h(n), &(h=1,2,\ldots,r)
+\end{array}
+\qquad\pmod 1
+\tag{15}
+\end{equation}
+在 \(n\) 依次取遍正整数时，以完全均匀的密度分布在彼此平行的
+\(r\) 维线性流形
+\(\mathfrak C_1,\mathfrak C_2,\ldots,\mathfrak C_G\) 上。
+
+\origpage{340}
+
+这里所谓完全均匀的密度，是指在每一个单独流形上的密度处处相同；而对于两个不同的流形，例如重数为
+\(m',m''\) 的 \(\mathfrak C',\mathfrak C''\)，其密度之比等于
+\(m':m''\)。
+
+点（15）只可能落在各 \(\mathfrak C_n\) 上，这是显然的。为了证明其均匀稠密分布，我们重复前几节所用的方法：对每个有界函数
+\[
+  F(y_1,y_2,\ldots,y_q;z_1,z_2,\ldots,z_r),
+\]
+它定义在这些 \(\mathfrak C_n\) 上，关于 \(z_h\) 是黎曼可积的，并在所有变量中以
+\(1\) 为周期，要证明极限关系
+\begin{equation}
+\begin{aligned}
+ &\lim_{N\to\infty}\frac1N\sum_{n=1}^{N}
+ F\bigl(y_k=f_k(n),\ z_h=\psi_h(n)\bigr)\\
+ &\qquad=\frac1G\sum_{n=1}^{G}
+ \int_0^1\!\cdots\!\int_0^1
+ F\bigl(y_k=f_k(n);z_1,z_2,\ldots,z_r\bigr)
+ \,dz_1\,dz_2\cdots dz_r.
+\end{aligned}
+\tag{16}
+\end{equation}
+
+只须对
+\[
+  F=\Phi(y_1,y_2,\ldots,y_q)\,
+     \e(t_1z_1+\cdots+t_rz_r)
+\]
+验证（16）即可；其中 \(t_h\) 为任意整数，\(\Phi\) 是只在各流形
+\(\mathfrak C\) 所对应的 \(y\)-值系统上定义的函数；当 \(n\) 取遍自然数时，它依照
+\(y_k\equiv f_k(n)\pmod 1\) 周期地重复。若某一整数 \(t_h\neq0\)，则由定理 9，（16）左边为
+\(0\)；右边也为 \(0\)，因为其中 \(G\) 项之和的每一项均为 \(0\)。若所有
+\(t_h=0\)，则 \(F\) 只是 \(y\) 的函数；对这种函数，（16）的成立是直接明白的。
+
+上述结果的表述可以摆脱证明中使用的线性变换。
+
+\begin{theorem}
+设给定任意 \(p\) 个实系数多项式
+\(\varphi_1(z),\varphi_2(z),\ldots,\varphi_p(z)\)，并以
+\(\alpha_i\) 表示 \(\varphi_i(z)\) 的常数项。所谓一个“点
+\(\boldsymbol\ell\)”，是指任意整数系统
+\(\boldsymbol\ell=(\ell_1,\ell_2,\ldots,\ell_p)\)，使线性组合
+\[
+  \ell_1\{\varphi_1(z)-\alpha_1\}
+ +\ell_2\{\varphi_2(z)-\alpha_2\}
+ +\cdots
+ +\ell_p\{\varphi_p(z)-\alpha_p\}
+ =f_{\boldsymbol\ell}(z)
+\]
+成为一个具有有理系数的多项式。与所有不同点
+\(\boldsymbol\ell\) 相应的全部多项式
+\(f_{\boldsymbol\ell}(z)\) 的系数，具有一个公分母 \(G\)。对于每个任意整数
+\(n\)，同时对所有点 \(\boldsymbol\ell\) 成立的同余式
+\[
+  \ell_1(x_1-\alpha_1)+\ell_2(x_2-\alpha_2)+\cdots
+  +\ell_p(x_p-\alpha_p)
+  \equiv f_{\boldsymbol\ell}(n)\pmod 1
+\]
+在 \(\mathfrak R_p\) 中定义一个线性 \(r\) 维流形
+\(\mathfrak C_n\)。各 \(\mathfrak C_n\ (n=1,2,3,\ldots)\) 彼此平行，并以周期
+\(G\) 重复；其中有限多个彼此不同的流形
+\(\mathfrak C',\mathfrak C'',\ldots\)，可在一个周期中分别以重数
+\(m',m'',\ldots\) 出现。由
+\[
+  x_1\equiv\varphi_1(n),\quad x_2\equiv\varphi_2(n),\quad\ldots,\quad
+  x_p\equiv\varphi_p(n)\pmod 1
+\]
+定义的 \(\mathfrak R_p\) 中的点，在 \(n\) 依次取遍所有正整数时，分布到这有限多个线性流形
+\(\mathfrak C',\mathfrak C'',\ldots\) 上；每个流形不仅处处稠密地，而且处处以均匀密度被覆盖，而不同流形上的密度之比等于它们的重数之比。
+\end{theorem}
+
+\origpage{341}
+
+根据这一定理，可以说明：若数 \(\xi_i\) 之间存在整系数线性关系，定理 15 的陈述应如何修改；也可以对同时考察数列
+\(\varphi(n)\) 中多于 \(l\) 个相继项的情形，写出定理 16 的类似结论。
+
+\section*{§ 6. 推广到多个参数}
+\addcontentsline{toc}{section}{§ 6. 推广到多个参数}
+
+到目前为止，我们考察的是一元变量 \(z\) 的整有理函数（多项式），并让
+\(z\) 依次取遍自然数。还可以把研究进一步推广，使一个变量 \(z\) 由多个变量代替。这里只限于两个变量
+\(u,v\) 的情形。设仍给定 \(p\) 个整有理函数
+\[
+  \varphi_1(u,v),\ \varphi_2(u,v),\ldots,\varphi_p(u,v),
+\]
+为简单起见，假定由它们以整系数作成的任何线性组合，都不成为一个按模
+\(1\) 与常数同余的多项式。在 \(uv\)-平面中再给定一个有限面积区域
+\(\mathcal K\)，即一个封闭、有界的点集，其面积为确定的
+\(J>0\)。以原点为中心按比率 \(t:1\) 把 \(\mathcal K\) 膨胀为
+\(t\mathcal K\)，其中 \(t\) 是很大的实数；则位于
+\(t\mathcal K\) 内的格点（坐标 \(u,v\) 均为整数的点）数目
+\(n_t\)，在 \(t\to\infty\) 时渐近为 \(Jt^2\)。对每个这样的格点
+\((u,v)\)，在 \(\mathfrak R_p\) 中配以一点
+\begin{equation}
+  x_1\equiv\varphi_1(u,v),\quad
+  x_2\equiv\varphi_2(u,v),\quad\ldots,\quad
+  x_p\equiv\varphi_p(u,v)\pmod 1.
+  \tag{17}
+\end{equation}
+
+\origpage{342}
+
+在 \(\mathfrak R_p\) 中任取一个体积为 \(V\) 的区域，则均匀分布的断言如下。
+
+\begin{theorem}
+在把 \(t\mathcal K\) 内所有格点 \((u,v)\) 代入后所得的
+\(n_t\) 个点（17）中，只取那些属于 \(\mathfrak R_p\) 中区域
+\(V\) 的点；设其数目为 \(n_t(V)\)，则在 \(t\to\infty\) 时
+\[
+  n_t(V):n_t\longrightarrow V:1.
+\]
+\end{theorem}
+
+若关于函数 \(\varphi_i(u,v)\) 的整系数线性组合的假设不成立，则陈述应按前一节相同的方式修改。若诸
+\(\varphi_i\) 是 \(u,v\) 的线性函数，这便把 Kronecker 所提出的最一般逼近定理加强为：把“处处稠密”改为“处处均匀稠密”。\footnote{参见 \emph{Werke} III 1，第 104--106 页。} 证明只须建立下列结果。
+
+\begin{theorem}
+设 \(\varphi(u,v)\) 是 \(u,v\) 的一个整有理函数（多项式），并且除常数项外的系数并非全为有理数。对属于区域
+\(t\mathcal K\) 的全部 \(n_t\) 个格点 \((u,v)\) 作和
+\[
+  \sigma_t=\sum\e(\varphi(u,v)),
+\]
+则
+\[
+  \lim_{t\to\infty}\frac{\sigma_t}{n_t}=0.
+\]
+\end{theorem}
+
+这些定理的一个特殊情形例如如下得到：对一个或多个具有任意复系数的整有理函数
+\(\Phi(z)\)，令变量 \(z\) 取遍高斯数域中的全部整数
+\((i=\sqrt{-1})\)，并研究这些函数在给定辐角上的值的分布；这里约定，若两个复数（即函数
+\(\Phi\) 的两个值）相差一个高斯整数，便不把它们视为不同。此时先以条件
+\(|z|\leq t\) 限制 \(z\)，再令正数 \(t\) 趋于无穷。
+
+这里假定向四面八方无限扩张、并逐渐包含全部格点的区域
+\(t\mathcal K\) 按相似律放大；也可以代之以其他更一般的假设。不过，我只对按相似律增长的区域给出证明。对
+\(\mathcal K\) 作穷竭可知，只须把它取成一个矩形
+\[
+  a_1\leq u\leq a_2,
+  \qquad
+  b_1\leq v\leq b_2.
+\]
+满足不等式
+\[
+  a_1t\leq u\leq a_2t
+\]
+的整数 \(u\) 的数目——
+
+
+\origpage{343}
+
+满足上述不等式的整数 \(u\) 的数目记为
+\[
+  m_t\sim(a_2-a_1)t,
+\]
+而满足
+\[
+  b_1t\leq v\leq b_2t
+\]
+的整数 \(v\) 的数目记为
+\[
+  n_t\sim(b_2-b_1)t;
+\]
+于是，在 \(t\mathcal K\) 中共有 \(m_tn_t\) 个格点 \((u,v)\)。
+
+我们把 \(\varphi(u,v)\) 按 \(v\) 的降幂排列，并把各个 \(v\) 次幂的系数——它们是 \(u\) 的多项式——再按 \(u\) 的降幂排列。假定在这种排列下最高项的系数为无理数，并不造成任何限制。写成
+\[
+  \varphi(u,v)=v^q\psi(u)+v^{q-1}\psi_1(u)+\cdots.
+\]
+若不想退回到单变量情形，就必须有 \(q\geq1\)。令
+\[
+  \sigma_t=
+  \sum_{a_1t\leq u\leq a_2t}
+  \left\{
+  \sum_{b_1t\leq v\leq b_2t}\e\bigl(\varphi(u,v)\bigr)
+  \right\}.
+\]
+当 \(q>1\) 时，对它应用施瓦茨不等式：
+\[
+  |\sigma_t|^2
+  \leq m_t\sum_u\left|\sum_v\e\bigl(\varphi(u,v)\bigr)\right|^2,
+\]
+再按 §3 所述的方法变形 \(\left|\sum_v\right|^2\)。沿用那里引入的记号，最终得到
+\begin{equation}
+  |\sigma_t|^Q
+  \leq
+  m_t^{Q-1}N_t
+  \sum_{u;r_1,r_2,\ldots,r_{q-1}}
+  \left\{
+    \e(\rho)
+    \sum_h
+    \e\bigl(q!\,\psi(u)r_1r_2\cdots r_{q-1}h\bigr)
+  \right\},
+  \qquad
+  N_t\sim\varkappa\,n_t^{Q-q},
+  \tag{18}
+\end{equation}
+其中 \(Q=2^{q-1}\)，而 \(\rho\) 是与内层求和变量 \(h\) 无关的量。外层求和区域由
+\begin{equation}
+  a_1t\leq u\leq a_2t,
+  \qquad
+  |r|=|r_1|+|r_2|+\cdots+|r_{q-1}|\leq n_t-1
+  \tag{19}
+\end{equation}
+给出；内层求和则遍历一个由 \(n_t-|r|\) 个整数构成的连续区间。我们要证明
+\[
+  \lim_{t\to\infty}\frac{\sigma_t}{m_tn_t}=0.
+\]
+若 \(\psi(u)\) 不含变量 \(u\)，因而只是一个无理常数 \(\alpha\)，则可用与单变量情形完全相同的推理得到结论。若 \(\psi\) 确实含有变量 \(u\)，则要借助如下辅助命题：
+
+\begin{quote}\itshape
+在满足条件（19）的全部 \(m_tn_t^{q-1}\) 个格点
+\((u;r_1,r_2,\ldots,r_{q-1})\) 中，使
+\[
+  r_1r_2\cdots r_{q-1}\,\varphi(u)
+\]
+按模 \(1\) 落在 \(-\varepsilon\) 与 \(+\varepsilon\) 之间的点，其数目在
+\(t\to\infty\) 时同 \(m_tn_t^{q-1}\) 之比趋于 \(2\varepsilon:1\)。这里
+\(\varphi(u)\) 是 \(u\) 的任意多项式，并且它的最高次系数为无理数。
+\end{quote}
+
+\origpage{344}
+
+我们要把这一辅助命题用于多项式 \(\varphi(u)=q!\psi(u)\)。它可由完全归纳法得到。对 \(q=1\)，命题已经成立（定理 9）。假定它对 \(q\) 成立，我们证明它对 \(q+1\) 也成立。为此只须证明
+\begin{equation}
+  \lim_{t\to\infty}
+  \frac{1}{m_tn_t^q}
+  \sum_{u;r_1,r_2,\ldots,r_q}
+  \e\bigl(r_1r_2\cdots r_q\varphi(u)\bigr)=0,
+  \tag{20}
+\end{equation}
+其中求和遍历
+\[
+  a_1t\leq u\leq a_2t,
+  \qquad
+  |r_1|+|r_2|+\cdots+|r_q|\leq n_t-1.
+\]
+固定 \(u;r_1,r_2,\ldots,r_{q-1}\) 后，先对 \(r_q\) 求和；对于这个简单的和，仍如先前那样，依
+\[
+  r_1r_2\cdots r_{q-1}\varphi(u)\pmod 1
+\]
+是否落在 \(-\varepsilon\) 与 \(+\varepsilon\) 之间而采用两种估计。按照归纳假设，具有前一性质的值系统
+\((u;r_1,r_2,\ldots,r_{q-1})\) 的数目渐近为
+\(2\varepsilon m_tn_t^{q-1}\)。于是完全仿照 §3 中辅助命题的证明，便得到极限等式（20）。
+
+两个变量 \(u,v\) 当然可以换成三个或更多变量。由此推广的定理 19 中，刚才提到的辅助命题——我们研究的一个主要部分正建立在它之上——只不过是一个极为特殊的情形。
+
+\section*{§ 7. 任意数列的均匀分布}
+\addcontentsline{toc}{section}{§ 7. 任意数列的均匀分布}
+
+Hardy 与 Littlewood 两位先生提出如下普遍问题：一个递增的正整数数列
+\[
+  l_1<l_2<l_3<\cdots
+\]
+在什么条件下具有这样的性质，即对于每个无理数 \(\xi\)，数列
+\begin{equation}
+  l_1\xi,\ l_2\xi,\ l_3\xi,\ldots
+  \tag{21}
+\end{equation}
+按模 \(1\) 能任意接近每一个值？\footnote{\emph{Acta Mathematica} 37，第 156 页。}
+我们还要进一步问：这一数列何时处处均匀稠密？对此不可能给出穷尽的答案。不过，可以断言：对于给定的 \(l_n\)，除去属于某个测度为 \(0\) 的集合的 \(\xi\) 以外，对每一个 \(\xi\)，数列（21）都是处处均匀稠密的。
+
+\origpage{345}
+
+这个例外集合当然包含所有有理数；但其中是否还必然包含别的数，则仍未决定。诚然，我认为这类含有一个未明确给出的零测集作为例外的定理，不应估价过高；不过仍愿在这里简要证明这一断言。证明建立在如下积分学引理之上。\footnote{我早先曾以同一个引理证明所谓 Riesz--Fischer 定理。见 \emph{Mathematische Annalen} 67（1909），第 243 页起。}
+
+设 \(f_n(x)\) 是区间 \(01\) 上的连续函数，并且积分级数
+\[
+  \sum_{n=1}^{\infty}\int_0^1|f_n(x)|^2\,dx
+\]
+收敛；则除去属于某个测度为 \(0\) 的集合的 \(x\) 之外，随着 \(n\) 无界增长，有
+\[
+  f_n(x)\longrightarrow0.
+\]
+
+\textit{证明。}
+令 \(\varepsilon\) 为任意小的正数，以 \(\mathfrak A_n\) 表示区间 \(01\) 中满足
+\(|f_n(x)|\geq\varepsilon\) 的点集。若 \(A_n\) 是 \(\mathfrak A_n\) 的 Lebesgue 测度，则
+\[
+  \varepsilon^2A_n\leq\int_0^1|f_n(x)|^2\,dx.
+\]
+再构成并集
+\[
+  \mathfrak C_n=\mathfrak A_{n+1}\cup\mathfrak A_{n+2}\cup\cdots,
+\]
+则 \(\mathfrak C_n\) 中的点 \(x\) 的特征是：至少有一个不等式
+\[
+  |f_{n+1}(x)|,\ |f_{n+2}(x)|,\ldots\geq\varepsilon
+\]
+成立。若 \(C_n\) 为 \(\mathfrak C_n\) 的测度，则
+\begin{equation}
+  C_n\leq\frac1{\varepsilon^2}
+  \sum_{\nu=n+1}^{\infty}\int_0^1|f_\nu(x)|^2\,dx
+  =\frac{J_n}{\varepsilon^2}.
+  \tag{22}
+\end{equation}
+集合 \(\mathfrak C_1,\mathfrak C_2,\mathfrak C_3,\ldots\) 中，每一个都完全包含后一个。它们的公共部分
+\[
+  \lim_{n\to\infty}\mathfrak C_n=\mathfrak C
+\]
+的测度为 \(0\)，因为 \(J_n\to0\)，由（22）即得此结论。对补集中的每一个点 \(x\)，存在一个指标，从该指标起所有
+\(|f_n(x)|\) 都小于 \(\varepsilon\)。因此对这样的 \(x\)，
+\[
+  \limsup_{n\to\infty}|f_n(x)|\leq\varepsilon.
+\]
+依次令 \(\varepsilon\) 取例如 \(1/2,1/3,1/4,\ldots\)，便证明了引理。
+
+\origpage{346}
+
+现在考察函数
+\[
+  f_n(x)=\frac1n\sum_{h=1}^{n}\e(l_hx).
+\]
+对这些函数有
+\[
+  \int_0^1|f_n(x)|^2\,dx
+  =\frac1{n^2}\sum_{h,k=1}^{n}\int_0^1\e(l_hx-l_kx)\,dx
+  =\frac1n.
+\]
+由于调和级数 \(\sum 1/n\) 发散，不能直接应用上述引理。但若从全部整数 \(n\) 中只取平方数，则除去属于某个测度为 \(0\) 的集合 \(\mathfrak A\) 的 \(x\) 以外，有
+\[
+  \lim_{\nu\to\infty}f_{\nu^2}(x)=0.
+\]
+若 \(n\) 是任意正整数，用条件
+\[
+  \nu^2\leq n<(\nu+1)^2
+\]
+确定整数 \(\nu\)。于是
+\[
+  |nf_n(x)-\nu^2f_{\nu^2}(x)|\leq2\nu,
+  \qquad
+  \left|f_n(x)-\frac{\nu^2}{n}f_{\nu^2}(x)\right|
+  \leq\frac2{\sqrt n};
+\]
+因而对所有不属于 \(\mathfrak A\) 的 \(x\)，也有
+\[
+  \lim_{n\to\infty}f_n(x)=0.
+\]
+若 \(x,2x,3x,\ldots\) 都不属于这个以周期 \(1\) 重复的集合 \(\mathfrak A\)，则对于每个整数 \(m\neq0\)，
+\[
+  \lim_{n\to\infty}f_n(mx)=0.
+\]
+对这样的 \(x\)，数列
+\[
+  l_1x,l_2x,l_3x,\ldots
+\]
+按模 \(1\) 满足均匀稠密分布的判据。
+
+现在只假定整数 \(l_n\) 满足
+\[
+  l_1\leq l_2\leq l_3\leq\cdots.
+\]
+若在 \(l_1,l_2,\ldots,l_n\) 中，最初 \(h_1\) 个数彼此相等，随后 \(h_2\) 个数彼此相等，如此继续，直至最后 \(h_m\) 个数彼此相等，则
+\[
+  \int_0^1|f_n(x)|^2\,dx
+  =\frac{h_1^2+h_2^2+\cdots+h_m^2}{n^2}.
+\]
+以 \(h^{(n)}\) 表示 \(h_1,h_2,\ldots,h_m\) 中的最大者，则
+\[
+  h_1^2+h_2^2+\cdots+h_m^2
+  \leq h^{(n)}(h_1+h_2+\cdots+h_m)
+  =h^{(n)}n,
+\]
+从而
+\[
+  \int_0^1|f_n(x)|^2\,dx\leq\frac{h^{(n)}}n.
+\]
+
+\origpage{347}
+
+先前的假设 \(h^{(n)}=1\)，现在由如下更一般的条件代替：存在两个正数
+\(\varepsilon,c\)，使
+\[
+  h^{(n)}\leq\frac{cn}{(\lg n)^{1+\varepsilon}}.
+\]
+上述推理仍可应用。我们从正整数 \(n\) 中取出例如
+\[
+  n_\nu=\left[e^{\nu^{1-b}}\right],
+  \qquad
+  b=\frac{\varepsilon}{2+\varepsilon},
+  \qquad(\nu=1,2,3,\ldots),
+\]
+于是
+\[
+  \int_0^1|f_{n_\nu}(x)|^2\,dx
+  \leq\frac{c}{\nu^{1+b}}.
+\]
+故除去区间 \(01\) 中属于一个零测例外集合 \(\mathfrak A\) 的 \(x\) 以外，
+\[
+  \lim_{\nu\to\infty}f_{n_\nu}(x)=0.
+\]
+对任意正整数 \(n\)，以条件
+\[
+  n_\nu\leq n<n_{\nu+1}
+\]
+确定 \(\nu\)，则
+\[
+  \left|f_n(x)-\frac{n_\nu}{n}f_{n_\nu}(x)\right|
+  \leq\frac{n_{\nu+1}-n_\nu}{n}
+  \leq\frac{n_{\nu+1}}{n_\nu}-1.
+\]
+由于
+\[
+  (\nu+1)^{1-b}-\nu^{1-b}<\nu^{-b}
+  \qquad(0<b<1),
+\]
+故
+\[
+  \frac{n_{\nu+1}}{n_\nu}-1<e^{\nu^{-b}}-1,
+  \qquad
+  \lim_{\nu\to\infty}\left(\frac{n_{\nu+1}}{n_\nu}-1\right)=0.
+\]
+因此，在 \(\mathfrak A\) 之外仍有
+\[
+  \lim_{n\to\infty}f_n(x)=0.
+\]
+于是，在当前情形中，均匀分布定律对“几乎所有” \(x\) 再次成立。
+
+把 \(x\) 换成 \(x/m\)，其中 \(m\) 是正整数，便得到 \(l_n\) 为具有共同有限公分母 \(m\) 的有理数的情形。
+
+\origpage{348}
+
+最后，设
+\[
+  \lambda_1\leq\lambda_2\leq\lambda_3\leq\cdots
+\]
+是任意一个趋于无穷的实数列。我们假定 \(\lambda\) 作为指标的函数，其增长并不过分微弱；具体说，存在两个正数 \(\varepsilon,c\)，使得从指标 \(n\) 起，指标只要增加
+\[
+  \frac{n}{(\lg n)^{1+\varepsilon}},
+\]
+\(\lambda\) 就至少增加 \(c\)。把实变量 \(x\) 限制在任一有限区间
+\(|x|\leq A\) 内。任取一个正整数 \(m\)，并给每个 \(\lambda_n\) 配上一个分母为
+\(m\) 的分数 \(l_n\)，使它与 \(\lambda_n\) 的差不超过 \(1/(2m)\)。在前
+\(n\) 个数 \(l_n\) 中，不可能找到一个由多于
+\[
+  \frac{n}{(\lg n)^{1+\varepsilon}}
+\]
+个彼此相等的数所组成的组（只要 \(m>1/c\)）。因此，对除去某个测度为 \(0\) 的集合
+\(\mathfrak A_m\) 以外的所有 \(x\)，
+\[
+  \lim_{n\to\infty}\frac1n\sum_{h=1}^{n}\e(l_hx)=0.
+\]
+又由于
+\[
+  |\e(x_1)-\e(x_2)|\leq2\pi|x_1-x_2|,
+\]
+故
+\[
+  \left|
+    \frac1n\sum_{h=1}^{n}\e(\lambda_hx)
+    -\frac1n\sum_{h=1}^{n}\e(l_hx)
+  \right|
+  \leq\frac{A\pi}{m}.
+\]
+从而，对所有不属于 \(\mathfrak A_m\) 的 \(x\)，
+\[
+  \limsup_{n\to\infty}
+  \frac1n\left|\sum_{h=1}^{n}\e(\lambda_hx)\right|
+  \leq\frac{A\pi}{m}.
+\]
+
+令 \(\mathfrak A\) 为区间 \(-A\leq x\leq A\) 中这样的点集：一个点属于
+\(\mathfrak A\)，当且仅当除有限多个 \(m\) 外，它属于所有集合
+\(\mathfrak A_m\ (m=1,2,3,\ldots)\)。则 \(\mathfrak A\) 的测度为
+\(0\)；而对一切不属于 \(\mathfrak A\) 的 \(x\)，成立
+\[
+  \lim_{n\to\infty}\frac1n\sum_{h=1}^{n}\e(\lambda_hx)=0.
+\]
+由此证明：
+
+\begin{theorem}
+设 \(\lambda_1,\lambda_2,\lambda_3,\ldots\) 为任意实数列。假定存在两个正数
+\(\varepsilon,c\)，使 \(\lambda\) 作为指标的函数具有如下性质：每当指标从
+\(n\) 起增加多于
+\[
+  \frac{n}{(\lg n)^{1+\varepsilon}},
+\]
+
+\origpage{349}
+
+\(\lambda\) 至少增加 \(c\)。若 \(x\) 是不属于某个测度为 \(0\) 的例外集合的实数，则数列
+\[
+  \lambda_1x,\ \lambda_2x,\ \lambda_3x,\ldots
+\]
+按模 \(1\) 处处均匀稠密。\footnote{在 \(\lambda_n=a^n\)（\(a\) 为正整数）的情形，Hardy 与 Littlewood 两位先生以实质上更强的形式证明了这一点，见 \emph{Acta Mathematica} 37，第 183 页起。一般问题则由 Hardy 与 Littlewood 两位先生的学生 Towler 先生独立于我，在伦敦学会的 \emph{Proceedings} 中继续研究。}
+\end{theorem}
+
+\section*{§ 8. 附录：关于闭欧几里得空间}
+\addcontentsline{toc}{section}{§ 8. 附录：关于闭欧几里得空间}
+
+所谓闭欧几里得空间，是指一个闭的 \(p\) 维流形\footnote{关于本附录所使用的分析位置学概念，须参阅我的著作《黎曼面的观念》（尤其是 §4 与 §9）。我借此机会对该书 §4 的内容作两点小修正：1）在二维流形概念的定义中，曾遗漏了后来始终使用的事实（O. Veblen 先生曾友善地提醒我注意这一点），应明确要求：“对一个点的任意两个邻域，总存在一个同时包含在二者之中的邻域。”2）第 19 页关于闭集的连续像的断言，应限制在“完全位于有限范围内”的集合；而一个集合 \(\mathfrak E\) 完全位于有限范围内这一性质，几乎只能表述为：\(\mathfrak E\) 的每一个无限子集都具有一个聚点。——关于非欧几里得空间形式问题与黎曼函数论之间的联系，参见 P. Koebe，\emph{Annali di Matematica}，第三辑，第 21 卷（Lagrange 纪念卷），第 57 页起。}，并且在它的每一点的邻域内，欧几里得几何都成立。
+
+在通常的 \(p\) 维空间中，每一组实数 \((x_1,x_2,\ldots,x_p)\) 表示一个点。设其中给定一个欧几里得运动的离散群 \(\Gamma\)；假定 \(\Gamma\) 有一个有限的基本区域，并且不含纯旋转。把通常空间中关于 \(\Gamma\) 等价的每一组点合并看作一个新的流形
+\(\mathfrak R_\Gamma\) 的单独“点”，则 \(\mathfrak R_\Gamma\) 显然是上述意义下的闭欧几里得空间；我把它称为一个（属于群 \(\Gamma\) 的）\emph{晶体}。本附录要证明：
+
+\begin{theorem}
+每一个闭欧几里得空间都是一个晶体。
+\end{theorem}
+
+根据 Bieberbach 所证明的一般定理，\footnote{L. Bieberbach，《论欧几里得空间的运动群》，\emph{Mathematische Annalen} 70（1911），第 333 页。另参见 Frobenius，\emph{Berichte der Königlich Preußischen Akademie der Wissenschaften}，1911，第 663 页。}
+
+\origpage{350}
+
+任何一个具有上述性质的运动群 \(\Gamma\)，都包含 \(p\) 个彼此独立的平移，并且群中一切平移都可由它们组合而成。通过对坐标
+\((x_1,x_2,\ldots,x_p)\) 作仿射变换，可以令这些平移恰为
+\[
+  (1,0,\ldots,0),\quad(0,1,\ldots,0),\quad\ldots,\quad(0,0,\ldots,1).
+\]
+于是，在 \(\mathfrak R_p\) 中重合的点，在 \(\mathfrak R_\Gamma\) 中也相同；而在
+\(\mathfrak R_p\) 上，群 \(\Gamma\) 化为一个由有限多个整系数幺模线性变换组成的群
+\(\Gamma_0\)。\footnote{\(\Gamma\) 中全部平移组成的群 \(T\) 是 \(\Gamma\) 的一个不变子群。在群论的记号中，\(\Gamma_0=\Gamma:T\)，即商群 \(\Gamma/T\)。}因此，可以由 \(\mathfrak R_p\) 构造 \(\mathfrak R_\Gamma\)：每次把关于
+\(\Gamma_0\) 等价的有限多个点合并为一个点。这正是我们在 §2 中提出的断言。
+
+为了看出每一个闭欧几里得空间 \(\mathfrak R\) 都是一个晶体，我们作如下构造。设
+\(p\) 是 \(\mathfrak R\) 的任一点。对于充分小的 \(r\)，以 \(p\) 为中心、半径为
+\(r\) 的球的内部——即所有能用长度小于 \(r\) 的直线段与 \(p\) 相连的点的全体——是
+\(p\) 的一个邻域，并可一一且全等地映到通常欧几里得空间中一个半径为
+\(r\) 的球的内部。但对任意大的 \(r\)，这不可能成立，因为 \(\mathfrak R\) 是闭空间。因此存在一个确定的正数
+\(r(p)\)，它把能够作这种映射的半径 \(r\leq r(p)\) 与不能作这种映射的半径分开。
+\(r(p)\) 是点 \(p\) 的连续函数。事实上，只要 \(q\) 充分靠近 \(p\)，显然有
+\[
+  |r(q)-r(p)|
+\]
+不超过两点 \(p,q\) 的距离。因而，\(r(p)\) 作为闭流形上的连续正函数，有一个正的最小值
+\(r_0\)。这就证明：在 \(\mathfrak R\) 中，任一中心、半径 \(r_0\) 的球内部，欧几里得几何总是成立。
+
+特别地，由此可知：一条直线在 \(\mathfrak R\) 中由其任一点分成的两半，各自都有无限长度（当然，这并不排除它是一条闭曲线，只不过被无限多次地走过）。因为沿直线走到任一点之后，还总能在相应方向至少继续长度
+\(r_0\) 的一段。
+
+现在在 \(\mathfrak R\) 中选定一点 \(p_0\)，并在该点取一组直角坐标轴。设
+\(\gamma\) 是从 \(p_0\) 出发、终止于 \(p\) 的任意曲线。我们可以沿 \(\gamma\) 移动这组坐标轴，
+
+\origpage{351}
+
+使各轴始终保持平行。原点在从 \(p_0\) 滑向 \(p\) 的过程中所经历的总平移，按这些轴分解所得的分量——即“沿
+\(\gamma\) 的平移分量”——记为
+\[
+  x_1,x_2,\ldots,x_p.
+\]
+即使曲线 \(\gamma\) 返回起点，这些分量也完全不必等于 \(0\)。
+
+我说：从 \(p_0\) 出发的每一条曲线 \(\gamma\)，都定义了一个新流形
+\(\overline{\mathfrak R}\) 的“点” \(\bar p\)，它“位于 \(\gamma\) 的终点
+\(p\) 之上”。从 \(p_0\) 出发并在同一点 \(p\) 终止的两条不同曲线
+\(\gamma,\gamma'\)，当且仅当沿 \(\gamma\) 与沿 \(\gamma'\) 的平移分量相同，才在
+\(p\) 之上定义同一个点 \(\bar p\)。若 \(\bar p\) 是由 \(\gamma\) 定义、位于
+\(p\) 之上的点，而 \(K\) 是以 \(p\) 为中心、半径不超过 \(r_0\) 的球的内部，则把从
+\(p\) 出发并在 \(K\) 内行进的所有可能曲线 \(\gamma_1\) 接到 \(\gamma\) 后面；由全部如此得到的曲线段
+\(\gamma+\gamma_1\) 所定义的点，组成 \(\bar p\) 的一个“邻域”
+\(\overline K\)。按照这一规定，\(K\) 的每一个点之上恰有 \(\overline K\) 中的一个点。因此，我们构造出了一个位于
+\(\mathfrak R\) 之上的无分支覆盖空间 \(\overline{\mathfrak R}\)。这个覆盖空间是“正则的”：若
+\(\bar p_1,\bar p_1'\) 是 \(\overline{\mathfrak R}\) 中两个彼此“重合”的点，即它们位于
+\(\mathfrak R\) 的同一点 \(p_1\) 之上，则存在唯一的可逆、连续自映射，把
+\(\overline{\mathfrak R}\) 的每一点变到一个覆盖着同一底点的点（“覆盖变换”），并且特别把
+\(\bar p_1\) 变到 \(\bar p_1'\)。这些覆盖变换组成一个离散群
+\(\Gamma_{\mathfrak R}\)。长度的度量从 \(\mathfrak R\) 传到
+\(\overline{\mathfrak R}\) 上；覆盖变换是 \(\overline{\mathfrak R}\) 的全等自映射。
+
+对 \(\overline{\mathfrak R}\) 中的每一点 \(\bar p\)，唯一对应着 \(p\) 个数
+\(x_1,x_2,\ldots,x_p\)，即定义 \(\bar p\) 的曲线的平移分量；从而对应着具有直角坐标
+\(x_i\) 的欧几里得空间 \(R\) 中的一个点
+\[
+  (x)=(x_1,x_2,\ldots,x_p).
+\]
+映射 \(\bar p\mapsto(x)\) 是单值的、连续的并且保长度。现在改变看法：把
+\(\bar p\) 视为位于 \(R\) 中点 \((x)\) 之上的一点。这样，
+\(\overline{\mathfrak R}\) 就成为 \(R\) 上的一个无分支覆盖空间；而且它是无界的。事实上，在
+\(R\) 的原点之上必有 \(\overline{\mathfrak R}\) 中的一点 \(\bar p_0\)。从原点引出任意一条半直线
+\(g\)，并在 \(\overline{\mathfrak R}\) 上追随一个从 \(\bar p_0\) 出发的连续变化点 \(\bar p\)；
+
+\origpage{352}
+
+它在 \(R\) 中的迹点沿该直线移动（Weierstrass 的解析延拓原理）。由此得到
+\(\overline{\mathfrak R}\) 上一条唯一确定的曲线 \(\bar\gamma\)，它位于
+\(g\) 之上。不可能在 \(\overline{\mathfrak R}\) 上走到某个“临界点”或“边界”：因为从已经到达的每一点起，仍能沿
+\(g\) 至少继续长度 \(r_0\) 的一段。
+
+于是，\(\overline{\mathfrak R}\) 相对于 \(R\) 是无分支而无界的；又因通常的欧几里得空间
+\(R\) 是单连通的，\(\overline{\mathfrak R}\) 必须在 \(R\) 上处处恰为一层。也就是说，映射
+\[
+  \bar p\longmapsto(x)
+\]
+把 \(\overline{\mathfrak R}\) 可逆地、一一地并且全等地映到欧几里得空间
+\(R\) 上。由这一映射，\(\overline{\mathfrak R}\) 的覆盖变换群
+\(\Gamma_{\mathfrak R}\)（相对于 \(\mathfrak R\)）在 \(R\) 中表现为一个离散的运动群
+\(\Gamma\)，而 \(\mathfrak R\) 本身则可逆地、连续且保长度地映到晶体
+\(\mathfrak R_\Gamma\) 上。若 \(\mathfrak R\) 是闭的，那么
+\(\mathfrak R_\Gamma\) 也必须是闭的；换言之，群 \(\Gamma\) 必须具有有限的基本区域。至此证明完成。
+
+\begin{flushright}
+\textbf{苏黎世，1914 年 7 月 13 日。}
+\end{flushright}
+
+\vspace{3em}
+\begin{center}
+\rule{0.28\textwidth}{0.4pt}
+\end{center}
+
+
+
+\end{document}

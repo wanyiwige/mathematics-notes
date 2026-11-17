@@ -1,0 +1,258 @@
+% ============================================================
+%  第一章 绪论
+%  主要参考：张伟年、杜正东、徐冰《常微分方程（第二版）》第一章
+% ============================================================
+
+\setchapterimage{figure/Chapter1封面图}
+\setchapterintro{
+	常微分方程把变化率与状态联系起来，是从实际规律走向数学模型的基本语言。
+	本章从典型模型出发，介绍方程的基本形式、初值问题、积分曲线与方向场，
+	并说明求解一个微分方程时真正需要关心的几个基本问题。
+}
+\chapter{绪论}
+
+
+\section{常微分方程与数学模型}
+
+\subsection*{基本概念}
+
+\begin{definition}
+设未知函数为 $x=x(t)$。含有自变量 $t$、未知函数 $x$ 及其有限阶导数的关系式
+
+	\[ F\bigl(t,x,x',\ldots,x^{(n)}\bigr)=0 \]
+
+称为一个\textbf{常微分方程}。方程中出现的最高阶导数为 $x^{(n)}$ 时，称它为
+$n$ 阶常微分方程。
+\end{definition}
+
+常微分方程中的未知函数只依赖一个自变量。若未知函数依赖多个自变量，方程中出现偏导数，
+则得到偏微分方程。
+
+如果能从隐式关系中解出最高阶导数，就得到\textbf{规范形式}
+\[
+	x^{(n)}=f\bigl(t,x,x',\ldots,x^{(n-1)}\bigr).
+\]
+研究高阶方程时，常把它化为一阶方程组；因此一阶系统
+\begin{equation}\label{eq:first-order-system}
+	\dot{\x}=\vect{f}(t,\x),\qquad \x\in\R^n
+\end{equation}
+是常微分方程理论最基本的形式。
+
+\subsection*{从实际问题到方程}
+
+建立模型通常包含四个环节：选择能够描述系统状态的变量，明确基本规律与合理假设，
+写出各作用量之间的平衡关系，最后检查量纲和适用范围。模型不是现实的复制，
+而是在研究目的下对现实的有意识简化。
+
+\begin{example}
+考虑质量为 $m$ 的物体连接在线性弹簧上，令 $x(t)$ 表示相对平衡位置的位移。
+若弹性力服从 Hooke 定律 $-kx$，阻力与速度成正比并写成 $-\mu\dot{x}$，
+则 Newton 第二定律给出
+\begin{equation}\label{eq:damped-oscillator}
+	m\ddot{x}+\mu\dot{x}+kx=0,
+	\qquad m>0,\quad \mu\geq 0,\quad k>0.
+\end{equation}
+这是一个二阶线性常微分方程。$m$、$\mu$、$k$ 分别刻画惯性、耗散和回复作用；
+当 $\mu=0$ 时，模型退化为理想的无阻尼振子。
+\end{example}
+
+这个例子显示，微分方程的每一项通常都有清楚的物理来源。
+
+\begin{example}
+设 $x(t)$ 和 $y(t)$ 分别表示捕食者与食饵的数量。假设食饵在没有捕食者时以速率
+$\beta$ 增长，捕食使其单位增长率按捕食者数量下降；捕食者在没有食饵时以速率
+$\alpha$ 衰减，食饵又使其单位增长率上升。最简单的模型为
+\[
+	\begin{cases}
+		\dot{x}=x(-\alpha+ry),\\
+		\dot{y}=y(\beta-sx),
+	\end{cases}
+	\qquad \alpha,\beta,r,s>0.
+\]
+它是一阶非线性方程组。乘积项 $xy$ 表示两类种群相遇所产生的相互作用，
+也说明非线性往往正是模型中最有意义的部分。
+\end{example}
+
+\textbf{注：}
+模型的价值不只在于能否写出显式解。它首先把问题中的状态、参数和作用机制组织成
+可以分析的数学对象。改变某个假设或参数，方程也随之改变，这正是模型比较和预测的基础。
+
+
+\section{微分方程的求解思想}
+
+\subsection*{解、通解与初值问题}
+
+\begin{definition}
+若函数 $x=\phi(t)$ 在区间 $J$ 上具有方程所需阶数的导数，并且代入方程后对每个
+$t\in J$ 都使等式成立，则称 $\phi$ 是该方程在 $J$ 上的一个\textbf{解}。
+
+含有 $n$ 个独立任意常数的 $n$ 阶方程解族称为\textbf{通解}；给定这些常数后得到的
+某个具体解称为\textbf{特解}。
+\end{definition}
+
+仅有微分方程通常不能确定唯一运动。为了从解族中选出一条实际轨道，需要附加初始状态。
+对一阶系统~\eqref{eq:first-order-system}，标准\textbf{初值问题}写为
+\begin{equation}\label{eq:ivp}
+	\dot{\x}=\vect{f}(t,\x),
+	\qquad \x(t_0)=\x_0.
+\end{equation}
+初始时刻 $t_0$ 与初始状态 $\x_0$ 一起确定我们要研究的那条解曲线。
+
+\begin{example}
+自由落体模型 $\ddot y=-g$ 的通解为
+\[
+	y(t)=-\frac12gt^2+C_1t+C_2.
+\]
+若给定 $y(0)=y_0$、$\dot y(0)=v_0$，则两个任意常数被唯一确定，得到
+\[
+	y(t)=-\frac12gt^2+v_0t+y_0.
+\]
+微分方程描述所有可能的自由落体运动，初值则选出了其中一次具体运动。
+\end{example}
+
+\subsection*{积分形式与逐次逼近}
+
+把初值问题~\eqref{eq:ivp} 在 $[t_0,t]$ 上积分，可得等价的积分方程
+\[
+	\x(t)=\x_0+\int_{t_0}^{t}\vect{f}\bigl(s,\x(s)\bigr)\dif s.
+\]
+这个改写十分重要：微分条件被转化为积分条件，而积分通常比微分具有更好的稳定性。
+从常值函数 $\x_0(t)\equiv\x_0$ 出发，可构造 Picard 逐次逼近
+\[
+	\x_{k+1}(t)=\x_0+
+	\int_{t_0}^{t}\vect{f}\bigl(s,\x_k(s)\bigr)\dif s,
+	\qquad k=0,1,2,\ldots.
+\]
+在适当条件下，这个函数序列收敛到初值问题的解。它既是存在唯一性理论的核心工具，
+也体现了数值求解的基本精神：用一串可计算的近似逐步逼近真正的解。
+
+\subsection*{积分曲线、方向场与平衡解}
+
+考虑标量一阶方程
+\[
+	\frac{\dd x}{\dd t}=f(t,x).
+\]
+它在 $(t,x)$ 平面的每一点指定斜率 $f(t,x)$。这些小方向线段组成\textbf{方向场}，
+而解 $x=\phi(t)$ 的图像是一条处处与方向场相切的\textbf{积分曲线}。
+满足 $f(t,x)=k$ 的曲线称为斜率为 $k$ 的\textbf{等倾线}，它能帮助我们在不求出显式解时
+勾勒积分曲线的整体走势。
+
+\begin{example}
+自治方程
+\[
+	\dot{x}=x(2-x)
+\]
+有两个常数解 $x(t)\equiv0$ 与 $x(t)\equiv2$，称为\textbf{平衡解}。
+当 $0<x<2$ 时有 $\dot x>0$，解随时间递增；当 $x<0$ 或 $x>2$ 时有 $\dot x<0$，
+解随时间递减。仅凭符号分析就能看出：$x=2$ 吸引其附近的正解，而 $x=0$ 会排斥
+其右侧的解。
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[x=1.15cm,y=1.05cm,>=Stealth]
+		\begin{scope}
+			\clip (-2.25,-0.55) rectangle (2.25,2.65);
+			\foreach \tt in {-2,-1.5,...,2}{
+				\foreach \xx in {-0.25,0,0.5,1,1.5,2,2.5}{
+					\pgfmathsetmacro{\slope}{\xx*(2-\xx)}
+					\pgfmathsetmacro{\ang}{atan(\slope)}
+					\draw[GreenMed,-{Stealth[length=2pt]},line width=0.45pt]
+						(\tt,\xx) ++(\ang+180:0.18) -- ++(\ang:0.36);
+				}
+			}
+			\draw[GoldMain,very thick] (-2.25,0)--(2.25,0);
+			\draw[GoldMain,very thick] (-2.25,2)--(2.25,2);
+		\end{scope}
+		\draw[->] (-2.35,0)--(2.45,0) node[right] {$t$};
+		\draw[->] (0,-0.6)--(0,2.75) node[above] {$x$};
+		\node[left] at (0,2) {$2$};
+		\node[below left] at (0,0) {$0$};
+		\node[GoldDark,anchor=west] at (1.05,2.18) {平衡解 $x=2$};
+		\node[GoldDark,anchor=west] at (1.05,0.2) {平衡解 $x=0$};
+	\end{tikzpicture}
+	\caption{自治方程 $\dot{x}=x(2-x)$ 的方向场与平衡解}
+\end{figure}
+\end{example}
+
+方向场提供几何直观，平衡解及其附近轨道则揭示系统的长期行为。这种不依赖显式公式、
+而直接研究解的单调性、有界性、周期性和稳定性的思路，称为微分方程的定性分析。
+
+\section{方程的基本形式}
+
+\subsection*{高阶方程化为一阶系统}
+
+对规范的 $n$ 阶方程
+\[
+	x^{(n)}=f\bigl(t,x,x',\ldots,x^{(n-1)}\bigr),
+\]
+令
+\[
+	x_1=x,\quad x_2=x',\quad\ldots,\quad x_n=x^{(n-1)},
+\]
+就得到等价的一阶系统
+\[
+	\begin{cases}
+		\dot{x}_1=x_2,\\
+		\dot{x}_2=x_3,\\
+		\hspace{1.5em}\vdots\\
+		\dot{x}_{n-1}=x_n,\\
+		\dot{x}_n=f(t,x_1,x_2,\ldots,x_n).
+	\end{cases}
+\]
+相应的 $n$ 个初始条件也恰好转化为向量初值 $\x(t_0)=\x_0$。
+因此，研究一阶系统并不会损失对高阶方程的普遍性。
+
+例如，阻尼振子~\eqref{eq:damped-oscillator} 令 $x_1=x$、$x_2=\dot x$ 后可写成
+\[
+	\begin{pmatrix}\dot x_1\\ \dot x_2\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 & 1\\
+		-k/m & -\mu/m
+	\end{pmatrix}
+	\begin{pmatrix}x_1\\x_2\end{pmatrix}.
+\]
+这样，位置和速度共同构成系统的状态。
+
+\subsection*{线性、非线性与自治性}
+
+\begin{definition}
+一阶系统若可写成
+\[
+	\dot{\x}=A(t)\x+\vect{b}(t),
+\]
+其中 $A(t)$ 是矩阵值函数、$\vect{b}(t)$ 是向量值函数，则称它为\textbf{线性系统}；
+不能写成这种形式的系统称为\textbf{非线性系统}。
+
+若方程右端不显含时间，即 $\dot{\x}=\vect{f}(\x)$，则称为\textbf{自治系统}；
+否则称为非自治系统。
+\end{definition}
+
+线性表示未知函数及其导数只以一次方式出现，并不等同于“容易求解”。
+阻尼振子是线性系统，捕食者--食饵模型因含有 $xy$ 项而是非线性系统；
+二者在参数不显含时间时都是自治系统。
+
+\section{求解时的基本问题}
+
+写出一个方程并不意味着问题已经被解决。对初值问题~\eqref{eq:ivp}，至少需要依次回答：
+
+\begin{problem}
+给定 $\vect{f}$、$t_0$ 和 $\x_0$，初值问题是否存在解？解是否唯一？
+解能延伸到多大的时间区间？当初值或参数发生小变化时，解是否也只发生小变化？
+\end{problem}
+
+这些问题分别对应存在性、唯一性、解的延拓以及连续依赖性。只有先确认它们，
+计算所得的“解”才具有明确意义。在此基础上，还要研究解是否有界、是否趋于平衡、
+是否周期运动，以及平衡状态在扰动下是否稳定。
+
+
+常微分方程的三种基本研究方式可以概括为：
+\begin{enumerate}
+	\item \textbf{解析方法}：寻找精确公式、守恒量或特殊变换；
+	\item \textbf{数值方法}：构造可计算的离散近似；
+	\item \textbf{定性方法}：不求显式解，直接判断轨道的几何形态和长期行为。
+\end{enumerate}
+实际问题中，这三种方法通常相互补充。
+
+
+

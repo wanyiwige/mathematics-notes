@@ -1,0 +1,77 @@
+\subsection*{准多项式、平移不变性与共振}
+\phantomsection\label{sec:quasipolynomials}
+定理~\ref{thm:重特征根的基本解组} 中出现的 $e^{\lambda t}p(t)$ 并非偶然：
+它们是有限维平移不变函数空间的基本组成部分。
+\begin{definition}
+函数 $e^{\lambda t}p(t)$（$p$ 为复系数多项式）称为\textbf{准多项式}。
+记 $E_\lambda^m=\{e^{\lambda t}p(t):\deg p<m\}$。
+对光滑函数定义 $T_sf(t)=f(t+s)$、$Df=f'$。
+子空间 $V$ 若满足 $T_sV=V$ 对所有 $s\in\R$ 成立，称为平移不变。
+\end{definition}
+\begin{theorem}\label{thm:arnold-translation}
+$C^\infty(\R,\C)$ 的每个有限维平移不变子空间，是某个常系数齐次线性方程的全部解空间；
+它是若干个 $E_\lambda^{m_\lambda}$ 的直和。
+\end{theorem}
+\begin{proof}
+设 $\dim V=n>0$，取基 $f_1,\ldots,f_n$。先证明存在 $n$ 个点
+$t_1,\ldots,t_n$，使求值映射
+$E:V\to\C^n$，
+\[
+ Ef=(f(t_1),\ldots,f(t_n))
+\]
+ 可逆。
+所有求值泛函若不能张成 $V^*$，其公共零空间中就有一个非零 $f\in V$。
+但这意味着 $f(t)=0$ 对每个 $t$ 成立，与 $f$ 为非零函数矛盾。
+因此可从这些泛函选出一组基，得到所需的 $t_j$。
+
+在这组坐标中，$T_s|_V$ 的矩阵为 $ET_sE^{-1}$。
+其元素是 $f_i(t_j+s)$ 的固定线性组合，因而关于 $s$ 光滑。
+平移关系 $T_{s+t}=T_sT_t$ 保证平移在 $V$ 上可逆。
+在 $s=0$ 求导所得的线性算子作用于 $f$，其结果在每个求值点为 $f'(t_j)$。
+事实上该导数也逐点为 $f'$：任意求值泛函都是 $V$ 上的连续线性泛函，
+可与有限维导数交换。因此 $D(V)\subset V$。
+
+令 $p$ 为 $D|_V$ 的特征多项式。Cayley--Hamilton 定理说明
+$p(D)f=0$ 对每个 $f\in V$ 成立。
+$p$ 是 $n$ 次首一多项式，而常系数 $n$ 阶方程的全部解空间恰为 $n$ 维。
+这个解空间包含同为 $n$ 维的 $V$，所以二者相等。
+重根基本解定理进一步给出
+\[
+ V=\bigoplus_\lambda E_\lambda^{m_\lambda}.
+\]
+
+反过来，平移后的 $e^{\lambda(t+s)}p(t+s)$ 仍属于同一个
+$E_\lambda^m$，所以这些直和确实平移不变。
+若 $V=\{0\}$，取零阶方程 $f=0$ 即可，结论也成立。
+\end{proof}
+
+\begin{proposition}[非齐次项与共振]
+设 $P$ 为多项式，$P(\lambda+z)=z^\nu Q(z)$，$Q(0)\ne0$。
+若 $f=e^{\lambda t}p(t)$，$\deg p<k$，则 $P(D)y=f$ 有特解
+\[
+ y=e^{\lambda t}t^\nu q(t),
+\]
+$\deg q<k$。
+\end{proposition}
+\begin{proof}
+在 $E_\lambda^m$ 中取基 $e_j(t)=e^{\lambda t}t^j/j!$，$0\leq j<m$。
+直接求导得到 $(D-\lambda I)e_0=0$、$(D-\lambda I)e_j=e_{j-1}$。
+因此 $N=D-\lambda I$ 在这个空间中是幂零移位。
+
+由 $P(\lambda+z)=z^\nu Q(z)$，有 $P(D)=N^\nu Q(N)$。
+$Q(N)$ 的矩阵是对角元全为 $Q(0)\ne0$ 的三角矩阵，故可逆；
+$N^\nu$ 则把 $E_\lambda^{k+\nu}$ 满射到 $E_\lambda^k$。
+所以任意 $f\in E_\lambda^k$ 都有一个原像
+\[
+ y=e^{\lambda t}\sum_{j=0}^{k+\nu-1}c_jt^j.
+\]
+
+把其中次数小于 $\nu$ 的项记为 $y_0$。
+它被 $N^\nu$ 消去，故 
+\[
+ P(D)y_0=Q(N)N^\nu y_0=0.
+\]
+于是 $y-y_0$ 仍为特解，而它的多项式部分可提出 $t^\nu$，
+余下次数小于 $k$，得到所述形式。
+$\nu=0$ 时无需去掉低次项，同一论证给出非共振情形。
+\end{proof}

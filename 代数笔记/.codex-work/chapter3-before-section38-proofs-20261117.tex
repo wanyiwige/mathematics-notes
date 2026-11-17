@@ -1,0 +1,1862 @@
+% !TEX root = ../../main.tex
+\setchapterimage{}
+\setchapterintro{从环同态和理想的对应出发，讨论环的直和、分式环与多项式环，并研究整环及域上多项式的性质。}
+\chapter{环}
+\label{p2:ch3}
+
+\section{环的同态定理}
+
+环的同态同时保持加法与乘法。它的核是理想，因此可以先用加法群的同态定理构造商群之间的对应，再验证这些对应保持乘法。本节不要求环交换，也不要求有单位元；理想均指双边理想。
+
+先说明交与和在子环、理想中分别具有哪些封闭性质。对非空子集，检验它是子环，可以验证任意两个元素之差及其乘积仍在其中；理想则还须验证左右乘以母环中任意元素后仍在其中。
+
+\begin{proposition}
+若$H,N$为环$R$的子环，则$H\cap N$为子环；
+
+若$N$为$R$的理想，则$H\cap N$为$H$的理想。
+
+更进一步，若$N,H$都是$R$的理想，那么$H\cap N$为$R$的理想。
+
+
+\end{proposition}
+\begin{proof}
+若$x,y\in H\cap N$，则$x-y,xy$同时属于$H$和$N$，故$H\cap N$为$R$的子环。
+
+若$N$为$R$的理想，则对$x\in H\cap N$、$h\in H$，有$hx,xh\in N$；又因$H$为子环，$hx,xh\in H$。因此
+\[
+hx,xh\in H\cap N,
+\]
+即$H\cap N$为$H$的理想。
+
+若$H,N$均为$R$的理想，则对任意$r\in R$和$x\in H\cap N$，$rx,xr$同时属于$H$与$N$，所以
+\[
+rx,xr\in H\cap N.
+\]
+故$H\cap N$为$R$的理想。
+
+
+\end{proof}
+
+\begin{definition}
+设$H,N$为环$R$的子环，定义它们的和为
+\[
+H+N=\{a+b:a\in H,\ b\in N\}.
+\]
+\end{definition}
+\begin{proposition}
+	$H+N $是$R$的加法子群。若$N$为$R$的理想，则$H+N$为$R$的子环；若$H,N$均为$R$的理想，则$H+N$也是理想。
+\end{proposition}
+\begin{proof}
+	由于$0=0+0\in H+N$，此集合非空。若$a_i\in H,b_i\in N$，则
+\[
+(a_1+b_1)-(a_2+b_2)=(a_1-a_2)+(b_1-b_2)\in H+N.
+\]
+因此$H+N$是加法子群。若$N$为理想，则
+	\begin{align*}
+		(a_1+b_1)(a_2+b_2)
+		&=a_1a_2+a_1b_2+b_1a_2+b_1b_2\in H+N.
+	\end{align*}
+	这里$a_1a_2\in H$，其余三项均在$N$中，所以乘积属于$H+N$，故它为子环。若$H$也为理想，则对$r\in R$有
+	\[
+	r(a+b)=ra+rb\in H+N,\qquad (a+b)r=ar+br\in H+N,
+	\]
+	所以$H+N$为理想。
+\end{proof}
+\begin{example}
+设$F$为域，令$R=M_2(F)$，
+\[
+H=\left\{\begin{pmatrix}0&0\\a&0\end{pmatrix}:a\in F\right\},\qquad
+N=\left\{\begin{pmatrix}0&b\\0&0\end{pmatrix}:b\in F\right\}.
+\]
+$H,N$中的任意两个矩阵相乘均为零，且各自对减法封闭，所以都是子环。但取
+\[
+\begin{pmatrix}0&0\\1&0\end{pmatrix}\in H,\qquad
+\begin{pmatrix}0&1\\0&0\end{pmatrix}\in N,
+\]
+它们相乘得到
+\[
+\begin{pmatrix}0&0\\1&0\end{pmatrix}
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+=\begin{pmatrix}0&0\\0&1\end{pmatrix}\notin H+N.
+\]
+因为$H+N$中每个矩阵的对角线元素均为零，故$H+N$不是子环。这说明不能从两个子环直接推出其和仍为子环。
+\end{example}
+
+\begin{lemma}\label{p2:ring-image-preimage}
+设$\sigma:R\to R'$为环同态，$N=\ker\sigma$，$H$为$R$的子环，$H'$为$R'$的子环。则
+\begin{align*}
+\sigma^{-1}(\sigma(H))&=H+N,\\
+\sigma(\sigma^{-1}(H'))&=H'\cap\sigma(R).
+\end{align*}
+特别地，第一式等于$H$当且仅当$N\subseteq H$；若$\sigma$满射，则第二式等于$H'$。
+\end{lemma}
+\begin{proof}
+\textbf{第一式：}先证$\sigma^{-1}(\sigma(H))\subseteq H+N$。任取$x\in\sigma^{-1}(\sigma(H))$，则$\sigma(x)\in\sigma(H)$，所以存在$h\in H$使$\sigma(x)=\sigma(h)$。于是
+\[
+\sigma(x-h)=\sigma(x)-\sigma(h)=0,
+\]
+即$x-h\in N$。因此
+\[
+x=h+(x-h)\in H+N.
+\]
+
+再证$H+N\subseteq\sigma^{-1}(\sigma(H))$。任取$x\in H+N$，写作$x=h+n$，其中$h\in H$、$n\in N$。由于$\sigma(n)=0$，
+\[
+\sigma(x)=\sigma(h)+\sigma(n)=\sigma(h)\in\sigma(H),
+\]
+故$x\in\sigma^{-1}(\sigma(H))$。合并两个包含关系，得到第一式。此式不要求$\sigma$满射。
+
+因为$N$是理想，$H+N$为子环；任一同时包含$H$和$N$的子环都包含它们的和。因此$\sigma^{-1}(\sigma(H))$正是包含$H$和$\ker\sigma$的最小子环。又因$N\subseteq H+N$，
+\[
+\sigma^{-1}(\sigma(H))=H
+\quad\Longleftrightarrow\quad H+N=H
+\quad\Longleftrightarrow\quad N\subseteq H.
+\]
+
+\textbf{第二式：}任取$y\in\sigma(\sigma^{-1}(H'))$，则存在$x\in\sigma^{-1}(H')$使$y=\sigma(x)$。由反像的定义，$\sigma(x)\in H'$，故
+\[
+y\in H'\cap\sigma(R).
+\]
+反过来，若$y\in H'\cap\sigma(R)$，则存在$x\in R$使$y=\sigma(x)$；又因$y\in H'$，有$x\in\sigma^{-1}(H')$，所以
+\[
+y=\sigma(x)\in\sigma(\sigma^{-1}(H')).
+\]
+这就证明第二式。若$\sigma$满射，$\sigma(R)=R'$，于是
+\[
+\sigma(\sigma^{-1}(H'))=H'\cap R'=H'.
+\]
+\end{proof}
+
+\begin{theorem}\label{p2:ring-correspondence}
+\textbf{环的对应定理：}设$\sigma:R\to R'$为满环同态，$N=\ker\sigma$。映射$H\mapsto\sigma(H)$给出$R$中包含$N$的子环与$R'$的子环之间的一一对应；在此对应下，理想与理想对应。
+\end{theorem}
+\begin{proof}
+\textbf{$\sigma(H)$是子环：}由于$0\in H$，$0\in\sigma(H)$。任取$\sigma(a),\sigma(b)\in\sigma(H)$，有
+\[
+\sigma(a)-\sigma(b)=\sigma(a-b)\in\sigma(H),\qquad
+\sigma(a)\sigma(b)=\sigma(ab)\in\sigma(H).
+\]
+所以$\sigma(H)$为子环。
+
+\textbf{$H$是理想，则$\sigma(H)$是理想：}若$H$为理想，任取$r'\in R'$及$a'\in\sigma(H)$，由满射取$r\in R,a\in H$使$\sigma(r)=r'$、$\sigma(a)=a'$，于是
+\[
+r'a'=\sigma(ra)\in\sigma(H),\qquad a'r'=\sigma(ar)\in\sigma(H).
+\]
+故$\sigma(H)$为理想。
+
+\textbf{子环$H'\subseteq R'$的完全反像$\sigma^{-1}(H')$为子环：}若$x,y\in\sigma^{-1}(H')$，则$\sigma(x),\sigma(y)\in H'$，所以
+\[
+\sigma(x-y)=\sigma(x)-\sigma(y)\in H',\qquad
+\sigma(xy)=\sigma(x)\sigma(y)\in H'.
+\]
+因此$x-y,xy\in\sigma^{-1}(H')$。又$0\in H'$，故$\ker\sigma\subseteq\sigma^{-1}(H')$，特别地该反像非空，是包含$N$的子环。
+
+\textbf{理想$H'\subseteq R'$的完全反像$\sigma^{-1}(H')$为理想：}若$H'$为理想，任取$r\in R$、$a\in\sigma^{-1}(H')$，则
+\[
+\sigma(ra)=\sigma(r)\sigma(a)\in H',\qquad
+\sigma(ar)=\sigma(a)\sigma(r)\in H',
+\]
+故$\sigma^{-1}(H')$为理想。
+
+由引理\ref{p2:ring-image-preimage}，当$N\subseteq H$且$\sigma$满射时，
+\[
+\sigma^{-1}(\sigma(H))=H+N=H,\qquad
+\sigma(\sigma^{-1}(H'))=H'.
+\]
+因此$H\mapsto\sigma(H)$与$H'\mapsto\sigma^{-1}(H')$互逆，得到所述一一对应。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-third-iso}
+设$\sigma:R\to R'$为环的满同态，$N=\ker\sigma$，$H$为$R$的任一包含$N$的理想。则$\sigma$诱导出环同构
+\[
+\overline\sigma:R/H\longrightarrow R'/\sigma(H),
+\qquad
+\overline\sigma(x+H)=\sigma(x)+\sigma(H).
+\]
+特别地，若取$R'=R/N$，$\sigma(x)=x+N$，则$\sigma(H)=H/N$，从而
+\[
+R/H\cong(R/N)/(H/N).
+\]
+同构映射为
+\[
+x+H\longmapsto(x+N)+(H/N).
+\]
+\end{theorem}
+\begin{proof}
+记$H'=\sigma(H)$。由环的对应定理，$H'$为$R'$的理想。由加法群的同构定理，$\sigma$诱导出加法群同构
+\[
+\overline\sigma:R/H\longrightarrow R'/H',
+\qquad x+H\longmapsto\sigma(x)+H'.
+\]
+
+具体地，若$x+H=y+H$，则$x-y\in H$，故$\sigma(x)-\sigma(y)\in H'$，两者在$R'/H'$中的类相同，所以映射良好定义。它保持加法；由$\sigma$满射可知它满射。若$\overline\sigma(x+H)=H'$，则$\sigma(x)\in\sigma(H)$，于是
+\[
+x\in\sigma^{-1}(\sigma(H))=H+N=H.
+\]
+故核为零，确为加法群同构。这里用到了$N\subseteq H$，它正是单射性成立的条件。
+
+再验证$\overline\sigma$保持乘法。任取$x,y\in R$，有
+\begin{align*}
+\overline\sigma\bigl((x+H)(y+H)\bigr)
+&=\overline\sigma(xy+H)\\
+&=\sigma(xy)+H'\\
+&=\sigma(x)\sigma(y)+H'\\
+&=(\sigma(x)+H')(\sigma(y)+H')\\
+&=\overline\sigma(x+H)\,\overline\sigma(y+H).
+\end{align*}
+所以$\overline\sigma$是环同构。
+
+取自然同态$\sigma:R\to R/N$，$\sigma(x)=x+N$，此时$\sigma(H)=H/N$。代入上述同构，即得特别情形及其同构映射。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-second-iso}
+若$H$为$R$的子环，$N$为$R$的理想，则
+\[
+H/(H\cap N)\cong(H+N)/N,\qquad
+h+(H\cap N)\longmapsto h+N.
+\]
+\end{theorem}
+\begin{proof}
+将自然同态$\pi:R\to R/N$限制在$H$上。此限制的核恰为$\{h\in H:h\in N\}=H\cap N$。其像是$\pi(H)$，应用环同态基本定理得
+\[
+H/(H\cap N)\cong\pi(H).
+\]
+另一方面，$H+N$为子环且包含$N$，并有$\pi(H+N)=\pi(H)$。将$\pi$限制在$H+N$上，其核为$N$，于是
+\[
+(H+N)/N\cong\pi(H).
+\]
+合并两个同构得到结论；所列映射的逆映射由$h+n+N\mapsto h+(H\cap N)$给出。
+\end{proof}
+
+\begin{example}
+设$m,n$为正整数，记$d=\gcd(m,n)$、$M=\operatorname{lcm}(m,n)$。在$\mathbb Z$中，
+\[
+(m)+(n)=(d),\qquad(m)\cap(n)=(M).
+\]
+第一式的理由是：和中的每个元素$am+bn$均被$d$整除；反过来，贝祖等式给出$d=um+vn$，所以每个$d$的倍数均在和中。第二式的理由是：同时属于两个理想，等价于同时被$m,n$整除，也就是被最小公倍数$M$整除。
+
+在第二同构定理中取$H=(n)$、$N=(m)$，得到
+\[
+(n)/(M)\cong(d)/(m).
+\]
+左侧加法群有$M/n$个元素，右侧有$m/d$个元素：分别可取$0,n,\ldots,(M/n-1)n$及$0,d,\ldots,(m/d-1)d$为代表元。因此
+\[
+\frac Mn=\frac md,\qquad dM=mn.
+\]
+这也从理想与商环的关系说明最大公因数、最小公倍数之间的等式。
+\end{example}
+
+
+\section{环的直和}
+
+本节讨论的环默认有单位元，即为幺环；讨论任意环的理想生成时会另行说明。对幺环中的元素，零次幂记为$a^0=1$。
+
+\begin{definition}
+设$R_1,\ldots,R_r$为有限多个环。在它们的加法群直和上定义
+\[
+(a_1,\ldots,a_r)(b_1,\ldots,b_r)=(a_1b_1,\ldots,a_rb_r).
+\]
+所得环称为$R_1,\ldots,R_r$的\textbf{直和}，记为$R=R_1\oplus\cdots\oplus R_r$或$R=\bigoplus\limits_{i=1}^rR_i$。
+\end{definition}
+\begin{proof}[验证]
+加法已按分量定义，构成交换群。若$a=(a_i),b=(b_i),c=(c_i)$，则各个$R_i$中的结合律与分配律给出
+\begin{align*}
+(ab)c&=((a_ib_i)c_i)_i=(a_i(b_ic_i))_i=a(bc),\\
+a(b+c)&=(a_i(b_i+c_i))_i=(a_ib_i+a_ic_i)_i=ab+ac,\\
+(a+b)c&=((a_i+b_i)c_i)_i=(a_ic_i+b_ic_i)_i=ac+bc.
+\end{align*}
+零元为$(0_{R_1},\ldots,0_{R_r})$，单位元为$(1_{R_1},\ldots,1_{R_r})$。若每个$R_i$交换，则$ab=(a_ib_i)_i=(b_ia_i)_i=ba$，故直和也交换。
+\end{proof}
+
+\begin{proposition}
+在$R=R_1\oplus\cdots\oplus R_r$中，令
+\[
+R_i'=\{(0,\ldots,0,a_i,0,\ldots,0):a_i\in R_i\}.
+\]
+则各$R_i'$都是$R$的理想，$R_i'\cong R_i$，并满足
+\[
+R=R_1'+\cdots+R_r',\qquad
+R_i'\cap\Bigl(\sum_{j\ne i}R_j'\Bigr)=(0).
+\]
+每个元素都可唯一写为各$R_i'$中元素的和；$i\ne j$时$R_i'R_j'=(0)$。
+\end{proposition}
+\begin{proof}
+第$i$坐标的映射$a_i\mapsto(0,\ldots,a_i,\ldots,0)$保持加法、乘法，且为到$R_i'$的双射，故给出同构。对$y=(b_1,\ldots,b_r)\in R$及$x=(0,\ldots,a_i,\ldots,0)\in R_i'$，
+\[
+yx=(0,\ldots,b_ia_i,\ldots,0),\qquad
+xy=(0,\ldots,a_ib_i,\ldots,0),
+\]
+都属于$R_i'$，所以它是理想。
+
+每个$(a_1,\ldots,a_r)$是各个仅含一个非零坐标的元素之和；第$i$个分量唯一决定第$i$项，所以表示唯一。若一个元素同时属于$R_i'$和其他坐标子环的和，它的所有坐标都为0，故交为$(0)$。不同坐标中的元素相乘，各分量至少有一个因子为0，故乘积为0。
+\end{proof}
+
+直和中的这些理想具有独立的加法分解和相互为零的乘法。下面反过来从环内部的理想恢复这种结构。
+
+\begin{theorem}\label{p2:ring-internal-sum}
+设$R_1,\ldots,R_r$为环$R$的理想，并满足
+\[
+R=R_1+\cdots+R_r,\qquad
+R_i\cap(R_1+\cdots+\widehat{R_i}+\cdots+R_r)=(0).
+\]
+其中$\widehat{R_i}$表示在和中去掉$R_i$。则求和映射给出环同构
+\[
+R_1\oplus\cdots\oplus R_r\longrightarrow R,
+\qquad(a_1,\ldots,a_r)\longmapsto a_1+\cdots+a_r.
+\]
+此时称$R$为这些子环的\textbf{内直和}。
+\end{theorem}
+\begin{proof}
+由和等于$R$，每个元素都有这样的表示。若$\sum_i a_i=\sum_i b_i$，则对每个$i$，
+\[
+a_i-b_i=-\sum_{j\ne i}(a_j-b_j)
+\in R_i\cap\sum_{j\ne i}R_j=(0),
+\]
+故$a_i=b_i$，表示唯一。所以求和映射是加法群同构。
+
+若$i\ne j$，$a_i\in R_i,b_j\in R_j$，由理想的左右吸收性质，$a_ib_j$同时属于$R_i$和$R_j$。由于$R_i\cap R_j=(0)$，有$a_ib_j=0$。于是
+\[
+\Bigl(\sum_i a_i\Bigr)\Bigl(\sum_j b_j\Bigr)=\sum_i a_ib_i,
+\]
+正好与外直和的分量乘法一致。因此该加法群同构也保持乘法，是环同构。
+\end{proof}
+
+定理中的映射是求和映射。各$R_i$本身的单位元可以与$R$的单位元不同；这里的子环不要求包含母环同一个单位元。事实上，将$1$按直和写成$1=e_1+\cdots+e_r$，$e_i\in R_i$。对$a\in R_i$，不同分量的乘积为零，所以
+\[
+a=a1=ae_i,\qquad a=1a=e_i a.
+\]
+故$e_i$是$R_i$自身的单位元。这也解释了为什么这些理想仍可作为幺环参与直和。
+
+为了给出与内直和判别相对应的商环形式，先定义理想的积与互素性。
+
+\begin{definition}
+设$H,N$为$R$的理想。全部有限和
+\[
+\sum_{i=1}^m a_ib_i,\qquad a_i\in H,\ b_i\in N,
+\]
+组成的集合称为$H,N$的\textbf{积}，记为$HN$，其中允许取零和。若$H+N=R$，则称$H,N$\textbf{互素}。
+\end{definition}
+\begin{proposition}
+$HN$仍为$R$的理想，且对任意理想$K$，
+\[
+H(N+K)=HN+HK,\qquad(N+K)H=NH+KH.
+\]
+\end{proposition}
+\begin{proof}
+有限和相加仍为同类有限和，取负只须将每个$a_i$换成$-a_i$，所以$HN$是加法子群。对$r\in R$，
+\[
+r\sum_i a_ib_i=\sum_i(ra_i)b_i\in HN,
+\qquad\Bigl(\sum_i a_ib_i\Bigr)r=\sum_i a_i(b_ir)\in HN.
+\]
+所以$HN$为双边理想。
+
+对$h\in H,n\in N,k\in K$，$h(n+k)=hn+hk$，故$H(N+K)\subseteq HN+HK$。反过来，$N,K\subseteq N+K$说明$HN,HK\subseteq H(N+K)$，两者之和也包含于其中。第二式同样由$(n+k)h=nh+kh$及两个反向包含得到。
+\end{proof}
+
+\begin{lemma}\label{p2:ring-comaximal-product}
+设$H,N,K$为幺环$R$的理想。
+\begin{enumerate}
+\item 若$R$交换且$H+N=R$，则$HN=H\cap N$。
+\item 若$H+N=R$且$K+N=R$，则$HK+N=R$。
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item 任一乘积$hn$同时属于$H,N$，所以总有$HN\subseteq H\cap N$。由互素性，取$a\in H,b\in N$使$a+b=1$。若$c\in H\cap N$，则
+		\[
+		c=c(a+b)=ca+cb=ac+cb.
+		\]
+		其中$ac\in HN$，因为$a\in H,c\in N$；$cb\in HN$，因为$c\in H,b\in N$。所以$c\in HN$，得到反向包含。这里把$ca$写成$ac$使用了交换性。
+		
+		\item 取$a\in H,b\in K,c,d\in N$使$a+c=1$、$b+d=1$。于是
+		\[
+		1=(a+c)(b+d)=ab+(ad+cb+cd)\in HK+N.
+		\]
+		一个含$1$的理想包含每个$x=x1$，所以$HK+N=R$。这一步不要求$R$交换。
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{p2:ring-crt}
+设幺环$R$的理想$N_1,\ldots,N_r$两两互素，$\sigma_i:R\to R/N_i$为自然同态。则
+\[
+\sigma:R\longrightarrow\bigoplus_{i=1}^rR/N_i,
+\qquad x\longmapsto(\sigma_1(x),\ldots,\sigma_r(x))
+\]
+为满环同态，且$\ker\sigma=\bigcap_iN_i$。因此
+\[
+R/(N_1\cap\cdots\cap N_r)\cong R/N_1\oplus\cdots\oplus R/N_r.
+\]
+进一步的，若$\bigcap\limits_iN_i=(0)$
+\[R\cong R/N_1\oplus\cdots\oplus R/N_r.\]
+\end{theorem}
+\begin{proof}
+$r=1$时即自然同态的结论，以下设$r\geq2$。每个分量保持运算，所以$\sigma$为环同态。关键是证明它满射。
+
+记$M_i=N_1\cdots N_{i-1}N_{i+1}\cdots N_r$，各理想按原次序相乘。理想积的分配律给出
+\begin{align*}
+M_1+M_2&=(N_2+N_1)N_3\cdots N_r=N_3\cdots N_r,\\
+M_1+M_2+M_3&=(N_3+N_1N_2)N_4\cdots N_r=N_4\cdots N_r.
+\end{align*}
+第二个等式用到前一引理：$N_1,N_2$都与$N_3$互素，所以$N_1N_2$也与$N_3$互素。继续归纳，$N_1\cdots N_{k-1}$与$N_k$互素，故每加入$M_k$，就得到
+\[
+M_1+\cdots+M_k=N_{k+1}\cdots N_r.
+\]
+最后$k=r$时右侧按空乘积理解为理想$R$，所以$\sum_iM_i=R$。
+
+因此可取$e_i\in M_i$满足$e_1+\cdots+e_r=1$。当$j\ne i$时，$M_j\subseteq N_i$，故
+\[
+\sigma_i(e_j)=\overline{0}_j
+\quad(j\ne i),\qquad\sigma_i(e_i)=1+N_i.
+\]
+任给直和中的元素$(x_1+N_1,\ldots,x_r+N_r)$，令$x=\sum_j e_jx_j$，则
+\begin{align*}
+\sigma_i(x)&=\sum_j\sigma_i(e_j)\sigma_i(x_j)\\
+&=\sigma_i(e_i)\sigma_i(x_i)=\sigma_i(x_i).
+\end{align*}
+所以$\sigma(x)$就是任给的元素，$\sigma$满射。
+
+最后，$\sigma(x)=0$当且仅当每个$\sigma_i(x)=0$，即$x\in N_i$对所有$i$成立。因此核为$\bigcap_iN_i$，再用环同态基本定理得到商环同构。
+\end{proof}
+
+\begin{definition}
+设$N\lhd R$。若$a-b\in N$，则称$a,b$\textbf{模$N$同余}，记为$a\equiv b\pmod N$。它等价于$a+N=b+N$。
+\end{definition}
+
+同余类就是商环的元素，所以同余保持加法和乘法。例如$ax\equiv b\pmod N$等价于商环中的等式$(a+N)(x+N)=b+N$。
+
+\begin{corollary}\label{p2:ring-crt-congruence}
+\textbf{中国剩余定理：}若$N_1,\ldots,N_r$两两互素，则对任给$b_1,\ldots,b_r\in R$，同余方程组
+\[
+x\equiv b_i\pmod{N_i}\qquad(1\leq i\leq r)
+\]
+有解，且任意两解模$N_1\cap\cdots\cap N_r$同余。
+
+\end{corollary}
+\begin{proof}
+存在性是上一定理中$\sigma$的满射性。若$x,y$均为解，则$x-y\in N_i$对所有$i$成立，所以$x-y\in\bigcap_iN_i$；反之，在一个解上加上交中任意元素仍是解。因此解模该交唯一。交为零时，$\sigma$也单射，得到最后的同构。
+\end{proof}
+
+
+本节最后讨论任意环中的理想生成，此处不要求环有单位元。
+
+\begin{definition}
+对非空子集$S\subseteq R$，所有包含$S$的理想之交称为\textbf{由$S$生成的理想}，记为$(S)$。它是包含$S$的最小理想。若$S=\{a_1,\ldots,a_r\}$，简记为$(a_1,\ldots,a_r)$，称为\textbf{有限生成理想}；由一个元素生成的理想$(a)$称为\textbf{主理想}。
+\end{definition}
+
+\begin{proposition}
+任意环中，主理想$(a)$由全部形如
+\[
+na+xa+ay+\sum_{i=1}^m x_iay_i,
+\qquad n\in\Z,\quad x,y,x_i,y_i\in R
+\]
+的元素组成。若$R$交换，可化为$na+xa$；若又有单位元，则$(a)=Ra$。此外，
+\[
+(a_1,\ldots,a_r)=(a_1)+\cdots+(a_r).
+\]
+\end{proposition}
+\begin{proof}
+令$J$为所列元素组成的集合。它对加法、取负封闭，且取$n=1$、其余项为零知$a\in J$。左乘$r\in R$时，四类项分别成为$(nr)a$、$(rx)a$、$ray$及$(rx_i)ay_i$；右乘时分别成为$a(nr)$、$xar$、$a(yr)$及$x_i a(y_ir)$，仍为所列项的有限和。因此$J$是含$a$的理想。
+
+任一包含$a$的理想必须包含它的整数倍、左右乘积及这些项的有限和，故必包含$J$。所以$J=(a)$。交换时双侧项$xay$也可写为$(xy)a$，各项合并为$na+xa$；有单位元时$na=(n1)a$，再合并得到$Ra$。
+
+最后，右侧的理想和含全部$a_i$，故包含$(a_1,\ldots,a_r)$；任何含全部$a_i$的理想又必须包含各$(a_i)$，所以包含它们的和。两边相等。
+\end{proof}
+
+
+\section{环的反同构}
+
+
+\begin{definition}
+若双射$\sigma:R\to R'$满足
+\[
+\sigma(a+b)=\sigma(a)+\sigma(b),\qquad
+\sigma(ab)=\sigma(b)\sigma(a),
+\]
+则称$\sigma$为$R$到$R'$的\textbf{反同构}，并称$R,R'$\textbf{反同构}。若$R'=R$，则称为\textbf{反自同构}。不要求双射时，满足这两式的映射称为\textbf{反同态}。
+\end{definition}
+
+\begin{proposition}
+若$R,R'$反同构，且$R$交换，则$R'$也交换，这时反同构同时也是同构。
+\end{proposition}
+\begin{proof}
+设$u=\sigma(a),v=\sigma(b)$为$R'$中任意元素。由$ab=ba$，
+\[
+uv=\sigma(ba)=\sigma(ab)=vu.
+\]
+故$R'$交换，且$\sigma(ab)=\sigma(b)\sigma(a)=\sigma(a)\sigma(b)$，也保持通常次序的乘法。
+\end{proof}
+
+\begin{example}
+\textbf{矩阵转置：}对交换域$F$上的矩阵，转置两次得到原矩阵，所以它是双射。又
+\[
+((AB)^T)_{ij}=(AB)_{ji}=\sum_k a_{jk}b_{ki}
+=\sum_k b_{ki}a_{jk}=(B^TA^T)_{ij}.
+\]
+因此转置为$M_n(F)$的反自同构。上述计算使用系数交换性；在非交换系数环上，普通转置不一定颠倒乘法。
+\end{example}
+
+\begin{example}
+\textbf{四元数共轭：}四元数体$H$中的元素写为
+\[
+\alpha=a_0+a_1I+a_2J+a_3K,\qquad a_i\in\R,
+\]
+其中$I^2=J^2=K^2=-1$、$IJ=-JI=K$、$JK=-KJ=I$、$KI=-IK=J$。定义
+\[
+\overline\alpha=a_0-a_1I-a_2J-a_3K.
+\]
+则$\alpha\mapsto\overline\alpha$是$H$的反自同构，且共轭两次为恒等映射。
+\end{example}
+\begin{proof}
+共轭保持加法，且$\overline{\overline\alpha}=\alpha$，所以它双射。为验证$\overline{\alpha\beta}=\overline\beta\,\overline\alpha$，由实数线性及分配律，只须在基$1,I,J,K$的乘积上验证。
+
+若其中一项为1，等式由定义成立。若两项为同一个虚基元$U$，则
+\[
+\overline{U^2}=-1=(-U)(-U)=\overline U\,\overline U.
+\]
+若为不同虚基元$U,V$，则$UV$为另一个虚基元或其负数，且$VU=-UV$，所以
+\[
+\overline{UV}=-UV=VU=(-V)(-U)=\overline V\,\overline U.
+\]
+这涵盖所有基的乘积，再对任意四元数展开即可得到所需等式。
+\end{proof}
+
+\begin{example}
+\textbf{四元数矩阵的共轭转置：}对$A=(\alpha_{ij})\in M_n(H)$，令$\overline A=(\overline{\alpha_{ij}})$，再取转置$\overline A^{\,T}$。则$A\mapsto\overline A^{\,T}$是反自同构，连续作用两次得到$A$。
+\end{example}
+\begin{proof}
+记$A^*=\overline A^{\,T}$。它保持加法且$(A^*)^*=A$。对$A=(\alpha_{ij}),B=(\beta_{ij})$，
+\begin{align*}
+((AB)^*)_{ij}
+&=\overline{\sum_k\alpha_{jk}\beta_{ki}}\\
+&=\sum_k\overline{\beta_{ki}}\,\overline{\alpha_{jk}}\\
+&=(B^*A^*)_{ij}.
+\end{align*}
+所以$(AB)^*=B^*A^*$。共轭与转置结合起来，才在非交换的四元数矩阵环上得到反自同构。
+\end{proof}
+
+\begin{proposition}
+环$R$的全部自同构与反自同构在复合下组成一个群$G$。自同构群$\Aut(R)$是它的子群，且$[G:\Aut(R)]\leq2$。
+\end{proposition}
+\begin{proof}
+两个保持乘法次序的映射复合仍保持次序；一个保持次序、一个颠倒次序时，复合颠倒次序；两个都颠倒次序时，复合恢复原次序。例如反自同构$\sigma,\tau$满足
+\[
+(\sigma\tau)(ab)=\sigma(\tau(b)\tau(a))
+=(\sigma\tau)(a)(\sigma\tau)(b).
+\]
+逆映射具有与原映射相同的保序或反序性质，恒等映射也在其中，因此构成群。
+
+若不存在反自同构，或$R$交换使两种映射重合，则$G=\Aut(R)$。否则固定一个反自同构$\tau$，任一反自同构$\sigma$都使$\sigma\tau^{-1}$为自同构，所以全部反自同构组成一个陪集$\Aut(R)\tau$。故至多有两个陪集。
+\end{proof}
+
+即使一个非交换环没有反自同构，也总能构造另一个与它反同构的环。取与$R$一一对应的副本$R'=\{x':x\in R\}$，规定
+\[
+x'+y'=(x+y)',\qquad x'y'=(yx)'.
+\]
+加法群结构不变；乘法满足结合律，因为$(x'y')z'=(zyx)'=x'(y'z')$，分配律也由$R$的分配律得到。于是$R'$为环，而$x\mapsto x'$为反同构。这个构造并不表示$R$一定存在到自身的反自同构。
+
+
+\section{素理想和极大理想}
+
+从本节起，所讨论的环都假定是有单位元素$1$的交换环，即交换幺环。域与整环均要求$1\ne0$。
+
+
+
+\begin{definition}
+设$R$为交换幺环。
+\begin{enumerate}
+\item 若$R$的理想$P\ne R$，并且$ab\in P$蕴含$a\in P$或$b\in P$，则称$P$为$R$的一个\textbf{素理想}。
+\item 若$R$的理想$M\ne R$，而且不再存在理想$A$使
+\[
+M\subsetneq A\subsetneq R,
+\]
+则称$M$为$R$的一个\textbf{极大理想}。
+\end{enumerate}
+\end{definition}
+
+
+\begin{theorem}\label{p2:prime-maximal}
+设$R$为交换幺环，则：
+\begin{enumerate}
+\item 设$\sigma:R\to R'$为环的满同态，$N=\ker\sigma$，则$\sigma$诱导出$R$中包含$N$的极大理想与$R'$的极大理想之间的一一对应。
+\item $R$为域的充要条件是零理想$(0)$为极大理想。
+\item $R$的理想$M\ne R$为极大理想的充要条件是$R/M$为域。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item 根据环的对应定理\ref{p2:ring-correspondence}，$\sigma$诱导出$R$中包含$N$的理想与$R'$的理想之间的一一对应，而且保持包含关系。具体地，对包含$N$的理想$H,K$，
+		\[
+		H\subseteq K\quad\Longleftrightarrow\quad\sigma(H)\subseteq\sigma(K).
+		\]
+		正向由映射的像保持包含关系得到；反向对两边取完全反像，并使用
+		\[
+		\sigma^{-1}(\sigma(H))=H,\qquad
+		\sigma^{-1}(\sigma(K))=K
+		\]
+		即可得到。由于此对应是一一对应，严格包含关系也得到保持，且$R$对应$R'$。
+		
+		因此，在$H$与$R$之间存在严格的中间理想，当且仅当在$\sigma(H)$与$R'$之间存在严格的中间理想。所以包含$N$的极大理想恰好对应$R'$的极大理想。
+		\item 先设$R$为域，$H$为$R$的任一非零理想，则$H$含一个非零元$a$。由于$a^{-1}\in R$，理想$H$也含
+		\[
+		a^{-1}a=1.
+		\]
+		从而对每个$x\in R$，$x=x1\in H$，即$H=R$。所以零理想$(0)$为极大理想。
+		
+		反过来，设$(0)$为极大理想，任取$R$的非零元$a$。集合
+		\[
+		Ra=\{xa:x\in R\}
+		\]
+		是$R$的一个理想：它对减法封闭；又因$R$交换，对$r,x\in R$，$r(xa)=(rx)a$及$(xa)r=(xr)a$都在$Ra$中。因为$Ra$包含$1a=a\ne0$，有$Ra\supsetneq(0)$。由$(0)$的极大性，只能$Ra=R$。
+		
+		于是$1\in Ra$，存在$c\in R$使$ca=1$。由交换性也有$ac=1$，因此$a$可逆。每个非零元均可逆，而且$(0)\ne R$，故$R$为域。
+		\item 若$M$为极大理想，把第一条用于自然满同态$R\to R/M$，得到$(0)$是$R/M$的极大理想，再由第二条，$R/M$为域。
+		
+		反过来，若$R/M$为域，由第二条，它的零理想为极大理想。由第一条的对应，其完全反像$M$为$R$的极大理想。
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{p2:prime-domain}
+设$R$为交换幺环，则：
+\begin{enumerate}
+\item $R$的理想$P\ne R$为素理想的充要条件是$R/P$为整环。
+\item $R$为整环的充要条件是$(0)$为素理想。
+\item 设$\sigma:R\to R'$为环的满同态，$N=\ker\sigma$，则$\sigma$诱导出$R$中包含$N$的素理想与$R'$的素理想之间的一一对应。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item 设$P$为素理想。对$R/P$中的元素，记$\overline a=a+P$。若$\overline a\,\overline b=0$，则$\overline{ab}=0$，即$ab\in P$。由$P$为素理想，得$a\in P$或$b\in P$，也就是
+		\[
+		\overline a=0\quad\text{或}\quad\overline b=0.
+		\]
+		所以$R/P$无零因子。又因$P\ne R$，商环中的$1+P\ne0+P$，故$R/P$为整环。
+		
+		反过来，设$R/P$为整环，求证$P$为素理想。若$ab\in P$，则在$R/P$中
+		\[
+		\overline a\,\overline b=\overline{ab}=0.
+		\]
+		因$R/P$为整环，$\overline a=0$或$\overline b=0$，即$a\in P$或$b\in P$。所以$P$为素理想。
+		\item 在第一条中取$P=(0)$，并注意$R/(0)\cong R$，即得结论。
+		\item 设$P$为$R$中包含$N$的素理想，则$R/P$为整环。根据定理\ref{p2:ring-third-iso}，
+		\[
+		R'/\sigma(P)\cong R/P.
+		\]
+		故$R'/\sigma(P)$为整环，由第一条，$\sigma(P)$为$R'$的素理想。
+		
+		反过来，设$P'$为$R'$的素理想。令$P=\sigma^{-1}(P')$，则$P$是包含$N$的理想，且$\sigma(P)=P'$。仍由同一定理，
+		\[
+		R/P\cong R'/P'.
+		\]
+		右侧为整环，故左侧也是整环，再由第一条，$P$为素理想。结合环的理想对应，得到所述一一对应。
+	\end{enumerate}
+\end{proof}
+
+由上可知，交换幺环的每个极大理想也是素理想，因为域是整环。但素理想不一定是极大理想。
+
+\begin{definition}
+若$a\in R$满足$a^m=0$，其中$m$为某个正整数，则称$a$为\textbf{零幂元}。若对每个正整数$m$都有$a^m\ne0$，则称$a$为非零幂元。
+\end{definition}
+
+
+\begin{theorem}\label{p2:prime-avoid-powers}
+设$R$为交换幺环，又设$a\in R$是一个非零幂元，则$R$至少有一个这样的素理想：它不包含$a$的任何方幂$a^m$，$m\ge0$。
+\end{theorem}
+\begin{proof}
+设$S$为$R$中一切不包含$a$的任何非负整数次幂的理想所成的集合，即
+\[
+S=\{H\lhd R:H\cap\{a^m:m\ge0\}=\varnothing\}.
+\]
+首先，$S$非空，因为$a$是非零幂元，而且$1\ne0$，所以$(0)\in S$。给$S$按理想的包含关系赋序，下面验证它满足佐恩引理的条件。
+
+设$\{A_\alpha:\alpha\in I\}$为$S$的一条非空链，令
+\[
+A=\bigcup_{\alpha\in I}A_\alpha.
+\]
+先证$A$为理想。任取$b,c\in A$，存在$\beta,\gamma\in I$使$b\in A_\beta$、$c\in A_\gamma$。因这些理想组成一条链，它们按包含关系可比较，不妨设$A_\beta\subseteq A_\gamma$。于是$b,c$同属$A_\gamma$，从而
+\[
+b-c\in A_\gamma\subseteq A.
+\]
+又对$x\in R$，若$b\in A_\beta$，则$xb\in A_\beta\subseteq A$；由交换性，$bx$也在$A$中。因此$A$为理想。
+
+再证$A$不包含$a$的任何方幂。若$A$含$a^m$，则按并集的定义，存在$\alpha\in I$使$a^m\in A_\alpha$，与$A_\alpha\in S$矛盾。故$A\in S$，它是这条链在$S$中的上界。空链则可取$(0)$为上界。因此$S$满足佐恩引理的条件，存在一个极大元，记为$P$。
+
+求证$P$为素理想。因为$P$不含$1=a^0$，它是真理想。反设$P$不是素理想，则存在$b,c\in R$使
+\[
+bc\in P,\qquad b\notin P,\qquad c\notin P.
+\]
+令
+\[
+H=Rb+P,\qquad N=Rc+P.
+\]
+由于$Rb,Rc,P$都是理想，$H,N$也是理想。又有$P\subseteq H$且$b=1b\in H$，但$b\notin P$，故$P\subsetneq H$。同理，$P\subsetneq N$。
+
+由于$P$是$S$中的极大元，而$H$严格包含$P$，所以$H\notin S$。因此$H$与$\{a^m:m\ge0\}$有交，即有某个$a^r\in H$。同理，有某个$a^s\in N$。于是
+\[
+a^{r+s}=a^ra^s\in HN.
+\]
+但是，理想积满足
+\begin{align*}
+HN&=(Rb+P)(Rc+P)\\
+&=Rbc+RbP+RcP+P^2\\
+&\subseteq P.
+\end{align*}
+最后的包含关系中，$Rbc\subseteq P$是因为$bc\in P$；其余三项都因$P$为理想而包含于$P$。这就得到$a^{r+s}\in P$，与$P\in S$矛盾。
+
+所以$P$是素理想，并且不包含$a$的任何非负整数次幂。
+\end{proof}
+
+\begin{corollary}
+一个非零交换幺环至少有一个极大理想。
+\end{corollary}
+\begin{proof}
+在上一定理中取$a=1$。因为$R\ne(0)$，$1$是非零幂元，且$\{1^m:m\ge0\}=\{1\}$。由证明中的构造，得到$S$的极大元$P$，其中$S$为不含$1$的理想全体。
+
+求证$P$为极大理想。设$H$为任一严格包含$P$的理想。由于$P$为$S$的极大元，$H\notin S$，所以$H$与$\{1\}$有交，即$1\in H$。于是$H=R$。又$P$本身不含$1$，故$P\ne R$，所以$P$为极大理想。
+\end{proof}
+
+\begin{corollary}
+设$R$为交换幺环，则$R$的全部素理想之交，记作$r(R)$，恰由$R$的全部零幂元组成。
+\end{corollary}
+\begin{proof}
+设$a$为$R$的任一零幂元，于是$a^m=0$，其中$m>0$。对$R$的每个素理想$P$，首先有$a^m=0\in P$。因此可在使$a^r\in P$的正整数中取最小的一个，记为$r$。
+
+若$r>1$，则
+\[
+a^r=a\,a^{r-1}\in P.
+\]
+由$P$为素理想，得$a\in P$或$a^{r-1}\in P$。前一种情形说明指数$1<r$已经使$a^1\in P$；后一种情形则使指数$r-1<r$满足条件，都与$r$的最小性矛盾。
+
+故$r=1$，即$a\in P$。由于$P$任意，$a$属于全部素理想的交，即$a\in r(R)$。
+
+反过来，设$a$不是零幂元。根据定理\ref{p2:prime-avoid-powers}，存在$R$的一个素理想$P$使$a\notin P$，所以$a\notin r(R)$。这就证明$r(R)$恰由全部零幂元组成。
+\end{proof}
+
+\begin{definition}
+全部素理想之交$r(R)$称为$R$的\textbf{诣零根}，即
+\[
+r(R)=\bigcap_{P\text{为}R\text{的素理想}}P.
+\]
+\end{definition}
+
+由于理想的交仍为理想，上述推论说明：交换幺环中零幂元的全体构成一个理想。也就是说，若$a,b$为零幂元，则$a-b$以及$bc$（$c\in R$）仍为零幂元。这个事实也可以直接证明，不必从素理想的交来推出。
+
+
+
+
+\section{商域和分式环}
+
+本节讨论交换幺环。从整数构造有理数的方法可以推广到整环：在包含$R$的域中，使$R$的每个非零元素都有逆元，并要求所得域的元素都能写成$R$中两个元素的商。
+
+\begin{definition}
+设$R$为整环。若域$F$满足下列条件，则称$F$为$R$的\textbf{商域}：
+\begin{enumerate}
+\item $R$是$F$的子环；
+\item $F$的每个元素都可写成$a/b=ab^{-1}$，其中$a,b\in R$且$b\ne0$。
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{p2:fraction-field}
+每个整环$R$都有商域。
+\end{theorem}
+\begin{proof}
+\textbf{构造有理数：}设$R^*=R\setminus\{0\}$，在$T=R\times R^*$上定义关系
+\[
+(a,b)\sim(c,d)\quad\Longleftrightarrow\quad ad=bc.
+\]
+此关系是自反的、对称的。若$(a,b)\sim(c,d)$且$(c,d)\sim(e,f)$，则$ad=bc$、$cf=de$，从而
+\[
+adf=bcf=bde.
+\]
+因为$d\ne0$且$R$为整环，消去$d$得到$af=be$，即$(a,b)\sim(e,f)$。所以这是等价关系。
+
+作商集$F=T/{\sim}$，将$(a,b)$的类记为$a/b$。于是
+\[
+\frac ab=\frac cd\quad\Longleftrightarrow\quad ad=bc.
+\]
+\textbf{定义运算并证明良定性：}在$F$上定义
+\[
+\frac ab+\frac cd=\frac{ad+bc}{bd},\qquad
+\frac ab\frac cd=\frac{ac}{bd}.
+\]
+由于$bd\ne0$，右边仍是$F$的元素。先验证定义与代表元无关。若$ab'=a'b$、$cd'=c'd$，则
+\begin{align*}
+(ad+bc)b'd'
+&=(ab')dd'+bb'(cd')\\
+&=(a'b)dd'+bb'(c'd)\\
+&=(a'd'+b'c')bd,\\
+acb'd'&=(ab')(cd')=(a'b)(c'd)=a'c'bd.
+\end{align*}
+所以换取代表元不改变和与积。
+
+\textbf{验证域的运算：}
+对$u=a/b$、$v=c/d$、$w=e/f$，运算公式给出
+\begin{align*}
+(u+v)+w&=\frac{adf+bcf+bde}{bdf}=u+(v+w),\\
+(uv)w&=\frac{ace}{bdf}=u(vw),\\
+u(v+w)&=\frac{a(cf+de)}{bdf}=uv+uw.
+\end{align*}
+最后一式的右边通分后与中间的分数相等。两种交换律由$R$中的交换律得到。对任意$b\ne0$，$0/b$是同一个零元；$b/b$是同一个单位元。简记为$0_F,1_F$，则
+\[
+-\frac ab=\frac{-a}{b},\qquad
+\frac ab=0_F\Longleftrightarrow a=0.
+\]
+特别地，$0_F\ne1_F$。若$a/b\ne0_F$，则$a\ne0$，并且
+\[
+\left(\frac ab\right)^{-1}=\frac ba.
+\]
+因此$F$是域。
+
+\textbf{嵌入映射说明$R$是$F$的子环：}其次，$F$含有子环
+\[
+R'=\left\{\frac a1:a\in R\right\}.
+\]
+映射$a\mapsto a/1$保持加法和乘法，而且$a/1=c/1$当且仅当$a=c$，故它给出$R\cong R'$。将$a$与$a/1$等同后，$R$可看作$F$的子环，且
+\[
+\frac ab=\frac{a/1}{b/1}.
+\]
+所以$F$为$R$的商域。
+\end{proof}
+
+\begin{theorem}\label{p2:fraction-field-extension}
+设$R$为整环，$F$为$R$的商域。$R$到域$F'$的任一单同态$\eta$都可以唯一地扩充为单同态$\eta':F\to F'$，并且
+\[
+\eta'\left(\frac ab\right)=\eta(a)\eta(b)^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+先证明存在性。在$T=\{(a,b):a,b\in R,\ b\ne0\}$上定义
+\[
+\xi(a,b)=\eta(a)\eta(b)^{-1}.
+\]
+因为$\eta$为单射，$b\ne0$时$\eta(b)\ne0$，所以逆元存在。又有
+\begin{align*}
+(a,b)\sim(c,d)
+&\Longleftrightarrow ad=bc\\
+&\Longleftrightarrow \eta(a)\eta(d)=\eta(b)\eta(c)\\
+&\Longleftrightarrow \xi(a,b)=\xi(c,d).
+\end{align*}
+其中第二个等价关系的反向使用$\eta$的单射性。因此$\xi$在每个等价类上取值相同，并且不同类的取值不同，给出单射
+\[
+\eta':F\to F',\qquad \eta'(a/b)=\xi(a,b).
+\]
+由分数运算公式，
+\begin{align*}
+\eta'\left(\frac ab+\frac cd\right)
+&=\frac{\eta(a)\eta(d)+\eta(b)\eta(c)}{\eta(b)\eta(d)}\\
+&=\eta'(a/b)+\eta'(c/d),\\
+\eta'\left(\frac ab\frac cd\right)
+&=\frac{\eta(a)\eta(c)}{\eta(b)\eta(d)}
+=\eta'(a/b)\eta'(c/d).
+\end{align*}
+由单射性，$\eta(1)\ne0$；又$\eta(1)^2=\eta(1)$，在域$F'$中消去$\eta(1)$可得$\eta(1)=1_{F'}$。于是$\eta'(a/1)=\eta(a)$，$\eta'$确为$\eta$的扩充。
+
+再证明唯一性。若$\eta''$也是$\eta$在$F$上的扩充，任取$x=a/b\in F$，有$xb=a$。分别作用$\eta'$与$\eta''$，得到
+\[
+\eta'(x)\eta(b)=\eta(a),\qquad
+\eta''(x)\eta(b)=\eta(a).
+\]
+由于$\eta(b)\ne0$，消去它便得$\eta'(x)=\eta''(x)$。故扩充唯一。
+\end{proof}
+
+\begin{corollary}
+整环$R$的商域在保持$R$的元素不动的同构意义下唯一。
+\end{corollary}
+\begin{proof}
+若$F,F'$都是$R$的商域，把包含映射$R\hookrightarrow F'$扩充为单同态$\eta':F\to F'$。任意$x'\in F'$可写成$a/b$，而$F$中的$a/b$在$\eta'$下恰映为$x'$，所以$\eta'$满射，是保持$R$不动的同构。
+\end{proof}
+
+\begin{definition}
+交换幺环$R$的非空子集$S$若对乘法封闭，即$s_1,s_2\in S$蕴含$s_1s_2\in S$，则称$S$为\textbf{乘性子集}，也称乘法子集。这里不要求$1\in S$。
+\end{definition}
+
+由$S$确定集合
+\[
+N(S)=N=\{a\in R:\text{存在 }s\in S\text{ 使 }as=0\}.
+\]
+若要求$S$中的元素在新环中均可逆，则$as=0$必迫使$a$的像为零，因此构造分式环时需要考虑这个$N$。
+
+\begin{lemma}
+\begin{enumerate}
+\item $N$为$R$的理想。
+\item 若$0\in S$，则$N=R$；若$0\notin S$，则$N\cap S=\varnothing$;若$S$不含$R$的零因子，则显然$N=\{0\}$。
+\item 对$u\in S$，$uz\in N$当且仅当$z\in N$。
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item $0\in N$。若$a_1s_1=a_2s_2=0$，其中$s_1,s_2\in S$，则
+\[
+(a_1-a_2)s_1s_2=0.
+\]
+因$s_1s_2\in S$，有$a_1-a_2\in N$,所以$N$是一个加法子群.
+
+对$x\in R$，$(xa_1)s_1=x(a_1s_1)=0$，故$xa_1\in N$。由交换性，右乘也有同样的吸收性质，所以$N$为理想。
+\item 若$0\in S$，每个$a\in R$均满足$a0=0$，所以$N=R$。若$0\notin S$而有$a\in N\cap S$，取$s\in S$使$as=0$，则由乘法封闭性得$0=as\in S$，矛盾。
+\item 若$uz\in N$，取$t\in S$使$tuz=0$。因为$tu\in S$，所以$z\in N$。反向由$N$为理想直接得到。
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+设$R$为交换幺环，$S$为乘性子集，$N$为上述理想。如果交换幺环$R'$满足下列条件，则称$R'$为$R$关于$S$的\textbf{分式环}：
+\begin{enumerate}
+\item 存在环同态$\sigma:R\to R'$，使$\sigma(1)=1_{R'}$，而且对每个$s\in S$，$\sigma(s)$在$R'$中可逆；
+\item $\ker\sigma=N$；
+\item $R'$的每个元素都可写成$\sigma(a)/\sigma(s)$，其中$a\in R$、$s\in S$。
+\end{enumerate}
+\end{definition}
+
+若$0\in S$，则$N=R$，这样的分式环只能是零环。以下构造假定$0\notin S$。
+
+\begin{theorem}\label{p2:localization-existence}
+设$R$为交换幺环，$S$为不含零的乘性子集，则$R$关于$S$的分式环存在，记作$S^{-1}R$。
+\end{theorem}
+\begin{proof}
+作$T=R\times S$，定义
+\[
+(a,s)\sim(a',s')\quad\Longleftrightarrow\quad as'-a's\in N.
+\]
+自反性和对称性由$N$为加法子群得到。若$(a_1,s_1)\sim(a_2,s_2)$、$(a_2,s_2)\sim(a_3,s_3)$，则
+\begin{align*}
+s_2(a_1s_3-a_3s_1)
+&=s_3(a_1s_2-a_2s_1)+s_1(a_2s_3-a_3s_2)\in N.
+\end{align*}
+按$N$的定义，存在$t\in S$使$ts_2(a_1s_3-a_3s_1)=0$。因$ts_2\in S$，故$a_1s_3-a_3s_1\in N$，传递性成立。
+
+将商集$T/{\sim}$记为$S^{-1}R$，将$(a,s)$的类记为$a/s$。定义
+\[
+\frac as+\frac bt=\frac{at+bs}{st},\qquad
+\frac as\frac bt=\frac{ab}{st}.
+\]
+% 原文省略代表元无关性及环公理的验证，以下在原构造内补全。
+若$as'-a's\in N$、$bt'-b't\in N$，则
+\begin{align*}
+(at+bs)s't'-(a't'+b's')st
+&=tt'(as'-a's)+ss'(bt'-b't)\in N,\\
+abs't'-a'b'st
+&=bt'(as'-a's)+a's(bt'-b't)\in N.
+\end{align*}
+所以两种运算都与代表元无关。对$\alpha=a/s$、$\beta=b/t$、$\gamma=c/u$，直接计算得
+\begin{align*}
+(\alpha+\beta)+\gamma&=\frac{atu+bsu+cst}{stu}=\alpha+(\beta+\gamma),\\
+(\alpha\beta)\gamma&=\frac{abc}{stu}=\alpha(\beta\gamma),\\
+\alpha(\beta+\gamma)&=\frac{a(bu+ct)}{stu}=\alpha\beta+\alpha\gamma.
+\end{align*}
+交换律由$R$的交换律得到。任取$s\in S$，零元、负元和单位元分别为
+\[
+0_{S^{-1}R}=\frac0s,\qquad -\frac as=\frac{-a}{s},\qquad
+1_{S^{-1}R}=\frac ss.
+\]
+不同$s$给出同样的零元和单位元。例如$at/(st)=a/s$，因而$s/s$乘任一分数均不改变该分数。又$s\notin N$，故$0_{S^{-1}R}\ne1_{S^{-1}R}$。因此$S^{-1}R$为交换幺环。
+
+现在定义$\sigma:R\to S^{-1}R$。任取$s\in S$，令
+\[
+\sigma(a)=\frac{as}{s}.
+\]
+由于$ass'-as's=0$，右边不依赖$s$的选择。按运算公式，
+\begin{align*}
+\sigma(a)+\sigma(b)&=\frac{(a+b)s^2}{s^2}=\sigma(a+b),\\
+\sigma(a)\sigma(b)&=\frac{abs^2}{s^2}=\sigma(ab),\\
+\sigma(1)&=1_{S^{-1}R}.
+\end{align*}
+对$s\in S$，取$s'\in S$，则
+\[
+\sigma(s)=\frac{ss'}{s'},\qquad
+\sigma(s)^{-1}=\frac{s'}{ss'}.
+\]
+两者相乘为$ss'^2/(ss'^2)=1_{S^{-1}R}$，所以定义中的第一条成立。
+
+再求核。由分数相等的条件及前一引理，
+\begin{align*}
+\sigma(a)=0_{S^{-1}R}
+&\Longleftrightarrow \frac{as}{s}=\frac0{s'}\\
+&\Longleftrightarrow ass'\in N\\
+&\Longleftrightarrow a\in N.
+\end{align*}
+所以$\ker\sigma=N$。最后，对任意$a/s\in S^{-1}R$，
+\[
+\frac as=\frac{as'}{ss'}
+=\frac{as'}{s'}\frac{s'}{ss'}
+=\frac{\sigma(a)}{\sigma(s)}.
+\]
+这证明了分式环定义中的全部条件。
+\end{proof}
+
+当$R$为整环且$S=R^*=R\setminus\{0\}$时，$N=(0)$，上述分式环就是$R$的商域。
+
+\begin{proposition}
+对自然同态$\sigma:R\to S^{-1}R$，有：
+\begin{enumerate}
+\item $\sigma$为单射，当且仅当$N=(0)$，也当且仅当$S$不含$R$的零因子；
+\item $\sigma$在$S$上的限制为单射，当且仅当$S$中的乘法满足消去律，即
+\[
+s(s_1-s_2)=0,\quad s,s_1,s_2\in S
+\quad\Longrightarrow\quad s_1=s_2.
+\]
+\end{enumerate}
+\end{proposition}
+% 原文仅陈述这两个条件，以下补写证明。
+\begin{proof}
+\begin{enumerate}
+\item 因$\ker\sigma=N$，$\sigma$单射等价于$N=(0)$。按$N$的定义，此条件就是说$s\in S$且$as=0$时只能$a=0$，也就是$S$不含零因子。
+\item 对$s_1,s_2\in S$，
+\[
+\sigma(s_1)=\sigma(s_2)
+\Longleftrightarrow s_1-s_2\in N
+\Longleftrightarrow \text{存在 }s\in S\text{ 使 }s(s_1-s_2)=0.
+\]
+故限制映射单射恰好等价于所述消去律。
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{p2:localization-universal}
+设$R,R'$为交换幺环，$S$为$R$的不含零的乘性子集。若环同态$\eta:R\to R'$满足$\eta(1)=1_{R'}$，并且对每个$s\in S$，$\eta(s)$在$R'$中可逆，则唯一存在环同态
+\[
+\xi:S^{-1}R\to R',\qquad \xi(a/s)=\eta(a)\eta(s)^{-1},
+\]
+使$\eta=\xi\sigma$，其中$\sigma:R\to S^{-1}R$为自然同态。
+\end{theorem}
+% 原文未给出证明，按分数表示补全。
+\begin{proof}
+若$a\in N$，取$t\in S$使$at=0$，则$\eta(a)\eta(t)=0$。因$\eta(t)$可逆，$\eta(a)=0$。因此$N\subseteq\ker\eta$。
+
+若$a/s=a'/s'$，则$as'-a's\in N$，从而
+\[
+\eta(a)\eta(s')=\eta(a')\eta(s).
+\]
+乘以$\eta(s)^{-1}\eta(s')^{-1}$，得到$\eta(a)\eta(s)^{-1}=\eta(a')\eta(s')^{-1}$，所以公式给出良好定义的映射$\xi$。再由
+\begin{align*}
+\xi\left(\frac as+\frac bt\right)
+&=\bigl(\eta(a)\eta(t)+\eta(b)\eta(s)\bigr)
+  \bigl(\eta(s)\eta(t)\bigr)^{-1}\\
+&=\xi(a/s)+\xi(b/t),\\
+\xi\left(\frac as\frac bt\right)
+&=\eta(a)\eta(b)\bigl(\eta(s)\eta(t)\bigr)^{-1}\\
+&=\xi(a/s)\xi(b/t)
+\end{align*}
+可知它为环同态，且$\xi(1)=1_{R'}$。对$a\in R$，
+\[
+\xi(\sigma(a))=\xi(at/t)=\eta(at)\eta(t)^{-1}=\eta(a),
+\]
+故$\eta=\xi\sigma$。
+
+若$\xi'$也满足此式，则对任意$a/s$，由$a/s=\sigma(a)\sigma(s)^{-1}$，
+\[
+\xi'(a/s)=\eta(a)\eta(s)^{-1}=\xi(a/s).
+\]
+因此$\xi$唯一。
+\end{proof}
+
+\begin{corollary}
+交换幺环$R$关于乘性子集$S$的分式环在与自然同态相容的同构意义下唯一。
+\end{corollary}
+\begin{proof}
+设$R'$也是$R$关于$S$的分式环，所对应的自然同态为$\eta:R\to R'$。由上一定理，存在$\xi:S^{-1}R\to R'$，使
+\[
+\xi(a/s)=\eta(a)\eta(s)^{-1}.
+\]
+由于$R'$的每个元素都有这样的分数表示，$\xi$为满射。若$\xi(a/s)=0$，则$\eta(a)=0$；由分式环定义中的$\ker\eta=N$，得$a\in N$，于是$a/s=0$。故$\xi$也是单射，是与两个自然同态相容的同构。
+\end{proof}
+
+
+
+\medskip
+\noindent\textbf{商域与分式环的比较：}
+
+以下设$S$为不含零的乘性子集，并记
+\[
+N=\{a\in R:\text{存在 }s\in S\text{ 使 }as=0\}.
+\]
+\begin{center}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|p{0.14\linewidth}|p{0.37\linewidth}|p{0.37\linewidth}|}
+\hline
+& 商域$F$ & 分式环$S^{-1}R$\\
+\hline
+原环条件 & $R$必须是整环。 & $R$为交换幺环，允许有零因子。\\
+\hline
+分母的选择 & $R$的所有非零元素均可作分母。 & 分母从指定的乘性子集$S$中选取。\\
+\hline
+元素的表示 & $a/b$，其中$a,b\in R$、$b\ne0$。 & $a/s=\sigma(a)\sigma(s)^{-1}$，其中$a\in R$、$s\in S$。\\
+\hline
+分数相等 & $a/b=c/d$当且仅当$ad=bc$。 & $a/s=b/t$当且仅当$at-bs\in N$。\\
+\hline
+自然同态 & $a\mapsto a/1$总是单射，可以将$R$看作$F$的子环。 & $\ker\sigma=N$；当且仅当$N=(0)$时，才能通过$\sigma$将$R$看作分式环的子环。\\
+\hline
+所得结构 & 必为域，每个非零元素均可逆。 & 为交换幺环，保证$S$中元素的像可逆，但不一定是域。\\
+\hline
+\end{tabular}
+\endgroup
+\end{center}
+
+商域是分式环的一种特殊情形：若$R$为整环，并取$S=R^*=R\setminus\{0\}$，则$N=(0)$，所得$S^{-1}R$就是$R$的商域。
+
+进一步，若$R$为整环，而$S$只是$R^*$的一个乘性子集，仍有$N=(0)$。设$F$为$R$的商域，则
+\[
+\iota:S^{-1}R\longrightarrow F,\qquad a/s\longmapsto as^{-1}
+\]
+是单同态。因为两边的分数相等都以交叉相乘相等为条件，此映射良好定义且单射；分数运算公式又表明它保持加法和乘法。因此可将$S^{-1}R$看作$F$的子环，但它可能只是一个真子环。
+
+\begin{example}
+\begin{enumerate}
+\item 取$R=\Z$、$S=\Z\setminus\{0\}$。此时$N=(0)$，所有分数$a/s$恰为有理数，所以
+\[
+S^{-1}\Z\cong\Q.
+\]
+自然同态是通常的包含映射$\Z\hookrightarrow\Q$。这就是商域作为分式环特例的情形。
+
+\item 仍取$R=\Z$，但令$S=\{2^n:n\ge0\}$。这个集合含$1$、不含$0$，且$2^m2^n=2^{m+n}\in S$。此时
+\[
+S^{-1}\Z=\left\{\frac{a}{2^n}:a\in\Z,\ n\ge0\right\}\subsetneq\Q.
+\]
+自然同态仍是单射，但$3$在分式环中不可逆。否则存在$a\in\Z$、$n\ge0$使$3(a/2^n)=1$，即$3a=2^n$，与$3\nmid2^n$矛盾。因此这个分式环是整环，却不是域，也不是$\Z$的商域。
+
+\item 取$R=\Z$、$S=\Z_{>0}$。虽然$S$不包含负整数，是$\Z\setminus\{0\}$的真子集，仍有
+\[
+S^{-1}\Z\cong\Q.
+\]
+因为任意有理数$a/b$若分母$b<0$，可改写为$(-a)/(-b)$，从而总有正分母的表示。所以，取全部非零元素作分母可以得到商域，但某些更小的乘性子集也能给出同一个商域。
+
+\item 取$R=\Z/(6)$。若$S_1=\{\overline1\}$，则$N_1=(0)$，每个分数都为$a/\overline1$，所以
+\[
+S_1^{-1}R\cong R.
+\]
+这个分式环仍有非零的零因子$\overline2,\overline3$，不是域。
+
+若改取$S_2=\{\overline1,\overline3\}$，由于$\overline3^{\,2}=\overline3$，它仍为不含零的乘性子集。但此时
+\[
+N_2=\{a\in R:a\overline3=\overline0\}
+=\{\overline0,\overline2,\overline4\}.
+\]
+因此自然同态$\sigma:R\to S_2^{-1}R$不为单射，$\sigma(\overline2)=0$。又有
+\[
+\sigma(\overline3)=\sigma(\overline1+\overline2)=1_{S_2^{-1}R}.
+\]
+所以$S_2$中两个元素的像都是单位元，每个分数$\sigma(a)/\sigma(s)$都等于$\sigma(a)$。故$\sigma$满射，由环同态基本定理，
+\[
+S_2^{-1}R\cong R/N_2\cong\Z/(2),
+\]
+最后的同构由$a+(6)\mapsto a+(2)$诱导。这个分式环是域，但$R$本身有零因子，不能嵌入任何域，因此不能称它为$R$的商域。
+\end{enumerate}
+\end{example}
+
+\section{交换环上的多项式环}
+
+本节讨论交换幺环。若$R$是$R'$的子环，称$R'$为$R$的\textbf{扩环}；本节涉及扩环时，总假定$R,R'$有相同的单位元。
+
+\begin{definition}
+设$R'$为$R$的扩环，$u\in R'$。所有形如
+\[
+a_0+a_1u+\cdots+a_nu^n,\qquad a_i\in R,\quad n\ge0,
+\]
+的元素组成的集合记为$R[u]$，称为\textbf{$u$在$R$上生成的子环}，其中$u^0=1$。
+\end{definition}
+\begin{proof}[验证]
+$R[u]$包含$0$，且对减法封闭。由交换性，
+\begin{align*}
+\left(\sum_{i=0}^n a_i u^i\right)
+\left(\sum_{j=0}^m b_j u^j\right)
+&=\sum_{i=0}^n\sum_{j=0}^m a_i b_j u^{i+j}\\
+&=\sum_{k=0}^{n+m}c_k u^k,
+\qquad c_k=\sum_{i+j=k}a_i b_j\in R.
+\end{align*}
+因此$R[u]$也对乘法封闭，是$R'$的子环。取常数多项式可知$R\subseteq R[u]$，取一次式$u$可知$u\in R[u]$。反过来，包含$R$与$u$的任何子环均包含$u$的所有非负整数次幂及它们的有限线性组合，故均包含$R[u]$。所以$R[u]$是包含$R$和$u$的最小子环。
+\end{proof}
+若关于$u$的多项式$a_0+a_1 u +\cdots +a_n u^n=0$,称这个多项式为$u$在$R$上的一个代数关系.
+$R[u]$中的两个多项式表达式可能表示同一元素，这取决于$u$在$R$上满足的代数关系。先构造一个扩环及其中的元素$x$，使$x$的多项式只有在对应系数全相等时才相等。
+
+\begin{definition}
+用$R[[x]]$表示所有无穷序列
+\[
+(a_n)=(a_0,a_1,a_2,\ldots),\qquad a_i\in R,
+\]
+组成的集合,实际上可以看做所有$\sum\limits_{n=0}^{\infty}a_n x^n$构成的集合，定义运算
+\[
+(a_n)+(b_n)=(a_n+b_n),\qquad (a_n)(b_n)=(c_n),
+\]
+其中
+\[
+c_n=a_0b_n+a_1b_{n-1}+\cdots+a_nb_0
+=\sum_{i+j=n}a_i b_j.
+\]
+所得环称为$R$上的\textbf{一元形式幂级数环}，其元素称为形式幂级数。这里只使用序列及有限的系数计算，不涉及无穷级数的收敛性。
+\end{definition}
+% 原文将环公理的验证留作习题，以下补全。
+\begin{proof}[验证]
+逐项加法构成交换群，零元为$(0,0,\ldots)$，负元逐项取负。乘法的交换律由$a_i b_j=b_j a_i$及求和指标的互换得到。
+
+设三个序列的系数分别为$a_i,b_j,c_k$，则两种结合次序所得第$n$项分别为
+\[
+\sum_{r+k=n}\left(\sum_{i+j=r}a_i b_j\right)c_k,
+\qquad
+\sum_{i+t=n}a_i\left(\sum_{j+k=t}b_j c_k\right).
+\]
+它们都等于有限和$\sum_{i+j+k=n}a_i b_j c_k$，所以乘法结合。又有
+\[
+\sum_{i+j=n}a_i(b_j+c_j)
+=\sum_{i+j=n}a_i b_j+\sum_{i+j=n}a_i c_j,
+\]
+故分配律成立。单位元为$(1,0,0,\ldots)$，所以$R[[x]]$为交换幺环。
+
+
+\end{proof}
+$R[[x]]$包含子环$R_0=\{(a,0,0,\ldots):a\in R\}$，且$a\mapsto(a,0,0,\ldots)$给出$R\cong R_0$。将两者等同后，可把$R$看作$R[[x]]$的子环，此时
+\[
+a(b_0,b_1,\ldots)=(ab_0,ab_1,\ldots).
+\]
+\begin{definition}
+在$R[[x]]$中取$x=(0,1,0,\ldots)$，$x$在$R$上生成的子环$R[x]$称为$R$上的\textbf{一元多项式环}。
+\end{definition}
+
+按序列乘法，$x^i$只有第$i$个分量为$1$，其余分量均为$0$，这里从第$0$个分量开始计数。因此
+\[
+a_0+a_1x+\cdots+a_nx^n=(a_0,a_1,\ldots,a_n,0,\ldots).
+\]
+所以$R[x]$恰由只有有限个非零分量的序列组成，而且
+\[
+a_0+a_1x+\cdots+a_nx^n=0
+\quad\Longleftrightarrow\quad a_0=\cdots=a_n=0.
+\]
+两个多项式相等当且仅当对应系数相等；比较时允许在末尾添上零系数。称$x$为$R$上的一个\textbf{未定元}，也称不定元。
+
+\begin{theorem}\label{p2:poly-universal}
+设$\sigma:R\to S$为交换幺环之间的环同态，且$\sigma(1_R)=1_S$。对任意$u\in S$，$\sigma$可以唯一地扩充为环同态
+\[
+\sigma_u:R[x]\to S,
+\]
+使$\sigma_u(x)=u$。具体地，
+\[
+\sigma_u\left(\sum_{i=0}^n a_i x^i\right)
+=\sum_{i=0}^n\sigma(a_i)u^i.
+\]
+\end{theorem}
+\begin{proof}
+由系数表达式的唯一性，上式给出一个良好定义的映射。设$f(x)=\sum_i a_i x^i$、$g(x)=\sum_i b_i x^i$，补齐零系数后，
+
+\[ \sigma_u(f+g)
+=\sum_i\sigma(a_i+b_i)u^i
+=\sum_i\sigma(a_i)u^i+\sum_i\sigma(b_i)u^i
+=\sigma_u(f)+\sigma_u(g). \]
+
+再设$fg=\sum_k c_kx^k$，其中$c_k=\sum_{i+j=k}a_i b_j$。则
+\begin{align*}
+\sigma_u(fg)
+&=\sum_k\sigma(c_k)u^k=\sum_k\left(\sum_{i+j=k}\sigma(a_i)\sigma(b_j)\right)u^k\\
+&=\left(\sum_i\sigma(a_i)u^i\right)
+  \left(\sum_j\sigma(b_j)u^j\right)=\sigma_u(f)\sigma_u(g).
+\end{align*}
+所以$\sigma_u$为环同态。而且
+\[
+\sigma_u(x)=\sigma(1_R)u=u,\qquad
+\sigma_u(a)=\sigma(a)\quad(a\in R),
+\]
+故它是所需扩充。
+
+任一扩充同态在$R$上的取值由$\sigma$确定，在$x$上的取值又已指定为$u$，因而必须满足
+\[
+\sigma_u\left(\sum_i a_i x^i\right)=\sum_i\sigma(a_i)u^i.
+\]
+所以扩充唯一，其像恰为$\sigma(R)[u]$。
+\end{proof}
+
+\begin{corollary}
+设$S$为$R$的扩环，$u\in S$。存在$R[x]$的理想$I$，使
+\[
+R[u]\cong R[x]/I,\qquad I\cap R=(0).
+\]
+同构由$f(x)+I\mapsto f(u)$给出。
+\end{corollary}
+\begin{proof}
+在上一定理中取$\sigma:R\hookrightarrow S$为包含映射。其扩充$\sigma_u:f(x)\mapsto f(u)$的像为$R[u]$。令$I=\ker\sigma_u$，由环同态基本定理，$R[x]/I\cong R[u]$。
+
+若$a\in I\cap R$，则一方面$\sigma_u(a)=0$，另一方面$\sigma_u(a)=a$，所以$a=0$。故$I\cap R=(0)$。
+\end{proof}
+
+\begin{definition}
+映射$f(x)\mapsto f(u)$称为\textbf{代入同态}。若$f(u)=0$，称$u$为$f(x)$的\textbf{根}，并称$f(u)=0$为$u$在$R$上的一个代数关系。
+
+若不存在非零$f\in R[x]$使$f(u)=0$，称$u$在$R$上\textbf{超越}；若存在这样的非零多项式，则称$u$在$R$上\textbf{代数}，或称$u$为$R$上的代数元。
+\end{definition}
+
+因此$I$恰记录$u$的全部代数关系。$I=(0)$时，$R[u]\cong R[x]$；$I\ne(0)$时，$u$满足非平凡的代数关系。
+
+\begin{proposition}
+若$I$为$R[x]$的理想且$I\cap R=(0)$，则自然同态$R[x]\to R[x]/I$限制在$R$上为单同态。把$R$嵌入此商环，并记$u=x+I$，便有$R[x]/I=R[u]$。
+\end{proposition}
+\begin{proof}
+限制映射$a\mapsto a+I$的核为$I\cap R=(0)$，故为单射，并保持单位元。商环中任一元素都可写成
+\[
+f(x)+I=(a_0+I)+(a_1+I)u+\cdots+(a_n+I)u^n.
+\]
+将$a_i+I$与$a_i$等同后，这就是$R[u]$中的元素，故商环由$R$与$u$生成。
+\end{proof}
+
+\begin{definition}
+对正整数$n$归纳定义\textbf{多元多项式环}：$n=1$时即$R[x_1]$；$n>1$时，
+\[
+R[x_1,\ldots,x_n]=R[x_1,\ldots,x_{n-1}][x_n].
+\]
+它的元素可写成有限和
+\[
+f(x_1,\ldots,x_n)
+=\sum_{i_1,\ldots,i_n\ge0}a_{i_1\ldots i_n}x_1^{i_1}\cdots x_n^{i_n},
+\qquad a_{i_1\ldots i_n}\in R.
+\]
+其中$x_1^{i_1}\cdots x_n^{i_n}$称为单项式。
+\end{definition}
+
+上述表示的唯一性由归纳得到。先按$x_n$展开，$f=\sum_j f_j(x_1,\ldots,x_{n-1})x_n^j$。由一元情形，$f=0$当且仅当所有$f_j=0$；再由归纳假设，每个$f_j=0$当且仅当它的各个系数均为零。因此
+\[
+f(x_1,\ldots,x_n)=0
+\quad\Longleftrightarrow\quad
+a_{i_1\ldots i_n}=0\text{ 对所有指数组成立}.
+\]
+
+\begin{theorem}\label{p2:multi-poly-universal}
+设$R,S$为交换幺环，$\sigma:R\to S$为环同态，且$\sigma(1_R)=1_S$。给定$u_1,\ldots,u_n\in S$，$\sigma$唯一地扩充为环同态
+\[
+\sigma_n:R[x_1,\ldots,x_n]\to S,
+\qquad \sigma_n(x_i)=u_i\quad(1\le i\le n).
+\]
+具体地，
+\[
+\sigma_n(f)=\sum_{i_1,\ldots,i_n}
+\sigma(a_{i_1\ldots i_n})u_1^{i_1}\cdots u_n^{i_n}.
+\]
+\end{theorem}
+\begin{proof}
+对$n$归纳。$n=1$为定理\ref{p2:poly-universal}。设结论对$n-1$成立，则已有唯一扩充
+\[
+\sigma_{n-1}:R[x_1,\ldots,x_{n-1}]\to S,
+\qquad x_i\mapsto u_i\quad(1\le i<n).
+\]
+以$R[x_1,\ldots,x_{n-1}]$为系数环，再应用一元情形，指定$x_n\mapsto u_n$，得到所需的$\sigma_n$。逐次展开便得所列公式。
+
+若另有同态满足条件，它在前$n-1$个变量的多项式环上的限制必为$\sigma_{n-1}$，再由一元扩充的唯一性，它在整个环上必与$\sigma_n$相同。因此扩充唯一。
+\end{proof}
+
+\begin{definition}
+设$R'$为$R$的扩环，$u_1,\ldots,u_n\in R'$。集合
+\[
+R[u_1,\ldots,u_n]
+=\{f(u_1,\ldots,u_n):f\in R[x_1,\ldots,x_n]\}
+\]
+称为这些元素在$R$上生成的子环，也称$R$上的\textbf{有限生成环}。
+
+非零多项式$f\in R[x_1,\ldots,x_n]$给出的等式$f(u_1,\ldots,u_n)=0$称为一个非平凡代数关系。若不存在这样的关系，称$u_1,\ldots,u_n$在$R$上\textbf{代数无关}；否则称它们\textbf{代数相关}。
+\end{definition}
+
+\begin{corollary}
+对$R'$中的任意$u_1,\ldots,u_n$，代入同态的核
+\[
+I=\{f\in R[x_1,\ldots,x_n]:f(u_1,\ldots,u_n)=0\}
+\]
+满足
+\[
+R[x_1,\ldots,x_n]/I\cong R[u_1,\ldots,u_n],\qquad I\cap R=(0).
+\]
+进一步，$I=(0)$当且仅当$u_1,\ldots,u_n$代数无关。
+\end{corollary}
+\begin{proof}
+将包含映射$R\hookrightarrow R'$扩充，所得代入同态的像恰为$R[u_1,\ldots,u_n]$，由同构定理得到商环同构。若$a\in I\cap R$，则$a$既映为$a$又映为$0$，所以$a=0$。最后，$I=(0)$恰好表示没有非零多项式给出零关系。
+\end{proof}
+
+\begin{proposition}
+设$N$为$R$的理想，$\overline R=R/N$，用$N[x_1,\ldots,x_n]$表示所有系数均在$N$中的多项式。则它是理想，并有
+\[
+R[x_1,\ldots,x_n]/N[x_1,\ldots,x_n]
+\cong\overline R[y_1,\ldots,y_n].
+\]
+\end{proposition}
+\begin{proof}
+将自然同态$\sigma:R\to\overline R$扩充为$\sigma_n$，并指定$x_i\mapsto y_i$。它逐项地将系数$a_{i_1\ldots i_n}$映为$a_{i_1\ldots i_n}+N$，所以每个目标多项式均有原像，$\sigma_n$满射。
+
+由系数表达式的唯一性，$\sigma_n(f)=0$当且仅当$f$的每个系数均属于$N$，即
+\[
+\ker\sigma_n=N[x_1,\ldots,x_n].
+\]
+核为理想，环同态基本定理给出所述同构。
+\end{proof}
+
+有限生成环$R[u_1,\ldots,u_n]$的结构由关系理想$I$决定。若$I=(f_1,\ldots,f_r)$，则$I$中的每个关系都是$\sum_j h_jf_j$，其中$h_j\in R[x_1,\ldots,x_n]$。能否用有限个基本关系得到全部关系，取决于这个理想是否有限生成；这里不对任意系数环作此断言。
+
+
+\section{整环上的一元多项式环}
+
+\begin{definition}
+设$f(x)=a_0+\cdots+a_nx^n$且$a_n\ne0$。称$n$为$f$的\textbf{次数}，记作$\deg f$；称$a_n$为\textbf{首项系数}。首项系数为$1$的非零多项式称为\textbf{首一多项式}。约定$\deg0=-\infty$。
+\end{definition}
+
+\begin{proposition}
+对交换幺环$R$上的多项式，有
+\[
+\deg(f+g)\le\max\{\deg f,\deg g\},\qquad
+\deg(fg)\le\deg f+\deg g.
+\]
+若$\deg f\ne\deg g$，第一式取等号。若$f,g$非零且首项系数之积非零，第二式取等号；特别地，当$R$为整环时，非零多项式乘积的次数等于次数之和。
+\end{proposition}
+\begin{proof}
+两多项式相加不会出现高于两者次数的项。若次数不同，次数较高者的首项没有同次项与之抵消，所以和仍有该次数。
+
+设$f$、$g$的次数分别为$n,m$，首项系数分别为$a_n,b_m$。乘积中次数超过$n+m$的项均不存在，而$x^{n+m}$的系数恰为$a_nb_m$。因此当且仅当这个乘积非零时，乘积次数为$n+m$；否则次数下降或乘积为零。
+\end{proof}
+
+\begin{proposition}
+若$R$为整环，则$R[x]$也是整环，且$R[x]$中的可逆元恰为$R$中的可逆元。
+
+进而，$R[x_1,\ldots,x_n]$也是整环，其单位群同样与$R$的单位群相同。
+\end{proposition}
+\begin{proof}
+两个非零多项式的首项系数均非零，其积在整环中非零，所以多项式乘积非零，证明了无零因子性。常数$1$非零，故$R[x]$是整环。
+
+若$fg=1$，则$f,g$均非零，并有
+\[
+0=\deg1=\deg f+\deg g.
+\]
+两者次数均为非负整数，只能都为零，即$f,g\in R$。因此$f$已经是$R$的可逆元。反过来，$R$中可逆元的逆仍是常数，当然也在$R[x]$中。
+
+多元情形对变量个数归纳：$R[x_1,\ldots,x_n]=R[x_1,\ldots,x_{n-1}][x_n]$，每次对新的系数整环应用一元结论，同时得到整环性及单位群不变。
+\end{proof}
+
+\begin{corollary}
+若$P$为交换幺环$R$的素理想，则$P[x_1,\ldots,x_n]$是$R[x_1,\ldots,x_n]$的素理想。
+\end{corollary}
+\begin{proof}
+$R/P$为整环，所以$(R/P)[y_1,\ldots,y_n]$为整环。上一节的商环同构表明，多项式环模$P[x_1,\ldots,x_n]$也是整环，故该理想为素理想。
+\end{proof}
+
+% 原文将证明归结为数域上的同类证明，以下沿首项相消的方法补全。
+\begin{theorem}\label{p2:poly-division}
+设$R$为交换幺环，$g\in R[x]$非零且首项系数可逆。则对任意$f\in R[x]$，唯一存在$q,r\in R[x]$使
+\[
+f=qg+r,\qquad \deg r<\deg g.
+\]
+其中允许$r=0$。
+\end{theorem}
+\begin{proof}
+先证明存在性。记$\deg g=m$，首项系数为$b_m$。若$f=0$或$\deg f<m$，取$q=0,r=f$即可。
+
+其余情形对$n=\deg f$归纳。设$f$的首项系数为$a_n$，取
+\[
+f_1=f-a_nb_m^{-1}x^{n-m}g.
+\]
+所减项的首项恰为$a_nx^n$，故$\deg f_1<n$。若$f_1=0$或次数小于$m$，直接令它为余式；否则由归纳假设，写成$f_1=q_1g+r$且$\deg r<m$。于是
+\[
+f=\bigl(q_1+a_nb_m^{-1}x^{n-m}\bigr)g+r,
+\]
+得到了所需分解。
+
+再证明唯一性。若$f=qg+r=q'g+r'$，则
+\[
+(q-q')g=r'-r.
+\]
+若$q-q'\ne0$，它的非零首项系数乘以可逆元$b_m$仍非零。因此
+\[
+\deg\bigl((q-q')g\bigr)=\deg(q-q')+m\ge m,
+\]
+而右端次数小于$m$，矛盾。所以$q=q'$，进而$r=r'$。
+\end{proof}
+
+当余式$r=0$时，称$g$\textbf{整除}$f$，记为$g\mid f$，并称$g$为$f$的因式，$f$为$g$的倍式。
+
+\begin{corollary}
+对$c\in R$及$f\in R[x]$，存在唯一的$q\in R[x]$使
+\[
+f(x)=q(x)(x-c)+f(c).
+\]
+特别地，$c$是$f$的根当且仅当$(x-c)\mid f$。
+\end{corollary}
+\begin{proof}
+用首一多项式$x-c$作除式，余式次数小于$1$，所以余式为常数$r$。代入$x=c$即得$r=f(c)$。因而余式为零恰好等价于$f(c)=0$，也恰好等价于整除关系成立。
+\end{proof}
+
+\begin{theorem}\label{p2:poly-roots}
+整环$R$上的非零$n$次多项式至多有$n$个不同的根。
+\end{theorem}
+\begin{proof}
+先把$R$嵌入其商域$F$。原多项式在$F[x]$中仍非零且次数不变，$R$中的根也都是$F$中的根，所以只须在域上证明。
+
+对次数$n$归纳。$n=0$时，非零常数没有根。若$n>0$且$f$没有根，结论成立。若有根$c$，由因式定理，
+\[
+f(x)=(x-c)g(x),\qquad\deg g=n-1.
+\]
+若$d\ne c$也是$f$的根，则
+\[
+0=f(d)=(d-c)g(d).
+\]
+由于$d-c\ne0$且$F$为域，有$g(d)=0$。除$c$之外的根均为$g$的根，由归纳假设至多有$n-1$个，加上$c$后至多有$n$个。
+\end{proof}
+这里的交换性与无零因子性是必要的条件，有以下反例：
+\begin{example}
+设$H$为实四元数体，显然是不交换的。$f(x)=x^2+1$在$H$中至少有$I,J,K$三个根，事实上有无穷多个根。对任意$\alpha\ne0$，
+\[
+(\alpha I\alpha^{-1})^2
+=\alpha I^2\alpha^{-1}=-1,
+\]
+所以$I$的每个共轭也是根。
+
+% 原文由共轭说明根有无穷多个；以下展开一个具体的共轭族。
+取$\alpha=1+tJ$，$0\le t\le1$，其逆为$(1-tJ)/(1+t^2)$，故
+\[
+\alpha I\alpha^{-1}
+=\frac{(1-t^2)I-2tK}{1+t^2}.
+\]
+当$t$在$[0,1]$中变化时，$I$的系数$(1-t^2)/(1+t^2)$严格递减，所以这些根两两不同。这说明根数结论中的乘法交换条件不能删去。
+\end{example}
+
+\begin{example}
+在$\Z/(8)$中，$x^2-1$有四个根$\overline1,\overline{-1},\overline3,\overline{-3}$。因为奇数$2k+1$的平方减$1$为$4k(k+1)$，被$8$整除；偶数的平方模$8$为$0$或$4$，所以没有其他根。
+
+在$\Z/(15)$中，$x^2-1$也有四个根$\overline1,\overline4,\overline{11},\overline{14}$。由中国剩余定理，
+\[
+\Z/(15)\cong\Z/(3)\oplus\Z/(5).
+\]
+每个直和分量中方程$x^2=1$都有$\pm1$两个解，独立选择后恰得到四个根。这两个例子说明无零因子的条件不能删去。
+\end{example}
+
+\begin{theorem}\label{p2:finite-multiplicative-subgroup}
+设$R$为整环，$R^*=R\setminus\{0\}$是一个乘法幺半群。$R^*$的任一有限乘法子群都是循环群。
+\end{theorem}
+\begin{proof}
+设$G$为$R^*$的一个有限乘法子群。因为$R$交换，$G$为阿贝尔群。对任意正整数$d$，群中满足$g^d=1$的元素，都是多项式$x^d-1$的根。由根数定理，这样的元素至多有$d$个。
+
+由第二章的循环群根数判别定理\ref{p2:cyclic-root-count}，$G$为循环群。
+\end{proof}
+
+\begin{example}
+若去掉整环条件，有限乘法子群不一定循环。四元数体中的
+\[
+\{\pm1,\pm I,\pm J,\pm K\}
+\]
+按四元数乘法及取逆封闭，是一个八阶群；其元素的阶均不超过$4$，所以不是循环群。$\Z/(8)$中的四个单位$\overline1,\overline3,\overline5,\overline7$组成四阶群，其中除$\overline1$以外的每个元素的阶均为$2$，故也不是循环群。
+\end{example}
+
+\begin{corollary}
+设$F$为含$q$个元素的有限域，则$F^*=F\setminus\{0\}$为$q-1$阶循环群。因此$F$的全部元素恰为$x^q-x$的全部根。
+\end{corollary}
+\begin{proof}
+域的全部非零元素在乘法及取逆下封闭，所以$F^*$为有限乘法群，由上一定理，它是循环群。若$a\ne0$，则$a^{q-1}=1$，所以$a^q=a$；$a=0$时也成立。因此$x^q-x$有$F$的全部$q$个元素为根，且它的次数为$q$，没有更多的根。
+\end{proof}
+
+\begin{definition}
+设$p$为素数，称$F_p=\Z/(p)$的乘法群$F_p^*$的生成元为\textbf{模$p$的原根}。
+\end{definition}
+
+\begin{corollary}
+模$p$的原根存在，且共有$\varphi(p-1)$个。
+\end{corollary}
+\begin{proof}
+$F_p^*$为$p-1$阶循环群。若$\overline a$是一个生成元，则$\overline a^{\,r}$仍为生成元当且仅当$(r,p-1)=1$，这样的剩余类恰有$\varphi(p-1)$个。
+\end{proof}
+
+\begin{definition}
+若整环$R$的每个理想都由一个元素生成，则称$R$为\textbf{主理想整环}。
+\end{definition}
+例如整数环$\mathbb Z$是主理想整环。
+\begin{theorem}\label{p2:field-poly-pid}
+若$F$为域，则$F[x]$为主理想整环。它的每个非零理想都有唯一的首一生成元。
+\end{theorem}
+\begin{proof}
+$F[x]$为整环。零理想等于$(0)$，只需考虑非零理想$I$。在$I$中选取次数最小的非零多项式$f$。对任意$g\in I$作带余除法，
+\[
+g=qf+r,\qquad\deg r<\deg f.
+\]
+因$I$为理想，$r=g-qf\in I$。若$r\ne0$，就违反$f$次数最小的选择，所以$r=0$。于是$g\in(f)$，证明$I\subseteq(f)$；另一包含关系由$f\in I$得到。因此$I=(f)$。
+
+把$f$除以非零首项系数，可使其首一而不改变生成理想。若两个首一多项式$f,g$生成同一非零理想，则$f=ag$且$g=bf$。比较次数得$\deg f=\deg g$，故$a,b$均为非零常数。再比较首项系数得$a=b=1$，所以$f=g$。
+\end{proof}
+
+\begin{definition}
+设$F$为域，$u$是包含$F$的交换幺环中的元素，且$u$在$F$上代数。代入同态$F[x]\to F[u]$的核是非零理想，其唯一的首一生成元称为$u$在$F$上的\textbf{极小多项式}。
+\end{definition}
+
+\begin{proposition}
+设$f$为$u$的极小多项式，则$\deg f\ge1$，且对每个$g\in F[x]$，
+\[
+g(u)=0\quad\Longleftrightarrow\quad f\mid g.
+\]
+因此$f$是使$u$为根的非零多项式中次数最小的首一多项式，且
+\[
+F[u]\cong F[x]/(f).
+\]
+\end{proposition}
+\begin{proof}
+非零常数代入后不为零，所以核不含非零常数，$\deg f\ge1$。由核等于$(f)$，$g(u)=0$等价于$g\in(f)$，也就是$f\mid g$。非零倍式的次数不小于$\deg f$，所以它确有最小次数。商环同构由代入同态及同构定理得到。
+\end{proof}
+
+\begin{definition}
+域$F$上的正次数多项式$f$，若不能写成两个正次数多项式之积，就称为\textbf{不可约多项式}；否则称为\textbf{可约多项式}。等价地，$f=gh$时至少有一个因子是非零常数，即$F[x]$的可逆元。
+\end{definition}
+
+\begin{theorem}\label{p2:irreducible-maximal}
+设$F$为域，$f\in F[x]$的次数为正。下列叙述等价：
+\begin{enumerate}
+\item $f$不可约；
+\item $(f)$为极大理想；
+\item $F[x]/(f)$为域；
+\item $F[x]/(f)$为整环；
+\item $(f)$为素理想。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item[$1)\Rightarrow2)$] 设$N$为$F[x]$的理想，且$(f)\subseteq N\subseteq F[x]$。由主理想性，$N=(g)$。从$f\in(g)$可知$f=hg$。因为$f$不可约，$h,g$中至少一个为非零常数。
+
+若$g$为非零常数，则$N=F[x]$；若$h$为非零常数，则$(g)=(f)$，所以$N=(f)$。又$\deg f\ge1$保证$(f)$为真理想，故$(f)$极大。
+\item[$2)\Rightarrow3)$] 根据定理\ref{p2:prime-maximal}，极大理想的商环为域。
+\item[$3)\Rightarrow4)$] 域是交换幺环，且非零元素可逆，故无零因子，是整环。
+\item[$4)\Rightarrow5)$] 根据定理\ref{p2:prime-domain}，商环为整环时，其所模的理想为素理想。
+\item[$5)\Rightarrow1)$] 反设$f$可约，则$f=gh$，其中$0<\deg g,\deg h<\deg f$。于是$gh\in(f)$，但$g,h\notin(f)$，因为非零的$f$的倍式次数至少为$\deg f$。这与$(f)$的素性矛盾，故$f$不可约。
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+若$u$在域$F$上代数，极小多项式为$f$，则
+\[
+f\text{ 不可约}\quad\Longleftrightarrow\quad F[u]\text{ 为域}
+\quad\Longleftrightarrow\quad F[u]\text{ 为整环}.
+\]
+特别地，若整环$S$包含域$F$，且$S$中每个元素都在$F$上代数，则$S$本身是域。
+\end{corollary}
+\begin{proof}
+由$F[u]\cong F[x]/(f)$及上一定理，得到三个条件的等价性。进一步，任取$0\ne u\in S$，子环$F[u]$为整环，所以它已经是域。于是$u$在$F[u]\subseteq S$中有逆元。$S$中每个非零元素均可逆，故$S$为域。
+\end{proof}
+
+\begin{example}
+设$F$为有限域。由于其加法群有限，单位元的加法阶是某个正整数$p$；这就是$F$的特征。若$p=ab$且$1<a,b<p$，则
+\[
+(a\cdot1)(b\cdot1)=p\cdot1=0,
+\]
+而两个因子均非零，与域无零因子矛盾。因此$p$为素数，$F$包含由$1$生成的子域$F_p\cong\mathbb Z/(p)$。
+
+由$F$的非零乘法群循环，选其生成元$\alpha$。每个非零元素都是$\alpha$的幂，所以$F=F_p[\alpha]$。因$F$有限，$1,\alpha,\alpha^2,\ldots$中必有重复，从而$\alpha$满足非零多项式。设其极小多项式为$f$，$\deg f=n$，则
+\[
+F\cong F_p[x]/(f),\qquad f\text{ 为首一不可约多项式}.
+\]
+由带余除法，每个剩余类唯一地由次数小于$n$的多项式代表；$n$个系数各有$p$种选择，所以$|F|=p^n$。
+
+反过来，给定$F_p$上的$n$次首一不可约多项式$f$，商环$F_p[x]/(f)$是具有$p^n$个元素的域。因而构造$p^n$元有限域的问题，可以归结为在$F_p[x]$中寻找$n$次不可约多项式。
+\end{example}
+
+\begin{example}
+设$A\in M_n(F)$。把$a\in F$视为标量矩阵$aE$，则它与$A$可交换。所以
+\[
+F[A]=\{a_0E+a_1A+\cdots+a_mA^m:a_i\in F\}
+\]
+是一个交换幺环。
+
+矩阵空间$M_n(F)$的维数为$n^2$，所以$E,A,\ldots,A^{n^2}$线性相关，存在不全为零的$c_i$使
+\[
+c_0E+c_1A+\cdots+c_{n^2}A^{n^2}=0.
+\]
+故$A$在$F$上代数，极小多项式的次数不超过$n^2$。若极小多项式为$f$，则$F[A]\cong F[x]/(f)$；它是域当且仅当$f$不可约。
+\end{example}
+
+\begin{example}
+设$A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in M_2(\mathbb Q)$不是标量矩阵。直接计算可得
+\[
+A^2-(a+d)A+(ad-bc)E=0.
+\]
+例如左上角为$a^2+bc-(a+d)a+ad-bc=0$，右上角为$ab+bd-(a+d)b=0$；另两项同样分别为$ca+dc-(a+d)c=0$和$cb+d^2-(a+d)d+ad-bc=0$。
+
+若$A$满足一次关系$uA+vE=0$且$u\ne0$，则$A=-v/u\,E$为标量矩阵，矛盾。因此$A$的极小多项式为
+\[
+f(x)=x^2-(a+d)x+ad-bc.
+\]
+由于$f$为二次多项式，或者不可约，或者分解为两个不同的一次因式，或者是一个一次因式的平方，分以下三种情况。
+\begin{enumerate}
+
+\item $f$不可约。此时$\mathbb Q[A]$为域。每个元素唯一地写成$uE+vA$，所以它作为$\mathbb Q$上的线性空间维数为$2$。
+
+\item $f=(x-\lambda_1)(x-\lambda_2)$，$\lambda_1\ne\lambda_2$。令
+\[
+B=\frac{A-\lambda_1E}{\lambda_2-\lambda_1},\qquad
+C=-\frac{A-\lambda_2E}{\lambda_2-\lambda_1}.
+\]
+因$A$不是标量矩阵，$B,C$均非零。由$f(A)=0$，
+\[
+B+C=E,\qquad BC=CB=0.
+\]
+于是$B=B(B+C)=B^2$，同理$C^2=C$。又有$A=\lambda_2B+\lambda_1C$，所以
+\[
+\mathbb Q[A]=\mathbb QB+\mathbb QC.
+\]
+若$rB+sC=0$，分别乘$B,C$即得$rB=0,sC=0$，故$r=s=0$。两部分相乘为零，各自以$B,C$为单位元，因而
+\[
+\mathbb Q[A]=\mathbb QB\oplus\mathbb QC\cong\mathbb Q\oplus\mathbb Q.
+\]
+
+\item $f=(x-\lambda)^2$。令$B=A-\lambda E$，则$B\ne0$、$B^2=0$，并且$\mathbb Q[A]=\mathbb QE+\mathbb QB$。若$u\ne0$，则
+\[
+(uE+vB)\left(u^{-1}E-vu^{-2}B\right)=E,
+\]
+所以$uE+vB$可逆。若$u=0$，则$(vB)^2=0$，不能可逆。因此任一真理想只能包含$\mathbb QB$中的元素；若又非零，含某个$vB\ne0$，乘$v^{-1}E$得到$B$，故该理想就是$\mathbb QB$。
+
+因此它只有一个非零真理想$N=\mathbb QB$，且$N^2=0$。
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+若环$R$的理想$N$满足$N^m=(0)$对某个正整数$m$成立，则称$N$为\textbf{零幂理想}。上述例子的$N=\mathbb QB$满足$N^2=(0)$，就是零幂理想。
+\end{definition}
+
+
+
+
+\section{多项式函数}
+
+\begin{definition}
+设$F$为域。每个映射$f:F\to F$称为$F$上的一个函数，全体函数组成的集合记为$F^F$。对$f,g\in F^F$定义
+\[
+(f+g)(a)=f(a)+g(a),\qquad(fg)(a)=f(a)g(a)\quad(a\in F).
+\]
+对$c\in F$，常函数$f_c$定义为$f_c(a)=c$；自变量函数$s$定义为$s(a)=a$。
+\end{definition}
+\begin{proof}[验证]
+函数相等当且仅当在每一点的值都相等。因此逐点应用$F$中的运算律，即可得到函数的运算律。例如
+\begin{align*}
+((f+g)+h)(a)&=(f(a)+g(a))+h(a)\\
+&=f(a)+(g(a)+h(a))=(f+(g+h))(a),\\
+((fg)h)(a)&=(f(a)g(a))h(a)=f(a)(g(a)h(a))=(f(gh))(a),\\
+(f(g+h))(a)&=f(a)(g(a)+h(a))=(fg+fh)(a).
+\end{align*}
+加法与乘法也可交换。零函数$f_0$为零元，$f_1$为单位元，负元逐点取负，故$F^F$为交换幺环。
+
+由$f_c+f_d=f_{c+d}$、$f_cf_d=f_{cd}$，映射$c\mapsto f_c$是环同态。不同常数给出不同函数，所以它为单射。将$c$与$f_c$等同后，$F$成为$F^F$的常函数子域。
+\end{proof}
+
+\begin{definition}
+函数$s$在常函数子域$F$上生成的子环$F[s]$称为$F$上的\textbf{多项式函数环}。其元素形如
+\[
+a_0+a_1s+\cdots+a_ns^n,\qquad a_i\in F,
+\]
+称为多项式函数，在$c\in F$处的值为$a_0+a_1c+\cdots+a_nc^n$。
+\end{definition}
+
+取代入同态
+\[
+\sigma:F[x]\to F[s],\qquad f(x)\mapsto f(s),
+\]
+并令$I=\ker\sigma$。由上一节的同态定理，
+\[
+F[x]/I\cong F[s],\qquad I\cap F=(0).
+\]
+这里$f\in I$表示$f(s)$为零函数，即$f(a)=0$对每个$a\in F$成立。
+
+\begin{theorem}\label{p2:poly-functions-one}
+设$F$为域，$s\in F^F$为自变量函数，则：
+\begin{enumerate}
+\item 若$F$为无限域，则$I=(0)$，$F[s]\cong F[x]$，且$s$在$F$上超越。
+\item 若$F$为$q$元有限域，则
+\[
+I=(x^q-x),\qquad F[s]\cong F[x]/(x^q-x).
+\]
+此时$s$在$F$上代数，其极小多项式为$x^q-x$；而且$F^F=F[s]$，即每个函数都是多项式函数，并有唯一的次数小于$q$的多项式代表元。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 设$f\in I$，则$f(s)$是零函数，所以$f(a)=0$对每个$a\in F$成立。若$f\ne0$，其根的个数至多为$\deg f$，而$F$有无限多个元素，矛盾。故$f=0$，$I=(0)$，从而$F[s]\cong F[x]$，$s$在$F$上超越。
+
+\item 令
+\[
+g(x)=\prod_{a\in F}(x-a).
+\]
+它是首一$q$次多项式，恰有$F$的全部$q$个元素为根。由有限域的乘法群结论，每个$a\in F$均满足$a^q-a=0$。依次应用因式定理，$g(x)\mid x^q-x$；因两者同为首一$q$次多项式，故
+\[
+g(x)=x^q-x.
+\]
+这里依次取出各因子是可行的：若已取出$(x-a)$，对另一个根$b\ne a$，代入后$(b-a)$非零，故剩余因子仍以$b$为根。
+
+若$f\in I$，则$F$的全部元素都是$f$的根，按同样的因式分解过程，$g\mid f$。所以$I\subseteq(g)$。反过来，$g(s)$为零函数，故$(g)\subseteq I$。于是
+\[
+I=(g)=(x^q-x).
+\]
+由极小多项式的定义，$s$的极小多项式为$x^q-x$。
+
+由带余除法，每个模$I$的类都有唯一的代表元
+\[
+a_0+a_1x+\cdots+a_{q-1}x^{q-1},\qquad a_i\in F.
+\]
+这样的多项式共有$q^q$个，不同的代表元给出不同的函数，否则其差属于$I$且次数小于$q$，只能为零。因此$F[s]$有$q^q$个元素。$F^F$也有$q^q$个元素，且$F[s]\subseteq F^F$，所以$F[s]=F^F$。
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+设$S=F^n$，从$S$到$F$的全部函数按逐点运算构成函数环$F^S$。对$1\le i\le n$，定义自变量函数
+\[
+s_i(a_1,\ldots,a_n)=a_i.
+\]
+它们与常函数子域$F$生成的子环$F[s_1,\ldots,s_n]$称为\textbf{多元多项式函数环}。其元素形如
+\[
+f(s_1,\ldots,s_n)=\sum_{i_1,\ldots,i_n}a_{i_1\ldots i_n}s_1^{i_1}\cdots s_n^{i_n},
+\]
+在$(b_1,\ldots,b_n)$处的值为$\sum a_{i_1\ldots i_n}b_1^{i_1}\cdots b_n^{i_n}$。
+\end{definition}
+
+将包含映射$F\hookrightarrow F^S$扩充，令$x_i\mapsto s_i$，得到代入同态$\sigma$。记其核为$I$，则
+\[
+F[x_1,\ldots,x_n]/I\cong F[s_1,\ldots,s_n],\qquad I\cap F=(0).
+\]
+
+\begin{theorem}\label{p2:poly-functions-many}
+设$F$为域，$s_1,\ldots,s_n$为上述自变量函数，则：
+\begin{enumerate}
+\item 若$F$为无限域，则$I=(0)$，且
+\[
+F[s_1,\ldots,s_n]\cong F[x_1,\ldots,x_n].
+\]
+因此$s_1,\ldots,s_n$在$F$上代数无关。
+\item 若$F$为$q$元有限域，则
+\[
+I=(x_1^q-x_1,\ldots,x_n^q-x_n),
+\]
+且$F^{F^n}=F[s_1,\ldots,s_n]$。每个函数有唯一的多项式代表元，使每个变量的次数均小于$q$。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 对变量个数$n$归纳。$n=1$即上一定理的第一条。设结论对$n-1$成立，并取$f\in I$。将$f$表示成
+\[
+f(x_1,\ldots,x_n)=\sum_{j=0}^m f_j(x_1,\ldots,x_{n-1})x_n^j.
+\]
+于是对每个$(a_1,\ldots,a_n)\in F^n$，
+\[
+\sum_{j=0}^m f_j(a_1,\ldots,a_{n-1})a_n^j=0.
+\]
+固定$a_1,\ldots,a_{n-1}$，使$a_n$取遍无限域$F$，所得一元多项式有无限多个根，故为零多项式。因此
+\[
+f_j(a_1,\ldots,a_{n-1})=0\qquad(0\le j\le m).
+\]
+这些等式对全部$(a_1,\ldots,a_{n-1})$成立。由归纳假设，各$f_j$均为零多项式，故$f=0$。所以$I=(0)$，得到所述同构及代数无关性。
+
+\item 记$I'=(x_1^q-x_1,\ldots,x_n^q-x_n)$。每个生成元在$F^n$上恒为零，所以$I'\subseteq I$。为证明反向包含，先对任意$f$构造分解
+\[
+f=\sum_{i=1}^n q_i(x_1,\ldots,x_n)(x_i^q-x_i)+r,
+\]
+使$r$对每个变量的次数均小于$q$。
+
+只须对单项式分别降次。若$e\ge q$，则
+\[
+x_i^e-x_i^{e-q+1}=x_i^{e-q}(x_i^q-x_i)\in I'.
+\]
+所以模$I'$可把指数$e$降低$q-1$。反复进行，便得到小于$q$的非负整数指数。逐一处理各变量，再对有限个单项式相加，即得到上述分解。
+
+再证：若$r$对每个变量的次数均小于$q$，且在$F^n$上恒为零，则$r=0$。对$n$归纳，$n=1$时由根数定理成立。对$n>1$，写成
+\[
+r=\sum_{j=0}^{q-1}r_j(x_1,\ldots,x_{n-1})x_n^j.
+\]
+固定前$n-1$个坐标后，右侧关于$x_n$的多项式次数小于$q$，却有$q$个根，只能为零。因此每个$r_j$在$F^{n-1}$上恒为零；它们对其余变量的次数仍小于$q$，由归纳假设，各$r_j=0$，故$r=0$。
+
+现在若$f\in I$，分解式中左侧和右侧第一项都给出零函数，所以$r$也给出零函数，故$r=0$。于是$f\in I'$，得到$I=I'$。两个降次后的代表元若表示同一函数，其差是同类的零函数，只能为零，所以代表元唯一。
+
+指数都小于$q$的单项式共有$q^n$个，各系数有$q$种选择，因此商环有$q^{q^n}$个元素。从含$q^n$个点的$F^n$到$F$的函数也有$q^{q^n}$个，所以
+\[
+F[s_1,\ldots,s_n]=F^{F^n}.
+\]
+\end{enumerate}
+\end{proof}
+
+

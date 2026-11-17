@@ -1,0 +1,1620 @@
+% !TEX root = ../../main.tex
+\setchapterimage{figure/P2/C1封面图.jpg}
+\setchapterintro{以群、环、域为主线，掌握子结构、同态与商结构的关系。复习时先核对定义的条件，再理解每个构造为何成立，最后用例子与反例检验结论。}
+\chapter{代数基本概念}
+\label{p2:ch1}
+
+
+\textbf{记号与约定：}
+群的运算通常写成乘法，单位元记作$e$，元素的阶记作$\operatorname{ord}(a)$；加法群的单位元写成$0$。
+子群用$H\leq G$表示（允许$H=G$），正规子群用$H\trianglelefteq G$表示。
+环通常记为$R$。这里的环不必交换，也不必有乘法单位元；子环不要求与母环共用单位元；环同态不预先要求保持$1$。
+这里的“理想”默认是双边理想。域和体均要求$1\neq0$。
+
+
+\section{代数运算}
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l19}非空集合$A$上的一个\textbf{代数运算（二元运算）}是映射
+\[
+\mu:A\times A\longrightarrow A,\qquad(a,b)\longmapsto a*b.
+\]
+每一对有序元素都对应唯一的结果，且结果仍在$A$内。
+\end{definition}
+
+\begin{example}
+整数加法、实数乘法、同阶方阵乘法、一个集合上的自映射复合都是代数运算。
+实数上的$(x,y)\mapsto x$、$(x,y)\mapsto0$、$(x,y)\mapsto x+y^2$也是代数运算。
+整数除法不是$\Z$上的代数运算：除数可以是$0$，且商未必是整数。
+向量的数乘$\F\times V\to V$和内积$V\times V\to\F$一般不属于这里的二元运算。
+\end{example}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l34}对$A$上的运算$*$，若任意$a,b,c\in A$满足$(a*b)*c=a*(b*c)$，称它满足\textbf{结合律}。
+
+
+\phantomsection\label{p2:concept:c1-l37}若$a*b=b*a$，称它满足\textbf{交换律}。
+
+
+\phantomsection\label{p2:concept:c1-l40}若$e*a=a*e=a$，称$e$为\textbf{单位元}。
+
+\phantomsection\label{p2:concept:c1-l42}若在有单位元时$a*b=b*a=e$，称$b$是$a$的\textbf{逆元}。
+\end{definition}
+
+\textbf{注：}
+封闭性和结果的唯一性已经包含在“映射$A\times A\to A$”中。
+结合律允许改变括号，交换律允许改变元素的次序，两者不能混用。
+
+
+\section{群的定义和简单性质}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l52}非空集合$G$连同其上的乘法称为\textbf{群}，若满足：
+\begin{enumerate}
+\item $(ab)c=a(bc)$；
+\item \phantomsection\label{p2:concept:c1-l55}存在$e\in G$，使$ea=a$对所有$a\in G$成立。称$e$为\textbf{左单位元}；
+\item \phantomsection\label{p2:concept:c1-l56}每个$a\in G$存在$b\in G$，使$ba=e$，称$b$为\textbf{左逆元}。
+\end{enumerate}
+
+
+\phantomsection\label{p2:concept:c1-l60}若另有$ab=ba$，则称为\textbf{交换群（阿贝尔群）}。
+\end{definition}
+下面我们可以证明，有左单位元，就有右单位元；有左逆元，就有右逆元。在此之前我们举几个例子。
+
+\begin{proposition}
+在上述公理下，$ba=e$必推出$ab=e$，且$ae=a$对所有$a$成立。
+\end{proposition}
+\begin{proof}
+取$c$使$cb=e$。由结合律与左单位元性质，
+\[
+a=ea=(cb)a=c(ba)=ce,
+\qquad ab=(ce)b=c(eb)=cb=e.
+\]
+再由$ba=e$和$ab=e$得$ae=a(ba)=(ab)a=ea=a$。
+全过程没有预先使用右单位元或消去律。
+\end{proof}
+
+\begin{proposition}
+群中单位元唯一，每个元素有唯一逆元，并且
+\[
+(a^{-1})^{-1}=a,\qquad e^{-1}=e,\qquad (ab)^{-1}=b^{-1}a^{-1}.
+\]
+\end{proposition}
+\begin{proof}
+若$e,f$均为单位元，则$e=ef=f$。
+若$b,c$均为$a$的逆元，则$b=b(ac)=(ba)c=c$。
+由于$a$是$a^{-1}$的逆元，得第一式；第二式直接验证。
+最后，$(ab)(b^{-1}a^{-1})=a(bb^{-1})a^{-1}=e$，反向相乘也为$e$，由唯一性得第三式。
+\end{proof}
+
+\begin{proposition}
+对任意$a,b\in G$，
+\[
+ax=b\iff x=a^{-1}b,\qquad ya=b\iff y=ba^{-1}.
+\]
+故两个方程均有唯一解，且$ab=ac\Rightarrow b=c$，$ba=ca\Rightarrow b=c$。
+\end{proposition}
+\begin{proof}
+分别左乘、右乘$a^{-1}$得到解，代回即验证存在性。
+对等式两侧左乘或右乘$a^{-1}$即得消去律。
+\end{proof}
+
+
+
+\textbf{记号：}
+\phantomsection\label{p2:concept:c1-l105}对$a\in G$与正整数$n$定义$a^n$为$n$个$a$的积，约定$a^0=e$，$a^{-n}=(a^{-1})^n$。
+\phantomsection\label{p2:concept:c1-l106}加法记号下对应整数倍$na$。
+
+
+\begin{proposition}
+\textbf{整数指数法则：}任意$m,n\in\Z$均有
+\[
+a^ma^n=a^{m+n},\qquad(a^m)^n=a^{mn}.
+\]
+若$ab=ba$，则还有$(ab)^n=a^nb^n$对所有$n\in\Z$成立。
+\end{proposition}
+\begin{proof}
+非负指数的第一式由连乘积的结合律得到，第二式由分组得到。
+负指数部分可用$a^{-1}$代替$a$；异号相乘时，把成对的$a,a^{-1}$消去，剩余部分正好给出指数之和。
+同一元素的幂彼此交换，故负指数的第二式也由$(a^m)^{-1}=a^{-m}$得到。
+若$ab=ba$，对$n\geq0$将$n$个$ab$中的$a$全部移至前面即可。
+对$n<0$，用$(ab)^{-1}=b^{-1}a^{-1}=a^{-1}b^{-1}$归结到正指数。
+\end{proof}
+
+\begin{example}
+\begin{enumerate}
+	\item $(\Z,+),(\Q,+),(\R,+),(\C,+)$是交换群。
+	\item $(\R\setminus\{0\},\cdot)$与$(\R_{>0},\cdot)$也是交换群。
+	\item $U_n=\{z\in\C:z^n=1\}$在乘法下成$n$阶群：若$z,w\in U_n$，则$(zw)^n=1$，且$z^{-1}\in U_n$。
+	\item 数域$P$上的$\GL_n(P)$、$\SL_n(P)$在矩阵乘法下成群。
+	它们的封闭性和逆元条件分别由可逆性及$\det(AB)=\det A\det B$验证。
+	\item 欧氏空间的正交变换也成群，因为复合与逆变换均保持内积。
+\end{enumerate}
+\end{example}
+\begin{proposition}
+	对交换群中的任意两个元素$a,b$及$n\in\Z$，有
+	\[
+	(ab)^n=a^n b^n.
+	\]
+\end{proposition}
+\begin{proof}
+	当$n\geq0$时，由交换律可将$n$个$ab$中的$a$移到前面，得到$(ab)^n=a^nb^n$。
+	当$n<0$时，利用
+	\[
+	(ab)^{-1}=b^{-1}a^{-1}=a^{-1}b^{-1}
+	\]
+	归结为正整数情形。
+\end{proof}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l149}群的\textbf{阶}$|G|$是其元素个数。元素个数有限称\textbf{有限群}，否则称\textbf{无限群}。
+
+\end{definition}
+
+\section{群的例子}
+\subsection*{图形的对称群与二面体群}
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l156}平面图形$F$的所有保持$F$整体不变的平面等距变换，在复合下成群，称$F$的\textbf{对称群}。
+\end{proposition}
+\begin{proof}
+恒等变换保持$F$。两个这样的变换的复合仍把$F$映为$F$，映射复合满足结合律。
+若$f(F)=F$且$f$可逆，则$f^{-1}(F)=F$，故逆变换仍在该集合中。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l164}正$n$边形（$n\geq3$）的对称群称\textbf{二面体群}$D_n$，其阶为$2n$。
+设$T$为绕中心旋转$2\pi/n$，$S$为对一条固定对称轴上的反射，则
+\[
+D_n=\{T^k,ST^k:0\leq k<n\},\qquad T^n=e,\quad S^2=e,\quad ST=T^{-1}S.
+\]
+\end{definition}
+
+\begin{proposition}
+上述$2n$个变换两两不同，且已穷尽正$n$边形的对称变换；当$n\geq3$时$D_n$不交换。
+\end{proposition}
+\begin{proof}
+对称变换保持顶点集合，因而固定所有顶点的重心，即正多边形的中心。中心与两个相邻顶点不共线，而平面等距变换由三个不共线点的像唯一决定。
+因此对称变换由一个顶点的像和相邻顶点的像唯一决定。
+
+第一个顶点有$n$个选择，相邻顶点的像必须与它相邻，故有两个选择，至多有$2n$个对称变换。
+
+$n$个旋转彼此不同，$n$个反射彼此不同；旋转保持平面定向而反射反转定向，故两类不重合。
+关于过中心直线反射会反转旋转角，所以$STS=T^{-1}$。
+若$ST=TS$，则$T=T^{-1}$，即$T^2=e$，与$T$的阶$n\geq3$矛盾。
+\end{proof}
+
+\begin{example}
+正方形的对称群为$D_4=\{e,T,T^2,T^3,S,ST,ST^2,ST^3\}$，共有8个元素。
+计算时先用$ST^k=T^{-k}S$把表达式化成$T^k$或$ST^k$，再将指数模4化简。
+\end{example}
+
+\subsection*{对称群与轮换}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l192}集合$M$上的所有双射在复合下构成\textbf{全变换群}$S(M)$。
+\phantomsection\label{p2:concept:c1-l193}当$M=\{1,\ldots,n\}$时记作$S_n$，称\textbf{$n$元对称群}。
+\phantomsection\label{p2:concept:c1-l194}其元素称置换，记作
+\[
+\sigma=\begin{pmatrix}1&2&\cdots&n\\\sigma(1)&\sigma(2)&\cdots&\sigma(n)\end{pmatrix}.
+\]
+约定$(\sigma\tau)(i)=\sigma(\tau(i))$，即\textbf{右边先作用}。
+\end{definition}
+
+\begin{proposition}
+$|S_n|=n!$。
+\end{proposition}
+\begin{proof}
+双射的像序列恰是$1,\ldots,n$的一个排列，逐次选择各像有$n(n-1)\cdots1=n!$种。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l209}置换$(a_1\ a_2\ \cdots\ a_m)$把$a_1$映为$a_2$，依次轮换，最后把$a_m$映为$a_1$，并保持其余元素不变，称\textbf{轮换}。
+\phantomsection\label{p2:concept:c1-l210}长度为2的轮换称\textbf{对换}。两个轮换所涉及的元素集合不交时称\textbf{不相交}。
+长度为1的轮换是恒等作用，通常省略。
+\end{definition}
+
+\begin{proposition}
+不相交的轮换彼此交换。
+\end{proposition}
+\begin{proof}
+对任意元素$x$分类：若$x$在其中一个轮换包含的元素中，另一个轮换同时固定$x$及其像；若$x$在两个包含的元素外，两者都固定$x$。
+因此两种复合在每个$x$上的结果相同。对多个两两不相交的轮换，可依次应用这一结论。
+\end{proof}
+
+\begin{theorem}
+\textbf{不相交轮换分解：}有限集合$\{1,\ldots,n\}$上的每个置换$\sigma\in S_n$都能写成不相交轮换的积。
+分解在忽略轮换次序、每个轮换的循环起点以及省略的不动点后唯一。
+\end{theorem}
+\begin{proof}
+对任意$x$连续作用$\sigma$。有限性保证出现重复，双射性保证第一次重复必回到$x$，否则与第一次重复的选取是矛盾的。
+
+故$x,\sigma(x),\ldots,\sigma^{m-1}(x)$组成一个轮换。
+
+从尚未出现的元素继续这一过程。若两次得到的轮换含有同一个元素，从该元素开始连续作用$\sigma$，就会依次得到相同的元素，直到回到起点，所以这两个轮换只可能是循环起点不同。因此新得到的轮换与此前的轮换不相交；重复这一过程，便能把全体元素分入这些轮换。
+
+再证明唯一性。在任意不相交轮换分解中，取一个满足$\sigma(x)\neq x$的元素$x$，它必须出现在某个轮换中，且只能出现在一个轮换中。其余轮换都固定这个轮换中的元素，所以从$x$开始，这个轮换中后续的元素只能依次为$\sigma(x),\sigma^2(x),\ldots$，直到第一次回到$x$。因此，包含$x$的轮换完全由$\sigma$确定，只能改变循环起点。对其余被移动的元素重复这一论证，便确定了全部长度大于1的轮换；不动点对应长度为1的轮换，可以省略。因此分解唯一到上述意义。
+\end{proof}
+
+\begin{example}
+\[
+\begin{pmatrix}1&2&3&4&5&6\\3&1&2&5&4&6\end{pmatrix}=(132)(45).
+\]
+若$\sigma=(1243),\tau=(132)$，则$\sigma\tau=(34)$；须按右边先作用逐点检查。
+\end{example}
+
+\section{子群、陪集}
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l247}群$G$的非空子集$H$若在$G$的原运算下成群，称为\textbf{子群}，记为$H\leq G$。
+\phantomsection\label{p2:concept:c1-l248}全变换群的子群称\textbf{变换群}。
+\end{definition}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l252}\textbf{平凡子群与非平凡子群：}设$G$为群，单位元为$e$。子群$\{e\}$与$G$称为$G$的\textbf{平凡子群}。
+\phantomsection\label{p2:concept:c1-l253}若子群$H\leq G$满足$H\neq\{e\}$且$H\neq G$，即
+\[
+\{e\}\subsetneq H\subsetneq G,
+\]
+则称$H$为$G$的\textbf{非平凡子群}。
+\end{definition}
+
+\begin{theorem}
+\textbf{子群判别法：}非空子集$H\subseteq G$为子群，当且仅当
+\[
+\forall a,b\in H,\qquad ab^{-1}\in H.
+\]
+等价地，$H$非空、对乘法封闭、对逆元封闭。
+\end{theorem}
+\begin{proof}
+必要性由群公理成立。反之，取$a\in H$得$aa^{-1}=e\in H$。
+由$e,b\in H$得$b^{-1}=eb^{-1}\in H$，再由$a,b^{-1}\in H$得$ab\in H$。
+结合律从$G$继承，故$H$成群。
+\end{proof}
+
+\begin{proposition}
+任意一族$G$的子群的交仍为子群（空族的交约定为$G$）。子群的并一般不是子群。
+\end{proposition}
+\begin{proof}
+交集含$e$；其中$a,b$属于每个子群，故$ab^{-1}$也属于每个子群。
+
+对于并集可以举反例：$2\Z\cup3\Z$含$2,3$却不含$5$，对加法不封闭。
+\end{proof}
+
+\subsection*{交错群}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l284}令$D(x_1,\ldots,x_n)=\prod_{i<j}(x_i-x_j)$。
+置换$\sigma$变量后，每一对差因子至多改变符号，故有唯一的$\operatorname{sgn}(\sigma)\in\{1,-1\}$使
+\[
+D(x_{\sigma(1)},\ldots,x_{\sigma(n)})=\operatorname{sgn}(\sigma)D(x_1,\ldots,x_n).
+\]
+\phantomsection\label{p2:concept:c1-l289}符号为$1$称\textbf{偶置换}，为$-1$称\textbf{奇置换}。
+\phantomsection\label{p2:concept:c1-l290}全体偶置换记为$A_n$，称\textbf{交错群}。
+\end{definition}
+
+\begin{proposition}
+$\operatorname{sgn}(\sigma\tau)=\operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)$。
+故$A_n\leq S_n$；当$n\geq2$时$|A_n|=n!/2$。
+\end{proposition}
+\begin{proof}
+连续代换变量，把两个符号因子相乘即得第一式。
+
+恒等置换符号为$1$，逆置换符号与原置换相同，因此子群判别法成立。
+
+任意对换会使$D$变号（交换两变量时，二者对应的差变号，其余因子成对交换），故符号为$-1$。
+
+固定一个对换$t$，映射$\sigma\mapsto t\sigma$是奇、偶置换集合间的双射，二者各占$n!$的一半。
+当$n=1$时$A_1=S_1$，阶为1，不能用$n!/2$。
+
+\end{proof}
+
+\subsection*{陪集及其计数}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l311}设$H\leq G$。$aH=\{ah:h\in H\}$称\textbf{左陪集}，$Ha=\{ha:h\in H\}$称\textbf{右陪集}。
+\phantomsection\label{p2:concept:c1-l312}$a$称陪集代表。左陪集个数记为$[G:H]$，称\textbf{指数}。
+\end{definition}
+
+\begin{proposition}
+对$a,b\in G,H\leqslant G$，有
+\[
+aH=bH\iff a^{-1}b\in H,
+\qquad Ha=Hb\iff ab^{-1}\in H.
+\]
+每个陪集中任一元素都可以作为\textbf{陪集代表}。任何两个左陪集（或两个右陪集）相等或不交。
+\end{proposition}
+\begin{proof}
+若$aH=bH$，则$b=ah$，所以$a^{-1}b=h\in H$；反之$b=ah$给出$bH=ahH=aH$。
+右陪集同理。
+
+若$x\in aH\cap bH$，则$xH=aH$且$xH=bH$，故两个陪集相等。
+\end{proof}
+
+\begin{proposition}
+$h\mapsto ah$给出$H\to aH$的双射，$h\mapsto ha$给出$H\to Ha$的双射。
+左右陪集数相同，且$G$是所有不同左陪集的不交并，也是所有不同右陪集的不交并。
+\end{proposition}
+\begin{proof}
+两个映射的逆分别是$x\mapsto a^{-1}x$和$x\mapsto xa^{-1}$。
+
+每个$a$属于$aH$及$Ha$，所以陪集覆盖$G$。
+
+映射$aH\mapsto Ha^{-1}$由取逆给出左右陪集集合的双射。
+\end{proof}
+
+\begin{theorem}
+\textbf{拉格朗日定理：}若$G$有限且$H\leq G$，则
+\[
+|G|=[G:H]|H|,\qquad |H|\mid|G|.
+\]
+\end{theorem}
+\begin{proof}
+将$G$分为$[G:H]$个不交左陪集，每个陪集均有$|H|$个元素，相加即得。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l353}$\langle a\rangle=\{a^m:m\in\Z\}$称\textbf{由$a$生成的子群}。
+\phantomsection\label{p2:concept:c1-l354}$\langle a\rangle$的阶称\textbf{元素$a$的阶}，记为$\operatorname{ord}(a)$。
+\end{definition}
+
+\begin{proposition}
+对$\langle a\rangle$，
+若$a$的幂两两不同，$a$为无限阶元素；否则存在最小正整数$d$使$a^d=e$，且
+\[
+\langle a\rangle=\{e,a,\ldots,a^{d-1}\},\qquad \operatorname{ord}(a)=d,
+\qquad a^m=e\iff d\mid m.
+\]
+
+$\langle a\rangle$是包含$a$的最小子群。
+\end{proposition}
+\begin{proof}
+任何包含$a$的子群都包含其整数幂。
+若$a^i=a^j$且$i<j$，则$a^{j-i}=e$。取最小正指数$d$。
+对任意整数$m$作带余除法$m=qd+r$，$0\leq r<d$，有$a^m=a^r$。
+最小性保证$e,a,\ldots,a^{d-1}$两两不同，也保证$a^r=e$当且仅当$r=0$。
+\end{proof}
+
+\begin{corollary}
+若$|G|=n<\infty$，则每个元素的阶整除$n$，且$a^n=e$。
+\end{corollary}
+\begin{proof}
+对$\langle a\rangle$应用拉格朗日定理，再写$n=\operatorname{ord}(a)q$。
+\end{proof}
+
+\textbf{注：}
+拉格朗日定理只给出必要条件，不能据此断言每个$|G|$的因子都对应一个子群。
+陪集一般只是子集，不是子群；含$e$的陪集才等于$H$。
+
+
+\section{群的同构}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l388}群$G,G'$之间的双射$\varphi$若满足$\varphi(ab)=\varphi(a)\varphi(b)$，称$\varphi$是\textbf{群同构}，且称为$G$同构于$G'$，记作$G\cong G'$。
+\end{definition}
+
+\begin{proposition}
+同构保持单位元、逆元、元素的阶与交换性。
+同构关系具有自反性、对称性、传递性。
+\end{proposition}
+\begin{proof}
+$\varphi(e)\varphi(a)=\varphi(a)$，消去得$\varphi(e)=e'$；
+
+$\varphi(a^{-1})\varphi(a)=e'$，故$\varphi(a^{-1})=\varphi(a)^{-1}$。
+
+因此$\varphi(a^m)=\varphi(a)^m$，结合单射性得$a^m=e\iff\varphi(a)^m=e'$，阶保持。
+
+对$ab=ba$应用$\varphi$即得像群交换；反向用$\varphi^{-1}$。
+
+恒等映射是同构；若$u=\varphi(a),v=\varphi(b)$，则$\varphi^{-1}(uv)=ab$，所以逆映射是同构；两个同构的复合仍是保运算双射。
+\end{proof}
+\begin{theorem}
+\textbf{凯莱定理：}每个群$G$都同构于集合$G$上的一个变换群。
+\end{theorem}
+\begin{proof}
+设$G$是一个群。对每个$a\in G$，定义集合$G$到自身的变换
+\[
+L_a:G\longrightarrow G,\qquad L_a(x)=ax.
+\]
+
+先证明$L_a$可逆。对任意$x\in G$，有
+\[
+\begin{aligned}
+(L_{a^{-1}}L_a)(x)
+&=L_{a^{-1}}(ax)
+=a^{-1}(ax)
+=x,\\
+(L_aL_{a^{-1}})(x)
+&=L_a(a^{-1}x)
+=a(a^{-1}x)
+=x.
+\end{aligned}
+\]
+因此两个复合都是恒等变换，即
+\[
+L_a^{-1}=L_{a^{-1}}.
+\]
+所以$L_a$是$G$上的双射。令
+\[
+G_l=\{L_a:a\in G\}\subseteq S(G).
+\]
+
+下面证明$G_l$是一个变换群。它非空，因为$L_e\in G_l$。
+对任意$L_a,L_b\in G_l$及$x\in G$，有
+\[(L_aL_b^{-1})(x)
+=(L_aL_{b^{-1}})(x)=a(b^{-1}x)=(ab^{-1})x=L_{ab^{-1}}(x).\]
+于是
+\[
+L_aL_b^{-1}=L_{ab^{-1}}\in G_l.
+\]
+由子群判别法，$G_l\leq S(G)$，所以$G_l$是集合$G$上的一个变换群。
+
+最后证明$G$与$G_l$同构。定义映射
+\[
+\varphi:G\longrightarrow G_l,\qquad a\longmapsto L_a.
+\]
+由$G_l$的定义，$\varphi$是满射。又因为
+\[
+L_a(e)=ae=a,
+\]
+所以当$a\neq b$时，$L_a(e)\neq L_b(e)$，从而$L_a\neq L_b$。
+因此$\varphi$也是单射，即$\varphi$是双射。
+
+对任意$a,b,x\in G$，有
+\[(L_aL_b)(x)=L_a(bx)=a(bx)=(ab)x=L_{ab}(x).\]
+故$L_aL_b=L_{ab}$，即
+\[
+\varphi(ab)=L_{ab}=L_aL_b=\varphi(a)\varphi(b).
+\]
+所以$\varphi$是群同构，因而$G\cong G_l$，定理得证。
+\end{proof}
+
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l468}取右平移$R_a(x)=xa^{-1}$，则$R_aR_b=R_{ab}$；$a\mapsto R_a$也给出$G$到一个变换群的同构。
+两种构造分别称\textbf{左正则表示、右正则表示}。
+若$|G|=n$，它们均将$G$嵌入$S_n$。
+\end{proposition}
+\begin{proof}
+$R_aR_b(x)=(xb^{-1})a^{-1}=x(ab)^{-1}=R_{ab}(x)$。
+每个$R_a$可逆，且$R_a(e)=a^{-1}$保证单射。有限集合$G$的全变换群在选定编号后就是$S_n$。
+\end{proof}
+
+\textbf{注：}右正则表示中用$xa^{-1}$，而非$xa$，正是为了让$a\mapsto R_a$保持乘法次序。
+
+
+\section{同态、正规子群}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l482}映射$\varphi:G\to G'$满足$\varphi(ab)=\varphi(a)\varphi(b)$时称\textbf{群同态}。
+\phantomsection\label{p2:concept:c1-l483}像为$\varphi(G)=\{\varphi(a):a\in G\}$；核为
+\[
+\ker\varphi=\{a\in G:\varphi(a)=e'\}.
+\]
+\phantomsection\label{p2:concept:c1-l487}单射同态称\textbf{嵌入}，满射同态称\textbf{满同态}。同构就是双射同态。
+\phantomsection\label{p2:concept:c1-l488}元素$y\in G'$的\textbf{完全反像}指集合$\varphi^{-1}(\{y\})$，不意味着同态有逆映射。
+\end{definition}
+
+\begin{proposition}
+群同态满足$\varphi(e)=e'$，$\varphi(a^{-1})=\varphi(a)^{-1}$，$\varphi(a^m)=\varphi(a)^m$；
+其像是$G'$的子群，核是$G$的子群；并且
+\[
+\varphi\text{为单射}\iff\ker\varphi=\{e\}.
+\]
+\end{proposition}
+\begin{proof}
+首先，由$ee=e$及同态性质，有
+\[
+\varphi(e)\varphi(e)=\varphi(ee)=\varphi(e).
+\]
+在$G'$中消去一个$\varphi(e)$，得$\varphi(e)=e'$。
+再由
+\[
+\begin{aligned}
+\varphi(a^{-1})\varphi(a)&=\varphi(a^{-1}a)=e',\\
+\varphi(a)\varphi(a^{-1})&=\varphi(aa^{-1})=e',
+\end{aligned}
+\]
+可知$\varphi(a^{-1})$是$\varphi(a)$的逆元，即
+\[
+\varphi(a^{-1})=\varphi(a)^{-1}.
+\]
+对正整数$m$反复使用保乘法性质，得
+\[
+\varphi(a^m)=\underbrace{\varphi(a)\cdots\varphi(a)}_{m\text{个}}=\varphi(a)^m.
+\]
+$m=0$时由单位元的结论成立；$m<0$时利用逆元的结论归结为正整数情形。
+
+其次，像包含$\varphi(e)=e'$，故非空。若$\varphi(a),\varphi(b)$属于像，则
+\[
+\varphi(a)\varphi(b)^{-1}=\varphi(ab^{-1})\in\varphi(G).
+\]
+由子群判别法，$\varphi(G)\leq G'$。
+
+对于核，$e\in\ker\varphi$。若$a,b\in\ker\varphi$，则
+\[
+\varphi(ab^{-1})=\varphi(a)\varphi(b)^{-1}=e'(e')^{-1}=e',
+\]
+所以$ab^{-1}\in\ker\varphi$。再次应用子群判别法，得到$\ker\varphi\leq G$。
+
+最后，若$\ker\varphi=\{e\}$且$\varphi(a)=\varphi(b)$，则
+\[
+\varphi(a^{-1}b)=\varphi(a)^{-1}\varphi(b)=e',
+\]
+从而$a^{-1}b=e$，即$a=b$，所以$\varphi$为单射。
+反之，若$\varphi$单射，对任意$a\in\ker\varphi$有
+\[
+\varphi(a)=e'=\varphi(e),
+\]
+故$a=e$，因此核恰为$\{e\}$。
+\end{proof}
+
+\begin{proposition}
+\textbf{同态的纤维：}令$H=\ker\varphi$。若$y=\varphi(a)$，则
+\[
+\varphi^{-1}(\{y\})=aH=Ha.
+\]
+若$y\notin\varphi(G)$，完全反像为空。
+\end{proposition}
+\begin{proof}
+若$x\in aH$，则$x=ah$对某个$h\in H$成立，于是
+\[
+\varphi(x)=\varphi(ah)=\varphi(a)\varphi(h)=\varphi(a)e'=y.
+\]
+因此$aH\subseteq\varphi^{-1}(\{y\})$。
+
+反之，若$\varphi(x)=y=\varphi(a)$，则
+\[
+\varphi(a^{-1}x)=\varphi(a)^{-1}\varphi(x)=e',
+\]
+所以$a^{-1}x\in H$，即$x\in aH$。两侧包含合起来得到
+\[
+\varphi^{-1}(\{y\})=aH.
+\]
+
+右陪集可完全类似地证明。
+
+若$y$不在像中，按像的定义不存在满足$\varphi(x)=y$的$x$，所以完全反像为空。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l574}若$H\leq G$且任意$a\in G$均有$aH=Ha$，称$H$为\textbf{正规子群}，记为$H\trianglelefteq G$。
+\end{definition}
+
+\begin{proposition}
+对$H\leq G$，以下条件等价：
+\[
+H\trianglelefteq G;\qquad
+\forall a\in G, aHa^{-1}=H;\qquad
+\forall a\in G, aHa^{-1}\subseteq H.
+\]
+所有同态的核均正规；交换群的每个子群均正规。
+\end{proposition}
+\begin{proof}
+对任意$a\in G$，在集合等式两侧右乘$a^{-1}$，有
+\[
+aH=Ha\iff aHa^{-1}=H.
+\]
+因此前两个条件等价，而共轭等式显然蕴含共轭包含关系。
+
+反过来，设对每个$a\in G$都有$aHa^{-1}\subseteq H$。
+将$a$替换为$a^{-1}$，得
+\[
+a^{-1}Ha\subseteq H.
+\]
+两侧再分别左乘$a$、右乘$a^{-1}$，得到
+\[
+H\subseteq aHa^{-1}.
+\]
+与原包含关系合并，便有$aHa^{-1}=H$，故三个条件等价。
+
+若$H=\ker\varphi$，上一命题说明，对每个$a\in G$都有
+\[
+aH=\varphi^{-1}(\{\varphi(a)\})=Ha.
+\]
+所以核是正规子群。
+若$G$交换，则$ah=ha$对任意$a\in G,h\in H$成立，因而同样有$aH=Ha$，所以它的每个子群都正规。
+\end{proof}
+\section{商群}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l613}对$G$的子集$A,B$定义集合乘积$AB=\{ab:a\in A,b\in B\}$及$A^{-1}=\{a^{-1}:a\in A\}$。
+\end{definition}
+\begin{proposition}
+集合乘积满足$(AB)C=A(BC)$，$(AB)^{-1}=B^{-1}A^{-1}$。
+非空子集$H$为子群当且仅当$HH^{-1}\subseteq H$。
+\end{proposition}
+\begin{proof}[补充证明]
+任取$x\in(AB)C$，存在$a\in A,b\in B,c\in C$使$x=(ab)c$。
+由群的结合律，$x=a(bc)\in A(BC)$；反向包含同理，故
+\[
+(AB)C=A(BC).
+\]
+
+对任意$a\in A,b\in B$，由逆元法则有
+\[
+(ab)^{-1}=b^{-1}a^{-1}.
+\]
+遍历$a,b$便得到$(AB)^{-1}=B^{-1}A^{-1}$。
+
+若$H$为子群，则$a,b\in H$时$ab^{-1}\in H$，所以$HH^{-1}\subseteq H$。
+反过来，若$H$非空且$HH^{-1}\subseteq H$，则任意$a,b\in H$都有
+\[
+ab^{-1}\in HH^{-1}\subseteq H.
+\]
+由子群判别法，$H$为子群。
+\end{proof}
+
+
+\begin{theorem}
+\textbf{陪集乘积与正规性：}子群$H\leq G$正规，当且仅当任意两个右陪集的集合乘积仍是一个右陪集；左陪集也有对应结论。
+正规时$(Ha)(Hb)=Hab$。
+\end{theorem}
+\begin{proof}
+\textbf{必要性：}设$H\trianglelefteq G$。对任意$a,b\in G$，由$aH=Ha$及$HH=H$，有
+\[(Ha)(Hb)=H(aH)b=H(Ha)b=(HH)ab=Hab.\]
+因此两个右陪集的集合乘积仍是右陪集。
+
+\textbf{充分性：}假设任意两个右陪集的集合乘积仍是一个右陪集。
+于是对任意$a,b\in G$，存在$c\in G$使
+\[
+(Ha)(Hb)=Hc.
+\]
+因为$e\in H$，所以$ab\in(Ha)(Hb)=Hc$，故$Hc=Hab$。因此
+\[
+HaHb=Hab.
+\]
+两侧右乘$b^{-1}$，得$HaH=Ha$。又因为$e\in H$，有
+\[
+aH\subseteq HaH=Ha,
+\]
+从而$aHa^{-1}\subseteq H$。
+
+这一包含关系对每个$a\in G$都成立。把$a$换成$a^{-1}$，再在两侧左乘$a$、右乘$a^{-1}$，得到
+\[
+a^{-1}Ha\subseteq H
+\quad\Longrightarrow\quad
+H\subseteq aHa^{-1}.
+\]
+因此$aHa^{-1}=H$，故$H$正规。
+
+左陪集的情形可由取逆得到。因为
+\[
+\bigl((aH)(bH)\bigr)^{-1}=(Hb^{-1})(Ha^{-1}),
+\]
+且左、右陪集在取逆下互相对应，所以左陪集乘积仍为左陪集，当且仅当右陪集有相应性质。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l681}若$H\trianglelefteq G$，全部不同陪集组成的集合记为$G/H$。
+定义$(aH)(bH)=abH$，所得群称\textbf{商群}。
+\end{definition}
+
+\begin{proposition}
+商群运算与代表选择无关；单位元为$H$，$aH$的逆元为$a^{-1}H$。
+有限群有$|G/H|=|G|/|H|$。
+\end{proposition}
+\begin{proof}
+由于$H$正规，左陪集与右陪集相同。前一定理给出
+\[
+(aH)(bH)=abH,
+\]
+其中左侧也恰是这两个集合的集合乘积。因此，若$a'H=aH$且$b'H=bH$，则
+\[
+a'b'H=(a'H)(b'H)=(aH)(bH)=abH.
+\]
+这证明运算不依赖所选的代表元素。
+
+对任意$aH,bH,cH$，由$G$的结合律，有
+\[
+\begin{aligned}
+\bigl((aH)(bH)\bigr)(cH)&=(ab)cH,\\
+(aH)\bigl((bH)(cH)\bigr)&=a(bc)H.
+\end{aligned}
+\]
+因为$(ab)c=a(bc)$，所以商群乘法满足结合律。
+
+又有
+\[
+H(aH)=(aH)H=aH,
+\]
+因此$H=eH$为单位元。并且
+\[
+(aH)(a^{-1}H)=(a^{-1}H)(aH)=H,
+\]
+所以$aH$的逆元为$a^{-1}H$，这些陪集确实构成群。
+
+当$G$有限时，$G/H$的元素个数就是不同陪集的个数。由拉格朗日定理，
+\[
+|G|=[G:H]|H|=|G/H||H|,
+\]
+所以$|G/H|=|G|/|H|$。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l727}\textbf{自然同态：}$\pi:G\to G/H$，$\pi(a)=aH$是满同态，$\ker\pi=H$。
+因此$G$的正规子群恰是以$G$为定义域的群同态的核。
+\end{definition}
+\begin{theorem}\label{p2:group-first-iso}
+\textbf{群同态基本定理（第一同构定理）：}任意同态$\varphi:G\to G'$均诱导同构
+\[
+\bar\varphi:G/\ker\varphi\longrightarrow\varphi(G),\qquad
+a\ker\varphi\longmapsto\varphi(a).
+\]
+特别地，满同态给出$G/\ker\varphi\cong G'$。
+\end{theorem}
+\begin{proof}
+令$N=\ker\varphi$，由上一节可知$N\trianglelefteq G$。
+定义
+\[
+\bar\varphi:G/N\longrightarrow\varphi(G),\qquad
+\bar\varphi(aN)=\varphi(a).
+\]
+
+先说明这个定义与代表的选择无关。上一节关于完全反像的结论给出
+\[aN=bN\iff a^{-1}b\in N\iff\varphi(a^{-1}b)=e'\iff\varphi(a)^{-1}\varphi(b)=e'\iff\varphi(a)=\varphi(b).\]
+从前往后看，说明同一个陪集不会对应不同的像，故映射良定义；从后往前看，说明像相同的两个陪集必相同，故映射单射。
+
+任意$y\in\varphi(G)$都可写为$y=\varphi(a)$，所以
+\[
+y=\bar\varphi(aN),
+\]
+故映射满到$\varphi(G)$，从而是双射。
+
+最后，对任意$aN,bN\in G/N$，有
+\[\bar\varphi\bigl((aN)(bN)\bigr)=\bar\varphi(abN)=\varphi(ab)=\varphi(a)\varphi(b)=\bar\varphi(aN)\bar\varphi(bN).\]
+因此$\bar\varphi$为群同构。若$\varphi$满，则$\varphi(G)=G'$，所以$G/N\cong G'$。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l762}以对象为顶点、映射为箭头组成的图，若起点与终点相同的各条路径对应相同的复合映射，称\textbf{交换图}。
+上述定理给出
+\[
+\begin{tikzcd}
+G \arrow[r,"\varphi"] \arrow[d,"\pi"'] & \varphi(G)\\
+G/N \arrow[ur,"\bar\varphi"'] &
+\end{tikzcd}
+\qquad\varphi=\bar\varphi\circ\pi.
+\]
+\end{definition}
+
+\begin{example}
+行列式满同态给出$\GL_n(P)/\SL_n(P)\cong P^\times$。
+
+符号满同态给出$S_n/A_n\cong\{1,-1\}$（$n\geq2$）。
+\end{example}
+
+\section{环、子环}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l781}非空集合$R$带有加法和乘法，若$(R,+)$为交换群，乘法满足结合律，且两侧分配律成立：
+\[
+a(b+c)=ab+ac,\qquad(b+c)a=ba+ca,
+\]
+\phantomsection\label{p2:concept:c1-l785}则称$R$为\textbf{环}。加法单位元记为$0$，加法逆元记为$-a$。
+\end{definition}
+
+
+
+\begin{proposition}
+对$a,b\in R$，
+\[
+a0=0a=0,\quad(-a)b=a(-b)=-(ab),\quad(-a)(-b)=ab.
+\]
+\end{proposition}
+\begin{proof}
+取任意$b\in R$，有
+\[
+ab=a(b+0)=ab+a0.
+\]
+在加法群中消去$ab$，得$a0=0$。另一侧同样有
+\[
+ba=(b+0)a=ba+0a,
+\]
+消去$ba$，得到$0a=0$。
+
+再证明符号法则。由分配律及刚得到的零元性质，
+\[
+\begin{aligned}
+(-a)b+ab&=(-a+a)b=0b=0,\\
+a(-b)+ab&=a(-b+b)=a0=0.
+\end{aligned}
+\]
+因此$(-a)b$与$a(-b)$都是$ab$的加法逆元。由加法逆元的唯一性，
+\[
+(-a)b=a(-b)=-(ab).
+\]
+最后再次应用这一结论，得到
+\[
+\begin{aligned}
+(-a)(-b)
+&=-\bigl(a(-b)\bigr)\\
+&=-\bigl(-(ab)\bigr)\\
+&=ab.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l830}\textbf{整数倍与正整数幂：}定义$na$为加法群中的整数倍。对$m,n\in\Z$有
+\[
+(m+n)a=ma+na,\quad m(na)=(mn)a,\quad n(a+b)=na+nb,
+\]
+\[
+(na)b=n(ab)=a(nb).
+\]
+定义正整数幂后，$a^ma^n=a^{m+n}$，$(a^m)^n=a^{mn}$对$m,n\geq1$成立。
+\end{proposition}
+\begin{proof}
+因为$(R,+)$为交换群，把前面群的整数指数法则改用加法记号，就得到
+\[
+(m+n)a=ma+na,\qquad m(na)=(mn)a.
+\]
+又因为加法交换，同一整数倍可以分组，故
+\[
+n(a+b)=na+nb\qquad(n\in\Z).
+\]
+
+对正整数$n$，连续应用分配律，有
+\[
+\begin{aligned}
+(na)b
+&=(\underbrace{a+\cdots+a}_{n\text{个}})b\\
+&=\underbrace{ab+\cdots+ab}_{n\text{个}}\\
+&=n(ab),
+\end{aligned}
+\]
+同样有$a(nb)=n(ab)$。当$n=0$时，这些等式由零元性质成立。
+若$n=-k<0$，则由符号法则，
+\[
+\begin{aligned}
+(na)b&=(-(ka))b=-\bigl((ka)b\bigr)=-k(ab)=n(ab),\\
+a(nb)&=a(-(kb))=-\bigl(a(kb)\bigr)=-k(ab)=n(ab).
+\end{aligned}
+\]
+因此$(na)b=n(ab)=a(nb)$对全部整数$n$成立。
+
+最后，乘法结合律保证有限连乘积可以任意改变括号。对$m,n\geq1$，连接及分组相同的因子，得到
+\[
+\begin{aligned}
+a^ma^n
+&=(\underbrace{a\cdots a}_{m\text{个}})(\underbrace{a\cdots a}_{n\text{个}})
+=a^{m+n},\\
+(a^m)^n
+&=\underbrace{(a^m)\cdots(a^m)}_{n\text{个}}
+=a^{mn}.
+\end{aligned}
+\]
+这里仅使用正整数幂，没有假定环有乘法单位元。
+\end{proof}
+\textbf{注：}
+一般环中不能定义$a^0$，因为可能没有$1$；即使有$1$，非可逆元素也不能定义负整数幂。
+整数倍$na$的左边$n$是整数，不能在无单位元的环中擅自把它看成环元素$n\cdot1$。
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l887}非空子集$S\subseteq R$若在$R$的两种运算下成环，称\textbf{子环}。
+\end{definition}
+\begin{theorem}
+\textbf{子环判别法：}非空$S\subseteq R$为子环，当且仅当任意$a,b\in S$均有$a-b\in S$和$ab\in S$。
+\end{theorem}
+\begin{proof}
+\textbf{必要性：}若$S$是子环，则$(S,+)$是$(R,+)$的子群，所以
+\[
+a,b\in S\Longrightarrow a-b\in S.
+\]
+又因为乘法是$S$上的运算，所以$ab\in S$。
+
+\textbf{充分性：}设$S$非空，并且对差与积封闭。取$c\in S$，有
+\[
+0=c-c\in S.
+\]
+对$a,b\in S$，依次得到
+\[
+-a=0-a\in S,\qquad a+b=a-(-b)\in S.
+\]
+因此$S$在加法下是子群，且加法交换律从$R$继承。
+乘积封闭保证乘法限制到$S$后仍是二元运算；乘法结合律及两侧分配律也从$R$继承，所以$S$成环。
+\end{proof}
+
+\begin{example}
+$\Z\subseteq\Q$、$n\Z\subseteq\Z$均为子环。
+
+$M_n(P)$中的对角矩阵、数量矩阵、上三角矩阵和下三角矩阵分别构成子环。
+
+差和乘积保持对应的矩阵形状，即可用判别法验证。
+
+映射$A\mapsto\operatorname{diag}(A,0)$把$M_2(P)$同构到$M_3(P)$的一个子环。
+该子环的单位元是$\operatorname{diag}(1,1,0)$，与$M_3(P)$的单位元不同。
+\end{example}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l923}双射$\varphi:R\to R'$若同时保持加法和乘法，称\textbf{环同构}，记作$R\cong R'$。
+\end{definition}
+\begin{proposition}
+环同构保持$0$、负元、整数倍、正整数幂；若母环有单位元，则同构将其映为目标环的单位元。
+环同构关系具有自反性、对称性和传递性。
+\end{proposition}
+\begin{proof}[补充证明]
+设$\varphi:R\to R'$为环同构。它是加法群的同构，所以
+\[
+\varphi(0)=0,
+\qquad \varphi(-a)=-\varphi(a),
+\qquad \varphi(na)=n\varphi(a)\quad(n\in\Z).
+\]
+由保持乘法，对正整数$m$反复应用同态性质，得到
+\[
+\varphi(a^m)=\varphi(a)^m.
+\]
+
+若$R$有单位元$1_R$，任取$y\in R'$，可写成$y=\varphi(a)$。
+因此
+\[
+\varphi(1_R)y=\varphi(1_Ra)=y,
+\qquad y\varphi(1_R)=\varphi(a1_R)=y.
+\]
+故$\varphi(1_R)$是$R'$的单位元。
+
+恒等映射是环同构；环同构的逆映射仍保持加法与乘法；两个环同构的复合也保持这两种运算。
+它们都是双射，所以同构关系具有自反性、对称性和传递性。
+\end{proof}
+\section{各种特殊类型的环}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l954}有乘法单位元的环称\textbf{幺环}，单位元记为$1$。
+
+\phantomsection\label{p2:concept:c1-l956}幺环中有双边乘法逆元的元素称\textbf{单位（可逆元）}，全体单位记为$R^\times$。
+
+\phantomsection\label{p2:concept:c1-l958}乘法交换的环称\textbf{交换环}。
+\end{definition}
+
+\begin{proposition}
+乘法单位元唯一；双边逆元唯一；若$a$有左逆$b$和右逆$c$，则$b=c$。
+\phantomsection\label{p2:concept:c1-l963}全体单位在乘法下成群，称\textbf{单位群}。
+\end{proposition}
+\begin{proof}
+若$u,v$均为乘法单位元，则
+\[
+u=uv=v,
+\]
+故单位元唯一。若$ba=1$且$ac=1$，则
+\[b=b(ac)=(ba)c=c.\]
+所以左逆与右逆同时存在时必相等，双边逆元也因此唯一。
+
+下面验证$R^\times$成群。它包含$1$，因为$1\cdot1=1$。
+若$u,v\in R^\times$，则
+\[
+\begin{aligned}
+(uv)(v^{-1}u^{-1})&=u(vv^{-1})u^{-1}=1,\\
+(v^{-1}u^{-1})(uv)&=v^{-1}(u^{-1}u)v=1.
+\end{aligned}
+\]
+故$uv$仍可逆，而且$(uv)^{-1}=v^{-1}u^{-1}$，说明单位集合对乘法封闭。
+又因为$u^{-1}$的逆是$u$，所以每个单位的逆仍是单位。
+结合律从环乘法继承，因此$R^\times$在乘法下成群。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l988}非零元素$a$若存在非零$b$使$ab=0$，称$a$为\textbf{左零因子}；
+\phantomsection\label{p2:concept:c1-l989}若存在非零$b$使$ba=0$，称$a$为\textbf{右零因子}。两者统称零因子。
+\phantomsection\label{p2:concept:c1-l990}无零因子的交换幺环，且$1\neq0$，称\textbf{整环}。
+\end{definition}
+
+\begin{proposition}
+环无零因子时，非零元素可左右消去：$ab=ac,a\neq0\Rightarrow b=c$，$ba=ca,a\neq0\Rightarrow b=c$。
+反之，若对所有非零元素两侧消去律均成立，则环无零因子。
+\end{proposition}
+\begin{proof}
+若$a\neq0$且$ab=ac$，则
+\[
+\begin{aligned}
+ab-ac&=0,\\
+a(b-c)&=0.
+\end{aligned}
+\]
+如果$b-c\neq0$，这就给出两个非零元素的乘积为0，与无零因子矛盾。因此$b-c=0$，即$b=c$。
+
+右侧消去同理：若$ba=ca$，则
+\[
+(b-c)a=0.
+\]
+由$a\neq0$及无零因子，同样得到$b=c$。
+
+\textit{补充逆命题。}假设非零元素的消去律成立。若$a,b\neq0$且$ab=0$，则
+\[
+ab=a0.
+\]
+因为$a\neq0$，左侧消去得$b=0$，矛盾。因此环中不存在非零元素的零乘积，也就没有零因子。
+\end{proof}
+
+\begin{example}
+
+$\Z$是整环，但不是域。
+
+$m\Z$（$m\geq2$）没有乘法单位元，所以不是整环。
+
+若单位元$u\in m\Z$存在，由$u\cdot m=m$在整数中得$u=1$，矛盾。
+
+$M_n(P)$（$n\geq2$）有零因子：$E_{11}E_{22}=0$，两者均非零。
+
+幺环中的$1=0$等价于该环只有一个元素，因为$a=a1=a0=0$。
+\end{example}
+
+\begin{definition}
+
+\phantomsection\label{p2:concept:c1-l1035}交换幺环$F$若$1\neq0$且每个非零元素可逆，称\textbf{域}。
+
+\phantomsection\label{p2:concept:c1-l1037}去掉乘法交换条件，得到\textbf{体（除环）}。
+
+\phantomsection\label{p2:concept:c1-l1039}域的子环若本身为域，称\textbf{子域}。
+\end{definition}
+
+\begin{proposition}
+体无零因子，域是整环；但整环未必是域。
+域的子域与母域具有相同的单位元。
+\end{proposition}
+\begin{proof}
+若在体中$ab=0$且$a,b\neq0$，则$a^{-1}$存在，故
+\[b=(a^{-1}a)b=a^{-1}(ab)=a^{-1}0=0.\]
+矛盾，所以两个非零元素的乘积不可能为0，体无零因子。
+域还是交换幺环且$1\neq0$，因此域是整环。
+但$\Z$是整环，元素2在其中没有乘法逆元，所以整环未必为域。
+
+设$K$是域$F$的子域，其单位元为$u$。
+由于$K$的加法是$F$加法的限制，加法单位元相同；又因$K$为域，所以$u\neq0$。
+由$u$在$K$中为单位元，得到$u^2=u$。在$F$中，$u$有逆元，故
+\[
+u^2=u
+\quad\Longrightarrow\quad
+u^{-1}u^2=u^{-1}u
+\quad\Longrightarrow\quad
+u=1.
+\]
+因此子域与母域的乘法单位元相同。
+\end{proof}
+
+\begin{theorem}
+\textbf{有限整环是域。}
+\end{theorem}
+\begin{proof}
+设
+\[
+R=\{a_1,a_2,\ldots,a_n\},\qquad a_1=1.
+\]
+任取非零$a\in R$，考虑$n$个乘积
+\[
+aa_1,aa_2,\ldots,aa_n.
+\]
+如果$aa_i=aa_j$，由整环中非零元素的消去律可知$a_i=a_j$，于是$i=j$。
+因此这些乘积两两不同。
+
+它们都属于只有$n$个元素的集合$R$，所以恰好列出了$R$的全部元素，其中必有单位元1。
+故存在$k$使
+\[
+aa_k=1.
+\]
+整环的乘法交换，因此还有$a_ka=1$，所以$a_k$是$a$的双边逆元。
+因为$a$是任取的非零元素，所有非零元素都可逆，所以$R$为域。
+\end{proof}
+
+\subsection*{四元数体的矩阵模型}
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l1092}集合
+\[
+\mathbb H=\left\{X(\alpha,\beta)=
+\begin{pmatrix}\alpha&\beta\\-\bar\beta&\bar\alpha\end{pmatrix}:
+\alpha,\beta\in\C\right\}
+\]
+是$M_2(\C)$的子环，并且是非交换的体，称\textbf{四元数体}。
+\end{proposition}
+\begin{proof}
+
+零矩阵为$X(0,0)$，而且
+\[
+X(\alpha,\beta)-X(\gamma,\delta)
+=X(\alpha-\gamma,\beta-\delta),
+\]
+所以对差封闭。乘法方面，直接计算得
+\[
+X(\alpha,\beta)X(\gamma,\delta)
+=X(\alpha\gamma-\beta\bar\delta,\alpha\delta+\beta\bar\gamma),
+\]
+故乘法也封闭，由子环判别法知$\mathbb H$是$M_2(\C)$的子环。
+
+取单位矩阵$X(1,0)$作为乘法单位元。
+对$X=X(\alpha,\beta)\neq0$，$\alpha,\beta$不全为0，所以
+\[
+\det X=\alpha\bar\alpha+\beta\bar\beta=|\alpha|^2+|\beta|^2>0.
+\]
+因此$X$在矩阵环中可逆，逆矩阵为
+\[
+X^{-1}=\frac1{|\alpha|^2+|\beta|^2}
+\begin{pmatrix}\bar\alpha&-\beta\\\bar\beta&\alpha\end{pmatrix}\in\mathbb H
+\]
+更具体地，记$d_0=|\alpha|^2+|\beta|^2$，则
+\[
+X^{-1}=X\left(\frac{\bar\alpha}{d_0},-\frac{\beta}{d_0}\right)\in\mathbb H.
+\]
+所以$\mathbb H$的每个非零元素都具有仍在$\mathbb H$中的乘法逆元，故$\mathbb H$是体。
+
+最后把元素写成四个实系数的形式。令
+\[
+I=\begin{pmatrix}i&0\\0&-i\end{pmatrix},\quad
+J=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\quad
+K=\begin{pmatrix}0&i\\i&0\end{pmatrix}.
+\]
+若$\alpha=a+bi,\beta=c+di$，则
+\[
+X(\alpha,\beta)
+=\begin{pmatrix}a+bi&c+di\\-c+di&a-bi\end{pmatrix}
+=a+bI+cJ+dK.
+\]
+复数的实部与虚部唯一，所以这四个实系数也唯一。
+由矩阵乘法计算，得到
+\[
+I^2=J^2=K^2=-1,\quad IJ=K=-JI,\quad JK=I=-KJ,\quad KI=J=-IK.
+\]
+$IJ\neq JI$，所以不交换，不是域。
+\end{proof}
+
+\section{环的同态、理想}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l1152}映射$\varphi:R\to R'$若满足
+\[
+\varphi(a+b)=\varphi(a)+\varphi(b),\qquad\varphi(ab)=\varphi(a)\varphi(b),
+\]
+\phantomsection\label{p2:concept:c1-l1156}称\textbf{环同态}。像为$\varphi(R)$，核为$\ker\varphi=\{a:\varphi(a)=0\}$。
+\phantomsection\label{p2:concept:c1-l1157}像为$\{0\}$称\textbf{零同态}；像为$R'$称\textbf{满同态}。
+\end{definition}
+
+\begin{proposition}
+环同态满足$\varphi(0)=0$、$\varphi(-a)=-\varphi(a)$、$\varphi(na)=n\varphi(a)$。
+像是子环，核是加法子群，且$\varphi$为单射当且仅当核为$\{0\}$。
+\end{proposition}
+\begin{proof}
+先把环同态看成加法群同态。由前面的群同态性质，立即得到
+\[
+\varphi(0)=0,\qquad
+\varphi(-a)=-\varphi(a),\qquad
+\varphi(na)=n\varphi(a).
+\]
+
+像包含$\varphi(0)=0$，因此非空。
+对像中的任意两个元素$\varphi(a),\varphi(b)$，有
+\[
+\begin{aligned}
+\varphi(a)-\varphi(b)&=\varphi(a-b)\in\varphi(R),\\
+\varphi(a)\varphi(b)&=\varphi(ab)\in\varphi(R).
+\end{aligned}
+\]
+由子环判别法，$\varphi(R)$为$R'$的子环。
+
+核就是加法群同态的核，所以它是$(R,+)$的子群。
+又有
+\[
+\begin{aligned}
+\varphi(a)=\varphi(b)
+&\iff\varphi(a)-\varphi(b)=0\\
+&\iff\varphi(a-b)=0\\
+&\iff a-b\in\ker\varphi.
+\end{aligned}
+\]
+若核为$\{0\}$，上式推出$a=b$，所以同态单射；反之，若同态单射，则
+$\varphi(a)=0=\varphi(0)$只能在$a=0$时成立，故核为$\{0\}$。
+\end{proof}
+
+\textbf{注：}
+依本章约定，环同态未必把母环的$1$映为目标环的$1$。
+若定义域有$1$，$\varphi(1)$只是\textbf{像子环}的单位元；若同态还满且目标为幺环，则必有$\varphi(1)=1$。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l1201}环$R$的加法子群$I$若对所有$r\in R,a\in I$有$ra\in I$且$ar\in I$，称\textbf{双边理想}。
+\phantomsection\label{p2:concept:c1-l1202}只要求$ra\in I$称\textbf{左理想}，只要求$ar\in I$称\textbf{右理想}。
+\phantomsection\label{p2:concept:c1-l1203}$\{0\}$与$R$称平凡理想。
+\end{definition}
+
+\begin{proposition}
+同态的核是双边理想。每个双边理想都是子环，但子环未必是理想。
+\end{proposition}
+\begin{proof}
+先由加法群同态的性质知道$\ker\varphi$是加法子群。
+取$a\in\ker\varphi$和任意$r\in R$，有
+\[
+\begin{aligned}
+\varphi(ra)&=\varphi(r)\varphi(a)=\varphi(r)0=0,\\
+\varphi(ar)&=\varphi(a)\varphi(r)=0\varphi(r)=0.
+\end{aligned}
+\]
+因此$ra,ar\in\ker\varphi$，满足\textbf{双边吸收条件}，所以核是双边理想。
+
+\textbf{补充理想与子环的比较：}若$I$为双边理想，则它作为加法子群非空，且
+\[
+a,b\in I\Longrightarrow a-b\in I.
+\]
+又因为$a\in I\subseteq R,b\in I$，由吸收性有$ab\in I$。
+所以$I$对差与积封闭，由子环判别法为子环。
+
+反过来，$\Z$是$\Q$的子环，但
+\[
+1\in\Z,\qquad \frac12\in\Q,\qquad \frac12\cdot1\notin\Z.
+\]
+因此$\Z$不满足被母环元素乘后仍在其中的条件，不是$\Q$的理想。
+\end{proof}
+
+\begin{proposition}
+幺环$R$的理想$I$若含$1$，则$I=R$；若含任一单位，也有$I=R$。
+\end{proposition}
+\begin{proof}
+若$1\in I$，任取$r\in R$，由理想的吸收性，
+\[
+r=r1\in I.
+\]
+因此$R\subseteq I$，而$I\subseteq R$，故$I=R$。
+
+若$I$含任一可逆元$u$，则$u^{-1}\in R$，再次由吸收性，
+\[
+u^{-1}u=1\in I.
+\]
+于是归结为上一种情形，仍有$I=R$。
+\end{proof}
+\section{商环}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l1252}若$I$是$R$的双边理想，令$R/I=\{a+I:a\in R\}$。
+定义
+\[
+(a+I)+(b+I)=a+b+I,\qquad(a+I)(b+I)=ab+I,
+\]
+所得环称\textbf{商环}。
+\end{definition}
+
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l1261}商环运算良定义，且满足环公理。若$R$是幺环，其商环的单位元为$1+I$；若$I=R$，商环为零环。
+\end{proposition}
+\begin{proof}
+先把$I$看成加法群的子群，使用加法商群定义陪集的加法。
+因为加法交换，$I$在加法群中正规，所以全体$a+I$在加法下为交换群，零元为$I$，$a+I$的负元为$-a+I$。
+
+再考虑乘法。取任意
+\[
+x=a+i\in a+I,\qquad y=b+j\in b+I,
+\qquad i,j\in I.
+\]
+由分配律，
+\[
+\begin{aligned}
+xy
+&=(a+i)(b+j)\\
+&=ab+ib+aj+ij.
+\end{aligned}
+\]
+因为$I$是双边理想，$ib,aj,ij\in I$，所以$xy\in ab+I$。
+这说明两个陪集的任意代表相乘，都落在同一个陪集$ab+I$中。
+因此规定
+\[
+(a+I)(b+I)=ab+I
+\]
+与代表的选择无关，乘法良定义。
+
+由$R$中的对应性质，
+\[
+\begin{aligned}
+\bigl((a+I)(b+I)\bigr)(c+I)&=(ab)c+I,\\
+(a+I)\bigl((b+I)(c+I)\bigr)&=a(bc)+I.
+\end{aligned}
+\]
+两式相等，故乘法结合。又有
+\[
+\begin{aligned}
+(a+I)\bigl((b+I)+(c+I)\bigr)
+&=a(b+c)+I\\
+&=ab+ac+I\\
+&=(a+I)(b+I)+(a+I)(c+I),
+\end{aligned}
+\]
+以及
+\[
+\begin{aligned}
+\bigl((b+I)+(c+I)\bigr)(a+I)
+&=(b+c)a+I\\
+&=ba+ca+I\\
+&=(b+I)(a+I)+(c+I)(a+I).
+\end{aligned}
+\]
+所以两侧分配律成立，所得结构确为环。
+
+若$R$有单位元1，则
+\[
+(1+I)(a+I)=a+I=(a+I)(1+I),
+\]
+故$1+I$为商环的单位元。若$I=R$，所有陪集都等于$R$，所以商环只有一个元素，即零环。
+\end{proof}
+
+\textbf{注：}
+商环乘法是\textbf{定义}为$ab+I$。两个陪集作为集合的乘积一般仅有
+$\{xy:x\in a+I,y\in b+I\}\subseteq ab+I$，未必相等。
+例如$R=\Z,I=2\Z,a=b=0$，集合乘积为$4\Z$，而商环乘积对应陪集$2\Z$。
+
+\begin{proposition}
+\phantomsection\label{p2:concept:c1-l1328}自然映射$\pi:R\to R/I$，$a\mapsto a+I$是满环同态，且核为$I$。
+所以双边理想恰是环同态的核。
+\end{proposition}
+\begin{proof}
+以下直接按定义验证。
+对任意$a,b\in R$，有
+\[
+\begin{aligned}
+\pi(a+b)&=a+b+I=(a+I)+(b+I)=\pi(a)+\pi(b),\\
+\pi(ab)&=ab+I=(a+I)(b+I)=\pi(a)\pi(b).
+\end{aligned}
+\]
+所以$\pi$为环同态。
+每个商环元素都是某个$a+I=\pi(a)$，故它是满射。
+
+商环的零元为$I$，于是
+\[
+\begin{aligned}
+\ker\pi
+&=\{a\in R:a+I=I\}\\
+&=I.
+\end{aligned}
+\]
+因此每个双边理想都是一个环同态的核；反过来，同态的核已证明为双边理想。
+\end{proof}
+
+\begin{proposition}
+对$n\geq2$，$\bar a\in\Z/n\Z$可逆当且仅当$\gcd(a,n)=1$。
+\phantomsection\label{p2:concept:c1-l1356}其单位群(记为$(\Z/n\Z)^{\times}$)的阶为欧拉函数$\varphi(n)$。
+$\Z/n\Z$是域当且仅当$n$为素数。
+\end{proposition}
+\begin{proof}
+若$\bar a$可逆，则存在$\bar b$使
+\[
+\bar a\bar b=\bar1,
+\]
+即$ab\equiv1\pmod n$。因此存在$k\in\Z$使
+\[
+ab+kn=1.
+\]
+$a,n$的任一公因子都整除右边的1，故$\gcd(a,n)=1$。
+
+反之，若$\gcd(a,n)=1$，由贝祖等式存在$b,k\in\Z$使$ab+kn=1$。
+模$n$化简，得到
+\[
+\bar a\bar b=\overline{ab}=\bar1.
+\]
+因为商环乘法交换，$\bar b$是$\bar a$的双边逆元。
+所以可逆元恰为模$n$的互素剩余类，个数为$\varphi(n)$。
+
+当$n=p$为素数时，每个非零剩余类可取代表$1\leq a<p$，从而$\gcd(a,p)=1$，所以均可逆。
+又因$p\geq2$，$\bar1\neq\bar0$，故$\Z/p\Z$为域。
+
+若$n$为合数，可写为$n=uv$，其中$1<u,v<n$。
+于是
+\[
+\bar u\neq\bar0,\qquad \bar v\neq\bar0,
+\qquad \bar u\bar v=\overline{uv}=\bar n=\bar0.
+\]
+这给出零因子，所以$\Z/n\Z$不可能为域。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-first-iso}
+\textbf{环同态基本定理（第一同构定理）：}任意环同态$\varphi:R\to R'$诱导环同构
+\[
+R/\ker\varphi\cong\varphi(R),\qquad a+\ker\varphi\longmapsto\varphi(a).
+\]
+特别地，若$\varphi$满，则$R/\ker\varphi\cong R'$。
+\end{theorem}
+\begin{proof}
+令$I=\ker\varphi$，它已证明为双边理想，故可作商环$R/I$。
+定义
+\[
+\bar\varphi:R/I\longrightarrow\varphi(R),\qquad
+\bar\varphi(a+I)=\varphi(a).
+\]
+
+先核对代表选择。由加法群的陪集性质，
+\[
+\begin{aligned}
+a+I=b+I
+&\iff a-b\in I\\
+&\iff\varphi(a-b)=0\\
+&\iff\varphi(a)-\varphi(b)=0\\
+&\iff\varphi(a)=\varphi(b).
+\end{aligned}
+\]
+正向蕴含说明$\bar\varphi$良定义，反向蕴含说明它为单射。
+任意$y\in\varphi(R)$都有$y=\varphi(a)=\bar\varphi(a+I)$，所以它满到$\varphi(R)$，从而是双射。
+
+再验证两种运算。对任意$a+I,b+I$，有
+\[
+\begin{aligned}
+\bar\varphi\bigl((a+I)+(b+I)\bigr)
+&=\bar\varphi(a+b+I)\\
+&=\varphi(a+b)\\
+&=\varphi(a)+\varphi(b)\\
+&=\bar\varphi(a+I)+\bar\varphi(b+I),
+\end{aligned}
+\]
+以及
+\[
+\begin{aligned}
+\bar\varphi\bigl((a+I)(b+I)\bigr)
+&=\bar\varphi(ab+I)\\
+&=\varphi(ab)\\
+&=\varphi(a)\varphi(b)\\
+&=\bar\varphi(a+I)\bar\varphi(b+I).
+\end{aligned}
+\]
+因此$\bar\varphi$为环同构。特别地，若$\varphi$为满射，则$\varphi(R)=R'$，故$R/I\cong R'$。
+\end{proof}
+\section{特征}
+\begin{definition}
+\phantomsection\label{p2:concept:c1-l1442}域$F$的单位元在加法群中若有有限阶$p$，称$F$的\textbf{特征}为$p$；若该阶无限，称特征为$0$。
+记作$\operatorname{char}F$（或记为$\chi(F)$）。
+也就是说，特征为正时是使$p1=0$成立的最小正整数。
+\end{definition}
+
+\begin{theorem}
+域的特征只能为$0$或素数。
+\end{theorem}
+\begin{proof}
+若1在加法群中有无限阶，按定义域的特征为0。
+
+设1的加法阶为正整数$p$，即$p$是满足$p1=0$的最小正整数。
+因为$1\neq0$，所以$p>1$。
+假设$p$不是素数，则可写成
+\[
+p=uv,\qquad 1<u<p,\quad1<v<p.
+\]
+由$p$的最小性，
+\[
+u1\neq0,\qquad v1\neq0.
+\]
+但整数倍与乘法的相容性给出
+\[
+(u1)(v1)=(uv)1=p1=0.
+\]
+这与域无零因子矛盾。因此有限特征$p$必为素数，结论成立。
+\end{proof}
+
+\begin{proposition}
+域$F$的所有非零元素在加法群中有相同的阶，等于$1$的加法阶。
+
+特征为0时，对$n\in\Z\setminus\{0\},b\in F$，方程$nx=b$有唯一解
+$x=(n1)^{-1}b$，常记为$\dfrac1n b$。
+
+特征为$p>0$时，$n1=0$当且仅当$p\mid n$；此时方程$nx=b$仅在$b=0$时有解，并且每个$x$都是解。
+若$p\nmid n$则仍有唯一解。
+\end{proposition}
+\begin{proof}
+若$a\neq0$，则对任意整数$n$有
+\[
+na=n(a1)=a(n1).
+\]
+因此$n1=0$必推出$na=0$；反之，若$na=0$，因为$a$可逆，
+\[
+a^{-1}(na)=a^{-1}a(n1)=n1=0.
+\]
+故
+\[
+na=0\iff n1=0.
+\]
+所以$a$与1在加法群中满足相同的整数倍为零的条件，从而加法阶相同，包括两者均为无限阶的情形。
+
+再讨论$nx=b$。由整数倍的性质，
+\[
+nx=(n1)x.
+\]
+若$\operatorname{char}F=0$且$n\neq0$，则$n1\neq0$，所以方程等价于
+\[
+x=(n1)^{-1}b.
+\]
+代回得到
+\[
+n\bigl((n1)^{-1}b\bigr)=(n1)(n1)^{-1}b=b,
+\]
+因此这确为唯一解。
+
+\textit{补充正特征下的讨论。}若$\operatorname{char}F=p>0$，由于1的加法阶为$p$，
+\[
+n1=0\iff p\mid n.
+\]
+当$p\mid n$时，$nx=0$对所有$x$成立，所以$b=0$时每个$x$均为解，$b\neq0$时无解。
+当$p\nmid n$时，$n1\neq0$，与前一情形相同，方程有唯一解$x=(n1)^{-1}b$。
+\end{proof}
+
+\begin{theorem}
+\phantomsection\label{p2:concept:c1-l1517}\textbf{素域：}每个域含有唯一的最小子域。
+特征为0时它同构于$\Q$；特征为素数$p$时它同构于$\F_p=\Z/p\Z$。
+这些最小的域称\textbf{素域}。
+\end{theorem}
+\begin{proof}
+先定义整数环到$F$的映射
+\[
+\eta:\Z\longrightarrow F,\qquad \eta(n)=n1.
+\]
+整数倍的运算法则给出
+\[
+\begin{aligned}
+\eta(m+n)&=(m+n)1=m1+n1=\eta(m)+\eta(n),\\
+\eta(mn)&=(mn)1=(m1)(n1)=\eta(m)\eta(n).
+\end{aligned}
+\]
+所以$\eta$是环同态。
+
+\textbf{特征为$p>0$的情形：}这时1的加法阶为$p$，故
+\[
+\ker\eta=\{n\in\Z:n1=0\}=p\Z.
+\]
+由环同态基本定理，
+\[
+\Z/p\Z\cong\eta(\Z)=\{0,1,2\cdot1,\ldots,(p-1)1\}.
+\]
+左边是域，因此右边的像也是域，并在$F$中构成一个子域，同构于$\F_p$。
+
+\textbf{特征为0的情形：}此时$n1=0$只能在$n=0$时成立，所以$\eta$为单射，其像与整数环同构。
+当$n\neq0$时，$n1\neq0$，在$F$中可取逆元，故把映射扩充到$\Q$：
+\[
+\widetilde\eta:\Q\longrightarrow F,\qquad
+\widetilde\eta\left(\frac mn\right)=(n1)^{-1}(m1),\quad n\neq0.
+\]
+
+若$m/n=m'/n'$，则$mn'=m'n$，从而
+\[
+(m1)(n'1)=(m'1)(n1).
+\]
+在域$F$中乘以$(n1)^{-1}(n'1)^{-1}$，便得到
+\[
+(n1)^{-1}(m1)=(n'1)^{-1}(m'1).
+\]
+因此$\widetilde\eta$良定义。
+
+记$M=m1,N=n1,M'=m'1,N'=n'1$，其中$N,N'$非零。
+利用域乘法交换及分数通分，有
+\[
+\begin{aligned}
+\widetilde\eta\left(\frac mn+\frac{m'}{n'}\right)
+&=(NN')^{-1}(MN'+M'N)\\
+&=N^{-1}M+(N')^{-1}M'\\
+&=\widetilde\eta\left(\frac mn\right)
++\widetilde\eta\left(\frac{m'}{n'}\right),
+\end{aligned}
+\]
+以及
+\[
+\begin{aligned}
+\widetilde\eta\left(\frac mn\frac{m'}{n'}\right)
+&=(NN')^{-1}MM'\\
+&=(N^{-1}M)((N')^{-1}M')\\
+&=\widetilde\eta\left(\frac mn\right)
+\widetilde\eta\left(\frac{m'}{n'}\right).
+\end{aligned}
+\]
+所以它是环同态。若$\widetilde\eta(m/n)=0$，则$m1=0$；因特征为0，有$m=0$，故核为$\{0\}$，映射单射。
+
+设其像为$F_0$。它作为同态像已是子环，且包含$\widetilde\eta(1)=1$。
+若$0\neq\widetilde\eta(m/n)\in F_0$，则$m\neq0$，并有
+\[
+\widetilde\eta\left(\frac mn\right)
+\widetilde\eta\left(\frac nm\right)
+=\widetilde\eta(1)=1.
+\]
+所以非零元素的逆仍在$F_0$，故$F_0$为子域，且$F_0\cong\Q$。
+
+\textit{补充最小性与唯一性。}任意子域$K\subseteq F$都与$F$共用单位元1，因此包含1的所有整数倍。
+正特征时，这说明$K$包含上面构造的$\eta(\Z)$。
+特征为0时，$K$还包含每个非零$n1$的逆，因而包含全部$(n1)^{-1}(m1)$，即包含$F_0$。
+所以构造出的子域包含于每个子域中，是最小子域。
+若另有一个最小子域，两者必须互相包含，故相等，因此最小子域唯一。
+\end{proof}
+
+
+
+%\section{章末习题中的知识与解法}
+%\noindent\textit{习题1--45。}
+%\input{chapters/Part 2/chapter1-exercises}
+%
+%\section*{复习时应核对的条件}
+%\addcontentsline{toc}{section}{复习时应核对的条件}
+%\begin{enumerate}
+%\item 验证群：先说明运算封闭，再说明结合律、单位元、逆元；单侧公理须先推出双侧性质。
+%\item 验证子群或子环：不能忘记非空；分别用$ab^{-1}$或$a-b,ab$判别。
+%\item 非交换乘法不能随意改变次序；$(ab)^{-1}=b^{-1}a^{-1}$。
+%\item 陪集不是子群；$G/H$成商群前先核对$H$正规。
+%\item 同态的反像是集合；核描述“被压成单位元或零元”的部分，像描述得到的结构。
+%\item 环不必有$1$；子环可以没有$1$，也可能有与母环不同的$1$；同构与一般同态在保持$1$上有区别。
+%\item 无零因子才有非零消去律；一侧逆元与双侧逆元要区分。
+%\item 理想必须被母环元素两侧吸收；商环必须证明代表选择无关。
+%\item 有限整环是域，不能遗漏有限性、交换性、单位元和$1\neq0$。
+%\item 特征为0不表示$1$的加法阶为0，而表示该阶无限；特征为$p$时只有$p\nmid n$才允许除以$n$。
+%\end{enumerate}

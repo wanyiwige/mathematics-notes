@@ -1,0 +1,368 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第2章：多元函数微分学
+% 节：2.2 复合函数的链式法则
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{复合函数的链式法则}
+
+\subsection*{二元函数复合函数求导法则}
+
+设
+\[
+f:D_f\subset\R^2\to\R,
+\qquad
+g:D_g\subset\R^2\to\R^2,
+\]
+且 $g(D_g)\subset D_f$.记
+\[
+g(u,v)=\bigl(x(u,v),y(u,v)\bigr).
+\]
+
+\begin{theorem}
+	若 $g$ 在 $(u_0,v_0)$ 处可微，记
+	\[
+	x_0=x(u_0,v_0),\qquad y_0=y(u_0,v_0),
+	\]
+	并且 $f$ 在 $(x_0,y_0)$ 处可微，则复合函数
+	\[
+	z=f\circ g=f\bigl(x(u,v),y(u,v)\bigr)
+	\]
+	在 $(u_0,v_0)$ 处可微，且
+	\[
+	\frac{\partial z}{\partial u}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial u},
+	\qquad
+	\frac{\partial z}{\partial v}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial v},
+	\]
+	其中 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$
+	在 $(x_0,y_0)$ 处取值，而
+	$\dfrac{\partial x}{\partial u}$、$\dfrac{\partial y}{\partial u}$、
+	$\dfrac{\partial x}{\partial v}$、$\dfrac{\partial y}{\partial v}$
+	在 $(u_0,v_0)$ 处取值.
+\end{theorem}
+
+上述链式法则可写成矩阵形式
+\[
+\begin{pmatrix}
+\dfrac{\partial z}{\partial u}\\[5pt]
+\dfrac{\partial z}{\partial v}
+\end{pmatrix}_{(u_0,v_0)}
+=
+\begin{pmatrix}
+\dfrac{\partial x}{\partial u}
+&\dfrac{\partial y}{\partial u}\\[5pt]
+\dfrac{\partial x}{\partial v}
+&\dfrac{\partial y}{\partial v}
+\end{pmatrix}_{(u_0,v_0)}
+\begin{pmatrix}
+\dfrac{\partial f}{\partial x}\\[5pt]
+\dfrac{\partial f}{\partial y}
+\end{pmatrix}_{(x_0,y_0)}.
+\]
+
+\begin{proof}
+	这里只证明关于 $u$ 的公式.记
+	\[
+	\begin{aligned}
+	\Delta x&=x(u_0+\Delta u,v_0)-x(u_0,v_0),\\
+	\Delta y&=y(u_0+\Delta u,v_0)-y(u_0,v_0).
+	\end{aligned}
+	\]
+	于是
+	\[
+	\begin{aligned}
+	\frac{\partial z}{\partial u}(u_0,v_0)
+	&=
+	\lim_{\Delta u\to0}
+	\frac{
+	f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}
+	{\Delta u}.
+	\end{aligned}
+	\]
+	由 $f$ 在 $(x_0,y_0)$ 处可微，
+	\[
+	f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)
+	=
+	f_x(x_0,y_0)\Delta x
+	+
+	f_y(x_0,y_0)\Delta y
+	+
+	o\left(\sqrt{\Delta x^2+\Delta y^2}\right).
+	\]
+	又因 $g$ 在 $(u_0,v_0)$ 处可微，
+	\[
+	\lim_{\Delta u\to0}\frac{\Delta x}{\Delta u}
+	=
+	\frac{\partial x}{\partial u}(u_0,v_0),
+	\qquad
+	\lim_{\Delta u\to0}\frac{\Delta y}{\Delta u}
+	=
+	\frac{\partial y}{\partial u}(u_0,v_0),
+	\]
+	并且
+	\[
+	\lim_{\Delta u\to0}
+	\frac{o\left(\sqrt{\Delta x^2+\Delta y^2}\right)}
+	{\Delta u}=0.
+	\]
+	故
+	\[
+	\frac{\partial z}{\partial u}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}.
+	\]
+	关于 $v$ 的公式同理.
+\end{proof}
+
+一般地，设
+\[
+f:D_f\subset\R^m\to\R,
+\qquad
+g:D_g\subset\R^n\to\R^m,
+\]
+并记
+\[
+g(x_1,\cdots,x_n)
+=
+\bigl(y_1(x_1,\cdots,x_n),\cdots,y_m(x_1,\cdots,x_n)\bigr),
+\qquad
+z=f\circ g.
+\]
+若 $f$ 与 $g$ 在相应点处可微，则对于 $i=1,\cdots,n$，
+\[
+\frac{\partial z}{\partial x_i}
+=
+\frac{\partial f}{\partial y_1}\frac{\partial y_1}{\partial x_i}
++
+\frac{\partial f}{\partial y_2}\frac{\partial y_2}{\partial x_i}
++\cdots+
+\frac{\partial f}{\partial y_m}\frac{\partial y_m}{\partial x_i}.
+\]
+写成矩阵形式即
+\[
+\begin{pmatrix}
+\dfrac{\partial z}{\partial x_1}
+&\cdots&
+\dfrac{\partial z}{\partial x_n}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\dfrac{\partial f}{\partial y_1}
+&\cdots&
+\dfrac{\partial f}{\partial y_m}
+\end{pmatrix}
+\frac{D(y_1,\cdots,y_m)}
+{D(x_1,\cdots,x_n)}.
+\]
+
+\begin{theorem}[向量值复合函数的链式法则]
+	设
+	\[
+	\vect f:D_f\subset\R^k\to\R^m,
+	\qquad
+	\vect g:D_g\subset\R^n\to\R^k
+	\]
+	分别为多元向量值函数，且分别在 $D_f$ 与 $D_g$ 上具有连续导数.
+	若 $\vect g(D_g)\subset D_f$，并记 $\vect u=\vect g(\vect x)$，
+	则复合向量值函数 $\vect f\circ\vect g$ 在 $D_g$ 上也具有连续导数，
+	并且
+	\[
+	(\vect f\circ\vect g)'(\vect x)
+	=
+	\vect f'(\vect u)\,\vect g'(\vect x)
+	=
+	\vect f'\bigl(\vect g(\vect x)\bigr)\,\vect g'(\vect x).
+	\]
+	其中 $\vect f'(\vect u)$、$\vect g'(\vect x)$ 和
+	$(\vect f\circ\vect g)'(\vect x)$ 分别表示相应函数的 Jacobi 矩阵.
+\end{theorem}
+
+\subsection*{例子}
+
+\begin{example}
+	设
+	\[
+	z=\arctan(xy),\qquad y=e^x.
+	\]
+	求 $\left.\dfrac{\dd z}{\dd x}\right|_{x=0}$.
+
+	由复合函数的链式法则，
+	\[
+	\frac{\dd z}{\dd x}
+	=
+	\frac{\partial z}{\partial x}
+	+
+	\frac{\partial z}{\partial y}\frac{\dd y}{\dd x}
+	=
+	\frac{y}{1+x^2y^2}
+	+
+	\frac{x}{1+x^2y^2}e^x.
+	\]
+	当 $x=0$ 时，$y=1$，故
+	\[
+	\left.\frac{\dd z}{\dd x}\right|_{x=0}=1.
+	\]
+\end{example}
+
+\begin{example}
+	设
+	\[
+	z=\frac{x^2}{y},\qquad x=2uv,\qquad y=2u+v.
+	\]
+	则
+	\[
+	\begin{aligned}
+	\frac{\partial z}{\partial u}
+	&=
+	\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\\
+	&=
+	\frac{2x}{y}\cdot 2v-\frac{x^2}{y^2}\cdot 2\\
+	&=
+	\frac{4uv}{2u+v}\cdot 2v
+	-
+	\frac{8u^2v^2}{(2u+v)^2}.
+	\end{aligned}
+	\]
+\end{example}
+
+\begin{example}
+	设
+	\[
+	w=f(x^2+y^2,xyz).
+	\]
+	令
+	\[
+	\xi=x^2+y^2,
+	\qquad
+	\eta=xyz,
+	\qquad
+	w=f(\xi,\eta).
+	\]
+	则
+	\[
+	\frac{\partial w}{\partial x}
+	=
+	\frac{\partial f}{\partial\xi}\frac{\partial\xi}{\partial x}
+	+
+	\frac{\partial f}{\partial\eta}\frac{\partial\eta}{\partial x}
+	=
+	2x\frac{\partial f}{\partial\xi}
+	+yz\frac{\partial f}{\partial\eta}.
+	\]
+	这里 $\dfrac{\partial f}{\partial\xi}$ 称为 $f$ 对第一变元求偏导，
+	$\dfrac{\partial f}{\partial\eta}$ 称为 $f$ 对第二变元求偏导.
+	在所需的二阶偏导数均存在时，进一步有
+	\[
+	\begin{aligned}
+	\frac{\partial^2w}{\partial z\partial x}
+	&=
+	\frac{\partial}{\partial z}
+	\left(
+	2x\frac{\partial f}{\partial\xi}
+	+yz\frac{\partial f}{\partial\eta}
+	\right)\\
+	&=
+	2x\left(
+	\frac{\partial^2f}{\partial\xi^2}\frac{\partial\xi}{\partial z}
+	+
+	\frac{\partial^2f}{\partial\eta\partial\xi}
+	\frac{\partial\eta}{\partial z}
+	\right)
+	+y\frac{\partial f}{\partial\eta}\\
+	&\qquad
+	+yz\left(
+	\frac{\partial^2f}{\partial\xi\partial\eta}
+	\frac{\partial\xi}{\partial z}
+	+
+	\frac{\partial^2f}{\partial\eta^2}
+	\frac{\partial\eta}{\partial z}
+	\right)\\
+	&=
+	2x^2y\frac{\partial^2f}{\partial\eta\partial\xi}
+	+y\frac{\partial f}{\partial\eta}
+	+xy^2z\frac{\partial^2f}{\partial\eta^2}.
+	\end{aligned}
+	\]
+\end{example}
+
+\subsection*{一阶微分形式的不变性}
+
+回忆一元复合函数的情形.设
+\[
+y=f(x),\qquad x=\varphi(t).
+\]
+若把 $x$ 看作中间变量，对 $t$ 求微分，则
+\[
+\dd y=f'(x)\varphi'(t)\dd t=f'(x)\dd x;
+\]
+若直接把 $x$ 看作自变量，同样有
+\[
+\dd y=f'(x)\dd x.
+\]
+
+类似地，设
+\[
+z=f(x,y),
+\qquad
+x=x(u,v),
+\qquad
+y=y(u,v).
+\]
+当 $x,y$ 被看作自变量时，
+\[
+\dd z=\frac{\partial f}{\partial x}\dd x
++\frac{\partial f}{\partial y}\dd y.
+\]
+当 $x,y$ 被看作中间变量时，
+\[
+\begin{aligned}
+\dd z
+&=
+\frac{\partial z}{\partial u}\dd u
++
+\frac{\partial z}{\partial v}\dd v\\
+&=
+\left(
+\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
++
+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}
+\right)\dd u
++
+\left(
+\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}
++
+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}
+\right)\dd v\\
+&=
+\frac{\partial f}{\partial x}
+\left(
+\frac{\partial x}{\partial u}\dd u
++
+\frac{\partial x}{\partial v}\dd v
+\right)
++
+\frac{\partial f}{\partial y}
+\left(
+\frac{\partial y}{\partial u}\dd u
++
+\frac{\partial y}{\partial v}\dd v
+\right)\\
+&=
+\frac{\partial f}{\partial x}\dd x
++
+\frac{\partial f}{\partial y}\dd y.
+\end{aligned}
+\]
+因此，无论 $x,y$ 是自变量还是中间变量，一阶全微分都具有相同的形式，
+这称为\textbf{一阶微分形式的不变性}.一般而言，二阶及更高阶微分形式不具有这种不变性.
+

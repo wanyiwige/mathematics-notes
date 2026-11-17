@@ -1,0 +1,270 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.7 可积函数的逼近
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{可积函数的逼近}
+\begin{theorem}
+	设 $I=[a,b]$，若 $f$ 在 $[a,b]$ 上黎曼可积，则存在连续函数列
+	\[
+	\{f_k\}_{k=1}^{\infty}\subset C[a,b],
+	\]
+	使得
+	\[
+	\int_a^b |f(x)-f_k(x)|\dd x\to 0,
+	\qquad k\to\infty.
+	\]
+	也就是说，连续函数在可积函数中是稠密的
+\end{theorem}
+
+\begin{proof}
+
+		任取 $\varepsilon>0$.由于 $f(x)$ 在 $[a,b]$ 上 Riemann 可积,由 Darboux 可积性准则,存在分划$P:a=x_0<x_1<\cdots<x_m=b,$使得
+		\[
+		\overline{S}(P)-\underline{S}(P)<\frac{\varepsilon}{2}.
+		\]
+		
+		记
+		\[
+		\Delta x_j=x_j-x_{j-1},
+		\]
+		并设
+		\[
+		M_j=\sup_{x\in[x_{j-1},x_j]}f(x),
+		\qquad
+		m_j=\inf_{x\in[x_{j-1},x_j]}f(x),
+		\]
+		其中 $j=1,2,\cdots,m$.于是
+		\[
+		\overline{S}(P)-\underline{S}(P)
+		=
+		\sum_{j=1}^{m}(M_j-m_j)\Delta x_j.
+		\]
+		故
+		\[
+		\sum_{j=1}^{m}(M_j-m_j)\Delta x_j<\frac{\varepsilon}{2}.
+		\]
+		
+		下面先用阶梯函数逼近 $f(x)$.在每个小区间 $[x_{j-1},x_j]$ 中任取一点$\xi_j\in[x_{j-1},x_j],$
+	
+		定义阶梯函数
+		\[
+		s(x)=f(\xi_j),\qquad x\in[x_{j-1},x_j),
+		\]
+		其中 $j=1,2,\cdots,m$,并令$s(b)=f(\xi_m).$
+	
+		当 $x\in[x_{j-1},x_j]$ 时,有
+		\[
+		m_j\leq f(x)\leq M_j,
+		\qquad
+		m_j\leq f(\xi_j)\leq M_j.
+		\]
+		于是
+		\[
+		|f(x)-s(x)|
+		=
+		|f(x)-f(\xi_j)|
+		\leq M_j-m_j.
+		\]
+		因此
+		\[\int_a^b |f(x)-s(x)|\dd x
+			=
+			\sum_{j=1}^{m}\int_{x_{j-1}}^{x_j}|f(x)-s(x)|\dd x\leq
+			\sum_{j=1}^{m}(M_j-m_j)\Delta x_j
+			<
+			\frac{\varepsilon}{2}.
+		\]
+		
+		这说明 $f(x)$ 可以在积分意义下先由阶梯函数 $s(x)$ 逼近.
+		
+		下面再用连续函数逼近阶梯函数 $s(x)$.由于 $f(x)$ 在 $[a,b]$ 上 Riemann 可积,所以 $f(x)$ 有界.故存在 $A>0$,使得
+		\[
+		|f(x)|\leq A,\qquad x\in[a,b].
+		\]
+		由 $s(x)$ 的定义可知
+		\[
+		|s(x)|\leq A,\qquad x\in[a,b].
+		\]
+		
+		阶梯函数 $s(x)$ 只可能在有限个分点$x_1,x_2,\cdots,x_{m-1}$处发生跳跃.取充分小的 $\delta>0$,使得区间
+		\[
+		(x_j-\delta,x_j+\delta),
+		\qquad j=1,2,\cdots,m-1,
+		\]
+		两两不交,并且满足
+		\[
+		4A(m-1)\delta<\frac{\varepsilon}{2}.
+		\]
+		
+		现在构造连续函数 $g(x)$.在不属于这些小区间的点上,令$g(x)=s(x).$在每个小区间$[x_j-\delta,x_j+\delta]$上,令 $g(x)$ 从 $s(x_j-\delta)$ 线性连接到 $s(x_j+\delta)$.
+		
+		这样定义出来的 $g(x)$ 在每个小区间内连续,在连接处也连续,且在其余地方等于阶梯函数 $s(x)$.故$g\in C[a,b].$
+
+		又因为 $g(x)$ 只是把 $s(x)$ 的相邻两个阶梯值作线性连接,而 $s(x)$ 的值都在 $[-A,A]$ 中,所以
+		\[
+		|g(x)|\leq A,\qquad x\in[a,b].
+		\]
+		于是
+		\[
+		|g(x)-s(x)|\leq 2A,\qquad x\in[a,b].
+		\]
+		
+		注意到 $g(x)$ 与 $s(x)$ 不相等的地方只包含在
+		\[
+		\bigcup_{j=1}^{m-1}(x_j-\delta,x_j+\delta)
+		\]
+		中,这些区间的总长度不超过$2(m-1)\delta.$
+
+		因此
+		\[	\int_a^b |g(x)-s(x)|\dd x
+			\leq
+			2A\cdot 2(m-1)\delta
+			=
+			4A(m-1)\delta\\
+			<
+			\frac{\varepsilon}{2}
+		\]
+		
+		由三角不等式,
+		\[\int_a^b |f(x)-g(x)|\dd x
+			\leq
+			\int_a^b |f(x)-s(x)|\dd x
+			+
+			\int_a^b |s(x)-g(x)|\dd x
+			<
+			\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+			=
+			\varepsilon.
+		\]
+		
+		所以对任意 $\varepsilon>0$,存在连续函数 $g\in C[a,b]$,使得
+		\[
+		\int_a^b |f(x)-g(x)|\dd x<\varepsilon.
+		\]
+		
+		令 $\varepsilon=\frac1k$,则对每个 $k\in\mathbb{N}_+$,存在 $f_k\in C[a,b]$,使得
+		\[
+		\int_a^b |f(x)-f_k(x)|\dd x<\frac1k.
+		\]
+		于是
+		\[
+		\int_a^b |f(x)-f_k(x)|\dd x\to0,\qquad k\to\infty.
+		\]
+		
+		综上,$C[a,b]$在 $\mathcal{R}[a,b]$ 中稠密.
+
+\end{proof}
+\begin{corollary}\label{C在R中一致有界稠密}
+	设 $f(x)$ 在闭区间 $[a,b]$ 上 Riemann 可积,且
+	\[
+	|f(x)|\leq B,\qquad x\in[a,b].
+	\]
+	则存在连续函数列
+	\[
+	\{f_k\}_{k=1}^{\infty}\subset C[a,b],
+	\]
+	使得
+	\[
+	\sup_{x\in[a,b]}|f_k(x)|\leq B,\qquad k=1,2,\cdots,
+	\]
+	并且
+	\[
+	\int_a^b |f(x)-f_k(x)|\dd x\to0,\qquad k\to\infty.
+	\]
+\end{corollary}
+
+\begin{proof}
+	由上一定理可知,存在连续函数列
+	\[
+	\{h_k\}_{k=1}^{\infty}\subset C[a,b],
+	\]
+	使得
+	\[
+	\int_a^b |f(x)-h_k(x)|\dd x\to0,\qquad k\to\infty.
+	\]
+	
+	但是此时 $h_k(x)$ 未必满足
+	\[
+	\sup_{x\in[a,b]}|h_k(x)|\leq B.
+	\]
+	因此需要对 $h_k(x)$ 作截断.
+	
+	定义函数
+	\[
+	\varphi(t)=
+	\begin{cases}
+		-B, & t<-B,\\
+		t, & -B\leq t\leq B,\\
+		B, & t>B.
+	\end{cases}
+	\]
+	显然 $\varphi(t)$ 是 $\mathbb{R}$ 上的连续函数,并且$|\varphi(t)|\leq B,\qquad t\in\mathbb{R}$
+	
+	令
+	\[
+	f_k(x)=\varphi(h_k(x)),\qquad x\in[a,b].
+	\]
+	由于 $h_k(x)$ 连续,$\varphi(t)$ 连续,所以$f_k\in C[a,b].$
+	
+	又由 $|\varphi(t)|\leq B$ 可知
+	\[
+	|f_k(x)|\leq B,\qquad x\in[a,b].
+	\]
+	于是
+	\[
+	\sup_{x\in[a,b]}|f_k(x)|\leq B.
+	\]
+	
+	下面证明
+	\[
+	\int_a^b |f(x)-f_k(x)|\dd x\to0.
+	\]
+	
+	由于
+	\[
+	|f(x)|\leq B,\qquad x\in[a,b],
+	\]
+	所以$f(x)\in[-B,B].$而 $\varphi(t)$ 是把实数 $t$ 截断到区间 $[-B,B]$ 上的函数,所以对任意 $t\in\mathbb{R}$ 和任意 $u\in[-B,B]$,都有
+	\[
+	|\varphi(t)-u|\leq |t-u|.
+	\]
+	取
+	\[
+	t=h_k(x),\qquad u=f(x),
+	\]
+	便得到
+	\[
+	|\varphi(h_k(x))-f(x)|
+	\leq
+	|h_k(x)-f(x)|.
+	\]
+	也就是
+	\[
+	|f_k(x)-f(x)|
+	\leq
+	|h_k(x)-f(x)|.
+	\]
+	
+	两边在 $[a,b]$ 上积分,得
+	\[
+	\int_a^b |f_k(x)-f(x)|\dd x
+	\leq
+	\int_a^b |h_k(x)-f(x)|\dd x.
+	\]
+	由
+	\[
+	\int_a^b |h_k(x)-f(x)|\dd x\to0
+	\]
+	可知
+	\[
+	\int_a^b |f_k(x)-f(x)|\dd x\to0.
+	\]
+	
+	综上,存在连续函数列 $\{f_k\}_{k=1}^{\infty}\subset C[a,b]$,满足
+	\[
+	\sup_{x\in[a,b]}|f_k(x)|\leq B,
+	\]
+	并且
+	\[
+	\int_a^b |f(x)-f_k(x)|\dd x\to0.
+	\]
+\end{proof}

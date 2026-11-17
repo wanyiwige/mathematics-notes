@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-30",
+  "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\代数重复内容删减前-20261030-074256.zip",
+  "backup_sha256": "ad3a49ef5d81c707dd60fc91206669c813a2c7295cf231ca4c27cc15720dba11",
+  "changes": [
+    {
+      "chapter": 4,
+      "reason": "删除线性函数、对偶空间及其维数的重复定义；只保留取值映射的应用。",
+      "algebra_source": "Part 1/chapter7.tex:7-30",
+      "before": "\\begin{definition}[线性泛函与对偶空间]\n向量空间 $V$ 到其数域的线性映射称为线性泛函，全体组成对偶空间 $V^*$。\n当 $V$ 是函数空间时，$f\\mapsto f(t)$ 是求值泛函。\n若 $V$ 的维数为 $n$，相对于一组基，每个泛函都唯一对应一个行向量，所以 $\\dim V^*=n$。\n\\end{definition}",
+      "after": "对给定的 $t$，取值映射 $f\\mapsto f(t)$ 是函数空间上的线性函数。"
+    },
+    {
+      "chapter": 4,
+      "reason": "删除已在代数笔记证明的 Hamilton--Cayley 定理。",
+      "algebra_source": "Part 1/chapter5.tex:1461-1520",
+      "before": "\\begin{lemma}[Cayley--Hamilton 恒等式]\\label{lem:cayley-hamilton-foundation}\n若 $A$ 为 $n$ 阶矩阵，$p(z)=\\det(zI-A)$，则 $p(A)=0$。\n\\end{lemma}\n\\begin{proof}\n将伴随矩阵写为 $B(z)=\\operatorname{adj}(zI-A)=\\sum_{j=0}^{n-1}B_jz^j$。\n恒等式 $(zI-A)B(z)=B(z)(zI-A)=p(z)I$ 首先说明 $AB_j=B_jA$。\n因此可以在这一多项式矩阵恒等式中用 $A$ 代入标量变量 $z$：各系数与 $A$ 交换，\n左边为 $(A-A)\\sum_jB_jA^j=0$，右边为 $p(A)$，结论成立。\n\\end{proof}",
+      "after": ""
+    },
+    {
+      "chapter": 4,
+      "reason": "删除群、子群、同态、核及一般线性群的重复定义，只保留本文记号。",
+      "algebra_source": "Part 2/chapter1.tex:13-143,243-309,480-546",
+      "before": "\\begin{definition}[群、子群与一般线性群]\\label{def:group-notation}\n集合 $G$ 连同乘法称为群，是指乘法封闭、满足结合律，有单位元 $e$，且每个元素 $g$ 有逆元 $g^{-1}$。\n包含单位元并对乘法和取逆封闭的子集称子群。\n$GL(n,\\R)=\\{A\\in\\R^{n\\times n}:\\det A\\ne0\\}$ 在矩阵乘法下构成一般线性群。\n群间保持乘法的映射称同态；同态 $\\Phi$ 的核为 $\\{g:\\Phi(g)=e\\}$。\n加法群的运算用加号书写，例如 $\\R$ 和 $\\Z$；其子群对加减封闭。\n\\end{definition}",
+      "after": "以下将 $n$ 阶实一般线性群记为 $GL(n,\\R)$。"
+    },
+    {
+      "chapter": 4,
+      "reason": "沿用代数笔记“线性函数”的名称。",
+      "algebra_source": "Part 1/chapter7.tex:12-22",
+      "before": "所有求值泛函若不能张成 $V^*$",
+      "after": "所有取值映射若不能张成 $V^*$"
+    },
+    {
+      "chapter": 4,
+      "reason": "统一名称。",
+      "algebra_source": "Part 1/chapter7.tex:12-30",
+      "before": "因此可从这些泛函选出一组基",
+      "after": "因此可从这些线性函数中选出一组基"
+    },
+    {
+      "chapter": 4,
+      "reason": "统一名称。",
+      "algebra_source": "Part 1/chapter7.tex:12-30",
+      "before": "任意求值泛函都是 $V$ 上的连续线性泛函",
+      "after": "任意取值映射都是 $V$ 上的连续线性函数"
+    },
+    {
+      "chapter": 4,
+      "reason": "定理名称与代数笔记一致。",
+      "algebra_source": "Part 1/chapter5.tex:1399-1520",
+      "before": "Cayley--Hamilton",
+      "after": "Hamilton--Cayley"
+    },
+    {
+      "chapter": 9,
+      "reason": "定理名称与代数笔记一致。",
+      "algebra_source": "Part 1/chapter5.tex:1399-1520",
+      "before": "Cayley--Hamilton",
+      "after": "Hamilton--Cayley"
+    },
+    {
+      "chapter": 4,
+      "reason": "删去对称、正定和正交矩阵的重复定义，保留不属于这些代数定义的 Hessian 记号。",
+      "algebra_source": "Part 1/chapter3.tex:850-866; chapter6.tex:698-715,970-1048",
+      "before": "\\begin{definition}[对称矩阵与正定性]\n实矩阵 $A$ 对称，是指 $A^T=A$；正定，是指 $x^TAx>0$ 对每个非零实向量 $x$ 成立。\n正交矩阵满足 $S^TS=I$，因而保持 Euclidean 内积和长度。\n对二次连续可微实函数，Hessian 矩阵指 $D^2f=(\\partial_i\\partial_jf)_{i,j}$；混合偏导相等使它对称。\n\\end{definition}",
+      "after": "\\begin{definition}[Hessian 矩阵]\n对二次连续可微实函数，Hessian 矩阵指 $D^2f=(\\partial_i\\partial_jf)_{i,j}$；混合偏导相等使它对称。\n\\end{definition}"
+    },
+    {
+      "chapter": 4,
+      "reason": "删除实对称矩阵正交对角化及正定性判别的重复证明。",
+      "algebra_source": "Part 1/chapter6.tex:1750-1864; chapter7.tex:1664-1680",
+      "before": "\\begin{lemma}[实对称矩阵的正交分解]\\label{lem:symmetric-spectral-elementary}\n每个实对称矩阵都有一组标准正交特征向量；它正定当且仅当所有特征值都为正。\n\\end{lemma}\n\\begin{proof}\n连续函数 $x^TAx$ 在单位球面取到最大值，设最大点为 $e$。\n对任意 $v\\perp e$，沿 $(e+tv)/|e+tv|$ 求导，极值条件给出 $v^TAe=0$。\n所以 $Ae=\\lambda e$。对 $v\\perp e$，对称性给出 $e^TAv=(Ae)^Tv=0$，\n故正交补仍在 $A$ 下不变。在这个低一维空间归纳，得到所需正交基。\n在该基中 $x^TAx=\\sum_j\\lambda_jx_j^2$，正定性的判别随即成立。\n\\end{proof}",
+      "after": ""
+    },
+    {
+      "chapter": 4,
+      "reason": "删除正定平方根的重复构造；代数笔记还证明了唯一性。",
+      "algebra_source": "Part 1/chapter7.tex:1773-1800",
+      "before": "\\begin{definition}[正定矩阵的平方根]\\label{def:positive-matrix-root}\n若正定对称矩阵 $B=S\\operatorname{diag}(\\lambda_j)S^T$、$S$ 正交，定义\n$B^{1/2}=S\\operatorname{diag}(\\sqrt{\\lambda_j})S^T$。\n在每个特征子空间上它均为同一个正标量倍恒等映射，故与所选正交特征基无关；\n它对称正定且平方为 $B$。\n\\end{definition}",
+      "after": ""
+    },
+    {
+      "chapter": 6,
+      "reason": "不复述等价关系和等价类，保留代数商结构之外的商拓扑及圆周相空间。",
+      "algebra_source": "Part 1/chapter4.tex:274-324; Part 2/chapter1.tex:681-728; chapter2.tex:1025-1042",
+      "before": "\\begin{definition}[商空间、圆周与圆柱]\\label{def:quotient-circle}\n在集合 $X$ 上，满足自反、对称和传递性的关系称等价关系。\n等价类记为 $[x]=\\{y:y\\sim x\\}$，这些类组成商集 $X/{\\sim}$，自然投影为 $\\pi(x)=[x]$。\n若 $X$ 有拓扑，规定",
+      "after": "\\begin{definition}[商拓扑、圆周与圆柱]\\label{def:quotient-circle}\n设 $X$ 是拓扑空间，$X/{\\sim}$ 是某等价关系确定的商集，$\\pi:X\\to X/{\\sim}$ 为自然映射。规定"
+    },
+    {
+      "chapter": 7,
+      "reason": "删除一般群作用与群轨道的重复定义；保留向量场对称这一新概念。",
+      "algebra_source": "Part 2/chapter2.tex:923-943,1025-1042",
+      "before": "\\begin{definition}[群作用与对称性]\n群 $G$ 对集合 $M$ 的作用是映射 $(g,x)\\mapsto gx$，满足\n$ex=x$、$(gh)x=g(hx)$。集合 $Gx$ 称为 $x$ 的轨道。\n保持向量场",
+      "after": "\\begin{definition}[向量场的对称]\n保持向量场"
+    },
+    {
+      "chapter": 7,
+      "reason": "删去代数笔记已证明的群轨道相交性质。",
+      "algebra_source": "Part 2/chapter2.tex:1025-1042",
+      "before": "作用的两条轨道相交则重合；向量场的对称等价于它与局部相流可交换。",
+      "after": "向量场的对称等价于它与局部相流可交换。"
+    },
+    {
+      "chapter": 7,
+      "reason": "删除上述重复性质的证明，不动向量场对称与相流可交换的证明。",
+      "algebra_source": "Part 2/chapter2.tex:1025-1042",
+      "before": "先证轨道结论。若 $gx=hy$，则 $y=h^{-1}gx$。\n对任意 $k\\in G$，有 $ky=kh^{-1}gx\\in Gx$，所以 $Gy\\subset Gx$。\n交换两点的角色也得反向包含，因此两条轨道重合。\n\n",
+      "after": ""
+    },
+    {
+      "chapter": 7,
+      "reason": "标题只保留新的拓扑概念。",
+      "algebra_source": "Part 2/chapter1.tex:309-339",
+      "before": "\\begin{definition}[闭子群与陪集]",
+      "after": "\\begin{definition}[拓扑群与闭子群]"
+    },
+    {
+      "chapter": 7,
+      "reason": "删除陪集的重复定义。",
+      "algebra_source": "Part 2/chapter1.tex:309-339",
+      "before": "子群 $H$ 的加法陪集为 $x+H=\\{x+h:h\\in H\\}$；乘法记号下写为 $gH$。",
+      "after": ""
+    },
+    {
+      "chapter": 8,
+      "reason": "不再重复有限维内积空间中的正交定义。",
+      "algebra_source": "Part 1/chapter6.tex:101-120,345-369",
+      "before": "\\begin{definition}[平方平均空间与正交]",
+      "after": "\\begin{definition}[平方平均空间与完全性]"
+    },
+    {
+      "chapter": 8,
+      "reason": "删去正交、标准正交系的复述，保留无限维平方平均意义的完全性。",
+      "algebra_source": "Part 1/chapter6.tex:101-120,345-369",
+      "before": "内积为零称正交；范数为 1 且两两正交的族称标准正交系。\n其有限线性组合在 $2$ 范数下稠密时，称完全正交系。",
+      "after": "一个正交系的有限线性组合在 $2$ 范数下稠密时，称该正交系完全。"
+    },
+    {
+      "chapter": 11,
+      "reason": "删去正交群、特殊正交群及反对称矩阵的重复定义，保留群的流形结构和连通性证明。",
+      "algebra_source": "Part 1/chapter3.tex:850-867; chapter6.tex:1043-1048,1156-1161",
+      "before": "\\begin{definition}[正交群与特殊正交群]\n记 $O(n)=\\{Q\\in\\R^{n\\times n}:Q^TQ=I\\}$，\n$SO(n)=\\{Q\\in O(n):\\det Q=1\\}$，均以矩阵乘法为群运算。\n$SO(n)$ 的元素称保定向的正交变换，亦称旋转。\n矩阵 $B$ 满足 $B^T=-B$ 时称反对称矩阵。\n\\end{definition}",
+      "after": "下文将实正交群及特殊正交群分别记为 $O(n)$ 和 $SO(n)$。"
+    },
+    {
+      "chapter": 11,
+      "reason": "删去指向重复定义的引用，直接使用已有正定平方根，保留极分解的应用计算。",
+      "algebra_source": "Part 1/chapter7.tex:1773-1800",
+      "before": "这里平方根按定义~\\ref{def:positive-matrix-root} 构造，$Q=AP^{-1}$ 满足",
+      "after": "取 $A^TA$ 的正定平方根，并令 $Q=AP^{-1}$，则"
+    },
+    {
+      "chapter": 11,
+      "reason": "删去四元数体的基和乘法表的重复介绍；保留代数笔记未定义的共轭、范数和纯虚部分。",
+      "algebra_source": "Part 2/chapter1.tex:1090-1147",
+      "before": "\\begin{definition}\n四元数代数 $\\mathbb H$ 的实基为 $1,i,j,k$，乘法满足\n$i^2=j^2=k^2=ijk=-1$；共轭把后三个系数变号。",
+      "after": "\\begin{definition}[四元数的共轭与范数]\n四元数的标准基记为 $1,i,j,k$。对 $q=a+bi+cj+dk$，定义其共轭为\n$\\overline q=a-bi-cj-dk$。"
+    },
+    {
+      "chapter": 12,
+      "reason": "不重复一般对偶空间的定义，只定义切空间中的新名称。",
+      "algebra_source": "Part 1/chapter7.tex:12-30",
+      "before": "切空间 $T_xM$ 上的线性泛函称余向量，全体构成对偶空间 $T_x^*M$。",
+      "after": "记切空间的对偶空间为 $T_x^*M$，其中的元素称余向量。"
+    },
+    {
+      "chapter": 12,
+      "reason": "删去 Schmidt 正交化的重复公式，仅说明在局部法向标架中的应用。",
+      "algebra_source": "Part 1/chapter6.tex:290-343",
+      "before": "这里正交化的具体步骤是：从线性无关的 $a_j$ 出发，依次令\n$b_j=a_j-\\sum_{i<j}\\langle a_j,e_i\\rangle e_i$、$e_j=b_j/|b_j|$。\n线性无关使分母不为零，故在相应小邻域内这些向量光滑。",
+      "after": "由 Schmidt 正交化可在足够小的邻域内选取这样的标架；由于各次除法的分母不为零，所得向量随参数光滑变化。"
+    }
+  ],
+  "changed_chapters": [
+    4,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12
+  ],
+  "removed_labels": [
+    "def:group-notation",
+    "def:positive-matrix-root",
+    "lem:cayley-hamilton-foundation",
+    "lem:symmetric-spectral-elementary"
+  ],
+  "current_labels": 238,
+  "net_removed_environments": {
+    "definition": 4,
+    "theorem": 0,
+    "proof": 2,
+    "lemma": 2,
+    "proposition": 0,
+    "example": 0,
+    "corollary": 0
+  },
+  "new_environments_vs_original": {
+    "definition": 93,
+    "theorem": 50,
+    "proof": 120,
+    "lemma": 11,
+    "proposition": 51,
+    "example": 10,
+    "corollary": 7
+  },
+  "no_dangling_removed_references": true,
+  "algebra_protected_files": 26,
+  "algebra_sources_unchanged": true,
+  "backup_crc_valid": true,
+  "no_undefined_source_references": true,
+  "current_label_count": 238,
+  "original_main_and_preamble_unchanged": true,
+  "math_environments_balanced": true
+}

@@ -1,0 +1,1142 @@
+% ============================================
+%  chapter16.tex — 第16章：Artin 环、离散赋值环与 Dedekind 整环
+%  根据 764-789.pdf 翻译整理，保持原文结构、证明与练习
+% ============================================
+
+\chapter{Artin 环、离散赋值环与 Dedekind 整环}
+
+在本章中，$R$ 始终表示一个带有 $1\neq0$ 的交换环。
+
+\section{Artin 环}
+
+在本节中，我们将研究满足理想降链条件（D.C.C.）的交换环的基本理论，即 \emph{Artin 环}（以 E. Artin 命名）。人们一开始也许会期望这些环具有类似于满足升链条件的交换环（即 Noether 环）的性质，但实际上并非如此。Artin 环的结构受到很强的限制；例如，Artin 环必定也是 Noether 环（定理 3）。非交换 Artin 环在表示论中起着中心作用（参见第 18 章和第 19 章）。
+
+\noindent\textbf{定义.} 对任意交换环 $R$，$R$ 的 \emph{Krull 维数}（或简称\emph{维数}）是不同素理想链
+\[
+  P_0\subset P_1\subset P_2\subset\cdots\subset P_n
+\]
+的最大可能长度。若 $R$ 有任意长的不同素理想链，则称 $R$ 的维数是无限的。
+
+有限维的环必须同时满足素理想的升链条件和降链条件（尽管不一定满足所有理想上的相应条件）。域的维数为 $0$，而不是域的主理想整环的维数为 $1$。
+
+我们很快会看到，满足理想降链条件的环总是维数为 $0$（即素理想都是极大理想）。若 $R$ 是整环，并且也是域 $k$ 上的有限生成 $k$-代数，则 $R$ 的维数等于 $R$ 的分式域在 $k$ 上的超越次数（参见练习 11）。特别地，Krull 维数与前面为仿射簇的维数所引入的定义一致。上述定义的优点在于它不涉及任何 $k$-代数结构，并适用于任意交换环 $R$。
+
+\noindent\textbf{定义.} $R$ 的 \emph{Jacobson 根}是 $R$ 的所有极大理想的交，记为 $\Jac R$。
+
+Jacobson 根类似于群的 Frattini 子群，并具有若干相应的性质（参见第 6.1 节练习 24）：
+
+\medskip
+\noindent\textbf{命题 1.} 设 $\mathcal J$ 为交换环 $R$ 的 Jacobson 根。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $I$ 是 $R$ 的真理想，则 $(I,\mathcal J)$，即由 $I$ 与 $\mathcal J$ 生成的理想，也是真理想。
+  \item Jacobson 根包含 $R$ 的 nilradical：$\rad 0\subseteq\Jac R$。
+  \item 元素 $x$ 属于 $\mathcal J$，当且仅当对所有 $r\in R$，$1-rx$ 都是单位。
+  \item （Nakayama 引理）若 $M$ 是任意有限生成 $R$-模，且 $\mathcal JM=M$，则 $M=0$。
+\end{enumerate}
+
+\begin{proof}
+若 $I$ 是 $R$ 中的真理想，则 $I\subseteq M$ 对某个极大理想 $M$ 成立。由于 $\mathcal J\subseteq M$，也有 $(I,\mathcal J)\subseteq M$，这证明了 (1)。
+
+(2) 由两个根的定义以及第 15.2 节命题 12 推出，因为极大理想都是素理想。
+
+假设 $1-rx$ 不是单位，并令 $M$ 为包含 $1-rx$ 的极大理想。由于 $1\notin M$，有 $rx\notin M$，所以 $x$ 不能属于 $\mathcal J$，因为 $\mathcal J\subseteq M$。反过来，假设 $x\notin\mathcal J$，即存在极大理想 $M$ 使 $x\notin M$。于是 $R=(x,M)$，故对某个 $y\in M$ 有 $1=rx+y$。因此 $1-rx=y\in M$，所以 $1-rx$ 不是单位，这证明了 (3)。
+
+为证明 (4)，假设 $M\neq0$，并令 $n$ 为使 $M$ 可由 $n$ 个元素生成的最小整数，设这些生成元为 $m_1,\ldots,m_n$。由于 $M=\mathcal JM$，我们有
+\[
+  m_n=r_1m_1+r_2m_2+\cdots+r_nm_n
+\]
+其中 $r_1,r_2,\ldots,r_n\in\mathcal J$。于是
+\[
+  (1-r_n)m_n=r_1m_1+\cdots+r_{n-1}m_{n-1}.
+\]
+由 (3)，$1-r_n$ 是单位，所以 $m_n$ 属于由 $m_1,\ldots,m_{n-1}$ 生成的模，这与 $n$ 的最小性矛盾。因此 $M=0$，证明完成。
+\end{proof}
+
+\noindent\textbf{定义.} 交换环 $R$ 称为 \emph{Artin 环}，或称为满足\emph{理想降链条件}（或理想上的 D.C.C.），如果 $R$ 中不存在无限下降的理想链；也就是说，只要
+\[
+  I_1\supseteq I_2\supseteq I_3\supseteq\cdots
+\]
+是 $R$ 的理想下降链，则存在正整数 $m$，使得对所有 $k\geq m$ 都有 $I_k=I_m$。类似地，$R$-模 $M$ 称为 \emph{Artin 模}，若它满足子模上的 D.C.C.。
+
+由格同构定理立刻可知，Artin 环 $R$ 对任意理想 $I$ 的商环 $R/I$ 仍是 Artin 环。
+
+下面关于 Artin 环的结果与定理 15.2 中的结果平行。证明完全类似，因此留作练习。
+
+\medskip
+\noindent\textbf{命题 2.} 下列条件等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item $R$ 是 Artin 环。
+  \item $R$ 的每个非空理想集合在包含关系下含有极小元。
+\end{enumerate}
+
+下面的结果给出 Artin 环的主要结构定理。
+
+\medskip
+\noindent\textbf{定理 3.} 设 $R$ 是 Artin 环。
+\begin{enumerate}[label=(\arabic*)]
+  \item $R$ 中只有有限多个极大理想。
+  \item 商环 $R/(\Jac R)$ 是有限多个域的直积。更准确地说，若 $M_1,\ldots,M_n$ 是 $R$ 中有限多个极大理想，则
+  \[
+    R/(\Jac R)\cong k_1\times\cdots\times k_n,
+  \]
+  其中 $k_i$ 是域 $R/M_i$，$1\leq i\leq n$。
+  \item $R$ 的每个素理想都是极大理想，即 $R$ 的 Krull 维数为 $0$。$R$ 的 Jacobson 根等于 $R$ 的 nilradical，并且是一个幂零理想：对某个 $m\geq1$，$(\Jac R)^m=0$。
+  \item 环 $R$ 同构于有限多个 Artin 局部环的直积。
+  \item 每个 Artin 环都是 Noether 环。
+\end{enumerate}
+
+\begin{proof}
+为证明 (1)，令 $S$ 为 $R$ 的所有可表示为有限多个极大理想之交的理想组成的集合。由命题 2，$S$ 有一个极小元，设为 $M_1\cap M_2\cap\cdots\cap M_n$。于是对任意极大理想 $M$，我们有
+\[
+  M\cap M_1\cap M_2\cap\cdots\cap M_n=M_1\cap M_2\cap\cdots\cap M_n,
+\]
+所以 $M\supseteq M_1\cap M_2\cap\cdots\cap M_n$。由第 7.4 节练习 11，$M\supseteq M_i$ 对某个 $i$ 成立。因此 $M=M_i$，所以 $M_1,\ldots,M_n$ 就是 $R$ 的全部极大理想。
+
+(2) 的证明由中国剩余定理（第 7.6 节）立刻得到，该定理应用于 $M_1,\ldots,M_n$，因为这些极大理想显然两两互素，并且它们的交为 $\Jac R$。
+
+对 (3)，我们先证明 $\mathcal J=\Jac R$ 是幂零的。由 D.C.C.，存在某个 $m>0$，使得对所有正整数 $i$ 都有 $\mathcal J^m=\mathcal J^{m+i}$。反证，假设 $\mathcal J^m\neq0$。令 $S$ 为所有满足 $I\mathcal J^m\neq0$ 的真理想 $I$ 组成的集合，所以 $\mathcal J\in S$。令 $I_0$ 为 $S$ 的一个极小元。存在某个 $x\in I_0$ 使得 $x\mathcal J^m\neq0$，故由极小性必有 $I_0=(x)$。但是现在
+\[
+  ((x)\mathcal J)\mathcal J^m=x\mathcal J^{m+1}=x\mathcal J^m,
+\]
+所以由 $(x)$ 的极小性得到 $(x)=(x)\mathcal J$。由上面的 Nakayama 引理，$(x)=0$，矛盾。这证明了 $\Jac R$ 是幂零的。
+
+由于 $\Jac R$ 是幂零的，特别地 $\Jac R\subseteq\rad0$，故由命题 1 的第二个断言，这两个理想相等。
+
+$R$ 中每个素理想 $P$ 都包含 $R$ 的 nilradical，因此由已证结果也包含 $\Jac R$。$P$ 的像是商环
+\[
+  R/(\Jac R)=k_1\times\cdots\times k_n
+\]
+中的一个素理想。但是在环的直积 $R_1\times R_2$ 中（其中每个 $R_i$ 都有 $1$），每个理想都形如 $I_1\times I_2$，其中 $I_j$ 是 $R_j$ 的理想，$j=1,2$（参见第 7.6 节练习 3）。于是 $k_1\times\cdots\times k_n$ 中的素理想由某一个分量为 $0$ 的元素组成。特别地，这样的素理想也是 $k_1\times\cdots\times k_n$ 中的极大理想，从而 $P$ 原本就是 $R$ 中的极大理想。这完成了 (3) 的证明。
+
+令 $M_1,\ldots,M_n$ 为 $R$ 的全部不同极大理想，并令 $(\Jac R)^m=0$ 如 (3) 中所述。则
+\[
+  \prod_{i=1}^n M_i^m\subseteq\left(\prod_{i=1}^n M_i\right)^m\subseteq (\Jac R)^m=0.
+\]
+由中国剩余定理得到
+\[
+  R\cong (R/M_1^m)\times (R/M_2^m)\times\cdots\times (R/M_n^m),
+\]
+且每个 $R/M_i^m$ 是 Artin 环，其唯一极大理想为 $M_i/M_i^m$，这证明了 (4)。
+
+为证明 (5)，由 (4) 只需证明 Artin 局部环是 Noether 环，因此假设 $R$ 是唯一极大理想为 $M$ 的 Artin 环。在这种情形下 $M=\Jac R$，所以对某个正整数 $m$ 有 $M^m=(\Jac R)^m=0$。于是 $R\cong R/M^m$，而在这种情形下容易验证 $R/M^m$ 是 Noether 环当且仅当它是 Artin 环（参见练习 8）。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 4.} 环 $R$ 是 Artin 环，当且仅当 $R$ 是 Noether 环且 Krull 维数为 $0$。
+
+\begin{proof}
+正向蕴含已在定理 3 中证明。现在假设 $R$ 是 Noether 环，并且 $R$ 的 Krull 维数为 $0$，即 $R$ 的素理想都是极大理想。由于 $R$ 是 Noether 环，由第 15.2 节推论 22(3)，理想 $(0)$ 是有限多个（不一定互异的）素理想的乘积，$(0)=P_1\cdots P_n$，而这些素理想由于 $R$ 维数为 $0$ 都是极大理想。由中国剩余定理，$R$ 同构于有限多个形如 $R/M^m$ 的 Noether 环的直积，其中 $M$ 是 $R$ 的极大理想。如定理 (5) 的证明中一样，$R/M^m$ 是 Artin 环，因此 $R$ 是 Artin 环。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $n>1$ 为整数。由于环 $R=\ZZ/n\ZZ$ 是有限的，它是 Artin 环。若
+  \[
+    n=p_1^{a_1}p_2^{a_2}\cdots p_s^{a_s}
+  \]
+  是 $n$ 分解为不同素数幂的唯一分解，则
+  \[
+    \ZZ/n\ZZ\cong (\ZZ/p_1^{a_1}\ZZ)\times(\ZZ/p_2^{a_2}\ZZ)\times\cdots\times(\ZZ/p_s^{a_s}\ZZ).
+  \]
+  每个 $\ZZ/p_i^{a_i}\ZZ$ 是 Artin 局部环，其唯一极大理想为 $(p_i)/(p_i^{a_i})$，所以这就是定理 3(4) 给出的 $\ZZ/n\ZZ$ 的分解。$R$ 的 Jacobson 根是由 $p_1p_2\cdots p_s$（即 $n$ 的无平方因子部分）生成的理想，并且
+  \[
+    R/(\Jac R)\cong (\ZZ/p_1\ZZ)\times\cdots\times(\ZZ/p_s\ZZ)
+  \]
+  是域的直积。对 $i=1,\ldots,s$，由 $p_i$ 生成的理想就是 $R$ 的极大理想。
+
+  \item 对任意域 $k$，若 $k$-代数 $R$ 作为 $k$ 上的向量空间是有限维的，则 $R$ 是 Artin 环，因为 $R$ 中的理想特别地都是 $R$ 的 $k$-子空间，故任意理想链的长度都被 $\dim_k R$ 所限制。
+
+  \item 设 $f$ 是域 $k$ 上的多项式环 $k[x]$ 中的非零多项式。则商环 $R=k[x]/(f(x))$ 由前一个例子是 Artin 环。$R$ 作为 Artin 局部环直积的分解为
+  \[
+    k[x]/(f(x))\cong k[x]/(f_1(x)^{a_1})\times\cdots\times k[x]/(f_s(x)^{a_s}),
+  \]
+  其中
+  \[
+    f(x)=f_1(x)^{a_1}\cdots f_s(x)^{a_s}
+  \]
+  是 $f(x)$ 分解为 $k[x]$ 中不同不可约多项式幂的分解（参见第 9.5 节命题 16）。$R$ 的 Jacobson 根是由 $f(x)$ 的无平方因子部分生成的理想，而 $R$ 的极大理想是由不可约因子 $f_i(x)$ 生成的理想，$i=1,\ldots,s$，这与例 1 类似。
+\end{enumerate}
+
+\subsection*{练习}
+
+设 $R$ 是带有 $1$ 的交换环，并设 $\mathcal J$ 为其 Jacobson 根。
+\begin{enumerate}[label=\arabic*.]
+  \item 假设 $R$ 是 Artin 环且 $I$ 是 $R$ 的理想。证明 $R/I$ 也是 Artin 环。
+  \item 证明每个带有 $1$ 的有限交换环都是 Artin 环。
+  \item 证明 Krull 维数为 $0$ 的整环是域。
+  \item 证明 Artin 整环是域。
+  \item 假设 $I$ 是 $R$ 中的幂零理想，并且对某个 $R$-模 $M$ 有 $M=IM$。证明 $M=0$。
+  \item 假设 $0\to M'\to M\to M''\to0$ 是 $R$-模的正合列。证明 $M$ 是 Artin $R$-模，当且仅当 $M'$ 与 $M''$ 都是 Artin $R$-模。
+  \item 假设 $R=F$ 是域。证明 $R$-模 $M$ 是 Artin 的，当且仅当它是 Noether 的，当且仅当 $M$ 是 $F$ 上的有限维向量空间。
+  \item 设 $M$ 是环 $R$ 的极大理想，并假设对某个 $n\geq1$ 有 $M^n=0$。证明 $R$ 是 Noether 环当且仅当 $R$ 是 Artin 环。［观察滤过
+  \[
+    R\supseteq M\supseteq\cdots\supseteq M^{n-1}\supseteq M^n=0
+  \]
+  中的每个相继商 $M^i/M^{i+1}$，$i=0,\ldots,n-1$，都是域 $F=R/M$ 上的模。然后使用前两个练习以及第 15.1 节练习 6。］
+  \item 设 $M$ 是有限生成 $R$-模。证明若 $x_1,\ldots,x_n$ 是 $M$ 中的元素，且它们在 $M/\mathcal JM$ 中的像生成 $M/\mathcal JM$，则它们生成 $M$。推出若 $R$ 是 Noether 环，且 $a_1,\ldots,a_n$ 在 $\mathcal J/\mathcal J^2$ 中的像生成 $\mathcal J/\mathcal J^2$，则 $\mathcal J=(a_1,
+  \ldots,a_n)$。［令 $N$ 为由 $x_1,\ldots,x_n$ 生成的子模，并对模 $A=M/N$ 应用 Nakayama 引理。］
+  \item 设 $R=\ZZ_{(2)}$ 是 $\ZZ$ 在素理想 $(2)$ 处的局部化。证明 $\Jac R=(2)$，即由 $2$ 生成的理想。若 $M=\QQ$，证明 $M/2M$ 是有限生成 $R$-模，但 $M$ 在 $R$ 上不是有限生成的。为什么这不与前一练习矛盾？［注意 Nakayama 引理中的假设。］
+  \item 设 $V$ 是域 $k$ 上的仿射簇，且 $R=k[V]$ 为其坐标环。令 $d_t(R)$ 表示分式域 $k(V)$ 在 $k$ 上的超越次数，令 $d_p(R)$ 表示以素理想链定义的 $R$ 的 Krull 维数。本练习说明 $d_t(R)=d_p(R)$。由 Noether 正规化引理，$R$ 中存在多项式子环 $R_1=k[y_1,
+  \ldots,y_m]$，使得 $R$ 在 $R_1$ 上整。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $d_t(R_1)=d_t(R)=m$ 且 $d_p(R_1)=d_p(R)$。推出我们可以假设 $R=R_1$。［用上升定理与下降定理（参见第 15.3 节定理 26）证明第二个等式。］
+    \item 当 $R=R_1$ 时，通过给出一条长度为 $m$ 的显式素理想链，证明 $d_p(R)\geq d_t(R)$。
+    \item 当 $R=R_1$ 时，证明 $R$ 的任意非零素理想都包含某个元素 $f$，使得 $R/(f)$ 在 $k$ 上的超越次数为 $d_t(R)-1$。用归纳法证明 $d_p(R)\leq d_t(R)$，并推出 $d_p(R)=d_t(R)$。
+  \end{enumerate}
+  \item 设 $R$ 是极大理想为 $M$ 的 Noether 局部环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 商 $M/M^2$ 是域 $R/M$ 上的模（即向量空间）。证明 $d=\dim_{R/M}(M/M^2)$ 有限。
+    \item 证明 $M$ 作为 $R$ 中理想可由 $d$ 个元素生成，且不能由更少的元素生成。［用练习 9。］
+    \item 令
+    \[
+      R=k[x_1,\ldots,x_n]_{(x_1,\ldots,x_n)}
+    \]
+    为域 $k$ 上多项式环 $k[x_1,
+    \ldots,x_n]$ 在极大理想 $(x_1,
+    \ldots,x_n)$ 处的局部化，并令 $M$ 为 $R$ 中的极大理想。证明
+    \[
+      \dim_{R/M}(M/M^2)=n=\dim R.
+    \]
+    ［参见前一练习。］
+  \end{enumerate}
+\end{enumerate}
+
+可以证明，对任意极大理想为 $M$ 的 Noether 局部环 $R$，都有 $\dim_{R/M}(M/M^2)\geq\dim R$。若 Noether 局部环 $R$ 满足 $\dim_{R/M}(M/M^2)=\dim R$，则称 $R$ 为\emph{正则局部环}。事实上，正则局部环必然是整环，并且还是整闭的。
+
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 若 $R$ 是 Noether 环，证明 $\Spec R$ 上的 Zariski 拓扑是离散的（即每个子集都是 Zariski 开的并且也是 Zariski 闭的），当且仅当 $R$ 是 Artin 环。
+  \item 设 $I$ 是多项式环 $k[x_1,x_2,x_3,
+  \ldots]$ 中的理想 $(x_1,x_2^2,x_3^3,
+  \ldots)$，其中 $k$ 是域，并令
+  \[
+    R=k[x_1,x_2,x_3,
+    \ldots]/I.
+  \]
+  证明理想 $(x_1,x_2,x_3,
+  \ldots)$ 在 $R$ 中的像是 $R$ 中唯一的素理想，但它不是有限生成的。推出 $R$ 是 Krull 维数为 $0$ 的局部环，但不是 Artin 环。
+\end{enumerate}
+
+\section{离散赋值环}
+
+在上一节中，我们证明了 Artin 环就是 Krull 维数为 $0$ 的 Noether 环。现在我们考虑最简单的维数为 $1$ 的 Noether 环，即第 8.1 节首次引入的\emph{离散赋值环}：
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 域 $K$ 上的\emph{离散赋值}是一个函数 $v:K^\times\to\ZZ$，满足
+  \begin{enumerate}[label=(\roman*)]
+    \item $v$ 是满射；
+    \item 对所有 $x,y\in K^\times$，$v(xy)=v(x)+v(y)$；
+    \item 对所有满足 $x+y\neq0$ 的 $x,y\in K^\times$，有
+    \[
+      v(x+y)\geq\min\{v(x),v(y)\}.
+    \]
+  \end{enumerate}
+  子环 $\{x\in K\mid v(x)\geq0\}\cup\{0\}$ 称为 $v$ 的\emph{赋值环}。
+  \item 若整环 $R$ 是其分式域上某个离散赋值 $v$ 的赋值环，则称 $R$ 为\emph{离散赋值环}（D.V.R.）。
+\end{enumerate}
+
+赋值 $v$ 常被扩张到整个 $K$ 上，定义 $v(0)=+\infty$；在这种情形下，(ii) 和 (iii) 对所有 $a,b\in K$ 成立。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item $\ZZ$ 在任意非零素理想 $(p)$ 处的局部化 $\ZZ_{(p)}$ 是一个 D.V.R.，其对应于 $\QQ$ 上如下定义的离散赋值 $v_p$（参见第 7.1 节练习 27）。每个元素 $a/b\in\QQ^\times$ 可唯一写成
+  \[
+    p^n(a_1/b_1)
+  \]
+  的形式，其中 $n\in\ZZ$，$a_1/b_1\in\QQ^\times$，并且 $a_1$ 与 $b_1$ 都与 $p$ 互素。定义
+  \[
+    v_p\left(\frac ab\right)=v_p\left(p^n\frac{a_1}{b_1}\right)=n.
+  \]
+  容易检查 D.V.R. 的公理成立。我们称 $v_p$ 为 $\QQ$ 上的 \emph{$p$-进赋值}。相应的赋值环是由 $n\geq0$ 的有理数以及 $0$ 组成的集合，也就是分母不被 $p$ 整除的有理数 $a/b$ 的集合，这正是 $\ZZ_{(p)}$。
+
+  \item 对任意域 $F$，设 $f$ 是 $F[x]$ 中的不可约多项式。域 $F(x)$ 中每个非零元素都可唯一写成
+  \[
+    f^n(a/b)
+  \]
+  的形式，其中 $n\in\ZZ$，$a/b\in F[x]^\times$，并且 $a$ 与 $b$ 都与 $f$ 互素。于是
+  \[
+    v_f\left(f^n\frac ab\right)=n
+  \]
+  定义了 $F(x)$ 上的一个赋值，相应的赋值环是 $F[x]$ 在 $f$ 处的局部化 $F[x]_f$，它由 $F(x)$ 中分母不被 $f$ 整除的有理函数组成。当 $f=x-a$ 是 $F[x]$ 中的一次多项式时，赋值 $v_f$ 给出 $F(x)$ 中元素在 $x=a$ 处的零点阶数（若 $n\geq0$）或极点阶数（若 $n<0$）。
+
+  \item 系数在域 $F$ 中的形式 Laurent 级数环 $F((x))$ 有一个离散赋值 $v$，定义为
+  \[
+    v\left(\sum_{i\geq n}a_ix^i\right)=n
+  \]
+  （参见第 7.2 节练习 5）。相应的 D.V.R. 是系数在 $F$ 中的 $x$ 的幂级数环 $F[[x]]$。
+\end{enumerate}
+
+注意，$v(1)=v(1)+v(1)$ 蕴含 $v(1)=0$，所以每个离散赋值环 $R$ 都是带有恒等元 $1\neq0$ 的环。由于按定义 $R$ 是域的子环，所以 $R$ 特别是整环。容易看出 D.V.R. 是 Euclidean 整环（参见第 8.1 节例 4），因此特别地也是 P.I.D. 和 U.F.D.。事实上，D.V.R. 的分解和理想结构非常简单，如下一个命题所示。
+
+\medskip
+\noindent\textbf{命题 5.} 设 $R$ 是相对于赋值 $v$ 的离散赋值环，并令 $t$ 为 $R$ 中任意满足 $v(t)=1$ 的元素。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item 非零元素 $u\in R$ 是单位，当且仅当 $v(u)=0$。
+  \item 每个非零元素 $r\in R$ 都可写成 $r=ut^n$，其中 $u\in R$ 是单位，$n\geq0$。$R$ 的分式域中每个非零元素 $x$ 都可写成 $x=ut^n$，其中 $u\in R$ 是单位，$n\in\ZZ$。
+  \item $R$ 的每个非零理想都是形如 $(t^n)$ 的主理想，其中 $n\geq0$。特别地，$R$ 是 Noether 环。
+\end{enumerate}
+
+\begin{proof}
+若 $u$ 是单位，则对某个 $v\in R$ 有 $uv=1$，从而 $v(u)+v(v)=v(uv)=0$，并且 $v(u)\geq0$、$v(v)\geq0$，所以 $v(u)=0$。反过来，若 $u$ 非零且 $v(u)=0$，则 $u^{-1}\in K$ 满足 $v(u^{-1})+v(u)=v(1)=0$。因此 $v(u^{-1})=0$，故 $u^{-1}\in R$，所以 $u$ 是单位。这证明了 (1)。
+
+对 (2)，注意若 $v(x)=n$，则 $v(xt^{-n})=0$，所以由 (1) $xt^{-n}=u$ 是 $R$ 中的单位。因此 $x=ut^n$，其中 $x\in R$ 当且仅当 $n=v(x)\geq0$。
+
+若 $I$ 是 $R$ 中的非零理想，取 $r\in I$ 使 $v(r)$ 最小。若 $v(r)=n$，则由 (2)，$r$ 与 $t^n$ 只差一个单位，所以 $t^n\in I$，且 $(t^n)\subseteq I$。若 $a$ 是 $I$ 的任意非零元素，则由 $n$ 的选择有 $v(a)\geq n$。于是 $v(at^{-n})\geq0$，故 $at^{-n}\in R$，这说明 $a\in(t^n)$。因此 $I=(t^n)$，证明了 (3) 的第一个断言。于是 $R$ 中的理想升链显然都是有限的，故 $R$ 是 Noether 环，证明完成。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $R$ 是赋值为 $v$ 的 D.V.R.，则 $R$ 中满足 $v(t)=1$ 的元素 $t$ 称为 $R$ 的\emph{一致化参数}（或\emph{局部参数}）。
+
+\medskip
+\noindent\textbf{推论 6.} 设 $R$ 是离散赋值环。
+\begin{enumerate}[label=(\arabic*)]
+  \item 环 $R$ 是整闭局部环，其唯一极大理想由严格正赋值的元素给出：
+  \[
+    M=\{r\in R\mid v(r)>0\}.
+  \]
+  $R$ 中每个非零理想都形如 $M^n$，其中 $n\geq0$。
+  \item $R$ 的唯一素理想是 $M$ 和 $0$，即 $\Spec R=\{0,M\}$。特别地，D.V.R. 的 Krull 维数为 $1$。
+\end{enumerate}
+
+\begin{proof}
+任意 U.F.D. 在其分式域中都是整闭的（第 15.3 节例 3），所以 $R$ 是整闭的。其余断言由命题 5 中对 $R$ 的理想的描述立刻得到。
+\end{proof}
+
+离散赋值环的定义是以分式域上的赋值给出的，极为显式；因此，看起来似乎很难仅从给定环 $R$ 的“内部”代数性质判断 $R$ 是否为 D.V.R.。事实上，命题 5 与推论 6 中的环论性质刻画了离散赋值环。下面的定理给出了离散赋值环的若干等价代数描述，其中完全没有显式提到赋值。
+
+\medskip
+\noindent\textbf{定理 7.} 环 $R$ 的下列性质等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item $R$ 是离散赋值环；
+  \item $R$ 是 P.I.D.，且有唯一非零极大理想 $P$；
+  \item $R$ 是 U.F.D.，且只有一个不可约元素 $t$（在相伴意义下唯一）；
+  \item $R$ 是 Noether 整环，也是局部环，且其唯一极大理想非零并且是主理想；
+  \item $R$ 是 Noether、整闭的整环，同时也是 Krull 维数为 $1$ 的局部环，即 $R$ 有唯一非零素理想：$\Spec R=\{0,M\}$。
+\end{enumerate}
+
+\begin{proof}
+(1) 蕴含其他每个性质已在上面证明。
+
+若 (2) 成立，则 (3) 立刻成立，因为在 U.F.D. 中不可约元素生成素理想（第 8.3 节命题 12）。
+
+若 (3) 成立，则 $R$ 中每个非零元素都可唯一写成 $ut^n$，其中 $u$ 是单位，$n\geq0$。于是 $R$ 的分式域中每个非零元素都可唯一写成 $ut^n$，其中 $u$ 是单位，$n\in\ZZ$。现在直接检查映射 $v(ut^n)=n$ 是 $R$ 的分式域上的一个离散赋值，且 $R$ 是 $v$ 的赋值环，因此 (1) 成立。
+
+假设 (4) 成立，令 $M=(t)$ 为 $R$ 的唯一极大理想，并令 $M_0=\bigcap_{i\geq1}M^i$。则 $M_0=MM_0$，并且由于 $R$ 是 Noether 环，$M_0$ 是有限生成的。由假设 $M=\Jac R$，所以由 Nakayama 引理 $M_0=0$。若 $I$ 是 $R$ 的任意真非零理想，则存在某个 $n\geq0$，使得 $I\subseteq M^n$ 但 $I\nsubseteq M^{n+1}$。取 $a\in I-M^{n+1}$，并写 $a=t^nu$，其中 $u\in R$。于是 $u\notin M$，所以 $u$ 是局部环 $R$ 中的单位。因此对每个 $a\in I-M^{n+1}$，$(a)=(t^n)=M^n$。这说明 $I=(t^n)$，所以 $R$ 的每个理想都是主理想，从而 (2) 成立。
+
+我们已经证明了 (1)、(2)、(3)、(4) 等价，并且每个都蕴含 (5)。为完成证明，我们证明 (5) 蕴含 (4)，也就是证明 (5) 中的理想 $M$ 是主理想。由于 $0\neq M=\Jac R$ 且 $M$ 因 $R$ 为 Noether 环而有限生成，由 Nakayama 引理（命题 1(4)），$M\neq M^2$。取 $t\in M-M^2$。我们断言 $M=(t)$。由第 15.2 节命题 12，$M$ 是 $R$ 中唯一非零素理想的假设蕴含 $M=\rad(t)$，于是第 15.2 节命题 14 蕴含 $M$ 的某个幂包含于 $(t)$ 中。反证，假设 $(t)\neq M$，于是对某个 $n\geq2$ 有 $M^n\subseteq(t)$ 但 $M^{n-1}\nsubseteq(t)$。则存在元素 $x\in M^{n-1}-(t)$，使得 $xM\subseteq(t)$。注意 $t\neq0$，所以 $y=x/t$ 属于 $R$ 的分式域。而且 $y\notin R$，因为 $x=ty\notin(t)$。然而，由 $x$ 的选择可知 $yM\subseteq R$，并且容易检查 $yM$ 是 $R$ 中的理想。若 $yM=R$，则对某个 $m\in M$ 有 $1=ym$。这导致矛盾，因为这时 $t=xm\in M^2$，与 $t$ 的选择相反。因此 $yM$ 是真理想，故包含在 $R$ 的唯一极大理想中，即 $yM\subseteq M$。现在 $M$ 是有限生成 $R$-模，而 $y$ 通过左乘作用于 $M$，给出一个 $R$-模同态。与第 15.3 节命题 23 的证明中相同的（行列式）方法表明，存在一个系数在 $R$ 中的首一多项式 $p$，使得对所有 $m\in M$ 都有 $p(y)m=0$。由于 $p(y)$ 是含有 $R$ 与 $M$ 的域中的元素，必有 $p(y)=0$。因此 $y$ 在 $R$ 上整。由于按假设 $R$ 是整闭的，推出 $y\in R$，矛盾。因此 $M=(t)$ 是主理想，所以 (5) 蕴含 (4)，定理证毕。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 8.} 若 $R$ 是任意 Noether、整闭的整环，且 $P$ 是 $R$ 的极小非零素理想，则 $R$ 在 $P$ 处的局部化 $R_P$ 是离散赋值环。
+
+\begin{proof}
+由第 15.4 节的结果，局部化 $R_P$ 是 Noether 的（命题 38(4)）、整闭的（命题 49）、整环（命题 46(2)），并且是具有唯一非零素理想的局部环（命题 46(4)），所以 $R_P$ 满足定理中的 (5)。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $R$ 是任意主理想整环，则 $R$ 在任意非零素理想 $P=(p)$ 处的局部化 $R_P$ 都是离散赋值环。这由推论 8 立刻推出，因为 $R$ 是整闭的（作为 U.F.D.，参见第 15.3 节例 3），而 P.I.D. 中非零素理想都是极大理想（命题 8.7）。注意 $R_P$ 的分式域 $K$ 与 $R$ 的分式域相同，因此 $R$ 中每个非零素元 $p$ 都在 $K$ 上产生一个赋值 $v_p$，由公式
+  \[
+    v_p\left(p^n\frac ab\right)=n
+  \]
+  给出，其中 $a$ 和 $b$ 是 $R$ 中不被 $p$ 整除的元素。这同时推广了上面的例 1 和例 2。
+
+  \item $p$-进整数环 $\ZZ_p$ 是离散赋值环，因为它是 P.I.D.，且有唯一极大理想 $p\ZZ_p$（参见第 7.6 节练习 11）。$\ZZ_p$ 的分式域称为 \emph{$p$-进数域}，记为 $\QQ_p$。元素 $p$ 是 $\ZZ_p$ 的一致化参数，所以 $\QQ_p$ 中每个非零元素都可唯一写成 $p^nu$ 的形式，其中 $n\in\ZZ$，$u\in\ZZ_p^\times$ 是单位（其中 $u=a_0+a_1p+a_2p^2+
+  \cdots$，且 $0<a_0<p$，如第 7.6 节练习 11(c) 所述）。相应的 $\QQ_p$ 上的 $p$-进赋值由 $v_p(p^nu)=n$ 给出。
+\end{enumerate}
+
+域 $K$ 上的离散赋值 $v$ 定义了 $K$ 上一个相应的度量（或“距离函数”）$d_v$，如下：固定任意实数 $\beta>1$（为验证度量公理，$\beta$ 的实际取值无关紧要），并对所有 $a,b\in K$ 定义
+\[
+  d_v(a,b)=\lVert a-b\rVert_v,
+  \qquad \text{其中}\qquad
+  \lVert a\rVert_v=\beta^{-v(a)},
+\]
+并且规定 $d_v(a,a)=0$。容易检查 $d_v$ 满足度量的三个公理：
+\begin{enumerate}[label=(\roman*)]
+  \item $d_v(a,b)\geq0$，且等号成立当且仅当 $a=b$；
+  \item $d_v(a,b)=d_v(b,a)$，即 $d_v$ 是对称的；
+  \item 对所有 $a,b,c\in K$，$d_v(a,b)\leq d_v(a,c)+d_v(c,b)$，即 $d_v$ 满足“三角不等式”。
+\end{enumerate}
+三角不等式是离散赋值公理 (iii) 的结果。事实上，更强的三角不等式成立：
+\begin{enumerate}[label=(\roman*)]
+  \item[(iii)$'$] 对所有 $a,b,c\in K$，
+  \[
+    d_v(a,b)\leq\max\{d_v(a,c),d_v(c,b)\}.
+  \]
+\end{enumerate}
+因此 $d_v$ 有时称为\emph{超度量}。现在可以用 Cauchy 列来形成 $K$ 关于 $d_v$ 的完备化，记为 $K_v$，其方式与由有理数 $\QQ$ 构造实数 $\RR$ 相同。不难证明 $K_v$ 也是一个域，并带有一个离散赋值，该赋值在 $K_v$ 的稠密子集 $K$ 上与 $v$ 一致。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 考虑 $\QQ$ 上的 $p$-进赋值 $v_p$，并取 $\beta=p$。把 $\lVert a\rVert_{v_p}$ 写作 $\lVert a\rVert_p$，于是对与 $p$ 互素的 $a,b$，
+  \[
+    \left\lVert p^n\frac ab\right\rVert_p=p^{-n}.
+  \]
+  注意，若整数（或有理数）可被 $p$ 的高次幂整除，则它们的 $p$-进绝对值很小。例如，序列 $1,p,p^2,p^3,
+  \ldots$ 在 $p$-进度量下收敛到零。
+
+  不太难看出，$\QQ$ 关于 $p$-进度量的完备化就是 $p$-进数域 $\QQ_p$，而 $\ZZ$ 的完备化就是 $p$-进整数环 $\ZZ_p$。一种看法是检查完备化中的每个元素 $a$ 都可以表示为一个 $p$-进 Laurent 级数：
+  \[
+    a=\sum_{i=n_0}^{\infty}a_ip^i,
+    \qquad n_0\in\ZZ,
+    \quad a_i\in\{0,1,
+    \ldots,p-1\}\text{ 对所有 }i,
+  \]
+  然后使用前面的例 2。用这种展开表示时，$p$-进赋值由 $v_p(a)=n_0$ 给出（当 $a_{n_0}\neq0$ 时）。
+
+  \item 类似地，$F(x)$ 关于本节开头例 2 中赋值 $v_x$ 的完备化给出域 $F((x))$，其相应的赋值环是同一组例子中例 3 的 $F[[x]]$。
+\end{enumerate}
+
+域 $K$ 关于离散赋值 $v$ 的完备化是一个域 $K_v$，其中的元素可用一致化参数容易地描述。此外，$K_v$ 是一个拓扑空间，其拓扑由度量 $d_v$ 定义。再者，$K_v$ 中元素的 Cauchy 列收敛到 $K_v$ 中的元素（即 $K_v$ 在 $v$-进拓扑下是完备的）。这类似于 $\QQ$ 关于通常 Euclidean 度量的完备化 $\RR$ 的情形。这使得可以把分析中的思想应用于这类环的研究，并且是研究代数数域和代数几何中的重要工具。
+
+\subsection*{分式理想}
+
+我们通过给出 D.V.R. 关于“分式理想”的另一个刻画，来完成对离散赋值环的讨论；分式理想可以对任意整环定义：
+
+\noindent\textbf{定义.} 对任意分式域为 $K$ 的整环 $R$，$R$ 的\emph{分式理想}是 $K$ 的 $R$-子模 $A$，使得对某个非零 $d\in R$ 有 $dA\subseteq R$（等价地，它是形如 $d^{-1}I$ 的子模，其中 $d\in R$ 非零，$I$ 是 $R$ 的理想）。
+
+这两个定义等价，是因为 $dA$ 是 $R$ 的 $R$-子模（即理想）。
+
+$K$ 中分式理想的概念依赖于环 $R$。粗略地说，分式理想就是允许有固定“分母” $d$ 的 $R$ 的理想。$R$ 的理想也是 $R$ 的分式理想（分母取 $d=1$），并且正是那些包含在 $R$ 中的分式理想。为清楚起见，它们有时称为 $R$ 的\emph{整理想}。当 $R$ 是 Noether 整环时，$R$ 的分式理想等同于 $K$ 的有限生成 $R$-子模（参见练习 6）。
+
+对任意 $x\in K$，$R$-模 $Rx=\{rx\mid r\in R\}$ 称为由 $x$ 生成的（循环）\emph{主分式理想}。
+
+若 $A$ 与 $B$ 是分式理想，则它们的乘积 $AB$ 定义为所有形如 $ab$ 的元素的有限和组成的集合，其中 $a\in A$ 且 $b\in B$。若 $A=d^{-1}I$ 且 $B=(d')^{-1}J$，其中 $I,J$ 是 $R$ 的理想，$d,d'\in R$ 非零，则 $AB=(dd')^{-1}IJ$，其中 $IJ$ 是通常的乘积理想。特别地，这说明两个分式理想的乘积仍是分式理想。
+
+\noindent\textbf{定义.} 分式理想 $A$ 称为\emph{可逆的}，若存在分式理想 $B$ 使得 $AB=R$；此时 $B$ 称为 $A$ 的逆，记为 $A^{-1}$。
+
+若 $A$ 是可逆分式理想，则满足 $AB=R$ 的分式理想 $B$ 是唯一的：$AB=AC=R$ 蕴含 $B=B(AC)=(BA)C=C$。
+
+\medskip
+\noindent\textbf{命题 9.} 设 $R$ 是整环，且 $A$ 是 $R$ 的分式理想。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $A$ 是非零主分式理想，则 $A$ 可逆。
+  \item 若 $A$ 非零，则集合
+  \[
+    A'=\{x\in K\mid xA\subseteq R\}
+  \]
+  是 $R$ 的分式理想。一般地，有 $AA'\subseteq R$；且 $AA'=R$ 当且仅当 $A$ 可逆，在这种情形下 $A^{-1}=A'$。
+  \item 若 $A$ 是 $R$ 的可逆分式理想，则 $A$ 是有限生成的。
+  \item 可逆分式理想全体在乘法下构成一个 Abel 群，恒等元为 $R$。非零主分式理想全体是可逆分式理想群的子群。
+\end{enumerate}
+
+\begin{proof}
+若 $A=xR$ 是非零主分式理想，则取 $B=x^{-1}R$ 说明 $A$ 可逆，证明了 (1)。
+
+容易看出 $A'$ 是 $K$ 的 $R$-子模。若 $A$ 是非零分式理想，则存在某个非零 $d\in R$ 使 $dA\subseteq R$，所以 $A$ 含有 $R$ 中的非零元素。令 $a$ 是 $A$ 中任意一个也在 $R$ 中的非零元素。由 $A'$ 的定义，有 $aA'\subseteq R$，所以 $A'$ 是分式理想。同样由定义，$AA'\subseteq R$。若 $AA'=R$，则 $A$ 可逆，逆为 $A^{-1}=A'$。反过来，若 $AB=R$，则由 $A'$ 的定义 $B\subseteq A'$。于是 $R=AB\subseteq AA'\subseteq R$，说明 $AA'=R$，证明了 (2)。
+
+若 $A$ 可逆，则由 (2) 有 $AA'=R$，所以对某些 $a_1,
+\ldots,a_n\in A$ 和 $a_1',
+\ldots,a_n'\in A'$，
+\[
+  1=a_1a_1'+\cdots+a_na_n'.
+\]
+若 $a\in A$，则
+\[
+  a=(aa_1')a_1+\cdots+(aa_n')a_n,
+\]
+其中每个 $aa_i'\in R$，这是由 $A'$ 的定义得到的。因此 $A$ 由 $a_1,
+\ldots,a_n$ 在 $R$ 上生成，所以 $A$ 是有限生成的，证明了 (3)。
+
+最后，显然两个可逆分式理想的乘积仍是可逆的。该乘法交换、结合，并且对任意分式理想 $A$ 有 $RA=A$。可逆分式理想的逆按定义仍是可逆分式理想，这证明了 (4) 的第一个断言。(4) 的第二个断言是直接的，因为 $xR$ 与 $yR$ 的乘积是 $(xy)R$，而 $xR$ 的逆是 $x^{-1}R$。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $R$ 是整环，则 $R$ 的可逆分式理想群关于非零主分式理想子群的商群称为 $R$ 的\emph{类群}。$R$ 的类群的阶称为 $R$ 的\emph{类数}。
+
+$R$ 的类群是平凡群且 $R$ 的类数为 $1$，当且仅当 $R$ 是 P.I.D.。$R$ 的类群衡量 $R$ 的理想距离成为主理想有多接近。
+
+分式理想 $A$ 是否可逆，也与 $A$ 作为 $R$-模是否投射有关。回忆，$R$-模 $M$ 在 $R$ 上是投射的，当且仅当 $M$ 是自由模的直和项（第 10.5 节命题 30）。等价地，$M$ 是投射的，当且仅当存在自由 $R$-模 $F$ 以及 $R$-模同态 $f:F\to M$、$g:M\to F$，使得 $f\circ g=1$（第 10.5 节命题 25）。
+
+\medskip
+\noindent\textbf{命题 10.} 设 $R$ 是分式域为 $K$ 的整环，且 $A$ 是 $R$ 的非零分式理想。则 $A$ 可逆，当且仅当 $A$ 是投射 $R$-模。
+
+\begin{proof}
+先假设 $A$ 可逆，于是如命题 9(2) 中一样，对某些 $a_i\in A$ 与 $a_i'\in A'$ 有
+\[
+  \sum_{i=1}^n a_ia_i'=1.
+\]
+令 $F$ 为由 $y_1,
+\ldots,y_n$ 生成的自由 $R$-模。定义 $f:F\to A$ 为
+\[
+  f\left(\sum_{i=1}^n r_iy_i\right)=\sum_{i=1}^n r_ia_i,
+\]
+并定义 $g:A\to F$ 为
+\[
+  g(c)=\sum_{i=1}^n(ca_i')y_i.
+\]
+二者显然都是 $R$-模同态（注意由 $A'$ 的定义 $ca_i'\in R$）。由于
+\[
+  (f\circ g)(c)=f\left(\sum_{i=1}^n(ca_i')y_i\right)
+  =\sum_{i=1}^n(ca_i')a_i
+  =c\left(\sum_{i=1}^n a_ia_i'\right)=c,
+\]
+所以 $f\circ g=1$，且 $A$ 是 $F$ 的直和项，因此是投射的。
+
+反过来，假设 $A$ 非零且投射，所以存在自由 $R$-模 $F$ 以及 $R$-同态 $f:F\to A$、$g:A\to F$，满足 $f\circ g=1$。固定任意 $0\neq a\in A$，并设
+\[
+  g(a)=\sum_{i=1}^n \widetilde a_i y_i,
+\]
+其中 $\widetilde a_i\in R$，而 $y_1,
+\ldots,y_n$ 是 $F$ 的一组自由生成元集合的一部分。定义 $a_i=f(y_i)$ 且 $a_i'=\widetilde a_i/a\in K$，$i=1,
+\ldots,n$。对任意 $b\in A$，由于 $g$ 是 $R$-模同态，我们有 $bg(a)=ag(b)=g(ab)$。写
+\[
+  g(b)=\sum_{i=1}^n b_i y_i+\sum_{j\in\mathcal I}b_jy_j,
+\]
+其中 $\{y_j\}$，$j\in\mathcal I$，是 $F$ 的自由生成元集合中其余的元素。于是
+\[
+  \sum_{i=1}^n (b\widetilde a_i)y_i
+  =\sum_{i=1}^n (ab_i)y_i+
+  \sum_{j\in\mathcal I}(ab_j)y_j.
+\]
+在这个等式中比较自由 $R$-模 $F$ 的基元素的系数，得到 $g(b)=\sum_{i=1}^n b_iy_i$，其中 $b_i\in R$，并且对 $i=1,
+\ldots,n$ 有 $b\widetilde a_i=ab_i$。特别地，由 $a_i'$ 的定义可知
+\[
+  ba_i'=b(\widetilde a_i/a)=b_i
+\]
+对 $A$ 的每个元素 $b$ 都属于 $R$。这说明 $a_i'\in A'$，$i=1,
+\ldots,n$。由于 $f\circ g=1$，我们有
+\[
+  a=f\circ g(a)=f\left(\sum_{i=1}^n\widetilde a_i y_i\right)
+  =\sum_{i=1}^n\widetilde a_i a_i
+  =\sum_{i=1}^n(aa_i')a_i
+  =a\left(\sum_{i=1}^n a_ia_i'\right),
+\]
+所以 $\sum_{i=1}^n a_ia_i'=1$。于是 $AA'=R$，所以由命题 9，$A$ 可逆，证明完成。
+\end{proof}
+
+下一个结果说明，如果整环 $R$ 还是局部环，则分式理想是否可逆决定了 $R$ 是否为 D.V.R.。
+
+\medskip
+\noindent\textbf{命题 11.} 假设整环 $R$ 是不是域的局部环。则 $R$ 是离散赋值环，当且仅当 $R$ 的每个非零分式理想都是可逆的。
+
+\begin{proof}
+若 $R$ 是一致化参数为 $t$ 的 D.V.R.，则由命题 5，$R$ 的每个非零理想都形如 $(t^n)$，其中 $n\geq0$，且 $R$ 的每个元素 $d$ 都可写成 $ut^m$，其中 $u\in R$ 是单位，$m\geq0$。于是 $R$ 的每个非零分式理想都形如 $t^N R$，其中 $N\in\ZZ$，因而是主分式理想，并由前一命题可逆。
+
+反过来，假设 $R$ 的每个非零分式理想都是可逆的。则由命题 9(3)，$R$ 的每个非零理想都是有限生成的，所以 $R$ 是 Noether 环。令 $M$ 为 $R$ 的唯一极大理想。若 $M=M^2$，则由 Nakayama 引理 $M=0$，这将使 $R$ 成为域，与假设相反。因此存在元素 $t\in M-M^2$。由假设 $M$ 可逆，并且由于 $t\in M$，分式理想 $tM^{-1}$ 是 $R$ 中的非零理想。若 $tM^{-1}\subseteq M$，则 $t\in M^2$，与 $t$ 的选择矛盾。因此 $tM^{-1}=R$，所以 $(t)=M$，而 $M$ 是非零主理想。于是由定理 7 的等价条件 4，$R$ 是 D.V.R.，证明完成。
+\end{proof}
+
+我们用代数几何中的一个应用结束本节。
+
+\subsection*{仿射平面曲线的非奇异性和局部环}
+
+设 $k$ 是代数闭域，并设 $C$ 是 $k$ 上的不可约仿射曲线。换言之，$C$ 是一个仿射代数集，其坐标环 $k[C]$ 是整环，且其有理函数域 $k(C)$ 在 $k$ 上的超越次数为 $1$（参见第 15.4 节）。
+
+回忆，按照定义，$C$ 上的点 $v$ 是非奇异的，如果 $\mathfrak m_{v,C}/\mathfrak m_{v,C}^2$ 是 $k$ 上的一维向量空间，其中 $\mathfrak m_{v,C}$ 是在 $v$ 处有定义的 $C$ 上有理函数的局部环 $\mathcal O_{v,C}$ 中的唯一极大理想。
+
+\medskip
+\noindent\textbf{命题 12.} 设 $v$ 是 $k$ 上不可约仿射曲线 $C$ 上的点。则 $C$ 在 $v$ 处非奇异，当且仅当局部环 $\mathcal O_{v,C}$ 是离散赋值环。
+
+\begin{proof}
+先假设 $v$ 非奇异。则 $\dim_k(\mathfrak m_{v,C}/\mathfrak m_{v,C}^2)=1$，并且由于 $\mathcal O_{v,C}$ 是 Noether 环，由第 1 节练习 12 可知 $\mathfrak m_{v,C}$ 是主理想。因此由定理 7(4)，$\mathcal O_{v,C}$ 是 D.V.R.。反过来，假设 $\mathcal O_{v,C}$ 是 D.V.R.，且 $t$ 是 $\mathcal O_{v,C}$ 的一致化元素。于是 $\mathfrak m_{v,C}$ 中每个元素都可唯一写成 $at$，其中 $a\in\mathcal O_{v,C}$。从 $\mathfrak m_{v,C}$ 到 $\mathcal O_{v,C}/\mathfrak m_{v,C}$ 的映射，定义为把 $at$ 映到 $a\bmod\mathfrak m_{v,C}$，容易检查它是满的 $\mathcal O_{v,C}$-模同态，核为 $\mathfrak m_{v,C}^2$。因此 $\mathfrak m_{v,C}/\mathfrak m_{v,C}^2$ 作为 $\mathcal O_{v,C}/\mathfrak m_{v,C}$-模同构于 $\mathcal O_{v,C}/\mathfrak m_{v,C}$。由于 $\mathcal O_{v,C}/\mathfrak m_{v,C}\cong k$（第 15.4 节命题 46(5)），得到 $\dim_k(\mathfrak m_{v,C}/\mathfrak m_{v,C}^2)=1$，因此 $v$ 是 $C$ 上的非奇异点。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $v$ 是 $C$ 上的非奇异点，且对应的离散赋值 $v_v$ 定义在 $k(C)$ 上，则对于 $f\in k(C)$，若 $v_v(f)=n$，则称其为 $f$ 在 $v$ 处的零点阶数（若 $n\geq0$）或极点阶数（若 $n<0$）。
+
+利用命题 12 中曲线上点的非奇异性判别准则，可以证明第 15.4 节首次提到的一个结果：
+
+\medskip
+\noindent\textbf{推论 13.} 代数闭域 $k$ 上的不可约仿射曲线 $C$ 是光滑的，当且仅当其坐标环 $k[C]$ 是整闭的。
+
+\begin{proof}
+曲线 $C$ 光滑，当且仅当每个局部化 $\mathcal O_{v,C}$ 都是 D.V.R.。由于 $k[C]$ 的 Krull 维数为 $1$（第 1 节练习 11），每个 $\mathcal O_{v,C}$ 亦然。因此由定理 7(5)，每个局部化 $\mathcal O_{v,C}$ 是 D.V.R.，当且仅当 $\mathcal O_{v,C}$ 是整闭的。由第 15.4 节命题 49，这又等价于 $k[C]$ 是整闭的，这证明了该推论。
+\end{proof}
+
+\subsection*{练习}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 设 $R$ 是相对于其分式域 $K$ 上赋值 $v$ 的离散赋值环。若 $x,y\in K$ 且 $v(x)<v(y)$，证明 $v(x+y)=\min(v(x),v(y))$。［注意 $x+y=x(1+y/x)$。］
+  \item 设 $R$ 是唯一极大理想为 $M$、商域为 $F=R/M$ 的离散赋值环。对任意 $n\geq0$，证明 $M^n/M^{n+1}$ 是 $F$ 上的向量空间，且
+  \[
+    \dim_F(M^n/M^{n+1})=1.
+  \]
+  \item 假设 $R$ 是整环，也是局部环，其唯一极大理想 $M=(t)$ 非零且为主理想，并假设
+  \[
+    \bigcap_{n\geq1}(t^n)=0.
+  \]
+  证明 $R$ 是离散赋值环。［证明 $R$ 中每个非零元素都可写成 $ut^n$ 的形式，其中 $u\in R$ 是单位，$n\geq0$。］
+  \item 设 $R$ 是 Noether 局部环，其唯一极大理想 $M=(t)$ 是主理想。证明要么 $R$ 是离散赋值环，要么对某个 $n\geq0$ 有 $t^n=0$。在后一种情形下，证明 $R$ 是 Artin 环。
+  \item 假设 $R$ 是 Noether 整环，并且也是 Krull 维数为 $1$ 的局部环。令 $M$ 为 $R$ 的唯一极大理想，并令 $F=R/M$，于是 $M/M^2$ 是 $F$ 上的向量空间。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明若 $\dim_F(M/M^2)=1$，则 $R$ 是离散赋值环。
+    \item 若 $R$ 的每个非零理想都是 $M$ 的幂，证明 $R$ 是离散赋值环。
+  \end{enumerate}
+  \item 设 $R$ 是分式域为 $K$ 的整环。证明 $K$ 的每个有限生成 $R$-子模都是 $R$ 的分式理想。若 $R$ 是 Noether 环，证明 $A$ 是 $R$ 的分式理想，当且仅当 $A$ 是 $K$ 的有限生成 $R$-子模。
+  \item 若 $R$ 是整环，且 $A$ 是 $R$ 的分式理想，证明若 $A$ 是投射的，则 $A$ 是有限生成的。推出每个非 Noether 的整环都含有一个不是投射的理想。
+  \item 设 $R$ 是 Noether 整环，也是非零极大理想为 $M$ 的局部环。证明 $R$ 是 D.V.R.，当且仅当 $R$ 中唯一的 $M$-primary 理想是 $M$ 的幂。
+  \item 设
+  \[
+    C=Z(xz-y^2,
+    yz-x^3,
+    z^2-x^2y)\subseteq\mathbb A^3
+  \]
+  是代数闭域 $k$ 上的曲线。若 $v=(0,0,0)\in C$，证明 $\dim_k(\mathfrak m_{v,C}/\mathfrak m_{v,C}^2)=3$，因此 $v$ 是 $C$ 上的奇异点。推出 $k[C]$ 在 $k(C)$ 中不是整闭的，并确定它的整闭包。［参见第 15.4 节练习 27。］
+\end{enumerate}
+
+\section{Dedekind 整环}
+
+在上一节中，我们证明了离散赋值环就是整闭的、Krull 维数为 $1$ 的 Noether 整环中的局部环。本节考虑放松局部环条件之后的影响：
+
+\noindent\textbf{定义.} \emph{Dedekind 整环}是 Krull 维数为 $1$ 的 Noether、整闭的整环。
+
+等价地，$R$ 是 Dedekind 整环，当且仅当 $R$ 是 Noether、整闭且不是域的整环，并且其中每个非零素理想都是极大理想。
+
+第一个结果说明，Dedekind 整环是主理想整环类的推广。稍后我们将看到（定理 22），有限生成 Dedekind 整环上模有一个结构定理，它推广了第 12.1 节中为 P.I.D. 证明的相应结果。
+
+\medskip
+\noindent\textbf{命题 14.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 每个主理想整环都是 Dedekind 整环。
+  \item 代数数域中的整数环是 Dedekind 整环。
+\end{enumerate}
+
+\begin{proof}
+P.I.D. 显然是 Noether 的；它是 U.F.D.，所以是整闭的（第 15.3 节例 3）；并且非零素理想都是极大理想（第 8.2 节命题 7），这证明了 (1)。令 $\mathcal O_K$ 为数域 $K$ 中的整数环，即 $\ZZ$ 在 $K$ 中的整闭包。第 15.3 节推论 25 说明 $\mathcal O_K$ 是整闭的；第 15.3 节定理 29 说明 $\mathcal O_K$ 是 Noether 的；而 $\mathcal O_K$ 中非零素理想都是极大理想这一事实在同一定理之后的讨论中已被证明。这证明了 (2)。
+\end{proof}
+
+下面的定理给出 Dedekind 整环的一些重要等价刻画。回忆，分式理想的基本性质已在上一节中建立。
+
+\medskip
+\noindent\textbf{定理 15.} 设 $R$ 是分式域为 $K\neq R$ 的整环。以下条件对于 $R$ 为 Dedekind 整环是等价的：
+\begin{enumerate}[label=(\arabic*)]
+  \item 环 $R$ 是 Noether 的、整闭的，并且每个非零素理想都是极大理想。
+  \item 环 $R$ 是 Noether 的，并且对 $R$ 的每个非零素理想 $P$，局部化 $R_P$ 是离散赋值环。
+  \item $K$ 中 $R$ 的每个非零分式理想都是可逆的。
+  \item $K$ 中 $R$ 的每个非零分式理想都是投射 $R$-模。
+  \item $R$ 的每个非零真理想 $I$ 都可写成有限多个素理想的乘积：
+  \[
+    I=P_1P_2\cdots P_n
+  \]
+  （不一定互异）。当 (5) 中的条件成立时，素理想集合 $\{P_1,
+  \ldots,P_n\}$ 是唯一确定的，因此 $R$ 的每个非零真理想 $I$ 都可唯一地（差一个顺序）写成素理想幂的乘积。
+\end{enumerate}
+
+\begin{proof}
+若 $R$ 满足 (1)，则由推论 8，$R_P$ 是 D.V.R.，所以 (1) 蕴含 (2)。反过来，假设每个 $R_P$ 都是 D.V.R.。则由第 15.4 节命题 49，$R$ 是整闭的；并且由第 15.4 节命题 46(3)，每个非零素理想都是极大理想，所以 (2) 蕴含 (1)。
+
+现在假设 (1) 成立，且 $A$ 是 $R$ 的非零分式理想。令
+\[
+  A'=\{x\in K\mid xA\subseteq R\}
+\]
+如命题 9 中所定义。对 $R$ 的任意素理想 $P$，$R$-模在局部化下的行为说明
+\[
+  (AA')_P=A_P(A')_P=A_P(A_P)'
+\]
+（参见练习 4）。由于按已证结果 $R_P$ 是 D.V.R.，由命题 11 有 $A_P(A_P)'=R_P$。因此对 $R$ 的所有非零素理想 $P$，$(AA')_P=R_P$，所以 $AA'=R$（第 15.4 节练习 13），于是 $A$ 可逆，说明 (1) 蕴含 (3)。反过来，假设 $R$ 的每个非零分式理想都可逆。则由命题 9(3)，$R$ 的每个理想都是有限生成的，所以 $R$ 是 Noether 环。$R$ 在任意非零素理想 $P$ 处的局部化 $R_P$ 是局部环，其中的非零分式理想都是可逆的（参见练习 4），因此由命题 11 是 D.V.R.。故 (3) 蕴含 (2)，从而 (1)、(2)、(3) 等价。它们与 (4) 的等价性由命题 10 给出。
+
+现在假设 (1) 成立，令 $I$ 是 $R$ 的任意非零真理想。由于 $R$ 是 Noether 环，$I$ 有第 15.2 节定理 21 中的极小 primary 分解
+\[
+  I=Q_1\cap\cdots\cap Q_n.
+\]
+伴随素理想 $P_i=\rad Q_i$，$i=1,
+\ldots,n$，彼此互异；由于按假设 $R$ 中素理想都是极大理想，这些伴随素理想两两互素，并容易推出 $Q_i$ 也两两互素（练习 5）。于是
+\[
+  Q_1\cap\cdots\cap Q_n=Q_1\cdots Q_n
+\]
+（第 7.6 节定理 17），所以 $I$ 是 primary 理想的乘积。$R$ 中的 $P$-primary 理想与局部化 $R_P$ 中的 $PR_P$-primary 理想双射对应（第 15.4 节命题 42(3)）；由于 $R_P$ 是 D.V.R.（因为 (1) 蕴含 (2)），由推论 6 可知，若 $Q$ 是 $R$ 中的 $P$-primary 理想，则 $Q=P^m$ 对某个整数 $m\geq1$ 成立。把这应用于 $Q_i$，$i=1,
+\ldots,n$，可知 $I$ 是素理想幂的乘积，这给出 (5) 中的第一个蕴含。
+
+反过来，假设 $R$ 的所有非零真理想都可写成素理想的乘积。我们先说明，对任意整环，把理想分解为可逆素理想的乘积是唯一的；也就是说，若
+\[
+  P_1\cdots P_n=P'_1\cdots P'_m
+\]
+是 $I$ 分解为可逆素理想乘积的两个分解，则 $n=m$，且两个素理想集合 $\{P_1,
+\ldots,P_n\}$ 与 $\{P'_1,
+\ldots,P'_m\}$ 相同。设 $P'_1$ 是集合 $\{P'_1,
+\ldots,P'_m\}$ 中的极小元。由于 $P_1\cdots P_n\subseteq P'_1$，素理想 $P'_1$ 包含 $P_1,
+\ldots,P_n$ 中的某个素理想，设 $P_1\subseteq P'_1$。类似地，$P_1$ 包含某个 $P'_i$，其中 $i=1,
+\ldots,m$。于是 $P'_i\subseteq P_1\subseteq P'_1$；由 $P'_1$ 的极小性，得到 $P'_i=P_1=P'_1$，所以分解变为
+\[
+  P_1P_2\cdots P_n=P_1P'_2\cdots P'_m.
+\]
+由于 $P_1$ 可逆，乘以其逆理想得到 $P_2\cdots P_n=P'_2\cdots P'_m$，一个容易的归纳完成证明。特别地，(5) 中的唯一性断言现在由 (5) 的第一个断言推出，因为在 Dedekind 整环中每个分式理想，特别地 $R$ 的每个素理想，都是可逆的。
+
+接下来证明 $R$ 中的可逆素理想都是极大理想。设 $P$ 是 $R$ 中可逆素理想，取 $a\in R$，$a\notin P$。我们要证明 $P+aR=R$。由假设，两个理想 $P+aR$ 和 $P+a^2R$ 可写成素理想乘积，设
+\[
+  P+aR=P_1\cdots P_n,
+  \qquad
+  P+a^2R=P'_1\cdots P'_m.
+\]
+注意，对 $i=1,
+\ldots,n$ 有 $P\subseteq P_i$，并且对 $j=1,
+\ldots,m$ 有 $P\subseteq P'_j$。在商环 $R/P$（一个整环）中，我们有分解
+\[
+  (a)=(P_1/P)\cdots(P_n/P),
+\]
+且每个 $P_i/P$ 是 $R/P$ 中的素理想。由于该乘积是主理想，每个 $P_i/P$ 也是可逆的 $R/P$-理想（参见练习 2）。类似地，
+\[
+  (a^2)=(P'_1/P)\cdots(P'_m/P)
+\]
+是分解为可逆素理想的乘积。于是
+\[
+  (a)^2=(P_1/P)^2\cdots(P_n/P)^2=(P'_1/P)\cdots(P'_m/P)
+\]
+给出了整环 $R/P$ 中分解为可逆素理想乘积的两个分解，所以由前一段的唯一性结果，$m=2n$，并且
+\[
+  \{P_1/P,P_1/P,
+  \ldots,P_n/P,P_n/P\}=\{P'_1/P,
+  \ldots,P'_m/P\}.
+\]
+因此 $R$ 中素理想 $P'_1,
+\ldots,P'_m$ 的集合由 $P_1,
+\ldots,P_n$ 每个重复两次组成。这说明
+\[
+  P+a^2R=(P+aR)^2.
+\]
+由于 $P\subseteq P+a^2R$ 且 $(P+aR)^2\subseteq P^2+aR$，我们有 $P\subseteq P^2+aR$，因此 $P$ 中每个元素 $x$ 都可写成 $x=y+az$，其中 $y\in P^2$，$z\in R$。于是 $az=x-y\in P$，且由于 $a\notin P$，有 $z\in P$。这说明 $P\subseteq P^2+aP$。显然 $P^2+aP\subseteq P$，所以
+\[
+  P=P^2+aP=P(P+aR).
+\]
+由于假设 $P$ 可逆，推出对任意 $a\in R-P$ 都有 $R=P+aR$，这证明 $P$ 是极大理想。
+
+现在证明每个非零素理想都是可逆的。若 $P$ 是非零素理想，取任意非零元素 $a\in P$。由假设，主理想
+\[
+  Ra=P_1\cdots P_n
+\]
+可写成素理想的乘积，并且 $P_1,
+\ldots,P_n$ 可逆，因为它们的乘积是主理想（再由练习 2）。由于 $P_1\cdots P_n=Ra\subseteq P$，素理想 $P$ 包含某个 $P_i$，$1\leq i\leq n$。由前一段，$P_i$ 是极大理想，所以 $P=P_i$ 可逆。
+
+最后，由于 $R$ 的每个非零真理想都是素理想乘积，推出 $R$ 的每个非零理想都是可逆的；并且由于 $R$ 的每个分式理想都形如 $(d^{-1})I$，其中 $I$ 是 $R$ 中的理想，所以 $R$ 的每个分式理想也可逆。这证明了 (5) 蕴含 (3)，从而完成定理的证明。
+\end{proof}
+
+下面的推论立即由命题 14 得到：
+
+\medskip
+\noindent\textbf{推论 16.} 若 $\mathcal O_K$ 是代数数域 $K$ 中的整数环，则 $\mathcal O_K$ 中每个非零理想 $I$ 都可唯一写成不同素理想幂的乘积：
+\[
+  I=P_1^{e_1}P_2^{e_2}\cdots P_n^{e_n},
+\]
+其中 $P_1,
+\ldots,P_n$ 是不同的素理想，并且对 $i=1,
+\ldots,n$ 有 $e_i\geq1$。
+
+\paragraph{注记}
+这里给出的 Dedekind 整环的发展顺序与历史发展相反。如第 9.3 节中所提到的，在数域整数环中，非零理想唯一分解为素理想乘积替代了非零元素唯一分解为素元素乘积的失败。推论 16 中整数环的这一性质最初导致了理想的定义，而 Dedekind 最初正是用定理 15 中性质 5 来定义我们现在称为 Dedekind 整环的对象。Noether 观察到它们也可以由性质 (1) 来刻画，而我们已把性质 (1) 作为 Dedekind 整环的初始定义。
+
+Dedekind 整环中分解为素理想的唯一分解可用来显式定义 $R$ 上的赋值 $v_P$，使得定理 15(2) 中的赋值环就是局部化 $R_P$（参见练习 6）。现在我们说明理想的唯一分解如何用于为理想定义一种类似于 $\ZZ$ 中整数可除性的可除理论。
+
+\noindent\textbf{定义.} 若 $A$ 和 $B$ 是整环 $R$ 中的理想，则称 $B$ \emph{整除} $A$（并称 $A$ 可被 $B$ 整除），如果存在 $R$ 中理想 $C$ 使得 $A=BC$。
+
+若 $B$ 整除 $A$，则当然 $A\subseteq B$。若 $R$ 是 Dedekind 整环，反过来也成立：$A\subseteq B$ 蕴含 $C=AB^{-1}\subseteq BB^{-1}=R$，所以 $C$ 是 $R$ 中理想且 $BC=A$。
+
+我们还可以定义两个理想 $A$ 和 $B$ 的最大公因子 $(A,B)$ 的概念：$(A,B)$ 整除 $A$ 和 $B$，并且任何同时整除 $A$ 和 $B$ 的理想都整除 $(A,B)$。下一个命题中的第二个断言说明，Dedekind 整环中的整理想总存在这种最大公因子，并给出类似于两个整数最大公因子公式的公式。
+
+\medskip
+\noindent\textbf{命题 17.} 设 $R$ 是 Dedekind 整环，$A,B$ 是 $R$ 中两个非零理想，其素理想分解为
+\[
+  A=P_1^{e_1}\cdots P_n^{e_n},
+  \qquad
+  B=P_1^{f_1}\cdots P_n^{f_n},
+\]
+其中 $e_i,f_i\geq0$，$i=1,
+\ldots,n$。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item $A\subseteq B$ 当且仅当 $B$ 整除 $A$（即“包含就是整除”），当且仅当对 $i=1,
+  \ldots,n$ 有 $f_i\leq e_i$；
+  \item
+  \[
+    A+B=(A,B)=P_1^{\min(e_1,f_1)}\cdots P_n^{\min(e_n,f_n)},
+  \]
+  因而特别地，$A$ 与 $B$ 互素，即 $A+B=R$，当且仅当它们没有共同的素理想因子。
+\end{enumerate}
+
+\begin{proof}
+我们已在上面证明了 (1) 中的第一个断言。若每个 $f_i\leq e_i$，则取
+\[
+  C=P_1^{e_1-f_1}\cdots P_n^{e_n-f_n}\subseteq R
+\]
+说明 $B$ 整除 $A$。反过来，若 $B$ 整除 $A$，则把 $C$ 写成素理想乘积并代入 $A=BC$，得到对所有 $i$ 都有 $f_i\leq e_i$，这证明了整个 (1)。由于 $A+B$ 是同时包含 $A$ 与 $B$ 的最小理想，(2) 现在由 (1) 推出。
+\end{proof}
+
+\medskip
+\noindent\textbf{命题 18（中国剩余定理）.} 设 $R$ 是 Dedekind 整环，$P_1,P_2,
+\ldots,P_n$ 是 $R$ 中不同的素理想，且 $a_i\geq0$ 是整数，$i=1,
+\ldots,n$。则
+\[
+  R/P_1^{a_1}\cdots P_n^{a_n}
+  \cong R/P_1^{a_1}\times R/P_2^{a_2}\times\cdots\times R/P_n^{a_n}.
+\]
+等价地，对任意元素 $r_1,r_2,
+\ldots,r_n\in R$，存在元素 $r\in R$，唯一地模去 $P_1^{a_1}\cdots P_n^{a_n}$ 中的一个元素，使得
+\[
+  r\equiv r_1\pmod{P_1^{a_1}},
+  \qquad
+  r\equiv r_2\pmod{P_2^{a_2}},
+  \qquad
+  \ldots,
+  \qquad
+  r\equiv r_n\pmod{P_n^{a_n}}.
+\]
+
+\begin{proof}
+这由第 7.6 节定理 17 立刻得到，因为前一个命题说明理想 $P_i^{a_i}$ 两两互素。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 19.} 设 $I$ 是 Dedekind 整环 $R$ 中的理想。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item 存在 $R$ 中理想 $J$，它与 $I$ 互素，并且乘积 $IJ=(a)$ 是主理想；
+  \item 若 $I$ 非零，则商 $R/I$ 中每个理想都是主理想；等价地，若 $I_1$ 是 $R$ 中包含 $I$ 的理想，则对某个 $b\in R$ 有 $I_1=I+Rb$；
+  \item $R$ 中每个理想都可由两个元素生成；事实上，若 $I$ 非零且 $0\neq a\in I$，则对某个 $b\in I$ 有 $I=Ra+Rb$。
+\end{enumerate}
+
+\begin{proof}
+设
+\[
+  I=P_1^{e_1}\cdots P_n^{e_n}
+\]
+是 $I$ 在 $R$ 中的素理想分解。对每个 $i=1,
+\ldots,n$，令 $r_i$ 是 $P_i^{e_i}-P_i^{e_i+1}$ 中的一个元素。由前一命题，存在 $a\in R$，使得对所有 $i$ 都有
+\[
+  a\equiv r_i\pmod{P_i^{e_i+1}}.
+\]
+因此对所有 $i$，$a\in P_i^{e_i}-P_i^{e_i+1}$，所以由命题 17(1)，$(a)$ 的素理想分解中 $P_i$ 的幂次恰好为 $e_i$：
+\[
+  (a)=P_1^{e_1}\cdots P_n^{e_n}P_{n+1}^{e_{n+1}}\cdots P_m^{e_m}
+\]
+对某些与 $P_1,
+\ldots,P_n$ 不同的素理想 $P_{n+1},
+\ldots,P_m$ 成立。令
+\[
+  J=P_{n+1}^{e_{n+1}}\cdots P_m^{e_m}
+\]
+得到 (1)。对 (2)，由中国剩余定理，只需证明在素理想 $P$ 的幂情形下，$R/P^m$ 中每个理想都是主理想；而这立即成立，因为
+\[
+  R/P^m\cong R_P/P^mR_P
+\]
+且局部化 $R_P$ 是 P.I.D.。最后，(3) 由 (2) 取 $I=Ra$ 得到。
+\end{proof}
+
+推论 19 的第一个断言说明，存在与 $I$ 互素的整理想 $J$，它在 $R$ 的类群中位于 $I$ 的逆类中。甚至可以对 $J$ 施加额外条件，参见练习 11。
+
+\medskip
+\noindent\textbf{推论 20.} 若 $R$ 是 Dedekind 整环，则 $R$ 是 P.I.D.（即 $R$ 的类数为 $1$），当且仅当 $R$ 是 U.F.D.。
+
+\begin{proof}
+每个 P.I.D. 都是 U.F.D.。反过来，假设 $R$ 是 U.F.D.，令 $P$ 为 $R$ 中任意素理想。由推论 19，$P=Ra+Rb$ 对某些 $0\neq a\in R$ 和 $b\in R$ 成立。由于 $a$ 的不可约因子 $a'$ 中有一个满足 $(a')\subseteq P$（因为它们的乘积属于素理想 $P$），于是由命题 17(1)，$P$ 在 $R$ 中整除 $(a')$。因此 $P=(a')$ 是主理想，因为 $(a')$ 是素理想（第 8.3 节命题 12）。由于 $R$ 中每个理想都是素理想乘积，$R$ 的每个理想都是主理想，即 $R$ 是 P.I.D.。
+\end{proof}
+
+推论 20 说明，Dedekind 整环 $R$ 的类数衡量了元素唯一分解失败的程度。代数数论中的一个基本结果是，代数数域的整数环的类数是有限的。然而，对一般 Dedekind 整环，类数不必有限。事实上，对任意 Abel 群 $A$（有限或无限），存在一个 Dedekind 整环，其类群同构于 $A$。
+
+\subsection*{Dedekind 整环上的模与有限生成模基本定理}
+
+接下来转向 Dedekind 整环 $R$ 上模的研究。$R$ 的每个分式理想都是 $R$-模，而下面命题的第一个断言说明，$R$ 的两个分式理想作为 $R$-模同构，当且仅当它们代表 $R$ 的类群中的同一个元素。
+
+\medskip
+\noindent\textbf{命题 21.} 设 $R$ 是分式域为 $K$ 的 Dedekind 整环。
+\begin{enumerate}[label=(\arabic*)]
+  \item 假设 $I$ 与 $J$ 是 $R$ 的两个分式理想。则 $I\cong J$ 作为 $R$-模，当且仅当 $I$ 与 $J$ 相差一个非零主理想：对某个 $0\neq a\in K$ 有 $I=(a)J$。
+  \item 更一般地，假设 $I_1,I_2,
+  \ldots,I_n$ 与 $J_1,J_2,
+  \ldots,J_m$ 是 Dedekind 整环 $R$ 的分式域 $K$ 中的非零分式理想。则
+  \[
+    I_1\oplus I_2\oplus\cdots\oplus I_n
+    \cong
+    J_1\oplus J_2\oplus\cdots\oplus J_m
+  \]
+  作为 $R$-模，当且仅当 $n=m$ 且乘积理想 $I_1I_2\cdots I_n$ 与 $J_1J_2\cdots J_n$ 相差一个主理想：对某个 $0\neq a\in K$，
+  \[
+    I_1I_2\cdots I_n=(a)J_1J_2\cdots J_n.
+  \]
+  \item 特别地，
+  \[
+    I_1\oplus I_2\oplus\cdots\oplus I_n
+    \cong
+    \underbrace{R\oplus\cdots\oplus R}_{n-1\text{ 个因子}}
+    \oplus (I_1I_2\cdots I_n),
+  \]
+  并且 $R^n\oplus I\cong R^n\oplus J$ 当且仅当 $I$ 与 $J$ 相差一个主理想：$I=(a)J$，$a\in K$。
+\end{enumerate}
+
+\begin{proof}
+由 $0\neq a\in K$ 乘法给出从 $J$ 到 $(a)J$ 的 $R$-模同构，所以若 $I=(a)J$，则 $I\cong J$ 作为 $R$-模。反过来，注意我们可以假设 $J\neq0$，于是 $I\cong J$ 蕴含 $R\cong J^{-1}I$。这意味着 $J^{-1}I=aR$ 是主理想（生成元 $a$ 由 $1\in R$ 的像给出），即 $I=(a)J$，证明了 (1)。
+
+接下来证明，对任意非零分式理想 $I$ 与 $J$，有
+\[
+  I\oplus J\cong R\oplus IJ.
+\]
+必要时把 $I$ 和 $J$ 分别换成同构的 $R$-模 $aI$ 和 $bJ$，我们可以假设 $I$ 与 $J$ 是互素的整理想（参见练习 12），所以 $I+J=R$ 且 $I\cap J=IJ$。容易看出，从 $I\oplus J$ 到 $I+J=R$ 的映射 $(x,y)\mapsto x+y$ 是满的 $R$-模同态，其核为 $I\cap J=IJ$，因此有 $R$-模正合列
+\[
+  0\to IJ\to I\oplus J\to R\to0.
+\]
+这个序列分裂，因为 $R$ 是自由模，所以 $I\oplus J\cong R\oplus IJ$，如所断言。
+
+(3) 的第一个断言现在由归纳得到；把该断言与 (1) 结合可知，若对某个非零 $a\in K$ 有 $I_1\cdots I_n=(a)J_1\cdots J_n$，则 $I_1\oplus\cdots\oplus I_n$ 同构于 $J_1\oplus\cdots\oplus J_n$。这证明了 (2) 中的“若”方向。还需要证明 (2) 中的“仅若”方向，因为 (3) 中相应断言是其特殊情形。因此假设
+\[
+  I_1\oplus I_2\oplus\cdots\oplus I_n
+  \cong
+  J_1\oplus J_2\oplus\cdots\oplus J_m
+\]
+作为 $R$-模。
+
+由于 $I\otimes_R K$ 是理想 $I$ 在 $K$ 中的局部化（参见第 15.4 节命题 41），对任意 $K$ 的非零分式理想 $I$ 都有 $I\otimes_R K\cong K$。由于张量积与直和可交换，$(I_1\oplus\cdots\oplus I_n)\otimes_R K\cong K^n$ 是 $K$ 上 $n$ 维向量空间。类似地，$J_1\oplus\cdots\oplus J_m\otimes_R K\cong K^m$，由此推出 $n=m$。
+
+注意，对任意非零元素 $a_1\in I_1$，把 $I_1$ 换成同构的分式理想 $a_1^{-1}I_1$，不会影响 (2) 中断言的成立。因此我们可以假设 $I_1$ 包含 $R$，类似地也可以假设 (2) 中每个分式理想都包含 $R$。令 $\varphi$ 表示从 $I_1\oplus\cdots\oplus I_n$ 到 $J_1\oplus\cdots\oplus J_n$ 的 $R$-模同构。对 $i=1,2,
+\ldots,n$，定义
+\[
+  \varphi((0,
+  \ldots,0,1,0,
+  \ldots,0))=(a_{1,i},a_{2,i},
+  \ldots,a_{n,i})\in J_1\oplus J_2\oplus\cdots\oplus J_n,
+\]
+其中左边的 $1\in I_i$ 出现在第 $i$ 个位置。由于 $\varphi$ 是 $R$-模同态，得到对每个 $j=1,2,
+\ldots,n$，
+\[
+  J_j=a_{j,1}I_1+a_{j,2}I_2+\cdots+a_{j,i}I_i+\cdots+a_{j,n}I_n.
+\]
+对 $j=1,2,
+\ldots,n$ 取这些理想的乘积，得到对 $\{j_1,j_2,
+\ldots,j_n\}$ 的任一排列，
+\[
+  (a_{j_1,1}a_{j_2,2}\cdots a_{j_n,n})I_1I_2\cdots I_n
+  \subseteq
+  J_1J_2\cdots J_n.
+\]
+因此
+\[
+  dI_1I_2\cdots I_n\subseteq J_1J_2\cdots J_n,
+\]
+其中 $d$ 是矩阵 $(a_{i,j})$ 的行列式，因为该行列式是若干项
+\[
+  \epsilon(\sigma)a_{1,\sigma(1)}\cdots a_{n,\sigma(n)}
+\]
+的和，$\epsilon(\sigma)$ 是 $\{1,2,
+\ldots,n\}$ 的置换 $\sigma$ 的符号。类似地，对 $j=1,
+\ldots,n$，定义
+\[
+  \varphi^{-1}((0,
+  \ldots,0,1,0,
+  \ldots,0))=(b_{1,j},b_{2,j},
+  \ldots,b_{n,j})\in I_1\oplus I_2\oplus\cdots\oplus I_n,
+\]
+其中左边的 $1\in J_j$ 出现在第 $j$ 个位置。两个矩阵 $(a_{i,j})$ 和 $(b_{i,j})$ 的乘积就是恒等矩阵，所以 $d\neq0$，且矩阵 $(b_{i,j})$ 的行列式为 $d^{-1}$。如上同理可得
+\[
+  d^{-1}J_1J_2\cdots J_n\subseteq I_1I_2\cdots I_n,
+\]
+这说明
+\[
+  I_1I_2\cdots I_n=(a)J_1J_2\cdots J_n,
+\]
+其中 $0\neq a=d^{-1}\in K$，从而完成命题的证明。
+\end{proof}
+
+现在我们考虑 Dedekind 整环上的有限生成模，并证明这类模的一个结构定理，它推广了第 12 章中关于 P.I.D. 上有限生成模的结果。
+
+回忆，$M$ 的秩是 $M$ 中 $R$-线性无关元素的最大个数；等价地，是 $M\otimes_R K$ 作为 $K$-向量空间的维数，其中 $K$ 是 $R$ 的分式域（参见第 12.1 节练习 1--4、20）。
+
+\medskip
+\noindent\textbf{定理 22.} 设 $M$ 是 Dedekind 整环 $R$ 上的有限生成模。令 $n\geq0$ 表示 $M$ 的秩，并令 $\Tor(M)$ 为 $M$ 的挠子模。则
+\[
+  M\cong \underbrace{R\oplus R\oplus\cdots\oplus R}_{n-1\text{ 个因子}}\oplus I\oplus\Tor(M)
+\]
+对 $R$ 的某个理想 $I$ 成立，并且
+\[
+  \Tor(M)\cong R/P_1^{e_1}\times R/P_2^{e_2}\times\cdots\times R/P_s^{e_s}
+\]
+对某个 $s\geq0$ 以及（不一定互异的）素理想幂 $P_i^{e_i}$（其中 $e_i\geq1$）成立。理想 $P_i^{e_i}$，$i=1,
+\ldots,s$，是唯一的；理想 $I$ 在乘以主理想意义下唯一。
+
+\begin{proof}
+先假设 $M$ 是 $R$ 上有限生成无挠模，即 $\Tor(M)=0$。则从 $M$ 到 $M\otimes_R K$ 的自然 $R$-模同态是单射，所以我们可以把 $M$ 看作向量空间 $M\otimes_R K$ 的一个 $R$-子模。若 $M$ 在 $R$ 上秩为 $n$，则 $M\otimes_R K$ 是 $K$ 上 $n$ 维向量空间。令 $x_1,
+\ldots,x_n$ 为 $M\otimes_R K$ 在 $K$ 上的一组基，令 $m_1,
+\ldots,m_s$ 为 $M$ 的 $R$-模生成元。每个 $m_i$，$i=1,
+\ldots,s$，都可写成 $x_1,
+\ldots,x_n$ 的 $K$-线性组合。令 $0\neq d\in R$ 为所有这些线性组合中 $K$ 系数的公共分母，并置 $y_i=x_i/d$，$i=1,
+\ldots,n$。于是
+\[
+  M\subseteq Ry_1+\cdots+Ry_n\subset Kx_1+\cdots+Kx_n,
+\]
+这说明 $M$ 包含在一个秩为 $n$ 的自由 $R$-子模中，并且 $M$ 中每个元素 $m$ 都可唯一写成
+\[
+  m=a_1y_1+\cdots+a_ny_n
+\]
+的形式，其中 $a_1,
+\ldots,a_n\in R$。定义映射 $\varphi:M\to R$ 为
+\[
+  \varphi(a_1y_1+\cdots+a_ny_n)=a_n,
+\]
+这是 $R$-模同态，所以我们有正合列
+\[
+  0\to\ker\varphi\to M\xrightarrow{\varphi} I_1\to0,
+\]
+其中 $I_1$ 是 $\varphi$ 在 $R$ 中的像，因此是 $R$ 中的理想。子模 $\ker\varphi$ 也是无挠 $R$-模，其秩至多为 $n-1$（因为它包含在 $Ry_1+\cdots+Ry_{n-1}$ 中）；通过比较秩可知 $I_1$ 非零，并且 $\ker\varphi$ 的秩恰为 $n-1$。由定理 15(4)，$I_1$ 是投射 $R$-模，所以该序列分裂：
+\[
+  M\cong I_1\oplus(\ker\varphi).
+\]
+对秩作归纳可知，有限生成无挠 $R$-模同构于 $R$ 的 $n$ 个非零理想的直和：
+\[
+  M\cong I_1\oplus I_2\oplus\cdots\oplus I_n.
+\]
+由于 $I_1,
+\ldots,I_n$ 每个都是投射 $R$-模，推出任意有限生成无挠 $R$-模都是投射的。
+
+现在若 $M$ 是任意有限生成 $R$-模，则商 $M/\Tor(M)$ 是有限生成且无挠的，因此由刚刚证明的结果是投射的。正合列
+\[
+  0\to\Tor(M)\to M\to M/\Tor(M)\to0
+\]
+因此分裂，所以
+\[
+  M\cong\Tor(M)\oplus (M/\Tor(M)).
+\]
+由前一段的结果，$M/\Tor(M)$ 同构于 $R$ 的 $n$ 个非零理想的直和；再由命题 21 得到
+\[
+  M\cong \underbrace{R\oplus R\oplus\cdots\oplus R}_{n-1\text{ 个因子}}\oplus I\oplus\Tor(M)
+\]
+对某个理想 $I$ 成立。关于理想 $I$ 的唯一性断言也由命题 21(3) 中的唯一性断言立刻得到。
+
+还需证明关于挠子模 $\Tor(M)$ 的断言。设 $N$ 是有限生成挠 $R$-模。令 $I=\Ann(N)$ 为 $N$ 在 $R$ 中的零化子，并设
+\[
+  I=P_1^{e_1}\cdots P_t^{e_t}
+\]
+是 $I$ 在 $R$ 中的素理想分解，其中 $P_1,
+\ldots,P_t$ 是不同的素理想。则 $N$ 是 $R/I$ 上的模，并且
+\[
+  R/I\cong R/P_1^{e_1}\times R/P_2^{e_2}\times\cdots\times R/P_t^{e_t}.
+\]
+于是
+\[
+  N\cong (N/P_1^{e_1}N)\times (N/P_2^{e_2}N)\times\cdots\times (N/P_t^{e_t}N)
+\]
+作为 $R$-模。每个 $N/P^eN$ 是
+\[
+  R/P^e\cong R_P/P^eR_P
+\]
+上的有限生成模，其中 $R_P$ 是 $R$ 在素理想 $P$ 处的局部化；也就是说，它是 $R_P$ 上被 $P^eR_P$ 零化的有限生成模。由于 $R$ 是 Dedekind 整环，每个 $R_P$ 都是 P.I.D.（甚至是 D.V.R.），所以可以应用 P.I.D. 上有限生成模基本定理，得到每个 $N/P^eN$ 作为 $R_P$-模同构于有限多个形如 $R_P/P^fR_P$ 的模的直和，其中 $f\leq e$。于是每个 $N/P^eN$ 作为 $R$-模同构于有限多个形如 $R/P^fR$ 的模的直和，其中 $f\leq e$。这证明 $N$ 同构于有限多个形如 $R/P_i^{e_i}$ 的模的直和，其中 $P_i$ 为各种素理想。因此 $\Tor(M)$ 可分解为定理中所述的直和。
+
+最后，还需证明 $\Tor(M)$ 分解中的理想 $P_i^{e_i}$，$i=1,
+\ldots,s$，是唯一的。这类似于第 12.1 节定理 10 证明中的唯一性论证（也参见第 12.1 节练习 11--12）：对 $R$ 的任意素理想 $P$，商
+\[
+  P^{i-1}M/P^iM
+\]
+是域 $R/P$ 上的向量空间，并且差
+\[
+  \dim_{R/P} P^{i-1}M/P^iM-
+  \dim_{R/P} P^iM/P^{i+1}M
+\]
+就是 $M$ 中同构于 $R/P^i$ 的直和项个数，因此由 $M$ 唯一决定。这完成了定理的证明。
+\end{proof}
+
+若 $M$ 是如定理 22 中的 Dedekind 整环 $R$ 上有限生成模，则 $M$ 作为 $R$-模的同构类型由秩 $n$、素理想幂 $P_i^{e_i}$（$i=1,
+\ldots,s$，称为 $M$ 的初等因子）以及理想 $I$ 在 $R$ 的类群中的类（称为 $M$ 的 Steinitz 类）决定。注意，P.I.D. 就是类数为 $1$ 的 Dedekind 整环；在这种情形下，$R$ 的每个非零理想 $I$ 作为 $R$-模都同构于 $R$。于是定理 22 化为第 12 章中 P.I.D. 上有限生成模结构定理的初等因子形式。定理 22 中挠 $R$-模的描述也有不变因子形式（参见练习 14）。
+
+下一个结果把 P.I.D. 上有限生成投射模的刻画（第 12.1 节练习 21）推广到 Dedekind 整环。
+
+\medskip
+\noindent\textbf{推论 23.} Dedekind 整环上的有限生成模是投射的，当且仅当它是无挠的。
+
+\begin{proof}
+我们在定理 22 的证明中已经证明，有限生成无挠 $R$-模是投射的；因此由定理 22 中 $M$ 的分解，$M$ 是投射的，当且仅当 $\Tor(M)$ 是投射的（参见第 10.5 节练习 3）。为完成证明，只需说明没有非零挠 $R$-模是投射的，这留作练习（参见练习 15）。
+\end{proof}
+
+\subsection*{练习}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 若 $R$ 是整环，证明 $R$ 的每个分式理想可逆，当且仅当 $R$ 的每个整理想可逆。
+  \item 设 $R$ 是分式域为 $K$ 的整环，且 $A_1,A_2,
+  \ldots,A_n$ 是 $R$ 的分式理想，其乘积是非零主分式理想：对某个 $0\neq x\in K$，有 $A_1A_2\cdots A_n=Rx$。证明对每个 $i=1,
+  \ldots,n$，$A_i$ 是可逆分式理想，其逆为
+  \[
+    (x^{-1})A_1\cdots A_{i-1}A_{i+1}\cdots A_n.
+  \]
+  \item 设 $R$ 是分式域为 $K$ 的整环，且 $P$ 是 $R$ 中非零素理想。证明 $R_P$ 在 $K$ 中的分式理想正是形如 $AR_P$ 的 $R_P$-模，其中 $A$ 是 $R$ 的一个分式理想。
+  \item 设 $R$ 是分式域为 $K$ 的整环，且 $A$ 是 $K$ 中 $R$ 的分式理想。令 $A'=\{x\in K\mid xA\subseteq R\}$ 如命题 9 中所定义。
+  \begin{enumerate}[label=(\alph*)]
+    \item 对 $R$ 中任意素理想 $P$，证明 $A'$ 在 $P$ 处的局部化 $(A')_P$ 是 $K$ 中 $R_P$ 的分式理想。
+    \item 若 $A$ 是有限生成 $R$-模，证明 $(A')_P=(A_P)'$，其中 $(A_P)'$ 是对应于局部化 $A_P$ 的分式 $R_P$-理想 $\{x\in K\mid xA_P\subseteq R_P\}$。
+  \end{enumerate}
+  \item 若 $Q_1$ 是 $P_1$-primary 理想，$Q_2$ 是 $P_2$-primary 理想，其中 $P_1$ 与 $P_2$ 是 Noether 环 $R$ 中互素的理想，证明 $Q_1$ 与 $Q_2$ 也互素。［用第 15.2 节命题 14。］
+  \item 设 $R$ 是分式域为 $K$ 的 Dedekind 整环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $K$ 中 $R$ 的每个非零分式理想都可唯一写成不同素理想幂的乘积 $P_1^{a_1}\cdots P_n^{a_n}$，其中 $a_i$ 是非零整数，也可能为负。
+    \item 若 $0\neq x\in K$，令 $P^{v_P(x)}$ 为主理想 $(x)$ 在 (a) 中分解时素理想 $P$ 的幂次（若 $P$ 不是出现的素理想之一，则 $v_P(x)=0$）。证明 $v_P$ 是 $K$ 上的一个赋值，其赋值环为 $R_P$，即 $R$ 在 $P$ 处的局部化。
+  \end{enumerate}
+  \item 设 $R$ 是不是域的 Noether 整环。证明 $R$ 是 Dedekind 整环，当且仅当对 $R$ 的每个极大理想 $M$，不存在 $R$ 的理想 $I$ 使得
+  \[
+    M^2\subset I\subset M.
+  \]
+  ［用第 1 节练习 12 以及定理 7 和定理 15。］
+  \item 设 $R$ 是 Krull 维数为 $1$ 的 Noether 整环。证明 $R$ 的每个非零理想 $I$ 都可唯一写成 primary 理想的乘积，且这些 primary 理想的根互不相同。［参见定理 15 的证明。使用极小 primary 分解中属于孤立素理想的 primary 分量的唯一性（第 15.2 节定理 21）。］
+  \item 假设 $R$ 是整环。证明对每个非零素理想 $P$，$R_P$ 都是 D.V.R.，当且仅当对每个非零极大理想 $M$，$R_M$ 都是 D.V.R.。
+  \item 设 $R$ 是不是域的 Noether 整环。证明 $R$ 是 Dedekind 整环，当且仅当非零素理想 $M$ 都是极大理想，并且每个 $M$-primary 理想都是 $M$ 的幂。
+  \item 若 $I$ 与 $J$ 是 Dedekind 整环 $R$ 中的非零理想，证明存在 $R$ 中的整理想 $I_1$，它同时与 $I$ 和 $J$ 互素，并且 $I_1I$ 是 $R$ 中的主理想。
+  \item 若 $I$ 与 $J$ 是 Dedekind 整环 $R$ 的非零分式理想，证明存在元素 $\alpha,\beta\in K$，使得 $\alpha I$ 和 $\beta J$ 是 $R$ 中互素的非零整理想。
+  \item 设 $I$ 与 $J$ 是 Dedekind 整环 $R$ 中的非零理想。证明存在理想 $I_1\subseteq I$，且 $I_1$ 与 $J$ 互素。［用推论 19 找到理想 $I_2$，使得 $I_2I=(a)$ 且 $(I_2,J)=R$。若 $I_2=P_1^{e_1}\cdots P_n^{e_n}$，选取 $b\in R$，使得 $b\in P_i^{e_i}-P_i^{e_i+1}$，并且对每个整除 $J$ 的素理想 $P$，有 $b\equiv1\pmod P$。证明 $(b)=I_2I_1$ 对某个理想 $I_1$ 成立，并考虑 $(a)I_1$ 来证明 $I_1\subseteq I$。］
+  \item 证明 Dedekind 整环 $R$ 上每个有限生成挠模都同构于直和
+  \[
+    R/I_1\oplus R/I_2\oplus\cdots\oplus R/I_n,
+  \]
+  其中 $I_1,
+  \ldots,I_n$ 是 $R$ 的唯一的非零理想，满足
+  \[
+    I_1\supseteq I_2\supseteq\cdots\supseteq I_n
+  \]
+  （称为 $M$ 的不变因子）。［参见第 12.1 节。］
+  \item 若 $P$ 是 Dedekind 整环 $R$ 中的非零素理想，证明对任意 $n\geq1$，$R/P^n$ 都不是投射 $R$-模。［考虑正合列
+  \[
+    0\to P^n/P^{n+1}\to R/P^{n+1}\to R/P^n\to0.
+  \]
+  ］推出若 $M\neq0$ 是有限生成挠 $R$-模，则 $M$ 不是投射的。［参见第 10.5 节练习 3。］
+  \item 证明 Dedekind 整环 $R$ 的类数为 $1$，当且仅当每个有限生成投射 $R$-模都是自由的。
+  \item 设 $R$ 是 Dedekind 整环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $I\sim J$ 当且仅当 $I\cong J$ 作为 $R$-模，在 $R$ 的非零分式理想集合上定义了一个等价关系。令 $C(R)$ 为对应的 $R$-模同构类集合，并令 $[I]\in C(R)$ 表示包含分式理想 $I$ 的等价类。
+    \item 证明乘法 $[I][J]=[I\oplus J]$ 给出一个良定的二元运算，使得 $C(R)$ 是 Abel 群，恒等元为 $1=[R]$。
+    \item 证明 (b) 中的 Abel 群 $C(R)$ 同构于 $R$ 的类群。
+  \end{enumerate}
+  \item 若 $R$ 是 Dedekind 整环且 $I$ 是任意非零理想，证明 $R/I$ 只含有限多个理想。特别地，证明 $R/I$ 是 Artin 环。
+  \item 假设 $I$ 是 Dedekind 整环 $R$ 中的非零分式理想。显式地把 $I$ 表示为自由 $R$-模的直和项，从而说明 $I$ 是投射的。［考虑 $I\oplus I^{-1}$ 并使用命题 21。］
+  \item 设 $I$ 与 $J$ 是 Dedekind 整环 $R$ 中的两个非零分式理想，并且对某个 $n\neq0$ 有 $I^n=J^n$。证明 $I=J$。
+  \item 设 $K$ 是代数数域，$\mathcal O_K$ 是 $K$ 中的整数环。若 $P$ 是 $\mathcal O_K$ 中非零素理想，证明对某个素数 $p\in\ZZ$ 与代数整数 $\pi\in\mathcal O_K$，有
+  \[
+    P=(p,\pi).
+  \]
+  \item 设 $K=\QQ(\sqrt D)$ 是 $\QQ$ 的二次扩张，其中 $D$ 是无平方因子整数，且 $\mathcal O_K$ 是 $K$ 中的整数环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $|\mathcal O_K/(p)|=p^2$。［观察 $\mathcal O_K\cong\ZZ^2$ 作为 Abel 群。］
+    \item 用推论 16 说明，$(p)$ 在 $\mathcal O_K$ 中的素理想分解有三种可能：
+    \begin{enumerate}[label=(\roman*)]
+      \item $(p)=P$ 是素理想，且 $|\mathcal O_K/P|=p^2$；
+      \item $(p)=P_1P_2$，其中 $P_1,P_2$ 是不同素理想，且 $|\mathcal O_K/P_1|=|\mathcal O_K/P_2|=p$；
+      \item $(p)=P^2$，其中 $P$ 是某个素理想，且 $|\mathcal O_K/P|=p$。
+    \end{enumerate}
+    （在情形 (i)、(ii)、(iii) 中，素数 $p$ 分别称为在 $\mathcal O_K$ 中惰性、分裂或分歧。分歧素数集合是有限的：若 $D\equiv1,2\pmod4$，则为整除 $D$ 的素数；若 $D\equiv3\pmod4$，则为 $p=2$ 以及整除 $D$ 的素数。参见第 15.5 节练习 31。）
+    \item 在 $K=\QQ(\sqrt{-5})$ 的整数环 $\mathcal O_K=\ZZ[\sqrt{-5}]$ 中，确定素数 $p=2,3,5,7,11$ 的素理想分解。
+  \end{enumerate}
+  \item 令 $\mathcal O$ 为 $\QQ$ 的代数闭包 $\overline\QQ$ 中的整数环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\mathcal O$ 中无限理想列
+    \[
+      (2)\subset (\sqrt2)\subset (\sqrt[4]2)\subset (\sqrt[8]2)\subset\cdots
+    \]
+    是严格递增的，因此 $\mathcal O$ 不是 Noether 的。
+    \item 证明 $\mathcal O$ 的 Krull 维数为 $1$。［用第 15.3 节定理 26。］
+    \item 设 $K$ 是数域，$I$ 是 $\mathcal O_K$ 中任意理想。证明存在 $K$ 的某个有限扩张 $L$，使得 $I$ 延拓到 $\mathcal O_L$ 后成为主理想，即理想 $I\mathcal O_L$ 是主理想（其中 $L$ 依赖于 $I$）——你可以使用 $K$ 的类群是有限群这一事实。［参见练习 20。］
+    \item 证明 $\mathcal O$ 是 Bezout 整环（参见第 8.1 节）。
+  \end{enumerate}
+  \item 设 $F$ 和 $K$ 是代数数域，且 $\QQ\subseteq F\subseteq K$，其整数环分别为 $\mathcal O_F$ 与 $\mathcal O_K$。由于 $\mathcal O_F\subseteq\mathcal O_K$，环 $\mathcal O_K$ 自然是 $\mathcal O_F$ 上的模。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\mathcal O_K$ 是秩为 $n=[K:F]$ 的无挠 $\mathcal O_F$-模。［计算在 $\ZZ$ 上的秩。］若 $\mathcal O_K$ 在 $\mathcal O_F$ 上自由，则称 $\mathcal O_K$ 在 $\mathcal O_F$ 上有\emph{相对整基}。
+    \item 证明若 $F$ 的类数为 $1$，则 $\mathcal O_K$ 在 $\mathcal O_F$ 上有相对整基。
+  \end{enumerate}
+  若 $K=\QQ(\sqrt{-5},\sqrt2)$，则 $K$ 的整数环 $\mathcal O_K$ 为
+  \[
+    \mathcal O_K=\ZZ+\ZZ\sqrt2+\ZZ\sqrt{-10}+\ZZ\omega,
+    \qquad
+    \omega=(\sqrt{-10}+\sqrt2)/2.
+  \]
+  \begin{enumerate}[label=(\alph*),resume]
+    \item 若 $F_1=\QQ(\sqrt2)$，证明 $\mathcal O_K$ 在 $\mathcal O_{F_1}$ 上有相对整基，并找出一个显式基 $\{\alpha,\beta\}$：
+    \[
+      \mathcal O_K=\mathcal O_{F_1}\cdot\alpha+\mathcal O_{F_1}\cdot\beta.
+    \]
+    \item 若 $F_2=\QQ(\sqrt{-5})$，证明
+    \[
+      P_3=(3,1+\sqrt{-5})=(3,5-\sqrt{-5})
+    \]
+    是 $\mathcal O_{F_2}$ 中的非主素理想，并且
+    \[
+      \mathcal O_K=\mathcal O_{F_2}\cdot1+(1/3)P_3\cdot\omega.
+    \]
+    ［检查 $\sqrt{-10}=-(5-\sqrt{-5})\omega/3$。］推出 $\mathcal O_K$ 作为 $\mathcal O_{F_2}$-模的 Steinitz 类是 $\mathcal O_{F_2}$ 的类群中 $P_3$ 的非平凡类，因此 $\mathcal O_K$ 在 $\mathcal O_{F_2}$ 上没有相对整基。
+    \item 判断 $\mathcal O_K$ 在 $K$ 的剩余二次子域 $F_3=\QQ(\sqrt{-10})$ 的整数环上是否有相对整基。
+  \end{enumerate}
+  \item 设 $C$ 是代数闭域 $k$ 上的非奇异不可约仿射曲线。证明坐标环 $k[C]$ 是 Dedekind 整环。
+\end{enumerate}

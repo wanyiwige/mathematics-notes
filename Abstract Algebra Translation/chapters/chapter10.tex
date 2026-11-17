@@ -1,0 +1,2393 @@
+
+
+\chapter{模论导论}
+
+
+
+
+\section{基本定义与例子}
+
+我们从模的定义开始。
+
+
+\noindent\textbf{定义.} 设 $R$ 是一个环（不要求交换，也不要求有 $1$）。一个\emph{左 $R$-模}，或称 $R$ 上的左模，是一个集合 $M$，连同：
+\begin{enumerate}[label=(\arabic*)]
+	\item 一个二元运算 $+$，使 $M$ 在 $+$ 下成为阿贝尔群；
+	\item 一个 $R$ 在 $M$ 上的作用，即映射 $R\times M\to M$，记为 $(r,m)\mapsto rm$，满足对所有 $r,s\in R$ 与 $m,n\in M$，
+	\begin{enumerate}[label=(\alph*)]
+		\item $(r+s)m=rm+sm$；
+		\item $(rs)m=r(sm)$；
+		\item $r(m+n)=rm+rn$。
+	\end{enumerate}
+\end{enumerate}
+若 $R$ 有单位元 $1$，则还要求
+\[
+1m=m,\qquad m\in M.
+\]
+“左”表示环元素写在模元素左边。右 $R$-模可类似定义。若 $R$ 交换，左 $R$-模可通过 $mr=rm$ 变为右 $R$-模；若 $R$ 不交换，此定义一般不满足相应公理。除非另有说明，本书中的“模”均指左模，并且在有单位元的环上均指幺模。
+
+当 $R$ 是域 $F$ 时，$R$-模的公理正是 $F$ 上向量空间的公理，因此
+\[
+F\text{-模} \quad\text{与}\quad F\text{ 上向量空间}
+\]
+是同一个概念。
+
+
+\noindent\textbf{定义.} 设 $M$ 是 $R$-模。$M$ 的 $R$-子模是 $M$ 的加法子群 $N$，且对 $R$ 的作用封闭，即
+\[
+rn\in N,\qquad r\in R,\, n\in N.
+\]
+因此子模就是在限制运算下本身仍为模的子集。当 $R=F$ 是域时，子模就是向量子空间。每个 $R$-模 $M$ 都有两个显然的子模：$M$ 与 $0$。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 任意环 $R$ 本身是左 $R$-模，作用就是环乘法。此时 $R$ 作为自身左模的子模正是 $R$ 的左理想；作为自身右模的子模正是右理想。若 $R$ 不交换，两种模结构可能不同。
+	\item 若 $R=F$ 是域，则 $F^n$ 在逐分量加法与数乘下是 $F$-模，也就是 $F$ 上 $n$ 维向量空间。
+	\item 若 $R$ 有 $1$，则
+	\[
+	R^n=\{(a_1,\ldots,a_n)\mid a_i\in R\}
+	\]
+	在逐分量加法和左乘下是 $R$-模，称为 $R$ 上秩为 $n$ 的自由模。
+	\item 同一个阿贝尔群可有许多不同的 $R$-模结构。若 $M$ 是 $R$-模，$S$ 是 $R$ 的含同一单位元的子环，则 $M$ 自动也是 $S$-模。例如 $\RR$ 同时是 $\RR$-模、$\QQ$-模与 $\ZZ$-模。
+	\item 若 $I$ 是 $R$ 的双边理想，且 $am=0$ 对所有 $a\in I$、$m\in M$ 成立，则称 $M$ 被 $I$ 零化。此时 $M$ 可成为 $R/I$-模，定义
+	\[
+	(r+I)m=rm.
+	\]
+	若 $R$ 交换且 $I$ 极大，则 $R/I$ 是域，于是 $M$ 是 $R/I$ 上的向量空间。
+\end{enumerate}
+
+\paragraph{$\ZZ$-模}
+设 $A$ 是任意阿贝尔群，记加法为 $+$。对 $n\in\ZZ$ 与 $a\in A$ 定义
+\[
+na=\begin{cases}
+	a+a+\cdots+a & n>0,\\
+	0 & n=0,\\
+	-a-a-\cdots-a & n<0.
+\end{cases}
+\]
+这使 $A$ 成为 $\ZZ$-模，并且这是唯一可能的幺 $\ZZ$-模结构。因此
+\[
+\ZZ\text{-模} \quad\text{就是}\quad \text{阿贝尔群},
+\]
+而 $\ZZ$-子模就是子群。若 $A$ 是有限阿贝尔群且 $|A|=m$，则 $mx=0$ 对所有 $x\in A$ 成立，所以 $A$ 也是 $\ZZ/m\ZZ$-模。特别地，若 $p$ 为素数且 $px=0$ 对所有 $x\in A$ 成立，则 $A$ 是 $\FF_p$ 上的向量空间；这正是初等阿贝尔 $p$-群的情形。
+
+\paragraph{$F[x]$-模}
+设 $F$ 是域，$V$ 是 $F$ 上向量空间，$T:V\to V$ 是线性变换。令 $x$ 在 $V$ 上作用为 $T$，并令
+\[
+p(x)v=(a_nT^n+a_{n-1}T^{n-1}+\cdots+a_1T+a_0I)(v)
+\]
+其中 $p(x)=a_nx^n+\cdots+a_0\in F[x]$。这样 $V$ 成为一个 $F[x]$-模。反过来，任一 $F[x]$-模给出一个 $F$-向量空间 $V$，以及由 $x$ 的作用确定的线性变换 $T$。因此有对应
+\[
+\{F[x]\text{-模}\}
+\quad\longleftrightarrow\quad
+\{(V,T):V\text{ 是 }F\text{-向量空间},\,T:V\to V\text{ 线性}\}.
+\]
+在此对应下，$F[x]$-子模正是 $T$-稳定（或 $T$-不变）子空间。这个例子将在第 12 章中用于研究矩阵的有理标准形与 Jordan 标准形。
+
+
+\noindent\textbf{命题 1（子模判别法）.} 设 $M$ 是 $R$-模。子集 $N\subseteq M$ 是子模当且仅当
+\begin{enumerate}[label=(\arabic*)]
+	\item $N\neq\emptyset$；
+	\item 对所有 $r\in R$ 与 $x,y\in N$，有 $x+ry\in N$。
+\end{enumerate}
+
+\begin{proof}
+	若 $N$ 是子模，则显然满足两条。反过来，取 $r=-1$，由 $x-y\in N$ 得 $N$ 是加法子群；再取 $x=0$，得 $ry\in N$。故 $N$ 对加法与 $R$ 的作用封闭。
+\end{proof}
+
+
+\noindent\textbf{定义.} 设 $R$ 是带单位元的交换环。一个 $R$-代数是一个带单位元的环 $A$，连同环同态
+\[
+f:R\longrightarrow A,
+\]
+把 $1_R$ 映到 $1_A$，并且 $f(R)$ 包含于 $A$ 的中心。
+
+若 $A$ 是 $R$-代数，则 $A$ 自然成为左右 $R$-模，定义
+\[
+r\cdot a=a\cdot r=f(r)a.
+\]
+若 $A,B$ 是 $R$-代数，则 $R$-代数同态是保持单位元且满足
+\[
+\varphi(r\cdot a)=r\cdot\varphi(a)
+\]
+的环同态。
+
+\paragraph{例}
+任意带单位元的环都是 $\ZZ$-代数；若 $R$ 是 $A$ 的中心中含 $1_A$ 的子环，则 $A$ 是 $R$-代数。特别地，$R[x]$、任意多变量多项式环以及群环 $RG$ 都是 $R$-代数。若 $R=F$ 是域，则说 $A$ 是 $F$-代数等价于说 $A$ 的中心中含有一个与 $F$ 同构的子域，且单位元相同。
+
+
+\paragraph{练习}
+在以下练习中，$R$ 是带单位元的环，$M$ 是左 $R$-模。
+\begin{enumerate}[label=\arabic*.]
+	\item 证明对所有 $m\in M$，有 $0m=0$ 且 $(-1)m=-m$。
+	\item 证明 $R^\times$ 与 $M$ 满足第 1.7 节中关于乘法群 $R^\times$ 在集合 $M$ 上作用的两个公理。
+	\item 设 $rm=0$，其中 $r\in R$、$m\in M$ 且 $m\neq0$。证明 $r$ 没有左逆，即不存在 $s\in R$ 使 $sr=1$。
+	\item 令 $M$ 为例 3 中的模 $R^n$，并令 $I_1,I_2,\ldots,I_n$ 为 $R$ 的左理想。证明下列集合是 $M$ 的子模：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\{(x_1,x_2,\ldots,x_n)\mid x_i\in I_i\}$；
+		\item $\{(x_1,x_2,\ldots,x_n)\mid x_i\in R\text{ 且 }x_1+x_2+\cdots+x_n=0\}$。
+	\end{enumerate}
+	\item 对 $R$ 的任意左理想 $I$，定义
+	\[
+	IM=\left\{\sum_{\text{有限}} a_i m_i\mid a_i\in I,\;m_i\in M\right\},
+	\]
+	即所有形如 $am$（$a\in I,m\in M$）的元素的有限和构成的集合。证明 $IM$ 是 $M$ 的子模。
+	\item 证明任意非空子模族的交仍是子模。
+	\item 设 $N_1\subseteq N_2\subseteq\cdots$ 是 $M$ 的子模升链。证明 $\bigcup_{i=1}^\infty N_i$ 是 $M$ 的子模。
+	\item 若 $R$-模 $M$ 的元素 $m$ 满足 $rm=0$ 对某个非零 $r\in R$ 成立，则称 $m$ 为\emph{挠元素}。挠元素集合记为
+	\[
+	\Tor(M)=\{m\in M\mid rm=0\text{ 对某个非零 }r\in R\text{ 成立}\}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $R$ 是整环，则 $\Tor(M)$ 是 $M$ 的子模，称为 $M$ 的\emph{挠子模}。
+		\item 给出一个环 $R$ 与一个 $R$-模 $M$ 的例子，使得 $\Tor(M)$ 不是子模。[考虑 $R$-模 $R$ 中的挠元素。]
+		\item 若 $R$ 有零因子，证明每个非零 $R$-模都有非零挠元素。
+	\end{enumerate}
+	\item 若 $N$ 是 $M$ 的子模，定义 $N$ 在 $R$ 中的零化子为
+	\[
+	\{r\in R\mid rn=0\text{ 对所有 }n\in N\}.
+	\]
+	证明它是 $R$ 的双边理想。
+	\item 若 $I$ 是 $R$ 的右理想，定义 $I$ 在 $M$ 中的零化子为
+	\[
+	\{m\in M\mid am=0\text{ 对所有 }a\in I\}.
+	\]
+	证明它是 $M$ 的子模。
+	\item 设 $M$ 是阿贝尔群（即 $\ZZ$-模）
+	\[
+	M=\ZZ/24\ZZ\times \ZZ/15\ZZ\times \ZZ/50\ZZ.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 求 $M$ 在 $\ZZ$ 中的零化子，即给出这个主理想的一个生成元。
+		\item 令 $I=2\ZZ$。把 $I$ 在 $M$ 中的零化子描述为循环群的直积。
+	\end{enumerate}
+	\item 在前面练习的记号下，证明关于零化子的下列事实：
+	\begin{enumerate}[label=(\alph*)]
+		\item 设 $N$ 是 $M$ 的子模，$I$ 是它在 $R$ 中的零化子。证明 $I$ 在 $M$ 中的零化子包含 $N$。给出一个例子说明 $I$ 在 $M$ 中的零化子不必等于 $N$。
+		\item 设 $I$ 是 $R$ 的右理想，$N$ 是它在 $M$ 中的零化子。证明 $N$ 在 $R$ 中的零化子包含 $I$。给出一个例子说明 $N$ 在 $R$ 中的零化子不必等于 $I$。
+	\end{enumerate}
+	\item 设 $I$ 是 $R$ 的理想。令 $M'$ 为 $M$ 中所有被 $I$ 的某个幂 $I^k$ 零化的元素 $a$ 的集合，其中 $k$ 可依 $a$ 而变。证明 $M'$ 是 $M$ 的子模。[使用练习 7。]
+	\item 设 $z$ 是 $R$ 的中心中的元素，即 $zr=rz$ 对所有 $r\in R$ 成立。证明
+	\[
+	zM=\{zm\mid m\in M\}
+	\]
+	是 $M$ 的子模。又设 $R$ 是域上的 $2\times2$ 矩阵环，$e$ 是 $(1,1)$ 位置为 $1$、其余位置为 $0$ 的矩阵。证明当 $M=R$ 作为左 $R$-模看待时，$eR$ 不是左 $R$-子模；在这个例子中矩阵 $e$ 不在 $R$ 的中心。
+	\item 若 $M$ 是有限阿贝尔群，则 $M$ 自然是 $\ZZ$-模。这个作用能否扩张为使 $M$ 成为 $\QQ$-模的作用？
+	\item 证明在 $F[x]$-模的例子中，对移位算子所描述的子空间 $U_k$ 是该 $T$ 下所有的 $F[x]$-子模。
+	\item 设 $T$ 是向量空间 $V$ 上的移位算子，$e_1,\ldots,e_n$ 是 $F[x]$-模例子中描述的通常基向量。若 $m\leq n$，求
+	\[
+	(a_mx^m+a_{m-1}x^{m-1}+\cdots+a_0)e_n.
+	\]
+	\item 令 $F=\RR$，$V=\RR^2$，并令 $T:V\to V$ 为绕原点顺时针旋转 $\pi/2$ 弧度的线性变换。证明对此 $T$，$V$ 与 $0$ 是仅有的 $F[x]$-子模。
+	\item 令 $F=\RR$，$V=\RR^2$，并令 $T:V\to V$ 为到 $y$ 轴的投影。证明对此 $T$，$V$、$0$、$x$ 轴与 $y$ 轴是仅有的 $F[x]$-子模。
+	\item 令 $F=\RR$，$V=\RR^2$，并令 $T:V\to V$ 为绕原点顺时针旋转 $\pi$ 弧度的线性变换。证明对此 $T$，$V$ 的每个子空间都是 $F[x]$-子模。
+	\item 设 $n\in\ZZ^+$ 且 $n>1$，令 $R$ 为域 $F$ 上的 $n\times n$ 矩阵环。令 $M$ 为第一列中元素任意、其余列全为零的 $n\times n$ 矩阵集合。证明当 $R$ 作为自身上的左模看待时，$M$ 是 $R$ 的子模；但当 $R$ 作为右 $R$-模看待时，$M$ 不是 $R$ 的子模。
+	\item 设 $A$ 是带单位元 $1_A$ 的环，同时是一个幺左 $R$-模，并满足
+	\[
+	r\cdot(ab)=(r\cdot a)b=a(r\cdot b)
+	\]
+	对所有 $r\in R$ 与 $a,b\in A$ 成立。证明映射 $f:R\to A$，$f(r)=r\cdot1_A$，是环同态，把 $1_R$ 映到 $1_A$，且 $f(R)$ 包含于 $A$ 的中心。推出 $A$ 是一个 $R$-代数，并且由这个代数结构诱导的 $R$-模结构正是原来的 $R$-模结构。
+	\item 令 $A$ 为直积环 $\CC\times\CC$。设 $\tau_1$ 是 $\CC$ 上的恒等映射，$\tau_2$ 是复共轭。对任意一对 $p,q\in\{1,2\}$（可相同），定义
+	\[
+	f_{p,q}:\CC\longrightarrow \CC\times\CC,
+	\qquad f_{p,q}(z)=(\tau_p(z),\tau_q(z)).
+	\]
+	例如 $f_{2,1}:z\mapsto(\bar z,z)$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明每个 $f_{p,q}$ 都是单的环同态，并且它们在子域 $\RR\subseteq\CC$ 上都相同。推出 $A$ 有四种不同的 $\CC$-代数结构。分别明确给出复数 $z$ 在有序对 $(u,v)\in A$ 上的作用 $z\cdot(u,v)$。
+		\item 证明若 $f_{p,q}\neq f_{p',q'}$，则 $A$ 上恒等映射不是从通过 $f_{p,q}$ 看作 $\CC$-代数的 $A$ 到通过 $f_{p',q'}$ 看作 $\CC$-代数的 $A$ 的 $\CC$-代数同态；尽管它是 $\RR$-代数同构。
+		\item 证明对任意 $p,q$，存在 $A$ 到自身的一个环同构，使得通过 $f_{p,q}$ 看作 $\CC$-代数的 $A$ 与通过 $f_{1,1}$ 看作 $\CC$-代数的 $A$ 同构，后者是 $A$ 的“自然” $\CC$-代数结构。
+	\end{enumerate}
+\end{enumerate}
+\noindent\textbf{说明.} 在前一题中，$A=\CC\times\CC$ 不是关于任一直接因子分量中的 $\CC$ 副本的 $\CC$-代数，例如子环 $\CC\times0\cong\CC$，因为 $A$ 不是这些 $\CC$ 副本上的幺模；这些子环的 $1$ 与 $A$ 的 $1$ 不同。
+
+
+\section{商模与模同态}
+
+本节给出商模与模同态的基本理论。
+
+
+\noindent\textbf{定义.} 设 $M,N$ 是 $R$-模。
+\begin{enumerate}[label=(\arabic*)]
+	\item 映射 $\varphi:M\to N$ 称为 $R$-模同态，若
+	\[
+	\varphi(x+y)=\varphi(x)+\varphi(y),
+	\qquad
+	\varphi(rx)=r\varphi(x)
+	\]
+	对所有 $x,y\in M$ 与 $r\in R$ 成立。
+	\item 若 $R$-模同态既单又满，则称为 $R$-模同构。若存在同构，记为 $M\cong N$。
+	\item 核与像照常定义为
+	\[
+	\ker\varphi=\{m\in M\mid \varphi(m)=0\},
+	\qquad
+	\varphi(M)=\{\varphi(m)\mid m\in M\}.
+	\]
+	\item $\Hom_R(M,N)$ 表示所有 $R$-模同态 $M\to N$ 的集合。
+\end{enumerate}
+任何 $R$-模同态都是加法群同态，但反之不一定成立。核与像都是子模。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 当 $R=\ZZ$ 时，$\ZZ$-模同态正是阿贝尔群同态。
+	\item 若 $R$ 是域，则 $R$-模同态就是线性变换。
+	\item 若 $I$ 零化 $M$ 与 $N$，则 $R$-模同态 $M\to N$ 自动是 $R/I$-模同态。
+\end{enumerate}
+
+
+\noindent\textbf{命题 2.} 设 $L,M,N$ 是 $R$-模。
+\begin{enumerate}[label=(\arabic*)]
+	\item 映射 $\varphi:M\to N$ 是 $R$-模同态，当且仅当
+	\[
+	\varphi(rx+y)=r\varphi(x)+\varphi(y)
+	\]
+	对所有 $r\in R$ 与 $x,y\in M$ 成立。
+	\item 若 $\varphi,\psi\in\Hom_R(M,N)$，定义
+	\[
+	(\varphi+\psi)(m)=\varphi(m)+\psi(m).
+	\]
+	则 $\Hom_R(M,N)$ 是阿贝尔群。若 $R$ 交换，再定义
+	\[
+	(r\varphi)(m)=r\varphi(m),
+	\]
+	则 $\Hom_R(M,N)$ 是 $R$-模。
+	\item 若 $\varphi\in\Hom_R(L,M)$ 且 $\psi\in\Hom_R(M,N)$，则 $\psi\circ\varphi\in\Hom_R(L,N)$。
+	\item $\Hom_R(M,M)$ 在逐点加法与复合乘法下是带单位元的环；若 $R$ 交换，则它是 $R$-代数。
+\end{enumerate}
+
+
+\noindent\textbf{定义.} 环 $\Hom_R(M,M)$ 称为 $M$ 的自同态环，记为
+\[
+\End_R(M).
+\]
+其元素称为自同态。若 $R$ 交换，有自然映射 $R\to\End_R(M)$，$r\mapsto rI$，即“乘以 $r$”的变换；其像在 $\End_R(M)$ 的中心中。
+
+
+\noindent\textbf{命题 3.} 设 $N$ 是 $R$-模 $M$ 的子模。商阿贝尔群 $M/N$ 可成为 $R$-模，定义
+\[
+r(x+N)=rx+N.
+\]
+自然投影
+\[
+\pi:M\longrightarrow M/N,
+\qquad \pi(x)=x+N
+\]
+是 $R$-模同态，其核为 $N$。
+
+\begin{proof}
+	若 $x+N=y+N$，则 $x-y\in N$，从而 $r(x-y)\in N$，所以 $rx+N=ry+N$，故作用良定义。模公理由 $M$ 中的相应公理推出。自然投影作为阿贝尔群同态的核为 $N$，且
+	\[
+	\pi(rm)=rm+N=r(m+N)=r\pi(m).
+	\]
+\end{proof}
+
+
+\noindent\textbf{定义.} 若 $A,B$ 是 $M$ 的子模，则它们的和为
+\[
+A+B=\{a+b\mid a\in A,\ b\in B\}.
+\]
+它是含 $A$ 与 $B$ 的最小子模。
+
+
+\noindent\textbf{定理 4（模的同构定理）.}
+\begin{enumerate}[label=(\arabic*)]
+	\item \textbf{第一同构定理：} 若 $\varphi:M\to N$ 是 $R$-模同态，则 $\ker\varphi$ 是 $M$ 的子模，且
+	\[
+	M/\ker\varphi\cong \varphi(M).
+	\]
+	\item \textbf{第二同构定理：} 若 $A,B$ 是 $M$ 的子模，则
+	\[
+	(A+B)/B\cong A/(A\cap B).
+	\]
+	\item \textbf{第三同构定理：} 若 $A\subseteq B\subseteq M$ 是子模，则
+	\[
+	(M/A)/(B/A)\cong M/B.
+	\]
+	\item \textbf{第四（格）同构定理：} 设 $N$ 是 $M$ 的子模。含 $N$ 的 $M$ 的子模与 $M/N$ 的子模之间存在双射
+	\[
+	A\longleftrightarrow A/N,
+	\qquad A\supseteq N,
+	\]
+	且此对应保持和与交。
+\end{enumerate}
+
+
+\paragraph{练习}
+在以下练习中，$R$ 是带单位元的环，$M$ 是左 $R$-模。
+\begin{enumerate}[label=\arabic*.]
+	\item 用子模判别法证明 $R$-模同态的核与像都是子模。
+	\item 证明“作为 $R$-模同构”是任意 $R$-模集合上的等价关系。
+	\item 给出一个从一个 $R$-模到另一个 $R$-模的映射的明确例子，它是群同态但不是 $R$-模同态。
+	\item 设 $A$ 是任意 $\ZZ$-模，$a\in A$，$n$ 是正整数。证明映射
+	\[
+	\varphi_a:\ZZ/n\ZZ\longrightarrow A,\qquad \varphi_a(\bar k)=ka
+	\]
+	是良定义的 $\ZZ$-模同态当且仅当 $na=0$。证明
+	\[
+	\Hom_{\ZZ}(\ZZ/n\ZZ,A)\cong A_n,
+	\qquad A_n=\{a\in A\mid na=0\},
+	\]
+	其中 $A_n$ 是 $\ZZ$ 的理想 $(n)$ 在 $A$ 中的零化子（参见第 1 节练习 10）。
+	\item 列出所有从 $\ZZ/30\ZZ$ 到 $\ZZ/21\ZZ$ 的 $\ZZ$-模同态。
+	\item 证明
+	\[
+	\Hom_{\ZZ}(\ZZ/n\ZZ,\ZZ/m\ZZ)\cong \ZZ/(n,m)\ZZ.
+	\]
+	\item 设 $z$ 是 $R$ 中心的一个固定元素。证明映射 $m\mapsto zm$ 是 $M$ 到自身的 $R$-模同态。证明若 $R$ 是交换环，则映射
+	\[
+	R\longrightarrow \End_R(M),\qquad r\mapsto rI
+	\]
+	是环同态，其中 $I$ 是恒等自同态。
+	\item 设 $\varphi:M\to N$ 是 $R$-模同态。证明
+	\[
+	\varphi(\Tor(M))\subseteq \Tor(N)
+	\]
+	（参见第 1 节练习 8）。
+	\item 设 $R$ 是交换环。证明 $\Hom_R(R,M)$ 与 $M$ 作为左 $R$-模同构。[证明 $\Hom_R(R,M)$ 中每个元素都由其在 $R$ 的单位元上的值唯一确定。]
+	\item 设 $R$ 是交换环。证明 $\Hom_R(R,R)$ 与 $R$ 作为环同构。
+	\item 设 $A_1,A_2,\ldots,A_n$ 是 $R$-模，且 $B_i$ 是 $A_i$ 的子模，$i=1,2,\ldots,n$。证明
+	\[
+	(A_1\times\cdots\times A_n)/(B_1\times\cdots\times B_n)
+	\cong (A_1/B_1)\times\cdots\times(A_n/B_n).
+	\]
+	[回忆第 5.1 节练习 14。]
+	\item 设 $I$ 是 $R$ 的左理想，$n$ 是正整数。证明
+	\[
+	R^n/IR^n\cong R/IR\times\cdots\times R/IR\quad(n\text{ 个因子}),
+	\]
+	其中 $IR^n$ 如第 1 节练习 5 中定义。[使用前一题。]
+	\item 设 $I$ 是交换环 $R$ 中的幂零理想（参见第 7.3 节练习 37），$M,N$ 是 $R$-模，$\varphi:M\to N$ 是 $R$-模同态。证明若诱导映射
+	\[
+	\bar\varphi:M/IM\longrightarrow N/IN
+	\]
+	是满射，则 $\varphi$ 是满射。
+	\item 令 $R=\ZZ[x]$，令 $A=\ZZ[t_1,t_2,\ldots]$ 是独立不定元 $t_1,t_2,\\ldots$ 的多项式环。如下定义 $R$ 在 $A$ 上的作用：
+	\begin{enumerate}[label=\arabic*)]
+		\item $1\in R$ 作为恒等映射作用在 $A$ 上；
+		\item 对 $n\geq1$，令 $x^n\circ 1=t_n$，令 $x^n\circ t_i=t_{n+i}$（$i=1,2,\ldots$），并令 $x^n$ 在 $A$ 中总次数至少为 $2$ 的单项式上作用为 $0$；
+		\item 按 $\ZZ$-线性延拓，即使模公理 $2(a)$ 与 $2(c)$ 成立。
+	\end{enumerate}
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $x^{p+q}\circ t_i=x^p\circ(x^q\circ t_i)=t_{p+q+i}$，并用此证明在这个作用下 $A$ 是一个幺 $R$-模。
+		\item 证明映射 $\varphi:R\to A$，$\varphi(r)=r\circ1_A$，是把环 $R$ 映入环 $A$ 的 $R$-模同态，且把 $1_R$ 映到 $1_A$；但它不是从 $R$ 到 $A$ 的环同态。
+	\end{enumerate}
+\end{enumerate}
+
+
+\section{模的生成、直和与自由模}
+
+设 $R$ 是带 $1$ 的环。本节推广子模的和、生成集、有限生成、循环模、直和与自由模。
+
+
+\noindent\textbf{定义.} 设 $M$ 是 $R$-模，$N_1,
+\ldots,N_n$ 是 $M$ 的子模。
+\begin{enumerate}[label=(\arabic*)]
+	\item $N_1+
+	\cdots+N_n$ 是所有有限和
+	\[
+	a_1+
+	\cdots+a_n,
+	\qquad a_i\in N_i
+	\]
+	组成的集合。
+	\item 对任意子集 $A\subseteq M$，令
+	\[
+	RA=\{r_1a_1+
+	\cdots+r_ma_m\mid r_i\in R,\ a_i\in A,\ m\geq1\},
+	\]
+	约定 $R\emptyset=0$。称 $RA$ 为 $A$ 生成的子模。若 $N=RA$，称 $A$ 为 $N$ 的生成集。
+	\item 若 $N$ 由有限集生成，则称 $N$ 有限生成。
+	\item 若 $N=Ra$ 对某个 $a\in M$ 成立，则称 $N$ 为循环模。
+\end{enumerate}
+当 $R$ 有 $1$ 时，$A\subseteq RA$。$RA$ 是含 $A$ 的最小子模。循环模当然是有限生成模。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 当 $R=\ZZ$ 时，$Za$ 就是阿贝尔群中由 $a$ 生成的循环子群。有限生成 $\ZZ$-模就是有限生成阿贝尔群。
+	\item $R$ 作为自身左模是循环模，因为 $R=R1$。此时 $R$ 的子模是左理想；循环子模对应主理想，有限生成子模对应有限生成理想。
+	\item $R^n$ 由标准向量 $e_1,
+	\ldots,e_n$ 生成：
+	\[
+	(s_1,
+	\ldots,s_n)=\sum_{i=1}^n s_i e_i.
+	\]
+	\item 若 $V$ 是由线性变换 $T$ 给出的 $F[x]$-模，则 $V$ 是由 $v$ 生成的循环 $F[x]$-模，当且仅当
+	\[
+	V=\{p(T)v\mid p(x)\in F[x]\},
+	\]
+	即 $\{v,Tv,T^2v,
+	\ldots\}$ 张成 $V$。
+\end{enumerate}
+
+
+\noindent\textbf{定义.} 设 $M_1,
+\ldots,M_k$ 是 $R$-模。它们的直积由所有 $k$ 元组
+\[
+(m_1,
+\ldots,m_k),
+\qquad m_i\in M_i
+\]
+组成，在逐分量加法和逐分量 $R$-作用下成为 $R$-模，记为
+\[
+M_1\times\cdots\times M_k.
+\]
+有限多个模的直积也称为外直和，记为
+\[
+M_1\oplus\cdots\oplus M_k.
+\]
+
+
+\noindent\textbf{命题 5.} 设 $N_1,
+\ldots,N_k$ 是 $R$-模 $M$ 的子模。令
+\[
+\pi:N_1\oplus\cdots\oplus N_k\longrightarrow N_1+
+\cdots+N_k,
+\qquad (a_1,
+\ldots,a_k)\mapsto a_1+
+\cdots+a_k.
+\]
+以下条件等价：
+\begin{enumerate}[label=(\arabic*)]
+	\item $\pi$ 是同构；
+	\item 对每个 $i$，有
+	\[
+	N_i\cap(N_1+
+	\cdots+N_{i-1}+N_{i+1}+
+	\cdots+N_k)=0;
+	\]
+	\item $N_1+
+	\cdots+N_k$ 中每个元素可唯一写成 $a_1+
+	\cdots+a_k$，其中 $a_i\in N_i$。
+\end{enumerate}
+若这些条件成立，称 $M=N_1+
+\cdots+N_k$ 是 $N_i$ 的内直和，写作
+\[
+M=N_1\oplus\cdots\oplus N_k.
+\]
+
+
+\noindent\textbf{定义.} $R$-模 $F$ 称为在子集 $A$ 上自由，若每个非零元素 $x\in F$ 都能唯一写成有限和
+\[
+x=r_1a_1+
+\cdots+r_na_n,
+\]
+其中 $r_i\in R$ 非零且 $a_i\in A$ 两两不同。此时 $A$ 称为 $F$ 的基或自由生成元集。若 $R$ 交换，$|A|$ 称为 $F$ 的秩。
+
+
+\noindent\textbf{定理 6.} 对任意集合 $A$，存在在 $A$ 上自由的 $R$-模 $F(A)$，并满足如下泛性质：若 $M$ 是任意 $R$-模，$\varphi:A\to M$ 是集合映射，则存在唯一的 $R$-模同态
+\[
+\Phi:F(A)\longrightarrow M
+\]
+使 $\Phi(a)=\varphi(a)$ 对所有 $a\in A$ 成立。若 $A=\{a_1,
+\ldots,a_n\}$，则
+\[
+F(A)=Ra_1\oplus\cdots\oplus Ra_n\cong R^n.
+\]
+
+\begin{proof}
+	若 $A=\emptyset$，取 $F(A)=0$。若 $A$ 非空，令 $F(A)$ 为所有函数 $f:A\to R$，其中除有限多个 $a$ 外 $f(a)=0$。在逐点加法与逐点 $R$-乘法下它是 $R$-模。把 $a\in A$ 识别为在 $a$ 处取值 $1$、其他处取值 $0$ 的函数。于是 $F(A)$ 的每个元素都唯一写成有限形式和 $\sum r_i a_i$。给定 $\varphi:A\to M$，定义
+	\[
+	\Phi\left(\sum r_i a_i\right)=\sum r_i\varphi(a_i),
+	\]
+	由唯一表示可知良定义且为 $R$-模同态。唯一性来自 $A$ 生成 $F(A)$。
+\end{proof}
+
+
+\noindent\textbf{推论 7.}
+\begin{enumerate}[label=(\arabic*)]
+	\item 若 $F_1,F_2$ 都在同一集合 $A$ 上自由，则存在唯一同构 $F_1\cong F_2$，且在 $A$ 上为恒等。
+	\item 若 $F$ 是以 $A$ 为基的自由 $R$-模，则 $F\cong F(A)$，并满足同样的泛性质。
+\end{enumerate}
+当 $R=\ZZ$ 时，集合 $A$ 上的自由模称为 $A$ 上的自由阿贝尔群。
+
+
+\paragraph{练习}
+在以下练习中，$R$ 是带单位元的环，$M$ 是左 $R$-模。
+\begin{enumerate}[label=\arabic*.]
+	\item 证明若集合 $A$ 与 $B$ 有相同基数，则自由模 $F(A)$ 与 $F(B)$ 同构。
+	\item 假设 $R$ 交换。证明 $R^n\cong R^m$ 当且仅当 $n=m$，即两个有限秩自由 $R$-模同构当且仅当它们的秩相同。[对 $R$ 的极大理想 $I$ 应用第 2 节练习 12。可使用如下事实：若 $F$ 是域，则 $F^n\cong F^m$ 当且仅当 $n=m$，即有限维向量空间同构当且仅当维数相同；这将在第 11.1 节证明。]
+	\item 证明第 1 节练习 18 和 19 中的 $F[x]$-模都是循环模。
+	\item 若 $R$-模 $M$ 的每个元素 $m$ 都满足 $rm=0$ 对某个非零 $r\in R$ 成立（$r$ 可依 $m$ 而变），则称 $M$ 为\emph{挠模}，即在第 1 节练习 8 的记号下 $M=\Tor(M)$。证明每个有限阿贝尔群都是挠 $\ZZ$-模。给出一个无限阿贝尔群的例子，它是挠 $\ZZ$-模。
+	\item 设 $R$ 是整环。证明每个有限生成的挠 $R$-模都有非零零化子，即存在非零 $r\in R$ 使 $rm=0$ 对所有 $m\in M$ 成立；这里 $r$ 不依赖于 $m$（模的零化子见第 1 节练习 9）。给出一个挠 $R$-模的例子，其零化子是零理想。
+	\item 证明若 $M$ 是由 $n$ 个元素生成的有限生成 $R$-模，则 $M$ 的每个商模可由 $n$ 个或更少元素生成。推出循环模的商仍是循环模。
+	\item 设 $N$ 是 $M$ 的子模。证明若 $M/N$ 与 $N$ 都有限生成，则 $M$ 也有限生成。
+	\item 令 $S$ 为整数序列 $(a_1,a_2,a_3,\ldots)$ 的集合，其中除有限多个 $a_i$ 外皆为 $0$（即无限多个 $\ZZ$ 的直和）。回忆 $S$ 在逐分量加法和乘法下是一个环，且没有乘法单位元（参见第 7.1 节练习 20）。证明 $S$ 作为自身上的模不是有限生成的。
+	\item 称 $R$-模 $M$ 为\emph{不可约}的，如果 $M\neq0$ 且 $0$ 与 $M$ 是它仅有的子模。证明 $M$ 不可约当且仅当 $M\neq0$ 且 $M$ 是循环模，并且任一非零元素都是生成元。确定所有不可约 $\ZZ$-模。
+	\item 假设 $R$ 交换。证明 $R$-模 $M$ 不可约当且仅当 $M$ 作为 $R$-模同构于 $R/I$，其中 $I$ 是 $R$ 的极大理想。[由前一题，若 $M$ 不可约，则对任意固定非零元素 $m\in M$，有自然映射 $R\to M$，$r\mapsto rm$。]
+	\item 证明若 $M_1$ 与 $M_2$ 是不可约 $R$-模，则任意非零 $R$-模同态 $M_1\to M_2$ 都是同构。推出若 $M$ 不可约，则 $\End_R(M)$ 是除环（此结果称为 Schur 引理）。[考虑核与像。]
+	\item 设 $R$ 是交换环，$A,B,M$ 是 $R$-模。证明下列 $R$-模同构：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\Hom_R(A\times B,M)\cong \Hom_R(A,M)\times\Hom_R(B,M)$；
+		\item $\Hom_R(M,A\times B)\cong \Hom_R(M,A)\times\Hom_R(M,B)$。
+	\end{enumerate}
+	\item 设 $R$ 是交换环，$F$ 是有限秩自由 $R$-模。证明 $R$-模同构
+	\[
+	\Hom_R(F,R)\cong F.
+	\]
+	\item 设 $R$ 是交换环，$F$ 是秩为 $n$ 的自由 $R$-模。证明
+	\[
+	\Hom_R(F,M)\cong M\times\cdots\times M\quad(n\text{ 个因子}).
+	\]
+	[使用第 2 节练习 9 与练习 12。]
+	\item 若 $e\in R$ 满足 $e^2=e$ 且 $er=re$ 对所有 $r\in R$ 成立，则称 $e$ 为\emph{中心幂等元}。若 $e$ 是 $R$ 中的中心幂等元，证明
+	\[
+	M=eM\oplus(1-e)M.
+	\]
+	[回忆第 1 节练习 14。]
+	
+	以下两题建立模的中国剩余定理（参见第 7.6 节）。
+	\item 对 $R$ 的任意理想 $I$，令 $IM$ 为第 1 节练习 5 中定义的子模。令 $A_1,\ldots,A_k$ 为环 $R$ 中任意理想。证明映射
+	\[
+	M\longrightarrow M/A_1M\times\cdots\times M/A_kM,
+	\qquad m\longmapsto(m+A_1M,\ldots,m+A_kM)
+	\]
+	是 $R$-模同态，其核为
+	\[
+	A_1M\cap A_2M\cap\cdots\cap A_kM.
+	\]
+	\item 在前一题的记号下，再假设理想 $A_1,\ldots,A_k$ 两两互素，即 $A_i+A_j=R$ 对所有 $i\neq j$ 成立。证明
+	\[
+	M/(A_1\cdots A_k)M\cong M/A_1M\times\cdots\times M/A_kM.
+	\]
+	[参见第 7.6 节中环的中国剩余定理的证明。]
+	\item 设 $R$ 是主理想整环，$M$ 是被非零真理想 $(a)$ 零化的 $R$-模。设
+	\[
+	a=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+	\]
+	是 $a$ 在 $R$ 中分解为互异素元幂的唯一分解。令 $M_i$ 为 $p_i^{\alpha_i}$ 在 $M$ 中的零化子，即
+	\[
+	M_i=\{m\in M\mid p_i^{\alpha_i}m=0\},
+	\]
+	称为 $M$ 的 $p_i$-primary 分量。证明
+	\[
+	M=M_1\oplus M_2\oplus\cdots\oplus M_k.
+	\]
+	\item 证明若 $M$ 是阶为 $a=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ 的有限阿贝尔群，则把它看作 $\ZZ$-模时，$M$ 被 $(a)$ 零化；$M$ 的 $p_i$-primary 分量是 $M$ 的唯一 Sylow $p_i$-子群；并且 $M$ 同构于它的 Sylow 子群的直积。
+	\item 设 $I$ 是非空指标集，并对每个 $i\in I$，令 $M_i$ 为 $R$-模。$M_i$ 的直积定义为其作为阿贝尔群的直积（参见第 5.1 节练习 15），并以逐分量乘法给出 $R$ 的作用。$M_i$ 的直和定义为阿贝尔群的限制直积（参见第 5.1 节练习 17），并以逐分量乘法给出 $R$ 的作用。换言之，$M_i$ 的直和是直积 $\prod_{i\in I}M_i$ 的子集，由所有只有有限多个分量 $m_i$ 非零的元素 $\prod_{i\in I}m_i$ 构成；$R$ 在直积或直和上的作用为
+	\[
+	r\prod_{i\in I}m_i=\prod_{i\in I}rm_i.
+	\]
+	直和记为 $\bigoplus_{i\in I}M_i$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $M_i$ 的直积是 $R$-模，$M_i$ 的直和是其直积的子模。
+		\item 若 $R=\ZZ$，$I=\ZZ^+$，且 $M_i$ 是阶为 $i$ 的循环群，证明 $M_i$ 的直和与直积不同构。[观察挠元素。]
+	\end{enumerate}
+	\item 设 $I$ 是非空指标集，并对每个 $i\in I$，令 $N_i$ 是 $M$ 的子模。证明下列条件等价：
+	\begin{enumerate}[label=(\roman*)]
+		\item 由所有 $N_i$ 生成的 $M$ 的子模同构于这些 $N_i$ 的直和；
+		\item 若 $\{i_1,i_2,\ldots,i_k\}$ 是 $I$ 的任意有限子集，则
+		\[
+		N_{i_1}\cap(N_{i_2}+\cdots+N_{i_k})=0;
+		\]
+		\item 若 $\{i_1,i_2,\ldots,i_k\}$ 是 $I$ 的任意有限子集，则
+		\[
+		N_{i_1}+\cdots+N_{i_k}=N_{i_1}\oplus\cdots\oplus N_{i_k};
+		\]
+		\item 对由 $N_i$ 生成的子模中的每个元素 $x$，存在唯一的一族元素 $a_i\in N_i$（$i\in I$），使得除有限多个 $a_i$ 外均为零，且 $x$ 是这些 $a_i$ 的有限和。
+	\end{enumerate}
+	\item 设 $R$ 是主理想整环，$M$ 是挠 $R$-模（见练习 4），$p$ 是 $R$ 中素元；不要假设 $M$ 有限生成，因此它不必有非零零化子（参见练习 5）。$M$ 的 $p$-primary 分量定义为 $M$ 中所有被 $p$ 的某个正幂零化的元素的集合。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $p$-primary 分量是子模。[见第 1 节练习 13。]
+		\item 当 $M$ 有非零零化子时，证明这里的 $p$-primary 分量定义与练习 18 中的定义一致。
+		\item 证明 $M$ 是其所有 $p$-primary 分量的（可能无限）直和，其中 $p$ 遍历 $R$ 的所有素元。
+	\end{enumerate}
+	\item 证明任意自由 $R$-模的直和仍是自由的。
+	\item （自由模的任意直积不必自由）对每个正整数 $i$，令 $M_i$ 为自由 $\ZZ$-模 $\ZZ$，并令
+	\[
+	M=\prod_{i\in\ZZ^+}M_i.
+	\]
+	每个 $M$ 的元素可唯一写成 $(a_1,a_2,a_3,\ldots)$，其中 $a_i\in\ZZ$。令 $N$ 为 $M$ 中所有只有有限多个非零 $a_i$ 的元构成的子模。假设 $M$ 是有基 $\mathcal B$ 的自由 $\ZZ$-模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $N$ 是可数的。
+		\item 证明存在 $\mathcal B$ 的可数子集 $\mathcal B_1$，使 $N$ 包含于由 $\mathcal B_1$ 生成的子模 $N_1$ 中。还要证明 $N_1$ 是可数的。
+		\item 令 $\overline M=M/N_1$。证明 $\overline M$ 是自由 $\ZZ$-模。推出若 $x$ 是 $\overline M$ 中非零元素，则只有有限多个不同的正整数 $k$ 使得 $x=km$ 对某个 $m\in\overline M$ 成立。
+		\item 令
+		\[
+		S=\{(b_1,b_2,b_3,\ldots)\mid b_i=\pm i!\text{ 对所有 }i\}.
+		\]
+		证明 $S$ 不可数。推出存在 $s\in S$ 使 $s\notin N_1$。
+		\item 证明 $M$ 是自由的假设导致矛盾：由 (d) 取 $s\in S$ 且 $s\notin N_1$。证明对每个正整数 $k$，存在 $m\in\overline M$ 使 $s=km$，与 (c) 矛盾。[用到 $N\subseteq N_1$。]
+	\end{enumerate}
+	\item 在直接极限的构造中（第 7.6 节练习 8），证明若所有 $A_i$ 都是 $R$-模且映射 $\rho_{ij}$ 都是 $R$-模同态，则直接极限 $A=\varinjlim A_i$ 可以自然地赋予 $R$-模结构，使得映射 $\rho_i:A_i\to A$ 全都是 $R$-模同态。验证相应的泛性质，即对所有与 $\rho_{ij}$ 相容的 $R$-模同态 $\varphi_i:A_i\to C$，第 7.6 节练习 8(e) 的结论仍成立。
+	\item 对逆极限作出与前一题相应的分析，证明 $R$-模的逆极限是 $R$-模并满足适当的泛性质（参见第 7.6 节练习 10）。
+	\item （非交换环上的自由模不必有唯一的秩）令 $M$ 为练习 24 中的 $\ZZ$-模 $\ZZ\times\ZZ\times\cdots$，令 $R$ 为其自同态环 $R=\End_{\ZZ}(M)$（参见第 7.1 节练习 29 和 30）。定义 $\varphi_1,\varphi_2\in R$ 为
+	\[
+	\varphi_1(a_1,a_2,a_3,\ldots)=(a_1,a_3,a_5,\ldots),
+	\qquad
+	\varphi_2(a_1,a_2,a_3,\ldots)=(a_2,a_4,a_6,\ldots).
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\{\varphi_1,\varphi_2\}$ 是左 $R$-模 $R$ 的自由基。[定义
+		\[
+		\psi_1(a_1,a_2,\ldots)=(a_1,0,a_2,0,\ldots),
+		\quad
+		\psi_2(a_1,a_2,\ldots)=(0,a_1,0,a_2,\ldots).
+		\]
+		验证 $\varphi_i\psi_i=1$，$\varphi_1\psi_2=0=\varphi_2\psi_1$，且 $\psi_1\varphi_1+\psi_2\varphi_2=1$。用这些关系证明 $\varphi_1,
+		\varphi_2$ 作为左 $R$-模的元素线性无关且生成 $R$。]
+		\item 用 (a) 证明 $R\cong R^2$，并推出 $R\cong R^n$ 对所有 $n\in\ZZ^+$ 成立。
+	\end{enumerate}
+\end{enumerate}
+
+
+\section{模的张量积}
+
+本节讨论张量积。张量积首先作为“扩张标量”的工具出现。设 $R\subseteq S$ 是带单位元的环，若 $N$ 是 $S$-模，则通过限制作用，$N$ 自动成为 $R$-模。反过来，若从一个 $R$-模 $N$ 出发，希望把标量从 $R$ 扩张到 $S$，一般不能直接在 $N$ 上定义 $S$-模结构。张量积 $S\otimes_R N$ 给出最自然的目标。
+
+构造如下：取集合 $S\times N$ 上的自由阿贝尔群，并模去由以下元素生成的子群：
+\[
+\begin{aligned}
+	&(s_1+s_2,n)-(s_1,n)-(s_2,n),\\
+	&(s,n_1+n_2)-(s,n_1)-(s,n_2),\\
+	&(sr,n)-(s,rn),
+\end{aligned}
+\]
+其中 $s,s_1,s_2\in S$，$n,n_1,n_2\in N$，$r\in R$。所得商群记为 $S\otimes_R N$，$(s,n)$ 的像记为 $s\otimes n$。于是有关系
+\[
+\begin{aligned}
+	(s_1+s_2)\otimes n&=s_1\otimes n+s_2\otimes n,\\
+	s\otimes(n_1+n_2)&=s\otimes n_1+s\otimes n_2,\\
+	sr\otimes n&=s\otimes rn.
+\end{aligned}
+\]
+它自然成为左 $S$-模，定义
+\[
+s\left(\sum s_i\otimes n_i\right)=\sum ss_i\otimes n_i.
+\]
+称 $S\otimes_R N$ 为由 $N$ 通过从 $R$ 到 $S$ 扩张标量得到的 $S$-模。自然映射
+\[
+t:N\longrightarrow S\otimes_R N,
+\qquad n\mapsto 1\otimes n
+\]
+是 $R$-模同态，但一般不单。
+
+
+\noindent\textbf{定理 8（扩张标量的泛性质）.} 设 $R\subseteq S$，$N$ 是左 $R$-模，$t:N\to S\otimes_R N$ 由 $t(n)=1\otimes n$ 定义。若 $L$ 是左 $S$-模，$\varphi:N\to L$ 是 $R$-模同态，则存在唯一的 $S$-模同态
+\[
+\Phi:S\otimes_R N\longrightarrow L
+\]
+使 $\varphi=\Phi\circ t$。反过来，任意 $S$-模同态 $\Phi:S\otimes_R N\to L$ 与 $t$ 复合给出 $R$-模同态 $N\to L$。
+
+
+\noindent\textbf{推论 9.} 若 $t:N\to S\otimes_R N$ 是上述映射，则
+\[
+\ker t
+\]
+等于所有在任意 $R$-模同态 $N\to L$（其中 $L$ 是 $S$-模）下都映为 $0$ 的元素。特别地，$N$ 可嵌入某个 $S$-模中当且仅当 $t$ 是单射。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item $\QQ\otimes_\ZZ \ZZ\cong \QQ$，对应于把 $\ZZ$ 中的标量扩张到 $\QQ$。
+	\item $\QQ\otimes_\ZZ (\ZZ/n\ZZ)=0$，因为有理向量空间中没有非零有限阶元素。
+	\item 一般地，若 $d=(m,n)$，则
+	\[
+	\ZZ/m\ZZ\otimes_\ZZ \ZZ/n\ZZ\cong \ZZ/d\ZZ.
+	\]
+	\item 若 $I$ 是 $R$ 的双边理想，$N$ 是左 $R$-模，则
+	\[
+	(R/I)\otimes_R N\cong N/IN.
+	\]
+\end{enumerate}
+
+现在给出一般张量积。设 $M$ 是右 $R$-模，$N$ 是左 $R$-模。在 $M\times N$ 上自由生成的阿贝尔群中，模去由
+\[
+\begin{aligned}
+	&(m_1+m_2,n)-(m_1,n)-(m_2,n),\\
+	&(m,n_1+n_2)-(m,n_1)-(m,n_2),\\
+	&(mr,n)-(m,rn)
+\end{aligned}
+\]
+生成的子群，得到阿贝尔群 $M\otimes_R N$，其元素称为张量。简单张量记为 $m\otimes n$。
+
+
+\noindent\textbf{定理 10（张量积的泛性质）.} 设 $M$ 是右 $R$-模，$N$ 是左 $R$-模。若 $D$ 是阿贝尔群，映射
+\[
+\varphi:M\times N\longrightarrow D
+\]
+满足双加性并满足 $\varphi(mr,n)=\varphi(m,rn)$，则称为 $R$-平衡映射。张量积 $M\otimes_R N$ 连同自然映射
+\[
+t(m,n)=m\otimes n
+\]
+满足：对任意 $R$-平衡映射 $\varphi:M\times N\to D$，存在唯一群同态
+\[
+\Phi:M\otimes_R N\longrightarrow D
+\]
+使 $\varphi=\Phi\circ t$。
+
+
+\noindent\textbf{推论 11.} $R$-平衡映射 $M\times N\to D$ 与群同态 $M\otimes_R N\to D$ 自然一一对应。
+
+若 $R$ 交换，左右模结构相同，此时平衡映射通常称为双线性映射，并且 $M\otimes_R N$ 也自然成为 $R$-模。
+
+
+\noindent\textbf{定义.} 设 $R$ 与 $S$ 是带单位元的环。若阿贝尔群 $M$ 同时是左 $S$-模与右 $R$-模，且
+\[
+(sm)r=s(mr),
+\]
+则称 $M$ 为 $(S,R)$-双模。
+
+
+\noindent\textbf{定理 13（两个同态的张量积）.} 设 $M,M'$ 是右 $R$-模，$N,N'$ 是左 $R$-模，且
+\[
+\varphi:M\to M',
+\qquad
+\psi:N\to N'
+\]
+是 $R$-模同态。则存在唯一群同态
+\[
+\varphi\otimes\psi:M\otimes_R N\longrightarrow M'\otimes_R N'
+\]
+使
+\[
+(\varphi\otimes\psi)(m\otimes n)=\varphi(m)\otimes\psi(n).
+\]
+若还带有适当的双模结构，则这是相应的模同态；并且张量积与复合相容。
+
+
+\noindent\textbf{定理 14（张量积的结合性）.} 若 $M$ 是右 $R$-模，$N$ 是 $(R,T)$-双模，$L$ 是左 $T$-模，则有自然同构
+\[
+(M\otimes_R N)\otimes_T L
+\cong
+M\otimes_R (N\otimes_T L),
+\]
+把 $(m\otimes n)\otimes l$ 映到 $m\otimes(n\otimes l)$。
+
+若 $R$ 交换，且 $M,N,L$ 是左 $R$-模，则
+\[
+(M\otimes_R N)\otimes_R L\cong M\otimes_R(N\otimes_R L).
+\]
+因此多重张量积可不带歧义地写作 $M_1\otimes_R\cdots\otimes_R M_n$。
+
+
+\noindent\textbf{定义.} 设 $R$ 交换。映射
+\[
+\varphi:M_1\times\cdots\times M_n\longrightarrow L
+\]
+称为 $R$ 上 $n$-多重线性映射，若它对每一个变量分别都是 $R$-模同态。
+
+
+\noindent\textbf{推论 16.} $M_1\otimes_R\cdots\otimes_R M_n$ 是关于 $n$-重线性映射的泛对象：$n$-重线性映射 $M_1\times\cdots\times M_n\to L$ 与 $R$-模同态
+\[
+M_1\otimes_R\cdots\otimes_R M_n\to L
+\]
+自然一一对应。
+
+
+\noindent\textbf{定理 17（直和的张量积）.} 设 $M,M'$ 是右 $R$-模，$N,N'$ 是左 $R$-模。则有自然同构
+\[
+(M\oplus M')\otimes_R N
+\cong
+(M\otimes_R N)\oplus(M'\otimes_R N),
+\]
+以及
+\[
+M\otimes_R(N\oplus N')
+\cong
+(M\otimes_R N)\oplus(M\otimes_R N').
+\]
+
+
+\noindent\textbf{推论 18（自由模的扩张标量）.} 若 $N\cong R^n$ 是自由 $R$-模，则
+\[
+S\otimes_R N\cong S^n
+\]
+作为左 $S$-模。
+
+
+\noindent\textbf{推论 19.} 若 $R$ 交换，$M\cong R^s$、$N\cong R^t$ 是自由模，基分别为 $m_1,
+\ldots,m_s$ 与 $n_1,
+\ldots,n_t$，则 $M\otimes_R N$ 是秩为 $st$ 的自由模，基为
+\[
+m_i\otimes n_j,
+\qquad 1\leq i\leq s,
+\quad 1\leq j\leq t.
+\]
+
+
+\noindent\textbf{命题 20.} 若 $R$ 交换，$M,N$ 是 $R$-模，则有自然同构
+\[
+M\otimes_R N\cong N\otimes_R M,
+\]
+把 $m\otimes n$ 映到 $n\otimes m$。但当 $M=N$ 时，一般不能推出 $m\otimes n=n\otimes m$。
+
+
+\noindent\textbf{命题 21.} 若 $R$ 交换，$A,B$ 是 $R$-代数，则在 $A\otimes_R B$ 上定义
+\[
+(a\otimes b)(a'\otimes b')=aa'\otimes bb'
+\]
+是良定义的，并使 $A\otimes_R B$ 成为 $R$-代数。
+
+
+\paragraph{练习}
+设 $R$ 是带单位元的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $f:R\to S$ 是环同态，且 $f(1_R)=1_S$。验证 $sr=sf(r)$ 定义了 $S$ 上的右 $R$-作用，并使 $S$ 成为一个 $(S,R)$-双模。
+	\item 证明元素“$2\otimes1$”在 $\ZZ\otimes_{\ZZ}\ZZ/2\ZZ$ 中为 $0$，但在 $2\ZZ\otimes_{\ZZ}\ZZ/2\ZZ$ 中非零。
+	\item 证明 $\CC\otimes_{\RR}\CC$ 与 $\CC\otimes_{\CC}\CC$ 都是左 $\RR$-模，但它们作为 $\RR$-模不同构。
+	\item 证明 $\QQ\otimes_{\ZZ}\QQ$ 与 $\QQ\otimes_{\QQ}\QQ$ 作为左 $\QQ$-模同构。[证明二者都是 $\QQ$ 上的一维向量空间。]
+	\item 设 $A$ 是阶为 $n$ 的有限阿贝尔群，$p^k$ 是素数 $p$ 整除 $n$ 的最高幂。证明
+	\[
+	\ZZ/p^k\ZZ\otimes_{\ZZ} A
+	\]
+	同构于 $A$ 的 Sylow $p$-子群。
+	\item 若 $R$ 是任意整环，商域为 $Q$，证明
+	\[
+	(Q/R)\otimes_R(Q/R)=0.
+	\]
+	\item 若 $R$ 是任意整环，商域为 $Q$，$N$ 是左 $R$-模，证明张量积 $Q\otimes_R N$ 的每个元素均可写为简单张量
+	\[
+	(1/d)\otimes n
+	\]
+	的形式，其中 $0\neq d\in R$，$n\in N$。
+	\item 设 $R$ 是整环，商域为 $Q$，$N$ 是任意 $R$-模。令 $U=R^\times$ 表示 $R$ 中所有非零元素的集合，定义 $U^{-1}N$ 为有序对 $(u,n)$ 的等价类集合，其中 $u\in U$、$n\in N$，等价关系为
+	\[
+	(u,n)\sim(u',n')\quad\Longleftrightarrow\quad u'n=un'\text{ 在 }N\text{ 中成立}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $U^{-1}N$ 在加法
+		\[
+		(u_1,n_1)+(u_2,n_2)=(u_1u_2,u_2n_1+u_1n_2)
+		\]
+		下成为阿贝尔群。证明 $r(u,n)=(u,rn)$ 定义了 $R$ 在 $U^{-1}N$ 上的作用，使其成为 $R$-模。[这是第 15 章第 4 节一般讨论的局部化的例子；也参见第 7 章第 5 节。]
+		\item 证明从 $Q\times N$ 到 $U^{-1}N$ 的映射
+		\[
+		(a/b,n)\longmapsto(b,an)
+		\]
+		（其中 $a\in R,b\in U,n\in N$）是 $R$-平衡映射，从而诱导同态 $f:Q\otimes_RN\to U^{-1}N$。证明从 $U^{-1}N$ 到 $Q\otimes_RN$ 的映射
+		\[
+		g((u,n))=(1/u)\otimes n
+		\]
+		良定义且是 $f$ 的逆同态。推出 $Q\otimes_RN\cong U^{-1}N$ 作为 $R$-模。
+		\item 由 (b) 推出，在 $Q\otimes_RN$ 中 $(1/d)\otimes n=0$ 当且仅当存在非零 $r\in R$ 使 $rn=0$。
+		\item 若 $A$ 是阿贝尔群，证明 $\QQ\otimes_{\ZZ}A=0$ 当且仅当 $A$ 是挠阿贝尔群，即每个元素都有有限阶。
+	\end{enumerate}
+	\item 设 $R$ 是整环，商域为 $Q$，$N$ 是任意 $R$-模。令 $Q\otimes_RN$ 为由 $N$ 从 $R$ 到 $Q$ 的标量扩张所得的模。证明 $R$-模同态
+	\[
+	\iota:N\longrightarrow Q\otimes_RN,
+	\qquad n\longmapsto 1\otimes n
+	\]
+	的核是 $N$ 的挠子模（参见第 1 节练习 8）。[使用前一题。]
+	\item 设 $R$ 交换，$N\cong R^n$ 是秩为 $n$ 的自由 $R$-模，基为 $e_1,
+	\ldots,e_n$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 对任意非零 $R$-模 $M$，证明 $M\otimes_R N$ 的每个元素都可唯一写成
+		\[
+		\sum_{i=1}^n m_i\otimes e_i,
+		\qquad m_i\in M.
+		\]
+		推出若 $\sum_{i=1}^n m_i\otimes e_i=0$，则所有 $m_i=0$。
+		\item 证明若 $\sum m_i\otimes n_i=0$ 在 $M\otimes_R N$ 中成立，其中 $n_i$ 仅假设为 $R$-线性无关，则不一定推出所有 $m_i=0$。[考虑 $R=\ZZ$、$n=1$、$M=\ZZ/2\ZZ$ 与元素 $1\otimes2$。]
+	\end{enumerate}
+	\item 设 $\{e_1,e_2\}$ 是 $V=\RR^2$ 的一组基。证明 $V\otimes_{\RR}V$ 中的元素
+	\[
+	e_1\otimes e_2+e_2\otimes e_1
+	\]
+	不能写为简单张量 $v\otimes w$，其中 $v,w\in\RR^2$。
+	\item 设 $V$ 是域 $F$ 上的向量空间，$v,v'$ 是 $V$ 的非零元素。证明
+	\[
+	v\otimes v'=v'\otimes v\quad\text{在 }V\otimes_FV\text{ 中}
+	\]
+	当且仅当 $v=av'$ 对某个 $a\in F$ 成立。
+	\item 证明通常的点积
+	\[
+	(a_1,\ldots,a_n)\cdot(b_1,\ldots,b_n)=a_1b_1+\cdots+a_nb_n
+	\]
+	是从 $\RR^n\times\RR^n$ 到 $\RR$ 的双线性映射。
+	\item 设 $I$ 是任意非空指标集，并对每个 $i\in I$，令 $N_i$ 是左 $R$-模。令 $M$ 为右 $R$-模。证明群同构
+	\[
+	M\otimes_R\left(\bigoplus_{i\in I}N_i\right)
+	\cong \bigoplus_{i\in I}(M\otimes_R N_i),
+	\]
+	其中任意模族的直和定义见第 3 节练习 20。[使用与两个模直和情形相同的论证，并注意何处用到了直和假设；参见下一题。]
+	\item 证明张量积一般不与直积交换。[考虑从 $\ZZ$ 到 $\QQ$ 的标量扩张作用于模 $M_i=\ZZ/2^i\ZZ$（$i=1,2,\ldots$）的直积。]
+	\item 设 $R$ 交换，$I,J$ 是 $R$ 的理想，于是 $R/I$ 与 $R/J$ 自然是 $R$-模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R/I\otimes_RR/J$ 的每个元素都可写为形如
+		\[
+		(1\bmod I)\otimes(r\bmod J)
+		\]
+		的简单张量。
+		\item 证明存在 $R$-模同构
+		\[
+		R/I\otimes_RR/J\cong R/(I+J),
+		\]
+		它把 $(r\bmod I)\otimes(r'\bmod J)$ 映到 $rr'\bmod(I+J)$。
+	\end{enumerate}
+	\item 令 $I=(2,x)$ 为环 $R=\ZZ[x]$ 中由 $2$ 与 $x$ 生成的理想。环 $\ZZ/2\ZZ=R/I$ 自然是同时被 $2$ 与 $x$ 零化的 $R$-模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明映射
+		\[
+		\varphi:I\times I\longrightarrow \ZZ/2\ZZ,
+		\]
+		定义为
+		\[
+		\varphi(a_0+a_1x+\cdots+a_nx^n,
+		b_0+b_1x+\cdots+b_mx^m)=b_1\bmod2
+		\]
+		是 $R$-双线性的。
+		\item 证明存在 $R$-模同态 $I\otimes_R I\to\ZZ/2\ZZ$，把 $p(x)\otimes q(x)$ 映到 $p(0)q'(0)$，其中 $q'$ 是 $q$ 的通常多项式导数。
+		\item 证明在 $I\otimes_R I$ 中，$2\otimes x\neq x\otimes2$。
+	\end{enumerate}
+	\item 设 $I$ 是整环 $R$ 中的主理想。证明 $R$-模 $I\otimes_RI$ 没有非零挠元素，即若 $0\neq r\in R$ 且 $rm=0$（$m\in I\otimes_RI$），则 $m=0$。
+	\item 令 $I=(2,x)$ 为环 $R=\ZZ[x]$ 中由 $2$ 与 $x$ 生成的理想，如练习 17。证明 $I\otimes_RI$ 中的非零元素
+	\[
+	2\otimes x-x\otimes2
+	\]
+	是挠元素。进一步证明它同时被 $2$ 与 $x$ 零化，并且由 $2\otimes x-x\otimes2$ 生成的 $I\otimes_RI$ 的子模同构于 $R/I$。
+	\item 令 $I=(2,x)$ 为环 $R=\ZZ[x]$ 中由 $2$ 与 $x$ 生成的理想。证明 $I\otimes_RI$ 中的元素
+	\[
+	2\otimes2+x\otimes x
+	\]
+	不是简单张量，即不能写成 $a\otimes b$，其中 $a,b\in I$。
+	\item 设 $R$ 交换，$I,J$ 是 $R$ 的理想。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明存在从 $I\otimes_RJ$ 到乘积理想 $IJ$ 的满 $R$-模同态，把 $i\otimes j$ 映到元素 $ij$。
+		\item 给出一个例子说明 (a) 中的映射不必单（参见练习 17）。
+	\end{enumerate}
+	\item 设 $M$ 同时是左、右 $R$-模，并且 $rm=mr$ 对所有 $r\in R$、$m\in M$ 成立。证明任意 $r_1,r_2\in R$，元素 $r_1r_2$ 与 $r_2r_1$ 在 $M$ 上的作用相同。（这解释了在 $R$-代数定义中假设 $R$ 交换是相当自然的。）
+	\item 验证命题 19 中的乘法确实使 $A\otimes_RB$ 成为一个 $R$-代数。
+	\item 证明把环 $\RR$ 从 $\ZZ$ 扩张标量到 Gaussian 整数 $\ZZ[i]$ 得到的环同构于 $\CC$：
+	\[
+	\ZZ[i]\otimes_{\ZZ}\RR\cong\CC
+	\]
+	作为环同构。
+	\item 设 $R$ 是交换环 $S$ 的子环，$x$ 是 $S$ 上的不定元。证明 $S[x]$ 与 $S\otimes_RR[x]$ 作为 $S$-代数同构。
+	\item 设 $S$ 是含 $R$ 的交换环，且 $1_S=1_R$。令 $x_1,
+	\ldots,x_n$ 是 $S$ 上独立的不定元。证明对多项式环 $R[x_1,
+	\ldots,x_n]$ 的任意理想 $I$，有 $S$-代数同构
+	\[
+	S\otimes_R(R[x_1,
+	\ldots,x_n]/I)
+	\cong S[x_1,
+	\ldots,x_n]/IS[x_1,
+	\ldots,x_n].
+	\]
+	
+	下一题说明本节末引入的环 $\CC\otimes_{\RR}\CC$ 同构于 $\CC\times\CC$。也可通过练习 26 与第 9.5 节命题 16 证明这一点，因为 $\CC\cong\RR[x]/(x^2+1)$。环 $\CC\times\CC$ 也在第 1 节练习 23 中讨论过。
+	\item
+	\begin{enumerate}[label=(\alph*)]
+		\item 在命题 21 后的例子 $A=\CC\otimes_{\RR}\CC$ 中，写出两个元素
+		\[
+		a\cdot1+b\cdot e_2+c\cdot e_3+d\cdot e_4
+		\quad\text{与}\quad
+		a'\cdot1+b'\cdot e_2+c'\cdot e_3+d'\cdot e_4
+		\]
+		的乘法公式，其中 $1=1\otimes1$ 是 $A$ 的单位元。
+		\item 令
+		\[
+		E_1=\frac12(1\otimes1+i\otimes i),\qquad
+		E_2=\frac12(1\otimes1-i\otimes i).
+		\]
+		证明 $E_1E_2=0$、$E_1+E_2=1$，且 $E_j^2=E_j$（$j=1,2$）。$E_1,E_2$ 称为 $A$ 中的正交幂等元。推出 $A$ 作为环同构于两个主理想的直积：
+		\[
+		A\cong AE_1\times AE_2
+		\]
+		（参见第 7.6 节练习 1）。
+		\item 证明映射
+		\[
+		\varphi:\CC\times\CC\longrightarrow\CC\times\CC,
+		\qquad \varphi(z_1,z_2)=(z_1z_2,z_1\overline{z_2})
+		\]
+		是 $\RR$-双线性的，其中 $\overline{z_2}$ 表示 $z_2$ 的复共轭。
+		\item 令 $\Phi$ 为由 (c) 中 $\varphi$ 得到的 $\RR$-模同态 $A\to\CC\times\CC$。证明 $\Phi(E_1)=(0,1)$ 且 $\Phi(E_2)=(1,0)$。还要证明 $\Phi$ 是 $\CC$-线性的，其中 $\CC$ 的作用在 $A$ 中作用于左张量因子，在 $\CC\times\CC$ 中作用于两个因子。推出 $\Phi$ 是满射。证明 $\Phi$ 是 $\CC$-代数同构。
+	\end{enumerate}
+\end{enumerate}
+
+
+\section{正合列、投射模、内射模与平坦模}
+
+研究代数对象 $B$（例如群、环或模）结构的一个基本结果是第一同构定理。它把 $B$ 的子对象（分别为正规子群、理想或子模）与 $B$ 的可能同态像联系起来。我们已经看到许多例子：由对这些“较小”组成部分的理解来分析 $B$ 的结构，例如通过确定二面体群 $D_8$ 的中心以及相应的中心商群来分析 $D_8$ 的结构。
+
+在这些例子中，我们通常先给定 $B$，再构造同态 $\varphi$（往往通过指定 $\ker\varphi\leq B$ 来隐式给出），并研究 $\ker\varphi$ 与商 $B/\ker\varphi$。现在我们更详细地考虑反方向的问题：是否可以先指定这些“较小组成部分”。更确切地说，给定两个模 $A$ 与 $C$，是否存在一个模 $B$，它含有 $A$ 的一个同构副本，并且所得商模 $B/A$ 同构于 $C$。此时称 $B$ 是 $C$ 被 $A$ 的一个\emph{扩张}。于是自然要问：给定 $A$ 与 $C$，这样的 $B$ 有多少个；以及 $B$ 的性质在多大程度上由 $A$ 与 $C$ 的相应性质决定。群和环的情形当然也有类似问题。这就是第 3.4 节中首先对群讨论过的扩张问题。本节主要关心一个环 $R$ 上的左模；在必要时会指出对于其他结构，特别是非交换群，需要作怎样的修改。与前一节一样，本节中所有环都含有单位元 $1$。
+
+我们先引入一个非常方便的记号。说 $A$ 同构于 $B$ 的一个子模，就是说存在一个单同态
+\[
+\psi:A\hookrightarrow B
+\]
+于是 $A\cong \psi(A)\leq B$。说 $C$ 同构于所得商，就是说存在一个满同态
+\[
+\varphi:B\twoheadrightarrow C
+\]
+且 $\ker\varphi=\psi(A)$。特别地，这给出一对同态
+\[
+A\xrightarrow{\psi}B\xrightarrow{\varphi}C
+\]
+并且 $\operatorname{Im}\psi=\ker\varphi$。满足这一性质的一对同态有如下名称。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+\item 一对同态
+\[
+X\xrightarrow{\alpha}Y\xrightarrow{\beta}Z
+\]
+称为（在 $Y$ 处）\emph{正合}，若
+\[
+\operatorname{Im}\alpha=\ker\beta.
+\]
+\item 一个同态列
+\[
+\cdots\longrightarrow X_{n-1}\longrightarrow X_n\longrightarrow X_{n+1}\longrightarrow\cdots
+\]
+称为\emph{正合列}，若它在每个处于一对同态之间的 $X_n$ 处都是正合的。
+\end{enumerate}
+
+用这个术语，上面的 $A\xrightarrow{\psi}B\xrightarrow{\varphi}C$ 在 $B$ 处正合。我们还可以用这个术语表示 $\psi$ 是单射、$\varphi$ 是满射这一事实。
+
+\noindent\textbf{命题 22.} 设 $A,B,C$ 是某个环 $R$ 上的 $R$-模。则
+\begin{enumerate}[label=(\arabic*)]
+\item 序列
+\[
+0\longrightarrow A\xrightarrow{\psi}B
+\]
+在 $A$ 处正合，当且仅当 $\psi$ 是单射。
+\item 序列
+\[
+B\xrightarrow{\varphi}C\longrightarrow0
+\]
+在 $C$ 处正合，当且仅当 $\varphi$ 是满射。
+\end{enumerate}
+
+\begin{proof}
+唯一确定的同态 $0\to A$ 在 $A$ 中的像是 $0$。这正是 $\psi$ 的核，当且仅当 $\psi$ 是单射。类似地，唯一确定的零同态 $C\to0$ 的核是整个 $C$，它等于 $\varphi$ 的像，当且仅当 $\varphi$ 是满射。
+\end{proof}
+
+\noindent\textbf{推论 23.} 序列
+\[
+0\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow0
+\]
+正合，当且仅当 $\psi$ 是单射、$\varphi$ 是满射，并且
+\[
+\operatorname{Im}\psi=\ker\varphi,
+\]
+也就是说，$B$ 是 $C$ 被 $A$ 的一个扩张。
+
+\noindent\textbf{定义.} 正合列
+\[
+0\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow0
+\]
+称为一个\emph{短正合列}。
+
+用这个记号，扩张问题可以简洁地表述为：给定模 $A$ 与 $C$，确定所有短正合列
+\[
+0\longrightarrow A\longrightarrow B\longrightarrow C\longrightarrow0.
+\tag{10.9}
+\]
+我们下面会看到，正合列记号在分析 $A$ 与 $C$ 的性质多大程度上决定 $B$ 的相应性质时也极为方便。若 $A,B,C$ 是用乘法记号书写的群，则序列 (10.9) 写作
+\[
+1\longrightarrow A\longrightarrow B\longrightarrow C\longrightarrow1,
+\tag{10.9'}
+\]
+其中 $1$ 表示平凡群。命题 22 与推论 23 在作显然的记号改变后仍成立。
+
+注意，任意正合列都可以写成一连串短正合列；因为说
+\[
+X\longrightarrow Y\longrightarrow Z
+\]
+在 $Y$ 处正合，等价于说
+\[
+0\longrightarrow \alpha(X)\longrightarrow Y\longrightarrow Y/\ker\beta\longrightarrow0
+\]
+是短正合列。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 给定模 $A$ 与 $C$，总可以构造它们的直和 $B=A\oplus C$，并有短正合列
+\[
+0\longrightarrow A\xrightarrow{\iota} A\oplus C\xrightarrow{\pi} C\longrightarrow0,
+\]
+其中 $\iota(a)=(a,0)$，$\pi(a,c)=c$。特别地，$C$ 被 $A$ 的扩张至少存在一个。
+
+\item 作为前例的特殊情形，取两个 $\ZZ$-模 $A=\ZZ$ 与 $C=\ZZ/n\ZZ$，得到
+\[
+0\longrightarrow \ZZ\longrightarrow \ZZ\oplus(\ZZ/n\ZZ)\longrightarrow \ZZ/n\ZZ\longrightarrow0,
+\]
+这是 $\ZZ/n\ZZ$ 被 $\ZZ$ 的一个扩张。
+
+$\ZZ/n\ZZ$ 被 $\ZZ$ 的另一个扩张由短正合列
+\[
+0\longrightarrow \ZZ\xrightarrow{\,n\,}\ZZ\xrightarrow{\pi}\ZZ/n\ZZ\longrightarrow0
+\]
+给出，其中 $n$ 表示乘以 $n$ 的映射 $x\mapsto nx$，$\pi$ 表示自然投影。注意，上面两个短正合列中间的模并不同构，尽管相应的 $A$ 项与 $C$ 项同构。因此，$\ZZ/n\ZZ$ 被 $\ZZ$ 的扩张至少有两种“本质上不同”或“不等价”的方式。
+
+\item 若 $\varphi:B\to C$ 是任意同态，则可以形成正合列
+\[
+0\longrightarrow \ker\varphi\xrightarrow{\iota}B\xrightarrow{\varphi}\operatorname{Im}\varphi\longrightarrow0,
+\]
+其中 $\iota$ 是包含映射。特别地，若 $\varphi$ 满射，则序列 $\varphi:B\to C$ 可以扩张为一个以 $A=\ker\varphi$ 为左端项的短正合列。
+
+\item 前例的一个特别重要的情形如下。设 $M$ 是 $R$-模，$S$ 是 $M$ 的一组生成元。令 $F(S)$ 是集合 $S$ 上的自由 $R$-模。由定理 6 得到的唯一 $R$-模同态 $F(S)\to M$（在 $S$ 上为恒等）是满射。若 $K$ 是它的核，则有短正合列
+\[
+0\longrightarrow K\longrightarrow F(S)\longrightarrow M\longrightarrow0.
+\]
+更一般地，当 $M$ 是任意群（可能非阿贝尔）时，上述短正合列（若用乘法记号则两端为 $1$）描述了 $M$ 的一个表示，其中 $K$ 是由定义 $M$ 的关系所生成的自由群 $F(S)$ 的正规子群（参见第 6.3 节）。
+
+\item Klein 四元群被二阶循环群 $\ZZ_2$ 的两个“不等价”扩张 $G$ 为
+\[
+1\longrightarrow \ZZ_2\longrightarrow D_8\longrightarrow \ZZ_2\times\ZZ_2\longrightarrow1,
+\]
+以及
+\[
+1\longrightarrow \ZZ_2\longrightarrow Q_8\longrightarrow \ZZ_2\times\ZZ_2\longrightarrow1.
+\]
+在这两种情形中，$\ZZ_2$ 都被单射地映到 $G$ 的中心中，而 $\varphi$ 是 $G$ 到 $G/Z(G)$ 的自然投影。
+
+Klein 四元群被 $\ZZ_2$ 的另外两个不等价扩张出现在 $G$ 为阿贝尔群 $\ZZ_2\times\ZZ_2\times\ZZ_2$ 或 $\ZZ_2\times\ZZ_4$ 时，只需选取适当的映射 $\psi$ 与 $\varphi$。
+\end{enumerate}
+
+上述例子 2 与 5 表明，对于固定的 $A$ 与 $C$，一般可能存在多个 $C$ 被 $A$ 的扩张。为了区分不同扩张，我们定义两个正合列之间的同态（与同构）。先回忆：包含若干同态的图称为交换的，若图中任意具有相同起点与终点的同态复合都相等；也就是说，沿图中同态路径所定义的复合映射只依赖于起点和终点，而不依赖于所选择的路径。
+
+\noindent\textbf{定义.} 设
+\[
+0\longrightarrow A\longrightarrow B\longrightarrow C\longrightarrow0
+\]
+和
+\[
+0\longrightarrow A'\longrightarrow B'\longrightarrow C'\longrightarrow0
+\]
+是两个模的短正合列。
+\begin{enumerate}[label=(\arabic*)]
+\item 一个\emph{短正合列同态}是模同态三元组 $\alpha,\beta,\gamma$，使得下图交换：
+\[
+\begin{array}{ccccccccc}
+0&\longrightarrow&A&\longrightarrow&B&\longrightarrow&C&\longrightarrow&0\\
+ &&\alpha\downarrow&&\beta\downarrow&&\gamma\downarrow&&\\
+0&\longrightarrow&A'&\longrightarrow&B'&\longrightarrow&C'&\longrightarrow&0.
+\end{array}
+\]
+若 $\alpha,\beta,\gamma$ 都是同构，则称该同态为短正合列的同构；此时相应的扩张 $B$ 与 $B'$ 称为同构扩张。
+
+\item 若 $A=A'$、$C=C'$，并且存在如 (1) 中的同构且它在 $A$ 与 $C$ 上均为恒等映射（即 $\alpha$ 与 $\gamma$ 是恒等映射），则称两个正合列\emph{等价}。此时相应的扩张 $B$ 与 $B'$ 称为等价扩张。
+\end{enumerate}
+
+若 $B$ 与 $B'$ 是同构扩张，则特别地，$B$ 与 $B'$ 作为 $R$-模同构；但还更多：存在 $B$ 与 $B'$ 之间的 $R$-模同构，它限制为 $A$ 到 $A'$ 的同构，并在商 $C$ 与 $C'$ 上诱导同构。对于给定的 $A$ 与 $C$，两个 $C$ 被 $A$ 的扩张等价这一条件还要更强：必须存在 $B$ 与 $B'$ 之间的 $R$-模同构，它在 $A$ 上限制为恒等映射，并在 $C$ 上诱导恒等映射。同构扩张的概念衡量在允许 $A$ 与 $C$ 被同构替换时，$C$ 被 $A$ 的扩张有多少种；等价扩张的概念衡量当 $A$ 与 $C$ 被刚性固定时，有多少种不同扩张。
+
+乘法群短正合列 (10.9') 之间的同态与同构也类似定义。
+
+容易验证，短正合列同态的复合仍是短正合列同态。同样，若三元组 $\alpha,\beta,\gamma$ 是同构（或等价），则 $\alpha^{-1},\beta^{-1},\gamma^{-1}$ 给出反向的同构（或等价）。因此，在任意短正合列集合上，“同构”（或“等价”）是等价关系。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 设 $m,n$ 是大于 $1$ 的整数。假设 $n\mid m$，令 $k=m/n$。可以从上面例 2 的 $\ZZ$-模短正合列定义到另一个短正合列的映射：
+\[
+\begin{array}{ccccccccc}
+0&\longrightarrow&\ZZ&\xrightarrow{\,n\,}&\ZZ&\longrightarrow&\ZZ/n\ZZ&\longrightarrow&0\\
+ &&\alpha\downarrow&&\beta\downarrow&&\gamma\downarrow&&\\
+0&\longrightarrow&\ZZ/k\ZZ&\xrightarrow{\,\iota\,}&\ZZ/m\ZZ&\longrightarrow&\ZZ/n\ZZ&\longrightarrow&0,
+\end{array}
+\]
+其中 $\alpha$ 与 $\beta$ 是自然投影，$\gamma$ 是恒等映射，$\iota$ 把 $a\bmod k$ 映到 $na\bmod m$，而右边的投影是 $\ZZ/m\ZZ$ 到其商 $(\ZZ/m\ZZ)/(n\ZZ/m\ZZ)\cong\ZZ/n\ZZ$ 的自然投影。容易验证这是短正合列同态。
+
+\item 对短正合列
+\[
+0\longrightarrow \ZZ\xrightarrow{\,n\,}\ZZ\longrightarrow\ZZ/n\ZZ\longrightarrow0
+\]
+把每个模都用 $x\mapsto -x$ 映到自身，得到该正合列到自身的一个同构。这个同构不是正合列等价，因为它在第一个 $\ZZ$ 上不是恒等映射。
+
+\item 推论 23 后例 1 与例 2 中的短正合列不同构，因为中间的扩张模不是同构的 $\ZZ$-模（阿贝尔群）。同样，例 5 中的两个扩张 $D_8$ 与 $Q_8$ 也不同构（因而不等价），尽管两列的两端项 $A$ 与 $C$ 相同。
+
+\item 考虑映射
+\[
+\begin{array}{ccccccccc}
+0&\longrightarrow&\ZZ/2\ZZ&\xrightarrow{\psi}&\ZZ/2\ZZ\oplus\ZZ/2\ZZ&\xrightarrow{\varphi}&\ZZ/2\ZZ&\longrightarrow&0\\
+ &&\Vert&&\beta\downarrow&&\Vert&&\\
+0&\longrightarrow&\ZZ/2\ZZ&\xrightarrow{\psi'}&\ZZ/2\ZZ\oplus\ZZ/2\ZZ&\xrightarrow{\varphi'}&\ZZ/2\ZZ&\longrightarrow&0,
+\end{array}
+\]
+其中 $\psi$ 把 $\ZZ/2\ZZ$ 单射到直和的第一分量，$\varphi$ 投影到第二分量；而 $\psi'$ 嵌入到第二分量，$\varphi'$ 投影到第一分量。若 $\beta$ 是交换直和两个分量的映射，则图交换，于是得到两个正合列的一个等价；这个等价同构本身并不是恒等同构。
+
+\item 我们展示两个同构但不等价的 $\ZZ$-模扩张。对 $i=1,2$ 定义
+\[
+0\longrightarrow \ZZ/2\ZZ\xrightarrow{\psi}\ZZ/4\ZZ\oplus\ZZ/2\ZZ\xrightarrow{\varphi_i}\ZZ/2\ZZ\oplus\ZZ/2\ZZ\longrightarrow0,
+\]
+其中两列中的 $\psi$ 都由 $1\mapsto (2,0)$ 给出，$\varphi_1$ 定义为
+\[
+\varphi_1(a\bmod4,b\bmod2)=(a\bmod2,b\bmod2),
+\]
+而
+\[
+\varphi_2(a\bmod4,b\bmod2)=(b\bmod2,a\bmod2).
+\]
+容易看出这两列都是短正合列。
+
+这两个正合列之间的一个显然同构由三元组 $\operatorname{id},\operatorname{id},\gamma$ 给出，其中 $\gamma:\ZZ/2\ZZ\oplus\ZZ/2\ZZ\to\ZZ/2\ZZ\oplus\ZZ/2\ZZ$ 是交换两个直接因子的映射。
+
+现在说明这两个同构正合列不等价。由于 $\varphi_1(0,1)=(0,1)$，任意从第一列到第二列的等价 $\operatorname{id},\beta,\operatorname{id}$ 必须把 $(0,1)\in \ZZ/4\ZZ\oplus\ZZ/2\ZZ$ 映到 $\ZZ/4\ZZ\oplus\ZZ/2\ZZ$ 中在 $\varphi_2$ 下映到 $(0,1)$ 的元素，即 $(1,0)$ 或 $(3,0)$。但这是不可能的，因为同构 $\beta$ 不能把二阶元素映到四阶元素。
+
+换言之，涉及同一个扩张模 $B$ 的等价，是 $B$ 的自同构，且它在 $\psi(A)$ 与 $B/\psi(A)$ 上都限制为恒等。任意这样的 $B=\ZZ/4\ZZ\oplus\ZZ/2\ZZ$ 的自同构必须固定陪集 $(0,1)+\psi(A)$，因为这是唯一含有二阶元素的非恒等陪集。因此，把这个陪集送到 $C$ 中不同元素的映射给出不等价扩张。特别地，仍以 $A=\ZZ/2\ZZ$、$B=\ZZ/4\ZZ\oplus\ZZ/2\ZZ$、$C=\ZZ/2\ZZ\oplus\ZZ/2\ZZ$ 为模，还有第三个不等价扩张，它把陪集 $(0,1)+\psi(A)$ 映到 $C$ 中的元素 $(1,1)$。
+
+类似推理表明，若 $B\cong D_8$，则 $\ZZ_2\times\ZZ_2$ 被 $\ZZ_2$ 的群扩张也有三个不等价但同构的情形（参见练习）。
+\end{enumerate}
+
+短正合列同态中的 $\alpha,\beta,\gamma$ 并非彼此独立。下一个结果给出这三个同态之间的一些关系。
+
+\noindent\textbf{命题 24（短五引理）.} 设 $\alpha,\beta,\gamma$ 是短正合列的同态
+\[
+\begin{array}{ccccccccc}
+0&\longrightarrow&A&\longrightarrow&B&\longrightarrow&C&\longrightarrow&0\\
+ &&\alpha\downarrow&&\beta\downarrow&&\gamma\downarrow&&\\
+0&\longrightarrow&A'&\longrightarrow&B'&\longrightarrow&C'&\longrightarrow&0.
+\end{array}
+\]
+则：
+\begin{enumerate}[label=(\arabic*)]
+\item 若 $\alpha$ 与 $\gamma$ 单射，则 $\beta$ 也单射。
+\item 若 $\alpha$ 与 $\gamma$ 满射，则 $\beta$ 也满射。
+\item 若 $\alpha$ 与 $\gamma$ 同构，则 $\beta$ 也同构（于是两个序列同构）。
+\end{enumerate}
+
+\noindent\textbf{说明.} 这些结果对（可能非阿贝尔的）群短正合列也成立，正如证明所显示的那样。
+
+\begin{proof}
+我们证明 (1)，把 (2) 的证明留作练习；(3) 立即由 (1) 与 (2) 推出。设 $\alpha$ 与 $\gamma$ 单射，并设 $b\in B$ 满足 $\beta(b)=0$。记第一短正合列中的同态为 $\psi:A\to B$ 与 $\varphi:B\to C$。由于 $\beta(b)=0$，其在商 $C'$ 中的像也为 $0$。由图的交换性可知 $\gamma(\varphi(b))=0$。因为 $\gamma$ 单射，得到 $\varphi(b)=0$，即 $b\in\ker\varphi$。由第一列正合，$b$ 属于 $\psi$ 的像，所以 $b=\psi(a)$ 对某个 $a\in A$ 成立。再由图交换，$\alpha(a)$ 在 $B'$ 中的像等于 $\beta(\psi(a))=\beta(b)=0$。但 $\alpha$ 与 $A'\to B'$ 都是单射，因此 $a=0$。最后 $b=\psi(a)=\psi(0)=0$，故 $\beta$ 确为单射。
+\end{proof}
+
+我们已经看到，$C$ 被 $A$ 的扩张至少有一个，即直接和 $B=A\oplus C$。在这种情况下，模 $B$ 除了子模 $A$ 外，还含有一个同构于 $C$ 的子模 $C'$（即 $C'=0\oplus C$），而这个与 $A$ 互补的子模把 $B$ “分裂”为直和。在群的情形中，若 $B$ 中正规子群有一个子群补 $C'$，则 $B$ 是一个半直积（参见第 5 章第 5 节）。在模的语境中，$B$ 是直和这一事实反映了底层群结构是阿贝尔的；对阿贝尔群，半直积就是直积。在任一情形中，相应的短正合列都称为“分裂”的。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+\item 设 $R$ 是环，
+\[
+0\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow0
+\]
+是 $R$-模短正合列。若 $B$ 中存在 $\psi(A)$ 的一个 $R$-模补，则称该序列\emph{分裂}。此时，直到同构，$B=A\oplus C$；更精确地说，$B=\psi(A)\oplus C'$ 对某个子模 $C'$ 成立，并且 $\varphi$ 把 $C'$ 同构地映到 $C$，即 $\varphi(C')\cong C$。
+\item 若
+\[
+1\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow1
+\]
+是群短正合列，若 $B$ 中存在 $\psi(A)$ 的一个子群补，则称该序列\emph{分裂}。此时，直到同构，$B=A\rtimes C$；更精确地说，$B=\psi(A)\rtimes C'$ 对某个子群 $C'$ 成立，并且 $\varphi$ 把 $C'$ 同构地映到 $C$。
+\end{enumerate}
+在这两种情形中，扩张 $B$ 称为 $C$ 被 $A$ 的一个\emph{分裂扩张}。
+
+扩张是否分裂的问题，就是 $B$ 中是否存在一个由 $\varphi$ 同构到 $C$ 的 $\psi(A)$ 的补。因此分裂扩张的概念也可以等价地用同态语言表述。
+
+\noindent\textbf{命题 25.} $R$-模短正合列
+\[
+0\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow0
+\]
+分裂，当且仅当存在 $R$-模同态 $\mu:C\to B$ 使
+\[
+\varphi\circ\mu=\operatorname{id}_C.
+\]
+类似地，群短正合列
+\[
+1\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow1
+\]
+分裂，当且仅当存在群同态 $\mu:C\to B$ 使 $\varphi\circ\mu$ 是 $C$ 上的恒等映射。
+
+\begin{proof}
+这直接来自定义：若给定 $\mu$，令 $C'=\mu(C)\leq B$；若给定补 $C'$，则定义 $\mu=\varphi^{-1}:C\to C'\hookrightarrow B$。
+\end{proof}
+
+\noindent\textbf{定义.} 在命题 25 的记号下，任意集合映射 $\mu:C\to B$，若满足 $\varphi\circ\mu=\operatorname{id}_C$，称为 $\varphi$ 的一个\emph{截面}。若 $\mu$ 是命题 25 中的同态，则称 $\mu$ 为该序列的一个\emph{分裂同态}。
+
+注意，$\varphi$ 的截面不过是给商 $B/\ker\varphi\cong C$ 在 $B$ 中选择一组陪集代表。若该截面是（分裂）同态，则这组陪集代表在 $B$ 中构成子模（分别为子群），于是该子模（分别为子群）给出 $\psi(A)$ 的一个补。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 分裂短正合列
+\[
+0\longrightarrow A\longrightarrow A\oplus C\longrightarrow C\longrightarrow0
+\]
+有显然的分裂同态 $\mu(c)=(0,c)$。
+
+\item $\ZZ/n\ZZ$ 被 $\ZZ$ 的扩张
+\[
+0\longrightarrow \ZZ\longrightarrow \ZZ\oplus(\ZZ/n\ZZ)\longrightarrow \ZZ/n\ZZ\longrightarrow0
+\]
+是分裂的；分裂同态把 $\ZZ/n\ZZ$ 同构地映到直和的第二因子。另一方面，$\ZZ$-模正合列
+\[
+0\longrightarrow \ZZ\xrightarrow{\,n\,}\ZZ\longrightarrow\ZZ/n\ZZ\longrightarrow0
+\]
+不分裂，因为不存在从 $\ZZ/n\ZZ$ 到 $\ZZ$ 的非零同态。
+
+\item $D_8$ 与 $Q_8$ 都不是 $\ZZ_2\times\ZZ_2$ 被 $\ZZ_2$ 的分裂扩张，因为在这两个群中，中心都没有子群补（第 2.5 节给出了这些群的子群结构）。
+
+\item 群 $D_8$ 是 $\ZZ_2$ 被 $\ZZ_4$ 的分裂扩张，即存在分裂短正合列
+\[
+1\longrightarrow \ZZ_4\longrightarrow D_8\longrightarrow\ZZ_2\longrightarrow1.
+\]
+用 $D_8$ 的通常生成元 $r,s$，这就是
+\[
+1\longrightarrow\langle r\rangle\longrightarrow D_8\longrightarrow\langle s\rangle\longrightarrow1.
+\]
+这里包含映射把 $\langle r\rangle$ 嵌入 $D_8$，而投影 $\pi:r^as^b\mapsto s^b$ 给出到商 $D_8/\langle r\rangle\cong\ZZ_2$ 的映射。分裂同态 $\mu$ 把 $\langle s\rangle$ 同构地映到 $D_8$ 中的补 $\langle s\rangle$。等价地，$D_8$ 是正规子群 $\langle r\rangle\cong\ZZ_4$ 与 $\langle s\rangle\cong\ZZ_2$ 的半直积。
+
+另一方面，$Q_8$ 也是 $\ZZ_2$ 被 $\ZZ_4$ 的一个扩张（例如 $\langle i\rangle\cong\ZZ_4$，其商同构于 $\ZZ_2$），但 $Q_8$ 不是 $\ZZ_2$ 被 $\ZZ_4$ 的分裂扩张：$Q_8$ 的任意四阶循环子群都没有补。
+
+第 5.5 节包含更多群的分裂扩张例子。
+\end{enumerate}
+
+命题 25 表明，$C$ 被 $A$ 的扩张 $B$ 是分裂扩张，当且仅当从 $B$ 到商 $C$ 的投影 $\varphi:B\to C$ 有一个分裂同态 $\mu$。下一个命题特别表明，对模来说，这等价于序列左端的 $\psi$ 有一个分裂同态。
+
+\noindent\textbf{命题 26.} 设
+\[
+0\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow0
+\]
+是模的短正合列（分别地，设
+\[
+1\longrightarrow A\xrightarrow{\psi}B\xrightarrow{\varphi}C\longrightarrow1
+\]
+是群的短正合列）。则 $B=\psi(A)\oplus C'$ 对某个 $B$ 的子模 $C'$ 成立且 $\varphi(C')\cong C$（分别地，$B=\psi(A)\times C'$ 对某个 $B$ 的子群 $C'$ 成立且 $\varphi(C')\cong C$），当且仅当存在同态 $\lambda:B\to A$ 使
+\[
+\lambda\circ\psi=\operatorname{id}_A.
+\]
+
+\begin{proof}
+证明与命题 25 类似。若给定 $\lambda$，定义 $C'=\ker\lambda\leq B$。若给定 $C'$，则由 $B=\psi(A)\oplus C'$（或群情形的直积）定义
+\[
+\lambda:B=\psi(A)\oplus C'\longrightarrow A,
+\qquad \lambda(\psi(a)+c')=a.
+\]
+在群情形中，此时 $C'=\ker\lambda$ 在 $B$ 中正规，所以 $C'$ 是 $\psi(A)$ 的正规补，从而 $B$ 是 $\psi(A)$ 与 $C'$ 的直积（参见第 5.4 节定理 9）。
+\end{proof}
+
+命题 26 表明，对一般群扩张，在序列左端存在分裂同态 $\lambda$ 比扩张分裂这一条件更强：在这种情况下扩张群是直积，而不仅仅是半直积。在模的语境中，这两个概念等价，这再次反映了其底层群的阿贝尔性质，在那里半直积总是直积。
+
+\subsection*{模与 $\Hom_R(D,-)$}
+
+设 $R$ 是带单位元的环，并设 $R$-模 $M$ 是 $N$ 被 $L$ 的扩张，对应短正合列为
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0.
+\]
+自然要问：$L$ 与 $N$ 的性质是否推出扩张 $M$ 的相应性质。我们首先考虑如下情形：从某个固定 $R$-模 $D$ 到 $L$ 或 $N$ 的 $R$-模同态，是否蕴含也存在从 $D$ 到 $M$ 的 $R$-模同态。
+
+若给定从 $D$ 到 $L$ 的同态，则得到到 $M$ 的同态十分直接：若 $f\in\Hom_R(D,L)$，则复合
+\[
+f'=\psi\circ f
+\]
+是从 $D$ 到 $M$ 的 $R$-模同态。图示为
+\[
+\begin{array}{ccc}
+D&\xrightarrow{f'}&M\\
+&\searrow_f&\uparrow\psi\\[-2mm]
+&&L.
+\end{array}
+\]
+换言之，与 $\psi$ 复合诱导映射
+\[
+\psi':\Hom_R(D,L)\longrightarrow\Hom_R(D,M),
+\qquad f\longmapsto f'=\psi\circ f.
+\]
+回忆命题 2，$\Hom_R(D,L)$ 与 $\Hom_R(D,M)$ 都是阿贝尔群。
+
+\noindent\textbf{命题 27.} 设 $D,L,M$ 是 $R$-模，$\psi:L\to M$ 是 $R$-模同态。则映射
+\[
+\psi':\Hom_R(D,L)\longrightarrow\Hom_R(D,M),
+\qquad f\longmapsto \psi\circ f
+\]
+是阿贝尔群同态。若 $\psi$ 是单射，则 $\psi'$ 也是单射；即若
+\[
+0\longrightarrow L\xrightarrow{\psi}M
+\]
+正合，则
+\[
+0\longrightarrow \Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)
+\]
+也正合。
+
+\begin{proof}
+$\psi'$ 是同态是直接的。若 $\psi$ 单射，则 $D$ 到 $L$ 的两个不同同态 $f,g$ 给出 $D$ 到 $M$ 的两个不同复合 $\psi\circ f$ 与 $\psi\circ g$；这就是说 $\psi'$ 也单射。
+\end{proof}
+
+尽管从到子模 $L$ 的同态得到到 $M$ 的同态很直接，对于到商 $N$ 的同态情形则不那么显然。更确切地说，给定 $R$-模同态 $f:D\to N$，问题是是否存在 $R$-模同态 $F:D\to M$，它把 $f$ 延拓或提升到 $M$，即使下图交换：
+\[
+\begin{array}{ccc}
+&&D\\
+&F\swarrow&\downarrow f\\[-1mm]
+M&\xrightarrow{\varphi}&N.
+\end{array}
+\]
+与前面一样，与 $\varphi$ 复合诱导阿贝尔群同态
+\[
+\varphi':\Hom_R(D,M)\longrightarrow\Hom_R(D,N),
+\qquad F\longmapsto F'=\varphi\circ F.
+\]
+用 $\varphi'$ 的语言，$f$ 到 $N$ 的同态可提升到 $M$ 中的同态，当且仅当 $f$ 在 $\varphi'$ 的像中。
+
+一般来说，不一定能把从 $D$ 到 $N$ 的同态提升为从 $D$ 到 $M$ 的同态。例如，考虑前面非分裂正合列
+\[
+0\longrightarrow\ZZ\xrightarrow{\,2\,}\ZZ\longrightarrow\ZZ/2\ZZ\longrightarrow0.
+\]
+令 $D=\ZZ/2\ZZ$，令 $f$ 是 $D$ 到 $N$ 的恒等映射。从 $D$ 到 $M=\ZZ$ 的任意同态 $F$ 都必须把 $D$ 映到 $0$（因为 $\ZZ$ 没有二阶元素），所以 $\pi\circ F$ 把 $D$ 映到 $N$ 中的 $0$，特别地 $\pi\circ F\neq f$。用映射 $\varphi'$ 的语言，这说明若
+\[
+M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合，则
+\[
+\Hom_R(D,M)\xrightarrow{\varphi'}\Hom_R(D,N)\longrightarrow0
+\]
+不一定正合。
+
+上述结果可以整齐地概括为下列定理的一部分。
+
+\noindent\textbf{定理 28.} 设 $D,L,M,N$ 是 $R$-模。若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合，则相应序列
+\[
+0\longrightarrow \Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)\xrightarrow{\varphi'}\Hom_R(D,N)
+\tag{10.10}
+\]
+正合。
+
+同态 $f:D\to N$ 可以提升为同态 $F:D\to M$，当且仅当 $f\in\Hom_R(D,N)$ 位于 $\varphi'$ 的像中。一般地，$\varphi':\Hom_R(D,M)\to\Hom_R(D,N)$ 不必满射；$\varphi'$ 满射当且仅当每个从 $D$ 到 $N$ 的同态都可提升为从 $D$ 到 $M$ 的同态，此时序列 (10.10) 可扩张为一个短正合列。
+
+序列 (10.10) 对所有 $R$-模 $D$ 都正合，当且仅当序列
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N
+\]
+正合。
+
+\begin{proof}
+第一部分中唯一尚未证明的是 (10.10) 在 $\Hom_R(D,M)$ 处的正合性，即 $\ker\varphi'=\operatorname{Im}\psi'$。设 $F:D\to M$ 是 $\Hom_R(D,M)$ 中属于 $\ker\varphi'$ 的元素，即作为 $D$ 到 $N$ 的同态有 $\varphi\circ F=0$。若 $d\in D$，则 $\varphi(F(d))=0$，所以 $F(d)\in\ker\varphi$。由给定短正合列正合，$\ker\varphi=\operatorname{Im}\psi$，故存在 $l\in L$ 使 $F(d)=\psi(l)$。由于 $\psi$ 单射，这个 $l$ 唯一，于是得到良定义映射 $F':D\to L$，由 $F'(d)=l$ 给出。容易验证 $F'$ 是同态，即 $F'\in\Hom_R(D,L)$。又 $\psi(F'(d))=\psi(l)=F(d)$，所以 $F=\psi'(F')$，从而 $F$ 在 $\psi'$ 的像中。这证明 $\ker\varphi'\subseteq\operatorname{Im}\psi'$。反过来，若 $F$ 在 $\psi'$ 的像中，则 $F=\psi'(F')$ 对某个 $F'\in\Hom_R(D,L)$ 成立。于是任意 $d\in D$ 有
+\[
+\varphi(F(d))=\varphi(\psi(F'(d)))=0
+\]
+因为 $\varphi\circ\psi=0$。故 $F\in\ker\varphi'$，得到反包含。
+
+最后的断言中，注意在证明 (10.10) 正合时并未用到 $\varphi$ 的满射性，因此“若”方向已经证明。反过来，假设 (10.10) 对所有 $R$-模 $D$ 都正合。一般地，对任意左 $R$-模 $X$，有 $\Hom_R(R,X)\cong X$，同构由把同态映到它在 $1\in R$ 上的值给出。取 $D=R$，立即得到
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N
+\]
+的正合性。
+\end{proof}
+
+由定理 28，序列
+\[
+0\longrightarrow \Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)\xrightarrow{\varphi'}\Hom_R(D,N)\longrightarrow0
+\tag{10.11}
+\]
+一般不是短正合列，因为 $\varphi'$ 不一定满射。序列 (10.11) 是否正合，精确地衡量了从 $D$ 到 $M$ 的同态在多大程度上由从 $D$ 到 $L$ 与从 $D$ 到 $N$ 的同态对唯一确定。更确切地说，序列 (10.11) 正合当且仅当存在由 $F\mapsto(g,f)$ 给出的双射，其中 $F:D\to M$ 是同态，$g:D\to L$ 与 $f:D\to N$ 是同态，并且 $F|_{\psi(L)}=\psi'(g)$、$f=\varphi'(F)$。
+
+序列 (10.11) 正合的一个情形是原序列
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+为分裂正合列，也就是 $M=L\oplus N$。此时序列 (10.11) 也是分裂短正合列，正如下列命题的第一部分所示。
+
+\noindent\textbf{命题 29.} 设 $D,L,N$ 是 $R$-模。则
+\begin{enumerate}[label=(\arabic*)]
+\item
+\[
+\Hom_R(D,L\oplus N)\cong\Hom_R(D,L)\oplus\Hom_R(D,N),
+\]
+\item
+\[
+\Hom_R(L\oplus N,D)\cong\Hom_R(L,D)\oplus\Hom_R(N,D).
+\]
+\end{enumerate}
+
+\begin{proof}
+令 $\pi_1:L\oplus N\to L$ 为到 $L$ 的自然投影，$\pi_2$ 为到 $N$ 的自然投影。若 $f\in\Hom_R(D,L\oplus N)$，则复合 $\pi_1\circ f$ 与 $\pi_2\circ f$ 分别给出 $\Hom_R(D,L)$ 与 $\Hom_R(D,N)$ 中的元素。这定义了从 $\Hom_R(D,L\oplus N)$ 到 $\Hom_R(D,L)\oplus\Hom_R(D,N)$ 的映射，容易验证它是同态。反过来，给定 $f_1\in\Hom_R(D,L)$ 与 $f_2\in\Hom_R(D,N)$，定义 $f\in\Hom_R(D,L\oplus N)$ 为
+\[
+f(d)=(f_1(d),f_2(d)).
+\]
+这给出反向同态，并且与前一映射互为逆映射，从而证明 (1)。 (2) 的证明类似，留作练习。
+\end{proof}
+
+命题 29 的结果可由归纳立即推广到任意有限个 $R$-模的直和。通常说 $\Hom$ 在任一变量上与有限直和交换。对于无限直和情形，情况更复杂：若把 $L\oplus N$ 换成任意直和，则 (1) 仍成立，但右端的直和需换成直积（练习 13 表明必须使用直积）；(2) 在两边直和均换成直积时仍成立。
+
+这个命题表明，若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+是 $R$-模的分裂短正合列，则对每个 $R$-模 $D$，
+\[
+0\longrightarrow\Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)\xrightarrow{\varphi'}\Hom_R(D,N)\longrightarrow0
+\]
+也是阿贝尔群的分裂短正合列。练习 14 说明其逆命题成立：若对每个 $R$-模 $D$，上述 $\Hom$ 序列都正合，则原序列是分裂短正合列；这还推出，若原 $\Hom$ 序列对每个 $D$ 都正合，则事实上它对每个 $D$ 都分裂正合。
+
+命题 29 从 $L,M,N$ 的角度给出了序列 (10.11) 正合的一种情形。下一个结果采用略微不同的视角，刻画那些模 $D$：对它们而言，定理 28 中的序列 (10.10) 总能扩张为短正合列。
+
+\noindent\textbf{命题 30.} 设 $P$ 是 $R$-模。下列条件等价：
+\begin{enumerate}[label=(\arabic*)]
+\item 对任意 $R$-模 $L,M,N$，若
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+是短正合列，则
+\[
+0\longrightarrow\Hom_R(P,L)\longrightarrow\Hom_R(P,M)\longrightarrow\Hom_R(P,N)\longrightarrow0
+\]
+也是短正合列。
+\item 对任意 $R$-模 $M,N$，若 $M\to N\to0$ 正合，则每个从 $P$ 到 $N$ 的 $R$-模同态都能提升为到 $M$ 的 $R$-模同态；也就是说，给定 $f\in\Hom_R(P,N)$，存在提升 $F\in\Hom_R(P,M)$ 使下图交换：
+\[
+\begin{array}{ccc}
+&&P\\
+&F\swarrow&\downarrow f\\[-1mm]
+M&\longrightarrow&N\longrightarrow0.
+\end{array}
+\]
+\item 若 $P$ 是 $R$-模 $M$ 的商，则 $P$ 同构于 $M$ 的一个直和因子；也就是说，每个短正合列
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow P\longrightarrow0
+\]
+都分裂。
+\item $P$ 是某个自由 $R$-模的直和因子。
+\end{enumerate}
+
+\begin{proof}
+(1) 与 (2) 的等价正是定理 28 中一项结果的重述。
+
+现在假设 (2) 成立，并令
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}P\longrightarrow0
+\]
+正合。由 (2)，从 $P$ 到 $P$ 的恒等映射可提升为同态 $\mu:P\to M$，使得 $\varphi\circ\mu=\operatorname{id}_P$。因此 $\mu$ 是该序列的分裂同态，这证明 (3)。
+
+每个模 $P$ 都是某个自由模的商，例如以 $P$ 的元素集合为基的自由模。因此存在正合列
+\[
+0\longrightarrow\ker\varphi\longrightarrow \mathcal F\xrightarrow{\varphi}P\longrightarrow0
+\]
+其中 $\mathcal F$ 是自由 $R$-模（参见推论 23 后例 4）。若 (3) 成立，则此序列分裂，所以 $\mathcal F$ 同构于 $\ker\varphi$ 与 $P$ 的直和，从而证明 (4)。
+
+最后证明 (4) 蕴含 (2)。设 $P$ 是某个集合 $S$ 上自由模的直和因子，即
+\[
+\mathcal F(S)=P\oplus K,
+\]
+并给定 (2) 中从 $P$ 到 $N$ 的同态 $f$。令 $\pi$ 表示从 $\mathcal F(S)$ 到 $P$ 的自然投影，于是 $f\circ\pi$ 是从 $\mathcal F(S)$ 到 $N$ 的同态。对任意 $s\in S$，定义
+\[
+n_s=f\circ\pi(s)\in N,
+\]
+并取 $m_s\in M$ 使 $\varphi(m_s)=n_s$（这由 $\varphi$ 满射得到）。由自由模的泛性质（第 3 节定理 6），存在唯一 $R$-模同态 $F':\mathcal F(S)\to M$，满足 $F'(s)=m_s$。于是对所有 $s\in S$ 有
+\[
+\varphi\circ F'(s)=\varphi(m_s)=n_s=f\circ\pi(s),
+\]
+从而 $\varphi\circ F'=f\circ\pi$ 在 $\mathcal F(S)$ 上成立。定义 $F:P\to M$ 为
+\[
+F(d)=F'((d,0)).
+\]
+由于 $F$ 是包含 $P\hookrightarrow\mathcal F(S)$ 与同态 $F'$ 的复合，它是 $R$-模同态，并且
+\[
+\varphi\circ F(d)=\varphi\circ F'((d,0))=f\circ\pi((d,0))=f(d).
+\]
+故 $F$ 是所需提升。这证明 (4) 蕴含 (2)，从而完成证明。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $R$-模 $P$ 满足命题 30 中任一等价条件，则称 $P$ 为\emph{投射模}。
+
+命题 30 的第三个陈述可重述为：任何投影到 $P$ 上的模 $M$，都含有 $P$ 的一个同构副本作为直和因子。这解释了“投射”这一术语。
+
+下列结果由命题 30（及其证明）立即得到。
+
+\noindent\textbf{推论 31.} 自由模是投射模。有限生成模是投射模，当且仅当它是某个有限生成自由模的直和因子。每个模都是某个投射模的商。
+
+若固定 $D$，则对任意 $R$-模 $X$，有一个相应的阿贝尔群 $\Hom_R(D,X)$。进一步，$R$-模同态 $\alpha:X\to Y$ 诱导阿贝尔群同态
+\[
+\alpha':\Hom_R(D,X)\longrightarrow\Hom_R(D,Y),
+\qquad \alpha'(f)=\alpha\circ f.
+\]
+换言之，映射 $\Hom_R(D,-)$ 是从 $R$-模范畴到阿贝尔群范畴的协变函子（参见附录 II）。定理 28 表明，把这个函子作用于正合列
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+的各项，会得到正合列
+\[
+0\longrightarrow\Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)\xrightarrow{\varphi'}\Hom_R(D,N).
+\]
+这称为 $\Hom_R(D,-)$ 是\emph{左正合函子}。由命题 30，函子 $\Hom_R(D,-)$ 正合（即总把短正合列变成短正合列），当且仅当 $D$ 是投射的。总结为：
+
+\noindent\textbf{推论 32.} 若 $D$ 是 $R$-模，则函子 $\Hom_R(D,-)$ 从 $R$-模范畴到阿贝尔群范畴是左正合的。它正合当且仅当 $D$ 是投射 $R$-模。
+
+注意，若 $\Hom_R(D,-)$ 把短正合列变为短正合列，则它也把任意长度的正合列变为正合列，因为任意正合列都可以分解成一连串短正合列。
+
+如我们所见，函子 $\Hom_R(D,-)$ 一般在右端不正合。衡量这类函子偏离正合的程度，会引出第 17 章中讨论的“同调代数”概念。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 我们将在第 11.1 节看到，若 $R=F$ 是域，则每个 $F$-模都是投射的（尽管那里只证明有限生成模情形）。
+
+\item 由推论 31，$\ZZ$ 是投射 $\ZZ$-模。这也可以直接看出：设 $f:\ZZ\to N$ 是同态，且 $M\xrightarrow{\varphi}N\to0$ 正合。同态 $f$ 完全由 $n=f(1)$ 决定。取 $m\in M$ 使 $\varphi(m)=n$，先定义 $F(1)=m$，再按加性延拓到整个 $\ZZ$，便得到 $f$ 的提升 $F:\ZZ\to M$。
+
+由命题 30 的第一条，由于 $\ZZ$ 是投射的，若
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+是 $\ZZ$-模正合列，则
+\[
+0\longrightarrow\Hom_\ZZ(\ZZ,L)\longrightarrow\Hom_\ZZ(\ZZ,M)\longrightarrow\Hom_\ZZ(\ZZ,N)\longrightarrow0
+\]
+也是正合列。这也可直接由阿贝尔群同构 $\Hom_\ZZ(\ZZ,M)\cong M$ 看出；在这个同构下，上面两个正合列本质上相同。
+
+\item 自由 $\ZZ$-模没有非零有限阶元素，因此非零有限阿贝尔群不可能同构于自由模的子模。由推论 31，可知非零有限阿贝尔群都不是投射 $\ZZ$-模。
+
+\item 特别地，对 $n\geq2$，$\ZZ$-模 $\ZZ/n\ZZ$ 不是投射的。由定理 28 必然可以找到一个短正合列，使对其作用函子 $\Hom_\ZZ(\ZZ/n\ZZ,-)$ 后右端不再正合。一个这样的序列就是前面例 2 的正合列
+\[
+0\longrightarrow\ZZ\xrightarrow{\,n\,}\ZZ\longrightarrow\ZZ/n\ZZ\longrightarrow0.
+\]
+注意 $\Hom_\ZZ(\ZZ/n\ZZ,\ZZ)=0$，因为不存在从 $\ZZ/n\ZZ$ 到 $\ZZ$ 的非零 $\ZZ$-模同态。又容易看出 $\Hom_\ZZ(\ZZ/n\ZZ,\ZZ/n\ZZ)\cong\ZZ/n\ZZ$：每个同态 $f$ 由 $f(1)=a\in\ZZ/n\ZZ$ 唯一确定，反之给定任意 $a$ 都有唯一同态 $f_a$ 满足 $f_a(1)=a$，映射 $f_a\mapsto a$ 即给出同构。作用 $\Hom_\ZZ(\ZZ/n\ZZ,-)$ 后得到
+\[
+0\longrightarrow0\longrightarrow0\longrightarrow\ZZ/n\ZZ\longrightarrow0,
+\]
+它在唯一非零项处不正合。
+
+\item 由于 $\QQ/\ZZ$ 是挠 $\ZZ$-模，它不是自由模的子模，因而不是投射的。也注意到正合列
+\[
+0\longrightarrow\ZZ\longrightarrow\QQ\longrightarrow\QQ/\ZZ\longrightarrow0
+\]
+不分裂，因为 $\QQ$ 不含同构于 $\QQ/\ZZ$ 的子模。
+
+\item $\ZZ$-模 $\QQ$ 不是投射的（参见练习）。
+
+\item 我们将在第 12 章看到，有限生成 $\ZZ$-模投射当且仅当它自由。
+
+\item 令 $R$ 为交换环 $\ZZ/2\ZZ\times\ZZ/2\ZZ$，其加法与乘法按分量进行。若 $P_1$ 与 $P_2$ 分别是由 $(1,0)$ 与 $(0,1)$ 生成的主理想，则
+\[
+R=P_1\oplus P_2,
+\]
+故由命题 30，$P_1$ 与 $P_2$ 都是投射 $R$-模。二者都不是自由模，因为任意自由模的阶都应是 $4$ 的倍数。
+
+\item 两个投射模的直和仍是投射模（参见练习 3）。
+
+\item 我们将在第 VI 部分看到，若 $F$ 是任意域且 $n\in\ZZ^+$，则所有 $n\times n$ 矩阵构成的环 $R=M_n(F)$ 具有这样的性质：每个 $R$-模都是投射的。我们还会看到，若 $G$ 是阶为 $n$ 的有限群，并且域 $F$ 中 $n\neq0$，则群环 $FG$ 也具有每个模都是投射的性质。
+\end{enumerate}
+
+\subsection*{内射模与 $\Hom_R(-,D)$}
+
+若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+是 $R$-模短正合列，则除了考虑从某个 $R$-模 $D$ 到 $L$ 或 $N$ 的映射，以及它们在多大程度上决定从 $D$ 到 $M$ 的映射外，还可以考虑“对偶”问题：从 $L$ 或 $N$ 到 $D$ 的映射。此时，从 $N$ 到 $D$ 的映射很容易处理：一个 $R$-模映射 $N\to D$ 立即通过与 $\varphi$ 复合给出一个 $M\to D$ 的映射。容易验证这定义了阿贝尔群的单同态
+\[
+\varphi':\Hom_R(N,D)\longrightarrow\Hom_R(M,D),
+\qquad f\longmapsto f'=f\circ\varphi.
+\]
+换言之，若
+\[
+M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合，则
+\[
+0\longrightarrow\Hom_R(N,D)\xrightarrow{\varphi'}\Hom_R(M,D)
+\]
+正合。注意，这里同态群上的诱导映射方向与原来的映射方向相反。
+
+另一方面，给定 $R$-模同态 $f:L\to D$，不一定能把 $f$ 扩张为从 $M$ 到 $D$ 的映射 $F$；也就是说，给定 $f$，不一定存在 $F$ 使图
+\[
+\begin{array}{ccc}
+L&\xrightarrow{\psi}&M\\
+&f\searrow&\downarrow F\\[-1mm]
+&&D
+\end{array}
+\]
+交换。例如，考虑 $\ZZ$-模正合列
+\[
+0\longrightarrow\ZZ\xrightarrow{\,2\,}\ZZ\longrightarrow\ZZ/2\ZZ\longrightarrow0,
+\]
+其中 $\psi$ 是乘以 $2$，$\varphi$ 是自然投影。取 $D=\ZZ/2\ZZ$，令 $f:\ZZ\to\ZZ/2\ZZ$ 为第一项 $\ZZ$ 的模 $2$ 化简。第二项 $\ZZ$ 到 $\ZZ/2\ZZ$ 的非零同态只有一个（即模 $2$ 化简），但此 $F$ 不能提升 $f$，因为 $F\circ\psi(\ZZ)=F(2\ZZ)=0$，所以 $F\circ\psi\neq f$。
+
+与 $\psi$ 复合诱导阿贝尔群同态
+\[
+\psi':\Hom_R(M,D)\longrightarrow\Hom_R(L,D),
+\]
+用 $\psi'$ 的语言，同态 $f\in\Hom_R(L,D)$ 可提升为从 $M$ 到 $D$ 的同态，当且仅当 $f$ 位于 $\psi'$ 的像中。上面的例子表明，若
+\[
+0\longrightarrow L\xrightarrow{\psi}M
+\]
+正合，则
+\[
+\Hom_R(M,D)\xrightarrow{\psi'}\Hom_R(L,D)\longrightarrow0
+\]
+不一定正合。
+
+这些结果可概括为定理 28 的对偶版本。
+
+\noindent\textbf{定理 33.} 设 $D,L,M,N$ 是 $R$-模。若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合，则相应序列
+\[
+0\longrightarrow\Hom_R(N,D)\xrightarrow{\varphi'}\Hom_R(M,D)\xrightarrow{\psi'}\Hom_R(L,D)
+\tag{10.12}
+\]
+正合。
+
+同态 $f:L\to D$ 可提升为同态 $F:M\to D$，当且仅当 $f\in\Hom_R(L,D)$ 位于 $\psi'$ 的像中。一般地，$\psi':\Hom_R(M,D)\to\Hom_R(L,D)$ 不一定满射；$\psi'$ 满射当且仅当每个从 $L$ 到 $D$ 的同态都可以提升为从 $M$ 到 $D$ 的同态，在这种情形下序列 (10.12) 可扩张为短正合列。
+
+序列 (10.12) 对所有 $R$-模 $D$ 都正合，当且仅当序列
+\[
+L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合。
+
+\begin{proof}
+第一部分中剩下的只是证明 (10.12) 在 $\Hom_R(M,D)$ 处正合。这个证明与定理 28 中对应结果的证明非常相似，留作练习。注意这里并不需要 $\psi$ 的单射性，这证明了最后一句中的“若”方向。
+
+现在假设序列 (10.12) 对所有 $R$-模 $D$ 都正合。首先证明 $\varphi:M\to N$ 是满射。取
+\[
+D=N/\varphi(M).
+\]
+若 $\pi_1:N\to N/\varphi(M)$ 是自然投影同态，则由 $\pi_1$ 的定义，$\pi_1\circ\varphi(M)=0$。也就是说，$\varphi'(\pi_1)=0$。因为对所有模 $D$，$\varphi'$ 都单射，所以 $\pi_1=0$，于是 $N=\varphi(M)$，故 $\varphi$ 满射。
+
+接着证明 $\varphi\circ\psi=0$，这将推出 $\operatorname{Im}\psi\subseteq\ker\varphi$。取 $D=N$，并注意 $N$ 上恒等映射 $\operatorname{id}_N$ 属于 $\Hom_R(N,N)$，所以 $\varphi'(\operatorname{id}_N)\in\Hom_R(M,N)$。由 (10.12) 在 $D=N$ 时的正合性，$\varphi'(\operatorname{id}_N)\in\ker\psi'$，因此
+\[
+\psi'(\varphi'(\operatorname{id}_N))=0.
+\]
+这正是 $\operatorname{id}_N\circ\varphi\circ\psi=0$，即 $\varphi\circ\psi=0$。
+
+最后证明 $\ker\varphi\subseteq\operatorname{Im}\psi$。取 $D=M/\psi(L)$，令 $\pi_2:M\to M/\psi(L)$ 为自然投影。由于按定义 $\pi_2(\psi(L))=0$，故 $\psi'(\pi_2)=0$。正合性推出 $\pi_2$ 在 $\varphi'$ 的像中，即存在 $f\in\Hom_R(N,M/\psi(L))$ 使
+\[
+\pi_2=\varphi'(f)=f\circ\varphi.
+\]
+若 $m\in\ker\varphi$，则
+\[
+\pi_2(m)=f(\varphi(m))=0,
+\]
+这意味着 $m\in\psi(L)$，因为 $\pi_2$ 是到商 $M/\psi(L)$ 的投影。因此 $\ker\varphi\subseteq\operatorname{Im}\psi$，证明完成。
+\end{proof}
+
+由定理 33，序列
+\[
+0\longrightarrow\Hom_R(N,D)\xrightarrow{\varphi'}\Hom_R(M,D)\xrightarrow{\psi'}\Hom_R(L,D)\longrightarrow0
+\]
+一般不是短正合列，因为 $\psi'$ 不必满射。这个序列是否正合，精确地衡量了从 $M$ 到 $D$ 的同态在多大程度上由从 $L$ 与 $N$ 到 $D$ 的同态对唯一确定。
+
+命题 29 的第二部分说明，当原短正合列
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+为分裂正合列时，上述序列是正合的。事实上，在这种情形中，对每个 $R$-模 $D$，
+\[
+0\longrightarrow\Hom_R(N,D)\longrightarrow\Hom_R(M,D)\longrightarrow\Hom_R(L,D)\longrightarrow0
+\]
+也是阿贝尔群的分裂短正合列。练习 14 表明逆命题成立：若对每个 $R$-模 $D$，这个 $\Hom$ 序列都正合，则原序列是分裂短正合列。
+
+也有命题 30 前三部分的对偶版本，它描述那些 $R$-模 $D$：对它们而言，定理 33 中的序列 (10.12) 总能扩张为短正合列。
+
+\noindent\textbf{命题 34.} 设 $Q$ 是 $R$-模。下列条件等价：
+\begin{enumerate}[label=(\arabic*)]
+\item 对任意 $R$-模 $L,M,N$，若
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+是短正合列，则
+\[
+0\longrightarrow\Hom_R(N,Q)\longrightarrow\Hom_R(M,Q)\longrightarrow\Hom_R(L,Q)\longrightarrow0
+\]
+也是短正合列。
+\item 对任意 $R$-模 $L,M$，若 $0\to L\xrightarrow{\psi}M$ 正合，则每个从 $L$ 到 $Q$ 的 $R$-模同态都可提升为从 $M$ 到 $Q$ 的 $R$-模同态；即给定 $f\in\Hom_R(L,Q)$，存在提升 $F\in\Hom_R(M,Q)$ 使下图交换：
+\[
+\begin{array}{ccc}
+0\longrightarrow&L&\xrightarrow{\psi}M\\
+&f\downarrow&\swarrow F\\[-1mm]
+&Q&
+\end{array}
+\]
+\item 若 $Q$ 是 $R$-模 $M$ 的子模，则 $Q$ 是 $M$ 的直和因子；也就是说，每个短正合列
+\[
+0\longrightarrow Q\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+都分裂。
+\end{enumerate}
+
+\begin{proof}
+(1) 与 (2) 的等价是定理 33 的一部分。现在假设 (2) 成立，且
+\[
+0\longrightarrow Q\xrightarrow{\psi}M\longrightarrow N\longrightarrow0
+\]
+正合。取 $L=Q$ 且 $f$ 为 $Q$ 到自身的恒等映射，由 (2) 得存在同态 $F:M\to Q$，满足 $F\circ\psi=1$。于是 $F$ 是该序列的分裂同态，从而证明 (3)。(3) 蕴含 (2) 的证明在练习中给出。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $R$-模 $Q$ 满足命题 34 的任一等价条件，则称 $Q$ 为\emph{内射模}。
+
+命题 34 的第三个陈述可重述为：任何把 $Q$ 嵌入其中的模 $M$，都含有 $Q$ 的一个同构副本作为直和因子。这解释了“内射”这一术语。
+
+若固定 $D$，则对任意 $R$-模 $X$，有阿贝尔群 $\Hom_R(X,D)$。进一步，$R$-模同态 $\alpha:X\to Y$ 诱导阿贝尔群同态
+\[
+\alpha':\Hom_R(Y,D)\longrightarrow\Hom_R(X,D),
+\qquad \alpha'(f)=f\circ\alpha,
+\]
+它“反转”箭头方向。换言之，映射 $\Hom_R(-,D)$ 是从 $R$-模范畴到阿贝尔群范畴的反变函子（参见附录 II）。定理 33 表明，把这个函子作用于正合列
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+的各项，得到正合列
+\[
+0\longrightarrow\Hom_R(N,D)\xrightarrow{\varphi'}\Hom_R(M,D)\xrightarrow{\psi'}\Hom_R(L,D).
+\]
+这称为 $\Hom_R(-,D)$ 是左正合（反变）函子。注意，$\Hom_R(-,D)$ 与前面考虑的 $\Hom_R(D,-)$ 都是左正合的；前者反转原短正合列中映射的方向，后者保持方向。
+
+由命题 34，函子 $\Hom_R(-,D)$ 正合，即总把短正合列变为短正合列（因而把任意长度正合列变为正合列），当且仅当 $D$ 是内射的。总结为下列与推论 32 对偶的结果。
+
+\noindent\textbf{推论 35.} 若 $D$ 是 $R$-模，则函子 $\Hom_R(-,D)$ 从 $R$-模范畴到阿贝尔群范畴是左正合的。它正合当且仅当 $D$ 是内射 $R$-模。
+
+我们已经看到，$R$-模投射当且仅当它是自由 $R$-模的直和因子。要给出内射 $R$-模如此简单的刻画并不容易。下一个结果给出 $Q$ 为内射 $R$-模的一个判别法（这是 Baer 的结果，Baer 大约在 1940 年引入内射模的概念），并由此在 $R=\ZZ$ 时（更一般地，在 $R$ 为 P.I.D. 时）给出内射模的刻画。回忆，$\ZZ$-模 $A$（即加法记号的阿贝尔群）称为\emph{可除的}，若对每个非零整数 $n$ 都有 $A=nA$。例如，$\QQ$ 与 $\QQ/\ZZ$ 都是可除的（参见第 2.4 节练习 18、19 与第 3.1 节练习 15）。
+
+\noindent\textbf{命题 36.} 设 $Q$ 是 $R$-模。
+\begin{enumerate}[label=(\arabic*)]
+\item （Baer 判别法）模 $Q$ 内射，当且仅当对 $R$ 的每个左理想 $I$，任意 $R$-模同态 $g:I\to Q$ 都可以扩张为 $R$-模同态 $G:R\to Q$。
+\item 若 $R$ 是 P.I.D.，则 $Q$ 内射当且仅当对每个非零 $r\in R$ 都有 $rQ=Q$。特别地，$\ZZ$-模内射当且仅当它是可除的。若 $R$ 是 P.I.D.，则内射 $R$-模的商模仍是内射的。
+\end{enumerate}
+
+\begin{proof}
+若 $Q$ 内射，且 $g:I\to Q$ 是从 $R$ 的非零左理想 $I$ 到 $Q$ 的 $R$-模同态，则由命题 34(2) 作用于正合列 $0\to I\to R$，$g$ 可扩张为从 $R$ 到 $Q$ 的 $R$-模同态。这证明了 (1) 的“只若”方向。
+
+反过来，假设每个同态 $g:I\to Q$ 都可提升为同态 $G:R\to Q$。要证明 $Q$ 内射，必须证明：若 $0\to L\to M$ 正合且 $f:L\to Q$ 是 $R$-模同态，则存在提升 $F:M\to Q$ 扩张 $f$。令 $\mathcal S$ 为所有对 $(f',L')$ 组成的集合，其中 $L'$ 是 $M$ 中含 $L$ 的子模，$f':L'\to Q$ 是 $f$ 的提升。规定
+\[
+(f',L')\leq(f'',L'')
+\]
+若 $L'\subseteq L''$ 且 $f''$ 在 $L'$ 上等于 $f'$。这把 $\mathcal S$ 部分有序。由于 $\mathcal S\neq\emptyset$，由 Zorn 引理，$\mathcal S$ 有极大元 $(F,M')$。映射 $F:M'\to Q$ 是 $f$ 的一个提升。只需证明 $M'=M$。
+
+若存在 $m\in M$ 不在 $M'$ 中，令
+\[
+I=\{r\in R\mid rm\in M'\}.
+\]
+容易验证 $I$ 是 $R$ 的左理想，并且映射
+\[
+g:I\to Q,
+\qquad g(x)=F(xm)
+\]
+是 $R$-模同态。由假设，存在 $g$ 的提升 $G:R\to Q$。考虑 $M$ 的子模 $M'+Rm$，定义
+\[
+F':M'+Rm\longrightarrow Q,
+\qquad F'(m'+rm)=F(m')+G(r).
+\]
+若 $m_1+r_1m=m_2+r_2m$，则 $(r_1-r_2)m=m_2-m_1$，所以 $r_1-r_2\in I$。于是
+\[
+G(r_1-r_2)=g(r_1-r_2)=F((r_1-r_2)m)=F(m_2-m_1),
+\]
+从而 $F(m_1)+G(r_1)=F(m_2)+G(r_2)$。故 $F'$ 良定义，并且立即可见它是扩张 $f$ 到 $M'+Rm$ 的 $R$-模同态。这与 $M'$ 的极大性矛盾，所以 $M'=M$。于是 (1) 得证。
+
+证明 (2)。设 $R$ 是 P.I.D.。$R$ 的任意非零理想 $I$ 都形如 $I=(r)$，其中 $r\in R$ 非零。从 $I$ 到 $Q$ 的 $R$-模同态 $f$ 完全由 $f(r)=q\in Q$ 决定。这个同态可扩张为 $F:R\to Q$，当且仅当存在 $q'\in Q$ 使 $F(1)=q'$ 且
+\[
+q=f(r)=F(r)=rq'.
+\]
+因此 Baer 判别法对 $Q$ 成立，当且仅当 $rQ=Q$。这证明了 (2) 的前两个断言。最后一个断言是因为，若 $Q$ 对所有非零 $r\in R$ 满足 $rQ=Q$，则 $Q$ 的商模也满足相同性质。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 因为 $\ZZ$ 不可除，$\ZZ$ 不是内射 $\ZZ$-模。这也可由短正合列
+\[
+0\longrightarrow\ZZ\xrightarrow{\,2\,}\ZZ\longrightarrow\ZZ/2\ZZ\longrightarrow0
+\]
+不分裂看出。
+\item 有理数群 $\QQ$ 是内射 $\ZZ$-模。
+\item 内射 $\ZZ$-模 $\QQ$ 的商 $\QQ/\ZZ$ 是内射 $\ZZ$-模。
+\item 直接和的可除 $\ZZ$-模仍可除，因此内射 $\ZZ$-模的直接和仍内射。例如 $\QQ\oplus\QQ/\ZZ$ 是内射 $\ZZ$-模。（亦见练习 4。）
+\item 我们将在第 12 章看到，非零有限生成 $\ZZ$-模都不是内射的。
+\item 设环 $R$ 是整环。若 $R$-模 $A$ 满足对每个非零 $r\in R$ 都有 $rA=A$，则称 $A$ 是\emph{可除 $R$-模}。命题 36 的证明说明，在这种情形中，内射 $R$-模必可除。
+\item 我们将在第 11.1 节看到，若 $R=F$ 是域，则每个 $F$-模都是内射的。
+\item 我们将在第 VI 部分看到，若 $F$ 是任意域且 $n\in\ZZ^+$，则 $R=M_n(F)$ 具有这样的性质：每个 $R$-模都是内射的（也都是投射的）。还将看到，若 $G$ 是阶为 $n$ 的有限群且 $n\neq0$ 于域 $F$ 中，则群环 $FG$ 也具有每个模都是内射的（且投射的）性质。
+\end{enumerate}
+
+\noindent\textbf{推论 37.} 每个 $\ZZ$-模都是某个内射 $\ZZ$-模的子模。
+
+\begin{proof}
+设 $M$ 是 $\ZZ$-模，令 $A$ 是 $M$ 的任意一组 $\ZZ$-模生成元。令 $\mathcal F=F(A)$ 为集合 $A$ 上的自由 $\ZZ$-模。由定理 6，存在从 $\mathcal F$ 到 $M$ 的满 $\ZZ$-模同态；若 $K$ 是其核，则 $K$ 是 $\mathcal F$ 的 $\ZZ$-子模，并且我们可把 $M$ 识别为 $\mathcal F/K$。令 $\mathcal Q$ 为集合 $A$ 上的自由 $\QQ$-模。则 $\mathcal Q$ 是若干个 $\QQ$ 的直接和，因此可除，从而由命题 36 是内射 $\ZZ$-模，并且包含 $\mathcal F$。于是 $K$ 也是 $\mathcal Q$ 的 $\ZZ$-子模，所以商 $\mathcal Q/K$ 仍由命题 36 是内射的。由于
+\[
+M=\mathcal F/K\subseteq \mathcal Q/K,
+\]
+故 $M$ 包含于一个内射 $\ZZ$-模中。
+\end{proof}
+
+推论 37 可用来证明下列适用于任意 $R$-模的更一般版本。该定理是定理 6 与推论 31 中“每个 $R$-模都是某个投射 $R$-模的商”这一结果的内射类似物。
+
+\noindent\textbf{定理 38.} 设 $R$ 是带单位元的环，$M$ 是 $R$-模。则 $M$ 包含于某个内射 $R$-模中。
+
+\begin{proof}
+证明见练习 15 至 17 的提示。
+\end{proof}
+
+可以证明比定理 38 更强的结果：存在含有 $M$ 的一个极小内射 $R$-模 $H$，其意义是任意将 $M$ 单射到内射 $R$-模 $Q$ 的映射都经由 $H$ 因子化。更精确地说，若 $M\hookrightarrow Q$ 且 $Q$ 是内射 $R$-模，则存在单射 $\iota:H\hookrightarrow Q$，其在 $M$ 上限制为恒等映射；利用 $\iota$ 把 $H$ 识别为 $Q$ 的子模，则
+\[
+M\subseteq H\subseteq Q.
+\]
+这个模 $H$ 称为 $M$ 的\emph{内射包}或\emph{内射包络}。$M$ 的内射包关于把 $M$ 包含进内射 $R$-模中的泛性质，应与定理 6 中 $M$ 的一组生成元 $A$ 上自由模 $F(A)$ 关于从 $M$ 出发的同态的泛性质比较。例如，$\ZZ$ 的内射包是 $\QQ$，任意域的内射包是它自身（参见练习）。
+
+\subsection*{平坦模与 $D\otimes_R-$}
+
+现在考虑 $R$-模扩张
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+在张量积下的行为。
+
+设 $D$ 是右 $R$-模。对左 $R$-模的任意同态 $f:X\to Y$，由定理 13 得到阿贝尔群同态
+\[
+1\otimes f:D\otimes_R X\longrightarrow D\otimes_R Y.
+\]
+若此外 $D$ 是 $(S,R)$-双模（例如 $S=R$ 交换且 $D$ 赋予第 4 节中的标准 $(R,R)$-双模结构），则 $1\otimes f$ 是左 $S$-模同态。换言之，
+\[
+D\otimes_R-:X\longmapsto D\otimes_RX
+\]
+是从左 $R$-模范畴到阿贝尔群范畴的协变函子；当 $D$ 是 $(S,R)$-双模时，它是到左 $S$-模范畴的协变函子（参见附录 II）。类似地，若 $D$ 是左 $R$-模，则 $-\otimes_RD$ 是从右 $R$-模范畴到阿贝尔群范畴的协变函子；若 $D$ 是 $(R,S)$-双模，则是到右 $S$-模范畴的协变函子。注意，与 $\Hom$ 不同，张量积在两个变量中都是协变的。因此我们集中讨论 $D\otimes_R-$，而把 $-\otimes_RD$ 所需的小修改留作练习。
+
+我们已经看到一些例子，其中由单射 $\psi:L\hookrightarrow M$ 诱导的映射
+\[
+1\otimes\psi:D\otimes_RL\longrightarrow D\otimes_RM
+\]
+不再是单射。例如，$\ZZ$-模单射 $\ZZ\hookrightarrow\QQ$ 诱导从
+\[
+\ZZ/2\ZZ\otimes_\ZZ\ZZ\cong\ZZ/2\ZZ
+\]
+到
+\[
+\ZZ/2\ZZ\otimes_\ZZ\QQ=0
+\]
+的零映射。另一方面，设 $\varphi:M\to N$ 是满 $R$-模同态。张量积 $D\otimes_RN$ 作为阿贝尔群由简单张量 $d\otimes n$ 生成，其中 $d\in D$、$n\in N$。$\varphi$ 的满性给出 $n=\varphi(m)$ 对某个 $m\in M$ 成立，于是
+\[
+(1\otimes\varphi)(d\otimes m)=d\otimes\varphi(m)=d\otimes n.
+\]
+这说明 $1\otimes\varphi:D\otimes_RM\to D\otimes_RN$ 是满同态。由此得到下列定理的大部分。
+
+\noindent\textbf{定理 39.} 设 $D$ 是右 $R$-模，$L,M,N$ 是左 $R$-模。若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合，则相应阿贝尔群序列
+\[
+D\otimes_RL\xrightarrow{1\otimes\psi}D\otimes_RM\xrightarrow{1\otimes\varphi}D\otimes_RN\longrightarrow0
+\tag{10.13}
+\]
+正合。
+
+若 $D$ 是 $(S,R)$-双模，则 (10.13) 是左 $S$-模的正合列。特别地，若 $S=R$ 是交换环，则 (10.13) 关于标准 $R$-模结构是 $R$-模正合列。映射 $1\otimes\psi$ 一般不是单射，也就是说 (10.13) 一般不能扩张为短正合列。
+
+序列 (10.13) 对所有右 $R$-模 $D$ 都正合，当且仅当
+\[
+L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+正合。
+
+\begin{proof}
+第一部分还需证明 (10.13) 在 $D\otimes_RM$ 处正合。由于 $\varphi\circ\psi=0$，有
+\[
+(1\otimes\varphi)\circ(1\otimes\psi)=0,
+\]
+从而
+\[
+\operatorname{Im}(1\otimes\psi)\subseteq\ker(1\otimes\varphi).
+\]
+因此有自然投影
+\[
+\pi:(D\otimes_RM)/\operatorname{Im}(1\otimes\psi)
+\longrightarrow
+(D\otimes_RM)/\ker(1\otimes\varphi)=D\otimes_RN.
+\]
+由两个投影复合得到的映射
+\[
+D\otimes_RM\longrightarrow(D\otimes_RM)/\operatorname{Im}(1\otimes\psi)
+\xrightarrow{\pi}D\otimes_RN
+\]
+就是 $1\otimes\varphi$。我们将证明 $\pi$ 是同构，这就说明 $1\otimes\varphi$ 的核正是第一投影的核，即 $\operatorname{Im}(1\otimes\psi)$，从而得到 (10.13) 在 $D\otimes_RM$ 处正合。
+
+定义映射
+\[
+\pi':D\times N\longrightarrow (D\otimes_RM)/\operatorname{Im}(1\otimes\psi)
+\]
+如下：对 $d\in D$ 与 $n\in N$，取任意 $m\in M$ 使 $\varphi(m)=n$，令
+\[
+\pi'(d,n)=d\otimes m.
+\]
+这是良定义的：若另一个元素 $m'$ 也映到 $n$，则 $m'-m\in\ker\varphi=\operatorname{Im}\psi$，所以 $m'=m+\psi(l)$ 对某个 $l\in L$ 成立；于是
+\[
+d\otimes\psi(l)=(1\otimes\psi)(d\otimes l)
+\]
+在商中为零。容易验证 $\pi'$ 是平衡映射，所以诱导同态
+\[
+\widetilde\pi:D\otimes_RN\longrightarrow (D\otimes_RM)/\operatorname{Im}(1\otimes\psi)
+\]
+且 $\widetilde\pi(d\otimes n)=d\otimes m$。于是
+\[
+\widetilde\pi\circ\pi(d\otimes m)=\widetilde\pi(d\otimes\varphi(m))=d\otimes m
+\]
+而同样 $\pi\circ\widetilde\pi=1$。故 $\pi$ 与 $\widetilde\pi$ 互为逆同构，证明 (10.13) 正合。注意，在此证明中并未用到 $\psi$ 的单射性。
+
+最后，若 (10.13) 对每个右 $R$-模 $D$ 都正合，则取 $D=R$。一般地，对任意左 $R$-模 $X$ 有
+\[
+R\otimes_RX\cong X
+\]
+（见推论 9 后例 1），于是得到 $L\to M\to N\to0$ 的正合性。
+\end{proof}
+
+由定理 39，序列
+\[
+0\longrightarrow D\otimes_RL\xrightarrow{1\otimes\psi}D\otimes_RM\xrightarrow{1\otimes\varphi}D\otimes_RN\longrightarrow0
+\]
+一般不正合，因为 $1\otimes\psi$ 不必单射。然而若原短正合列
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+分裂，则由于张量积与直和交换（定理 17），可知
+\[
+0\longrightarrow D\otimes_RL\longrightarrow D\otimes_RM\longrightarrow D\otimes_RN\longrightarrow0
+\]
+也是分裂短正合列。
+
+由定理 39 立即得到下列刻画，它描述那些模 $D$：对其而言，(10.13) 总可扩张为短正合列。
+
+\noindent\textbf{命题 40.} 设 $A$ 是右 $R$-模。下列条件等价：
+\begin{enumerate}[label=(\arabic*)]
+\item 对任意左 $R$-模 $L,M,N$，若
+\[
+0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+\]
+是短正合列，则
+\[
+0\longrightarrow A\otimes_RL\xrightarrow{1\otimes\psi}A\otimes_RM\xrightarrow{1\otimes\varphi}A\otimes_RN\longrightarrow0
+\]
+也是短正合列。
+\item 对任意左 $R$-模 $L,M$，若
+\[
+0\longrightarrow L\xrightarrow{\psi}M
+\]
+正合（即 $\psi$ 单射），则
+\[
+0\longrightarrow A\otimes_RL\xrightarrow{1\otimes\psi}A\otimes_RM
+\]
+是阿贝尔群的正合列（即 $1\otimes\psi$ 单射）。
+\end{enumerate}
+
+\noindent\textbf{定义.} 若右 $R$-模 $A$ 满足命题 40 的任一等价条件，则称 $A$ 为\emph{平坦模}。
+
+对固定右 $R$-模 $D$，定理 39 的第一部分称为函子 $D\otimes_R-$ 的\emph{右正合性}。
+
+\noindent\textbf{推论 41.} 若 $D$ 是右 $R$-模，则函子 $D\otimes_R-$ 从左 $R$-模范畴到阿贝尔群范畴是右正合的。若 $D$ 是 $(S,R)$-双模（例如 $S=R$ 交换且 $D$ 赋予标准 $R$-模结构），则 $D\otimes_R-$ 是从左 $R$-模范畴到左 $S$-模范畴的右正合函子。该函子正合当且仅当 $D$ 是平坦 $R$-模。
+
+我们已经见到一些平坦模。
+
+\noindent\textbf{推论 42.} 自由模是平坦的；更一般地，投射模是平坦的。
+
+\begin{proof}
+要证明自由 $R$-模 $F$ 平坦，只需证明：对任意 $R$-模单射 $\psi:L\to M$，诱导映射
+\[
+1\otimes\psi:F\otimes_RL\longrightarrow F\otimes_RM
+\]
+也是单射。先假设 $F\cong R^n$ 是有限生成自由模。此时
+\[
+F\otimes_RL\cong R^n\otimes_RL\cong L^n,
+\]
+因为 $R\otimes_RL\cong L$ 且张量积与直和交换。类似地 $F\otimes_RM\cong M^n$，在这些同构下，$1\otimes\psi$ 就是由每个分量中的包含 $\psi$ 所诱导的自然映射 $L^n\to M^n$。特别地，$1\otimes\psi$ 单射，所以有限生成自由模平坦。
+
+现在设 $F$ 是任意自由模，且元素 $\sum f_i\otimes l_i\in F\otimes_RL$ 在 $1\otimes\psi$ 下映到 $0$。这意味着元素 $\sum f_i\otimes\psi(l_i)$ 在 $F\otimes_RM$ 中为 $0$，因而它可写成第 4 节公式 (6) 中那些定义张量积的生成关系的有限和。由于这些项有限，所得等式中所有第一坐标都落在 $F$ 的某个有限生成自由子模 $F'$ 中。于是这个等式说明 $\sum f_i\otimes l_i\in F'\otimes_RL$ 在 $F'\otimes_RM$ 中映到 $0$。由已证的有限生成自由情形，$F'$ 平坦，故 $\sum f_i\otimes l_i=0$ 于 $F'\otimes_RL$，从而也为 $0$ 于 $F\otimes_RL$。所以 $1\otimes\psi$ 单射，$F$ 平坦。
+
+若 $P$ 是投射模，则由命题 30，$P$ 是某个自由模 $F$ 的直和因子，设 $F=P\oplus P'$。若 $\psi:L\to M$ 单射，则由 $F$ 平坦，
+\[
+1\otimes\psi:F\otimes_RL\longrightarrow F\otimes_RM
+\]
+单射。由于 $F=P\oplus P'$ 且张量积与直和交换，这说明
+\[
+1\otimes\psi:(P\otimes_RL)\oplus(P'\otimes_RL)
+\longrightarrow (P\otimes_RM)\oplus(P'\otimes_RM)
+\]
+单射，因此限制到第一直和因子也给出 $P\otimes_RL\to P\otimes_RM$ 的单射。故 $P$ 平坦。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+\item 因为 $\ZZ$ 是投射 $\ZZ$-模，它是平坦的。定理 39 前面的例子表明 $\ZZ/2\ZZ$ 不是平坦 $\ZZ$-模。
+
+\item $\ZZ$-模 $\QQ$ 是平坦 $\ZZ$-模，如下所示。设 $\psi:L\to M$ 是 $\ZZ$-模单射。$\QQ\otimes_\ZZ L$ 的每个元素都可写成 $(1/d)\otimes l$ 的形式，其中 $d$ 是非零整数，$l\in L$（第 4 节练习 7）。若 $(1/d)\otimes l$ 在 $1\otimes\psi$ 的核中，则 $(1/d)\otimes\psi(l)$ 在 $\QQ\otimes_\ZZ M$ 中为 $0$。由第 4 节练习 8，这意味着存在非零整数 $c$ 使 $c\psi(l)=0$ 于 $M$。于是 $\psi(cl)=0$，由 $\psi$ 的单射性，$cl=0$ 于 $L$。因此
+\[
+(1/d)\otimes l=(1/(cd))\otimes(cl)=0
+\]
+于 $\QQ\otimes_\ZZ L$。这证明 $1\otimes\psi$ 单射。
+
+\item $\ZZ$-模 $\QQ/\ZZ$ 是内射的（由命题 36），但不是平坦的：由乘以 $2$ 给出的单射 $\psi(z)=2z$ 从 $\ZZ$ 到 $\ZZ$，与 $\QQ/\ZZ$ 张量后不再保持单射。事实上，在
+\[
+(\QQ/\ZZ)\otimes_\ZZ \ZZ\longrightarrow(\QQ/\ZZ)\otimes_\ZZ\ZZ
+\]
+中，非零元素 $(\tfrac12+\ZZ)\otimes1$ 位于核中。用 $\QQ/\ZZ\cong(\QQ/\ZZ)\otimes_\ZZ\ZZ$ 识别，这就是说乘以 $2$ 的映射以 $1/2$ 为核中的元素。
+
+\item 平坦模的直和仍平坦（练习 5）。特别地，$\QQ\oplus\ZZ$ 平坦。这个模既非投射也非内射：$\QQ$ 非投射（练习 8），$\ZZ$ 非内射（命题 36；另参见练习 3、4）。
+\end{enumerate}
+
+我们以 $\Hom$ 与张量积之间的一个重要关系结束本节。
+
+\noindent\textbf{定理 43（伴随结合律）.} 设 $R,S$ 是环，$A$ 是右 $R$-模，$B$ 是 $(R,S)$-双模，$C$ 是右 $S$-模。则有阿贝尔群同构
+\[
+\Hom_S(A\otimes_RB,C)
+\cong
+\Hom_R(A,\Hom_S(B,C)).
+\]
+这里的同态群均指右模同态。注意 $\Hom_S(B,C)$ 具有右 $R$-模结构（参见练习）。若 $R=S$ 交换，则这是在标准 $R$-模结构下的 $R$-模同构。
+
+\begin{proof}
+设 $\varphi:A\otimes_RB\to C$ 是同态。对固定 $a\in A$，定义从 $B$ 到 $C$ 的映射 $\Phi(a)$ 为
+\[
+\Phi(a)(b)=\varphi(a\otimes b).
+\]
+容易验证 $\Phi(a)$ 是右 $S$-模同态，并且映射
+\[
+\Phi:A\longrightarrow\Hom_S(B,C),
+\qquad a\longmapsto \Phi(a)
+\]
+是右 $R$-模同态。令 $f(\varphi)=\Phi$，得到从 $\Hom_S(A\otimes_RB,C)$ 到 $\Hom_R(A,\Hom_S(B,C))$ 的群同态。
+
+反过来，设 $\Phi:A\to\Hom_S(B,C)$ 是同态。定义 $A\times B\to C$ 的映射为
+\[
+(a,b)\longmapsto \Phi(a)(b).
+\]
+这是 $R$-平衡映射，因此诱导同态
+\[
+\varphi:A\otimes_RB\to C.
+\]
+令 $g(\Phi)=\varphi$，得到反向群同态。两个构造互为逆映射，从而得到定理中的同构。
+\end{proof}
+
+作为定理 43 的第一个应用，我们在 $S=R$ 为交换环的情形给出定理 39 第一部分——张量积右正合性——的另一种证明。若
+\[
+0\longrightarrow L\longrightarrow M\longrightarrow N\longrightarrow0
+\]
+正合，则由定理 33，对每个 $R$-模 $E$，序列
+\[
+0\longrightarrow\Hom_R(N,E)\longrightarrow\Hom_R(M,E)\longrightarrow\Hom_R(L,E)
+\]
+正合。再由定理 28，对所有 $D$ 与 $E$，
+\[
+0\longrightarrow\Hom_R(D,\Hom_R(N,E))\longrightarrow\Hom_R(D,\Hom_R(M,E))\longrightarrow\Hom_R(D,\Hom_R(L,E))
+\]
+正合。由伴随结合律，这意味着对任意 $D$ 与所有 $E$，序列
+\[
+0\longrightarrow\Hom_R(D\otimes_RN,E)\longrightarrow\Hom_R(D\otimes_RM,E)\longrightarrow\Hom_R(D\otimes_RL,E)
+\]
+正合。于是由定理 33 的第二部分，得到
+\[
+D\otimes_RL\longrightarrow D\otimes_RM\longrightarrow D\otimes_RN\longrightarrow0
+\]
+对所有 $D$ 正合，这正是张量积的右正合性。
+
+作为定理 43 的第二个应用，我们证明交换环 $R$ 上两个投射模的张量积仍投射（另一个更直接的证明见练习 9）。
+
+\noindent\textbf{推论 44.} 若 $R$ 交换，则两个投射 $R$-模的张量积仍是投射 $R$-模。
+
+\begin{proof}
+设 $P_1$ 与 $P_2$ 是投射模。由推论 32，$\Hom_R(P_2,-)$ 是从 $R$-模范畴到 $R$-模范畴的正合函子。再由同一推论，复合函子
+\[
+\Hom_R(P_1,\Hom_R(P_2,-))
+\]
+是正合的。由定理 43，这意味着 $\Hom_R(P_1\otimes_RP_2,-)$ 是 $R$-模上的正合函子。再次由推论 32，$P_1\otimes_RP_2$ 是投射的。
+\end{proof}
+
+\paragraph{本节总结}
+函子 $\Hom_R(A,-)$、$\Hom_R(-,A)$ 与 $A\otimes_R-$ 都把左 $R$-模映到阿贝尔群；函子 $-\otimes_RA$ 把右 $R$-模映到阿贝尔群。若 $R$ 交换，则四个函子都把 $R$-模映到 $R$-模。
+\begin{enumerate}[label=(\arabic*)]
+\item 设 $A$ 是左 $R$-模。函子 $\Hom_R(A,-)$ 是协变左正合函子；模 $A$ 投射当且仅当 $\Hom_R(A,-)$ 正合（即也右正合）。
+\item 设 $A$ 是左 $R$-模。函子 $\Hom_R(-,A)$ 是反变左正合函子；模 $A$ 内射当且仅当 $\Hom_R(-,A)$ 正合。
+\item 设 $A$ 是右 $R$-模。函子 $A\otimes_R-$ 是协变右正合函子；模 $A$ 平坦当且仅当 $A\otimes_R-$ 正合（即也左正合）。
+\item 设 $A$ 是左 $R$-模。函子 $-\otimes_RA$ 是协变右正合函子；模 $A$ 平坦当且仅当 $-\otimes_RA$ 正合。
+\item 投射模都是平坦模。$\ZZ$-模 $\QQ/\ZZ$ 是内射的但不平坦；$\ZZ$-模 $\ZZ\oplus\QQ$ 是平坦的，但既不投射也不内射。
+\end{enumerate}
+
+
+
+\paragraph{练习}
+设 $R$ 是带单位元的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 设
+	\[
+	\begin{array}{ccccc}
+		A & \xrightarrow{\psi} & B & \xrightarrow{\varphi} & C\\
+		\alpha\downarrow & & \beta\downarrow & & \gamma\downarrow\\
+		A'&\xrightarrow{\psi'}&B'&\xrightarrow{\varphi'}&C'
+	\end{array}
+	\]
+	是群的交换图，且两行正合。证明：
+	\begin{enumerate}[label=(\alph*)]
+		\item 若 $\varphi$ 与 $\alpha$ 满射，且 $\beta$ 单射，则 $\gamma$ 单射。[若 $c\in\ker\gamma$，取 $b\in B$ 使 $\varphi(b)=c$。证明 $\varphi'(\beta(b))=0$，从而 $\beta(b)=\psi'(a')$ 对某个 $a'\in A'$ 成立。再取 $a\in A$ 使 $\alpha(a)=a'$，并证明 $\beta(\psi(a))=\beta(b)$。推出 $b=\psi(a)$，故 $c=\varphi(b)=0$。]
+		\item 若 $\psi'$、$\alpha$ 与 $\gamma$ 都单射，则 $\beta$ 单射。
+		\item 若 $\varphi$、$\alpha$ 与 $\gamma$ 都满射，则 $\beta$ 满射。
+		\item 若 $\beta$ 单射，$\alpha$ 与 $\gamma$ 满射，则 $\gamma$ 单射。
+		\item 若 $\beta$ 满射，$\gamma$ 与 $\psi'$ 单射，则 $\alpha$ 满射。
+	\end{enumerate}
+	\item 设
+	\[
+	\begin{array}{ccccccc}
+		A&\longrightarrow&B&\longrightarrow&C&\longrightarrow&D\\
+		\alpha\downarrow&&\beta\downarrow&&\gamma\downarrow&&\delta\downarrow\\
+		A'&\longrightarrow&B'&\longrightarrow&C'&\longrightarrow&D'
+	\end{array}
+	\]
+	是群的交换图，且两行正合。证明：
+	\begin{enumerate}[label=(\alph*)]
+		\item 若 $\alpha$ 满射，$\beta$ 与 $\delta$ 单射，则 $\gamma$ 单射。
+		\item 若 $\delta$ 单射，$\alpha$ 与 $\gamma$ 满射，则 $\beta$ 满射。
+	\end{enumerate}
+	\item 设 $P_1,P_2$ 是 $R$-模。证明 $P_1\oplus P_2$ 是投射 $R$-模当且仅当 $P_1$ 与 $P_2$ 都是投射的。
+	\item 设 $Q_1,Q_2$ 是 $R$-模。证明 $Q_1\oplus Q_2$ 是内射 $R$-模当且仅当 $Q_1$ 与 $Q_2$ 都是内射的。
+	\item 设 $A_1,A_2$ 是 $R$-模。证明 $A_1\oplus A_2$ 是平坦 $R$-模当且仅当 $A_1$ 与 $A_2$ 都是平坦的。更一般地，证明任意直和 $\bigoplus A_i$ 是平坦的当且仅当每个 $A_i$ 都平坦。[使用张量积与任意直和交换的事实。]
+	\item 证明环 $R$ 的下列条件等价：
+	\begin{enumerate}[label=(\roman*)]
+		\item 每个 $R$-模都是投射的；
+		\item 每个 $R$-模都是内射的。
+	\end{enumerate}
+	\item 设 $A$ 是非零有限阿贝尔群。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $A$ 不是投射 $\ZZ$-模。
+		\item 证明 $A$ 不是内射 $\ZZ$-模。
+	\end{enumerate}
+	\item 设 $Q$ 是非零可除 $\ZZ$-模。证明 $Q$ 不是投射 $\ZZ$-模。推出有理数群 $\QQ$ 不是投射 $\ZZ$-模。[先证明若 $F$ 是任意自由模，则 $\bigcap_{n\geq1}nF=0$（用 $F$ 的一组基证明）。再反设 $Q$ 投射，并由命题 30(4) 得到矛盾。]
+	\item 假设 $R$ 交换且有 $1$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明两个自由 $R$-模的张量积仍是自由的。[使用张量积与直和交换的事实。]
+		\item 用 (a) 证明两个投射 $R$-模的张量积仍是投射的。
+	\end{enumerate}
+	\item 设 $R$ 与 $S$ 是带单位元的环，$M,N$ 是左 $R$-模。再假设 $M$ 是 $(R,S)$-双模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 对 $s\in S$ 与 $\varphi\in\Hom_R(M,N)$，定义 $(s\varphi):M\to N$ 为
+		\[
+		(s\varphi)(m)=\varphi(ms).
+		\]
+		证明 $s\varphi$ 是左 $R$-模同态，并且 $S$ 在 $\Hom_R(M,N)$ 上的这个作用使其成为左 $S$-模。
+		\item 令 $S=R$ 且 $M=R$，把 $R$ 作为通常的 $(R,R)$-双模。对每个 $n\in N$，定义 $\varphi_n:R\to N$ 为 $\varphi_n(r)=rn$，即 $\varphi_n$ 是把 $1_R$ 映到 $n$ 的唯一 $R$-模同态。证明 $\varphi_n\in\Hom_R(R,N)$。用 (a) 证明映射 $n\mapsto\varphi_n$ 是左 $R$-模同构：
+		\[
+		N\cong\Hom_R(R,N).
+		\]
+		\item 推出若 $N$ 是自由（相应地，投射、内射、平坦）左 $R$-模，则 $\Hom_R(R,N)$ 也是自由（相应地，投射、内射、平坦）左 $R$-模。
+	\end{enumerate}
+	\item 设 $R$ 与 $S$ 是带单位元的环，$M,N$ 是左 $R$-模。再假设 $N$ 是 $(R,S)$-双模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 对 $s\in S$ 与 $\varphi\in\Hom_R(M,N)$，定义 $(\varphi s):M\to N$ 为
+		\[
+		(\varphi s)(m)=\varphi(m)s.
+		\]
+		证明 $\varphi s$ 是左 $R$-模同态，并且 $S$ 在 $\Hom_R(M,N)$ 上的这个作用使其成为右 $S$-模。推出对任意 $R$-模 $M$，$\Hom_R(M,R)$ 是右 $R$-模，称为 $M$ 的\emph{对偶模}。
+		\item 令 $N=R$，把它作为通常的 $(R,R)$-双模。证明在 (a) 定义的作用下，映射 $r\mapsto\varphi_r$ 是右 $R$-模同构：
+		\[
+		\Hom_R(R,R)\cong R,
+		\]
+		其中 $\varphi_r$ 是把 $1_R$ 映到 $r$ 的同态。推出若 $M$ 是有限生成自由左 $R$-模，则 $\Hom_R(M,R)$ 是同秩的自由右 $R$-模（也参见练习 13）。
+		\item 证明若 $M$ 是有限生成投射 $R$-模，则其对偶模 $\Hom_R(M,R)$ 也是投射的。
+	\end{enumerate}
+	\item 设 $A$ 是 $R$-模，$I$ 是任意非空指标集，并对每个 $i\in I$，令 $B_i$ 是 $R$-模。证明下列阿贝尔群同构；当 $R$ 交换时，也证明它们是 $R$-模同构。（任意模族的直和与直积见第 3 节练习 20。）
+	\begin{enumerate}[label=(\alph*)]
+		\item $\Hom_R\left(\bigoplus_{i\in I}B_i,A\right)\cong\prod_{i\in I}\Hom_R(B_i,A)$；
+		\item $\Hom_R\left(A,\prod_{i\in I}B_i\right)\cong\prod_{i\in I}\Hom_R(A,B_i)$。
+	\end{enumerate}
+	\item
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明具有可数基的自由 $\ZZ$-模的对偶模不是自由的。[使用前一题与第 3 节练习 24。也见第 11.3 节练习 5。]
+		\item 证明具有可数基的自由 $\ZZ$-模的对偶模也不是投射的。[可使用任意自由 $\ZZ$-模的子模都是自由的这一事实。]
+	\end{enumerate}
+	\item 设
+	\[
+	0\longrightarrow L\xrightarrow{\psi}M\xrightarrow{\varphi}N\longrightarrow0
+	\]
+	是 $R$-模序列。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明对所有 $R$-模 $D$，相伴序列
+		\[
+		0\longrightarrow\Hom_R(D,L)\xrightarrow{\psi'}\Hom_R(D,M)
+		\xrightarrow{\varphi'}\Hom_R(D,N)\longrightarrow0
+		\]
+		都是阿贝尔群短正合列，当且仅当原序列是分裂短正合列。[为了证明序列分裂，取 $D=N$，并证明 $\Hom_R(N,N)$ 中恒等映射到 $\Hom_R(N,M)$ 的提升给出 $\varphi$ 的一个分裂同态。]
+		\item 证明对所有 $R$-模 $D$，相伴序列
+		\[
+		0\longrightarrow\Hom_R(N,D)\xrightarrow{\varphi'}\Hom_R(M,D)
+		\xrightarrow{\psi'}\Hom_R(L,D)\longrightarrow0
+		\]
+		都是阿贝尔群短正合列，当且仅当原序列是分裂短正合列。
+	\end{enumerate}
+	\item 设 $M$ 是左 $R$-模，其中 $R$ 是带 $1$ 的环。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\Hom_{\ZZ}(R,M)$ 在作用
+		\[
+		(r\varphi)(r')=\varphi(r'r)
+		\]
+		下是左 $R$-模（见练习 10）。
+		\item 设 $0\to A\xrightarrow{\psi}B$ 是 $R$-模的正合序列。证明若从 $A$ 到 $M$ 的每个同态 $f$ 都可提升为从 $B$ 到 $M$ 的同态 $F$，且 $f=F\circ\psi$，则从 $A$ 到 $\Hom_{\ZZ}(R,M)$ 的每个同态 $f'$ 也可提升为从 $B$ 到 $\Hom_{\ZZ}(R,M)$ 的同态 $F'$，且 $f'=F'\circ\psi$。[给定 $f'$，证明 $f(a)=f'(a)(1_R)$ 定义了 $A$ 到 $M$ 的同态。若 $F$ 是 $f$ 到 $B$ 的相应提升，证明 $F'(b)(r)=F(rb)$ 定义了 $B$ 到 $\Hom_{\ZZ}(R,M)$ 的同态，并提升 $f'$。]
+		\item 证明若 $Q$ 是内射 $R$-模，则 $\Hom_{\ZZ}(R,Q)$ 也是内射 $R$-模。
+	\end{enumerate}
+	\item 本题证明定理 38：每个左 $R$-模 $M$ 都包含在一个内射左 $R$-模中。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $M$ 包含于一个内射 $\ZZ$-模 $Q$ 中。[把 $M$ 看成 $\ZZ$-模；使用推论 37。]
+		\item 证明
+		\[
+		\Hom_R(R,M)\subseteq\Hom_{\ZZ}(R,M)\subseteq\Hom_{\ZZ}(R,Q).
+		\]
+		\item 利用 $R$-模同构 $M\cong\Hom_R(R,M)$（练习 10）以及前一题，推出 $M$ 包含于一个内射模中。
+	\end{enumerate}
+	\item 本题完成命题 34 的证明。设 $Q$ 是 $R$-模，并具有性质：每个短正合列
+	\[
+	0\longrightarrow Q\longrightarrow M_1\longrightarrow N\longrightarrow0
+	\]
+	都分裂。又设序列 $0\to L\xrightarrow{\psi}M$ 正合。证明每个 $R$-模同态 $f:L\to Q$ 都可提升为 $R$-模同态 $F:M\to Q$，满足 $f=F\circ\psi$。[由前一题，$Q$ 包含于一个内射 $R$-模中。使用分裂性质以及练习 4（注意练习 4 可用命题 34(2) 作为内射模的定义来证明）。]
+	\item 证明 $\ZZ$-模 $\ZZ$ 的内射包是 $\QQ$。[设 $H$ 是 $\ZZ$ 的内射包，证明 $\QQ$ 包含 $H$ 的一个同构副本。利用 $H$ 的可除性证明 $1/n\in H$ 对所有非零整数 $n$ 成立，从而推出 $H=\QQ$。]
+	\item 若 $F$ 是域，证明 $F$ 的内射包就是 $F$。
+	\item 证明交换环 $R$ 上不定元 $x$ 的多项式环 $R[x]$ 是平坦 $R$-模。
+	\item 设 $R$ 与 $S$ 是带单位元的环，$M$ 是右 $R$-模，$N$ 是 $(R,S)$-双模。若 $M$ 在 $R$ 上平坦，且 $N$ 作为 $S$-模平坦，证明 $M\otimes_RN$ 作为右 $S$-模平坦。
+	\item 设 $R$ 是交换环，$M,N$ 是平坦 $R$-模。证明 $M\otimes_RN$ 是平坦 $R$-模。[使用前一题。]
+	\item 证明由环同态 $f:R\to S$（$f(1_R)=1_S$，参见第 4 节推论 12 后例 6）把平坦右 $R$-模 $M$ 改变基环得到的右 $S$-模 $M\otimes_RS$ 是平坦 $S$-模。
+	\item 证明 $A$ 是平坦 $R$-模当且仅当对任意左 $R$-模 $L,M$，其中 $L$ 有限生成，若 $\psi:L\to M$ 单射，则
+	\[
+	1\otimes\psi:A\otimes_RL\longrightarrow A\otimes_RM
+	\]
+	也是单射。[使用推论 42 证明中的技巧。]
+	\item （平坦性判别法）本题 (a)--(c) 证明：$A$ 是平坦 $R$-模当且仅当对每个有限生成理想 $I$，由包含 $I\hookrightarrow R$ 诱导的映射
+	\[
+	A\otimes_RI\longrightarrow A\otimes_RR\cong A
+	\]
+	仍为单射，等价地 $A\otimes_RI\cong AI\subseteq A$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $A$ 平坦，则 $A\otimes_RI\to A\otimes_RR$ 单射。
+		\item 若对每个有限生成理想 $I$，$A\otimes_RI\to A\otimes_RR$ 单射，证明对每个理想 $I$ 也有 $A\otimes_RI\to A\otimes_RR$ 单射。证明若 $K$ 是有限生成自由模 $F$ 的任意子模，则 $A\otimes_RK\to A\otimes_RF$ 单射。证明对任意自由模 $F$ 也成立。[参见推论 42 的证明。]
+		\item 在 (b) 的假设下，设 $L,M$ 是 $R$-模，且 $L\xrightarrow{\psi}M$ 单射。证明 $A\otimes_RL\xrightarrow{1\otimes\psi}A\otimes_RM$ 单射，并推出 $A$ 平坦。[把 $M$ 写成自由模 $F$ 的商，得到短正合列
+		\[
+		0\to K\to F\to M\to0.
+		\]
+		令 $J=j^{-1}(\psi(L))$，$t:J\to F$ 为自然包含。证明相应交换图具有正合行；张量 $A$ 后的诱导图也交换且行正合。用 (b) 证明 $1\otimes t$ 单射，再用练习 1 推出 $1\otimes\psi$ 单射。]
+		\item （商模的平坦性判别法）设 $A=F/K$，其中 $F$ 平坦（例如自由）且 $K$ 是 $F$ 的 $R$-子模。证明 $A$ 平坦当且仅当
+		\[
+		FI\cap K=KI
+		\]
+		对每个有限生成理想 $I$ 成立。[用 (a) 证明 $F\otimes_RI\cong FI$，并观察 $K\otimes_RI$ 的像是 $KI$；把正合列 $0\to K\to F\to A\to0$ 与 $I$ 张量，证明 $A\otimes_RI\cong FI/KI$，再应用平坦性判别法。]
+	\end{enumerate}
+	\item 设 $R$ 是 P.I.D.。本题证明 $A$ 是平坦 $R$-模当且仅当 $A$ 是无挠 $R$-模，即若 $a\in A$ 非零且 $r\in R$，$ra=0$ 蕴含 $r=0$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 设 $A$ 平坦。对固定 $r\in R$，考虑由乘以 $r$ 定义的映射 $\psi_r:R\to R$，$\psi_r(x)=rx$。若 $r\neq0$，证明 $\psi_r$ 单射。由 $A$ 的平坦性推出从 $A$ 到 $A$ 的映射 $a\mapsto ra$ 单射，从而 $A$ 无挠。
+		\item 设 $A$ 无挠。若 $I$ 是 $R$ 的非零理想，则 $I=rR$ 对某个非零 $r\in R$ 成立。证明 (a) 中的映射 $\psi_r$ 诱导 $R\cong I$ 的 $R$-模同构，且 $\psi_r$ 与包含 $t:I\to R$ 的复合 $R\xrightarrow{\psi_r}I\xrightarrow{t}R$ 是乘以 $r$。证明复合
+		\[
+		A\otimes_RR\xrightarrow{1\otimes\psi_r}A\otimes_RI
+		\xrightarrow{1\otimes t}A\otimes_RR
+		\]
+		在 $A\otimes_RR=A$ 的识别下对应于 $a\mapsto ra$，并且由于 $A$ 无挠此复合单射。证明 $1\otimes\psi_r$ 是同构，并推出 $1\otimes t$ 单射。用前一题推出 $A$ 平坦。
+	\end{enumerate}
+	\item 设 $M,A,B$ 是 $R$-模。
+	\begin{enumerate}[label=(\alph*)]
+		\item 设 $f:A\to M$ 与 $g:B\to M$ 是 $R$-模同态。证明
+		\[
+		X=\{(a,b)\mid a\in A,
+		b\in B,
+		f(a)=g(b)\}
+		\]
+		是直和 $A\oplus B$ 的 $R$-子模，称为 $f$ 与 $g$ 的\emph{拉回}或\emph{纤维积}，并且存在以 $\pi_1,
+		\pi_2$ 为到第一、第二分量的自然投影的交换图。
+		\item 设 $f':M\to A$ 与 $g':M\to B$ 是 $R$-模同态。证明 $A\oplus B$ 对子模
+		\[
+		\{(f'(m),-g'(m))\mid m\in M\}
+		\]
+		的商 $Y$ 是 $R$-模，称为 $f'$ 与 $g'$ 的\emph{推出}或\emph{纤维和}，并且存在以 $\pi_1,
+		\pi_2$ 为由到第一、第二分量的映射诱导到商上的自然映射的交换图。
+	\end{enumerate}
+	\item
+	\begin{enumerate}[label=(\alph*)]
+		\item （Schanuel 引理）若
+		\[
+		0\to K\to P\to M\to0,
+		\qquad
+		0\to K'\to P'\to M\to0
+		\]
+		是 $R$-模正合列，且 $P,P'$ 投射，证明
+		\[
+		P\oplus K'\cong P'\oplus K
+		\]
+		作为 $R$-模同构。[设 $X$ 是前一题中相应同态的纤维积，证明存在正合列 $0\to\ker\pi\to X\to P\to0$，且 $\ker\pi\cong K'$。推出 $X\cong P\oplus K'$。类似地证明 $X\cong P'\oplus K$。]
+		\item 若
+		\[
+		0\to M\to Q\to L\to0,
+		\qquad
+		0\to M\to Q'\to L'\to0
+		\]
+		是 $R$-模正合列，且 $Q,Q'$ 内射，证明
+		\[
+		Q\oplus L'\cong Q'\oplus L
+		\]
+		作为 $R$-模同构。
+	\end{enumerate}
+\end{enumerate}
+\noindent 两个 $R$-模 $M,N$ 称为\emph{投射等价}，若存在投射模 $P,P'$ 使 $M\oplus P\cong N\oplus P'$。类似地，若存在内射模 $Q,Q'$ 使 $M\oplus Q\cong N\oplus Q'$，则称 $M,N$ \emph{内射等价}。前一题表明其中的 $K$ 与 $K'$ 投射等价，$L$ 与 $L'$ 内射等价。
+

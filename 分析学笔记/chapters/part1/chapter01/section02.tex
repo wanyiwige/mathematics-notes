@@ -1,0 +1,61 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.2 代数结构初步
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{代数结构初步}
+
+
+从自然数向有理数扩张的过程，是代数结构由低级到
+高级的过程，这里对代数结构进行初步的说明.
+\begin{definition}
+	代数结构，是一个集合，配上一个或多个运算，并且满足一定的公理 .运算的一般形式有加法，乘法，数乘，甚至交并非的集合运算.
+\end{definition}
+
+
+\begin{definition}简单代数结构树状图
+	
+	
+\end{definition} 
+\begin{tikzpicture}[
+	node distance=1cm and 0.8cm,  % 减小节点间距
+	algNode/.style={
+		draw=black,
+		thick,
+		rounded corners=4pt,     % 减小圆角
+		minimum width=2.5cm,     % 减小宽度
+		minimum height=0.8cm,    % 减小高度
+		text width=2.3cm,        % 减小文本宽度
+		align=center,
+		font=\scriptsize         % 使用更小的字体
+	},
+	arrow/.style={
+		-Stealth,
+		thick,
+		line width=0.6pt        % 减细箭头
+	}
+	]
+	
+	% 定义节点
+	\node[algNode] (magma) {群胚\\集合 + 运算+封闭性};
+	\node[algNode, below=of magma] (semi) {半群\\+ 结合律};
+	\node[algNode, below=of semi] (monoid) {幺半群\\+ 单位元};
+	\node[algNode, below left=of monoid] (group) {群\\+ 逆元};
+	\node[algNode, below right=of monoid] (ring) {环\\加法阿贝尔群\\乘法半群或幺半群};
+	\node[algNode, below=of group] (abelian) {阿贝尔群\\+ 交换律};
+	\node[algNode, below=of ring] (commRing) {交换环\\乘法交换律};
+	\node[algNode, below=of commRing] (domain) {整环\\无零因子+单位元};
+	\node[algNode, below=of domain] (field) {域\\乘法逆元存在\\加法，乘法，分配公理};
+	
+	% 绘制箭头
+	\draw[arrow] (magma) -- (semi);
+	\draw[arrow] (semi) -- (monoid);
+	\draw[arrow] (monoid) -- (group);
+	\draw[arrow] (monoid) -- (ring);
+	\draw[arrow] (group) -- (abelian);
+	\draw[arrow] (ring) -- (commRing);
+	\draw[arrow] (commRing) -- (domain);
+	\draw[arrow] (domain) -- (field);
+	
+\end{tikzpicture}
+\newpage
+

@@ -1,0 +1,129 @@
+% preamble/theorems.tex
+% ------------------------------------
+% 概率论定理环境（绿色系 tcolorbox）
+% ------------------------------------
+
+% ---- 定义 ----
+\newtcbtheorem[number within=section]{mydefinition}{定义}{
+	breakable, enhanced,
+	colback=white, colframe=GreenMain,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{def}
+
+% ---- 定理 ----
+\newtcbtheorem[use counter from=mydefinition]{mytheorem}{定理}{
+	breakable, enhanced,
+	colback=white, colframe=GreenMain,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{th}
+
+% ---- 命题 ----
+\newtcbtheorem[use counter from=mydefinition]{proposition}{命题}{
+	breakable, enhanced,
+	colback=white, colframe=GreenMain,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{prop}
+
+% ---- 推论 ----
+\newtcbtheorem[use counter from=mydefinition]{mycorollary}{推论}{
+	breakable, enhanced,
+	colback=white, colframe=GreenLight,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{cor}
+
+% ---- 公理 ----
+\newtcbtheorem[use counter from=mydefinition]{myaxiom}{公理}{
+	breakable, enhanced,
+	colback=white, colframe=GreenDark,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{ax}
+
+% ---- 引理 ----
+\newtcbtheorem[use counter from=mydefinition]{mylemma}{引理}{
+	breakable, enhanced,
+	colback=white, colframe=GreenAccent,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{lem}
+
+% ---- 例题 ----
+\newtcbtheorem[use counter from=mydefinition]{myexample}{例题}{
+	breakable, enhanced,
+	colback=white, colframe=GreenLight,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{ex}
+
+% ---- 例（无色框） ----
+\makeatletter
+\NewDocumentEnvironment{example}{o}{%
+	\par\addvspace{12pt}%
+	\refstepcounter{tcb@cnt@mydefinition}%
+	\noindent{\bfseries\theoremFont 例~\thetcb@cnt@mydefinition\IfValueT{#1}{：#1}}\par\smallskip
+	\normalfont\CJKfamily{theoremCJK}%
+}{%
+	\par\addvspace{12pt}%
+}
+\makeatother
+
+% ---- 注记 ----
+\newtcbtheorem[use counter from=mydefinition]{myremark}{注记}{
+	breakable, enhanced,
+	colback=white, colframe=GreenDark,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{rm}
+
+% ---- 练习（无编号） ----
+\NewDocumentEnvironment{exercise}{}{\par\noindent{\bfseries\theoremFont 练习\quad}}{\par}
+
+% ---- 证明环境（楷体，无边框，不参与编号） ----
+\RenewDocumentEnvironment{proof}{}{\par\noindent{\bfseries\proofFont 证明.\quad}}{\hfill$\square$\par\bigskip}
+
+% ---- 解答环境 ----
+\newenvironment{solution}{%
+	\par\proofFont
+	\noindent\textbf{解答:}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% ---- 行距 ----
+\setstretch{1.2}

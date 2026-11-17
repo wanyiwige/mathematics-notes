@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-30",
+  "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\数分前置定义补全前-20261030-070551.zip",
+  "backup_sha256": "67610a287ccd2f79199a8ce31e19f4414b5a236e3ebe767f4956a2a625af33e9",
+  "changes": [
+    {
+      "chapter": 3,
+      "labels": [
+        "def:support-test",
+        "ex:smooth-cutoff"
+      ],
+      "characters": 1074
+    },
+    {
+      "chapter": 4,
+      "labels": [
+        "lem:cayley-hamilton-foundation"
+      ],
+      "characters": 541
+    },
+    {
+      "chapter": 4,
+      "labels": [
+        "def:group-notation"
+      ],
+      "characters": 300
+    },
+    {
+      "chapter": 4,
+      "labels": [
+        "lem:symmetric-spectral-elementary"
+      ],
+      "characters": 507
+    },
+    {
+      "chapter": 5,
+      "labels": [
+        "def:banach-operator",
+        "lem:neumann-series"
+      ],
+      "characters": 789
+    },
+    {
+      "chapter": 6,
+      "labels": [
+        "def:quotient-circle"
+      ],
+      "characters": 405
+    },
+    {
+      "chapter": 7,
+      "labels": [
+        "def:smooth-one-parameter"
+      ],
+      "characters": 313
+    },
+    {
+      "chapter": 7,
+      "labels": [],
+      "characters": 237
+    },
+    {
+      "chapter": 7,
+      "labels": [],
+      "characters": 162
+    },
+    {
+      "chapter": 7,
+      "labels": [],
+      "characters": 146
+    },
+    {
+      "chapter": 8,
+      "labels": [
+        "def:l2-completion"
+      ],
+      "characters": 409
+    },
+    {
+      "chapter": 10,
+      "labels": [],
+      "characters": 189
+    },
+    {
+      "chapter": 11,
+      "labels": [
+        "def:orientation-boundary"
+      ],
+      "characters": 323
+    },
+    {
+      "chapter": 11,
+      "labels": [
+        "def:covering-map"
+      ],
+      "characters": 326
+    },
+    {
+      "chapter": 11,
+      "labels": [
+        "def:immersion-embedding"
+      ],
+      "characters": 259
+    },
+    {
+      "chapter": 11,
+      "labels": [
+        "def:vector-bundle",
+        "def:riemannian-gradient"
+      ],
+      "characters": 730
+    },
+    {
+      "chapter": 11,
+      "labels": [],
+      "characters": 148
+    },
+    {
+      "chapter": 12,
+      "labels": [
+        "def:forms-coordinate",
+        "def:exterior-pullback",
+        "def:closed-exact-form"
+      ],
+      "characters": 1727
+    },
+    {
+      "chapter": 12,
+      "labels": [],
+      "characters": 261
+    },
+    {
+      "chapter": 13,
+      "labels": [
+        "def:homotopy-line-integral"
+      ],
+      "characters": 406
+    },
+    {
+      "chapter": 13,
+      "labels": [
+        "lem:green-from-calculus"
+      ],
+      "characters": 627
+    },
+    {
+      "chapter": 13,
+      "labels": [
+        "def:partition-integration",
+        "prop:forms-stokes-calculus"
+      ],
+      "characters": 1221
+    },
+    {
+      "chapter": 13,
+      "labels": [],
+      "characters": 309
+    },
+    {
+      "chapter": 13,
+      "labels": [
+        "def:euler-characteristic"
+      ],
+      "characters": 410
+    },
+    {
+      "chapter": 13,
+      "labels": [],
+      "characters": 213
+    },
+    {
+      "chapter": 14,
+      "labels": [
+        "def:variation-functional",
+        "lem:euler-lagrange-elementary",
+        "def:geodesic-variational"
+      ],
+      "characters": 1079
+    },
+    {
+      "chapter": 14,
+      "labels": [],
+      "characters": 215
+    },
+    {
+      "chapter": 14,
+      "labels": [
+        "def:density-concentration"
+      ],
+      "characters": 423
+    },
+    {
+      "chapter": 15,
+      "labels": [
+        "def:weighted-banach",
+        "def:frechet-derivative"
+      ],
+      "characters": 979
+    },
+    {
+      "chapter": 15,
+      "labels": [],
+      "characters": 267
+    },
+    {
+      "chapter": 15,
+      "labels": [
+        "def:dirichlet-rayleigh"
+      ],
+      "characters": 927
+    },
+    {
+      "chapter": 15,
+      "labels": [],
+      "characters": 221
+    }
+  ],
+  "labels": 240,
+  "analysis_source_files_checked": 152,
+  "analysis_sources_unchanged": true,
+  "new_environments_this_revision": {
+    "definition": 39,
+    "lemma": 6,
+    "proof": 8,
+    "theorem": 0,
+    "proposition": 2,
+    "example": 1,
+    "corollary": 0
+  },
+  "total_new_environments_vs_original_notes": {
+    "definition": 97,
+    "lemma": 13,
+    "proof": 122,
+    "theorem": 50,
+    "proposition": 51,
+    "example": 10,
+    "corollary": 7
+  },
+  "retained_old_labels": 210,
+  "current_labels": 242,
+  "definition_order_chains": [
+    [
+      "def:support-test",
+      "ex:smooth-cutoff",
+      "sec:quasipolynomials"
+    ],
+    [
+      "def:forms-coordinate",
+      "def:exterior-pullback",
+      "def:closed-exact-form",
+      "prop:forms-stokes-calculus"
+    ],
+    [
+      "def:partition-integration",
+      "prop:forms-stokes-calculus",
+      "def:euler-characteristic"
+    ],
+    [
+      "def:banach-operator",
+      "lem:neumann-series",
+      "def:weighted-banach",
+      "def:frechet-derivative"
+    ],
+    [
+      "def:l2-completion",
+      "def:dirichlet-rayleigh",
+      "lem:nonnegative-elliptic-positive"
+    ]
+  ],
+  "math_checks": {
+    "convex_potential_formula": true,
+    "Beltrami_first_integral_identity": true,
+    "cutoff_derivatives_match_zero": true,
+    "polar_construction": true,
+    "Neumann_inverse_two_sides": true,
+    "no_unescaped_control_characters": true
+  },
+  "backup_crc_valid": true
+}

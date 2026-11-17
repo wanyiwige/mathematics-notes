@@ -1,0 +1,113 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第6章：函数的极限与连续性
+% 节：6.4 基本初等函数的连续性
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{基本初等函数的连续性}
+下面我们考虑各个基本初等函数的连续性.
+\begin{proposition}
+	显然的，常数函数$f(x)=c(\text{常数})$在定义域上是连续的
+\end{proposition}
+\begin{proposition}
+	$f(x)=x^{\alpha}\quad \alpha\in\R$在定义域上是连续的
+\end{proposition}
+\begin{proof}
+	对 $\alpha \in \mathbb{Z}$，先考虑 $f(x) = x\quad x\in(-\infty, +\infty)$，
+	
+	$\forall \varepsilon > 0$，取 $\delta = \varepsilon$，$\forall x(0 < |x - x_0| < \delta)$，
+	\[ |f(x) - f(x_0)| = |x - x_0| < \varepsilon = \delta \]
+	
+	$\alpha \in \mathbb{Z}$ 时，$x^\alpha$ 可以看作 $\alpha$ 个 $x$ 的乘积，自然为连续函数
+	
+	对 $\alpha \in \mathbb{Q}$，先考虑 $f(x) = \sqrt[m]{x}$
+	
+	$m \in \mathbb{Z}_+$，
+	$\forall \varepsilon > 0$，取 $\delta = \varepsilon^m$，$\forall x(0 < |x - x_0| < \delta)$，
+	\[ |\sqrt[m]{x} - \sqrt[m]{x_0}| \leqslant\sqrt[m]{|x-x_0|}<\varepsilon \]
+	
+	$\alpha \in \mathbb{Q}$ ，设 $\alpha = \dfrac{n}{m}$，$f(x) = x^{n/m}$，由复合函数的连续性，对 $\alpha \in \mathbb{Q}$，$x^{\alpha}$在定义域上连续
+	
+	对 $\alpha \in \mathbb{R} \setminus\mathbb{Q}$，我们之后再说
+	
+\end{proof}
+\begin{proposition}
+	函数 $f(x) = a^x$ ($a > 0$, $a \neq 1$) 在 $(-\infty, +\infty)$ 上连续.
+\end{proposition}
+\begin{proof}
+	$\forall x_0 \in (-\infty, +\infty)$，
+	\[ a^x - a^{x_0} = a^{x_0}(a^{x - x_0} - 1) \]
+	
+	因为
+	\[ \lim_{x \to x_0} a^x = a^{x_0} \Leftrightarrow \lim_{t \to 0} a^t = 1 \]
+	$t \to 0^+$ 时，当 $a > 1$时，有
+	\[ 1 < a^t \leqslant a^{1/[\frac{1}{t}]} \]
+	而 $\lim\limits_{n \to \infty} a^{1/n} = 1$，由夹逼定理，
+	\[ \lim_{t \to 0^+} a^t = 1 \]
+	
+	$0 < a < 1$ 时，
+	\[ \lim_{t \to 0^+} a^t = \lim_{t \to 0^+} \dfrac{1}{\left(\dfrac{1}{a}\right)^t} = 1 \]
+	
+	$t \to 0^-$ 时，令 $u = -t$，
+	\[ \lim_{t \to 0^-} a^t = \lim_{u \to 0^+} a^{-u} = \lim_{u \to 0^+} \frac{1}{a^u} = 1 \]
+	
+	综上，
+	\[ \lim_{t \to 0} a^t = 1 \]
+	从而 $\lim\limits_{x \to x_0} a^x = a^{x_0}$.
+	
+\end{proof}
+\begin{corollary}
+	$f(x)=\log_a(x)$在定义域上是连续的
+\end{corollary}
+\begin{proof}
+	由$f(x)=a^x$以及反函数连续性定理易得
+\end{proof}
+\begin{corollary}
+	$f(x)=x^{\alpha},\alpha\in\R$在定义域上连续
+	
+\end{corollary}
+\begin{proof}
+	$$f(x)=x^{\alpha	}=e^{\alpha\ln x}$$
+	由复合函数连续性定理得证
+	
+\end{proof}
+\begin{corollary}
+	双曲函数$$\begin{aligned}
+		&y=\sinh x &y=\cosh x \quad &y=\tanh x\\
+		&y=\mathrm{csch}x &y=\mathrm{sech}x\quad&y=\coth x
+	\end{aligned}$$在定义域上是连续的
+\end{corollary}
+\begin{proposition}
+	函数 $f(x) = \sin x$ 与 $g(x) = \cos x$ 在 $(-\infty, +\infty)$ 上连续.
+\end{proposition}
+\begin{proof}
+	对于 $y = \sin x$，$\forall x_0 \in (-\infty, +\infty)$，
+	\[
+	|\sin x - \sin x_0| = 2 \left|\cos \frac{x_0 + x}{2} \sin \frac{x - x_0}{2}\right| \leqslant |x - x_0|
+	\]
+	取 $\delta = \varepsilon$，当 $|x - x_0| < \delta$ 时，
+	\[
+	|\sin x - \sin x_0| < \varepsilon
+	\]
+	
+	对于 $y = \cos x$，$\forall x_0 \in (-\infty, +\infty)$，
+	\[
+	|\cos x - \cos x_0| = 2 \left|\sin \frac{x_0 + x}{2} \sin \frac{x - x_0}{2}\right| \leqslant |x - x_0|
+	\]
+	取 $\delta = \varepsilon$，当 $|x - x_0| < \delta$ 时，
+	\[
+	|\cos x - \cos x_0| < \varepsilon
+	\]
+	
+\end{proof}
+\begin{corollary}
+	$y=\tan x,y=\cot x,y=\csc x,y=\sec x$在定义域上 是连续的
+\end{corollary}
+
+\begin{corollary}
+	反三角函数
+	\[ y = \sin^{-1} x, \quad y = \cos^{-1} x, \quad y = \tan^{-1} x \]
+	\[ y = \csc^{-1} x, \quad y = \sec^{-1} x, \quad y = \cot^{-1} x \]
+	在其定义域内连续
+\end{corollary}
+\begin{corollary}
+	基本初等函数的有限次复合函数在其定义域上连续	
+\end{corollary}

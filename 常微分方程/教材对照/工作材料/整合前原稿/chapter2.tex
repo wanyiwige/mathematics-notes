@@ -1,0 +1,1236 @@
+\setchapterimage{figure/Chapter2封面图}
+\setchapterintro{}
+\chapter{初等积分法}\label{chap:初等积分法}
+
+对于一阶微分方程
+\[
+	F\left(x,y,\dfrac{\dd y}{\dd x}\right)=0,
+\]
+有时很难给出 $y$ 关于 $x$ 的显式解。这时，若方程 $\Phi(x,y,C)=0$
+在常数 $C$ 于某个给定区域内取值时所确定的隐函数 $y=\varphi(x)$
+是上述微分方程的解，就称 $\Phi(x,y,C)=0$ 为该微分方程的隐式解。
+
+\section{变量分离形式}\label{sec:变量分离形式}
+
+\begin{definition}\label{def:变量分离方程}
+	形如
+\[
+	\dfrac{\dd y}{\dd x}=h(x)g(y)
+\]
+的一阶微分方程称为\textbf{变量分离方程}，其中函数 $h(x)$ 在区间 $(a,b)$
+上连续，$g(y)$ 在区间 $(c,d)$ 上连续且不等于零。
+\end{definition}
+
+将方程作等式变形，得到
+\[
+	\dfrac{\dd y}{g(y)}=h(x)\dd x.
+\]
+两端积分可得
+\[
+	G(y)=H(x)+C,
+\]
+其中 $C$ 是任意常数，且
+\[
+	G(y)=\int\dfrac{\dd y}{g(y)},
+	\qquad
+	H(x)=\int h(x)\dd x.
+\]
+这里将不定积分 $G(y)$ 与 $H(x)$ 分别理解为 $1/g(y)$ 与 $h(x)$ 的某一个原函数，
+而把积分常数统一写成 $C$。
+
+由
+\[
+	G'(y)=\dfrac{1}{g(y)}\neq 0
+\]
+可知 $G$ 在所讨论区间内严格单调，因而存在反函数 $G^{-1}$。于是
+\[
+	y=G^{-1}\bigl(H(x)+C\bigr).
+\]
+直接求导即可验证：在表达式有定义的区间内，上式对任意常数 $C$
+都给出原方程的解。
+
+进一步考虑初值条件
+\[
+	y(x_0)=y_0,
+\]
+其中 $a<x_0<b$，$c<y_0<d$。将初值条件代入隐式通解，得到
+\[
+	C=G(y_0)-H(x_0).
+\]
+因此，原方程满足该初值条件的解为
+\[
+	y=G^{-1}\bigl(H(x)+G(y_0)-H(x_0)\bigr).
+\]
+这种求解方法称为\textbf{分离变量法}。
+
+\subsection*{二、可化为变量分离方程的类型}
+
+\subsubsection*{1）一阶线性微分方程}
+
+一阶线性微分方程形如
+\[
+	\dfrac{\dd y}{\dd x}=a(x)y+f(x).
+\]
+当 $f(x)\equiv 0$ 时，称其为\textbf{齐次线性方程}；
+否则称其为\textbf{非齐次线性方程}。以下假设 $a(x)$、$f(x)$ 在区间 $(a,b)$ 上连续。
+
+先求齐次线性方程
+\[
+	\dfrac{\dd y}{\dd x}=a(x)y.
+\]
+当 $y\neq 0$ 时，分离变量得
+\[
+	\dfrac{\dd y}{y}=a(x)\dd x.
+\]
+两端积分，得到
+\[
+	\ln|y|=\int a(x)\dd x+C_1,
+\]
+从而
+\[
+	|y|=\exp\left(\int a(x)\dd x+C_1\right)
+	=e^{C_1}e^{\int a(x)\dd x},
+\]
+即
+\[
+	y=Ce^{\int a(x)\dd x},
+\]
+其中 $C=\pm e^{C_1}$ 是任意非零常数。又因 $y=0$ 也是该齐次方程的解，
+故其通解可统一写成
+\[
+	y=Ce^{\int a(x)\dd x},
+\]
+其中 $C$ 为任意常数。
+
+
+为求非齐次线性方程的通解，将对应齐次方程通解中的常数 $C$
+换成 $x$ 的待定函数 $c(x)$，设
+\[
+	y=c(x)e^{\int a(x)\dd x}.
+\]
+于是
+\[
+	\dfrac{\dd y}{\dd x}
+	=\dfrac{\dd c}{\dd x}e^{\int a(x)\dd x}
+	+c(x)a(x)e^{\int a(x)\dd x}.
+\]
+将上式代入原非齐次线性方程，约去相同项后得到
+\[
+	\dfrac{\dd c}{\dd x}=f(x)e^{-\int a(x)\dd x}.
+\]
+两端积分，得
+\[
+	c(x)=\int f(x)e^{-\int a(x)\dd x}\dd x+C.
+\]
+代回所设表达式，便得非齐次线性方程的通解
+\[
+	y=e^{\int a(x)\dd x}
+	\left(\int f(x)e^{-\int a(x)\dd x}\dd x+C\right).
+\]
+将其写成两项之和，即
+\[
+	y=Ce^{\int a(x)\dd x}
+	+e^{\int a(x)\dd x}\int f(x)e^{-\int a(x)\dd x}\dd x.
+\]
+右端第一项是对应齐次线性方程的通解，第二项是非齐次线性方程的一个特解。
+因此，一阶非齐次线性方程的通解等于对应齐次方程的通解与非齐次方程的一个特解之和。
+上述方法称为\textbf{常数变易法}，所得通解表达式称为\textbf{常数变易公式}。
+
+\subsubsection*{2）Bernoulli 方程}
+
+Bernoulli 方程形如
+\[
+	\dfrac{\dd y}{\dd x}=a(x)y+f(x)y^\alpha.
+\]
+当 $\alpha=0$ 或 $\alpha=1$ 时，它是前述线性微分方程。当
+$\alpha\neq 0,1$ 时，方程虽非线性，却可通过变量替换化为一阶线性方程。
+
+在 $y\neq 0$ 的区间上，用 $y^\alpha$ 除方程两端，得到
+\[
+	y^{-\alpha}\dfrac{\dd y}{\dd x}=a(x)y^{1-\alpha}+f(x).
+\]
+令
+\[
+	z=y^{1-\alpha},
+	\qquad
+	\dfrac{\dd z}{\dd x}=(1-\alpha)y^{-\alpha}\dfrac{\dd y}{\dd x},
+\]
+则
+\[
+	\dfrac{\dd z}{\dd x}=(1-\alpha)a(x)z+(1-\alpha)f(x).
+\]
+这是关于 $z$ 的一阶线性方程。由常数变易公式，求得
+\[
+	\begin{aligned}
+	y^{1-\alpha}
+	={}&e^{\int(1-\alpha)a(x)\dd x}
+	\int(1-\alpha)f(x)e^{-\int(1-\alpha)a(x)\dd x}\dd x\\
+	&+Ce^{\int(1-\alpha)a(x)\dd x},
+	\end{aligned}
+\]
+其中 $C$ 为任意常数。在方程右端有定义时，还应单独考虑因除以 $y^\alpha$
+而可能遗漏的零解 $y=0$。
+
+\subsubsection*{3）齐次方程}
+
+形如
+\[
+	\dfrac{\dd y}{\dd x}=f(x,y)
+\]
+的方程，若右端函数 $f(x,y)$ 是变量 $x,y$ 的零次齐次函数，即对任意非零常数 $\lambda$ 都有
+\[
+	f(\lambda x,\lambda y)=f(x,y),
+\]
+则称为\textbf{齐次方程}。
+
+在该方程中引入新未知函数
+\[
+	u=\dfrac{y}{x},
+	\qquad y=ux,
+\]
+于是
+\[
+	\dfrac{\dd y}{\dd x}=u+x\dfrac{\dd u}{\dd x}.
+\]
+代入方程并利用 $f$ 的零次齐次性，得
+\[
+	u+x\dfrac{\dd u}{\dd x}=f(x,ux)=f(1,u),
+\]
+即
+\[
+	x\dfrac{\dd u}{\dd x}=f(1,u)-u.
+\]
+若 $f(1,u)-u\neq 0$，分离变量并积分可得
+\[
+	\int\dfrac{\dd u}{f(1,u)-u}=\int\dfrac{\dd x}{x}.
+\]
+求出积分后，再以 $y/x$ 代回 $u$，即可得到原方程的通解。
+
+上述分离过程要求 $f(1,u)-u\neq 0$。若 $u_0$ 是 $f(1,u)-u$ 的零点，
+则 $u=u_0$ 是变换后方程的解，从而 $y=u_0x$ 也是原方程的解。若
+$f(1,u)-u\equiv 0$，即 $f(x,y)=y/x$，则原方程本身已经是变量分离形式。
+
+\subsubsection*{4）线性分式形式的微分方程}
+
+考虑方程
+\[
+	\dfrac{\dd y}{\dd x}
+	=f\left(\dfrac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}\right),
+\]
+其中 $a_1,b_1,c_1,a_2,b_2,c_2$ 均为给定常数。它本身未必是齐次方程，
+但可通过变量替换化为齐次方程或变量分离方程。
+
+当 $c_1=c_2=0$ 时，函数
+\[
+	f\left(\dfrac{a_1x+b_1y}{a_2x+b_2y}\right)
+\]
+是零次齐次函数，因而原方程已是齐次方程。
+
+当 $c_1,c_2$ 不全为零时，分以下两种情形讨论。
+
+\textbf{情形 I：}
+\[
+	\Delta=
+	\begin{vmatrix}
+		a_1 & b_1\\
+		a_2 & b_2
+	\end{vmatrix}
+	=a_1b_2-a_2b_1\neq 0.
+\]
+此时可唯一确定常数 $h,k$，使其满足线性方程组
+\[
+	\begin{cases}
+		a_1h+b_1k+c_1=0,\\
+		a_2h+b_2k+c_2=0.
+	\end{cases}
+\]
+由 Cramer 法则，
+\[
+	h=\dfrac{b_1c_2-c_1b_2}{\Delta},
+	\qquad
+	k=\dfrac{a_2c_1-a_1c_2}{\Delta}.
+\]
+作平移变换
+\[
+	x=\xi+h,
+	\qquad
+	y=\eta+k,
+\]
+原方程化为齐次方程
+\[
+	\dfrac{\dd\eta}{\dd\xi}
+	=f\left(\dfrac{a_1\xi+b_1\eta}{a_2\xi+b_2\eta}\right).
+\]
+求得该齐次方程的通解后，以 $x-h$ 代 $\xi$、$y-k$ 代 $\eta$，
+即可得到原方程的通解。
+
+\textbf{情形 II：}
+\[
+	\Delta=a_1b_2-a_2b_1=0.
+\]
+此时有以下三种可能。
+
+\textbf{（i）} 若 $b_1\neq 0$、$a_1\neq 0$，且
+\[
+	\dfrac{a_2}{a_1}=\dfrac{b_2}{b_1}=\lambda,
+\]
+其中 $\lambda$ 为常数，则原方程可写成
+\[
+	\dfrac{\dd y}{\dd x}
+	=f\left(\dfrac{a_1x+b_1y+c_1}{\lambda(a_1x+b_1y)+c_2}\right).
+\]
+引入新变量 $z=a_1x+b_1y$，便有
+\[
+	\dfrac{\dd z}{\dd x}
+	=a_1+b_1f\left(\dfrac{z+c_1}{\lambda z+c_2}\right),
+\]
+它是变量可分离的方程。
+
+\textbf{（ii）} 若 $b_1\neq 0$、$a_1=a_2=0$，或者
+$a_1\neq 0$、$b_1=b_2=0$，则方程分别为
+\[
+	\dfrac{\dd y}{\dd x}=f\left(\dfrac{b_1y+c_1}{b_2y+c_2}\right),
+	\qquad
+	\dfrac{\dd y}{\dd x}=f\left(\dfrac{a_1x+c_1}{a_2x+c_2}\right),
+\]
+它们已经是变量分离形式。
+
+\textbf{（iii）} 若 $b_1=a_1=0$，则原方程为
+\[
+	\dfrac{\dd y}{\dd x}
+	=f\left(\dfrac{c_1}{a_2x+b_2y+c_2}\right).
+\]
+引入新变量 $z=a_2x+b_2y$，可化为变量分离方程
+\[
+	\dfrac{\dd z}{\dd x}
+	=a_2+b_2f\left(\dfrac{c_1}{z+c_2}\right).
+\]
+因此，通过适当的变量替换，总可以将这类线性分式方程化为变量分离方程，
+从而求出其通解。
+
+\section{恰当方程形式}\label{sec:恰当方程形式}
+
+\begin{definition}\label{def:恰当方程与首次积分}
+	将一阶微分方程写成
+\[
+	M(x,y)\dd x+N(x,y)\dd y=0.
+\]
+如果方程左端恰好是某个函数 $u=U(x,y)$ 的全微分，即
+\[
+	\dd U(x,y)=M(x,y)\dd x+N(x,y)\dd y,
+\]
+则称该方程为\textbf{恰当方程}或\textbf{全微分方程}。这时
+\[
+	U(x,y)=C
+\]
+是方程的隐式通解，其中 $C$ 为任意常数；函数 $U(x,y)$ 称为方程的\textbf{首次积分}。
+\end{definition}
+
+若 $U$ 在点 $(x,y)$ 可微，则
+\[
+	\dd U=\dfrac{\partial U}{\partial x}\dd x
+	+\dfrac{\partial U}{\partial y}\dd y.
+\]
+因此，方程为恰当方程时必有
+\[
+	\dfrac{\partial U}{\partial x}=M(x,y),
+	\qquad
+	\dfrac{\partial U}{\partial y}=N(x,y),
+\]
+从而原方程等价于
+\[
+	\dd U(x,y)=0.
+\]
+
+若 $y=\phi(x)$ 是原方程的解，则
+\[
+	\dd U\bigl(x,\phi(x)\bigr)=0,
+\]
+故 $U\bigl(x,\phi(x)\bigr)=C$。这说明原方程的解由隐式方程
+$U(x,y)=C$ 确定。反之，若 $U(x,y)=C$ 确定一个可微的隐函数
+$y=\phi(x)$，则对 $x$ 求导可得
+\[
+	\dfrac{\partial U}{\partial x}
+	+\dfrac{\partial U}{\partial y}\dfrac{\dd y}{\dd x}=0,
+\]
+即
+\[
+	M(x,y)\dd x+N(x,y)\dd y=0.
+\]
+所以由 $U(x,y)=C$ 确定的可微隐函数也是原方程的解。
+
+\begin{theorem}\label{thm:恰当方程的判别条件}\label{恰当方程的判别条件}
+设函数 $M,N$ 在开矩形区域 $G$ 内具有连续的一阶偏导数，则方程
+\[
+	M(x,y)\dd x+N(x,y)\dd y=0
+\]
+为恰当方程的充分必要条件是
+\[
+	\dfrac{\partial M}{\partial y}
+	=\dfrac{\partial N}{\partial x}.
+\]
+若该条件成立，则对区域 $G$ 内任取一点 $(x_0,y_0)$，方程的通解可写成
+\[
+	\int_{x_0}^{x}M(s,y)\dd s
+	+\int_{y_0}^{y}N(x_0,t)\dd t=C,
+\]
+或等价地写成
+\[
+	\int_{x_0}^{x}M(s,y_0)\dd s
+	+\int_{y_0}^{y}N(x,t)\dd t=C.
+\]
+\end{theorem}
+
+\begin{proof}
+若方程恰当，则存在 $U(x,y)$ 使 $U_x=M$、$U_y=N$。由偏导数的连续性，
+\[
+	\dfrac{\partial M}{\partial y}
+	=\dfrac{\partial^2U}{\partial y\partial x}
+	=\dfrac{\partial^2U}{\partial x\partial y}
+	=\dfrac{\partial N}{\partial x},
+\]
+故条件必要。
+
+反之，设 $M_y=N_x$。由 $U_x=M$，可令
+\[
+	U(x,y)=\int_{x_0}^{x}M(s,y)\dd s+\xi(y).
+\]
+再由 $U_y=N$ 得
+\[
+	\begin{aligned}
+	N(x,y)
+	&=\int_{x_0}^{x}\dfrac{\partial M}{\partial y}(s,y)\dd s+\xi'(y)\\
+	&=\int_{x_0}^{x}\dfrac{\partial N}{\partial x}(s,y)\dd s+\xi'(y)\\
+	&=N(x,y)-N(x_0,y)+\xi'(y),
+	\end{aligned}
+\]
+所以 $\xi'(y)=N(x_0,y)$，可取
+\[
+	\xi(y)=\int_{y_0}^{y}N(x_0,t)\dd t.
+\]
+于是得到第一种通解表达式。若从 $U_y=N$ 出发作同样推导，便得到第二种表达式。
+\end{proof}
+
+有些方程即使经过分组，也不能直接看出是恰当方程。这时可以尝试对方程作等式变形。
+注意到原方程与
+\[
+	\mu(x,y)\bigl(M(x,y)\dd x+N(x,y)\dd y\bigr)=0
+\]
+在 $\mu(x,y)\neq 0$ 时等价，这提示我们寻找一个适当的因子 $\mu(x,y)$。
+
+\begin{definition}\label{def:积分因子}
+	如果原方程本身不是恰当方程，但乘以某个非零函数 $\mu=\mu(x,y)$ 后，方程
+\[
+	\mu M\dd x+\mu N\dd y=0
+\]
+成为恰当方程，即存在函数 $W(x,y)$ 使
+\[
+	\dd W(x,y)=\mu(x,y)M(x,y)\dd x+\mu(x,y)N(x,y)\dd y,
+\]
+则称 $\mu(x,y)$ 为原方程的\textbf{积分因子}。此时 $W(x,y)=C$
+既是乘以积分因子后所得方程的通解，也是原方程的通解。
+\end{definition}
+
+由定理~\ref{thm:恰当方程的判别条件}，$\mu(x,y)$ 是积分因子的充分必要条件为
+\[
+	\dfrac{\partial(\mu M)}{\partial y}
+	=\dfrac{\partial(\mu N)}{\partial x}.
+\]
+展开后得到关于 $\mu$ 的一阶线性偏微分方程
+\[
+	N\dfrac{\partial\mu}{\partial x}
+	-M\dfrac{\partial\mu}{\partial y}
+	=\left(\dfrac{\partial M}{\partial y}
+	-\dfrac{\partial N}{\partial x}\right)\mu.
+\]
+根据一阶线性偏微分方程的理论，这是有解的，但是，一般而言，求解这个偏微分方程可能比求解原方程更困难；但在某些特殊情况下，
+可以由它直接找到积分因子。
+
+例如，设积分因子只依赖于 $x$，即 $\mu=\mu(x)$，则
+\[
+	N\dfrac{\dd\mu}{\dd x}
+	=\left(\dfrac{\partial M}{\partial y}
+	-\dfrac{\partial N}{\partial x}\right)\mu,
+\]
+从而
+\[
+	\dfrac{\dd\mu}{\mu}
+	=\dfrac{1}{N}\left(
+	\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}
+	\right)\dd x.
+\]
+为方便起见，记
+\[
+	E(x,y)=\dfrac{\partial M}{\partial y}
+	-\dfrac{\partial N}{\partial x},
+\]
+并称 $E(x,y)=0$ 为\textbf{恰当判别式}。当且仅当 $E/N$ 只依赖于 $x$
+而与 $y$ 无关时，方程存在只依赖于 $x$ 的积分因子
+\[
+	\mu(x)=\exp\left(\int\dfrac{E}{N}\dd x\right).
+\]
+类似地，当且仅当 $E/M$ 只依赖于 $y$ 而与 $x$ 无关时，方程存在只依赖于 $y$ 的积分因子
+\[
+	\mu(y)=\exp\left(-\int\dfrac{E}{M}\dd y\right).
+\]
+
+一般地，还有如下结论。
+
+\begin{theorem}\label{thm:积分因子的复合构造}
+如果方程
+\[
+	M(x,y)\dd x+N(x,y)\dd y=0
+\]
+有积分因子 $\mu(x,y)$ 和相应的原函数 $U(x,y)$，即
+\[
+	\dd U(x,y)=\mu(x,y)M(x,y)\dd x+\mu(x,y)N(x,y)\dd y,
+\]
+那么
+\[
+	\mu(x,y)h\bigl(U(x,y)\bigr)
+\]
+也是该方程的积分因子，其中 $h$ 是任意可微的非零函数。
+\end{theorem}
+
+\begin{proof}
+设 $H'=h$，则
+\[
+	\begin{aligned}
+	&\mu h(U)M\dd x+\mu h(U)N\dd y\\
+	&\qquad=h(U)\bigl(\mu M\dd x+\mu N\dd y\bigr)\\
+	&\qquad=h(U)\dd U=\dd H(U),
+	\end{aligned}
+\]
+故 $\mu h(U)$ 仍能使原方程化为恰当方程。
+\end{proof}
+
+最后，假设方程左端可分成两组：
+\[
+	\bigl(M_1\dd x+N_1\dd y\bigr)
+	+\bigl(M_2\dd x+N_2\dd y\bigr)=0.
+\]
+若两组分别有积分因子 $\mu_1,\mu_2$ 及相应的原函数 $U_1,U_2$，
+则对任意可微非零函数 $h_1,h_2$，两组分别有积分因子
+$\mu_1h_1(U_1)$ 与 $\mu_2h_2(U_2)$。为了找到两组公共的积分因子，
+只需选取适当的 $h_1,h_2$，使
+\[
+	\mu_1h_1(U_1)=\mu_2h_2(U_2).
+\]
+如果这样的函数已经找到，那么
+\[
+	\mu=\mu_1h_1(U_1)
+\]
+就是原方程的一个积分因子。
+\begin{proposition}\label{prop:齐次微分形式的积分因子}
+齐次方程
+$$
+M(x, y) \mathrm{d} x+N(x, y) \mathrm{d} y=0
+$$
+
+当 $x M+y N \neq 0$ 时存在积分因子
+
+$$
+\mu=\dfrac{1}{x M+y N} .
+$$
+\end{proposition}
+\begin{proof}
+	设$u=\dfrac{y}{x},y=ux$,那么$\dd y=x\dd u+u\dd x$,由$M,N$齐次，$\exists \phi(u)$,使得$M=N\phi (u)$,那么
+	\[\mu = \dfrac{1}{xN(u+\phi(u))}\]
+	带入方程得
+	\[N(x\dd u +(u+\phi(u))\dd x)=0\]
+	乘$\mu$,得
+	\[\dfrac{\dd x}{x}+\dfrac{\dd u }{u+\phi(u)}=0\]
+	显然是恰当方程。
+\end{proof}
+通常的，我们会遇到以下的二元函数微分公式
+\[ \begin{aligned}
+	\dd (xy)&=y\dd x+x\dd y\\
+	\dd (\dfrac{y}{x})&=\dfrac{x\dd y-y\dd x}{x^2}\\
+	\dd (x^2+y^2)&=2(x\dd x+y\dd y)\\
+	\dd (\arctan\dfrac{y}{x})&=\dfrac{x\dd y-y\dd x}{x^2+y^2}\\
+	\dd(\ln\dfrac{y}{x})&=\dfrac{x\dd y-y\dd x}{xy}
+\end{aligned} \]
+
+\section{隐式方程}\label{sec:隐式方程}
+
+考虑一般形式的一阶隐式微分方程
+\[
+	F\left(x,y,\dfrac{\dd y}{\dd x}\right)=0.
+\]
+求解这类方程的基本思想，是把
+\[
+	p=\dfrac{\dd y}{\dd x}
+\]
+看成独立变量，考虑代数方程 $F(x,y,p)=0$ 所定义的 $\mathbb{R}^3$
+中的曲面，将其参数化后，再通过变量替换把原方程化为导数已解出的显式方程，
+最后利用前两节的方法求解。
+
+对于一般形式的方程，具体步骤如下。
+
+\textbf{第一步：参数化曲面。}
+将曲面 $F(x,y,p)=0$ 表示成参数形式
+\[
+	x=\phi(s,t),\qquad
+	y=\psi(s,t),\qquad
+	p=\kappa(s,t).
+\]
+
+\textbf{第二步：写出微分关系。}
+对 $x,y$ 求全微分，得到
+\[
+	\dd x=\dfrac{\partial\phi}{\partial s}\dd s
+	+\dfrac{\partial\phi}{\partial t}\dd t,
+\]
+\[
+	\dd y=\dfrac{\partial\psi}{\partial s}\dd s
+	+\dfrac{\partial\psi}{\partial t}\dd t.
+\]
+又因为 $p=\dfrac{\dd y}{\dd x}=\kappa(s,t)$，所以
+\[
+	\dd y=\kappa\,\dd x.
+\]
+
+\textbf{第三步：得到参数间的微分方程。}
+将上述微分式代入 $\dd y=\kappa\,\dd x$，有
+\[
+	\dfrac{\partial\psi}{\partial s}\dd s
+	+\dfrac{\partial\psi}{\partial t}\dd t
+	=
+	\kappa\left(
+	\dfrac{\partial\phi}{\partial s}\dd s
+	+\dfrac{\partial\phi}{\partial t}\dd t
+	\right).
+\]
+合并同类项，得到
+\[
+	\left(
+	\dfrac{\partial\psi}{\partial s}
+	-\kappa\dfrac{\partial\phi}{\partial s}
+	\right)\dd s
+	+
+	\left(
+	\dfrac{\partial\psi}{\partial t}
+	-\kappa\dfrac{\partial\phi}{\partial t}
+	\right)\dd t=0.
+\]
+这是关于参数 $s,t$ 的一阶微分方程，可用前两节的方法求解。
+
+\textbf{第四步：代回参数表示。}
+若上式的通解可写成
+\[
+	s=w(t,C),
+\]
+则代回曲面的参数表示，得到原方程的参数形式解
+\[
+	\begin{cases}
+		x=\phi\bigl(w(t,C),t\bigr),\\
+		y=\psi\bigl(w(t,C),t\bigr),
+	\end{cases}
+\]
+其中 $C$ 为任意常数。若参数方程的通解写成 $t=w(s,C)$，也可作类似处理。
+
+下面用这一方法讨论几类特殊形式的一阶隐式方程。
+
+\subsubsection*{1）可以解出 \(y\) 的方程}
+
+设方程可写成
+\[
+	y=f\left(x,\dfrac{\dd y}{\dd x}\right),
+\]
+其中 $f$ 具有连续的一阶偏导数。令 $p=\dd y/\dd x$，则曲面
+$F(x,y,p)=0$ 可参数化为
+\[
+	x=x,\qquad y=f(x,p),\qquad p=p,
+\]
+其中 $x,p$ 为参数。对 $y=f(x,p)$ 求微分，得到
+\[
+	\dd y=\dfrac{\partial f}{\partial x}(x,p)\dd x
+	+\dfrac{\partial f}{\partial p}(x,p)\dd p.
+\]
+利用 $\dd y=p\,\dd x$，可得关于 $x,p$ 的对称形式方程
+\[
+	\left(
+	p-\dfrac{\partial f}{\partial x}(x,p)
+	\right)\dd x
+	-\dfrac{\partial f}{\partial p}(x,p)\dd p=0.
+\]
+求出该方程后，再由 $y=f(x,p)$ 即可得到原方程的参数形式解。
+
+\subsubsection*{2）可以解出 \(x\) 的方程}
+
+设方程可写成
+\[
+	x=f\left(y,\dfrac{\dd y}{\dd x}\right),
+\]
+其中 $f$ 具有连续的一阶偏导数。令 $p=\dfrac{\dd y}{\dd x}$，曲面可参数化为
+\[
+	x=f(y,p),\qquad y=y,\qquad p=p,
+\]
+其中 $y,p$ 为参数。对 $x=f(y,p)$ 关于 $x$ 求导，得到
+\[
+	1=\dfrac{\partial f}{\partial y}(y,p)p
+	+\dfrac{\partial f}{\partial p}(y,p)\dfrac{\dd p}{\dd x}.
+\]
+由于
+\[
+	\dfrac{\dd p}{\dd x}
+	=\dfrac{\dd p}{\dd y}\dfrac{\dd y}{\dd x}
+	=p\dfrac{\dd p}{\dd y},
+\]
+所以
+\[
+	1=\dfrac{\partial f}{\partial y}(y,p)p
+	+\dfrac{\partial f}{\partial p}(y,p)p\dfrac{\dd p}{\dd y}.
+\]
+由此解出
+\[
+	\dfrac{\dd p}{\dd y}
+	=
+	\dfrac{\dfrac{1}{p}-\dfrac{\partial f}{\partial y}(y,p)}
+	{\dfrac{\partial f}{\partial p}(y,p)}.
+\]
+这便化成了关于 $p(y)$ 的一阶显式微分方程。
+
+\subsubsection*{3）不显含 \(y\) 的隐式方程}
+
+设方程为
+\[
+	F\left(x,\dfrac{\dd y}{\dd x}\right)=0.
+\]
+令 $p=\dd y/\dd x$。代数方程 $F(x,p)=0$ 表示 $Oxp$ 平面上的一条曲线，
+设其参数表示为
+\[
+	x=\phi(s),\qquad p=\psi(s),
+\]
+其中 $s$ 为参数。由微分关系
+\[
+	\dd y=p\,\dd x=\psi(s)\dd x,
+	\qquad
+	\dd x=\phi'(s)\dd s,
+\]
+可得
+\[
+	\dd y=\psi(s)\phi'(s)\dd s.
+\]
+这是变量分离方程，其通解为
+\[
+	y(s)=\int\psi(s)\phi'(s)\dd s+C.
+\]
+因此原方程的参数形式通解为
+\[
+	\begin{cases}
+		x=\phi(s),\\
+		y=\displaystyle\int\psi(s)\phi'(s)\dd s+C,
+	\end{cases}
+\]
+其中 $C$ 为任意常数。
+
+\subsubsection*{4）不显含 \(x\) 的隐式方程}
+
+设方程为
+\[
+	F\left(y,\dfrac{\dd y}{\dd x}\right)=0.
+\]
+令 $p=\dd y/\dd x$。代数方程 $F(y,p)=0$ 表示 $Oyp$ 平面上的一条曲线，
+设其参数表示为
+\[
+	y=\phi(s),\qquad p=\psi(s).
+\]
+由
+\[
+	\dd y=\phi'(s)\dd s,
+	\qquad
+	\dd y=p\,\dd x=\psi(s)\dd x,
+\]
+可得
+\[
+	\dd x=\dfrac{\phi'(s)}{\psi(s)}\dd s.
+\]
+故原方程的参数形式通解为
+\[
+	\begin{cases}
+		x=\displaystyle\int\dfrac{\phi'(s)}{\psi(s)}\dd s+C,\\
+		y=\phi(s),
+	\end{cases}
+\]
+其中 $C$ 为任意常数。
+
+\section{初等积分法的一些应用}\label{sec:初等积分法的一些应用}
+
+\subsection*{一、奇解}
+
+\begin{definition}\label{def:包络}
+	设
+\[
+	\Phi(x,y,C)=0
+\]
+为给定的平面单参数曲线族，其中 $C$ 为参数，$\Phi(x,y,C)$ 关于
+$x,y,C$ 连续可微。曲线族的\textbf{包络}是指这样一条曲线
+$\Gamma$：它本身不属于该曲线族，但通过 $\Gamma$ 上的每一点，都有
+曲线族中的一条曲线与 $\Gamma$ 在该点相切。
+\end{definition}
+
+根据微分几何里的知识，若曲线族存在包络，则包络上的点应满足
+\[
+	\begin{cases}
+		\Phi(x,y,C)=0,\\
+		\dfrac{\partial\Phi}{\partial C}(x,y,C)=0.
+	\end{cases}
+\]
+从这个方程组中消去 $C$，可得到关于 $x,y$ 的关系
+\[
+	\Omega(x,y)=0.
+\]
+由此确定的曲线称为曲线族的 \textbf{$C$-判别曲线}。上述条件只是包络存在的
+必要条件；若判别曲线有多个分支，还需要逐一验证哪些分支确为包络。
+
+\begin{theorem}\label{thm:奇解的必要条件}
+	设函数 $F(x,y,p)$ 连续，且关于 $x,y,p$ 具有连续的一阶偏导数，则方程
+	\[
+		F\left(x,y,\dfrac{\dd y}{\dd x}\right)=0
+	\]
+	的任一奇解 $y=\phi(x)$ 都满足
+	\[
+		\begin{cases}
+			F(x,y,p)=0,\\
+			\dfrac{\partial F}{\partial p}(x,y,p)=0,
+		\end{cases}
+		\qquad p=\dfrac{\dd y}{\dd x},
+	\]
+	或满足从该方程组中消去 $p$ 后所得的关系
+	\[
+		\Delta(x,y)=0.
+	\]
+\end{theorem}
+
+\begin{proof}
+	奇解本身是原方程的解，故满足 $F(x,y,p)=0$。若在奇解上的某点
+	$(x_0,y_0,p_0)$ 有
+	\[
+		\dfrac{\partial F}{\partial p}(x_0,y_0,p_0)\neq 0,
+	\]
+	则由隐函数定理，在该点附近可将方程唯一地写成
+	\[
+		\dfrac{\dd y}{\dd x}=f(x,y),
+	\]
+	其中 $f$ 连续且关于 $y$ 连续可微。由第5章的Picard存在唯一性定理，该初值问题的解具有唯一性，因而不可能
+	另有积分曲线在此处与奇解相切，这与奇解的定义矛盾。因此奇解上必有
+	$\partial F/\partial p=0$。
+\end{proof}
+
+\begin{definition}\label{def:p判别曲线}
+	由联立条件
+	$F(x,y,p)=0$ 与 $\dfrac{\partial F}{\partial p}(x,y,p)=0$
+	消去 $p$ 所得到的曲线称为
+	\textbf{$p$-判别曲线}。
+\end{definition}
+
+若原方程存在奇解，
+则该奇解对应的积分曲线必在 $p$-判别曲线中；反过来，判别曲线是否为奇解，
+仍需代回原方程并检验其切触性质。
+
+\subsection*{二、高阶微分方程}
+
+对于 $n$ 阶微分方程
+\[
+	F\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)=0,
+\]
+一般没有普遍适用的初等解法。基本思路是通过变量变换降低方程的阶数。
+
+\subsubsection*{1）不显含未知函数 \(y\) 的方程}
+
+设方程为
+\[
+	F\left(
+		x,\dfrac{\dd^k y}{\dd x^k},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)=0,
+	\qquad k\geqslant 1.
+\]
+令
+\[
+	p=\dfrac{\dd^k y}{\dd x^k},
+\]
+原方程化为关于 $p$ 的 $n-k$ 阶方程
+\[
+	F\left(
+		x,p,\dfrac{\dd p}{\dd x},\ldots,
+		\dfrac{\dd^{n-k}p}{\dd x^{n-k}}
+	\right)=0.
+\]
+若其通解为
+\[
+	p=\varphi(x,C_1,\ldots,C_{n-k}),
+\]
+则再由
+\[
+	\dfrac{\dd^k y}{\dd x^k}
+	=\varphi(x,C_1,\ldots,C_{n-k})
+\]
+连续积分 $k$ 次，便得到原方程的通解
+\[
+	y=\psi(x,C_1,C_2,\ldots,C_n).
+\]
+
+\subsubsection*{2）不显含自变量 \(x\) 的方程}
+
+设
+\[
+	F\left(
+		y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)=0.
+\]
+这种方程也称为自治微分方程。令
+\[
+	p=\dfrac{\dd y}{\dd x},
+\]
+并把 $p$ 看成 $y$ 的函数，则
+\[
+	\dfrac{\dd^2 y}{\dd x^2}
+	=\dfrac{\dd}{\dd x}\left(\dfrac{\dd y}{\dd x}\right)
+	=\dfrac{\dd p}{\dd y}\dfrac{\dd y}{\dd x}
+	=p\dfrac{\dd p}{\dd y}.
+\]
+利用数学归纳法，不难证明，对任意 $1<j\leqslant n$，
+$\dfrac{\dd^j y }{\dd x^j}$ 都能用
+\[
+	y, p, \dfrac{\dd p}{\dd y},\ldots,
+	\dfrac{\dd^{j-1}p}{\dd y^{j-1}}
+\]
+表示。因此原方程可化为
+\[
+	G\left(
+		y,p,\dfrac{\dd p}{\dd y},\ldots,
+		\dfrac{\dd^{n-1}p}{\dd y^{n-1}}
+	\right)=0,
+\]
+这是关于 $p(y)$ 的 $n-1$ 阶微分方程。
+
+\subsubsection*{3）齐次方程}
+
+设方程
+\[
+	F\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)=0
+\]
+的左端关于变量
+\[
+	y, \dfrac{\dd y}{\dd x},\ldots,
+	\dfrac{\dd^n y}{\dd x^n}
+\]
+是 $k$ 次齐次函数，即
+\[
+	F\left(
+		x,ty,t\dfrac{\dd y}{\dd x},\ldots,
+		t\dfrac{\dd^n y}{\dd x^n}
+	\right)
+	=t^kF\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right),
+	\qquad t\neq 0.
+\]
+当 $y\neq 0$ 时，原方程等价于
+\[
+	F\left(
+		x,1,\dfrac{1}{y}\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{1}{y}\dfrac{\dd^n y}{\dd x^n}
+	\right)=0.
+\]
+令
+\[
+	p=\dfrac{1}{y}\dfrac{\dd y}{\dd x},
+\]
+则
+\[
+	\dfrac{\dd y}{\dd x}=yp,
+	\qquad
+	\dfrac{\dd^2 y}{\dd x^2}
+	=y\left(p^2+\dfrac{\dd p}{\dd x}\right).
+\]
+用数学归纳法可知，对任意 $1<j\leqslant n$，
+$\dfrac{1}{y}\dfrac{\dd^j y}{\dd x^j}$ 都能用
+\[
+	p, \dfrac{\dd p}{\dd x},\ldots,
+	\dfrac{\dd^{j-1}p}{\dd x^{j-1}}
+\]
+表示。代入后得到
+\[
+	G\left(
+		x,p,\dfrac{\dd p}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}p}{\dd x^{n-1}}
+	\right)=0,
+\]
+从而把原方程降低一阶。
+
+\subsubsection*{4）全微分方程}
+
+设
+\[
+	F\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)=0
+\]
+的左端是某个表达式
+\[
+	\Phi\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}y}{\dd x^{n-1}}
+	\right)
+\]
+关于 $x$ 的全导数，即
+\[
+	F\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)
+	=
+	\dfrac{\dd}{\dd x}
+	\Phi\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}y}{\dd x^{n-1}}
+	\right).
+\]
+若 $\Phi(x_1,x_2,\ldots,x_{n+1})$ 的一阶偏导数存在且连续，则由链式法则
+\[
+	\begin{aligned}
+	F\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^n y}{\dd x^n}
+	\right)
+	={}&\dfrac{\partial\Phi}{\partial x_1}
+	+\dfrac{\partial\Phi}{\partial x_2}\dfrac{\dd y}{\dd x}
+	+\cdots
+	+\dfrac{\partial\Phi}{\partial x_{n+1}}
+	\dfrac{\dd^n y}{\dd x^n},
+	\end{aligned}
+\]
+其中各偏导数在
+\[
+	(x_1,x_2,\ldots,x_{n+1})
+	=\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}y}{\dd x^{n-1}}
+	\right)
+\]
+处取值。此时原方程等价于
+\[
+	\Phi\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}y}{\dd x^{n-1}}
+	\right)=C,
+\]
+因而方程降低一阶。若原方程本身不是全微分方程，但乘以适当函数
+\[
+	\mu\left(
+		x,y,\dfrac{\dd y}{\dd x},\ldots,
+		\dfrac{\dd^{n-1}y}{\dd x^{n-1}}
+	\right)
+\]
+后成为全微分方程，则称 $\mu$ 为积分因子。
+
+\subsection*{三、平面保守系统}
+
+在第一章的弹簧振子模型中，若不考虑阻力，则方程为
+\[
+	\dfrac{\dd^2x}{\dd t^2}+\dfrac{k}{m}x=0.
+\]
+它描述线性弹簧振子的自由振动，是一个二阶自治微分方程。令
+\[
+	y=\dfrac{\dd x}{\dd t},
+\]
+则
+\[
+	\dfrac{\dd^2x}{\dd t^2}
+	=y\dfrac{\dd y}{\dd x}.
+\]
+代入原方程可得对称形式的一阶方程
+\[
+	kx\,\dd x+my\,\dd y=0.
+\]
+这是一个恰当方程，其原函数为
+\[
+	H(x,y)=\dfrac{m}{2}y^2+\dfrac{k}{2}x^2.
+\]
+因此方程的积分曲线为
+\[
+	H(x,y)=C.
+\]
+当 $k>0$ 时，对每个 $C>0$，曲线 $H(x,y)=C$ 是椭圆；当 $k<0$ 时，
+对每个 $C\neq 0$，曲线 $H(x,y)=C$ 是双曲线。
+
+\begin{definition}\label{def:相平面轨道与相图}
+	通常把系统的运动刻画在 $Oxy$ 平面上，称该平面为\textbf{相平面}，
+其中的积分曲线称为系统的\textbf{轨道}，轨道的分布图称为\textbf{相图}。
+
+\end{definition}
+图中箭头表示当 $t\to+\infty$ 时 $(x,y)$ 的运动方向。
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{0.46\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=0.9,>=Stealth]
+			\draw[->] (-3.1,0)--(3.1,0) node[right] {$x$};
+			\draw[->] (0,-2.2)--(0,2.2) node[above] {$y$};
+			\node[below left] at (0,0) {$O$};
+			\draw (0,0) ellipse (1.25 and 0.72);
+			\draw (0,0) ellipse (2.00 and 1.15);
+			\draw (0,0) ellipse (2.72 and 1.58);
+			\draw[->] plot[domain=130:75,samples=20]
+				({1.25*cos(\x)},{0.72*sin(\x)});
+			\draw[->] plot[domain=40:-10,samples=20]
+				({2*cos(\x)},{1.15*sin(\x)});
+			\draw[->] plot[domain=-110:-165,samples=20]
+				({2.72*cos(\x)},{1.58*sin(\x)});
+		\end{tikzpicture}
+
+		\small $k>0$ 时的相图
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.46\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=0.9,>=Stealth]
+			\draw[->] (-3.1,0)--(3.1,0) node[right] {$x$};
+			\draw[->] (0,-2.2)--(0,2.2) node[above] {$y$};
+			\node[below left] at (0,0) {$O$};
+			\draw (-2.7,-1.85)--(2.7,1.85);
+			\draw (-2.7,1.85)--(2.7,-1.85);
+			\foreach \a in {0.35,0.85,1.45}{
+				\draw plot[domain=-2.6:2.6,samples=80]
+					(\x,{sqrt(0.48*\x*\x+\a)});
+				\draw plot[domain=-2.6:2.6,samples=80]
+					(\x,{-sqrt(0.48*\x*\x+\a)});
+				\draw plot[domain=-1.85:1.85,samples=80]
+					({sqrt(2.08*\x*\x+2.08*\a)},\x);
+				\draw plot[domain=-1.85:1.85,samples=80]
+					({-sqrt(2.08*\x*\x+2.08*\a)},\x);
+			}
+			\draw[->] (1.55,1.28)--(1.92,1.55);
+			\draw[->] (-1.92,1.55)--(-1.55,1.28);
+			\draw[->] (1.92,-1.55)--(1.55,-1.28);
+			\draw[->] (-1.55,-1.28)--(-1.92,-1.55);
+		\end{tikzpicture}
+
+		\small $k<0$ 时的相图
+	\end{minipage}
+\end{figure}
+
+进一步看，
+\[
+	\dfrac{m}{2}y^2
+	\qquad\text{与}\qquad
+	\dfrac{k}{2}x^2
+\]
+分别表示振子的动能与势能，所以 $H(x,y)$ 是系统的总机械能。
+关系 $H(x,y)=C$ 表明沿任意一条轨道总机械能恒定不变，因而称该系统为
+\textbf{保守系统}。它也是一个平面 Hamilton 系统，其运动轨道位于能量等位线上。
+特别地，当 $k>0$ 时，相图中的闭轨道说明弹簧振子的自由振动是周期运动。
+
+上面的方程是更一般的 Newton 系统
+\[
+	\dfrac{\dd^2x}{\dd t^2}+g(x)=0
+\]
+的特殊情形。仍令 $y=\dfrac{\dd x}{\dd t}$，方程可化为
+\[
+	y\,\dd y+g(x)\,\dd x=0.
+\]
+它具有总机械能
+\[
+	H(x,y)=\dfrac{1}{2}y^2+G(x),
+	\qquad
+	G(x)=\int_0^x g(s)\,\dd s.
+\]
+因此其积分曲线为
+\[
+	H(x,y)=C.
+\]
+由
+\[
+	y=\pm\sqrt{2\bigl(C-G(x)\bigr)}
+\]
+可知，$x(t)$ 可通过求解变量分离方程
+\[
+	\dfrac{\dd x}{\dd t}
+	=\pm\sqrt{2\bigl(C-G(x)\bigr)}
+\]
+得到。
+
+\subsection*{四、Riccati 方程}
+
+\begin{definition}\label{def:Riccati方程}
+	Riccati 方程是一类右端关于未知函数为二次多项式的一阶微分方程，写成
+\[
+	\dfrac{\dd x}{\dd t}
+	=a(t)x^2+b(t)x+c(t),
+\]
+其中 $a,b,c$ 在区间 $I$ 上连续，且 $a(t)\neq 0$。
+\end{definition}
+若已知一个特解
+$\phi(t)$，作变换
+\[
+	y=x-\phi(t),
+\]
+便可将原方程化为 Bernoulli 方程
+\[
+	\dfrac{\dd y}{\dd t}
+	=\bigl(2a(t)\phi(t)+b(t)\bigr)y+a(t)y^2,
+\]
+从而用初等积分法求出通解。
+
+下面考虑形式较为具体的 Riccati 方程
+\[
+	\dfrac{\dd x}{\dd t}=-x^2+ct^m,
+\]
+其中 $c$ 为常数，且 $t\neq 0$、$x\neq 0$。当 $m=0$ 时，该方程已经是
+变量分离方程；当 $m=-2$ 时，作变换 $y=tx$，可化为
+\[
+	\dfrac{\dd y}{\dd t}
+	=\dfrac{-y^2+y+c}{t},
+\]
+仍是变量分离方程。
+
+当
+\[
+	m=\dfrac{-4k}{2k+1}
+\]
+时，通过变换
+\[
+	t=\tau^{-\dfrac{1}{m+1}},
+	\qquad
+	x=\left(\dfrac{c}{m+1}\right)
+	\dfrac{1}{\tau-y\tau^2},
+\]
+原方程仍可化为同一类型
+\[
+	\dfrac{\dd y}{\dd\tau}
+	=-y^2+c'\tau^n,
+\]
+其中
+\[
+	c'=\dfrac{c}{(m+1)^2},
+	\qquad
+	n=\dfrac{-4(k-1)}{2(k-1)+1}.
+\]
+重复上述过程 $k$ 次后，指数便降为零，从而得到变量分离方程。类似地，
+当
+\[
+	m=\dfrac{-4k}{2k-1}
+\]
+时也可作同样的逐次化简。因此
+\[
+	m=0,\ -2,\ \dfrac{-4k}{2k\pm 1},
+	\qquad k=1,2,\ldots
+\]
+是该 Riccati 方程能够用初等积分法求解的充分条件。Liouville 于 1841 年证明，
+这一条件也是必要的。
+
+这个例子说明，并非所有微分方程都能用初等积分法写出通解，即使方程的形式
+看起来很简单也是如此。因此，在解析求解之外，还需要从方程本身出发研究解的
+存在性、唯一性、周期性、有界性与稳定性等性质。

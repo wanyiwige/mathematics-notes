@@ -1,0 +1,3449 @@
+
+\newcommand{\red}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}}
+\newcommand{\darkblue}[1]
+{\textcolor[rgb]{0.00,0.00,0.50}{#1}}
+\newcommand{\darkgreen}[1]
+{\textcolor[rgb]{0.00,0.37,0.00}{#1}}
+\newcommand{\darkred}[1]{\textcolor[rgb]{0.60,0.00,0.00}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.50,0.30,0.00}{#1}}
+\newcommand{\purple}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\bkt}[1]{\left\langle #1 \right\rangle}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}
+\newcommand{\z}{\boldsymbol{z}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\X}{\mathrm{X}}
+\newcommand{\Y}{\mathrm{Y}}
+\newcommand{\B}{\mathcal{B}}
+\chapter*{第三章　重积分}
+
+
+
+
+\section*{§1　有界闭区域上的重积分}
+
+\subsection*{Riemann 意义下的平面面积}
+
+设 $D$ 为 $\R^2$ 上的有界子集，设
+$U=[a,b]\times[c,d]$ 为包含 $D$ 的一个闭矩形。
+在 $[a,b]$ 中插入分点
+\[
+a=x_0<x_1<\cdots<x_n=b,
+\]
+在 $[c,d]$ 中插入分点
+\[
+c=y_0<y_1<\cdots<y_m=d.
+\]
+这些分点作平行于坐标轴的直线，将 $U$ 分成许多小矩形
+\[
+U_{ij}=[x_{i-1},x_i]\times[y_{j-1},y_j],
+\qquad i=1,2,\ldots,n,\quad j=1,2,\ldots,m.
+\]
+这称为 $U$ 的一个划分。把完全包含于 $D$ 内的那些小矩形的面积之和
+记为 $mA$，与 $D$ 的交集非空的那些小矩形的面积之和记为 $mB$，
+则显然它们与 $U$ 的划分有关，且有 $mA\le mB$。
+
+
+\includegraphics[width=0.29\textwidth]{assets/fig13_1_1_source_hd.png}
+
+
+
+
+
+
+\textbf{命题 3.1.1}
+
+若在原有划分的基础上，在 $[a,b]$ 和 $[c,d]$ 中再增加有限个分点
+（所得的新划分称为原来划分的加细），则 $mB$ 不增，$mA$ 不减；
+且任意一种划分所得到的 $mA$ 不大于任意另一种划分所得到的 $mB$。
+
+
+
+
+
+\textbf{证明}
+
+记划分 $P$ 所对应的两个面积和为 $mA(P)$ 与 $mB(P)$。
+先只在一个坐标区间内增加一个分点，
+得到加细后的划分 $P'$。此时每个被新分割线切到的原小矩形 $Q$
+分为两个小矩形 $Q_1,Q_2$，且 $|Q|=|Q_1|+|Q_2|$。
+
+若 $Q\subset D$，则 $Q_1,Q_2\subset D$，加细前后它对 $mA$
+的贡献相等；若 $Q\not\subset D$，它原来对 $mA$ 的贡献为零，
+加细后的贡献非负。因此 $mA(P)\le mA(P')$。
+另一方面，若 $Q\cap D=\varnothing$，则 $Q_1,Q_2$ 均不与 $D$ 相交；
+若 $Q\cap D\ne\varnothing$，加细后它们对 $mB$ 的贡献之和
+至多为 $|Q_1|+|Q_2|=|Q|$。因此 $mB(P')\le mB(P)$。
+依次增加有限个分点，就得到第一部分的结论。
+
+现任取两个划分 $P_1,P_2$，将它们在两个坐标区间内的分点分别合并，
+得到共同加细 $P^*$。由刚证明的单调性，以及同一划分下
+$mA(P^*)\le mB(P^*)$，有
+\[
+mA(P_1)\le mA(P^*)\le mB(P^*)\le mB(P_2).
+\]
+所以任意一个 $mA$ 都不大于任意一个 $mB$。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{定义 3.1.2}
+
+$mA$ 有一个上确界 $mD_*$，
+$mB$ 有一个下确界 $mD^*$，并且
+\[
+mD_*\le mD^*.
+\]
+若 $mD_*=mD^*$，则称这个值为 $D$ 的面积，记为 $mD$，
+此时称 $D$ 是\textbf{可求面积的}。显然 $D$ 的面积与 $U$ 的选取无关。
+
+
+
+
+同样可以考虑 $D$ 的边界 $\partial D$ 的面积：
+记与 $\partial D$ 的交集非空的那些小矩形的面积之和为
+$mB_{\partial D}$。若 $mB_{\partial D}$ 的下确界
+$mD^*_{\partial D}=0$，则称 $\partial D$ 的面积为零；
+边界的面积为零等价于所围区域是可求面积的区域。
+对任意给定的 $\varepsilon>0$，通过取足够细的划分，
+可使得
+\[
+mB-mA=mB_{\partial D}<\varepsilon.
+\]
+那么就有以下的判据：
+
+
+\textbf{命题 3.1.3}
+
+(Jordan 可求面积判据)
+有界点集 $D$ 是可求面积的充分必要条件是它的边界
+$\partial D$ 的面积为 $0$。
+
+
+
+
+因此，零边界围成的区域是可求面积的。
+
+面积具有可加性：如果有界点集 $D$ 由点集 $D_1$ 和 $D_2$ 组成，
+$D_1$ 和 $D_2$ 可求面积，且 $D_1\cap D_2=\varnothing$，
+那么 $D$ 可求面积，并满足
+\[
+mD=mD_1+mD_2.
+\]
+
+
+
+\textbf{例 3.1.4}
+
+设 $y=f(x)$（$a\le x\le b$）为非负连续函数，
+它与直线 $x=a$、$x=b$ 和 $y=0$ 所围成的区域
+\[
+D=\{(x,y):a\le x\le b,\ 0\le y\le f(x)\}
+\]
+是可求面积的。
+
+
+\includegraphics{assets/fig13_1_2_tikz.png}
+
+
+
+
+\textbf{证明}
+
+由于 $f$ 在 $[a,b]$ 上连续，那么在 $[a,b]$ 上可积。
+记 $m=\min\limits_{x\in[a,b]}f(x)$，
+$M=\max\limits_{x\in[a,b]}f(x)$。
+若 $M=0$，则 $f\equiv0$，此时 $D=[a,b]\times\{0\}$
+可用面积任意小的矩形覆盖，故面积为零，结论成立。
+以下设 $M>0$。
+在 $[a,b]$ 上插入分点
+$a=x_0<x_1<\cdots<x_n=b$，
+将 $[a,b]$ 等分，记 $h_n=(b-a)/n$；
+那么矩形 $U=[a,b]\times[0,M]$ 就包含了区域 $D$。
+按一元积分的 Darboux 和，令 $m_i,M_i$ 分别为
+$f(x)$ 在 $[x_{i-1},x_i]$ 上的最小值与最大值。
+在 $[0,M]$ 上插入分点
+$m_i,M_i$（$i=1,\ldots,n$），合并重复分点后，
+就得到 $U$ 的一个划分 $P_n$。
+容易看出，包含于 $D$ 内的那些小矩形的面积之和为
+\[
+mA(P_n)=\sum_{i=1}^n m_i h_n.
+\]
+
+记 $\omega_n=\max\limits_{1\le i\le n}(M_i-m_i)$。
+由 $f$ 在 $[a,b]$ 上的一致连续性，$\omega_n\to0$。
+又因 $f([a,b])=[m,M]$，在 $[m,M]$ 中任意两个相邻的
+$y$ 向分点 $s<t$ 都满足 $t-s\le\omega_n$。
+事实上，任取 $z\in(s,t)$，存在 $x\in[a,b]$ 使 $f(x)=z$。
+若 $x\in[x_{k-1},x_k]$，则 $m_k\le z\le M_k$；
+由于 $m_k,M_k$ 都是分点，且 $(s,t)$ 内没有分点，
+故 $m_k\le s<t\le M_k$，从而 $t-s\le M_k-m_k\le\omega_n$。
+
+在第 $i$ 个竖条中，上边缘的纵坐标不超过 $M_i$ 的小矩形均与 $D$ 相交。
+若 $M_i<M$，紧邻 $M_i$ 上方的小矩形也因在边界上与 $D$ 相交而被计入
+$mB(P_n)$，但其高度至多为 $\omega_n$；
+其余位于 $M_i$ 上方的小矩形不与 $D$ 相交。
+因此应有估计
+\[
+\sum_{i=1}^n M_i h_n
+\le mB(P_n)
+\le\sum_{i=1}^n M_i h_n+(b-a)\omega_n.
+\]
+于是
+\[
+\sum_{i=1}^n m_i h_n
+\le mD_*\le mD^*
+\le\sum_{i=1}^n M_i h_n+(b-a)\omega_n.
+\]
+令 $n\to\infty$，由 $f$ 在 $[a,b]$ 上的可积性及极限的夹逼性得
+\[
+mD_*=mD^*=\int_a^b f(x)\,\dd x.
+\]
+因此 $D$ 是可求面积的，且面积为
+$\displaystyle\int_a^b f(x)\,\dd x$。
+
+这里证明面积存在，只需使 $mB(P_n)-mA(P_n)\to0$，
+不要求划分 $P_n$ 的模长趋于零。
+当 $m>0$ 时，底部区间 $[0,m]$ 无须再等分，
+因为对应的小矩形完全包含于 $D$，对 $mA(P_n)$ 与 $mB(P_n)$ 的贡献相同。
+
+
+$\square$
+
+
+
+\textbf{注记：}按前面的定义，小矩形只要与 $D$ 的交集非空，其整个面积就计入 $mB$。
+因此，仅在边界上与 $D$ 相交的闭矩形也会被计入，一般不能直接写成
+$mB=\sum\limits_i M_i\Delta x_i$。
+例如，取 $f(x)=x$（$0\le x\le1$），两条坐标轴上都取分点 $0,\frac12,1$，
+则左上角的小矩形仅在点 $(\dfrac12,\dfrac12)$ 处与 $D$ 相交，但其面积仍被计入。
+此时 $mB=1$，而 Darboux 上和为 $\dfrac34$。
+
+
+
+
+在上述例中，记曲线 $y=f(x)$（$a\le x\le b$）为 $L$。
+覆盖 $L$ 的那些小矩形
+$[x_{i-1},x_i]\times[m_i,M_i]$ 的面积之和为
+\[
+\sum_{i=1}^n(M_i-m_i)(x_i-x_{i-1}).
+\]
+当 $n\to\infty$ 时，它的极限是零(由一致连续性证得)，所以曲线的面积为零。
+可以用同样方法进一步证明：
+
+平面上一条光滑曲线的面积为零。
+因此，若一个有界区域的边界是分段光滑曲线，
+那么它是可求面积的。
+
+注意，并不是所有开平面点集都是可求面积的。
+例如平面点集
+\[
+S=\{(x,y):0\le x\le1,\ 0\le y\le D(x)\},
+\qquad
+D(x)=
+\begin{cases}
+1,&x\text{ 为有理数},\\
+0,&x\text{ 为无理数},
+\end{cases}
+\]
+其中 $D(x)$ 是 Dirichlet 函数。
+$S$ 的边界为 $[0,1]\times[0,1]$，它的面积为 $1$，
+这说明 $S$ 不是可求面积的。
+
+\subsection*{二重积分的概念}
+
+考察一个曲顶柱体：它的底是 $xy$ 平面上的具有零边界的
+有界闭区域 $D$，顶是非负连续函数 $z=f(x,y)$，
+$(x,y)\in D$ 所确定的曲面，侧面是以 $D$ 的边界曲线为准线、
+母线平行于 $z$ 轴的柱面。
+
+
+\includegraphics[width=0.34\textwidth]{assets/fig13_1_3_source_hd.png}
+
+
+为了求出它的体积 $V$，先用一些面积为零的曲线段组成的曲线网
+将区域 $D$ 分成 $n$ 个小区域
+$\Delta D_1,\Delta D_2,\ldots,\Delta D_n$。
+由前面的讨论，每个 $\Delta D_i$ 都是可求面积的
+（$i=1,2,\ldots,n$）。
+再分别以这些小区域的边界为准线，作母线平行于
+$z$ 轴的柱面，这些柱面将原曲顶柱体分成 $n$ 个细的小曲顶柱体。
+在每个 $\Delta D_i$ 上任取一点 $(\xi_i,\eta_i)$，
+那么以 $\Delta D_i$ 为底的小曲顶柱体的体积近似地等于
+\[
+f(\xi_i,\eta_i)\Delta\sigma_i,
+\]
+这里 $\Delta\sigma_i$ 表示 $\Delta D_i$ 的面积。
+于是，原曲顶柱体的体积近似地等于
+\[
+\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i.
+\]
+当所有小区域 $\Delta D_i$ 的最大直径（记为 $\lambda = \max \limits_{1\leqslant k \leqslant  n}\operatorname{diam}\Delta_k$）
+趋于零时，这个近似值趋于原曲顶柱体的体积，即
+\[
+V=\lim_{\lambda\to0}
+\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i.
+\]
+这就是二重积分的概念。
+以下讨论积分存在性时，总假定区域的边界以及
+用来分割区域的曲线段的面积为零，
+这就保证了所涉及的一切区域的面积都存在。
+
+
+
+\textbf{定义 3.1.5（二重积分）}
+
+
+设 $D$ 为 $\R^2$ 上的\textbf{零边界闭区域}，函数 $z=f(x,y)$ 在 $D$ 上有界。
+将 $D$ 用曲线网分成 $n$ 个小区域
+$\Delta D_1,\Delta D_2,\ldots,\Delta D_n$
+（它称为 $D$ 的一个划分），并记所有小区域
+$\Delta D_i$ 的最大直径为
+\[
+\lambda=\max_{1\le i\le n}|\operatorname{diam}\Delta D_i|.
+\]
+在每个 $\Delta D_i$ 上任取一点 $(\xi_i,\eta_i)$，
+记 $\Delta\sigma_i$ 为 $\Delta D_i$ 的面积。
+若 $\lambda$ 趋于零时，和式
+\[
+\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i
+\]
+的极限存在，且与区域的分法和点
+$(\xi_i,\eta_i)$ 的取法无关，
+则称 $f(x,y)$ 在 $D$ 上可积，并称此极限为
+$f(x,y)$ 在 $D$ 上的\textbf{二重积分}，记为
+\[
+\iint_D f(x,y)\,\dd\sigma
+=\lim_{\lambda\to0}
+\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i.
+\]
+$f(x,y)$ 称为被积函数，$D$ 称为积分区域，
+$x$ 和 $y$ 称为积分变量，$\dd\sigma$ 称为面积元素，
+$\displaystyle\iint_D f(x,y)\,\dd\sigma$ 也称为积分值。
+
+
+
+
+用 $\varepsilon$-$\delta$ 语言，上述定义是：
+对任意 $\varepsilon>0$，存在 $\delta>0$，
+使对任意划分 $P$ 及任意选点 $ \vect q_i\in\Delta D_i$，
+只要 $\lambda(P)<\delta$，就有
+\[
+\left|\sum_i f(\vect q_i)\Delta\sigma_i-I\right|<\varepsilon.
+\]
+这里 $I$ 为同一个常数，$\delta$ 不依赖于划分及选点。
+
+前面提到的曲顶柱体的体积即为
+\[
+V=\iint_D f(x,y)\,\dd\sigma.
+\]
+
+与一元的情况类似，下面用 Darboux 和讨论二重积分的可积性。
+以下始终设 $D$ 为有界零边界闭区域，$f$ 在 $D$ 上有界，
+记 $\sigma=mD$。
+划分 $P=\{\Delta D_1,\ldots,\Delta D_n\}$ 中各小区域取为闭的小块，
+其内部互不相交，公共边界的面积为零，因而
+\[
+\sum_{i=1}^n\Delta\sigma_i=\sigma,
+\qquad
+\lambda(P)=\max_{1\le i\le n}\operatorname{diam}\Delta D_i.
+\]
+非空的零面积小块也可保留在划分中，它们对各和式的贡献为零。
+两划分合并曲线网所得的共同加细，可用原有小块的非空交集表示；
+若交集分成多个小区域，对它们的贡献求和即可。
+这些子块的边界仍包含于原有零面积边界的并集中。
+用矩形网与 $D$ 相交，可得到模长任意小的划分。
+
+设
+\[
+M_i=\sup_{\Delta D_i}f,\qquad
+m_i=\inf_{\Delta D_i}f,\qquad
+\omega_i=M_i-m_i,
+\]
+定义 Darboux 大和、小和分别为
+\[
+S(P)=\sum_{i=1}^n M_i\Delta\sigma_i,\qquad
+s(P)=\sum_{i=1}^n m_i\Delta\sigma_i.
+\]
+其中 $\omega_i$ 称为 $f$ 在 $\Delta D_i$ 上的振幅。
+在各小块中任取点 $\vect q_i=(\xi_i,\eta_i)$，
+相应的 Riemann 和记为
+\[
+J(P;\vect q)=\sum_{i=1}^n f(\vect q_i)\Delta\sigma_i,
+\qquad
+s(P)\le J(P;\vect q)\le S(P).
+\]
+
+沿用命题 3.1.1 中逐块估计和共同加细的论证，
+可得 Darboux 和的相应性质：
+加细后，各子块的上确界不大于原小块的上确界，
+下确界不小于原小块的下确界；再由面积的可加性，
+若 $P'$ 是 $P$ 的加细，就有
+\[
+s(P)\le s(P')\le S(P')\le S(P).
+\]
+任取两个划分 $P_1,P_2$，将它们合并为共同加细 $P^*$，则
+\[
+s(P_1)\le s(P^*)\le S(P^*)\le S(P_2).
+\]
+所以任何一个 Darboux 小和都不大于任何一个 Darboux 大和。
+记 $m=\inf_D f$、$M=\sup_D f$，还有
+\[
+m\sigma\le s(P_1)\le S(P_2)\le M\sigma.
+\]
+因此，由实数的确界存在定理，所有 Darboux 小和的上确界
+与所有 Darboux 大和的下确界都存在。
+分别称
+\[
+I_*=\sup_P s(P),\qquad I^*=\inf_P S(P)
+\]
+为 $f$ 在 $D$ 上的\textbf{下积分}和\textbf{上积分}。
+这里的确界取遍本节定义所允许的全部划分 $P$，
+不涉及小块内选点的取法，也不要求预先知道 $f$ 可积。
+上、下积分可能不相等，但对任意划分 $P$ 都有
+\[
+m\sigma\le s(P)\le I_*\le I^*\le S(P)\le M\sigma.
+\]
+
+
+
+
+\textbf{命题 3.1.6（二重积分的 Darboux 定理）}
+
+
+当划分的模长 $\lambda(P)\to0$ 时，
+\[
+S(P)\to I^*,\qquad s(P)\to I_*.
+\]
+即对任意 $\varepsilon>0$，存在 $\delta>0$，
+使得对任意划分 $P$，只要 $\lambda(P)<\delta$，就有
+\[
+0\le S(P)-I^*<\varepsilon,\qquad
+0\le I_*-s(P)<\varepsilon.
+\]
+
+
+
+
+
+\textbf{证明}
+
+先说明任意充分细的划分与一个固定划分合并时，和式的变化可以任意小。
+固定 $P_0=\{E_1,\ldots,E_r\}$，记
+\[
+\Gamma=\bigcup_{j=1}^r\partial E_j.
+\]
+由于区域边界和分割曲线的面积为零，$\Gamma$ 是面积为零的紧集。
+任给 $\alpha>0$，可用有限个开矩形覆盖 $\Gamma$，
+使其面积之和小于 $\alpha$；记这些开矩形的并为 $G$。
+由 $\Gamma$ 的紧性，存在 $\rho>0$，使
+\[
+\Gamma_\rho=\{z:\operatorname{d}(z,\Gamma)<\rho\}\subset G.
+\]
+
+设 $P^*$ 为 $P,P_0$ 的共同加细。
+把 $P$ 中不包含于任何一个 $E_j$ 的小块称为受影响的小块。
+若 $\lambda(P)<\rho/2$，则每个受影响的小块都包含于 $G$。
+事实上，任取其中一点 $p$，选取含 $p$ 的 $E_j$；
+由于该小块不包含于 $E_j$，其中还存在 $q\notin E_j$。
+线段 $pq$ 必经过 $\partial E_j$ 上某点 $z$，
+于是对该小块中任意点 $w$，
+\[
+|w-z|\le |w-p|+|p-z|
+\le 2\lambda(P)<\rho.
+\]
+所以该小块包含于 $\Gamma_\rho$。
+各小块只在零面积边界上重叠，故受影响小块的面积之和 $A(P)$ 满足
+\[
+A(P)\le mG<\alpha.
+\]
+
+记 $K=M-m$。未受影响的小块在共同加细前后贡献不变，
+受影响小块的上、下和变化分别不超过 $K$ 乘以该小块的面积，故
+\[
+\begin{aligned}
+0&\le S(P)-S(P^*)\le K A(P),\\
+0&\le s(P^*)-s(P)\le K A(P).
+\end{aligned}
+\]
+因此对固定的 $P_0$，上述两种变化都随 $\lambda(P)\to0$ 而趋于零。
+
+现证明 $S(P)\to I^*$。
+任给 $\varepsilon>0$，由下确界的定义，可取固定划分 $P_0$，使
+\[
+0\le S(P_0)-I^*<\frac{\varepsilon}{2}.
+\]
+在前面的估计中取 $\alpha=\varepsilon/[2(K+1)]$，
+并取相应的 $\delta=\rho/2$。
+当 $\lambda(P)<\delta$ 时，
+\[
+\begin{aligned}
+0\le S(P)-I^*
+&=S(P)-S(P^*)+S(P^*)-I^*\\
+&\le K A(P)+S(P_0)-I^*
+<\varepsilon.
+\end{aligned}
+\]
+同理，由上确界的定义，先取 $s(P_0)>I_*-\varepsilon/2$，
+再用 $s(P^*)\ge s(P_0)$，即可得到 $0\le I_*-s(P)<\varepsilon$。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{命题 3.1.7（上下积分相等判据）}
+
+
+$f$ 在 $D$ 上可积的充分必要条件是 $I_*=I^*$。
+此时
+\[
+\iint_D f(x,y)\,\dd\sigma=I_*=I^*.
+\]
+
+
+
+
+
+\textbf{证明}
+
+必要性：设 $f$ 可积，积分值为 $I$。
+任给 $\varepsilon>0$，由积分定义，存在 $\delta>0$，
+使得当 $\lambda(P)<\delta$ 时，对任意选点 $\vect q_i$ 都有
+\[
+|J(P;\vect q)-I|<\varepsilon.
+\]
+对这样的划分，由上确界的定义，可以逐块选取 $\vect q_i^+$，使
+\[
+M_i-\frac{\varepsilon}{\sigma+1}<f(\vect q_i^+)\le M_i.
+\]
+于是
+\[
+0\le S(P)-J(P;\vect q^+)\le
+\frac{\varepsilon\sigma}{\sigma+1}<\varepsilon,
+\]
+故 $|S(P)-I|<2\varepsilon$。
+同理，逐块选取逼近下确界的点，得到 $|s(P)-I|<2\varepsilon$。
+结合命题 3.1.6，可知 $I^*=I_*=I$。
+这里不要求上、下确界能在小块中取到。
+
+充分性：设 $I_*=I^*=I$。
+由命题 3.1.6，当 $\lambda(P)\to0$ 时，
+$s(P),S(P)$ 都趋于 $I$。
+而任意选点所得的 Riemann 和都满足
+\[
+s(P)\le J(P;q)\le S(P).
+\]
+由夹逼性，其极限为 $I$，且与划分及选点无关，即 $f$ 可积。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{定理 3.1.8}
+
+(二重积分可积的第一充要条件)
+$f$ 在 $D$ 上可积的充分必要条件是
+\[
+\lim_{\lambda(P)\to0}\bigl(S(P)-s(P)\bigr)
+=\lim_{\lambda(P)\to0}\sum_{i=1}^n\omega_i\Delta\sigma_i=0.
+\]
+即对任意 $\varepsilon>0$，存在 $\delta>0$，
+使得对任意划分 $P$，只要 $\lambda(P)<\delta$，就有
+\[
+\sum_{i=1}^n\omega_i\Delta\sigma_i<\varepsilon.
+\]
+此时
+\[
+\lim_{\lambda(P)\to0}s(P)
+=\lim_{\lambda(P)\to0}S(P)
+=\iint_D f(x,y)\,\dd\sigma.
+\]
+
+
+
+
+
+\textbf{证明}
+
+由命题 3.1.6，
+\[
+\lim_{\lambda(P)\to0}\bigl(S(P)-s(P)\bigr)=I^*-I_*.
+\]
+结合命题 3.1.7 及
+$S(P)-s(P)=\sum_i\omega_i\Delta\sigma_i$，即得结论。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{定理 3.1.9}
+
+(二重积分可积的第二充要条件)
+$f$ 在 $D$ 上可积的充分必要条件是：
+对任意 $\varepsilon>0$，存在一个划分 $P$，使得
+\[
+S(P)-s(P)=\sum_{i=1}^n\omega_i\Delta\sigma_i<\varepsilon.
+\]
+这里所取划分不必预先满足某个模长限制。
+
+
+
+
+
+\textbf{证明}
+
+必要性：由定理 3.1.8，
+取一个模长充分小的划分即可。
+
+充分性：由 $s(P)\le I_*\le I^*\le S(P)$，
+对上述划分有
+\[
+0\le I^*-I_*\le S(P)-s(P)<\varepsilon.
+\]
+由于 $\varepsilon>0$ 任意，必有 $I^*=I_*$。
+由命题 3.1.7，$f$ 在 $D$ 上可积。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{定理 3.1.10}
+
+(二重积分可积的第三充要条件)
+$f$ 在 $D$ 上可积，当且仅当：
+对任意 $\varepsilon>0$、$\eta>0$，存在划分 $P$，
+使振幅不小于 $\eta$ 的小块的面积之和小于 $\varepsilon$，即
+\[
+\sum_{\omega_i\ge\eta}\Delta\sigma_i<\varepsilon.
+\]
+
+
+
+
+
+\textbf{证明}
+
+必要性：设 $f$ 可积。
+任给 $\varepsilon>0$、$\eta>0$，由定理 3.1.9，
+存在划分 $P$，使 $\sum_i\omega_i\Delta\sigma_i<\varepsilon\eta$。
+于是
+\[
+\eta\sum_{\omega_i\ge\eta}\Delta\sigma_i
+\le\sum_{\omega_i\ge\eta}\omega_i\Delta\sigma_i
+\le\sum_i\omega_i\Delta\sigma_i<\varepsilon\eta.
+\]
+除以 $\eta>0$，即得所需结论。
+
+充分性：记 $K=M-m$。
+任给 $\varepsilon>0$，取
+\[
+\varepsilon'=\frac{\varepsilon}{2(K+1)},\qquad
+\eta=\frac{\varepsilon}{2(\sigma+1)}.
+\]
+由条件，存在划分 $P$，使
+$\sum_{\omega_i\ge\eta}\Delta\sigma_i<\varepsilon'$。
+将小块分为 $\omega_i\ge\eta$ 与 $\omega_i<\eta$ 两类，有
+\[
+\begin{aligned}
+\sum_i\omega_i\Delta\sigma_i
+&=\sum_{\omega_i\ge\eta}\omega_i\Delta\sigma_i
++\sum_{\omega_i<\eta}\omega_i\Delta\sigma_i\\
+&\le K\sum_{\omega_i\ge\eta}\Delta\sigma_i
++\eta\sum_{\omega_i<\eta}\Delta\sigma_i\\
+&\le K\varepsilon'+\eta\sigma
+<\varepsilon.
+\end{aligned}
+\]
+由定理 3.1.9，$f$ 在 $D$ 上可积。
+分母中加 $1$，也使 $K=0$ 或 $\sigma=0$ 的情形一并成立。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.1.11}
+
+若 $f(x,y)$ 在零边界闭区域 $D$ 上连续，
+那么它在 $D$ 上可积。
+
+
+
+
+
+\textbf{证明}
+
+记 $\sigma$ 为 $D$ 的面积。若 $\sigma=0$，
+则结论直接成立。若 $\sigma>0$，
+由于 $f(x,y)$ 在紧集 $D$ 上连续，
+所以它在 $D$ 上一致连续。
+于是对任意 $\varepsilon>0$，
+存在 $\delta>0$，使得当
+\[
+\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}<\delta
+\]
+时，成立
+\[
+|f(x_1,y_1)-f(x_2,y_2)|<\frac{\varepsilon}{2\sigma}.
+\]
+因此对 $D$ 的任一划分
+$\Delta D_1,\Delta D_2,\ldots,\Delta D_n$，
+当所有 $\Delta D_i$ 的最大直径 $\lambda<\delta$ 时，
+$f(x,y)$ 在每个 $\Delta D_i$ 上的振幅
+$\omega_i$ 就不大于 $\varepsilon/(2\sigma)$。
+这就成立
+\[
+\sum_{i=1}^n\omega_i\Delta\sigma_i
+\le\frac{\varepsilon}{2\sigma}
+\sum_{i=1}^n\Delta\sigma_i
+=\frac{\varepsilon}{2\sigma}\,\sigma
+=\frac{\varepsilon}{2}<\varepsilon.
+\]
+所以
+$\lim\limits_{\lambda\to0}\sum_{i=1}^n\omega_i\Delta\sigma_i=0$，
+由定理 3.1.8，$f(x,y)$ 在 $D$ 上可积。
+
+
+$\square$
+
+
+
+
+
+\textbf{推论 3.1.12（除有限条零面积曲线外连续的函数可积）}
+
+
+设 $D$ 为有界零边界闭区域，$f(x,y)$ 在 $D$ 上有界。
+若 $f$ 的不连续点都包含在有限条面积为零的连续曲线
+$\Gamma_1,\ldots,\Gamma_r$ 上，则 $f$ 在 $D$ 上可求二重积分。
+这里每条曲线均为闭有限区间的连续像，连续性均指相对于 $D$ 的连续性。
+特别地，若 $f$ 除有限条分段光滑曲线外处处连续，则 $f$ 在 $D$ 上可积。
+
+
+
+
+
+\textbf{证明}
+
+记 $\sigma=mD$，取 $B\ge0$ 使 $|f(x,y)|\le B$。
+若 $\sigma=0$，则所有 Riemann 和均为零，结论成立。
+若没有异常曲线，则由定理 3.1.11，结论成立。
+以下设 $\sigma>0$，且
+\[
+E=\bigcup_{j=1}^r\Gamma_j
+\]
+非空。$E$ 是面积为零的紧集。
+任给 $\varepsilon>0$，用有限个开矩形覆盖 $E$，
+使这些矩形的面积之和小于 $\varepsilon/[4(B+1)]$。
+记其并为 $G$，则
+\[
+mG<\frac{\varepsilon}{4(B+1)}.
+\]
+由 $E$ 的紧性，存在 $\rho>0$，使
+\[
+E_\rho=\{z:\operatorname{d}(z,E)<\rho\}\subset G.
+\]
+令 $H=E_{\rho/2}$、$K=D\setminus H$。
+由于 $H$ 为开集，$K$ 为紧集，且 $K\cap E=\varnothing$，
+所以 $f$ 在 $K$ 上连续，从而一致连续。
+若 $K\ne\varnothing$，可取 $\delta_1>0$，使对任意 $p,q\in K$，
+\[
+|p-q|<\delta_1
+\quad\Longrightarrow\quad
+|f(p)-f(q)|<\frac{\varepsilon}{2(\sigma+1)}.
+\]
+若 $K=\varnothing$，则下述第二类小块不存在，此时任取 $\delta_1>0$。
+
+取 $\delta=\min\{\rho/2,\delta_1\}$。
+对任意满足 $\lambda(P)<\delta$ 的划分 $P$，
+将小块分成两类。
+第一类为与 $H$ 相交的小块；若 $p\in\Delta D_i\cap H$，
+则对任意 $q\in\Delta D_i$，
+\[
+\operatorname{d}(q,E)
+\le |q-p|+\operatorname{dist}(p,E)
+<\delta+\frac{\rho}{2}\le\rho.
+\]
+所以这类小块都包含于 $G$，其面积之和不超过 $mG$。
+又因 $\omega_i\le2B$，这类小块的贡献满足
+\[
+\sum_{\Delta D_i\cap H\ne\varnothing}\omega_i\Delta\sigma_i
+\le2B\,mG<\frac{\varepsilon}{2}.
+\]
+第二类为不与 $H$ 相交的小块，它们都包含于 $K$。
+由一致连续性，每个小块的振幅不大于 $\varepsilon/[2(\sigma+1)]$，
+故这类小块的贡献满足
+\[
+\sum_{\Delta D_i\cap H=\varnothing}\omega_i\Delta\sigma_i
+\le\frac{\varepsilon}{2(\sigma+1)}
+\sum_{\Delta D_i\cap H=\varnothing}\Delta\sigma_i
+\le\frac{\varepsilon\sigma}{2(\sigma+1)}
+<\frac{\varepsilon}{2}.
+ \]
+合并两类估计，得到
+\[
+\sum_i\omega_i\Delta\sigma_i<\varepsilon.
+\]
+由定理 3.1.8，$f$ 在 $D$ 上可积。
+
+
+$\square$
+
+
+
+\textbf{注记：}异常曲线上的函数值可以任意取，只需整个函数仍有界。
+推论中要求异常曲线的面积为零；仅有曲线的连续性不能代替这一条件。
+连续函数的图像以及分段光滑曲线都满足这一零面积条件。
+
+\subsection*{$n$ 重积分}
+
+同 $\R^2$ 中定义面积一样，可以在 $\R^n$（$n\ge3$）中引入体积的概念。
+若定义 $\R^n$ 中的 $n$ 维闭矩形
+\[
+[a_1,b_1]\times[a_2,b_2]\times\cdots\times[a_n,b_n]
+\]
+的体积为
+$(b_1-a_1)(b_2-a_2)\cdots(b_n-a_n)$，
+那么就可以将 $\R^2$ 上定义面积的叙述
+完全平移到 $\R^n$（$n\ge3$）上来定义体积。
+同样称边界体积为零的有界区域为零边界区域；
+而且可以证明，光滑曲面的体积为零。
+这里就不一一详述了。
+设 $\Omega$ 是 $\R^n$（$n\ge3$）上的有界区域，
+其边界是一张或数张无重点的封闭曲面
+（本章总是如此假定），
+那么同样可得：有界点集 $\Omega$ 是可求体积的
+充分必要条件为其边界的体积为零，
+即 $\Omega$ 为零边界区域。
+
+同 $\R^2$ 中的原理一样，引入 $n$ 重积分的概念。
+
+
+\textbf{定义 3.1.13（$n$ 重积分）}
+
+
+设 $\Omega$ 为 $\R^n$ 上的零边界闭区域，
+函数 $u=f(x)$ 在 $\Omega$ 上有界。
+将 $\Omega$ 用曲面网分成 $n$ 个小区域
+$\Delta\Omega_1,\Delta\Omega_2,\ldots,\Delta\Omega_n$
+（称为 $\Omega$ 的一个划分），
+记 $\Delta V_i$ 为 $\Delta\Omega_i$ 的体积，
+并记所有小区域 $\Delta\Omega_i$ 的最大直径为 $\lambda$。
+在每个 $\Delta\Omega_i$ 上任取一点 $x_i$，
+若 $\lambda$ 趋于零时，和式
+\[
+\sum_{i=1}^n f(x_i)\Delta V_i
+\]
+的极限存在，且与区域的分法和点 $x_i$ 的取法无关，
+则称 $f(x)$ 在 $\Omega$ 上可积，
+并称此极限为 $f(x)$ 在有界闭区域 $\Omega$ 上的
+$n$ 重积分，记为
+\[
+\int_\Omega f\,\dd V
+=\lim_{\lambda\to0}\sum_{i=1}^n f(x_i)\Delta V_i.
+\]
+$f(x)$ 称为被积函数，$\Omega$ 称为积分区域，
+$x$ 称为积分变量，$\dd V$ 称为体积元素，
+$\int_\Omega f\,\dd V$ 也称为积分值。
+
+
+
+
+类似于二维情形可知，若 $f(x)$ 在零边界闭区域
+$\Omega$ 上连续，那么它在 $\Omega$ 上可积。
+注意到 $n=2$ 与 $n>2$ 的重积分定义并没有本质的区别，
+今后我们经常把它们一起讨论。
+为明确起见，通常采用如下记法：
+\[
+\begin{aligned}
+&\text{在 }\R^2\text{ 中：}&
+&\iint_D f(x,y)\,\dd x\,\dd y;\\
+&\text{在 }\R^3\text{ 中：}&
+&\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z
+\quad\text{或}\quad
+\iiint_\Omega f(x,y,z)\,\dd V;\\
+&\text{在 }\R^n\text{ 中：}&
+&\int_\Omega f(x_1,\ldots,x_n)
+\,\dd x_1\cdots\dd x_n
+\quad\text{或}\quad
+\idotsint_\Omega f(x_1,\ldots,x_n)
+\,\dd x_1\cdots\dd x_n.
+\end{aligned}
+\]
+
+
+
+\textbf{例 3.1.14}
+
+设 $\Omega\subset\R^3$ 为具有分片光滑表面的物体，
+$f(x,y,z)$ 是 $\Omega$ 在 $(x,y,z)$ 处的密度。
+将 $\Omega$ 用分片光滑曲面分成充分小的块
+$\Delta\Omega_1,\Delta\Omega_2,\ldots,\Delta\Omega_n$，
+那么 $f(\xi_i,\eta_i,\zeta_i)\Delta V_i$
+就近似地为 $\Delta\Omega_i$ 的质量；
+这里 $\Delta V_i$ 为 $\Delta\Omega_i$ 的体积，
+$(\xi_i,\eta_i,\zeta_i)$ 为 $\Delta\Omega_i$ 任一点。
+于是
+\[
+\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta V_i
+\]
+就近似地表示 $\Omega$ 的质量。
+以 $\lambda$ 表示所有 $\Delta\Omega_i$ 的最大直径，
+则 $\Omega$ 的质量为
+\[
+M=\lim_{\lambda\to0}
+\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta V_i
+=\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z.
+\]
+
+现在来计算此物体的质心
+$(\bar x,\bar y,\bar z)$。
+如果空间上有 $n$ 个质点，它们的质量分别为
+$m_1,m_2,\ldots,m_n$，
+且相应地位于点
+$(x_1,y_1,z_1),\ldots,(x_n,y_n,z_n)$，
+那么这些质点系的质心坐标为
+\[
+\bar x=\frac{\sum_{i=1}^n m_i x_i}{\sum_{i=1}^n m_i},
+\qquad
+\bar y=\frac{\sum_{i=1}^n m_i y_i}{\sum_{i=1}^n m_i},
+\qquad
+\bar z=\frac{\sum_{i=1}^n m_i z_i}{\sum_{i=1}^n m_i}.
+\]
+当 $\lambda$ 充分小时，
+可将 $\Omega$ 看成质点
+$f(\xi_i,\eta_i,\zeta_i)\Delta V_i$ 的系统；
+其中 $(\xi_i,\eta_i,\zeta_i)$ 为
+$\Delta\Omega_i$ 上任一点。
+那么其质心坐标为
+\[
+\begin{aligned}
+\bar x&\approx
+\frac{\sum_{i=1}^n
+\xi_i f(\xi_i,\eta_i,\zeta_i)\Delta V_i}
+{\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta V_i},\\
+\bar y&\approx
+\frac{\sum_{i=1}^n
+\eta_i f(\xi_i,\eta_i,\zeta_i)\Delta V_i}
+{\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta V_i},\\
+\bar z&\approx
+\frac{\sum_{i=1}^n
+\zeta_i f(\xi_i,\eta_i,\zeta_i)\Delta V_i}
+{\sum_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\Delta V_i}.
+\end{aligned}
+\]
+因此当 $\lambda$ 趋于零时得到
+\[
+\begin{aligned}
+\bar x&=
+\frac{\iiint_\Omega x f(x,y,z)\,\dd x\,\dd y\,\dd z}
+{\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z},\\
+\bar y&=
+\frac{\iiint_\Omega y f(x,y,z)\,\dd x\,\dd y\,\dd z}
+{\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z},\\
+\bar z&=
+\frac{\iiint_\Omega z f(x,y,z)\,\dd x\,\dd y\,\dd z}
+{\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z}.
+\end{aligned}
+\]
+注意上式的分母就是 $\Omega$ 的质量。
+
+
+
+
+
+
+
+
+
+
+
+\section*{§2　重积分的性质与计算}
+
+\subsection*{性质}
+
+除非特别声明，本节所考虑的区域是 $\R^n$（$n\ge2$）中的\textbf{零边界闭区域}。
+
+证明中记 $V$ 为 $\Omega$ 的面积或体积，
+$P=\{\Delta\Omega_i\}_{i=1}^N$ 为 $\Omega$ 的划分，
+$\Delta V_i$ 为各小块的面积或体积，因而 $\sum_i\Delta V_i=V$。
+对有界函数 $u$，记
+\[
+\omega_i(u)=\sup_{\Delta\Omega_i}u-\inf_{\Delta\Omega_i}u,
+\qquad
+J_u(P;\xi)=\sum_i u(\vect\xi_i)\Delta V_i,
+\quad \vect\xi_i\in\Delta\Omega_i.
+\]
+前节的 Darboux 和及振幅判据在 $n$ 维情形仍成立：
+只需将小块的面积换成体积，将零面积分割边界换成零体积分割边界，
+其共同加细与边界邻域估计的证明相同。
+以下证明沿用第一部分第八章第四节的方法。
+
+
+
+\textbf{命题 3.2.1（线性性）}
+
+
+设 $f$ 和 $g$ 都在区域 $\Omega$ 上可积，$\alpha,\beta$ 为常数，
+则 $\alpha f+\beta g$ 在 $\Omega$ 上也可积，并且
+\[
+\int_\Omega(\alpha f+\beta g)\,\dd V
+=\alpha\int_\Omega f\,\dd V+\beta\int_\Omega g\,\dd V.
+\]
+
+
+
+
+
+\textbf{证明}
+
+设 $h=\alpha f+\beta g$。由于 $f,g$ 有界，$h$ 也有界。
+对同一小块中的任意两点 $\vect p,\vect q$，有
+\[
+|h(\vect p)-h(\vect q)|
+\le|\alpha|\,|f(\vect p)-f(\vect q)|
++|\beta|\,|g(\vect p)-g(\vect q)|.
+\]
+取上确界，得到
+\[
+\omega_i(h)\le|\alpha|\omega_i(f)+|\beta|\omega_i(g).
+\]
+由 $f,g$ 的可积性，当 $\lambda(P)\to0$ 时，
+\[
+0\le\sum_i\omega_i(h)\Delta V_i
+\le|\alpha|\sum_i\omega_i(f)\Delta V_i
++|\beta|\sum_i\omega_i(g)\Delta V_i\longrightarrow0.
+\]
+由振幅判据，$h$ 可积。
+在同一划分中选取同样的点，则 Riemann 和满足
+\[
+J_h(P;\xi)=\alpha J_f(P;\xi)+\beta J_g(P;\xi).
+\]
+令 $\lambda(P)\to0$，由极限的线性性，即得所需积分等式。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.2.2（区域可加性）}
+
+
+设区域 $\Omega$ 被分成两个内部互不相交的区域 $\Omega_1,\Omega_2$。
+若 $f$ 在 $\Omega$ 上可积，则 $f$ 在 $\Omega_1,\Omega_2$ 上都可积；
+反之，若 $f$ 在 $\Omega_1,\Omega_2$ 上都可积，则 $f$ 在 $\Omega$ 上也可积。
+此时成立
+\[
+\int_\Omega f\,\dd V
+=\int_{\Omega_1}f\,\dd V+\int_{\Omega_2}f\,\dd V.
+\]
+
+
+
+
+
+\textbf{证明}
+
+两个子区域也满足本节的零边界假定。
+公共部分包含于 $\partial\Omega_1\cup\partial\Omega_2$ 中，故其面积或体积为零，
+划分的面积或体积之和不会因公共边界重复而改变。
+
+必要性：设 $f$ 在 $\Omega$ 上可积。
+任给 $\varepsilon>0$，由第二充要条件，可取 $\Omega$ 的划分 $P$，使
+\[
+\sum_i\omega_i(f)\Delta V_i<\varepsilon.
+\]
+将 $P$ 的小块分别与 $\Omega_1,\Omega_2$ 相交，得到加细划分 $P^*$。
+加细时大和不增、小和不减，故振幅和不增。
+将 $P^*$ 限制在 $\Omega_j$ 上，得到 $\Omega_j$ 的划分 $P_j$，
+其振幅和只是 $P^*$ 的振幅和中相应的非负部分。因此
+\[
+\sum_{\Delta E\in P_j}\omega_{\Delta E}(f)\,m(\Delta E)
+\le\sum_{\Delta E\in P^*}\omega_{\Delta E}(f)\,m(\Delta E)
+\le\sum_i\omega_i(f)\Delta V_i<\varepsilon,
+\]
+其中 $m(\Delta E)$ 表示小块的面积或体积。
+由第二充要条件，$f$ 在 $\Omega_1,\Omega_2$ 上都可积。
+
+充分性：设 $f$ 在 $\Omega_1,\Omega_2$ 上都可积，则它在 $\Omega$ 上有界。
+任给 $\varepsilon>0$，分别取两个子区域的划分 $P_1,P_2$，
+使各自的振幅和小于 $\varepsilon/2$。
+把它们合并为 $\Omega$ 的划分，所得振幅和为两个振幅和之和，
+故小于 $\varepsilon$。由第二充要条件，$f$ 在 $\Omega$ 上可积。
+
+最后证明积分等式。分别取子区域的划分 $P_1,P_2$，
+并把其中的选点保留到合并后的划分 $P$ 中，则
+\[
+J_{f,\Omega}(P)
+=J_{f,\Omega_1}(P_1)+J_{f,\Omega_2}(P_2),
+\qquad
+\lambda(P)=\max\{\lambda(P_1),\lambda(P_2)\}.
+\]
+令两个子区域划分的模长都趋于零，由积分定义及极限的可加性，
+即得所需等式。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.2.3（常函数的积分）}
+
+
+设被积函数 $f=1$。当 $n=2$ 时，
+\[
+\iint_\Omega\dd x\,\dd y
+=\iint_\Omega1\,\dd x\,\dd y
+=\Omega\text{ 的面积；}
+\]
+当 $n\ge3$ 时，
+\[
+\int_\Omega\dd V=\int_\Omega1\,\dd V
+=\Omega\text{ 的体积。}
+\]
+
+
+
+
+
+\textbf{证明}
+
+对任意划分及任意选点，都有
+\[
+J_1(P;\xi)=\sum_i1\cdot\Delta V_i=V.
+\]
+因此该 Riemann 和的极限就是 $V$，结论成立。
+同理，任意常函数 $u\equiv c$ 都可积，且
+\[
+\int_\Omega c\,\dd V=cV.
+\]
+这也包括 $V=0$ 的情形。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.2.4（保序性）}
+
+
+设 $f$ 和 $g$ 都在区域 $\Omega$ 上可积，且满足 $f\le g$，
+则成立
+\[
+\int_\Omega f\,\dd V\le\int_\Omega g\,\dd V.
+\]
+
+
+
+
+
+\textbf{证明}
+
+由线性性，$h=g-f$ 可积，并且 $h\ge0$。
+任意划分及任意选点所得的 Riemann 和均满足
+\[
+J_h(P;\xi)=\sum_i h(\vect\xi_i)\Delta V_i\ge0.
+\]
+令 $\lambda(P)\to0$，得到
+\[
+0\le\int_\Omega h\,\dd V
+=\int_\Omega g\,\dd V-\int_\Omega f\,\dd V.
+\]
+即得结论。
+
+
+$\square$
+
+
+
+
+\textbf{推论 3.2.5（积分的上下界）}
+
+
+	设 $f$ 在区域 $\Omega$ 上可积，$M$ 与 $m$ 分别为 $f$ 在 $\Omega$
+	上的上界和下界，则
+	\[
+	mV\le\int_\Omega f\,\dd V\le MV,
+	\]
+	其中，$n=2$ 时 $V$ 为 $\Omega$ 的面积，$n>2$ 时 $V$ 为 $\Omega$ 的体积。
+	这一性质是保序性的直接推论。
+
+
+
+
+
+
+
+\textbf{证明}
+
+由 $m\le f\le M$，以及常函数的可积性和保序性，有
+\[
+\int_\Omega m\,\dd V
+\le\int_\Omega f\,\dd V
+\le\int_\Omega M\,\dd V.
+\]
+再用常函数的积分公式，即得
+$mV\le\displaystyle\int_\Omega f\,\dd V\le MV$。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.2.6（绝对可积性）}
+
+
+设 $f$ 在区域 $\Omega$ 上可积，则 $|f|$ 也在 $\Omega$ 上可积，且
+\[
+\left|\int_\Omega f\,\dd V\right|
+\le\int_\Omega|f|\,\dd V.
+\]
+
+
+
+
+
+\textbf{证明}
+
+对任意 $\vect p,\vect q\in\Omega$，由绝对值不等式，
+\[
+\bigl||f(\vect p)|-|f(\vect q)|\bigr|
+\le|f(\vect p)-f(\vect q)|.
+\]
+所以在每个小块上，$\omega_i(|f|)\le\omega_i(f)$。
+由 $f$ 可积，当 $\lambda(P)\to0$ 时，
+\[
+0\le\sum_i\omega_i(|f|)\Delta V_i
+\le\sum_i\omega_i(f)\Delta V_i\longrightarrow0.
+\]
+由振幅判据，$|f|$ 可积。
+又由 $-|f|\le f\le|f|$，结合线性性与保序性，得到
+\[
+-\int_\Omega|f|\,\dd V
+\le\int_\Omega f\,\dd V
+\le\int_\Omega|f|\,\dd V.
+\]
+这就等价于所需的绝对值不等式。
+
+
+$\square$
+
+
+
+
+
+\textbf{问题 3.2.7}
+
+构造一个 $D=[0,1]\times[0,1]$ 上的函数 $f(x,y)$，
+使 $|f(x,y)|$ 可积，但 $f(x,y)$ 不可积。
+
+
+
+
+
+\textbf{解}
+
+令
+\[
+f(x,y)=
+\begin{cases}
+1,&x\in\mathbb Q,\\
+-1,&x\notin\mathbb Q,
+\end{cases}
+\qquad (x,y)\in D.
+\]
+由于 $|f(x,y)|\equiv1$，由常函数的积分公式，
+\[
+\iint_D|f(x,y)|\,\dd x\,\dd y=1.
+\]
+因此 $|f|$ 在 $D$ 上可积。
+
+下面按二重积分的定义证明 $f$ 不可积。
+将两个坐标区间都作 $n$ 等分，得到小矩形
+\[
+\Delta_{ij}=
+\left[\frac{i-1}{n},\frac{i}{n}\right]
+\times\left[\frac{j-1}{n},\frac{j}{n}\right],
+\qquad 1\le i,j\le n.
+\]
+每个小矩形的面积为 $1/n^2$，
+划分的模长为 $\lambda_n=\sqrt2/n\to0$。
+由于有理数和无理数在每个非退化区间内都稠密，
+每个小矩形中都能选取横坐标为有理数的点，
+也能选取横坐标为无理数的点。
+若各小矩形中都选前一种点，相应的 Riemann 和为
+\[
+J_n^+=\sum_{i=1}^n\sum_{j=1}^n1\cdot\frac1{n^2}=1.
+\]
+若各小矩形中都选后一种点，则
+\[
+J_n^-=\sum_{i=1}^n\sum_{j=1}^n(-1)\cdot\frac1{n^2}=-1.
+\]
+两列划分的模长都趋于零，而所得 Riemann 和的极限不同，
+故 $f$ 在 $D$ 上不可积。
+这个例子说明：$|f|$ 可积不能反推出 $f$ 可积，
+即前面绝对可积性命题的逆命题不成立。
+
+
+
+
+
+
+\textbf{命题 3.2.8（乘积可积性）}
+
+
+设 $f$ 和 $g$ 都在区域 $\Omega$ 上可积，则 $f\cdot g$ 也在 $\Omega$ 上可积。
+
+
+
+
+
+\textbf{证明}
+
+由于 $f,g$ 有界，可取有限常数 $B_f,B_g\ge0$，使
+$|f|\le B_f$、$|g|\le B_g$，因而 $fg$ 也有界。
+对同一小块中的任意两点 $\vect p,\vect q$，
+\[
+\begin{aligned}
+|f(\vect p)g(\vect p)-f(\vect q)g(\vect q)|
+&\le |f(\vect p)|\,|g(\vect p)-g(\vect q)|\\
+&\quad+|g(\vect q)|\,|f(\vect p)-f(\vect q)|\\
+&\le B_f|g(\vect p)-g(\vect q)|
++B_g|f(\vect p)-f(\vect q)|.
+\end{aligned}
+\]
+取上确界，得到
+\[
+\omega_i(fg)\le B_f\omega_i(g)+B_g\omega_i(f).
+\]
+所以当 $\lambda(P)\to0$ 时，
+\[
+0\le\sum_i\omega_i(fg)\Delta V_i
+\le B_f\sum_i\omega_i(g)\Delta V_i
++B_g\sum_i\omega_i(f)\Delta V_i\longrightarrow0.
+\]
+由振幅判据，$fg$ 在 $\Omega$ 上可积。
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 3.2.9（积分中值定理）}
+
+
+设 $f$ 和 $g$ 都在区域 $\Omega$ 上可积，且 $g$ 在 $\Omega$ 上不变号。
+设 $M,m$ 分别为 $f$ 在 $\Omega$ 上的上确界和下确界，
+则存在常数 $\mu\in[m,M]$，使
+\[
+\int_\Omega f g\,\dd V=\mu\int_\Omega g\,\dd V.
+\]
+特别地，若 $f$ 在 $\Omega$ 上连续，且 $\Omega$ 连通，则存在 $\xi\in\Omega$，使
+\[
+\int_\Omega f g\,\dd V=f(\xi)\int_\Omega g\,\dd V.
+\]
+
+
+
+
+
+\textbf{证明}
+
+由乘积可积性，$fg$ 可积。
+先设 $g\ge0$。由 $m\le f\le M$，有
+\[
+mg\le fg\le Mg.
+\]
+根据线性性与保序性，
+\[
+m\int_\Omega g\,\dd V
+\le\int_\Omega fg\,\dd V
+\le M\int_\Omega g\,\dd V.
+\]
+记 $G=\displaystyle\int_\Omega g\,\dd V\ge0$。
+若 $G>0$，令
+\[
+\mu=\frac{\displaystyle\int_\Omega fg\,\dd V}{G},
+\]
+则上述不等式给出 $m\le\mu\le M$，所需等式成立。
+若 $G=0$，上述不等式给出 $\displaystyle\int_\Omega fg\,\dd V=0$，
+此时任取 $\mu\in[m,M]$ 都满足所需等式。
+若 $g\le0$，对 $-g\ge0$ 使用刚证明的结论，再由线性性同时变号，
+就得到关于原函数 $g$ 的结论。
+
+特别地，若 $f$ 连续且 $\Omega$ 连通，
+则由于 $\Omega$ 为有界闭集，$f$ 在其上取到最小值 $m$ 和最大值 $M$；
+又因连续函数将连通集映为连通集，$f(\Omega)$ 是区间 $[m,M]$。
+因此对上述 $\mu\in[m,M]$，存在 $\xi\in\Omega$，使 $f(\xi)=\mu$。
+代入前面的等式，便得到
+\[
+\int_\Omega fg\,\dd V=f(\xi)\int_\Omega g\,\dd V.
+\]
+若“区域”已按连通集理解，连通性即包含在区域的假定中；
+若允许任意零边界闭集，则最后这个取值结论需要另加连通性。
+
+
+$\square$
+
+
+
+\subsection*{计算}
+\subsubsection*{矩形区域上的二重积分}
+
+对于矩形区域 $D=[a,b]\times[c,d]$（$a\le b$，$c\le d$），
+若有一个等号成立，则 $D$ 退化为一段线段，因而
+\[
+\iint_D f(x,y)\,\dd x\,\dd y=0.
+\]
+这里仍是二重积分，不等同于沿该线段的一元积分。
+若 $a=b$ 且 $c=d$，则 $D$ 退化为一个点，其二重积分同样为零。
+以下讨论非退化矩形。
+
+
+
+\textbf{定理 3.2.10（矩形区域上二重积分与累次积分的关系）}
+
+
+设 $f(x,y)$ 在 $D=[a,b]\times[c,d]$ 上可积。
+若对每个 $x\in[a,b]$，
+\[
+h(x)=\int_c^d f(x,y)\,\dd y
+\]
+都有定义，则 $h$ 在 $[a,b]$ 上可积，并且
+\[
+\begin{aligned}
+\iint_D f(x,y)\,\dd x\,\dd y
+&=\int_a^b h(x)\,\dd x\\
+&=\int_a^b\left(\int_c^d f(x,y)\,\dd y\right)\dd x
+=\int_a^b\dd x\int_c^d f(x,y)\,\dd y.
+\end{aligned}
+\]
+若对每个 $y\in[c,d]$，
+\[
+g(y)=\int_a^b f(x,y)\,\dd x
+\]
+都有定义，则 $g$ 在 $[c,d]$ 上可积，并且
+\[
+\iint_D f(x,y)\,\dd x\,\dd y
+=\int_c^d\dd y\int_a^b f(x,y)\,\dd x.
+\]
+
+
+
+
+
+
+\textbf{证明}
+
+证明第一种积分次序，另一种同理。
+在 $[a,b]$ 上取划分
+\[
+P_x:\quad a=x_0<x_1<\cdots<x_n=b,
+\]
+记 $\Delta x_k=x_k-x_{k-1}$，在每个区间 $[x_{k-1},x_k]$
+中任取 $\xi_k$。考察 $h$ 的 Riemann 和
+\[
+\sum_{k=1}^n h(\xi_k)\Delta x_k
+=\sum_{k=1}^n\left(\int_c^d f(\xi_k,y)\,\dd y\right)\Delta x_k.
+\]
+再在 $[c,d]$ 上取划分
+\[
+P_y:\quad c=y_0<y_1<\cdots<y_m=d,
+\qquad \Delta y_j=y_j-y_{j-1}.
+\]
+两划分给出矩形小块
+\[
+\Delta_{kj}=[x_{k-1},x_k]\times[y_{j-1},y_j].
+\]
+令 $m_{kj}=\inf_{\Delta_{kj}}f$，$M_{kj}=\sup_{\Delta_{kj}}f$。
+由切片积分的区间可加性及保序性，
+\[
+\begin{aligned}
+R_h(P_x;\xi)
+&=\sum_{k=1}^n\sum_{j=1}^m
+\left(\int_{y_{j-1}}^{y_j}f(\xi_k,y)\,\dd y\right)\Delta x_k,\\
+\sum_{k=1}^n\sum_{j=1}^m m_{kj}\Delta x_k\Delta y_j
+&\le R_h(P_x;\xi)
+\le\sum_{k=1}^n\sum_{j=1}^m M_{kj}\Delta x_k\Delta y_j.
+\end{aligned}
+\]
+两端分别为该矩形划分的 Darboux 小和与大和。
+记 $I=\displaystyle\iint_D f\,\dd x\,\dd y$。由 $f$ 的可积性，
+当矩形划分的最大直径趋于零时，两端都趋于 $I$。
+具体地，任给 $\varepsilon>0$，可取 $\delta>0$，
+使矩形划分的模长小于 $\delta$ 时，两端都与 $I$ 相差小于 $\varepsilon$。
+只要 $P_x$ 的模长小于 $\delta/2$，再选 $P_y$ 的模长小于 $\delta/2$，
+各矩形的直径就小于 $\delta$，因而对任意 $\xi_k$，
+\[
+|R_h(P_x;\xi)-I|<\varepsilon.
+\]
+又因为 $f$ 有界，$h$ 也有界，故按一元 Riemann 积分的定义，
+$h$ 在 $[a,b]$ 上可积，且
+\[
+\int_a^b h(x)\,\dd x=I.
+\]
+
+
+$\square$
+
+
+
+\textbf{注意：}仅由 $f$ 在矩形上的二重积分存在，
+不能推出每个切片积分
+$\displaystyle\int_c^d f(x,y)\,\dd y$ 或 $\displaystyle\int_a^b f(x,y)\,\dd x$ 都有定义。
+
+
+
+\textbf{例 3.2.11（二重积分存在而某些切片不可积）}
+
+
+设 $D=[0,1]\times[0,1]$。当 $x=q_x/p_x$、$y=q_y/p_y$
+都是既约分数时，令
+\[
+f(x,y)=
+\begin{cases}
+\dfrac1{p_x}+\dfrac1{p_y},
+&x=\dfrac{q_x}{p_x}\in\mathbb Q,\quad
+y=\dfrac{q_y}{p_y}\in\mathbb Q,\\[6pt]
+0,&\text{其他},
+\end{cases}
+\]
+其中 $p_x,p_y>0$，$(q_x,p_x)=(q_y,p_y)=1$。
+此函数在 $D$ 上可积，且
+\[
+\iint_D f(x,y)\,\dd x\,\dd y=0.
+\]
+
+考察切片 $y\mapsto f(x,y)$。
+若 $x\notin\mathbb Q$，则此切片恒为零。
+若固定 $x=q_x/p_x\in\mathbb Q$，则
+\[
+f(x,y)=
+\begin{cases}
+\dfrac1{p_x}+\dfrac1{p_y},&y=\dfrac{q_y}{p_y}\in\mathbb Q,\\[6pt]
+0,&y\notin\mathbb Q.
+\end{cases}
+\]
+对 $[0,1]$ 的任意划分，每个子区间的振幅都不小于 $1/p_x$，故
+\[
+\sum_j\omega_j\Delta y_j
+\ge\frac1{p_x}\sum_j\Delta y_j=\frac1{p_x}.
+\]
+所以该切片不可积，$\int_0^1 f(x,y)\,\dd y$ 没有定义。
+
+二重积分为零可以用第一部分已经定义的 Riemann 函数 $R$ 证明。
+仍记
+\[
+R(t)=
+\begin{cases}
+1/p,&t=q/p\in[0,1]\cap\mathbb Q,\quad (q,p)=1,\ p>0,\\
+0,&t\notin\mathbb Q.
+\end{cases}
+\]
+这里 $[0,1]\cap\mathbb Q$ 表示 $[0,1]$ 内的有理数，
+$(q,p)=1$ 表示 $q,p$ 互质，即 $q/p$ 为既约分数。
+已知 $R$ 可积且 $\displaystyle\int_0^1R(t)\,\dd t=0$。
+
+分别在两个坐标区间上取一元划分
+\[
+\begin{aligned}
+P_x:&\quad 0=x_0<x_1<\cdots<x_n=1,\\
+P_y:&\quad 0=y_0<y_1<\cdots<y_m=1,
+\end{aligned}
+\qquad
+\Delta x_k=x_k-x_{k-1},\quad
+\Delta y_j=y_j-y_{j-1}.
+\]
+由这两组分点组成的矩形划分记为 $P$，其小块仍为
+\[
+\Delta_{kj}=[x_{k-1},x_k]\times[y_{j-1},y_j].
+\]
+$P_x\times P_y$ 是这个矩形划分 $P$ 的另一种记法，称为乘积划分。
+\[
+M_{kj}=\sup_{\Delta_{kj}}f,\qquad
+S_f(P)=S(P)=\sum_{k=1}^n\sum_{j=1}^m
+M_{kj}\Delta x_k\Delta y_j.
+\]
+$S_R(P_x)$ 和 $S_R(P_y)$ 则分别是 $R$ 对两个一元划分的 Darboux 大和：
+\[
+\begin{aligned}
+S_R(P_x)
+&=\sum_{k=1}^n
+\left(\sup_{x\in[x_{k-1},x_k]}R(x)\right)\Delta x_k,\\
+S_R(P_y)
+&=\sum_{j=1}^m
+\left(\sup_{y\in[y_{j-1},y_j]}R(y)\right)\Delta y_j.
+\end{aligned}
+\]
+
+
+现在由 $0\le f(x,y)\le R(x)+R(y)$，在每个矩形小块上都有
+\[
+0\le M_{kj}
+\le\sup_{x\in[x_{k-1},x_k]}R(x)
++\sup_{y\in[y_{j-1},y_j]}R(y).
+\]
+乘以小块面积 $\Delta x_k\Delta y_j$ 后求和。
+由于 $\sum_k\Delta x_k=\sum_j\Delta y_j=1$，得到
+\[
+\begin{aligned}
+0\le S(P)
+&\le
+\sum_{k=1}^n
+\left(\sup_{x\in[x_{k-1},x_k]}R(x)\right)\Delta x_k
+\sum_{j=1}^m\Delta y_j\\
+&\quad+
+\sum_{j=1}^m
+\left(\sup_{y\in[y_{j-1},y_j]}R(y)\right)\Delta y_j
+\sum_{k=1}^n\Delta x_k\\
+&=S_R(P_x)+S_R(P_y).
+\end{aligned}
+\]
+因此，原来的简写不等式
+\[
+0\le S_f(P_x\times P_y)\le S_R(P_x)+S_R(P_y)
+\]
+就是上述逐块估计的结果。
+因为 $R$ 的一元积分为零，当两个一元划分的模长趋于零时，
+右边两个 Darboux 大和都趋于零。
+又因 $0\le s(P)\le S(P)$，可以取划分使
+$S(P)-s(P)$ 任意小。
+由二重积分的第二充要条件，$f$ 可积；
+再由 $0\le\displaystyle\iint_D f\,\dd x\,\dd y\le S(P)$，得到其积分为零。
+
+
+\textbf{任意点处的极限是否都为零？}
+对于本例的二元函数 $f$，考虑断言
+\[
+\text{对任意 }(x_0,y_0)\in D,\qquad
+\lim_{(x,y)\to(x_0,y_0)}f(x,y)=0.
+\]
+这一断言是错误的。下面给出反例。
+
+取 $x_0=1/2$、$y_0=\sqrt2/2$，固定 $x=x_0$。
+由本例的定义及第一部分示例 6.3.6 中 $R(y)\to0$ 的结论，
+\[
+\lim_{\substack{y\to y_0\\y\in\mathbb Q}}f(1/2,y)=\frac12,
+\qquad
+\lim_{\substack{y\to y_0\\y\notin\mathbb Q}}f(1/2,y)=0.
+\]
+两种趋近方式均符合前面定义的二元去心邻域：
+虽然 $x=x_0$，但 $y\ne y_0$，故 $(x,y)\ne(x_0,y_0)$。
+所得极限不同，所以 $f$ 在该点的二元极限不存在。
+
+\textbf{与一元 Riemann 函数的比较。}
+虽然 $0\le f(x,y)\le R(x)+R(y)$，但按前面的定义，二元去心条件为
+$(x,y)\ne(x_0,y_0)$，允许其中一个坐标保持不变。
+因此不能把两个一元去心极限直接套用到所有这样的趋近方式上。
+若额外限制两个坐标都不等于各自的极限坐标，则可由示例 6.3.6 的方法得到
+\[
+\lim_{\substack{(x,y)\to(x_0,y_0)\\x\ne x_0,\ y\ne y_0}}f(x,y)=0.
+\]
+这是一种限制趋近方式后的极限，不能替代通常的二元极限。
+对于 $x_0,y_0$ 都为无理数的点，因为 $R(x_0)=R(y_0)=0$，
+两个一元估计在坐标等于极限坐标时也成立，
+所以由 $0\le f(x,y)\le R(x)+R(y)$ 可知通常的二元极限确实为零。
+
+
+
+
+\subsubsection*{矩形区域上的 $n$ 重积分}
+
+
+
+\textbf{定理 3.2.12}
+
+设 $f(x_1,\ldots,x_n)$ 在 $n$ 维闭矩形
+\[
+\Omega=[a_1,b_1]\times\cdots\times[a_n,b_n]
+\]
+上可积，记 $\Omega_2=[a_2,b_2]\times\cdots\times[a_n,b_n]$。
+若对每个 $x_1\in[a_1,b_1]$，
+\[
+h(x_1)=\int_{\Omega_2}f(x_1,x_2,\ldots,x_n)\,\dd x_2\cdots\dd x_n
+\]
+都存在，则 $h$ 在 $[a_1,b_1]$ 上可积，且
+\[
+\begin{aligned}
+\int_\Omega f(x_1,\ldots,x_n)\,\dd x_1\cdots\dd x_n
+&=\int_{a_1}^{b_1}h(x_1)\,\dd x_1\\
+&=\int_{a_1}^{b_1}\dd x_1
+\int_{\Omega_2}f(x_1,\ldots,x_n)\,\dd x_2\cdots\dd x_n.
+\end{aligned}
+\]
+
+
+
+
+特别地，$n=2$ 时就是前面的二重积分定理；
+$n=3$ 时，若 $\Omega=[a,b]\times[c,d]\times[e,f]$，
+$\Omega_2=[c,d]\times[e,f]$，则
+\[
+\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z
+=\int_a^b\dd x\iint_{\Omega_2}f(x,y,z)\,\dd y\,\dd z.
+\]
+
+
+
+\textbf{推论 3.2.13}
+
+若 $f(x_1,\ldots,x_n)$ 在闭矩形
+$\Omega=[a_1,b_1]\times\cdots\times[a_n,b_n]$ 上连续，则
+\[
+\int_\Omega f\,\dd x_1\cdots\dd x_n
+=\int_{a_1}^{b_1}\dd x_1\int_{a_2}^{b_2}\dd x_2\cdots
+\int_{a_{n-1}}^{b_{n-1}}\dd x_{n-1}
+\int_{a_n}^{b_n}f(x_1,\ldots,x_n)\,\dd x_n.
+\]
+
+
+
+
+\subsubsection*{一般区域上的重积分计算}
+
+现在考虑 $f(x,y)$ 在一般区域上的二重积分。
+设 $f$ 在区域
+\[
+D=\{(x,y):y_1(x)\le y\le y_2(x),\ a\le x\le b\}
+\]
+上连续,我们称这样的区域为$x-$区域，其中 $y_1,y_2$ 为 $[a,b]$ 上的一元连续函数。
+令
+\[
+c=\min_{a\le x\le b}y_1(x),\qquad
+d=\max_{a\le x\le b}y_2(x),
+\qquad
+\widetilde D=[a,b]\times[c,d]\supset D.
+\]
+
+
+\includegraphics[width=0.5\textwidth]{assets/section2_general_region_hd.png}
+
+
+令
+\[
+\widetilde f(x,y)=
+\begin{cases}
+f(x,y),&(x,y)\in D,\\
+0,&(x,y)\in\widetilde D\setminus D.
+\end{cases}
+\]
+$\widetilde f$ 在 $\widetilde D$ 上可积，因为它只可能在零面积边界
+$\partial D$ 处不连续。
+注意到 $\widetilde f$ 在 $D$ 外为零，对固定的 $x$，
+\[
+\begin{aligned}
+\int_c^d\widetilde f(x,y)\,\dd y
+&=\int_c^{y_1(x)}\widetilde f(x,y)\,\dd y
++\int_{y_1(x)}^{y_2(x)}\widetilde f(x,y)\,\dd y
++\int_{y_2(x)}^d\widetilde f(x,y)\,\dd y\\
+&=\int_{y_1(x)}^{y_2(x)}f(x,y)\,\dd y.
+\end{aligned}
+\]
+由于 $f$ 在 $D$ 上连续，上式对每个 $x\in[a,b]$ 都有定义。
+因此
+\[
+\begin{aligned}
+\iint_D f(x,y)\,\dd x\,\dd y
+&=\iint_{\widetilde D}\widetilde f(x,y)\,\dd x\,\dd y\\
+&=\int_a^b\dd x\int_c^d\widetilde f(x,y)\,\dd y\\
+&=\int_a^b\dd x\int_{y_1(x)}^{y_2(x)}f(x,y)\,\dd y.
+\end{aligned}
+\]
+
+类似地，若 $f$ 在
+\[
+D=\{(x,y):x_1(y)\le x\le x_2(y),\ c\le y\le d\}
+\]
+上连续，且 $x_1,x_2$ 在 $[c,d]$ 上连续，则
+\[
+\iint_D f(x,y)\,\dd x\,\dd y
+=\int_c^d\dd y\int_{x_1(y)}^{x_2(y)}f(x,y)\,\dd x.
+\]
+\subsubsection*{三重积分}
+若积分区域为长方体
+\[
+D=[a,b]\times[c,d]\times[e,f],
+\]
+则可以按照前面的累次积分公式计算三重积分。
+
+对于一般区域 $\Omega$，一种方法是投影法，
+另一种方法是截面法。
+
+\textbf{投影法：}在三维情形，若 $f(x,y,z)$ 在
+\[
+\Omega=\{(x,y,z):
+z_1(x,y)\le z\le z_2(x,y),\
+y_1(x)\le y\le y_2(x),\
+a\le x\le b\}
+\]
+上连续，且 $z_1,z_2,y_1,y_2$ 都连续，则
+\[
+\begin{aligned}
+\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z
+&=\iint_{\Omega_{xy}}\dd x\,\dd y
+\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\,\dd z\\
+&=\int_a^b\dd x\int_{y_1(x)}^{y_2(x)}\dd y
+\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\,\dd z,
+\end{aligned}
+\]
+其中
+\[
+\Omega_{xy}=\{(x,y):y_1(x)\le y\le y_2(x),\ a\le x\le b\}
+\]
+为区域 $\Omega$ 在 $xy$ 平面上的投影。
+
+
+\includegraphics[width=0.5\textwidth]{assets/section2_solid_hd.png}
+
+
+\textbf{截面法：}设 $\Omega$ 夹在平面 $z=e$ 与 $z=f$ 之间，其中 $e\le f$。
+固定 $z$，用平面 $z=\text{常数}$ 截取 $\Omega$，
+并将所得截面投影到 $xy$ 平面，记投影区域为 $\Omega'_z$。
+在相应积分存在的条件下，有
+\[
+\iiint_\Omega f(x,y,z)\,\dd x\,\dd y\,\dd z
+=\int_e^f\dd z\iint_{\Omega'_z}f(x,y,z)\,\dd x\,\dd y.
+\]
+这里内层积分中的 $z$ 是固定的参数。
+
+
+\includegraphics{assets/sec2_slice_tikz.png}
+
+
+
+
+\textbf{例 3.2.14（非均匀金属块的质量）}
+
+
+一非均匀金属块在空间中的表示是由双曲抛物面 $z=xy$、
+平面 $x+y=1$ 和 $z=0$ 所围成的区域 $\Omega$，
+其密度函数为 $\rho(x,y,z)=xy$，求它的质量。
+
+
+
+
+
+\textbf{解}
+
+由图，$\Omega$ 可表示为
+\[
+\Omega=\{(x,y,z):0\le z\le xy,\ 0\le y\le1-x,\ 0\le x\le1\}.
+\]
+
+
+\includegraphics[width=0.45\textwidth]{assets/sec2_metal_source_hd.png}
+
+
+因此金属块的质量为
+\[
+\begin{aligned}
+M
+&=\iiint_\Omega\rho(x,y,z)\,\dd x\,\dd y\,\dd z=\int_0^1\dd x\int_0^{1-x}\dd y\int_0^{xy}xy\,\dd z=\int_0^1\dd x\int_0^{1-x}x^2y^2\,\dd y\\
+&=\frac13\int_0^1x^2(1-x)^3\,\dd x=\frac13\left(\frac13-\frac34+\frac35-\frac16\right)=\frac1{180}.
+\end{aligned}
+\]
+
+
+
+
+
+
+\textbf{例 3.2.15（用截面法计算圆锥上的积分）}
+
+
+计算
+\[
+I=\iiint_\Omega z^2\,\dd x\,\dd y\,\dd z,
+\]
+其中 $\Omega$ 是由锥面
+\[
+z^2=\frac{h^2}{R^2}(x^2+y^2)
+\]
+与平面 $z=h$ 所围成的闭区域，$R>0$、$h>0$。
+
+
+
+
+
+\textbf{解}
+
+这里的 $\Omega$ 可表示为
+\[
+\Omega=\left\{(x,y,z):
+0\le z\le h,\quad
+\frac{h^2}{R^2}(x^2+y^2)\le z^2\right\}.
+\]
+
+
+\includegraphics{assets/sec2_cone_tikz.png}
+
+
+固定 $z\in[0,h]$。
+用过点 $(0,0,z)$ 且平行于 $xy$ 平面的平面截取 $\Omega$，
+所得截面在 $xy$ 平面上的投影为圆盘
+\[
+\Omega'_z
+=\left\{(x,y):x^2+y^2\le\frac{R^2}{h^2}z^2\right\}.
+\]
+其半径为 $Rz/h$，所以
+\[
+\iint_{\Omega'_z}\dd x\,\dd y
+=\pi\frac{R^2}{h^2}z^2.
+\]
+
+由截面法，
+\[
+\begin{aligned}
+I
+&=\int_0^h\dd z\iint_{\Omega'_z}z^2\,\dd x\,\dd y\\
+&=\int_0^h z^2
+\left(\iint_{\Omega'_z}\dd x\,\dd y\right)\dd z\\
+&=\frac{\pi R^2}{h^2}\int_0^h z^4\,\dd z\\
+&=\frac{\pi R^2h^3}{5}.
+\end{aligned}
+\]
+
+
+
+
+
+
+
+
+
+
+\section*{§3　重积分的变量代换}
+\subsection*{二重积分的变量代换}
+
+
+
+\textbf{定义 3.3.1}
+
+设 $U\subset\R^2$ 为开集，考虑映射
+\[
+T:U\longrightarrow V=T(U),\qquad
+(u,v)\longmapsto\bigl(x(u,v),y(u,v)\bigr).
+\]
+要求 $T$ 为一一映射，并满足：
+\begin{enumerate}
+\item $x(u,v)$、$y(u,v)$ 在 $U$ 上连续可导；
+\item Jacobian 行列式
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\begin{vmatrix}
+\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[5pt]
+\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}
+\end{vmatrix}
+\ne0.
+\]
+\end{enumerate}
+这样的 $T$ 是 $U$ 到 $V$ 的一个微分同胚，称$T$为平面上的一个坐标变换。
+
+
+
+
+在 $U$ 中取直线 $u=u_0$，它在 $xy$ 平面中对应一条曲线
+\[
+x=x(u_0,v),\qquad y=y(u_0,v),
+\]
+称为 $v$-曲线。
+同样，直线 $v=v_0$ 对应曲线
+\[
+x=x(u,v_0),\qquad y=y(u,v_0),
+\]
+称为 $u$-曲线。
+
+由于 $T$ 为一一映射，$V$ 中的每一点既可唯一地用 $(x,y)$ 表示，
+也可唯一地用 $(u,v)$ 表示。
+称这些 $u$-曲线和 $v$-曲线构成曲线坐标网，
+称 $(u,v)$ 为该点的曲线坐标。
+
+
+\includegraphics{assets/sec3_coordinates_tikz.png}
+
+
+
+
+\textbf{定理 3.3.2（二重积分的变量代换）}
+
+
+设 $U$ 是 $uv$ 平面上的开集，
+\[
+T:U\longrightarrow T(U),\qquad
+(u,v)\longmapsto\bigl(x(u,v),y(u,v)\bigr)
+\]
+为一一映射。
+设 $x(u,v)$、$y(u,v)$ 在 $U$ 上连续可导，且
+$\partial(x,y)/\partial(u,v)\ne0$。
+若 $D\subset U$ 为有界零边界闭区域，$f$ 在 $T(D)$ 上连续，则
+\[
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\iint_D f\bigl(x(u,v),y(u,v)\bigr)
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+\,\dd u\,\dd v.
+\]
+
+
+
+
+
+\subsection*{变量代换的例子}
+
+在下面的例子中，原来的 $xy$ 平面区域记为 $D$，
+对应的参数平面区域记为 $D'$，即 $T(D')=D$。
+
+
+
+\textbf{例 3.3.3（线性代换计算面积）}
+
+
+设 $a>0$，求曲线 $(x-y)^2+x^2=a^2$ 所围区域的面积。
+
+
+
+
+
+\textbf{解}
+
+原区域为
+\[
+D=\{(x,y):(x-y)^2+x^2\le a^2\},
+\qquad
+S_D=\iint_D\dd x\,\dd y.
+\]
+令
+\[
+u=x,\qquad v=x-y.
+\]
+则逆变换为
+\[
+x=u,\qquad y=u-v,
+\]
+并且
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\begin{vmatrix}1&0\\1&-1\end{vmatrix}=-1.
+\]
+由于
+\[
+(x-y)^2+x^2=u^2+v^2,
+\]
+原区域对应圆盘
+\[
+D'=\{(u,v):u^2+v^2\le a^2\}.
+\]
+因此
+\[
+S_D=\iint_{D'}1\,\dd u\,\dd v=\pi a^2.
+\]
+
+
+
+
+
+
+\textbf{例 3.3.4（双曲线与射线围成区域的面积）}
+
+
+设 $0<a<b$、$0<p<q$，求第一象限内由
+\[
+xy=p,\qquad xy=q,\qquad y=ax,\qquad y=bx
+\]
+围成的区域 $D$ 的面积。
+
+
+
+
+
+\textbf{解}
+
+
+\includegraphics{assets/sec3_hyperbolas_tikz.png}
+
+
+令
+\[
+u=xy,\qquad v=\frac yx.
+\]
+由于 $x,y>0$，可解得
+\[
+x=\sqrt{\frac uv},\qquad y=\sqrt{uv}.
+\]
+原区域变为矩形
+\[
+D'=\{(u,v):p\le u\le q,\ a\le v\le b\}.
+\]
+计算 Jacobian 行列式：
+\[
+\begin{aligned}
+\frac{\partial(x,y)}{\partial(u,v)}
+&=\begin{vmatrix}
+\dfrac1{2\sqrt{uv}}&-\dfrac12\sqrt{\dfrac u{v^3}}\\[7pt]
+\dfrac12\sqrt{\dfrac vu}&\dfrac12\sqrt{\dfrac uv}
+\end{vmatrix}\\
+&=\frac1{4v}+\frac1{4v}
+=\frac1{2v}.
+\end{aligned}
+\]
+因此
+\[
+\begin{aligned}
+S_D
+&=\iint_D\dd x\,\dd y\\
+&=\iint_{D'}\frac1{2v}\,\dd u\,\dd v\\
+&=\frac12\int_p^q\dd u\int_a^b\frac1v\,\dd v\\
+&=\frac12\int_p^q\ln\frac ba\,\dd u\\
+&=\frac{q-p}{2}\ln\frac ba.
+\end{aligned}
+\]
+
+
+
+
+
+\subsection*{极坐标变换}
+
+对于含有 $x^2+y^2$ 的表达式，可以考虑极坐标变换
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+其 Jacobian 行列式为
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=\begin{vmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{vmatrix}
+=r.
+\]
+例如，圆域 $x^2+y^2<a^2$ 在参数平面中对应
+$0<r<a$、$0<\theta<2\pi$，另需处理原点和角度接缝。
+\textbf{半径约定：}本段用 $a$ 表示圆域半径，
+所以写成 $x^2+y^2<a^2$，与径向上限 $r<a$ 相对应。
+
+注意，当 $r=0$ 时，极坐标变换不是一一对应的。
+在应用变量代换公式时，还需避开角度接缝，即在 $xy$ 平面中去掉非负实轴。
+可以先在避开这些点的区域上应用公式，再取极限。
+
+
+
+\textbf{例 3.3.5（圆域上的极坐标积分）}
+
+
+计算
+\[
+I=\iint_D\sin\!\left(\pi\sqrt{x^2+y^2}\right)\,\dd x\,\dd y,
+\qquad
+D=\{(x,y):x^2+y^2\le1\}.
+\]
+
+
+
+
+
+\textbf{解}
+
+引入极坐标 $x=r\cos\theta$、$y=r\sin\theta$。
+形式上，$D$ 对应参数区域
+\[
+D_1=\{(r,\theta):0\le r\le1,\ 0\le\theta\le2\pi\}.
+\]
+于是
+\[
+\begin{aligned}
+&=\iint_{D_1}(\sin\pi r)\,r\,\dd r\,\dd\theta\\
+&=\int_0^{2\pi}\dd\theta\int_0^1r\sin\pi r\,\dd r\\
+&=2\pi\left[-\frac r\pi\cos\pi r
++\frac{\sin\pi r}{\pi^2}\right]_0^1\\
+&=2.
+\end{aligned}
+\]
+
+严格地说，需先避开原点和非负实轴。
+对充分小的 $\varepsilon>0$，取参数矩形
+\[
+D_{1,\varepsilon}
+=\{(r,\theta):\varepsilon\le r\le1,\
+\varepsilon\le\theta\le2\pi-\varepsilon\},
+\]
+并记其在 $xy$ 平面中的像为 $D_\varepsilon$。
+在这个参数矩形上，极坐标变换是一一的，且 Jacobian 行列式不为零。
+
+
+\includegraphics{assets/sec3_polar_cut_tikz.png}
+
+
+因此，按原图避开接缝后取极限的步骤，
+\[
+\begin{aligned}
+I
+&=\lim_{\varepsilon\to0^+}
+\iint_{D_\varepsilon}
+\sin\!\left(\pi\sqrt{x^2+y^2}\right)\,\dd x\,\dd y\\
+&=\lim_{\varepsilon\to0^+}
+\int_\varepsilon^{2\pi-\varepsilon}\dd\theta
+\int_\varepsilon^1r\sin\pi r\,\dd r\\
+&=\lim_{\varepsilon\to0^+}
+(2\pi-2\varepsilon)
+\left[-\frac r\pi\cos\pi r
++\frac{\sin\pi r}{\pi^2}\right]_\varepsilon^1\\
+&=2.
+\end{aligned}
+\]
+
+\textbf{补充说明：}记本例的被积函数为
+$f(x,y)=\sin(\pi\sqrt{x^2+y^2})$。
+上面取极限的依据是，$|f(x,y)|\le1$，
+而删去的部分包含于半径为 $\varepsilon$ 的圆盘
+以及总角度为 $2\varepsilon$ 的单位圆扇形之并。
+所以
+\[
+\left|\iint_D f\,\dd x\,\dd y
+-\iint_{D_\varepsilon}f\,\dd x\,\dd y\right|
+\le m(D\setminus D_\varepsilon)
+\le\pi\varepsilon^2+\varepsilon\longrightarrow0.
+\]
+
+
+
+
+\subsubsection*{广义极坐标变换}
+
+对于椭圆
+\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}\le1,
+\qquad a>0,\ b>0,
+\]
+可取
+\[
+x=ar\cos\theta,\qquad y=br\sin\theta.
+\]
+相应的参数范围为 $0\le r\le1$、$0\le\theta\le2\pi$，
+且
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=\begin{vmatrix}
+a\cos\theta&-ar\sin\theta\\
+b\sin\theta&br\cos\theta
+\end{vmatrix}
+=abr.
+\]
+
+\subsubsection*{平移后的极坐标变换}
+
+例如，对于圆域
+\[
+(x-x_0)^2+(y-y_0)^2\le a^2,
+\]
+可先平移坐标，再作极坐标变换：
+\[
+x=x_0+r\cos\theta,\qquad
+y=y_0+r\sin\theta.
+\]
+参数区域为 $0\le r\le a$、$0\le\theta\le2\pi$，
+原点和角度接缝按前述方法处理。
+
+
+\includegraphics{assets/sec3_translation_tikz.png}
+
+
+\subsection*{变量代换定理的证明}
+
+
+
+\subsubsection*{内外矩形逼近与零面积集的像}
+
+取一个包含 $D$ 的闭矩形 $S$。
+把它的两边不断二等分，得到一列逐次加细的矩形网格，网格的模长趋于零。
+记完全包含于 $D$ 的小矩形之并为 $A_n$，
+与 $D$ 相交的小矩形之并为 $B_n$，则
+\[
+A_n\subset A_{n+1}\subset D\subset B_{n+1}\subset B_n.
+\]
+由 $D$ 可求面积，
+\[
+mA_n\longrightarrow mD,\qquad mB_n\longrightarrow mD,
+\qquad mB_n-mA_n\longrightarrow0.
+\]
+特别地，把与 $D$ 相交但不完全包含于 $D$ 的网格小矩形记为 $R_j$，则
+\[
+\sum_jmR_j=mB_n-mA_n\longrightarrow0.
+\]
+这些闭矩形只在零面积的边界上重叠，因此这里的面积相加不会重复计算正面积部分。
+虽然 $S$ 不一定包含于 $U$，但 $D$ 是 $U$ 中的紧集，
+所以充分细的网格中所有与 $D$ 相交的小矩形都包含于 $U$。
+
+\subsubsection*{特殊变换下小矩形的面积}
+
+
+
+\textbf{引理 3.3.6（保留一个坐标的变换）}
+
+
+设 $T$ 是前述坐标变换，并且具有下列形式之一：
+\[
+T(u,v)=(u,y(u,v)),\qquad T(u,v)=(x(u,v),v).
+\]
+我们称这样的映射为\textbf{本原映射}.
+
+若闭矩形 $R=[e,f]\times[h,j]$ 包含于 $U$，其中 $e<f$、$h<j$，
+则存在 $(\widetilde u,\widetilde v)\in R$，使
+\[
+mT(R)=|J_T(\widetilde u,\widetilde v)|\,mR.
+\]
+
+
+
+
+
+\textbf{证明}
+
+先设 $T(u,v)=(u,y(u,v))$。此时 $J_T=y_v\ne0$。
+由于 $R$ 连通，$y_v$ 在 $R$ 上符号不变。
+先讨论 $y_v>0$ 的情形。
+
+固定 $u$，函数 $v\mapsto y(u,v)$ 严格递增，故
+\[
+T(R)=\{(x,y):e\le x\le f,\ y(x,h)\le y\le y(x,j)\}.
+\]
+
+\[
+mT(R)=\int_e^f\bigl(y(x,j)-y(x,h)\bigr)\,\dd x.
+\]
+
+
+\includegraphics{assets/sec3_triangular_proof_tikz.png}
+
+
+先对上面的一元积分应用积分中值定理，再对 $v\mapsto y(\widetilde u,v)$
+应用微分中值定理，得到 $\widetilde u\in[e,f]$、$\widetilde v\in(h,j)$，使
+\begin{align*}
+mT(R)
+&=(f-e)\bigl(y(\widetilde u,j)-y(\widetilde u,h)\bigr)\\
+&=(f-e)(j-h)y_v(\widetilde u,\widetilde v)\\
+&=mR\,|J_T(\widetilde u,\widetilde v)|.
+\end{align*}
+若 $y_v<0$，交换上下两条边界曲线，便得到相同的绝对值公式。
+对于 $T(u,v)=(x(u,v),v)$，交换两个坐标的作用，按同样的步骤证明即可。
+
+
+$\square$
+
+
+
+\subsubsection*{由小矩形的面积公式推出积分公式}
+
+
+
+\textbf{引理 3.3.7}
+
+变量代换公式对本原映射成立.
+
+
+
+
+
+\textbf{证明}
+
+仍用第一步中的网格。记完全包含于 $D$ 的小矩形为
+$D_1,\ldots,D_{N_n}$，其余与 $D$ 相交的小矩形为 $R_1,\ldots,R_{M_n}$。
+令
+\[
+E_j=D\cap R_j.
+\]
+这些集合都是零边界紧集；它们及其像都可求面积。
+因为 $T$ 是一一映射，它们的像也只在零面积边界上重叠。
+
+对每个 $D_i$，按假设取 $(\widetilde u_i,\widetilde v_i)\in D_i$，使
+\[
+mT(D_i)=|J_T(\widetilde u_i,\widetilde v_i)|\,mD_i.
+\]
+再任取 $(a_j,b_j)\in E_j$。由 $T$ 在 $D$ 上一致连续，
+当网格的模长趋于零时，上述各像集的直径也一致趋于零。
+因此下面两个式子分别是 $f$ 在 $T(D)$ 上以及
+$f(x(u,v),y(u,v))|J_T(u,v)|$ 在 $D$ 上的 Riemann 和：
+\begin{align*}
+S_n
+&=\sum_{i=1}^{N_n}
+ f\bigl(T(\widetilde u_i,\widetilde v_i)\bigr)mT(D_i)
+ +\sum_{j=1}^{M_n}f\bigl(T(a_j,b_j)\bigr)mT(E_j),\\
+S'_n
+&=\sum_{i=1}^{N_n}
+ f\bigl(T(\widetilde u_i,\widetilde v_i)\bigr)
+ |J_T(\widetilde u_i,\widetilde v_i)|\,mD_i\\
+&\quad+\sum_{j=1}^{M_n}
+ f\bigl(T(a_j,b_j)\bigr)|J_T(a_j,b_j)|\,mE_j.
+\end{align*}
+这里 $T(u,v)$ 写在 $f$ 的自变量位置时，表示有序对
+$\bigl(x(u,v),y(u,v)\bigr)$。
+
+记这两个和式的第二部分分别为 $B_n$、$B'_n$。
+由小矩形的面积公式，它们的第一部分完全相同，因而
+\[
+S_n-S'_n=B_n-B'_n.
+\]
+取常数 $H,K>0$，使 $|f|\le H$、$|J_T|\le K$。
+有
+\begin{align*}
+|B_n|
+&\le H\sum_jmT(E_j)
+ \le HK\sum_jmR_j\longrightarrow0,\\
+|B'_n|
+&\le HK\sum_jmE_j
+ \le HK\sum_jmR_j\longrightarrow0.
+\end{align*}
+两个被积函数都连续，而相应积分区域均为零边界紧集，所以它们都可积。
+令网格模长趋于零，就得到
+\begin{equation}
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\iint_D f\bigl(x(u,v),y(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v.
+\end{equation}
+
+
+$\square$
+
+
+
+
+
+\subsubsection*{一般变换的局部分解}
+
+
+
+\textbf{引理 3.3.8（局部分解）}
+
+
+在定理 3.3.2 的条件下，
+对每个 $(u_0,v_0)\in U$，适当交换自变量或像坐标的次序后，
+可以在 $(u_0,v_0)$ 的一个邻域内将 $T$ 分解为
+\[
+T=T_2\circ T_1,
+\]
+其中 $T_1$、$T_2$ 都是本原映射.
+
+
+
+
+
+\textbf{证明}
+
+因为 $J_T(u_0,v_0)\ne0$，四个一阶偏导数中至少有一个非零。
+适当交换坐标后，可设 $x_u(u_0,v_0)\ne0$。
+由连续性，缩小邻域后可使 $x_u$ 在其中处处非零。
+
+令
+\[
+T_1:\quad \xi=x(u,v),\qquad \eta=v.
+\]
+其 Jacobian 为 $x_u\ne0$。由反函数定理，进一步缩小邻域后，
+$T_1$ 有连续可导的逆映射，可写为
+\[
+u=g(\xi,\eta),\qquad v=\eta.
+\]
+再令
+\[
+T_2:\quad x=\xi,\qquad y=y\bigl(g(\xi,\eta),\eta\bigr).
+\]
+这就得到 $T_2\circ T_1=T$。
+
+对恒等式 $x(g(\xi,\eta),\eta)=\xi$ 求偏导，得到
+\[
+g_\xi=\frac1{x_u},\qquad g_\eta=-\frac{x_v}{x_u}.
+\]
+所以
+\begin{align*}
+\frac{\partial(x,y)}{\partial(\xi,\eta)}
+&=\frac{\partial}{\partial\eta}
+ y\bigl(g(\xi,\eta),\eta\bigr)\\
+&=y_ug_\eta+y_v
+ =\frac{x_uy_v-x_vy_u}{x_u}
+ =\frac{J_T}{x_u}\ne0.
+\end{align*}
+上式右边的偏导数均在 $(u,v)=(g(\xi,\eta),\eta)$ 处取值。
+$T_2=T\circ T_1^{-1}$ 也是一一映射，故两个映射都满足所需条件。
+坐标交换的 Jacobian 的绝对值为 $1$，不会改变最后公式中的绝对值因子。
+
+
+$\square$
+
+
+
+设 $D'$ 是上述分解邻域内的任意零边界紧集。
+先对 $T_2$ 使用已经证明的特殊情形，再对 $T_1$ 使用一次，得到
+\begin{align*}
+\iint_{T(D')}f(x,y)\,\dd x\,\dd y
+&=\iint_{T_1(D')}
+ f\bigl(T_2(\xi,\eta)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(\xi,\eta)}\right|
+ \,\dd\xi\,\dd\eta\\
+&=\iint_{D'} f\bigl(T(u,v)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(\xi,\eta)}
+       \frac{\partial(\xi,\eta)}{\partial(u,v)}\right|
+ \,\dd u\,\dd v\\
+&=\iint_{D'}f\bigl(T(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v.
+\end{align*}
+第二行中的第一个 Jacobian 要在 $(\xi,\eta)=T_1(u,v)$ 处取值；
+最后一步使用了复合映射的 Jacobian 乘法公式。
+这样就证明了变量代换公式的局部形式。
+
+\subsubsection*{有限覆盖与整体公式}
+
+
+
+\textbf{证明（定理 3.3.2 的证明）}
+
+
+对每个 $p\in D$，按局部分解引理取开邻域 $U_p\subset U$，
+使刚才的局部公式在 $U_p$ 内成立。
+再取 $r_p>0$，使开球 $O(p,2r_p)\subset U_p$。
+开球族 $\{O(p,r_p):p\in D\}$ 覆盖紧集 $D$。
+由 Heine--Borel 定理，可取有限子覆盖
+\[
+D\subset\bigcup_{k=1}^sO(p_k,r_{p_k}).
+\]
+令
+\[
+\delta=\min_{1\le k\le s}r_{p_k}>0.
+\]
+
+用直径小于 $\delta$ 的网格小矩形 $Q_j$ 分割 $D$，记 $D_j=D\cap Q_j$，
+忽略空集。
+任取 $q\in D_j$，存在 $k$ 使 $q\in O(p_k,r_{p_k})$。
+对任意 $q'\in D_j$，有
+\[
+|q'-p_k|\le|q'-q|+|q-p_k|<\delta+r_{p_k}\le2r_{p_k}.
+\]
+因此 $D_j\subset O(p_k,2r_{p_k})\subset U_{p_k}$，
+可以在每个 $D_j$ 上使用局部公式。
+
+各 $D_j$ 的公共部分都在网格分割线上，面积为零，
+其像的面积也为零。
+对有限个小块的局部公式求和，并利用积分的区域可加性，得到
+\begin{align*}
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+&=\sum_j\iint_{T(D_j)}f(x,y)\,\dd x\,\dd y\\
+&=\sum_j\iint_{D_j}
+ f\bigl(x(u,v),y(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v\\
+&=\iint_D f\bigl(x(u,v),y(u,v)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,\dd u\,\dd v.
+\end{align*}
+这就完成了定理的证明。
+
+
+$\square$
+
+
+
+\subsection*{高维情形与柱面、球面坐标}
+
+
+
+\textbf{定理 3.3.9（重积分的变量代换）}
+
+
+设 $U\subset\R^n$ 为开集，$T:U\to V=T(U)$ 为一一映射，
+\[
+T:\quad y_i=y_i(x_1,\ldots,x_n),\qquad i=1,\ldots,n.
+\]
+设各 $y_i$ 连续可导，且 Jacobian 行列式处处非零。
+其逆映射也连续可导，记为
+\[
+x_i=x_i(y_1,\ldots,y_n),\qquad i=1,\ldots,n.
+\]
+由逆映射的链式法则，
+\[
+\frac{\partial(x_1,\ldots,x_n)}{\partial(y_1,\ldots,y_n)}\bigl(T(x)\bigr)
+=\left(\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}(x)\right)^{-1}
+\ne0.
+\]
+若 $\Omega\subset U$ 为有界零边界闭区域，$F$ 在 $T(\Omega)$ 上连续，则有
+\[
+\begin{aligned}
+&\int\cdots\int_{T(\Omega)}F(y_1,\ldots,y_n)\,\dd y_1\cdots\dd y_n\\
+&\quad=\int\cdots\int_\Omega
+ F\bigl(y_1(x),\ldots,y_n(x)\bigr)
+ \left|\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|
+ \,\dd x_1\cdots\dd x_n,
+\end{aligned}
+\]
+其中 $x=(x_1,\ldots,x_n)$。
+
+
+
+
+
+\textbf{证明}
+
+先考虑只改变一个坐标的变换
+\[
+H(t_1,\ldots,t_n)
+=(t_1,\ldots,t_{k-1},h(t),t_{k+1},\ldots,t_n),
+\qquad h_{t_k}\ne0.
+\]
+对闭长方体 $Q$，固定其余 $n-1$ 个坐标，
+像集沿第 $k$ 个坐标的截面是由两个端点值确定的区间。
+由累次积分公式，它的体积是这些区间长度在其余坐标上的积分。
+先对这个连续的区间长度用积分中值定理，
+再对第 $k$ 个坐标用一元微分中值定理，便得到
+\[
+mH(Q)=|h_{t_k}(\widetilde t)|\,mQ
+=|\det DH(\widetilde t)|\,mQ
+\]
+对某个 $\widetilde t\in Q$ 成立。
+
+将二维证明中的小正方形换成小正方体，
+零体积集的像仍为零体积集：若 $H$ 在紧集附近满足 Lipschitz 估计，
+边长为 $a$ 的小正方体的像可用体积不超过
+$(2\sqrt nL)^na^n$ 的正方体覆盖。
+因此原来的边界估计及 Riemann 和证明逐项适用，
+从而得到这种单坐标变换的积分公式。
+
+下面说明一般变换可以局部分解成这些变换。
+固定一点，由 Jacobian 矩阵可逆，作适当的像坐标置换后，
+可以使各阶顺序主子式在该点都非零。
+这是带行选主元的消元法的直接结果。
+由连续性，缩小邻域后，这些主子式在邻域内都非零。
+定义
+\[
+S_0(x)=x,\qquad
+S_k(x)=\bigl(y_1(x),\ldots,y_k(x),x_{k+1},\ldots,x_n\bigr),
+\quad 1\le k\le n.
+\]
+$S_k$ 的 Jacobian 恰为相应的 $k$ 阶顺序主子式。
+由反函数定理，可以取同一个充分小的邻域，使所有 $S_k$ 都有连续可导的逆。
+令
+\[
+H_k=S_k\circ S_{k-1}^{-1}.
+\]
+$H_k$ 只改变第 $k$ 个坐标，而且 Jacobian 非零。
+又有
+\[
+T=H_n\circ\cdots\circ H_1.
+\]
+依次使用单坐标变换公式，Jacobian 的绝对值因子相乘，
+由链式法则正好得到 $|\det DT|$。
+这证明了局部公式。
+
+最后用紧集 $\Omega$ 的有限开覆盖，取足够细的正方体网格，
+使每个小块都包含于一个分解邻域。
+各小块的公共边界及其像均为零体积集，
+对各局部公式求和，便得到整体公式。
+
+
+$\square$
+
+
+
+\subsubsection*{柱面与球面坐标变换}
+
+在三维空间中，柱面坐标变换为
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,\qquad z=z,
+\]
+其中 $0\le r<+\infty$、$0\le\theta\le2\pi$、$-\infty<z<+\infty$。
+计算得
+\[
+\frac{\partial(x,y,z)}{\partial(r,\theta,z)}
+=\begin{vmatrix}
+\cos\theta&-r\sin\theta&0\\
+\sin\theta&r\cos\theta&0\\
+0&0&1
+\end{vmatrix}=r.
+\]
+因此相应的体积元素为 $r\,\dd r\,\dd\theta\,\dd z$。
+
+
+\includegraphics{assets/sec3_cylindrical_spherical_tikz.png}
+
+
+
+
+球面坐标变换为
+\[
+x=r\sin\varphi\cos\theta,\qquad
+y=r\sin\varphi\sin\theta,\qquad z=r\cos\varphi,
+\]
+其中 $0\le r<+\infty$、$0\le\varphi\le\pi$、$0\le\theta\le2\pi$。
+注意 Jacobian 的分母按 $(r,\varphi,\theta)$ 排列：
+\[
+\begin{aligned}
+\frac{\partial(x,y,z)}{\partial(r,\varphi,\theta)}
+&=\begin{vmatrix}
+\sin\varphi\cos\theta&r\cos\varphi\cos\theta&-r\sin\varphi\sin\theta\\
+\sin\varphi\sin\theta&r\cos\varphi\sin\theta&r\sin\varphi\cos\theta\\
+\cos\varphi&-r\sin\varphi&0
+\end{vmatrix}\\
+&=r^2\sin\varphi.
+\end{aligned}
+\]
+所以体积元素为 $r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta$。
+若将分母次序写成 $(r,\theta,\varphi)$，行列式变号，但其绝对值不变。
+
+与平面的极坐标一样，上面的完整参数范围包含坐标退化点或角度接缝。
+严格应用定理时，应先限制在 $r>0$、$0<\theta<2\pi$，
+球面坐标还需 $0<\varphi<\pi$ 的开参数域内。
+对有界区域，可以先避开接缝及退化点应用公式，再用零体积集的邻域估计取极限。
+
+\subsubsection*{$n$ 维球面坐标变换}
+
+在 $\R^n$（$n\ge3$）中，球面坐标可写为
+\[
+\begin{aligned}
+x_1&=r\cos\varphi_1,\\
+x_k&=r\sin\varphi_1\cdots\sin\varphi_{k-1}\cos\varphi_k,
+\qquad 2\le k\le n-1,\\
+x_n&=r\sin\varphi_1\cdots\sin\varphi_{n-2}\sin\varphi_{n-1},
+\end{aligned}
+\]
+其中
+\[
+0\le r<+\infty,\qquad
+0\le\varphi_1,\ldots,\varphi_{n-2}\le\pi,\qquad
+0\le\varphi_{n-1}\le2\pi.
+\]
+逐次使用 $\cos^2\alpha+\sin^2\alpha=1$，得到
+\[
+x_1^2+\cdots+x_n^2=r^2.
+\]
+相应 Jacobian 的绝对值为
+\[
+\left|\frac{\partial(x_1,\ldots,x_n)}
+{\partial(r,\varphi_1,\ldots,\varphi_{n-1})}\right|
+=r^{n-1}\sin^{n-2}\varphi_1\sin^{n-3}\varphi_2\cdots\sin\varphi_{n-2}.
+\]
+
+
+
+
+
+
+
+
+
+\section*{§4　反常重积分}
+
+两类：一是无穷区域，二是有界区域上的无界函数。
+
+\subsection*{无穷区域上的反常二重积分}
+
+设 $D\subset\R^2$ 为无穷区域，其边界由有限条光滑曲线组成（或没有边界）。
+被积函数 $f(x,y)$ 在 $D$ 中有界，在 $D$ 中任意一个有界区域内都有通常意义下的二重积分。
+从 $D$ 中用一条零面积闭曲线 $\Gamma$ 截取一个有界区域，记为 $D_\Gamma\subset D$。
+这里取曲线截取的内部部分，截断曲线向外推移时，区域随之扩大。
+记 $\Gamma$ 到原点的距离为
+\[
+d(\Gamma)=\inf\{\sqrt{x^2+y^2}:(x,y)\in\Gamma\}.
+\]
+当 $d(\Gamma)\to+\infty$ 时，若
+\[
+\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y
+\]
+有一个与 $\Gamma$ 无关的有限极限，则称 $f(x,y)$ 在 $D$ 上的反常二重积分收敛，
+或称 $f(x,y)$ 在 $D$ 上可积，并记
+\[
+I=\displaystyle\iint_Df(x,y)\,\dd x\,\dd y.
+\]
+否则称 $f(x,y)$ 在 $D$ 上的反常二重积分发散。
+其精确的 $\varepsilon$--$M$ 表述如下。
+
+
+
+\textbf{定义 3.4.1（无穷区域上的反常二重积分）}
+
+
+若存在有限数 $I$，使任给 $\varepsilon>0$，都存在 $M>0$，
+对所有满足 $d(\Gamma)>M$ 的上述截断曲线，都有
+\[
+\left|\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y-I\right|<\varepsilon,
+\]
+则称 $f$ 在 $D$ 上的反常二重积分收敛，或称 $f$ 在 $D$ 上可积，记为
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{d(\Gamma)\to+\infty}\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y=I.
+\]
+若不存在这样的有限极限，则称反常二重积分发散。
+
+
+
+
+这里的极限必须与截断曲线的选择无关；仅沿某一种截域算出极限，
+对一般的变号函数还不能据此断定反常重积分收敛。
+
+
+
+\textbf{引理 3.4.2}
+
+设 $f(x,y)$ 为无界区域 $D$ 上的非负函数。
+取一列曲线 $\Gamma_n$，它们割出的 $D$ 的有界子区域 $D_n$ 满足
+\[
+D_1\subset D_2\subset\cdots\subset D_n\subset\cdots,
+\qquad\lim_{n\to\infty}d(\Gamma_n)=+\infty.
+\]
+则反常积分 $\displaystyle\iint_Df(x,y)\,\dd x\,\dd y$ 在 $D$ 上收敛的充分必要条件是数列
+\[
+I_n=\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y
+\]
+收敛。在收敛时成立
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{n\to\infty}\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y.
+\]
+
+
+
+
+
+\textbf{证明}
+
+由 $f\ge0$ 及 $D_n\subset D_{n+1}$，$I_n$ 单调不减。
+
+\textbf{必要性。}若 $f$ 在 $D$ 上的反常积分收敛，
+那么对任意 $d(\Gamma)\to+\infty$ 的截断曲线，相应积分均收敛于同一数。
+特别取 $\Gamma=\Gamma_n$，便得 $I_n$ 收敛。
+
+\textbf{充分性。}设 $I_n\to I$。任取一条截断曲线 $\Gamma$，
+它所围出的 $D_\Gamma$ 是有界区域，因此可取
+\[
+\rho=\sup\{\sqrt{x^2+y^2}:(x,y)\in D_\Gamma\}<+\infty.
+\]
+由 $d(\Gamma_n)\to+\infty$，存在 $n_0$，使 $n\ge n_0$ 时 $d(\Gamma_n)>\rho$，
+因而 $D_n\supset D_\Gamma$。由 $f\ge0$，有
+\[
+I_n=\displaystyle\iint_{D_n}f(x,y)\,\dd x\,\dd y
+\ge\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y.
+\]
+令 $n\to\infty$，得到
+\[
+I\ge\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y.
+\]
+
+另一方面，由 $I_n\to I$，对任意 $\varepsilon>0$，存在 $N$，使 $n\ge N$ 时 $I_n>I-\varepsilon$。
+固定这个 $D_N$，取
+\[
+M=\sup\{\sqrt{x^2+y^2}:(x,y)\in D_N\}.
+\]
+当 $d(\Gamma)>M$ 时，$D_\Gamma\supset D_N$，因此
+\[
+\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y
+\ge\displaystyle\iint_{D_N}f(x,y)\,\dd x\,\dd y
+=I_N>I-\varepsilon.
+\]
+结合上面的上界，得到对所有 $d(\Gamma)>M$ 的截断曲线，都有
+\[
+I-\varepsilon<\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y\le I.
+\]
+所以
+\[
+\lim_{d(\Gamma)\to+\infty}\displaystyle\iint_{D_\Gamma}f(x,y)\,\dd x\,\dd y=I.
+\]
+即反常二重积分收敛。
+
+
+$\square$
+
+
+
+
+
+\textbf{定理 3.4.3（比较判别法）}
+
+
+设 $0\le f(x,y)\le g(x,y)$，且两函数在每个有界截域上可积。
+\begin{enumerate}
+\item 若 $\displaystyle\iint_Dg$ 收敛，则 $\displaystyle\iint_Df$ 收敛。
+\item 若 $\displaystyle\iint_Df$ 发散，则 $\displaystyle\iint_Dg$ 发散。
+\end{enumerate}
+
+
+
+
+
+\textbf{证明}
+
+对上述穷尽序列，有
+\[
+0\le\displaystyle\iint_{D_n}f\le\displaystyle\iint_{D_n}g.
+\]
+若右侧有上界，左侧也有上界，第一条由引理得到。
+若 $\displaystyle\iint_Df$ 发散而 $\displaystyle\iint_Dg$ 收敛，第一条又会推出 $\displaystyle\iint_Df$ 收敛，
+产生矛盾，故第二条成立。
+
+
+$\square$
+
+
+
+
+
+\textbf{定理 3.4.4（收敛与绝对收敛）}
+
+
+设 $f$ 在 $D$ 的每个有界截域上可积，则
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y\text{ 收敛}
+\quad\Longleftrightarrow\quad
+\displaystyle\iint_D|f(x,y)|\,\dd x\,\dd y\text{ 收敛}.
+\]
+
+
+
+
+
+\textbf{证明}
+
+设
+\[
+f^+(x,y)=\begin{cases}f(x,y),&f(x,y)\ge0,\\0,&f(x,y)<0,\end{cases}
+\qquad f^+(x,y)=\max(f(x,y),0),
+\]
+\[
+f^-(x,y)=\begin{cases}-f(x,y),&f(x,y)\le0,\\0,&f(x,y)>0,\end{cases}
+\qquad f^-(x,y)=\max(-f(x,y),0).
+\]
+两函数均非负，且
+\[
+|f|=f^++f^-,\qquad f=f^+-f^-.
+\]
+
+\textbf{充分性。}设 $|f|$ 在 $D$ 上可积。
+由 $0\le f^\pm\le f^++f^-=|f|$ 及比较判别法，$f^+$、$f^-$ 均在 $D$ 上可积。
+再由 $f=f^+-f^-$，得到 $f$ 在 $D$ 上可积。
+
+\textbf{必要性。}设 $f$ 在 $D$ 上可积，而 $|f|$ 在 $D$ 上不可积。
+由 $|f|=f^++f^-$，$f^+$、$f^-$ 的反常积分至少有一个发散。
+不妨设 $\displaystyle\iint_Df^+$ 发散。那么对任意 $k>0$，可找到一条截断曲线 $\Gamma'$，使
+\[
+\displaystyle\iint_{D_{\Gamma'}}f^+(x,y)\,\dd x\,\dd y>k.
+\]
+
+任取截断曲线 $\Gamma_1$，记它截取的区域为 $D_1$。
+再取截断曲线，使 $D_2\supset D_1$，且 $D_2$ 上的正部积分足够大。
+如此逐步选取，得到一列曲线 $\{\Gamma_n\}$，满足
+\[
+D_1\subset D_2\subset\cdots\subset D_n\subset\cdots,\qquad
+d(\Gamma_n)\longrightarrow+\infty,
+\]
+并且
+\[
+\displaystyle\iint_{D_{n+1}}f^+(x,y)\,\dd x\,\dd y
+>2\displaystyle\iint_{D_n}|f(x,y)|\,\dd x\,\dd y+n.
+\]
+选取时可同时要求 $D_{n+1}$ 包含 $D_n$ 及一个足够大的圆内的区域；
+由非负性，扩大区域不会减小正部积分，所以这些要求能够同时满足。
+由 $f^+\le|f|$，有
+\begin{align*}
+\displaystyle\iint_{D_{n+1}\setminus D_n}f^+
+&>2\displaystyle\iint_{D_n}|f|+n-\displaystyle\iint_{D_n}f^+\\
+&\ge\displaystyle\iint_{D_n}|f|+n.
+\end{align*}
+
+对 $D_{n+1}\setminus D_n$ 作划分，分成有限个可求面积的小区域，
+各小区域的面积记为 $\Delta\sigma_k$，$f^+$ 在其中的下确界记为 $m_k$。
+它们组成 $f^+$ 的一个 Darboux 下和。
+由可积性，可使下和与积分之差小于 $1$，故
+\[
+\sum_{k=1}^{\ell}m_k\Delta\sigma_k
+>\displaystyle\iint_{D_{n+1}\setminus D_n}f^+-1
+>\displaystyle\iint_{D_n}|f|+n-1.
+\]
+
+把这些小区域分成两类：第 (I) 类为 $m_k>0$ 的小区域，
+第 (II) 类为 $m_k=0$ 的小区域。
+在第 (I) 类上 $f^+>0$，所以 $f=f^+$；
+第 (II) 类对下和的贡献为零。
+记所有第 (I) 类小区域的并为 $P_n$，则
+\begin{align*}
+\sum_{k=1}^{\ell}m_k\Delta\sigma_k
+&=\sum_{\text{第 (I) 类}}m_k\Delta\sigma_k\\
+&\le\displaystyle\iint_{P_n}f^+
+=\displaystyle\iint_{P_n}f.
+\end{align*}
+
+令 $E_n=D_n\cup P_n$，则
+\begin{align*}
+\displaystyle\iint_{E_n}f
+&=\displaystyle\iint_{E_n}f^+-\displaystyle\iint_{E_n}f^-\\
+&\ge\displaystyle\iint_{D_n}|f|+n-1-\displaystyle\iint_{E_n}f^-\\
+&=\displaystyle\iint_{D_n}|f|+n-1-\displaystyle\iint_{D_n}f^-\\
+&\ge n-1.
+\end{align*}
+这里因为 $P_n$ 上 $f^-=0$，所以第三行把 $E_n$ 上的负部积分换成了 $D_n$ 上的负部积分。
+
+问题是 $E_n=D_n\cup P_n$ 不一定连通。
+这时我们可以用一些狭小的“走廊”将其连通后得到区域 $\widetilde E_n$，
+并且让这些“走廊”的总面积能充分小，使得
+\[
+\displaystyle\iint_{\widetilde E_n}f(x,y)\,\dd x\,\dd y>n-2,
+\qquad n=1,2,\ldots.
+\]
+这里连接有限个小区域只需有限条区域内部的曲线；
+在包含这些曲线的有界区域内 $f$ 有界，因而可把走廊取得使新增部分的 $|f|$ 积分小于 $1$。
+$\widetilde E_n$ 包含 $D_n$，所以其截断也趋于无穷。
+上述积分却无界，这说明 $f$ 在 $D$ 上不可积，与假设矛盾。
+
+
+$\square$
+
+
+
+
+
+
+\textbf{例 3.4.5（无穷远处的幂函数）}
+
+
+设 $a>0$，
+\[
+D=\{(x,y):a^2\le x^2+y^2<+\infty\},\qquad
+r=\sqrt{x^2+y^2},\qquad f(x,y)=r^{-p}\quad(p>0).
+\]
+则 $\displaystyle\iint_Df$ 在 $p>2$ 时收敛，在 $p\le2$ 时发散。
+
+
+
+
+
+\textbf{解}
+
+取 $\Gamma_\rho:\ x^2+y^2=\rho^2$（$\rho>a$），相应截域为
+\[
+D_\rho=\{(x,y):a^2\le x^2+y^2\le\rho^2\}.
+\]
+用极坐标变换，
+\begin{align*}
+\displaystyle\iint_{D_\rho}f(x,y)\,\dd x\,\dd y
+&=\int_0^{2\pi}\dd\theta\int_a^\rho r^{-p}r\,\dd r\\
+&=2\pi\int_a^\rho r^{1-p}\,\dd r.
+\end{align*}
+当 $p\ne2$ 时，右边为 $2\pi(\rho^{2-p}-a^{2-p})/(2-p)$；
+当 $p=2$ 时，为 $2\pi\log(\rho/a)$。
+所以 $p>2$ 时极限为 $2\pi a^{2-p}/(p-2)$，$p\le2$ 时趋于 $+\infty$。
+由非负函数的穷尽判据，得到所述结论。
+
+
+
+
+
+
+\textbf{推论 3.4.6（Cauchy 判别法）}
+
+
+设 $D$ 用极坐标表示为
+\[
+D=\{(r,\theta):a\le r<+\infty,\ \alpha\le\theta\le\beta\},
+\quad a>0,\quad 0\le\alpha<\beta\le2\pi.
+\]
+设 $f$ 在每个有界截域上可积。
+\begin{enumerate}
+\item 若存在 $M>0$，使 $|f(x,y)|\le M/r^p$，其中 $p>2$，则 $\displaystyle\iint_Df$ 收敛。
+\item 若存在 $m>0$，使 $|f(x,y)|\ge m/r^p$，其中 $p\le2$，则 $\displaystyle\iint_Df$ 发散。
+\end{enumerate}
+
+
+
+
+
+\textbf{证明}
+
+在这个扇形区域上，幂函数截域积分为
+\[
+\displaystyle\iint_{D_\rho}r^{-p}\,\dd x\,\dd y
+=(\beta-\alpha)\int_a^\rho r^{1-p}\,\dd r.
+\]
+由于 $\beta-\alpha>0$，其敛散性与上例相同。
+第一条先由比较判别法得 $\displaystyle\iint_D|f|$ 收敛，再用绝对收敛定理。
+第二条由比较判别法得 $\displaystyle\iint_D|f|$ 发散，
+若 $\displaystyle\iint_Df$ 收敛，则绝对收敛定理又要求它绝对收敛，矛盾。
+这里要求角度区间有正长度；零面积的退化情形不属于第二条的结论。
+
+
+$\square$
+
+
+一般地，我们有对于反常二重积分的累次积分公式与变量代换公式.
+
+
+\textbf{定理 3.4.7（化为累次反常积分）}
+
+
+设 $f$ 在 $D=[a,+\infty)\times[c,+\infty)$ 上连续，且累次反常积分
+\[
+\int_a^{+\infty}\dd x\int_c^{+\infty}f(x,y)\,\dd y,
+\qquad
+\int_a^{+\infty}\dd x\int_c^{+\infty}|f(x,y)|\,\dd y
+\]
+均存在（内层积分对每个 $x$ 存在，所得函数的外层反常积分也存在）。
+则 $f$ 在 $D$ 上可积，并且
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\int_a^{+\infty}\dd x\int_c^{+\infty}f(x,y)\,\dd y.
+\]
+
+
+
+
+
+
+
+\textbf{定理 3.4.8（反常二重积分的变量代换）}
+
+
+设 $T:D\to T(D)$ 是一一对应的连续可导坐标变换，
+\[
+x=x(u,v),\qquad y=y(u,v),\qquad
+\frac{\partial(x,y)}{\partial(u,v)}\ne0.
+\]
+在相应截域穷尽各自区域、并避开可能的奇点的意义下，有
+\[
+\displaystyle\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\displaystyle\iint_Df\bigl(x(u,v),y(u,v)\bigr)
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,\dd u\,\dd v.
+\]
+只要其中一边收敛，另一边也收敛，且两者相等。
+
+
+
+
+
+
+\textbf{例 3.4.9（Poisson 积分）}
+
+
+计算 $\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y$，并求
+$\displaystyle\int_0^{+\infty}e^{-x^2}\,\dd x$。
+
+
+
+
+
+\textbf{解}
+
+利用极坐标变换 $x=r\cos\theta$、$y=r\sin\theta$，$\R^2$ 就变换为
+\[
+D=\{(r,\theta):0\le r<+\infty,\ 0\le\theta\le2\pi\}.
+\]
+因此利用变量代换法得
+\begin{align*}
+\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y
+&=\displaystyle\iint_D e^{-r^2}r\,\dd r\,\dd\theta\\
+&=\int_0^{2\pi}\dd\theta\int_0^{+\infty}e^{-r^2}r\,\dd r\\
+&=2\pi\left[-\frac12e^{-r^2}\right]_0^{+\infty}=\pi.
+\end{align*}
+
+
+又由于 $\R^2=(-\infty,+\infty)\times(-\infty,+\infty)$，所以利用化累次积分法得
+\begin{align*}
+\pi
+&=\displaystyle\iint_{\R^2}e^{-(x^2+y^2)}\,\dd x\,\dd y\\
+&=\int_{-\infty}^{+\infty}\dd x\int_{-\infty}^{+\infty}
+ e^{-(x^2+y^2)}\,\dd y\\
+&=\left(\int_{-\infty}^{+\infty}e^{-x^2}\,\dd x\right)
+  \left(\int_{-\infty}^{+\infty}e^{-y^2}\,\dd y\right)=J^2.
+\end{align*}
+由 $J>0$ 得 $J=\sqrt\pi$。又因被积函数为偶函数，
+\[
+\int_0^{+\infty}e^{-x^2}\,\dd x=\frac{\sqrt\pi}{2}.
+\]
+最后这个积分称为 Poisson 积分，在概率统计等领域中有重要应用。
+
+
+
+
+\subsection*{无界函数的反常重积分}
+
+设 $D$ 为有界区域，$P_0\in D$。
+若 $f$ 在 $D\setminus\{P_0\}$ 上有定义，
+但在 $P_0$ 的任意去心邻域内都无界，则称 $P_0$ 为 $f$ 的一个\textbf{奇点}。
+设 $\gamma$ 为内部包含 $P_0$ 的零面积闭曲线，$\sigma$ 为它围成的区域。
+总假设删去这个邻域后的通常积分
+\[
+\displaystyle\iint_{D\setminus\sigma}f(x,y)\,\dd x\,\dd y
+\]
+存在。这里删除的是奇点附近的一整块区域，不是只删除奇点本身。
+
+
+
+\textbf{定义 3.4.10（单个奇点的反常二重积分）}
+
+
+记
+\[
+\rho(\gamma)=\sup\{|P-P_0|:P\in\gamma\}.
+\]
+若当 $\rho(\gamma)\to0$ 时，$\displaystyle\iint_{D\setminus\sigma}f$ 对所有这样的删域方式
+都趋于同一个有限极限，则称反常二重积分收敛，并记
+\[
+\displaystyle\iint_Df(x,y)\,\dd x\,\dd y
+=\lim_{\rho(\gamma)\to0}\displaystyle\iint_{D\setminus\sigma}f(x,y)\,\dd x\,\dd y.
+\]
+若该有限极限不存在，则称反常二重积分发散。
+
+
+
+
+如果函数 $f(x,y)$ 在区域 $D$ 上有奇线 $\Gamma_0$，
+即 $f(x,y)$ 在 $D\setminus\Gamma_0$ 上有定义，但在任何包含曲线 $\Gamma_0$ 的区域上无界，
+则可与上面的定义一样规定 $f(x,y)$ 在 $D$ 上的反常二重积分。
+
+\textbf{奇线情形的定义}
+若奇点不是单个点，而是 $D$ 内的一条零面积曲线 $\Gamma_0$，也可以按同样的方式定义。
+取包含 $\Gamma_0$ 的闭邻域 $\sigma$，要求 $\Gamma_0$ 包含于 $\sigma$ 的内部，
+且删域的边界分段光滑。用
+\[
+\rho(\sigma)=\sup_{P\in\sigma}\operatorname{dist}(P,\Gamma_0),\qquad
+\operatorname{dist}(P,\Gamma_0)=\inf_{Q\in\Gamma_0}|P-Q|
+\]
+衡量邻域的宽度；这里点到集合的距离由右边的下确界定义。
+当 $\rho(\sigma)\to0$ 时，若 $\displaystyle\iint_{D\setminus\sigma}f$ 对任意这样的邻域
+都有同一个有限极限，就把它定义为 $f$ 在 $D$ 上的反常二重积分。
+对有限个奇点或有限条奇异曲线，分别删去它们的邻域并令各邻域同时缩小，定义相同。
+
+
+
+
+
+
+
+\section*{§5　微分形式}
+
+
+
+\textbf{定义 3.5.1（向量的外积与有向面积）}
+
+
+设 $a=(a_1,a_2)$、$b=(b_1,b_2)\in\R^2$。称由 $a,b$ 围成的平行四边形的带符号面积为\textbf{有向面积}，定义
+\[
+a\wedge b=\begin{vmatrix}a_1&a_2\\b_1&b_2\end{vmatrix}=a_1b_2-a_2b_1.
+\]
+称此运算为向量的外积。
+
+
+
+
+由行列式的性质，对 $a,b,c\in\R^2$、$\lambda\in\R$，
+\[
+a\wedge b=-b\wedge a,\qquad a\wedge a=0,
+\]
+\[
+\begin{aligned}
+a\wedge(b+c)&=a\wedge b+a\wedge c,\\
+(a+b)\wedge c&=a\wedge c+b\wedge c,\\
+(\lambda a)\wedge b&=a\wedge(\lambda b)=\lambda(a\wedge b).
+\end{aligned}
+\]
+
+\subsection*{微分形式}
+
+设 $U\subset\R^n$ 为区域，$x=(x_1,\ldots,x_n)$，$C^1(U)$ 为 $U$ 上具有连续偏导数的实值函数全体。
+
+
+
+\textbf{定义 3.5.2（一次微分形式）}
+
+
+将 $\dd x_1,\ldots,\dd x_n$ 看作一组基，其线性组合
+\[
+\omega=a_1(x)\dd x_1+\cdots+a_n(x)\dd x_n,
+\qquad a_i\in C^1(U),
+\]
+称为一次微分形式，简称 $1$-形式。全体 $1$-形式记为 $\Lambda^1$，严格写作 $\Lambda^1(U)$。
+
+
+
+
+对于 $\omega=\sum_i a_i\dd x_i$、$\eta=\sum_i b_i\dd x_i$ 及 $\lambda\in C^1(U)$，定义
+\[
+\omega+\eta=\sum_{i=1}^n(a_i+b_i)\dd x_i,\qquad
+\lambda\omega=\sum_{i=1}^n(\lambda a_i)\dd x_i.
+\]
+零元及加法逆元分别为
+\[
+0=0\dd x_1+\cdots+0\dd x_n,\qquad
+-\omega=(-a_1)\dd x_1+\cdots+(-a_n)\dd x_n.
+\]
+这些运算满足交换律、结合律及分配律。严格地说，$C^1(U)$ 一般是环而非域，故 $\Lambda^1$ 是 $C^1(U)$ 上的模；若只用实数作标量，它也是实向量空间。
+
+
+
+\textbf{定义 3.5.3（高次微分形式）}
+
+
+对形式符号规定
+\[
+\dd x_i\wedge\dd x_j=-\dd x_j\wedge\dd x_i,\qquad
+\dd x_i\wedge\dd x_i=0.
+\]
+以 $\dd x_i\wedge\dd x_j$（$1\le i<j\le n$）为基的形式称为二次微分形式，简称 $2$-形式，其标准形式为
+\[
+\sum_{1\le i<j\le n}g_{ij}(x)\,\dd x_i\wedge\dd x_j,
+\qquad g_{ij}\in C^1(U).
+\]
+全体记为 $\Lambda^2$。
+
+一般地，取 $i_1,\ldots,i_k\in\{1,\ldots,n\}$，规定相邻两个指标交换时改变符号；若有重复指标，则该形式符号为零。
+以
+\[
+\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k},
+\qquad 1\le i_1<\cdots<i_k\le n
+\]
+为基的形式称为 $k$ 次微分形式，简称 $k$-形式，其标准形式为
+\[
+\omega=\sum_{1\le i_1<\cdots<i_k\le n}
+g_{i_1\cdots i_k}(x)\,\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}.
+\]
+全体记为 $\Lambda^k$，它是以这 $\binom nk$ 个形式符号为基的 $C^1(U)$-模。
+
+
+
+
+特别地，$\Lambda^n$ 的基为 $\dd x_1\wedge\cdots\wedge\dd x_n$，其元素为 $g(x)\dd x_1\wedge\cdots\wedge\dd x_n$。
+当 $k>n$ 时必有重复指标，故 $\Lambda^k=\{0\}$。
+规定 $0$-形式为 $C^1(U)$ 中的函数，全体记为 $\Lambda^0$，其基为 $1$。
+
+\subsection*{微分形式的外积}
+
+
+
+\textbf{定义 3.5.4（外积）}
+
+
+先考虑 $\omega=\sum_i a_i\dd x_i$、$\eta=\sum_j b_j\dd x_j\in\Lambda^1$，定义
+\[
+\begin{aligned}
+\omega\wedge\eta
+&=\sum_{i,j=1}^n a_i(x)b_j(x)\,\dd x_i\wedge\dd x_j\\
+&=\sum_{1\le i<j\le n}(a_i b_j-a_j b_i)\,\dd x_i\wedge\dd x_j\\
+&=\sum_{1\le i<j\le n}\begin{vmatrix}a_i&a_j\\b_i&b_j\end{vmatrix}
+\dd x_i\wedge\dd x_j\in\Lambda^2.
+\end{aligned}
+\]
+
+令 $\Lambda=\Lambda^0\oplus\Lambda^1\oplus\cdots\oplus\Lambda^n$，
+其元素唯一写为 $\omega=\omega_0+\cdots+\omega_n$，其中 $\omega_i\in\Lambda^i$。
+它是秩为 $\sum\limits_{k=0}^n\binom nk=2^n$ 的 $C^1(U)$-模，基为各 $\Lambda^k$ 的基的并。
+
+对递增指标组 $I=(i_1,\ldots,i_p)$、$J=(j_1,\ldots,j_q)$，记
+$\dd x_I=\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_p}$，并同样定义 $\dd x_J$。
+定义 $\dd x_I\wedge\dd x_J$ 为将两组符号依次连接所得的形式；若指标有重复，其值为零。
+对 $\omega=\sum_Ig_I(x)\dd x_I\in\Lambda^p$、$\eta=\sum_Jh_J(x)\dd x_J\in\Lambda^q$，定义
+\[
+\omega\wedge\eta=\sum_{I,J}g_I(x)h_J(x)\,\dd x_I\wedge\dd x_J\in\Lambda^{p+q}.
+\]
+当 $f\in\Lambda^0=C^1(U)$ 时，规定
+\[
+f\wedge\omega=\omega\wedge f=f\omega=\sum_I f(x)g_I(x)\dd x_I.
+\]
+对 $\Lambda$ 中的非齐次形式，按各次数分量的双线性展开定义外积。
+
+
+
+
+
+
+\textbf{命题 3.5.5（外积的性质）}
+
+
+设 $\omega\in\Lambda^p$、$\eta\in\Lambda^q$。
+\begin{enumerate}
+\item 若 $p+q>n$，则 $\omega\wedge\eta=0$。
+\item $\omega\wedge\eta=(-1)^{pq}\eta\wedge\omega$。
+\item 对任意 $\omega,\eta,\sigma\in\Lambda$，外积满足左右分配律及结合律：
+\[
+\begin{aligned}
+(\omega+\eta)\wedge\sigma&=\omega\wedge\sigma+\eta\wedge\sigma,\\
+\sigma\wedge(\omega+\eta)&=\sigma\wedge\omega+\sigma\wedge\eta,\\
+(\omega\wedge\eta)\wedge\sigma&=\omega\wedge(\eta\wedge\sigma).
+\end{aligned}
+\]
+\end{enumerate}
+
+
+
+
+
+\textbf{证明}
+
+\begin{enumerate}
+\item 当 $p+q>n$ 时，两个指标组连接后共有 $p+q$ 个指标，但可选值只有 $1,\ldots,n$，故必有重复指标。每一项均为零，因此外积为零。
+\item 由线性性，只需考虑 $\omega=g(x)\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_p}$ 和 $\eta=h(x)\dd x_{j_1}\wedge\cdots\wedge\dd x_{j_q}$。若两组指标有公共元素，两边均为零。否则，将第一个指标组中的每个符号移过第二组的 $q$ 个符号，共交换 $pq$ 次；每次改变符号，因而得到 $(-1)^{pq}$。
+\item 对基形式，左右两侧都按相同次序连接指标，并将系数相乘；因此结合律成立。对一般形式逐项展开，系数乘法的分配律给出两个分配律，同时结合律也逐项成立。
+\end{enumerate}
+
+
+$\square$
+
+
+
+
+
+\textbf{推论 3.5.6}
+
+若 $\omega\in\Lambda^p$ 且 $p$ 为奇数，则 $\omega\wedge\omega=0$。
+
+
+
+
+
+\textbf{证明}
+
+由交换公式，$\omega\wedge\omega=(-1)^{p^2}\omega\wedge\omega=-\omega\wedge\omega$，故结论成立。
+
+
+$\square$
+
+
+
+当 $p$ 为偶数时，不一定有 $\omega\wedge\omega=0$。
+

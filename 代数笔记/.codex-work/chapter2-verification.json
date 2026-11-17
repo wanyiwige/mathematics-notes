@@ -1,0 +1,15 @@
+[
+  "Exercise12 n=3: order 3",
+  "Exercise12 n=4: order 12",
+  "Exercise12 n=5: order 60",
+  "Exercise12 n=6: order 360",
+  "Exercise12 n=7: order 2520",
+  "Exercise12 n=8: order 20160",
+  "Exercise12 n=9: order 181440",
+  "Exercise12 n=10: order 1814400",
+  "Exercise12 n=11: order 19958400",
+  "Exercise12 n=12: order 239500800",
+  "Exercises52-54: commutator and generator calculations passed",
+  "Exercise56 arithmetic candidates up to60: [30, 56, 60]",
+  "All 57 exercise numbers present; environment counts balanced"
+]

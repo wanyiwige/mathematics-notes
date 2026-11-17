@@ -1,0 +1,2150 @@
+[
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "代数结构",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "半群",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "幺半群",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "群",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "Abel群",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "环",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "交换环",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "整环",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "域",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 7,
+    "name": "零因子",
+    "target": "p1:concept:c1-l7"
+  },
+  {
+    "ch": 1,
+    "line": 59,
+    "name": "整数的整除",
+    "target": "p1:concept:c1-l59"
+  },
+  {
+    "ch": 1,
+    "line": 59,
+    "name": "整数的因子",
+    "target": "p1:concept:c1-l59"
+  },
+  {
+    "ch": 1,
+    "line": 59,
+    "name": "整数的平凡因子",
+    "target": "p1:concept:c1-l59"
+  },
+  {
+    "ch": 1,
+    "line": 98,
+    "name": "素数",
+    "target": "p1:concept:c1-l98"
+  },
+  {
+    "ch": 1,
+    "line": 101,
+    "name": "整数的公因子",
+    "target": "p1:concept:c1-l101"
+  },
+  {
+    "ch": 1,
+    "line": 101,
+    "name": "最大公因子",
+    "target": "p1:concept:c1-l101"
+  },
+  {
+    "ch": 1,
+    "line": 101,
+    "name": "整数互素",
+    "target": "p1:concept:c1-l101"
+  },
+  {
+    "ch": 1,
+    "line": 197,
+    "name": "欧几里德环",
+    "target": "p1:concept:c1-l197"
+  },
+  {
+    "ch": 1,
+    "line": 333,
+    "name": "辗转除法",
+    "target": "p1:concept:c1-l333"
+  },
+  {
+    "ch": 1,
+    "line": 498,
+    "name": "素因子的阶数",
+    "target": "p1:concept:c1-l498"
+  },
+  {
+    "ch": 1,
+    "line": 518,
+    "name": "数域",
+    "target": "p1:concept:c1-l518"
+  },
+  {
+    "ch": 1,
+    "line": 526,
+    "name": "扩域",
+    "target": "p1:concept:c1-l526"
+  },
+  {
+    "ch": 1,
+    "line": 526,
+    "name": "子域",
+    "target": "p1:concept:c1-l526"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "一元多项式",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "不定元",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "一元多项式环",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "多项式的系数",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "首系数",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "一元多项式的首项",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "一元多项式的次数",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "首一多项式",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "零多项式",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 558,
+    "name": "相伴多项式",
+    "target": "p1:concept:c1-l558"
+  },
+  {
+    "ch": 1,
+    "line": 573,
+    "name": "一元多项式的加法",
+    "target": "p1:concept:c1-l573"
+  },
+  {
+    "ch": 1,
+    "line": 573,
+    "name": "一元多项式的减法",
+    "target": "p1:concept:c1-l573"
+  },
+  {
+    "ch": 1,
+    "line": 573,
+    "name": "一元多项式的乘法",
+    "target": "p1:concept:c1-l573"
+  },
+  {
+    "ch": 1,
+    "line": 634,
+    "name": "多项式的整除",
+    "target": "p1:concept:c1-l634"
+  },
+  {
+    "ch": 1,
+    "line": 634,
+    "name": "多项式的因子",
+    "target": "p1:concept:c1-l634"
+  },
+  {
+    "ch": 1,
+    "line": 644,
+    "name": "多项式的公因子",
+    "target": "p1:concept:c1-l644"
+  },
+  {
+    "ch": 1,
+    "line": 644,
+    "name": "最大公因式",
+    "target": "p1:concept:c1-l644"
+  },
+  {
+    "ch": 1,
+    "line": 644,
+    "name": "多项式互素",
+    "target": "p1:concept:c1-l644"
+  },
+  {
+    "ch": 1,
+    "line": 789,
+    "name": "多项式的平凡因子",
+    "target": "p1:concept:c1-l789"
+  },
+  {
+    "ch": 1,
+    "line": 789,
+    "name": "不可约多项式",
+    "target": "p1:concept:c1-l789"
+  },
+  {
+    "ch": 1,
+    "line": 789,
+    "name": "可约多项式",
+    "target": "p1:concept:c1-l789"
+  },
+  {
+    "ch": 1,
+    "line": 916,
+    "name": "重因子",
+    "target": "p1:concept:c1-l916"
+  },
+  {
+    "ch": 1,
+    "line": 916,
+    "name": "重因子的重数",
+    "target": "p1:concept:c1-l916"
+  },
+  {
+    "ch": 1,
+    "line": 926,
+    "name": "多项式的导数",
+    "target": "p1:concept:c1-l926"
+  },
+  {
+    "ch": 1,
+    "line": 926,
+    "name": "多项式的高阶导数",
+    "target": "p1:concept:c1-l926"
+  },
+  {
+    "ch": 1,
+    "line": 991,
+    "name": "一元多项式函数",
+    "target": "p1:concept:c1-l991"
+  },
+  {
+    "ch": 1,
+    "line": 991,
+    "name": "多项式的根",
+    "target": "p1:concept:c1-l991"
+  },
+  {
+    "ch": 1,
+    "line": 991,
+    "name": "代数数",
+    "target": "p1:concept:c1-l991"
+  },
+  {
+    "ch": 1,
+    "line": 991,
+    "name": "超越数",
+    "target": "p1:concept:c1-l991"
+  },
+  {
+    "ch": 1,
+    "line": 1024,
+    "name": "重根",
+    "target": "p1:concept:c1-l1024"
+  },
+  {
+    "ch": 1,
+    "line": 1024,
+    "name": "单根",
+    "target": "p1:concept:c1-l1024"
+  },
+  {
+    "ch": 1,
+    "line": 1024,
+    "name": "根的重数",
+    "target": "p1:concept:c1-l1024"
+  },
+  {
+    "ch": 1,
+    "line": 1081,
+    "name": "代数闭域",
+    "target": "p1:concept:c1-l1081"
+  },
+  {
+    "ch": 1,
+    "line": 1154,
+    "name": "本原多项式",
+    "target": "p1:concept:c1-l1154"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "单项式",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "单项式的系数",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "指数组",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "单项式的次数",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "同类项",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "多元多项式",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "多元多项式环",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1278,
+    "name": "代数无关",
+    "target": "p1:concept:c1-l1278"
+  },
+  {
+    "ch": 1,
+    "line": 1315,
+    "name": "多元多项式的次数",
+    "target": "p1:concept:c1-l1315"
+  },
+  {
+    "ch": 1,
+    "line": 1324,
+    "name": "字典序",
+    "target": "p1:concept:c1-l1324"
+  },
+  {
+    "ch": 1,
+    "line": 1324,
+    "name": "多元多项式的首项",
+    "target": "p1:concept:c1-l1324"
+  },
+  {
+    "ch": 1,
+    "line": 1334,
+    "name": "多元多项式的加法",
+    "target": "p1:concept:c1-l1334"
+  },
+  {
+    "ch": 1,
+    "line": 1334,
+    "name": "多元多项式的乘法",
+    "target": "p1:concept:c1-l1334"
+  },
+  {
+    "ch": 1,
+    "line": 1379,
+    "name": "齐次多项式",
+    "target": "p1:concept:c1-l1379"
+  },
+  {
+    "ch": 1,
+    "line": 1385,
+    "name": "Newton和",
+    "target": "p1:concept:c1-l1385"
+  },
+  {
+    "ch": 1,
+    "line": 1428,
+    "name": "多元多项式函数",
+    "target": "p1:concept:c1-l1428"
+  },
+  {
+    "ch": 1,
+    "line": 1460,
+    "name": "对称多项式",
+    "target": "p1:concept:c1-l1460"
+  },
+  {
+    "ch": 1,
+    "line": 1493,
+    "name": "基本对称多项式",
+    "target": "p1:concept:c1-l1493"
+  },
+  {
+    "ch": 1,
+    "line": 1974,
+    "name": "梅森素数",
+    "target": "p1:concept:c1-l1974"
+  },
+  {
+    "ch": 1,
+    "line": 2000,
+    "name": "费马素数",
+    "target": "p1:concept:c1-l2000"
+  },
+  {
+    "ch": 1,
+    "line": 2164,
+    "name": "公倍式",
+    "target": "p1:concept:c1-l2164"
+  },
+  {
+    "ch": 1,
+    "line": 2164,
+    "name": "最小公倍式",
+    "target": "p1:concept:c1-l2164"
+  },
+  {
+    "ch": 1,
+    "line": 2305,
+    "name": "共轭多项式",
+    "target": "p1:concept:c1-l2305"
+  },
+  {
+    "ch": 1,
+    "line": 2482,
+    "name": "多项式的判别式",
+    "target": "p1:concept:c1-l2482"
+  },
+  {
+    "ch": 2,
+    "line": 7,
+    "name": "线性方程组",
+    "target": "p1:concept:c2-l7"
+  },
+  {
+    "ch": 2,
+    "line": 7,
+    "name": "未知量",
+    "target": "p1:concept:c2-l7"
+  },
+  {
+    "ch": 2,
+    "line": 7,
+    "name": "齐次线性方程组",
+    "target": "p1:concept:c2-l7"
+  },
+  {
+    "ch": 2,
+    "line": 7,
+    "name": "线性方程组的解",
+    "target": "p1:concept:c2-l7"
+  },
+  {
+    "ch": 2,
+    "line": 7,
+    "name": "等价的线性方程组",
+    "target": "p1:concept:c2-l7"
+  },
+  {
+    "ch": 2,
+    "line": 47,
+    "name": "方程组的初等行变换",
+    "target": "p1:concept:c2-l47"
+  },
+  {
+    "ch": 2,
+    "line": 61,
+    "name": "阶梯形方程组",
+    "target": "p1:concept:c2-l61"
+  },
+  {
+    "ch": 2,
+    "line": 61,
+    "name": "主元",
+    "target": "p1:concept:c2-l61"
+  },
+  {
+    "ch": 2,
+    "line": 61,
+    "name": "严格阶梯形方程组",
+    "target": "p1:concept:c2-l61"
+  },
+  {
+    "ch": 2,
+    "line": 129,
+    "name": "自由变量",
+    "target": "p1:concept:c2-l129"
+  },
+  {
+    "ch": 2,
+    "line": 206,
+    "name": "行简化阶梯方程组",
+    "target": "p1:concept:c2-l206"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "向量",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "行向量",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "列向量",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "零向量",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "行向量空间",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 222,
+    "name": "列向量空间",
+    "target": "p1:concept:c2-l222"
+  },
+  {
+    "ch": 2,
+    "line": 270,
+    "name": "向量的线性表示",
+    "target": "p1:concept:c2-l270"
+  },
+  {
+    "ch": 2,
+    "line": 270,
+    "name": "线性相关",
+    "target": "p1:concept:c2-l270"
+  },
+  {
+    "ch": 2,
+    "line": 270,
+    "name": "线性无关",
+    "target": "p1:concept:c2-l270"
+  },
+  {
+    "ch": 2,
+    "line": 383,
+    "name": "向量组的伸长组",
+    "target": "p1:concept:c2-l383"
+  },
+  {
+    "ch": 2,
+    "line": 528,
+    "name": "向量组的线性表出",
+    "target": "p1:concept:c2-l528"
+  },
+  {
+    "ch": 2,
+    "line": 528,
+    "name": "等价向量组",
+    "target": "p1:concept:c2-l528"
+  },
+  {
+    "ch": 2,
+    "line": 548,
+    "name": "极大无关子组",
+    "target": "p1:concept:c2-l548"
+  },
+  {
+    "ch": 2,
+    "line": 548,
+    "name": "向量组的秩",
+    "target": "p1:concept:c2-l548"
+  },
+  {
+    "ch": 2,
+    "line": 654,
+    "name": "矩阵",
+    "target": "p1:concept:c2-l654"
+  },
+  {
+    "ch": 2,
+    "line": 654,
+    "name": "矩阵的元素",
+    "target": "p1:concept:c2-l654"
+  },
+  {
+    "ch": 2,
+    "line": 654,
+    "name": "方阵",
+    "target": "p1:concept:c2-l654"
+  },
+  {
+    "ch": 2,
+    "line": 654,
+    "name": "矩阵空间",
+    "target": "p1:concept:c2-l654"
+  },
+  {
+    "ch": 2,
+    "line": 705,
+    "name": "系数矩阵",
+    "target": "p1:concept:c2-l705"
+  },
+  {
+    "ch": 2,
+    "line": 705,
+    "name": "增广矩阵",
+    "target": "p1:concept:c2-l705"
+  },
+  {
+    "ch": 2,
+    "line": 739,
+    "name": "行秩",
+    "target": "p1:concept:c2-l739"
+  },
+  {
+    "ch": 2,
+    "line": 739,
+    "name": "列秩",
+    "target": "p1:concept:c2-l739"
+  },
+  {
+    "ch": 2,
+    "line": 747,
+    "name": "阶梯形矩阵",
+    "target": "p1:concept:c2-l747"
+  },
+  {
+    "ch": 2,
+    "line": 857,
+    "name": "矩阵的初等行变换",
+    "target": "p1:concept:c2-l857"
+  },
+  {
+    "ch": 2,
+    "line": 857,
+    "name": "矩阵的初等列变换",
+    "target": "p1:concept:c2-l857"
+  },
+  {
+    "ch": 2,
+    "line": 857,
+    "name": "矩阵的初等变换",
+    "target": "p1:concept:c2-l857"
+  },
+  {
+    "ch": 2,
+    "line": 873,
+    "name": "行简化阶梯形矩阵",
+    "target": "p1:concept:c2-l873"
+  },
+  {
+    "ch": 2,
+    "line": 894,
+    "name": "标准形矩阵",
+    "target": "p1:concept:c2-l894"
+  },
+  {
+    "ch": 2,
+    "line": 904,
+    "name": "矩阵的秩",
+    "target": "p1:concept:c2-l904"
+  },
+  {
+    "ch": 2,
+    "line": 1057,
+    "name": "导出方程组",
+    "target": "p1:concept:c2-l1057"
+  },
+  {
+    "ch": 2,
+    "line": 1151,
+    "name": "基础解系",
+    "target": "p1:concept:c2-l1151"
+  },
+  {
+    "ch": 3,
+    "line": 7,
+    "name": "坐标向量空间上的线性映射",
+    "target": "p1:concept:c3-l7"
+  },
+  {
+    "ch": 3,
+    "line": 7,
+    "name": "坐标向量空间上的Hom空间",
+    "target": "p1:concept:c3-l7"
+  },
+  {
+    "ch": 3,
+    "line": 7,
+    "name": "坐标向量空间上的End空间",
+    "target": "p1:concept:c3-l7"
+  },
+  {
+    "ch": 3,
+    "line": 7,
+    "name": "零映射",
+    "target": "p1:concept:c3-l7"
+  },
+  {
+    "ch": 3,
+    "line": 77,
+    "name": "线性映射的矩阵（标准基下）",
+    "target": "p1:concept:c3-l77"
+  },
+  {
+    "ch": 3,
+    "line": 209,
+    "name": "线性映射的核",
+    "target": "p1:concept:c3-l209"
+  },
+  {
+    "ch": 3,
+    "line": 246,
+    "name": "列满秩矩阵",
+    "target": "p1:concept:c3-l246"
+  },
+  {
+    "ch": 3,
+    "line": 248,
+    "name": "线性映射的像",
+    "target": "p1:concept:c3-l248"
+  },
+  {
+    "ch": 3,
+    "line": 263,
+    "name": "行满秩矩阵",
+    "target": "p1:concept:c3-l263"
+  },
+  {
+    "ch": 3,
+    "line": 300,
+    "name": "线性映射的加法",
+    "target": "p1:concept:c3-l300"
+  },
+  {
+    "ch": 3,
+    "line": 300,
+    "name": "线性映射的数乘",
+    "target": "p1:concept:c3-l300"
+  },
+  {
+    "ch": 3,
+    "line": 328,
+    "name": "线性映射的复合",
+    "target": "p1:concept:c3-l328"
+  },
+  {
+    "ch": 3,
+    "line": 359,
+    "name": "自同态环",
+    "target": "p1:concept:c3-l359"
+  },
+  {
+    "ch": 3,
+    "line": 363,
+    "name": "线性变换的幂",
+    "target": "p1:concept:c3-l363"
+  },
+  {
+    "ch": 3,
+    "line": 363,
+    "name": "线性变换的多项式",
+    "target": "p1:concept:c3-l363"
+  },
+  {
+    "ch": 3,
+    "line": 363,
+    "name": "恒等映射",
+    "target": "p1:concept:c3-l363"
+  },
+  {
+    "ch": 3,
+    "line": 395,
+    "name": "矩阵加法",
+    "target": "p1:concept:c3-l395"
+  },
+  {
+    "ch": 3,
+    "line": 483,
+    "name": "矩阵数乘",
+    "target": "p1:concept:c3-l483"
+  },
+  {
+    "ch": 3,
+    "line": 504,
+    "name": "矩阵乘法",
+    "target": "p1:concept:c3-l504"
+  },
+  {
+    "ch": 3,
+    "line": 652,
+    "name": "Kronecker记号",
+    "target": "p1:concept:c3-l652"
+  },
+  {
+    "ch": 3,
+    "line": 660,
+    "name": "基本矩阵",
+    "target": "p1:concept:c3-l660"
+  },
+  {
+    "ch": 3,
+    "line": 683,
+    "name": "矩阵的转置",
+    "target": "p1:concept:c3-l683"
+  },
+  {
+    "ch": 3,
+    "line": 683,
+    "name": "复共轭转置",
+    "target": "p1:concept:c3-l683"
+  },
+  {
+    "ch": 3,
+    "line": 717,
+    "name": "矩阵的幂",
+    "target": "p1:concept:c3-l717"
+  },
+  {
+    "ch": 3,
+    "line": 717,
+    "name": "单位矩阵",
+    "target": "p1:concept:c3-l717"
+  },
+  {
+    "ch": 3,
+    "line": 717,
+    "name": "幂零矩阵",
+    "target": "p1:concept:c3-l717"
+  },
+  {
+    "ch": 3,
+    "line": 757,
+    "name": "零化多项式",
+    "target": "p1:concept:c3-l757"
+  },
+  {
+    "ch": 3,
+    "line": 787,
+    "name": "矩阵的极小多项式",
+    "target": "p1:concept:c3-l787"
+  },
+  {
+    "ch": 3,
+    "line": 826,
+    "name": "矩阵的迹",
+    "target": "p1:concept:c3-l826"
+  },
+  {
+    "ch": 3,
+    "line": 856,
+    "name": "对称矩阵",
+    "target": "p1:concept:c3-l856"
+  },
+  {
+    "ch": 3,
+    "line": 856,
+    "name": "反对称矩阵",
+    "target": "p1:concept:c3-l856"
+  },
+  {
+    "ch": 3,
+    "line": 881,
+    "name": "上三角矩阵",
+    "target": "p1:concept:c3-l881"
+  },
+  {
+    "ch": 3,
+    "line": 881,
+    "name": "下三角矩阵",
+    "target": "p1:concept:c3-l881"
+  },
+  {
+    "ch": 3,
+    "line": 908,
+    "name": "对角矩阵",
+    "target": "p1:concept:c3-l908"
+  },
+  {
+    "ch": 3,
+    "line": 920,
+    "name": "初等矩阵",
+    "target": "p1:concept:c3-l920"
+  },
+  {
+    "ch": 3,
+    "line": 1016,
+    "name": "可逆矩阵",
+    "target": "p1:concept:c3-l1016"
+  },
+  {
+    "ch": 3,
+    "line": 1016,
+    "name": "逆矩阵",
+    "target": "p1:concept:c3-l1016"
+  },
+  {
+    "ch": 3,
+    "line": 1171,
+    "name": "一般线性群",
+    "target": "p1:concept:c3-l1171"
+  },
+  {
+    "ch": 3,
+    "line": 1322,
+    "name": "分块矩阵",
+    "target": "p1:concept:c3-l1322"
+  },
+  {
+    "ch": 3,
+    "line": 1322,
+    "name": "矩阵的块",
+    "target": "p1:concept:c3-l1322"
+  },
+  {
+    "ch": 3,
+    "line": 1322,
+    "name": "准上三角矩阵",
+    "target": "p1:concept:c3-l1322"
+  },
+  {
+    "ch": 3,
+    "line": 1322,
+    "name": "准对角矩阵",
+    "target": "p1:concept:c3-l1322"
+  },
+  {
+    "ch": 3,
+    "line": 1440,
+    "name": "分块矩阵的转置",
+    "target": "p1:concept:c3-l1440"
+  },
+  {
+    "ch": 3,
+    "line": 1440,
+    "name": "分块矩阵的数乘",
+    "target": "p1:concept:c3-l1440"
+  },
+  {
+    "ch": 3,
+    "line": 1440,
+    "name": "分块矩阵的加法",
+    "target": "p1:concept:c3-l1440"
+  },
+  {
+    "ch": 3,
+    "line": 1440,
+    "name": "分块矩阵的乘法",
+    "target": "p1:concept:c3-l1440"
+  },
+  {
+    "ch": 3,
+    "line": 1812,
+    "name": "排列",
+    "target": "p1:concept:c3-l1812"
+  },
+  {
+    "ch": 3,
+    "line": 1812,
+    "name": "自然排列",
+    "target": "p1:concept:c3-l1812"
+  },
+  {
+    "ch": 3,
+    "line": 1812,
+    "name": "置换群",
+    "target": "p1:concept:c3-l1812"
+  },
+  {
+    "ch": 3,
+    "line": 1845,
+    "name": "逆对",
+    "target": "p1:concept:c3-l1845"
+  },
+  {
+    "ch": 3,
+    "line": 1845,
+    "name": "逆序数",
+    "target": "p1:concept:c3-l1845"
+  },
+  {
+    "ch": 3,
+    "line": 1845,
+    "name": "排列的符号",
+    "target": "p1:concept:c3-l1845"
+  },
+  {
+    "ch": 3,
+    "line": 1845,
+    "name": "奇排列",
+    "target": "p1:concept:c3-l1845"
+  },
+  {
+    "ch": 3,
+    "line": 1845,
+    "name": "偶排列",
+    "target": "p1:concept:c3-l1845"
+  },
+  {
+    "ch": 3,
+    "line": 1870,
+    "name": "对换",
+    "target": "p1:concept:c3-l1870"
+  },
+  {
+    "ch": 3,
+    "line": 1908,
+    "name": "行列式",
+    "target": "p1:concept:c3-l1908"
+  },
+  {
+    "ch": 3,
+    "line": 1987,
+    "name": "矩阵的特征多项式",
+    "target": "p1:concept:c3-l1987"
+  },
+  {
+    "ch": 3,
+    "line": 2291,
+    "name": "特殊线性群",
+    "target": "p1:concept:c3-l2291"
+  },
+  {
+    "ch": 3,
+    "line": 2331,
+    "name": "余子式",
+    "target": "p1:concept:c3-l2331"
+  },
+  {
+    "ch": 3,
+    "line": 2331,
+    "name": "代数余子式",
+    "target": "p1:concept:c3-l2331"
+  },
+  {
+    "ch": 3,
+    "line": 2481,
+    "name": "伴随矩阵",
+    "target": "p1:concept:c3-l2481"
+  },
+  {
+    "ch": 3,
+    "line": 2544,
+    "name": "子矩阵",
+    "target": "p1:concept:c3-l2544"
+  },
+  {
+    "ch": 3,
+    "line": 2632,
+    "name": "子式",
+    "target": "p1:concept:c3-l2632"
+  },
+  {
+    "ch": 3,
+    "line": 2915,
+    "name": "Kronecker积（张量积）",
+    "target": "p1:concept:c3-l2915"
+  },
+  {
+    "ch": 3,
+    "line": 3286,
+    "name": "结式矩阵",
+    "target": "p1:concept:c3-l3286"
+  },
+  {
+    "ch": 4,
+    "line": 7,
+    "name": "线性空间",
+    "target": "p1:concept:c4-l7"
+  },
+  {
+    "ch": 4,
+    "line": 7,
+    "name": "向量加法",
+    "target": "p1:concept:c4-l7"
+  },
+  {
+    "ch": 4,
+    "line": 7,
+    "name": "向量数乘",
+    "target": "p1:concept:c4-l7"
+  },
+  {
+    "ch": 4,
+    "line": 7,
+    "name": "向量的负元",
+    "target": "p1:concept:c4-l7"
+  },
+  {
+    "ch": 4,
+    "line": 75,
+    "name": "零空间",
+    "target": "p1:concept:c4-l75"
+  },
+  {
+    "ch": 4,
+    "line": 104,
+    "name": "线性组合",
+    "target": "p1:concept:c4-l104"
+  },
+  {
+    "ch": 4,
+    "line": 173,
+    "name": "线性无关集",
+    "target": "p1:concept:c4-l173"
+  },
+  {
+    "ch": 4,
+    "line": 173,
+    "name": "线性相关集",
+    "target": "p1:concept:c4-l173"
+  },
+  {
+    "ch": 4,
+    "line": 177,
+    "name": "由向量集合表出",
+    "target": "p1:concept:c4-l177"
+  },
+  {
+    "ch": 4,
+    "line": 227,
+    "name": "基",
+    "target": "p1:concept:c4-l227"
+  },
+  {
+    "ch": 4,
+    "line": 227,
+    "name": "基向量",
+    "target": "p1:concept:c4-l227"
+  },
+  {
+    "ch": 4,
+    "line": 276,
+    "name": "子空间的陪集",
+    "target": "p1:concept:c4-l276"
+  },
+  {
+    "ch": 4,
+    "line": 276,
+    "name": "商空间",
+    "target": "p1:concept:c4-l276"
+  },
+  {
+    "ch": 4,
+    "line": 375,
+    "name": "维数",
+    "target": "p1:concept:c4-l375"
+  },
+  {
+    "ch": 4,
+    "line": 375,
+    "name": "有限维线性空间",
+    "target": "p1:concept:c4-l375"
+  },
+  {
+    "ch": 4,
+    "line": 375,
+    "name": "无穷维线性空间",
+    "target": "p1:concept:c4-l375"
+  },
+  {
+    "ch": 4,
+    "line": 502,
+    "name": "坐标",
+    "target": "p1:concept:c4-l502"
+  },
+  {
+    "ch": 4,
+    "line": 502,
+    "name": "坐标分量",
+    "target": "p1:concept:c4-l502"
+  },
+  {
+    "ch": 4,
+    "line": 502,
+    "name": "坐标映射",
+    "target": "p1:concept:c4-l502"
+  },
+  {
+    "ch": 4,
+    "line": 519,
+    "name": "过渡矩阵",
+    "target": "p1:concept:c4-l519"
+  },
+  {
+    "ch": 4,
+    "line": 585,
+    "name": "子空间",
+    "target": "p1:concept:c4-l585"
+  },
+  {
+    "ch": 4,
+    "line": 639,
+    "name": "平凡子空间",
+    "target": "p1:concept:c4-l639"
+  },
+  {
+    "ch": 4,
+    "line": 708,
+    "name": "余维数",
+    "target": "p1:concept:c4-l708"
+  },
+  {
+    "ch": 4,
+    "line": 722,
+    "name": "线性生成子空间",
+    "target": "p1:concept:c4-l722"
+  },
+  {
+    "ch": 4,
+    "line": 722,
+    "name": "子空间的生成元",
+    "target": "p1:concept:c4-l722"
+  },
+  {
+    "ch": 4,
+    "line": 881,
+    "name": "子空间的和",
+    "target": "p1:concept:c4-l881"
+  },
+  {
+    "ch": 4,
+    "line": 1080,
+    "name": "子空间的直和",
+    "target": "p1:concept:c4-l1080"
+  },
+  {
+    "ch": 4,
+    "line": 1313,
+    "name": "补子空间",
+    "target": "p1:concept:c4-l1313"
+  },
+  {
+    "ch": 4,
+    "line": 1323,
+    "name": "子空间的嵌入",
+    "target": "p1:concept:c4-l1323"
+  },
+  {
+    "ch": 4,
+    "line": 1323,
+    "name": "直和的投影",
+    "target": "p1:concept:c4-l1323"
+  },
+  {
+    "ch": 4,
+    "line": 1349,
+    "name": "线性映射",
+    "target": "p1:concept:c4-l1349"
+  },
+  {
+    "ch": 4,
+    "line": 1349,
+    "name": "线性变换",
+    "target": "p1:concept:c4-l1349"
+  },
+  {
+    "ch": 4,
+    "line": 1349,
+    "name": "Hom空间",
+    "target": "p1:concept:c4-l1349"
+  },
+  {
+    "ch": 4,
+    "line": 1349,
+    "name": "End空间",
+    "target": "p1:concept:c4-l1349"
+  },
+  {
+    "ch": 4,
+    "line": 1391,
+    "name": "线性映射下子集的原像",
+    "target": "p1:concept:c4-l1391"
+  },
+  {
+    "ch": 4,
+    "line": 1397,
+    "name": "线性映射下子集的像",
+    "target": "p1:concept:c4-l1397"
+  },
+  {
+    "ch": 4,
+    "line": 1459,
+    "name": "零度",
+    "target": "p1:concept:c4-l1459"
+  },
+  {
+    "ch": 4,
+    "line": 1707,
+    "name": "映射空间",
+    "target": "p1:concept:c4-l1707"
+  },
+  {
+    "ch": 4,
+    "line": 1940,
+    "name": "线性同构映射",
+    "target": "p1:concept:c4-l1940"
+  },
+  {
+    "ch": 4,
+    "line": 1979,
+    "name": "逆映射",
+    "target": "p1:concept:c4-l1979"
+  },
+  {
+    "ch": 4,
+    "line": 1981,
+    "name": "线性空间的自同构",
+    "target": "p1:concept:c4-l1981"
+  },
+  {
+    "ch": 4,
+    "line": 1981,
+    "name": "线性空间的自同构群",
+    "target": "p1:concept:c4-l1981"
+  },
+  {
+    "ch": 4,
+    "line": 2065,
+    "name": "同构的线性空间",
+    "target": "p1:concept:c4-l2065"
+  },
+  {
+    "ch": 4,
+    "line": 2360,
+    "name": "线性映射在给定基下的矩阵",
+    "target": "p1:concept:c4-l2360"
+  },
+  {
+    "ch": 4,
+    "line": 2617,
+    "name": "线性映射的秩",
+    "target": "p1:concept:c4-l2617"
+  },
+  {
+    "ch": 4,
+    "line": 2846,
+    "name": "线性变换的最小多项式",
+    "target": "p1:concept:c4-l2846"
+  },
+  {
+    "ch": 4,
+    "line": 3090,
+    "name": "Hamel基",
+    "target": "p1:concept:c4-l3090"
+  },
+  {
+    "ch": 4,
+    "line": 3113,
+    "name": "Schauder基",
+    "target": "p1:concept:c4-l3113"
+  },
+  {
+    "ch": 5,
+    "line": 8,
+    "name": "不变子空间",
+    "target": "p1:concept:c5-l8"
+  },
+  {
+    "ch": 5,
+    "line": 8,
+    "name": "线性变换的限制",
+    "target": "p1:concept:c5-l8"
+  },
+  {
+    "ch": 5,
+    "line": 22,
+    "name": "平凡不变子空间",
+    "target": "p1:concept:c5-l22"
+  },
+  {
+    "ch": 5,
+    "line": 59,
+    "name": "循环子空间（Krylov空间）",
+    "target": "p1:concept:c5-l59"
+  },
+  {
+    "ch": 5,
+    "line": 171,
+    "name": "特征值",
+    "target": "p1:concept:c5-l171"
+  },
+  {
+    "ch": 5,
+    "line": 171,
+    "name": "特征子空间",
+    "target": "p1:concept:c5-l171"
+  },
+  {
+    "ch": 5,
+    "line": 171,
+    "name": "特征向量",
+    "target": "p1:concept:c5-l171"
+  },
+  {
+    "ch": 5,
+    "line": 171,
+    "name": "几何重数",
+    "target": "p1:concept:c5-l171"
+  },
+  {
+    "ch": 5,
+    "line": 241,
+    "name": "可对角化的线性变换",
+    "target": "p1:concept:c5-l241"
+  },
+  {
+    "ch": 5,
+    "line": 495,
+    "name": "特征值的代数重数",
+    "target": "p1:concept:c5-l495"
+  },
+  {
+    "ch": 5,
+    "line": 820,
+    "name": "相似矩阵",
+    "target": "p1:concept:c5-l820"
+  },
+  {
+    "ch": 5,
+    "line": 1191,
+    "name": "可对角化矩阵",
+    "target": "p1:concept:c5-l1191"
+  },
+  {
+    "ch": 5,
+    "line": 1709,
+    "name": "特征矩阵",
+    "target": "p1:concept:c5-l1709"
+  },
+  {
+    "ch": 5,
+    "line": 1709,
+    "name": "$\\lambda$-矩阵",
+    "target": "p1:concept:c5-l1709"
+  },
+  {
+    "ch": 5,
+    "line": 1819,
+    "name": "$\\lambda$-矩阵的行列式",
+    "target": "p1:concept:c5-l1819"
+  },
+  {
+    "ch": 5,
+    "line": 1905,
+    "name": "$\\lambda$-矩阵的秩",
+    "target": "p1:concept:c5-l1905"
+  },
+  {
+    "ch": 5,
+    "line": 1937,
+    "name": "可逆$\\lambda$-矩阵",
+    "target": "p1:concept:c5-l1937"
+  },
+  {
+    "ch": 5,
+    "line": 1937,
+    "name": "$\\lambda$-矩阵的逆",
+    "target": "p1:concept:c5-l1937"
+  },
+  {
+    "ch": 5,
+    "line": 2001,
+    "name": "相抵的$\\lambda$-矩阵",
+    "target": "p1:concept:c5-l2001"
+  },
+  {
+    "ch": 5,
+    "line": 2058,
+    "name": "初等$\\lambda$-行变换",
+    "target": "p1:concept:c5-l2058"
+  },
+  {
+    "ch": 5,
+    "line": 2058,
+    "name": "初等$\\lambda$-列变换",
+    "target": "p1:concept:c5-l2058"
+  },
+  {
+    "ch": 5,
+    "line": 2058,
+    "name": "初等$\\lambda$-矩阵",
+    "target": "p1:concept:c5-l2058"
+  },
+  {
+    "ch": 5,
+    "line": 2058,
+    "name": "$\\lambda$-矩阵的初等变换",
+    "target": "p1:concept:c5-l2058"
+  },
+  {
+    "ch": 5,
+    "line": 2095,
+    "name": "Smith标准形",
+    "target": "p1:concept:c5-l2095"
+  },
+  {
+    "ch": 5,
+    "line": 2205,
+    "name": "$\\lambda$-矩阵的行列式因子",
+    "target": "p1:concept:c5-l2205"
+  },
+  {
+    "ch": 5,
+    "line": 2373,
+    "name": "不变因子",
+    "target": "p1:concept:c5-l2373"
+  },
+  {
+    "ch": 5,
+    "line": 2373,
+    "name": "方阵的行列式因子",
+    "target": "p1:concept:c5-l2373"
+  },
+  {
+    "ch": 5,
+    "line": 2454,
+    "name": "初等因子",
+    "target": "p1:concept:c5-l2454"
+  },
+  {
+    "ch": 5,
+    "line": 2716,
+    "name": "友矩阵",
+    "target": "p1:concept:c5-l2716"
+  },
+  {
+    "ch": 5,
+    "line": 2759,
+    "name": "有理块",
+    "target": "p1:concept:c5-l2759"
+  },
+  {
+    "ch": 5,
+    "line": 2799,
+    "name": "有理标准型",
+    "target": "p1:concept:c5-l2799"
+  },
+  {
+    "ch": 5,
+    "line": 2911,
+    "name": "Jordan块",
+    "target": "p1:concept:c5-l2911"
+  },
+  {
+    "ch": 5,
+    "line": 2911,
+    "name": "Jordan矩阵",
+    "target": "p1:concept:c5-l2911"
+  },
+  {
+    "ch": 5,
+    "line": 2950,
+    "name": "Jordan标准型",
+    "target": "p1:concept:c5-l2950"
+  },
+  {
+    "ch": 5,
+    "line": 3660,
+    "name": "循环矩阵",
+    "target": "p1:concept:c5-l3660"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "内积",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "双线性",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "内积的对称性",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "内积的正定性",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "实内积空间",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 6,
+    "name": "欧氏空间",
+    "target": "p1:concept:c6-l6"
+  },
+  {
+    "ch": 6,
+    "line": 46,
+    "name": "标准内积",
+    "target": "p1:concept:c6-l46"
+  },
+  {
+    "ch": 6,
+    "line": 101,
+    "name": "向量正交",
+    "target": "p1:concept:c6-l101"
+  },
+  {
+    "ch": 6,
+    "line": 101,
+    "name": "长度（范数）",
+    "target": "p1:concept:c6-l101"
+  },
+  {
+    "ch": 6,
+    "line": 101,
+    "name": "向量间的距离",
+    "target": "p1:concept:c6-l101"
+  },
+  {
+    "ch": 6,
+    "line": 101,
+    "name": "单位向量",
+    "target": "p1:concept:c6-l101"
+  },
+  {
+    "ch": 6,
+    "line": 101,
+    "name": "单位化",
+    "target": "p1:concept:c6-l101"
+  },
+  {
+    "ch": 6,
+    "line": 157,
+    "name": "向量间的夹角",
+    "target": "p1:concept:c6-l157"
+  },
+  {
+    "ch": 6,
+    "line": 245,
+    "name": "沿向量的正交投影",
+    "target": "p1:concept:c6-l245"
+  },
+  {
+    "ch": 6,
+    "line": 257,
+    "name": "正交补",
+    "target": "p1:concept:c6-l257"
+  },
+  {
+    "ch": 6,
+    "line": 386,
+    "name": "向子空间的正交投影",
+    "target": "p1:concept:c6-l386"
+  },
+  {
+    "ch": 6,
+    "line": 386,
+    "name": "正交分量",
+    "target": "p1:concept:c6-l386"
+  },
+  {
+    "ch": 6,
+    "line": 399,
+    "name": "标准正交基",
+    "target": "p1:concept:c6-l399"
+  },
+  {
+    "ch": 6,
+    "line": 399,
+    "name": "Kronecker符号",
+    "target": "p1:concept:c6-l399"
+  },
+  {
+    "ch": 6,
+    "line": 493,
+    "name": "度量映射",
+    "target": "p1:concept:c6-l493"
+  },
+  {
+    "ch": 6,
+    "line": 516,
+    "name": "等距映射",
+    "target": "p1:concept:c6-l516"
+  },
+  {
+    "ch": 6,
+    "line": 531,
+    "name": "等距的内积空间",
+    "target": "p1:concept:c6-l531"
+  },
+  {
+    "ch": 6,
+    "line": 572,
+    "name": "内积的度量矩阵",
+    "target": "p1:concept:c6-l572"
+  },
+  {
+    "ch": 6,
+    "line": 624,
+    "name": "Gram矩阵",
+    "target": "p1:concept:c6-l624"
+  },
+  {
+    "ch": 6,
+    "line": 669,
+    "name": "合同（相合）矩阵",
+    "target": "p1:concept:c6-l669"
+  },
+  {
+    "ch": 6,
+    "line": 698,
+    "name": "正定矩阵",
+    "target": "p1:concept:c6-l698"
+  },
+  {
+    "ch": 6,
+    "line": 789,
+    "name": "正交变换",
+    "target": "p1:concept:c6-l789"
+  },
+  {
+    "ch": 6,
+    "line": 809,
+    "name": "反射变换",
+    "target": "p1:concept:c6-l809"
+  },
+  {
+    "ch": 6,
+    "line": 981,
+    "name": "正交矩阵",
+    "target": "p1:concept:c6-l981"
+  },
+  {
+    "ch": 6,
+    "line": 1043,
+    "name": "正交群",
+    "target": "p1:concept:c6-l1043"
+  },
+  {
+    "ch": 6,
+    "line": 1156,
+    "name": "特殊正交群",
+    "target": "p1:concept:c6-l1156"
+  },
+  {
+    "ch": 6,
+    "line": 1225,
+    "name": "正交相似",
+    "target": "p1:concept:c6-l1225"
+  },
+  {
+    "ch": 6,
+    "line": 1545,
+    "name": "对称变换",
+    "target": "p1:concept:c6-l1545"
+  },
+  {
+    "ch": 6,
+    "line": 2084,
+    "name": "伴随变换（伴随算子）",
+    "target": "p1:concept:c6-l2084"
+  },
+  {
+    "ch": 6,
+    "line": 2272,
+    "name": "正规变换（正规算子）",
+    "target": "p1:concept:c6-l2272"
+  },
+  {
+    "ch": 6,
+    "line": 2295,
+    "name": "正规矩阵",
+    "target": "p1:concept:c6-l2295"
+  },
+  {
+    "ch": 6,
+    "line": 2464,
+    "name": "复内积",
+    "target": "p1:concept:c6-l2464"
+  },
+  {
+    "ch": 6,
+    "line": 2464,
+    "name": "酉空间",
+    "target": "p1:concept:c6-l2464"
+  },
+  {
+    "ch": 6,
+    "line": 2744,
+    "name": "QR分解",
+    "target": "p1:concept:c6-l2744"
+  },
+  {
+    "ch": 6,
+    "line": 3040,
+    "name": "向量到子空间的距离",
+    "target": "p1:concept:c6-l3040"
+  },
+  {
+    "ch": 6,
+    "line": 3075,
+    "name": "向量与子空间的夹角",
+    "target": "p1:concept:c6-l3075"
+  },
+  {
+    "ch": 7,
+    "line": 12,
+    "name": "线性函数",
+    "target": "p1:concept:c7-l12"
+  },
+  {
+    "ch": 7,
+    "line": 12,
+    "name": "对偶空间",
+    "target": "p1:concept:c7-l12"
+  },
+  {
+    "ch": 7,
+    "line": 108,
+    "name": "坐标函数",
+    "target": "p1:concept:c7-l108"
+  },
+  {
+    "ch": 7,
+    "line": 150,
+    "name": "对偶基",
+    "target": "p1:concept:c7-l150"
+  },
+  {
+    "ch": 7,
+    "line": 250,
+    "name": "双重对偶空间",
+    "target": "p1:concept:c7-l250"
+  },
+  {
+    "ch": 7,
+    "line": 335,
+    "name": "双线性函数（双线性型）",
+    "target": "p1:concept:c7-l335"
+  },
+  {
+    "ch": 7,
+    "line": 335,
+    "name": "双线性型空间",
+    "target": "p1:concept:c7-l335"
+  },
+  {
+    "ch": 7,
+    "line": 392,
+    "name": "双线性型的左根",
+    "target": "p1:concept:c7-l392"
+  },
+  {
+    "ch": 7,
+    "line": 392,
+    "name": "双线性型的右根",
+    "target": "p1:concept:c7-l392"
+  },
+  {
+    "ch": 7,
+    "line": 392,
+    "name": "非退化双线性型",
+    "target": "p1:concept:c7-l392"
+  },
+  {
+    "ch": 7,
+    "line": 411,
+    "name": "双线性型的度量矩阵",
+    "target": "p1:concept:c7-l411"
+  },
+  {
+    "ch": 7,
+    "line": 485,
+    "name": "双线性型的秩",
+    "target": "p1:concept:c7-l485"
+  },
+  {
+    "ch": 7,
+    "line": 583,
+    "name": "由映射诱导的双线性型",
+    "target": "p1:concept:c7-l583"
+  },
+  {
+    "ch": 7,
+    "line": 668,
+    "name": "对称双线性型",
+    "target": "p1:concept:c7-l668"
+  },
+  {
+    "ch": 7,
+    "line": 795,
+    "name": "初等合同变换",
+    "target": "p1:concept:c7-l795"
+  },
+  {
+    "ch": 7,
+    "line": 1012,
+    "name": "二次型",
+    "target": "p1:concept:c7-l1012"
+  },
+  {
+    "ch": 7,
+    "line": 1027,
+    "name": "二次型的系数",
+    "target": "p1:concept:c7-l1027"
+  },
+  {
+    "ch": 7,
+    "line": 1027,
+    "name": "平方项",
+    "target": "p1:concept:c7-l1027"
+  },
+  {
+    "ch": 7,
+    "line": 1027,
+    "name": "交叉项",
+    "target": "p1:concept:c7-l1027"
+  },
+  {
+    "ch": 7,
+    "line": 1031,
+    "name": "二次型的标准型",
+    "target": "p1:concept:c7-l1031"
+  },
+  {
+    "ch": 7,
+    "line": 1056,
+    "name": "二次型的矩阵",
+    "target": "p1:concept:c7-l1056"
+  },
+  {
+    "ch": 7,
+    "line": 1056,
+    "name": "二次型的秩",
+    "target": "p1:concept:c7-l1056"
+  },
+  {
+    "ch": 7,
+    "line": 1164,
+    "name": "非退化线性替换",
+    "target": "p1:concept:c7-l1164"
+  },
+  {
+    "ch": 7,
+    "line": 1182,
+    "name": "等价二次型",
+    "target": "p1:concept:c7-l1182"
+  },
+  {
+    "ch": 7,
+    "line": 1425,
+    "name": "复二次型的规范型",
+    "target": "p1:concept:c7-l1425"
+  },
+  {
+    "ch": 7,
+    "line": 1451,
+    "name": "实二次型的规范型",
+    "target": "p1:concept:c7-l1451"
+  },
+  {
+    "ch": 7,
+    "line": 1527,
+    "name": "正惯性指数",
+    "target": "p1:concept:c7-l1527"
+  },
+  {
+    "ch": 7,
+    "line": 1527,
+    "name": "负惯性指数",
+    "target": "p1:concept:c7-l1527"
+  },
+  {
+    "ch": 7,
+    "line": 1527,
+    "name": "符号差",
+    "target": "p1:concept:c7-l1527"
+  },
+  {
+    "ch": 7,
+    "line": 1565,
+    "name": "实对称矩阵的正惯性指数",
+    "target": "p1:concept:c7-l1565"
+  },
+  {
+    "ch": 7,
+    "line": 1565,
+    "name": "实对称矩阵的负惯性指数",
+    "target": "p1:concept:c7-l1565"
+  },
+  {
+    "ch": 7,
+    "line": 1578,
+    "name": "正定二次型",
+    "target": "p1:concept:c7-l1578"
+  },
+  {
+    "ch": 7,
+    "line": 1623,
+    "name": "正定矩阵（二次型定义）",
+    "target": "p1:concept:c7-l1623"
+  },
+  {
+    "ch": 7,
+    "line": 1848,
+    "name": "顺序主子式",
+    "target": "p1:concept:c7-l1848"
+  },
+  {
+    "ch": 7,
+    "line": 1931,
+    "name": "负定二次型",
+    "target": "p1:concept:c7-l1931"
+  },
+  {
+    "ch": 7,
+    "line": 1931,
+    "name": "负定矩阵",
+    "target": "p1:concept:c7-l1931"
+  },
+  {
+    "ch": 7,
+    "line": 1972,
+    "name": "不定矩阵",
+    "target": "p1:concept:c7-l1972"
+  },
+  {
+    "ch": 7,
+    "line": 1972,
+    "name": "不定二次型",
+    "target": "p1:concept:c7-l1972"
+  },
+  {
+    "ch": 7,
+    "line": 1976,
+    "name": "半正定二次型",
+    "target": "p1:concept:c7-l1976"
+  },
+  {
+    "ch": 7,
+    "line": 1976,
+    "name": "半正定矩阵",
+    "target": "p1:concept:c7-l1976"
+  },
+  {
+    "ch": 4,
+    "line": 3135,
+    "name": "线段",
+    "target": "p1:concept:c4-l3135"
+  },
+  {
+    "ch": 4,
+    "line": 3141,
+    "name": "凸集",
+    "target": "p1:concept:c4-l3141"
+  },
+  {
+    "ch": 7,
+    "line": 2632,
+    "name": "向量的张量积",
+    "target": "p1:concept:c7-l2632"
+  },
+  {
+    "ch": 7,
+    "line": 2637,
+    "name": "线性空间的张量积",
+    "target": "p1:concept:c7-l2637"
+  },
+  {
+    "ch": 7,
+    "line": 2824,
+    "name": "线性映射的张量积",
+    "target": "p1:concept:c7-l2824"
+  },
+  {
+    "ch": 7,
+    "line": 2876,
+    "name": "双线性型下的正交补",
+    "target": "p1:concept:c7-l2876"
+  }
+]

@@ -1,0 +1,215 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第1章：Fourier级数的基本性质
+% 节：1.1 主要的定义与一些例子
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{主要的定义与一些例子}
+\begin{definition}
+	如果 $f$ 是在给定长度为 $L$ 的区间 $[a,b]$ 上的函数,也就是说 $b-a=L$,那么 $f$ 的第 $n$ 个 Fourier 系数定义为
+\[
+\widehat f(n)=\frac1L\int_a^b f(x)e^{-2\pi i n x/L}\dd x,
+\qquad n\in\Z .
+\]
+$f$ 的 Fourier 级数定义为
+\[
+\sum_{n=-\infty}^{\infty}\widehat f(n)e^{2\pi i n x/L}.
+\]
+我们有时把 $f$ 的 Fourier 系数记为 $a_n$,使用符号
+\[
+f(x)\sim \sum_{n=-\infty}^{\infty}a_n e^{2\pi i n x/L}
+\]
+表示右边的级数是 $f$ 的 Fourier 级数。
+
+\end{definition}
+例如,如果 $f$ 是区间 $[-\pi,\pi]$ 上的可积函数,那么 $f$ 的第 $n$ 个 Fourier 系数为
+\[
+\widehat f(n)=a_n
+=\frac1{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-in\theta}\dd\theta,
+\qquad n\in\Z,
+\]
+$f$ 的 Fourier 级数为
+\[
+f(\theta)
+\sim \sum_{n=-\infty}^{\infty}a_n e^{in\theta}.
+\]
+
+在实际计算与应用中，我们经常采取Fourier展开的三角形式\[f(\theta)\sim \frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos nx+b_n\sin nx)\]
+
+最后,考虑一个在区间 $[0,1]$ 上的函数 $g$,则
+\[
+\widehat g(n)=a_n
+=\int_0^1 g(x)e^{-2\pi i n x}\dd x,
+\qquad
+g(x)\sim \sum_{n=-\infty}^{\infty}a_n e^{2\pi i n x}.
+\]
+其中,用 $x$ 作为从 $0$ 到 $1$ 的变量。
+
+当然,如果 $f$ 最初定义在区间 $[0,2\pi]$ 上,那么令
+\[
+g(x)=f(2\pi x),\qquad x\in[0,1],
+\]
+由变量替换可知,$f$ 的第 $n$ 个 Fourier 系数和 $g$ 的第 $n$ 个 Fourier 系数是相同的。
+
+出于方便考虑,在这一部分的笔记中,我们总是限制区间为$[-\pi,\pi]$或者$[0,2\pi]$
+
+
+Fourier 级数是更大一类级数,也即三角级数的一部分。根据定义,三角级数可以表示为
+\[
+\sum_{n=-\infty}^{\infty}c_n e^{2\pi i n x/L},
+\qquad c_n\in\C.
+\]
+如果三角级数只包含有限个非零项,即对于足够大的 $|n|$ 有 $c_n=0$,它就称作三角多项式；它的次数是 $|n|$ 的最大值,其中 $c_n\neq0$。
+
+当 $N$ 是正整数时,$f$ 的 Fourier 级数的第 $N$ 个部分和定义为
+\[
+S_N(f)(x)=\sum_{n=-N}^{N}\widehat f(n)e^{2\pi i n x/L}.
+\]
+注意到通过定义,由于 $n$ 是从 $-N$ 到 $N$ 取值,故上述和是对称的。因此,可以将 Fourier 级数分解为正弦级数和余弦级数。因而,也可以将 Fourier 级数理解为当 $N$ 趋向无穷时这些对称和的极限。
+
+一个需要注意到的事实是,任意一个三角多项式,在$S_N(f)(x)$的$\widehat f(\pm N)$非零的情况下,总可以由若干个$S_N(f)(x)$线性表出,这由线性代数中的知识显而易见
+
+
+本章首先关心的问题是：\textbf{当 $N\to\infty$ 时,$S_N(f)$ 在何种意义下趋于 $f$。}
+
+更具体地,为了便于讨论,假设函数 $f$ 总是 Riemann 可积的,并定义在 $[-\pi,\pi]$ 上。我们首先会问 $f$ 的 Fourier 级数的部分和是否逐点收敛于 $f$,也就是,对任意的 $\theta$,是否有
+
+	\[\lim_{N\to\infty}S_N(f)(\theta)=f(\theta).\]
+
+在正式的开始研究这个问题之前我们先给出一些例子
+
+
+\begin{example}
+	设
+	\[
+	f(\theta)=\theta,
+	\qquad -\pi\leq\theta\leq\pi.
+	\]
+	计算 $f$ 的 Fourier 系数,并写出相应的 Fourier 级数。
+\end{example}
+
+\begin{solution}
+	当 $n\neq0$ 时,
+	\[
+	\begin{aligned}
+		\widehat f(n)
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}\theta e^{-in\theta}\dd\theta                                      \\
+		&=\frac1{2\pi}\left(-\frac1{in}\right)
+		\int_{-\pi}^{\pi}\theta\dd(e^{-in\theta})                                      \\
+		&=-\frac1{2\pi in}
+		\left(\left[\theta e^{-in\theta}\right]_{-\pi}^{\pi}
+		-\int_{-\pi}^{\pi}e^{-in\theta}\dd\theta\right)                                  \\
+		&=-\frac1{2\pi in}\cdot 2\pi(-1)^n
+		=\frac{(-1)^{n+1}}{ni}.
+	\end{aligned}
+	\]
+	当 $n=0$ 时,
+	\[
+	\widehat f(0)=\frac1{2\pi}\int_{-\pi}^{\pi}\theta\dd\theta=0.
+	\]
+	因此
+	\[
+	f(\theta)
+	\sim \sum_{n\neq0}\frac{(-1)^{n+1}}{ni}e^{in\theta}.
+	\]
+	把正负指标合并,可得
+	\[
+	f(\theta)
+	\sim 2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin n\theta}{n}.
+	\]
+\end{solution}
+
+\begin{example}(Dirichlet 核)
+	对 $x\in[-\pi,\pi]$,三角多项式
+	\[
+	D_N(x)=\sum_{n=-N}^{N}e^{inx}
+	\]
+	称作 $N$ 次 Dirichlet 核。证明它的闭形式为
+	\[
+	D_N(x)=\frac{\sin\left((N+\frac12)x\right)}{\sin(x/2)}.
+	\]
+\end{example}
+
+\begin{solution}
+	$D_N$ 在我们稍后谈到的理论中是至关重要的。注意到它的 Fourier 系数 $a_n$ 有性质
+	\[
+	a_n=
+	\begin{cases}
+		1,& |n|\leq N,\\
+		0,& \text{其他}.
+	\end{cases}
+	\]
+	令 $\omega=e^{ix}$。则
+	\[
+	D_N(x)=\sum_{n=-N}^{N}\omega^n
+	=\frac{\omega^{-N}-\omega^{N+1}}{1-\omega}.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		D_N(x)
+		&=\frac{\omega^{-N}-\omega^{N+1}}{1-\omega}                                      \\
+		&=\frac{\omega^{-N-1/2}-\omega^{N+1/2}}{\omega^{-1/2}-\omega^{1/2}}                 \\
+		&=\frac{\sin\left((N+\frac12)x\right)}{\sin(x/2)}.
+	\end{aligned}
+	\]
+	这便给出了我们想要的结果。
+\end{solution}
+
+\begin{example}(Poisson 核)
+	函数 $P_r(\theta)$ 称为 Poisson 核,是定义为 $\theta\in[-\pi,\pi]$ 和 $0\leq r<1$ 的绝对且一致收敛的级数
+	\[
+	P_r(\theta)=\sum_{n=-\infty}^{\infty}r^{|n|}e^{in\theta}.
+	\]
+	证明
+	\[
+	P_r(\theta)=\frac{1-r^2}{1-2r\cos\theta+r^2}.
+	\]
+\end{example}
+
+\begin{solution}
+	事实上,当 $\omega=re^{i\theta}$ 时,
+	\[
+	\begin{aligned}
+		P_r(\theta)
+		&=\sum_{n=0}^{\infty}\omega^n+
+		\sum_{n=1}^{\infty}\overline{\omega}^{\,n}.
+	\end{aligned}
+	\]
+	其中,这两个级数都绝对收敛。第一个和等于 $1/(1-\omega)$,同理,第二个等于 $\overline{\omega}/(1-\overline{\omega})$。合在一起,混合计算得到
+	\[
+	\begin{aligned}
+		P_r(\theta)
+		&=\frac1{1-\omega}+\frac{\overline{\omega}}{1-\overline{\omega}}                         \\
+		&=\frac{1-\overline{\omega}+(1-\omega)\overline{\omega}}
+		{(1-\omega)(1-\overline{\omega})}                                                         \\
+		&=\frac{1-|\omega|^2}{|1-\omega|^2}                                                        \\
+		&=\frac{1-r^2}{1-2r\cos\theta+r^2}.
+	\end{aligned}
+	\]
+	这便得到了上述结果。Poisson 核会在今后函数的 Fourier 级数的 Abel 求和里再次出现。
+\end{solution}
+
+\begin{proposition}
+	\begin{enumerate}
+		\item 若$f$是偶函数,则$\widehat{f}(n)=\widehat{f}(-n)$
+		\item 若$f$是奇函数,则$\widehat{f}(n)=-\widehat{f}(-n)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item \[\widehat{f}(n) =\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{-in\theta}\dd \theta\]\[\widehat{f}(-n) =\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)e^{in\theta}\dd \theta=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(-\theta)e^{-in\theta}\dd \theta=\widehat{f}(n)\]
+		\item 同上
+	\end{enumerate}
+\end{proof}
+若$f$是偶函数,可以写成
+\[f(\theta)\sim \sum_{n=-\infty}^{\infty}a_n\cos n\theta\]
+其中\[a_n =\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)\cos n\theta\dd \theta\]
+
+若$f$是其函数,可以写成
+\[f(\theta)\sim \sum_{n=-\infty}^{\infty}a_n\sin n\theta\]
+其中\[a_n =\frac{1}{2\pi}\int_{-\pi}^{\pi}f(\theta)\sin
+ n\theta\dd \theta\]
+
+
+
+
+

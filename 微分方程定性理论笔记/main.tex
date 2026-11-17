@@ -1,0 +1,100 @@
+
+% main.tex
+% ============================================
+% 张芷芬等《微分方程定性理论》—— LaTeX 重排本
+% 原著：张芷芬、丁同仁、黄文灶、董镇喜，微分方程定性理论
+%       （科学出版社）
+%
+% 目的：将扫描版原书完整、忠实地逐页转为 LaTeX 排版。
+% 编译：XeLaTeX + biber
+% 模板参考：Arnold《常微分方程》笔记工程 的版式与定理环境体系
+% ============================================
+\documentclass{book}
+
+% ── 加载所有配置 ──
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+\addbibresource{bibliography/references.bib}
+
+% ============================================
+%  封面配置
+% ============================================
+\seriestitle{数学经典 · LaTeX 重排}
+\booktitle{微分方程定性理论}
+\bookauthor{张芷芬、丁同仁、黄文灶、董镇喜}
+\bookdate{\today}
+\coverimage{}   % 放入 figure/封面.png 后填写路径即可
+
+\begin{document}
+
+% ── 生成封面 ──
+\makecover
+
+% ── 前置部分 ──
+\frontmatter
+
+\chapter*{重排说明}
+\addcontentsline{toc}{chapter}{重排说明}
+
+本文件是张芷芬、丁同仁、黄文灶、董镇喜著《微分方程定性理论》的
+LaTeX 重排本，依据扫描版原书逐页录入，力求在版式、公式与符号上
+与原书保持一致。
+
+原书是平面自治系统定性理论的经典教材，系统阐述奇点分析、奇点指数、
+极限环、无穷远奇点、周期系统的调和解、环面上的动力系统以及结构稳定性等
+核心课题。全书以相平面上的向量场与积分曲线为几何出发点，强调不求解而通过
+拓扑与解析方法判断轨线性态的思想。
+
+本重排本按原书八章结构组织，正文分节与原书小节一一对应，章末的习题与
+参考文献亦照原书录入。所有定理、定义、引理、示例等沿用统一的绛紫—香槟金
+编号环境，以便于阅读与校订。
+
+以下为正文。
+
+\begin{flushright}
+	LaTeX 录入重排\\
+	\today
+\end{flushright}
+
+% ── 目录 ──
+\tableofcontents
+\newpage
+
+% ============================================
+%  正文部分
+%  张芷芬《微分方程定性理论》八章结构（忠实转录）
+% ============================================
+\mainmatter
+\setcounter{page}{1}
+
+% 第一章  基本定理
+\include{chapters/chapter01}
+%
+%% 第二章  平面奇点
+%\include{chapters/chapter02}
+%
+%% 第三章  平面奇点指数
+%\include{chapters/chapter03}
+%
+%% 第四章  极限环
+%\include{chapters/chapter04}
+%
+%% 第五章  无穷远奇点
+%\include{chapters/chapter05}
+
+% 第六章  二维周期系统的调和解
+%\include{chapters/chapter06}
+
+% 第七章  环面上的常微系统
+%\include{chapters/chapter07}
+
+% 第八章  结构稳定性
+%\include{chapters/chapter08}
+
+\end{document}

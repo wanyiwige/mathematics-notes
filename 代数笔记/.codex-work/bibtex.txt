@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+The top-level auxiliary file: main.aux
+White space in argument---line 18 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter1.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 20 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter2.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 22 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter3.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 24 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter4.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 26 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter5.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 28 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter6.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 30 of file main.aux
+ : \@input{chapters/Part
+ :                       1/chapter7.aux}
+I'm skipping whatever remains of this command
+White space in argument---line 34 of file main.aux
+ : \@input{chapters/Part
+ :                       2/chapter1.aux}
+I'm skipping whatever remains of this command
+The style file: IEEEtran.bst
+Database file #1: bibliography/references.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty year in axler_linear_2014
+Warning--empty year in lay_linear_2018
+Warning--empty year in strang_introduction_2016
+Warning--missing publisher in peng_linear_nodate
+Warning--empty year in peng_linear_nodate
+Warning--empty year in xie_advanced_2022
+
+Done.
+(There were 8 error messages)

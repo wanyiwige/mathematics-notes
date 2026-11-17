@@ -1,0 +1,307 @@
+\setchapterimage{figure/Chapter13封面图.jpg}
+\setchapterintro{本章从向量转过的圈数开始，给出曲线指标、奇点指标及其和的严格定义与证明。映射度把二维论证推广到高维，也说明相空间的拓扑会限制微分方程可能具有的平衡点。}
+\chapter{向量场的指标、映射度与 Euler 特征数}\label{chap:indices}
+
+第六章已经用结点、鞍点和闭轨描述局部相图。本章先用平面绕数给这些图形赋予指标，再利用第~\ref{chap:manifolds}~章的流形与定向概念讨论全局限制；涉及积分形式时采用第~\ref{chap:characteristics}~章的微分形式记号。
+
+\section{曲线指标及形变不变性}
+\begin{definition}
+设 $v=(P,Q)$ 在一条闭曲线 $\gamma$ 上不为零。沿曲线连续选择向量方向角 $\theta$，
+定义指标为 
+\[
+ \operatorname{ind}_v\gamma=(\theta(1)-\theta(0))/(2\pi).
+\]
+方向角可在参数区间的有限个小段连续接续；闭合性使总角差是 $2\pi$ 的整数倍。
+\end{definition}
+\begin{proposition}
+\[
+ \operatorname{ind}_v\gamma=
+ \frac1{2\pi}\oint_\gamma\frac{P\,\dd Q-Q\,\dd P}{P^2+Q^2}.
+\]
+它与方向角起点的选择无关；曲线不穿过零点的形变、或曲线上不产生零点的场的形变，
+均不改变指标。曲线连接时指标相加，反向时变号。
+\end{proposition}
+\begin{proof}
+局部写 $P=\rho\cos\theta,Q=\rho\sin\theta$，计算分子为 $\rho^2\dd\theta$，
+积分等于总角差。不同起始角只差固定的 $2\pi$ 整数倍，角差不变。
+对连续形变，利用有限局部角图可知总角差连续变化；指标又是整数，故只能保持常值。
+连接与反向的结论由积分可加性得到。
+\end{proof}
+例如把复数视为平面向量，$v(z)=z^m$ 在单位圆的指标是 $m$，
+负整数 $m$ 时只在去心平面上定义，也得到负指标。
+
+\begin{theorem}[边界指标与零点]
+若简单闭曲线包围的闭盘区域内向量场处处不为零，则边界指标为零。
+因此边界指标非零时内部必有零点。
+\end{theorem}
+\begin{proof}
+把曲线在盘内连续缩到一点，整个过程中不遇零点，指标不变。
+常值曲线的方向向量不转动，指标为零。
+对于光滑盘，也可用下面的闭形式积分论证，不依赖具体收缩。
+\end{proof}
+
+\section{孤立零点与平面指标和}
+\begin{definition}
+若 $x_0$ 是孤立零点，取包围它且不含其他零点的小正向圆，
+其曲线指标称 $x_0$ 的指标。
+两个足够小圆可在无零环带内相互变形，故该定义与半径无关。
+\end{definition}
+\begin{theorem}[平面指标和]\label{thm:arnold-indexsum-plane}
+设闭盘型区域 $D$ 的边界 $S$ 上 $v\ne0$，内部只有有限个孤立零点 $x_j$。
+则
+\[
+ \operatorname{ind}_v S=\sum_j\operatorname{ind}_v(x_j).
+\]
+\end{theorem}
+\begin{proof}
+从 $D$ 挖掉每个零点的小闭圆盘，得到 $D'$。
+在其中定义
+\[
+ \omega=(P\,dQ-Q\,dP)/(P^2+Q^2).
+\]
+局部 $\omega=d\theta$，所以 $d\omega=0$。
+Green 公式作用于带孔区域，给出
+\[
+ 0=\int_{D'}d\omega=\int_S\omega-\sum_j\int_{S_j}\omega.
+\]
+内边界在 $D'$ 的边界定向下为顺时针，所以出现负号。
+除以 $2\pi$ 即得结论。
+\end{proof}
+\begin{proposition}[非退化零点]
+若 $v(x_0)=0$ 且 $A=Dv(x_0)$ 可逆，则
+\[
+ \operatorname{ind}_v(x_0)=\operatorname{sgn}\det A.
+\]
+所以平面结点、焦点、中心指标为 $+1$，鞍点为 $-1$。
+\end{proposition}
+\begin{proof}
+平移使 $x_0=0$，写 $v(x)=Ax+o(|x|)$。
+可逆性使 $|Ax|\geq c|x|$。
+在小圆上，直线形变 $Ax+s(v(x)-Ax)$ 始终不为零，
+所以局部指标等于线性场的指标。
+可逆线性矩阵可在不改变行列式符号的条件下连续变形到恒等或反射：
+极分解先去掉正定伸缩，再在正交群的连通分支内变形。
+恒等场绕一圈转一圈，反射场反向转一圈，得到所述符号。
+\end{proof}
+在坐标反转时，绕小圆的正方向与计算向量角的正方向同时反转，故局部指标不变。
+一般微分同胚在小邻域可连续地用其非退化线性部分替代；同样的两次定向变化相消，
+所以孤立零点指标是流形上的坐标无关概念。
+
+
+图~\ref{fig:ode-tikz-node-saddle-index} 中，沿虚圆正向走一周，左图的向量方向正转一周，右图反转一周。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{结点与鞍点的指标。虚圆是计算指标的边界，箭头表示边界各点的场向量。}
+\label{fig:ode-tikz-node-saddle-index}
+\end{minipage}
+\end{center}
+
+\section{指标的应用}
+\begin{theorem}[代数基本定理的指标证明]
+非常数复多项式至少有一个复根。
+\end{theorem}
+\begin{proof}
+设 $p(z)=z^n+a_1z^{n-1}+\cdots+a_n$。
+取 $R>1+\sum|a_j|$，在 $|z|=R$ 上，
+$|z^n|>\sum|a_jz^{n-j}|$。
+所以 $z^n+s\sum a_jz^{n-j}$（$0\leq s\leq1$）在圆上无零点。
+其指标与 $z^n$ 相同，等于 $n\ne0$。
+由边界指标定理，$p$ 在内部有零点。
+进一步用局部因子 $(z-z_j)^{m_j}$ 和指标和公式，得到根数按重数等于边界绕数。
+\end{proof}
+\begin{theorem}[圆盘不动点]
+闭圆盘到自身的每个光滑映射 $f$ 有不动点。
+\end{theorem}
+\begin{proof}
+缩放为单位盘，假设没有不动点，则 $v(x)=f(x)-x$ 在闭盘处处不为零。
+在边界 $|x|=1$，形变 $v_s=sf(x)-x$ 在 $s<1$ 时不为零，因为 $|sf(x)|<1$；
+$s=1$ 时由假设也不为零。
+所以边界指标与 $-x$ 相同，为 1，与无零点时指标为零矛盾。
+\end{proof}
+该结论与压缩映射定理不同：它不要求压缩，却只保证存在、不保证唯一。
+连续映射的情形可以由一致光滑逼近和紧性推出。
+
+\paragraph{半平面根数与稳定性。}
+设实多项式 $p$ 在虚轴无根，次数为 $n$。
+沿左半圆边界，先从 $-iR$ 沿虚轴到 $iR$，再沿左大半圆返回，
+总像曲线的绕数等于左半平面根数 $n_-$。
+大半圆部分在 $R\to\infty$ 时贡献 $n/2$ 圈，
+所以若 $\nu$ 为虚轴像 $p(it)$（$t:-\infty\to\infty$）的连续总角增除以 $2\pi$，则
+$n_-=\nu+n/2$。
+这是原有 Routh--Hurwitz 问题的几何表示；$\nu$ 本身不必为整数，
+但与半圆贡献合并后是整数。
+
+\section{球面上的指标和}
+\begin{theorem}
+球面 $S^2$ 上只有孤立零点的光滑切向量场，其零点指标之和为 2。
+\end{theorem}
+\begin{proof}
+若场不恒为零，可选一个非零点 $N$ 作北极；恒零场不符合只有孤立零点的假设。
+零点集是紧球面上的闭集。由于每个零点孤立，紧性保证零点总数有限。
+以南图坐标 $z$ 表示 $S^2\setminus\{N\}$，将所有零点包含在充分大的圆盘中。
+平面指标和定理把所求总和化为大圆 $z=Re^{i\theta}$ 上向量分量的绕数。
+
+在北极附近取另一坐标 $w=g(z)=z/|z|^2$，两图过渡反转平面定向。
+记场在南、北图中的复数分量分别为 $u(z),v(w)$，则 $v(g(z))=Dg(z)u(z)$。
+若 $z=Re^{i\theta}$，直接对反演求导，得到
+\[
+ Dg(z)\zeta=-R^{-2}e^{2i\theta}\overline\zeta,
+ \qquad
+ v(g(z))=-R^{-2}e^{2i\theta}\overline{u(z)}.
+\]
+这里复数共轭正是反射，正因子 $R^{-2}$ 不影响方向。
+北图中 $N$ 附近场无零点，故其在小圆盘上的归一化方向连续延伸到盘内，
+边界绕数为零。无论选择小圆的哪一方向，这个绕数都仍为零。
+沿 $\theta:0\to2\pi$ 对上式取方向角增量，得到
+\[
+ 0=2-\operatorname{wind}_{|z|=R}u.
+\]
+其中 $e^{2i\theta}$ 贡献两圈，复共轭使 $u$ 的绕数变号，负号只增加常角 $\pi$。
+因此南图大圆上场的绕数为 2，也就是全部零点指标之和。
+这一计算同时处理了过渡图的定向反转，避免仅由基向量转两圈直接判断符号。
+\end{proof}
+\begin{corollary}[毛球结论]
+$S^2$ 上每个连续切向量场有零点，因此 $S^2$ 不可平行化。
+\end{corollary}
+\begin{proof}
+若存在光滑无零场，零点指标和为零，与定理矛盾。
+连续无零场因紧性有正的长度下界，用局部光滑逼近和有限分片统一拼接，
+可得到仍无零的光滑场，故也不可能。
+平行化会提供处处非零的基向量场，因此也被排除。
+\end{proof}
+
+\section{映射度的定义与计算}
+下文流形紧、无边界且光滑；计算映射度时另要求同维、定向，目标连通。
+\begin{definition}
+$f:M^n\to N^n$ 在 $x$ 为正则，是指 $D f_x$ 可逆。
+若 $f^{-1}(y)$ 的所有点都正则，称 $y$ 为正则值；空原像也允许。
+正则点的局部度数为 $\deg_x f=+1$ 或 $-1$，由微分是否保持定向决定。
+\end{definition}
+\begin{lemma}[同维情形的正则值]
+$C^1$ 映射的临界值集测度为零。紧流形映射在正则值上的原像有限。
+\end{lemma}
+\begin{proof}
+后一结论先由逆函数定理知原像点孤立，再由紧性得有限。
+对前一结论，只需在有限或可数个有界坐标块上证明。
+把坐标块分成边长 $h$ 的小立方体。
+若小块中含临界点 $x$，则 $Df_x$ 把立方体压到至少一个方向为零的平行六面体；
+由导数的一致连续性，整个小块的像包含在其 $o(h)$ 邻域内。
+导数有界，所以其像体积不超过 $C\varepsilon h^n$，其中当 $h$ 充分小时 $\varepsilon$ 任意小。
+块数至多 $C'h^{-n}$，所以临界点集之像的外测度不超过 $CC'\varepsilon$。
+令 $\varepsilon\to0$，并对可数坐标块求并，得测度零。
+\end{proof}
+\begin{definition}[同伦与顶次形式]
+两个映射 $f_0,f_1:M\to N$ 间的光滑同伦是光滑映射 $F:[0,1]\times M\to N$，满足 $F(0,x)=f_0(x)$、$F(1,x)=f_1(x)$。
+在 $n$ 维定向坐标中，形如 $a(x)\,dx_1\wedge\cdots\wedge dx_n$ 的微分形式称为顶次形式；可写成 $d\beta$ 的形式称为恰当形式。
+\end{definition}
+
+下面的映射度证明使用流形上的形式、积分与 Stokes 公式。
+它们是本节的多元积分前提：形式局部是交替的微分乘积，$d$ 按偏导和反对称乘法定义，
+积分由定向坐标图换元并分片相加，Stokes 公式由 Euclidean 分部积分和分片统一得到。
+
+
+\begin{theorem}[度数不依赖正则值]
+\[
+ \deg f:=\sum_{x\in f^{-1}(y)}\deg_x f
+\]
+与正则值 $y$ 的选择无关，并在光滑同伦下不变。
+\end{theorem}
+\begin{proof}
+给出该结论常用的积分论证。先使用如下顶次形式事实：
+在连通定向闭 $n$ 流形上，积分相同的两个光滑 $n$ 形式之差是一个恰当形式。
+它可用分片统一局部证明：在 $\R^n$，积分零的紧支撑函数 $h(x)$，
+选积分为 1 的一维紧支撑函数 $\rho(x_1)$，令
+$g(x')=\displaystyle\int h(s,x')\,ds$。
+则 $h-\rho g$ 关于 $x_1$ 的原函数仍紧支撑；余项 $\rho g$ 对维数归纳，
+因为 $\displaystyle\int g=0$。这证明积分零的紧支撑顶次形式恰当。
+在流形上把形式分到坐标球，再沿相交坐标球链把每块的积分转移到同一小球；
+相邻两块总积分为零的差由刚证的局部结论消去，最后仍是一个总积分零的小球内形式。
+分片统一可由有限坐标覆盖、坐标内光滑非负凸起函数以及除以它们的正和构造。
+
+选支撑在正则值 $y$ 的小邻域内且积分为 1 的顶次形式 $\eta_y$。
+紧性与逆函数定理使其原像分成有限个微分同胚片，换元公式给出
+\[
+ \int_M f^*\eta_y=\sum_{x\in f^{-1}(y)}\operatorname{sgn}\det Df_x.
+\]
+另一个正则值的形式与它差 $d\beta$，Stokes 公式使
+$\displaystyle\int_M f^*d\beta=0$，所以总和相同。
+若 $F:[0,1]\times M\to N$ 为光滑同伦，顶次形式 $\eta$ 满足 $d\eta=0$，
+在柱体上用 Stokes 公式得到
+\[
+ \begin{aligned}
+ \int_MF_1^*\eta-\int_MF_0^*\eta
+ &=\int_{[0,1]\times M}dF^*\eta\\
+ &=0.
+\end{aligned}
+\]
+因此度数同伦不变。
+\end{proof}
+\begin{proposition}
+圆映射 $z\mapsto z^m$ 的度数为 $m$；
+球面上的归一化线性映射 $x\mapsto Ax/|Ax|$ 的度数为 $\operatorname{sgn}\det A$；
+$S^{n-1}$ 的对径映射度数为 $(-1)^n$。
+\end{proposition}
+\begin{proof}
+第一个映射在非零 $m$ 时每个正则值有 $|m|$ 个原像，各局部符号为 $\operatorname{sgn}m$；
+$m=0$ 为常值映射，选像外正则值得零。
+第二个映射可用极分解在保持非退化条件下变形为正交映射，
+后者在球面切空间的定向符号与环境空间行列式符号相同，因为径向方向同时保持向外。
+最后取 $A=-I$ 即得 $(-1)^n$。
+\end{proof}
+
+\section{高维奇点指标与 Euler 特征数}
+\begin{definition}
+向量场在 $\R^n$ 中的孤立零点 $x_0$ 的指标，是小球面映射
+$x\mapsto v(x)/|v(x)|\in S^{n-1}$ 的度数。
+当 $n=2$，它与前面曲线绕数定义一致。
+\end{definition}
+\begin{proposition}
+非退化零点的指标为 $\operatorname{sgn}\det Dv(x_0)$。
+\end{proposition}
+\begin{proof}
+在小球面上用 $v(x)=A(x-x_0)+o(|x-x_0|)$ 直线形变到线性场，
+可逆性保证整个形变无零点。归一化后度数不变，应用前一命题即得。
+\end{proof}
+
+\paragraph{指标和的全局结论。}
+Poincaré--Hopf 指标和定理断言：闭流形上孤立零点向量场的指标和与场无关，
+等于流形的 Euler 特征数 $\chi(M)$。一般闭流形上的结论在这里作为拓扑预备定理使用；平面和二维球面的情形已在前面证明。
+
+\begin{proposition}[球面、射影空间和环面]
+在上述指标和定理下，
+\[
+ \chi(S^n)=1+(-1)^n,\qquad
+ \chi(\mathbb{RP}^n)=\frac{1+(-1)^n}{2},\qquad
+ \chi(\mathbb T^n)=0\quad(n\geq1).
+\]
+\end{proposition}
+\begin{proof}
+在球面取高度函数 $x_0$ 的梯度场，仅有南北两极为零点。
+南极局部为正定线性场，指标 $+1$；北极为负定，指标 $(-1)^n$，故得第一式。
+覆盖 $S^n\to\mathbb{RP}^n$ 将一个场提升为局部共轭的场，每个零点有两个原像且指标相同，
+所以指标和乘以 2，得第二式。
+环面上取恒定非零角速度场，无零点，指标和为零。
+\end{proof}
+因此偶维球面上每个光滑切向量场必有零点。
+奇维球面 $S^{2m-1}\subset\C^m$ 上，$v(z)=iz$ 处处非零且与球面相切，
+因为 $\operatorname{Re}\langle z,iz\rangle=0$，这与奇维 Euler 特征为零相符。
+
+\begin{proposition}[曲面上的临界点计数]
+闭曲面上的光滑函数若临界点均非退化，记极小、鞍、极大点数为 $m_0,m_1,m_2$，则
+\[
+ m_0-m_1+m_2=\chi(M).
+\]
+对有 $g$ 个把手的可定向闭曲面，$\chi=2-2g$。
+\end{proposition}
+\begin{proof}
+取函数的梯度场。每个临界点的线性化为 Hessian，故局部指标等于其行列式符号：
+极值为 $+1$，鞍点为 $-1$。应用指标和定理即得计数式。
+带 $g$ 个把手的曲面有一个顶点、$2g$ 条边及一个面的标准多边形粘合表示，
+故其胞腔 Euler 数为 $1-2g+1=2-2g$。
+对球面的多面体分解，用连通平面图删除非树边，每删一边同时合并两个面，
+$V-E+F$ 不变。最终一棵树有 $E=V-1$ 且只有一个面，故 $V-E+F=2$。
+\end{proof}
+有边界曲面必须加入边界条件或边界指标，不能只数内部临界点便套用闭曲面的公式。

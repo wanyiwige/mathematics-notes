@@ -1,0 +1,18 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+ \draw[->,gray] (-5,0)--(5.2,0) node[right]{$\operatorname{tr}M$};
+ \draw[GreenMain,line width=2pt] (-1.8,0)--(1.8,0);
+ \foreach \x/\lab in {-1.8/-2,1.8/2}{\draw (\x,.1)--(\x,-.1);\node[below]at(\x,-.1){$\lab$};}
+ \node[GreenMain] at (0,.45){稳定};
+ \node[GoldMain] at (-3.5,.45){不稳定};\node[GoldMain] at (3.5,.45){不稳定};
+ \foreach \shift in {-3.5,0,3.5}{
+  \begin{scope}[shift={(\shift,2)}]
+   \draw[gray,dashed] (0,0) circle(.75);\draw[gray] (-1.35,0)--(1.35,0);
+  \end{scope}
+ }
+ \fill[GoldMain] (-4.7,2) circle(2pt);\fill[GoldMain] (-3.96875,2) circle(2pt);
+ \fill[GreenMain] ({.75*cos(55)},{2+.75*sin(55)}) circle(2pt);
+ \fill[GreenMain] ({.75*cos(55)},{2-.75*sin(55)}) circle(2pt);
+ \fill[GoldMain] (4.7,2) circle(2pt);\fill[GoldMain] (3.96875,2) circle(2pt);
+ \node at (-3.5,3.1){负实互逆乘子};\node at (0,3.1){共轭单位乘子};\node at (3.5,3.1){正实互逆乘子};
+\end{tikzpicture}

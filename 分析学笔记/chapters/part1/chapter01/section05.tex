@@ -1,0 +1,58 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.5 $\Q$有理数的构建
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{$\Q$有理数的构建}
+\begin{construction}有理数的构建
+	$$
+	S=\left\{(a, b): a, b \in \mathbb{Z}\text{且}b\ne0\right\}
+	$$
+	
+	
+	在 $S$ 上定义 $\sim$ 关系
+	\[(a, b) \sim(c, d) \text { iff } a d=b c\]
+	\[\Q:=S/\sim\]
+	
+\end{construction}
+
+
+
+现验证 $\sim$ 是等价关系
+\begin{proof}
+	\begin{enumerate}
+		\item 自反性 $(a, b) \sim(a, b) \Leftrightarrow a b=b a$
+		\item   对称性 $(a, b) \sim ( c, d) \Leftrightarrow a d=b c \Leftrightarrow c b=d a$
+		\[\text{故}(c, d) \sim(a, b)\]
+		
+		\item  传递性 $(a, b) \sim(c, d)$ 且 $(c, d) \sim(e, f)$
+		
+		$$
+		\begin{aligned}
+			& \Leftrightarrow a d=b c \text { 且 } c f=d e \\
+			& \Leftrightarrow a f=b e \Leftrightarrow(a, b) \sim(e, f)
+		\end{aligned}
+		$$
+		
+	\end{enumerate}
+\end{proof}
+每个等价类$[(a, b)]$ 是一个有理 数.
+
+\begin{definition}$\Q$上的运算\\
+	加法 $[(a, b)]+[(c, d)]:=[( a d+b c, b d)]$\\
+	加法逆元 $-[(a, b)]:=[(-a, b)]$ 或$[(a,-b)]$\\
+	乘法 $[(a, b)] \cdot[c, d]:=[(a c, b d)]$\\
+	乘法逆元 $[(a, b)]^{-1}=[(b, a)]$,其中$a,b\ne0$
+\end{definition}
+
+在$\Q$上$[(a, b)]$ 记作 $\dfrac{a}{b} \quad$
+
+
+显然 $[(n, 1)]=n \in \mathbb{Z} \Rightarrow \mathbb{Z} \subset\Q$
+
+$\Q$是一个数域
+
+\begin{example}
+	$$\dfrac{1}{2}=[(2,4)]=[(3,6)]=\cdots$$
+	$$\dfrac{3}{5}=[(6,10)]=[(3,5)]=\cdots$$
+\end{example}
+

@@ -1,0 +1,191 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\pgfsyspdfmark {pgfid1}{6994264}{46707507}
+\pgfsyspdfmark {pgfid2}{6994264}{45763791}
+\pgfsyspdfmark {pgfid3}{6994264}{44820075}
+\pgfsyspdfmark {pgfid4}{6994264}{43876359}
+\pgfsyspdfmark {pgfid5}{6994264}{42932643}
+\pgfsyspdfmark {pgfid8}{6994264}{24354977}
+\pgfsyspdfmark {pgfid9}{6994264}{23411261}
+\pgfsyspdfmark {pgfid10}{6994264}{22467545}
+\HyPL@Entry{2<</S/r>>}
+\@writefile{toc}{\contentsline {chapter}{前言}{i}{chapter*.1}\protected@file@percent }
+\HyPL@Entry{6<</S/D>>}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}抽象代数}{1}{part.1}\protected@file@percent }
+\pgfsyspdfmark {pgfid11}{6994264}{25721897}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}环}{3}{chapter.1.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\pgfsyspdfmark {pgfid12}{6994264}{46707507}
+\newlabel{p2:ch3}{{1}{4}{环}{chapter.1.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}环的同态定理}{4}{section.1.1.1}\protected@file@percent }
+\@writefile{loe}{\addvspace {10\p@ }}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap ~1.1.1\else \numberline {1.1.1}\fi }{4}{proposition.1.1.1.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.1.2\else \numberline {1.1.2}\fi }{4}{example.1.1.1.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.1.3\else \numberline {1.1.3}\fi }{4}{theorem.1.1.1.3}\protected@file@percent }
+\newlabel{p2:ring-correspondence}{{1.1.3}{4}{}{theorem.1.1.1.3}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.1.4\else \numberline {1.1.4}\fi }{5}{theorem.1.1.1.4}\protected@file@percent }
+\newlabel{p2:ring-third-iso}{{1.1.4}{5}{}{theorem.1.1.1.4}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.1.5\else \numberline {1.1.5}\fi }{5}{theorem.1.1.1.5}\protected@file@percent }
+\newlabel{p2:ring-second-iso}{{1.1.5}{5}{}{theorem.1.1.1.5}{}}
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.1.6\else \numberline {1.1.6}\fi }{5}{example.1.1.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}环的直和}{6}{section.1.1.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.2.1\else \numberline {1.2.1}\fi }{6}{definition.1.1.2.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.2.2\else \numberline {1.2.2}\fi }{6}{theorem.1.1.2.2}\protected@file@percent }
+\newlabel{p2:ring-internal-sum}{{1.2.2}{6}{}{theorem.1.1.2.2}{}}
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.2.3\else \numberline {1.2.3}\fi }{6}{definition.1.1.2.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap ~1.2.4\else \numberline {1.2.4}\fi }{7}{lemma.1.1.2.4}\protected@file@percent }
+\newlabel{p2:ring-comaximal-product}{{1.2.4}{7}{}{lemma.1.1.2.4}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.2.5\else \numberline {1.2.5}\fi }{7}{theorem.1.1.2.5}\protected@file@percent }
+\newlabel{p2:ring-crt}{{1.2.5}{7}{}{theorem.1.1.2.5}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.2.6\else \numberline {1.2.6}\fi }{8}{corollary.1.1.2.6}\protected@file@percent }
+\newlabel{p2:ring-crt-congruence}{{1.2.6}{8}{}{corollary.1.1.2.6}{}}
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.2.7\else \numberline {1.2.7}\fi }{8}{example.1.1.2.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.2.8\else \numberline {1.2.8}\fi }{8}{definition.1.1.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}环的反同构}{9}{section.1.1.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.3.1\else \numberline {1.3.1}\fi }{9}{definition.1.1.3.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.3.2\else \numberline {1.3.2}\fi }{9}{example.1.1.3.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.3.3\else \numberline {1.3.3}\fi }{9}{example.1.1.3.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.3.4\else \numberline {1.3.4}\fi }{9}{example.1.1.3.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap ~1.3.5\else \numberline {1.3.5}\fi }{10}{proposition.1.1.3.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.3.6\else \numberline {1.3.6}\fi }{10}{definition.1.1.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}素理想和极大理想}{10}{section.1.1.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.4.1\else \numberline {1.4.1}\fi }{10}{definition.1.1.4.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.4.2\else \numberline {1.4.2}\fi }{10}{example.1.1.4.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.4.3\else \numberline {1.4.3}\fi }{10}{theorem.1.1.4.3}\protected@file@percent }
+\newlabel{p2:prime-maximal}{{1.4.3}{10}{}{theorem.1.1.4.3}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.4.4\else \numberline {1.4.4}\fi }{11}{theorem.1.1.4.4}\protected@file@percent }
+\newlabel{p2:prime-domain}{{1.4.4}{11}{}{theorem.1.1.4.4}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.4.5\else \numberline {1.4.5}\fi }{11}{theorem.1.1.4.5}\protected@file@percent }
+\newlabel{p2:prime-avoid-powers}{{1.4.5}{11}{}{theorem.1.1.4.5}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.4.6\else \numberline {1.4.6}\fi }{12}{corollary.1.1.4.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.4.7\else \numberline {1.4.7}\fi }{12}{example.1.1.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}商域和分式环}{12}{section.1.1.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.5.1\else \numberline {1.5.1}\fi }{12}{definition.1.1.5.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.5.2\else \numberline {1.5.2}\fi }{12}{theorem.1.1.5.2}\protected@file@percent }
+\newlabel{p2:fraction-field}{{1.5.2}{12}{}{theorem.1.1.5.2}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.5.3\else \numberline {1.5.3}\fi }{13}{theorem.1.1.5.3}\protected@file@percent }
+\newlabel{p2:fraction-field-extension}{{1.5.3}{13}{}{theorem.1.1.5.3}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.5.4\else \numberline {1.5.4}\fi }{13}{corollary.1.1.5.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.5.5\else \numberline {1.5.5}\fi }{13}{definition.1.1.5.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.5.6\else \numberline {1.5.6}\fi }{13}{definition.1.1.5.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.5.7\else \numberline {1.5.7}\fi }{14}{theorem.1.1.5.7}\protected@file@percent }
+\newlabel{p2:localization-existence}{{1.5.7}{14}{}{theorem.1.1.5.7}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.5.8\else \numberline {1.5.8}\fi }{14}{theorem.1.1.5.8}\protected@file@percent }
+\newlabel{p2:localization-universal}{{1.5.8}{14}{}{theorem.1.1.5.8}{}}
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.5.9\else \numberline {1.5.9}\fi }{15}{example.1.1.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.6}交换环上的多项式环}{15}{section.1.1.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.6.1\else \numberline {1.6.1}\fi }{15}{definition.1.1.6.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.6.2\else \numberline {1.6.2}\fi }{15}{definition.1.1.6.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.6.3\else \numberline {1.6.3}\fi }{15}{theorem.1.1.6.3}\protected@file@percent }
+\newlabel{p2:poly-universal}{{1.6.3}{15}{}{theorem.1.1.6.3}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.6.4\else \numberline {1.6.4}\fi }{16}{corollary.1.1.6.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.6.5\else \numberline {1.6.5}\fi }{16}{definition.1.1.6.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.6.6\else \numberline {1.6.6}\fi }{17}{theorem.1.1.6.6}\protected@file@percent }
+\newlabel{p2:multi-poly-universal}{{1.6.6}{17}{}{theorem.1.1.6.6}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.6.7\else \numberline {1.6.7}\fi }{17}{corollary.1.1.6.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.6.8\else \numberline {1.6.8}\fi }{17}{corollary.1.1.6.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}整环上的一元多项式环}{17}{section.1.1.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap ~1.7.1\else \numberline {1.7.1}\fi }{17}{proposition.1.1.7.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.7.2\else \numberline {1.7.2}\fi }{18}{theorem.1.1.7.2}\protected@file@percent }
+\newlabel{p2:poly-division}{{1.7.2}{18}{}{theorem.1.1.7.2}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.7.3\else \numberline {1.7.3}\fi }{18}{corollary.1.1.7.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.7.4\else \numberline {1.7.4}\fi }{18}{theorem.1.1.7.4}\protected@file@percent }
+\newlabel{p2:poly-roots}{{1.7.4}{18}{}{theorem.1.1.7.4}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap ~1.7.5\else \numberline {1.7.5}\fi }{18}{remark.1.1.7.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.7.6\else \numberline {1.7.6}\fi }{18}{theorem.1.1.7.6}\protected@file@percent }
+\newlabel{p2:finite-multiplicative-subgroup}{{1.7.6}{18}{}{theorem.1.1.7.6}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.7.7\else \numberline {1.7.7}\fi }{19}{corollary.1.1.7.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.7.8\else \numberline {1.7.8}\fi }{19}{definition.1.1.7.8}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.7.9\else \numberline {1.7.9}\fi }{19}{theorem.1.1.7.9}\protected@file@percent }
+\newlabel{p2:field-poly-pid}{{1.7.9}{19}{}{theorem.1.1.7.9}{}}
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.7.10\else \numberline {1.7.10}\fi }{19}{definition.1.1.7.10}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.7.11\else \numberline {1.7.11}\fi }{19}{theorem.1.1.7.11}\protected@file@percent }
+\newlabel{p2:irreducible-maximal}{{1.7.11}{19}{}{theorem.1.1.7.11}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap ~1.7.12\else \numberline {1.7.12}\fi }{20}{corollary.1.1.7.12}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.7.13\else \numberline {1.7.13}\fi }{20}{example.1.1.7.13}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap ~1.7.14\else \numberline {1.7.14}\fi }{20}{example.1.1.7.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}多项式函数}{20}{section.1.1.8}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.8.1\else \numberline {1.8.1}\fi }{21}{theorem.1.1.8.1}\protected@file@percent }
+\newlabel{p2:poly-functions-one}{{1.8.1}{21}{}{theorem.1.1.8.1}{}}
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap ~1.8.2\else \numberline {1.8.2}\fi }{21}{definition.1.1.8.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap ~1.8.3\else \numberline {1.8.3}\fi }{21}{theorem.1.1.8.3}\protected@file@percent }
+\newlabel{p2:poly-functions-many}{{1.8.3}{21}{}{theorem.1.1.8.3}{}}
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.4\else \numberline {1.8.4}\fi }{22}{problem.1.1.8.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.5\else \numberline {1.8.5}\fi }{22}{problem.1.1.8.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.6\else \numberline {1.8.6}\fi }{23}{problem.1.1.8.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.7\else \numberline {1.8.7}\fi }{23}{problem.1.1.8.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.8\else \numberline {1.8.8}\fi }{23}{problem.1.1.8.8}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.9\else \numberline {1.8.9}\fi }{23}{problem.1.1.8.9}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.10\else \numberline {1.8.10}\fi }{24}{problem.1.1.8.10}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.11\else \numberline {1.8.11}\fi }{24}{problem.1.1.8.11}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.12\else \numberline {1.8.12}\fi }{24}{problem.1.1.8.12}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.13\else \numberline {1.8.13}\fi }{24}{problem.1.1.8.13}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.14\else \numberline {1.8.14}\fi }{24}{problem.1.1.8.14}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.15\else \numberline {1.8.15}\fi }{25}{problem.1.1.8.15}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.16\else \numberline {1.8.16}\fi }{25}{problem.1.1.8.16}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.17\else \numberline {1.8.17}\fi }{25}{problem.1.1.8.17}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.18\else \numberline {1.8.18}\fi }{25}{problem.1.1.8.18}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.19\else \numberline {1.8.19}\fi }{25}{problem.1.1.8.19}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.20\else \numberline {1.8.20}\fi }{26}{problem.1.1.8.20}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.21\else \numberline {1.8.21}\fi }{26}{problem.1.1.8.21}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.22\else \numberline {1.8.22}\fi }{26}{problem.1.1.8.22}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.23\else \numberline {1.8.23}\fi }{26}{problem.1.1.8.23}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.24\else \numberline {1.8.24}\fi }{27}{problem.1.1.8.24}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.25\else \numberline {1.8.25}\fi }{27}{problem.1.1.8.25}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.26\else \numberline {1.8.26}\fi }{27}{problem.1.1.8.26}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.27\else \numberline {1.8.27}\fi }{27}{problem.1.1.8.27}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.28\else \numberline {1.8.28}\fi }{27}{problem.1.1.8.28}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.29\else \numberline {1.8.29}\fi }{28}{problem.1.1.8.29}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.30\else \numberline {1.8.30}\fi }{28}{problem.1.1.8.30}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.31\else \numberline {1.8.31}\fi }{28}{problem.1.1.8.31}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.32\else \numberline {1.8.32}\fi }{29}{problem.1.1.8.32}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.33\else \numberline {1.8.33}\fi }{29}{problem.1.1.8.33}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.34\else \numberline {1.8.34}\fi }{29}{problem.1.1.8.34}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.35\else \numberline {1.8.35}\fi }{29}{problem.1.1.8.35}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.36\else \numberline {1.8.36}\fi }{30}{problem.1.1.8.36}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.37\else \numberline {1.8.37}\fi }{30}{problem.1.1.8.37}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.38\else \numberline {1.8.38}\fi }{30}{problem.1.1.8.38}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.39\else \numberline {1.8.39}\fi }{30}{problem.1.1.8.39}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.40\else \numberline {1.8.40}\fi }{31}{problem.1.1.8.40}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.41\else \numberline {1.8.41}\fi }{31}{problem.1.1.8.41}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.42\else \numberline {1.8.42}\fi }{31}{problem.1.1.8.42}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.43\else \numberline {1.8.43}\fi }{31}{problem.1.1.8.43}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.44\else \numberline {1.8.44}\fi }{31}{problem.1.1.8.44}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.45\else \numberline {1.8.45}\fi }{32}{problem.1.1.8.45}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.46\else \numberline {1.8.46}\fi }{32}{problem.1.1.8.46}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.47\else \numberline {1.8.47}\fi }{32}{problem.1.1.8.47}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.48\else \numberline {1.8.48}\fi }{32}{problem.1.1.8.48}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.49\else \numberline {1.8.49}\fi }{32}{problem.1.1.8.49}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.50\else \numberline {1.8.50}\fi }{32}{problem.1.1.8.50}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.51\else \numberline {1.8.51}\fi }{33}{problem.1.1.8.51}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.52\else \numberline {1.8.52}\fi }{33}{problem.1.1.8.52}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.53\else \numberline {1.8.53}\fi }{33}{problem.1.1.8.53}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.54\else \numberline {1.8.54}\fi }{33}{problem.1.1.8.54}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.55\else \numberline {1.8.55}\fi }{33}{problem.1.1.8.55}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.56\else \numberline {1.8.56}\fi }{34}{problem.1.1.8.56}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.57\else \numberline {1.8.57}\fi }{34}{problem.1.1.8.57}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.58\else \numberline {1.8.58}\fi }{34}{problem.1.1.8.58}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.59\else \numberline {1.8.59}\fi }{34}{problem.1.1.8.59}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.60\else \numberline {1.8.60}\fi }{34}{problem.1.1.8.60}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.61\else \numberline {1.8.61}\fi }{35}{problem.1.1.8.61}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.62\else \numberline {1.8.62}\fi }{35}{problem.1.1.8.62}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.63\else \numberline {1.8.63}\fi }{35}{problem.1.1.8.63}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.64\else \numberline {1.8.64}\fi }{35}{problem.1.1.8.64}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.65\else \numberline {1.8.65}\fi }{36}{problem.1.1.8.65}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.66\else \numberline {1.8.66}\fi }{36}{problem.1.1.8.66}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.67\else \numberline {1.8.67}\fi }{36}{problem.1.1.8.67}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.68\else \numberline {1.8.68}\fi }{36}{problem.1.1.8.68}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.69\else \numberline {1.8.69}\fi }{37}{problem.1.1.8.69}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.70\else \numberline {1.8.70}\fi }{37}{problem.1.1.8.70}\protected@file@percent }
+\@writefile{loe}{\contentsline {problem}{\ifthmt@listswap ~1.8.71\else \numberline {1.8.71}\fi }{37}{problem.1.1.8.71}\protected@file@percent }
+\citation{axler_linear_2014}
+\citation{lay_linear_2018}
+\citation{strang_introduction_2016}
+\citation{peng_linear_nodate}
+\citation{xie_advanced_2022}
+\bibstyle{IEEEtran}
+\bibdata{bibliography/references}
+\gdef \@abspage@last{44}

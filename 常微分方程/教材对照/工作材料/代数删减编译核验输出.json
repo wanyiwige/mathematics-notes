@@ -1,0 +1,1737 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "date": "2026-10-30",
+  "pdf_pages": 245,
+  "new_environments": {
+    "definition": 93,
+    "theorem": 50,
+    "proof": 120,
+    "lemma": 11,
+    "proposition": 51,
+    "example": 10,
+    "corollary": 7
+  },
+  "undefined_references": false,
+  "missing_characters": false,
+  "duplicate_labels": false,
+  "overfull_hboxes": 0,
+  "pdf_sha256": "d4df271e65dfd91b50ee76de47736ba5d922d08c1e3bb2dd3bba95bbe08f8fa6",
+  "new_cover_jpgs": 9,
+  "cover_dimensions": [
+    2280,
+    1500
+  ],
+  "cover_ratio": 1.52,
+  "deleted_original_pngs": 9,
+  "visual_check": "17 TikZ diagrams reviewed; 15 chapter covers within page; sampled in-context diagram pages.",
+  "inline_integrals_with_displaystyle": 33,
+  "source_editorial_notes_removed": true,
+  "revision_backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\代数重复内容删减前-20261030-074256.zip",
+  "cover_pages": [
+    9,
+    17,
+    39,
+    63,
+    81,
+    121,
+    163,
+    175,
+    181,
+    189,
+    197,
+    205,
+    215,
+    225,
+    235
+  ],
+  "proof_sample_pages": [
+    97,
+    114,
+    115,
+    135,
+    151,
+    119,
+    156
+  ],
+  "layout_revision": {
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\排版调整前-20261029-084816.zip",
+    "changed_chapter_sources": [
+      "arnold-contraction.tex",
+      "arnold-energy.tex",
+      "arnold-linear-algebra.tex",
+      "chapter10.tex",
+      "chapter11.tex",
+      "chapter12.tex",
+      "chapter13.tex",
+      "chapter14.tex",
+      "chapter15.tex",
+      "chapter3.tex",
+      "chapter5.tex",
+      "chapter7.tex",
+      "chapter8.tex",
+      "chapter9.tex"
+    ],
+    "display_blocks": {
+      "before": 1079,
+      "after": 1168
+    },
+    "overfull_hboxes": 0,
+    "preview": "行间公式与分行排版抽查.jpg"
+  },
+  "tikz_revision": {
+    "added_figures": 17,
+    "source_directory": "figure/tikz",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\新增正文用语调整前-20261030-073041.zip",
+    "figures": [
+      {
+        "name": "flowbox",
+        "chapter": "chapter7.tex",
+        "anchor": "\\section{对称群与齐次性}",
+        "caption": "流盒坐标将弯曲的积分曲线化为平行直线；横截面上的标号保持不变。",
+        "intro": "图~\\ref{fig:ode-tikz-flowbox} 用 $F(s,z)=(s,z+s^2/5)$ 示意直化坐标：曲线的弯曲来自坐标，而运动时间仍由 $s$ 表示。",
+        "embedded_in_chapter": true,
+        "figure_number": "7.1",
+        "printed_page": 159,
+        "pdf_page": 167
+      },
+      {
+        "name": "blowup-cusp",
+        "chapter": "chapter7.tex",
+        "anchor": "\\section{相似性与时间尺度}",
+        "caption": "半三次抛物线的实吹起：严格变换在 $(x,v)$ 图中成为光滑曲线。",
+        "intro": "图~\\ref{fig:ode-tikz-blowup-cusp} 对比压回前后的曲线；右图的虚线 $x=0$ 是这一坐标图中的例外纤维。",
+        "embedded_in_chapter": true,
+        "figure_number": "7.2",
+        "printed_page": 161,
+        "pdf_page": 169
+      },
+      {
+        "name": "energy-level",
+        "chapter": "chapter6.tex",
+        "anchor": "\\begin{proposition}[数学摆的周期]",
+        "caption": "势阱与闭合能量层：以 $U(x)=x^2/2$、$E=1$ 为例。",
+        "intro": "图~\\ref{fig:ode-tikz-energy-level} 将转向点与相平面中的上下两支对应起来；箭头表示真实的时间方向。",
+        "embedded_in_chapter": true,
+        "figure_number": "6.19",
+        "printed_page": 151,
+        "pdf_page": 159
+      },
+      {
+        "name": "lv-levels",
+        "chapter": "chapter6.tex",
+        "anchor": null,
+        "caption": "参数 $a=b=c=d=1$ 时的 Lotka--Volterra 闭轨；各曲线为首次积分的等值线。",
+        "intro": "图~\\ref{fig:ode-tikz-lv-levels} 中闭轨围绕唯一极小点，各坐标的周期平均值均为 1。",
+        "embedded_in_chapter": true,
+        "figure_number": "6.20",
+        "printed_page": 153,
+        "pdf_page": 161
+      },
+      {
+        "name": "return-map",
+        "chapter": "chapter6.tex",
+        "anchor": null,
+        "caption": "返回映射的吸引不动点与吸引闭轨：模型 $\\dot r=0.12r(1-r^2)$、$\\dot\\theta=-1$。",
+        "intro": "图~\\ref{fig:ode-tikz-return-map} 示意横截面上的半径如何逐次趋近闭轨；这对应返回映射在不动点处的压缩。",
+        "embedded_in_chapter": true,
+        "figure_number": "6.16",
+        "printed_page": 145,
+        "pdf_page": 153
+      },
+      {
+        "name": "sturm-separation",
+        "chapter": "chapter8.tex",
+        "anchor": "\\section{比较定理与零点间距}",
+        "caption": "同一方程的独立解零点交错；右图中每经过一个零点，相位穿过一个 $k\\pi$。",
+        "intro": "图~\\ref{fig:ode-tikz-sturm-separation} 取 $x_1=\\sin t,x_2=\\cos t$；右图使用本章的相位约定 $(x,y)=\\rho(\\sin\\theta,\\cos\\theta)$。",
+        "embedded_in_chapter": true,
+        "figure_number": "8.1",
+        "printed_page": 169,
+        "pdf_page": 177
+      },
+      {
+        "name": "monodromy-trace",
+        "chapter": "chapter9.tex",
+        "anchor": "\\section{参数共振与振动稳定}",
+        "caption": "二维保面积单周期矩阵的迹判据：稳定区间为 $|\\operatorname{tr}M|<2$。",
+        "intro": "图~\\ref{fig:ode-tikz-monodromy-trace} 展示乘子随迹所处区间的三种位置；边界 $\\pm2$ 仍须检查 Jordan 块。",
+        "embedded_in_chapter": true,
+        "figure_number": "9.1",
+        "printed_page": 177,
+        "pdf_page": 185
+      },
+      {
+        "name": "torus-flow",
+        "chapter": "chapter10.tex",
+        "anchor": "\\section{均匀分布与高维推广}",
+        "caption": "将环面沿经纬线展开为正方形；同向箭头标明需粘合的对边，右图只画有限轨道段。",
+        "intro": "图~\\ref{fig:ode-tikz-torus-flow} 中，轨道从一条边离开后从对边继续。有理斜率给出闭轨，无理斜率的完整轨道稠密。",
+        "embedded_in_chapter": true,
+        "figure_number": "10.1",
+        "printed_page": 186,
+        "pdf_page": 194
+      },
+      {
+        "name": "burgers-characteristics",
+        "chapter": "chapter12.tex",
+        "anchor": "\\section{隐式常微分方程的 1-jet 几何}",
+        "caption": "初始速度 $g(\\xi)=-\\xi$ 的特征线在 $(t,x)=(1,0)$ 汇合；虚线表示交叉后的形式延长。",
+        "intro": "图~\\ref{fig:ode-tikz-burgers-characteristics} 用线性初值展示投影退化：$x=\\xi(1-t)$，在 $t=1$ 无法由 $x$ 唯一反解初始标号。",
+        "embedded_in_chapter": true,
+        "figure_number": "12.1",
+        "printed_page": 200,
+        "pdf_page": 208
+      },
+      {
+        "name": "jet-cusp",
+        "chapter": "chapter12.tex",
+        "anchor": "\\section{一般非线性方程的特征系统}",
+        "caption": "隐式方程 $p^2=t$ 的两支与积分曲线投影：$t=p^2$、$x=2p^3/3$。",
+        "intro": "图~\\ref{fig:ode-tikz-jet-cusp} 取积分常数 $C=0$，用同一参数 $p$ 将斜率分支与半三次尖点对应起来。",
+        "embedded_in_chapter": true,
+        "figure_number": "12.2",
+        "printed_page": 202,
+        "pdf_page": 210
+      },
+      {
+        "name": "stereographic",
+        "chapter": "chapter11.tex",
+        "anchor": "\\section{光滑映射、子流形与例子}",
+        "caption": "立体投影的二维截面：从北极 $N$ 出发的直线将球面点 $P$ 映到平面点 $q$。",
+        "intro": "图~\\ref{fig:ode-tikz-stereographic} 画出球面的一张坐标图；北极自身不在这张图的定义域内。",
+        "embedded_in_chapter": true,
+        "figure_number": "11.1",
+        "printed_page": 191,
+        "pdf_page": 199
+      },
+      {
+        "name": "node-saddle-index",
+        "chapter": "chapter13.tex",
+        "anchor": "\\section{指标的应用}",
+        "caption": "结点与鞍点的指标。虚圆是计算指标的边界，箭头表示边界各点的场向量。",
+        "intro": "图~\\ref{fig:ode-tikz-node-saddle-index} 中，沿虚圆正向走一周，左图的向量方向正转一周，右图反转一周。",
+        "embedded_in_chapter": true,
+        "figure_number": "13.1",
+        "printed_page": 211,
+        "pdf_page": 219
+      },
+      {
+        "name": "hill-ellipse",
+        "chapter": "chapter14.tex",
+        "anchor": "\\section{分层介质中的光线与 Clairaut 守恒量}",
+        "caption": "初始径向速度为 $v>0$ 的线性相对轨道：椭圆中心在 $(0,-2v)$，并非空间站位置。",
+        "intro": "图~\\ref{fig:ode-tikz-hill-ellipse} 取 $v=1$，标出空间站所在的相对原点及相对轨道的中心。",
+        "embedded_in_chapter": true,
+        "figure_number": "14.1",
+        "printed_page": 219,
+        "pdf_page": 227
+      },
+      {
+        "name": "optical-geodesics",
+        "chapter": "chapter14.tex",
+        "anchor": "\\section{一维二重零点的光滑正规形}",
+        "caption": "折射率 $n(y)=1/y$ 时的射线：与边界正交的半圆及竖直直线。",
+        "intro": "图~\\ref{fig:ode-tikz-optical-geodesics} 中只画上半平面 $y>0$ 内的曲线，边界 $y=0$ 不属于该介质模型。",
+        "embedded_in_chapter": true,
+        "figure_number": "14.2",
+        "printed_page": 221,
+        "pdf_page": 229
+      },
+      {
+        "name": "stable-manifolds",
+        "chapter": "chapter15.tex",
+        "anchor": "\\section{非线性双曲平衡点的局部共轭}",
+        "caption": "局部稳定、不稳定流形及其线性模型；粗线箭头分别趋向和离开平衡点。",
+        "intro": "图~\\ref{fig:ode-tikz-stable-manifolds} 的曲线由局部换元 $(u,v)=(s+0.18r^2,r+0.18s^2)$ 得到，故两条不变曲线在原点的切线分别是稳定与不稳定子空间。",
+        "embedded_in_chapter": true,
+        "figure_number": "15.1",
+        "printed_page": 231,
+        "pdf_page": 239
+      },
+      {
+        "name": "pulse-green",
+        "chapter": "chapter3.tex",
+        "anchor": null,
+        "caption": "左：单位面积光滑集中脉冲。右：$a=-0.7$ 时推迟影响函数在扰动时刻产生单位跳跃。",
+        "intro": "图~\\ref{fig:ode-tikz-pulse-green} 将光滑脉冲的集中过程与极限响应分开表示；空心点不指定 $t=\\xi$ 处的单点取值。",
+        "embedded_in_chapter": true,
+        "figure_number": "3.1",
+        "printed_page": 44,
+        "pdf_page": 52
+      },
+      {
+        "name": "gibbs-concentration",
+        "chapter": "chapter14.tex",
+        "anchor": null,
+        "caption": "同一周期势的归一化 Gibbs 稳态；扩散变小时，质量更集中于唯一势阱 $x=0$。",
+        "intro": "图~\\ref{fig:ode-tikz-gibbs-concentration} 取周期势 $U=1-\\cos x$，两条密度曲线均已归一化。",
+        "embedded_in_chapter": true,
+        "figure_number": "14.3",
+        "printed_page": 225,
+        "pdf_page": 233
+      }
+    ]
+  },
+  "coherence_revision": {
+    "active_chapter_files": [
+      "chapter1.tex",
+      "chapter2.tex",
+      "chapter3.tex",
+      "chapter4.tex",
+      "chapter5.tex",
+      "chapter6.tex",
+      "chapter7.tex",
+      "chapter8.tex",
+      "chapter9.tex",
+      "chapter10.tex",
+      "chapter11.tex",
+      "chapter12.tex",
+      "chapter13.tex",
+      "chapter14.tex",
+      "chapter15.tex"
+    ],
+    "retained_labels": 178,
+    "current_labels": 210,
+    "dependency_chains_checked": [
+      [
+        "thm:有限维Picard存在唯一性定理",
+        "sec:picard-contraction",
+        "thm:Peano存在性定理"
+      ],
+      [
+        "prop:compact-extension-vector",
+        "thm:energy-global-extension"
+      ],
+      [
+        "thm:C1依赖性定理",
+        "prop:matrix-variation",
+        "cor:Cr依赖性推论",
+        "thm:local-inverse"
+      ],
+      [
+        "def:动力系统与流",
+        "thm:nonlinear-liouville",
+        "def:Lyapunov稳定性",
+        "prop:harvest-threshold"
+      ],
+      [
+        "sec:normal-modes",
+        "thm:Lyapunov稳定性判据",
+        "prop:normal-mode-stability"
+      ],
+      [
+        "def:Poincare映射",
+        "prop:discrete-derivative-test",
+        "sec:perturbed-oscillation"
+      ],
+      [
+        "def:Hamilton系统",
+        "thm:Hamilton函数沿轨道守恒",
+        "cor:hamilton-volume",
+        "thm:regular-energy-level"
+      ],
+      [
+        "chap:manifolds",
+        "chap:characteristics"
+      ]
+    ],
+    "new_environments": {
+      "definition": 58,
+      "theorem": 50,
+      "proof": 114,
+      "proposition": 49,
+      "example": 9,
+      "lemma": 7,
+      "corollary": 7
+    },
+    "backup_crc_valid": true,
+    "chapter2_unchanged_this_revision": true,
+    "modules_directly_embedded": true
+  },
+  "inline_revision": {
+    "date": "2026-10-30",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\正文模块直接并入前-20261030-065158.zip",
+    "backup_sha256": "2fa0929aac18aec29ea117273dd9e69bee5162c1e30973b3edaa4e8b7981f86e",
+    "archive": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程\\教材对照\\工作材料\\正文模块归档-20261030-065158",
+    "expanded_inputs": [
+      {
+        "chapter": "chapter3.tex",
+        "source": "chapters/arnold-green.tex"
+      },
+      {
+        "chapter": "chapter3.tex",
+        "source": "figure/tikz/pulse-green.tex"
+      },
+      {
+        "chapter": "chapter4.tex",
+        "source": "chapters/linear-quasipolynomials.tex"
+      },
+      {
+        "chapter": "chapter4.tex",
+        "source": "chapters/arnold-linear-algebra.tex"
+      },
+      {
+        "chapter": "chapter5.tex",
+        "source": "chapters/continuity-banach.tex"
+      },
+      {
+        "chapter": "chapter5.tex",
+        "source": "chapters/continuity-euler.tex"
+      },
+      {
+        "chapter": "chapter5.tex",
+        "source": "chapters/continuity-compact-extension.tex"
+      },
+      {
+        "chapter": "chapter5.tex",
+        "source": "chapters/continuity-energy-extension.tex"
+      },
+      {
+        "chapter": "chapter5.tex",
+        "source": "chapters/arnold-contraction.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/qualitative-volume.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/continuity-harvest.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/continuity-mode-stability.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/qualitative-orbital-stability.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/qualitative-return-perturbation.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "figure/tikz/return-map.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/qualitative-hamilton-volume.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "chapters/arnold-energy.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "figure/tikz/energy-level.tex"
+      },
+      {
+        "chapter": "chapter6.tex",
+        "source": "figure/tikz/lv-levels.tex"
+      },
+      {
+        "chapter": "chapter7.tex",
+        "source": "figure/tikz/flowbox.tex"
+      },
+      {
+        "chapter": "chapter7.tex",
+        "source": "figure/tikz/blowup-cusp.tex"
+      },
+      {
+        "chapter": "chapter8.tex",
+        "source": "figure/tikz/sturm-separation.tex"
+      },
+      {
+        "chapter": "chapter9.tex",
+        "source": "figure/tikz/monodromy-trace.tex"
+      },
+      {
+        "chapter": "chapter10.tex",
+        "source": "figure/tikz/torus-flow.tex"
+      },
+      {
+        "chapter": "chapter11.tex",
+        "source": "figure/tikz/stereographic.tex"
+      },
+      {
+        "chapter": "chapter12.tex",
+        "source": "figure/tikz/burgers-characteristics.tex"
+      },
+      {
+        "chapter": "chapter12.tex",
+        "source": "figure/tikz/jet-cusp.tex"
+      },
+      {
+        "chapter": "chapter13.tex",
+        "source": "figure/tikz/node-saddle-index.tex"
+      },
+      {
+        "chapter": "chapter14.tex",
+        "source": "figure/tikz/hill-ellipse.tex"
+      },
+      {
+        "chapter": "chapter14.tex",
+        "source": "figure/tikz/optical-geodesics.tex"
+      },
+      {
+        "chapter": "chapter14.tex",
+        "source": "figure/tikz/gibbs-concentration.tex"
+      },
+      {
+        "chapter": "chapter15.tex",
+        "source": "figure/tikz/stable-manifolds.tex"
+      }
+    ],
+    "source_to_chapter": {
+      "chapters/arnold-green.tex": "chapter3.tex",
+      "figure/tikz/pulse-green.tex": "chapter3.tex",
+      "chapters/linear-quasipolynomials.tex": "chapter4.tex",
+      "chapters/arnold-linear-algebra.tex": "chapter4.tex",
+      "chapters/continuity-banach.tex": "chapter5.tex",
+      "chapters/continuity-euler.tex": "chapter5.tex",
+      "chapters/continuity-compact-extension.tex": "chapter5.tex",
+      "chapters/continuity-energy-extension.tex": "chapter5.tex",
+      "chapters/arnold-contraction.tex": "chapter5.tex",
+      "chapters/qualitative-volume.tex": "chapter6.tex",
+      "chapters/continuity-harvest.tex": "chapter6.tex",
+      "chapters/continuity-mode-stability.tex": "chapter6.tex",
+      "chapters/qualitative-orbital-stability.tex": "chapter6.tex",
+      "chapters/qualitative-return-perturbation.tex": "chapter6.tex",
+      "figure/tikz/return-map.tex": "chapter6.tex",
+      "chapters/qualitative-hamilton-volume.tex": "chapter6.tex",
+      "chapters/arnold-energy.tex": "chapter6.tex",
+      "figure/tikz/energy-level.tex": "chapter6.tex",
+      "figure/tikz/lv-levels.tex": "chapter6.tex",
+      "figure/tikz/flowbox.tex": "chapter7.tex",
+      "figure/tikz/blowup-cusp.tex": "chapter7.tex",
+      "figure/tikz/sturm-separation.tex": "chapter8.tex",
+      "figure/tikz/monodromy-trace.tex": "chapter9.tex",
+      "figure/tikz/torus-flow.tex": "chapter10.tex",
+      "figure/tikz/stereographic.tex": "chapter11.tex",
+      "figure/tikz/burgers-characteristics.tex": "chapter12.tex",
+      "figure/tikz/jet-cusp.tex": "chapter12.tex",
+      "figure/tikz/node-saddle-index.tex": "chapter13.tex",
+      "figure/tikz/hill-ellipse.tex": "chapter14.tex",
+      "figure/tikz/optical-geodesics.tex": "chapter14.tex",
+      "figure/tikz/gibbs-concentration.tex": "chapter14.tex",
+      "figure/tikz/stable-manifolds.tex": "chapter15.tex",
+      "chapters/arnold-models.tex": "chapter1.tex"
+    },
+    "chapter_files": {
+      "chapter1.tex": {
+        "before_sha256": "01a77fd3ec84b5e2e4fd97fc14306045728040b1dc7ad4cbc1b58bb4f9d8acdb",
+        "changed": false
+      },
+      "chapter2.tex": {
+        "before_sha256": "2faafb0e0bed9b16751505758a06dbf23d53bca7d7dc742b0dc46ea55156e0c2",
+        "changed": false
+      },
+      "chapter3.tex": {
+        "before_sha256": "23e1fb1afc90b0c299e993306b00170d2bc13fb964326cb133d51e0e36d641eb",
+        "changed": true
+      },
+      "chapter4.tex": {
+        "before_sha256": "3afb2477bbaada9876ff20f66684a5c919d7c2a90ef69eadf9b2941627ac1780",
+        "changed": true
+      },
+      "chapter5.tex": {
+        "before_sha256": "8e2b7bf2e34827a1e070fa0fa7368ff9150f2229e24dcdb973d91e018ee61d9d",
+        "changed": true
+      },
+      "chapter6.tex": {
+        "before_sha256": "b5c19d1da3cf1fabf26bf3ae16b1327650fa288c2196ce7d78e5afc84c46437f",
+        "changed": true
+      },
+      "chapter7.tex": {
+        "before_sha256": "e58514015da8a00abe1830d56a4eef9853cb647316e0122c57c12d5b3da69958",
+        "changed": true
+      },
+      "chapter8.tex": {
+        "before_sha256": "917845bb2e20dc353406e1369caaab351c9a2cbf84ee0943ecf7fed19cef1581",
+        "changed": true
+      },
+      "chapter9.tex": {
+        "before_sha256": "ae1e6ae5a607f8c3cdc4175efa902cc83615cb5526f9edd1cccf6dcd022eb4fd",
+        "changed": true
+      },
+      "chapter10.tex": {
+        "before_sha256": "ab6784d95b9db25c067fdfcd8e5a3493acbd24ca5fa568929030112c0ec47d2a",
+        "changed": true
+      },
+      "chapter11.tex": {
+        "before_sha256": "917ca06e133df470dbd70cdc26ac206fe22af6e08475140f315a8edf21dee6b8",
+        "changed": true
+      },
+      "chapter12.tex": {
+        "before_sha256": "67b91895cddade758041400fb29afdd50fcffbdcf457a7ceeef10fb09a2796a3",
+        "changed": true
+      },
+      "chapter13.tex": {
+        "before_sha256": "ae039756cda4f335ffe639caaa47986525aa8081f60dc1e0d64655e546af2ea4",
+        "changed": true
+      },
+      "chapter14.tex": {
+        "before_sha256": "1c4ae36c23cc1fdba0efa142c0ed3d24a4f005edf644f71c9c3e3dc069e848f4",
+        "changed": true
+      },
+      "chapter15.tex": {
+        "before_sha256": "f9561d9b7f9a948bd07628f4f34d99600dad207a33c506b26a7c3798a354c60c",
+        "changed": true
+      }
+    },
+    "original_pdf_sha256": "ee0e691ff6481b41efb33de37dc560b1d4059c76badad2bd2e48a43ab93b3870",
+    "expanded_text_inputs": 15,
+    "expanded_tikz_inputs": 17,
+    "chapter_content_exactly_matches_pre_edit_expansion": true,
+    "chapter_input_commands": 0,
+    "chapter1_and_chapter2_untouched": true,
+    "previous_pdf_pages": 236,
+    "compiled_pdf_pages": 236,
+    "all_pdf_page_text_identical": true,
+    "compiled_pdf_sha256": "5da9ec1085405cbf571b1232713bbe127cc7e783efe75c5bf3987be94679bcf9",
+    "sampled_layout_pages": [
+      51,
+      151,
+      159,
+      206
+    ]
+  },
+  "analysis_prerequisites_revision": {
+    "date": "2026-10-30",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\数分前置定义补全前-20261030-070551.zip",
+    "backup_sha256": "67610a287ccd2f79199a8ce31e19f4414b5a236e3ebe767f4956a2a625af33e9",
+    "changes": [
+      {
+        "chapter": 3,
+        "labels": [
+          "def:support-test",
+          "ex:smooth-cutoff"
+        ],
+        "characters": 1074
+      },
+      {
+        "chapter": 4,
+        "labels": [
+          "lem:cayley-hamilton-foundation"
+        ],
+        "characters": 541
+      },
+      {
+        "chapter": 4,
+        "labels": [
+          "def:group-notation"
+        ],
+        "characters": 300
+      },
+      {
+        "chapter": 4,
+        "labels": [
+          "lem:symmetric-spectral-elementary"
+        ],
+        "characters": 507
+      },
+      {
+        "chapter": 5,
+        "labels": [
+          "def:banach-operator",
+          "lem:neumann-series"
+        ],
+        "characters": 789
+      },
+      {
+        "chapter": 6,
+        "labels": [
+          "def:quotient-circle"
+        ],
+        "characters": 405
+      },
+      {
+        "chapter": 7,
+        "labels": [
+          "def:smooth-one-parameter"
+        ],
+        "characters": 313
+      },
+      {
+        "chapter": 7,
+        "labels": [],
+        "characters": 237
+      },
+      {
+        "chapter": 7,
+        "labels": [],
+        "characters": 162
+      },
+      {
+        "chapter": 7,
+        "labels": [],
+        "characters": 146
+      },
+      {
+        "chapter": 8,
+        "labels": [
+          "def:l2-completion"
+        ],
+        "characters": 409
+      },
+      {
+        "chapter": 10,
+        "labels": [],
+        "characters": 189
+      },
+      {
+        "chapter": 11,
+        "labels": [
+          "def:orientation-boundary"
+        ],
+        "characters": 323
+      },
+      {
+        "chapter": 11,
+        "labels": [
+          "def:covering-map"
+        ],
+        "characters": 326
+      },
+      {
+        "chapter": 11,
+        "labels": [
+          "def:immersion-embedding"
+        ],
+        "characters": 259
+      },
+      {
+        "chapter": 11,
+        "labels": [
+          "def:vector-bundle",
+          "def:riemannian-gradient"
+        ],
+        "characters": 730
+      },
+      {
+        "chapter": 11,
+        "labels": [],
+        "characters": 148
+      },
+      {
+        "chapter": 12,
+        "labels": [
+          "def:forms-coordinate",
+          "def:exterior-pullback",
+          "def:closed-exact-form"
+        ],
+        "characters": 1727
+      },
+      {
+        "chapter": 12,
+        "labels": [],
+        "characters": 261
+      },
+      {
+        "chapter": 13,
+        "labels": [
+          "def:homotopy-line-integral"
+        ],
+        "characters": 406
+      },
+      {
+        "chapter": 13,
+        "labels": [
+          "lem:green-from-calculus"
+        ],
+        "characters": 627
+      },
+      {
+        "chapter": 13,
+        "labels": [
+          "def:partition-integration",
+          "prop:forms-stokes-calculus"
+        ],
+        "characters": 1221
+      },
+      {
+        "chapter": 13,
+        "labels": [],
+        "characters": 309
+      },
+      {
+        "chapter": 13,
+        "labels": [
+          "def:euler-characteristic"
+        ],
+        "characters": 410
+      },
+      {
+        "chapter": 13,
+        "labels": [],
+        "characters": 213
+      },
+      {
+        "chapter": 14,
+        "labels": [
+          "def:variation-functional",
+          "lem:euler-lagrange-elementary",
+          "def:geodesic-variational"
+        ],
+        "characters": 1079
+      },
+      {
+        "chapter": 14,
+        "labels": [],
+        "characters": 215
+      },
+      {
+        "chapter": 14,
+        "labels": [
+          "def:density-concentration"
+        ],
+        "characters": 423
+      },
+      {
+        "chapter": 15,
+        "labels": [
+          "def:weighted-banach",
+          "def:frechet-derivative"
+        ],
+        "characters": 979
+      },
+      {
+        "chapter": 15,
+        "labels": [],
+        "characters": 267
+      },
+      {
+        "chapter": 15,
+        "labels": [
+          "def:dirichlet-rayleigh"
+        ],
+        "characters": 927
+      },
+      {
+        "chapter": 15,
+        "labels": [],
+        "characters": 221
+      }
+    ],
+    "labels": 240,
+    "analysis_source_files_checked": 152,
+    "analysis_sources_unchanged": true,
+    "new_environments_this_revision": {
+      "definition": 39,
+      "lemma": 6,
+      "proof": 8,
+      "theorem": 0,
+      "proposition": 2,
+      "example": 1,
+      "corollary": 0
+    },
+    "total_new_environments_vs_original_notes": {
+      "definition": 97,
+      "lemma": 13,
+      "proof": 122,
+      "theorem": 50,
+      "proposition": 51,
+      "example": 10,
+      "corollary": 7
+    },
+    "retained_old_labels": 210,
+    "current_labels": 242,
+    "definition_order_chains": [
+      [
+        "def:support-test",
+        "ex:smooth-cutoff",
+        "sec:quasipolynomials"
+      ],
+      [
+        "def:forms-coordinate",
+        "def:exterior-pullback",
+        "def:closed-exact-form",
+        "prop:forms-stokes-calculus"
+      ],
+      [
+        "def:partition-integration",
+        "prop:forms-stokes-calculus",
+        "def:euler-characteristic"
+      ],
+      [
+        "def:banach-operator",
+        "lem:neumann-series",
+        "def:weighted-banach",
+        "def:frechet-derivative"
+      ],
+      [
+        "def:l2-completion",
+        "def:dirichlet-rayleigh",
+        "lem:nonnegative-elliptic-positive"
+      ]
+    ],
+    "math_checks": {
+      "convex_potential_formula": true,
+      "Beltrami_first_integral_identity": true,
+      "cutoff_derivatives_match_zero": true,
+      "polar_construction": true,
+      "Neumann_inverse_two_sides": true,
+      "no_unescaped_control_characters": true
+    },
+    "backup_crc_valid": true
+  },
+  "wording_revision": {
+    "date": "2026-10-30",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\新增正文用语调整前-20261030-073041.zip",
+    "backup_sha256": "e8fc9463291d4012fafb2b4bd90dc8d260279ab59dc8c78c570042bbb4179090",
+    "changes": [
+      {
+        "chapter": 3,
+        "before": "定理~\\ref{thm:常数变易公式} 已把非齐次解写成初值演化与外部作用的积分。下面从标量情形 $y'=a(t)y+f(t)$ 出发，说明每个时刻的外部作用\n如何影响以后时刻的状态。为分离这些作用，先研究集中在一个时刻的扰动。",
+        "after": "由定理~\\ref{thm:常数变易公式}，非齐次方程的解可以表示为齐次方程的解与一个积分之和。对于标量方程 $y'=a(t)y+f(t)$，这个积分表示非齐次项对解的影响。下面先考察非齐次项集中在一个时刻附近的情形。"
+      },
+      {
+        "chapter": 3,
+        "before": "下文会直接证明更强的连续函数版本，因此不必预先建立广义函数的一般理论。",
+        "after": "下面将证明上述极限对在给定点附近连续的函数也成立。"
+      },
+      {
+        "chapter": 3,
+        "before": "这里用支集条件把所有非零贡献限制在 $\\xi$ 的小邻域内。",
+        "after": "由支集条件，被积函数在 $\\xi$ 的小邻域外恒为零。"
+      },
+      {
+        "chapter": 3,
+        "before": "最后的积分公式正是原有常数变易公式。也可对它求导：变动上限产生 $f(t)$，\n核对 $t$ 的导数产生 $a(t)y(t)$，在 $t=t_0$ 积分为零。唯一性由",
+        "after": "最后的积分公式由常数变易公式直接得到。也可对该积分关于 $t$ 求导：对积分上限求导得 $f(t)$，\n对被积函数求导后积分得 $a(t)y(t)$。在 $t=t_0$ 时积分为零，故满足初值条件。唯一性由"
+      },
+      {
+        "chapter": 3,
+        "before": "向量情形把指数核换成状态转移矩阵 $X(t)X(s)^{-1}$，证明不变。",
+        "after": "对于向量方程，将指数函数换成矩阵 $X(t)X(s)^{-1}$，即可用同样的方法证明。"
+      },
+      {
+        "chapter": 4,
+        "before": "定理~\\ref{thm:重特征根的基本解组} 中出现的 $e^{\\lambda t}p(t)$ 并非偶然：\n它们是有限维平移不变函数空间的基本组成部分。",
+        "after": "定理~\\ref{thm:重特征根的基本解组} 给出的解具有 $e^{\\lambda t}p(t)$ 的形式。下面用函数的平移说明这类解与常系数线性方程的关系。"
+      },
+      {
+        "chapter": 4,
+        "before": "因此 $N=D-\\lambda I$ 在这个空间中是幂零移位。",
+        "after": "因此 $N=D-\\lambda I$ 在这个空间中是幂零算子。"
+      },
+      {
+        "chapter": 4,
+        "before": "\\section{矩阵指数、线性演化与离散步进}",
+        "after": "\\section{矩阵指数与线性递推}"
+      },
+      {
+        "chapter": 4,
+        "before": "定理~\\ref{thm:常系数线性方程组的矩阵指数解} 和 Jordan 块的计算已经给出连续演化 $e^{tA}$。本节反过来从群性质恢复生成矩阵，并用 Euler 极限和矩阵幂联系连续、离散两种演化。",
+        "after": "由定理~\\ref{thm:常系数线性方程组的矩阵指数解}，常系数齐次线性方程组的标准解矩阵为 $e^{tA}$。本节先证明线性单参数群可以用矩阵指数表示，再讨论 Euler 极限和常系数线性递推的解法。"
+      },
+      {
+        "chapter": 4,
+        "before": "这证明的不仅是表示的存在性，也包括生成元的唯一性。",
+        "after": "故无穷小生成元唯一。"
+      },
+      {
+        "chapter": 4,
+        "before": "随后对 $m>K$ 分成有限头部与尾部：",
+        "after": "随后对 $m>K$，将误差分为有限项之和与级数余项："
+      },
+      {
+        "chapter": 4,
+        "before": "头部只有有限项，可令 $m$ 足够大使其小于 $\\eta/2$；尾部已被统一控制。",
+        "after": "前一部分只有有限项，可令 $m$ 足够大使其小于 $\\eta/2$；后一部分已由上述估计控制。"
+      },
+      {
+        "chapter": 4,
+        "before": "每一步 $x\\mapsto x+(t/m)Ax$ 是沿当前速度走一步的 Euler 近似。\n极限因而把离散步进与连续线性演化连接起来。",
+        "after": "对于方程组 $x'=Ax$，取步长 $t/m$，Euler 逐次近似的每一步为 $x\\mapsto x+(t/m)Ax$。\n重复这一计算后，由上述极限得到方程组的解。"
+      },
+      {
+        "chapter": 4,
+        "before": "线性演化使体积乘以 $e^{t\\operatorname{tr}A}$；迹为零时保持体积。",
+        "after": "线性变换的体积变化倍数为 $e^{t\\operatorname{tr}A}$；迹为零时保持体积。"
+      },
+      {
+        "chapter": 4,
+        "before": "行列式的绝对值是体积伸缩因子，而这里行列式严格为正，所以同时保持定向。",
+        "after": "线性变换前后体积之比为行列式的绝对值；此处行列式严格为正，故体积之比就是行列式本身。"
+      },
+      {
+        "chapter": 4,
+        "before": "这正是定理~\\ref{thm:Wronski判别与Liouville公式} 在常系数情形下的体积结论；这里的计算给出它与 Euler 极限的直接联系。",
+        "after": "这也是定理~\\ref{thm:Wronski判别与Liouville公式} 在常系数情形下的结论。"
+      },
+      {
+        "chapter": 4,
+        "before": "正交性使动能保持为 $\\frac12\\sum_j\\dot q_j^2$，方程逐个解耦。",
+        "after": "由于变换正交，动能仍为 $\\frac12\\sum_j\\dot q_j^2$，各个方程相互独立。"
+      },
+      {
+        "chapter": 5,
+        "before": "上述 Picard 证明利用阶乘估计控制全部迭代。缩小时间区间后，同一积分算子还可看作完备度量空间上的压缩映射；这一观点将在局部逆和不变流形的构造中再次使用。",
+        "after": "前面的 Picard 证明利用阶乘估计证明逐次逼近序列收敛。若适当缩小时间区间，还可将相应的积分算子看作压缩映射，从而由压缩映射定理得到解的存在性与唯一性。"
+      },
+      {
+        "chapter": 5,
+        "before": "缺少的是统一小于 1 的常数。",
+        "after": "因此，压缩条件中必须存在一个对所有点都适用且严格小于 1 的常数。"
+      },
+      {
+        "chapter": 5,
+        "before": "\\subsection*{用能量控制有限时间内的状态}",
+        "after": "\\subsection*{利用能量证明解的全局存在性}"
+      },
+      {
+        "chapter": 5,
+        "before": "第二章保守系统中的机械能也可用于延拓。这里不要求势能控制位置趋于无穷的行为：势能有下界即可先控制速度，再控制有限时间内的位置。",
+        "after": "第二章中保守系统的能量守恒也可用于讨论解的延拓。若势能有下界，则由能量守恒可得速度有界；在有限时间区间内积分，又可得位置有界。"
+      },
+      {
+        "chapter": 5,
+        "before": "这一方法仍沿原来的思路：先构造候选导数，再证明解的增量与其线性部分之差为高阶小量。",
+        "after": "先由线性方程确定参数导数应满足的方程，再证明解的增量与该线性近似之差为高阶小量。"
+      },
+      {
+        "chapter": 5,
+        "before": "对参数增量 $\\Delta\\lambda$，定义真正的解增量",
+        "after": "对参数增量 $\\Delta\\lambda$，记相应的解的增量为"
+      },
+      {
+        "chapter": 5,
+        "before": "解的 $C^1$、$C^r$ 依赖性已经由逐次逼近和变分方程证明。下面把这一分析工具与坐标变换联系起来：先构造局部逆，再沿已知解消去常数项和线性项。",
+        "after": "前面已经证明解对初值和参数的 $C^1$、$C^r$ 依赖性。下面先用压缩映射定理证明局部逆的存在性，再通过沿已知解的坐标变换消去方程中的常数项和线性项。"
+      },
+      {
+        "chapter": 5,
+        "before": "局部逆的证明只使用第~\\ref{sec:picard-contraction}~节的压缩映射定理，不依赖后面的直化定理。",
+        "after": "局部逆的证明使用第~\\ref{sec:picard-contraction}~节的压缩映射定理。"
+      },
+      {
+        "chapter": 5,
+        "before": "平移定义点、值域原点，再左乘 $DF(x_0)^{-1}$，只需研究",
+        "after": "先平移自变量和函数值，使所考察的点及其像均为原点，再左乘 $DF(x_0)^{-1}$，只需研究"
+      },
+      {
+        "chapter": 5,
+        "before": "回到原坐标即得初值导数由 $X(t)$ 给出，与本章\n命题~\\ref{prop:matrix-variation} 相衔接。",
+        "after": "回到原坐标，即得解对初值的导数为 $X(t)$，这与本章\n命题~\\ref{prop:matrix-variation} 一致。"
+      },
+      {
+        "chapter": 6,
+        "before": "流的群性质给出点的运动；由命题~\\ref{prop:matrix-variation}，初值的微小变化满足线性变分方程。将定理~\\ref{thm:Wronski判别与Liouville公式} 应用于该方程，就能计算相流的体积变化。",
+        "after": "由命题~\\ref{prop:matrix-variation}，相流对初值的导数满足线性变分方程。将定理~\\ref{thm:Wronski判别与Liouville公式} 应用于该方程，即可求出相流的 Jacobi 行列式，进而讨论体积的变化。"
+      },
+      {
+        "chapter": 6,
+        "before": "对定义~\\ref{def:continuous-logistic} 中的方程，现在可以使用 Lyapunov 稳定性与渐近稳定性的定义。",
+        "after": "下面应用 Lyapunov 稳定性与渐近稳定性的定义，讨论定义~\\ref{def:continuous-logistic} 中种群模型的平衡点。"
+      },
+      {
+        "chapter": 6,
+        "before": "一维自治方程 $x'=f(x)$ 在相邻平衡点之间的符号决定运动方向；其右端在这里光滑，故解的唯一性由 Picard 定理保证。",
+        "after": "对于一维自治方程 $x'=f(x)$，右端函数在相邻平衡点之间的符号决定解的单调性。这里的右端函数光滑，故由 Picard 定理知解唯一。"
+      },
+      {
+        "chapter": 6,
+        "before": "轨道渐近稳定也不一定蕴含该指定解按同一时钟 Lyapunov 稳定。",
+        "after": "轨道渐近稳定也不一定蕴含所指定的周期解按相同时间参数比较时 Lyapunov 稳定。"
+      },
+      {
+        "chapter": 6,
+        "before": "Poincar\\'e 映射已把闭轨化为不动点，下面的一周能量增量将直接给出该不动点方程。所用的稳定性判据是命题~\\ref{prop:discrete-derivative-test}，返回时刻的构造使用第五章的可微依赖性与隐函数定理。考虑归一化的圆形振动及其扰动",
+        "after": "闭轨与 Poincar\\'e 映射的不动点相对应。下面利用解经过一周后的能量差求出不动点，并应用命题~\\ref{prop:discrete-derivative-test} 判断稳定性。返回时间的存在性由第五章的可微依赖性与隐函数定理保证。考虑下列振动方程及其小扰动"
+      },
+      {
+        "chapter": 6,
+        "before": "其振幅由系统而非初始振幅选择。这里通过横截面的返回映射研究它。",
+        "after": "稳定周期运动的振幅由方程确定。下面利用横截面上的返回映射研究这种周期运动。"
+      },
+      {
+        "chapter": 6,
+        "before": "下面回到一般区间映射。它们未必来自微分方程的返回映射，其周期结构可以比局部闭轨附近的情形复杂得多。",
+        "after": "下面讨论一般区间映射的周期点。这些映射不一定是微分方程的返回映射。"
+      },
+      {
+        "chapter": 6,
+        "before": "定理~\\ref{thm:Hamilton函数沿轨道守恒} 说明轨道包含在能量层中；平衡点分类给出了临界点附近的形状。下面进一步区分能量层的各条轨道，并由沿轨道的速度计算周期。全局延拓的能量估计已见定理~\\ref{thm:energy-global-extension}。",
+        "after": "由定理~\\ref{thm:Hamilton函数沿轨道守恒}，每条轨道都包含在一个能量等值集中。下面讨论非临界能量等值集中的轨道，并计算闭轨的周期。解的全局延拓可用定理~\\ref{thm:energy-global-extension} 判断。"
+      },
+      {
+        "chapter": 6,
+        "before": "回到绪论中的捕食者--食饵模型。虽然原坐标中的方程不直接具有标准 Hamilton 形式，仍可沿用“首次积分—紧等值线—周期运动”的论证。把参数记为正数 $a,b,c,d$，考虑",
+        "after": "对于绪论中的捕食者--食饵模型，也可以先求首次积分，再由其等值线判断轨道是否闭合。设 $a,b,c,d$ 为正数，考虑"
+      },
+      {
+        "chapter": 7,
+        "before": "\\setchapterintro{从变量替换到微分同胚，从求解公式到相流，是理解微分方程几何性质的桥梁。本章将初值依赖理论与向量场直化、对称性和首次积分联系起来。}",
+        "after": "\\setchapterintro{本章研究坐标变换对微分方程的影响。利用解对初值的可微依赖性，证明向量场的局部直化定理，并讨论对称性、首次积分和周期轨道。}"
+      },
+      {
+        "chapter": 7,
+        "before": "这说明零时刻定义的速度场确实给出每个时刻的运动速度，而不只是初速度。",
+        "after": "因此，由零时刻导数定义的向量场满足相流在任意时刻的微分方程。"
+      },
+      {
+        "chapter": 7,
+        "before": "因此 $(s,z)=F^{-1}(x)$ 是合法的局部坐标，不是仅仅一族形式参数。",
+        "after": "因此 $(s,z)=F^{-1}(x)$ 可以作为所求的局部坐标。"
+      },
+      {
+        "chapter": 7,
+        "before": "该坐标变换的光滑度正是 $C^r$，与所用的解依赖性定理同阶。",
+        "after": "由解对初值的依赖性，所得坐标变换属于 $C^r$。"
+      },
+      {
+        "chapter": 7,
+        "before": "\\begin{proposition}[两时刻演化]",
+        "after": "\\begin{proposition}[解映射的复合关系]"
+      },
+      {
+        "chapter": 7,
+        "before": "这证明演化的复合关系。",
+        "after": "故解映射满足上述复合关系。"
+      },
+      {
+        "chapter": 7,
+        "before": "相同的时间差 $t-s$ 在不同起始时刻产生不同位移，说明非自治演化一般不能只依赖时间差。",
+        "after": "当时间差 $t-s$ 相同而初始时刻不同时，解的位移可能不同，故非自治方程的解映射一般还与初始时刻有关。"
+      },
+      {
+        "chapter": 7,
+        "before": "因此原尖点被拉成光滑曲线。这里证明的是这个例子，并不以此代替一般消解定理。",
+        "after": "因此，严格变换后的曲线在原尖点所对应的位置也是光滑的。"
+      },
+      {
+        "chapter": 7,
+        "before": "两时刻演化性质给出",
+        "after": "由解映射的复合关系得"
+      },
+      {
+        "chapter": 7,
+        "before": "在算子复合的结合代数中展开",
+        "after": "按算子复合的结合律展开"
+      },
+      {
+        "chapter": 7,
+        "before": "这里不需要先使用抽象流形理论。",
+        "after": ""
+      },
+      {
+        "chapter": 7,
+        "before": "这也具体说明了此处“光滑曲面”的含义；抽象的统一定义见第~\\ref{chap:manifolds}~章。",
+        "after": "光滑曲面的一般定义见第~\\ref{chap:manifolds}~章。"
+      },
+      {
+        "chapter": 8,
+        "before": "\\setchapterintro{二阶线性方程不仅能讨论解空间，还能比较不同解的零点。本章用相平面角度把零点问题转为一个标量比较问题，再进入两点边值问题。}",
+        "after": "\\setchapterintro{本章利用相位角讨论二阶线性微分方程解的零点，证明 Sturm 分离定理与比较定理，并研究两点边值问题的特征值和特征函数。}"
+      },
+      {
+        "chapter": 8,
+        "before": "这证明非端点情形，因而也证明闭区间结论。",
+        "after": "这证明了第二个解在两端均不为零时的结论，结合端点为零的情形，即得闭区间上的结论。"
+      },
+      {
+        "chapter": 9,
+        "before": "\\setchapterintro{周期系数使连续演化在每个周期后重复同一规则。本章先研究单周期映射，再用它解释稳定性、参数共振和倒立摆的振动稳定。最后研究复振幅与受迫振动。}",
+        "after": "\\setchapterintro{本章讨论周期系数微分方程。先利用单周期映射判断周期解的存在性与稳定性，再研究参数共振、倒立摆的振动稳定以及受迫振动。}"
+      },
+      {
+        "chapter": 9,
+        "before": "第六章的 Poincar\\'e 映射在每次经过横截面时取样。本章对周期含时方程每隔一个固定周期取样，并利用第三章的标准解矩阵与第六章的稳定性定义，把连续时间问题化为矩阵或映射的迭代。",
+        "after": "第六章的 Poincar\\'e 映射由解与横截面的相邻两次交点确定。对于周期系数方程，可以考察解经过一个周期后的值，由此定义单周期映射，再利用第三章的标准解矩阵及第六章的稳定性判据研究它的迭代。"
+      },
+      {
+        "chapter": 9,
+        "before": "记两时刻演化为 $P_{t,s}$。",
+        "after": "记从时刻 $s$ 的初值确定时刻 $t$ 的解值的映射为 $P_{t,s}$。"
+      },
+      {
+        "chapter": 9,
+        "before": "再由演化复合关系，",
+        "after": "再由解映射的复合关系，"
+      },
+      {
+        "chapter": 9,
+        "before": "连续稳定性蕴含离散稳定性，因为可取样 $t=nT$。",
+        "after": "周期解稳定时，在时刻 $t=nT$ 取解值，即得相应不动点对迭代的稳定性。"
+      },
+      {
+        "chapter": 9,
+        "before": "离散稳定性给出 $\\delta>0$",
+        "after": "迭代不动点的稳定性给出 $\\delta>0$"
+      },
+      {
+        "chapter": 9,
+        "before": "便控制了每一个 $t=nT+s$，从而得到连续稳定性。",
+        "after": "便得到每个时刻 $t=nT+s$ 的解的估计，从而证明周期解稳定。"
+      },
+      {
+        "chapter": 9,
+        "before": "若离散不动点还吸引附近初值，则 $M^n\\xi\\to\\xi_*$。",
+        "after": "若该不动点还吸引附近的迭代序列，则 $M^n\\xi\\to\\xi_*$。"
+      },
+      {
+        "chapter": 9,
+        "before": "这证明连续吸引性。反向仍只需取样，因此两种渐近稳定性等价。",
+        "after": "这证明周期解还具有吸引性。反过来，只需考察整数倍周期时刻的解值，即得迭代不动点的吸引性，因此两种渐近稳定性等价。"
+      },
+      {
+        "chapter": 9,
+        "before": "再由连续与离散稳定性的等价性得到零解稳定，这正是强稳定的定义。",
+        "after": "再由前面证明的周期解与迭代不动点的稳定性等价关系，得到零解稳定，故原零解强稳定。"
+      },
+      {
+        "chapter": 9,
+        "before": "这证明的是不稳定区域可能接触的位置；并未只凭这一步就证明每处都出现不稳定舌。",
+        "after": "上述结论只确定不稳定区域与参数轴相交的可能位置；各处是否存在不稳定区域，还须进一步计算。"
+      },
+      {
+        "chapter": 10,
+        "before": "构造适配的 Lyapunov 二次型",
+        "after": "构造用于判定稳定性的 Lyapunov 二次型"
+      },
+      {
+        "chapter": 10,
+        "before": "本章进一步区分允许的变换类别：线性或可微变换保留较多代数信息，同胚变换则允许更粗的相图分类。",
+        "after": "本章分别讨论线性变换、微分同胚和同胚下的等价关系，并给出相应的分类条件。"
+      },
+      {
+        "chapter": 10,
+        "before": "\\section{适配二次型与拓扑分类}",
+        "after": "\\section{Lyapunov 二次型与拓扑分类}"
+      },
+      {
+        "chapter": 10,
+        "before": "故它把原系统保时间地共轭到 $y'=y$。",
+        "after": "故它将原系统共轭到 $y'=y$，且时间参数保持不变。"
+      },
+      {
+        "chapter": 10,
+        "before": "按保时间的拓扑共轭等价",
+        "after": "在保持时间参数不变的拓扑共轭下等价"
+      },
+      {
+        "chapter": 10,
+        "before": "在重根非半单时可能出现 $t\\sin\\omega t$ 等项，不能套用有界环面图像。",
+        "after": "若重特征值不是半单的，解中可能出现 $t\\sin\\omega t$ 等项，此时解未必有界，因而不一定存在上述不变环面。"
+      },
+      {
+        "chapter": 10,
+        "before": "更一般的任意合法前缀也会出现。",
+        "after": "同样可以讨论任意给定的前若干位数字所占的比例。"
+      },
+      {
+        "chapter": 10,
+        "before": "这说明“稠密”只保证能逼近，而“均匀分布”还给出了访问比例。",
+        "after": "稠密性表示序列与任一非空开弧相交；均匀分布还给出了序列各项落入每条弧的比例。"
+      },
+      {
+        "chapter": 11,
+        "before": "局部 ODE 理论通过坐标图沿用已有结论",
+        "after": "在坐标图中可应用前面建立的微分方程局部理论"
+      },
+      {
+        "chapter": 11,
+        "before": "对任意开覆盖，把它搬到每张图中，利用",
+        "after": "对任意开覆盖，利用坐标映射将各开集表示在相应的坐标域中，再由"
+      },
+      {
+        "chapter": 11,
+        "before": "过渡微分是两个坐标空间间的线性同构",
+        "after": "换图映射的微分是两个坐标空间间的线性同构"
+      },
+      {
+        "chapter": 11,
+        "before": "定向图册要求过渡 Jacobian 为正。",
+        "after": "定向图册要求换图映射的 Jacobi 行列式为正。"
+      },
+      {
+        "chapter": 11,
+        "before": "另一图中的速度是原速度乘过渡映射的可逆 Jacobian。",
+        "after": "另一张图中的速度由换图映射的 Jacobi 矩阵作用于原速度得到，该矩阵可逆。"
+      },
+      {
+        "chapter": 11,
+        "before": "对于有限 $C^r$ 光滑度，切丛换图一般只有 $C^{r-1}$；本章默认光滑结构为 $C^\\infty$，\n避免把这一次导数损失隐藏在记号中。",
+        "after": "对于 $C^r$ 流形，切丛的换图映射一般仅属于 $C^{r-1}$，因为其表达式含原换图映射的一阶导数。本章讨论 $C^\\infty$ 流形。"
+      },
+      {
+        "chapter": 11,
+        "before": "过渡 Jacobian 的行列式为负",
+        "after": "换图映射的 Jacobi 行列式为负"
+      },
+      {
+        "chapter": 11,
+        "before": "\\section{三维流形的几个共同模型}",
+        "after": "\\section{几个相互微分同胚的三维流形}"
+      },
+      {
+        "chapter": 11,
+        "before": "因此原线性方程解全局存在。这给出前文线性延拓结论的另一种几何解释。",
+        "after": "因此原线性方程的解全局存在，这也是前面解的延拓定理的结论。"
+      },
+      {
+        "chapter": 12,
+        "before": "并用接触结构统一隐式常微分方程的几何表示",
+        "after": "并利用接触平面场研究隐式常微分方程"
+      },
+      {
+        "chapter": 12,
+        "before": "可以承载不同的光滑数据。",
+        "after": "可以分别给定不同的光滑初始数据。"
+      },
+      {
+        "chapter": 12,
+        "before": "取 $g(\\xi)=\\arctan\\xi$ 则正时间不发生这种交叉，不能把两种符号混淆。",
+        "after": "取 $g(\\xi)=\\arctan\\xi$ 时，正时间内上述分母始终非零，故不发生这种交叉。"
+      },
+      {
+        "chapter": 12,
+        "before": "本节用接触平面场统一描述隐式方程的曲面参数化。",
+        "after": "下面在包含自变量、函数值及一阶导数的空间中研究隐式方程。"
+      },
+      {
+        "chapter": 12,
+        "before": "这说明“一个隐式式子”可能合并多个不同的显式方程分支。",
+        "after": "因此，一个隐式微分方程可能包含若干不同的显式方程分支。"
+      },
+      {
+        "chapter": 12,
+        "before": "在使用接触形式的演化以前，约定下面的局部微分记号。",
+        "after": "为研究特征方程的解对接触形式的影响，先给出相应的微分运算。"
+      },
+      {
+        "chapter": 12,
+        "before": "下面的距离结论取局部闭嵌入片，并将邻域缩小到最近点唯一的范围；不对任意非闭子流形声称统一正半径。",
+        "after": "下面的距离结论在局部闭嵌入片附近讨论，并将邻域缩小到最近点唯一的范围。对于非闭子流形，一般不能取处处相同的邻域半径。"
+      },
+      {
+        "chapter": 12,
+        "before": "故 $(s,z)\\mapsto x(s,z)$ 的 Jacobian 可逆。",
+        "after": "故 $(s,z)\\mapsto x(s,z)$ 的 Jacobi 矩阵可逆。"
+      },
+      {
+        "chapter": 13,
+        "before": "本章先用平面绕数给这些图形赋予指标",
+        "after": "本章先定义平面向量场沿闭曲线的指标"
+      },
+      {
+        "chapter": 13,
+        "before": "这一计算同时处理了过渡图的定向反转，避免仅由基向量转两圈直接判断符号。",
+        "after": "上述等式中，复共轭已计入换图时的定向反转，故由角度增量得到所需的指标。"
+      },
+      {
+        "chapter": 13,
+        "before": "有边界曲面必须加入边界条件或边界指标，不能只数内部临界点便套用闭曲面的公式。",
+        "after": "对于有边界曲面，还须规定边界上的条件或计入边界指标，不能直接应用上述闭曲面公式。"
+      },
+      {
+        "chapter": 14,
+        "before": "最后的扩散模型以已存在的光滑解为分析前提，不把其存在理论归入常微分方程基本定理。",
+        "after": "最后对扩散方程的光滑解讨论其长期行为，解的存在性另作假设。"
+      },
+      {
+        "chapter": 14,
+        "before": "也可严格地从光程泛函",
+        "after": "也可从光程泛函"
+      },
+      {
+        "chapter": 14,
+        "before": "$C$ 是保时间光滑坐标变换下的不变量。",
+        "after": "$C$ 在保持时间参数不变的光滑坐标变换下不变。"
+      },
+      {
+        "chapter": 14,
+        "before": "此时 $e^{U/\\varepsilon}$ 周期，窗口积分 $I(x)$ 与 $x$ 无关，",
+        "after": "此时 $e^{U/\\varepsilon}$ 为周期函数，故积分 $I(x)$ 与 $x$ 无关，"
+      },
+      {
+        "chapter": 14,
+        "before": "本证明针对已经存在的光滑周期解；抛物方程的存在理论是另一个分析前提。",
+        "after": "上述证明以光滑周期解的存在性为假设，不涉及该偏微分方程解的存在性。"
+      },
+      {
+        "chapter": 14,
+        "before": "因此未归一化密度的指数尺度是 $D(x)$。",
+        "after": "因此，在未确定归一化常数时，密度的对数乘以扩散系数后趋于 $D(x)$。"
+      },
+      {
+        "chapter": 14,
+        "before": "其质量相对于最大点邻域指数小，归一化后趋于零。",
+        "after": "该闭集上的质量与最大点邻域内质量之比按指数趋于零，故归一化后该闭集上的质量趋于零。"
+      },
+      {
+        "chapter": 14,
+        "before": "周期势时窗口最大值恒为 $\\max U$",
+        "after": "对于周期势，每个周期区间内的最大值均为 $\\max U$"
+      },
+      {
+        "chapter": 14,
+        "before": "多个同深势阱时不能仅凭“存在吸引点”选出唯一集中点；需要比较势垒与局部渐近权重。",
+        "after": "势能有多个相同的最小点时，前述结论只保证密度集中于这些点所成的集合。各点附近质量的比例还须根据相应积分的渐近值确定。"
+      },
+      {
+        "chapter": 15,
+        "before": "用反对称多粒子函数解释 Sturm 线性组合的零点",
+        "after": "用反对称函数讨论 Sturm 特征函数线性组合的零点"
+      },
+      {
+        "chapter": 15,
+        "before": "第 $k$ 阶导数作用在 $k$ 个序列上时，逐项产生权 $\\sigma^{kj}$；",
+        "after": "第 $k$ 阶导数作用在 $k$ 个序列上时，每项的估计中含有因子 $\\sigma^{kj}$；"
+      },
+      {
+        "chapter": 15,
+        "before": "高阶导数是连续多重线性映射，其范数是各输入范数不超过 1 时输出范数的上确界。",
+        "after": "高阶导数是连续多重线性映射，其范数是各个自变量的范数均不超过 1 时，函数值范数的上确界。"
+      },
+      {
+        "chapter": 15,
+        "before": "而输入零序列时，右端为 $(S^n\\xi,0)$，范数不超过 $|\\xi|$。",
+        "after": "将零序列代入算子，所得序列为 $(S^n\\xi,0)$，其范数不超过 $|\\xi|$。"
+      },
+      {
+        "chapter": 15,
+        "before": "余项除以 $|\\Delta\\xi|$ 趋零，故这是真正的 Fréchet 导数。",
+        "after": "由于余项除以 $|\\Delta\\xi|$ 后趋于零，上式即为 Fréchet 导数。"
+      },
+      {
+        "chapter": 15,
+        "before": "还需排除未被构造捕获的局部轨道。在不加权有界序列空间中，",
+        "after": "下面证明，始终留在所取邻域内的正向轨道，其初值均在上述图像上。在不加权有界序列空间中，"
+      },
+      {
+        "chapter": 15,
+        "before": "应用映射的稳定流形定理，再用 $[0,\\tau]$ 内流的连续性控制两采样时刻之间的轨道。",
+        "after": "应用映射的稳定流形定理，再由相流在 $[0,\\tau]$ 内的连续性，估计相邻两个整数倍时刻之间的解。"
+      },
+      {
+        "chapter": 15,
+        "before": "小时间流与采样映射可交换，故保持局部稳定集，图像也对连续流局部不变。",
+        "after": "小时间的相流与上述时间映射可交换，故保持局部稳定集，因此所得图像对相流也局部不变。"
+      },
+      {
+        "chapter": 15,
+        "before": "凡原轨道的一段始终留在此邻域，它与截断轨道相同，因而满足同一保时间共轭等式。",
+        "after": "原方程的解若在一段时间内始终留在此邻域，就与截断方程的解相同，因而满足上述保持时间参数不变的共轭等式。"
+      },
+      {
+        "chapter": 15,
+        "before": "以下的正性结论是额外列出的分析命题，不把术语定义本身当成该命题的证明。",
+        "after": "最低特征函数的正性还须由下面的分析结论保证。"
+      },
+      {
+        "chapter": 15,
+        "before": "选取一个可解的底变量，把曲面写成该底变量等于另一底变量与 $p$ 的函数。",
+        "after": "由隐函数定理，将两个自变量中的一个表示为另一个自变量和 $p$ 的函数。"
+      },
+      {
+        "chapter": 15,
+        "before": "这些模型的全分类与模参数理论属于奇点理论；上述计算给出了它们在慢运动方程中出现的机制。",
+        "after": "这些曲面及其参数的完整分类属于奇点理论。这里仅说明慢运动方程在投影退化处可能具有上述局部形式。"
+      },
+      {
+        "chapter": 4,
+        "before": "频率可公度时轨迹闭合；不可公度时的稠密性将在环面线性流一节证明。",
+        "after": "两个频率之比为有理数时，轨迹闭合；比值为无理数时的稠密性将在环面线性流一节证明。"
+      },
+      {
+        "chapter": 5,
+        "before": "记真解为 $x$，则 $Ax=x$",
+        "after": "记初值问题的解为 $x$，则 $Ax=x$"
+      },
+      {
+        "chapter": 5,
+        "before": "结合前述误差估计，得到真解",
+        "after": "结合前述误差估计，得到相应的解满足"
+      },
+      {
+        "chapter": 6,
+        "before": "唯一性禁止解穿过平衡点；",
+        "after": "由解的唯一性，解不能穿过平衡点；"
+      },
+      {
+        "chapter": 6,
+        "before": "这里的存在与唯一性是半径 2 附近的局部结论，不等于已经证明任意参数下的全局唯一性。",
+        "after": "上述存在性与唯一性结论只在半径 2 附近成立，并以参数充分小为条件。"
+      },
+      {
+        "chapter": 11,
+        "before": "正维球面的全维数平行化分类需要额外的拓扑理论；后面的论证只使用已经给出构造的例子和 $S^2$ 的指标证明。",
+        "after": "对于任意维球面，可平行化性需要另行讨论。这里仅使用上述例子及后面由指标和定理得到的 $S^2$ 结论。"
+      },
+      {
+        "chapter": 13,
+        "before": "对连续形变，利用有限局部角图可知总角差连续变化；",
+        "after": "对于连续形变，在参数区间的有限个小段上分别选取连续方向角，可知总角差连续变化；"
+      },
+      {
+        "chapter": 15,
+        "before": "反过来，把第二个和式的 $n$ 与 $n+1$ 项相减，即恢复不稳定递推，",
+        "after": "反过来，把第二个和式的 $n$ 与 $n+1$ 项相减，即得不稳定分量的原递推式，"
+      },
+      {
+        "chapter": 15,
+        "before": "有界差 $z=x-y$ 满足同一不动点方程。唯一性说明逆构造恢复该 $x$，",
+        "after": "有界差 $z=x-y$ 满足同一不动点方程。由唯一性，按逆变换求得的解就是该 $x$，"
+      },
+      {
+        "chapter": 4,
+        "before": "线性变换的体积变化倍数为 $e^{t\\operatorname{tr}A}$；迹为零时保持体积。",
+        "after": "上述矩阵指数所确定的线性变换，将区域体积变为原来的 $e^{t\\operatorname{tr}A}$ 倍；迹为零时保持体积。"
+      },
+      {
+        "chapter": 14,
+        "before": "势能有多个相同的最小点时，前述结论只保证密度集中于这些点所成的集合。",
+        "after": "势能有多个取到相同最小值的点时，前述结论只保证密度集中于这些点所成的集合。"
+      }
+    ],
+    "changed_chapters": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "display_formulas_unchanged": true,
+    "labels_unchanged": true,
+    "environment_order_unchanged": true,
+    "revised_passages": 121,
+    "checks": {
+      "labels_unchanged": true,
+      "environment_order_unchanged": true,
+      "display_formulas_unchanged": true,
+      "original_inline_formulas_retained": true,
+      "tikz_code_unchanged": true,
+      "chapter1_and_chapter2_unchanged": true,
+      "all_chapter_inputs_absent": true
+    },
+    "backup_crc_valid": true
+  },
+  "algebra_dedup_revision": {
+    "date": "2026-10-30",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\代数重复内容删减前-20261030-074256.zip",
+    "backup_sha256": "ad3a49ef5d81c707dd60fc91206669c813a2c7295cf231ca4c27cc15720dba11",
+    "changes": [
+      {
+        "chapter": 4,
+        "reason": "删除线性函数、对偶空间及其维数的重复定义；只保留取值映射的应用。",
+        "algebra_source": "Part 1/chapter7.tex:7-30",
+        "before": "\\begin{definition}[线性泛函与对偶空间]\n向量空间 $V$ 到其数域的线性映射称为线性泛函，全体组成对偶空间 $V^*$。\n当 $V$ 是函数空间时，$f\\mapsto f(t)$ 是求值泛函。\n若 $V$ 的维数为 $n$，相对于一组基，每个泛函都唯一对应一个行向量，所以 $\\dim V^*=n$。\n\\end{definition}",
+        "after": "对给定的 $t$，取值映射 $f\\mapsto f(t)$ 是函数空间上的线性函数。"
+      },
+      {
+        "chapter": 4,
+        "reason": "删除已在代数笔记证明的 Hamilton--Cayley 定理。",
+        "algebra_source": "Part 1/chapter5.tex:1461-1520",
+        "before": "\\begin{lemma}[Cayley--Hamilton 恒等式]\\label{lem:cayley-hamilton-foundation}\n若 $A$ 为 $n$ 阶矩阵，$p(z)=\\det(zI-A)$，则 $p(A)=0$。\n\\end{lemma}\n\\begin{proof}\n将伴随矩阵写为 $B(z)=\\operatorname{adj}(zI-A)=\\sum_{j=0}^{n-1}B_jz^j$。\n恒等式 $(zI-A)B(z)=B(z)(zI-A)=p(z)I$ 首先说明 $AB_j=B_jA$。\n因此可以在这一多项式矩阵恒等式中用 $A$ 代入标量变量 $z$：各系数与 $A$ 交换，\n左边为 $(A-A)\\sum_jB_jA^j=0$，右边为 $p(A)$，结论成立。\n\\end{proof}",
+        "after": ""
+      },
+      {
+        "chapter": 4,
+        "reason": "删除群、子群、同态、核及一般线性群的重复定义，只保留本文记号。",
+        "algebra_source": "Part 2/chapter1.tex:13-143,243-309,480-546",
+        "before": "\\begin{definition}[群、子群与一般线性群]\\label{def:group-notation}\n集合 $G$ 连同乘法称为群，是指乘法封闭、满足结合律，有单位元 $e$，且每个元素 $g$ 有逆元 $g^{-1}$。\n包含单位元并对乘法和取逆封闭的子集称子群。\n$GL(n,\\R)=\\{A\\in\\R^{n\\times n}:\\det A\\ne0\\}$ 在矩阵乘法下构成一般线性群。\n群间保持乘法的映射称同态；同态 $\\Phi$ 的核为 $\\{g:\\Phi(g)=e\\}$。\n加法群的运算用加号书写，例如 $\\R$ 和 $\\Z$；其子群对加减封闭。\n\\end{definition}",
+        "after": "以下将 $n$ 阶实一般线性群记为 $GL(n,\\R)$。"
+      },
+      {
+        "chapter": 4,
+        "reason": "沿用代数笔记“线性函数”的名称。",
+        "algebra_source": "Part 1/chapter7.tex:12-22",
+        "before": "所有求值泛函若不能张成 $V^*$",
+        "after": "所有取值映射若不能张成 $V^*$"
+      },
+      {
+        "chapter": 4,
+        "reason": "统一名称。",
+        "algebra_source": "Part 1/chapter7.tex:12-30",
+        "before": "因此可从这些泛函选出一组基",
+        "after": "因此可从这些线性函数中选出一组基"
+      },
+      {
+        "chapter": 4,
+        "reason": "统一名称。",
+        "algebra_source": "Part 1/chapter7.tex:12-30",
+        "before": "任意求值泛函都是 $V$ 上的连续线性泛函",
+        "after": "任意取值映射都是 $V$ 上的连续线性函数"
+      },
+      {
+        "chapter": 4,
+        "reason": "定理名称与代数笔记一致。",
+        "algebra_source": "Part 1/chapter5.tex:1399-1520",
+        "before": "Cayley--Hamilton",
+        "after": "Hamilton--Cayley"
+      },
+      {
+        "chapter": 9,
+        "reason": "定理名称与代数笔记一致。",
+        "algebra_source": "Part 1/chapter5.tex:1399-1520",
+        "before": "Cayley--Hamilton",
+        "after": "Hamilton--Cayley"
+      },
+      {
+        "chapter": 4,
+        "reason": "删去对称、正定和正交矩阵的重复定义，保留不属于这些代数定义的 Hessian 记号。",
+        "algebra_source": "Part 1/chapter3.tex:850-866; chapter6.tex:698-715,970-1048",
+        "before": "\\begin{definition}[对称矩阵与正定性]\n实矩阵 $A$ 对称，是指 $A^T=A$；正定，是指 $x^TAx>0$ 对每个非零实向量 $x$ 成立。\n正交矩阵满足 $S^TS=I$，因而保持 Euclidean 内积和长度。\n对二次连续可微实函数，Hessian 矩阵指 $D^2f=(\\partial_i\\partial_jf)_{i,j}$；混合偏导相等使它对称。\n\\end{definition}",
+        "after": "\\begin{definition}[Hessian 矩阵]\n对二次连续可微实函数，Hessian 矩阵指 $D^2f=(\\partial_i\\partial_jf)_{i,j}$；混合偏导相等使它对称。\n\\end{definition}"
+      },
+      {
+        "chapter": 4,
+        "reason": "删除实对称矩阵正交对角化及正定性判别的重复证明。",
+        "algebra_source": "Part 1/chapter6.tex:1750-1864; chapter7.tex:1664-1680",
+        "before": "\\begin{lemma}[实对称矩阵的正交分解]\\label{lem:symmetric-spectral-elementary}\n每个实对称矩阵都有一组标准正交特征向量；它正定当且仅当所有特征值都为正。\n\\end{lemma}\n\\begin{proof}\n连续函数 $x^TAx$ 在单位球面取到最大值，设最大点为 $e$。\n对任意 $v\\perp e$，沿 $(e+tv)/|e+tv|$ 求导，极值条件给出 $v^TAe=0$。\n所以 $Ae=\\lambda e$。对 $v\\perp e$，对称性给出 $e^TAv=(Ae)^Tv=0$，\n故正交补仍在 $A$ 下不变。在这个低一维空间归纳，得到所需正交基。\n在该基中 $x^TAx=\\sum_j\\lambda_jx_j^2$，正定性的判别随即成立。\n\\end{proof}",
+        "after": ""
+      },
+      {
+        "chapter": 4,
+        "reason": "删除正定平方根的重复构造；代数笔记还证明了唯一性。",
+        "algebra_source": "Part 1/chapter7.tex:1773-1800",
+        "before": "\\begin{definition}[正定矩阵的平方根]\\label{def:positive-matrix-root}\n若正定对称矩阵 $B=S\\operatorname{diag}(\\lambda_j)S^T$、$S$ 正交，定义\n$B^{1/2}=S\\operatorname{diag}(\\sqrt{\\lambda_j})S^T$。\n在每个特征子空间上它均为同一个正标量倍恒等映射，故与所选正交特征基无关；\n它对称正定且平方为 $B$。\n\\end{definition}",
+        "after": ""
+      },
+      {
+        "chapter": 6,
+        "reason": "不复述等价关系和等价类，保留代数商结构之外的商拓扑及圆周相空间。",
+        "algebra_source": "Part 1/chapter4.tex:274-324; Part 2/chapter1.tex:681-728; chapter2.tex:1025-1042",
+        "before": "\\begin{definition}[商空间、圆周与圆柱]\\label{def:quotient-circle}\n在集合 $X$ 上，满足自反、对称和传递性的关系称等价关系。\n等价类记为 $[x]=\\{y:y\\sim x\\}$，这些类组成商集 $X/{\\sim}$，自然投影为 $\\pi(x)=[x]$。\n若 $X$ 有拓扑，规定",
+        "after": "\\begin{definition}[商拓扑、圆周与圆柱]\\label{def:quotient-circle}\n设 $X$ 是拓扑空间，$X/{\\sim}$ 是某等价关系确定的商集，$\\pi:X\\to X/{\\sim}$ 为自然映射。规定"
+      },
+      {
+        "chapter": 7,
+        "reason": "删除一般群作用与群轨道的重复定义；保留向量场对称这一新概念。",
+        "algebra_source": "Part 2/chapter2.tex:923-943,1025-1042",
+        "before": "\\begin{definition}[群作用与对称性]\n群 $G$ 对集合 $M$ 的作用是映射 $(g,x)\\mapsto gx$，满足\n$ex=x$、$(gh)x=g(hx)$。集合 $Gx$ 称为 $x$ 的轨道。\n保持向量场",
+        "after": "\\begin{definition}[向量场的对称]\n保持向量场"
+      },
+      {
+        "chapter": 7,
+        "reason": "删去代数笔记已证明的群轨道相交性质。",
+        "algebra_source": "Part 2/chapter2.tex:1025-1042",
+        "before": "作用的两条轨道相交则重合；向量场的对称等价于它与局部相流可交换。",
+        "after": "向量场的对称等价于它与局部相流可交换。"
+      },
+      {
+        "chapter": 7,
+        "reason": "删除上述重复性质的证明，不动向量场对称与相流可交换的证明。",
+        "algebra_source": "Part 2/chapter2.tex:1025-1042",
+        "before": "先证轨道结论。若 $gx=hy$，则 $y=h^{-1}gx$。\n对任意 $k\\in G$，有 $ky=kh^{-1}gx\\in Gx$，所以 $Gy\\subset Gx$。\n交换两点的角色也得反向包含，因此两条轨道重合。\n\n",
+        "after": ""
+      },
+      {
+        "chapter": 7,
+        "reason": "标题只保留新的拓扑概念。",
+        "algebra_source": "Part 2/chapter1.tex:309-339",
+        "before": "\\begin{definition}[闭子群与陪集]",
+        "after": "\\begin{definition}[拓扑群与闭子群]"
+      },
+      {
+        "chapter": 7,
+        "reason": "删除陪集的重复定义。",
+        "algebra_source": "Part 2/chapter1.tex:309-339",
+        "before": "子群 $H$ 的加法陪集为 $x+H=\\{x+h:h\\in H\\}$；乘法记号下写为 $gH$。",
+        "after": ""
+      },
+      {
+        "chapter": 8,
+        "reason": "不再重复有限维内积空间中的正交定义。",
+        "algebra_source": "Part 1/chapter6.tex:101-120,345-369",
+        "before": "\\begin{definition}[平方平均空间与正交]",
+        "after": "\\begin{definition}[平方平均空间与完全性]"
+      },
+      {
+        "chapter": 8,
+        "reason": "删去正交、标准正交系的复述，保留无限维平方平均意义的完全性。",
+        "algebra_source": "Part 1/chapter6.tex:101-120,345-369",
+        "before": "内积为零称正交；范数为 1 且两两正交的族称标准正交系。\n其有限线性组合在 $2$ 范数下稠密时，称完全正交系。",
+        "after": "一个正交系的有限线性组合在 $2$ 范数下稠密时，称该正交系完全。"
+      },
+      {
+        "chapter": 11,
+        "reason": "删去正交群、特殊正交群及反对称矩阵的重复定义，保留群的流形结构和连通性证明。",
+        "algebra_source": "Part 1/chapter3.tex:850-867; chapter6.tex:1043-1048,1156-1161",
+        "before": "\\begin{definition}[正交群与特殊正交群]\n记 $O(n)=\\{Q\\in\\R^{n\\times n}:Q^TQ=I\\}$，\n$SO(n)=\\{Q\\in O(n):\\det Q=1\\}$，均以矩阵乘法为群运算。\n$SO(n)$ 的元素称保定向的正交变换，亦称旋转。\n矩阵 $B$ 满足 $B^T=-B$ 时称反对称矩阵。\n\\end{definition}",
+        "after": "下文将实正交群及特殊正交群分别记为 $O(n)$ 和 $SO(n)$。"
+      },
+      {
+        "chapter": 11,
+        "reason": "删去指向重复定义的引用，直接使用已有正定平方根，保留极分解的应用计算。",
+        "algebra_source": "Part 1/chapter7.tex:1773-1800",
+        "before": "这里平方根按定义~\\ref{def:positive-matrix-root} 构造，$Q=AP^{-1}$ 满足",
+        "after": "取 $A^TA$ 的正定平方根，并令 $Q=AP^{-1}$，则"
+      },
+      {
+        "chapter": 11,
+        "reason": "删去四元数体的基和乘法表的重复介绍；保留代数笔记未定义的共轭、范数和纯虚部分。",
+        "algebra_source": "Part 2/chapter1.tex:1090-1147",
+        "before": "\\begin{definition}\n四元数代数 $\\mathbb H$ 的实基为 $1,i,j,k$，乘法满足\n$i^2=j^2=k^2=ijk=-1$；共轭把后三个系数变号。",
+        "after": "\\begin{definition}[四元数的共轭与范数]\n四元数的标准基记为 $1,i,j,k$。对 $q=a+bi+cj+dk$，定义其共轭为\n$\\overline q=a-bi-cj-dk$。"
+      },
+      {
+        "chapter": 12,
+        "reason": "不重复一般对偶空间的定义，只定义切空间中的新名称。",
+        "algebra_source": "Part 1/chapter7.tex:12-30",
+        "before": "切空间 $T_xM$ 上的线性泛函称余向量，全体构成对偶空间 $T_x^*M$。",
+        "after": "记切空间的对偶空间为 $T_x^*M$，其中的元素称余向量。"
+      },
+      {
+        "chapter": 12,
+        "reason": "删去 Schmidt 正交化的重复公式，仅说明在局部法向标架中的应用。",
+        "algebra_source": "Part 1/chapter6.tex:290-343",
+        "before": "这里正交化的具体步骤是：从线性无关的 $a_j$ 出发，依次令\n$b_j=a_j-\\sum_{i<j}\\langle a_j,e_i\\rangle e_i$、$e_j=b_j/|b_j|$。\n线性无关使分母不为零，故在相应小邻域内这些向量光滑。",
+        "after": "由 Schmidt 正交化可在足够小的邻域内选取这样的标架；由于各次除法的分母不为零，所得向量随参数光滑变化。"
+      }
+    ],
+    "changed_chapters": [
+      4,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12
+    ],
+    "removed_labels": [
+      "def:group-notation",
+      "def:positive-matrix-root",
+      "lem:cayley-hamilton-foundation",
+      "lem:symmetric-spectral-elementary"
+    ],
+    "current_labels": 238,
+    "net_removed_environments": {
+      "definition": 4,
+      "theorem": 0,
+      "proof": 2,
+      "lemma": 2,
+      "proposition": 0,
+      "example": 0,
+      "corollary": 0
+    },
+    "new_environments_vs_original": {
+      "definition": 93,
+      "theorem": 50,
+      "proof": 120,
+      "lemma": 11,
+      "proposition": 51,
+      "example": 10,
+      "corollary": 7
+    },
+    "no_dangling_removed_references": true,
+    "algebra_protected_files": 26,
+    "algebra_sources_unchanged": true,
+    "backup_crc_valid": true,
+    "no_undefined_source_references": true,
+    "current_label_count": 238,
+    "original_main_and_preamble_unchanged": true,
+    "math_environments_balanced": true
+  }
+}

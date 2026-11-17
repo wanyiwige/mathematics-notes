@@ -1,0 +1,530 @@
+\section{群的自同构群}
+
+同构可以把一个群的结构转移到另一个群上。特别地，当同构的定义域和值域都是同一个群时，便得到这个群自身的对称变换。
+
+\begin{definition}
+群$G$到自身的同构映射称为$G$的\textbf{自同构}。$G$的全体自同构组成的集合记为$\Aut(G)$，其中的乘法规定为映射的复合，即先作用右边的映射，再作用左边的映射。
+\end{definition}
+
+\begin{proposition}
+$\Aut(G)$在映射复合下构成一个群，称为$G$的\textbf{自同构群}。
+\end{proposition}
+\begin{proof}[补充证明]
+若$\alpha,\beta\in\Aut(G)$，则它们的复合仍为双射，且对任意$x,y\in G$，
+\[
+(\alpha\beta)(xy)
+=\alpha(\beta(x)\beta(y))
+=\alpha(\beta(x))\alpha(\beta(y)).
+\]
+因此$\alpha\beta$仍是自同构。映射复合满足结合律，恒等映射$\operatorname{id}_G$是单位元。自同构$\alpha$的逆映射$\alpha^{-1}$仍是同构，故属于$\Aut(G)$，并满足
+\[
+\alpha\alpha^{-1}=\alpha^{-1}\alpha=\operatorname{id}_G.
+\]
+所以群的各条公理均成立。
+\end{proof}
+
+先以循环群为例，说明如何由生成元的像确定自同构。
+
+\begin{proposition}
+无限循环群的自同构群同构于$C_2$，特别地$\Aut(\Z)\cong C_2$。若$G=\langle g\rangle$为$n$阶循环群，$n\geq2$，则
+\[
+\Aut(G)\cong(\Z/n\Z)^\times.
+\]
+这里$(\Z/n\Z)^\times$是模$n$的可逆剩余类在乘法下组成的群，其元素恰为与$n$互素的整数所代表的剩余类。
+\end{proposition}
+\begin{proof}
+设$G=\langle g\rangle$，$\alpha\in\Aut(G)$。因为同态满足
+\[
+\alpha(g^k)=\alpha(g)^k\qquad(k\in\Z),
+\]
+$\alpha$完全由$\alpha(g)$决定。又因为$\alpha$满射，
+\[
+G=\alpha(G)=\langle\alpha(g)\rangle,
+\]
+所以$\alpha(g)$必须仍为$G$的生成元。
+
+\textbf{无限循环群：}其生成元只有$g$和$g^{-1}$，因此自同构只能是恒等映射或
+\[
+\alpha(g^k)=g^{-k}.
+\]
+后一个映射保持乘法，且复合自身得到恒等映射，所以确为自同构。它不等于恒等映射，故$\Aut(G)$恰有两个元素，同构于$C_2$。
+
+\textbf{有限循环群：}设$|G|=n$。由循环群的生成元判别，$g^t$生成$G$当且仅当$\gcd(t,n)=1$。对每个这样的$t$，定义
+\[
+\alpha_t(g^k)=g^{tk}.
+\]
+若$g^k=g^l$，则$n\mid k-l$，从而$n\mid t(k-l)$，所以此定义与指数的选择无关。它保持乘法；又由贝祖等式，可取整数$s$使$st\equiv1\pmod n$，于是$\alpha_s$与$\alpha_t$互为逆映射。因此$\alpha_t$是自同构。
+
+上述讨论说明，模$n$的可逆剩余类$\overline t$与$\alpha_t$一一对应。对于两个这样的指数$s,t$，
+\[
+(\alpha_s\alpha_t)(g)=\alpha_s(g^t)=g^{st}=\alpha_{st}(g).
+\]
+因为映射由生成元的像决定，$\alpha_s\alpha_t=\alpha_{st}$。故这一对应保持乘法，给出所述群同构。
+\end{proof}
+
+对于任意群，都可利用群内的元素构造自同构。固定$a\in G$，考虑共轭映射
+\[
+c_a:G\longrightarrow G,\qquad c_a(x)=axa^{-1}.
+\]
+它保持乘法，因为
+\begin{align*}
+c_a(xy)&=axya^{-1}\\
+&=(axa^{-1})(aya^{-1})\\
+&=c_a(x)c_a(y).
+\end{align*}
+同时，$c_a c_{a^{-1}}=c_{a^{-1}}c_a=\operatorname{id}_G$，所以$c_a$还是双射，因而为自同构。
+
+\begin{definition}
+由群内元素$a$引起的自同构$c_a$称为\textbf{内自同构}。全体内自同构组成的集合记为$\operatorname{Inn}(G)$。
+\end{definition}
+
+对于$a,b,x\in G$，有
+\begin{align*}
+(c_a c_b)(x)&=a(bxb^{-1})a^{-1}\\
+&=(ab)x(ab)^{-1}\\
+&=c_{ab}(x).
+\end{align*}
+所以$f:G\to\Aut(G)$，$a\mapsto c_a$为同态，其像正是$\operatorname{Inn}(G)$。因此$\operatorname{Inn}(G)$是$\Aut(G)$的子群，称为$G$的\textbf{内自同构群}。
+
+接下来确定$f$的核。$a\in\ker f$当且仅当$c_a$为恒等映射，即
+\[
+axa^{-1}=x\qquad(\forall x\in G),
+\]
+也就是$a$与$G$中的每个元素都交换。这引出中心的定义。
+
+\begin{definition}
+群$G$中与所有元素交换的元素组成的集合称为$G$的\textbf{中心}，记为
+\[
+Z(G)=\{a\in G:ax=xa\text{，对所有 }x\in G\}.
+\]
+\end{definition}
+
+由上述计算，$Z(G)=\ker f$，故$Z(G)\trianglelefteq G$。再由同态基本定理，得到
+\[
+G/Z(G)\cong\operatorname{Inn}(G),\qquad aZ(G)\longmapsto c_a.
+\]
+
+\begin{theorem}\label{p2:inner-aut}
+对任意群$G$，有
+\[
+G/Z(G)\cong\operatorname{Inn}(G),\qquad
+\operatorname{Inn}(G)\trianglelefteq\Aut(G).
+\]
+\end{theorem}
+\begin{proof}
+第一个同构已由上面的同态$f$及其核得到。下面证明正规性。
+
+任取$c_a\in\operatorname{Inn}(G)$及$\alpha\in\Aut(G)$。对每个$x\in G$，
+\begin{align*}
+(\alpha c_a\alpha^{-1})(x)
+&=\alpha\bigl(a\alpha^{-1}(x)a^{-1}\bigr)\\
+&=\alpha(a)\alpha(\alpha^{-1}(x))\alpha(a^{-1})\\
+&=\alpha(a)x\alpha(a)^{-1}\\
+&=c_{\alpha(a)}(x).
+\end{align*}
+因此
+\[
+\alpha c_a\alpha^{-1}=c_{\alpha(a)}\in\operatorname{Inn}(G).
+\]
+任一内自同构被任一自同构共轭后仍是内自同构，这就证明$\operatorname{Inn}(G)$在$\Aut(G)$中正规。
+\end{proof}
+
+\begin{definition}
+商群
+\[
+\operatorname{Out}(G)=\Aut(G)/\operatorname{Inn}(G)
+\]
+称为$G$的\textbf{外自同构群}。
+\end{definition}
+
+若$Z(G)=\{e\}$，则$a\mapsto c_a$为单同态。于是可将$G$与$\operatorname{Inn}(G)$视为同一个群，从而把$G$嵌入$\Aut(G)$。
+
+\begin{theorem}\label{p2:aut-centerless}
+若$Z(G)=\{e\}$，则$\Aut(G)$中与全部内自同构交换的自同构只有恒等映射。特别地，
+\[
+Z(\Aut(G))=\{\operatorname{id}_G\}.
+\]
+\end{theorem}
+\begin{proof}
+设$\alpha\in\Aut(G)$与全部内自同构交换。任取$a\in G$，由前一定理证明中的公式，
+\[
+\alpha c_a\alpha^{-1}=c_{\alpha(a)}.
+\]
+另一方面，由$\alpha c_a=c_a\alpha$，左侧等于$c_a$，故$c_{\alpha(a)}=c_a$。这意味着对每个$x\in G$，
+\[
+\alpha(a)x\alpha(a)^{-1}=axa^{-1}.
+\]
+移项可得$a^{-1}\alpha(a)$与每个$x$交换，即
+\[
+a^{-1}\alpha(a)\in Z(G)=\{e\}.
+\]
+因此$\alpha(a)=a$。因为$a$任意，$\alpha=\operatorname{id}_G$。
+
+若$\alpha\in Z(\Aut(G))$，它当然与全部内自同构交换，故也只能是恒等映射。这就得到所述中心的结论。
+\end{proof}
+
+上述结论说明，从中心平凡的群$G$出发，$\Aut(G)$仍中心平凡，因此可以继续取自同构群，得到一串嵌入
+\[
+G\hookrightarrow\Aut(G)\hookrightarrow\Aut(\Aut(G))\hookrightarrow\cdots.
+\]
+每一步的嵌入都由内自同构给出，群不一定严格增大。自然要问：这一过程是否会在有限步后停止？这里的停止是指某一步的内自同构已包含该群的全部自同构。
+
+\begin{definition}
+若$G$的中心平凡，且$G$的每个自同构都是内自同构，则称$G$为\textbf{完全群}。
+\end{definition}
+
+维兰特定理说明，从任意有限的中心平凡群出发，反复取自同构群，在有限步后一定到达一个完全群。
+
+\begin{definition}
+若子群$H\leq G$满足
+\[
+\alpha(H)=H\qquad(\forall\alpha\in\Aut(G)),
+\]
+则称$H$为$G$的\textbf{特征子群}。
+\end{definition}
+
+\begin{proposition}
+特征子群一定正规；特征子群的特征子群仍为原群的特征子群。换位子群$G^{(1)}$及导出列的每一项都是$G$的特征子群。
+\end{proposition}
+\begin{proof}[补充证明]
+\textbf{正规性：}内自同构是自同构，因此特征子群$H$满足$c_a(H)=H$对每个$a\in G$成立，即$aHa^{-1}=H$。这正是$H$正规的条件。
+
+\textbf{传递性：}设$K$是$H$的特征子群，$H$是$G$的特征子群。任取$\alpha\in\Aut(G)$，由$\alpha(H)=H$，其限制$\alpha|_H$是$H$的自同构。于是$\alpha(K)=K$，所以$K$是$G$的特征子群。
+
+\textbf{导出子群：}对$\alpha\in\Aut(G)$及$a,b\in G$，
+\[
+\alpha([a,b])=[\alpha(a),\alpha(b)].
+\]
+所以$\alpha$把每个换位子映为换位子，进而把它们生成的子群映入自身，即$\alpha(G^{(1)})\subseteq G^{(1)}$。对$\alpha^{-1}$使用同一结论，再施以$\alpha$，得到反向包含。因此$\alpha(G^{(1)})=G^{(1)}$。
+对各级导出子群重复这一结论，再用特征性的传递性，得$G^{(k)}$是$G$的特征子群。
+\end{proof}
+
+正规子群未必是特征子群。例如$V_4=\{e,a,b,ab\}$中，三个二阶子群都因$V_4$交换而正规；但交换$a,b$的映射是$V_4$的自同构，它把$\langle a\rangle$映成不同的$\langle b\rangle$，故$\langle a\rangle$不是特征子群。
+
+\section{群在集合上的作用}
+
+设$X$为非空集合，$X$到自身的全部双射在映射复合下组成置换群$S(X)$。置换群把群的运算表现为对集合中元素的变换。群在集合上的作用将这种联系推广到任意抽象群：通过给出$G$到$S(X)$的同态，使$G$中的每个元素都在$X$上引起一个置换。凯莱定理中的左平移就是这样的例子。
+
+\begin{definition}
+设$G$为群，$X$为非空集合。若映射
+\[
+f:G\times X\longrightarrow X
+\]
+满足
+\begin{align*}
+f(e,x)&=x,\\
+f(g_1g_2,x)&=f(g_1,f(g_2,x)),
+\end{align*}
+其中$g_1,g_2\in G$、$x\in X$，则称$f$给出$G$在$X$上的一个\textbf{左作用}。
+通常将$f(g,x)$记为$g\cdot x$，于是两条条件写成
+\[
+e\cdot x=x,\qquad(g_1g_2)\cdot x=g_1\cdot(g_2\cdot x).
+\]
+\end{definition}
+
+群的作用也可以用到置换群的同态来定义，两种说法是等价的。
+
+\begin{proposition}
+若$G$作用于$X$，则每个$g\in G$确定一个置换$\rho(g):x\mapsto g\cdot x$，且$\rho:G\to S(X)$为群同态。反过来，每个这样的同态都确定一个$G$在$X$上的作用。
+\end{proposition}
+\begin{proof}
+由作用的两条条件，任取$x\in X$，
+\begin{align*}
+g^{-1}\cdot(g\cdot x)&=(g^{-1}g)\cdot x=x,\\
+g\cdot(g^{-1}\cdot x)&=(gg^{-1})\cdot x=x.
+\end{align*}
+因此$\rho(g)$为双射，其逆映射是$\rho(g^{-1})$，故$\rho(g)\in S(X)$。又有
+\begin{align*}
+\rho(g_1g_2)(x)&=(g_1g_2)\cdot x\\
+&=g_1\cdot(g_2\cdot x)\\
+&=(\rho(g_1)\rho(g_2))(x),
+\end{align*}
+所以$\rho(g_1g_2)=\rho(g_1)\rho(g_2)$。
+
+反过来，若给定同态$\rho:G\to S(X)$，令$g\cdot x=\rho(g)(x)$。由$\rho(e)=\operatorname{id}_X$及$\rho(g_1g_2)=\rho(g_1)\rho(g_2)$，直接得到作用的两条条件。
+\end{proof}
+
+\begin{example}
+\textbf{左平移作用：}取$X=G$，定义$g\cdot x=gx$。由群的单位元性质及结合律，
+\[
+e\cdot x=x,\qquad(g_1g_2)\cdot x=g_1(g_2x)=g_1\cdot(g_2\cdot x).
+\]
+所以这给出$G$在自身上的作用。
+\end{example}
+
+\begin{example}
+\textbf{共轭作用：}取$X=G$，定义$g\cdot x=gxg^{-1}$。对任意$g_1,g_2,x\in G$，
+\begin{align*}
+(g_1g_2)\cdot x
+&=g_1g_2xg_2^{-1}g_1^{-1}\\
+&=g_1\cdot(g_2\cdot x),
+\end{align*}
+且$e\cdot x=x$，所以这也是作用。
+形如$gxg^{-1}$的元素称为与$x$\textbf{共轭}；子群$gHg^{-1}$称为与$H$共轭的子群。元素之间以及子群之间的共轭都是等价关系：单位元给出自反性，取$g^{-1}$给出对称性，连续两次共轭等于用两个共轭元素的乘积作共轭，给出传递性。
+\end{example}
+
+\begin{example}
+\textbf{左陪集上的作用：}设$H\leq G$，记
+\[
+\mathcal L_G(H)=\{aH:a\in G\}
+\]
+为$H$的全部左陪集组成的集合，称为相应的\textbf{齐性空间}。定义
+\[
+g\cdot(aH)=(ga)H.
+\]
+若$aH=bH$，则$b^{-1}a\in H$，而$(gb)^{-1}(ga)=b^{-1}a$，故$(ga)H=(gb)H$。因此此定义不依赖陪集代表的选择。再由
+\[
+e\cdot(aH)=aH,\qquad
+(g_1g_2)\cdot(aH)=g_1\cdot(g_2\cdot(aH)),
+\]
+可知这是一个作用。这里不要求$H$正规，$\mathcal L_G(H)$只是陪集集合，不一定是商群。
+\end{example}
+
+不同的群元素可能在$X$上引起相同的置换，因此作用所对应的同态$\rho:G\to S(X)$不一定单射。例如在共轭作用中，中心中的每个元素都在$G$上引起恒等映射。
+
+\begin{definition}
+若作用所对应的同态$\rho:G\to S(X)$是单射，则称此作用\textbf{忠实}。等价地，只有群的单位元才固定$X$中的每个元素。
+\end{definition}
+
+左平移作用是忠实的，因为若$gx=x$对所有$x\in G$成立，取$x=e$即得$g=e$。共轭作用的核为
+\[
+\{g\in G:gxg^{-1}=x\text{，对所有 }x\in G\}=Z(G),
+\]
+所以它忠实当且仅当中心平凡。对于左陪集作用，核由下列等价关系确定：
+\begin{align*}
+g\in\ker\rho
+&\iff gaH=aH\quad(\forall a\in G)\\
+&\iff a^{-1}ga\in H\quad(\forall a\in G)\\
+&\iff g\in\bigcap_{a\in G}aHa^{-1}.
+\end{align*}
+这个交记为$\operatorname{Core}_G(H)$。因此陪集作用也不一定忠实。
+
+\begin{definition}
+设$G$分别作用于非空集合$X,Y$。若存在双射$\varphi:X\to Y$，使
+\[
+\varphi(g\cdot x)=g\cdot\varphi(x)
+\qquad(g\in G,\ x\in X),
+\]
+则称这两个作用\textbf{等价}。这条等式表示，先在$X$中作用再作对应，与先作对应再在$Y$中作用，得到同一结果。
+\end{definition}
+
+\begin{example}
+\textbf{左、右正则作用的等价性：}在$G$自身上，除左平移外，还可定义$g\cdot x=xg^{-1}$。它是左作用，因为
+\[
+(g_1g_2)\cdot x=xg_2^{-1}g_1^{-1}
+=g_1\cdot(g_2\cdot x).
+\]
+取逆映射$\varphi(x)=x^{-1}$为双射，并满足
+\[
+\varphi(gx)=(gx)^{-1}=x^{-1}g^{-1}.
+\]
+右侧正是$g$在右正则作用下作用于$\varphi(x)$的结果，所以左右正则作用等价。
+\end{example}
+
+为了描述一个作用如何分解整个集合，在$X$中定义关系：$x\sim y$当且仅当存在$g\in G$使$y=g\cdot x$。
+\begin{proof}[补充验证]
+由$e\cdot x=x$，有$x\sim x$。若$y=g\cdot x$，则$x=g^{-1}\cdot y$，所以$x\sim y$蕴含$y\sim x$。若又有$z=h\cdot y$，则$z=(hg)\cdot x$，所以$x\sim y$、$y\sim z$蕴含$x\sim z$。因此这确实是等价关系。
+\end{proof}
+
+\begin{definition}
+上述等价关系中包含$x$的等价类称为$x$的\textbf{轨道}，记为
+\[
+O_x=G\cdot x=\{g\cdot x:g\in G\}.
+\]
+若$g\cdot x=x$对所有$g\in G$成立，则称$x$为此作用的\textbf{不动点}，全体不动点组成的集合记为$X^G$。若$X$只有一个轨道，即任意$x,y\in X$之间都有$y=g\cdot x$，则称作用\textbf{传递}。
+\end{definition}
+
+等价类把集合分成互不相交的部分，因此不同轨道互不相交，所有轨道的并为$X$。取每个轨道的一个代表$x_i$，可以写成
+\[
+X=\coprod_i O_{x_i}.
+\]
+其中$\coprod$表示不交并。轨道$O_x$只有一个元素当且仅当$x\in X^G$。对于共轭作用，这又等价于$x\in Z(G)$。左平移作用和左陪集作用都是传递的：前者可用$yx^{-1}$把$x$移到$y$，后者可用$ba^{-1}$把$aH$移到$bH$。
+
+\begin{example}
+设$V$为域$F$上的$n$维向量空间，$n\geq1$。选定一组基后，可逆线性变换群$\GL_n(F)$通过矩阵乘法作用于$V$。零向量被所有变换固定。
+
+任取两个非零向量$u,v$，分别将它们扩充为基，再把第一组基依次映到第二组基，就得到一个可逆线性变换$A$，满足$A(u)=v$。因此全部非零向量组成一个轨道，而零向量单独组成一个轨道，即
+\[
+V=\{0\}\coprod(V\setminus\{0\}).
+\]
+\end{example}
+
+\begin{definition}
+设$G$作用于$X$。对$x\in X$，称
+\[
+G_x=\{g\in G:g\cdot x=x\}
+\]
+为$x$的\textbf{稳定子群}。
+\end{definition}
+\begin{proof}[补充验证]
+单位元属于$G_x$。若$g\in G_x$，对$g\cdot x=x$施以$g^{-1}$，得$g^{-1}\cdot x=x$。若再有$h\in G_x$，则
+\[
+(gh^{-1})\cdot x=g\cdot(h^{-1}\cdot x)=g\cdot x=x.
+\]
+所以$G_x$确为$G$的子群。
+\end{proof}
+
+\begin{theorem}\label{p2:orbit-stabilizer}
+设$G$作用于$X$，$x\in X$。则$G$在轨道$O_x$上的作用与$G$在左陪集集合$\mathcal L_G(G_x)$上的作用等价，等价映射为
+\[
+\theta:\mathcal L_G(G_x)\longrightarrow O_x,
+\qquad aG_x\longmapsto a\cdot x.
+\]
+\end{theorem}
+\begin{proof}
+首先说明$G$在$O_x$上的作用确实有意义。若$y=a\cdot x\in O_x$，则任取$g\in G$，有
+\[
+g\cdot y=(ga)\cdot x\in O_x,
+\]
+所以原作用可以限制到$O_x$上。
+
+再考察$\theta$。若$g\in aG_x$，可写$g=ah$，其中$h\in G_x$，于是
+\[
+g\cdot x=a\cdot(h\cdot x)=a\cdot x.
+\]
+因此同一左陪集的元素把$x$映到同一点，$\theta$与代表的选择无关。
+
+反过来，若$a\cdot x=b\cdot x$，则施以$b^{-1}$得到
+\[
+(b^{-1}a)\cdot x=x,
+\]
+即$b^{-1}a\in G_x$，所以$aG_x=bG_x$。这说明$\theta$是单射。轨道中的每个元素本来就形如$a\cdot x$，故$\theta$也是满射。
+
+最后，对任意$g\in G$及$aG_x\in\mathcal L_G(G_x)$，
+\begin{align*}
+\theta\bigl(g\cdot(aG_x)\bigr)
+&=\theta((ga)G_x)\\
+&=(ga)\cdot x\\
+&=g\cdot(a\cdot x)\\
+&=g\cdot\theta(aG_x).
+\end{align*}
+所以该双射满足作用等价的条件。
+\end{proof}
+
+\begin{corollary}
+若$G$在$X$上的作用传递，则对任意$x\in X$，该作用与$G$在$\mathcal L_G(G_x)$上的作用等价。
+若$G$有限，则每个轨道的元素个数均整除$|G|$，且
+\[
+|O_x|=[G:G_x]=\frac{|G|}{|G_x|}.
+\]
+\end{corollary}
+\begin{proof}[补充证明]
+传递时$O_x=X$，第一条便是上一定理。有限时，由上一定理的双射，轨道元素个数等于左陪集个数，再用拉格朗日定理即得公式及整除关系。
+\end{proof}
+
+\begin{definition}
+设$p$为素数。若有限群$G$的阶为$p$的正整数次幂，即$|G|=p^k$、$k\geq1$，则称$G$为有限\textbf{$p$群}。
+\end{definition}
+
+\begin{corollary}
+有限$p$群$G$作用于有限集合$X$时，若$p\nmid|X|$，则$X$中必有不动点。
+\end{corollary}
+\begin{proof}
+取各轨道代表$x_1,\ldots,x_m$。由轨道大小整除$|G|$，每个$|O_{x_i}|$都是$p$的非负整数次幂。若没有不动点，则没有大小为1的轨道，所以每个轨道大小都被$p$整除。于是
+\[
+|X|=\sum_{i=1}^m|O_{x_i}|
+\]
+也被$p$整除，与假设矛盾。
+\end{proof}
+
+上述证明还给出更精确的计数关系。
+
+\begin{theorem}\label{p2:p-fixed}
+有限$p$群$G$作用于有限集合$X$时，若$t=|X^G|$为不动点个数，则
+\[
+|X|\equiv t\pmod p.
+\]
+\end{theorem}
+\begin{proof}
+大小为1的轨道与不动点一一对应，共贡献$t$个元素。其余轨道的大小均为$p$的正整数次幂。因此
+\[
+|X|=t+\sum_{|O_{x_i}|>1}|O_{x_i}|\equiv t\pmod p.
+\]
+\end{proof}
+
+\begin{corollary}
+有限$p$群的中心非平凡。
+\end{corollary}
+\begin{proof}
+让$G$通过共轭作用于自身。此时不动点恰为中心中的元素，所以上一定理给出
+\[
+|Z(G)|\equiv|G|\equiv0\pmod p.
+\]
+又因为$e\in Z(G)$，$|Z(G)|$为正数。因此它至少为$p$，特别地$Z(G)\ne\{e\}$。
+\end{proof}
+
+对于共轭作用，$x$的轨道就是与$x$共轭的全部元素组成的集合，称为$x$的\textbf{共轭类}，记为
+\[
+C(x)=\{gxg^{-1}:g\in G\}.
+\]
+对应的稳定子群为
+\[
+G_x=\{g\in G:gxg^{-1}=x\}
+=\{g\in G:gx=xg\}.
+\]
+
+\begin{definition}
+上述由全部与$x$交换的元素组成的子群称为$x$在$G$中的\textbf{中心化子}，记为$C_G(x)$。因此对于共轭作用，有$G_x=C_G(x)$。它等于整个$G$当且仅当$x\in Z(G)$。
+\end{definition}
+
+\begin{theorem}\label{p2:class-equation}
+\textbf{类方程：}设$G$有限，取非中心共轭类的各个代表$x_1,\ldots,x_s$，则
+\[
+|G|=|Z(G)|+\sum_{i=1}^s[G:C_G(x_i)].
+\]
+\end{theorem}
+\begin{proof}
+共轭类将$G$分为不交并。由轨道与稳定子群的计数公式，
+\[
+|C(x_i)|=[G:C_G(x_i)].
+\]
+中心中的每个元素单独构成一个共轭类，全部这样的类共贡献$|Z(G)|$个元素。其余元素恰属于所列的非中心共轭类，逐类相加便得到类方程。
+\end{proof}
+
+轨道上选取不同的点，会得到不同的稳定子群，但这些稳定子群之间有明确的共轭关系。
+
+\begin{theorem}
+设$G$作用于$X$，$x,y\in X$，且$y=g_0\cdot x$，则
+\[
+G_y=g_0G_xg_0^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+若$g\in G_x$，则$g\cdot x=x$，所以
+\begin{align*}
+(g_0gg_0^{-1})\cdot y
+&=g_0\cdot\bigl(g\cdot(g_0^{-1}\cdot(g_0\cdot x))\bigr)\\
+&=g_0\cdot(g\cdot x)\\
+&=g_0\cdot x=y.
+\end{align*}
+因此$g_0G_xg_0^{-1}\subseteq G_y$。
+
+反过来，若$h\in G_y$，则$h\cdot y=y$。由$x=g_0^{-1}\cdot y$，同样计算得
+\[
+(g_0^{-1}hg_0)\cdot x
+=g_0^{-1}\cdot(h\cdot y)=g_0^{-1}\cdot y=x.
+\]
+故$g_0^{-1}hg_0\in G_x$，即$h\in g_0G_xg_0^{-1}$，得到反向包含。
+\end{proof}
+
+因而，同一轨道上不同点的稳定子群彼此共轭；相应的左陪集作用也都与同一个轨道上的作用等价。
+
+\begin{definition}
+对$H\leq G$，定义$H$在$G$中的\textbf{正规化子}为
+\[
+N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+\end{definition}
+\begin{proposition}
+$N_G(H)$是$G$的子群，且$H\trianglelefteq N_G(H)$。
+\end{proposition}
+\begin{proof}[补充证明]
+单位元属于$N_G(H)$。若$a,b\in N_G(H)$，则
+\[
+(ab)H(ab)^{-1}=a(bHb^{-1})a^{-1}=aHa^{-1}=H.
+\]
+由$aHa^{-1}=H$两侧分别施以$a^{-1}$和$a$，得$a^{-1}Ha=H$，所以逆元也属于$N_G(H)$。这说明它是子群。
+
+任取$h\in H$，由$H$的子群性质有$hHh^{-1}=H$，故$H\leq N_G(H)$。正规化子的定义又说明其每个元素共轭$H$后仍得到$H$，所以$H\trianglelefteq N_G(H)$。
+\end{proof}
+

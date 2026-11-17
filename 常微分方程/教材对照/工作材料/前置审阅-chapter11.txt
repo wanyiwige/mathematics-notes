@@ -1,0 +1,256 @@
+\setchapterimage{figure/Chapter11封面图.jpg}
+\setchapterintro{本章从坐标图定义流形，再构造切空间、切丛和向量场。局部 ODE 理论通过坐标图沿用已有结论；紧性则使局部解拼接成全局相流。}
+\chapter{流形上的微分方程}\label{chap:manifolds}
+
+第~\ref{chap:arnold-geometry}~章中的坐标变换发生在 Euclidean 开集之间；环面运动又表明，一个相空间未必能由单张 Euclidean 坐标图覆盖。本章先建立换图、切空间和切丛，再把已有局部方程拼接为流形上的相流。
+
+\section{坐标图与微分结构}
+\begin{definition}
+集合 $M$ 的一张 $n$ 维坐标图是双射 $\phi:W\to U$，其中 $W\subset M$、
+$U\subset\R^n$ 为开集。
+两图相容，是指重叠部分在各图中的像为开集，且过渡映射
+$\phi_j\phi_i^{-1}$ 为光滑微分同胚。
+相容且覆盖 $M$ 的坐标图族称图册。
+两个图册若合并后仍相容，称为等价；等价类称光滑结构。
+带光滑结构的集合，在下述分离与可数条件下称光滑流形。
+\end{definition}
+\begin{definition}
+流形子集 $G$ 称开集，若每图中的 $\phi(G\cap W)$ 均开。
+要求任意两不同点有不相交开邻域，称 Hausdorff 条件。
+要求有可数张坐标图组成的图册，称第二可数条件。
+本章的流形均满足这两个条件，且无边界。
+\end{definition}
+由过渡映射相容性可知开集定义与图册选择无关。
+若仅要求过渡映射为同胚，得到拓扑流形；要求 $C^r$ 或解析则得到相应类别。
+定向图册要求过渡 Jacobian 为正。
+
+\begin{example}[球面的两图]
+单位球面 $S^n\subset\R^{n+1}$ 的南北极立体投影给出两图。
+其过渡映射在非零点为 $x\mapsto x/|x|^2$，自身是逆，故光滑。
+这两图覆盖整个球面，定义其光滑结构。
+\end{example}
+\begin{example}[射影空间]
+$\mathbb{RP}^n$ 是 $\R^{n+1}$ 中过原点的直线的集合。
+齐次坐标 $[x_0:\cdots:x_n]$ 把非零数倍坐标视为同一点。
+在 $x_i\ne0$ 的区域，取其余 $n$ 个比值 $x_j/x_i$ 为坐标。
+过渡关系均为分母非零的有理函数，所以给出 $n+1$ 张相容图。
+\end{example}
+环面用每个角坐标的两个开区间作图，其乘积给出有限图册。
+这一构造不要求先把环面画在三维空间中。
+
+\begin{definition}
+子集 $K\subset M$ 紧，是指它的每个开覆盖均有有限子覆盖。
+流形连通，是指它不能分成两个不相交非空开集。
+连通分支的维数由任一坐标图的 Euclidean 维数定义。
+\end{definition}
+\begin{proposition}
+若 $K$ 是有限个子集 $K_i$ 的并，各 $K_i$ 包含在一张图内且图像紧，则 $K$ 紧。
+连通流形上的所有坐标图维数相同。
+\end{proposition}
+\begin{proof}
+对任意开覆盖，把它搬到每张图中，利用 $\phi_i(K_i)$ 的紧性选有限子覆盖，
+再对有限个 $i$ 合并，得到 $K$ 的有限子覆盖。
+过渡微分是两个坐标空间间的线性同构，故相交图具有相同维数。
+固定一点，从它可由有限条相交坐标邻域链到达的点集是开集，其补集也开。
+连通性使它为整个流形，所以所有图可沿链比较维数。
+\end{proof}
+球面以有限个有界小坐标片的紧闭子片覆盖，因而紧；射影空间亦可由单位球面
+经连续映射 $x\mapsto[x]$ 得到，故紧。
+局部图为局部道路连通空间，所以上述连通性也等价于有限图链连通和道路连通。
+
+
+图~\ref{fig:ode-tikz-stereographic} 画出球面的一张坐标图；北极自身不在这张图的定义域内。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{立体投影的二维截面：从北极 $N$ 出发的直线将球面点 $P$ 映到平面点 $q$。}
+\label{fig:ode-tikz-stereographic}
+\end{minipage}
+\end{center}
+
+\section{光滑映射、子流形与例子}
+\begin{definition}
+$f:M\to N$ 光滑，是指其所有局部坐标表示 $\psi f\phi^{-1}$ 光滑。
+光滑可逆且逆也光滑时称微分同胚。
+光滑曲线是区间到流形的光滑映射，可有自交或零速度。
+子集 $V\subset M$ 称 $k$ 维子流形，若在其每点附近有图使它成为
+$\R^k\times\{0\}$ 与图域的交。
+\end{definition}
+\begin{proposition}[正则方程定义子流形]
+若 $F:U\subset\R^N\to\R^{N-k}$ 光滑，且在 $F^{-1}(0)$ 上微分满秩，
+则 $F^{-1}(0)$ 是 $k$ 维子流形。
+\end{proposition}
+\begin{proof}
+在一点选取一个非零的 $(N-k)$ 阶子式，把其对应变量与其余 $k$ 个变量分开。
+隐函数定理把前者写成后者的光滑函数。
+以“前者减去该函数”和后者作坐标，零集恰成为坐标平面。
+\end{proof}
+\begin{example}[正交群]
+把矩阵视为 $\R^{n^2}$ 的点，令 $F(Q)=Q^TQ-I$，其值在对称矩阵空间。
+在正交矩阵处，$DF_Q(H)=Q^TH+H^TQ$。
+任给对称矩阵 $S$，取 $H=QS/2$ 即得到 $S$，故满秩。
+所以 $O(n)$ 是维数 $n(n-1)/2$ 的流形。
+行列式的符号区分两个连通分支：$SO(n)$ 与一个反射乘 $SO(n)$。
+用二维坐标平面旋转逐次消去一列的非对角元，可将任意 $SO(n)$ 元素连续连到恒等阵；
+最后剩余对角的成对负号可用角度从零到 $\pi$ 的平面旋转消去。
+因此这两个集合确实分别连通。
+\end{example}
+同样，$GL(n,\R)$ 也有两个分支。对可逆矩阵作极分解
+$A=QP$，$P=(A^TA)^{1/2}>0$，路径 $(1-t)P+tI$ 始终正定，
+把它变形到 $Q$，再用上面对正交群的分析即可。
+
+\paragraph{拓扑预备结论。}
+连通一维无边界流形微分同胚于圆或实线；闭连通可定向曲面微分同胚于带若干把手的球面。
+Whitney 嵌入定理保证每个光滑 $n$ 维流形能嵌入充分高维的 Euclidean 空间。
+这些分类与嵌入结果在本章中作为拓扑预备定理使用。
+流形同胚不必微分同胚；同一拓扑球面上可能存在不同的光滑结构。
+
+\section{切空间与切丛}
+\begin{definition}
+过 $x\in M$ 的两条光滑曲线，若在一张图中的初速度相同，称在 $x$ 相切。
+等价类称 $x$ 处切向量，所有等价类组成 $T_xM$。
+其线性运算由坐标中的速度向量定义。
+\end{definition}
+\begin{proposition}
+相切与线性结构不依赖图的选择；$\dim T_xM=\dim M$。
+光滑映射 $f$ 诱导线性映射
+\[
+ T_xf:T_xM\to T_{f(x)}N,
+\]
+且 $T(gf)=Tg\circ Tf$。
+\end{proposition}
+\begin{proof}
+另一图中的速度是原速度乘过渡映射的可逆 Jacobian。
+所以速度相等、加法和数乘在换图后保持。
+每个坐标速度均可由一条小直线的逆图像实现，故切空间同构于 $\R^n$。
+令 
+\[
+ T_xf[\gamma]=[f\gamma],
+\]
+链式法则同时证明良定义、线性和复合公式。
+\end{proof}
+\begin{definition}
+不交并 
+\[
+ TM=\coprod_{x\in M}T_xM
+\]
+ 称切丛的总空间。
+投影 $p:TM\to M$ 把切向量送到附着点，$M$ 称底空间，$p^{-1}(x)$ 称纤维。
+零截面 $i:M\to TM$ 将 $x$ 送到 $T_xM$ 的零向量。
+\end{definition}
+\begin{theorem}
+$TM$ 有自然的 $2n$ 维光滑流形结构；其图坐标为 $(x,v)$，换图为
+\[
+ (x,v)\longmapsto(g(x),Dg(x)v).
+\]
+$p,i$ 及 $Tf:TM\to TN$ 都光滑，且 $pi=\operatorname{id}_M$。
+\end{theorem}
+\begin{proof}
+换图公式来自速度的链式法则，光滑且逆由 $g^{-1}$ 给出。
+复合过渡关系也由链式法则满足，所以给出图册。
+在图中，投影为 $(x,v)\mapsto x$，零截面为 $x\mapsto(x,0)$，
+切映射为 $(x,v)\mapsto(f(x),Df(x)v)$，因此均光滑，复合式也直接成立。
+\end{proof}
+对于有限 $C^r$ 光滑度，切丛换图一般只有 $C^{r-1}$；本章默认光滑结构为 $C^\infty$，
+避免把这一次导数损失隐藏在记号中。
+
+\begin{definition}
+若存在逐纤维线性的丛同构 $TM\simeq M\times\R^n$，称 $M$ 可平行化。
+等价地，可在全流形选出 $n$ 个处处线性无关的光滑向量场。
+\end{definition}
+\begin{proof}[等价性的证明]
+丛同构把 $\R^n$ 的标准基拉回，得到全局标架。
+反之，给定标架，把 $(x,c_1,\ldots,c_n)$ 送到基向量的线性组合。
+在局部图中这是光滑可逆矩阵作用，逆矩阵光滑，所以得到丛同构。
+\end{proof}
+Euclidean 开集与环面可平行化，后者取各角方向的速度场。
+Möbius 带不可平行化：沿中心圆走一周，横向基方向反转，过渡 Jacobian 的行列式为负，
+所以它不可定向；而全局标架会给出连续定向，矛盾。
+球面 $S^2$ 不存在无零切向量场，将在指标和定理后证明。
+正维球面中只有 $S^1,S^3,S^7$ 可平行化；这里将这一全维数分类作为拓扑预备结论。
+
+\section{三维流形的几个共同模型}
+\begin{definition}
+四元数代数 $\mathbb H$ 的实基为 $1,i,j,k$，乘法满足
+$i^2=j^2=k^2=ijk=-1$；共轭把后三个系数变号。
+范数由 $|q|^2=q\overline q$ 给出，纯虚四元数指实部为零的元素。
+结合律及 $\overline{pq}=\overline q\,\overline p$ 给出
+$|pq|^2=pq\overline q\,\overline p=|p|^2|q|^2$。
+\end{definition}
+\begin{proposition}
+下列流形微分同胚：$SO(3)$、单位切向量丛 $T^1S^2$、$\mathbb{RP}^3$、
+空间中固定一点的刚体的姿态空间，以及
+\[
+ \{z\in\C^3:z_1^2+z_2^2+z_3^2=0,\quad |z|^2=2\}.
+\]
+\end{proposition}
+\begin{proof}
+给 $(x,v)\in T^1S^2$，$|x|=|v|=1,x\perp v$，矩阵 $(x,v,x\times v)$ 属于 $SO(3)$。
+取前两列是逆映射，故是微分同胚。刚体姿态由一组正向正交标架确定，
+也与 $SO(3)$ 对应。
+写 $z=x+iy$，复方程给出 $|x|^2=|y|^2,x\cdot y=0$，
+范数条件给出二者均为 1，因而与同一个单位切向量模型对应。
+
+最后用单位四元数 $q\in S^3$ 作用于纯虚四元数 $v\in\R^3$：
+$v\mapsto qvq^{-1}$。乘法保持范数，所以得到旋转；
+绕单位轴 $u$ 旋转角 $\theta$ 由 $q=\cos(\theta/2)+u\sin(\theta/2)$ 实现。
+核恰为 $\{1,-1\}$，故诱导 $S^3/\{\pm1\}=\mathbb{RP}^3$ 到 $SO(3)$ 的双射。
+其在单位元的微分为 $v\mapsto2u\times v$，从纯虚四元数到反对称矩阵空间是同构，
+所以是局部微分同胚；结合双射得到全局微分同胚。
+\end{proof}
+
+\section{向量场与紧支撑相流}
+\begin{definition}
+流形上的向量场是光滑截面 $v:M\to TM$，满足 $pv=\operatorname{id}_M$。
+积分曲线满足 $\gamma'(t)=v(\gamma(t))$。
+若 $v$ 在某紧集外为零，称为紧支撑向量场；若其所有积分曲线均双向全局存在，称为完备。
+\end{definition}
+\begin{theorem}[紧支撑完备性]\label{thm:arnold-compact-flow}
+紧支撑光滑向量场完备，并生成全局单参数微分同胚群。
+特别地，紧流形上的每个光滑向量场都完备。
+\end{theorem}
+\begin{proof}
+每点在一张坐标图内应用前文的存在唯一性与光滑依赖定理，
+得到一个邻域及所有初值共用的正存在时间。
+用有限个这样的邻域覆盖支撑紧集 $K$，取这些时间的一个正下界 $\delta$。
+在 $K$ 外向量场为零，积分曲线恒定。
+所以每个初值都至少有共同时间 $(-\delta,\delta)$ 的解。
+
+在重叠坐标图里，局部解由唯一性一致，故拼接成流形上的解。
+Hausdorff 条件保证“相同到某时刻”的闭性，排除在分叉的非 Hausdorff 空间中
+局部唯一却整体分离的情况。
+把小时间解反复复合，任意有限时间都可分成有限个长度小于 $\delta$ 的步长，
+所以得到所有 $t\in\R$ 的解。
+唯一性给出群性质，$\varphi^{-t}$ 为逆；每个有限复合由局部光滑映射组成，故光滑。
+\end{proof}
+\begin{corollary}
+若 $M$ 紧，且 $v(t,x)$ 在 $\R\times M$ 光滑，则非自治方程的每个解也双向全局存在。
+\end{corollary}
+\begin{proof}
+若最大存在区间有有限端点 $T$，在紧集 $[T-1,T+1]\times M$ 上用有限图覆盖，
+得到共同正存在时间。取接近 $T$ 的一个已有时刻，其局部解可以跨越 $T$，矛盾。
+正反向端点的证明相同。
+\end{proof}
+
+\section{线性方程的射影紧化}
+\begin{proposition}
+线性向量场 $x'=A(t)x$ 从 $\R^n$ 延伸为 $\mathbb{RP}^n$ 上的光滑含时向量场，
+且无穷远超平面不变。
+\end{proposition}
+\begin{proof}
+在无穷远附近取坐标 $y_1=1/x_1,y_k=x_k/x_1$（$k>1$）。
+记 $B(y)=a_{11}+\sum_{j>1}a_{1j}y_j$，逐项求导得
+\[
+ y_1'=-y_1B(y),\qquad
+ y_k'=a_{k1}+\sum_{j>1}a_{kj}y_j-y_kB(y).
+\]
+右端是 $y$ 的多项式，可以光滑延伸到 $y_1=0$。
+那里第一分量为零，所以无穷远超平面不变。
+其余图同理，重叠区域因与原场一致而相容。
+\end{proof}
+射影空间紧，故其含时解全局存在。
+从仿射部分出发的轨道不可能在有限时间到达无穷远超平面：若到达，
+由反向唯一性，它原本就应在这个不变超平面内。
+因此原线性方程解全局存在。这给出前文线性延拓结论的另一种几何解释。

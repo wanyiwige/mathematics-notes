@@ -1,0 +1,4260 @@
+% !TEX program = xelatex
+% 本文件含全部102题；正文不通过 input 加载其他习题或工具文件。
+\documentclass[UTF8,a4paper,11pt,fontset=windows]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,enumitem,booktabs,longtable,array}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{xurl,fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{抽象代数前两章习题详解}\fancyhead[R]{题目、思路与证明}\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{0.35em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em}
+\renewcommand{\proofname}{证明}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}\newcommand{\F}{\mathbb F}
+\DeclareMathOperator{\GL}{GL}\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Aut}{Aut}\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\lcm}{lcm}\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sgn}{sgn}\DeclareMathOperator{\Ker}{Ker}
+\newcommand{\noteref}[1]{\hyperref[note:#1]{\csname notename@#1\endcsname}}
+\newcommand{\proofref}[2]{\hyperref[note:#1]{#2}}
+\newcommand{\exref}[2]{\hyperref[ex:#1:#2]{第#1章习题#2}}
+\newcommand{\registerref}[2]{\expandafter\gdef\csname notename@#1\endcsname{#2}}
+
+\registerref{group}{原笔记第1章第2节，定义 1.2.1（群的定义）}
+
+\registerref{glaws}{原笔记第1章第2节，命题 1.2.3（单位元、逆元与反序取逆）}
+
+\registerref{cancel}{原笔记第1章第2节，命题 1.2.4（方程、消去律）}
+
+\registerref{powers}{原笔记第1章第2节，命题 1.2.5（整数指数法则）}
+
+\registerref{abelianpowers}{原笔记第1章第2节，命题 1.2.7（交换元素的乘积幂）}
+
+\registerref{dihedral}{原笔记第1章第3节，定义 1.3.2（二面体群及其阶数与乘法关系）}
+
+\registerref{cycles}{原笔记第1章第3节，定义 1.3.7（轮换与对换）}
+
+\registerref{cycledecomp}{原笔记第1章第3节，定理 1.3.9（不相交轮换分解）}
+
+\registerref{subgroup}{原笔记第1章第4节，定理 1.4.3（子群判别法）}
+
+\registerref{cosets}{原笔记第1章第4节，命题 1.4.8（陪集相等的判据与陪集划分）}
+
+\registerref{lagrange}{原笔记第1章第4节，定理 1.4.10（拉格朗日定理）}
+
+\registerref{order}{原笔记第1章第4节，命题 1.4.12（元素的阶与幂的判据）}
+
+\registerref{iso}{原笔记第1章第5节，定义 1.5.1（群同构及同构不变量）}
+
+\registerref{cayley}{原笔记第1章第5节，定理 1.5.3（凯莱定理及左正则表示）}
+
+\registerref{sign}{原笔记第1章第4节，命题 1.4.6（符号同态与交错群的阶）}
+
+\registerref{hom}{原笔记第1章第6节，定义 1.6.1（群同态、像与核）}
+
+\registerref{normal}{原笔记第1章第6节，命题 1.6.5（正规子群的等价判据）}
+
+\registerref{setproduct}{原笔记第1章第7节，命题 1.7.2（集合乘积及取逆公式）}
+
+\registerref{quotient}{原笔记第1章第7节，定义 1.7.4（商群及自然同态）}
+
+\registerref{firstiso}{原笔记第1章第7节，定理 1.7.7（群同态基本定理）}
+
+\registerref{ring}{原笔记第1章第8节，定义 1.8.1（环的定义）}
+
+\registerref{ringlaws}{原笔记第1章第8节，命题 1.8.2（环中零元、负元和分配律的运算）}
+
+\registerref{subring}{原笔记第1章第8节，定理 1.8.5（子环判别法）}
+
+\registerref{ringiso}{原笔记第1章第8节，定义 1.8.7（环同构及其性质）}
+
+\registerref{unit}{原笔记第1章第9节，定义 1.9.1（幺环、单位及双侧逆元）}
+
+\registerref{zerodiv}{原笔记第1章第9节，定义 1.9.3（左右零因子、无零因子的消去律）}
+
+\registerref{field}{原笔记第1章第9节，定义 1.9.6（域与体）}
+
+\registerref{quaternion}{原笔记第1章第9节，命题 1.9.9（四元数体的矩阵模型）}
+
+\registerref{ideal}{原笔记第1章第10节，定义 1.10.3（理想的定义）}
+
+\registerref{idealunit}{原笔记第1章第10节，命题 1.10.5（含有单位的理想）}
+
+\registerref{correspondence}{原笔记第2章第1节，定理 2.1.1（子群对应定理）}
+
+\registerref{secondiso}{原笔记第2章第1节，定理 2.1.3（群的第二同构定理）}
+
+\registerref{generated}{原笔记第2章第1节（生成子群与有限生成群）}
+
+\registerref{derived}{原笔记第2章第1节，定义 2.1.6（换位子与换位子群）}
+
+\registerref{abelianization}{原笔记第2章第1节，定理 2.1.7（交换同态像与换位子群）}
+
+\registerref{cyclic}{原笔记第2章第2节，定理 2.2.2（循环群及其子群分类）}
+
+\registerref{powerorder}{原笔记第2章第2节，命题 2.2.3（幂的阶的公式）}
+
+\registerref{coprime}{原笔记第2章第2节，引理 2.2.4（互素阶交换元素乘积的阶）}
+
+\registerref{simple}{原笔记第2章第3节，定义 2.3.1（单群的定义）}
+
+\registerref{threecycles}{原笔记第2章第3节，引理 2.3.3（对换与3-轮换的生成结论）}
+
+\registerref{conjugation}{原笔记第2章第3节，命题 2.3.4（轮换的共轭公式）}
+
+\registerref{an}{原笔记第2章第3节，定理 2.3.6（交错群的单性）}
+
+\registerref{derivedseries}{原笔记第2章第4节，定义 2.4.1（导出列）}
+
+\registerref{solvabledef}{原笔记第2章第4节，定义 2.4.2（可解群的定义）}
+
+\registerref{solvable}{原笔记第2章第4节，命题 2.4.8（可解群的子群、像与扩张）}
+
+\registerref{aut}{原笔记第2章第5节，定义 2.5.1（自同构与自同构群）}
+
+\registerref{cyclicaut}{原笔记第2章第5节，命题 2.5.3（循环群的自同构）}
+
+\registerref{inner}{原笔记第2章第5节，定理 2.5.6（内自同构群与中心商群）}
+
+\registerref{center}{原笔记第2章第5节，定义 2.5.5（群的中心）}
+
+\registerref{autcenterless}{原笔记第2章第5节，定理 2.5.8（无中心群的自同构定理）}
+
+\registerref{complete}{原笔记第2章第5节，定义 2.5.9（完全群）}
+
+\registerref{characteristic}{原笔记第2章第5节，定义 2.5.10（特征子群及其性质）}
+
+\registerref{action}{原笔记第2章第6节，定义 2.6.1（群作用及对应的置换表示）}
+
+\registerref{orbit}{原笔记第2章第6节，定理 2.6.11（轨道稳定子定理）}
+
+\registerref{pcenter}{原笔记第2章第6节，推论 2.6.16（有限$p$群的中心非平凡）}
+
+\registerref{centerizer}{原笔记第2章第6节，定义 2.6.17（元素的中心化子）}
+
+\registerref{classeq}{原笔记第2章第6节，定理 2.6.18（类方程）}
+
+\registerref{normalizer}{原笔记第2章第6节，定义 2.6.20（子群的正规化子）}
+
+\registerref{sylow1}{原笔记第2章第7节，定理 2.7.2（西罗第一定理）}
+
+\registerref{sylowdef}{原笔记第2章第7节，定义 2.7.3（西罗子群的定义）}
+
+\registerref{sylow2}{原笔记第2章第7节，定理 2.7.4（西罗第二定理）}
+
+\registerref{sylow3}{原笔记第2章第7节，定理 2.7.7（西罗第三定理）}
+
+\registerref{internal}{原笔记第2章第8节，定理 2.8.3（内直和分解定理）}
+
+\registerref{free}{原笔记第2章第11节，定理 2.11.7（自由群的泛性质与生成关系）}
+
+
+\title{抽象代数前两章习题详解\\\large 第一章1--45题\quad 第二章1--57题}
+\author{}\date{2026年11月4日}
+\begin{document}\maketitle
+本册收录现有代数笔记抽象代数第一章45题、第二章57题，共102题，保留原题号。原来合写的第一章24--26题分别列出。题面以现有习题文件为基础，必要的限定和已知订正放在相应题目内；证明沿用原笔记的构造、顺序和方法，在原有路线中补齐理由。期中复习册已经展开的41题作为本次详解的基础，其余61题重新展开。
+
+各题按题目、考点与思路、所用结论、证明、复习提示组织。普通证明标题统一为“证明”。题中引用的原笔记定义、定理、命题和证明，以原笔记第一、二章各自的章号、节号和现有统一计数器编号定位；点击引用可跳至文末原笔记定位表，表中列出源文件和源码行号。原笔记正文不在本册重排，也不另建K编号的定理目录。
+
+这里的第一、二章均指抽象代数部分，与线性代数部分的章号无关。编号以本次读取的原章节源码顺序为准，不采用当前只启用第三章的主PDF中的临时章号。源码行号仅供本次版本定位，后续手动增删会使其移动。
+
+\paragraph{记号与约定}
+群的单位元记为$e$，元素阶记为$\ord(a)$；$H\leq G$表示子群，$N\trianglelefteq G$表示正规子群，$[G:H]$表示左陪集个数。置换乘积从右至左作用。$D_n$为$2n$阶二面体群。$C_m$表示$m$阶循环群，$V_4$表示克莱因四元群。有关定义的正式位置分别见\noteref{group}、\noteref{cosets}、\noteref{order}、\noteref{normal}、\noteref{dihedral}、\noteref{cyclic}。
+
+环不预设有乘法单位元，一般环同态不预设保幺；子环也不要求与母环共用单位元。域指交换的除环，体指不要求交换的除环。零因子必须非零：若$ab=0$且$a,b\ne0$，称$a$为左零因子、$b$为右零因子，沿用\noteref{zerodiv}的左右约定。$E$为单位矩阵，$E_{ij}$为仅第$(i,j)$个位置为1的矩阵单位。
+
+\paragraph{补充工具的归属}
+整数带余除法、贝祖等式、有限集计数、数学归纳法，以及线性代数与闭区间紧致性，是原解已经使用的前置工具，不冒充抽象代数正文中另有编号的定理。具体使用时交代条件与计算；不能从原笔记中找到的独立陈述，不赋予原笔记编号。第一章44题逐列计数和第二章47题的有限基构造均在题内展开。第二章12题中沿原笔记补出的附加点引理也在该题内证明。
+
+\tableofcontents\clearpage
+
+\clearpage\section{第1章：代数基本概念}
+
+\subsection{习题1：\texorpdfstring{平方公式判别交换群}{平方公式判别交换群}}
+\label{ex:1:1}
+
+\paragraph{题目}
+若群$G$中任意$a,b$满足$(ab)^2=a^2b^2$，证明$G$交换。
+
+\paragraph{考点与思路}
+将幂展开，只消去两端的因子。也可证明该条件与交换性等价。
+
+\paragraph{所用结论与原文依据}
+\noteref{cancel}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:6；第1章原\exref{1}{1}。
+
+\begin{proof}
+任取$a,b\in G$，题设给出$abab=aabb$。先在两端左乘$a^{-1}$，再右乘$b^{-1}$，得到
+\begin{align*}
+abab&=aabb,\\
+bab&=abb,\\
+ba&=ab.
+\end{align*}
+因为$a,b$任意，群中任意两元素交换，故$G$为交换群。
+
+反过来，若$G$交换，则$abab=aabb=a^2b^2$，所以题设条件也成立。
+\end{proof}
+
+\paragraph{复习提示}
+消去律仅允许消去位于同一侧的相同因子；不能从一开始就把中间的$ba$换成$ab$。
+
+
+\subsection{习题2：\texorpdfstring{每个元素的平方为单位元}{每个元素的平方为单位元}}
+\label{ex:1:2}
+
+\paragraph{题目}
+若群$G$中的每个元素$a$都满足$a^2=e$，证明$G$交换。
+
+\paragraph{考点与思路}
+将题设同时用于$a$、$b$和$ab$，再使用乘积取逆时的反序公式。
+
+\paragraph{所用结论与原文依据}
+\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:14；第1章原\exref{1}{2}。
+
+\begin{proof}
+由$a^2=e$知$a$本身就是$a$的逆元，所以每个$a\in G$都有$a^{-1}=a$。
+任取$a,b\in G$，因为$ab\in G$，它也满足$(ab)^{-1}=ab$。另一方面，任何群中都有$(ab)^{-1}=b^{-1}a^{-1}$，于是
+\[
+ab=(ab)^{-1}=b^{-1}a^{-1}=ba.
+\]
+因此$G$交换。
+\end{proof}
+
+\paragraph{复习提示}
+题设包含单位元，并不意味着每个元素的阶都恰为2；单位元的阶为1。结论也不要求$G$有限。
+
+
+\subsection{习题3：\texorpdfstring{有限消去半群是群}{有限消去半群是群}}
+\label{ex:1:3}
+
+\paragraph{题目}
+非空有限集合上的结合运算若同时满足左右消去律，则构成群。
+
+\paragraph{考点与思路}
+先用有限集上单射等价于满射，构造单侧单位元，再把它们合并为双侧单位元。
+
+\paragraph{所用结论与原文依据}
+\noteref{group}；\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:21；第1章原\exref{1}{3}。
+
+\begin{proof}
+记给定集合为$G$。固定$a\in G$，由左右消去律，映射$x\mapsto ax$及$x\mapsto xa$均为$G$到自身的单射。$G$有限，故这两个映射也满射，因而存在$e,f\in G$满足$ae=a$、$fa=a$。
+
+任取$x\in G$，结合律给出
+\begin{align*}
+a(ex)&=(ae)x=ax,\\
+(xf)a&=x(fa)=xa.
+\end{align*}
+分别使用左、右消去律，得$ex=x$及$xf=x$。所以$e$是整个集合的左单位元，$f$是右单位元。于是$ef=f$且$ef=e$，从而$e=f$为双侧单位元。
+
+对任意$g\in G$，左右乘$g$的映射满射，故可取$b,c\in G$使$gb=e$、$cg=e$。由
+\[
+c=ce=c(gb)=(cg)b=eb=b
+\]
+可知$gb=bg=e$。每个元素都有双侧逆元，故$G$为群。
+
+有限性不能删去：正整数集在加法下结合且满足两侧消去律，但没有加法单位元，故不是群。
+\end{proof}
+
+\paragraph{复习提示}
+尚未构造出群时，只能使用题设的消去律和结合律，不能预先使用逆元。
+
+
+\subsection{习题4：\texorpdfstring{可解方程的结合系统}{可解方程的结合系统}}
+\label{ex:1:4}
+
+\paragraph{题目}
+非空集合$G$上有一个结合的二元运算。若对任意$a,b\in G$，方程$ax=b$与$ya=b$都有解，证明$G$构成群。
+
+\paragraph{考点与思路}
+尚未证明是群时，不能使用逆元和消去律。先将某个元素的单侧单位元推广为全体元素的单侧单位元。
+
+\paragraph{所用结论与原文依据}
+\noteref{group}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:33；第1章原\exref{1}{4}。
+
+\begin{proof}
+\textbf{第一步：构造双边单位元。}
+因为$G$非空，可固定$a\in G$。由题设，存在$e,f\in G$使
+\[
+ae=a,\qquad fa=a.
+\]
+任取$x\in G$。方程$ya=x$有解，因此$x=ya$，结合律给出
+\[
+xe=(ya)e=y(ae)=ya=x.
+\]
+所以$e$是整个集合的右单位元。又由方程$az=x$有解，可写$x=az$，从而
+\[
+fx=f(az)=(fa)z=az=x.
+\]
+所以$f$是整个集合的左单位元。将两者用于$fe$，分别得到$fe=f$与$fe=e$，故$f=e$。因此$e$为双边单位元。
+
+\textbf{第二步：构造双边逆元。}
+任取$g\in G$，由方程可解性，存在$b,c\in G$使$gb=e$、$cg=e$。于是
+\[
+c=ce=c(gb)=(cg)b=eb=b.
+\]
+所以$gb=bg=e$，即$g$有双边逆元。
+
+二元运算已经具有封闭性，结合律由题设保证；现在单位元和每个元素的逆元也已得到，故$G$是群。
+\end{proof}
+
+\paragraph{复习提示}
+“有解”不必加强为“唯一解”。在构造出群以前，任何一步都不应预先使用消去律。
+
+
+\subsection{习题5：\texorpdfstring{非交换平方公式的反例}{非交换平方公式的反例}}
+\label{ex:1:5}
+
+\paragraph{题目}
+举例说明群中一般不成立$(xy)^2=x^2y^2$。
+
+\paragraph{考点与思路}
+沿原解选取两个相邻对换，分别计算两个表达式。
+
+\paragraph{所用结论与原文依据}
+\noteref{cycles}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:44；第1章原\exref{1}{5}。
+
+\begin{proof}
+在$S_3$中取$x=(12)$、$y=(23)$。它们都是对换，所以$x^2=y^2=e$，从而$x^2y^2=e$。
+
+按右边先作用的约定，$xy$将$1,2,3$依次映为$2,3,1$，故$xy=(123)$。因此
+\[
+(xy)^2=(132)\ne e=x^2y^2.
+\]
+这说明一般群中平方公式$(xy)^2=x^2y^2$不成立。
+\end{proof}
+
+\paragraph{复习提示}
+计算置换乘积时始终从右边开始作用。
+
+
+\subsection{习题6：\texorpdfstring{任意偶数阶的非交换例子}{任意偶数阶的非交换例子}}
+\label{ex:1:6}
+
+\paragraph{题目}
+对整数$n>2$，构造一个$2n$阶的非交换群。
+
+\paragraph{考点与思路}
+沿用原解答，取正$n$边形的几何对称群，再按正文中相邻顶点像的计数和旋转、反射关系证明其阶数与非交换性。
+
+\paragraph{所用结论与原文依据}
+\noteref{dihedral}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:51；第1章原\exref{1}{6}。
+
+\begin{proof}
+取平面上的正$n$边形，记$D_n$为保持此正多边形整体不变的所有平面等距变换的集合。恒等变换属于$D_n$；两个对称变换的复合仍保持图形；逆变换也保持图形。映射复合具有结合律，所以$D_n$在复合下成群。
+
+\textbf{先证明$|D_n|=2n$。}任意对称变换置换顶点，因而保持顶点的重心，即正多边形的中心$O$。固定两个相邻顶点$P,Q$，由于$n>2$，$O,P,Q$不共线。平面等距变换由三个不共线点的像唯一决定，因此一个对称变换由$P,Q$的像唯一决定。
+$P$的像有$n$种选择；$Q$的像必须与$P$的像相邻，而每个顶点恰有两个相邻顶点，所以$Q$的像至多有两种选择。故$|D_n|\leq2n$。
+
+令$T$为绕$O$旋转$2\pi/n$，$S$为关于一条固定对称轴的反射。变换
+\[
+T^k,\quad ST^k\qquad(0\leq k<n)
+\]
+都保持正多边形。$n$个旋转$T^k$的旋转角在模$2\pi$意义下不同，故彼此不同；左复合$S$可逆，故$n$个$ST^k$也彼此不同。旋转保持平面定向，反射与旋转的复合反转平面定向，所以两类不相交。已经得到$2n$个不同对称变换，结合前面的上界，得$|D_n|=2n$。
+
+\textbf{再证明它不交换。}反射反转旋转方向，所以$STS=T^{-1}$，且$S^2=e$。若$ST=TS$，则右乘$S$得$STS=T$，与前式比较可得$T=T^{-1}$，即$T^2=e$。
+但是$T$的阶恰为$n$：旋转$k$次恢复原位置当且仅当$2k\pi/n$为$2\pi$的整数倍，最小正整数$k$为$n$。所以$T^2=e$将给出$n\mid2$，与$n>2$矛盾。故$ST\ne TS$，$D_n$为所需的非交换群。
+\end{proof}
+
+\paragraph{复习提示}
+本笔记约定$|D_n|=2n$。条件$n>2$不可略去，2阶和4阶群均交换。
+
+
+\subsection{习题7：\texorpdfstring{反复共轭}{反复共轭}}
+\label{ex:1:7}
+
+\paragraph{题目}
+若群$G$中的$a,b$满足$a^{-1}ba=b^r$，其中$r$为正整数，证明对任意正整数$i$都有$a^{-i}ba^i=b^{r^i}$。
+
+\paragraph{考点与思路}
+先验证共轭保持正整数次幂，再对共轭次数$i$归纳。
+
+\paragraph{所用结论与原文依据}
+\noteref{powers}；\noteref{glaws}。补充前置工具：数学归纳法。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:58；第1章原\exref{1}{7}。
+
+\begin{proof}
+对任意正整数$m$，将相邻的$aa^{-1}$消去，得
+\[
+(a^{-1}ba)^m=a^{-1}b^ma.
+\]
+因此$a^{-1}b^ma=(b^r)^m=b^{rm}$。
+
+当$i=1$时，结论就是题设。假设某个$i\geq1$已有$a^{-i}ba^i=b^{r^i}$，则
+\begin{align*}
+a^{-(i+1)}ba^{i+1}
+&=a^{-1}(a^{-i}ba^i)a\\
+&=a^{-1}b^{r^i}a\\
+&=b^{r\cdot r^i}=b^{r^{i+1}}.
+\end{align*}
+归纳法给出所有正整数$i$的结论。
+\end{proof}
+
+\paragraph{复习提示}
+反复共轭使指数每次乘以$r$，最终指数为$r^i$，不是$ri$。
+
+
+\subsection{习题8：\texorpdfstring{取逆映射的同态性}{取逆映射的同态性}}
+\label{ex:1:8}
+
+\paragraph{题目}
+证明：群$G$交换，当且仅当映射$\iota:G\to G$、$\iota(a)=a^{-1}$是群同态。取逆映射本身为双射，所以本题中的同态条件也等价于它是同构。
+
+\paragraph{考点与思路}
+取逆映射总为双射；真正需要判别的是它是否保乘法。
+
+\paragraph{所用结论与原文依据}
+\noteref{glaws}；\noteref{hom}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:68；第1章原\exref{1}{8}。
+
+\begin{proof}
+因为$\iota(\iota(a))=(a^{-1})^{-1}=a$，所以$\iota$的逆映射就是自身，因而总是双射。
+
+\textbf{先由同态推出交换性。}若$\iota$为同态，则保乘法给出
+\[
+a^{-1}b^{-1}=\iota(a)\iota(b)=\iota(ab)=b^{-1}a^{-1}.
+\]
+两边取逆得到$ba=ab$。因$a,b$任意，$G$交换。
+
+\textbf{再由交换性推出同构。}若$G$交换，则对任意$a,b\in G$，
+\[
+\iota(ab)=(ab)^{-1}=b^{-1}a^{-1}=a^{-1}b^{-1}=\iota(a)\iota(b).
+\]
+所以$\iota$为同态，再结合双射性，知它是同构。
+\end{proof}
+
+\paragraph{复习提示}
+任何群都满足$(ab)^{-1}=b^{-1}a^{-1}$；保乘法所要求的却是$(ab)^{-1}=a^{-1}b^{-1}$。
+
+
+\subsection{习题9：\texorpdfstring{由子集定义等价关系}{由子集定义等价关系}}
+\label{ex:1:9}
+
+\paragraph{题目}
+设$S\subseteq G$非空，在$G$上定义$a\sim b\iff ab^{-1}\in S$。证明该关系为等价关系，当且仅当$S$为子群。
+
+\paragraph{考点与思路}
+等价关系要求自反、对称、传递。反向将关系与单位元联系起来，导出子群判别条件。
+
+\paragraph{所用结论与原文依据}
+\noteref{subgroup}；\noteref{cosets}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:76；第1章原\exref{1}{9}。
+
+\begin{proof}
+\textbf{若$S$为子群。}任取$a\in G$，因$aa^{-1}=e\in S$，有$a\sim a$，满足自反性。
+若$a\sim b$，则$ab^{-1}\in S$，子群对逆封闭给出$ba^{-1}=(ab^{-1})^{-1}\in S$，所以$b\sim a$。
+若$a\sim b$且$b\sim c$，则$ab^{-1},bc^{-1}\in S$，因而
+\[
+ac^{-1}=(ab^{-1})(bc^{-1})\in S,
+\]
+即$a\sim c$，满足传递性。因此该关系是等价关系。
+
+\textbf{若该关系为等价关系。}自反性给出$e=aa^{-1}\in S$。任取$u,v\in S$，有$u\sim e$、$v\sim e$。由对称性得$e\sim v$，再由传递性得$u\sim v$，故$uv^{-1}\in S$。
+
+说明此条件为何足够：取$u=e$可知$v^{-1}\in S$；再将已经得到的$v^{-1}$代入上述差式条件，得到$u(v^{-1})^{-1}=uv\in S$。所以$S$含单位元并对逆和乘积封闭，确为子群。
+
+此外，$a\sim b$等价于$a=sb$对某个$s\in S$成立，因此$b$所在的等价类为右陪集$Sb$。
+\end{proof}
+
+\paragraph{复习提示}
+$ab^{-1}$对应右陪集$Sb$；不要与$a^{-1}b$所对应的左陪集混淆。
+
+
+\subsection{习题10：\texorpdfstring{$n\Z\cong\Z$}{nZ同构于Z}}
+\label{ex:1:10}
+
+\paragraph{题目}
+设$n$为正整数，证明加法群$n\Z$与$\Z$同构。
+
+\paragraph{考点与思路}
+同构必须写出映射，并分别验证保运算、单射和满射。
+
+\paragraph{所用结论与原文依据}
+\noteref{iso}；\noteref{ringiso}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:88；第1章原\exref{1}{10}。
+
+\begin{proof}
+定义$\varphi:\Z\to n\Z$为$\varphi(k)=nk$。对任意$k,l\in\Z$，
+\[
+\varphi(k+l)=n(k+l)=nk+nl=\varphi(k)+\varphi(l),
+\]
+所以它保加法。若$\varphi(k)=\varphi(l)$，则$n(k-l)=0$。因为$n\ne0$，整数乘法无零因子，故$k=l$，所以它为单射。
+任取$n\Z$的元素，按定义可写成$nk$，它就是$\varphi(k)$，所以映射满射。因此$\Z\cong n\Z$。
+\end{proof}
+
+\paragraph{复习提示}
+这里讨论加法群。若$n>1$，上述映射不保通常的乘法，例如$\varphi(1\cdot1)=n$，而$\varphi(1)\varphi(1)=n^2$。若允许$n=0$，同构结论不成立。
+
+
+\subsection{习题11：\texorpdfstring{克莱因四元群}{克莱因四元群}}
+\label{ex:1:11}
+
+\paragraph{题目}
+证明$B=\{e,(12)(34),(13)(24),(14)(23)\}$为$S_4$的子群，并证明$B$不同构于四次单位根乘法群$U_4=\{1,i,-1,-i\}$。
+
+\paragraph{考点与思路}
+先用乘法关系验证子群，再用元素的阶排除与四次单位根群同构。
+
+\paragraph{所用结论与原文依据}
+\noteref{subgroup}；\noteref{iso}；\noteref{cycles}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:96；第1章原\exref{1}{11}。
+
+\begin{proof}
+令$u=(12)(34)$、$v=(13)(24)$、$w=(14)(23)$。分别作用于$1,2,3,4$可得
+\[
+u^2=v^2=w^2=e,\qquad uv=vu=w.
+\]
+由于$w=uv$且$u,v$交换，还可得到$uw=wu=v$、$vw=wv=u$。所以$B=\{e,u,v,w\}$对乘法封闭，每个元素的逆元仍属于$B$；由\proofref{subgroup}{子群判别法}，$B\leq S_4$。这就是克莱因四元群，记作$V_4$。
+
+另一方面，四次单位根群$U_4=\{1,i,-1,-i\}$含有4阶元素$i$，而$B$中三个非单位元的阶均为2。同构保持元素的阶，因此$B\not\cong U_4$。
+\end{proof}
+
+\paragraph{复习提示}
+两个群阶相同，只是同构的必要条件；还需比较元素阶或具体乘法。
+
+
+\subsection{习题12：\texorpdfstring{指数2的子群正规}{指数2的子群正规}}
+\label{ex:1:12}
+
+\paragraph{题目}
+若$G$为$2n$阶群，其中有一个$n$阶子群$H$，证明$H$正规。原题的条件给出$[G:H]=2$；以下按现有笔记的左右陪集方法证明这一更一般的指数2结论。
+
+\paragraph{考点与思路}
+指数2意味着除$H$以外，只有一个左陪集和一个右陪集，它们都必须是$H$的补集。
+
+\paragraph{所用结论与原文依据}
+\noteref{cosets}；\noteref{normal}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:106；第1章原\exref{1}{12}。
+
+\begin{proof}
+任取$a\in G$。若$a\in H$，子群性质给出$aH=H=Ha$。
+
+若$a\notin H$，则$aH\ne H$，并且不同左陪集不交。因为恰有两个左陪集，必有$aH=G\setminus H$。
+取逆映射将左陪集$xH$一一对应到右陪集$Hx^{-1}$，所以右陪集也恰有两个。同理$Ha=G\setminus H$。于是这一情形下也有$aH=Ha$。
+
+对所有$a\in G$均已证明$aH=Ha$，故$H$正规。有限群的特殊情形由$[G:H]=|G|/|H|=2$立即得到。
+\end{proof}
+
+\paragraph{复习提示}
+一般结论不要求群有限；只有用阶数比计算指数时才使用有限性。
+
+
+\subsection{习题13：\texorpdfstring{偶数阶群有2阶元素}{偶数阶群有2阶元素}}
+\label{ex:1:13}
+
+\paragraph{题目}
+证明偶数阶有限群中存在2阶元素。
+
+\paragraph{考点与思路}
+按取逆把元素配对，再利用群阶的奇偶性。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}；\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:114；第1章原\exref{1}{13}。
+
+\begin{proof}
+设$|G|$为偶数。令$T=\{x\in G:x\ne x^{-1}\}$。若$x\in T$，则$x^{-1}\in T$；取逆将$T$分成互不相交的二元集合$\{x,x^{-1}\}$，所以$|T|$为偶数。
+
+因此$G\setminus T=\{x\in G:x=x^{-1}\}$的元素个数也是偶数。该集合已含单位元$e$，故其元素个数是正偶数，至少为2。可取$a\ne e$使$a=a^{-1}$，于是$a^2=e$。
+
+$a\ne e$排除了1阶情形，而$a^2=e$说明其阶整除2，故$\ord(a)=2$。
+\end{proof}
+
+\paragraph{复习提示}
+取逆的不动点包括单位元，须由偶数计数证明还存在另一个不动点。
+
+
+\subsection{习题14：\texorpdfstring{二面体群的矩阵实现}{二面体群的矩阵实现}}
+\label{ex:1:14}
+
+\paragraph{题目}
+对$n\geq3$，令$\zeta=e^{2\pi i/n}$，
+\[
+A=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad B=\begin{pmatrix}\zeta&0\\0&\zeta^{-1}\end{pmatrix}.
+\]
+则$\{B^k,AB^k:0\leq k<n\}\cong D_n$。
+
+\paragraph{考点与思路}
+核对矩阵满足二面体群的关系，并证明所列的两类矩阵恰有$2n$个。
+
+\paragraph{所用结论与原文依据}
+\noteref{dihedral}；\noteref{subgroup}；\noteref{iso}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:123；第1章原\exref{1}{14}。
+
+\begin{proof}
+直接进行矩阵乘法可得
+\[
+A^2=E,\qquad B^n=E,\qquad AB=B^{-1}A.
+\]
+$\zeta$的阶为$n$，故$B$的阶也为$n$。令$H=\{B^k,AB^k:0\leq k<n\}$。由$B^iA=AB^{-i}$，任意两个规定形状的矩阵相乘，分别有
+\begin{align*}
+B^iB^j&=B^{i+j},& B^i(AB^j)&=AB^{j-i},\\
+(AB^i)B^j&=AB^{i+j},&(AB^i)(AB^j)&=B^{j-i}.
+\end{align*}
+指数均可模$n$化简，所以$H$对乘法封闭。又$(B^i)^{-1}=B^{-i}$，且$(AB^i)^2=E$，所以$H$对取逆封闭，且含$E$，故为群。
+
+$B^0,\ldots,B^{n-1}$两两不同；左乘可逆矩阵$A$可知$AB^0,\ldots,AB^{n-1}$也两两不同。前一类是可逆对角矩阵，后一类是可逆反对角矩阵，两类不交，因而$|H|=2n$。
+
+原笔记中$D_n$的元素为$T^k,ST^k$，并满足$T^n=S^2=e$及$ST=T^{-1}S$。定义$T^k\mapsto B^k$、$ST^k\mapsto AB^k$，所得映射为双射；两边乘法的四种情形均由上述相同关系给出，所以它保持乘法，故$D_n\cong H$。
+\end{proof}
+
+\paragraph{复习提示}
+验证同构时，既要核对关系，也要说明正规形的唯一性和映射的双射性。
+
+
+\subsection{习题15：\texorpdfstring{连续三个指数的乘积公式}{连续三个指数的乘积公式}}
+\label{ex:1:15}
+
+\paragraph{题目}
+固定正整数$i$。若对所有$a,b\in G$及$k=i,i+1,i+2$均有$(ab)^k=a^kb^k$，则$G$交换。
+
+\paragraph{考点与思路}
+分别比较相邻的两个指数公式，得到$a$与$b^i,b^{i+1}$交换。
+
+\paragraph{所用结论与原文依据}
+\noteref{glaws}；\noteref{powers}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:137；第1章原\exref{1}{15}。
+
+\begin{proof}
+任取$a,b\in G$。比较指数$i$和$i+1$的公式，得到
+\[
+a^{i+1}b^{i+1}=(ab)^{i+1}=(ab)^i ab=a^ib^iab.
+\]
+在等式两边先左消去$a^i$，再右消去$b$，即得$ab^i=b^ia$。再把$i$换为$i+1$，比较指数$i+1,i+2$，同样得$ab^{i+1}=b^{i+1}a$。
+
+由$a$与$b^i$交换，有$a(b^i)^{-1}=(b^i)^{-1}a$。于是
+\begin{align*}
+ab&=a(b^i)^{-1}b^{i+1}\\
+&=(b^i)^{-1}ab^{i+1}\\
+&=(b^i)^{-1}b^{i+1}a=ba.
+\end{align*}
+因为$a,b$任意，$G$为交换群。
+\end{proof}
+
+\paragraph{复习提示}
+只比较两个相邻指数先得到与某个幂交换；第三个指数使这两个幂的指数差为1。
+
+
+\subsection{习题16：\texorpdfstring{有限阶元素的积可以无限阶}{有限阶元素的积可以无限阶}}
+\label{ex:1:16}
+
+\paragraph{题目}
+在$\SL_2(\Q)$中令
+\[
+A=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad B=\begin{pmatrix}0&1\\-1&-1\end{pmatrix}.
+\]
+则$A$为4阶，$B$为3阶，$AB$为无限阶。
+
+\paragraph{考点与思路}
+直接计算两个矩阵的幂，再把乘积的所有正整数次幂写出来。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:147；第1章原\exref{1}{16}。
+
+\begin{proof}
+首先$\det A=\det B=1$，故$A,B\in\SL_2(\Q)$。矩阵乘法给出
+\[
+A^2=-E,\quad A^4=E,\qquad
+B^2=\begin{pmatrix}-1&-1\\1&0\end{pmatrix},\quad B^3=E.
+\]
+$A\ne E$且$A^2\ne E$，所以$A$的阶恰为4；$B\ne E$且$B^3=E$，所以$B$的阶恰为3。
+
+另一方面，
+\[
+AB=\begin{pmatrix}1&1\\0&1\end{pmatrix}.
+\]
+对$m$归纳：当$m=1$公式成立；若$(AB)^m=\left(\begin{smallmatrix}1&m\\0&1\end{smallmatrix}\right)$，则再乘$AB$得$(AB)^{m+1}=\left(\begin{smallmatrix}1&m+1\\0&1\end{smallmatrix}\right)$。因此对每个正整数$m$，
+\[
+(AB)^m=\begin{pmatrix}1&m\\0&1\end{pmatrix}\ne E.
+\]
+故$AB$为无限阶元素。
+\end{proof}
+
+\paragraph{复习提示}
+群中两个有限阶元素的积未必有有限阶，交换性在相关结论中不能省略。
+
+
+\subsection{习题17：\texorpdfstring{交换群的有限阶元素成子群}{交换群的有限阶元素成子群}}
+\label{ex:1:17}
+
+\paragraph{题目}
+设$G$为交换群。证明$G$中全部有限阶元素组成一个子群，并说明交换性不能删去。
+
+\paragraph{考点与思路}
+使用子群判别法；有限阶元素之差的乘法记号是$ab^{-1}$。
+
+\paragraph{所用结论与原文依据}
+\noteref{subgroup}；\noteref{powers}；\exref{1}{16}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:162；第1章原\exref{1}{17}。
+
+\begin{proof}
+记$T$为$G$中全部有限阶元素的集合。单位元有1阶，故$T\ne\varnothing$。
+
+任取$a,b\in T$，存在正整数$m,n$使$a^m=b^n=e$。由于$G$交换，$a$与$b^{-1}$也交换，故
+\[
+(ab^{-1})^{mn}=a^{mn}b^{-mn}=(a^m)^n(b^n)^{-m}=e.
+\]
+因此$ab^{-1}$的阶有限，属于$T$。由\proofref{subgroup}{子群判别法}，$T\leq G$。
+
+交换性不能去掉：第一章习题16中$A,B$均为有限阶，但$AB$为无限阶。因此在该非交换群中，全部有限阶元素组成的集合对乘法不封闭。
+\end{proof}
+
+\paragraph{复习提示}
+证明有限阶只需找到一个正幂等于单位元，不必计算其最小正指数。
+
+
+\subsection{习题18：\texorpdfstring{只有有限多个子群的群必有限}{只有有限多个子群的群必有限}}
+\label{ex:1:18}
+
+\paragraph{题目}
+证明：如果群$G$只有有限多个子群，那么$G$必为有限群。
+
+\paragraph{考点与思路}
+先排除无限阶元素，再将全群表示为有限多个有限循环子群的并。
+
+\paragraph{所用结论与原文依据}
+\noteref{cyclic}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:170；第1章原\exref{1}{18}。
+
+\begin{proof}
+\textbf{第一步：每个元素都为有限阶。}
+反设$a\in G$为无限阶，则子群$\langle a^m\rangle$（$m=1,2,\ldots$）两两不同。
+事实上，若$\langle a^m\rangle=\langle a^n\rangle$，则存在整数$u,v$使$a^m=a^{nu}$、$a^n=a^{mv}$。无限阶意味着相等幂的指数相等，故$m=nu$、$n=mv$。由于$m,n$为正整数，$u,v$均为正整数；于是$uv=1$，得$u=v=1$、$m=n$。
+这产生无限多个子群，与假设矛盾。
+
+\textbf{第二步：全群有限。}
+所有循环子群均为$G$的子群，所以它们只有有限多个，记为$C_1,\ldots,C_t$。第一步说明每个$C_j$都有限。
+任意$g\in G$属于其生成的循环子群$\langle g\rangle$，因此
+\[
+G=\bigcup_{j=1}^{t}C_j,\qquad |G|\leq\sum_{j=1}^{t}|C_j|<\infty.
+\]
+所以$G$有限。
+\end{proof}
+
+\paragraph{复习提示}
+仅证明“每个元素有限阶”还不足以证明群有限；必须利用循环子群的个数也有限。
+
+
+\subsection{习题19：\texorpdfstring{$D_n$的全部正规子群}{Dn的全部正规子群}}
+\label{ex:1:19}
+
+\paragraph{题目}
+使用正文中$|D_n|=2n$的约定，$n\geq3$。
+
+\paragraph{考点与思路}
+先分清只含旋转的子群与含反射的子群，再用正规性限制参数。
+
+\paragraph{所用结论与原文依据}
+\noteref{dihedral}；\noteref{cyclic}；\noteref{normal}；\exref{1}{12}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:179；第1章原\exref{1}{19}。
+
+\begin{proof}
+沿用$D_n=\{T^k,ST^k:0\leq k<n\}$及$ST=T^{-1}S$。设$H\leq D_n$。
+
+先说明旋转子群中的子群形式。设$K\leq\langle T\rangle$，因为$T^n=e\in K$，可取最小正整数$d$使$T^d\in K$。若$T^l\in K$，把$l$写成$qd+r$，$0\leq r<d$，则$T^r=T^l(T^d)^{-q}\in K$。由$d$的最小性只能$r=0$，所以$K=\langle T^d\rangle$；对$l=n$使用同一结论得$d\mid n$。
+
+若$H\subseteq\langle T\rangle$，由上段可写$H=\langle T^d\rangle$，$d\mid n$。用$T$共轭不改变该子群，用$S$共轭把$T^d$变为$T^{-d}$，仍生成同一子群。由于$S,T$生成$D_n$，这样的子群全都正规。
+
+若$H$含反射$ST^k$，写$H\cap\langle T\rangle=\langle T^d\rangle$，$d\mid n$。对$H$中任意另一反射$ST^l$，有
+\[
+(ST^k)(ST^l)=T^{l-k}\in H\cap\langle T\rangle,
+\]
+所以$d\mid l-k$。因此
+\[
+H=\langle T^d,ST^k\rangle,
+\]
+且$k$只需模$d$取值。这也证明上述形式已穷尽含反射的子群。
+
+若这样的$H$正规，则$T(ST^k)T^{-1}=ST^{k-2}\in H$，由刚才的判据得$d\mid2$。若$d=1$，则$H=D_n$；若$d=2$，须$n$为偶数，且$k$模2只有0、1两种，得到
+\[
+\langle T^2,S\rangle,\qquad\langle T^2,ST\rangle.
+\]
+这两个子群均有$n$个元素，指数为2，由第一章习题12可知它们正规。
+
+综上，全部正规子群为$\langle T^d\rangle$（$d\mid n$）、$D_n$，以及$n$为偶数时另有的上述两个指数2子群。
+\end{proof}
+
+\paragraph{复习提示}
+必要条件$d\mid2$得到候选后，还须验证每个候选确实正规。
+
+
+\subsection{习题20：\texorpdfstring{子群乘积的判别}{子群乘积的判别}}
+\label{ex:1:20}
+
+\paragraph{题目}
+对$H,K\leq G$，$HK$为子群当且仅当$HK=KH$。
+
+\paragraph{考点与思路}
+用集合取逆公式证明必要性，再分别验证乘法和取逆封闭。
+
+\paragraph{所用结论与原文依据}
+\noteref{setproduct}；\noteref{subgroup}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:199；第1章原\exref{1}{20}。
+
+\begin{proof}
+若$HK$为子群，则它对取逆封闭，因而
+\[
+HK=(HK)^{-1}=K^{-1}H^{-1}=KH.
+\]
+这里使用$H^{-1}=H$、$K^{-1}=K$。
+
+反之，设$HK=KH$。$e=ee\in HK$，故$HK$非空。集合乘法的结合律给出
+\begin{align*}
+(HK)(HK)&=H(KH)K=H(HK)K\\
+&=(HH)(KK)=HK.
+\end{align*}
+所以$HK$对乘法封闭。又$(HK)^{-1}=KH=HK$，故对取逆封闭。由\proofref{subgroup}{子群判别法}，$HK$为子群。
+\end{proof}
+
+\paragraph{复习提示}
+集合相等$HK=KH$不要求每个$h\in H$与每个$k\in K$交换。
+
+
+\subsection{习题21：\texorpdfstring{有限子群乘积的计数}{有限子群乘积的计数}}
+\label{ex:1:21}
+
+\paragraph{题目}
+设$H,K$为群$G$的有限子群，证明
+\[
+|HK|=\frac{|H||K|}{|H\cap K|}.
+\]
+此处不要求集合$HK$是子群。
+
+\paragraph{考点与思路}
+映射$(h,k)\mapsto hk$一般不单射；准确计算每个像的原像个数。
+
+\paragraph{所用结论与原文依据}
+\noteref{cosets}。补充前置工具：有限满射的等纤维计数（证明中给出纤维双射）。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:208；第1章原\exref{1}{21}。
+
+\begin{proof}
+定义满射$\pi:H\times K\to HK$，$\pi(h,k)=hk$。固定$g=hk\in HK$的一种表示。
+
+若$h'k'=hk$，两边左乘$h^{-1}$、右乘$k'^{-1}$，得到
+\[
+t:=h^{-1}h'=kk'^{-1}\in H\cap K.
+\]
+由此$h'=ht$、$k'=t^{-1}k$。反之，任取$t\in H\cap K$，都有$ht\in H$、$t^{-1}k\in K$，且
+\[
+(ht)(t^{-1}k)=hk=g.
+\]
+不同$t$给出不同的有序对，因为$ht_1=ht_2$可消去$h$而得到$t_1=t_2$。因此$g$的全部原像与$H\cap K$一一对应，恰有$|H\cap K|$个。
+
+对有限集合$H\times K$按原像分组计数，得
+\[
+|H||K|=|HK|\,|H\cap K|,
+\]
+除以非零正整数$|H\cap K|$即得所求。
+\end{proof}
+
+\paragraph{复习提示}
+需要扣除的是交集造成的重复表示；即使$HK$不是子群，集合计数公式仍成立。
+
+
+\subsection{习题22：\texorpdfstring{正规子群的乘积}{正规子群的乘积}}
+\label{ex:1:22}
+
+\paragraph{题目}
+设$M,N\trianglelefteq G$，证明$MN=NM$且$MN\trianglelefteq G$。若$M\cap N=\{e\}$，证明$MN/N\cong M$。
+
+\paragraph{考点与思路}
+先证明集合乘积是正规子群，再构造商群的满同态并求核。
+
+\paragraph{所用结论与原文依据}
+\noteref{normal}；\noteref{firstiso}；\noteref{setproduct}；\exref{1}{20}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:221；第1章原\exref{1}{22}。
+
+\begin{proof}
+\textbf{第一步：证明$MN=NM$。}
+任取$m\in M,n\in N$，因$M$正规，$n^{-1}mn\in M$，于是$mn=n(n^{-1}mn)\in NM$，故$MN\subseteq NM$。
+同样，由$M$正规，$nmn^{-1}\in M$，所以$nm=(nmn^{-1})n\in MN$，得到反向包含。
+
+\textbf{第二步：证明$MN$为正规子群。}
+$e\in MN$。集合乘积满足结合律，利用$NM=MN$，得
+\[
+(MN)(MN)=M(NM)N=M(MN)N=MN,
+\qquad (MN)^{-1}=NM=MN.
+\]
+所以$MN$对乘法和逆封闭，为子群。再任取$g\in G$，由两个子群的正规性，
+\[
+g(MN)g^{-1}=(gMg^{-1})(gNg^{-1})=MN.
+\]
+因此$MN\trianglelefteq G$。
+
+\textbf{第三步：构造同构。}
+因为$N$在$G$中正规，它在子群$MN$中也正规，可以构成商群$MN/N$。定义
+\[
+\varphi:M\longrightarrow MN/N,\qquad \varphi(m)=mN.
+\]
+商群运算给出$\varphi(m_1m_2)=m_1m_2N=(m_1N)(m_2N)$，所以$\varphi$是同态。
+任意陪集$mnN$等于$mN$，故$\varphi$满射。其核为
+\[
+\ker\varphi=\{m\in M:mN=N\}=M\cap N.
+\]
+因此\proofref{firstiso}{同态基本定理}给出$M/(M\cap N)\cong MN/N$。当$M\cap N=\{e\}$时，$\varphi$本身单射，故$M\cong MN/N$。
+\end{proof}
+
+\paragraph{复习提示}
+证明商群同构时，应逐项交代映射、保运算、满射和核；交平凡正是单射的依据。
+
+
+\subsection{习题23：\texorpdfstring{中心化子与正规化子}{中心化子与正规化子}}
+\label{ex:1:23}
+
+\paragraph{题目}
+对非空$S\subseteq G$，定义
+\[
+C_G(S)=\{x:xa=ax\text{对所有 }a\in S\},\quad
+N_G(S)=\{x:x^{-1}Sx=S\}.
+\]
+则两者均为子群，且$C_G(S)\trianglelefteq N_G(S)$。
+
+\paragraph{考点与思路}
+先分别验证两个子群，再将中心化子中的元素作共轭。
+
+\paragraph{所用结论与原文依据}
+\noteref{subgroup}；\noteref{normal}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:232；第1章原\exref{1}{23}。
+
+\begin{proof}
+两集合均含$e$。若$x,y\in C_G(S)$，则对任意$a\in S$，$y^{-1}a=ay^{-1}$，从而
+\[
+(xy^{-1})a=xay^{-1}=axy^{-1}.
+\]
+故$xy^{-1}\in C_G(S)$，\proofref{subgroup}{子群判别法}给出$C_G(S)\leq G$。
+
+若$x,y\in N_G(S)$，则$x^{-1}Sx=S$、$y^{-1}Sy=S$，后式也给出$ySy^{-1}=S$。于是
+\[
+(xy^{-1})^{-1}S(xy^{-1})=y(x^{-1}Sx)y^{-1}=ySy^{-1}=S.
+\]
+所以$N_G(S)$也是子群。若$c\in C_G(S)$，则对所有$a\in S$有$c^{-1}ac=a$，故$c^{-1}Sc=S$，说明$C_G(S)\leq N_G(S)$。
+
+最后任取$n\in N_G(S)$、$c\in C_G(S)$。因为$n^{-1}an\in S$，对每个$a\in S$都有
+\begin{align*}
+(ncn^{-1})a&=nc(n^{-1}an)n^{-1}\\
+&=n(n^{-1}an)cn^{-1}=a(ncn^{-1}).
+\end{align*}
+故$ncn^{-1}\in C_G(S)$。由\proofref{normal}{正规性判别}，$C_G(S)\trianglelefteq N_G(S)$。
+\end{proof}
+
+\paragraph{复习提示}
+正规化子只要求共轭后整个集合不变；中心化子要求其中每个元素都被固定。
+
+
+\subsection{习题24：\texorpdfstring{2阶群}{2阶群}}
+\label{ex:1:24}
+
+\paragraph{题目}
+证明任意2阶群均同构于乘法群$\{1,-1\}$。
+
+\paragraph{考点与思路}
+用拉格朗日定理确定非单位元的阶，直接写出同构。
+
+\paragraph{所用结论与原文依据}
+\noteref{lagrange}；\noteref{iso}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:252；第1章原\exref{1}{24}。
+
+\begin{proof}
+设$G=\{e,a\}$。由\proofref{lagrange}{拉格朗日定理}，$\ord(a)\mid2$；$a\ne e$，所以$\ord(a)=2$，即$a^2=e$。
+
+定义$\varphi:G\to\{1,-1\}$为$\varphi(e)=1$、$\varphi(a)=-1$。它是双射。涉及$e$的乘积显然保持；剩下的$a^2=e$对应$(-1)^2=1$，所以$\varphi$也保持这一乘积，故为群同构。
+\end{proof}
+
+\paragraph{复习提示}
+两元素群的乘法由单位元性质和$a^2=e$唯一确定。
+
+
+\subsection{习题25：\texorpdfstring{4阶群的分类}{4阶群的分类}}
+\label{ex:1:25}
+
+\paragraph{题目}
+确定4阶群的全部同构类型。
+
+\paragraph{考点与思路}
+按是否存在4阶元素分类；不存在时确定全部乘法。
+
+\paragraph{所用结论与原文依据}
+\noteref{lagrange}；\noteref{cyclic}；\noteref{iso}；\exref{1}{2}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:252；第1章原\exref{1}{25}。
+
+\begin{proof}
+设$|G|=4$。若存在4阶元素$a$，则$\langle a\rangle$已有4个元素，所以$G=\langle a\rangle\cong\Z/4\Z$。
+
+若不存在4阶元素，由\proofref{lagrange}{拉格朗日定理}，每个非单位元都只能为2阶，故所有$x\in G$均满足$x^2=e$。第一章习题2给出$G$交换。取两个不同的非单位元$a,b$。若$ab=e$，则$b=a^{-1}=a$，矛盾；若$ab=a$或$ab=b$，消去得$b=e$或$a=e$，也矛盾。因此$e,a,b,ab$两两不同，已穷尽$G$。
+
+由$a^2=b^2=e$及$ab=ba$，映射
+\[
+(\bar i,\bar j)\longmapsto a^ib^j\quad
+\text{从 }(\Z/2\Z)\times(\Z/2\Z)\text{ 到 }G
+\]
+良定义、保乘法且为双射，故$G\cong V_4$。
+
+$\Z/4\Z$含4阶元素，而$V_4$没有，两者不同构。这证明4阶群恰有上述两种同构类型。
+\end{proof}
+
+\paragraph{复习提示}
+分类必须穷尽，并且最后要证明两个候选不同构。
+
+
+\subsection{习题26：\texorpdfstring{素数阶群}{素数阶群}}
+\label{ex:1:26}
+
+\paragraph{题目}
+证明任意两个相同素数阶的群同构。
+
+\paragraph{考点与思路}
+素数阶使每个非单位元都生成全群，再写出循环群的同构。
+
+\paragraph{所用结论与原文依据}
+\noteref{lagrange}；\noteref{cyclic}；\noteref{iso}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:252；第1章原\exref{1}{26}。
+
+\begin{proof}
+设$|G|=p$，其中$p$为素数。任取$a\ne e$，由\proofref{lagrange}{拉格朗日定理}有$\ord(a)\mid p$，且$\ord(a)\ne1$，所以$\ord(a)=p$。因此$G=\langle a\rangle$。
+
+定义$\varphi:\Z/p\Z\to G$，$\varphi(\bar k)=a^k$。若$k\equiv l\pmod p$，则$a^{k-l}=e$，所以$a^k=a^l$，映射良定义。又
+\[
+\varphi(\bar k+\bar l)=a^{k+l}=a^ka^l,
+\]
+故为同态。它满射；若$a^k=e$，则$p\mid k$，故核为$\{\bar0\}$，所以也单射。因此$G\cong\Z/p\Z$，任意两个$p$阶群均同构。
+\end{proof}
+
+\paragraph{复习提示}
+素数阶结论中的素数$p$须相同，才可断言两个群同构。
+
+
+\subsection{习题27：\texorpdfstring{整数对上的环}{整数对上的环}}
+\label{ex:1:27}
+
+\paragraph{题目}
+在$\Z\times\Z$上定义
+\[
+(a,b)+(c,d)=(a+c,b+d),\qquad(a,b)(c,d)=(ac+bd,ad+bc).
+\]
+
+\paragraph{考点与思路}
+沿原笔记把整数对嵌入矩阵环，借子环结构验证环公理。
+
+\paragraph{所用结论与原文依据}
+\noteref{subring}；\noteref{ringiso}；\noteref{zerodiv}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:269；第1章原\exref{1}{27}。
+
+\begin{proof}
+令
+\[
+\varphi(a,b)=\begin{pmatrix}a&b\\b&a\end{pmatrix},\qquad
+S=\left\{\begin{pmatrix}a&b\\b&a\end{pmatrix}:a,b\in\Z\right\}.
+\]
+$S$含零矩阵，两个此类矩阵之差仍有同样形状，而
+\[
+\begin{pmatrix}a&b\\b&a\end{pmatrix}
+\begin{pmatrix}c&d\\d&c\end{pmatrix}
+=\begin{pmatrix}ac+bd&ad+bc\\ad+bc&ac+bd\end{pmatrix}\in S.
+\]
+故由\proofref{subring}{子环判别法}，$S\leq M_2(\Z)$。映射$\varphi$是$\Z\times\Z$到$S$的双射，并且按题设两种运算有
+\[
+\varphi((a,b)+(c,d))=\varphi(a,b)+\varphi(c,d),\qquad
+\varphi((a,b)(c,d))=\varphi(a,b)\varphi(c,d).
+\]
+所以题设运算使$\Z\times\Z$成为与$S$同构的环。
+
+由乘法公式交换两对参数不改变结果，环是交换的；加法零元为$(0,0)$，负元为$(-a,-b)$，乘法单位元为$(1,0)$。但
+\[
+(1,1)(1,-1)=(0,0),
+\]
+两个因子均非零，故此环有零因子，不是整环。
+\end{proof}
+
+\paragraph{复习提示}
+使用矩阵模型前，必须确认像确实为子环，并且模型保持题设的两种运算。
+
+
+\subsection{习题28：\texorpdfstring{交换整数加法与乘法的角色}{交换整数加法与乘法的角色}}
+\label{ex:1:28}
+
+\paragraph{题目}
+令$a\oplus b=ab$，$a\odot b=a+b$，这是否使$\Z$成环？
+
+\paragraph{考点与思路}
+先检查新加法能否构成交换群，任何一个公理失败即可否定。
+
+\paragraph{所用结论与原文依据}
+\noteref{ring}；\noteref{group}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:281；第1章原\exref{1}{28}。
+
+\begin{proof}
+若$\Z$在新运算下为环，则$(\Z,\oplus)$必须为交换群。由于$a\oplus b=ab$，新加法的单位元必须是整数$1$：它满足$a\oplus1=1\oplus a=a$。
+
+然而整数$0$没有新加法逆元，因为对任意$x\in\Z$都有$0\oplus x=0x=0\ne1$。因此$(\Z,\oplus)$不是群，题设两种运算不能使$\Z$成环。
+\end{proof}
+
+\paragraph{复习提示}
+环的零元指加法单位元，换运算后应重新确定，不能沿用整数0。
+
+
+\subsection{习题29：\texorpdfstring{改变坐标得到同构环}{改变坐标得到同构环}}
+\label{ex:1:29}
+
+\paragraph{题目}
+在交换幺环$R$的底集上定义
+\[
+a\oplus b=a+b-1,\qquad a\odot b=a+b-ab.
+\]
+证明新运算使它成为与原环同构的交换幺环，并求新的零元、单位元及加法逆元。
+
+\paragraph{考点与思路}
+寻找坐标变换$f(a)=1-a$，把新运算转回熟悉的运算。
+
+\paragraph{所用结论与原文依据}
+\noteref{ringiso}；\noteref{ring}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:289；第1章原\exref{1}{29}。
+
+\begin{proof}
+记具有新运算的集合为$R_{\mathrm{new}}$，定义$f:R_{\mathrm{new}}\to R$为$f(a)=1-a$。因为$f(f(a))=1-(1-a)=a$，它是双射。
+对任意$a,b\in R$，
+\begin{align*}
+f(a\oplus b)&=1-(a+b-1)=2-a-b=f(a)+f(b),\\
+f(a\odot b)&=1-(a+b-ab)=1-a-b+ab\\
+&=(1-a)(1-b)=f(a)f(b).
+\end{align*}
+所以$f$将两种新运算分别对应到原环的加法、乘法。由于$f$单射，原环的每一条运算恒等式均可通过$f$拉回；例如
+\begin{align*}
+f((a\odot b)\odot c)&=(f(a)f(b))f(c)\\
+&=f(a)(f(b)f(c))=f(a\odot(b\odot c)),
+\end{align*}
+从而新乘法满足结合律。加法的结合、交换以及分配律同理由原环的相应公理得到。因此新结构为环，且$f$为环同构。
+
+新零元是$f^{-1}(0)=1$，新乘法单位元是$f^{-1}(1)=0$。也可直接核对$a\oplus1=a$、$a\odot0=a$。元素$a$的新加法逆元为$2-a$，因为
+\[
+a\oplus(2-a)=a+(2-a)-1=1,
+\]
+右端正是新零元。新乘法交换性由$a+b-ab=b+a-ba$得到。
+\end{proof}
+
+\paragraph{复习提示}
+式中$0,1,2$表示原环元素，$2=1+1$；新结构的零元与单位元分别是原来的$1$与$0$。
+
+
+\subsection{习题30：\texorpdfstring{子环与母环的单位元和交换性}{子环与母环的单位元和交换性}}
+\label{ex:1:30}
+
+\paragraph{题目}
+分别举例说明：(i)母环有单位元而子环无单位元；(ii)母环无单位元而子环有单位元；(iii)母环和子环都有单位元，但二者不同；(iv)母环不交换而子环交换。
+
+\paragraph{考点与思路}
+这里子环只要求对加法、取负和乘法封闭，并不要求与母环共用单位元。应检查实例确实满足对应性质。
+
+\paragraph{所用结论与原文依据}
+\noteref{subring}；\noteref{unit}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:302；第1章原\exref{1}{30}。
+
+\begin{proof}
+\begin{enumerate}\item 取$R=\Z$、$S=2\Z$。偶数对差和积封闭，所以$S$是子环；$R$的单位元为1。若$u\in2\Z$是$S$的单位元，则$u\cdot2=2$，在整数中得$u=1$，与$u$为偶数矛盾。因此$S$没有单位元。
+
+\item 取逐分量运算的环$R=2\Z\times\Z$，以及子环$S=\{0\}\times\Z$。若$R$有单位元$(u,v)$，将它乘以$(2,0)$得到$(2u,0)=(2,0)$，所以$u=1\notin2\Z$，矛盾。而对任意$(0,k)\in S$，
+\[
+(0,1)(0,k)=(0,k)=(0,k)(0,1),
+\]
+所以$S$有单位元$(0,1)$。
+
+\item 取$R=M_2(\R)$，令
+\[
+S=\left\{\begin{pmatrix}a&0\\0&0\end{pmatrix}:a\in\R\right\}.
+\]
+两个这样的矩阵之差和积仍有相同形状，所以$S$是子环。母环的单位元为$E=\operatorname{diag}(1,1)$，子环的单位元为$\operatorname{diag}(1,0)$，两者不同。
+
+\item 仍取$R=M_2(\R)$，令$S=\{aE:a\in\R\}$为数量矩阵构成的子环。因$(aE)(bE)=abE=baE$，$S$交换。记$E_{ij}$为第$(i,j)$项为1、其余项为0的矩阵，则
+\[
+E_{12}E_{21}=E_{11},\qquad E_{21}E_{12}=E_{22},
+\]
+二者不同，故母环不交换。
+\end{enumerate}
+\end{proof}
+
+\paragraph{复习提示}
+单位元是相对于环内全部元素定义的；子环中的单位元不必对母环其他元素起单位作用。
+
+
+\subsection{习题31：\texorpdfstring{单侧单位元}{单侧单位元}}
+\label{ex:1:31}
+
+\paragraph{题目}
+设$e_La=a$对所有$a\in R$成立时称$e_L$为左单位元，右单位元类似。证明：
+\begin{enumerate}
+\item 若环同时有左单位元和右单位元，则两者相等，为双侧单位元。
+\item 无零因子的环若有左单位元，则它也为右单位元。
+\item 若环有左单位元而无右单位元，则左单位元不唯一。
+\end{enumerate}
+
+\paragraph{考点与思路}
+分别验证三项结论，严格区别左单位元、右单位元和双侧单位元。
+
+\paragraph{所用结论与原文依据}
+\noteref{unit}；\noteref{zerodiv}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:315；第1章原\exref{1}{31}。
+
+\begin{proof}
+\begin{enumerate}
+\item 设$e$为左单位元、$f$为右单位元。由$e$的性质得$ef=f$，由$f$的性质得$ef=e$，所以$e=f$。这个共同元素同时满足两侧单位元条件。
+
+\item 设$R$无零因子且$e$为左单位元。若$R=\{0\}$，唯一元素就是双侧单位元。若$R\ne\{0\}$，固定$b\ne0$。对任意$a\in R$，
+\[
+(ae-a)b=a(eb)-ab=ab-ab=0.
+\]
+因为$b\ne0$且无零因子，必有$ae-a=0$。所以$ae=a$对每个$a$成立，$e$也为右单位元。
+
+\item 设$e$为左单位元，而$R$没有右单位元。若所有$a$均满足$ae=a$，则$e$就是右单位元，矛盾。因此存在$a$使$d=a-ae\ne0$。对任意$x\in R$，
+\[
+dx=(a-ae)x=ax-a(ex)=0.
+\]
+于是$(e+d)x=ex+dx=x$。所以$e+d$也是左单位元，且因$d\ne0$有$e+d\ne e$，从而左单位元至少有两个。
+\end{enumerate}
+\end{proof}
+
+\paragraph{复习提示}
+无零因子的消去必须有一个非零因子；第二项要单独交代零环。
+
+
+\subsection{习题32：\texorpdfstring{域没有非平凡双边理想}{域没有非平凡双边理想}}
+\label{ex:1:32}
+
+\paragraph{题目}
+证明域$F$的双边理想只有$\{0\}$和$F$。同一结论也适用于体。
+
+\paragraph{考点与思路}
+非零理想中取非零元素，用其逆元推出单位元属于该理想。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{field}；\noteref{idealunit}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:331；第1章原\exref{1}{32}。
+
+\begin{proof}
+设$I$为$F$的理想。若$I=\{0\}$，已经属于所列情形。若$I\ne\{0\}$，可取$a\in I$、$a\ne0$。域中$a$有逆元$a^{-1}\in F$，理想的吸收性给出$1=a^{-1}a\in I$。
+任取$r\in F$，再次由吸收性，$r=r\cdot1\in I$，所以$F\subseteq I$。结合$I\subseteq F$，得到$I=F$。
+
+证明只使用非零元素有双边逆元，没有使用乘法交换性，所以对不一定交换的体也成立。
+\end{proof}
+
+\paragraph{复习提示}
+一般环中非零元素未必可逆，不能对任意环照搬这一步。
+
+
+\subsection{习题33：\texorpdfstring{$Ra$何时是理想}{Ra何时是理想}}
+\label{ex:1:33}
+
+\paragraph{题目}
+若$R$交换，则$Ra=\{ra:r\in R\}$是双边理想；非交换时未必。
+
+\paragraph{考点与思路}
+逐项验证理想条件；非交换反例仍取矩阵单位。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:339；第1章原\exref{1}{33}。
+
+\begin{proof}
+设$R$交换，$a\in R$固定。$0=0a\in Ra$，且对$r,s\in R$，
+\[
+ra-sa=(r-s)a\in Ra.
+\]
+因此$Ra$为加法子群。对任意$t\in R$，结合律及交换律给出
+\[
+t(ra)=(tr)a\in Ra,\qquad (ra)t=(rt)a\in Ra.
+\]
+所以$Ra$是双边理想。
+
+在非交换环$R=M_2(\Q)$中取$a=E_{11}$，其中$E_{ij}$表示仅第$(i,j)$个位置为1、其余为0的矩阵。直接计算$XE_{11}$可知，$Ra$恰为第二列为零的矩阵集合。$E_{11}\in Ra$，但
+\[
+E_{11}E_{12}=E_{12}\notin Ra.
+\]
+所以$Ra$不一定是双边理想。
+
+若$R$没有单位元，不能直接断言$a\in Ra$；本题证明理想条件没有使用这一断言。
+\end{proof}
+
+\paragraph{复习提示}
+$Ra$总有左吸收性；要成为双边理想，还要检查右吸收性。
+
+
+\subsection{习题34：\texorpdfstring{理想的根}{理想的根}}
+\label{ex:1:34}
+
+\paragraph{题目}
+设$R$为交换环、$I$为其理想，定义
+\[
+\sqrt I=\{r\in R:\text{存在正整数 }n\text{ 使 }r^n\in I\}.
+\]
+证明$\sqrt I$为$R$的理想。
+
+\paragraph{考点与思路}
+验证差封闭和吸收性。两个元素对应的幂次数可能不同，统一选取$n+m-1$次幂。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{ringlaws}。补充前置工具：交换环的二项式展开；无幺环中的端项不使用零次幂。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:349；第1章原\exref{1}{34}。
+
+\begin{proof}
+首先$0^1=0\in I$，故$0\in\sqrt I$，集合非空。
+
+任取$r,s\in\sqrt I$，由定义可选正整数$n,m$使$r^n\in I$、$s^m\in I$。令$N=n+m-1$。若环无单位元，下面求和的两个端项分别指$(-s)^N$与$r^N$，不使用零次幂。因为环交换，可以使用二项式展开：
+\[
+(r-s)^N=\sum_{k=0}^{N}(-1)^{N-k}\binom Nk r^k s^{N-k}.
+\]
+对任一项，若$k\geq n$，它含有因子$r^n$，故属于$I$；若$k<n$，则$k\leq n-1$，从而$N-k\geq m$，这一项含有因子$s^m$，也属于$I$。整数倍与有限和仍在加法子群$I$中，故$(r-s)^N\in I$，即$r-s\in\sqrt I$。因此$\sqrt I$为加法子群。
+
+任取$t\in R$、$r\in\sqrt I$，选$n\geq1$使$r^n\in I$。由交换性和理想吸收性，
+\[
+(tr)^n=t^nr^n\in I.
+\]
+所以$tr\in\sqrt I$；交换性又给出$rt=tr\in\sqrt I$。因此$\sqrt I$满足双边吸收性，确为理想。
+
+若$R$没有单位元，上述展开仍然成立：在$k=0$或$k=N$的端项中，直接写作$(-s)^N$或$r^N$，不引入$R$内不存在的零次幂。判断因子属于$I$时，若剩余因子个数为零，就直接使用$r^n\in I$或$s^m\in I$。
+\end{proof}
+
+\paragraph{复习提示}
+不能仅由$r^n,s^m\in I$断言$(r-s)^{\max(n,m)}\in I$；$n+m-1$保证展开中每一项都含足够多的某一种因子。
+
+
+\subsection{习题35：\texorpdfstring{交换幺环仅有平凡理想时为域}{交换幺环仅有平凡理想时为域}}
+\label{ex:1:35}
+
+\paragraph{题目}
+假设$1\neq0$。
+
+\paragraph{考点与思路}
+非零元素生成的主理想只能等于全环，因而可以解出逆元。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{field}；\exref{1}{33}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:360；第1章原\exref{1}{35}。
+
+\begin{proof}
+设$R$为交换幺环，$1\ne0$，且只有$\{0\}$与$R$两个理想。任取$a\ne0$。由第一章习题33，$Ra$为理想；它含$a=1a\ne0$，所以$Ra\ne\{0\}$，只能$Ra=R$。
+
+因此$1\in Ra$，存在$r\in R$使$ra=1$。由交换性也有$ar=1$，故$a$可逆。每个非零元素均可逆，按域的定义，$R$为域。
+
+条件$1\ne0$不能略去：零环也只有平凡理想，但不是域。
+\end{proof}
+
+\paragraph{复习提示}
+这里需要幺元来保证$a\in Ra$，需要交换性来把单侧逆变为双侧逆。
+
+
+\subsection{习题36：\texorpdfstring{全矩阵环是单环}{全矩阵环是单环}}
+\label{ex:1:36}
+
+\paragraph{题目}
+$M_n(\Q)$没有非平凡双边理想。
+
+\paragraph{考点与思路}
+从理想中一个非零矩阵的非零系数出发，用左右矩阵单位取得所有矩阵单位。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:369；第1章原\exref{1}{36}。
+
+\begin{proof}
+设$I$为$M_n(\Q)$的非零双边理想，取$0\ne A=(a_{ij})\in I$。存在$i,j$使$a_{ij}\ne0$。记$E_{kl}$为矩阵单位，满足$E_{ij}E_{kl}=\delta_{jk}E_{il}$。
+
+任取$k,l$，理想的两侧吸收性给出
+\[
+E_{ki}AE_{jl}=a_{ij}E_{kl}\in I.
+\]
+再左乘矩阵$a_{ij}^{-1}E_{kk}$，得$E_{kl}\in I$。因此所有矩阵单位都属于$I$。
+
+对任意有理矩阵$X=(x_{kl})$，有$x_{kl}E_{kl}=(x_{kl}E_{kk})E_{kl}\in I$。理想对有限和封闭，所以
+\[
+X=\sum_{k,l}x_{kl}E_{kl}\in I.
+\]
+因此$I=M_n(\Q)$，不存在非零真双边理想。
+\end{proof}
+
+\paragraph{复习提示}
+不能直接把理想当作有理向量子空间；数乘封闭应由母环矩阵的吸收性推出。
+
+
+\subsection{习题37：\texorpdfstring{$aba=0$判别零因子}{aba=0判别零因子}}
+\label{ex:1:37}
+
+\paragraph{题目}
+若$a,b\neq0$且$aba=0$，则$a$为左零因子或右零因子。
+
+\paragraph{考点与思路}
+按$ba$是否为零分类，保证出现的另一个零乘积因子非零。
+
+\paragraph{所用结论与原文依据}
+\noteref{zerodiv}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:380；第1章原\exref{1}{37}。
+
+\begin{proof}
+若$ba=0$，因为$b\ne0$、$a\ne0$，按右零因子的定义，$a$是右零因子。
+
+若$ba\ne0$，则由结合律及题设，$a(ba)=aba=0$。此时$a$与$ba$均非零，按左零因子的定义，$a$是左零因子。
+
+上述两种情形穷尽所有可能，故结论成立。
+\end{proof}
+
+\paragraph{复习提示}
+本笔记称$ab=0$中的$a$为左零因子；引用时沿用这一左右约定。
+
+
+\subsection{习题38：\texorpdfstring{$1-a$的有限几何级数逆}{1-a的有限几何级数逆}}
+\label{ex:1:38}
+
+\paragraph{题目}
+幺环中若$a^n=0$，则$a$称\textbf{幂零元}，且$1-a$可逆。
+
+\paragraph{考点与思路}
+构造有限几何级数，并分别核对左右乘积。
+
+\paragraph{所用结论与原文依据}
+\noteref{unit}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:387；第1章原\exref{1}{38}。
+
+\begin{proof}
+令$u=1+a+\cdots+a^{n-1}$。由分配律及幂法则，
+\begin{align*}
+(1-a)u&=(1+a+\cdots+a^{n-1})-(a+a^2+\cdots+a^n)\\
+&=1-a^n=1,\\
+u(1-a)&=(1+a+\cdots+a^{n-1})-(a+a^2+\cdots+a^n)\\
+&=1-a^n=1.
+\end{align*}
+所以$u$是$1-a$的双侧逆元，即$(1-a)^{-1}=1+a+\cdots+a^{n-1}$。这里不要求$R$交换，因为计算中只出现同一个元素$a$的幂，它们彼此交换。
+\end{proof}
+
+\paragraph{复习提示}
+非交换环中必须核对双侧逆元；同一元素的幂仍可按通常幂法则计算。
+
+
+\subsection{习题39：\texorpdfstring{交换环的幂零元构成理想}{交换环的幂零元构成理想}}
+\label{ex:1:39}
+
+\paragraph{题目}
+证明交换环中全体幂零元构成理想，并说明非交换环中该结论不成立。
+
+\paragraph{考点与思路}
+它是\exref{1}{34}中$I=\{0\}$的特例；复习时也应能独立写出幂次数的论证。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{ringlaws}；\exref{1}{34}。补充前置工具：交换环的二项式展开。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:395；第1章原\exref{1}{39}。
+
+\begin{proof}
+记$\mathcal N=\{a\in R:\text{存在正整数 }n\text{ 使 }a^n=0\}$。因为$0\in\mathcal N$，它非空。
+若$a,b\in\mathcal N$，选$n,m\geq1$使$a^n=b^m=0$。若环无单位元，二项式展开的端项直接表示$(-b)^{n+m-1}$与$a^{n+m-1}$，不使用零次幂。展开$(a-b)^{n+m-1}$，其中任意一项$a^k b^{n+m-1-k}$都满足$k\geq n$或$n+m-1-k\geq m$，因而为零。所以
+\[
+(a-b)^{n+m-1}=0,
+\]
+即$a-b\in\mathcal N$。若$r\in R$，交换性给出$(ra)^n=r^na^n=0$，所以$ra=ar\in\mathcal N$。因此$\mathcal N$为理想。
+
+非交换环的反例取$M_2(\Q)$中的
+\[
+A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+B=\begin{pmatrix}0&0\\1&0\end{pmatrix}.
+\]
+有$A^2=B^2=0$，但$(A+B)^2=E$。若$A+B$幂零，某个正整数$k$应满足$(A+B)^k=0$，于是$(A+B)^{2k}=0$；另一方面$(A+B)^{2k}=E$，矛盾。因此幂零元之和未必幂零，幂零元集甚至不一定对加法封闭。
+\end{proof}
+
+\paragraph{复习提示}
+证明中交换性的用途是二项式展开以及$(ra)^n=r^na^n$，不能把这两步用于任意非交换环。
+
+
+\subsection{习题40：\texorpdfstring{有限幺环的单侧逆也是双侧逆}{有限幺环的单侧逆也是双侧逆}}
+\label{ex:1:40}
+
+\paragraph{题目}
+若$R$有限且$xy=1$，则$yx=1$。
+
+\paragraph{考点与思路}
+将单侧逆转为有限集合上的单侧逆映射，再使用有限性。
+
+\paragraph{所用结论与原文依据}
+\noteref{unit}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:404；第1章原\exref{1}{40}。
+
+\begin{proof}
+在集合$R$上定义$L_x(r)=xr$、$L_y(r)=yr$。由结合律及$xy=1$，对每个$r\in R$都有
+\[
+L_xL_y(r)=x(yr)=(xy)r=r,
+\]
+故$L_xL_y=\mathrm{id}_R$，特别地$L_x$满射。由于$R$有限，$L_x$也单射。
+
+于是对任意$r$，从
+\[
+L_x(L_yL_x(r))=(L_xL_y)L_x(r)=L_x(r)
+\]
+由$L_x$的单射性得到$L_yL_x(r)=r$。令$r=1$，便得$yx=1$。
+\end{proof}
+
+\paragraph{复习提示}
+有限性用在满射推出单射，不能在无限环中照搬这一步。
+
+
+\subsection{习题41：\texorpdfstring{单侧逆不成双侧逆时有无穷多个右逆}{单侧逆不成双侧逆时有无穷多个右逆}}
+\label{ex:1:41}
+
+\paragraph{题目}
+若幺环中$ab=1$但$ba\neq1$，则满足$ax=1$的$x$有无穷多个。
+
+\paragraph{考点与思路}
+沿原解构造一列右逆，再用适当次幂右乘来区分它们。
+
+\paragraph{所用结论与原文依据}
+\noteref{unit}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:413；第1章原\exref{1}{41}。
+
+\begin{proof}
+令$c=1-ba$，则$c\ne0$，且
+\[
+ac=a-aba=0,\qquad cb=b-bab=0.
+\]
+对每个整数$n\geq0$定义$x_n=b+ca^n$。于是
+\[
+ax_n=ab+(ac)a^n=1,
+\]
+所以每个$x_n$都是$a$的右逆。
+
+若存在$0\leq i<j$使$x_i=x_j$，则$ca^i=ca^j$。由$ab=1$，逐次消去相邻$ab$可得$a^jb^j=1$及$a^ib^j=b^{j-i}$。在上述等式右边乘$b^j$，得到
+\[
+cb^{j-i}=c.
+\]
+但$j-i\geq1$且$cb=0$，故左边为0，推出$c=0$，矛盾。因此$x_0,x_1,\ldots$两两不同，$a$有无穷多个右逆。
+\end{proof}
+
+\paragraph{复习提示}
+不能只给出无穷多个公式，还须证明公式表示的元素两两不同。
+
+
+\subsection{习题42：\texorpdfstring{唯一的广义逆推出体}{唯一的广义逆推出体}}
+\label{ex:1:42}
+
+\paragraph{题目}
+环$R$至少有两个元素，若每个$a\neq0$恰有一个$b$满足$aba=a$，则：无零因子，$bab=b$，有单位元，且$R$为体。
+
+\paragraph{考点与思路}
+先由广义逆的唯一性排除零因子，再构造左右单位元。
+
+\paragraph{所用结论与原文依据}
+\noteref{zerodiv}；\noteref{unit}；\noteref{field}；\exref{1}{31}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:424；第1章原\exref{1}{42}。
+
+\begin{proof}
+\begin{enumerate}
+\item 固定$a\ne0$，取唯一的$b$使$aba=a$。若$ax=0$，则
+\[
+a(b+x)a=aba+(ax)a=a.
+\]
+由$b$的唯一性，$b+x=b$，故$x=0$。若$xa=0$，同样有$a(b+x)a=a+a(xa)=a$，仍得$x=0$。这说明$R$无左右零因子。
+
+\item 由$aba=a\ne0$知$b\ne0$，又
+\[
+a(bab-b)=(aba)b-ab=ab-ab=0.
+\]
+因为$a\ne0$且环无零因子，$bab=b$。
+
+\item 任取$r\in R$，有
+\[
+a(bar-r)=(aba)r-ar=0,\qquad
+(rab-r)a=r(aba)-ra=0.
+\]
+由无零因子得$bar=r$、$rab=r$。故$ba$是左单位元，$ab$是右单位元。第一章习题31第一项给出$ba=ab=1_R$，此元素是整个环的双侧单位元。
+
+\item 对每个非零$a$重复上述构造，都得到双侧逆元$b$。单位元唯一，故各次构造得到的是同一个$1_R$。环至少有两个元素，故$1_R\ne0_R$；否则$r=1_Rr=0_R$对所有$r$成立，环只有一个元素。按体的定义，$R$为体。
+\end{enumerate}
+\end{proof}
+
+\paragraph{复习提示}
+单位元属于整个环，不能只证明它对所选的$a$起作用。
+
+
+\subsection{习题43：\texorpdfstring{连续函数环}{连续函数环}}
+\label{ex:1:43}
+
+\paragraph{题目}
+记$C[0,1]$为$[0,1]$上全部实值连续函数构成的环，加法和乘法逐点定义。
+\begin{enumerate}
+\item 每个真理想$I\ne C[0,1]$都存在公共零点，即存在$t_0\in[0,1]$使所有$f\in I$均满足$f(t_0)=0$。
+\item 对非零函数$f\in C[0,1]$，证明$f$为零因子，当且仅当其零点集包含一个非空的相对开区间。
+\end{enumerate}
+相对开区间指$(\alpha,\beta)\cap[0,1]$形式的非空集合，其中$\alpha<\beta$为实数。这里“非零函数”指不恒为零的函数。
+
+\paragraph{考点与思路}
+第一问用紧致性选有限子覆盖，再以平方和构造处处非零的理想元素；第二问使用连续函数在非零点附近仍非零的性质。
+
+\paragraph{所用结论与原文依据}
+\noteref{ideal}；\noteref{zerodiv}；\noteref{idealunit}。补充前置工具：闭区间紧致性、连续函数的非零邻域及连续倒数，均为分析前置工具。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:439；第1章原\exref{1}{43}。
+
+\begin{proof}
+\begin{enumerate}\item
+反设$I$没有公共零点，则对每个$t\in[0,1]$，都可选$f_t\in I$使$f_t(t)\ne0$。
+由连续性存在$t$的相对开邻域$U_t$，使$f_t$在$U_t$上处处非零。这些邻域覆盖$[0,1]$。
+
+闭区间$[0,1]$紧致，故可选有限子覆盖$U_{t_1},\ldots,U_{t_m}$。记$f_j=f_{t_j}$，并令
+\[
+g=f_1^2+\cdots+f_m^2.
+\]
+因为$f_j\in I$，理想吸收性给出$f_j^2\in I$，加法封闭性给出$g\in I$。
+任意$x\in[0,1]$至少属于某个$U_{t_j}$，因此对应$f_j(x)\ne0$，从而$g(x)=\sum_{j=1}^m f_j(x)^2>0$。
+所以函数$h(x)=1/g(x)$在整个区间连续，属于$C[0,1]$。
+
+由理想吸收性，常值函数$1=gh\in I$。于是任取$u\in C[0,1]$都有$u=u\cdot1\in I$，这说明$I=C[0,1]$，与$I$为真理想矛盾。故必有公共零点。
+
+\item\textbf{必要性。}
+设$f\ne0$为零因子，则存在不恒为零的$g\in C[0,1]$使$fg=0$。选$t\in[0,1]$满足$g(t)\ne0$。
+连续性给出某个$\delta>0$，使得当$x\in[0,1]$且$|x-t|<\delta$时，
+\[
+|g(x)-g(t)|<\frac{|g(t)|}{2},\qquad
+|g(x)|>\frac{|g(t)|}{2}>0.
+\]
+在非空相对开区间$(t-\delta,t+\delta)\cap[0,1]$上，$f(x)g(x)=0$且$g(x)\ne0$，所以$f(x)=0$。因此$f$的零点集包含这样的区间。
+
+\textbf{充分性。}
+反过来，设$f$在非空相对开区间$J$上恒为零。这样的$J$含有一个位于$(0,1)$内的小闭区间$[c-\varepsilon,c+\varepsilon]$，其中$\varepsilon>0$。这是因为非空相对开集即使包含端点，也包含相邻的内部点，故可在其内部选$c$及足够小的$\varepsilon$。
+定义连续的三角形函数
+\[
+g(x)=\max\left\{0,1-\frac{|x-c|}{\varepsilon}\right\},\qquad x\in[0,1].
+\]
+它满足$g(c)=1$，所以不恒为零；在$[c-\varepsilon,c+\varepsilon]$外为零，而在该闭区间内$f$为零。因此对所有$x\in[0,1]$均有$f(x)g(x)=0$，即$fg=0$。由于$f\ne0$，$f$为零因子。
+\end{enumerate}
+\end{proof}
+
+\paragraph{复习提示}
+“每个$f\in I$各有零点”与“所有$f\in I$有同一个公共零点”的量词次序不同。第二问不能只要求$f$有一个零点；必须有一段区间。零函数满足零点集条件，但按约定不称零因子，所以题目须限定$f\ne0$。
+
+
+\subsection{习题44：\texorpdfstring{有限域上的矩阵计数}{有限域上的矩阵计数}}
+\label{ex:1:44}
+
+\paragraph{题目}
+设$p$为素数，$F=\F_p$为$p$元域，$n\geq1$。证明
+\[
+|M_n(F)|=p^{n^2},\qquad
+|\GL_n(F)|=\prod_{k=0}^{n-1}(p^n-p^k).
+\]
+这里$M_n(F)$是全体$n$阶矩阵的集合，$\GL_n(F)$是其中的可逆矩阵乘法群。
+
+\paragraph{考点与思路}
+可逆矩阵的列向量恰为$F^n$的一组有序基。逐列选取时，排除前面列向量张成的子空间。
+
+\paragraph{所用结论与原文依据}
+\noteref{iso}。补充前置工具：线性代数中可逆矩阵与有序基的等价判别，以及有限集的乘法计数原理。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:453；第1章原\exref{1}{44}。
+
+\begin{proof}
+一个$n$阶矩阵共有$n^2$个位置，每一位置均可独立选取$F$的$p$个元素之一。因此乘法计数原理给出$|M_n(F)|=p^{n^2}$。
+
+现在计数可逆矩阵。线性代数的可逆性判别说明，矩阵可逆当且仅当其$n$个列向量线性无关。第一列不能是零向量，所以有$p^n-1$种选择。
+
+假设已选出线性无关的前$k$列$v_1,\ldots,v_k$，其中$0\leq k<n$。其张成空间中的向量均可写成
+\[
+\lambda_1v_1+\cdots+\lambda_kv_k,\qquad \lambda_i\in F.
+\]
+因为这$k$列线性无关，不同系数组给出不同向量：若两组给出相同向量，相减后得到线性关系，所有系数差必须为零。因此该张成空间恰有$p^k$个向量。
+第$k+1$列必须位于该空间之外，才能保持列向量线性无关，所以有$p^n-p^k$种选择。
+
+依次选满$n$列，每个有序选择恰对应一个矩阵，没有额外的排列除数。故
+\[
+|\GL_n(F)|=(p^n-1)(p^n-p)\cdots(p^n-p^{n-1}).
+\]
+这正是所求乘积。
+\end{proof}
+
+\paragraph{复习提示}
+当$n=1$时结果为$p-1$，对应域中非零元素的个数。关键区别是：每一列都非零不足以保证可逆，还必须排除前面列向量的整个张成空间。
+
+
+\subsection{习题45：\texorpdfstring{华罗庚恒等式}{华罗庚恒等式}}
+\label{ex:1:45}
+
+\paragraph{题目}
+在体$K$中，若$a,b\neq0$且$ab\neq1$，则
+\[
+a-\bigl(a^{-1}+(b^{-1}-a)^{-1}\bigr)^{-1}=aba.
+\]
+
+\paragraph{考点与思路}
+先确认嵌套逆元全部存在，再沿原解选择$d=a-aba$并核对左乘积。
+
+\paragraph{所用结论与原文依据}
+\noteref{field}；\noteref{unit}；\noteref{ringlaws}。
+
+% 原解来源：chapters/Part 2/chapter1-exercises.tex:467；第1章原\exref{1}{45}。
+
+\begin{proof}
+令$c=b^{-1}-a$。若$c=0$，则$a=b^{-1}$，所以$ab=1$，与题设矛盾。故$c\ne0$，$c^{-1}$存在。
+
+令$d=cba$。由$a,b,c$均非零且体无零因子，$d\ne0$，所以$d$可逆。展开得
+\[
+d=(b^{-1}-a)ba=a-aba.
+\]
+保留乘法次序，计算
+\begin{align*}
+(a^{-1}+c^{-1})d
+&=a^{-1}(a-aba)+c^{-1}(cba)\\
+&=(1-ba)+ba=1.
+\end{align*}
+右乘$d^{-1}$，得$a^{-1}+c^{-1}=d^{-1}$。所以$a^{-1}+c^{-1}$确实非零且可逆，其逆为$d$。从而
+\[
+a-\bigl(a^{-1}+(b^{-1}-a)^{-1}\bigr)^{-1}
+=a-d=aba.
+\]
+原笔记还给出辅助恒等式。对$x\ne0,1$，由$x^{-1}-1=x^{-1}(1-x)$及乘积取逆反序公式，
+\begin{align*}
+(x^{-1}-1)^{-1}&=(1-x)^{-1}x\\
+&=(1-x)^{-1}\bigl(1-(1-x)\bigr)\\
+&=(1-x)^{-1}-1.
+\end{align*}
+这些计算均未交换不同元素的乘法次序。
+\end{proof}
+
+\paragraph{复习提示}
+嵌套表达式每一层取逆都必须先说明对象非零，不能只在形式上变形。
+
+
+\clearpage\section{第2章：群}
+
+\subsection{习题1：\texorpdfstring{阶互素时落入正规子群}{阶互素时落入正规子群}}
+\label{ex:2:1}
+
+\paragraph{题目}
+有限群$G$中，$N\trianglelefteq G$且$\gcd(|N|,|G/N|)=1$。若$a$的阶整除$|N|$，则$a\in N$。
+
+\paragraph{考点与思路}
+同时利用元素在原群和商群中的阶，以及两个阶数的互素性。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}；\noteref{lagrange}；\noteref{quotient}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:7；第2章原\exref{2}{1}。
+
+\begin{proof}
+设$m=\ord(a)$、$d=\ord(aN)$。由$m\mid|N|$，$m$有限；自然同态保持幂，故
+\[
+(aN)^m=a^mN=N.
+\]
+所以$d\mid m$，从而$d\mid|N|$。另一方面，$aN$是有限群$G/N$的元素，由\proofref{lagrange}{拉格朗日定理}，$d\mid|G/N|$。
+
+因此$d$是$|N|$和$|G/N|$的公因子。题设两数互素，故$d=1$，即$aN=N$。陪集相等的判据于是给出$a\in N$。
+\end{proof}
+
+\paragraph{复习提示}
+商群的单位元是陪集$N$，不是原群元素$e$。
+
+
+\subsection{习题2：\texorpdfstring{互素阶的分解}{互素阶的分解}}
+\label{ex:2:2}
+
+\paragraph{题目}
+若$\operatorname{ord}(c)=rs$、$\gcd(r,s)=1$，则$c=ab$，其中$a,b\in\langle c\rangle$的阶分别为$r,s$。
+
+\paragraph{考点与思路}
+先用贝祖等式分解指数1，再使用幂的阶公式。
+
+\paragraph{所用结论与原文依据}
+\noteref{powerorder}；\noteref{powers}。补充前置工具：整数贝祖等式。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:19；第2章原\exref{2}{2}。
+
+\begin{proof}
+由$\gcd(r,s)=1$，存在整数$u,v$使$us+vr=1$。定义$a=c^{us}$、$b=c^{vr}$。显然$a,b\in\langle c\rangle$，并且
+\[
+ab=c^{us+vr}=c.
+\]
+由$us\equiv1\pmod r$知$\gcd(u,r)=1$；由$vr\equiv1\pmod s$知$\gcd(v,s)=1$。因而
+\begin{align*}
+\gcd(rs,us)&=s\gcd(r,u)=s,\\
+\gcd(rs,vr)&=r\gcd(s,v)=r.
+\end{align*}
+按原笔记的\proofref{powerorder}{幂的阶公式}，
+\[
+\ord(a)=\frac{rs}{\gcd(rs,us)}=r,\qquad
+\ord(b)=\frac{rs}{\gcd(rs,vr)}=s.
+\]
+这就得到题设要求的分解；$r=1$或$s=1$时同一计算仍适用。
+\end{proof}
+
+\paragraph{复习提示}
+指数$u,v$可以为负数；群中的整数幂已经有定义。
+
+
+\subsection{习题3：\texorpdfstring{互素指数的开方}{互素指数的开方}}
+\label{ex:2:3}
+
+\paragraph{题目}
+若$\operatorname{ord}(a)=m$且$\gcd(k,m)=1$，则$x^k=a$在$\langle a\rangle$内有唯一解。
+
+\paragraph{考点与思路}
+把循环群中的幂方程化成指数的同余方程。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}；\noteref{powers}。补充前置工具：整数贝祖等式与互素整除。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:39；第2章原\exref{2}{3}。
+
+\begin{proof}
+由贝祖等式，存在整数$u,v$使$ku+mv=1$。取$x=a^u$，则$x\in\langle a\rangle$，且
+\[
+x^k=a^{ku}=a^{1-mv}=a(a^m)^{-v}=a.
+\]
+所以解存在。
+
+若$y\in\langle a\rangle$也满足$y^k=a$，可写$y=a^t$。则$a^{kt-1}=e$，由$\ord(a)=m$得$m\mid kt-1$。另一方面$m\mid ku-1$，相减得$m\mid k(t-u)$。因为$\gcd(k,m)=1$，故$m\mid t-u$，于是$y=a^t=a^u=x$。因此解唯一。
+\end{proof}
+
+\paragraph{复习提示}
+唯一性仅在题设指定的循环子群内讨论，不可直接扩大到整个群。
+
+
+\subsection{习题4：\texorpdfstring{$ab$与$ba$同阶}{ab与ba同阶}}
+\label{ex:2:4}
+
+\paragraph{题目}
+设$a,b$为群$G$的任意两个元素，证明$ab$与$ba$具有相同的阶，包括无限阶的情形。
+
+\paragraph{考点与思路}
+沿原笔记用共轭联系两个乘积，比较所有使幂等于单位元的正指数。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}；\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:57；第2章原\exref{2}{4}。
+
+\begin{proof}
+由结合律，$a^{-1}(ab)a=ba$。对每个正整数$m$，相邻的$aa^{-1}$消去，得到
+\[
+(ba)^m=(a^{-1}(ab)a)^m=a^{-1}(ab)^ma.
+\]
+若$(ab)^m=e$，右边等于$e$，所以$(ba)^m=e$；反之，若$(ba)^m=e$，在等式两边左乘$a$、右乘$a^{-1}$，得到$(ab)^m=e$。
+
+因此两者满足正幂等于单位元的正整数集合相同。该集合非空时，最小正整数相同，即有限阶相同；该集合为空时，两者都为无限阶。
+\end{proof}
+
+\paragraph{复习提示}
+只比较有限阶还不够，要交代一个乘积无限阶时另一个也无限阶。
+
+
+\subsection{习题5：\texorpdfstring{给定阶元素的奇偶性}{给定阶元素的奇偶性}}
+\label{ex:2:5}
+
+\paragraph{题目}
+有限群中，阶恰为$n>2$的元素个数为偶数。
+
+\paragraph{考点与思路}
+在所有$n$阶元素组成的集合中按取逆配对，利用$n>2$排除不动点。
+
+\paragraph{所用结论与原文依据}
+\noteref{order}；\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:73；第2章原\exref{2}{5}。
+
+\begin{proof}
+令$X=\{a\in G:\ord(a)=n\}$。若$\ord(a)=n$，则$(a^{-1})^m=e$当且仅当$a^m=e$，故$\ord(a^{-1})=n$。所以取逆把$X$映入自身，且连续取两次逆得到原元素。
+
+若$a=a^{-1}$，则$a^2=e$，所以$\ord(a)\mid2$，这与$n>2$矛盾。因此$X$中的元素按$\{a,a^{-1}\}$分成不相交的二元集合。$G$有限，所以$X$有限，其元素个数为偶数；$X$为空时其元素个数为0，也符合结论。
+\end{proof}
+
+\paragraph{复习提示}
+需要配对的集合是阶恰为$n$的元素，不能把阶整除$n$混在一起。
+
+
+\subsection{习题6：\texorpdfstring{对称群的中心}{对称群的中心}}
+\label{ex:2:6}
+
+\paragraph{题目}
+$Z(S_n)=\{e\}$，$n>2$。
+
+\paragraph{考点与思路}
+中心元素与每个对换交换，因而保持每个二元子集。
+
+\paragraph{所用结论与原文依据}
+\noteref{center}；\noteref{conjugation}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:88；第2章原\exref{2}{6}。
+
+\begin{proof}
+设$\sigma\in Z(S_n)$。对任意不同的$i,j$，由\proofref{conjugation}{共轭公式}及中心的定义，
+\[
+(\sigma(i)\ \sigma(j))=\sigma(ij)\sigma^{-1}=(ij).
+\]
+两个对换相同当且仅当它们交换的是同一个二元集合，因此
+\[
+\{\sigma(i),\sigma(j)\}=\{i,j\}.
+\]
+固定任意$i$。由于$n>2$，可选择两个与$i$不同且彼此不同的$j,k$。上式分别用于$\{i,j\}$及$\{i,k\}$，得到
+\[
+\sigma(i)\in\{i,j\}\cap\{i,k\}=\{i\}.
+\]
+所以$\sigma(i)=i$。$i$任意，故$\sigma=e$。反之恒等置换属于中心，因而$Z(S_n)=\{e\}$。
+\end{proof}
+
+\paragraph{复习提示}
+条件$n>2$保证可以选取第三个点；$S_2$本身交换，中心并不平凡。
+
+
+\subsection{习题7：\texorpdfstring{有理数加法群的有限生成子群}{有理数加法群的有限生成子群}}
+\label{ex:2:7}
+
+\paragraph{题目}
+证明$(\Q,+)$的任一有限生成子群都是循环群。
+
+\paragraph{考点与思路}
+把有限多个有理数通分，将生成子群转化为整数的线性组合，再用最大公因数和贝祖等式确定生成元。
+
+\paragraph{所用结论与原文依据}
+\noteref{generated}；\noteref{cyclic}。补充前置工具：整数贝祖等式。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:105；第2章原\exref{2}{7}。
+
+\begin{proof}
+设$H=\langle q_1,\ldots,q_t\rangle$，这里加法群中的生成意味着
+\[
+H=\left\{\sum_{i=1}^t k_iq_i:k_i\in\Z\right\}.
+\]
+若生成集为空或全部$q_i=0$，则$H=\{0\}=\langle0\rangle$，已经循环。以下设至少一个$q_i\ne0$。
+
+取所有$q_i$的正公分母$D$，写$q_i=m_i/D$，其中$m_i\in\Z$。令$d=\gcd(m_1,\ldots,m_t)>0$。因$d$整除每个$m_i$，对任意$k_i\in\Z$都有
+\[
+\sum_i k_iq_i=\frac{\sum_i k_im_i}{D}\in\frac dD\Z.
+\]
+因此$H\subseteq(d/D)\Z$。
+
+反过来，由贝祖等式，存在整数$u_1,\ldots,u_t$使$\sum_i u_im_i=d$。除以$D$得
+\[
+\frac dD=\sum_i u_iq_i\in H.
+\]
+由于$H$是加法子群，它包含$d/D$的全部整数倍，故$(d/D)\Z\subseteq H$。综上，
+\[
+H=\frac dD\Z=\left\langle\frac dD\right\rangle.
+\]
+\end{proof}
+
+\paragraph{复习提示}
+“每个有限生成子群循环”不表示$\Q$本身循环。若$\Q=\langle q\rangle$且$q\ne0$，则$q/2$不是$q$的整数倍，矛盾。旧记号$\Q^+$在此指有理数加法群。
+
+
+\subsection{习题8：\texorpdfstring{有限阶生成元与交换性推出有限性}{有限阶生成元与交换性推出有限性}}
+\label{ex:2:8}
+
+\paragraph{题目}
+交换群$G$由有限多个有限阶元素生成，证明$G$有限。
+
+\paragraph{考点与思路}
+交换性允许集中同一生成元，有限阶允许把指数限制在有限范围内。
+
+\paragraph{所用结论与原文依据}
+\noteref{generated}；\noteref{powers}；\noteref{abelianpowers}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:128；第2章原\exref{2}{8}。
+
+\begin{proof}
+设$G=\langle a_1,\ldots,a_t\rangle$，记$n_i=\operatorname{ord}(a_i)<\infty$。由生成的定义，任意$g\in G$是有限多个$a_i$和$a_i^{-1}$的乘积。由于$G$交换，可重排这些因子，将同类因子合并，得到
+\[
+g=a_1^{k_1}\cdots a_t^{k_t},\qquad k_i\in\Z.
+\]
+对每个指数作带余除法$k_i=q_in_i+r_i$，其中$0\le r_i<n_i$。由$a_i^{n_i}=e$，有$a_i^{k_i}=a_i^{r_i}$。故映射
+\[
+\prod_{i=1}^t\{0,1,\ldots,n_i-1\}\longrightarrow G,
+\qquad(r_1,\ldots,r_t)\longmapsto a_1^{r_1}\cdots a_t^{r_t}
+\]
+满射。定义域只有$\prod_i n_i$个元素，因而
+\[
+|G|\le\prod_{i=1}^t n_i<\infty.
+\]
+空生成集对应平凡群，也满足结论。
+\end{proof}
+
+\paragraph{复习提示}
+上述表达式未必唯一，所以一般只能写上界。去掉交换性后，有限阶生成元之间交替相乘可能产生无限多个元素。
+
+
+\subsection{习题9：\texorpdfstring{由幂集合刻画循环群}{由幂集合刻画循环群}}
+\label{ex:2:9}
+
+\paragraph{题目}
+令$G^k=\{a^k:a\in G\}$，$k\geq1$。
+$G$为有限循环群，当且仅当它的每个子群都等于某个$G^k$。
+
+\paragraph{考点与思路}
+先由幂集合的周期性证明群有限，再证明各西罗子群唯一且循环。
+
+\paragraph{所用结论与原文依据}
+\noteref{cyclic}；\noteref{powerorder}；\noteref{sylow1}；\noteref{sylow2}；\noteref{internal}；\noteref{coprime}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:148；第2章原\exref{2}{9}。
+
+\begin{proof}
+\textbf{必要性。}设$G=\langle a\rangle$为有限循环群，$H\leq G$。循环群的子群分类给出$H=\langle a^d\rangle$，其中$d\mid|G|$。又
+\[
+G^d=\{(a^t)^d:t\in\Z\}=\langle a^d\rangle=H.
+\]
+平凡子群对应$d=|G|$，所以每个子群均是某个$G^k$。
+
+\textbf{充分性。}设每个子群均为某个$G^k$。对平凡子群，有正整数$E$使$G^E=\{e\}$。故$g^E=e$对每个$g\in G$成立，并有$G^{k+E}=G^k$。不同幂集合至多$E$个，因而不同子群也只有有限多个。每个循环子群的阶整除$E$，均有限；又
+\[
+G=\bigcup_{g\in G}\langle g\rangle,
+\]
+故$G$是有限多个有限循环子群的并，因而有限。
+
+固定素数$p\mid|G|$。从全部$p$幂阶元素中选择阶最大的$a$，记$\ord(a)=p^r$。这种元素存在：\proofref{sylow1}{西罗第一定理}给出$p$阶子群，而$G$有限。题设给出$\langle a\rangle=G^k$，$k\geq1$。因为$a\in G^k$，可取$b\in G$使$b^k=a$。
+
+若$p\mid k$，写$\ord(b)=p^su$、$p\nmid u$，以及$k=p^tv$、$p\nmid v$、$t\geq1$。\proofref{powerorder}{幂的阶公式}说明$b^k$的阶中$p$的指数为$\max(s-t,0)=r$，所以$s=r+t>r$。但$b^u$的阶恰为$p^s$，与$a$的选取矛盾。因此$p\nmid k$。
+
+任取$p$幂阶元素$x$，设$\ord(x)=p^l$。存在整数$v$使$kv\equiv1\pmod{p^l}$，故
+\[
+x=(x^v)^k\in G^k=\langle a\rangle.
+\]
+所以所有$p$幂阶元素均属于$\langle a\rangle$。\proofref{sylow2}{西罗第二定理}保证有西罗$p$子群$P$包含$\langle a\rangle$；而$P$的每个元素都是$p$幂阶，反向也属于$\langle a\rangle$。故$P=\langle a\rangle$。同理任何西罗$p$子群都等于它，所以该西罗子群唯一、正规且循环。
+
+对不同素数$p,q$，对应的正规西罗子群交平凡；两个因子元素的换位子同时属于两子群，故为$e$，所以两因子逐元素交换。它们的乘积是子群，反复使用第一章习题21的计数公式，其阶等于$|G|$，故等于$G$。各循环因子的阶两两互素，由原笔记互素阶交换元素乘积的阶的引理，各生成元的积具有$|G|$阶，因而生成$G$。所以$G$为有限循环群。
+
+这里$k$限定为正整数。无限循环群的任何$G^k$都非平凡，不能表示平凡子群，所以结论应写作有限循环群版本。
+\end{proof}
+
+\paragraph{复习提示}
+幂集合$G^k$一般未必为子群；本题仅由题设知道指定的幂集合等于某个子群。
+
+
+\subsection{习题10：\texorpdfstring{两组对换生成$S_n$}{两组对换生成Sn}}
+\label{ex:2:10}
+
+\paragraph{题目}
+证明$S_n$由$(12),(13),\ldots,(1n)$生成，也由$(12),(23),\ldots,(n-1\ n)$生成。
+
+\paragraph{考点与思路}
+每个置换都是对换的乘积；因此只需把任意对换表示成指定生成元的乘积。
+
+\paragraph{所用结论与原文依据}
+\noteref{threecycles}；\noteref{conjugation}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:200；第2章原\exref{2}{10}。
+
+\begin{proof}
+先考虑第一组。涉及点1的对换已经在列表中；若$i,j\ne1$且$i\ne j$，利用\proofref{conjugation}{共轭公式}
+\[
+u(ab)u^{-1}=(u(a)\ u(b))
+\]
+取$u=(1i)$、$(ab)=(1j)$，得
+\[
+(ij)=(1i)(1j)(1i).
+\]
+故第一组生成全部对换，进而生成$S_n$。
+
+再考虑相邻对换。固定$i<j$。若$j=i+1$，$(ij)$已经是相邻对换。若$j>i+1$，令
+\[
+u=(i\ i+1)(i+1\ i+2)\cdots(j-2\ j-1).
+\]
+从右至左作用时，$j-1$逐步被送到$i$，而$j$不受影响，因此$u(j-1)=i$、$u(j)=j$。共轭公式给出
+\[
+(ij)=u(j-1\ j)u^{-1}.
+\]
+右边的$u$、$u^{-1}$和中间对换都由相邻对换组成。因此第二组也生成全部对换，从而生成$S_n$。
+\end{proof}
+
+\paragraph{复习提示}
+必须说明“生成任意对换”为什么足够；共轭公式还将用于\exref{2}{11}、12。
+
+
+\subsection{习题11：\texorpdfstring{两个生成元生成$S_n$}{两个生成元生成Sn}}
+\label{ex:2:11}
+
+\paragraph{题目}
+当$n\ge2$时，证明$S_n=\langle(12),(12\cdots n)\rangle$。
+
+\paragraph{考点与思路}
+用长轮换的幂把$(12)$共轭成所有相邻对换。
+
+\paragraph{所用结论与原文依据}
+\noteref{conjugation}；\noteref{generated}；\exref{2}{10}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:221；第2章原\exref{2}{11}。
+
+\begin{proof}
+令$c=(12\cdots n)$，$K=\langle(12),c\rangle\le S_n$。对$1\le i<n$，有$c^{i-1}(1)=i$、$c^{i-1}(2)=i+1$，故
+\[
+c^{i-1}(12)c^{-(i-1)}=(i\ i+1)\in K.
+\]
+于是$K$包含\exref{2}{10}中生成$S_n$的全部相邻对换，从而$S_n\le K$。结合$K\le S_n$，即得$K=S_n$。$n=2$时两个指定生成元相同，仍生成$S_2$。
+\end{proof}
+
+\paragraph{复习提示}
+生成集可以有重复元素；关键是其生成子群是否包含一组已知生成元。
+
+
+\subsection{习题12：\texorpdfstring{两个生成元生成$A_n$}{两个生成元生成An}}
+\label{ex:2:12}
+
+\paragraph{题目}
+当$n>2$为奇数时，证明
+\[
+A_n=\langle(123),(12\cdots n)\rangle;
+\]
+当$n>2$为偶数时，证明
+\[
+A_n=\langle(123),(23\cdots n)\rangle.
+\]
+\textbf{原题订正：}按教材书页98（PDF第108页）核对，原笔记将两个生成元抄为偶数时$(12\cdots n)^2$、奇数时$(34\cdots n)$；本题已恢复教材中的生成元。下面仍沿用原笔记的“共轭构造3-轮换，再逐次附加新点”的证明思路。
+
+\paragraph{考点与思路}
+先由共轭取得一列3-轮换，再说明这些轮换涉及的点彼此连接时，为什么能生成全部偶置换。
+
+\paragraph{所用结论与原文依据}
+\noteref{conjugation}；\noteref{threecycles}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:254；第2章原\exref{2}{12}。
+
+\begin{proof}
+先证明一个加入新点的结论。设$U$至少有三个点，某子群$K$已包含在$U$上作用、其余点固定的全部偶置换。
+
+若$K$还含$(abz)$，其中$a,b\in U$、$z\notin U$，则$K$包含任意$(uvz)$，其中$u,v\in U$且$u\ne v$。理由如下：当$|U|\ge4$时，先取把有序点对$(a,b)$送至$(u,v)$的置换；如果它是奇置换，在目标中除$u,v$以外的两个点上复合一个对换即可把它改成偶置换。对$(abz)$作共轭就得到$(uvz)$。当$|U|=3$时，$U$上的3-轮换循环移动点对，可得到三个有序点对；再对$(abz)$取逆，可交换前两个位置，得到其余三个有序点对。因此此时结论也成立。
+
+任何$U\cup\{z\}$上的3-轮换，要么只涉及$U$，要么涉及$z$和$U$中的两个点。以上已经把两类全部包含，所以$K$包含$U\cup\{z\}$上的全部偶置换。
+
+若新增的3-轮换只与$U$交一个点，写为$(cde)$，其中$c\in U$、$d,e\notin U$。按照现有笔记的附加点引理，选$u\in U\setminus\{c\}$，用$U$内把$c$送到$u$的偶置换共轭，得到$(ude)\in K$。这样的偶置换存在：在$U$中另取不同于$c,u$的一点，选适当方向的3-轮换即可。
+
+现在先把$\{c,d,e\}$当成已有点集：$(cde)$的幂已经给出该三点集上的全部偶置换，而$(ude)$含有其中的$d,e$两个点。由前面加入一个新点的结论，$K$包含$\{c,d,e,u\}$上的全部偶置换，特别包含$(cud)$与$(cue)$。
+
+回到原点集$U$，轮换$(cud)$中$c,u$是旧点，故先把$d$加入，得到$U\cup\{d\}$上的全部偶置换；再用$(cue)$把$e$加入，得到$U\cup\{d,e\}$上的全部偶置换。因此，\textbf{从一个3-轮换起，逐次加入与已有点集有交的3-轮换，就能生成最终点集上的全部偶置换}。
+
+\textbf{奇数$n$的情形。}令$c=(12\cdots n)$、$K=\langle(123),c\rangle$。轮换$c$长为奇数，符号为$(-1)^{n-1}=1$，故两个生成元均为偶置换，$K\le A_n$。对$j=0,1,\ldots,n-3$，\proofref{conjugation}{共轭公式}给出
+\[
+c^j(123)c^{-j}=(j+1\ j+2\ j+3)\in K.
+\]
+这些轮换依次为$(123),(234),\ldots,(n-2\ n-1\ n)$。从三点集$\{1,2,3\}$开始，下一轮换的前两个点已经出现，第三个点是新点，所以反复使用前面的附加一个新点结论，即得到全部$n$个点上的偶置换。因此$A_n\le K$，结合反向包含，得$K=A_n$。当$n=3$时，$c=(123)$，它本身已经生成$A_3$。
+
+\textbf{偶数$n$的情形。}此时$n\ge4$。令$d=(23\cdots n)$、$K=\langle(123),d\rangle$。轮换$d$长为奇数$n-1$，符号为$(-1)^{n-2}=1$，故$K\le A_n$。
+
+$d$固定1。对$j=0,1,\ldots,n-3$，有$d^j(2)=j+2$、$d^j(3)=j+3$，因此
+\[
+d^j(123)d^{-j}=(1\ j+2\ j+3)\in K.
+\]
+这些轮换依次为$(123),(134),(145),\ldots,(1\ n-1\ n)$。从$\{1,2,3\}$起，每次轮换中的1和另一个点属于已有点集，第三个点是新点。因此仍逐次用附加一个新点的结论，得到全部$n$个点上的偶置换，即$A_n\le K$。所以$K=A_n$。
+\end{proof}
+
+\paragraph{复习提示}
+只说明生成元都是偶置换，只能得到生成子群包含于$A_n$。还须证明它足够大；这里的关键是将共轭构造与加入新点的论证结合。
+
+
+\subsection{习题13：\texorpdfstring{长轮换的中心化子}{长轮换的中心化子}}
+\label{ex:2:13}
+
+\paragraph{题目}
+若$\sigma=(12\cdots n)$，则$C_{S_n}(\sigma)=\langle\sigma\rangle$，其共轭类大小为$(n-1)!$。
+
+\paragraph{考点与思路}
+交换关系使置换完全由一个点的像决定，再用轨道稳定子定理计数。
+
+\paragraph{所用结论与原文依据}
+\noteref{centerizer}；\noteref{orbit}；\noteref{cycles}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:278；第2章原\exref{2}{13}。
+
+\begin{proof}
+若$\tau\in C_{S_n}(\sigma)$，则$\tau\sigma=\sigma\tau$。反复使用这一等式，对$j\geq0$有
+\[
+\tau(\sigma^j(1))=\sigma^j(\tau(1)).
+\]
+因为$\sigma$为$n$轮换，$1,\sigma(1),\ldots,\sigma^{n-1}(1)$穷尽全部$n$个点。因此$\tau$完全由$\tau(1)$决定。
+
+存在唯一$0\leq k<n$使$\tau(1)=\sigma^k(1)$，代入上式得
+\[
+\tau(\sigma^j(1))=\sigma^{j+k}(1)=\sigma^k(\sigma^j(1)).
+\]
+所以$\tau=\sigma^k$。反之，$\sigma$的每个幂都与$\sigma$交换，故$C_{S_n}(\sigma)=\langle\sigma\rangle$，其阶为$n$。
+
+对共轭作用，$\sigma$的稳定子就是其中心化子。由\proofref{orbit}{轨道稳定子定理}，$\sigma$的共轭类大小为
+\[
+[S_n:C_{S_n}(\sigma)]=\frac{n!}{n}=(n-1)!.
+\]
+\end{proof}
+
+\paragraph{复习提示}
+证明中心化子相等要给出两个包含；共轭类大小由中心化子的指数决定。
+
+
+\subsection{习题14：\texorpdfstring{$S_5$的共轭类及正规子群}{S5的共轭类及正规子群}}
+\label{ex:2:14}
+
+\paragraph{题目}
+列出$S_5$的所有共轭类，计算各类大小，并确定全部正规子群。
+
+\paragraph{考点与思路}
+按轮换类型列共轭类，再利用正规子群的阶及乘法封闭性筛选。
+
+\paragraph{所用结论与原文依据}
+\noteref{conjugation}；\noteref{cycles}；\noteref{normal}；\noteref{lagrange}；\noteref{sign}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:298；第2章原\exref{2}{14}。
+
+\begin{proof}
+共轭把轮换中的符号逐个替换，所以同一轮换类型的置换共轭，反之共轭也保持轮换类型。5的分拆对应七种类型，其代表与类大小为
+\[
+\begin{array}{c|rrrrrrr}
+\text{代表}&e&(12)&(12)(34)&(123)&(123)(45)&(1234)&(12345)\\\hline
+\text{类大小}&1&10&15&20&20&30&24
+\end{array}
+\]
+计数依据如下：对换有$\binom52=10$个；双对换先选固定点，再把余下四点分成两对，有$5\cdot3=15$个；3-轮换先选三点，再选两种循环方向，有$\binom53\cdot2=20$个；$(3,2)$型同样选三点及方向，余下两点的对换唯一，亦有20个；4-轮换有$\binom54\cdot3!=30$个；5-轮换有$4!=24$个。总数为120，已穷尽$S_5$。
+
+正规子群$N$必须含$e$，并为共轭类的并；其阶还须整除120。将类大小$10,15,20,20,30,24$分别记为$10\epsilon_1,15\epsilon_2,20\epsilon_3,20\epsilon_4,30\epsilon_5,24\epsilon_6$，其中$\epsilon_i\in\{0,1\}$。核对这$2^6$种和与120的因子，可能阶数只有$1,40,60,120$。其中40只能是$1+15+24$，60只能是$1+15+20+24$。
+
+40阶候选含全部双对换，但
+\[
+((12)(34))((12)(35))=(354)
+\]
+是3-轮换，不在该候选内，所以不对乘法封闭。60阶候选同样含全部双对换，上式说明它还必须包含3-轮换类；因此两个大小为20的类中只能选择3-轮换类。所得集合恰为所有偶置换，即$A_5$，确为正规子群，因为它是符号同态的核。
+
+故$S_5$的全部正规子群为$\{e\},A_5,S_5$。
+\end{proof}
+
+\paragraph{复习提示}
+共轭类大小相加得到的阶符合整除条件，只能作为候选，还要检查乘法封闭。
+
+
+\subsection{习题15：\texorpdfstring{商群中子群的交}{商群中子群的交}}
+\label{ex:2:15}
+
+\paragraph{题目}
+设$N\trianglelefteq G$、$H_1,H_2\le G$，且$N\le H_1\cap H_2$。证明
+\[
+(H_1/N)\cap(H_2/N)\cong(H_1\cap H_2)/N.
+\]
+期中复习册题面要求同构；现有笔记通过陪集逐项检验证明两者在$G/N$中实际相等，以下保留此原有方法，从而得到所求同构。
+
+\paragraph{考点与思路}
+在商群$G/N$中逐个陪集检验。包含$N$的条件保证一个代表元在子群内时，整个陪集都在其中。
+
+\paragraph{所用结论与原文依据}
+\noteref{correspondence}；\noteref{normal}；\noteref{quotient}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:330；第2章原\exref{2}{15}。
+
+\begin{proof}
+因为$N\trianglelefteq G$且$N\le H_i$，$N$在每个$H_i$中也正规，各商群均有定义。对任意$g\in G$，证明
+\[
+gN\in H_i/N\iff g\in H_i.
+\]
+若$g\in H_i$，这是$H_i/N$的定义。反过来，若$gN=hN$，其中$h\in H_i$，则$h^{-1}g\in N\le H_i$，所以$g=h(h^{-1}g)\in H_i$。
+
+因此对任意$gN\in G/N$，有
+\begin{align*}
+gN\in(H_1/N)\cap(H_2/N)
+&\iff g\in H_1\text{ 且 }g\in H_2\\
+&\iff g\in H_1\cap H_2\\
+&\iff gN\in(H_1\cap H_2)/N.
+\end{align*}
+两边由同样的陪集组成，故相等。
+\end{proof}
+
+\paragraph{复习提示}
+结论是在$G/N$中的实际相等，比“同构”更强。不能遗漏$N\le H_i$，否则$H_i/N$甚至未必有定义。
+
+
+\subsection{习题16：\texorpdfstring{交子群的陪集}{交子群的陪集}}
+\label{ex:2:16}
+
+\paragraph{题目}
+$H_1\cap H_2$的每个左陪集可写成$H_1$一个左陪集与$H_2$一个左陪集的交。
+
+\paragraph{考点与思路}
+先用同一个代表元写出所需交集，再说明非空交集的一般形式。
+
+\paragraph{所用结论与原文依据}
+\noteref{cosets}；\noteref{glaws}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:348；第2章原\exref{2}{16}。
+
+\begin{proof}
+任取$g\in G$。由集合元素的写法，
+\[
+g(H_1\cap H_2)=gH_1\cap gH_2.
+\]
+具体地，若$x=gh$且$h\in H_1\cap H_2$，则$x$同时属于$gH_1,gH_2$。反之，若$x=gh_1=gh_2$，其中$h_i\in H_i$，则由左消去律$h_1=h_2$，故$x\in g(H_1\cap H_2)$。这已证明题设结论。
+
+若还考虑两个任意左陪集$aH_1,bH_2$，其交非空时取$x$属于交。由陪集相交即相等，有$aH_1=xH_1$、$bH_2=xH_2$，所以
+\[
+aH_1\cap bH_2=x(H_1\cap H_2).
+\]
+因此任意两个此类左陪集的交，或为空，或为交子群的一个左陪集。
+\end{proof}
+
+\paragraph{复习提示}
+两个任意陪集的交可能为空，写成某个陪集前须检查非空。
+
+
+\subsection{习题17：\texorpdfstring{有限指数子群的交}{有限指数子群的交}}
+\label{ex:2:17}
+
+\paragraph{题目}
+若$[G:H_1],[G:H_2]$有限，则
+$[G:H_1\cap H_2]\leq[G:H_1][G:H_2]$。
+
+\paragraph{考点与思路}
+把交子群的陪集映入两个陪集集合的笛卡尔积，并验证良定义和单射。
+
+\paragraph{所用结论与原文依据}
+\noteref{cosets}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:365；第2章原\exref{2}{17}。
+
+\begin{proof}
+记$\mathcal L_G(H)=\{gH:g\in G\}$为左陪集集合，不要求$H$正规。定义
+\[
+\theta:\mathcal L_G(H_1\cap H_2)\longrightarrow
+\mathcal L_G(H_1)\times\mathcal L_G(H_2),\quad
+g(H_1\cap H_2)\longmapsto(gH_1,gH_2).
+\]
+若$g(H_1\cap H_2)=g'(H_1\cap H_2)$，则$g^{-1}g'\in H_1\cap H_2$，故$gH_i=g'H_i$对$i=1,2$均成立。这说明映射不依赖代表元，因而良定义。
+
+若$\theta(g(H_1\cap H_2))=\theta(g'(H_1\cap H_2))$，则$gH_i=g'H_i$，故$g^{-1}g'\in H_i$对$i=1,2$成立，从而$g^{-1}g'\in H_1\cap H_2$。所以源陪集相同，$\theta$为单射。
+
+题设保证右侧有限，其元素个数为$[G:H_1][G:H_2]$。因此源陪集集合也有限，并有
+\[
+[G:H_1\cap H_2]\leq[G:H_1][G:H_2].
+\]
+\end{proof}
+
+\paragraph{复习提示}
+有限指数不意味着群本身有限；这里计数的是陪集集合。
+
+
+\subsection{习题18：\texorpdfstring{有限指数给出正规子群或忠实表示}{有限指数给出正规子群或忠实表示}}
+\label{ex:2:18}
+
+\paragraph{题目}
+有限群$G$有真子群$H$、$[G:H]=n>1$，则或有非平凡正规子群，其指数整除$n!$，或$G$同构于$S_n$的子群。
+
+\paragraph{考点与思路}
+沿原解构造左陪集作用，按作用的核是否平凡分类。
+
+\paragraph{所用结论与原文依据}
+\noteref{action}；\noteref{firstiso}；\noteref{lagrange}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:385；第2章原\exref{2}{18}。
+
+\begin{proof}
+令$G$作用于$H$的$n$个左陪集：$g\cdot(xH)=gxH$。该式良定义，且单位元及乘积的作用满足群作用公理，故给出同态$\rho:G\to S_n$。设$K=\ker\rho$，则$K\trianglelefteq G$。
+
+若$k\in K$，则$k$特别固定陪集$H$，即$kH=H$，故$k\in H$。因此$K\leq H<G$，所以$K$一定为真子群。
+
+若$K\ne\{e\}$，它是非平凡真正规子群。由\proofref{firstiso}{第一同构定理}及\proofref{lagrange}{拉格朗日定理}，
+\[
+[G:K]=|G/K|=|\rho(G)|\mid|S_n|=n!.
+\]
+若$K=\{e\}$，则$\rho$单射，所以$G\cong\rho(G)\leq S_n$。两种情况已穷尽，故结论成立。
+\end{proof}
+
+\paragraph{复习提示}
+核不可能为整个群，因为它包含于真子群$H$。
+
+
+\subsection{习题19：\texorpdfstring{最小素因子指数的子群正规}{最小素因子指数的子群正规}}
+\label{ex:2:19}
+
+\paragraph{题目}
+若$p$为$|G|$的最小素因子，$[G:H]=p$，则$H\trianglelefteq G$。
+
+\paragraph{考点与思路}
+由陪集作用的像的阶，同时整除$|G|$和$p!$来限制像。
+
+\paragraph{所用结论与原文依据}
+\noteref{action}；\noteref{firstiso}；\noteref{lagrange}；\noteref{orbit}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:401；第2章原\exref{2}{19}。
+
+\begin{proof}
+令$G$作用于$H$的$p$个左陪集，记对应同态为$\rho:G\to S_p$，核为$K$、像为$Q$。与第二章习题18同样，$K\leq H$。\proofref{firstiso}{第一同构定理}及\proofref{lagrange}{拉格朗日定理}给出
+\[
+|Q|\mid|G|,\qquad |Q|\mid p!.
+\]
+因为$p$是$|G|$的最小素因子，$|Q|$的任何素因子都不小于$p$。另一方面$p!$中唯一不小于$p$的素因子是$p$，且它的指数为1。所以$|Q|$只能为1或$p$。
+
+陪集作用传递：任意$xH,yH$，元素$yx^{-1}$把前者映到后者。故$Q$在这$p$个陪集上的轨道大小为$p$，由\proofref{orbit}{轨道稳定子定理}得$p\mid|Q|$。因此$|Q|=p$。
+
+于是$[G:K]=p=[G:H]$。又$K\leq H$，指数乘法公式给出$[H:K]=1$，故$K=H$。因为$K$为核，$H\trianglelefteq G$。
+\end{proof}
+
+\paragraph{复习提示}
+最小素因子的条件用来排除$p!$中的较小素因子。
+
+
+\subsection{习题20：\texorpdfstring{$p^2$阶群的分类}{p2阶群的分类}}
+\label{ex:2:20}
+
+\paragraph{题目}
+设$p$为素数，$|G|=p^2$。证明$G$交换，并证明$p^2$阶群恰有$C_{p^2}$与$C_p\times C_p$两种同构类型。
+
+\paragraph{考点与思路}
+先由中心非平凡证明交换，再按是否存在$p^2$阶元素分类。
+
+\paragraph{所用结论与原文依据}
+\noteref{pcenter}；\noteref{lagrange}；\noteref{cyclic}；\noteref{internal}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:421；第2章原\exref{2}{20}。
+
+\begin{proof}
+有限$p$群的中心非平凡，所以$|Z(G)|$只能为$p$或$p^2$。若为$p^2$，则$G=Z(G)$，已经交换。若为$p$，则$G/Z(G)$为$p$阶循环群。取生成元的提升$a\in G$，每个群元素都可写成$a^iz$，其中$z\in Z(G)$。因而任意两个元素满足
+\begin{align*}
+(a^iz)(a^jw)&=a^{i+j}zw\\
+&=a^{j+i}wz=(a^jw)(a^iz).
+\end{align*}
+所以$G$仍交换。
+
+若有$p^2$阶元素，则它生成$G$，故$G\cong C_{p^2}$。否则每个非单位元的阶都是$p$。选$a\ne e$，再选$b\notin\langle a\rangle$。两个$p$阶子群$\langle a\rangle,\langle b\rangle$的交只能为$\{e\}$：若交非平凡，任一非单位元便生成两个子群，使它们相等，与$b$的选取矛盾。
+
+因为$G$交换，由第一章习题21，$|\langle a\rangle\langle b\rangle|=p^2$，故乘积等于$G$。映射$C_p\times C_p\to G$，$(\bar i,\bar j)\mapsto a^ib^j$为同态且满射；核平凡，因为$a^i=b^{-j}$必须属于两个因子的交。故$G\cong C_p\times C_p$。
+
+这两个群因是否存在$p^2$阶元素而不同构，所以恰为两种类型。
+\end{proof}
+
+\paragraph{复习提示}
+中心商群循环推出交换的计算在这里已经给出，不把后面的\exref{2}{39}作为未证前提。
+
+
+\subsection{习题21：\texorpdfstring{非交换6阶群}{非交换6阶群}}
+\label{ex:2:21}
+
+\paragraph{题目}
+每个非交换6阶群同构于$S_3$。
+
+\paragraph{考点与思路}
+唯一的3阶子群给出正规循环因子，再由2阶元素的共轭作用决定乘法。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow3}；\noteref{cyclic}；\noteref{dihedral}；\noteref{iso}；\exref{1}{21}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:443；第2章原\exref{2}{21}。
+
+\begin{proof}
+\proofref{sylow3}{西罗第三定理}给出$n_3\mid2$、$n_3\equiv1\pmod3$，所以$n_3=1$。记唯一的3阶子群为$\langle a\rangle$，它正规。\proofref{sylow1}{西罗第一定理}给出2阶元素$b$。
+
+两个子群的交平凡，由第一章习题21，它们的集合乘积有$3\cdot2=6$个元素，故为整个$G$。特别地$a,b$生成$G$。
+
+共轭$b$保持$\langle a\rangle$，且保持$a$的阶，所以$bab^{-1}$只能为$a$或$a^{-1}$。若为$a$，则$a,b$交换，由它们生成的$G$也交换，与题设矛盾。因此
+\[
+a^3=b^2=e,\qquad bab^{-1}=a^{-1}.
+\]
+由此每个元素可唯一写成$a^ib^j$，$0\leq i<3$、$0\leq j<2$。唯一性来自两个不同陪集$\langle a\rangle$和$\langle a\rangle b$，各自有三个不同元素。
+
+定义$a^ib^j\mapsto(123)^i(12)^j$。$S_3$中对应元素满足相同关系，所以化简两个正规形乘积所得公式一致，映射保乘法；两边均有六个不同正规形，故为双射。因此$G\cong S_3$。
+\end{proof}
+
+\paragraph{复习提示}
+仅列出几个成立的关系不足以直接判定同构，需补充正规形和双射的说明。
+
+
+\subsection{习题22：\texorpdfstring{15阶群}{15阶群}}
+\label{ex:2:22}
+
+\paragraph{题目}
+全部15阶群同构于$C_{15}$。
+
+\paragraph{考点与思路}
+两种西罗子群都唯一，正规性和互素阶使其逐元素交换。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow3}；\noteref{normal}；\noteref{coprime}；\exref{1}{21}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:461；第2章原\exref{2}{22}。
+
+\begin{proof}
+由\proofref{sylow3}{西罗第三定理}，
+\begin{align*}
+n_5\mid3,\quad n_5\equiv1\pmod5&\quad\Longrightarrow\quad n_5=1,\\
+n_3\mid5,\quad n_3\equiv1\pmod3&\quad\Longrightarrow\quad n_3=1.
+\end{align*}
+设这两个唯一的西罗子群为$P=\langle a\rangle$、$Q=\langle b\rangle$，其中$a$为3阶、$b$为5阶。它们均正规，且交平凡，因为交的阶同时整除3和5。
+
+对$x\in P,y\in Q$，正规性说明$[x,y]$同时属于$P$和$Q$，所以$[x,y]=e$，即$xy=yx$。又第一章习题21给出$|PQ|=15$，故$G=PQ$。
+
+因此$a,b$交换，且阶互素。由原笔记互素阶交换元素乘积的阶的引理，$\ord(ab)=15$，所以$ab$生成$G$，故$G\cong C_{15}$。
+\end{proof}
+
+\paragraph{复习提示}
+两个循环子群的乘积未必循环；这里生成元的阶互素且彼此交换才推出循环。
+
+
+\subsection{习题23：\texorpdfstring{10阶群}{10阶群}}
+\label{ex:2:23}
+
+\paragraph{题目}
+证明10阶群恰有$C_{10}$与$D_5$两种同构类型。
+
+\paragraph{考点与思路}
+根据2阶元素在唯一5阶子群上的共轭作用分类。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow3}；\noteref{coprime}；\noteref{dihedral}；\exref{1}{21}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:478；第2章原\exref{2}{23}。
+
+\begin{proof}
+由$n_5\mid2$及$n_5\equiv1\pmod5$，得$n_5=1$。设唯一的5阶子群为$\langle a\rangle$，取2阶元素$b$。两个子群交平凡，由计数可得$G=\langle a\rangle\langle b\rangle$，所以$a,b$生成$G$。
+
+由于$\langle a\rangle$正规，$bab^{-1}=a^t$，其中$\gcd(t,5)=1$。由$b^2=e$，再次共轭得
+\[
+a=b(a^t)b^{-1}=a^{t^2},
+\]
+所以$t^2\equiv1\pmod5$。因5为素数，$5\mid(t-1)(t+1)$推出$t\equiv1$或$-1\pmod5$。
+
+若$t\equiv1$，则$a,b$交换，互素阶乘积的阶公式给出$\ord(ab)=10$，故$G\cong C_{10}$。
+
+若$t\equiv-1$，则$a^5=b^2=e$且$bab^{-1}=a^{-1}$。每个元素唯一写为$a^i$或$a^ib$，$0\leq i<5$。将它们分别映到$D_5$中的$T^i$和$T^iS$，由相同的关系核对乘法，得到同构$G\cong D_5$。
+
+$C_{10}$交换，$D_5$不交换，所以两者不同构；$t$的两种可能已穷尽，分类完成。
+\end{proof}
+
+\paragraph{复习提示}
+先证明共轭只剩两种，再分别识别两个群，才能说明分类没有遗漏。
+
+
+\subsection{习题24：\texorpdfstring{不同素数乘积阶的群不单}{不同素数乘积阶的群不单}}
+\label{ex:2:24}
+
+\paragraph{题目}
+若$|G|=pq$、$p<q$，则$G$不是单群。
+
+\paragraph{考点与思路}
+对较大素数的西罗子群计数，排除非唯一的可能。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow3}；\noteref{simple}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:496；第2章原\exref{2}{24}。
+
+\begin{proof}
+设$|G|=pq$，$p<q$为素数。西罗$q$子群的个数$n_q$满足
+\[
+n_q\mid p,\qquad n_q\equiv1\pmod q.
+\]
+所以$n_q$只能为1或$p$。若$n_q=p$，则$q\mid p-1$，但$0<p-1<q$，不可能。因此$n_q=1$，唯一的西罗$q$子群$Q$正规。
+
+由于$1<q<pq$，$Q$既非平凡子群也非整个群，所以$G$不是单群。
+\end{proof}
+
+\paragraph{复习提示}
+单性排除的是非平凡真正规子群，须交代候选子群既非1阶也非全群。
+
+
+\subsection{习题25：\texorpdfstring{$p^2q$阶群有正规西罗子群}{p2q阶群有正规西罗子群}}
+\label{ex:2:25}
+
+\paragraph{题目}
+设$p,q$为不同的素数，$|G|=p^2q$。证明$G$至少有一个正规的西罗子群。
+
+\paragraph{考点与思路}
+先用西罗数的整除和同余约束缩小到12阶，再直接数元素。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow3}；\noteref{lagrange}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:509；第2章原\exref{2}{25}。
+
+\begin{proof}
+若$n_p=1$，已得到正规西罗子群。否则$n_p\mid q$给出$n_p=q$，再由$n_p\equiv1\pmod p$得$q>p$。
+
+若$n_q=1$，同样已完成。反设$n_q\ne1$。由$n_q\mid p^2$，它只能为$p$或$p^2$。因$p<q$，$p$不可能模$q$余1，故$n_q=p^2$，于是
+\[
+q\mid p^2-1=(p-1)(p+1).
+\]
+$q$为素数，必整除$p-1$或$p+1$；前者因$0<p-1<q$不可能。因此$q\mid p+1$。又$q>p$，只能$q=p+1$。两个相邻整数都为素数，只可能$p=2,q=3$，故剩下12阶情形。
+
+此时反设给出$n_2=3$、$n_3=4$。不同3阶子群交平凡，所以四个3阶子群共有$4(3-1)=8$个3阶元素。群中余下恰有四个元素，包含$e$。
+
+任一西罗2子群有四个元素，其中的元素阶整除4，不能是3阶元，故它只能恰好等于这四个剩余元素组成的集合。因此西罗2子群唯一，与$n_2=3$矛盾。故至少有一个西罗子群正规。
+\end{proof}
+
+\paragraph{复习提示}
+12阶时要说明每个西罗2子群都被同一个四元素集合容纳，才能推出唯一。
+
+
+\subsection{习题26：\texorpdfstring{两个非交换的有限例子}{两个非交换的有限例子}}
+\label{ex:2:26}
+
+\paragraph{题目}
+分别构造所有元素满足$x^3=e$、及所有元素满足$x^4=e$的有限非交换群。
+
+\paragraph{考点与思路}
+保留原解的单位上三角矩阵群和二面体群两个构造。
+
+\paragraph{所用结论与原文依据}
+\noteref{subgroup}；\noteref{dihedral}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:530；第2章原\exref{2}{26}。
+
+\begin{proof}
+在$\F_3$上记
+\[
+X(a,b,c)=\begin{pmatrix}1&a&c\\0&1&b\\0&0&1\end{pmatrix},\qquad
+H=\{X(a,b,c):a,b,c\in\F_3\}.
+\]
+直接计算可得
+\begin{align*}
+X(a,b,c)X(a',b',c')&=X(a+a',b+b',c+c'+ab'),\\
+X(a,b,c)^{-1}&=X(-a,-b,ab-c).
+\end{align*}
+所以$H$含单位矩阵，对乘法和取逆封闭，因而是$\GL_3(\F_3)$的子群，阶为$3^3=27$。
+
+每个$X\in H$可写为$E+N$，其中$N$严格上三角，故$N^3=0$。由于$E$与$N$交换，且域特征为3，
+\[
+X^3=(E+N)^3=E+3N+3N^2+N^3=E.
+\]
+然而
+\begin{align*}
+(E+E_{12})(E+E_{23})&=E+E_{12}+E_{23}+E_{13},\\
+(E+E_{23})(E+E_{12})&=E+E_{12}+E_{23}.
+\end{align*}
+所以$H$非交换，是第一个例子。
+
+第二个例子取$D_4$。由二面体群的元素形式，旋转是$T$的幂，阶整除4；反射$ST^k$满足$(ST^k)^2=e$。所以每个元素$x$均满足$x^4=e$。又原笔记已证明$D_4$阶为8且不交换，故满足要求。
+\end{proof}
+
+\paragraph{复习提示}
+矩阵群的封闭性与逆元应先验证，再讨论其阶和元素的幂。
+
+
+\subsection{习题27：\texorpdfstring{双陪集计数}{双陪集计数}}
+\label{ex:2:27}
+
+\paragraph{题目}
+有限群中，$H,K\leq G,a\in G$，有
+\[
+|HaK|=|H|[K:a^{-1}Ha\cap K].
+\]
+
+\paragraph{考点与思路}
+把双陪集分解成右陪集，再准确比较两个右陪集何时相等。
+
+\paragraph{所用结论与原文依据}
+\noteref{cosets}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:556；第2章原\exref{2}{27}。
+
+\begin{proof}
+令$L=a^{-1}Ha\cap K$。它是$K$的子群。双陪集可写为
+\[
+HaK=\bigcup_{k\in K}Hak,
+\]
+每个$Hak=H(ak)$都是$H$的一个右陪集。对$k_1,k_2\in K$，右陪集相等的判据给出
+\begin{align*}
+Hak_1=Hak_2
+&\iff (ak_1)(ak_2)^{-1}\in H\\
+&\iff ak_1k_2^{-1}a^{-1}\in H\\
+&\iff k_1k_2^{-1}\in a^{-1}Ha\cap K=L\\
+&\iff Lk_1=Lk_2.
+\end{align*}
+所以不同$Hak$的个数等于$L$在$K$中的右陪集数，即$[K:L]$。不同的$H$右陪集两两不交，每个均有$|H|$个元素。因此
+\[
+|HaK|=|H|[K:a^{-1}Ha\cap K].
+\]
+\end{proof}
+
+\paragraph{复习提示}
+这里使用右陪集的判据$Hx=Hy\iff xy^{-1}\in H$，次序不能写反。
+
+
+\subsection{习题28：\texorpdfstring{西罗2子群只有2阶时的指数2子群}{西罗2子群只有2阶时的指数2子群}}
+\label{ex:2:28}
+
+\paragraph{题目}
+设有限群$G$的西罗2子群阶为2。证明$G$存在指数2的子群。
+
+\paragraph{考点与思路}
+仍用左正则表示，把一个2阶元素对应为奇置换，再取符号同态的核。
+
+\paragraph{所用结论与原文依据}
+\noteref{cayley}；\noteref{sign}；\noteref{firstiso}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:577；第2章原\exref{2}{28}。
+
+\begin{proof}
+因为西罗2子群阶为2，可写$|G|=2m$，其中$m$为奇数。取该子群中的非单位元$a$，则$a^2=e$。原笔记的\proofref{cayley}{凯莱定理}给出左正则表示
+\[
+\rho:G\longrightarrow S(G),\qquad \rho(g)(x)=gx.
+\]
+若$ax=x$，右消去$x$得$a=e$，矛盾。因此$\rho(a)$没有不动点。又$a^2=e$，所以$\rho(a)$的每个轨道都有两个元素，正是$\{x,ax\}$。这些轨道把$G$分成$m$对，故$\rho(a)$为$m$个不相交对换的积。
+
+由于$m$为奇数，$\sgn(\rho(a))=(-1)^m=-1$。因此复合同态$\varepsilon=\sgn\circ\rho:G\to\{1,-1\}$满射。令$N=\ker\varepsilon$，由\proofref{firstiso}{第一同构定理}，
+\[
+G/N\cong\{1,-1\},\qquad [G:N]=2.
+\]
+所以$G$有指数2的子群，且这个子群正规。
+\end{proof}
+
+\paragraph{复习提示}
+构造符号同态后须证明它非平凡，才能确定核的指数恰为2。
+
+
+\subsection{习题29：\texorpdfstring{大子集的乘积}{大子集的乘积}}
+\label{ex:2:29}
+
+\paragraph{题目}
+设$G$为有限群，$A,B\subseteq G$，且$|A|+|B|>|G|$。证明$AB=G$，其中$AB=\{ab:a\in A,b\in B\}$。
+
+\paragraph{考点与思路}
+要把任意$g$写成$ab$，等价于让$A$和$gB^{-1}$有交点。
+
+\paragraph{所用结论与原文依据}
+\noteref{setproduct}；\noteref{glaws}。补充前置工具：有限集合并集的计数。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:595；第2章原\exref{2}{29}。
+
+\begin{proof}
+固定$g\in G$。取逆映射和左乘$g$的映射都是双射，所以$|gB^{-1}|=|B|$。若$A\cap gB^{-1}=\varnothing$，它们的并集作为$G$的子集应满足
+\[
+|A|+|B|=|A\cup gB^{-1}|\le|G|,
+\]
+与题设矛盾。故存在$a\in A\cap gB^{-1}$。
+
+由$a\in gB^{-1}$，可取$b\in B$使$a=gb^{-1}$，右乘$b$得$g=ab\in AB$。因为$g$任意，$G\subseteq AB$。又$A,B\subseteq G$且群运算封闭，$AB\subseteq G$，所以$AB=G$。
+\end{proof}
+
+\paragraph{复习提示}
+严格大于不能改成大于等于。例如在二阶群$\{e,a\}$中取$A=B=\{e\}$，有$|A|+|B|=|G|$，但$AB\ne G$。
+
+
+\subsection{习题30：\texorpdfstring{真子群的共轭不能覆盖有限群}{真子群的共轭不能覆盖有限群}}
+\label{ex:2:30}
+
+\paragraph{题目}
+设$G$为有限群，$H<G$为真子群。证明
+\[
+G\ne\bigcup_{g\in G}gHg^{-1}.
+\]
+
+\paragraph{考点与思路}
+共轭子群的数目至多为$[G:H]$；它们都包含单位元，因此并集的大小比直接相加至少少掉若干次重复。
+
+\paragraph{所用结论与原文依据}
+\noteref{orbit}；\noteref{normalizer}；\noteref{cosets}。补充前置工具：有限集合并集的上界。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:610；第2章原\exref{2}{30}。
+
+\begin{proof}
+记$|G|=n$、$|H|=h$、$m=[G:H]=n/h>1$。$G$通过共轭作用在$H$的共轭子群集合上。稳定$H$的元素正是$N_G(H)$，所以不同共轭子群的数目为
+\[
+r=[G:N_G(H)].
+\]
+对每个$h_0\in H$，有$h_0Hh_0^{-1}=H$，故$H\le N_G(H)$，由指数公式得到$r\le m$。
+
+把不同共轭子群列为$H_1,\ldots,H_r$。每个$H_i$有$h$个元素且含$e$，因此
+\begin{align*}
+\left|\bigcup_{g\in G}gHg^{-1}\right|
+&=1+\left|\bigcup_{i=1}^r(H_i\setminus\{e\})\right|\\
+&\le1+\sum_{i=1}^r|H_i\setminus\{e\}|\\
+&=1+r(h-1)\\
+&\le1+m(h-1)=n-m+1<n.
+\end{align*}
+并集元素数严格小于$|G|$，故不可能覆盖$G$。当$H=\{e\}$时，该估计仍成立。
+\end{proof}
+
+\paragraph{复习提示}
+必须按“不同共轭子群”计数，不能把每个$g$都当成给出一个新子群。有限性用于基数估计。
+
+
+\subsection{习题31：\texorpdfstring{$S_4$的西罗2子群及西罗3子群}{S4的西罗2子群及西罗3子群}}
+\label{ex:2:31}
+
+\paragraph{题目}
+求$S_4$的全部西罗2子群与西罗3子群。
+
+\paragraph{考点与思路}
+8阶子群可由两两分块的稳定子构造；3阶子群由3-轮换生成，再用西罗数条件证明没有遗漏。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow3}；\noteref{orbit}；\noteref{cycles}；\exref{1}{25}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:632；第2章原\exref{2}{31}。
+
+\begin{proof}
+因$|S_4|=24=2^3\cdot3$，西罗2子群的阶为8，西罗3子群的阶为3。
+
+\textbf{西罗2子群。}将四个点分成两个无序二元组，有三种分块
+\[
+\mathcal P_1=\{\{1,2\},\{3,4\}\},\quad
+\mathcal P_2=\{\{1,3\},\{2,4\}\},\quad
+\mathcal P_3=\{\{1,4\},\{2,3\}\}.
+\]
+令$P_i=\{\sigma\in S_4:\sigma(\mathcal P_i)=\mathcal P_i\}$，即保持分块、允许交换两块的置换。稳定子在复合及取逆下封闭，故$P_i$是子群。可选择是否交换两块，再分别选择每块内部的对应，共有$2\cdot2\cdot2=8$种选择，所以$|P_i|=8$，均为西罗2子群。
+
+三者彼此不同：$(12)\in P_1$而$(12)\notin P_2,P_3$；$(13)\in P_2$而$(13)\notin P_3$。又$n_2\mid3$，因此已有的三个子群正是全部。它们也可写为
+\[
+P_1=\langle(1324),(12)\rangle,\quad
+P_2=\langle(1234),(13)\rangle,\quad
+P_3=\langle(1243),(14)\rangle.
+\]
+以中间一组为例，$r=(1234)$、$s=(13)$满足$r^4=s^2=e$、$srs=r^{-1}$；八个$r^k,sr^k$互异，故它们生成整个$P_2$。其余两组按点的重新命名得到。因此三个子群都同构于正方形的8阶二面体群$D_4$。
+
+\textbf{西罗3子群。}$S_4$的3阶元素只能是3-轮换。先选三个移动点，再选两种轮换方向，共有$\binom43\cdot2=8$个。一个3阶循环群恰有两个非单位元，且不同3阶子群交仅含$e$，因此恰有四个：
+\[
+\langle(123)\rangle,\quad\langle(124)\rangle,\quad
+\langle(134)\rangle,\quad\langle(234)\rangle.
+\]
+\end{proof}
+
+\paragraph{复习提示}
+西罗子群的“阶”与“个数”分开计算；本题分别是阶8、个数3，以及阶3、个数4。
+
+
+\subsection{习题32：\texorpdfstring{56阶与148阶群不单}{56阶与148阶群不单}}
+\label{ex:2:32}
+
+\paragraph{题目}
+证明56阶群和148阶群都不是单群。
+
+\paragraph{考点与思路}
+148阶直接求出唯一37阶子群；56阶若7阶子群不唯一，就用元素计数迫使西罗2子群唯一。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow3}；\noteref{lagrange}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:655；第2章原\exref{2}{32}。
+
+\begin{proof}
+\textbf{148阶。}设$|G|=148=4\cdot37$。西罗定理给出
+\[
+n_{37}\mid4,\qquad n_{37}\equiv1\pmod{37}.
+\]
+4的正因子只有1、2、4，只有1满足同余条件，所以$n_{37}=1$。唯一的37阶子群正规，且其阶既不为1也不为148，故$G$不单。
+
+\textbf{56阶。}设$|G|=56=8\cdot7$。由$n_7\mid8$、$n_7\equiv1\pmod7$，得$n_7=1$或8。若$n_7=1$，唯一7阶子群就是非平凡真正规子群。
+
+设$n_7=8$。不同7阶子群的交是各自的子群，阶整除7；若交非平凡，两者就相等。因此它们的非单位元互不重复，共有
+\[
+8(7-1)=48
+\]
+个7阶元素。全群除去这些元素后只剩8个元素，其中含$e$。
+
+任取西罗2子群$P$，它有8个元素。由\proofref{lagrange}{拉格朗日定理}，$P$中元素阶只能为1、2、4、8，不能为7。因此$P$包含于上述剩余的8元集合。两者大小相同，必相等。每个西罗2子群都只能是该集合，所以$n_2=1$，$P$正规。又$1<8<56$，故$G$不单。
+\end{proof}
+
+\paragraph{复习提示}
+不能在知道$n_7=8$后就断言不单；真正的正规子群是进一步计数得到的唯一西罗2子群。
+
+
+\subsection{习题33：\texorpdfstring{弗拉蒂尼论证}{弗拉蒂尼论证}}
+\label{ex:2:33}
+
+\paragraph{题目}
+有限群$G$中，$N\trianglelefteq G$，$P$是$N$的西罗$p$子群，则$G=N N_G(P)$。
+
+\paragraph{考点与思路}
+在正规子群$N$内使用西罗共轭定理，将任意$g$分解为两个指定因子的乘积。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow2}；\noteref{normalizer}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:677；第2章原\exref{2}{33}。
+
+\begin{proof}
+任取$g\in G$。由于$N\trianglelefteq G$，$gPg^{-1}\leq N$；共轭保持阶，故$gPg^{-1}$与$P$同阶，也是$N$的西罗$p$子群。
+
+在群$N$内使用\proofref{sylow2}{西罗第二定理}，存在$n\in N$使
+\[
+gPg^{-1}=nPn^{-1}.
+\]
+于是$(n^{-1}g)P(n^{-1}g)^{-1}=P$。按正规化子的定义，$n^{-1}g\in N_G(P)$，从而$g=n(n^{-1}g)\in NN_G(P)$。由于$g$任意，$G\subseteq NN_G(P)$；反过来，两个因子均在$G$中，故$NN_G(P)\subseteq G$。因此$G=NN_G(P)$。
+\end{proof}
+
+\paragraph{复习提示}
+共轭元$n$必须取在$N$中，故西罗共轭定理是在群$N$内使用。
+
+
+\subsection{习题34：\texorpdfstring{正规子群与商群的西罗子群}{正规子群与商群的西罗子群}}
+\label{ex:2:34}
+
+\paragraph{题目}
+设$G$为有限群，$P$为其西罗$p$子群，$N\trianglelefteq G$。证明：
+\begin{enumerate}
+\item $P\cap N$为$N$的西罗$p$子群；
+\item $PN/N$为$G/N$的西罗$p$子群。
+\end{enumerate}
+
+\paragraph{考点与思路}
+先用共轭使$N$的一个西罗子群落入$P$，再计算商群中的阶。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow2}；\noteref{sylowdef}；\noteref{secondiso}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:695；第2章原\exref{2}{34}。
+
+\begin{proof}
+\begin{enumerate}
+\item 取$N$的西罗$p$子群$Q$。把$Q$视为$G$的$p$子群，由\proofref{sylow2}{西罗第二定理}可知它包含于$G$的某个西罗$p$子群$P_1$。同一定理又给出$g\in G$使$gP_1g^{-1}=P$。
+
+因为$N$正规，$gQg^{-1}\leq N$；又$Q\leq P_1$，故$gQg^{-1}\leq P$。所以
+\[
+gQg^{-1}\leq P\cap N.
+\]
+左边与$Q$同阶，已经是$N$的西罗$p$子群。右边是$N$的$p$子群，阶不能更大。因此两者阶相同，$P\cap N$也是$N$的西罗$p$子群。
+
+\item 写$|G|=p^rm$、$|N|=p^sn$，其中$p\nmid mn$。由第一项，$|P\cap N|=p^s$。因$N$正规，$PN$为子群，商群$PN/N$有定义；\proofref{secondiso}{第二同构定理}给出
+\[
+PN/N\cong P/(P\cap N),\qquad |PN/N|=p^{r-s}.
+\]
+另一方面，$|G/N|=|G|/|N|$中素因子$p$的指数恰为$r-s$。所以$PN/N$具有商群阶中的全部$p$因子，按定义是$G/N$的西罗$p$子群。
+\end{enumerate}
+\end{proof}
+
+\paragraph{复习提示}
+第一项不要求$P\cap N$正规；它的西罗性质通过阶数达到最大值证明。
+
+
+\subsection{习题35：\texorpdfstring{子群的西罗子群可由共轭后相交得到}{子群的西罗子群可由共轭后相交得到}}
+\label{ex:2:35}
+
+\paragraph{题目}
+若$H\leq G$，$P$是$G$的西罗$p$子群，则存在$a\in G$使$aPa^{-1}\cap H$是$H$的西罗$p$子群。
+
+\paragraph{考点与思路}
+先使$H$的西罗子群包含于$P$的某个共轭，再比较交子群的阶。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow2}；\noteref{lagrange}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:714；第2章原\exref{2}{35}。
+
+\begin{proof}
+取$H$的西罗$p$子群$Q$。$Q$也是$G$的$p$子群，由\proofref{sylow2}{西罗第二定理}，存在$a\in G$使$Q\leq aPa^{-1}$。因此
+\[
+Q\leq aPa^{-1}\cap H\leq H.
+\]
+$aPa^{-1}\cap H$作为$p$群$aPa^{-1}$的子群，其阶为$p$的幂；又它属于$H$，所以其阶至多为$|H|$中最大的$p$幂，即$|Q|$。结合它包含$Q$，得两者阶相同，故
+\[
+aPa^{-1}\cap H=Q.
+\]
+所以该交为$H$的西罗$p$子群。
+\end{proof}
+
+\paragraph{复习提示}
+不必要求$H$正规；共轭$P$的位置可以随$H$选择。
+
+
+\subsection{习题36：\texorpdfstring{$\GL_n(\F_p)$的西罗$p$子群}{GLn(Fp)的西罗p子群}}
+\label{ex:2:36}
+
+\paragraph{题目}
+设$p$为素数、$n\ge1$，求$\GL_n(\F_p)$的一个西罗$p$子群，并确定其正规化子及西罗$p$子群的个数。
+
+\paragraph{考点与思路}
+先构造单位上三角群并计算其阶，再用有序基计数核对它恰好具有群阶中的全部$p$因子；通过公共不动向量逐层恢复标准子空间链，确定正规化子。
+
+\paragraph{所用结论与原文依据}
+\noteref{sylow1}；\noteref{sylow2}；\noteref{sylow3}；\noteref{orbit}；\exref{1}{44}、\exref{1}{38}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:732；第2章原\exref{2}{36}。
+
+\begin{proof}
+记$G=\GL_n(\F_p)$，按照现有笔记先取
+\[
+U=\{(a_{ij}):a_{ii}=1,\ a_{ij}=0\ (i>j)\}.
+\]
+两个这样的矩阵之积仍为上三角且对角线全1。若$u=I+T\in U$，则$T$严格上三角，故$T^n=0$，并且
+\[
+u^{-1}=I-T+T^2-\cdots+(-1)^{n-1}T^{n-1}\in U.
+\]
+因而$U$是子群。严格上三角位置有$n(n-1)/2$个，每个位置可独立取$p$个值，故$|U|=p^{n(n-1)/2}$。
+
+接着展开现有笔记所用的可逆矩阵计数公式。可逆矩阵的列组成有序基：第一列有$p^n-1$种选择；已选$k$个线性无关列时，它们张成的空间有$p^k$个向量，下一列有$p^n-p^k$种选择。因此
+\begin{align*}
+|G|&=\prod_{k=0}^{n-1}(p^n-p^k)\\
+&=p^{0+1+\cdots+(n-1)}\prod_{i=1}^n(p^i-1)\\
+&=p^{n(n-1)/2}\prod_{i=1}^n(p^i-1).
+\end{align*}
+每个$p^i-1$均不被$p$整除，所以$|G|$中最大的$p$幂因子是$p^{n(n-1)/2}$，恰好等于$|U|$，故$U$为西罗$p$子群。
+
+令$B$为全体可逆上三角矩阵组成的群。上三角矩阵之积及逆仍为上三角，对角线在乘法下逐项相乘。因此$bub^{-1}$的对角线全1，得到$B\le N_G(U)$。
+
+反过来，设$g\in N_G(U)$。当$n\ge2$时，以$e_i$表示第$i$个标准基向量，$E_{ij}$表示仅第$(i,j)$分量为1的矩阵。对$i<j$有$I+E_{ij}\in U$，且
+\[
+(I+E_{ij})v=v+v_je_i.
+\]
+若$v$被$U$的每个元素固定，取$i=1$、$j=2,\ldots,n$，就得$v_2=\cdots=v_n=0$。反过来$e_1$的所有倍数确实被全部$U$固定。因此公共不动空间为$L_1=\langle e_1\rangle$。
+
+正规化条件保证$g$保持这个空间：若$v\in L_1$、$u\in U$，则$g^{-1}ug\in U$，所以
+\[
+u(gv)=g(g^{-1}ug)v=gv.
+\]
+于是$g(L_1)=L_1$。在商空间$\F_p^n/L_1$上，$U$的像恰为关于基$e_2+L_1,\ldots,e_n+L_1$的单位上三角群，而$g$诱导的映射仍正规化这个像。重复上述公共不动空间论证，或对维数归纳，可得$g$保持整个链
+\[
+L_1\subset L_2\subset\cdots\subset L_n,
+\qquad L_i=\langle e_1,\ldots,e_i\rangle.
+\]
+这意味着第$i$列$g(e_i)$只能出现在前$i$个坐标位置，因此$g$上三角，即$g\in B$。所以$N_G(U)=B$。
+
+$B$的每个对角线分量有$p-1$种选择，严格上三角分量仍有$p^{n(n-1)/2}$种选择，故
+\[
+|B|=(p-1)^np^{n(n-1)/2}.
+\]
+由共轭作用和\proofref{sylow2}{西罗共轭定理}，全部西罗$p$子群数为
+\[
+n_p=[G:N_G(U)]
+=\frac{\prod_{i=1}^n(p^i-1)}{(p-1)^n}.
+\]
+当$n=1$时$U=\{1\}$、$B=G$，正规化子与计数公式仍成立。
+\end{proof}
+
+\paragraph{复习提示}
+构造了具有正确阶的子群才算证明存在一个西罗子群。求个数时应除以正规化子阶，而非直接除以西罗子群阶。
+
+
+\subsection{习题37：\texorpdfstring{非交换$p^3$阶群的换位子群}{非交换p3阶群的换位子群}}
+\label{ex:2:37}
+
+\paragraph{题目}
+若$|G|=p^3$且$G$非交换，则$G^{(1)}=Z(G)$，两者阶为$p$。
+
+\paragraph{考点与思路}
+先确定中心的阶，再利用交换商群的判别限制换位子群。
+
+\paragraph{所用结论与原文依据}
+\noteref{pcenter}；\noteref{abelianization}；\noteref{lagrange}；\exref{2}{20}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:788；第2章原\exref{2}{37}。
+
+\begin{proof}
+因为$G$为非平凡$p$群，$Z(G)\ne\{e\}$。由\proofref{lagrange}{拉格朗日定理}，其阶只能为$p,p^2,p^3$。
+
+若$|Z(G)|=p^3$，则$G$交换，与题设矛盾。若$|Z(G)|=p^2$，则$G/Z(G)$为$p$阶循环群。取其生成元的提升$a$，任意两个群元素可写成$a^iz,a^jw$，其中$z,w\in Z(G)$，并有
+\[
+(a^iz)(a^jw)=a^{i+j}zw=a^{j+i}wz=(a^jw)(a^iz).
+\]
+仍推出$G$交换，矛盾。因此$|Z(G)|=p$。
+
+商群$G/Z(G)$阶为$p^2$，由第二章习题20，它为交换群。将原笔记的交换商群判别用于自然满同态$G\to G/Z(G)$，得$G^{(1)}\leq Z(G)$。由于$G$非交换，$G^{(1)}\ne\{e\}$；而$p$阶循环群$Z(G)$没有非平凡真子群，所以$G^{(1)}=Z(G)$，两者阶均为$p$。
+\end{proof}
+
+\paragraph{复习提示}
+先在本题补写中心商循环的交换性计算，避免依赖尚未出现的\exref{2}{39}。
+
+
+\subsection{习题38：\texorpdfstring{$p$群中的$p$阶正规子群在中心内}{p群中的p阶正规子群在中心内}}
+\label{ex:2:38}
+
+\paragraph{题目}
+设$G$为有限$p$群，$N\trianglelefteq G$且$|N|=p$，证明$N\le Z(G)$。
+
+\paragraph{考点与思路}
+共轭给出从$p$群到$p-1$阶自同构群的同态，其像的阶只能为1。
+
+\paragraph{所用结论与原文依据}
+\noteref{cyclicaut}；\noteref{firstiso}；\noteref{lagrange}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:805；第2章原\exref{2}{38}。
+
+\begin{proof}
+因$N$正规，每个$g\in G$都通过共轭给出$N$的自同构。定义
+\[
+\rho:G\longrightarrow\Aut(N),\qquad
+\rho(g)(x)=gxg^{-1}\quad(x\in N).
+\]
+共轭映射可逆且保持乘法；又$c_gc_h=c_{gh}$，故$\rho$为同态。
+
+$N$阶为素数，任一非单位元$a$均生成$N$。自同构由$a$的像唯一决定；像可以是$a,a^2,\ldots,a^{p-1}$中任意一个，每个选择都给出自同构。因此$|\Aut(N)|=p-1$。
+
+由\proofref{firstiso}{第一同构定理}及\proofref{lagrange}{拉格朗日定理}，$|\rho(G)|$既整除$|G|=p^r$，又整除$p-1$。这两个整数互素，所以$|\rho(G)|=1$。故$gxg^{-1}=x$对所有$g\in G,x\in N$成立，也就是$xg=gx$。因此$N\le Z(G)$。
+\end{proof}
+
+\paragraph{复习提示}
+正规性本身只保证共轭后仍在$N$；这里还利用阶数互素，才把“仍在$N$”加强为“每个元素都不变”。
+
+
+\subsection{习题39：\texorpdfstring{中心商群循环则原群交换}{中心商群循环则原群交换}}
+\label{ex:2:39}
+
+\paragraph{题目}
+若$G/Z(G)$是循环群，证明$G$为交换群。
+
+\paragraph{考点与思路}
+同一个陪集生成元的幂提供非中心部分，其余因子都可自由交换。
+
+\paragraph{所用结论与原文依据}
+\noteref{center}；\noteref{cosets}；\noteref{powers}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:822；第2章原\exref{2}{39}。
+
+\begin{proof}
+设$G/Z(G)=\langle aZ(G)\rangle$。任意$x\in G$的陪集都有形式$xZ(G)=a^mZ(G)$，其中$m\in\Z$，故$a^{-m}x\in Z(G)$。因此任意$x,y\in G$可写成
+\[
+x=a^mz,\qquad y=a^nw,
+\qquad z,w\in Z(G),\ m,n\in\Z.
+\]
+中心元与所有元素交换，故
+\begin{align*}
+xy&=a^mza^nw\\
+&=a^ma^nzw\\
+&=a^{m+n}zw\\
+&=a^{n+m}wz\\
+&=a^nwa^mz=yx.
+\end{align*}
+$x,y$任意，所以$G$交换。上述论证不要求$G$有限，也包括商群平凡的情况。
+\end{proof}
+
+\paragraph{复习提示}
+结论实际上进一步给出$Z(G)=G$，所以中心商群若循环，就只能是平凡群。
+
+
+\subsection{习题40：\texorpdfstring{有限群嵌入某个交错群}{有限群嵌入某个交错群}}
+\label{ex:2:40}
+
+\paragraph{题目}
+证明任意有限群都同构于某个交错群的子群。
+
+\paragraph{考点与思路}
+先用左乘作用嵌入对称群，再添两个点，用一个额外对换补偿奇偶性。
+
+\paragraph{所用结论与原文依据}
+\noteref{cayley}；\noteref{sign}；\noteref{firstiso}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:840；第2章原\exref{2}{40}。
+
+\begin{proof}
+设$|G|=m$。对每个$g\in G$，定义左乘置换$L_g:G\to G$、$x\mapsto gx$。$L_{g^{-1}}$为其逆，且$L_gL_h=L_{gh}$，所以$g\mapsto L_g$是到$m$点对称群的同态。若$L_g$为恒等映射，则$g=L_g(e)=e$，因此它单射。给$G$的元素编号后得到$G\hookrightarrow S_m$。
+
+把$S_m$中置换延拓到$m+2$个点，令其固定$m+1,m+2$。令$t=(m+1\ m+2)$。对$\sigma\in S_m$，设$\varepsilon(\sigma)\in\{0,1\}$表示奇偶性，偶时为0，奇时为1，定义
+\[
+\iota(\sigma)=\sigma t^{\varepsilon(\sigma)}.
+\]
+因为$t$是奇置换，$\iota(\sigma)$总是偶置换，即属于$A_{m+2}$。
+
+$t$只作用于最后两个点，因而与$S_m$中的元素交换。又奇偶性在复合下模2相加，所以
+\begin{align*}
+\iota(\sigma)\iota(\tau)
+&=\sigma t^{\varepsilon(\sigma)}\tau t^{\varepsilon(\tau)}\\
+&=\sigma\tau t^{\varepsilon(\sigma)+\varepsilon(\tau)}\\
+&=\sigma\tau t^{\varepsilon(\sigma\tau)}
+=\iota(\sigma\tau).
+\end{align*}
+若$\iota(\sigma)=e$，将其限制于前$m$个点，就有$\sigma=e$，故$\iota$单射。复合$G\hookrightarrow S_m\hookrightarrow A_{m+2}$即得所求。
+\end{proof}
+
+\paragraph{复习提示}
+不能直接说$S_m\le A_{m+2}$；必须指定这个保持乘法的嵌入。额外对换恰好抵消原置换的奇偶性。
+
+
+\subsection{习题41：\texorpdfstring{正规子群与换位子群交平凡时在中心内}{正规子群与换位子群交平凡时在中心内}}
+\label{ex:2:41}
+
+\paragraph{题目}
+若$N\trianglelefteq G$且$N\cap G^{(1)}=\{e\}$，证明$N\le Z(G)$。
+
+\paragraph{考点与思路}
+任取一个$N$中元素与任意群元的换位子，证明它同时落在$N$和导群中。
+
+\paragraph{所用结论与原文依据}
+\noteref{normal}；\noteref{derived}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:860；第2章原\exref{2}{41}。
+
+\begin{proof}
+取$n\in N$、$g\in G$。正规性给出$g^{-1}ng\in N$；因为$n^{-1}\in N$且$N$对乘法封闭，
+\[
+[n,g]=n^{-1}g^{-1}ng=n^{-1}(g^{-1}ng)\in N.
+\]
+另一方面，$G^{(1)}$由全部换位子生成，故$[n,g]\in G^{(1)}$。于是$[n,g]\in N\cap G^{(1)}=\{e\}$，即
+\[
+n^{-1}g^{-1}ng=e.
+\]
+左乘$n$再左乘$g$得到$ng=gn$。因为$g$任意，$n\in Z(G)$；因为$n$任意，$N\le Z(G)$。
+\end{proof}
+
+\paragraph{复习提示}
+正规性用于证明换位子属于$N$，交平凡用于证明换位子等于$e$，两个条件分别承担不同步骤。
+
+
+\subsection{习题42：\texorpdfstring{可解群的子群与商群仍可解}{可解群的子群与商群仍可解}}
+\label{ex:2:42}
+
+\paragraph{题目}
+证明可解群的子群与商群仍然可解。
+
+\paragraph{考点与思路}
+子群的导出列包含在原群的导出列中；满同态则把导出列逐项映满到像群的导出列。
+
+\paragraph{所用结论与原文依据}
+\noteref{derivedseries}；\noteref{derived}；\noteref{solvabledef}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:873；第2章原\exref{2}{42}。
+
+\begin{proof}
+设$G^{(r)}=\{e\}$。
+
+\textbf{子群。}若$H\le G$，则$H$中任意两个元素的换位子也是$G$中的换位子，因此$H^{(1)}\le G^{(1)}$。逐次使用同样的理由，归纳得到$H^{(i)}\le G^{(i)}$对所有$i\ge0$成立。特别地，
+\[
+H^{(r)}\le G^{(r)}=\{e\},
+\]
+所以$H$可解。
+
+\textbf{商群。}设$N\trianglelefteq G$，令$\pi:G\twoheadrightarrow G/N$为自然满同态。任意同态都满足
+\[
+\pi([x,y])=[\pi(x),\pi(y)].
+\]
+这给出$\pi(G^{(1)})\le(G/N)^{(1)}$。反过来，商群任意两个元素都能取原像，故商群的每个换位子都是原群一个换位子的像；这些换位子生成商群导群，所以反向包含也成立。于是$\pi(G^{(1)})=(G/N)^{(1)}$。
+
+把此结论反复应用于$\pi$在各导群上的限制，得到
+\[
+(G/N)^{(i)}=\pi(G^{(i)}).
+\]
+取$i=r$，右边为$\{N\}$，故$G/N$可解。
+\end{proof}
+
+\paragraph{复习提示}
+子群情形一般是包含关系；商群情形因映射满而得到相等关系。不能把“导群元素”都误认为单个换位子，它们还包括换位子的有限乘积。
+
+
+\subsection{习题43：\texorpdfstring{$p^2q$阶群可解}{p2q阶群可解}}
+\label{ex:2:43}
+
+\paragraph{题目}
+设$p,q$为不同素数，$|G|=p^2q$，证明$G$可解。
+
+\paragraph{考点与思路}
+沿用现有笔记的顺序：由\exref{2}{25}得到正规西罗子群，由\exref{2}{20}判断它与商群均交换，最后应用可解群的扩张性质。下面将所依赖的两道习题及扩张性质一并展开。
+
+\paragraph{所用结论与原文依据}
+\noteref{solvable}；\noteref{sylow3}；\noteref{pcenter}；\exref{2}{25}、\exref{2}{20}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:891；第2章原\exref{2}{43}。
+
+\begin{proof}
+\textbf{第一步：至少有一个西罗子群正规。}设$n_p,n_q$分别为西罗子群数。若$n_p=1$或$n_q=1$，已经得到结论。反设两者都大于1。由$n_p\mid q$，必有$n_p=q$；由$n_p\equiv1\pmod p$，得$q>p$。
+
+又$n_q\mid p^2$且$n_q>1$，所以$n_q=p$或$p^2$。因为$p<q$，整数$p$不可能模$q$余1，故$n_q=p^2$。于是
+\[
+q\mid p^2-1=(p-1)(p+1).
+\]
+$q$为素数，故整除其中一个因子。$q>p$排除$q\mid p-1$，所以$q\mid p+1$。由于$p<q\le p+1$，有$q=p+1$。相邻两个整数都是素数，只可能$p=2,q=3$。
+
+因此只剩$|G|=12$且$n_2=3,n_3=4$的情形。四个3阶子群互交仅含$e$，共含$4\cdot2=8$个3阶元素。其余元素只有四个，含$e$。每个西罗2子群有四个元素，且不能含3阶元素，所以必等于这四元集合，因而西罗2子群唯一，与$n_2=3$矛盾。第一步得证。
+
+\textbf{第二步：阶为$p^2$的群交换。}先回顾$p$群的类方程：非中心共轭类的大小是大于1的$p$幂，因此
+\[
+|P|=|Z(P)|+\sum\text{非中心共轭类大小}
+\]
+说明非平凡有限$p$群的中心阶被$p$整除，中心非平凡。若$|P|=p^2$，则$|Z(P)|=p$或$p^2$。若为$p$，商群$P/Z(P)$阶为$p$，故循环；由\exref{2}{39}，$P$交换，反而有$Z(P)=P$，与中心阶为$p$矛盾。所以必有$Z(P)=P$，$P$交换。
+
+\textbf{第三步：应用可解群的扩张性质。}取第一步给出的正规西罗子群$N$。若$|N|=p^2$，第二步说明$N$交换，而$G/N$为$q$阶循环群；若$|N|=q$，则$N$循环，而$G/N$阶为$p^2$，同样交换。因此两种情况下$N$与$G/N$均可解。
+
+现有笔记“可解群的子群、同态像及扩张”命题说明：正规子群与相应商群均可解时，原群可解。在这里使用该命题，即得$G$可解。为补全使用理由，按该命题的原证明，设$N^{(s)}=\{e\}$、$(G/N)^{(r)}=\{N\}$。对自然满同态$\pi:G\to G/N$，\exref{2}{42}的导群像公式给出
+\[
+\pi(G^{(r)})=(G/N)^{(r)}=\{N\},
+\]
+所以$G^{(r)}\le N$。再逐次取$s$次导群，得到
+\[
+G^{(r+s)}=\bigl(G^{(r)}\bigr)^{(s)}\le N^{(s)}=\{e\}.
+\]
+这正是扩张性质推出$G$可解的过程。本题中$N$和$G/N$均交换，可取$r=s=1$。
+\end{proof}
+
+\paragraph{复习提示}
+本题并未要求$p<q$；证明里只有在反设两个西罗子群都不正规时，才推出$q>p$。应特别记住12阶的计数补充。
+
+
+\subsection{习题44：\texorpdfstring{有限$p$群可解}{有限p群可解}}
+\label{ex:2:44}
+
+\paragraph{题目}
+证明任意有限$p$群都是可解群。
+
+\paragraph{考点与思路}
+沿用现有笔记的中心商群归纳：类方程给出非平凡中心，商去中心后阶数下降；中心与中心商群均可解，再应用可解群的扩张性质。
+
+\paragraph{所用结论与原文依据}
+\noteref{classeq}；\noteref{pcenter}；\noteref{solvable}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:903；第2章原\exref{2}{44}。
+
+\begin{proof}
+对群阶归纳。平凡群交换，可解。设结论对阶小于$|G|$的$p$群成立，且$G$非平凡。
+
+由\exref{2}{43}中类方程的论证，$Z(G)\ne\{e\}$。若$Z(G)=G$，则$G$交换，$G^{(1)}=\{e\}$，结论成立。
+
+以下设$Z(G)$为真子群。因$|Z(G)|>1$，商群$G/Z(G)$仍是$p$群，且阶严格小于$|G|$。由归纳假设，$G/Z(G)$可解。另一方面，$Z(G)$交换，故也可解；中心又是$G$的正规子群。因此对$N=Z(G)$应用可解群的扩张性质，就得到$G$可解，归纳完成。
+
+这里的扩张性质正是\exref{2}{43}第三步按现有笔记命题所展开的结论：若$(G/Z(G))^{(r)}$平凡，则$G^{(r)}\le Z(G)$；由于$Z(G)^{(1)}=\{e\}$，再取一次导群即有$G^{(r+1)}=\{e\}$。这补明了原文“由正规子群与商群可解推出原群可解”的理由。
+\end{proof}
+
+\paragraph{复习提示}
+$p$群不一定交换，但中心一定非平凡。归纳所需的是商群阶数变小，不能仅说“商群仍是$p$群”就直接套结论。
+
+
+\subsection{习题45：\texorpdfstring{两个可解商群给出交核的可解商群}{两个可解商群给出交核的可解商群}}
+\label{ex:2:45}
+
+\paragraph{题目}
+若$H,K\trianglelefteq G$且$G/H,G/K$均可解，证明$G/(H\cap K)$可解。
+
+\paragraph{考点与思路}
+将两种商映射合并成到直积的映射，其核正好是交。再证明两个可解群的直积可解。
+
+\paragraph{所用结论与原文依据}
+\noteref{firstiso}；\noteref{derivedseries}；\noteref{solvable}；\noteref{internal}；\exref{2}{42}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:918；第2章原\exref{2}{45}。
+
+\begin{proof}
+定义
+\[
+\varphi:G\longrightarrow(G/H)\times(G/K),
+\qquad g\longmapsto(gH,gK).
+\]
+两坐标都是同态，所以$\varphi$为同态。且
+\[
+g\in\ker\varphi\iff gH=H\text{ 且 }gK=K
+\iff g\in H\cap K.
+\]
+\proofref{firstiso}{第一同构定理}给出
+\[
+G/(H\cap K)\cong\varphi(G)\le(G/H)\times(G/K).
+\]
+
+为证明右边的直积可解，记$A=G/H$、$B=G/K$。逐分量计算有
+\[
+[(a,b),(a',b')]=([a,a'],[b,b']).
+\]
+故$(A\times B)^{(1)}\le A^{(1)}\times B^{(1)}$。反向，取第二坐标为$e$可得到$([a,a'],e)$；取第一坐标为$e$可得到$(e,[b,b'])$，这些元素的乘积生成$A^{(1)}\times B^{(1)}$。因此两边相等。归纳得
+\[
+(A\times B)^{(i)}=A^{(i)}\times B^{(i)}.
+\]
+若$A^{(r)}=\{e\}$、$B^{(s)}=\{e\}$，取$t=\max\{r,s\}$，得到$(A\times B)^{(t)}=\{(e,e)\}$，直积可解。由\exref{2}{42}，可解群的子群$\varphi(G)$可解，同构将此性质传给$G/(H\cap K)$。
+\end{proof}
+
+\paragraph{复习提示}
+$\varphi$未必满到整个直积，因此只写$G/(H\cap K)\cong\varphi(G)$，不能直接写成与整个直积同构。
+
+
+\subsection{习题46：\texorpdfstring{只有两个内自同构时原群交换}{只有两个内自同构时原群交换}}
+\label{ex:2:46}
+
+\paragraph{题目}
+若群$G$只有两个内自同构，证明$G$交换。进一步说明这一前提实际上不可能发生。
+
+\paragraph{考点与思路}
+利用$\operatorname{Inn}(G)\cong G/Z(G)$，将自同构数目转化为中心商群的阶数。
+
+\paragraph{所用结论与原文依据}
+\noteref{inner}；\noteref{cyclic}；\exref{2}{39}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:940；第2章原\exref{2}{46}。
+
+\begin{proof}
+假设$|\operatorname{Inn}(G)|=2$。由本章开始说明的同构，$G/Z(G)$是2阶群；2阶群必循环，故\exref{2}{39}推出$G$交换。
+
+然而，交换群中任意$g,x$都有$gxg^{-1}=x$，所以所有内自同构都是恒等映射，必有$|\operatorname{Inn}(G)|=1$。这与假设等于2矛盾。因此不存在内自同构恰有两个的群，而题目的条件命题成立。
+\end{proof}
+
+\paragraph{复习提示}
+“推出交换”后还可以继续检查前提：这里不是找到一类特殊交换群，而是证明前提本身不可能满足。
+
+
+\subsection{习题47：\texorpdfstring{非平凡有限群至少有两个自同构，除了2阶群}{非平凡有限群至少有两个自同构，除了2阶群}}
+\label{ex:2:47}
+
+\paragraph{题目}
+设$G$为有限群，$|G|>2$。证明$|\Aut(G)|\ge2$；2阶群是非平凡有限群中的例外。
+
+\paragraph{考点与思路}
+按是否交换、是否有阶大于2的元素分类，分别构造非恒等内自同构、取逆映射、交换基向量的线性自同构。
+
+\paragraph{所用结论与原文依据}
+\noteref{inner}；\noteref{aut}；\noteref{glaws}。补充前置工具：有限维二元域向量空间的基构造，在本题具体展开。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:957；第2章原\exref{2}{47}。
+
+\begin{proof}
+恒等映射始终是自同构，因此只需再构造一个非恒等自同构。
+
+\textbf{第一种情况：$G$不交换。}存在$a\notin Z(G)$，因而有$x\in G$使$ax\ne xa$。内自同构$c_a:y\mapsto aya^{-1}$满足$c_a(x)\ne x$，所以不是恒等映射。
+
+\textbf{第二种情况：$G$交换，且有元素$a$的阶大于2。}取逆映射$f(x)=x^{-1}$满足
+\[
+f(xy)=y^{-1}x^{-1}=x^{-1}y^{-1}=f(x)f(y).
+\]
+又$f^2$为恒等映射，故$f$双射，是自同构。因为$a^2\ne e$，有$a^{-1}\ne a$，所以$f$非恒等。
+
+\textbf{第三种情况：$G$交换，且所有元素平方均为$e$。}将群运算记成加法，单位元记成0，则$x+x=0$对所有$x$成立。规定$\F_2$上的标量乘法为$0x=0$、$1x=x$。向量空间的分配律中唯一需要特别检查的是
+\[
+(1+1)x=0=x+x;
+\]
+其余标量组合均直接满足，因此$G$成为$\F_2$上的向量空间。
+
+因$G$有限，可从非零向量逐次加入不在已有张成空间中的向量，有限步后得到一组基$v_1,\ldots,v_d$。每个向量唯一写成$\sum_i\varepsilon_iv_i$，$\varepsilon_i\in\{0,1\}$，故$|G|=2^d$。由$|G|>2$得$d\ge2$。定义
+\[
+f\left(\varepsilon_1v_1+\varepsilon_2v_2+\sum_{i=3}^d\varepsilon_iv_i\right)
+=\varepsilon_1v_2+\varepsilon_2v_1+\sum_{i=3}^d\varepsilon_iv_i.
+\]
+基表示唯一，故$f$定义良好；它保持加法，且$f^2$为恒等映射，因此是群自同构。又$f(v_1)=v_2\ne v_1$，所以非恒等。
+
+三种情况覆盖所有群，均已构造第二个自同构。若$|G|=2$，唯一非单位元必须被自同构固定，单位元也被固定，因此只有恒等自同构，确为例外。
+\end{proof}
+
+\paragraph{复习提示}
+取逆在一般非交换群中不是同态；先分出交换情形才能使用。所有元素平方为单位元时，取逆映射又恰是恒等，需要另作构造。
+
+
+\subsection{习题48：\texorpdfstring{克莱因四元群的自同构群}{克莱因四元群的自同构群}}
+\label{ex:2:48}
+
+\paragraph{题目}
+$\Aut(V_4)\cong S_3$。
+
+\paragraph{考点与思路}
+将自同构限制到三个非单位元，证明任意三点置换都保持乘法。
+
+\paragraph{所用结论与原文依据}
+\noteref{aut}；\noteref{iso}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:971；第2章原\exref{2}{48}。
+
+\begin{proof}
+记$V_4=\{e,a,b,c\}$，其中$a^2=b^2=c^2=e$、$ab=ba=c$，其余不同非单位元的乘积也等于第三个非单位元。
+
+自同构固定$e$，且是双射，所以必置换集合$\{a,b,c\}$。定义限制映射
+\[
+\Phi:\Aut(V_4)\to S(\{a,b,c\}).
+\]
+限制保持复合，故$\Phi$为同态。若限制为恒等置换，自同构既固定三个非单位元又固定$e$，所以为恒等自同构，故$\Phi$单射。
+
+任取$\pi\in S(\{a,b,c\})$，将它延拓为固定$e$的双射$\widetilde\pi:V_4\to V_4$。若一个因子为$e$，乘法显然保持；若两个因子为同一个非单位元，乘积为$e$，像的乘积也为$e$；若为两个不同非单位元，乘积是余下的第三个，置换后仍满足这一规则。所以$\widetilde\pi$保乘法，为自同构。因此$\Phi$满射。
+
+由$S(\{a,b,c\})\cong S_3$，得$\Aut(V_4)\cong S_3$。
+\end{proof}
+
+\paragraph{复习提示}
+一个任意的元素置换通常不保持群乘法，本题需用$V_4$的特殊乘法逐类验证。
+
+
+\subsection{习题49：\texorpdfstring{$S_3,S_4$为完全群}{S3,S4为完全群}}
+\label{ex:2:49}
+
+\paragraph{题目}
+证明$S_3$、$S_4$都是完全群，即中心平凡且全部自同构均为内自同构。
+
+\paragraph{考点与思路}
+先证明中心平凡以数出内自同构，再让任意自同构作用在一个小的、由群自身性质确定的集合上，给自同构总数一个同样的上界。
+
+\paragraph{所用结论与原文依据}
+\noteref{inner}；\noteref{complete}；\noteref{conjugation}；\noteref{threecycles}；\exref{2}{6}、\exref{2}{31}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:990；第2章原\exref{2}{49}。
+
+\begin{proof}
+\textbf{第一步：中心平凡。}事实上$n\ge3$时$Z(S_n)=\{e\}$。若$z\in Z(S_n)$，则对每个$i\ne j$，
+\[
+(z(i)\ z(j))=z(ij)z^{-1}=(ij),
+\]
+所以$z$保持每个二元子集$\{i,j\}$。固定$i$，取互不相同的$i,j,k$，则$z(i)$同时属于$\{i,j\}$与$\{i,k\}$，只能等于$i$。故$z=e$。
+
+因此$\operatorname{Inn}(S_3)\cong S_3$有6个元素，$\operatorname{Inn}(S_4)\cong S_4$有24个元素。只需证明各自的全部自同构数不超过这两个数。
+
+\textbf{第二步：$S_3$。}自同构保持元素阶，所以置换$S_3$中的三个2阶元素$(12),(13),(23)$。这给出同态
+\[
+\Aut(S_3)\longrightarrow\operatorname{Sym}\{(12),(13),(23)\}\cong S_3.
+\]
+若自同构固定这三个元素，因它们生成$S_3$，该自同构对任意生成元乘积也固定，故为恒等映射。因此此同态单射，$|\Aut(S_3)|\le6$。内自同构已经有6个，故全部自同构都是内自同构，$S_3$完全。
+
+\textbf{第三步：$S_4$。}由\exref{2}{31}，$S_4$有四个西罗3子群。记$Q_i$为固定点$i$、在其余三个点上作3-轮换的那个3阶子群。令
+\[
+H_i=\{\sigma\in S_4:\sigma(i)=i\}.
+\]
+我们先证明$N_{S_4}(Q_i)=H_i$。若$g$正规化$Q_i$，它把$Q_i$中非单位3-轮换共轭为同一子群中的非单位3-轮换。共轭将移动点集合映为移动点集合，因此$g$保持$\{1,2,3,4\}\setminus\{i\}$，从而$g(i)=i$。反过来，若$g$固定$i$，它共轭一个移动另外三个点的3-轮换后，仍是这三个点上的3-轮换，只能为原轮换或其逆，所以正规化$Q_i$。等式得证。
+
+自同构把西罗3子群互相置换，并满足
+\[
+\alpha(N_{S_4}(Q))=N_{S_4}(\alpha(Q)).
+\]
+故它们也把四个$H_i$互相置换，给出同态
+\[
+\Psi:\Aut(S_4)\longrightarrow\operatorname{Sym}\{H_1,H_2,H_3,H_4\}\cong S_4.
+\]
+四个$H_i$彼此不同：若$i\ne j$，取$k\ne i,j$，则$(jk)$固定$i$而不固定$j$，所以$H_i\ne H_j$。
+
+下面证明$\Psi$单射。设$\alpha\in\ker\Psi$，即$\alpha(H_i)=H_i$对每个$i$成立。任取$g\in S_4$，共轭点稳定子得到
+\[
+gH_ig^{-1}=H_{g(i)}.
+\]
+对该式应用$\alpha$，并利用它固定各个$H_i$，有
+\begin{align*}
+H_{\alpha(g)(i)}
+&=\alpha(g)H_i\alpha(g)^{-1}\\
+&=\alpha(gH_ig^{-1})\\
+&=\alpha(H_{g(i)})=H_{g(i)}.
+\end{align*}
+因四个$H_i$彼此不同，必有$\alpha(g)(i)=g(i)$对所有$i$成立。所以$\alpha(g)$与$g$是相同置换。$g$任意，故$\alpha$为恒等自同构，$\ker\Psi$平凡。
+
+于是$|\Aut(S_4)|\le|S_4|=24$。结合已有24个内自同构，得到$\Aut(S_4)=\operatorname{Inn}(S_4)$。再结合第一步的中心平凡，$S_4$也是完全群。
+\end{proof}
+
+\paragraph{复习提示}
+证明自同构作用的核平凡是本题关键。仅说“自同构置换四个西罗3子群”，还不能直接断言自同构至多24个；必须排除作用不忠实的可能。
+
+
+\subsection{习题50：\texorpdfstring{非交换单群的自同构群完全}{非交换单群的自同构群完全}}
+\label{ex:2:50}
+
+\paragraph{题目}
+若$G$为非交换单群，则$\Aut(G)$是完全群。
+
+\paragraph{考点与思路}
+先证明内自同构群是唯一极小非平凡正规子群，再把自同构在它上的限制消去。
+
+\paragraph{所用结论与原文依据}
+\noteref{inner}；\noteref{autcenterless}；\noteref{characteristic}；\noteref{complete}；\noteref{simple}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1020；第2章原\exref{2}{50}。
+
+\begin{proof}
+设$A=\Aut(G)$、$S=\Inn(G)$。因为$G$非交换且单，中心作为正规子群只能为$\{e\}$：若中心为$G$，群便交换。因此原笔记的内自同构群定理给出$S\cong G$，所以$S$也是非交换单群，且$S\trianglelefteq A$。
+
+由原笔记无中心群的自同构定理，$C_A(S)=\{e_A\}$且$Z(A)=\{e_A\}$。这里$C_A(S)$指$A$中与$S$每个元素交换的自同构所成的子群。
+
+先证明$S$是$A$的特征子群。任取非平凡正规子群$M\trianglelefteq A$。交$M\cap S$为$S$的正规子群，由$S$的单性，只能平凡或等于$S$。若交平凡，因$M,S$均在$A$中正规，对$m\in M,s\in S$，换位子$[m,s]$同时落在$M,S$中，故为单位元。于是$M\leq C_A(S)=\{e_A\}$，矛盾。故每个非平凡正规子群$M$都包含$S$。
+
+$S$自身没有非平凡真正规子群，所以它是$A$中唯一的极小非平凡正规子群。任意$A$的自同构都把极小非平凡正规子群映为同类子群，因此必须保持$S$，故$S$为特征子群。
+
+任取$\beta\in\Aut(A)$。因$S$特征，$\beta|_S$为$S$的自同构。通过同构$G\to S$、$g\mapsto c_g$（$c_g(x)=gxg^{-1}$），该限制对应某个$a\in\Aut(G)=A$。在$A$中有
+\[
+ac_ga^{-1}=c_{a(g)},
+\]
+所以由$a$诱导的内自同构$\gamma_a$与$\beta$在$S$上相同。令$\delta=\gamma_a^{-1}\beta$，则$\delta$逐元素固定$S$。
+
+对$x\in A,s\in S$，因$S\trianglelefteq A$，$xsx^{-1}\in S$，从而
+\[
+\delta(x)s\delta(x)^{-1}=\delta(xsx^{-1})=xsx^{-1}.
+\]
+因此$x^{-1}\delta(x)$与所有$s\in S$交换，属于$C_A(S)=\{e_A\}$，故$\delta(x)=x$。所以$\delta$恒等，$\beta=\gamma_a$为内自同构。结合$Z(A)$平凡，按定义$A$为完全群。
+\end{proof}
+
+\paragraph{复习提示}
+关键是先证明$S$特征，才能把$A$的任意自同构限制为$S$的自同构。
+
+
+\subsection{习题51：\texorpdfstring{不存在换位子群为$S_4$的更大群}{不存在换位子群为S4的更大群}}
+\label{ex:2:51}
+
+\paragraph{题目}
+不存在$G\supsetneq S_4$使$G^{(1)}=S_4$。
+
+\paragraph{考点与思路}
+沿原笔记用$S_4$的完全性把整个群分解成它与中心化子的直积，再取换位子群。
+
+\paragraph{所用结论与原文依据}
+\noteref{complete}；\noteref{characteristic}；\noteref{internal}；\noteref{derived}；\noteref{threecycles}；\noteref{sign}；\exref{2}{49}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1052；第2章原\exref{2}{51}。
+
+\begin{proof}
+反设$N=S_4=G^{(1)}$。换位子群正规，所以$N\trianglelefteq G$；由第二章习题49，$N$中心平凡且为完全群。
+
+任取$g\in G$。由于$N$正规，$x\mapsto gxg^{-1}$限制到$N$为自同构。$N$完全，故存在$n\in N$使$gxg^{-1}=nxn^{-1}$对所有$x\in N$成立。因此$n^{-1}g\in C_G(N)$，即$g\in NC_G(N)$。于是$G=NC_G(N)$。
+
+记$C=C_G(N)$。由定义$N$与$C$逐元素交换，且$N\cap C=Z(N)=\{e\}$。故乘法映射$N\times C\to G$、$(n,c)\mapsto nc$是满同态；若$nc=e$，则$n=c^{-1}\in N\cap C$，所以$n=c=e$，核平凡。因而$G\cong N\times C$。
+
+对直积逐分量计算换位子，并分别用$[(n_1,e),(n_2,e)]$、$[(e,c_1),(e,c_2)]$取得两因子的生成换位子，得到
+\[
+G^{(1)}=N^{(1)}C^{(1)}.
+\]
+因为$C^{(1)}\leq G^{(1)}=N$且$C^{(1)}\leq C$，得$C^{(1)}\leq N\cap C=\{e\}$。所以$G^{(1)}=N^{(1)}$。
+
+最后说明$N^{(1)}=A_4$：符号同态使所有换位子落入$A_4$；另一方面两个对换的换位子可给出3-轮换，例如$[(12),(23)]=(132)$，对符号作共轭替换即可得到全部3-轮换。原笔记已证明3-轮换生成$A_4$，故$N^{(1)}=A_4$。于是$G^{(1)}=A_4\ne S_4$，与假设矛盾。
+\end{proof}
+
+\paragraph{复习提示}
+直积分解后还要证明中心化子因子的导群平凡，不能直接省略这一因子。
+
+
+\subsection{习题52：\texorpdfstring{3-轮换为$A_n$中的换位子}{3-轮换为An中的换位子}}
+\label{ex:2:52}
+
+\paragraph{题目}
+$n>4$时每个3-轮换为一个换位子，从而$A_n^{(1)}=A_n$。
+
+\paragraph{考点与思路}
+保留原解的两个双对换，直接计算它们的换位子。
+
+\paragraph{所用结论与原文依据}
+\noteref{derived}；\noteref{threecycles}；\noteref{cycles}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1073；第2章原\exref{2}{52}。
+
+\begin{proof}
+任取不同的$a,b,c$。因$n\geq5$，还可选取与它们不同且彼此不同的$d,e$。令
+\[
+x=(ab)(de),\qquad y=(bc)(de).
+\]
+两个置换均为两个对换之积，故$x,y\in A_n$。它们又满足$x^{-1}=x$、$y^{-1}=y$。不相交支集上的置换交换，所以
+\[
+xy=(ab)(bc)(de)^2=(abc).
+\]
+按本笔记的换位子约定，
+\[
+[x,y]=x^{-1}y^{-1}xy=(xy)^2=(acb),\qquad
+[y,x]=(abc).
+\]
+因此每个3-轮换都是$A_n$中某两个元素的换位子，属于$A_n^{(1)}$。
+
+全部3-轮换生成$A_n$，所以$A_n\leq A_n^{(1)}$。反向包含由换位子群是原群的子群而成立。因此$A_n^{(1)}=A_n$。
+\end{proof}
+
+\paragraph{复习提示}
+附加的两个点保证构造的$x,y$都是偶置换，这解释了$n>4$的用途。
+
+
+\subsection{习题53：\texorpdfstring{$S_4$的两个生成元及关系}{S4的两个生成元及关系}}
+\label{ex:2:53}
+
+\paragraph{题目}
+存在$a,b$生成$S_4$，满足$a^2=b^3=(ab)^4=e$。
+
+\paragraph{考点与思路}
+按原解取一个对换和一个3-轮换，用共轭取得星形对换。
+
+\paragraph{所用结论与原文依据}
+\noteref{conjugation}；\noteref{cycles}；\noteref{generated}；\exref{2}{10}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1092；第2章原\exref{2}{53}。
+
+\begin{proof}
+取$a=(12)$、$b=(234)$。它们分别为2阶和3阶，故$a^2=b^3=e$。逐点作用可知$ab$把$1,2,3,4$依次映到$2,3,4,1$，所以$ab=(1234)$，从而$(ab)^4=e$。
+
+设$K=\langle a,b\rangle$。\proofref{conjugation}{共轭公式}给出
+\[
+bab^{-1}=(13),\qquad b^2ab^{-2}=(14).
+\]
+因此$K$含$(12),(13),(14)$。由第二章习题10，这三个星形对换生成$S_4$，所以$S_4\leq K$；反向包含成立，故$K=S_4$。
+
+由此构造出了满足要求的生成元。这里证明的是这两个具体置换生成$S_4$，并未把题中的三个等式单独视为任意群的完整展示。
+\end{proof}
+
+\paragraph{复习提示}
+验证所列等式和证明两个元素生成全群，是两个分别需要完成的步骤。
+
+
+\subsection{习题54：\texorpdfstring{$A_4$的两个生成元及关系}{A4的两个生成元及关系}}
+\label{ex:2:54}
+
+\paragraph{题目}
+存在$a,b$生成$A_4$，满足$a^2=b^3=(ab)^3=e$。
+
+\paragraph{考点与思路}
+先计算关系，再让三个共轭双对换构成$V_4$并用子群乘积计数。
+
+\paragraph{所用结论与原文依据}
+\noteref{conjugation}；\noteref{sign}；\noteref{lagrange}；\exref{1}{11}、\exref{1}{21}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1110；第2章原\exref{2}{54}。
+
+\begin{proof}
+取$a=(12)(34)$、$b=(123)$。显然$a^2=b^3=e$。按右边先作用计算，$ab$固定1，并将$2,4,3$依次映到$4,3,2$，所以$ab=(243)$，从而$(ab)^3=e$。
+
+设$K=\langle a,b\rangle$。$a,b$均为偶置换，所以$K\leq A_4$。由\proofref{conjugation}{共轭公式}，
+\[
+bab^{-1}=(23)(14),\qquad b^2ab^{-2}=(13)(24).
+\]
+这两者连同$a$恰为$V_4$的三个非单位元，所以$V_4\leq K$。又$\langle b\rangle$阶为3，$V_4$阶为4，两者的交的阶同时整除3和4，故交平凡。
+
+由第一章习题21，集合$V_4\langle b\rangle$有$4\cdot3=12$个元素，并且包含于$K$。而$K\leq A_4$、$|A_4|=12$，所以只能$K=A_4$。
+\end{proof}
+
+\paragraph{复习提示}
+不必预先证明$V_4\langle b\rangle$为子群；集合乘积的计数已足够比较阶。
+
+
+\subsection{习题55：\texorpdfstring{四元数群的关系与条件}{四元数群的关系与条件}}
+\label{ex:2:55}
+
+\paragraph{题目}
+设$G=\langle a,b\rangle$，满足
+\[
+a^4=b^4=e,\qquad a^2=b^2,\qquad b^{-1}ab=a^{-1}.
+\]
+在$a^2\ne e$的条件下，证明$G\cong Q_8$，列出全部子群并证明每个子群正规。若将上述关系理解为完整展示，也证明展示群为$Q_8$。仅要求等式成立时，说明为何须加限定。
+
+\paragraph{考点与思路}
+先说明生成关系的读法，再用八个正规形识别四元数群，并按元素阶列尽子群。
+
+\paragraph{所用结论与原文依据}
+\noteref{dihedral}；\noteref{quaternion}；\noteref{lagrange}；\noteref{free}；\exref{1}{12}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1126；第2章原\exref{2}{55}。
+
+\begin{proof}
+若只要求题设等式成立而不作其他限定，$V_4$中两个不同非单位元$a,b$也满足这些等式，却不与$Q_8$同构。因此先在$a^2\ne e$的条件下证明，再说明完整展示的情形。
+
+由$b^{-1}ab=a^{-1}$得$ab=ba^{-1}$；将$a$换成$a^{-1}$又得$ba=a^{-1}b$。利用这些关系可以把每个字中的$b$移到右边，并用$b^2=a^2$、$a^4=e$化简，故每个元素都能写成
+\[
+a^ib^j,\qquad0\leq i<4,\quad0\leq j<2.
+\]
+所以$|G|\leq8$。$a^2\ne e$与$a^4=e$说明$a$阶为4。若$b\in\langle a\rangle$，则$b$与$a$交换，由共轭关系得$a=a^{-1}$，与4阶矛盾。因此$b\notin\langle a\rangle$，两个右陪集$\langle a\rangle$、$\langle a\rangle b$不交，每个均有四个元素，故$|G|=8$，所列正规形两两不同。
+
+在四元数体中，$Q_8=\{\pm1,\pm I,\pm J,\pm K\}$是乘法群，其中$I^2=J^2=K^2=-1$、$IJ=K=-JI$。元素$I,J$满足与$a,b$相同的关系。将$a^ib^j$映到$I^iJ^j$，两边八个正规形唯一，故为双射。化简乘积时均使用$ba=a^{-1}b$或$JI=I^{-1}J$及平方关系，所得乘法一致，所以映射为同构，$G\cong Q_8$。
+
+若将题设关系理解为完整展示，设相应展示群为$\widetilde G$。同样的化简证明$|\widetilde G|\leq8$。$I,J$满足全部关系，由自由群商构造的泛性质，$a\mapsto I,b\mapsto J$诱导$\widetilde G\twoheadrightarrow Q_8$，所以$|\widetilde G|\geq8$，从而也与$Q_8$同构。
+
+最后列出全部子群。$Q_8$只有一个2阶元素$-1$，六个其余非单位元均为4阶，它们分别生成
+\[
+\langle I\rangle=\{1,-1,I,-I\},\quad
+\langle J\rangle=\{1,-1,J,-J\},\quad
+\langle K\rangle=\{1,-1,K,-K\}.
+\]
+由\proofref{lagrange}{拉格朗日定理}，真子群的阶只能为1、2或4。1阶子群只有$\{1\}$；2阶子群只能为$\{1,-1\}$；4阶子群不可能所有非单位元都为2阶，因为全群只有一个2阶元，故必须含4阶元，只能为上述三个循环子群之一。因此连同全群$Q_8$，已穷尽全部子群。
+
+三个4阶子群指数为2，均正规；$\{1,-1\}$包含于中心，也正规；平凡子群及全群本来就正规。所以$Q_8$的每个子群均正规。
+\end{proof}
+
+\paragraph{复习提示}
+仅有若干成立的等式，与把它们指定为完整生成关系，是两种不同假设。
+
+
+\subsection{习题56：\texorpdfstring{60以下的群及60阶单群}{60以下的群及60阶单群}}
+\label{ex:2:56}
+
+\paragraph{题目}
+每个阶小于60的群都可解；其中单群只可能为素数阶循环群。60阶单群同构于$A_5$。
+
+\paragraph{考点与思路}
+保留原笔记的六步路线：用单群的置换作用排除小阶情形，以归纳证明可解性，再从60阶单群的西罗子群作用识别$A_5$。
+
+\paragraph{所用结论与原文依据}
+\noteref{simple}；\noteref{action}；\noteref{firstiso}；\noteref{sylow1}；\noteref{sylow2}；\noteref{sylow3}；\noteref{pcenter}；\noteref{solvable}；\noteref{an}；\exref{2}{20}、\exref{2}{32}。补充前置工具：有限阶数分类与关于群阶的数学归纳法。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1161；第2章原\exref{2}{56}。
+
+\begin{proof}
+\textbf{第一步：建立单群的置换作用限制。}
+非交换单群$G$的非平凡作用$\rho:G\to S_t$有正规核。
+核不能为$G$，所以只能平凡，$\rho$忠实。
+符号复合同态$\operatorname{sgn}\circ\rho$若不平凡，同样须单射到$C_2$，与非交换性矛盾。
+故像包含于$A_t$，得到
+\[
+|G|\mid t!/2.
+\]
+特别地，西罗子群的共轭作用在单群中必须满足$n_p>1$，并要求$|G|\mid n_p!/2$。
+
+\textbf{第二步：排除60以下的非交换单群。}
+素数幂阶群有非平凡中心，若单就只能交换，因而只可能为素数阶循环群。
+对于其余合数$n<60$，逐项使用$n_p\mid n/p^{v_p(n)}$及$n_p\equiv1\pmod p$。
+其中$v_p(n)$表示$n$中素因子$p$的指数。若西罗$p$子群正规且非平凡、真包含于群，则与单性矛盾。
+以下阶数选择其最大素因子$p$就迫使$n_p=1$：
+\[
+\begin{gathered}
+6,10,14,15,18,20,21,22,26,28,33,34,35,38,39,\\
+40,42,44,45,46,50,51,52,54,55,57,58.
+\end{gathered}
+\]
+
+\begin{center}\begin{tabular}{c|p{11cm}}
+$p$ & 最大素因子为$p$且西罗数被迫为1的阶数$n$\\\hline
+$3$ & $6,18,54$\\
+$5$ & $10,15,20,40,45,50$\\
+$7$ & $14,21,28,35,42$\\
+$11$ & $22,33,44,55$\\
+$13$ & $26,39,52$\\
+$17$ & $34,51$\\
+$19$ & $38,57$\\
+$23$ & $46$\\
+$29$ & $58$\\
+\end{tabular}\end{center}
+例如$n=45$时$n_5\mid9$，可选1、3、9中只有1模5余1；其余同样由有限个因子核对。
+余下仅有$12,24,30,36,48,56$。
+12、24、48阶若不已有正规西罗2子群，则$n_2=3$，第一步要求嵌入$A_3$，不可能；36阶若$n_3\neq1$，就有$n_3=4$，要求嵌入$A_4$，也不可能。
+30阶单群须$n_5=6,n_3=10$，不同素数阶子群贡献互不重叠的非单位元，至少有
+\[
+6(5-1)+10(3-1)=44>29,
+\]
+矛盾。56阶由\exref{2}{32}排除。
+所以60以下单群只有素数阶循环群。
+
+\textbf{第三步：证明60以下的全部群可解。}
+对阶归纳，平凡群可解。
+若$G$单，第二步说明它为素数阶循环群，因而可解。
+若不单，取非平凡真正规子群$N$，$N$及$G/N$阶都更小，归纳得二者可解，再由扩张性质得$G$可解。
+
+\textbf{第四步：计算60阶单群的西罗数及元素数。}
+设$|G|=60$且$G$单，则由计数及第一步，
+\[
+n_5=6,\qquad n_3=10.
+\]
+这里$n_5$只能为1或6；$n_3$只能为1、4、10，1由单性排除，4由$60\nmid|A_4|$排除。
+因此5阶元有24个，3阶元有20个，余下非单位元只有
+\[
+60-1-24-20=15
+\]
+个。西罗2子群阶为4，其个数只能为1、3、5、15，前两者由单性及$A_3$作用限制排除。
+
+\textbf{第五步：排除$n_2=15$。}
+若西罗2子群循环，则15个共轭子群全循环，每个给出两个4阶元；4阶元唯一生成它所属的4阶子群，故不同子群的这些元素不重叠。
+于是至少有30个4阶元，超过剩余15个，矛盾。
+所以这些西罗子群均为$V_4$，每个含三个对合（即2阶元素），合计45次出现。
+全部对合至多15个，所以至少有一个对合$t$属于两个不同的西罗2子群。
+这两个$V_4$中的元素都与$t$交换，故它们都包含于$C_G(t)$，使
+\[
+4\mid|C_G(t)|,\qquad|C_G(t)|>4.
+\]
+由其阶整除60，只能为12、20或60。
+60使$t$属于非交换单群的中心，不可能；20给出指数3的陪集作用，同样由第一步排除。
+若为12，则指数5的陪集作用使$G\hookrightarrow A_5$，两群阶相等，故$G\cong A_5$。
+但$A_5$中不存在4阶元素：5个点上的4阶置换只能含一个4-轮换，而4-轮换为奇置换。因此它的4阶西罗2子群都为$V_4$。这些子群只有五个：其15个对合均为双对换，每个固定唯一一点，固定给定一点的三个双对换加$e$构成一个$V_4$。
+对$t=(12)(34)$，$S_5$中与它交换的置换须固定5，可交换两个二元组并在组内交换，所以中心化子阶为$2^2\cdot2!=8$。
+其中含奇置换$(12)$，故偶置换部分恰占一半：
+\[
+|C_{A_5}(t)|=4.
+\]
+它已经包含固定5的那个$V_4$，所以恰等于它；其他双对换由共轭有相同结论。
+若某$V_4$含$t$，就必须包含于这个4阶中心化子，因而等于它。
+所以五个这样的子群已列尽，与$n_2=15$矛盾。
+
+\textbf{第六步：用西罗2子群的共轭作用识别群。}
+只能$n_2=5$。$G$共轭作用于这五个子群，给出非平凡同态$G\to S_5$。
+单性及符号同态的讨论使它单射到$A_5$，再比较阶，得到
+\[
+G\cong A_5.
+\]
+\end{proof}
+
+\paragraph{复习提示}
+在假设单群时作用核只有两种可能，先证明作用非平凡才能推出忠实；计数时还要防止不同4阶子群的2阶元重复。
+
+
+\subsection{习题57：\texorpdfstring{有限指数子群仍有限生成}{有限指数子群仍有限生成}}
+\label{ex:2:57}
+
+\paragraph{题目}
+若$G$有限生成且$[G:H]=m<\infty$，则$H$有限生成。
+
+\paragraph{考点与思路}
+选定有限左陪集代表，从一个字的右端递推代表元，得到有限个施赖尔生成元。
+
+\paragraph{所用结论与原文依据}
+\noteref{generated}；\noteref{cosets}。
+
+% 原解来源：chapters/Part 2/chapter2-exercises.tex:1243；第2章原\exref{2}{57}。
+
+\begin{proof}
+设$G=\langle g_1,\ldots,g_n\rangle$。令$S=\{g_1^{\pm1},\ldots,g_n^{\pm1}\}$，它有限，且每个群元素都是$S$中元素的有限乘积。取$H$的$m$个左陪集代表组成集合$T$，规定$e$代表陪集$H$。对$x\in G$，用$\overline x\in T$表示$xH$的唯一选定代表。
+
+对每个$s\in S,t\in T$，由$stH=\overline{st}H$知
+\[
+b_{s,t}=\overline{st}^{\,-1}st\in H.
+\]
+令$\mathcal B=\{b_{s,t}:s\in S,t\in T\}$，则$\mathcal B\subseteq H$且$|\mathcal B|\leq|S|m$，所以$\langle\mathcal B\rangle\leq H$。
+
+任取$h\in H$，写$h=s_1\cdots s_r$，$s_i\in S$。$r=0$时$h=e$已属于$\langle\mathcal B\rangle$。以下设$r\geq1$，从右端递归定义
+\[
+t_{r+1}=e,\qquad t_i=\overline{s_it_{i+1}}quad(i=r,r-1,\ldots,1).
+\]
+由反向归纳可知$t_iH=s_i\cdots s_rH$：起点$t_{r+1}H=H$；若$t_{i+1}H=s_{i+1}\cdots s_rH$，则
+\[
+t_iH=s_it_{i+1}H=s_i\cdots s_rH.
+\]
+因为$h\in H$，有$t_1H=H$，按代表元的选取，$t_1=e$。
+
+令$b_i=t_i^{-1}s_it_{i+1}$。由$t_i=\overline{s_it_{i+1}}$，每个$b_i$均为$\mathcal B$的元素。相邻代表元消去，得到
+\begin{align*}
+b_1\cdots b_r
+&=t_1^{-1}s_1t_2\,t_2^{-1}s_2t_3\cdots t_r^{-1}s_rt_{r+1}\\
+&=t_1^{-1}s_1\cdots s_rt_{r+1}=h.
+\end{align*}
+故$H\leq\langle\mathcal B\rangle$，结合反向包含，得$H=\langle\mathcal B\rangle$，所以$H$有限生成。
+\end{proof}
+
+\paragraph{复习提示}
+写成$a_j^{-1}g_i a_k$时，$a_j$必须代表$g_i a_kH$，不能让三个下标完全独立。
+
+
+\clearpage\section*{原笔记引用定位}\addcontentsline{toc}{section}{原笔记引用定位}
+下表只记录原笔记条目的位置，不重抄定理和定义。原笔记未启用前两章时，可直接按源文件行号回查。正文引用链接指向本表；每项均保留原章节的实际编号或节内位置。
+\small\begin{longtable}{p{6.3cm}p{8.0cm}}
+\toprule 原笔记条目 & 原文位置与内容范围\\\midrule\endhead
+
+\phantomsection\label{note:group}原笔记第1章第2节，定义 1.2.1 & 群的定义；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第51行起。\\
+
+\phantomsection\label{note:glaws}原笔记第1章第2节，命题 1.2.3 & 单位元、逆元与反序取逆；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第77行起。\\
+
+\phantomsection\label{note:cancel}原笔记第1章第2节，命题 1.2.4 & 方程、消去律；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第90行起。\\
+
+\phantomsection\label{note:powers}原笔记第1章第2节，命题 1.2.5 & 整数指数法则；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第109行起。\\
+
+\phantomsection\label{note:abelianpowers}原笔记第1章第2节，命题 1.2.7 & 交换元素的乘积幂；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第134行起。\\
+
+\phantomsection\label{note:dihedral}原笔记第1章第3节，定义 1.3.2 & 二面体群及其阶数与乘法关系；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第163行起。\\
+
+\phantomsection\label{note:cycles}原笔记第1章第3节，定义 1.3.7 & 轮换与对换；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第208行起。\\
+
+\phantomsection\label{note:cycledecomp}原笔记第1章第3节，定理 1.3.9 & 不相交轮换分解；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第222行起。\\
+
+\phantomsection\label{note:subgroup}原笔记第1章第4节，定理 1.4.3 & 子群判别法；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第260行起。\\
+
+\phantomsection\label{note:cosets}原笔记第1章第4节，命题 1.4.8 & 陪集相等的判据与陪集划分；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第315行起。\\
+
+\phantomsection\label{note:lagrange}原笔记第1章第4节，定理 1.4.10 & 拉格朗日定理；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第342行起。\\
+
+\phantomsection\label{note:order}原笔记第1章第4节，命题 1.4.12 & 元素的阶与幂的判据；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第357行起。\\
+
+\phantomsection\label{note:iso}原笔记第1章第5节，定义 1.5.1 & 群同构及同构不变量；第1章“群的同构”。\newline\path{chapters/Part 2/chapter1.tex}，第387行起。\\
+
+\phantomsection\label{note:cayley}原笔记第1章第5节，定理 1.5.3 & 凯莱定理及左正则表示；第1章“群的同构”。\newline\path{chapters/Part 2/chapter1.tex}，第406行起。\\
+
+\phantomsection\label{note:sign}原笔记第1章第4节，命题 1.4.6 & 符号同态与交错群的阶；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第293行起。\\
+
+\phantomsection\label{note:hom}原笔记第1章第6节，定义 1.6.1 & 群同态、像与核；第1章“同态、正规子群”。\newline\path{chapters/Part 2/chapter1.tex}，第481行起。\\
+
+\phantomsection\label{note:normal}原笔记第1章第6节，命题 1.6.5 & 正规子群的等价判据；第1章“同态、正规子群”。\newline\path{chapters/Part 2/chapter1.tex}，第577行起。\\
+
+\phantomsection\label{note:setproduct}原笔记第1章第7节，命题 1.7.2 & 集合乘积及取逆公式；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第615行起。\\
+
+\phantomsection\label{note:quotient}原笔记第1章第7节，定义 1.7.4 & 商群及自然同态；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第680行起。\\
+
+\phantomsection\label{note:firstiso}原笔记第1章第7节，定理 1.7.7 & 群同态基本定理；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第730行起。\\
+
+\phantomsection\label{note:ring}原笔记第1章第8节，定义 1.8.1 & 环的定义；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第780行起。\\
+
+\phantomsection\label{note:ringlaws}原笔记第1章第8节，命题 1.8.2 & 环中零元、负元和分配律的运算；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第790行起。\\
+
+\phantomsection\label{note:subring}原笔记第1章第8节，定理 1.8.5 & 子环判别法；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第889行起。\\
+
+\phantomsection\label{note:ringiso}原笔记第1章第8节，定义 1.8.7 & 环同构及其性质；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第922行起。\\
+
+\phantomsection\label{note:unit}原笔记第1章第9节，定义 1.9.1 & 幺环、单位及双侧逆元；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第953行起。\\
+
+\phantomsection\label{note:zerodiv}原笔记第1章第9节，定义 1.9.3 & 左右零因子、无零因子的消去律；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第987行起。\\
+
+\phantomsection\label{note:field}原笔记第1章第9节，定义 1.9.6 & 域与体；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第1033行起。\\
+
+\phantomsection\label{note:quaternion}原笔记第1章第9节，命题 1.9.9 & 四元数体的矩阵模型；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第1091行起。\\
+
+\phantomsection\label{note:ideal}原笔记第1章第10节，定义 1.10.3 & 理想的定义；第1章“环的同态、理想”。\newline\path{chapters/Part 2/chapter1.tex}，第1200行起。\\
+
+\phantomsection\label{note:idealunit}原笔记第1章第10节，命题 1.10.5 & 含有单位的理想；第1章“环的同态、理想”。\newline\path{chapters/Part 2/chapter1.tex}，第1234行起。\\
+
+\phantomsection\label{note:correspondence}原笔记第2章第1节，定理 2.1.1 & 子群对应定理；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第18行起。\\
+
+\phantomsection\label{note:secondiso}原笔记第2章第1节，定理 2.1.3 & 群的第二同构定理；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第111行起。\\
+
+\phantomsection\label{note:generated}原笔记第2章第1节 & 生成子群与有限生成群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第142行起。\\
+
+\phantomsection\label{note:derived}原笔记第2章第1节，定义 2.1.6 & 换位子与换位子群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第172行起。\\
+
+\phantomsection\label{note:abelianization}原笔记第2章第1节，定理 2.1.7 & 交换同态像与换位子群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第176行起。\\
+
+\phantomsection\label{note:cyclic}原笔记第2章第2节，定理 2.2.2 & 循环群及其子群分类；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第228行起。\\
+
+\phantomsection\label{note:powerorder}原笔记第2章第2节，命题 2.2.3 & 幂的阶的公式；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第254行起。\\
+
+\phantomsection\label{note:coprime}原笔记第2章第2节，引理 2.2.4 & 互素阶交换元素乘积的阶；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第276行起。\\
+
+\phantomsection\label{note:simple}原笔记第2章第3节，定义 2.3.1 & 单群的定义；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第331行起。\\
+
+\phantomsection\label{note:threecycles}原笔记第2章第3节，引理 2.3.3 & 对换与3-轮换的生成结论；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第347行起。\\
+
+\phantomsection\label{note:conjugation}原笔记第2章第3节，命题 2.3.4 & 轮换的共轭公式；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第366行起。\\
+
+\phantomsection\label{note:an}原笔记第2章第3节，定理 2.3.6 & 交错群的单性；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第398行起。\\
+
+\phantomsection\label{note:derivedseries}原笔记第2章第4节，定义 2.4.1 & 导出列；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第503行起。\\
+
+\phantomsection\label{note:solvabledef}原笔记第2章第4节，定义 2.4.2 & 可解群的定义；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第521行起。\\
+
+\phantomsection\label{note:solvable}原笔记第2章第4节，命题 2.4.8 & 可解群的子群、像与扩张；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第681行起。\\
+
+\phantomsection\label{note:aut}原笔记第2章第5节，定义 2.5.1 & 自同构与自同构群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第717行起。\\
+
+\phantomsection\label{note:cyclicaut}原笔记第2章第5节，命题 2.5.3 & 循环群的自同构；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第740行起。\\
+
+\phantomsection\label{note:inner}原笔记第2章第5节，定理 2.5.6 & 内自同构群与中心商群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第819行起。\\
+
+\phantomsection\label{note:center}原笔记第2章第5节，定义 2.5.5 & 群的中心；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第807行起。\\
+
+\phantomsection\label{note:autcenterless}原笔记第2章第5节，定理 2.5.8 & 无中心群的自同构定理；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第854行起。\\
+
+\phantomsection\label{note:complete}原笔记第2章第5节，定义 2.5.9 & 完全群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第884行起。\\
+
+\phantomsection\label{note:characteristic}原笔记第2章第5节，定义 2.5.10 & 特征子群及其性质；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第890行起。\\
+
+\phantomsection\label{note:action}原笔记第2章第6节，定义 2.6.1 & 群作用及对应的置换表示；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第923行起。\\
+
+\phantomsection\label{note:orbit}原笔记第2章第6节，定理 2.6.11 & 轨道稳定子定理；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1060行起。\\
+
+\phantomsection\label{note:pcenter}原笔记第2章第6节，推论 2.6.16 & 有限$p$群的中心非平凡；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1140行起。\\
+
+\phantomsection\label{note:centerizer}原笔记第2章第6节，定义 2.6.17 & 元素的中心化子；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1161行起。\\
+
+\phantomsection\label{note:classeq}原笔记第2章第6节，定理 2.6.18 & 类方程；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1165行起。\\
+
+\phantomsection\label{note:normalizer}原笔记第2章第6节，定义 2.6.20 & 子群的正规化子；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1207行起。\\
+
+\phantomsection\label{note:sylow1}原笔记第2章第7节，定理 2.7.2 & 西罗第一定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1259行起。\\
+
+\phantomsection\label{note:sylowdef}原笔记第2章第7节，定义 2.7.3 & 西罗子群的定义；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1286行起。\\
+
+\phantomsection\label{note:sylow2}原笔记第2章第7节，定理 2.7.4 & 西罗第二定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1290行起。\\
+
+\phantomsection\label{note:sylow3}原笔记第2章第7节，定理 2.7.7 & 西罗第三定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1341行起。\\
+
+\phantomsection\label{note:internal}原笔记第2章第8节，定理 2.8.3 & 内直和分解定理；第2章“群的直和”。\newline\path{chapters/Part 2/chapter2.tex}，第1542行起。\\
+
+\phantomsection\label{note:free}原笔记第2章第11节，定理 2.11.7 & 自由群的泛性质与生成关系；第2章“自由幺半群与自由群”。\newline\path{chapters/Part 2/chapter2.tex}，第1958行起。\\
+
+\bottomrule\end{longtable}\normalsize
+
+\clearpage\section*{题号与证明入口}\addcontentsline{toc}{section}{题号与证明入口}
+\small\begin{longtable}{cp{13.5cm}}
+\toprule 章 & 题号及主题（点击跳转）\\\midrule\endhead
+
+1 & \hyperref[ex:1:1]{1：平方公式判别交换群}\\
+
+1 & \hyperref[ex:1:2]{2：每个元素的平方为单位元}\\
+
+1 & \hyperref[ex:1:3]{3：有限消去半群是群}\\
+
+1 & \hyperref[ex:1:4]{4：可解方程的结合系统}\\
+
+1 & \hyperref[ex:1:5]{5：非交换平方公式的反例}\\
+
+1 & \hyperref[ex:1:6]{6：任意偶数阶的非交换例子}\\
+
+1 & \hyperref[ex:1:7]{7：反复共轭}\\
+
+1 & \hyperref[ex:1:8]{8：取逆映射的同态性}\\
+
+1 & \hyperref[ex:1:9]{9：由子集定义等价关系}\\
+
+1 & \hyperref[ex:1:10]{10：$n\Z\cong\Z$}\\
+
+1 & \hyperref[ex:1:11]{11：克莱因四元群}\\
+
+1 & \hyperref[ex:1:12]{12：指数2的子群正规}\\
+
+1 & \hyperref[ex:1:13]{13：偶数阶群有2阶元素}\\
+
+1 & \hyperref[ex:1:14]{14：二面体群的矩阵实现}\\
+
+1 & \hyperref[ex:1:15]{15：连续三个指数的乘积公式}\\
+
+1 & \hyperref[ex:1:16]{16：有限阶元素的积可以无限阶}\\
+
+1 & \hyperref[ex:1:17]{17：交换群的有限阶元素成子群}\\
+
+1 & \hyperref[ex:1:18]{18：只有有限多个子群的群必有限}\\
+
+1 & \hyperref[ex:1:19]{19：$D_n$的全部正规子群}\\
+
+1 & \hyperref[ex:1:20]{20：子群乘积的判别}\\
+
+1 & \hyperref[ex:1:21]{21：有限子群乘积的计数}\\
+
+1 & \hyperref[ex:1:22]{22：正规子群的乘积}\\
+
+1 & \hyperref[ex:1:23]{23：中心化子与正规化子}\\
+
+1 & \hyperref[ex:1:24]{24：2阶群}\\
+
+1 & \hyperref[ex:1:25]{25：4阶群的分类}\\
+
+1 & \hyperref[ex:1:26]{26：素数阶群}\\
+
+1 & \hyperref[ex:1:27]{27：整数对上的环}\\
+
+1 & \hyperref[ex:1:28]{28：交换整数加法与乘法的角色}\\
+
+1 & \hyperref[ex:1:29]{29：改变坐标得到同构环}\\
+
+1 & \hyperref[ex:1:30]{30：子环与母环的单位元和交换性}\\
+
+1 & \hyperref[ex:1:31]{31：单侧单位元}\\
+
+1 & \hyperref[ex:1:32]{32：域没有非平凡双边理想}\\
+
+1 & \hyperref[ex:1:33]{33：$Ra$何时是理想}\\
+
+1 & \hyperref[ex:1:34]{34：理想的根}\\
+
+1 & \hyperref[ex:1:35]{35：交换幺环仅有平凡理想时为域}\\
+
+1 & \hyperref[ex:1:36]{36：全矩阵环是单环}\\
+
+1 & \hyperref[ex:1:37]{37：$aba=0$判别零因子}\\
+
+1 & \hyperref[ex:1:38]{38：$1-a$的有限几何级数逆}\\
+
+1 & \hyperref[ex:1:39]{39：交换环的幂零元构成理想}\\
+
+1 & \hyperref[ex:1:40]{40：有限幺环的单侧逆也是双侧逆}\\
+
+1 & \hyperref[ex:1:41]{41：单侧逆不成双侧逆时有无穷多个右逆}\\
+
+1 & \hyperref[ex:1:42]{42：唯一的广义逆推出体}\\
+
+1 & \hyperref[ex:1:43]{43：连续函数环}\\
+
+1 & \hyperref[ex:1:44]{44：有限域上的矩阵计数}\\
+
+1 & \hyperref[ex:1:45]{45：华罗庚恒等式}\\
+
+2 & \hyperref[ex:2:1]{1：阶互素时落入正规子群}\\
+
+2 & \hyperref[ex:2:2]{2：互素阶的分解}\\
+
+2 & \hyperref[ex:2:3]{3：互素指数的开方}\\
+
+2 & \hyperref[ex:2:4]{4：$ab$与$ba$同阶}\\
+
+2 & \hyperref[ex:2:5]{5：给定阶元素的奇偶性}\\
+
+2 & \hyperref[ex:2:6]{6：对称群的中心}\\
+
+2 & \hyperref[ex:2:7]{7：有理数加法群的有限生成子群}\\
+
+2 & \hyperref[ex:2:8]{8：有限阶生成元与交换性推出有限性}\\
+
+2 & \hyperref[ex:2:9]{9：由幂集合刻画循环群}\\
+
+2 & \hyperref[ex:2:10]{10：两组对换生成$S_n$}\\
+
+2 & \hyperref[ex:2:11]{11：两个生成元生成$S_n$}\\
+
+2 & \hyperref[ex:2:12]{12：两个生成元生成$A_n$}\\
+
+2 & \hyperref[ex:2:13]{13：长轮换的中心化子}\\
+
+2 & \hyperref[ex:2:14]{14：$S_5$的共轭类及正规子群}\\
+
+2 & \hyperref[ex:2:15]{15：商群中子群的交}\\
+
+2 & \hyperref[ex:2:16]{16：交子群的陪集}\\
+
+2 & \hyperref[ex:2:17]{17：有限指数子群的交}\\
+
+2 & \hyperref[ex:2:18]{18：有限指数给出正规子群或忠实表示}\\
+
+2 & \hyperref[ex:2:19]{19：最小素因子指数的子群正规}\\
+
+2 & \hyperref[ex:2:20]{20：$p^2$阶群的分类}\\
+
+2 & \hyperref[ex:2:21]{21：非交换6阶群}\\
+
+2 & \hyperref[ex:2:22]{22：15阶群}\\
+
+2 & \hyperref[ex:2:23]{23：10阶群}\\
+
+2 & \hyperref[ex:2:24]{24：不同素数乘积阶的群不单}\\
+
+2 & \hyperref[ex:2:25]{25：$p^2q$阶群有正规西罗子群}\\
+
+2 & \hyperref[ex:2:26]{26：两个非交换的有限例子}\\
+
+2 & \hyperref[ex:2:27]{27：双陪集计数}\\
+
+2 & \hyperref[ex:2:28]{28：西罗2子群只有2阶时的指数2子群}\\
+
+2 & \hyperref[ex:2:29]{29：大子集的乘积}\\
+
+2 & \hyperref[ex:2:30]{30：真子群的共轭不能覆盖有限群}\\
+
+2 & \hyperref[ex:2:31]{31：$S_4$的西罗2子群及西罗3子群}\\
+
+2 & \hyperref[ex:2:32]{32：56阶与148阶群不单}\\
+
+2 & \hyperref[ex:2:33]{33：弗拉蒂尼论证}\\
+
+2 & \hyperref[ex:2:34]{34：正规子群与商群的西罗子群}\\
+
+2 & \hyperref[ex:2:35]{35：子群的西罗子群可由共轭后相交得到}\\
+
+2 & \hyperref[ex:2:36]{36：$\GL_n(\F_p)$的西罗$p$子群}\\
+
+2 & \hyperref[ex:2:37]{37：非交换$p^3$阶群的换位子群}\\
+
+2 & \hyperref[ex:2:38]{38：$p$群中的$p$阶正规子群在中心内}\\
+
+2 & \hyperref[ex:2:39]{39：中心商群循环则原群交换}\\
+
+2 & \hyperref[ex:2:40]{40：有限群嵌入某个交错群}\\
+
+2 & \hyperref[ex:2:41]{41：正规子群与换位子群交平凡时在中心内}\\
+
+2 & \hyperref[ex:2:42]{42：可解群的子群与商群仍可解}\\
+
+2 & \hyperref[ex:2:43]{43：$p^2q$阶群可解}\\
+
+2 & \hyperref[ex:2:44]{44：有限$p$群可解}\\
+
+2 & \hyperref[ex:2:45]{45：两个可解商群给出交核的可解商群}\\
+
+2 & \hyperref[ex:2:46]{46：只有两个内自同构时原群交换}\\
+
+2 & \hyperref[ex:2:47]{47：非平凡有限群至少有两个自同构，除了2阶群}\\
+
+2 & \hyperref[ex:2:48]{48：克莱因四元群的自同构群}\\
+
+2 & \hyperref[ex:2:49]{49：$S_3,S_4$为完全群}\\
+
+2 & \hyperref[ex:2:50]{50：非交换单群的自同构群完全}\\
+
+2 & \hyperref[ex:2:51]{51：不存在换位子群为$S_4$的更大群}\\
+
+2 & \hyperref[ex:2:52]{52：3-轮换为$A_n$中的换位子}\\
+
+2 & \hyperref[ex:2:53]{53：$S_4$的两个生成元及关系}\\
+
+2 & \hyperref[ex:2:54]{54：$A_4$的两个生成元及关系}\\
+
+2 & \hyperref[ex:2:55]{55：四元数群的关系与条件}\\
+
+2 & \hyperref[ex:2:56]{56：60以下的群及60阶单群}\\
+
+2 & \hyperref[ex:2:57]{57：有限指数子群仍有限生成}\\
+
+\bottomrule\end{longtable}\end{document}

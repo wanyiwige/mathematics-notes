@@ -1,0 +1,48 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.3 基本初等函数的导数
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{基本初等函数的导数}
+\begin{theorem}
+	$$
+	\begin{aligned}
+		(1)& (C)^{\prime}=0 & \mathrm{d}(C)=0 \cdot \mathrm{~d} x=0 \\
+		(2)& \left(x^\alpha\right)^{\prime}=\alpha x^{\alpha-1}& \mathrm{~d}\left(x^\alpha\right)=\alpha x^{\alpha-1} \mathrm{~d} x \\
+		(3)& (\sin x)^{\prime}=\cos x & \mathrm{~d}(\sin x)=\cos x \mathrm{~d} x\\
+		(4)& (\cos x)^{\prime}=-\sin x 	& \mathrm{~d}(\cos x)=-\sin x \mathrm{~d} x\\
+		(5)& (\tan x)^{\prime}=\sec ^2 x & \mathrm{~d}(\tan x)=\sec ^2 x \mathrm{~d} x\\
+		(6)& (\cot x)^{\prime}=-\csc ^2 x & \mathrm{~d}(\cot x)=-\csc ^2 x \mathrm{~d} x\\
+		(7)& (\sec x)^{\prime}=\tan x \sec x & \mathrm{~d}(\sec x)=\tan x \sec x \mathrm{~d} x\\
+		(8)& (\csc x)^{\prime}=-\cot x \csc x & \mathrm{~d}(\csc x)=-\cot x \csc x \mathrm{~d} x \\
+		(9)& (\arcsin x)^{\prime}=\frac{1}{\sqrt{1-x^2}}	& \mathrm{~d}(\arcsin x)=\frac{\mathrm{d} x}{\sqrt{1-x^2}}  \\
+		(10)& (\arccos x)^{\prime}=-\frac{1}{\sqrt{1-x^2}} & \mathrm{~d}(\arccos x)=-\frac{\mathrm{d} x}{\sqrt{1-x^2}} \\
+		(11)& (\arctan x)^{\prime}=\frac{1}{1+x^2}& \mathrm{~d}(\arctan x)=\frac{\mathrm{d} x}{1+x^2} \\
+		(12)& (\operatorname{arccot} x)^{\prime}=-\frac{1}{1+x^2}& \mathrm{~d}(\operatorname{arccot} x)=-\frac{\mathrm{d} x}{1+x^2}  \\
+		(13)& \left(a^x\right)^{\prime}=\ln a \cdot a^x& \mathrm{~d}\left(a^x\right)=\ln a \cdot a^x \mathrm{~d} x\\
+		&\text{特别的}&\\
+		&\left(\mathrm{e}^x\right)^{\prime}=\mathrm{e}^x&\mathrm{d}\left(\mathrm{e}^x\right)=\mathrm{e}^x \mathrm{~d}\\
+		(14)&\left(\log _a x\right)^{\prime}=\frac{1}{\ln a} \cdot \frac{1}{x}&\mathrm{d}\left(\log _a x\right)=\frac{1}{\ln a} \cdot \frac{\mathrm{~d} x}{x}\\
+		&\text{特别的}&\\
+		&(\ln x)^{\prime}=\frac{1}{x}&\mathrm{d}(\ln x)=\frac{\mathrm{d} x}{x}\\
+		(15)&(\sinh x)^{\prime}=\cosh x& \mathrm{d}(\sinh x)=\cosh x \mathrm{d} x\\
+		(16)&(\cosh x)^{\prime}=\sinh x &\mathrm{d}(\cosh x)=\sinh x \mathrm{d} x\\
+		(17)&(\tanh x)^{\prime}=\operatorname{sech} x&\mathrm{d}(\tanh x)=\operatorname{sech} x \mathrm{d}x\\
+		(18)&\left(\sinh ^{-1} x\right)^{\prime}=\frac{1}{\sqrt{1+x^2}}&\mathrm{d}\left(\sinh ^{-1} x\right)=\frac{\mathrm{d} x}{\sqrt{1+x^2}}\\
+		(19)&\left(\cosh ^{-1} x\right)^{\prime}=\frac{1}{\sqrt{x^2-1}}&\mathrm{d}\left(\cosh ^{-1} x\right)=\frac{\mathrm{d} x}{\sqrt{x^2-1}}\\
+		(20)&\left(\tanh ^{-1} x\right)^{\prime}=\frac{1}{1-x^2}&\mathrm{d}\left(\tanh ^{-1} x\right)=\frac{\mathrm{d} x}{1-x^2}
+	\end{aligned}$$
+	
+\end{theorem}
+我们选取有代表性的几条证明作为示例.
+\begin{proof}
+	(2)由 $\left(1+\dfrac{\Delta x}{x}\right)^\alpha-1 \backsim \dfrac{\alpha \Delta x}{x}(\Delta x \rightarrow 0)$
+	$$\lim _{\Delta x \rightarrow 0} \dfrac{(x+\Delta x)^\alpha-x^\alpha}{\Delta x}=x^{\alpha-1} \lim _{\Delta x \rightarrow 0} \frac{\left(1+\dfrac{\Delta x}{x}\right)^\alpha-1}{\dfrac{\Delta x}{x}}=\alpha x^{\alpha-1}$$
+	对 $x<0$ 且 $\alpha$ 为整数时结论由归纳法可得；对一般的实指数，定义域限制在 $x>0$.
+	(3)$$\lim _{\Delta x \rightarrow 0} \frac{\sin (x+\Delta x)-\sin (x)}{\Delta x}=\lim _{\Delta x \rightarrow 0} \frac{\sin x(\cos \Delta x-1)+\sin \Delta x \cos x}{\Delta x}=\cos x $$
+	(5)$$(\tan x)^{\prime}=\left(\frac{\sin x}{\cos x}\right)^{\prime}=\frac{\cos ^2 x+\sin ^2 x}{\cos ^2 x}=\sec ^2 x $$
+	(9) $$\left(\sin ^{-1} x\right)^{\prime}=\frac{1}{(\sin y)^{\prime}}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-\sin ^2 y}}=\frac{1}{\sqrt{1-x^2}}$$
+	(13)由 $e^{\Delta x}-1 \sim \Delta x \quad(\Delta x \rightarrow 0)$
+	$$\lim _{\Delta x \rightarrow 0} \frac{e^{x+\Delta x}-e^x}{\Delta x}=e^x \cdot \lim _{\Delta x \rightarrow 0} \frac{e^{\Delta x}-1}{\Delta x}=e^x $$
+	(14) 由$ \ln \left(1+\dfrac{\Delta x}{x}\right) \sim \dfrac{\Delta x}{x}(\Delta x \rightarrow 0)$
+	$$\lim _{\Delta x \rightarrow 0} \dfrac{\ln (x+\Delta x)-\ln x}{\Delta x}=\dfrac{1}{x}$$
+\end{proof}

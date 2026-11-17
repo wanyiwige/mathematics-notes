@@ -1,0 +1,243 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第6章：函数的极限与连续性
+% 节：6.6 闭区间上的连续函数
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{闭区间上的连续函数}
+\begin{proposition}(闭区间上连续函数的有界性)
+	若函数 \( f(x) \) 在闭区间 \([a, b]\) 上连续，则 \( f(x) \) 在 \([a, b]\) 上有界
+	\label{limprocinfunc;p}
+	
+\end{proposition}
+\begin{proof}通过使用不同的实数基本定理，我们可以给出多种证法
+	
+	\textbf{法一：使用Cantor 闭区间套定理}
+	
+	若不然，
+	
+	若函数 \( f(x) \) 在闭区间 \([a, b]\) 上无界，将 \([a, b]\) 等分为两个区间 \([a, \dfrac{a+b}{2}]\) 和 \([\dfrac{a+b}{2}, b]\).
+	
+	\(f\) 在两个子区间中至少有一个区间无界，记为 \([a_1, b_1]\)，
+	重复此过程，取出 \([a_2, b_2], [a_3, b_3], \dots\)，
+	显然 \([a_n, b_n]\) 是一个闭区间套，由 Cantor 闭区间套定理，
+	\(\exists ! \xi \in \mathbb{R}, \text{ 使得 } \xi \in \bigcap[a_n, b_n]\) 且$\xi=\lim\limits_{n\to\infty}a_n=\lim\limits_{n\to\infty}b_n$
+	
+	\(\xi \in [a, b]\)，
+	且 \(f\) 在 \(\xi\) 点连续，那么 \(f\) 在该点的某邻域 \(O(\xi, \delta) \cap [a, b]\) 上有界，也即
+	\[ |f(x)| \leqslant M, \quad x \in O(\xi, \delta) \cap [a, b] \]
+	
+	由于 \(\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n = \xi\)，得 \(\exists N, \forall n \ge N\) 时，
+	\[ [a_n, b_n] \subset O(\xi, \delta) \cap [a, b] \]
+	
+	于是 \(f\) 在 \([a_n, b_n]\) 上有界，矛盾.
+	
+	\textbf{法二：使用有界覆盖定理}
+	
+	由连续函数的局部有界性知,$\forall x' \in [a, b]$,$\exists U(x', \delta_{x'})$,$\exists M_{x'} > 0$,使得当 $x \in U(x', \delta_{x'}) \cap [a, b]$ 时有 $|f(x)| \leqslant M_{x'}$.
+	
+	当 $x'$ 取遍 $[a, b]$,就得到开区间集 $H = \{U(x', \delta_{x'}) \mid x' \in [a, b]\}$,显然 $H$ 是闭区间 $[a, b]$ 的一个无限开覆盖.
+	
+	由有限覆盖定理得,存在 $H$ 的一个有限子集 $H^* = \{U(x_i, \delta_i) \mid x_i \in [a, b], i = 1, 2, \cdots, k\}$ 覆盖了闭区间 $[a, b]$,且存在正数 $M_1, M_2, \cdots, M_k$,使得 $\forall x \in U(x_i, \delta_i) \cap [a, b]$ 有 $|f(x)| \leqslant M_i$,$i = 1, 2, \cdots, k$.
+	
+	令 $M = \max_{1 \leqslant i \leqslant k} M_i$,则 $\forall x \in [a, b]$,$x$ 必属于某个 $U(x_i, \delta_i)$,从而有 $|f(x)| \leqslant M_i \leqslant M$.故 $f(x)$ 在 $[a, b]$ 上有界.
+	
+	\textbf{法三：应用致密性定理}
+	
+	反证法.假设 $f(x)$ 在 $[a, b]$ 上无界,即对任意的正整数 $n$,都存在上点 $x_n \in [a, b]$,使得 $|f(x_n)| > n$.取 $n = 1, 2, 3, \cdots$,得到一数列 $\{x_n\}$,$x_n \in [a, b]$ 并且 $|f(x_n)| > n$,即 $\lim\limits_{x \to \infty} f(x_n) = \infty$.
+	
+	由致密性定理,有界数列 $\{x_n\}$ 中能找到一收敛的子列 $\{x_{n_k}\}$,不妨设 $\lim\limits_{n \to \infty} x_{n_k} = x_0$.由于 $x_{n_k} \in [a, b]$,则 $x_0 \in [a, b]$. $f(x)$ 在 $[a, b]$ 上连续,故在 $x_0$ 点处有 $\lim\limits_{x \to x_0} f(x) = f(x_0)$,又因为 $\lim\limits_{x \to \infty} x_{n_k} = x_0$,根据函数极限与数列极限的关系可得到 $\lim\limits_{k \to \infty} f(x_{n_k}) = \lim\limits_{x \to x_0} f(x) = f(x_0)$.
+	
+	另一方面,由 $\lim\limits_{n \to \infty} f(x_n) = \infty$,再由子列的性质可知 $\lim\limits_{ k \to \infty } f(x_{n_k})  = \infty$. 因此我们得到了两个互相矛盾的结果.也就是说 $f(x)$ 在 $[a, b]$ 上无界的假设与已知条件 矛盾,这就证明了定理.
+	
+	\textbf{法四：使用确界原理}
+	
+	令 $E = \{x \mid x \in [a, b], f(t) \text{ 在 } [a, x] \text{ 上有界}\}$,因 $a \in E$,所以 $E$ 非空有界,故有上确界,记 $\eta = \sup E$.由于 $f(x)$ 在 $a$ 点连续,根据连续函数的局部有界性知,$\eta \neq a$,下面证明 $\eta = b$.反证之.假设 $\eta < b$,由 $f(x)$ 在 $\eta$ 点连续,则存在 $\delta > 0$,使得 $f(x)$ 在 $(\eta - \delta, \eta + \delta)$ 有界.又因 $\eta$ 是 $E$ 的上确界,所以 $f(x)$ 在 $[a, \eta - \delta]$ 上有界,从而知 $f(x)$ 在 $\left[a, \eta + \dfrac{\delta}{2}\right]$ 上有界,于是 $\eta + \dfrac{\delta}{2} \in E$,这与 $\eta$ 的定义矛盾,故 $\eta = b$.
+	
+	从上面的证明易见 $\eta \in E$,即 $b \in E$,即 $f(x)$ 在 $[a, b]$ 上有界.
+\end{proof}
+\begin{corollary}(开区间上连续函数的有界性)
+	若函数 \( f(x) \) 在开区间 \((a, b)\) 上连续，且 \( f(a+) \) 和 \( f(b-) \) 存在有限，
+	那么 \( f(x) \) 在开区间 \((a, b)\) 上有界.
+	\label{limconfunopem}
+\end{corollary}
+\begin{proof}
+	令
+	\[
+	\widetilde{f}(x) = \begin{cases}
+		f(x) & x \in (a, b) \\
+		f(a+) & x = a \\
+		f(b-) & x = b
+	\end{cases}
+	\]
+	
+	显然，\(\widetilde{f}(x)\) 在 \([a, b]\) 上连续，则在 \([a, b]\) 上有界，因此 \( f(x) \) 在 \((a, b)\) 上有界，
+	等价于 \( f \) 在 \((a, b)\)  上有界.
+\end{proof}
+\begin{corollary}(无限区间上连续函数的有界性)
+	若函数 \( f(x) \) 在 \((-\infty, +\infty)\) 上连续，且 \(\lim\limits_{x \to +\infty} f(x) = A\)，\(\lim\limits_{x \to -\infty} f(x) = B\)，$A,B$存在且有限，则 \( f(x) \) 在 \((-\infty, +\infty)\) 上有界.
+	
+	
+\end{corollary}
+\begin{proof}
+	因为 $$\lim_{x \to +\infty} f(x) = A$$
+	所以 \(\forall \varepsilon > 0, \exists X_1 > 0, \forall x > X_1, |f(x) - A| < \varepsilon\)，
+	这意味着对于 \(x \in (X_1, +\infty)\)，有 \(A - \varepsilon < f(x) < A + \varepsilon\)，因此 \(f(x)\) 在 \((X_1, +\infty)\) 上有界.
+	又因为 \(f(x)\) 在 \([0, X_1]\) 上连续，根据闭区间上连续函数的性质，\(f(x)\) 在 \([0, X_1]\) 上有界.
+	
+	因为 \[\lim\limits_{x \to -\infty} f(x) = B\]
+	所以 \(\forall \varepsilon > 0, \exists X_2 > 0, \forall x < X_2, |f(x) - B| < \varepsilon\)，
+	这意味着对于 \(x \in (-\infty, X_2)\)，有 \(B - \varepsilon < f(x) < B + \varepsilon\)，因此 \(f(x)\) 在 \((-\infty, X_2)\) 上有界.
+	又因为 \(f(x)\) 在 \([X_2, 0]\) 上连续，根据闭区间上连续函数的性质，\(f(x)\) 在 \([X_2, 0]\) 上有界.
+	
+	综上所述，\(f(x)\) 在 \((-\infty, +\infty)\) 上有界.
+\end{proof}
+上面 的命题蕴含着$(a,+\infty),(-\infty,b)$上连续函数满足有界性时所需的条件
+\begin{proposition}(闭区间上连续函数的最值定理)
+	若函数 \( f(x) \) 在闭区间 \([a, b]\) 上连续，则 \( \exists \xi, \eta \in [a, b], \) 使得$\forall x\in(a,b)$
+	$$ f(\xi) \leqslant f(x)\leqslant f(\eta) $$
+	\label{闭区间上连续函数的最值定理}
+\end{proposition}
+\begin{proof}
+	
+	
+	
+	首先考虑$\xi$的存在性.
+	
+	设 \( R_f = \{ f(x) : x \in [a, b] \} \)，显然 \( R_f \neq \varnothing \)，由\ref{limprocinfunc;p}，\( R_f \) 有上下界，那么必有下确界，设
+	\[ \alpha = \inf R_f, \quad \beta = \sup R_f \]
+	
+	下证：\(\exists \xi \in [a, b], \) 使得 \( f(\xi) = \alpha \).
+	
+	因为 \(\alpha = \inf R_f\)，所以 \(\forall \varepsilon > 0, \exists x, \) 使得 \( f(x) < \alpha + \varepsilon \).
+	
+	取 \(\varepsilon_1 = \dfrac{1}{2}, \exists x_1, \) 使得 \( f(x_1) < \alpha + \dfrac{1}{2} \)，
+	
+	取 \(\varepsilon_2 = \dfrac{1}{3}, \exists x_2, \) 使得 \( f(x_2) < \alpha + \dfrac{1}{3} \)，
+	
+	...
+	
+	取 \(\varepsilon_k = \dfrac{1}{k+1}, \exists x_k, \) 使得 \( f(x_k) < \alpha + \dfrac{1}{k+1} \).
+	
+	序列 \(\{x_n\}\)有界，则有收敛子列，设 \(x_{n_k} \to \xi \ (k \to +\infty)\)，则
+	\[ \alpha \leqslant f(x_{n_k}) < \alpha + \dfrac{1}{n_k + 1} \]
+	
+	当 \(k \to +\infty\)，由函数的连续性，\(\alpha \leqslant f(\xi) \leqslant \alpha\)，故存在 \(\xi\) 使得 \(f(\xi) = \alpha\).
+	
+	同理，\(\exists \eta \in [a, b], \) 使得 \( f(\eta) = \beta \).
+	
+	
+\end{proof}
+\begin{corollary}(开区间上连续函数的最值定理)
+	若函数 \( f(x) \) 在 \((a, b)\) 上连续，且 \( f(a+) \) 与 \( f(b-) \) 存在，则 \(\forall \xi, \eta \in (a, b) \cup \{a+, b-\}\footnote{\text{此处表示左右极限}}, \exists \xi, \eta \in [a, b], \) 使得 \(\forall x \in (a, b)\)
+	\[ f(\xi) \leqslant f(x) \leqslant f(\eta) \]
+	\label{maxminconfunopen}
+	
+	
+\end{corollary}
+\begin{proof}
+	类似于 \ref{limconfunopem} ，考虑构造函数：
+	\[
+	\widetilde{f}(x) = \begin{cases}
+		f(x) & x \in (a, b) \\
+		f(a+) & x = a \\
+		f(b-) & x = b
+	\end{cases}
+	\]
+	即可
+	
+\end{proof}
+\begin{corollary}(无限区间上连续函数的最值定理)
+	规定 $$f(+\infty)=\lim\limits _{x \rightarrow+\infty} f(x), f(-\infty)=\lim\limits _{x \rightarrow-\infty} f(x)$$  
+	
+	$f(x)$ 在 $(-\infty,+\infty)$ 连续，且 $f(+\infty), f(-\infty)$ 存在且有限，那么 $\exists \xi, \eta \in \mathbb{R}^*=\mathbb{R} \cup\{-\infty,+\infty\}$ ，使得 $\forall x \in(-\infty,+\infty)$ 满足 $$f(\xi) \leqslant f(x) \leqslant f(\eta)$$
+\end{corollary}
+\begin{proof}
+	将 \((-\infty, +\infty)\) 分成三个区间：
+	\[ I_1 = (-\infty, a], \quad I_2 = (a, b), \quad I_3 = [b, +\infty) \]
+	
+	对于 \(I_1\)，\(\exists \xi_1, \eta_1 \in I_1 \cup \{-\infty\}, \) 使得 \(\forall x \in I_1, \) 满足 \( f(\xi_1) \leqslant f(x) \leqslant f(\eta_1) \).
+	
+	对于 \(I_2\)，\(\exists \xi_2, \eta_2 \in I_2 \cup \{a+, b-\}, \) 使得 \(\forall x \in I_2, \) 满足 \( f(\xi_2) \leqslant f(x) \leqslant f(\eta_2) \).
+	
+	对于 \(I_3\)，\(\exists \xi_3, \eta_3 \in I_3 \cup \{+\infty\}, \) 使得 \(\forall x \in I_3, \) 满足 \( f(\xi_3) \leqslant f(x) \leqslant f(\eta_3) \).
+	
+	那么取 \( f(\xi) = \min\limits_{i=1,2,3} \{f(\xi_i)\} \), \( f(\eta) = \max\limits_{i=1,2,3} \{f(\eta_i)\} \)，则 \(\forall x \in (-\infty, +\infty), \) 满足 \( f(\xi) \leqslant f(x) \leqslant f(\eta) \).
+	
+	对于 \(I_2\)，由函数的连续性与\ref{maxminconfunopen} 证得.
+	
+	考虑区间 \( I_1 = (-\infty, a] \)， \(\lim\limits_{x \to -\infty} f(x) = A\)
+	
+	若\(\forall x \in I_1, \) 都有 \( A \leqslant f(x) \) 或 \( A \geqslant f(x) \)，取 \(\xi = -\infty\) 或 \(\eta = -\infty\)
+	
+	否则，$\exists x_1,x_2\in I_1$\[A>f(x_1),A<f(x_2)\]
+	\(f(x)\) 在 \([ \min\{x_1, x_2\}, a ]\) 上连续，有最大值最小值.在 \((-\infty, \min\{x_1, x_2\}]\) 亦可找到最大值、最小值.
+	
+	对于 \(I_3\) 同理.
+\end{proof}
+\begin{proposition}(闭区间上的零点存在定理)
+	设函数 \( f \) 在 \([a, b]\) 上连续，且 \( f(a) \cdot f(b) < 0 \)，则至少存在一个 \(\xi \in (a, b)\) 使得 \( f(\xi) = 0 \).
+	\label{闭区间上的零点存在定理}
+	
+\end{proposition}
+\begin{proof}
+	不妨设 \( f(a) < 0 \), \( f(b) > 0 \)，定义集合
+	\[ S := \{ x : f(x) < 0, x \in [a, b] \} \]
+	显然 \( S \neq \varnothing \) 且 \( b \) 是 \( S \) 的上界.
+	
+	由确界原理，\(\xi = \sup S\) 存在.
+	
+	下证 \(\xi \in (a, b)\) 且 \(f(\xi) = 0\).
+	
+	先证，\(\xi \neq a\) 也 \(\xi \neq b\)，
+	
+	因为 \(f(a) < 0\) 且 \(f(x)\) 在 \(a\) 右侧连续，即$\lim\limits_{x\to a^+}f(x)=f(a)<0$,由极限的保序性，\(\exists \delta_1, \) 使得 \(\forall x \in [a, a + \delta_1) \subset [a, b], f(x) < 0\)，
+	这意味着 \([a, a + \delta_1) \subset S\) 且 \(\xi \geqslant a + \delta_1 > a\).
+	
+	同理 \(\xi < b\)，那么 \(\xi \in (a,b)\).
+	
+	\(\xi = \sup S\)，\(\forall \dfrac{1}{n} > 0, \exists x_n \in S, \) 使得 \(\xi - \dfrac{1}{n} < x_n \leqslant \xi\)，
+	
+	令 \(n \to +\infty\)，\(x_n \to \xi\)，由函数的连续性，\(f(x_n) \to f(\xi)\)，
+	即 \(\lim\limits_{n \to \infty} f(x_n) = f(\xi)\).
+	
+	对于 \(x_n \in S\)，有 \(f(x_n) < 0\)，由保序性 \(f(\xi) \leqslant 0\).
+	
+	若 \(f(\xi) < 0\)，由保序性，\(\exists \delta > 0, \forall x \in (\xi - \delta, \xi + \delta) \subset [a, b], f(x) < 0\)，
+	这意味着 \((\xi - \delta, \xi + \delta) \subset S\) 且 \(\xi = \sup S\) 与 \(\xi + \delta \in S\) 矛盾.
+	
+\end{proof}
+\begin{corollary}
+	若函数 \( f \) 在 \([a, b]\) 上连续，且 \( f([a, b]) \subset [a, b] \)，则存在 \(\xi \in [a, b]\) 使得 \( f(\xi) = \xi \)，称为不动点.
+	
+\end{corollary}
+\begin{proof}
+	设 \( g(x) = f(x) - x \)，若 \( g(a) = 0 \) 或 \( g(b) = 0 \)，取 \(\xi = a\) 或 \(\xi = b\) 即可.
+	若 \( g(a), g(b) \neq 0 \)，\(\forall x \in [a, b], a \leqslant f(x) \leqslant b\)，
+	即 \( g(a) > 0, g(b) < 0 \)，由 \ref{闭区间上的零点存在定理}得证
+\end{proof}
+\begin{corollary}(开区间上的零点存在定理)
+	若函数 \( f \) 在 \((a, b)\) 上连续且 \( f(a+) \cdot f(b-) < 0 \)，则在 \((a, b)\) 内存在 \(\xi\) 使得 \( f(\xi) = 0 \).
+\end{corollary}
+\begin{corollary}(无限区间上的零点存在定理)
+	若函数 \( f \) 在 \((-\infty, +\infty)\) 上连续，且 \( f(-\infty) \cdot f(+\infty) < 0 \)，则在 \((-\infty, +\infty)\) 内存在 \(\xi\) 使得 \( f(\xi) = 0 \).
+\end{corollary}
+\begin{proposition}
+	若函数 \( f(x) \) 在 \([a, b]\) 上连续，由最值定理，设其有最大值 \( M \)、最小值 \( m \).
+	\(\forall \eta \in [m, M], \exists x_\eta \in [a, b]\) 使得 \( f(x_\eta) = \eta \).
+	
+	
+\end{proposition}
+\begin{proof}
+	若 \( m = M \) 时，自然成立.
+	
+	$\eta=m\text{或}M$时，由\ref{闭区间上连续函数的最值定理}得证
+	
+	下设 \( m < \eta < M \)，由\ref{闭区间上连续函数的最值定理}可知，
+	\(\exists x_m, x_M \in [a, b], \) 使得 \( f(x_m) = m \), \( f(x_M) = M \).且 \( x_m \neq x_M \).
+	
+	不妨设 \( x_m < x_M \)，令 \( g(x) = f(x) - \eta \)，那么
+	\[ g(x_m) = m - \eta < 0, \quad g(x_M) = M - \eta > 0 \]
+	
+	\(\exists x_\eta \in (x_m, x_M) \subset [a, b], \) 使得 \( g(x_\eta) = 0 \) 即 \( f(x_\eta) = \eta \).
+	
+\end{proof}
+上面的零点存在定理，最值定理，介值定理都有多个证法，具体的之后在写吧。

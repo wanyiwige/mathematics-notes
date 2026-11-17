@@ -1,0 +1,166 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第2章：一元实函数与基本初等函数——你所应当知晓的
+% 节：2.1 函数的性质
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{函数的性质}
+
+\begin{definition}
+	设 $f$ 定义在区间 $I \subset \R$ 上。
+	\begin{enumerate}
+		\item 若对任意 $x_1, x_2 \in I$ 且 $x_1 < x_2$，恒有 $f(x_1) \leqslant f(x_2)$，则称 $f$ 在 $I$ 上 {单调不减}（或{递增}）；
+		\item 若对任意 $x_1, x_2 \in I$ 且 $x_1 < x_2$，恒有 $f(x_1) \geqslant f(x_2)$，则称 $f$ 在 $I$ 上 {单调不增}（或 {递减}）；
+		\item 若对任意 $x_1, x_2 \in I$ 且 $x_1 < x_2$，恒有 $f(x_1) < f(x_2)$，则称 $f$ 在 $I$ 上 {严格单调递增}；
+		\item 若对任意 $x_1, x_2 \in I$ 且 $x_1 < x_2$，恒有 $f(x_1) > f(x_2)$，则称 $f$ 在 $I$ 上 {严格单调递减}。
+	\end{enumerate}
+	以上四种情形统称为 $f$ 在 $I$ 上具有 {单调性}。
+\end{definition}
+
+\begin{proposition}
+	若 $f$ 在区间 $I$ 上严格单调（递增或递减），则 $f$ 是 $I$ 到 $f(I)$ 的单射。特别地，$f: I \to f(I)$ 是双射，从而存在反函数 $f^{-1}: f(I) \to I$。
+\end{proposition}
+
+\begin{proof}
+	不妨设 $f$ 严格递增。任取 $x_1, x_2 \in I$ 且 $x_1 \neq x_2$。若 $x_1 < x_2$，由严格递增性知 $f(x_1) < f(x_2)$；若 $x_1 > x_2$，则 $f(x_1) > f(x_2)$。无论哪种情形均有 $f(x_1) \neq f(x_2)$，故 $f$ 为单射。又 $f(I)$ 是 $f$ 的值域，故 $f: I \to f(I)$ 是满射，从而是双射，反函数存在。
+\end{proof}
+
+\begin{proposition}
+	设 $f, g$ 均在区间 $I$ 上单调不减，则 $f + g$ 在 $I$ 上也单调不减。若 $f, g$ 均严格递增，则 $f + g$ 也严格递增。
+\end{proposition}
+
+\begin{proof}
+	任取 $x_1, x_2 \in I$ 且 $x_1 < x_2$。由 $f, g$ 单调不减知
+	\[
+	f(x_1) \leqslant f(x_2), \quad g(x_1) \leqslant g(x_2).
+	\]
+	两式相加得 $(f+g)(x_1) = f(x_1) + g(x_1) \leqslant f(x_2) + g(x_2) = (f+g)(x_2)$，故 $f+g$ 单调不减。若均为严格递增，则不等号严格成立。
+\end{proof}
+
+\begin{proposition}
+	设 $f$ 在区间 $I$ 上单调不减，$c \in \R$ 为常数。
+	\begin{enumerate}
+		\item 若 $c > 0$，则 $c f$ 在 $I$ 上单调不减；
+		\item 若 $c < 0$，则 $c f$ 在 $I$ 上单调不增；
+		\item 若 $c = 0$，则 $c f \equiv 0$ 既单调不减也单调不增。
+	\end{enumerate}
+	若 $f$ 严格递增，则 $c>0$ 时 $cf$ 严格递增，$c<0$ 时 $cf$ 严格递减。
+\end{proposition}
+
+\begin{proof}
+	任取 $x_1, x_2 \in I$ 且 $x_1 < x_2$，则 $f(x_1) \leqslant f(x_2)$。
+	当 $c > 0$ 时，$c f(x_1) \leqslant c f(x_2)$，故 $cf$ 单调不减；
+	当 $c < 0$ 时，不等式反向得 $c f(x_1) \geqslant c f(x_2)$，故 $cf$ 单调不增；
+	$c = 0$ 时显然。
+\end{proof}
+
+\begin{proposition}[复合函数的单调性]
+	设 $f: I \to J$，$g: J \to \R$，其中 $I, J$ 为区间。
+	\begin{enumerate}
+		\item 若 $f$ 与 $g$ 同为递增或同为递减，则 $g \circ f$ 在 $I$ 上递增；
+		\item 若 $f$ 与 $g$ 一个递增另一个递减，则 $g \circ f$ 在 $I$ 上递减。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	任取 $x_1, x_2 \in I$ 且 $x_1 < x_2$。
+	\begin{enumerate}
+		\item 若 $f, g$ 同为递增：$x_1 < x_2 \Rightarrow f(x_1) < f(x_2) \Rightarrow g(f(x_1)) < g(f(x_2))$；
+		若同为递减：$x_1 < x_2 \Rightarrow f(x_1) > f(x_2) \Rightarrow g(f(x_1)) < g(f(x_2))$。故 $g \circ f$ 递增。
+		\item 若 $f$ 递增而 $g$ 递减：$x_1 < x_2 \Rightarrow f(x_1) < f(x_2) \Rightarrow g(f(x_1)) > g(f(x_2))$；
+		若 $f$ 递减而 $g$ 递增：$x_1 < x_2 \Rightarrow f(x_1) > f(x_2) \Rightarrow g(f(x_1)) > g(f(x_2))$。故 $g \circ f$ 递减。
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}[反函数的单调性]
+	设 $f$ 在区间 $I$ 上严格单调，则其反函数 $f^{-1}: f(I) \to I$ 存在，且 $f^{-1}$ 在 $f(I)$ 上具有与 $f$ 相同的单调性。
+\end{proposition}
+
+\begin{proof}
+	不妨设 $f$ 严格递增。任取 $y_1, y_2 \in f(I)$ 且 $y_1 < y_2$。设 $x_1 = f^{-1}(y_1)$，$x_2 = f^{-1}(y_2)$，则 $f(x_1) = y_1$，$f(x_2) = y_2$。
+	
+	若 $x_1 \geqslant x_2$，由于 $f$ 严格递增，则 $y_1 = f(x_1) \geqslant f(x_2) = y_2$，与 $y_1 < y_2$ 矛盾。故 $x_1 < x_2$，即 $f^{-1}(y_1) < f^{-1}(y_2)$，所以 $f^{-1}$ 严格递增。
+\end{proof}
+
+
+\begin{definition}
+	设 $f$ 定义在关于原点对称的集合 $D$ 上（即 $x \in D \Rightarrow -x \in D$）。
+	\begin{enumerate}
+		\item 若对任意 $x \in D$，恒有 $f(-x) = f(x)$，则称 $f$ 为 {偶函数}；
+		\item 若对任意 $x \in D$，恒有 $f(-x) = -f(x)$，则称 $f$ 为 {奇函数}。
+	\end{enumerate}
+\end{definition}
+
+	偶函数的图像关于 $y$ 轴对称；奇函数的图像关于原点中心对称。并非所有函数都是奇函数或偶函数，大多数函数既不是奇函数也不是偶函数。
+
+\begin{proposition}[奇偶性的线性组合]
+	设 $f, g$ 均为定义在关于原点对称的集合 $D$ 上的函数。
+	\begin{enumerate}
+		\item 若 $f, g$ 均为偶函数，则 $f + g$ 为偶函数；
+		\item 若 $f, g$ 均为奇函数，则 $f + g$ 为奇函数；
+		\item 若 $f$ 为偶（奇）函数，$c \in \R$，则 $cf$ 也为偶（奇）函数。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}
+		\item $(f+g)(-x) = f(-x) + g(-x) = f(x) + g(x) = (f+g)(x)$。
+		\item $(f+g)(-x) = f(-x) + g(-x) = -f(x) - g(x) = -(f+g)(x)$。
+		\item $(cf)(-x) = c \cdot f(-x) = c \cdot (\pm f(x)) = \pm (cf)(x)$。
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}[奇偶性的乘积]
+	设 $f, g$ 均为定义在关于原点对称的集合 $D$ 上的函数。
+	\begin{enumerate}
+		\item 若 $f, g$ 同为偶函数或同为奇函数，则 $f \cdot g$ 为偶函数；
+		\item 若 $f$ 为偶函数而 $g$ 为奇函数，则 $f \cdot g$ 为奇函数。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	记 $h(x) = f(x) g(x)$。
+	\begin{enumerate}
+		\item 若 $f, g$ 同为偶函数：$h(-x) = f(-x)g(-x) = f(x)g(x) = h(x)$；
+		若同为奇函数：$h(-x) = f(-x)g(-x) = (-f(x))(-g(x)) = f(x)g(x) = h(x)$。
+		\item $h(-x) = f(-x)g(-x) = f(x) \cdot (-g(x)) = -f(x)g(x) = -h(x)$。
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}[函数的奇偶分解]
+	设 $f$ 定义在关于原点对称的集合 $D$ 上。则 $f$ 可以唯一地表示为一个偶函数与一个奇函数之和：
+	\[
+	f(x) = \frac{f(x) + f(-x)}{2} + \frac{f(x) - f(-x)}{2}.
+	\]
+	其中
+	\[
+	f_{\mathrm{even}}(x) := \frac{f(x) + f(-x)}{2}
+	\]
+	为偶函数，
+	\[
+	f_{\mathrm{odd}}(x) := \frac{f(x) - f(-x)}{2}
+	\]
+	为奇函数。
+\end{proposition}
+
+\begin{proof}
+	先验证 $f_{\mathrm{even}}$ 为偶函数：
+	\[
+	f_{\mathrm{even}}(-x) = \frac{f(-x) + f(x)}{2} = f_{\mathrm{even}}(x).
+	\]
+	再验证 $f_{\mathrm{odd}}$ 为奇函数：
+	\[
+	f_{\mathrm{odd}}(-x) = \frac{f(-x) - f(x)}{2} = -\frac{f(x) - f(-x)}{2} = -f_{\mathrm{odd}}(x).
+	\]
+	显然 $f(x) = f_{\mathrm{even}}(x) + f_{\mathrm{odd}}(x)$。
+	
+	下证唯一性。假设另有偶函数 $g$ 与奇函数 $h$ 使得 $f = g + h$。则对任意 $x \in D$，
+	\[
+	\begin{aligned}
+		f(x) &= g(x) + h(x), \\
+		f(-x) &= g(-x) + h(-x) = g(x) - h(x).
+	\end{aligned}
+	\]
+	两式相加得 $f(x) + f(-x) = 2g(x)$，故 $g(x) = \dfrac{f(x) + f(-x)}{2} = f_{\mathrm{even}}(x)$；
+	两式相减得 $f(x) - f(-x) = 2h(x)$，故 $h(x) = \dfrac{f(x) - f(-x)}{2} = f_{\mathrm{odd}}(x)$。
+	因此分解唯一。
+\end{proof}
+

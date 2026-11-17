@@ -1,0 +1,1196 @@
+% !TEX root = ../main.tex
+\setchapterimage{}
+\setchapterintro{本章从二元运算与群公理出发,引入子群、循环群、对称群、二面体群等基本例子,建立群的初等性质,并介绍同态与群作用的基本概念.对应原书 Chapter 1: Introduction to Groups.}
+\chapter{群论导引}
+\section{基本公理与例子}
+\begin{definition}
+	\begin{enumerate}
+		\item 集合 $G$ 上的一个\textbf{二元运算} $*$ 是一个函数 $*:G\times G\to G$.对任意 $a,b\in G$,我们把 $*(a,b)$ 写作 $a*b$.
+		\item 若集合 $G$ 上的二元运算 $*$ 满足对所有 $a,b,c\in G$,都有
+		\[
+		a*(b*c)=(a*b)*c,
+		\]
+		则称 $*$ 是\textbf{结合的}.
+		\item 若 $*$ 是集合 $G$ 上的二元运算,若 $G$ 中元素 $a,b$ 满足 $a*b=b*a$,则称 $a$ 与 $b$ \textbf{交换}.若对所有 $a,b\in G$ 都有 $a*b=b*a$,则称 $*$（或称 $G$）是\textbf{交换的}.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$+,\times$ 是$\Z,\Q,\R,\C$上的交换且结合二元运算,但是$-$是$\Z,\Q,\R,\C$上的非交换二元运算,进一步的$-$不是$\Z_+$上的二元运算
+\end{example}
+设 $*$ 是集合 $G$ 上的二元运算,且 $H$ 是 $G$ 的子集.若 $*$ 到 $H$ 的限制是 $H$ 上的二元运算,即对所有 $a,b\in H$ 都有 $a*b\in H$,则称 $H$ 对 $*$ \textbf{封闭}.注意,如果 $*$ 是 $G$ 上的结合（相应地,交换）二元运算,并且 $*$ 限制到 $G$ 的某个子集 $H$ 上是 $H$ 的二元运算,那么 $*$ 在 $H$ 上也自动是结合的（相应地,交换的）
+
+
+\begin{definition}
+	\begin{enumerate}[label=(\arabic*)]
+	\item \textbf{群}是一个有序对 $(G,*)$,其中 $G$ 是一个集合,$*$ 是 $G$ 上的二元运算,并满足以下公理：
+	\begin{enumerate}[label=(\roman*)]
+		\item 对所有 $a,b,c\in G$,$(a*b)*c=a*(b*c)$,即 $*$ 是结合的；
+		\item 存在 $G$ 中的元素 $e$,称为 $G$ 的\textbf{单位元},使得对所有 $a\in G$,都有 $a*e=e*a=a$；
+		\item 对每个 $a\in G$,存在 $G$ 中的元素 $a^{-1}$,称为 $a$ 的\textbf{逆元},使得 $a*a^{-1}=a^{-1}*a=e$.
+	\end{enumerate}
+	\item 若群 $(G,*)$ 满足对所有 $a,b\in G$ 都有 $a*b=b*a$,则称它是\textbf{阿贝尔的}（或\textbf{交换的}）.
+\end{enumerate}
+
+\end{definition}
+在明确了运算$*$的情况下,直接简称$G$是一个群.若$G$是一个有限集,就称$G$是有限群.由公理$(ii)$保证群是非空的.
+
+\begin{example}
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\Z$、$\Q$、$\R$ 和 $\C$ 在 $+$ 下是群,其中 $e=0$,并且对所有 $a$,$a^{-1}=-a$.
+		\item $\Q-\{0\}$、$\R-\{0\}$、$\C-\{0\}$、$\Q^+$、$\R^+$ 在 $\times$ 下是群,其中 $e=1$,并且对所有 $a$,$a^{-1}=1/a$.但是要注意,$\Z-\{0\}$ 在 $\times$ 下不是群,因为虽然 $\times$ 是 $\Z-\{0\}$ 上的结合二元运算,但元素 $2$（例如）在 $\Z-\{0\}$ 中没有逆元.
+	\end{enumerate}
+\end{example}
+下面我们再定义一个常用的结构,用于举例子,我们假设读者已经具备了初步的数论知识,知道整除,同余的定义.
+
+\begin{definition}
+	对一个已经固定下来的正整数$n$,定义$\overline{a}$；这称为 $a$ 模 $n$ 的\textbf{同余类}或\textbf{剩余类},它由与 $a$ 相差 $n$ 的整数倍的所有整数组成,即
+	\[
+	\overline{a}=\{a+kn\mid k\in\Z\}
+	=\{a,\ a\pm n,\ a\pm2n,\ a\pm3n,\ldots\}.
+	\]
+	
+	模 $n$ 恰有 $n$ 个不同的等价类,即
+	\[
+	\overline{0},\overline{1},\overline{2},\ldots,\overline{n-1},
+	\]
+	它们由除以 $n$ 后可能出现的余数决定,并且这些剩余类划分整数集 $\Z$.在这个等价关系下的等价类集合记为 $\Z/n\Z$,称为\textbf{模 $n$ 的整数}（或\textbf{模 $n$ 整数}）.
+
+\end{definition}
+我们可以为 $\Z/n\Z$ 的元素定义加法和乘法,从而定义\textbf{模算术}如下：对 $\overline{a},\overline{b}\in\ZZ/n\ZZ$,定义它们的和与积为
+\[
+\overline{a}+\overline{b}=\overline{a+b},
+\qquad
+\overline{a}\cdot\overline{b}=\overline{ab}.
+\]
+
+下证明这个定义是良定的
+\begin{proposition}
+	上面定义的 $\ZZ/n\ZZ$ 上的加法与乘法运算都是良定的,也就是说,它们不依赖于所涉及各类代表元的选择.更准确地说,若 $a_1,a_2\in\ZZ$ 且 $b_1,b_2\in\ZZ$ 满足 $\overline{a_1}=\overline{b_1}$ 与 $\overline{a_2}=\overline{b_2}$,则
+\[
+\overline{a_1+a_2}=\overline{b_1+b_2}
+\quad\text{且}\quad
+\overline{a_1a_2}=\overline{b_1b_2};
+\]
+也就是说,若
+\[
+a_1\equiv b_1\pmod n\quad\text{且}\quad a_2\equiv b_2\pmod n,
+\]
+则
+\[
+a_1+a_2\equiv b_1+b_2\pmod n
+\quad\text{且}\quad
+a_1a_2\equiv b_1b_2\pmod n.
+\]
+\end{proposition}
+\begin{proof}
+	假设 $a_1\equiv b_1\pmod n$,即 $a_1-b_1$ 可被 $n$ 整除.于是 $a_1=b_1+sn$,其中 $s$ 是某个整数.同样,$a_2\equiv b_2\pmod n$ 意味着 $a_2=b_2+tn$,其中 $t$ 是某个整数.因此
+\[
+a_1+a_2=(b_1+b_2)+(s+t)n,
+\]
+所以 $a_1+a_2\equiv b_1+b_2\pmod n$,这说明剩余类的和与所选代表元无关.同样,
+\[
+a_1a_2=(b_1+sn)(b_2+tn)=b_1b_2+(b_1t+b_2s+stn)n,
+\]
+这说明 $a_1a_2\equiv b_1b_2\pmod n$,因此剩余类的积也与所选代表元无关,证明完成.
+\end{proof}
+$\ZZ/n\ZZ$ 的一个重要子集由在 $\ZZ/n\ZZ$ 中有乘法逆元的剩余类构成：
+\[
+(\ZZ/n\ZZ)^\times
+=\{\overline{a}\in\ZZ/n\ZZ\mid \text{存在 }\overline{c}\in\ZZ/n\ZZ\text{ 使得 }\overline{a}\cdot\overline{c}=\overline{1}\}.
+\]
+ $(\ZZ/n\ZZ)^\times$ 也正是那些代表元与 $n$ 互素的剩余类全体,这证明了下面的命题.
+
+\begin{proposition}
+	\[
+(\ZZ/n\ZZ)^\times=\{\overline{a}\in\ZZ/n\ZZ\mid (a,n)=1\}.
+\]
+容易看出,若 $\overline{a}$ 的任意一个代表元与 $n$ 互素,则所有代表元都与 $n$ 互素,因此命题右端的集合是良定的.
+
+\end{proposition}
+
+现在我们继续举一些关于群的例子
+\begin{enumerate}[label=(\arabic*),start=3]
+	\item 对 $n\in\ZZ^+$,$\ZZ/n\ZZ$ 在前面所述的剩余类加法 $+$ 下是阿贝尔群.我们将在第 3 章（在更一般的语境中）证明这个二元运算 $+$ 是良定且结合的；目前先承认这一点.这个群的单位元是元素 $\overline{0}$,对每个 $\overline{a}\in\ZZ/n\ZZ$,其逆元是 $\overline{-a}$.今后当我们谈到群 $\ZZ/n\ZZ$ 时,默认其群运算是模 $n$ 的类加法.
+	\item 对 $n\in\ZZ^+$,集合 $(\ZZ/n\ZZ)^\times$ 由所有在模 $n$ 下有乘法逆元的等价类 $\overline{a}$ 组成；它在前面所述的剩余类乘法下是阿贝尔群.同样,我们暂且承认该运算是良定且结合的.这个群的单位元是元素 $\overline{1}$,并且按 $(\ZZ/n\ZZ)^\times$ 的定义,每个元素都有乘法逆元.今后当我们谈到群 $(\ZZ/n\ZZ)^\times$ 时,默认其群运算是模 $n$ 的类乘法.
+	\item 若 $(A,*)$ 和 $(B,\circ)$ 是群,则可以构造一个新群 $A\times B$,称为它们的\textbf{直积},其元素是笛卡儿积
+	\[
+	A\times B=\{(a,b)\mid a\in A,\ b\in B\},
+	\]
+	中的元素,运算按分量定义：
+	\[
+	(a_1,b_1)(a_2,b_2)=(a_1*a_2,\ b_1\circ b_2).
+	\]
+\end{enumerate}
+
+\begin{proposition}
+	若 $G$ 在运算 $*$ 下是群,则
+\begin{enumerate}[label=(\arabic*)]
+	\item $G$ 的单位元唯一；
+	\item 对每个 $a\in G$,$a^{-1}$ 唯一确定；
+	\item 对所有 $a\in G$,$(a^{-1})^{-1}=a$；
+	\item $(a*b)^{-1}=(b^{-1})*(a^{-1})$；
+	\item 对任意 $a_1,a_2,\ldots,a_n\in G$,$a_1*a_2*\cdots*a_n$ 的值与该表达式如何加括号无关（这称为\textbf{广义结合律}）.
+\end{enumerate}
+\end{proposition}
+\newpage
+\begin{proof}
+	(1) 若 $f$ 和 $g$ 都是单位元,则由群定义的公理 (ii),$f*g=f$（取 $a=f$、$e=g$）.同一公理也给出 $f*g=g$（取 $a=g$、$e=f$）.故 $f=g$,单位元唯一.
+	
+	(2) 假设 $b$ 和 $c$ 都是 $a$ 的逆元,令 $e$ 为 $G$ 的单位元.由公理 (iii),$a*b=e$ 且 $c*a=e$.于是
+	\begin{align*}
+		c &= c*e &&\text{（$e$ 的定义——公理 (ii)）}\\
+		&= c*(a*b) &&\text{（因为 $e=a*b$）}\\
+		&= (c*a)*b &&\text{（结合律）}\\
+		&= e*b &&\text{（因为 $e=c*a$）}\\
+		&= b &&\text{（公理 (ii)）.}
+	\end{align*}
+	
+	(3) 证明 $(a^{-1})^{-1}=a$,正是要证明 $a$ 是 $a^{-1}$ 的逆元（由于第 (2) 部分,$a^{-1}$ 的逆元唯一）.把 $a$ 与 $a^{-1}$ 的角色互换来看 $a^{-1}$ 的定义,便知 $a$ 满足 $a^{-1}$ 的逆元的定义性质,所以 $a$ 是 $a^{-1}$ 的逆元.
+	
+	(4) 令 $c=(a*b)^{-1}$,则按 $c$ 的定义,$(a*b)*c=e$.由结合律,
+	\[
+	a*(b*c)=e.
+	\]
+	左乘 $a^{-1}$ 得
+	\[
+	a^{-1}*(a*(b*c))=a^{-1}*e.
+	\]
+	左边用结合律、右边用 $e$ 的定义,得
+	\[
+	(a^{-1}*a)*(b*c)=a^{-1},
+	\]
+	因此
+	\[
+	e*(b*c)=a^{-1},
+	\]
+	从而
+	\[
+	b*c=a^{-1}.
+	\]
+	现在左乘 $b^{-1}$ 并同样化简：
+	\begin{align*}
+		b^{-1}*(b*c)&=b^{-1}*a^{-1},\
+		(b^{-1}*b)*c&=b^{-1}*a^{-1},\
+		e*c&=b^{-1}*a^{-1},\
+		c&=b^{-1}*a^{-1},
+	\end{align*}
+	这就是所要证明的.
+	
+	(5) 这是一个用 $n$ 作归纳的很好的练习.先证明 $n=1,2,3$ 的情形.然后假设对任意 $k<n$,$k$ 个元素 $b_1*b_2*\cdots*b_k$ 的任意加括号方式都能在不改变乘积值的情况下化为形如
+	\[
+	b_1*(b_2*(b_3*(\cdots*b_k))\cdots)
+	\]
+	的表达式.任意给 $a_1*a_2*\cdots*a_n$ 加括号,必然把它分成两个子乘积,比如
+	\[
+	(a_1*a_2*\cdots*a_k)*(a_{k+1}*a_{k+2}*\cdots*a_n),
+	\]
+	每个子乘积又以某种方式加括号.对这两个子乘积分别应用归纳假设,最后把结果化为
+	\[
+	a_1*(a_2*(a_3*(\cdots*a_n))\cdots),
+	\]
+	即可完成归纳.
+\end{proof}
+\paragraph{记号}
+\begin{enumerate}[label=(\arabic*)]
+	\item 对抽象群 $G$ 来说,在计算中不断写运算 $*$ 是很麻烦的.今后（除非必要）我们的抽象群 $G,H$ 等都把运算写作 $\cdot$,并把 $a\cdot b$ 写作 $ab$.鉴于广义结合律,三个或更多群元素的乘积不再加括号（虽然运算仍然是二元运算）.最后,对抽象群 $G$（运算为 $\cdot$）,我们把 $G$ 的单位元记为 $1$.
+	\item 对任意群 $G$（省略运算 $\cdot$）和 $x\in G$,以及 $n\in\ZZ^+$,由于乘积 $xx\cdots x$（$n$ 项）与加括号方式无关,记作 $x^n$.把 $x^{-1}x^{-1}\cdots x^{-1}$（$n$ 项）记作 $x^{-n}$.令 $x^0=1$,即 $G$ 的单位元.
+	\item  由这里指数的定义，我们容易证明$a,b\in \Z^+$,有 $x^{a+b}= x^a x^b,(x^a)^b = x^{ab},(x^a)^{-1} = x^{-a}$
+\end{enumerate}
+
+处理具体群时,我们仍使用给定的运算.例如,当运算是 $+$ 时,单位元记为 $0$；任一元素 $a$ 的逆元 $a^{-1}$ 写作 $-a$；$a+a+\cdots+a$（$n>0$ 项）写作 $na$；$-a-a-\cdots-a$（$n$ 项）写作 $-na$；并且 $0a=0$.
+
+\begin{proposition}
+	 设 $G$ 是群,$a,b\in G$.方程 $ax=b$ 与 $ya=b$ 在 $G$ 中分别有唯一解 $x,y$.特别地,$G$ 中左右消去律成立,即
+\begin{enumerate}[label=(\arabic*)]
+	\item 若 $au=av$,则 $u=v$；
+	\item 若 $ub=vb$,则 $u=v$.
+\end{enumerate}
+
+\end{proposition}
+\begin{proof}
+	通过左乘 $a^{-1}$ 并化简,可解出 $ax=b$ 的解为 $x=a^{-1}b$.$x$ 的唯一性来自 $a^{-1}$ 的唯一性.类似地,若 $ya=b$,则 $y=ba^{-1}$.若 $au=av$,左乘 $a^{-1}$ 并化简得 $u=v$.右消去律同理.
+\end{proof}
+\begin{corollary}
+	\begin{enumerate}[label=(\arabic*)]
+		\item 若 $a$ 是 $G$ 的任一元素,且对某个 $b\in G$ 有 $ab=e$ 或 $ba=e$,则 $b=a^{-1}$；
+		\item 也就是说,我们不必检验两个等式都成立.另外,若对某个 $b\in G$ 有 $ab=a$（或 $ba=a$）,则 $b$ 必为 $G$ 的单位元；也就是说,我们不必检验对所有 $x\in G$ 都有 $bx=xb=x$.
+	\end{enumerate}
+\end{corollary}
+\begin{definition}
+设 $G$ 是群,$x\in G$.若存在正整数 $n$ 使 $x^n=1$,则把满足此式的最小正整数 $n$ 称为 $x$ 的\textbf{阶},并记为 $|x|$；此时称 $x$ 的阶为 $n$.若 $x$ 的任一正幂都不是单位元,则定义 $x$ 的阶为无穷,并称 $x$是无穷阶的
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}[label=(\arabic*)]
+		\item 群中的元素阶为 $1$ 当且仅当它是单位元.
+		\item 在加法群 $\ZZ$、$\QQ$、$\RR$ 或 $\CC$ 中,每个非零（即非单位）元素都是无限阶的.
+		\item 在乘法群 $\RR-\{0\}$ 或 $\QQ-\{0\}$ 中,元素 $-1$ 的阶为 $2$,其他所有非单位元素都是无限阶的.
+		\item 在加法群 $\ZZ/9\ZZ$ 中,元素 $\overline{6}$ 的阶为 $3$,因为 $\overline{6}\neq\overline{0}$,$\overline{6}+\overline{6}=\overline{12}=\overline{3}\neq\overline{0}$,但 $\overline{6}+\overline{6}+\overline{6}=\overline{18}=\overline{0}$,即这个群的单位元.回忆,在加法群中,一个元素的幂就是该元素的整数倍.类似地,元素 $\overline{5}$ 的阶为 $9$,因为 $45$ 是能被 $9$ 整除的 $5$ 的最小正倍数.
+		\item 在乘法群 $(\ZZ/7\ZZ)^\times$ 中,元素 $\overline{2}$ 的幂为 $\overline{2},\overline{4},\overline{8}=\overline{1}$,其中 $\overline{1}$ 是这个群的单位元,所以 $\overline{2}$ 的阶为 $3$.类似地,元素 $\overline{3}$ 的阶为 $6$,因为 $3^6$ 是同余于 $1\pmod 7$ 的 $3$ 的最小正幂.
+	\end{enumerate}
+	
+\end{example}
+\begin{definition}
+	设 $G=\{g_1,g_2,\ldots,g_n\}$ 是有限群,且 $g_1=1$.$G$ 的\textbf{乘法表}或\textbf{群表}是一个 $n\times n$ 矩阵,其第 $i,j$ 项为群元素 $g_ig_j$.
+	\[\begin{matrix}
+		g_1g_1&g_1g_2&\cdots&g_1g_n\\
+		g_2g_1&g_2g_2&\cdots&g_2g_n\\
+		\vdots&\vdots&&\vdots\\
+		g_ng_1&g_ng_2&\cdots&g_ng_n\\
+	\end{matrix}\]
+\end{definition}
+\section{二面体群}
+群的一类重要例子是几何对象的对称所组成的群.
+\begin{definition}
+	对每个 $n\in\ZZ^+$,$n\geq3$,令 $D_{2n}$ 为正 $n$ 边形的所有对称组成的集合.这里的对称是指正 $n$ 边形的任一刚体运动,它可以通过取该正 $n$ 边形的一个副本,在三维空间中以任意方式移动它,然后把该副本放回原正 $n$ 边形上,使之恰好覆盖原图形来实现.
+\end{definition}
+给 $n$ 个顶点编号,每个对称 $s$ 都可由 $\{1,2,3,\ldots,n\}$ 的相应置换 $\sigma$ 唯一描述：
+若对称 $s$ 把顶点 $i$ 放到原来顶点 $j$ 所在的位置,则 $\sigma$ 是把 $i$ 送到 $j$ 的置换.
+
+例如,若 $s$ 是绕 $n$ 边形中心顺时针旋转 $2\pi/n$ 弧度,则 $\sigma$ 把 $i$ 送到 $i+1$,$1\leq i\leq n-1$,并且 $\sigma(n)=1$.
+
+现在把 $D_{2n}$ 作成一个群：
+\begin{itemize}
+	\item 对 $s,t\in D_{2n}$,定义 $st$ 为先对 $n$ 边形施行 $t$,再施行 $s$ 所得到的对称边形上的函数,所以 $st$ 就是函数复合.若 $s,t$ 在顶点上分别实现置换 $\sigma,\tau$,则 $st$ 实现 $\sigma\circ\tau$.$D_{2n}$ 上的二元运算是结合的,因为函数复合是结合的.
+	\item $D_{2n}$ 的单位元是恒等对称（它固定所有顶点）,记作 $1$；
+	\item $s\in D_{2n}$ 的逆元是把 $s$ 的所有刚体运动反向的对称（所以若 $s$ 在顶点上实现置换 $\sigma$,则 $s^{-1}$ 实现 $\sigma^{-1}$）.
+\end{itemize}
+\begin{proposition}
+	\[
+|D_{2n}|=2n,
+\]
+\end{proposition}
+因此 $D_{2n}$ 称为\textbf{阶为 $2n$ 的二面体群}.有些教材把这个群记为 $D_n$；不过在群论文献中,$D_{2n}$（下标给出群的阶而不是顶点数）更常见.
+\begin{proof}
+	为求阶 $|D_{2n}|$,注意给定任一顶点 $i$,存在一个对称把顶点 $1$ 送到位置 $i$.由于顶点 $2$ 与顶点 $1$ 相邻,顶点 $2$ 必须落在位置 $i+1$ 或 $i-1$（其中 $n+1$ 读作 $1$,$1-1$ 读作 $n$,即顶点编号按模 $n$ 读取）.而且,在第一个对称之后再复合关于通过顶点 $i$ 和 $n$ 边形中心的直线的反射,可见顶点 $2$ 可由某个对称送到位置 $i+1$ 或 $i-1$ 中任意一个.因此,应用对称后,有序顶点对 $1,2$ 有 $n\cdot2$ 种可能位置.由于对称是刚体运动,一旦有序顶点对 $1,2$ 的位置被指定,该对称在所有其余顶点上的作用就完全确定.因此正 $n$ 边形恰有 $2n$ 个对称.
+\end{proof}
+而且我们可以显式列出这 $2n$ 个对称：绕中心旋转 $2\pi i/n$ 弧度的 $n$ 个旋转,$0\leq i\leq n-1$,以及关于 $n$ 条对称轴的 $n$ 个反射（若 $n$ 为奇数,每条对称轴通过一个顶点和对边的中点；若 $n$ 为偶数,则有 $n/2$ 条对称轴通过两个相对顶点,有 $n/2$ 条对称轴垂直平分两条相对边）
+
+由于二面体群将在全文中被大量用作例子,我们固定一些记号,并给出下面的命题；它们将简化以后的计算,也有助于把 $D_{2n}$ 看作一个抽象群.
+
+固定一个以原点为中心、位于 $x,y$ 平面中的正 $n$ 边形,并按顺时针方向依次给顶点标号 $1$ 到 $n$.令 $r$ 为绕原点顺时针旋转 $2\pi/n$ 弧度的旋转.令 $s$ 为关于通过顶点 $1$ 和原点的对称轴的反射
+\begin{proposition}
+	\begin{enumerate}[label=(\arabic*)]
+	\item $1,r,r^2,\ldots,r^{n-1}$ 两两不同,并且 $r^n=1$,所以 $|r|=n$.
+	\item $|s|=2$.
+	\item 对任意 $i$,$s\neq r^i$.
+	\item 若 $0\leq i,j\leq n-1$ 且 $i\neq j$,则 $sr^i\neq sr^j$,所以
+	\[
+	D_{2n}=\{1,r,r^2,\ldots,r^{n-1},s,sr,sr^2,\ldots,sr^{n-1}\},
+	\]
+	即每个元素可唯一写成 $s^kr^i$ 的形式,其中 $k=0$ 或 $1$,且 $0\leq i\leq n-1$.
+	\item 当 $n\geq 3$ 时,$rs=sr^{-1}$.这说明 $r$ 与 $s$ 不交换,因此 $D_{2n}$ 是非阿贝尔的.但是当$n=2$时,$D_{2n}$ 是阿贝尔的
+	\item 对所有 $0\leq i\leq n$,有 $r^is=sr^{-i}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}[label=(\arabic*)]
+		\item 旋转 $r^i$ 将顶点 $1$ 顺时针移动 $i$ 个顶点的位置.因此,当$0\leq i<j\leq n-1$时,$r^i$ 与 $r^j$ 对顶点 $1$ 的作用不同,从而$r^i\neq r^j.$所以
+		\[
+		1,r,r^2,\ldots,r^{n-1}
+		\]
+		两两不同.
+		
+		旋转 $r^n$ 是绕原点顺时针旋转$n\cdot\dfrac{2\pi}{n}=2\pi,$故$r^n=1.$由于 $r^i\neq 1$ 对所有 $1\leq i\leq n-1$ 都成立,所以
+		\[
+		|r|=n.
+		\]
+		
+		\item 反射 $s$ 连续作用两次后,每个点都回到原来的位置,因此
+		\[
+		s^2=1.
+		\]
+		又因为 $s$ 不是恒等变换,所以
+		\[
+		|s|=2.
+		\]
+		
+		\item 反射 $s$ 固定顶点 $1$,即$s(1)=1.$当 $1\leq i\leq n-1$ 时,旋转 $r^i$ 不固定顶点 $1$,所以
+		\[
+		s\neq r^i.
+		\]
+		此外,$s\neq 1=r^0$.因此,对任意整数 $i$,都有
+		\[
+		s\neq r^i.
+		\]
+		
+		\item 设 $0\leq i,j\leq n-1$,且$sr^i=sr^j.$在等式两边左乘 $s$,并利用 $s^2=1$,得到$r^i=r^j.$
+		由（1）可知$i=j.$因此,当 $i\neq j$ 时,$sr^i\neq sr^j.$
+	
+		由（3）,任何 $sr^i$ 都不等于任何 $r^j$,故
+		\[
+		1,r,r^2,\ldots,r^{n-1},
+		s,sr,sr^2,\ldots,sr^{n-1}
+		\]
+		是 $2n$ 个两两不同的元素.
+		
+		根据二面体群 $D_{2n}$ 的定义,它由正 $n$ 边形的全部旋转和反射组成.正 $n$ 边形的旋转恰为
+		\[
+		1,r,r^2,\ldots,r^{n-1}.
+		\]
+		每个反射都可由固定的反射 $s$ 与某个旋转复合得到,因而反射恰为
+		\[
+		s,sr,sr^2,\ldots,sr^{n-1}.
+		\]
+		所以
+		\[
+		D_{2n}
+		=
+		\{1,r,r^2,\ldots,r^{n-1},
+		s,sr,sr^2,\ldots,sr^{n-1}\}.
+		\]
+		因此,每个元素都可唯一写成$s^kr^i$的形式,其中$k\in\{0,1\},0\leq i\leq n-1.$
+		 \item 我们比较 $rs$ 与 $sr^{-1}$ 对正 $n$ 边形各顶点的作用.
+		
+		设正 $n$ 边形的顶点按顺时针方向依次标记为$1,2,\ldots,n,$下标按模 $n$ 计算.旋转 $r$ 将每个顶点顺时针移动一个位置,而反射 $s$ 将顺时针方向与逆时针方向互换.
+		
+		因此,先作反射 $s$,再作顺时针旋转 $r$,与先作逆时针旋转 $r^{-1}$,再作反射 $s$,对每个顶点产生相同的作用.于是
+		\[
+		rs=sr^{-1}.
+		\]
+		
+		当 $n\geq 3$ 时,$r\neq r^{-1}$.如果 $r$ 与 $s$ 交换,则$rs=sr.$结合$rs=sr^{-1},$可得$sr=sr^{-1}.$在等式两边左乘 $s$,得到$r=r^{-1},$
+		
+		矛盾.因此$D_{2n}$ 是非阿贝尔群.
+		
+		\item 我们对 $i$ 使用数学归纳法证明
+		\[
+		r^is=sr^{-i}.
+		\]
+		
+		当 $i=0$ 时,
+		\[
+		r^0s=s=sr^0,
+		\]
+		所以结论成立.
+		
+		假设对某个 $i\geq 0$ 有
+		\[
+		r^is=sr^{-i}.
+		\]
+		则由（5）,
+		\[r^{i+1}s=r(r^is)
+			=r(sr^{-i})
+			=(rs)r^{-i}
+			=(sr^{-1})r^{-i}
+			=sr^{-(i+1)}.\]
+		因此结论对 $i+1$ 也成立.
+		
+		由数学归纳法,对所有 $0\leq i\leq n$,均有
+		\[
+		r^is=sr^{-i}.
+		\]
+	\end{enumerate}
+\end{proof}
+$D_{2n}$ 的完整乘法表可以仅用 $r$ 和 $s$ 写出；也就是说,$D_{2n}$ 的所有元素都可唯一表示为 $s^kr^i$,其中 $k=0$ 或 $1$,$0\leq i\leq n-1$,而且任意两个这种形式的元素的乘积,都可以只用“关系” (1)、(2)、(6)（把所有指数模 $n$ 化简）化为另一个这种形式的元素.例如,若 $n=12$,则
+\[
+(sr^9)(sr^6)=s(r^9s)r^6=s(sr^{-9})r^6=s^2r^{-9+6}=r^{-3}=r^9.
+\]
+
+\begin{definition}
+	群 $G$ 的元素子集 $S$ 若具有如下性质：$G$ 的每个元素都可以写成 $S$ 中元素及其逆元的一个（有限）乘积,则称 $S$ 是 $G$ 的一个\textbf{生成元集}.记号上我们写作 $G=\langle S\rangle$,并说 $G$ \textbf{由 $S$ 生成},或 $S$ \textbf{生成} $G$.
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item 整数 $1$ 是加法群 $\ZZ$ 的一个生成元,因为每个整数都是有限多个 $+1$ 与 $-1$ 的和,所以 $\ZZ=\langle 1\rangle$
+		\item 由 $D_{2n}$ 的性质 (4),集合 $S=\{r,s\}$ 是 $D_{2n}$ 的一个生成元集,所以 $D_{2n}=\langle r,s\rangle$.
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	在一般群 $G$ 中,生成元满足的任何方程称为 $G$ 中的\textbf{关系}.
+	
+	一般地,若某个群 $G$ 由子集 $S$ 生成,并且有一组关系,例如 $R_1,R_2,\ldots,R_m$（这里每个 $R_i$ 都是由 $S\cup\{1\}$ 中元素写成的一个方程）,使得 $S$ 中元素之间的任一关系都能由这些关系推出,则称这些生成元与关系给出了 $G$ 的一个\textbf{表示},并写作
+	\[
+	G=\langle S\mid R_1,R_2,\ldots,R_m\rangle.
+	\]
+\end{definition}
+因此在 $D_{2n}$ 中有关系：$r^n=1$、$s^2=1$ 和 $rs=sr^{-1}$.此外,在 $D_{2n}$ 中这三个关系还具有额外性质：群元素之间的任何其他关系都可由这三个关系推出（这并非立即显然；它来自这样一个事实：只用这三个关系就能确定两个群元素何时相等）.
+
+二面体群 $D_{2n}$ 的一个表示（使用上述生成元和关系）是
+
+\[ 	D_{2n}=\langle r,s\mid r^n=s^2=1,\ rs=sr^{-1}\rangle.  \]
+
+
+关于上面的表达方式我们有一些点需要注意
+\begin{enumerate}
+	\item 在任意表示中,可能很难（甚至不可能）判断两个用给定生成元表达的群元素是否相等.因此,所表示的群的阶是多少,甚至该群是有限还是无限,可能都不明显.例如,可以证明
+	\[
+	\langle x_1,y_1\mid x_1^2=y_1^2=(x_1y_1)^2=1\rangle
+	\]
+	是一个阶为 $4$ 的群的表示,而
+	\[
+	\langle x_2,y_2\mid x_2^3=y_2^3=(x_2y_2)^3=1\rangle
+	\]
+	则是一个无限群的表示
+	\item 即使在相当简单的表示中,也可能因为关系以某种不明显的方式交织在一起而发生某些“塌缩”；也就是说,可能存在没有在表示中显式给出、而是指定关系的后果的“隐藏”或隐含关系.一般而言,这种塌缩使得甚至很难确定所表示群大小的下界.例如,考虑表示
+	
+		\[ Y=\langle u,v\mid u^4=v^3=1,\ uv=v^2u^2\rangle.  \]
+	
+	在这个情形中,容易猜测 $Y$ 是阶为 $12$ 的群,但仍有额外的隐含关系.事实上,可以证明这个群 $Y$ 退化为阶为 $1$ 的平凡群；也就是说,$u$ 和 $v$ 满足额外关系 $u=1$ 与 $v=1$
+\end{enumerate}
+\section{对称群}
+令 $\Omega$ 为任一非空集合,令 $S_\Omega$ 为\textbf{从 $\Omega$ 到自身的所有双射组成的集合（即 $\Omega$ 的所有置换组成的集合）.}
+
+集合 $S_\Omega$ 在函数复合 $\circ$ 下是群.
+\begin{enumerate}[label=(\arabic*)]
+	\item $\circ$ 是 $S_\Omega$ 上的二元运算,因为若 $\sigma:\Omega\to\Omega$ 和 $\tau:\Omega\to\Omega$ 都是双射,则 $\sigma\circ\tau$ 也是从 $\Omega$ 到 $\Omega$ 的双射.
+	\item 由于函数复合一般是结合的,$\circ$ 是结合的.$S_\Omega$ 的单位元是置换 $1$,定义为对所有 $a\in\Omega$,$1(a)=a$.
+	\item 每个置换 $\sigma$ 都有一个（双侧）逆函数 $\sigma^{-1}:\Omega\to\Omega$,满足 $\sigma\circ\sigma^{-1}=\sigma^{-1}\circ\sigma=1$.
+	
+	因此,$(S_\Omega,\circ)$ 满足所有群公理.
+\end{enumerate}
+\begin{definition}
+这个群称为集合 $\Omega$ 上的\textbf{对称群}.在特殊情形 $\Omega=\{1,2,3,\ldots,n\}$ 下,$\Omega$ 上的对称群记为 $S_n$,称为\textbf{$n$ 次对称群}
+\end{definition}
+\begin{proposition}
+	$S_n$ 的阶为 $n!$
+	\[|S_n |=n!\]
+\end{proposition}
+\begin{proof}
+	集合 $\{1,2,3,\ldots,n\}$ 的置换恰好就是该集合到自身的单射,因为该集合有限；于是我们可以数出单射的个数.单射 $\sigma$ 可把数字 $1$ 送到 $\{1,2,3,\ldots,n\}$ 中任意一个元素；$\sigma(2)$ 随后可为该集合中除 $\sigma(1)$ 外的任一元素（所以 $\sigma(2)$ 有 $n-1$ 种选择）；$\sigma(3)$ 可为除 $\sigma(1)$ 和 $\sigma(2)$ 外的任一元素（所以有 $n-2$ 种选择）；依此类推.因此,从 $\{1,2,3,\ldots,n\}$ 到自身的单射恰有
+	\[
+	n(n-1)(n-2)\cdots 2\cdot1=n!
+	\]
+	个.因此 $\{1,2,3,\ldots,n\}$ 恰有 $n!$ 个置换,也就是 $S_n$ 中恰有 $n!$ 个元素.
+\end{proof}
+
+
+\begin{proposition}
+	若 $\Omega=\{1,2,3,\ldots\}$,则 $S_\Omega$ 是无限群
+\end{proposition}
+
+\begin{proof}
+	对每个正整数 $n$,定义 $\sigma_n\in S_\Omega$ 为交换 $1$ 与 $n+1$、并固定其余所有元素的置换,即
+	\[
+	\sigma_n=(1\;\;n+1).
+	\]
+	具体地,
+	\[
+	\sigma_n(k)=
+	\begin{cases}
+		n+1, & k=1,\\
+		1,   & k=n+1,\\
+		k,   & k\neq 1,n+1.
+	\end{cases}
+	\]
+	每个 $\sigma_n$ 都是从 $\Omega$ 到自身的双射,因此$\sigma_n\in S_\Omega.$若 $m\neq n$,则$\sigma_m(1)=m+1\neq n+1=\sigma_n(1),$所以$\sigma_m\neq \sigma_n.$因此
+	\[
+	\sigma_1,\sigma_2,\sigma_3,\ldots
+	\]
+	是 $S_\Omega$ 中无穷多个两两不同的元素.故 $S_\Omega$ 是无限群.
+\end{proof}
+
+
+现在描述一种写出 $S_n$ 的元素 $\sigma$ 的有效记号,全文都将使用它,这称为\textbf{循环分解}.
+
+\begin{definition}
+	一个\textbf{循环}是一串整数,用来表示 $S_n$ 中把这些整数循环置换（并固定所有其他整数）的元素.
+	
+	~~循环 $(a_1\ a_2\ \cdots\ a_m)$ 是这样一个置换： $a_i\to a_{i+1}$,$1\leq i\leq m-1$,并把$a_m\to a_1$.一般地,对每个 $\sigma\in S_n$,数字 $1$ 到 $n$ 会被重新排列并分组成 $k$ 个循环,形如
+	\[
+	(a_1\ a_2\ \cdots\ a_{m_1})
+	(a_{m_1+1}\ \cdots\ a_{m_2})\cdots
+	(a_{m_{k-1}+1}\ \cdots\ a_{m_k}),
+	\]
+	其中 $m_k=n$；
+	
+	~~从这个表达式可以很容易读出 $\sigma$ 对 $1$ 到 $n$ 中任一数字的作用.对任意 $x\in\{1,2,3,\ldots,n\}$,先在上述表达式中找到 $x$.若 $x$ 后面不是紧跟一个右括号（即 $x$ 不是某个循环的右端）,则 $\sigma(x)$ 是紧挨着 $x$ 右侧的整数.若 $x$ 后面紧跟右括号,则 $\sigma(x)$ 是以 $x$ 结尾的那个循环开头的数（即若 $x=a_{m_i}$,则 $\sigma(x)=a_{m_{i-1}+1}$,其中 $m_0=0$）.所有循环的乘积称为 $\sigma$ 的\textbf{循环分解}.
+	
+\end{definition}
+下面给出求 $S_n$ 中元素 $\sigma$ 的循环分解的算法,并通过一个具体置换演示该算法.算法的证明以及循环分解唯一性的完整分析推迟到第 4 章.
+
+\begin{example}
+	令 $n=13$,定义 $\sigma\in S_{13}$ 为
+\begin{align*}
+	&\sigma(1)=12,\quad \sigma(2)=13,\quad \sigma(3)=3,\quad \sigma(4)=1,\quad \sigma(5)=11,\\
+	&\sigma(6)=9,\quad \sigma(7)=5,\quad \sigma(8)=10,\quad \sigma(9)=6,\quad \sigma(10)=4,\\
+	&\sigma(11)=7,\quad \sigma(12)=8,\quad \sigma(13)=2.
+\end{align*}
+
+\paragraph{循环分解算法}
+\begin{center}
+	\begin{tabular}{p{0.56\linewidth}|p{0.34\linewidth}}
+		\textbf{方法} & \textbf{例子} \\ \hline
+		要开始一个新循环,选取 $\{1,2,\ldots,n\}$ 中尚未在前面循环中出现的最小元素,称之为 $a$（若刚开始,则 $a=1$）；开始新的循环：$(a$
+		& $(1$ \\[0.8em]
+		从 $\sigma$ 的给定描述中读出 $\sigma(a)$,称之为 $b$.若 $b=a$,则用右括号结束该循环（不写下 $b$）；这完成一个循环,回到第 1 步.若 $b\neq a$,则把 $b$ 写在该循环中 $a$ 的旁边：$(a\ b$
+		& $\sigma(1)=12=b$,$12\neq1$,所以写成：$(1\ 12$ \\[0.8em]
+		从 $\sigma$ 的给定描述中读出 $\sigma(b)$,称之为 $c$.若 $c=a$,则用右括号结束该循环,从而完成该循环,并回到第 1 步.若 $c\neq a$,则把 $c$ 写在该循环中 $b$ 的旁边：$(a\ b\ c$.以数字 $c$ 作为新的 $b$,重复这一步,直到循环闭合.
+		& $\sigma(12)=8$,$8\neq1$,所以继续该循环为：$(1\ 12\ 8$ 
+	\end{tabular}
+\end{center}
+自然地,当 $\{1,2,\ldots,n\}$ 中所有数都已出现在某个循环中时,这个过程停止.对该例中的特定 $\sigma$,这给出
+\[
+\sigma=(1\ 12\ 8\ 10\ 4)(2\ 13)(3)(5\ 11\ 7)(6\ 9).
+\]
+\end{example}
+
+\begin{definition}
+	一个循环的\textbf{长度}是出现在其中的整数个数.长度为 $t$ 的循环称为一个 $t$-循环.若两个循环没有公共数字,则称它们\textbf{不交}.
+\end{definition}
+因此,上面的元素 $\sigma$ 是 $5$ 个两两不交循环的乘积：一个 $5$-循环、一个 $2$-循环、一个 $1$-循环、一个 $3$-循环和另一个 $2$-循环.
+
+今后我们约定不写出 $1$-循环.因此,若某个整数 $i$ 没有出现在置换 $\tau$ 的循环分解中,则默认 $\tau(i)=i$,即 $\tau$ 固定 $i$.$S_n$ 的恒等置换的循环分解是 $(1)(2)\cdots(n)$,并将简写为 $1$.所以算法的最后一步是：
+\[
+\boxed{\text{最后一步：删去所有长度为 }1\text{ 的循环}}
+\]
+所以该例中 $\sigma$ 的循环分解最终写为
+\[
+\sigma=(1\ 12\ 8\ 10\ 4)(2\ 13)(5\ 11\ 7)(6\ 9).
+\]
+这个约定的优点是,$S_n$ 中元素 $\tau$ 的循环分解,同时也是 $S_m$（$m\geq n$）中如下置换的循环分解：它在 $\{1,2,3,\ldots,n\}$ 上按 $\tau$ 作用,并固定 $\{n+1,n+2,\ldots,m\}$ 中每个元素.
+
+\begin{example}
+	$S_3$ 的 $6$ 个元素具有如下循环分解：
+\[
+\begin{array}{c|c|c}
+	& \text{置换的取值} & \text{循环分解}\\ \hline
+	\sigma_1&1\mapsto1,\ 2\mapsto2,\ 3\mapsto3&1\\
+	\sigma_2&1\mapsto1,\ 2\mapsto3,\ 3\mapsto2&(2\ 3)\\
+	\sigma_3&1\mapsto3,\ 2\mapsto2,\ 3\mapsto1&(1\ 3)\\
+	\sigma_4&1\mapsto2,\ 2\mapsto1,\ 3\mapsto3&(1\ 2)\\
+	\sigma_5&1\mapsto2,\ 2\mapsto3,\ 3\mapsto1&(1\ 2\ 3)\\
+	\sigma_6&1\mapsto3,\ 2\mapsto1,\ 3\mapsto2&(1\ 3\ 2)
+\end{array}
+\]
+\end{example}
+在 $S_n$ 中计算乘积是直接的,只要记住在计算 $\sigma\circ\tau$ 时从右向左读置换.只需“跟踪”元素在连续置换下的去向.
+
+\begin{example}
+	在乘积
+\[
+(1\ 2\ 3)\circ(1\ 2)(3\ 4)
+\]
+中,数字 $1$ 先被第一个置换送到 $2$,然后 $2$ 被第二个置换送到 $3$,所以复合映射把 $1$ 送到 $3$.为求乘积的循环分解,接下来要看 $3$ 的去向：$3$ 先被送到 $4$,而后 $4$ 被固定,所以 $3$ 被复合映射送到 $4$.类似地,$4$ 先被送到 $3$,再被送到 $1$,于是乘积中的这个循环闭合为 $(1\ 3\ 4)$.最后,$2$ 被送到 $1$,再被送到 $2$,所以 $2$ 被这个乘积固定.因此
+\[
+(1\ 2\ 3)\circ(1\ 2)(3\ 4)=(1\ 3\ 4).
+\]
+作为更多例子,
+\[
+(1\ 2)\circ(1\ 3)=(1\ 3\ 2),\qquad (1\ 3)\circ(1\ 2)=(1\ 2\ 3).
+\]
+这特别说明,对所有 $n\geq3$,$S_n$ 都是非阿贝尔群.
+\end{example}
+
+循环分解中的每个循环 $(a_1\ a_2\ \cdots\ a_m)$ 可看成把 $a_1,a_2,\ldots,a_m$ 循环置换并固定所有其他整数的置换.由于不交循环置换的数字属于彼此不交的集合,所以
+\begin{proposition}
+	\[
+\text{不交循环彼此交换.}
+\]
+\end{proposition}
+因此,任意不交循环乘积（特别是循环分解）中循环的排列顺序不会改变该置换.
+
+此外,由于一个给定循环 $(a_1\ a_2\ \cdots\ a_m)$ 循环置换集合 $\{a_1,a_2,\ldots,a_m\}$,所以循环中数字本身可以循环移位而不改变置换,即
+\[
+(a_1\ a_2\ \cdots\ a_m)=(a_2\ a_3\ \cdots\ a_m\ a_1)=(a_3\ a_4\ \cdots\ a_m\ a_1\ a_2)=\cdots=(a_m\ a_1\ a_2\ \cdots\ a_{m-1}).
+\]
+\begin{lemma}
+	若 $\sigma$ 是 $m$-循环 $(a_1\ a_2\ \cdots\ a_m)$,则对所有 $i\in\{1,2,\ldots,m\}$,$\sigma^i(a_k)=a_{k+i}$,其中当 $k+i>m$ 时,把 $k+i$ 换成模 $m$ 的最小剩余.特别的, $|\sigma|=m$.
+\end{lemma}
+
+\begin{proof}
+	为简化记号,约定循环中各项的下标按模 $m$ 计算,即对任意整数 $t$,$a_{t+m}=a_t.$特别地,当下标模 $m$ 的余数为 $0$ 时,将其记为 $m$.
+	
+	我们对 $i$ 使用数学归纳法证明：对任意$k\in\{1,2,\ldots,m\},$都$\sigma^i(a_k)=a_{k+i}.$
+	
+	.当 $i=1$ 时,由
+	\[
+	\sigma=(a_1\ a_2\ \cdots\ a_m)
+	\]
+	的定义,
+	\[
+	\sigma(a_k)=
+	\begin{cases}
+		a_{k+1},&1\leq k<m,\\
+		a_1,&k=m.
+	\end{cases}
+	\]
+	按照下标模 $m$ 计算的约定,这正是$\sigma(a_k)=a_{k+1}.$因此结论对 $i=1$ 成立.假设结论对某个 $i$ 成立,即$\sigma^i(a_k)=a_{k+i}$对所有 $k\in\{1,2,\ldots,m\}$ 都成立.于是
+	\[\sigma^{i+1}(a_k)=\sigma\bigl(\sigma^i(a_k)\bigr)=\sigma(a_{k+i})=a_{k+i+1}.\]
+	所以结论对 $i+1$ 也成立.
+	
+	由数学归纳法,对所有$i\in\{1,2,\ldots,m\}$以及所有$k\in\{1,2,\ldots,m\},$都有$\sigma^i(a_k)=a_{k+i},$其中下标按模 $m$ 计算.
+	
+	现在取 $i=m$.由于$a_{k+m}=a_k,$故
+	\[
+	\sigma^m(a_k)=a_k
+	\]
+	对每个 $k\in\{1,2,\ldots,m\}$ 都成立.因此
+	\[
+	\sigma^m=1.
+	\]
+	这说明$|\sigma|\mid m.$
+
+	另一方面,若 $1\leq i<m$,则$\sigma^i(a_1)=a_{1+i}.$由于$a_1,a_2,\ldots,a_m$两两不同,故
+	\[
+	a_{1+i}\neq a_1.
+	\]
+	因此$\sigma^i\neq 1$对所有 $1\leq i<m$ 都成立.
+	
+	所以使 $\sigma^i=1$ 的最小正整数是 $m$,即
+	\[
+	\boxed{|\sigma|=m}.
+	\]
+\end{proof}
+\begin{proposition}
+	$S_n$ 中元素的阶等于其循环分解中各循环长度的最小公倍数.
+\end{proposition}
+
+\begin{proof}
+	设 $\sigma\in S_n$ 的循环分解为
+	\[
+	\sigma=\gamma_1\gamma_2\cdots\gamma_k,
+	\]
+	其中 $\gamma_i$ 是长度为 $m_i$ 的循环.令
+	\[
+	M=[m_1,m_2,\ldots,m_k].
+	\]
+	
+	由于循环分解中的各循环两两不交,因此它们彼此交换.又由前面的引理可知,一个 $m_i$-循环的阶为 $m_i$,所以$\gamma_i^{m_i}=1.$因为 $m_i\mid M$,故对每个 $i$ 都有$\gamma_i^M=1.$
+
+	于是
+	\[\sigma^M
+		=(\gamma_1\gamma_2\cdots\gamma_k)^M=\gamma_1^M\gamma_2^M\cdots\gamma_k^M=1.\]
+	因此
+	\[
+	|\sigma|\mid M.
+	\]
+	下面证明 $M\mid |\sigma|$.设$|\sigma|=d,$则$\sigma^d=1.$固定某个 $i$,并取 $\gamma_i$ 中的任意一个元素 $a$.由于其他循环$\gamma_j (j\neq i)$与 $\gamma_i$ 不交,所以它们都固定 $a$.因此$\sigma^d(a)=\gamma_i^d(a).$而 $\sigma^d=1$,所以$\gamma_i^d(a)=a.$
+
+	因为 $a$ 可以取遍循环 $\gamma_i$ 中的所有元素,且 $\gamma_i$ 固定该循环之外的所有元素,所以
+	\[
+	\gamma_i^d=1.
+	\]
+	又因为$|\gamma_i|=m_i,$故
+	\[
+	m_i\mid d.
+	\]
+	这对每个 $i=1,2,\ldots,k$ 都成立,因此
+	\[
+	[m_1,m_2,\ldots,m_k]\mid d,\text{即}M\mid |\sigma|.
+	\]
+	
+
+	综上
+	\[|\sigma|=[m_1,m_2,\ldots,m_k]
+		\]
+\end{proof}
+\section{矩阵群}
+
+本节引入系数来自域的矩阵群的概念.这样一族群将在第一部分中作为说明性例子使用,并会在关于向量空间的章节中更详细地研究.
+
+关于域概念,我们稍后会更深入地研究；在本书这一部分中,我们遇到的域 $F$ 只会是 $\QQ$、$\RR$ 和 $\ZZ/p\ZZ$,其中 $p$ 是素数.例子 $\ZZ/p\ZZ$ 是一个有限域；为强调它是域,我们记作 $\FF_p$.为完整起见,这里给出域的精确定义.
+
+
+\begin{definition}
+	\begin{enumerate}[label=(\arabic*)]
+	\item \textbf{域}是一个集合 $F$,连同 $F$ 上两个二元运算 $+$ 与 $\cdot$,使得 $(F,+)$ 是阿贝尔群（其单位元记为 $0$）,$(F-\{0\},\cdot)$ 也是阿贝尔群,并且满足分配律
+	\[
+	a\cdot(b+c)=(a\cdot b)+(a\cdot c),\qquad\text{对所有 }a,b,c\in F.
+	\]
+	\item 对任意域 $F$,令 $F^\times=F-\{0\}$.
+\end{enumerate}
+\end{definition}
+当标量来自 $\RR$ 时,向量空间理论、矩阵与线性变换理论以及行列式理论中的所有结论,在作适当修改后,当标量来自任意域 $F$ 时也都成立.当我们在第一部分中使用这些理论时,会明确说明我们假设了哪些关于域的事实.
+
+\begin{definition}
+	对每个 $n\in\ZZ^+$,令 $\GL_n(F)$ 为所有元素来自 $F$ 且行列式非零的 $n\times n$ 矩阵的集合,即
+\[
+\GL_n(F)=\{A\mid A\text{ 是元素来自 }F\text{ 的 }n\times n\text{ 矩阵且 }\det(A)\neq0\}.
+\]
+\end{definition}
+任意元素来自 $F$ 的矩阵 $A$ 的行列式可用 $F=\RR$ 时的同样公式计算.对任意 $n\times n$ 矩阵 $A$ 与 $B$,令 $AB$ 为按 $F=\RR$ 时同样规则计算的矩阵积.这个乘法是结合的.此外,由 $\det(AB)=\det(A)\det(B)$,若 $\det(A)\neq0$ 且 $\det(B)\neq0$,则 $\det(AB)\neq0$,所以 $\GL_n(F)$ 对矩阵乘法封闭.进一步地,$\det(A)\neq0$ 当且仅当 $A$ 有矩阵逆（并且这个逆可由 $F=\RR$ 时使用的同样伴随矩阵公式计算）,所以每个 $A\in\GL_n(F)$ 都有逆 $A^{-1}\in\GL_n(F)$：
+\[
+AA^{-1}=A^{-1}A=I,
+\]
+其中 $I$ 是 $n\times n$ 单位矩阵.因此,$\GL_n(F)$ 在矩阵乘法下是群,称为\textbf{$n$ 次一般线性群}.
+
+以下结果将在第三部分中证明,这里为方便先记录：
+\begin{proposition}
+	\begin{enumerate}[label=(\arabic*)]
+	\item 若 $F$ 是域且 $|F|<\infty$,则 $|F|=p^m$,其中 $p$ 为某个素数,$m$ 为某个整数；
+	\item 若 $|F|=q<\infty$,则
+	\[
+	|\GL_n(F)|=(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n-q^{n-1}).
+	\]
+\end{enumerate}
+\end{proposition}
+\section{四元数群}
+
+\begin{definition}
+	\textbf{四元数群} $Q_8$ 定义为
+\[
+Q_8=\{1,-1,i,-i,j,-j,k,-k\},
+\]
+乘法按如下规则计算：
+\begin{align*}
+	1\cdot a&=a\cdot1=a, &&\text{对所有 }a\in Q_8,\\
+	(-1)\cdot(-1)&=1,\qquad (-1)\cdot a=a\cdot(-1)=-a, &&\text{对所有 }a\in Q_8,\\
+	i\cdot i&=j\cdot j=k\cdot k=-1,\\
+	i\cdot j&=k, & j\cdot i&=-k,\\
+	j\cdot k&=i, & k\cdot j&=-i,\\
+	k\cdot i&=j, & i\cdot k&=-j.
+\end{align*}
+\end{definition}
+照常,今后把 $a\cdot b$ 写作 $ab$.检验结合律相当繁琐（我们稍后会用较少计算的方法证明它）,但其他公理容易检验.注意,\textbf{$Q_8$ 是阶为 $8$ 的非阿贝尔群}.
+\section{同态与同构}
+\begin{definition}
+	设 $(G,*)$ 和 $(H,\circ)$ 是群.若映射 $\varphi:G\to H$ 满足
+\[
+\varphi(x*y)=\varphi(x)\circ\varphi(y),\qquad\text{对所有 }x,y\in G,
+\]
+则称 $\varphi$ 是一个\textbf{同态}.
+
+\end{definition}
+当 $G$ 和 $H$ 的群运算没有显式写出时,同态条件就简写为
+\[
+\varphi(xy)=\varphi(x)\varphi(y),
+\]
+\textbf{注意}：左边的乘积 $xy$ 是在 $G$ 中计算的,而右边的乘积 $\varphi(x)\varphi(y)$ 是在 $H$ 中计算的.
+
+\begin{definition}
+	映射 $\varphi:G\to H$ 称为一个\textbf{同构},若
+\begin{enumerate}[label=(\arabic*)]
+	\item $\varphi$ 是同态（即 $\varphi(xy)=\varphi(x)\varphi(y)$）,并且
+	\item $\varphi$ 是双射.
+\end{enumerate}
+并且称 $G$ 与 $H$ \textbf{同构}或具有相同的\textbf{同构型},记作 $G\cong H$
+\end{definition}
+\begin{example}
+	\begin{enumerate}[label=(\arabic*)]
+	\item 对任意群 $G$,$G\cong G$.恒等映射就是同构,但一般并不是从 $G$ 到自身的唯一同构.更一般地,令 $\mathcal{G}$ 为任意非空群族.容易检验关系 $\cong$ 是 $\mathcal{G}$ 上的等价关系,其等价类称为\textbf{同构类}.
+	\item 指数映射 $\exp:\RR\to\RR^+$,定义为 $\exp(x)=e^x$,是从 $(\RR,+)$ 到 $(\RR^+,\times)$ 的同构.$\exp$ 是双射,因为它有逆函数（即 $\log_e$）；且 $\exp$ 保持群运算,因为 $e^{x+y}=e^xe^y$.这是一个元素和运算都不同,但两个群同构的例子
+\end{enumerate}
+\end{example}
+\begin{proposition}
+	对称群的同构型只依赖于被置换的集合的基数（或说势）.也就是说对 非空集合$\Delta$ 与 $\Omega$ .若 $|\Delta|=|\Omega|$,则对称群 $S_\Delta$ 与 $S_\Omega$ 同构.
+\end{proposition}
+\textbf{注}：这里的对称群$S_{\Delta}$与$S_{\Omega}$定义为$\Delta$与$\Omega$中所有双射构成的集合,运算规定为函数的复合.
+\begin{proof}
+由$|\Delta|=|\Omega|$,令 $\theta:\Delta\to\Omega$ 为双射,定义
+\[
+\varphi:S_\Delta\to S_\Omega,
+\qquad \varphi(\sigma)=\theta\circ\sigma\circ\theta^{-1},
+\quad \sigma\in S_\Delta.
+\]
+	\begin{enumerate}[label=(\arabic*)]
+		\item 证明$\varphi$ 是良定的,即若 $\sigma$ 是 $\Delta$ 的置换,则 $\theta\circ\sigma\circ\theta^{-1}$ 是 $\Omega$ 的置换:
+		
+		任取 $\sigma\in S_\Delta$.由于 $\sigma:\Delta\to\Delta$ 是双射,且
+		\[
+		\theta^{-1}:\Omega\to\Delta,
+		\qquad
+		\theta:\Delta\to\Omega
+		\]
+		也是双射,所以复合映射
+		\[
+		\theta\circ\sigma\circ\theta^{-1}:\Omega\to\Omega
+		\]
+		是双射.因此$	\theta\circ\sigma\circ\theta^{-1}\in S_\Omega,$故 $\varphi$ 是良定的.
+		\item 证明$\varphi$是双射,只需构造其双侧逆：
+		
+		定义
+		\[
+		\psi:S_\Omega\to S_\Delta,
+		\qquad
+		\psi(\rho)=\theta^{-1}\circ\rho\circ\theta,
+		\quad \rho\in S_\Omega.
+		\]
+		由与(1) 中相同的理由,$\psi$ 是良定的.任取
+		$\sigma\in S_\Delta$,有\[ (\psi\circ\varphi)(\sigma)
+			=\psi\bigl(\theta\circ\sigma\circ\theta^{-1}\bigr)=\theta^{-1}\circ
+			\bigl(\theta\circ\sigma\circ\theta^{-1}\bigr)
+			\circ\theta=(\theta^{-1}\circ\theta)\circ\sigma
+			\circ(\theta^{-1}\circ\theta)=\operatorname{id}_\Delta\circ\sigma
+			\circ\operatorname{id}_\Delta=\sigma. \]
+	
+		所以
+		\[
+		\psi\circ\varphi=\operatorname{id}_{S_\Delta}.
+		\]
+		另一方面,任取 $\rho\in S_\Omega$,有\[ (\varphi\circ\psi)(\rho)
+			=\varphi\bigl(\theta^{-1}\circ\rho\circ\theta\bigr)=\theta\circ
+			\bigl(\theta^{-1}\circ\rho\circ\theta\bigr)
+			\circ\theta^{-1}=(\theta\circ\theta^{-1})\circ\rho
+			\circ(\theta\circ\theta^{-1}=\operatorname{id}_\Omega\circ\rho
+			\circ\operatorname{id}_\Omega)=\rho. \]
+
+		所以
+		\[
+		\varphi\circ\psi=\operatorname{id}_{S_\Omega}.
+		\]
+		因此 $\psi$ 是 $\varphi$ 的双侧逆,即
+		\[
+		\varphi^{-1}(\rho)
+		=\theta^{-1}\circ\rho\circ\theta.
+		\]
+		故 $\varphi$ 是从 $S_\Delta$ 到 $S_\Omega$ 的双射.
+		
+		\item 证明$\varphi$ 是同态,即 $\varphi(\sigma\circ\tau)=\varphi(\sigma)\circ\varphi(\tau)$:
+		
+		任取 $\sigma,\tau\in S_\Delta$.由函数复合的结合律以及
+		$\theta^{-1}\circ\theta=\operatorname{id}_\Delta$,有
+		\begin{align*}
+			\varphi(\sigma)\circ\varphi(\tau)
+			&=(\theta\circ\sigma\circ\theta^{-1})
+			\circ(\theta\circ\tau\circ\theta^{-1})=\theta\circ\sigma\circ
+			(\theta^{-1}\circ\theta)
+			\circ\tau\circ\theta^{-1}\\
+			&=\theta\circ\sigma\circ\tau\circ\theta^{-1}=\theta\circ(\sigma\circ\tau)\circ\theta^{-1}=\varphi(\sigma\circ\tau).
+		\end{align*}
+		因此
+		\[
+		\varphi(\sigma\circ\tau)
+		=\varphi(\sigma)\circ\varphi(\tau),
+		\]
+		故 $\varphi$ 是同态.
+	\end{enumerate}
+	
+	综上,$\varphi:S_\Delta\to S_\Omega$ 是同构,所以
+	\[
+	S_\Delta\cong S_\Omega.
+	\]
+\end{proof}
+
+
+
+数学中的一个核心问题是确定一个结构的哪些性质能够指定它的同构型（即证明：若 $G$ 是具有某种结构的对象（例如群）,且 $G$ 具有性质 $P$,则任何其他同类结构对象（群）$X$ 只要具有性质 $P$,就同构于 $G$）.这类定理称为\textbf{分类定理}.例如,我们将在第四章与第六章中证明
+\[
+\text{任意阶为 }6\text{ 的非阿贝尔群都同构于 }S_3.
+\]
+
+由这个分类定理,我们无需寻找这些群之间的显式映射,就得到 $D_6\cong S_3$ 以及 $\GL_2(\FF_2)\cong S_3$.注意,并非任意阶为 $6$ 的群都同构于 $S_3$.事实上,我们将证明在同构意义下,阶为 $6$ 的群恰有两个：$S_3$ 与 $\ZZ/6\ZZ$（也就是说,任意阶为 $6$ 的群都同构于这两个群之一,且 $S_3$ 不同构于 $\ZZ/6\ZZ$）.
+
+有时容易看出两个给定群不同构.有下面的命题
+\begin{proposition}
+	若 $\varphi:G\to H$ 是同构,则特别地：
+\begin{enumerate}[label=(\alph*)]
+	\item $|G|=|H|$；
+	\item $G$ 是阿贝尔群,当且仅当 $H$ 是阿贝尔群；
+	\item 对所有 $x\in G$,$|x|=|\varphi(x)|$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+	设 $1_G$ 和 $1_H$ 分别为群 $G$ 和 $H$ 的单位元.
+	
+	首先注意到
+	\[
+	\varphi(1_G)
+	=\varphi(1_G1_G)
+	=\varphi(1_G)\varphi(1_G).
+	\]
+	在等式两边左乘 $\varphi(1_G)^{-1}$,得到
+	\[
+	\varphi(1_G)=1_H.
+	\]
+	此外,对任意 $x\in G$ 和 $n\in\ZZ^+$,由归纳法可得
+	\[
+	\varphi(x^n)=\varphi(x)^n.
+	\]
+	
+	\begin{enumerate}[label=(\alph*)]
+
+		\item 因为 $\varphi:G\to H$ 是同构,所以 $\varphi$ 是双射.因此
+		集合 $G$ 与 $H$ 之间存在双射,从而$|G|=|H|.$\item 先设 $G$ 是阿贝尔群.任取 $a,b\in H$.由于 $\varphi$ 是满射,
+		存在 $x,y\in G$,使得
+		\[
+		a=\varphi(x),\qquad b=\varphi(y).
+		\]
+		因为 $G$ 是阿贝尔群,所以 $xy=yx$.于是\[ 	ab
+			=\varphi(x)\varphi(y)=\varphi(xy)=\varphi(yx)=\varphi(y)\varphi(x)=ba. \]
+
+		因此 $H$ 是阿贝尔群.
+		
+		反过来,设 $H$ 是阿贝尔群.任取 $x,y\in G$.因为 $H$ 是
+		阿贝尔群,且$\varphi$ 是同态,所以
+		\[
+		\varphi(xy)=\varphi(x)\varphi(y)=\varphi(y)\varphi(x)=\varphi(yx).
+		\]
+		又因为 $\varphi$ 是单射,所以$xy=yx.$
+
+		因此 $G$ 是阿贝尔群.
+		
+		综上,
+		\[
+		G\text{ 是阿贝尔群}
+		\quad\Longleftrightarrow\quad
+		H\text{ 是阿贝尔群}.
+		\]
+		
+		\item 任取 $x\in G$.对任意 $n\in\ZZ^+$,有
+		\begin{align*}
+			\varphi(x)^n=1_H
+			&\Longleftrightarrow
+			\varphi(x^n)=\varphi(1_G)\\
+			&\Longleftrightarrow
+			x^n=1_G.
+		\end{align*}
+		其中第二个等价关系成立是因为 $\varphi$ 是单射.
+		
+		因此,满足 $x^n=1_G$ 的正整数 $n$ 与满足
+		$\varphi(x)^n=1_H$ 的正整数 $n$ 完全相同.若这样的正整数存在,
+		则两者的最小值相同；若不存在,则 $x$ 与 $\varphi(x)$ 都是
+		无穷阶元素.故
+		\[
+		|x|=|\varphi(x)|.
+		\]
+	\end{enumerate}
+\end{proof}
+\begin{proposition}[由生成元与关系确定的同态]
+	设群 $G$ 由
+	\[
+	S=\{s_1,\ldots,s_m\}
+	\]
+	生成,并设 $r_1,\ldots,r_m$ 是群 $H$ 中的元素.假设
+	$s_1,\ldots,s_m$ 在 $G$ 中满足的任一关系,在把其中的每个
+	$s_i$ 替换为 $r_i$ 后,都在 $H$ 中成立.
+	
+	则存在唯一的群同态
+	\[
+	\varphi:G\to H
+	\]
+	满足
+	\[
+	\varphi(s_i)=r_i,
+	\qquad 1\leq i\leq m.
+	\]
+
+\end{proposition}
+
+\begin{proof}
+	由于 $G=\langle s_1,\ldots,s_m\rangle$,任意元素 $g\in G$
+	都可以写成生成元及其逆元的乘积
+	\[
+	g=s_{i_1}^{\varepsilon_1}s_{i_2}^{\varepsilon_2}
+	\cdots s_{i_t}^{\varepsilon_t},	 
+	\quad
+	i_j\in\{1,\ldots,m\},
+	\varepsilon_j\in\{1,-1\}.
+	\] 
+	定义
+	\[
+	\varphi(g)
+	=
+	r_{i_1}^{\varepsilon_1}r_{i_2}^{\varepsilon_2}
+	\cdots r_{i_t}^{\varepsilon_t}.
+	\]
+	
+	首先证明该定义是良定的.假设同一个元素 $g\in G$ 还可以写成
+	\[
+	g=s_{j_1}^{\delta_1}s_{j_2}^{\delta_2}
+	\cdots s_{j_\ell}^{\delta_\ell},\quad\delta_q\in\{1,-1\}
+	\]
+	于是生成元满足关系
+	\[
+	s_{i_1}^{\varepsilon_1}\cdots s_{i_t}^{\varepsilon_t}
+	=
+	s_{j_1}^{\delta_1}\cdots s_{j_\ell}^{\delta_\ell}.
+	\]
+	由假设,将其中每个 $s_i$ 替换为 $r_i$ 后,相应关系在 $H$
+	中仍然成立,即
+	\[
+	r_{i_1}^{\varepsilon_1}\cdots r_{i_t}^{\varepsilon_t}
+	=
+	r_{j_1}^{\delta_1}\cdots r_{j_\ell}^{\delta_\ell}.
+	\]
+	因此 $\varphi(g)$ 与 $g$ 的表示方式无关,故 $\varphi$ 是良定的.
+	
+	下面证明 $\varphi$ 是同态.任取 $g,h\in G$,设
+	\[
+	g=s_{i_1}^{\varepsilon_1}\cdots s_{i_t}^{\varepsilon_t},
+	\qquad
+	h=s_{j_1}^{\delta_1}\cdots s_{j_\ell}^{\delta_\ell}.
+	\]
+	则
+	\[
+	gh=
+	s_{i_1}^{\varepsilon_1}\cdots s_{i_t}^{\varepsilon_t}
+	s_{j_1}^{\delta_1}\cdots s_{j_\ell}^{\delta_\ell},
+	\]
+	从而\[ 	\varphi(gh)=
+		r_{i_1}^{\varepsilon_1}\cdots r_{i_t}^{\varepsilon_t}
+		r_{j_1}^{\delta_1}\cdots r_{j_\ell}^{\delta_\ell}=\varphi(g)\varphi(h). \]
+	所以 $\varphi:G\to H$ 是群同态.由定义立即有
+	\[
+	\varphi(s_i)=r_i,
+	\qquad 1\leq i\leq m.
+	\]
+	
+	再证明唯一性.设 $\psi:G\to H$ 也是满足
+	\[
+	\psi(s_i)=r_i,
+	\qquad 1\leq i\leq m
+	\]
+	的群同态.任取
+	\[
+	g=s_{i_1}^{\varepsilon_1}\cdots s_{i_t}^{\varepsilon_t}\in G,
+	\]
+	则\[ \psi(g)
+		=
+		\psi(s_{i_1})^{\varepsilon_1}\cdots
+		\psi(s_{i_t})^{\varepsilon_t}=
+		r_{i_1}^{\varepsilon_1}\cdots
+		r_{i_t}^{\varepsilon_t}=\varphi(g).
+ \]
+	因此 $\psi=\varphi$,故这样的同态是唯一的.
+	
+	若
+	\[
+	G=\langle s_1,\ldots,s_m\mid R_1,\ldots,R_k\rangle,
+	\]
+	则按照表示的定义,生成元所满足的任一关系都能由
+	$R_1,\ldots,R_k$ 推出.因此,只要将各个 $R_j$ 中的 $s_i$
+	替换为 $r_i$ 后所得关系在 $H$ 中成立,那么由这些关系推出的
+	所有关系在替换后也都成立.于是上述构造给出唯一同态
+	\[
+	\varphi:G\to H,
+	\qquad
+	\varphi(s_i)=r_i.
+	\]
+	
+
+\end{proof}
+
+\begin{corollary}
+	\begin{enumerate}[label=(\alph*)]
+	\item 若
+	\[
+	H=\langle r_1,\ldots,r_m\rangle,
+	\]
+	则 $\varphi$ 是满射;
+	
+	\item 若 $G$ 和 $H$ 都是有限群,
+	\[
+	H=\langle r_1,\ldots,r_m\rangle
+	\]
+	且 $|G|=|H|$,则 $\varphi$ 是同构,从而
+	\[
+	G\cong H.
+	\]
+\end{enumerate}
+\end{corollary}
+\newpage
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+			\item 若
+			\[
+			H=\langle r_1,\ldots,r_m\rangle,
+			\]
+			则任取 $h\in H$,都有
+			\[
+			h=r_{i_1}^{\varepsilon_1}\cdots r_{i_t}^{\varepsilon_t}
+			\]
+			对某些 $i_1,\ldots,i_t$ 和
+			$\varepsilon_1,\ldots,\varepsilon_t\in\{1,-1\}$ 成立.
+			令
+			\[
+			g=s_{i_1}^{\varepsilon_1}\cdots s_{i_t}^{\varepsilon_t}\in G,
+			\]
+			则
+			\[
+			\varphi(g)
+			=
+			r_{i_1}^{\varepsilon_1}\cdots r_{i_t}^{\varepsilon_t}
+			=h.
+			\]
+			所以 $\varphi$ 是满射.
+			
+			\item 若 $G$ 和 $H$ 都是有限群,
+			$H=\langle r_1,\ldots,r_m\rangle$ 且 $|G|=|H|$,则由
+			(a) 知 $\varphi$ 是满射.
+			
+			由于有限集合 $G$ 与 $H$ 的基数相同,从 $G$ 到 $H$
+			的满射必为单射,故 $\varphi$ 是双射.因此 $\varphi$
+			是同构,从而
+			\[
+			G\cong H.
+			\]
+		\end{enumerate}
+\end{proof}
+\begin{example}
+	\begin{enumerate}[label=(\arabic*)]
+		\item  $D_{2n}=\langle r,s\mid r^n=s^2=1,\ sr=r^{-1}s\rangle$.假设 $H$ 是一个含有元素 $a,b$ 的群,并满足 $a^n=1$、$b^2=1$ 和 $ba=a^{-1}b$.则存在一个从 $D_{2n}$ 到 $H$ 的同态,把 $r$ 映到 $a$,把 $s$ 映到 $b$.例如,令 $k$ 是整除 $n$ 的整数且 $k\geq3$,并令
+		\[
+		D_{2k}=\langle r_1,s_1\mid r_1^k=s_1^2=1,\ s_1r_1=r_1^{-1}s_1\rangle.
+		\]
+		定义
+		\[
+		\varphi:D_{2n}\to D_{2k}\quad\text{由}\quad \varphi(r)=r_1,
+		\quad \varphi(s)=s_1.
+		\]
+		若写 $n=km$,则因为 $r_1^k=1$,也有 $r_1^n=(r_1^k)^m=1$.于是 $D_{2n}$ 中由 $r,s$ 满足的三个关系也由 $D_{2k}$ 中的 $r_1,s_1$ 满足.因此 $\varphi$ 唯一地扩张为从 $D_{2n}$ 到 $D_{2k}$ 的同态.由于 $\{r_1,s_1\}$ 生成 $D_{2k}$,$\varphi$ 是满射.若 $k<n$,这个同态不是同构.
+		\item 令 $G=D_6$ 如上表示.检验在 $H=S_3$ 中,元素 $a=(1\ 2\ 3)$ 与 $b=(1\ 2)$ 满足关系：$a^3=1$、$b^2=1$ 且 $ba=a^{-1}b$.因此存在从 $D_6$ 到 $S_3$ 的同态,把 $r\mapsto a$,$s\mapsto b$.进一步可检验 $S_3$ 由 $a$ 与 $b$ 生成,所以此同态是满射.由于 $D_6$ 与 $S_3$ 的阶都为 $6$,这个同态是同构：$D_6\cong S_3$.
+	\end{enumerate}
+\end{example}
+\section{群作用}
+\begin{definition}
+	群 $G$ 在集合 $A$ 上的一个\textbf{群作用},是一个从 $G\times A$ 到 $A$ 的映射（对所有 $g\in G$ 与 $a\in A$,写作 $g\cdot a$）,满足下列性质：
+\begin{enumerate}[label=(\arabic*)]
+	\item 对所有 $g_1,g_2\in G$、$a\in A$,有 $g_1\cdot(g_2\cdot a)=(g_1g_2)\cdot a$；
+	\item 对所有 $a\in A$,有 $1\cdot a=a$.
+\end{enumerate}
+\end{definition}
+设群 $G$ 作用在集合 $A$ 上.对每个固定的 $g\in G$,得到映射 $\sigma_g:A\to A$,定义为
+\[
+\sigma_g(a)=g\cdot a.
+\]
+那么有以下两个命题
+\begin{proposition}
+	\begin{enumerate}[label=(\arabic*)]
+	\item 对每个固定的 $g\in G$,$\sigma_g$ 是 $A$ 的一个置换；
+	\item 由 $g\mapsto\sigma_g$ 定义的从 $G$ 到 $S_A$ 的映射是同态.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}[label=(\arabic*)]
+		\item 	为说明 $\sigma_g$ 是 $A$ 的置换,我们证明它作为 $A$ 到 $A$ 的集合映射有一个双侧逆,即 $\sigma_{g^{-1}}$.
+		对所有 $a\in A$,
+		\[ (\sigma_{g^{-1}}\circ\sigma_g)(a)
+		=\sigma_{g^{-1}}(\sigma_g(a)) 
+		=g^{-1}\cdot(g\cdot a) =(g^{-1}g)\cdot a =1\cdot a=a  \]
+		
+		这证明 $\sigma_{g^{-1}}\circ\sigma_g$ 是 $A$ 到 $A$ 的恒等映射.同理可以证明,$\sigma_{g}\circ\sigma_{g^{-1}}$,因此 $\sigma_g$ 有双侧逆,故是 $A$ 的置换.
+		
+		\item 定义 $\varphi:G\to S_A$ 为 $\varphi(g)=\sigma_g$.注意 (1) 说明 $\sigma_g$ 的确是 $S_A$ 的元素.为了证明 $\varphi$ 是同态,必须证明
+		\[
+		\varphi(g_1g_2)=\varphi(g_1)\circ\varphi(g_2)
+		\]
+		对所有 $a\in A$,
+		\[ \varphi(g_1g_2)(a)
+			=\sigma_{g_1g_2}(a) =(g_1g_2)\cdot a =g_1\cdot(g_2\cdot a) =\sigma_{g_1}(\sigma_{g_2}(a)) =(\varphi(g_1)\circ\varphi(g_2))(a)  \]
+		得证
+	\end{enumerate}
+\end{proof}
+直观地说,群 $G$ 在集合 $A$ 上的作用,就是 $G$ 中每个元素 $g$ 都以一种与 $G$ 的群运算相容的方式作为 $A$ 上的置换起作用.上述从 $G$ 到 $S_A$ 的同态称为给定作用所伴随的\textbf{置换表示}.
+
+事实上可以利用上面的命题给出一个群作用的等价定义.
+
+还应注意,作用的这个定义更准确地说应称为\textbf{左作用},因为群元素写在集合元素的左边.类似地也可以定义右作用.
+
+	\begin{definition}
+		若 $G$ 作用在集合 $B$ 上,且 $G$ 的不同元素诱导 $B$ 上不同的置换,则称该作用是\textbf{忠实的}(faithful).因此,忠实作用正是相应置换表示为单射的作用.
+
+	\end{definition}
+\begin{definition}
+	$G$ 在 $B$ 上作用的\textbf{核}定义为
+\[
+\{g\in G\mid gb=b\text{ 对所有 }b\in B\},
+\]
+即固定 $B$ 中所有元素的 $G$ 中元素.
+\end{definition}
+\begin{example}
+	\begin{enumerate}[label=(\arabic*)]
+	\item 令 $ga=a$,对所有 $g\in G$ 与 $a\in A$.群作用的性质 (1) 和 (2) 立即成立.这个作用称为\textbf{平凡作用},并称 $G$ 在 $A$ 上\textbf{平凡地作用}.注意,$G$ 的不同元素诱导 $A$ 上同一个置换（在此情形中为恒等置换）.相应的置换表示 $G\to S_A$ 是把每个 $G$ 中元素都映到恒等置换的平凡同态.
+	
+	对平凡作用,作用的核为整个 $G$；当 $|G|>1$ 时,该作用不是忠实的.
+	
+	\item 对任意非空集合 $A$,对称群 $S_A$ 通过 $\sigma\cdot a=\sigma(a)$（对所有 $\sigma\in S_A$,$a\in A$）作用在 $A$ 上.相应的置换表示就是从 $S_A$ 到自身的恒等映射.
+	\item 设 $G$ 是任意群,并令 $A=G$.定义从 $G\times A$ 到 $A$ 的映射为 $g\cdot a=ga$,对每个 $g\in G$ 与 $a\in A$,其中右侧的 $ga$ 是群 $G$ 中 $g$ 与 $a$ 的乘积.这样得到 $G$ 在自身上的一个群作用,每个固定的 $g\in G$ 都通过左乘置换 $G$ 中元素：
+	\[
+	g:a\mapsto ga\qquad\text{对所有 }a\in G.
+	\]
+	（若 $G$ 用加法记号,则得到 $a\mapsto g+a$,并称为左平移.）这个作用称为 $G$ 在自身上的\textbf{左正则作用}.由消去律可知,这个作用是忠实的.
+\end{enumerate}
+\end{example}

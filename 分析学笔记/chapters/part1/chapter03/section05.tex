@@ -1,0 +1,82 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.5 度量空间
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{度量空间}
+\begin{definition}
+	$\X$ 是一个非空集，$d$ 是一个映射，定义在 $\X \times \X$ 上，$\forall a, b \in \X$ ，若满足
+	
+	（i）若 $a \neq b$ ，那么 $d(a, b)>0 ; d(a, a)=0$
+	
+	（ii）$d(a, b)=d(b, a)$
+	
+	（iii）$d(a, c) \leqslant d(a, b)+d(b, c)$
+	
+	那么 $d$ 称为 $\X$ 上的一个度量或者距离函数，$(\X, d)$ 称为度量空间. $d(a, b)$ 称为$a, b$ 之间的距离
+\end{definition}
+在$\R$上\[d(a,b)=|a-b|\]
+称为$\R$上的Euclidean度量
+
+在$\R^2$\[d((a_1,a_2),(b_1,b_2))=\sqrt{(a_1-b_1)^2+(a_2+b_2)^2}\]称为$\R^2$上的Euclidean度量
+\begin{definition}
+	令$(\X,d)$是一个度量空间，$r$ 是任意正实数.集合
+	
+	$$
+	B_r(a)=\{x: x \in \X \text { 且 } d(a, x)<r\}	$$
+	
+	
+	称为以 $a$ 为中心，$r$ 內为半径的开球
+\end{definition}
+\begin{lemma}
+	令 $(\X, d)$ 是一个度量空间，且 $a, b \in \X . \delta_1, \delta_2 \in \mathbb{R}_{+}$若 $c \in B_{\delta_1}(a) \cap B_{\delta_2}(b), \exists \delta>0$ ，使得，$B_\delta(c) \subset B_{\delta_1}(a) \cap B_{\delta_2}(b)$
+\end{lemma}
+\begin{proof}
+	取 $\delta=\min \left\{\delta_1-d(c, a), \delta_2-d(c, b)\right\}$ 即可
+\end{proof}
+\begin{corollary}\label{ints_of_ball}
+	$(\X, d)$ 是一个度量空间，$B_1, B_2$ 是$(\X,d)$中的开球那么 $B_1 \cap B_2$ 是 $(X, d)$ 中一些开球的并集
+\end{corollary}
+\begin{proof}
+	$\forall c \in B_1 \cap B_2$（假设不为 $\varnothing, \varnothing$ 下平凡）.
+	
+	$\exists \delta(c)$ ，使得，$B_{\delta(c)}(c) \subset B_1 \cap B_2$ ，
+	
+	那么
+	
+	$$
+	B_1 \cap B_2=\bigcup_{x \in B_1 \cap B_2} B_{\delta(x)}(x)
+	$$
+\end{proof}
+显然的，我们有以下的命题
+\begin{proposition}
+	令 $(\X, d)$ 是一个度量空间．那么 $(\X, d)$ 中所有开球构成一个族，是$\X$中一个拓扑的拓扑基
+\end{proposition}
+\begin{proof}
+	由\ref{eq_of_2def_tpbas}与\ref{ints_of_ball}得
+\end{proof}
+称$\T$为度量$d$诱导出的拓扑
+\begin{proposition}
+	$(\X,d)$是一个度量空间，$\T$是由$d$诱导出的拓扑，$(\X,\T)$的子集$U$是开的，当且仅当$(\forall a\in U)(\exists \varepsilon>0),$使得$B_\varepsilon(a)\subset U$
+\end{proposition}
+\begin{proof}
+	必要性：$U \in\T$ ，所有开球是一个拓扑基.
+	
+	$$
+	U=\bigcup_{x \in U} B_{\delta(x)}(x)
+	$$
+	
+	
+	对 $a, \varepsilon=\delta(a), a \in B_{\varepsilon}(a) \subset U$
+	
+	充分性：这等价于 $\quad U=\bigcup_{a \in U} B_{\varepsilon(a)}(a)$
+	
+	说明$U$是开的.
+\end{proof}
+\begin{definition}
+	$(\X,\T)$是一个拓扑空间，$A$是其任意子集. $A$ 包含的最大的那个开集称为 $A$ 的内部，记为 $\operatorname{Int}(A)$ . $\forall x \in \operatorname{Int}(A), x$ 称为 $A$ 的内点.
+	
+	$\operatorname{Int}\left(A^c\right)$ 定义为 $A$ 的外部，其任何点称为 $A$ 的外点，外部记为$\operatorname{Ext}A $
+	
+	$A$ 的边界定义为 $\bar{A}\setminus\operatorname{In} t(A)$ ，记为 $\partial A$ ，其点称为 $A$ 的边界点
+\end{definition}
+

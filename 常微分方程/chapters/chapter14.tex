@@ -1,0 +1,428 @@
+\setchapterimage{figure/Chapter14封面图.jpg}
+\setchapterintro{把已有的参数依赖、首次积分和相图方法用于具体问题。本章讨论中心力、相邻轨道、光线、退化一维场、种群系统及小扩散稳态。}
+\chapter{几何方法的应用与若干进阶问题}\label{chap:applications}
+
+本章的力学与光学例子分别使用常系数线性化、首次积分、Hamilton 方程以及下文给出定义的变分法；广义种群系统还会同时用到第六章的 Dulac 判据和第~\ref{chap:indices}~章的指标。最后对扩散方程的光滑解讨论其长期行为，解的存在性另作假设。
+
+\section{中心力与相邻轨道的相对运动}
+\begin{definition}
+力场 $F(r)=a(|r|)r$ 称为中心力场。二维的面积速度为
+$\frac12(r_1\dot r_2-r_2\dot r_1)$，三维的角动量为 $r\times\dot r$
+（这里质量取 1）。
+\end{definition}
+\begin{proposition}
+中心力下角动量守恒，二维面积速度守恒。Hamilton 系统中若 $H$ 不含某个坐标 $q_i$，
+其共轭动量 $p_i$ 是首次积分。
+\end{proposition}
+\begin{proof}
+\[
+ \begin{aligned}
+ \frac{\dd}{\dd t}(r\times\dot r)
+ &=\dot r\times\dot r+r\times\ddot r\\
+ &=r\times a(|r|)r\\
+ &=0.
+\end{aligned}
+\]
+二维行列式的求导相同，得到面积速度守恒。
+Hamilton 方程给出 $\dot p_i=-\partial H/\partial q_i=0$，所以动量不变。
+\end{proof}
+面积速度守恒对任意中心力都成立，不能单凭 Kepler 第二定律推出反平方引力。
+反平方尺度律还需周期与尺度的信息。
+
+\begin{example}[空间站抛出物体]
+以空间站的圆轨道半径、角速度作单位，在随站转动的坐标中，
+记 $x$ 为向外径向位移，$y$ 为沿运动方向位移。
+引力的圆轨道线性化与旋转坐标的加速度项给出
+\[
+ x''-2y'-3x=0,\qquad y''+2x'=0.
+\]
+确实，令 $J=\left(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\right)$ 为旋转 $\pi/2$ 的矩阵，惯性加速度的局部形式为 $r''+2Jr'-r$，
+而反平方引力在圆轨道点的导数在径向为 $+2$、切向为 $-1$；
+两边相减便得到上述系数。
+\end{example}
+\begin{proposition}
+初始相对位置为零、初始径向速度为 $v$、切向速度为零时，线性近似解为
+\[
+ x=v\sin t,\qquad y=2v(\cos t-1).
+\]
+它是半轴 $|v|,2|v|$、中心 $(0,-2v)$ 的椭圆，以一个轨道周期闭合。
+\end{proposition}
+\begin{proof}
+第二式积分得 $y'+2x=0$；代入第一式得 $x''+x=0$。
+由 $x(0)=0,x'(0)=v$ 得 $x=v\sin t$，再积分 $y'=-2v\sin t$ 得 $y$。
+消去参数即得椭圆。
+前文的参数可微依赖定理说明在固定有界时间内，真实解与该一阶近似之差为 $O(v^2)$。
+这并不保证真实相对轨道严格闭合，也不保证无限时间误差仍是 $O(v^2)$。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-hill-ellipse} 取 $v=1$，标出空间站所在的相对原点及相对轨道的中心。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.25cm,y=.85cm]
+ \draw[->,gray] (-1.8,0)--(2.1,0) node[right]{$x$（径向）};
+ \draw[->,gray] (0,-4.6)--(0,.8) node[above]{$y$（切向）};
+ \draw[GreenMain,thick,domain=0:360,samples=100,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GreenMain,->,thick,domain=30:50,samples=12,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GreenMain,->,thick,domain=210:230,samples=12,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GoldMain,dashed] (-1,-2)--(1,-2);
+ \fill[GoldMain] (0,-2) circle(1.7pt) node[above left]{$(0,-2)$};
+ \fill (0,0) circle(1.7pt) node[above left]{空间站};
+ \node at (3.1,-1.5){$x=\sin t$};\node at (3.1,-2.3){$y=2(\cos t-1)$};
+\end{tikzpicture}
+\captionof{figure}{初始径向速度为 $v>0$ 的线性相对轨道：椭圆中心在 $(0,-2v)$，并非空间站位置。}
+\label{fig:ode-tikz-hill-ellipse}
+\end{minipage}
+\end{center}
+
+\section{分层介质中的光线与 Clairaut 守恒量}
+
+\begin{definition}[泛函、变分与驻曲线]\label{def:variation-functional}
+把一条函数或曲线送到一个实数的规则称泛函。例如
+\[
+ \mathcal I[y]=\int_a^b L(x,y(x),y'(x))\,dx.
+\]
+固定端点，取光滑 $\eta$ 满足 $\eta(a)=\eta(b)=0$，将 $y$ 换成 $y+s\eta$，称作变分。
+若对每个这样的 $\eta$，$\left.\frac d{ds}\mathcal I[y+s\eta]\right|_{s=0}=0$，称 $y$ 为驻曲线。
+驻曲线不一定使泛函取最小值。
+\end{definition}
+\begin{lemma}[Euler--Lagrange 方程]\label{lem:euler-lagrange-elementary}
+若 $L$ 足够光滑，$C^2$ 驻曲线满足
+\[
+ \frac d{dx}L_{y'}=L_y.
+\]
+\end{lemma}
+\begin{proof}
+在有限区间上微分积分，再分部积分，得到
+\[
+ 0=\int_a^b(L_y\eta+L_{y'}\eta')dx
+ =\int_a^b\left(L_y-\frac d{dx}L_{y'}\right)\eta\,dx.
+\]
+括号内若在一点严格为正，由连续性在一个小区间保持正；取支撑在其中的非负非零凸起函数作 $\eta$，积分便严格为正，矛盾。
+负值同理排除，故括号处处为零。对向量曲线逐个分量作变分，得到相应方程组。
+\end{proof}
+\begin{definition}[长度、能量与测地线]\label{def:geodesic-variational}
+在 Riemann 度量 $g$ 下，曲线 $q(t)$ 的长度与能量分别为
+\[
+ \ell[q]=\int |q'|_g\,dt,\qquad
+ E[q]=\frac12\int\sum_{i,j}g_{ij}(q)q_i'q_j'\,dt.
+\]
+固定端点的能量驻曲线称有仿射参数的测地线；其方程由前一引理逐坐标给出。
+沿该方程对 $|q'|_g^2$ 求导，代入 Euler--Lagrange 方程，得到导数为零，故速度长度恒定。
+非零常速时，长度的一阶变分是能量一阶变分除以该速度，因而它也是长度驻曲线。
+对于光学度量 $g=n(y)^2(dx^2+dy^2)$，长度就是光程，光线取为它的非零速度驻曲线。
+\end{definition}
+
+下面只研究分段光滑射线与经典局部光学模型。
+\begin{definition}
+折射率 $n(y)>0$ 只随高度变化的介质称分层介质。
+射线以弧长 $s$ 参数化，切线与水平方向的夹角记为 $\theta$。
+\end{definition}
+\begin{proposition}
+沿射线 $n(y)\cos\theta$ 为常数。若局部写为 $y=y(x)$，则
+\[
+ \frac{n(y)}{\sqrt{1+y'^2}}=C,
+ \qquad y'^2=\frac{n(y)^2}{C^2}-1.
+\]
+\end{proposition}
+\begin{proof}
+将介质分成水平薄层，界面处 Snell 定律保持折射率乘入射角正弦不变。
+入射角相对于竖直法线，故其正弦为 $\cos\theta$。
+也可从光程泛函 $\displaystyle\int n(y)\sqrt{1+y'^2}\,dx$ 的 Euler--Lagrange 方程推出：
+被积函数不显含 $x$，所以
+\[
+ L-y'L_{y'}=n(y)/\sqrt{1+y'^2}
+\]
+ 沿驻曲线恒定。
+这一守恒式直接求导也可由 Euler--Lagrange 方程验证。
+\end{proof}
+当 $n(y)=1/y$、$y>0$，积分给出
+$(x-x_0)^2+y^2=R^2$，或竖直直线；这些曲线是上半平面模型中的测地线。
+当折射率在一层附近有最大值，允许位置满足 $n(y)\geq|C|$，
+光线可在两个转向高度间往复，这给出声道和海市蜃楼例子的定性图像。
+它与能量允许区域 $U(x)\leq E$ 的分析相呼应。
+
+\begin{proposition}[旋转曲面的 Clairaut 关系]
+以子午线弧长 $s$ 和方位角 $\phi$ 参数化旋转曲面，距转轴的半径为 $r(s)$。
+沿单位速测地线，$r\sin\beta$ 为常数，其中 $\beta$ 为切线与子午线的夹角。
+\end{proposition}
+\begin{proof}
+曲面度量为 $ds^2+r(s)^2d\phi^2$，测地线动能
+\[
+ L=(\dot s^2+r(s)^2\dot\phi^2)/2
+\]
+ 不含 $\phi$。
+其 Euler--Lagrange 方程给出 $r^2\dot\phi=C$。
+单位速条件下，切线的方位分量为 $r\dot\phi=\sin\beta$，故得 $r\sin\beta=C$。
+这里的 Clairaut 守恒关系与前文 Clairaut 隐式微分方程是两个不同对象。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-optical-geodesics} 中只画上半平面 $y>0$ 内的曲线，边界 $y=0$ 不属于该介质模型。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.1cm,y=1.1cm]
+ \fill[GreenPale,opacity=.3] (-4,0) rectangle(4,2.9);
+ \draw[gray,dashed] (-4,0)--(4,0) node[right]{$y=0$};
+ \draw[->,gray] (-3.7,0)--(-3.7,3.1) node[above]{$y$};
+ \draw[GreenMain,thick] (1,0) arc[start angle=0,end angle=180,radius=2];
+ \draw[GoldMain,thick] (2.7,0) arc[start angle=0,end angle=180,radius=1.4];
+ \draw[GreenMain,thick] (3.3,.08)--(3.3,2.75);
+ \node at (0,2.6){$n(y)=1/y,\quad y>0$};
+ \node[below] at (-1,0){$x_0$};\node[below] at (1.3,0){$x_1$};
+\end{tikzpicture}
+\captionof{figure}{折射率 $n(y)=1/y$ 时的射线：与边界正交的半圆及竖直直线。}
+\label{fig:ode-tikz-optical-geodesics}
+\end{minipage}
+\end{center}
+
+\section{一维二重零点的光滑正规形}
+
+\begin{definition}
+方程在允许的局部坐标变换下化成的简化表达式称为正规形。
+在所有这类变换下不变的参数称为模参数。
+\end{definition}
+\begin{theorem}
+设 $v\in C^\infty$，$v(x)=ax^2+bx^3+O(x^4)$，$a\ne0$。
+存在零点附近的光滑坐标 $y=g(x)$，使 $x'=v(x)$ 化为
+\[
+ y'=y^2+Cy^3,\qquad C=b/a^2.
+\]
+$C$ 在保持时间参数不变的光滑坐标变换下不变。
+\end{theorem}
+\begin{proof}
+由 Taylor 除法，零点两侧的积分时间函数可统一写成
+\[
+ V(x)=-\frac1{ax}-C\log|x|+R(x),
+\]
+其中 $R$ 光滑；因为 $1/v=1/(ax^2)-C/x+$ 一个光滑函数。
+目标场的积分时间同样为
+$W(y)=-1/y-C\log|y|+S(y)$，$S$ 光滑。
+寻找 $y=ax(1+xh(x))$ 并使 $W(y)=V(x)$。
+消去两侧相同的奇性后，方程成为
+\[
+ \frac{h}{a(1+xh)}-C\log|a|-C\log(1+xh)
+ +S(ax(1+xh))-R(x)=0.
+\]
+这是 $(x,h)$ 的光滑方程，在 $x=0$ 对 $h$ 的导数为 $1/a\ne0$。
+先由零阶方程选唯一 $h(0)$，再由隐函数定理得到光滑 $h(x)$。
+于是 $g'(0)=a\ne0$，是局部微分同胚。
+对时间函数恒等式求导，
+\[
+ g'(x)/[g(x)^2+Cg(x)^3]=1/v(x),
+\]
+所以 $g'(x)v(x)=g(x)^2+Cg(x)^3$，完成正规化。
+
+若任意换元 $y=sx+tx^2+O(x^3)$，计算新右端二、三次系数分别为
+$\widetilde a=a/s$、$\widetilde b=b/s^2$。
+因此 $\widetilde b/\widetilde a^2=b/a^2$，证明不变量结论。
+\end{proof}
+
+\section{广义 Lotka--Volterra 系统没有孤立闭轨}
+考虑
+\[
+ P=x(a+kx+ly),\qquad Q=y(b+mx+ny).
+\]
+\begin{theorem}
+上述系统没有极限环。若存在非平衡闭轨，则它附近充满闭轨。
+\end{theorem}
+\begin{proof}
+坐标轴是不变集，因此闭轨不能穿过它们。各象限作符号换元可归为正象限。
+先设 $kn-lm\ne0$。取 $\alpha,\beta$ 解
+\[
+ k\alpha+m\beta=-k,\qquad l\alpha+n\beta=-n.
+\]
+令 $B=x^{\alpha-1}y^{\beta-1}>0$，计算得
+\[
+ \partial_x(BP)+\partial_y(BQ)
+ =B(\alpha a+\beta b).
+\]
+若常数 $\alpha a+\beta b\ne0$，前文的 Dulac 判据在单连通正象限排除所有闭轨。
+若该常数为零，1-形式 $-BQ\,dx+BP\,dy$ 闭，
+在凸的正象限有势函数 $H$，满足 $H_x=-BQ,H_y=BP$。
+沿轨道 $\dot H=0$，且在非平衡闭轨附近 $\nabla H\ne0$。
+闭轨的紧性和隐函数定理把附近等值集写成一族邻近光滑闭曲线；
+场沿每条曲线相切且非零，所以每条都是闭轨，原闭轨不孤立。
+
+若 $kn-lm=0$，正象限内平衡方程为两条线性方程。
+它们要么无公共解，要么公共解包含一条直线（含全平面的更退化情形）。
+任何闭轨围成的盘内必有平衡点，因为其边界场沿切线转一圈，指标为 1。
+若平衡点集含直线，则从盘内该点沿直线继续，必穿过闭轨边界，
+但边界不含平衡点，矛盾。无平衡点的情形也与边界指标矛盾。
+所以退化行列式情形没有闭轨。
+\end{proof}
+
+\section{圆周上的小扩散与稳态集中}
+令圆周长度为 $L$，$b(x+L)=b(x)$，$\varepsilon>0$。
+密度方程为
+\[
+ u_t=\varepsilon u_{xx}-(b(x)u)_x,\qquad
+ \int_0^L u\,dx=1.
+\]
+
+\begin{definition}[周期密度与经典解]
+圆周上的概率密度指非负的 $L$ 周期连续函数 $u$，满足 $\displaystyle\int_0^Lu(x)dx=1$；
+对一段圆弧赋予的质量为其上 $u$ 的积分。
+含时间的经典解在这里指具有连续 $u_t,u_x,u_{xx}$ 并逐点满足密度方程的周期函数。
+$L^1$ 距离在本章指 $\|u-v\|_1=\displaystyle\int_0^L|u-v|dx$，所有函数光滑，均为通常积分。
+概率流 $J$ 以守恒式 $u_t=-J_x$ 定义其输运意义，不预设随机过程的一般理论。
+\end{definition}
+
+\begin{definition}
+概率流为 $J=bu-\varepsilon u_x$，方程即 $u_t=-J_x$。
+在覆盖直线上选势 $U'=-b$，有 $U(x+L)=U(x)+c$。
+不显含时间的归一化正密度称稳态。
+\end{definition}
+\begin{proposition}
+若 $c=0$，稳态为 Gibbs 型密度
+\[
+ \rho=C_\varepsilon e^{-U/\varepsilon}.
+\]
+一般情形可统一写成
+\[
+ \rho(x)=C_\varepsilon e^{-U(x)/\varepsilon}
+ \int_x^{x+L}e^{U(s)/\varepsilon}\,ds,
+\]
+常数使积分为 1；它光滑、严格为正并且周期。
+\end{proposition}
+\begin{proof}
+稳态方程为 $(b\rho-\varepsilon\rho')'=0$，故概率流为常数 $J$，即
+$\varepsilon\rho'+U'\rho=-J$。积分因子给出
+\[
+ (e^{U/\varepsilon}\rho)'=-\frac{J}{\varepsilon}e^{U/\varepsilon}.
+\]
+令 $I(x)=\displaystyle\int_x^{x+L}e^{U(s)/\varepsilon}\,ds>0$。因 $U(x+L)=U(x)+c$，有
+\[
+ I'(x)=e^{U(x+L)/\varepsilon}-e^{U(x)/\varepsilon}
+ =(e^{c/\varepsilon}-1)e^{U(x)/\varepsilon}.
+\]
+所以 $\rho=C_\varepsilon e^{-U/\varepsilon}I$ 满足
+\[
+ \varepsilon\rho'+U'\rho=\varepsilon C_\varepsilon(e^{c/\varepsilon}-1),
+\]
+确为常流稳态。
+又 $I(x+L)=e^{c/\varepsilon}I(x)$，与前面的指数因子抵消，故 $\rho$ 周期。
+其严格正性保证可选唯一正数 $C_\varepsilon$ 使总积分为 1。
+
+证明唯一性时，先设 $c\ne0$。将积分因子等式在 $[x,x+L]$ 上积分，
+对任意周期稳态均得
+\[
+ (e^{c/\varepsilon}-1)e^{U(x)/\varepsilon}\rho(x)
+ =-\frac{J}{\varepsilon}I(x).
+\]
+故所有周期稳态都为上述正函数的常数倍，再由归一化唯一确定。
+若 $c=0$，同一等式给出 $JI(x)=0$，所以 $J=0$。
+积分因子方程随即给出 $\rho=C e^{-U/\varepsilon}$，归一化后也唯一。
+此时 $e^{U/\varepsilon}$ 为周期函数，故积分 $I(x)$ 与 $x$ 无关，
+故一般公式正好化为 Gibbs 型表达式。
+\end{proof}
+\begin{theorem}[稳态的吸引性]
+对存在的光滑周期解，密度趋于上述唯一稳态；更准确地，
+$\displaystyle\int\rho(u/\rho-1)^2$ 指数衰减。
+\end{theorem}
+\begin{proof}
+固定 $\varepsilon>0$，令 $w=u/\rho$。将 $u=\rho w$ 代入密度方程，
+利用 $(\varepsilon\rho'-b\rho)'=0$ 和 $J=b\rho-\varepsilon\rho'$，整理得
+\[
+ \rho w_t=\varepsilon(\rho w_x)_x-Jw_x.
+\]
+记 
+\[
+ \mathcal E(t)=\displaystyle\int_0^L\rho(w-1)^2\,dx.
+\]
+由于 $\rho$ 不依赖时间，
+乘 $w-1$ 并积分，周期边界项消失，有
+\begin{align*}
+ \tfrac12\mathcal E'(t)
+ &=-\varepsilon\int_0^L\rho w_x^2\,dx
+   -J\int_0^L(w-1)w_x\,dx\\
+ &=-\varepsilon\int_0^L\rho w_x^2\,dx.
+\end{align*}
+最后一个积分为 $\tfrac12[(w-1)^2]_0^L=0$；因此即使稳态流不为零，耗散恒等式仍成立。
+
+归一化给出 $\displaystyle\int_0^L\rho(w-1)\,dx=0$。因 $\rho>0$ 且 $w$ 连续，
+若 $w$ 不恒等于 1，必在某点 $x_0$ 取值 1。
+沿圆周长度不超过 $L$ 的一条弧，从该点积分并用 Cauchy--Schwarz，得到
+\[
+ |w(x)-1|^2\leq L\int_0^L|w_x|^2\,dx
+ \leq\frac{L}{m}\int_0^L\rho w_x^2\,dx,
+ \qquad m=\min_{[0,L]}\rho>0.
+\]
+再乘 $\rho$ 积分，并用 $\displaystyle\int\rho=1$，得
+\[
+ \mathcal E\leq(L/m)\displaystyle\int\rho w_x^2.
+\]
+当 $w\equiv1$ 时此式也成立。
+因此 $\mathcal E'\leq-(2\varepsilon m/L)\mathcal E$，积分得到
+\[
+ \mathcal E(t)\leq\mathcal E(0)e^{-2\varepsilon mt/L}.
+\]
+这就是所述加权平方平均意义下的指数吸引性。
+它还蕴含 $L^1$ 收敛，因为
+\[
+ \begin{aligned}
+ \int_0^L|u-\rho|\,dx
+ &\leq\left(\int\rho\right)^{1/2}\mathcal E^{1/2}\\
+ &=\mathcal E^{1/2}.
+\end{aligned}
+\]
+上述证明以光滑周期解的存在性为假设，不涉及该偏微分方程解的存在性。
+\end{proof}
+
+\begin{definition}[密度的集中与弱收敛]\label{def:density-concentration}
+概率密度 $\rho_\varepsilon$ 集中于闭集 $K$，是指对每个包含 $K$ 的开邻域 $V$，
+$\displaystyle\int_{V^c}\rho_\varepsilon dx\to0$。
+称它弱收敛到 $x_*$ 处的单位质量，是指对每个连续周期函数 $f$ 都有
+\[
+ \int_0^Lf(x)\rho_\varepsilon(x)dx\longrightarrow f(x_*).
+\]
+这不是逐点收敛。若密度集中于唯一点 $x_*$，在该点的小邻域内用 $f$ 的一致连续性控制差，
+邻域外用 $2\|f\|_\infty$ 乘以趋零的质量控制差，即得到上述弱收敛。
+
+\end{definition}
+
+\begin{proposition}[小扩散极限]
+若周期势 $U$ 有唯一全局最小点，则 $\rho$ 在 $\varepsilon\downarrow0$ 时集中于该点。
+一般情形定义
+$D(x)=\max_{x\leq s\leq x+L}U(s)-U(x)$，
+则稳态质量集中在 $D$ 的最大点集合；若该最大点唯一，则收敛为该点的单位质量。
+\end{proposition}
+\begin{proof}
+紧圆上的 Laplace 估计给出
+$\varepsilon\log\displaystyle\int_x^{x+L}e^{U(s)/\varepsilon}ds
+\to\max_{[x,x+L]}U$，并且关于 $x$ 一致。
+上界由区间长度乘最大指数得到；下界用 $U$ 的统一 Lipschitz 常数，
+在最大点附近长度为 $O(\varepsilon)$ 的区间上，$U$ 至少为最大值减 $O(\varepsilon)$，
+所以对数下界与上界差趋于零。
+因此，在未确定归一化常数时，密度的对数乘以扩散系数后趋于 $D(x)$。
+最大点集合之外的任一闭集都与最大值有严格正间隙，
+该闭集上的质量与最大点邻域内质量之比按指数趋于零，故归一化后该闭集上的质量趋于零。
+对于周期势，每个周期区间内的最大值均为 $\max U$，所以 $D$ 的最大点恰是 $U$ 的最小点。
+\end{proof}
+势能有多个取到相同最小值的点时，前述结论只保证密度集中于这些点所成的集合。各点附近质量的比例还须根据相应积分的渐近值确定。
+
+图~\ref{fig:ode-tikz-gibbs-concentration} 取周期势 $U=1-\cos x$，两条密度曲线均已归一化。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.3cm,y=1.6cm]
+
+ \draw[->,gray] (-3.5,0)--(3.65,0) node[right]{$x$};
+ \draw[->,gray] (0,0)--(0,1.35) node[above]{$\rho_\varepsilon$};
+\draw[GoldMain,thick,domain=-3.14159:3.14159,samples=120] plot (\x,{exp(-(1-cos(\x r))/0.8)/2.575076472});
+\draw[GreenMain,thick,domain=-3.14159:3.14159,samples=120] plot (\x,{exp(-(1-cos(\x r))/0.2)/1.153220937});
+
+ \node[below] at (-3.14159,0){$-\pi$};\node[below] at (3.14159,0){$\pi$};
+ \node[GreenMain,anchor=west] at (1.3,1.05){$\varepsilon=0.2$};
+ \node[GoldMain,anchor=west] at (1.3,.7){$\varepsilon=0.8$};
+ \node at (0,-.65){$U(x)=1-\cos x$，两端按圆周粘合};
+\end{tikzpicture}
+\captionof{figure}{同一周期势的归一化 Gibbs 稳态；扩散变小时，质量更集中于唯一势阱 $x=0$。}
+\label{fig:ode-tikz-gibbs-concentration}
+\end{minipage}
+\end{center}

@@ -1,0 +1,175 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.6 凹凸性
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{凹凸性}
+\begin{definition}
+	设函数 \( f(x) \) 在区间 \( I \) 上有定义，若对 \( I \) 上任意两点 \( x_1, x_2 \) 和任意 \( \lambda \in (0,1) \)，都有
+	\[
+	f(\lambda x_1 + (1 - \lambda)x_2) \leqslant \lambda f(x_1) + (1 - \lambda) f(x_2)
+	\]
+	
+	则称 \( f(x) \) 是 \( I \) 上的下凸函数.
+	
+	若不等号严格成立，则称 \( f(x) \) 在 \( I \) 上是严格下凸函数.
+	
+	类似地，我们定义上凸函数与严格上凸函数.
+\end{definition}
+\begin{proposition}
+	$f$在区间$I$连续，$f$在$I$上是上凸函数的充要条件是：$\forall x_1,x_2\in I$
+	\[f(\frac{x_1+x_2}{2})\geqslant\frac{f(x_1)+f(x_2)}{2}\]
+\end{proposition}
+\begin{proof}
+	必要性显然 
+	
+	充分性：要证
+	\[
+	f(tx_1 + (1-t)x_2) \geqslant tf(x_1) + (1-t)f(x_2)
+	\]
+	当 \( t = \dfrac{1}{2} \) 时成立.
+	
+	设 \( t = \dfrac{k}{2^n} \)，对于 \( k < 2^n \)，断言上述不等式成立.
+	
+	
+	也即：
+	\[
+	f\left(\frac{k}{2^n}x_1 + \frac{2^n - k}{2^n}x_2\right) \geqslant \frac{k}{2^n}f(x_1) + \frac{2^n - k}{2^n}f(x_2)
+	\]
+	
+	成立.采用数学归纳法，假设对于 \( t = \dfrac{k}{2^n} \) 成立，考虑$t=\dfrac{k}{2^{n+1}}$
+	\[\begin{aligned}
+		f\left(\frac{k}{2^{n+1}}x_1 + \frac{2^{n+1} - k}{2^{n+1}}x_2\right) &= f\left(\dfrac{\dfrac{k}{2^n}x_1+\dfrac{2^n-k}{2^n}x_2}{2}\right)\\
+		&\geqslant \frac{1}{2}f\left(\frac{k}{2^n}x_1 + \frac{2^n - k}{2^n}x_2\right) + \frac{1}{2}f(x_2)\\
+		&\geqslant \dfrac{k}{2^{n+1}}f(x_1)+\dfrac{2^{n+1}-k}{2^{n+1}}f(x_2)
+	\end{aligned}\]
+	
+	由归纳假设，对于任意二进有理数成立.
+	
+	对于任意 \( \lambda \in (0,1) \)，可以取出 \( b_1, \ldots, b_n, \ldots \)，其中 \( b_i \in \{0,1\} \)，使得
+	\[
+	\lambda = \lim_{n \to \infty} \sum_{k=1}^n \frac{b_k}{2^k}
+	\]
+	
+	设 \( y_n = \sum\limits_{k=1}^n \dfrac{b_k}{2^k} \)，则 \( y_n \to \lambda \)，当 \( n \to \infty \) 时，且由于 \( y_n \) 是二进有理数，则
+	\[
+	f(y_n x_1 + (1-y_n)x_2) \geqslant y_n f(x_1) + (1-y_n)f(x_2)
+	\]
+	
+	由 \( f \) 的连续性，
+	\[
+	\lim_{n \to \infty} f(y_n x_1 + (1-y_n)x_2) = f(\lambda x_1 + (1-\lambda)x_2)\geqslant \lambda f(x_1) + (1-\lambda)f(x_2)
+	\]
+	
+\end{proof}
+\begin{proposition}
+	$\forall x \in I, f(x) \in D^2(I)$，则 $f$ 在$I$上下凸的充要条件是 $f''(x) \geqslant 0$.
+	
+	
+	
+\end{proposition}
+\begin{proof}
+	必要性： 已知 $f(x) \in D^2(I)$，且下凸，要证 $f''(x) \geqslant 0$.
+	
+	$\forall x_0 \in I, \Delta x > 0$ 且 $x_0 \pm \Delta x \in I$，
+	
+	由 \( f \) 下凸，取 \( \lambda = \dfrac{1}{2} \)
+	\[
+	f(x_0) \leqslant \frac{f(x_0 + \Delta x) + f(x_0 - \Delta x)}{2}
+	\]
+	
+	也即
+	\[
+	f(x_0) - f(x_0 - \Delta x) \leqslant f(x_0 + \Delta x) - f(x_0)
+	\]
+	
+	\(\forall x_1, x_2 \in I, x_1 < x_2\)，将区间 \([x_1, x_2]\) $n$等分，每个子区间长度为 \(\Delta x_n = \dfrac{x_2 - x_1}{n}\)，则
+	\[\begin{aligned}
+		&f(x_1 + 2\Delta x_n) - f(x_1 + \Delta x_n)\geqslant f(x_1 + \Delta x_n) - f(x_1)\\
+		&f(x_1 + 3\Delta x_n) - f(x_1 + 2\Delta x_n)\geqslant f(x_1 + 2\Delta x_n) - f(x_1 + \Delta x_n)\\
+		&\vdots\\
+		&f(x_2) - f(x_2 - \Delta x_n)\geqslant f(x_2 - \Delta x_n) - f(x_2 - 2\Delta x_n)
+	\end{aligned}\]
+	累加
+	\[
+	f(x_2)-f(x_1+\Delta x_n)\geqslant f(x_2-\Delta x_n)-f(x_1)
+	\]
+	
+	也即
+	\[
+	\frac{f(x_2) - f(x_2 - \Delta x_n)}{\Delta x_n} \leqslant \frac{f(x_1 + \Delta x_n) - f(x_1)}{\Delta x_n}
+	\]
+	
+	当 \( n \to \infty \)，得到
+	\[
+	f'(x_2) \geqslant f'(x_1)
+	\]
+	
+	因此 \( f'(x) \) 单调上升，故 \( f''(x) \geqslant 0 \).
+	
+	充分性：已知 $f''(x) \geqslant 0$，$\forall x_1, x_2 \in I\wedge x_1 < x_2$，任取 $\lambda \in (0,1)$，设 $x_0 = \lambda x_1 + (1-\lambda)x_2, x_0 \in (x_1, x_2)$.
+	
+	由 $f''(x) \geqslant 0$，$f(x)$ 单调递增，
+	
+	对$(x_1, x_0)$，$\exists \xi_1 \in (x_1, x_0)$，使得 
+	$$
+	\frac{f(x_0) - f(x_1)}{x_0 - x_1} = f'(\xi_1) \leqslant f'(x_0)
+	$$
+	
+	同理，$\exists \xi_2 \in (x_0, x_2)$，使得
+	$$
+	\frac{f(x_2) - f(x_0)}{x_2 - x_0} = f'(\xi_2) \geqslant f'(x_0)
+	$$
+	
+	也即：
+	$$
+	f(x_1)\geqslant f'(x_0)(x_1-x_0)+f(x_0)=f(x_0)-f'(x_0)(1-\lambda)(x_1-x_2) \quad (1)
+	$$
+	$$
+	f(x_2)\geqslant f'(x_0)(x_2-x_0)+f(x_0)=f(x_0)+f'(x_0)\lambda(x_1-x_2)\quad (2)
+	$$
+	
+	用 $\lambda(1) + (1-\lambda)(2)$，得
+	$$
+	\lambda f(x_1) + (1-\lambda)f(x_2) \geqslant f(\lambda x_1 + (1-\lambda)x_2)
+	$$
+	
+	
+\end{proof}
+
+$\forall x \in I, f''(x) > 0$，则 $f(x)$ 在 $I$ 上严格下凸.但若已知$f(x)$在$I$上严格下凸，$f''(x) $可能等于$0$.
+\begin{definition}
+	设 $\forall x \in I, f(x) \in D^2(I)$，且 $x_0 \in I$ 被称为$f(x)$ 拐点.若满足：$\exists \delta_1, \delta_2 > 0$，使得 $\forall x_1 \in (x_0 - \delta_1, x_0), \forall x_2 \in (x_0, x_0 + \delta_2)$，满足
+	$$
+	f''(x_1) \cdot f''(x_2) < 0 \text{ 且 } f''(x_0) = 0
+	$$
+	
+	
+\end{definition}
+注意： $x_0$ 是拐点的必要条件是 $f''(x_0) = 0$.但是若 $f''(x_0) = 0$，$x_0$ 未必是拐点.
+\begin{proposition}
+	(Jensen 不等式)
+	$f(x)$ 为 $I$ 上的下凸函数，则 $\forall x_i \in I$，和 $\lambda_i$ 满足 $\sum\limits_{i=1}^n \lambda_i = 1$，成立
+	$$
+	f\left(\sum_{i=1}^n \lambda_i x_i\right) \leqslant \sum_{i=1}^n \lambda_i f(x_i)
+	$$
+	
+	特别地，取 $\lambda_i = \dfrac{1}{n}$，
+	$$
+	f\left(\frac{1}{n} \sum_{i=1}^n x_i\right) \leqslant \frac{1}{n} \sum_{i=1}^n f(x_i)
+	$$
+	
+	
+\end{proposition}
+\begin{proof}
+	$n=2$ 时，由定义成立，设 $P(n)$ 成立，下证 $P(n+1)$ 成立.
+	$$\begin{aligned}
+		f\left(\sum_{i=1}^{n+1} \lambda_i x_i\right) & =f\left(\sum_{i=1}^n \lambda_i x_i+\lambda_{n+1} x_{n+1}\right) \\
+		& =f\left(\sum_{i=1}^n \lambda_i \cdot \frac{\sum_{i=1}^n \lambda_i x_i}{\sum_{i=1}^n \lambda_i}+\lambda_{n+1} x_{n+1}\right) \\
+		& \leqslant\left(\sum_{i=1}^n \lambda_i\right) f\left(\sum_{i=1}^n \frac{\lambda_i}{\sum_{i=1}^n \lambda_i} x_i\right)+\lambda_{n+1} f\left(x_{n+1}\right) \\
+		& \leqslant\left(\sum_{i=1}^n \lambda_i\right) \frac{1}{\sum_{i=1}^n \lambda_i} \sum_{i=1}^n \lambda_i f\left(x_i\right)+\lambda_{n+1} f\left(x_{n+1}\right) \\
+		& =\sum_{i=1}^{n+1} \lambda_i f\left(x_i\right)
+	\end{aligned}$$
+	
+	
+\end{proof}
+\newpage

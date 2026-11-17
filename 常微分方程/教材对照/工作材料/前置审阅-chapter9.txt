@@ -1,0 +1,366 @@
+\setchapterimage{figure/Chapter9封面图.jpg}
+\setchapterintro{周期系数使连续演化在每个周期后重复同一规则。本章先研究单周期映射，再用它解释稳定性、参数共振和倒立摆的振动稳定。最后研究复振幅与受迫振动。}
+\chapter{周期系统、单周期映射与振动}\label{chap:periodic}
+
+第六章的 Poincar\'e 映射在每次经过横截面时取样。本章对周期含时方程每隔一个固定周期取样，并利用第三章的标准解矩阵与第六章的稳定性定义，把连续时间问题化为矩阵或映射的迭代。
+
+\section{单周期映射}
+设 $f(t+T,x)=f(t,x)$，$T>0$，并假定下文所用的解全局存在。
+记两时刻演化为 $P_{t,s}$。
+\begin{definition}
+映射 $M=P_{T,0}$ 称为单周期映射。线性系统 $x'=A(t)x$ 时，
+若 $X(0)=I$，则 $M=X(T)$ 是单周期矩阵，其特征值称为乘子。
+\end{definition}
+\begin{theorem}
+\[
+ \begin{aligned}
+ P_{t+T,s+T}&=P_{t,s},\\
+ P_{nT,0}&=M^n,\\
+ P_{nT+s,0}&=P_{s,0}M^n\qquad(0\leq s\leq T).
+\end{aligned}
+\]
+$T$ 周期解与 $M$ 的不动点一一对应；解的 Lyapunov 稳定性及渐近稳定性，
+分别等价于该不动点对迭代 $M^n$ 的相同性质。
+\end{theorem}
+\begin{proof}
+若 $x(t)=P_{t,s}\xi$，则 $z(t)=x(t+T)$ 满足
+$z'=f(t+T,z)=f(t,z)$，且 $z(s)=x(s+T)$。
+对在 $s+T$ 取初值 $\xi$ 的解作这一平移，由唯一性得到
+$P_{t+T,s+T}\xi=P_{t,s}\xi$。再由演化复合关系，
+\[
+ P_{(n+1)T,0}=P_{(n+1)T,nT}P_{nT,0}=MP_{nT,0}.
+\]
+从 $P_{0,0}=I$ 归纳得 $P_{nT,0}=M^n$，继而
+\[
+ P_{nT+s,0}=P_{nT+s,nT}M^n=P_{s,0}M^n.
+\]
+若 $M\xi=\xi$，解 $x(t+T)$ 与 $x(t)$ 在 $t=0$ 取同一初值，
+唯一性使它们相同；反之，对周期解取 $t=0,T$ 即得不动点条件。
+
+记不动点为 $\xi_*$，对应周期解 $x_*(s)=P_{s,0}\xi_*$。
+连续稳定性蕴含离散稳定性，因为可取样 $t=nT$。
+反向证明中，固定 $\epsilon>0$。映射 $(s,\xi)\mapsto P_{s,0}\xi$
+在紧集 $[0,T]\times\{\xi_*\}$ 附近连续。用有限覆盖，存在 $\eta>0$，使
+\[
+ |\xi-\xi_*|<\eta\ \Longrightarrow\
+ \sup_{0\leq s\leq T}|P_{s,0}\xi-P_{s,0}\xi_*|<\epsilon.
+\]
+离散稳定性给出 $\delta>0$，使 $|\xi-\xi_*|<\delta$ 时，对一切 $n\geq0$
+均有 $|M^n\xi-\xi_*|<\eta$。将 $M^n\xi$ 代入上式，结合周期分解，
+便控制了每一个 $t=nT+s$，从而得到连续稳定性。
+
+若离散不动点还吸引附近初值，则 $M^n\xi\to\xi_*$。
+对任意 $\epsilon>0$，充分大的所有 $n$ 均满足上述 $\eta$ 条件，
+故整段 $[nT,(n+1)T]$ 上的解差均小于 $\epsilon$。
+这证明连续吸引性。反向仍只需取样，因此两种渐近稳定性等价。
+\end{proof}
+线性性由解的叠加得到。Liouville 公式还给出
+\[
+ \det M=\exp\int_0^T\operatorname{tr}A(t)\,\dd t.
+\]
+\begin{proposition}[一维乘子]
+对 $y'=a(t)y$，$a(t+T)=a(t)$，乘子为
+\[
+ \mu=\exp\displaystyle\int_0^Ta(t)\,\dd t>0.
+\]
+$\mu<1$ 时所有解趋于零，$\mu>1$ 时每个非零解的绝对值趋于无穷，
+$\mu=1$ 时所有解均为 $T$ 周期。
+\end{proposition}
+\begin{proof}
+显式解给出 $y(t+T)=\mu y(t)$。
+在 $[0,T]$ 上，连续正函数 $\exp\displaystyle\int_0^sa$ 有正的上下界，
+所以整个正半轴的行为由 $\mu^n$ 决定，而不只是整数周期时刻的行为。
+\end{proof}
+\begin{theorem}[周期非齐次方程]
+对 $y'=a(t)y+b(t)$，若 $a,b$ 均 $T$ 周期且 $\displaystyle\int_0^Ta\ne0$，
+则存在唯一 $T$ 周期解；它在 $\mu<1$ 时渐近稳定，$\mu>1$ 时不稳定。
+\end{theorem}
+\begin{proof}
+由常数变易，$M(y)=\mu y+c$，其中 $c$ 是零初值经过一周期的值。
+$\mu\ne1$ 时唯一不动点为 $y_*=c/(1-\mu)$，故对应唯一周期解。
+任意解与该周期解之差满足齐次方程，稳定性由前一命题得到。
+$\mu=1$ 时可能无周期解，也可能所有解周期，取决于 $c$ 是否为零，故不能删掉假设。
+\end{proof}
+
+\paragraph{与极限环返回映射的结合。}
+在自治闭轨附近取角向坐标 $s\bmod T$ 和横向坐标 $u$，方程可写
+$du/ds=a(s,u)$，$a(s,0)=0$。
+其横向线性化为 $v'=a_u(s,0)v$。
+由前文初值导数的变分方程，返回映射的导数就是其乘子
+$\exp\displaystyle\int_0^Ta_u(s,0)\,\dd s$。
+这把已有 Poincaré 导数判据与本章的周期线性方程联系起来。
+若该乘子不同于 1，小扰动后的返回方程 $P_\varepsilon(u)-u=0$ 可由隐函数定理解出，
+所以闭轨继续存在；乘子等于 1 时这种推断不再有效。
+
+\section{二维保面积系统与强稳定}
+\begin{definition}
+线性周期系统 $x'=A(t)x$ 在二维且 $\operatorname{tr}A(t)=0$ 时，
+本章称为线性 Hamilton 系统。其单周期矩阵保持面积。
+若零解稳定，且每个充分接近的同周期线性 Hamilton 系统的零解仍稳定，称为强稳定。
+接近性采用系数矩阵在 $[0,T]$ 上的一致范数。
+\end{definition}
+\begin{theorem}[迹判据]
+设实 $2\times2$ 矩阵 $M$ 满足 $\det M=1$。
+当 $|\operatorname{tr}M|<2$ 时迭代稳定；当 $|\operatorname{tr}M|>2$ 时不稳定。
+在等号情形，稳定当且仅当 $M=I$ 或 $M=-I$。
+\end{theorem}
+\begin{proof}
+二维矩阵的特征多项式为
+\[
+ p(\lambda)=\lambda^2-(\operatorname{tr}M)\lambda+1.
+\]
+先说明迭代稳定等价于 $\sup_{n\geq0}\|M^n\|<\infty$。
+若该上界为 $C$，取 $|x_0|<\epsilon/(C+1)$ 即得稳定性。
+反之，若零点稳定，对 $\epsilon=1$ 取稳定半径 $\delta$，
+将任意单位向量乘以 $\delta/2$，便得 $\|M^n\|\leq2/\delta$。
+
+当 $|\operatorname{tr}M|<2$，判别式为负，两根共轭，乘积为 1，故都在单位圆上。
+写一根为 $e^{i\theta}$，$\sin\theta\ne0$。取复特征向量的实部与虚部为实基，
+$M$ 的实矩阵为一个旋转矩阵，因而在此基下所有幂的范数均为 1。
+换回原基仅引入固定常数，故稳定。
+
+当 $|\operatorname{tr}M|>2$，两根实且互为倒数，并且至少一根 $\lambda$ 满足
+$|\lambda|>1$。沿对应的实特征向量 $v$，有 $M^nv=\lambda^nv$，故不稳定。
+
+最后设 $\operatorname{tr}M=2s$，其中 $s=1$ 或 $-1$。Cayley--Hamilton 公式给出
+$(M-sI)^2=0$。若 $M=sI$，幂显然有界。否则写 $M=sI+N$，
+$N\ne0,N^2=0$，则
+\[
+ M^n=s^nI+ns^{n-1}N.
+\]
+选 $v$ 使 $Nv\ne0$，反三角不等式给出
+\[
+ |M^nv|\geq n|Nv|-|v|\to\infty,
+\]
+故不稳定。这穷尽全部情形。
+\end{proof}
+\begin{corollary}
+若单周期矩阵满足 $|\operatorname{tr}M|<2$，则零解强稳定。
+\end{corollary}
+\begin{proof}
+设 $A,\widetilde A$ 为两个同周期系数矩阵，$X(0)=\widetilde X(0)=I$。
+固定 $B>\sup_{[0,T]}\|A(t)\|$，并限制扰动，使 $\|\widetilde A(t)\|\leq B$。
+由积分方程和 Gronwall 不等式，$\|X(t)\|,\|\widetilde X(t)\|\leq e^{Bt}$。
+设 $\eta=\sup_{[0,T]}\|A-\widetilde A\|$，作差得
+\[
+ \|X(t)-\widetilde X(t)\|
+ \leq B\int_0^t\|X(s)-\widetilde X(s)\|\,ds
+       +\eta\int_0^te^{Bs}\,ds.
+\]
+再次使用 Gronwall，或逐次代入积分不等式，得到
+\[
+ \|X(t)-\widetilde X(t)\|\leq\eta t e^{Bt}.
+\]
+特别地，
+\[
+ \|M-\widetilde M\|\leq\eta T e^{BT},
+\]
+故单周期矩阵连续依赖系数。
+
+令 $\gamma=2-|\operatorname{tr}M|>0$。迹是矩阵元的连续函数，
+所以 $\eta$ 足够小时有
+\[
+ |\operatorname{tr}\widetilde M-\operatorname{tr}M|<\gamma/2,
+\]
+从而
+$|\operatorname{tr}\widetilde M|<2$。
+扰动仍在迹零的 Hamilton 系统类内，Liouville 公式保证
+$\det\widetilde M=1$。迹判据说明每个这种邻近系统的离散迭代稳定，
+再由连续与离散稳定性的等价性得到零解稳定，这正是强稳定的定义。
+\end{proof}
+注意 $x''+a(t)x=0$ 的状态矩阵始终迹为零，所以其零解对任何 $a$ 均不可能渐近稳定。
+否则两个独立初值的像都趋于零，所张成平行四边形的面积也趋于零，
+与恒等于 1 的 Wronskian 矛盾。
+
+
+图~\ref{fig:ode-tikz-monodromy-trace} 展示乘子随迹所处区间的三种位置；边界 $\pm2$ 仍须检查 Jordan 块。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{二维保面积单周期矩阵的迹判据：稳定区间为 $|\operatorname{tr}M|<2$。}
+\label{fig:ode-tikz-monodromy-trace}
+\end{minipage}
+\end{center}
+
+\section{参数共振与振动稳定}
+考虑
+\[
+ x''+\omega^2(1+\varepsilon a(t))x=0,
+ \qquad a(t+2\pi)=a(t).
+\]
+\begin{definition}
+因系数的周期改变使原来稳定的振动变为不稳定，称为参数共振。
+这与在方程右端施加外部周期力的受迫共振不同。
+$a(t)=\cos t$ 的方程称 Mathieu 型方程。
+\end{definition}
+\begin{theorem}
+当 $\varepsilon=0$ 且 $\omega>0$ 不为整数或半整数时，系统强稳定。
+所以不稳定区域趋近 $\varepsilon=0$ 轴时，只能在 $\omega=k/2$ 处接触该轴。
+\end{theorem}
+\begin{proof}
+未扰动单周期矩阵为
+\[
+ R_\omega(2\pi)=
+ \begin{pmatrix}
+ \cos2\pi\omega&\sin2\pi\omega/\omega\\
+ -\omega\sin2\pi\omega&\cos2\pi\omega
+ \end{pmatrix}.
+\]
+其迹为 $2\cos2\pi\omega$，在所述点严格位于 $(-2,2)$。
+强稳定性保证这些点都有不含不稳定系统的邻域。
+这证明的是不稳定区域可能接触的位置；并未只凭这一步就证明每处都出现不稳定舌。
+\end{proof}
+
+\begin{proposition}[分段常系数计算]
+若一个周期的前后两段分别满足 $x''+\omega_1^2x=0$、$x''+\omega_2^2x=0$，
+各段时间为 $\tau_1,\tau_2$，则
+\[
+ M=R_{\omega_2}(\tau_2)R_{\omega_1}(\tau_1),
+\]
+且
+\[
+ \operatorname{tr}M=2\cos(\omega_1\tau_1)\cos(\omega_2\tau_2)
+ -\left(\frac{\omega_1}{\omega_2}+\frac{\omega_2}{\omega_1}\right)
+ \sin(\omega_1\tau_1)\sin(\omega_2\tau_2).
+\]
+\end{proposition}
+\begin{proof}
+每段由已证常系数矩阵指数公式给出 $R_{\omega_i}$，先作用第一段再作用第二段，
+故乘积次序如上。计算乘积的两个对角元并相加得到迹。
+因此稳定边界可直接由该迹等于 $\pm2$ 求出。
+\end{proof}
+例如取 $\tau_1=\tau_2=\pi$、$\omega_{1,2}=\omega\pm\varepsilon$，展开正弦余弦即可
+观察到半整数附近比整数附近更宽的不稳定区。
+具体地，当 $\omega=k+1/2+\eta$，$k\geq0$，展开到二次阶有
+\[
+ \operatorname{tr}M=-2+4\pi^2\eta^2-
+ \frac{4\varepsilon^2}{(k+1/2)^2}+o(\eta^2+\varepsilon^2).
+\]
+因此边界一阶为
+\[
+ \eta=\pm\varepsilon/[\pi(k+1/2)]+o(\varepsilon).
+\]
+该式来自 
+\[
+ \omega_1/\omega_2+\omega_2/\omega_1
+=2+4\varepsilon^2/\omega^2+O(\varepsilon^4),
+\]
+以及
+\[
+ 2\cos a\cos b-2\sin a\sin b=2\cos(a+b).
+\]
+
+\begin{example}[倒立摆的快速悬点振动]
+考虑分段恒加速度的悬点振动模型。摆长 $l$，悬点位移振幅 $a$，
+每半周期 $\tau$ 内加速度为 $\pm c$，其中 $c=8a/\tau^2$。
+倒立位置的线性化为 $x''=(\omega^2\pm\alpha^2)x$，
+$\omega^2=g/l,\alpha^2=c/l$。当 $\alpha>\omega$，令
+$k=\sqrt{\alpha^2+\omega^2}$、$\Omega=\sqrt{\alpha^2-\omega^2}$。
+\end{example}
+\begin{proposition}
+此线性周期系统的单周期迹为
+\[
+ 2\cosh(k\tau)\cos(\Omega\tau)
+ +\left(\frac{k}{\Omega}-\frac{\Omega}{k}\right)
+ \sinh(k\tau)\sin(\Omega\tau).
+\]
+当 $a/l$ 为充分小的固定正数、$\tau$ 再充分小时，该迹严格位于 $(-2,2)$，故线性零解稳定。
+\end{proposition}
+\begin{proof}
+第一段的双曲矩阵为
+\[
+ \begin{pmatrix}
+  \cosh(k\tau)&\sinh(k\tau)/k\\
+  k\sinh(k\tau)&\cosh(k\tau)
+ \end{pmatrix},
+\]
+第二段为 $R_\Omega(\tau)$。相乘取迹即得公式。
+记 $s=\alpha^2\tau^2=8a/l$、$d=\omega^2\tau^2$。
+在 $\tau\to0$ 即 $d\to0$ 时，迹趋于
+\[
+ 2\cosh\sqrt s\cos\sqrt s=2-s^2/3+O(s^4).
+\]
+对充分小固定 $s>0$，此极限小于 2 且大于 $-2$。
+连续性使足够小的 $d$ 保持该严格不等式。
+这里证明了快速悬点振动可以稳定倒立位置的线性化；非线性情形不能只用纯虚谱就判稳定。
+\end{proof}
+
+\section{复振幅、共振与拍}
+对实常系数算子 $P(D)$，若 $P(D)z=F$，则
+$P(D)\operatorname{Re}z=\operatorname{Re}F$，由实系数线性性直接成立。
+\begin{definition}
+表示 $\operatorname{Re}(Ce^{i\nu t})$ 的复数 $C=re^{i\theta}$ 称复振幅；
+$r$ 是振幅，$\theta$ 是相位。
+\end{definition}
+\begin{proposition}
+对 $x''+kx'+\omega^2x=\cos\nu t$，$k>0,\omega>0$，稳态复振幅为
+\[
+ \begin{aligned}
+ C(\nu)&=\frac1{\omega^2-\nu^2+ik\nu},\\
+ r(\nu)&=\frac1{\sqrt{(\omega^2-\nu^2)^2+k^2\nu^2}}.
+\end{aligned}
+\]
+任意解与该稳态振动之差趋于零。
+\end{proposition}
+\begin{proof}
+把特解 $Ce^{i\nu t}$ 代入复方程，其左边为
+$(\omega^2-\nu^2+ik\nu)Ce^{i\nu t}$，故得到 $C$。
+取模即得振幅。齐次特征根实部均负，因此由前文常系数稳定判据，
+任意齐次解衰减到零。
+\end{proof}
+曲线 $\nu\mapsto P(i\nu)$ 称此处的 Mikhailov 曲线；
+$\nu\mapsto1/P(i\nu)$ 称幅相特性。倒数变换同时给出振幅和相位。
+当 $k$ 很小，$r$ 的峰值位于接近 $\omega$ 处，量级为 $1/(k\omega)$。
+事实上对分母平方求导，其非零驻点满足 $\nu^2=\omega^2-k^2/2$，
+代回可得峰值 $[k\sqrt{\omega^2-k^2/4}]^{-1}$（此式要求 $k^2<2\omega^2$）。
+
+\begin{proposition}[无阻尼极限]
+对 $x''+\omega^2x=\cos\nu t$，$\nu\ne\omega$ 时零初值解为
+\[
+ x(t)=\frac{\cos\nu t-\cos\omega t}{\omega^2-\nu^2}.
+\]
+两频率接近时出现拍；当 $\nu\to\omega$ 时该解趋于
+$t\sin\omega t/(2\omega)$，振幅线性增长。
+\end{proposition}
+\begin{proof}
+代入并检查 $x(0)=x'(0)=0$ 即得前式。
+用余弦差公式，分子等于
+$-2\sin((\nu+\omega)t/2)\sin((\nu-\omega)t/2)$，
+其中第二因子缓慢变化，这就是拍的振幅包络。
+对参数取极限或用一阶 Taylor 公式得共振解，亦可直接代入验证。
+\end{proof}
+
+\section{弱非线性周期的参数展开}
+前文的 $C^r$ 依赖定理允许在有界时间段内按初振幅展开解，
+但不自动允许把有界时间近似延伸到任意长时间。
+对摆初值 $x(0)=A,x'(0)=0$，写
+\[
+ x(t,A)=A x_1(t)+A^3x_3(t)+O(A^5).
+\]
+由方程在 $x\mapsto-x$ 下的对称性，偶次项为零。
+比较 $A$ 的系数得 $x_1=\cos t$；比较三次项得
+\[
+ x_3''+x_3=\frac16\cos^3t
+ =\frac18\cos t+\frac1{24}\cos3t,
+ \qquad x_3(0)=x_3'(0)=0.
+\]
+直接求解并代回检查可得
+\[
+ x_3(t)=\frac{\cos t-\cos3t}{192}+\frac{t\sin t}{16}.
+\]
+一阶谐波的时间增长项与
+\[
+ \cos((1-A^2/16)t)=\cos t+(A^2/16)t\sin t+O(A^4)
+\]
+ 相符，
+说明频率下降。为了严密提取周期，可考察 $x'$ 在接近 $2\pi$ 的零点：
+将 $x'/A$ 光滑延拓到 $A=0$，其在 $(t,A)=(2\pi,0)$ 对 $t$ 的导数为 $-1$。
+隐函数定理给出回到右转向点的时间 $T(A)$。
+将 $T=2\pi+cA^2+O(A^4)$ 代入 $x'/A=0$，得到
+$-c+2\pi/16=0$。所以
+\[
+ T(A)=2\pi(1+A^2/16+O(A^4)),
+\]
+与上一章直接由周期积分得到的结论一致。

@@ -1,0 +1,1443 @@
+% ============================================
+%  chapter18.tex — 第18章：表示论与特征标理论
+%  根据 853-893.pdf 翻译整理，保持原文结构、证明与练习
+% ============================================
+
+
+\chapter{表示论与特征标理论}
+
+\section{线性作用与群环上的模}
+
+除非明确另有说明，本书剩余部分所考虑的群都将是有限群。在本节中，始终设 $F$ 是一个域，$G$ 是一个有限群。我们首先引入基本术语。回忆，如果 $V$ 是 $F$ 上的向量空间，则 $\GL(V)$ 是从 $V$ 到自身的非奇异线性变换所成的群（运算为复合）；若 $n\in\ZZ^+$，则 $\GL_n(F)$ 是所有以 $F$ 中元素为项的可逆 $n\times n$ 矩阵所成的群（运算为矩阵乘法）。
+
+\noindent\textbf{定义.} 设 $G$ 是有限群，$F$ 是域，$V$ 是 $F$ 上的向量空间。
+\begin{enumerate}[label=(\arabic*)]
+  \item $G$ 的一个\emph{线性表示}是任意同态 $G\to\GL(V)$。该表示的\emph{次数}是 $V$ 的维数。
+  \item 设 $n\in\ZZ^+$。$G$ 的一个\emph{矩阵表示}是任意同态 $G\to\GL_n(F)$。
+  \item 一个线性表示或矩阵表示称为\emph{忠实的}，如果它是单射。
+  \item $G$ 在 $F$ 上的\emph{群环}是所有形如
+  \[
+    \sum_{g\in G} a_g g,\qquad a_g\in F
+  \]
+  的形式和所成的集合；加法按分量定义，乘法由 $(ag)(\beta h)=(a\beta)(gh)$（其中 $a$ 与 $\beta$ 在 $F$ 中相乘，$gh$ 是 $G$ 中的乘积）并借分配律推广到和（参见第 7.2 节）。
+\end{enumerate}
+
+除非我们专门讨论置换表示，术语“表示”总是指“线性表示”。当我们希望强调域 $F$ 时，就说 $F$-表示，或说 $G$ 在 $F$ 上的向量空间 $V$ 上的表示。
+
+回忆，若 $V$ 是 $n$ 维有限维向量空间，则选定 $V$ 的一个基便给出同构 $\GL(V)\cong\GL_n(F)$。这样，$G$ 在有限维向量空间上的任意线性表示给出一个矩阵表示，反之亦然。在绝大多数情形中，我们的线性表示都将是有限次数的，并将在不给出特别说明时在线性表示与矩阵表示之间自由切换（只有在需要给出二者之间的显式对应时才指定基）。此外，给定一个有限次数线性表示 $\varphi:G\to\GL(V)$，相应的矩阵表示给出数值不变量（例如对 $g\in G$ 的 $\det\varphi(g)$），这些不变量与选择用来给出 $\GL(V)$ 和 $\GL_n(F)$ 之间同构的基无关。利用这些不变量将是我们后续发展的基础。
+
+在给出表示的例子以前，我们更详细地回忆群环 $FG$（群环是在第 7.2 节中引入的，该节也讨论了若干记号与例子）。设 $G$ 的元素为 $g_1,g_2,\ldots,g_n$。$FG$ 中每个元素都形如
+\[
+  \sum_{i=1}^n a_i g_i,
+  \qquad a_i\in F.
+\]
+两个形式和相等当且仅当群元素的相应系数全都相等。$FG$ 中的加法和乘法定义如下：
+\[
+  \sum_{i=1}^n a_i g_i+\sum_{i=1}^n b_i g_i
+  =\sum_{i=1}^n (a_i+b_i)g_i,
+\]
+\[
+  \left(\sum_{i=1}^n a_i g_i\right)\left(\sum_{j=1}^n b_j g_j\right)
+  =\sum_{k=1}^n\left(\sum_{g_i g_j=g_k}a_i b_j\right)g_k,
+\]
+其中系数 $a_i$ 与 $b_j$ 的加法和乘法都在 $F$ 中进行。注意，由乘法定义知
+\[
+  FG\text{ 是交换环当且仅当 }G\text{ 是 Abel 群。}
+\]
+群 $G$ 出现在 $FG$ 中（把 $g_i$ 认作 $1g_i$），域 $F$ 也出现在 $FG$ 中（把 $\beta$ 认作 $\beta g_1$，其中 $g_1$ 是 $G$ 的恒等元）。在这些认同下，
+\[
+  \beta\left(\sum_{i=1}^n a_i g_i\right)=\sum_{i=1}^n (\beta a_i)g_i,
+  \qquad \beta\in F.
+\]
+于是
+\[
+  FG\text{ 是 }F\text{ 上的向量空间，以 }G\text{ 的元素为一组基。}
+\]
+特别地，$FG$ 是 $F$ 上维数等于 $|G|$ 的向量空间。$F$ 中的元素与 $FG$ 的所有元素交换，即 $F$ 包含在 $FG$ 的中心中。当我们希望强调后两个性质时，我们称 $FG$ 是一个 $F$-代数（一般地，$F$-代数是一个环 $R$，它在中心中包含 $F$，因而 $R$ 同时是一个环和一个 $F$-向量空间）。
+
+注意，$FG$ 中的运算类似于 $F$-代数 $F[x]$ 中的运算（虽然 $F[x]$ 在 $F$ 上是无限维的）。在一些著作中 $FG$ 记作 $F[G]$，但后一种记号目前较少使用。
+
+\noindent\emph{脚注.} 上面显示的形式和可以看成从 $G$ 到 $F$ 的函数的一种写法，该函数在群元素 $g_i$ 上取值 $a_i$。同样的“形式性”也用于构造自由模（见第 10.3 节定理 6）。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $G=\langle g\rangle$ 是 $n\in\ZZ^+$ 阶循环群，则 $FG$ 的元素形如
+  \[
+    \sum_{i=0}^{n-1} a_i g^i.
+  \]
+  映射 $F[x]\to F\langle g\rangle$ 把 $x^k$ 送到 $g^k$，$k\geq0$，并按 $F$-线性延拓，得到一个满环同态，其核等于由 $x^n-1$ 生成的理想。因此
+  \[
+    F\langle g\rangle\cong F[x]/(x^n-1).
+  \]
+  这是 $F$-代数同构，即一个 $F$-线性的环同构。
+
+  \item 在前例记号下，令 $r=1+g+g^2+\cdots+g^{n-1}$，于是 $r$ 是 $F\langle g\rangle$ 的非零元素。注意 $rg=g+g^2+\cdots+g^{n-1}+1=r$，故 $r(1-g)=0$。因此环 $F\langle g\rangle$ 含有零因子（当 $n>1$ 时）。更一般地，若 $G$ 是任意阶大于 $1$ 的群，则对任意非恒等元 $g\in G$，$F\langle g\rangle$ 是 $FG$ 的子环，因而 $FG$ 也含有零因子。
+
+  \item 令 $G=S_3$ 且 $F=\QQ$。元素
+  \[
+    r=5(1\ 2)-7(1\ 2\ 3),\qquad
+    s=-4(1\ 2\ 3)+12(1\ 3\ 2)
+  \]
+  是 $\QQ S_3$ 的典型成员。它们的和与积为
+  \[
+    r+s=5(1\ 2)-11(1\ 2\ 3)+12(1\ 3\ 2),
+  \]
+  \[
+    rs=-20(2\ 3)+28(1\ 3\ 2)+60(1\ 3)-84
+  \]
+  （回忆，置换的乘积或复合从右到左计算）。第 7.2 节中给出了群环 $\QQ D_8$ 中两个元素之和与乘积的一个显式例子。
+\end{enumerate}
+
+在给出具体表示的例子之前，我们讨论 $G$ 的表示与 $FG$-模之间的对应（这样之后便可同时给出二者的例子）。这个讨论与第 10.1 节中对 $F[x]$-模的处理非常相似。
+
+首先设 $\varphi:G\to\GL(V)$ 是 $G$ 在 $F$ 上向量空间 $V$ 上的一个表示。如上，写 $G=\{g_1,\ldots,g_n\}$，于是对每个 $i\in\{1,\ldots,n\}$，$\varphi(g_i)$ 是 $V$ 到自身的线性变换。通过如下定义环元素在 $V$ 元素上的作用，把 $V$ 做成一个 $FG$-模：
+\[
+  \left(\sum_{i=1}^n a_i g_i\right)\cdot v
+  =\sum_{i=1}^n a_i\varphi(g_i)(v),
+  \qquad \sum_{i=1}^n a_i g_i\in FG,
+  \ v\in V.
+\]
+我们验证模公理 2(b)（见第 10.1 节）的一个特殊情形，它精确地说明了 $\varphi$ 是群同态这一事实在哪里被用到：
+\[
+\begin{aligned}
+ (g_i g_j)\cdot v
+ &=\varphi(g_i g_j)(v) &&\text{（由作用的定义）}\
+ &=(\varphi(g_i)\circ\varphi(g_j))(v) &&\text{（因为 }\varphi\text{ 是群同态）}\
+ &=\varphi(g_i)(\varphi(g_j)(v)) &&\text{（由线性变换复合的定义）}\
+ &=g_i\cdot(g_j\cdot v) &&\text{（由作用的定义）。}
+\end{aligned}
+\]
+这个论证按线性性推广到 $FG$ 的任意元素，证明模公理 2(b) 一般成立。其余模公理容易检查。
+
+注意，$F$ 是 $FG$ 的子环，域元素 $a$ 在向量上的作用与环元素 $a1$ 在向量上的作用相同；也就是说，$FG$-模作用延拓了 $F$ 在 $V$ 上的作用。
+
+反过来，设给定一个 $FG$-模 $V$。我们如下得到相应的 $F$ 上向量空间以及 $G$ 的表示。由于 $V$ 是 $FG$-模，它也是 $F$-模，即 $F$ 上向量空间。此外，对每个 $g\in G$，我们得到从 $V$ 到 $V$ 的一个映射，记为 $\varphi(g)$，由
+\[
+  \varphi(g)(v)=g\cdot v,
+  \qquad v\in V
+\]
+定义，其中 $g\cdot v$ 是环元素 $g$ 在元素 $v$ 上给定的作用。由于 $F$ 中元素与每个 $g\in G$ 交换，由模公理知对所有 $v,w\in V$ 与所有 $\alpha,\beta\in F$，
+\[
+\begin{aligned}
+  \varphi(g)(\alpha v+\beta w)
+  &=g\cdot(\alpha v+\beta w)\\
+  &=g\cdot(\alpha v)+g\cdot(\beta w)\\
+  &=\alpha(g\cdot v)+\beta(g\cdot w)\\
+  &=\alpha\varphi(g)(v)+\beta\varphi(g)(w),
+\end{aligned}
+\]
+即每个 $\varphi(g)$ 是线性变换。进一步，由模公理 2(b) 得
+\[
+  \varphi(g_i g_j)(v)=(\varphi(g_i)\circ\varphi(g_j))(v),
+\]
+（这本质上是上面计算的逆序）。这证明 $\varphi$ 是群同态（特别地，$\varphi(g^{-1})=\varphi(g)^{-1}$，故 $G$ 的每个元素都映到一个非奇异线性变换，即 $\varphi:G\to\GL(V)$）。
+
+这个讨论说明，$FG$-模与二元组 $(V,\varphi)$ 之间存在双射：
+\[
+  \{V\text{ 是 }FG\text{-模}\}\longleftrightarrow
+  \left\{\begin{array}{l}
+  V\text{ 是 }F\text{ 上的向量空间，}\
+  \varphi:G\to\GL(V)\text{ 是一个表示。}
+  \end{array}\right.
+\]
+因此，给出 $F$ 上向量空间 $V$ 上的表示 $\varphi:G\to\GL(V)$，等价于给出一个 $FG$-模 $V$。在这个对应下，我们说模 $V$ \emph{实现}（affords）$G$ 的表示 $\varphi$。
+
+回忆第 10.1 节：若向量空间 $M$ 通过线性变换 $T$ 做成 $F[x]$-模，则 $M$ 的 $F[x]$-子模正是 $M$ 的 $T$-稳定子空间。在当前情形中，若 $V$ 是实现表示 $\varphi$ 的 $FG$-模，则 $V$ 的子空间 $U$ 称为 $G$-不变或 $G$-稳定的，如果对所有 $g\in G$ 与所有 $u\in U$ 都有 $g\cdot u\in U$（即 $\varphi(g)(u)\in U$）。容易推出
+\[
+  V\text{ 的 }FG\text{-子模正是 }V\text{ 的 }G\text{-稳定子空间。}
+\]
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $V$ 是 $F$ 上的一维向量空间，并令 $gv=v$ 对所有 $g\in G$、$v\in V$ 成立，从而把 $V$ 做成 $FG$-模。这个模实现表示 $\varphi:G\to\GL(V)$，其中 $\varphi(g)=I$ 是恒等线性变换，对所有 $g\in G$。相应的矩阵表示（相对于 $V$ 的任意基）是把每个群元素送到 $1\times1$ 单位矩阵的同态。以后我们称它为 $G$ 的\emph{平凡表示}。平凡表示次数为 $1$；若 $|G|>1$，它不是忠实的。
+
+  \item 令 $V=FG$，把这个环看成自身上的左模。则 $V$ 实现一个次数等于 $|G|$ 的表示。若取 $G$ 的元素作为 $V$ 的基，则每个 $g\in G$ 在\emph{左正则置换表示}下置换这些基元素：
+  \[
+    g\cdot g_i=gg_i.
+  \]
+  相对于 $V$ 的这个基，群元素 $g$ 的矩阵在第 $i$ 行第 $j$ 列为 $1$，当且仅当 $gg_j=g_i$；其余位置为 $0$。这个（线性或矩阵）表示称为 $G$ 的\emph{正则表示}。注意 $G$ 的每个非恒等元都诱导基上的非恒等置换，所以正则表示总是忠实的。
+
+  \item 设 $n\in\ZZ^+$，$G=S_n$，令 $V$ 是 $F$ 上 $n$ 维向量空间，基为 $e_1,e_2,\ldots,e_n$。令 $S_n$ 作用在 $V$ 上：对每个 $\sigma\in S_n$ 定义
+  \[
+    \sigma\cdot e_i=e_{\sigma(i)},\qquad 1\leq i\leq n,
+  \]
+  即 $\sigma$ 置换基元素的下标。这给出一个从 $S_n$ 到 $\GL(V)$ 的（单射）同态（即 $S_n$ 的一个次数 $n$ 的忠实表示），因而把 $V$ 做成 $FS_n$-模。与前例一样，相对于基 $e_1,
+  \ldots,e_n$，$\sigma$ 的矩阵在第 $i$ 行第 $j$ 列为 $1$，当且仅当 $\sigma\cdot e_j=e_i$（其余项为 $0$）。因此 $\sigma$ 的矩阵在第 $i$ 行第 $j$ 列为 $1$ 当且仅当 $\sigma(j)=i$。
+
+  例如考虑 $FS_3$ 在 $F$ 上三维向量空间（基为 $e_1,e_2,e_3$）上的作用。令 $\alpha=(1\ 2)$，$\tau=(1\ 2\ 3)$，并令 $r=2\alpha-3\tau\in FS_3$。则
+  \[
+  \begin{aligned}
+    r\cdot(\alpha_0e_1+\beta e_2+\gamma e_3)
+    &=2(\alpha_0e_{\alpha(1)}+\beta e_{\alpha(2)}+\gamma e_{\alpha(3)})
+      -3(\alpha_0e_{\tau(1)}+\beta e_{\tau(2)}+\gamma e_{\tau(3)})\\
+    &=2(\alpha_0e_2+\beta e_1+\gamma e_3)-3(\alpha_0e_2+\beta e_3+\gamma e_1)\\
+    &=(2\beta-3\gamma)e_1-\alpha_0e_2+(2\gamma-3\beta)e_3.
+  \end{aligned}
+  \]
+
+  \item 若 $\psi:H\to\GL(V)$ 是 $H$ 的任意表示，$\varphi:G\to H$ 是任意群同态，则复合 $\psi\circ\varphi$ 是 $G$ 的一个表示。例如，令 $V$ 是前例中维数为 $n$ 的 $FS_n$-模。若 $\pi:G\to S_n$ 是 $G$ 的任意置换表示，则 $\pi$ 与上面的表示复合给出 $G$ 的一个线性表示。换言之，$V$ 在作用
+  \[
+    g\cdot e_i=e_{\pi(g)(i)},\qquad g\in G
+  \]
+  下成为 $FG$-模。注意，正则表示 (2) 正是这里 $n=|G|$ 且 $\pi$ 为 $G$ 的左正则置换表示的特例。
+
+  \item 任意从 $G$ 到乘法群 $F^\times=\GL_1(F)$ 的同态都是次数 $1$ 的（矩阵）表示。例如，设 $G=\langle g\rangle\cong\ZZ/n\ZZ$ 是 $n$ 阶循环群，$\zeta$ 是 $F$ 中一个固定的 $n$ 次单位根。令 $g^i\mapsto\zeta^i$，$i\in\ZZ$。当且仅当 $\zeta$ 是本原 $n$ 次单位根时，这个 $\langle g\rangle$ 的表示是忠实的。
+
+  \item 在许多情形下，给出群 $G$ 的显式矩阵表示比展示一个 $FG$-模更容易。例如，回忆二面体群 $D_{2n}$ 有表示
+  \[
+    D_{2n}=\langle r,s\mid r^n=s^2=1,
+    \ rs=sr^{-1}\rangle.
+  \]
+  若 $R$ 和 $S$ 是满足关系 $R^n=S^2=I$ 与 $RS=SR^{-1}$ 的矩阵，则映射 $r\mapsto R$、$s\mapsto S$ 唯一延拓为从 $D_{2n}$ 到由 $R$ 和 $S$ 生成的矩阵群的同态，因而给出 $D_{2n}$ 的一个表示。矩阵 $R,S\in M_2(\RR)$ 的一个显式例子可如下得到：在 $x,y$ 平面中以原点为中心画一个正 $n$ 边形，使直线 $y=x$ 为其对称轴之一。设 $R$ 是平面旋转 $2\pi/n$ 弧度的矩阵，$S$ 是关于直线 $y=x$ 的反射矩阵，则二者都把该正 $n$ 边形映到自身。因此这些矩阵作为该 $n$ 边形的对称而作用，并满足上述关系。这些矩阵容易算出（参见第 1.6 节练习 25），于是映射
+  \[
+    r\mapsto R=\begin{pmatrix}
+    \cos(2\pi/n)&-\sin(2\pi/n)\\
+    \sin(2\pi/n)&\cos(2\pi/n)
+    \end{pmatrix},\qquad
+    s\mapsto S=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+  \]
+  唯一延拓为 $D_{2n}$ 到 $\GL_2(\RR)$ 的一个（次数 $2$）表示。由于矩阵 $R$ 和 $S$ 的阶分别为 $n$ 和 $2$，它们生成 $\GL_2(\RR)$ 中一个 $2n$ 阶子群，故此表示是忠实的。
+
+  \item 使用四元数群的通常生成元和关系
+  \[
+    Q_8=\langle i,j\mid i^4=j^4=1,
+    \ i^2=j^2,
+    \ j^{-1}ij=i^{-1}\rangle,
+  \]
+  可类似地得到（参见第 1.6 节练习 26）一个从 $Q_8$ 到 $\GL_2(\CC)$ 的表示 $\varphi$，定义为
+  \[
+    \varphi(i)=\begin{pmatrix}\sqrt{-1}&0\\0&-\sqrt{-1}\end{pmatrix},
+    \qquad
+    \varphi(j)=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+  \]
+  这个 $Q_8$ 的表示是忠实的。
+
+  \item 四元数群 $Q_8$ 的一个 $4$ 维表示可由实 Hamilton 四元数 $\HH$ 得到（参见第 7.1 节）。群 $Q_8$ 是 $\HH$ 的单位群的一个子群，$Q_8$ 的每个元素都通过左乘作用在 $4$ 维实向量空间 $\HH$ 上。由于实数在 $\HH$ 的中心中（即 $\HH$ 是一个 $\RR$-代数），左乘是 $\RR$-线性的。因此这个线性作用给出从 $Q_8$ 到 $\GL_4(\RR)$ 的同态。相对于 $\HH$ 的基 $1,i,j,k$，容易写出 $Q_8$ 各元素的显式矩阵。例如，左乘 $i$ 作用为 $1\mapsto i$、$i\mapsto-1$、$j\mapsto k$、$k\mapsto-j$；左乘 $j$ 作用为 $1\mapsto j$、$i\mapsto-k$、$j\mapsto-1$、$k\mapsto i$，所以
+  \[
+  i\mapsto
+  \begin{pmatrix}
+  0&-1&0&0\\
+  1&0&0&0\\
+  0&0&0&-1\\
+  0&0&1&0
+  \end{pmatrix},
+  \qquad
+  j\mapsto
+  \begin{pmatrix}
+  0&0&-1&0\\
+  0&0&0&1\\
+  1&0&0&0\\
+  0&-1&0&0
+  \end{pmatrix}.
+  \]
+  这个 $Q_8$ 的表示也是忠实的。
+
+  \item 设 $H$ 是群 $G$ 的正规子群，并且 $H$ 是某个素数 $p$ 的初等 Abel $p$-群。则 $V=H$ 是 $\FF_p$ 上的向量空间，其中标量 $a$ 作用在向量 $v$ 上为 $av=v^a$（见第 10.1 节）。$G$ 的每个元素通过共轭在 $V$ 上作用，这个作用是 $\FF_p$-线性的，因为 $gv^ag^{-1}=(gvg^{-1})^a$；$G$ 在 $V$ 上的这个作用把 $V$ 做成 $\FF_pG$-模（初等 Abel $p$-群的自同构在第 4.4 节和第 10.1 节讨论过）。这个表示的核是 $G$ 中与 $H$ 的每个元素都交换的元素集合 $C_G(H)$（它总是包含 Abel 群 $H$ 本身）。因此，一个群在自身子集上的作用常常给出有限域上的线性表示。有限域上的群表示称为\emph{模表示}，它们对于研究群的内部结构是基本的。
+
+  \item 对 $FG$-子模的一个例子，令 $G=S_n$，令 $V$ 为例 3 中描述的 $FS_n$-模。令 $N$ 是 $V$ 中所有坐标都相等的向量所成的子空间：
+  \[
+    N=\{a_1e_1+a_2e_2+\cdots+a_ne_n\mid a_1=a_2=\cdots=a_n\}.
+  \]
+  这是一个 $1$ 维 $S_n$-稳定子空间。每个 $\sigma\in S_n$ 固定 $N$ 中每个向量，因此子模 $N$ 实现 $S_n$ 的平凡表示。作为练习可以证明：若 $n\geq3$，则 $N$ 是 $V$ 中唯一的 $1$ 维 $S_n$-稳定子空间，即唯一的 $1$ 维 $FS_n$-子模（$N$ 称为 $FS_n$ 的迹子模）。
+
+  $V$ 的另一个 $FS_n$-子模是所有坐标和为零的向量所成的子空间 $I$：
+  \[
+    I=\{a_1e_1+a_2e_2+\cdots+a_ne_n\mid a_1+a_2+\cdots+a_n=0\}.
+  \]
+  同样，$I$ 是 $S_n$-稳定子空间（因为每个 $\sigma\in S_n$ 只是置换每个向量的坐标，因而保持系数和不变）。由于 $I$ 是从 $V$ 到 $F$ 的线性变换（把一个向量送到其系数之和，称为增广映射——参见第 7.3 节）的核，$I$ 的维数为 $n-1$。
+
+  \item 若 $V=FG$ 是上面例 2 中的 $G$ 的正则表示，则 $V$ 有如前例一样的维数为 $1$ 与 $|G|-1$ 的 $FG$-子模：
+  \[
+    N=\{a_1g_1+a_2g_2+\cdots+a_ng_n\mid a_1=a_2=\cdots=a_n\},
+  \]
+  \[
+    I=\{a_1g_1+a_2g_2+\cdots+a_ng_n\mid a_1+a_2+\cdots+a_n=0\}.
+  \]
+  实际上 $N$ 和 $I$ 是 $FG$ 的双边理想（不仅是左理想——注意 $N$ 在 $FG$ 的中心中）。理想 $I$ 称为 $FG$ 的\emph{增广理想}，$N$ 称为 $FG$ 的\emph{迹理想}。
+\end{enumerate}
+
+回忆，在研究向量空间 $V$ 到自身的线性变换 $T$ 时，我们把 $V$ 做成 $F[x]$-模（其中 $x$ 在 $V$ 上作为 $T$ 作用）；我们的目标是把 $V$ 分解为循环子模的直和。这样便能找到 $V$ 的一个基，使得 $T$ 关于该基的矩阵处于某种标准形。改变 $V$ 的基并不改变模 $V$，但会通过相似改变 $T$ 的矩阵表示（即改变 $\GL(V)$ 与 $\GL_n(F)$ 之间的同构）。我们引入类似术语来描述两个 $FG$-模在换基意义下何时相同。
+
+\noindent\textbf{定义.} $G$ 的两个表示称为\emph{等价的}（或\emph{相似的}），如果实现它们的 $FG$-模是同构模。不等价的表示称为\emph{不等价的}。
+
+设 $\varphi:G\to\GL(V)$ 和 $\psi:G\to\GL(W)$ 是等价表示（这里 $V$ 与 $W$ 必须是同一域 $F$ 上的向量空间）。设 $T:V\to W$ 是二者之间的 $FG$-模同构。由于 $T$ 特别是 $F$-模同构，$T$ 是向量空间同构，故 $V$ 与 $W$ 维数相同。此外，对所有 $g\in G$、$v\in V$，由于 $T$ 是 $FG$-模同构，有 $T(g\cdot v)=g\cdot T(v)$。由环元素作用的定义，这意味着
+\[
+  T(\varphi(g)v)=\psi(g)(T(v)),
+\]
+即
+\[
+  T\circ\varphi(g)=\psi(g)\circ T,
+  \qquad g\in G.
+\]
+特别地，若我们把 $V$ 和 $W$ 认作同一个向量空间，则 $G$ 在向量空间 $V$ 上的两个表示 $\varphi$ 和 $\psi$ 等价，当且仅当存在某个 $T\in\GL(V)$ 使得
+\[
+  T\circ\varphi(g)\circ T^{-1}=\psi(g),
+  \qquad g\in G.
+\]
+这个 $T$ 是对所有 $\varphi(g)$（$g\in G$）同时进行的换基。
+
+用矩阵术语说，两个表示 $\varphi$ 和 $\psi$ 等价，当且仅当存在一个固定可逆矩阵 $P$，使得
+\[
+  P\varphi(g)P^{-1}=\psi(g),
+  \qquad g\in G.
+\]
+上面的线性变换 $T$ 或矩阵 $P$ 称为\emph{交织}表示 $\varphi$ 与 $\psi$（它给出了把 $\varphi$ 变为 $\psi$ 的“规则”）。
+
+为了研究 $FG$-模分解为子模（直和）的情形，我们需要一些术语。由于下一节将更一般地讨论直和分解，我们对任意环陈述这些定义。
+
+\noindent\textbf{定义.} 设 $R$ 是环，$M$ 是非零 $R$-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $M$ 的子模只有 $0$ 和 $M$，则称 $M$ 是\emph{不可约的}（或\emph{单的}）；否则称 $M$ 是\emph{可约的}。
+  \item 若 $M$ 不能写成 $M_1\oplus M_2$，其中 $M_1,M_2$ 是非零子模，则称 $M$ 是\emph{不可分解的}；否则称 $M$ 是\emph{可分解的}。
+  \item 若 $M$ 是不可约子模的直和，则称 $M$ 是\emph{完全可约的}。
+  \item 一个表示称为不可约、可约、不可分解、可分解或完全可约，按照实现它的 $FG$-模是否具有相应性质而定。
+  \item 若 $M$ 是完全可约 $R$-模，则 $M$ 的任一直和因子称为 $M$ 的一个\emph{组成分量}（即若存在 $M$ 的子模 $N'$ 使得 $M=N\oplus N'$，则 $N$ 是 $M$ 的一个组成分量）。
+\end{enumerate}
+
+一个不可约模按定义既是不可分解的，也是完全可约的。稍后我们将给出不可分解但不可约的模的例子。
+
+若 $R=FG$，则不可约 $FG$-模 $V$ 是一个非零 $F$-向量空间，它没有非平凡的真 $G$-不变子空间。例如，若 $\dim_F V=1$，则 $V$ 必然不可约（它的子空间只有 $0$ 和 $V$）。
+
+设 $V$ 是有限维 $FG$-模且 $V$ 可约。令 $U$ 是一个 $G$-不变子空间。取 $U$ 的一个基并扩充成 $V$ 的一个基。于是对每个 $g\in G$，$g$ 在 $V$ 上作用的矩阵 $\varphi(g)$ 相对于这个基形如
+\[
+  \varphi(g)=\begin{pmatrix}
+  \varphi_1(g)&\psi(g)\\
+  0&\varphi_2(g)
+  \end{pmatrix},
+\]
+其中 $\varphi_1=\varphi|_U$（相对于 $U$ 的所选基），$\varphi_2$ 是 $G$ 在 $V/U$ 上的表示（$\psi$ 不一定是同态——$\psi(g)$ 不必是方阵）。因此，可约表示正是那些有相应矩阵表示使所有矩阵同为分块上三角形的表示。
+
+进一步假设 $FG$-模 $V$ 可分解，$V=U\oplus U'$。取 $U$ 的一个基和 $U'$ 的一个基的并作为 $V$ 的基。相对于这个基，每个 $g\in G$ 的矩阵形如
+\[
+  \varphi(g)=\begin{pmatrix}
+  \varphi_1(g)&0\\
+  0&\varphi_2(g)
+  \end{pmatrix},
+\]
+（即对所有 $g\in G$ 都有 $\psi(g)=0$）。因此，可分解表示正是那些有相应矩阵表示使所有矩阵同为分块对角形的表示。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 如上所述，所有次数 $1$ 的表示都是不可约的、不可分解的且完全可约的。特别地，平凡表示和上面例 5 中的表示都具有这些性质。
+  \item 若 $|G|>1$，则 $G$ 的正则表示是可约的（增广理想与迹理想是非零真子模）。稍后我们将判定该表示何时完全可约，以及它如何分解为直和。
+  \item 对 $n>1$，上面例 10 中描述的 $FS_n$-模是可约的，因为 $N$ 和 $I$ 是非零真子模。模 $N$ 是不可约的（因为一维），而若域 $F$ 的特征不整除 $n$，则 $I$ 也是不可约的。
+  \item 例 6 中二面体群 $D_{2n}=G$ 的次数 $2$ 表示在 $n\geq3$ 时是不可约的。不存在 $G$-不变的一维子空间，因为旋转 $2\pi/n$ 弧度不会把 $\RR^2$ 中任何直线映到自身。类似地，例 7 中 $Q_8$ 的次数 $2$ 复表示是不可约的，因为给定矩阵 $\varphi(i)$ 恰有两个一维特征空间（对应于不同特征值 $\pm\sqrt{-1}$），而这些特征空间并不在矩阵 $\varphi(j)$ 下不变。例 8 中次数 $4$ 表示 $\varphi:Q_8\to\GL_4(\RR)$ 也可证明是不可约的（见练习）。不过我们将看到，若把 $\varphi$ 看成复表示 $\varphi:Q_8\to\GL_4(\CC)$（只是把矩阵的实项看作复项），则存在复矩阵 $P$，使得对所有 $g\in Q_8$，$P^{-1}\varphi(g)P$ 是 $2\times2$ 分块矩阵的直和。因此，一个在域 $F$ 上不可约的表示，在扩域后可能变成可约的。
+  \item 令 $G=\langle g\rangle$ 为 $n$ 阶循环群，假设 $F$ 含有所有 $n$ 次单位根。由群代数例 1，$F\langle g\rangle\cong F[x]/(x^n-1)$。因此 $FG$-模正是被 $x^n-1$ 零化的 $F[x]$-模。后者的（有限维）模按等价由 Jordan 标准形定理描述。
+
+  若 $g$ 在 $F\langle g\rangle$-模 $V$ 上作用的极小多项式在 $F$ 中有不同根，则存在 $V$ 的一个基，使得 $g$（因而其所有幂）由对角矩阵表示（参见第 12.3 节推论 25）。在这种情况下，$V$ 是完全可约的 $F\langle g\rangle$-模（是 $1$ 维 $\langle g\rangle$-不变子空间的直和）。一般地，$g$ 在 $V$ 上作用的极小多项式整除 $x^n-1$，所以若 $x^n-1$ 在 $F$ 中有不同根，则 $V$ 是完全可约的 $F\langle g\rangle$-模。多项式 $x^n-1$ 在 $F$ 中有不同根当且仅当 $F$ 的特征不整除 $n$。这给出每个 $F\langle g\rangle$-模都完全可约的一个充分条件。
+
+  若 $g$ 在 $V$ 上作用的极小多项式没有不同根（于是 $F$ 的特征整除 $n$），则 $g$ 的 Jordan 标准形必须有大小大于 $1$ 的初等 Jordan 块。由于每个线性变换都有唯一的 Jordan 标准形，$g$ 不能用对角矩阵表示，即 $V$ 不是完全可约的。由第 12.3 节中关于循环模的结果可知，在任一大小大于 $1$ 的 Jordan 块中，$g$ 的（一维）特征空间没有 $\langle g\rangle$-不变补空间，即 $V$ 可约但不完全可约。
+
+  具体地，设 $p$ 是素数，$F=\FF_p$，令 $g$ 的阶为 $p$。设 $V$ 是 $\FF_p$ 上二维空间，基为 $v,w$，定义 $g$ 在 $V$ 上作用为
+  \[
+    g\cdot v=v,
+    \qquad g\cdot w=v+w.
+  \]
+  这个 $V$ 的自同态在 $\GL(V)$ 中确有阶 $p$，且 $g$ 相对于该基的矩阵是初等 Jordan 块
+  \[
+    \varphi(g)=\begin{pmatrix}1&1\\0&1\end{pmatrix}.
+  \]
+  现在 $V$ 是可约的（$\operatorname{span}\{v\}$ 是 $\langle g\rangle$-不变子空间），但 $V$ 是不可分解的（上述 $2\times2$ 初等 Jordan 矩阵不相似于对角矩阵）。
+\end{enumerate}
+
+有限群表示论中的第一个基本结果说明例 5 如何推广到非循环群。
+
+\medskip
+\noindent\textbf{定理 1.} （Maschke 定理）设 $G$ 是有限群，$F$ 是特征不整除 $|G|$ 的域。若 $V$ 是任意 $FG$-模，$U$ 是 $V$ 的任意子模，则 $V$ 有一个子模 $W$ 使得 $V=U\oplus W$（即每个子模都是直和因子）。
+
+\noindent\textbf{注记.} 当 $F$ 的特征为 $0$ 时，Maschke 定理的假设适用于任意有限群。
+
+\begin{proof}
+Maschke 定理证明的想法是构造一个 $FG$-模同态
+\[
+  \pi:V\to U
+\]
+它是到 $U$ 上的投影，即满足以下两个性质：
+\[
+  \text{(i) }\pi(u)=u\text{ 对所有 }u\in U,
+  \qquad
+  \text{(ii) }\pi(\pi(v))=\pi(v)\text{ 对所有 }v\in V
+\]
+（事实上 (ii) 由 (i) 以及 $\pi(V)\subseteq U$ 推出）。
+
+先假设我们能构造出这样的 $FG$-模同态，并令 $W=\ker\pi$。由于 $\pi$ 是模同态，$W$ 是子模。我们如下看到 $W$ 是 $U$ 的直和补。若 $v\in U\cap W$，则由 (i) 有 $v=\pi(v)$，而由 $W$ 的定义有 $\pi(v)=0$。这说明 $U\cap W=0$。为了证明 $V=U+W$，取任意 $v\in V$，写
+\[
+  v=\pi(v)+(v-
+  \pi(v)).
+\]
+按定义，$\pi(v)\in U$。由 $\pi$ 的性质 (ii)，
+\[
+  \pi(v-\pi(v))=\pi(v)-\pi(\pi(v))=\pi(v)-\pi(v)=0,
+\]
+即 $v-\pi(v)\in W$。这说明 $V=U+W$，从而 $V=U\oplus W$。因此，要证明 Maschke 定理，只需找到这样的 $FG$-模投影 $\pi$。
+
+由于 $U$ 是子空间，它在 $V$ 中有向量空间直和补 $W_0$（取 $U$ 的一个基 $B_1$，扩充为 $V$ 的一个基 $B$，令 $W_0$ 为 $B-B_1$ 的张成空间）。于是作为向量空间，$V=U\oplus W_0$，但 $W_0$ 未必 $G$-稳定（即未必是 $FG$-子模）。令 $\pi_0:V\to U$ 是与此直和分解对应的从 $V$ 到 $U$ 的向量空间投影，即
+\[
+  \pi_0(u+w)=u,
+  \qquad u\in U,
+  \ w\in W_0.
+\]
+证明的关键思想是把 $\pi_0$ 在 $G$ 上“平均”以形成一个 $FG$-模投影 $\pi$。对每个 $g\in G$ 定义
+\[
+  g\pi_0g^{-1}:V\to U,
+  \qquad
+  (g\pi_0g^{-1})(v)=g\cdot\pi_0(g^{-1}\cdot v),
+  \quad v\in V,
+\]
+其中点号表示环 $FG$ 元素的作用。由于 $\pi_0$ 把 $V$ 映到 $U$ 中，而 $U$ 在 $g$ 作用下稳定，故 $g\pi_0g^{-1}$ 把 $V$ 映到 $U$ 中。$g$ 与 $g^{-1}$ 都作为 $F$-线性变换作用，因此 $g\pi_0g^{-1}$ 是线性变换。此外，若 $u$ 在 $G$-稳定空间 $U$ 中，则 $g^{-1}u$ 也在 $U$ 中，由 $\pi_0$ 的定义有 $\pi_0(g^{-1}u)=g^{-1}u$。由此得到对所有 $g\in G$，
+\[
+  g\pi_0g^{-1}(u)=u,
+  \qquad u\in U,
+\]
+（即 $g\pi_0g^{-1}$ 也是 $V$ 到 $U$ 的向量空间投影）。
+
+令 $n=|G|$，并把 $n$ 看作 $F$ 中的元素（$n=1+\cdots+1$，共 $n$ 次）。由假设，$n$ 在 $F$ 中不为零，因而在 $F$ 中有逆元。定义
+\[
+  \pi=\frac1n\sum_{g\in G}g\pi_0g^{-1}.
+\]
+由于 $\pi$ 是从 $V$ 到 $U$ 的线性变换之和的标量倍，它也是从 $V$ 到 $U$ 的线性变换。进一步，定义 $\pi$ 的和式中的每一项在子空间 $U$ 上都限制为恒等映射，因此 $\pi|_U$ 是 $1/n$ 乘以 $n$ 个恒等映射之和。这些观察证明：
+\[
+  \pi:V\to U\text{ 是线性变换},
+  \qquad \pi(u)=u\ (u\in U),
+  \qquad \pi^2(v)=\pi(v)\ (v\in V).
+\]
+还需证明 $\pi$ 是 $FG$-模同态（即 $FG$-线性的）。只需证明对所有 $h\in G$，$v\in V$，有 $\pi(hv)=h\pi(v)$。事实上
+\[
+\begin{aligned}
+  \pi(hv)
+  &=\frac1n\sum_{g\in G}g\pi_0(g^{-1}hv)\\
+  &=\frac1n\sum_{k\in G}hk\pi_0(k^{-1}v)\\
+  &=h\left(\frac1n\sum_{k\in G}k\pi_0(k^{-1}v)\right)
+  =h\pi(v),
+\end{aligned}
+\]
+因为当 $g$ 遍历 $G$ 的所有元素时，$k=h^{-1}g$ 也遍历 $G$ 的所有元素，而模元素 $h$ 可由模的分配律提出求和号。这建立了 $FG$-模投影 $\pi$ 的存在性，从而完成证明。
+\end{proof}
+
+Maschke 定理的应用将针对有限生成 $FG$-模。不过，与 $F[x]$-模的情形不同，有限生成 $FG$-模自动是有限维向量空间（差别在于 $FG$ 本身是有限维的，而 $F[x]$ 不是）。设 $V$ 是 $FG$-模。若 $V$ 是 $F$ 上有限维向量空间，则 $V$ 当然作为 $FG$-模有限生成（任意 $F$-基给出 $FG$ 上的生成元集）。反过来，若 $V$ 作为 $FG$-模由 $v_1,
+\ldots,v_k$ 有限生成，则容易看出 $V$ 作为向量空间由有限集合 $\{g\cdot v_i\mid g\in G,
+1\leq i\leq k\}$ 张成。因此
+\[
+  FG\text{-模有限生成当且仅当它是有限维的。}
+\]
+
+\medskip
+\noindent\textbf{推论 2.} 若 $G$ 是有限群，$F$ 是特征不整除 $|G|$ 的域，则每个有限生成 $FG$-模都是完全可约的（等价地，$G$ 的每个有限次数 $F$-表示都是完全可约的）。
+
+\begin{proof}
+令 $V$ 是有限生成 $FG$-模。如上所述，$V$ 在 $F$ 上有限维，所以可对其维数归纳。若 $V$ 不可约，则它完全可约，结论成立。于是设 $V$ 有一个非零真 $FG$-子模 $U$。由 Maschke 定理，$U$ 有一个 $FG$-子模补 $W$，即 $V=U\oplus W$。由归纳假设，$U$ 和 $W$ 各自都是不可约子模的直和，因此 $V$ 也是。归纳完成。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 3.} 设 $G$ 是有限群，$F$ 是特征不整除 $|G|$ 的域，$\varphi:G\to\GL(V)$ 是 $G$ 的有限次数表示。则存在 $V$ 的一个基，使得对每个 $g\in G$，$\varphi(g)$ 关于该基的矩阵为分块对角形式
+\[
+  \begin{pmatrix}
+  \varphi_1(g)&&&0\\
+  &\varphi_2(g)&&\\
+  &&\ddots&\\
+  0&&&\varphi_m(g)
+  \end{pmatrix},
+\]
+其中 $\varphi_i$ 是 $G$ 的不可约矩阵表示，$1\leq i\leq m$。
+
+\begin{proof}
+由推论 2，可写 $V=U_1\oplus U_2\oplus\cdots\oplus U_m$，其中 $U_i$ 是 $V$ 的不可约 $FG$-子模。令 $\mathcal B_i$ 是 $U_i$ 的一个基，令 $\mathcal B$ 是这些 $\mathcal B_i$ 的并。对每个 $g\in G$，$\varphi(g)$ 关于基 $\mathcal B$ 的矩阵具有推论中给出的形式，其中 $\varphi_i(g)$ 是 $\varphi(g)|_{U_i}$ 关于基 $\mathcal B_i$ 的矩阵。
+\end{proof}
+
+Maschke 定理的逆命题也成立。即，若 $F$ 的特征整除 $|G|$，则 $G$ 存在（有限生成）$FG$-模不是完全可约的。具体地，正则表示（即模 $FG$ 本身）不是完全可约的。
+
+在第 18.2 节中，我们将讨论 $FG$-模分解为不可约子模直和时，其组成分量唯一性的问题。
+
+\subsection*{练习}
+
+设 $F$ 是域，$G$ 是有限群，$n\in\ZZ^+$。
+\begin{enumerate}[label=\arabic*.]
+  \item 证明：若 $\varphi:G\to\GL(V)$ 是任意表示，则 $\varphi$ 给出 $G/\ker\varphi$ 的一个忠实表示。
+  \item 设 $\varphi:G\to\GL_n(F)$ 是矩阵表示。证明映射 $g\mapsto\det(\varphi(g))$ 是次数 $1$ 表示。
+  \item 证明 $G$ 的次数 $1$ 表示与 Abel 群 $G/G'$（其中 $G'$ 是 $G$ 的换位子群）的次数 $1$ 表示一一对应。
+  \item 设 $V$ 是一个（可能无限维）$FG$-模（$G$ 是有限群）。证明对每个 $v\in V$，存在一个包含 $v$ 的 $FG$-子模，其维数 $\leq |G|$。
+  \item 证明：若 $|G|>1$，则每个不可约 $FG$-模的维数 $<|G|$。
+  \item 对第二组例子中描述的下列每个表示，写出每个 $g\in G$ 的矩阵 $\varphi(g)$：
+  \begin{enumerate}[label=(\alph*)]
+    \item 例 3 中描述的 $S_3$ 表示（令该例中 $n=3$）；
+    \item 例 6 中描述的 $D_8$ 表示（即令该例中 $n=4$，并写出所有群元素的所有正弦、余弦值）；
+    \item 例 7 中描述的 $Q_8$ 表示；
+    \item 例 8 中描述的 $Q_8$ 表示。
+  \end{enumerate}
+  \item 令 $V$ 是第二组例子中例 3 所描述的 $S_4$ 的 $4$ 维置换模。令 $\pi:D_8\to S_4$ 是由 $D_8$ 通过左乘作用在其子群 $\langle s\rangle$ 的左陪集集合上得到的置换表示。按例 4 所述，通过 $\pi$ 把 $V$ 做成 $FD_8$-模，并相对于基 $e_1,
+  \ldots,e_4$ 写出此表示中 $r$ 和 $s$ 的 $4\times4$ 矩阵。
+  \item 令 $V$ 是第二组例子中例 3 和例 10 所描述的 $FS_n$-模。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明：若 $v\in V$ 且对所有 $\sigma\in S_n$ 都有 $\sigma\cdot v=v$，则 $v$ 是 $e_1+e_2+\cdots+e_n$ 的 $F$-倍数。
+    \item 证明：若 $n\geq3$，则 $V$ 有唯一的 $1$ 维子模，即由 $e_1+e_2+\cdots+e_n$ 的所有 $F$-倍数组成的子模 $N$。
+  \end{enumerate}
+  \item 证明第二组例子中例 8 所述 $Q_8$ 在 $\HH$ 上的 $4$ 维表示是不可约的。[证明任一 $Q_8$-稳定子空间都是左理想。]
+  \item 证明 $\GL_2(\RR)$ 没有与 $Q_8$ 同构的子群。[可直接用 $Q_8$ 的生成元和关系计算。可把一个生成元化为有理标准形以简化计算。]
+  \item 令 $\varphi:S_n\to\GL_n(F)$ 是由第二组例子中例 3 的置换模给出的矩阵表示，矩阵相对于基 $e_1,
+  \ldots,e_n$ 计算。证明对所有 $\sigma\in S_n$，$\det\varphi(\sigma)=\epsilon(\sigma)$，其中 $\epsilon(\sigma)$ 是置换 $\sigma$ 的符号。[在对换上检查。]
+  \item 假设 $F$ 的特征不是 $2$。令 $H$ 是 $M_n(F)$ 中所有这样的 $T$ 所成的集合：$T$ 的每行每列恰有一个非零项，其他项为零，且非零项为 $\pm1$。证明 $H$ 是 $\GL_n(F)$ 的子群，且 $H\cong E_{2^n}\rtimes S_n$（半直积），其中 $E_{2^n}$ 是 $2^n$ 阶初等 Abel 群。
+\end{enumerate}
+
+接下来的若干练习探讨一个重要结果，称为 Schur 引理，以及它的一些推论。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 设 $R$ 是环，$M$ 与 $N$ 是单（即不可约）$R$-模。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明从 $M$ 到 $N$ 的每个非零 $R$-模同态都是同构。[考虑其核与像。]
+    \item 证明 Schur 引理：若 $M$ 是单 $R$-模，则 $\Hom_R(M,M)$ 是一个除环（回忆 $\Hom_R(M,M)$ 是从 $M$ 到 $M$ 的所有 $R$-模同态所成的环，乘法为复合）。
+  \end{enumerate}
+  \item 设 $\varphi:G\to\GL(V)$ 是 $G$ 的表示。$\varphi$ 的中心化子定义为所有从 $V$ 到自身的线性变换 $A$ 的集合，满足对所有 $g\in G$ 都有 $A\varphi(g)=\varphi(g)A$（即与所有 $\varphi(g)$ 交换的 $V$ 的线性变换）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明：$V$ 到 $V$ 的线性变换 $A$ 在 $\varphi$ 的中心化子中，当且仅当它是从 $V$ 到自身的 $FG$-模同态（所以 $\varphi$ 的中心化子就是环 $\Hom_{FG}(V,V)$）。
+    \item 证明：若 $z$ 在 $G$ 的中心中，则 $\varphi(z)$ 在 $\varphi$ 的中心化子中。
+    \item 假设 $\varphi$ 是不可约表示（所以 $V$ 是单 $FG$-模）。证明：若 $H$ 是 $\GL(V)$ 的任意有限 Abel 子群，且对所有 $A\in H$ 都有 $A\varphi(g)=\varphi(g)A$，则 $H$ 是循环群（换言之，环 $\Hom_{FG}(V,V)$ 的单位群中任意有限 Abel 子群都是循环的）。[由前一练习，$\Hom_{FG}(V,V)$ 是除环，所以问题化为证明任意除环的非零元素乘法群中任意有限 Abel 子群都是循环群。证明任意除环中由 Abel 子群生成的除子环是域，并用第 9.5 节命题 18。]
+    \item 证明：若 $\varphi$ 是忠实不可约表示，则 $G$ 的中心是循环群。
+    \item 由 (d) 推出：若 $G$ 是 Abel 群，$\varphi$ 是任意不可约表示，则 $G/\ker\varphi$ 是循环群。
+  \end{enumerate}
+  \item 展示有限循环群的所有 $1$ 维复表示；务必判定哪些是不等价的。
+  \item 展示有限 Abel 群的所有 $1$ 维复表示。推出有限 Abel 群的不等价次数 $1$ 复表示的个数等于该群的阶。[先把 Abel 群分解为循环群的直积，再使用前一练习。]
+  \item 证明复数域上 Abel 群表示的 Schur 引理的如下变形：若 $G$ 是 Abel 群，则 $G$ 的任一不可约复表示 $\varphi$ 都是次数 $1$ 的，且 $G/\ker\varphi$ 是循环群。[这可不借助练习 14，只用观察：对任意 $g\in G$，$\varphi(g)$ 的特征空间都是 $G$-稳定的。你证明 $\varphi$ 次数为 $1$ 的论证也应适用于无限 Abel 群。]
+  \item 证明复表示 Schur 引理的一般形式：若 $\varphi:G\to\GL_n(\CC)$ 是不可约矩阵表示，且 $A$ 是一个与所有 $\varphi(g)$ 交换的 $n\times n$ 矩阵，则 $A$ 是标量矩阵。推出若 $\varphi$ 是忠实不可约复表示，则 $G$ 的中心是循环群，且对 $G$ 中心的所有元素 $z$，$\varphi(z)$ 都是标量矩阵。[如前一练习，$A$ 的特征空间是 $G$-稳定的。]
+  \item 证明：若 $G$ 是 Abel 群，则 $G$ 的任一有限维复表示等价于一个到对角矩阵的表示（即复数域上任意有限个两两交换矩阵可同时对角化）。[这可不借助 Maschke 定理，而通过考察特征空间完成。]
+  \item 证明任意有限群 $G$ 的次数 $1$ 复表示的个数等于 $|G:G'|$，其中 $G'$ 是 $G$ 的换位子群。[用练习 3 和 16。]
+  \item 设非循环 Abel 群 $G$ 通过共轭作用在初等 Abel $p$-群 $V$ 上，其中 $p$ 是不整除 $|G|$ 的素数。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明：若 $W$ 是不可约 $\FF_pG$-子模，则存在某个非恒等元 $g\in G$，使得 $W\leq C_V(g)$（这里 $C_V(g)$ 是 $V$ 中在 $g$ 共轭作用下固定的元素子群）。
+    \item 证明：$V$ 由子群 $C_V(g)$ 生成，其中 $g$ 遍历 $G$ 的所有非恒等元。
+  \end{enumerate}
+  \item 设 $p$ 是素数，$P$ 是 $p$-群，$F$ 是特征为 $p$ 的域。证明 $P$ 在 $F$ 上唯一的不可约表示是平凡表示。[先对 $p$ 阶群做此证明，使用 $F$ 含有所有 $p$ 次单位根（即只有 $1$）这一事实。若 $P$ 的阶不是 $p$，取 $P$ 的中心中一个 $p$ 阶元素 $z$，证明 $z$ 在不可约表示的核中，并对 $P/\langle z\rangle$ 用归纳。]
+  \item 设 $p$ 是素数，$P$ 是非平凡 $p$-群，$F$ 是特征为 $p$ 的域。证明正则表示不是完全可约的。[用前一练习。]
+  \item 设 $p$ 是素数，$P$ 是非平凡 $p$-群，$F$ 是特征为 $p$ 的域。证明正则表示是不可分解的。
+\end{enumerate}
+
+\section{Wedderburn 定理及若干推论}
+
+在本节中，我们给出一个著名的由 Wedderburn 给出的分类定理。它特别描述了当 $F$ 的特征不整除 $G$ 的阶时，群代数 $FG$ 的结构。由这个分类定理，我们将推出各种推论，包括：对每个有限群 $G$，非同构不可约 $FG$-模只有有限多个。这个结果与 Maschke 定理一起，在某种意义上完成了有限群在这类域上的表示论中的 Holder 纲领。本书余下部分将发展确定与处理不可约表示的技巧，并把这些知识应用于获取群论信息。
+
+\medskip
+\noindent\textbf{定理 4.} （Wedderburn 定理）设 $R$ 是带 $1$ 的非零环（不一定交换）。则以下条件等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item 每个 $R$-模都是投射的；
+  \item 每个 $R$-模都是内射的；
+  \item 每个 $R$-模都是完全可约的；
+  \item 把环 $R$ 看成左 $R$-模时，有直和分解
+  \[
+    R=L_1\oplus L_2\oplus\cdots\oplus L_n,
+  \]
+  其中每个 $L_i$ 是单模（即单左理想），并且 $L_i=Re_i$，其中某些 $e_i\in R$ 满足
+  \begin{enumerate}[label=(\roman*)]
+    \item 若 $i\neq j$，则 $e_i e_j=0$；
+    \item 对所有 $i$，$e_i^2=e_i$；
+    \item $\sum_{i=1}^n e_i=1$；
+  \end{enumerate}
+  \item 作为环，$R$ 同构于除环上矩阵环的直积，即
+  \[
+    R=R_1\times R_2\times\cdots\times R_r,
+  \]
+  其中 $R_j$ 是 $R$ 的双边理想，且 $R_j$ 同构于某个除环 $\Delta_j$ 上所有 $n_j\times n_j$ 矩阵所成的环，$j=1,2,
+  \ldots,r$。整数 $r$、整数 $n_j$ 以及除环 $\Delta_j$（至多相差同构）都由 $R$ 唯一决定。
+\end{enumerate}
+
+\begin{proof}
+Wedderburn 定理的一个证明在练习 1 到 10 中列出提纲。
+\end{proof}
+
+\noindent\textbf{定义.} 满足定理 4 中任一（等价）性质的环 $R$ 称为\emph{具有极小条件的半单环}。
+
+满足定理 4 等价条件的环 $R$ 还满足左理想的极小条件或降链条件（D.C.C.）：
+\[
+  \text{若 } I_1\supseteq I_2\supseteq\cdots
+  \text{ 是 }R\text{ 的左理想降链，}
+\]
+则存在 $N\in\ZZ^+$ 使得对所有 $k\geq N$ 有 $I_k=I_N$（这解释了上述定义中该术语的使用）。我们处理的环都将有这个极小条件。例如，群代数总有这个性质，因为在任意严格下降的理想链中，理想的向量空间维数（它们是 $FG$ 的 $F$-子空间）严格下降，因此严格下降链长度至多为 $FG$ 的维数（即 $|G|$）。因此我们将用术语“半单”表示“具有极小条件的半单”。Wedderburn 定理结论 (5) 中的环 $R_i$ 称为 $R$ 的\emph{Wedderburn 分量}，$R$ 的直积分解称为其\emph{Wedderburn 分解}。注意，交换环的 Wedderburn 定理是第 16.1 节中 Artin 环分类的推论。具有极小条件的交换半单环是 Jacobson 根为零的 Artin 环，因而是域的直积（这些域就是其 Wedderburn 分量）。
+
+应注意条件 (5) 是一个双边条件，它完全描述了 $R$ 的整体结构（环直积中的运算按分量加法与乘法定义）。特别地，它蕴含半单环也在右理想上满足极小条件。理解结论 (5) 中直积 $R_1\times\cdots\times R_r$ 的元素的一个有用方式，是把它们看成大小 $n\times n$ 的分块对角矩阵（其中 $n=\sum_{i=1}^r n_i$），形如
+\[
+  \begin{pmatrix}
+  A_1&&&0\\
+  &A_2&&\\
+  &&\ddots&\\
+  0&&&A_r
+  \end{pmatrix},
+\]
+其中 $A_i$ 是 $\Delta_i$ 上的任意 $n_i\times n_i$ 矩阵。
+
+回忆第 10.5 节：一个 $R$-模 $Q$ 是内射的，若每当 $Q$ 是某个 $R$-模 $M$ 的子模时，$M$ 都有子模 $N$ 使得 $M=Q\oplus N$。因此 Maschke 定理推出：
+
+\medskip
+\noindent\textbf{推论 5.} 若 $G$ 是有限群，$F$ 是特征不整除 $|G|$ 的域，则群代数 $FG$ 是半单环。
+
+在得到关于不变量 $n,r,\Delta_j$ 等如何与某些域 $F$ 上群环 $FG$ 中的不变量相关的更精确信息之前，我们先研究矩阵环的结构（即 Wedderburn 定理结论 (4) 与 (5) 中描述的环）。我们引入环论中广泛使用的一些术语。回忆，环 $R$ 的中心是与 $R$ 中所有元素交换的元素所成的子环，记为 $Z(R)$（若环有 $1$，中心含有 $1$）。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 环 $R$ 中的非零元素 $e$ 称为\emph{幂等元}，如果 $e^2=e$。
+  \item 幂等元 $e_1$ 和 $e_2$ 称为\emph{正交的}，如果 $e_1e_2=e_2e_1=0$。
+  \item 幂等元 $e$ 称为\emph{本原的}，如果它不能写成两个（交换的）正交幂等元之和。
+  \item 幂等元 $e$ 称为\emph{本原中心幂等元}，如果 $e\in Z(R)$ 且 $e$ 不能写成环 $Z(R)$ 中两个正交幂等元之和。
+\end{enumerate}
+
+命题 6 描述矩阵环的理想结构，命题 8 把这些结果推广到矩阵环的直积。
+
+\medskip
+\noindent\textbf{命题 6.} 设 $\Delta$ 是除环，$n\in\ZZ^+$，$R$ 是所有 $\Delta$ 上 $n\times n$ 矩阵所成的环，$I$ 是单位矩阵（即 $R$ 的 $1$）。
+\begin{enumerate}[label=(\arabic*)]
+  \item $R$ 的双边理想只有 $0$ 和 $R$。
+  \item $R$ 的中心由标量矩阵 $aI$ 组成，其中 $a$ 在 $\Delta$ 的中心中：
+  \[
+    Z(R)=\{aI\mid a\in Z(\Delta)\},
+  \]
+  并且这是同构于 $Z(\Delta)$ 的域。特别地，若 $\Delta$ 是域，则 $R$ 的中心是所有标量矩阵所成的子环。$R$ 中唯一的中心幂等元是 $I$（特别地，$I$ 是本原的）。
+  \item 令 $e_i$ 为在第 $i,i$ 位置为 $1$、其余位置为零的矩阵。则 $e_1,
+  \ldots,e_n$ 是正交本原幂等元，并且 $\sum_{i=1}^n e_i=I$。
+  \item $L_i=Re_i$ 是由第 $i$ 列任意而其他列全为零的矩阵组成的左理想。$L_i$ 是单左 $R$-模。每个单左 $R$-模都同构于 $L_1$（特别地，所有 $L_i$ 都是同构的 $R$-模），且作为左 $R$-模有
+  \[
+    R=L_1\oplus\cdots\oplus L_n.
+  \]
+\end{enumerate}
+
+在证明这个命题之前，下面的结果很有用。
+
+\medskip
+\noindent\textbf{引理 7.} 设 $R$ 是任意非零环。
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $M$ 和 $N$ 是单 $R$-模，$\varphi:M\to N$ 是非零 $R$-模同态，则 $\varphi$ 是同构。
+  \item （Schur 引理）若 $M$ 是单 $R$-模，则 $\Hom_R(M,M)$ 是除环。
+\end{enumerate}
+
+\begin{proof}
+为证明 (1)，注意由于 $\varphi$ 非零，$\ker\varphi$ 是 $M$ 的真子模。由 $M$ 的单性，$\ker\varphi=0$。同样，$\varphi$ 的像是单模 $N$ 的非零子模，故 $\varphi(M)=N$。这证明 $\varphi$ 双射，所以 (1) 成立。
+
+由 (1)，环 $\Hom_R(M,M)$ 的每个非零元素都是同构，因此有逆。这给出 (2)。
+\end{proof}
+
+\begin{proof}[命题 6 的证明]
+令 $A$ 是 $R$ 中任意矩阵，其第 $i,j$ 项为 $u_{ij}$。令 $E_{ij}$ 是第 $i,j$ 位置为 $1$、其余位置为零的矩阵。以下直接计算留作练习：
+\begin{enumerate}[label=(\roman*)]
+  \item $E_{ij}A$ 是这样的矩阵：第 $i$ 行等于 $A$ 的第 $j$ 行，其余各行为零。
+  \item $AE_{ij}$ 是这样的矩阵：第 $j$ 列等于 $A$ 的第 $i$ 列，其余各列为零。
+  \item $E_{pq}AE_{rs}$ 是第 $p,s$ 项为 $u_{qr}$、其余项为零的矩阵。
+\end{enumerate}
+为证明 (1)，设 $J$ 是 $R$ 的任意非零双边理想，取 $A\in J$，其第 $q,r$ 项非零。给定任意 $p,s\in\{1,
+\ldots,n\}$，由 (iii) 得
+\[
+  E_{ps}=\frac1{u_{qr}}E_{pq}AE_{rs}\in J.
+\]
+由于 $\{E_{ps}\mid 1\leq p\leq n,
+1\leq s\leq n\}$ 的 $\Delta$-线性组合给出整个 $R$，故 $J=R$。这证明 (1)。
+
+为证明 (2)，设 $A\in Z(R)$。则对所有 $i,j$ 有 $E_{ij}A=AE_{ij}$。由上面的 (i) 与 (ii)，立即推出 $A$ 的所有非对角项为零，且所有对角项相等。因此 $A=aI$，其中 $a\in\Delta$。此外，$A$ 还必须与所有标量矩阵集合 $\{\beta I\mid \beta\in\Delta\}$ 交换，即 $a$ 必须与 $\Delta$ 的所有元素交换。最后，由于 $Z(R)$ 是域，显然它只含有一个幂等元（即 $I$）。这证明 (2) 的各部分。
+
+在 (3) 中，显然 $e_1,
+\ldots,e_n$ 是正交幂等元且和为 $I$。它们的本原性将在证明 (4) 后给出。
+
+接着证明 (4)。由上面的 (ii)，$Re_i=RE_{ii}$ 是第 $i$ 列任意、其他列为零的矩阵集合。此外，若 $A$ 是 $Re_i$ 的任意非零元素，则显然 $RA\subseteq Re_i$。反向包含也成立，因为若 $u_{pi}$ 是 $A$ 的一个非零项，则由 (i) 得
+\[
+  e_i=E_{ii}=\frac1{u_{pi}}E_{ip}A\in RA.
+\]
+这证明对任意非零元素 $A\in Re_i$ 都有 $Re_i=RA$，所以 $Re_i$ 必是单 $R$-模。
+
+设 $M$ 是任意单 $R$-模。由于 $1m=m$ 对所有 $m\in M$ 成立，且 $I=\sum_{i=1}^n e_i$，存在某个 $i$ 和某个 $m\in M$ 使得 $e_i m\neq0$。对这个 $i$ 与 $m$，映射 $re_i\mapsto re_i m$ 是从单 $R$-模 $Re_i$ 到单模 $M$ 的非零 $R$-模同态。由引理 7(1)，它是同构。由 (ii)，映射 $r\mapsto rE_{i1}$ 给出 $Re_i\cong Re_1$。最后，每个矩阵都是其列的直和，所以 $R=L_1\oplus\cdots\oplus L_n$。这完成 (4) 的证明。
+
+剩下证明 (3) 中的幂等元是本原的。若 $e_i=a+b$，其中 $a$ 与 $b$ 是正交幂等元，则我们将看到
+\[
+  L_i=Re_i=Ra\oplus Rb.
+\]
+这将与 $L_i$ 是单 $R$-模矛盾。为证明上述直和，先注意由于 $ab=ba=0$，有 $ae_i=a\in Re_i$ 与 $be_i=b\in Re_i$。对所有 $r\in R$，有 $re_i=ra+rb$，故 $Re_i=Ra+Rb$。而且 $Ra\cap Rb=0$，因为若 $ra=sb$，则 $ra=raa=sba=0$（回忆 $a=a^2$ 且 $ba=0$）。这完成全部证明。
+\end{proof}
+
+\medskip
+\noindent\textbf{命题 8.} 设 $R=R_1\times R_2\times\cdots\times R_r$，其中 $R_i$ 是除环 $\Delta_i$ 上 $n_i\times n_i$ 矩阵所成的环，$i=1,2,
+\ldots,r$。
+\begin{enumerate}[label=(\arabic*)]
+  \item 把 $R_i$ 与直积的第 $i$ 个分量认同。令 $z_i$ 是这样的 $r$ 元组：第 $i$ 位置为 $R_i$ 的单位元，其他位置为零。则 $R_i=z_iR$；对任意 $a\in R_i$，有 $z_i a=a$ 且对所有 $j\neq i$ 有 $z_j a=0$。元素 $z_1,
+  \ldots,z_r$ 是 $R$ 的所有本原中心幂等元。它们两两正交，并且 $\sum_{i=1}^r z_i=1$。
+  \item 令 $N$ 是任意左 $R$-模，令 $z_iN=\{z_ix\mid x\in N\}$，$1\leq i\leq r$。则 $z_iN$ 是 $N$ 的左 $R$-子模，每个 $z_iN$ 是 $R_i$-模，且对所有 $j\neq i$，$R_j$ 在 $z_iN$ 上平凡作用，并且
+  \[
+    N=z_1N\oplus z_2N\oplus\cdots\oplus z_rN.
+  \]
+  \item 单 $R$-模正是单 $R_i$-模且 $R_j$ 对 $j\neq i$ 平凡作用的模，具体意义如下。令 $M_i$ 是唯一的单 $R_i$-模（参见命题 6）。通过令 $R_j$ 对所有 $j\neq i$ 平凡作用，可把 $M_i$ 看成 $R$-模。则 $M_1,
+  \ldots,M_r$ 是两两非同构单 $R$-模，任一单 $R$-模都同构于其中某个 $M_i$。显式地，$R$-模 $M_i$ 同构于单左理想 $(0,
+  \ldots,0,L^{(i)},0,
+  \ldots,0)$，其中第 $i$ 个分量 $L^{(i)}$ 由第一列任意、其余列为零的矩阵组成。
+  \item 对任意 $R$-模 $N$，$R$-子模 $z_iN$ 是单 $R$-模的直和，且每个单模同构于 (3) 中的 $M_i$。特别地，若 $M$ 是单 $R$-模，则存在唯一的 $i$ 使得 $z_iM=M$；对此指标 $i$ 有 $M\cong M_i$，而对所有 $j\neq i$ 有 $z_jM=0$。
+  \item 若每个 $\Delta_i$ 都等于域 $F$，则 $R$ 是 $F$ 上维数为 $\sum_{i=1}^r n_i^2$ 的向量空间，并且 $\dim_F Z(R)=r$。
+\end{enumerate}
+
+\begin{proof}
+在 (1) 中，由于环直积中的乘法按分量进行，显然 $z_i$ 乘以 $R$ 的元素 $(a_1,
+\ldots,a_r)$ 得到第 $i$ 位置为 $a_i$、其他位置为零的 $r$ 元组。因此 $R_i=z_iR$，$z_i$ 是 $R_i$ 的单位元，若 $a\in R_j$ 且 $j\neq i$，则 $z_i a=0$。显然 $z_1,
+\ldots,z_r$ 是两两正交的中心幂等元，且和为 $R$ 的单位元。$R$ 的中心幂等元按定义是 $Z(R)=F_1\times F_2\times\cdots\times F_r$ 中的幂等元，其中 $F_i$ 是 $R_i$ 的中心。由命题 6，$F_i$ 是域 $Z(\Delta_i)$。若 $w=(w_1,
+\ldots,w_r)$ 是任意中心幂等元，则 $w_i\in F_i$，且由 $w^2=w$ 得 $w_i^2=w_i$。由于域中方程 $x^2=x$ 的解只有 $0$ 与 $1$，$R$ 中唯一的中心幂等元是各项为 $0$ 或 $1$ 的 $r$ 元组。因此 $z_1,
+\ldots,z_r$ 是本原中心幂等元；又因每个中心幂等元都是这些元素之和，它们构成 $R$ 的本原中心幂等元的全集。这证明 (1)。
+
+为证明 (2)，令 $N$ 是任意左 $R$-模。首先注意，对任意 $z\in Z(R)$，集合 $\{zx\mid x\in N\}$ 是 $N$ 的 $R$-子模。特别地，$z_iN$ 是 $R$-子模。令 $z_ix\in z_iN$，并令 $a\in R_j$，其中 $j\neq i$。由 (1)，$a=az_j$，所以
+\[
+  a z_i x=(az_j)(z_i x)=az_i z_jx=0,
+\]
+因为 $z_i z_j=0$。因此 $R_j$ 对 $z_iN$ 平凡作用，$j\neq i$。对每个 $x\in N$，由 (1) 有
+\[
+  x=1x=z_1x+\cdots+z_rx,
+\]
+故 $N=z_1N+\cdots+z_rN$。最后，这个和是直和，因为例如若 $x\in z_1N\cap(z_2N+\cdots+z_rN)$，则 $x=z_1x$，而 $z_1$ 乘以 $z_2N+\cdots+z_rN$ 中任意元素都为零。这证明 (2)。
+
+在 (3) 中，先注意若 $M$ 是 $R_i$-模，当定义 $R_j$ 对 $M$ 平凡作用（$j\neq i$）时，$M$ 成为 $R$-模。对这样的模 $M$，$R$-子模与 $R_i$-子模相同。因此每个 $M_i$ 是单 $R$-模，因为它是单 $R_i$-模。
+
+接着令 $M$ 是单 $R$-模。由 (2)，
+\[
+  M=z_1M\oplus\cdots\oplus z_rM.
+\]
+由于 $M$ 没有非平凡真 $R$-子模，必有唯一的 $i$ 使得 $M=z_iM$ 且对所有 $j\neq i$ 有 $z_jM=0$。因此单 $R$-模 $M$ 被所有 $R_j$（$j\neq i$）零化。这说明 $M$ 的 $R$-子模与 $R_i$-子模相同，所以 $M$ 是单 $R_i$-模。由命题 6，$M$ 作为 $R_i$-模同构于 $M_i$。由于 $R_j$ 对 $M$ 和 $M_i$ 都平凡作用（$j\neq i$），这个 $R_i$-模同构也可看成 $R$-模同构。
+
+若 $i\neq j$，且假设 $\theta:M_i\to M_j$ 是 $R$-模同构。若 $s_i\in M_i$，则 $s_i=z_i s_i$，所以
+\[
+  \theta(s_i)=\theta(z_i s_i)=z_i\theta(s_i)=0,
+\]
+因为 $\theta(s_i)\in M_j$ 且 $z_i$ 在 $M_j$ 上平凡作用。这与 $\theta$ 是同构矛盾，证明 $M_1,
+\ldots,M_r$ 两两非同构。
+
+最后，(3) 中描述的左理想被所有 $R_j$（$j\neq i$）平凡作用，并且由命题 6，它作为 $R_i$-模至多同构地唯一单。因此这个左理想是同构于 $M_i$ 的单 $R$-模。这证明 (3)。
+
+对 (4)，我们已经证明若 $M$ 是任意单 $R$-模，则存在唯一的 $i$ 使得 $z_iM=M$，且对所有 $j\neq i$ 有 $z_jM=0$。此外，我们已经证明对这个指标 $i$，单 $R$-模 $M$ 同构于 $M_i$。现在令 $N$ 是任意 $R$-模。则 $z_iN$ 是 $R_i$-模，且被所有 $R_j$（$j\neq i$）平凡作用。由 Wedderburn 定理，$z_iN$ 是单 $R$-模的直和。由于每个这些单直和因子都被所有 $R_j$（$j\neq i$）平凡作用，它们都同构于 $M_i$。这证明 (4)。
+
+在 (5) 中，若每个 $\Delta_i$ 等于域 $F$，则作为 $F$-向量空间，
+\[
+  R=M_{n_1}(F)\times\cdots\times M_{n_r}(F).
+\]
+每个矩阵环 $M_{n_i}(F)$ 在 $F$ 上维数为 $n_i^2$，故 $R$ 在 $F$ 上维数为 $\sum_{i=1}^r n_i^2$。此外，每个 $M_{n_i}(F)$ 的中心是一维的（由命题 6(2) 它同构于 $F$），故 $Z(R)$ 在 $F$ 上维数为 $r$。命题证毕。
+\end{proof}
+
+现在我们把 Wedderburn 定理（以及上述环论计算）应用到群代数 $FG$。首先，为了应用 Wedderburn 定理，我们需要 $F$ 的特征不整除 $|G|$。事实上，由于接下来几节将处理数值数据，使 $F$ 的特征为 $0$ 会更方便。其次，若能迫使出现在 $FG$ 的 Wedderburn 分解中的所有除环都等于域 $F$，事情就会简化；我们将证明，要求 $F$ 代数闭足以保证这一点。为简化记号，本书余下的大部分内容将取 $F=\CC$。读者容易检查，任意特征为 $0$ 的代数闭域（例如所有代数数的域）都可全程代替 $\CC$。
+
+由推论 5，环 $\CC G$ 是半单的，所以由 Wedderburn 定理，
+\[
+  \CC G\cong R_1\times R_2\times\cdots\times R_r,
+\]
+其中 $R_i$ 是某个除环 $\Delta_i$ 上的 $n_i\times n_i$ 矩阵环。把这个直积的元素看成 $n\times n$ 分块矩阵（$n=\sum_{i=1}^r n_i$），第 $i$ 个块的项来自 $\Delta_i$，域 $\CC$ 在这个直积中作为标量矩阵出现，并包含在 $\CC G$ 的中心中。注意每个 $\Delta_i$ 是 $\CC$ 上的有限维向量空间。下一个结果说明这蕴含每个 $\Delta_i=\CC$。
+
+\medskip
+\noindent\textbf{命题 9.} 若 $\Delta$ 是一个除环，它是代数闭域 $F$ 上的有限维向量空间，并且 $F\subseteq Z(\Delta)$，则 $\Delta=F$。
+
+\begin{proof}
+由于 $F\subseteq Z(\Delta)$，对每个 $a\in\Delta$，由 $a$ 与 $F$ 生成的除环是一个域。此外，由于 $\Delta$ 在 $F$ 上有限维，域 $F(a)$ 是 $F$ 的有限扩张。因为 $F$ 代数闭，它没有非平凡有限扩张，所以对所有 $a\in\Delta$ 都有 $F(a)=F$，即 $\Delta=F$。
+\end{proof}
+
+这个命题证明了 $\CC G$ 的 Wedderburn 分解中每个 $R_i$ 都是 $\CC$ 上矩阵环：
+\[
+  \CC G\cong M_{n_1}(\CC)\times M_{n_2}(\CC)\times\cdots\times M_{n_r}(\CC).
+\]
+现在命题 8(5) 蕴含
+\[
+  \sum_{i=1}^r n_i^2=|G|.
+\]
+
+本节最后一个应用是证明 $r$（即 $\CC G$ 的 Wedderburn 分量的个数）等于 $G$ 的共轭类数。为此先注意命题 8(5) 断言 $r=\dim_{\CC}Z(\CC G)$。我们用另一种方法计算这个维数。
+
+令 $K_1,
+\ldots,K_s$ 是 $G$ 的不同共轭类（回忆它们划分 $G$）。对 $G$ 的每个共轭类 $K_i$，令
+\[
+  X_i=\sum_{g\in K_i}g\in\CC G.
+\]
+注意当 $i\neq j$ 时，$X_i$ 与 $X_j$ 没有共同项，故它们是 $\CC G$ 中线性无关的元素。此外，由于任意群元素的共轭作用置换每个共轭类中的元素，
+\[
+  h^{-1}X_i h=X_i,
+\]
+即 $X_i$ 与所有群元素交换。这证明 $X_i\in Z(\CC G)$。
+
+我们证明这些 $X_i$ 构成 $Z(\CC G)$ 的一组基，从而证明 $s=\dim_{\CC}Z(\CC G)=r$。既然 $X_i$ 线性无关，只需证明它们张成 $Z(\CC G)$。令
+\[
+  X=\sum_{g\in G}a_g g
+\]
+是 $Z(\CC G)$ 中任意元素。由于 $h^{-1}Xh=X$，有
+\[
+  \sum_{g\in G} a_g h^{-1}gh=\sum_{g\in G}a_g g.
+\]
+由于 $G$ 的元素构成 $\CC G$ 的一组基，上述两个和中 $g$ 的系数相等。由于 $h$ 任意，固定群元素 $g$ 的同一共轭类中的每个元素在 $X$ 中具有相同系数，因此 $X$ 可写成若干 $X_i$ 的线性组合。
+
+我们把这些结果总结如下。
+
+\medskip
+\noindent\textbf{定理 10.} 设 $G$ 是有限群。
+\begin{enumerate}[label=(\arabic*)]
+  \item
+  \[
+    \CC G\cong M_{n_1}(\CC)\times M_{n_2}(\CC)\times\cdots\times M_{n_r}(\CC).
+  \]
+  \item $\CC G$ 恰有 $r$ 个不同的不可约模同构类型，它们的复维数为 $n_1,n_2,
+  \ldots,n_r$（因此 $G$ 恰有 $r$ 个对应次数的不等价不可约复表示）。
+  \item $\sum_{i=1}^r n_i^2=|G|$。
+  \item $r$ 等于 $G$ 的共轭类数。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{推论 11.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $A$ 是有限 Abel 群。$A$ 的每个不可约复表示都是 $1$ 维的（即是从 $A$ 到 $\CC^\times$ 的同态），并且 $A$ 有 $|A|$ 个不等价不可约复表示。此外，$A$ 的每个有限维复矩阵表示都等价于一个到对角矩阵群中的表示。
+  \item 任意有限群 $G$ 的不等价（不可约）次数 $1$ 复表示的个数等于 $|G/G'|$。
+\end{enumerate}
+
+\begin{proof}
+若 $A$ 是 Abel 群，则 $\CC A$ 是交换环。由于当 $k>1$ 时，$k\times k$ 矩阵环不是交换的，所以必须有每个 $n_i=1$。因此 $r=|A|$（也就是 $A$ 的共轭类数）。由于每个 $\CC A$-模都是不可约子模的直和，存在一个基，使得矩阵相对于该基都是对角的。这证明了推论的第一部分。
+
+对一般群 $G$，每个次数 $1$ 表示 $\varphi$ 是从 $G$ 到 $\CC^\times$ 的同态。因此 $\varphi$ 通过 $G/G'$ 分解。反过来，$G/G'$ 的每个次数 $1$ 表示与自然投影 $G\to G/G'$ 复合，给出 $G$ 的一个次数 $1$ 表示。因此 $G$ 的次数 $1$ 表示正是 Abel 群 $G/G'$ 的不可约表示。由 (1) 立即得到 (2)。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 有限 Abel 群 $A$ 的不可约复表示（即从 $A$ 到 $\CC^\times$ 的同态）可显式描述如下：把 $A$ 分解为循环群的直积
+  \[
+    A\cong C_1\times\cdots\times C_n,
+  \]
+  其中 $|C_i|=|\langle x_i\rangle|=d_i$。把每个 $x_i$ 映到一个（不一定本原的）$d_i$ 次单位根，并延拓到 $x_i$ 的所有幂，得到同态。由于每个 $x_i$ 的像有 $d_i$ 种选择，由这个过程定义的 $A$ 到 $\CC^\times=\GL_1(\CC)$ 的不同同态个数等于 $|A|$。由推论 11，这些就是 $A$ 的所有不可约表示。注意，为了实现这些表示，域必须含有相应的单位根。下面的一个练习探讨循环群在 $\QQ$ 上的不可约表示。
+
+  \item 令 $G=S_3$。由定理 10，$G$ 的不可约复表示个数为 $3$（即 $S_3$ 的共轭类数）。由于次数平方和为 $6$，次数必为 $1,1,2$。两个次数 $1$ 表示立即可见：平凡表示，以及把置换送到其符号的 $S_3$ 到 $\{\pm1\}$ 的表示（即若 $\sigma$ 为偶置换则 $\sigma\mapsto+1$，若 $\sigma$ 为奇置换则 $\sigma\mapsto-1$）。次数 $2$ 表示可通过如下分解三个基向量上的置换表示得到：令 $S_3$ 通过置换指标作用在向量空间 $V$ 的基向量 $e_1,e_2,e_3$ 上。向量 $t=e_1+e_2+e_3$ 是非零固定向量，所以 $t$ 张成一个 $1$ 维 $G$-不变子空间（它是平凡表示的一份拷贝）。由 Maschke 定理存在一个 $2$ 维 $G$-不变补空间 $I$。注意这个置换表示不是次数 $1$ 表示之和：否则它可由对角矩阵表示，置换在其作用中就会交换——这是不可能的，因为该表示忠实而 $G$ 非 Abel。因此 $I$ 不能进一步分解，所以 $I$ 实现这个不可约二维表示。实际上，$I$ 是第 1 节中描述的“增广”子模：
+  \[
+    I=\{w\in V\mid w=a_1e_1+a_2e_2+a_3e_3,
+    \ a_1+a_2+a_3=0\}.
+  \]
+  显然 $e_1-e_2$ 和 $e_2-e_3$ 是 $I$ 中的线性无关向量，因此它们构成这个二维空间的一组基。相对于 $I$ 的这个基，我们得到 $S_3$ 的一个矩阵表示；例如这个矩阵表示在 $S_3$ 的两个元素上的值为
+  \[
+    (1\ 2)\mapsto\begin{pmatrix}-1&1\\0&1\end{pmatrix},
+    \qquad
+    (1\ 2\ 3)\mapsto\begin{pmatrix}0&-1\\1&-1\end{pmatrix}.
+  \]
+
+  \item 我们分解任意有限群在 $\CC$ 上的正则表示。回忆，这是由左 $\CC G$-模 $\CC G$ 本身实现的表示。由定理 10，$\CC G$ 首先是双边理想的直积：
+  \[
+    \CC G\cong M_{n_1}(\CC)\times M_{n_2}(\CC)\times\cdots\times M_{n_r}(\CC).
+  \]
+  现在由命题 6(4)，每个 $M_{n_i}(\CC)$ 进一步分解为 $n_i$ 个同构的单左理想的直和。这些左理想给出不可约 $\CC G$-模同构类的一个完整集合。因此 $G$ 在 $\CC$ 上的正则表示分解为 $G$ 的所有不可约表示的直和，其中每个不可约表示出现的重数等于它的次数。
+\end{enumerate}
+
+我们记录 $\CC G$ 的另一个性质，它将在第 19.2 节证明。
+
+\medskip
+\noindent\textbf{定理 12.} 有限群 $G$ 的每个复不可约表示的次数都整除 $G$ 的阶；也就是说，在定理 10 的记号下，对 $i=1,2,
+\ldots,r$，每个 $n_i$ 都整除 $|G|$。
+
+在下一节中，我们将用群元素描述 $\CC G$ 的本原中心幂等元。
+
+\subsection*{练习}
+
+设 $G$ 是有限群，$R$ 是带 $1$ 的环。
+\begin{enumerate}[label=\arabic*.]
+  \item 证明 Wedderburn 定理中的条件 (1) 与 (2) 等价。
+  \item 证明 Wedderburn 定理中 (3) 蕴含 (2)。[设 $Q$ 是 $R$-模 $N$ 的子模。用 Zorn 引理证明存在子模 $M$，在满足 $Q\cap M=0$ 的条件下极大。若 $Q+M=N$，则 (2) 成立；否则令 $M_1$ 是 $N$ 中某个单模的完全原像，该单模位于 $N/M$ 中且不包含在 $(Q+M)/M$ 中，并说明 $M_1$ 与 $M$ 的极大性矛盾。]
+  \item 证明 Wedderburn 定理中 (4) 蕴含 (3)。[设 $N$ 是非零 $R$-模。先通过考虑循环子模证明 $N$ 含有单子模。然后把 Zorn 引理应用于单子模直和的集合（适当有序），证明 $N$ 含有极大完全可约子模 $M$。若 $M\neq N$，令 $M_1$ 是 $N$ 中 $N/M$ 的一个单模的完全原像，并与 $M$ 的极大性矛盾。]
+  \item 证明 Wedderburn 定理中 (5) 蕴含 (4)。[用命题 6 和命题 8 证明中的方法，把每个 $R_i$ 作为左 $R$-模分解。]
+\end{enumerate}
+
+接下来的六个练习建立一些关于环与模的一般结果，它们蕴含 Wedderburn 定理剩余的蕴含：(2) 蕴含 (5)。在这些练习中假设 $R$ 满足 (2)：每个 $R$-模都是内射的。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明 $R$ 在左理想上满足降链条件（D.C.C.）。推出 $R$ 是有限个左理想的直和。[若不然，则证明作为左 $R$-模，$R$ 是无限多个非零子模的直和。把元素 $1$ 写入这个直和中推出矛盾。]
+  \item 证明 $R=R_1\times R_2\times\cdots\times R_r$，其中 $R_j$ 是双边理想且是单环（即没有非零真双边理想）。证明每个 $R_j$ 有单位元并在左理想上满足 D.C.C.。[用前一练习证明 $R$ 有极小双边理想 $R_1$。作为左 $R$-模，$R=R_1\oplus R'$，其中 $R'$ 是左理想。证明 $R'$ 是右理想，并使用 D.C.C. 归纳进行。]
+  \item 令 $S$ 是带 $1$ 的单环，它在左理想上满足 D.C.C.，令 $L$ 是 $S$ 中的极小左理想。证明作为左 $S$-模，$S\cong L^n$，其中 $L^n=L\oplus\cdots\oplus L$（$n$ 个因子）。[由单性论证 $LS=S$，所以 $1=l_1s_1+\cdots+l_ns_n$，其中 $l_i\in L$，$s_i\in S$，且 $n$ 极小。证明映射 $(x_1,
+  \ldots,x_n)\mapsto x_1s_1+\cdots+x_ns_n$ 是左 $S$-模的满同态；用 $L$ 与 $n$ 的极小性证明它是单射。]
+  \item 设 $A$ 是任意带 $1$ 的环，$L$ 是任意左 $A$-模，$P$ 是 $n$ 个 $L$ 的直和。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明环同构 $\Hom_A(P,L^n)\cong M_n(D)$，其中 $D=\Hom_A(L,L)$（环 $\Hom_A(X,X)$ 中乘法是函数复合，参见第 10.2 节命题 2(4)）。
+    \item 推出若 $L$ 是单 $A$-模，则 $\Hom_A(P,P)$ 同构于除环上的矩阵环。[用 Schur 引理和 (a)。]
+    \item 证明环同构 $\Hom_A(A,A)\cong A^{\mathrm{opp}}$，其中 $A^{\mathrm{opp}}$ 是 $A$ 的反环（元素与加法同 $A$，但 $A^{\mathrm{opp}}$ 中乘积 $x\cdot y$ 的值为在 $A$ 中计算的 $yx$），参见第 17.4 节末尾。[任意同态由 $1$ 的像决定。]
+  \end{enumerate}
+  \item 证明：若 $S$ 是带 $1$ 的单环，并且在左理想上满足 D.C.C.，则对某个除环 $\Delta$，有 $S\cong M_n(\Delta)$。（此结果与练习 6 一起完成了 Wedderburn 定理中 (2) 蕴含 (5) 的存在性部分。）[用练习 7 和 8 证明 $S^{\mathrm{opp}}\cong\Hom_S(P,L)\cong M_n(D)$，其中 $D$ 是除环。然后证明 $S\cong M_n(\Delta)$，其中 $\Delta$ 是除环 $D^{\mathrm{opp}}$。]
+  \item 证明上一练习同构 $S\cong M_n(\Delta)$ 中的 $\Delta$ 和 $n$ 由 $S$ 唯一决定（这证明 Wedderburn 定理中的唯一性陈述），如下进行。设 $S=M_n(\Delta)\cong M_{n'}(\Delta')$ 为环，其中 $\Delta$ 和 $\Delta'$ 是除环。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\Delta\cong\Hom_S(L,L)$，其中 $L$ 是 $S$ 中的极小左理想。推出 $\Delta\cong\Delta'$。[用命题 6(4)。]
+    \item 证明除环 $\Delta$ 上有限生成（左）模有“基”（线性无关生成集），且任意两组基具有相同基数。推出 $n=n'$。[模仿第 11.1 节推论 4(2) 的证明。]
+  \end{enumerate}
+  \item 证明：若 $R$ 是带 $1$ 的环且每个 $R$-模都是自由模，则 $R$ 是除环。
+  \item 设 $F$ 是域，$f(x)\in F[x]$，$R=F[x]/(f(x))$。求出 $f(x)$ 在 $F[x]$ 中分解的充要条件，使得 $R$ 是半单环。当 $R$ 半单时，描述其 Wedderburn 分解。[见第 9.5 节命题 16。]
+  \item 令 $G$ 是 $n$ 阶循环群，令 $R=\QQ G$。描述 $R$ 的 Wedderburn 分解，并求 $G$ 在 $\QQ$ 上的不可约表示的个数与次数。特别地，证明若 $n=p$ 是素数，则 $G$ 在 $\QQ$ 上恰有一个非平凡不可约表示，且该表示次数为 $p-1$。[回忆第 1 节第一例中 $\QQ G=\QQ[x]/(x^n-1)$。用第 9.5 节命题 16 与第 13.6 节的结果。]
+  \item 令 $p$ 是素数，令 $F=\FF_p$ 是 $p$ 阶域。令 $G$ 是 $3$ 阶循环群，令 $R=FG$。分别对 $p=2$ 和 $p=7$ 描述 $R$ 的 Wedderburn 分解，并求 $G$ 在 $F$ 上的不可约表示的个数与次数。
+  \item 证明：若 $P$ 是某个素数 $p$ 的 $p$-群，则 $P$ 有忠实不可约复表示当且仅当 $Z(P)$ 是循环群。[用第 1 节练习 18、定理 6.1(2) 和例 3。]
+  \item 证明：若 $V$ 是不可约 $FG$-模，且 $F$ 是代数闭域，则 $\Hom_{FG}(V,V)$ 作为环同构于 $F$。
+  \item 令 $F$ 是域，$R=M_n(F)$，令 $M$ 是唯一的不可约 $R$-模。证明 $\Hom_R(M,M)$ 作为环同构于 $F$。
+  \item 求出 $M_n(\Delta)$ 的所有双边理想。
+\end{enumerate}
+
+\section{特征标理论与正交关系}
+
+一般而言，对阶很大的群，表示很难计算；若不是完全不可能写出，也会非常笨重。例如，一个次数 $100$ 的矩阵表示涉及含有 $10000$ 个项的矩阵，而且即使只在群的一组生成元上描述表示，也可能需要若干个 $100\times100$ 矩阵。然而也有一些引人注目的例子，其中高次数表示已经被计算出来并被有效使用。其中一个例子是 Z. Janko 在 1965 年构造单群 $J_1$（关于单群的存在问题在第 6.2 节末尾讨论过）。Janko 正在研究单群的某些性质，并发现若任何单群具有这些性质，则它必然具有阶 $175560$，且由两个元素生成。进一步，他证明具有这些性质的假想单群必须在域 $\FF_{11}$ 上有一个 $7$ 维表示，并且两个生成元映到两个显式的 $7\times7$ 矩阵。注意，对任意单群 $S$，每个不是把所有群元素都映到单位矩阵的表示 $S\to\GL_n(F)$ 都是忠实表示，因此 $S$ 同构于它在 $\GL_n(F)$ 中的像。特别地，Janko 的计算表明，若满足这些性质的单群存在，则它唯一。M. Ward 能够证明这两个矩阵确实生成 $\GL_7(\FF_{11})$ 中一个阶为 $175560$ 的子群，因此确实存在满足 Janko 性质的单群。
+
+类似地，S. Norton、R. Parker 和 J. Thackray 使用 $\FF_2$ 上的 $112$ 维表示构造了阶为
+\[
+  86775571046077562880
+\]
+的单群 $J_4$。该群被证明由两个元素生成，并且在他们的分析过程中计算出了这两个生成元在 $\GL_{112}(\FF_2)$ 中的显式矩阵。
+
+1981 年，R. Griess 构造了最大的散在单群，即所谓的 Monster 群，其阶为
+\[
+  2^{46}\cdot3^{20}\cdot5^9\cdot7^6\cdot11^2\cdot13^3\cdot17\cdot19\cdot23\cdot29\cdot31\cdot41\cdot47\cdot59\cdot71.
+\]
+他的证明涉及一个 $\CC$ 上 $196884$ 维代数的自同构计算，并由此通过此次数的表示构造了 Monster 群。
+
+类比地，对大次数 $n$ 的置换表示 $\varphi:G\to S_n$，通常也很难写出相关的显式置换。不过存在一些数值不变量，例如置换 $\varphi(g)$ 的符号与循环型；这些数值不变量可能比置换本身更容易计算（也就是说，可能无需实际写出置换本身，就能确定元素的循环型，就像第 14.8 节中计算 $\QQ$ 上 Galois 群那样）。在给定情形下，仅这些不变量就可能提供足够信息来进行某些分析，例如证明某个给定群不是单群（如第 6.2 节中所示）。此外，刚提到的不变量不依赖于集合 $\{1,2,
+\ldots,n\}$ 的标号（即它们独立于 $S_n$ 中的“换基”），并且它们在 $G$ 中共轭的元素上相同。
+
+在本节中，我们说明如何把数值不变量附加到线性表示上。这些不变量只依赖于表示的等价类（同构类型）。换言之，对每个表示 $\varphi:G\to\GL_n(F)$，我们将给每个矩阵 $\varphi(g)$ 附加 $F$ 的一个元素，并且看到在许多情形中，即使不知道矩阵 $\varphi(g)$，也可以计算这个数。此外，我们将看到这些不变量与 $\varphi$ 的相似类无关（即若把表示 $\varphi$ 替换为等价表示，则对固定 $g\in G$ 该不变量相同），并且在某种意义上它们刻画了 $G$ 的表示的相似类。
+
+本节中 $G$ 始终是有限群，暂时 $F$ 是任意域。所有考虑的表示都假设有限维。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{类函数}是任意从 $G$ 到 $F$ 的函数，它在 $G$ 的共轭类上为常数；即 $f:G\to F$ 满足
+  \[
+    f(g^{-1}xg)=f(x),
+    \qquad g,x\in G.
+  \]
+  \item 若 $\varphi$ 是由 $FG$-模 $V$ 实现的 $G$ 的表示，则 $\varphi$ 的\emph{特征标}是函数
+  \[
+    \chi:G\to F,
+    \qquad \chi(g)=\operatorname{tr}\varphi(g),
+  \]
+  其中 $\operatorname{tr}\varphi(g)$ 是 $\varphi(g)$ 相对于 $V$ 的某个基的矩阵的迹（即该矩阵对角项之和）。特征标称为不可约或可约，按照其表示不可约或可约而定。特征标的次数是实现它的任一表示的次数。
+\end{enumerate}
+
+在定义第二部分的记号下，我们也称 $\chi$ 是由 $FG$-模 $V$ 实现的特征标。一般地，特征标不是从群到域的加法群或乘法群的同态。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 平凡表示的特征标是函数 $\chi(g)=1$，对所有 $g\in G$。这个特征标称为 $G$ 的\emph{主特征标}。
+  \item 对次数 $1$ 表示，通常把特征标与表示等同（把 $1\times1$ 矩阵与其唯一项等同）。因此对 Abel 群，不可约复表示与其特征标相同（参见推论 11）。
+  \item 令 $\pi:G\to S_n$ 是置换表示，令 $\varphi$ 是向量空间 $V$ 的基 $e_1,
+  \ldots,e_n$ 上由此得到的线性表示：
+  \[
+    \varphi(g)(e_i)=e_{\pi(g)(i)}
+  \]
+  （参见第 1 节例 4）。相对于这个基，$\varphi(g)$ 的矩阵在第 $i,i$ 对角项为 $1$，当且仅当 $\pi(g)$ 固定 $i$；否则该矩阵在第 $i,i$ 位置为 $0$。因此若 $\eta$ 是 $\varphi$ 的特征标，则
+  \[
+    \eta(g)=g\text{ 在 }\{1,2,
+    \ldots,n\}\text{ 上的固定点个数。}
+  \]
+  特别地，若 $\pi$ 是由左乘作用在 $G$ 的某个子群 $H$ 的左陪集集合上得到的置换表示，则所得特征标称为 $G$ 在 $H$ 上的\emph{置换特征标}。
+  \item 例 3 中 $\pi$ 是 $G$ 的正则置换表示的特殊情形值得记录：若 $\varphi$ 是 $G$ 的正则表示（由模 $FG$ 实现），$\rho$ 是其特征标，则
+  \[
+    \rho(g)=\begin{cases}
+      0,&g\neq1,\\
+      |G|,&g=1.
+    \end{cases}
+  \]
+  $G$ 的正则表示的特征标称为 $G$ 的\emph{正则特征标}。注意这给出特征标取值为 $0$ 的具体例子，而且它不是从 $G$ 到 $F$ 或 $F^\times$ 的群同态。
+  \item 令 $\varphi:D_{2n}\to\GL_2(\RR)$ 是第 1 节第二组例 6 中描述的显式矩阵表示。若 $\chi$ 是 $\varphi$ 的特征标，则取给定 $2\times2$ 矩阵的迹可得 $\chi(r)=2\cos(2\pi/n)$ 且 $\chi(s)=0$。由于 $\varphi$ 把 $D_{2n}$ 的恒等元送到 $2\times2$ 单位矩阵，$\chi(1)=2$。
+  \item 令 $\varphi:Q_8\to\GL_2(\CC)$ 是第 1 节第二组例 7 中描述的显式矩阵表示。若 $\chi$ 是 $\varphi$ 的特征标，则取迹可得 $\chi(i)=0$ 与 $\chi(j)=0$。由于元素 $-1\in Q_8$ 映到 $2\times2$ 单位矩阵的负矩阵，$\chi(-1)=-2$。由于 $\varphi$ 把 $Q_8$ 的恒等元送到 $2\times2$ 单位矩阵，$\chi(1)=2$。
+  \item 令 $\varphi:Q_8\to\GL_4(\RR)$ 是第 1 节第二组例 8 中描述的矩阵表示。若 $\chi$ 是 $\varphi$ 的特征标，则由所列矩阵可见 $\chi(i)=\chi(j)=0$。由于 $\varphi$ 把 $Q_8$ 的恒等元送到 $4\times4$ 单位矩阵，$\chi(1)=4$。
+\end{enumerate}
+
+对 $n\times n$ 矩阵 $A$ 和 $B$，直接计算给出 $\operatorname{tr}AB=\operatorname{tr}BA$。若 $A$ 可逆，则这蕴含
+\[
+  \operatorname{tr}A^{-1}BA=\operatorname{tr}B.
+\]
+因此表示的特征标与实现它的向量空间基的选择无关，即
+\[
+  \text{等价表示具有相同特征标。}\tag{18.1}
+\]
+令 $\varphi$ 是 $G$ 的次数 $n$ 表示，其特征标为 $\chi$。由于对所有 $g,x\in G$，$\varphi(g^{-1}xg)=\varphi(g)^{-1}\varphi(x)\varphi(g)$，取迹得到
+\[
+  \text{表示的特征标是类函数。}\tag{18.2}
+\]
+由于 $n\times n$ 单位矩阵的迹为 $n$，而 $\varphi$ 把 $G$ 的恒等元送到恒等线性变换（或单位矩阵），
+\[
+  \chi(1)\text{ 是 }\varphi\text{ 的次数。}\tag{18.3}
+\]
+
+若 $V$ 是 $FG$-模，其对应表示的特征标为 $\chi$，则群环 $FG$ 的每个元素都作为从 $V$ 到 $V$ 的线性变换而作用。因此每个 $\sum_{g\in G}a_g g\in FG$，当它作为 $V$ 到 $V$ 的线性变换来看时，都有一个迹。$g\in G$ 在 $V$ 上作用的迹按定义是 $\chi(g)$。由于矩阵线性组合的迹等于迹的线性组合，$\sum_{g\in G}a_g g$ 在 $V$ 上作用的迹为 $\sum_{g\in G}a_g\chi(g)$。注意这个 $FG$ 上的迹函数是 $G$ 的特征标 $\chi$ 到从 $FG$ 到 $F$ 的 $F$-线性变换的唯一延拓。由此我们也把 $G$ 的特征标看作定义在群环 $FG$ 上。
+
+注意上面例 3 中，若域 $F$ 有特征 $p>0$，则特征标值模 $p$ 后可能为零，即使固定点个数非零。为了避免这类异常，并使用当 $F$ 代数闭时 Wedderburn 定理的推论，我们再次把域专门取为复数域（或任意特征为 $0$ 的代数闭域）。由前一节结果
+\[
+  \CC G\cong M_{n_1}(\CC)\times M_{n_2}(\CC)\times\cdots\times M_{n_r}(\CC).
+  \tag{18.4}
+\]
+在本节余下部分固定如下记号：
+\[
+\begin{array}{l}
+  M_1,M_2,
+  \ldots,M_r\text{ 是不等价不可约 }\CC G\text{-模，}\
+  \chi_i\text{ 是由 }M_i\text{ 实现的特征标， }1\leq i\leq r.
+\end{array}
+\tag{18.5}
+\]
+因此 $r$ 是 $G$ 的共轭类数；必要时可重标 $M_1,
+\ldots,M_r$，使得 $\chi_i$ 的次数为 $n_i$（这也等于 $M_i$ 在 $\CC$ 上的维数）。
+
+现在每个（有限维）$\CC G$-模 $M$ 都同构（等价）于不可约模的直和：
+\[
+  M\cong a_1M_1\oplus a_2M_2\oplus\cdots\oplus a_rM_r,
+  \tag{18.6}
+\]
+其中 $a_i$ 是非负整数，表示不可约模 $M_i$ 在该直和分解中的重数；也就是说
+\[
+  a_iM_i=\underbrace{M_i\oplus\cdots\oplus M_i}_{a_i\text{ 次}}.
+\]
+注意，若表示 $\varphi$ 由模 $M$ 实现，且 $M=M_1\oplus M_2$，则可取 $M$ 的一个基为 $M_1$ 的一组基与 $M_2$ 的一组基的并。相对于这个基，矩阵表示形如
+\[
+  \varphi(g)=\begin{pmatrix}
+  \varphi_1(g)&0\\
+  0&\varphi_2(g)
+  \end{pmatrix},
+\]
+其中 $\varphi_i$ 是由 $M_i$ 实现的表示，$i=1,2$。立即可见，若 $\psi$ 是 $\varphi$ 的特征标，$\psi_i$ 是 $\varphi_i$ 的特征标，则 $\psi(g)=\psi_1(g)+\psi_2(g)$，即 $\psi=\psi_1+\psi_2$。归纳得到：
+\[
+  \text{一个表示的特征标是其直和分解中组成分量特征标之和。}\tag{18.7}
+\]
+若 $\psi$ 是上面 (18.6) 中模 $M$ 实现的特征标，则
+\[
+  \psi=a_1\chi_1+a_2\chi_2+\cdots+a_r\chi_r.
+  \tag{18.8}
+\]
+因此每个（复）特征标都是不可约（复）特征标的非负整数和。反过来，通过取模的直和可知，每个这样的特征标和都是 $G$ 的某个复表示的特征标。
+
+接下来证明特征标与复表示等价类之间的对应是双射。令 $z_1,z_2,
+\ldots,z_r$ 是前一节描述的 $\CC G$ 的本原中心幂等元。由于它们正交（或等价地，它们是 $\CC G$ 分解为 $r$ 个子环直积时某一位置为 $1$、其余位置为零的 $r$ 元组），$z_1,
+\ldots,z_r$ 是 $\CC G$ 中线性无关的元素。如上，每个不可约特征标 $\chi_i$ 是 $\CC G$ 上的函数。由命题 8(3) 有：
+\begin{enumerate}[label=(\alph*)]
+  \item 若 $j\neq i$，则 $z_jM_i=0$，即 $z_j$ 在 $M_i$ 上作为零矩阵作用，因此 $\chi_i(z_j)=0$；
+  \item $z_i$ 在 $M_i$ 上作为恒等映射作用，因此 $\chi_i(z_i)=n_i$。
+\end{enumerate}
+因此 $\chi_1,
+\ldots,\chi_r$ 是线性无关集 $z_1,
+\ldots,z_r$ 的对偶基的非零倍数，故它们是线性无关函数。现在若 (18.6) 中的 $\CC G$-模 $M$ 还可以以另一种方式分解为不可约模，例如
+\[
+  M\cong b_1M_1\oplus b_2M_2\oplus\cdots\oplus b_rM_r,
+\]
+则得到关系
+\[
+  a_1\chi_1+a_2\chi_2+\cdots+a_r\chi_r
+  =b_1\chi_1+b_2\chi_2+\cdots+b_r\chi_r.
+\]
+由不可约特征标的线性无关性，$b_i=a_i$ 对所有 $i$ 成立。因此，在 $M$ 分解为不可约子模直和的任一分解中，不可约模 $M_i$ 的重数都相同，$1\leq i\leq r$。特别地，
+\[
+  \text{两个表示等价当且仅当它们具有相同特征标。}\tag{18.9}
+\]
+
+这种唯一性也可用另一种方式看出。首先用命题 8(2) 唯一地把任意有限维 $\CC G$-模 $M$ 分解为
+\[
+  M=z_1M\oplus z_2M\oplus\cdots\oplus z_rM.
+\]
+由同一命题的 (4)，$z_iM$ 是单模直和，每个单模同构于 $M_i$。通过数维数，$M_i$ 在 $z_iM$ 的直和分解中的重数等于
+\[
+  \frac{\dim z_iM}{\dim M_i}.
+\]
+这证明 $M$ 的任何分解为单子模直和的分解中，$M_i$ 的重数都是唯一确定的。
+
+注意，与 $F[x]$-模分解为循环子模类似，一个 $\CC G$-模可能有许多分解为不可约直和的方式——只有重数是唯一的（也见练习）。更精确地说，与单个线性变换的 Jordan 标准形比较，直和因子 $a_iM_i=M_i\oplus\cdots\oplus M_i$（$a_i$ 次）即子模 $z_iM$，类似于对应一个特征值的广义特征空间。这个 $M$ 的子模是唯一的（正如广义特征空间唯一），称为 $M$ 的 $\chi_i$-等型分量。在 $\chi_i$-等型分量内部，直和项 $M_i$ 类似于一维特征空间；就像自同态的特征空间没有唯一基一样，那里也没有唯一的分解。若 $G=\langle g\rangle$ 是有限循环群，则 $G$ 的等型分量与 $g$ 的广义特征空间相同。
+
+观察：$G$ 上所有复值类函数的向量空间有一组基，由在某个给定共轭类上为 $1$、在其他所有共轭类上为 $0$ 的函数构成。这样的函数有 $r$ 个，其中 $r$ 是 $G$ 的共轭类数，所以类函数复向量空间的维数为 $r$。由于 $G$ 的（复）不可约特征标个数等于共轭类数，且这些特征标是线性无关的类函数，我们看到
+\[
+  \text{不可约特征标构成所有复类函数空间的一组基。}\tag{18.10}
+\]
+
+特征标理论的下一步，是在类函数空间上放置 Hermitian 内积结构，并证明不可约特征标关于此内积构成一组标准正交基。对类函数 $\theta$ 与 $\psi$，定义
+\[
+  (\theta,\psi)=\frac1{|G|}\sum_{g\in G}\theta(g)\overline{\psi(g)},
+\]
+其中横线表示复共轭。容易检查 $(\ ,\ )$ 是 Hermitian 的：对 $\alpha,\beta\in\CC$，
+\begin{enumerate}[label=(\alph*)]
+  \item $(\alpha\theta_1+\beta\theta_2,
+  \psi)=\alpha(\theta_1,
+  \psi)+\beta(\theta_2,
+  \psi)$；
+  \item $(\theta,
+  \alpha\psi_1+\beta\psi_2)=\overline{\alpha}(\theta,
+  \psi_1)+\overline{\beta}(\theta,
+  \psi_2)$；
+  \item $(\theta,
+  \psi)=\overline{(\psi,
+  \theta)}$。
+\end{enumerate}
+
+我们的主要目标是证明不可约特征标关于这个 Hermitian 形式构成复类函数空间的一组标准正交基（我们已经知道它们是一组基）。一旦在下一个命题中显式确定本原中心幂等元，这个事实将由它们的正交性推出。
+
+\medskip
+\noindent\textbf{命题 13.} 设 $z_1,
+\ldots,z_r$ 是 $\CC G$ 中的正交本原中心幂等元，标号方式使得 $z_i$ 在不可约 $\CC G$-模 $M_i$ 上作为恒等映射作用；令 $\chi_i$ 是由 $M_i$ 实现的特征标。则
+\[
+  z_i=\frac{\chi_i(1)}{|G|}\sum_{g\in G}\overline{\chi_i(g)}\,g.
+\]
+
+\begin{proof}
+令 $z=z_i$，写
+\[
+  z=\sum_{g\in G}a_g g.
+\]
+回忆本节例 4：若 $\rho$ 是 $G$ 的正则特征标，则
+\[
+  \rho(g)=\begin{cases}
+  0,&g\neq1,\\
+  |G|,&g=1,
+  \end{cases}
+  \tag{18.11}
+\]
+并回忆第 2 节最后一个例子：
+\[
+  \rho=\sum_{j=1}^r\chi_j(1)\chi_j.
+  \tag{18.12}
+\]
+为求系数 $a_g$，把 $\rho$ 作用于 $zg^{-1}$，并用 $\rho$ 的线性性和 (18.11)，得到
+\[
+  \rho(zg^{-1})=a_g|G|.
+\]
+另一方面，用 (18.12) 计算 $\rho(zg^{-1})$ 得
+\[
+  \sum_{j=1}^r\chi_j(1)\chi_j(zg^{-1})=a_g|G|.
+  \tag{18.13}
+\]
+令 $\varphi_j$ 是由 $M_j$ 实现的不可约表示，$1\leq j\leq r$。由于可把 $\varphi_j$ 看成从 $\CC G$ 到 $\End M_j$ 的代数同态，有
+\[
+  \varphi_j(zg^{-1})=\varphi_j(z)\varphi_j(g^{-1}).
+\]
+我们已经观察到：若 $j\neq i$，则 $\varphi_j(z)=0$；若 $j=i$，则 $\varphi_i(z)$ 是 $M_i$ 上的恒等自同态。因此
+\[
+  \varphi_j(zg^{-1})=\begin{cases}
+  0,&j\neq i,\\
+  \varphi_i(g^{-1}),&j=i.
+  \end{cases}
+\]
+这证明 $\chi_j(zg^{-1})=\chi_i(g^{-1})\delta_{ij}$，其中 $\delta_{ij}$ 为 Kronecker delta。代入 (18.13) 得
+\[
+  a_g=\frac1{|G|}\chi_i(1)\chi_i(g^{-1}).
+\]
+由下面命题 14 可知 $\chi_i(g^{-1})=\overline{\chi_i(g)}$，这正是命题中 $g$ 的系数。证明完成。
+\end{proof}
+
+不可约特征标的标准正交性将通过下列计算直接由中心本原幂等元的正交性推出：
+\[
+\begin{aligned}
+  z_i\delta_{ij}=z_iz_j
+  &=\frac{\chi_i(1)\chi_j(1)}{|G|^2}
+    \sum_{g,h\in G}\overline{\chi_i(g)}\,\overline{\chi_j(h)}\,gh\\
+  &=\frac{\chi_i(1)\chi_j(1)}{|G|^2}
+    \sum_{y\in G}\left(\sum_{x\in G}\overline{\chi_i(xy^{-1})}\,\overline{\chi_j(x^{-1})}\right)y,
+\end{aligned}
+\]
+（从前一个和式得到后一个和式，作代换 $x=g$ 与 $y=gh$）。由于 $G$ 的元素是 $\CC G$ 的基，我们可把它的系数与命题 13 中 $z_i$ 的系数比较（比较 $g$ 的系数），得到
+\[
+  \delta_{ij}\frac{\chi_i(1)}{|G|}\overline{\chi_i(g)}
+  =\frac{\chi_i(1)\chi_j(1)}{|G|^2}
+  \sum_{x\in G}\overline{\chi_i(xg^{-1})}\,\overline{\chi_j(x^{-1})}.
+\]
+化简并把 $g$ 换为 $g^{-1}$，得到
+\[
+  \delta_{ij}\frac{\chi_i(g)}{\chi_j(1)}
+  =\frac1{|G|}\sum_{x\in G}\chi_i(xg)\chi_j(x^{-1}),
+  \qquad g\in G.
+  \tag{18.14}
+\]
+令 $g=1$，得到
+\[
+  \delta_{ij}=\frac1{|G|}\sum_{x\in G}\chi_i(x)\chi_j(x^{-1}).
+  \tag{18.15}
+\]
+如果 $\chi_j(x^{-1})=\overline{\chi_j(x)}$，则右边正是内积 $(\chi_i,\chi_j)$；这就是下一个命题的内容。
+
+\medskip
+\noindent\textbf{命题 14.} 若 $\psi$ 是 $G$ 的任意特征标，则对所有 $x\in G$，$\psi(x)$ 是若干单位根之和，并且
+\[
+  \psi(x^{-1})=\overline{\psi(x)}.
+\]
+
+\begin{proof}
+设 $\varphi$ 是特征标为 $\psi$ 的表示，固定 $x\in G$，令 $|x|=k$。由于 $\varphi(x)$ 的极小多项式整除 $X^k-1$（因而有不同根），存在底层向量空间的一组基，使得 $\varphi(x)$ 关于这个基的矩阵是对角矩阵，且对角项为 $k$ 次单位根。由于 $\psi(x)$ 是对角项之和（且不依赖于基的选择），$\psi(x)$ 是若干单位根之和。此外，若 $\epsilon$ 是单位根，则 $\epsilon^{-1}=\overline{\epsilon}$。因此，一个对角项为单位根的对角矩阵的逆矩阵，是对角项为那些单位根的复共轭的对角矩阵。由于一个和的复共轭等于各项复共轭之和，
+\[
+  \psi(x^{-1})=\operatorname{tr}\varphi(x^{-1})
+  =\overline{\operatorname{tr}\varphi(x)}=
+  \overline{\psi(x)}.
+\]
+\end{proof}
+
+注意，在命题 14 的证明中，我们首先固定一个群元素 $x$，然后选择表示空间的一组基，使得 $\varphi(x)$ 是对角矩阵。总是可以对角化单个元素，但当且仅当 $\varphi$ 相似于若干次数 $1$ 表示之和时，才可以同时对角化所有 $\varphi(x)$。
+
+把上述命题与式 (18.15) 结合，得到：
+
+\medskip
+\noindent\textbf{定理 15.} （群特征标的第一正交关系）设 $G$ 是有限群，$\chi_1,
+\ldots,\chi_r$ 是 $G$ 在 $\CC$ 上的不可约特征标。则关于上面的内积 $(\ ,\ )$，有
+\[
+  (\chi_i,\chi_j)=\delta_{ij},
+\]
+并且不可约特征标构成类函数空间的一组标准正交基。特别地，若 $\theta$ 是任意类函数，则
+\[
+  \theta=\sum_{i=1}^r (\theta,\chi_i)\chi_i.
+\]
+
+\begin{proof}
+我们已经证明不可约特征标构成类函数空间的一组标准正交基。若 $\theta$ 是任意类函数，写 $\theta=\sum_{i=1}^r a_i\chi_i$，其中 $a_i\in\CC$。由 Hermitian 内积的线性性得 $a_i=(\theta,\chi_i)$，如所断言。
+\end{proof}
+
+我们列出第二正交关系而不证明；本书应用中不会用到它。
+
+\medskip
+\noindent\textbf{定理 16.} （群特征标的第二正交关系）在上述记号下，对任意 $x,y\in G$，
+\[
+  \sum_{i=1}^r \chi_i(x)\overline{\chi_i(y)}
+  =\begin{cases}
+  |C_G(x)|,&x\text{ 与 }y\text{ 在 }G\text{ 中共轭},\\
+  0,&\text{否则。}
+  \end{cases}
+\]
+
+\noindent\textbf{定义.} 对 $G$ 上任意类函数 $\theta$，$\theta$ 的\emph{范数}是 $(\theta,\theta)^{1/2}$，记为 $\|\theta\|$。
+
+当类函数用不可约特征标表示为 $\theta=\sum a_i\chi_i$ 时，其范数容易计算为
+\[
+  \|\theta\|=\left(\sum |a_i|^2\right)^{1/2}.
+\]
+因此
+\[
+  \text{一个特征标范数为 }1\text{ 当且仅当它不可约。}
+\]
+
+最后，观察到计算特征标 $\theta$ 与 $\psi$ 的内积可如下简化。若 $K_1,
+\ldots,K_r$ 是 $G$ 的共轭类，大小分别为 $d_1,
+\ldots,d_r$，代表元分别为 $g_1,
+\ldots,g_r$，则和式 $(\theta,\psi)$ 中值 $\theta(g_i)\overline{\psi(g_i)}$ 出现 $d_i$ 次，对 $K_i$ 中每个元素出现一次。合并这些项得到
+\[
+  (\theta,\psi)=\frac1{|G|}\sum_{i=1}^r d_i\theta(g_i)\overline{\psi(g_i)},
+\]
+这是只在 $G$ 的共轭类代表元上求和。特别地，$\theta$ 的范数满足
+\[
+  \|\theta\|^2=(\theta,
+  \theta)=\frac1{|G|}\sum_{i=1}^r d_i|\theta(g_i)|^2.
+\]
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $G=S_3$，令 $\pi$ 是本节开头例子中描述的次数 $3$ 置换特征标。回忆 $\pi(\sigma)$ 等于 $\sigma$ 固定集合 $\{1,2,3\}$ 中元素的个数。$S_3$ 的共轭类可由 $1$、$(1\ 2)$ 和 $(1\ 2\ 3)$ 代表，大小分别为 $1,3,2$，且 $\pi(1)=3$、$\pi((1\ 2))=1$、$\pi((1\ 2\ 3))=0$。因此
+  \[
+    \|\pi\|^2=\frac16\left[1\pi(1)^2+3\pi((1\ 2))^2+2\pi((1\ 2\ 3))^2\right]
+    =\frac16(9+3+0)=2.
+  \]
+  这说明 $\pi$ 是两个不同不可约特征标之和，且每个出现重数 $1$。令 $\chi_1$ 是 $S_3$ 的主特征标，所以对所有 $\sigma\in S_3$，$\chi_1(\sigma)=\overline{\chi_1(\sigma)}=1$。则
+  \[
+    (\pi,\chi_1)=\frac16\left[\pi(1)\chi_1(1)+3\pi((1\ 2))\chi_1((1\ 2))+2\pi((1\ 2\ 3))\chi_1((1\ 2\ 3))\right]
+    =\frac16(3+3+0)=1.
+  \]
+  所以主特征标作为 $\pi$ 的组成分量出现重数 $1$。这证明 $\pi=\chi_1+\chi_2$，其中 $\chi_2$ 是 $S_3$ 的某个次数 $2$ 不可约特征标（与前面对此表示的分解一致）。这也说明 $\chi_2$ 在 $\sigma\in S_3$ 上的值等于 $\sigma$ 的固定点个数减 $1$。
+
+  \item 令 $G=S_4$，$\pi$ 是次数 $4$ 的自然置换特征标（所以仍有 $\pi(\sigma)$ 等于 $\sigma$ 的固定点个数）。$S_4$ 的共轭类可由 $1$、$(1\ 2)$、$(1\ 2\ 3)$、$(1\ 2\ 3\ 4)$ 和 $(1\ 2)(3\ 4)$ 代表，大小分别为 $1,6,8,6,3$。同样计算：
+  \[
+  \begin{aligned}
+    \|\pi\|^2
+    &=\frac1{24}[1\pi(1)^2+6\pi((1\ 2))^2+8\pi((1\ 2\ 3))^2
+      +6\pi((1\ 2\ 3\ 4))^2+3\pi((1\ 2)(3\ 4))^2]\\
+    &=\frac1{24}(16+24+8+0+0)=2.
+  \end{aligned}
+  \]
+  因此 $\pi$ 有两个不同不可约组成分量。若 $\chi_1$ 是 $S_4$ 的主特征标，则
+  \[
+  \begin{aligned}
+    (\pi,\chi_1)
+    &=\frac1{24}[1\pi(1)+6\pi((1\ 2))+8\pi((1\ 2\ 3))
+      +6\pi((1\ 2\ 3\ 4))+3\pi((1\ 2)(3\ 4))]\\
+    &=\frac1{24}(4+12+8+0+0)=1.
+  \end{aligned}
+  \]
+  这证明次数 $4$ 的置换特征标是主特征标与一个次数 $3$ 不可约特征标之和。
+
+  \item 令 $G=D_8$，其中
+  \[
+    D_8=\langle r,s\mid s^2=r^4=1,
+    \ rs=sr^{-1}\rangle.
+  \]
+  $D_8$ 的共轭类由 $1,s,r,r^2,sr$ 代表，大小分别为 $1,2,2,1,2$。令 $\varphi$ 是第 1 节例 6 中由把正方形嵌入 $\RR^2$ 得到的次数 $2$ 矩阵表示：
+  \[
+    \varphi(s)=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \quad
+    \varphi(r)=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
+    \quad
+    \varphi(r^2)=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},
+    \quad
+    \varphi(sr)=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}.
+  \]
+  令 $\psi$ 是这个表示的特征标（把实矩阵看成复矩阵）。由于 $\psi$ 实值，计算得
+  \[
+  \begin{aligned}
+    \|\psi\|^2
+    &=\frac18[1\psi(1)^2+2\psi(s)^2+2\psi(r)^2+1\psi(r^2)^2+2\psi(sr)^2]\\
+    &=\frac18(4+0+0+4+0)=1.
+  \end{aligned}
+  \]
+  因此表示 $\varphi$ 是不可约的（即使允许用复矩阵作相似变换）。
+\end{enumerate}
+
+我们已经看到两个特征标之和仍是特征标。具体地，若 $\psi_1$ 与 $\psi_2$ 是表示 $\varphi_1$ 与 $\varphi_2$ 的特征标，则 $\psi_1+\psi_2$ 是 $\varphi_1+\varphi_2$ 的特征标。
+
+\medskip
+\noindent\textbf{命题 17.} 若 $\psi_1$ 与 $\psi_2$ 是特征标，则它们的乘积 $\psi_1\psi_2$ 也是特征标。
+
+\begin{proof}
+令 $V_1$ 与 $V_2$ 是实现特征标 $\psi_1$ 与 $\psi_2$ 的 $\CC G$-模，定义 $W=V_1\otimes_{\CC}V_2$。由于每个 $g\in G$ 都作为线性变换作用在 $V_1$ 与 $V_2$ 上，作用
+\[
+  g(v_1\otimes v_2)=(gv_1)\otimes(gv_2)
+\]
+在线性延拓后，由第 11.2 节命题 17 给出 $W$ 上的良定义线性变换。容易检查这个作用也把 $W$ 做成 $\CC G$-模。由第 11.2 节练习 38，$W$ 实现的特征标为 $\psi_1\psi_2$。
+\end{proof}
+
+下一章将包含更多显式特征标计算，以及群特征标在证明某些类群的定理中的应用。
+
+\subsection*{关于 Fourier 分析与群特征标的若干说明}
+
+这段简短讨论旨在指出上述结果与数学其他领域之间的一些联系。
+
+到目前为止所描述的群表示理论，是称为\emph{调和分析}的数学领域的一个特殊分支。读者可能已经熟悉 Fourier 级数的基本理论，它也属于这一范畴。我们作若干观察，说明有限群表示论如何对应于某些无限群的“Fourier 级数”（特别是圆周上的 Fourier 级数）。为了数学上精确，需要 Lebesgue 积分来保证某些（Hilbert）空间的完备性；不过读者可把“Lebesgue”替换为“Riemann”来体会其思想。
+
+令 $G$ 是复平面中单位圆上的点所成的乘法群：
+\[
+  G=\{z\in\CC\mid |z|=1\}.
+\]
+我们通常把 $G$ 看成 $\RR$ 中区间 $[0,2\pi]$ 且两端点识别，即加法群 $\RR/2\pi\ZZ$（同构为：实数 $x$ 对应复数 $e^{ix}$）。注意 $G$ 有平移不变测度，即 Lebesgue 测度，圆的测度为 $2\pi$。对有限群，计数测度是平移不变测度（所以子集 $H$ 的测度是其中元素个数 $|H|$），而关于这个计数测度的有限群上的积分只是有限和。
+
+空间
+\[
+  L^2(G)=\{f:G\to\CC\mid f\text{ 可测且 }|f|^2\text{ 在 }G\text{ 上可积}\}
+\]
+扮演无限群 $G$ 的群代数的角色。这个空间在函数卷积下成为一个带 $1$ 的交换环：对 $f,g\in L^2(G)$，乘积 $f*g:G\to\CC$ 定义为
+\[
+  (f*g)(x)=\frac1{2\pi}\int_0^{2\pi} f(x-y)g(y)\,dy,
+  \qquad x\in G.
+\]
+回忆，对有限群 $H$，群代数在形式上也是 $H$ 上复值函数所成的环，乘法为卷积；这些函数写作形式和——元素 $\sum a_g g\in\CC G$ 表示把 $g$ 送到 $a_g\in\CC$ 的函数。
+
+$G$ 到 $\GL_1(\CC)$ 的连续同态的完整集合为
+\[
+  e_n(x)=e^{inx},
+  \qquad x\in[0,2\pi],
+  \ n\in\ZZ.
+\]
+回忆，对有限 Abel 群，所有不可约表示都是 $1$ 维的；对 $1$ 维表示，特征标与表示可等同。
+
+环 $L^2(G)$ 带有 Hermitian 内积：对 $f,g\in L^2(G)$，
+\[
+  (f,g)=\frac1{2\pi}\int_0^{2\pi} f(t)\overline{g(t)}\,dt.
+\]
+在这个内积下，$\{e_n\mid n\in\ZZ\}$ 是标准正交基（这里“基”在分析意义下使用：它们线性无关，且唯一与全部这些函数正交的函数是 $0$）。此外，
+\[
+  L^2(G)=\widehat{\bigoplus_{n\in\ZZ}} E_n,
+\]
+其中 $E_n$ 是由 $e_n$ 张成的一维子空间，直和号上的帽表示在 $L^2$-拓扑中取直和的闭包，等号表示 $L^2$ 意义下的相等。回忆，有限 Abel 群的群代数是不可约一维子模的直和，每个出现重数一。这些事实蕴含 Fourier 分析中的著名结果：$[0,2\pi]$ 上每个平方可积函数 $f(x)$ 都有 Fourier 级数
+\[
+  f(x)=\sum_{n=-\infty}^{\infty} c_n e^{inx},
+\]
+其中 Fourier 系数 $c_n$ 由
+\[
+  c_n=(f,e_n)=\frac1{2\pi}\int_0^{2\pi} f(t)e^{-int}\,dt
+\]
+给出。
+
+这段简短描述说明有限群表示论如何推广到某些无限群，而我们已经证明的结果在后一背景中可能早已为人熟悉。事实上，对任意（不一定 Abel 的）紧 Lie 群也有完全类似的理论——这里不可约（复）表示不必是一维的，但它们全都是有限维的，且 $L^2(G)$ 分解为它们的直和，每个不可约表示出现的重数等于其次数。这个理论中（至少在入门层面）的重点常常在于能够把函数表示成（Fourier）级数，然后利用这些级数解决其他问题（例如求解微分方程）。底层群提供了建立这种“调和分析”的“对称性”，而不是自身成为主要研究对象。
+
+\subsection*{练习}
+
+设 $G$ 是有限群。除非另有说明，所有表示与特征标都在 $\CC$ 上。
+\begin{enumerate}[label=\arabic*.]
+  \item 证明对任意交换环上的 $n\times n$ 矩阵 $A$ 与 $B$，有 $\operatorname{tr}AB=\operatorname{tr}BA$。
+  \item 在 (a) 到 (c) 中，令 $\psi$ 是指定表示 $\varphi$ 实现的特征标。
+  \begin{enumerate}[label=(\alph*)]
+    \item 令 $\varphi$ 是第 1 节第二组例子中例 6 描述的 $D_{10}$ 的次数 $2$ 表示（这里 $n=5$），并证明 $\|\psi\|^2=1$（因此 $\varphi$ 不可约）。
+    \item 令 $\varphi$ 是第 1 节第二组例子中例 7 描述的 $Q_8$ 的次数 $2$ 表示，并证明 $\|\psi\|^2=1$（因此 $\varphi$ 不可约）。
+    \item 令 $\varphi$ 是第 1 节第二组例子中例 8 描述的 $Q_8$ 的次数 $4$ 表示，并证明 $\|\psi\|^2=4$（因此虽然 $\varphi$ 在 $\RR$ 上不可约，但在 $\CC$ 上 $\varphi$ 分解为某个次数 $2$ 不可约表示的两份）。
+  \end{enumerate}
+  \item 若 $\chi$ 是 $G$ 的不可约特征标，证明 $\CC G$-模的 $\chi$-等型子空间是唯一的。
+  \item 证明：若 $N$ 是任意不可约 $\CC G$-模，且 $M=N\oplus N$，则 $M$ 有无限多种分解为两个 $N$ 的直和的方式。
+  \item 证明类函数是特征标，当且仅当它是不可约特征标的正整数线性组合。
+  \item 设 $\varphi:G\to\GL(V)$ 是特征标为 $\psi$ 的表示。令 $W=\{v\in V\mid \varphi(g)(v)=v\text{ 对所有 }g\in G\}$，即 $V$ 中被 $G$ 的所有元素逐点固定的子空间。证明 $\dim W=(\psi,\chi_1)$，其中 $\chi_1$ 是 $G$ 的主特征标。
+  \item 假设 $V$ 是 $\CC G$-模，$G$ 通过置换基 $\mathcal B=\{e_1,
+  \ldots,e_n\}$ 作用在 $V$ 上。把 $\mathcal B$ 写成 $G$ 在 $\mathcal B$ 上的轨道的不交并 $\mathcal B_1,
+  \ldots,\mathcal B_t$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明作为 $\CC G$-模，$V$ 分解为 $V_1\oplus\cdots\oplus V_t$，其中 $V_i$ 是 $\mathcal B_i$ 的张成空间。
+    \item 证明若 $v_i$ 是 $\mathcal B_i$ 中向量之和，则由 $v_i$ 张成的一维子空间是 $V_i$ 中唯一实现平凡表示的 $\CC G$-子模（换言之，$V_i$ 中任意在 $G$ 作用下固定的向量都是 $v_i$ 的倍数）。[用 $G$ 在 $\mathcal B_i$ 上传递这一事实。也见第 1 节练习 8。]
+    \item 令 $W=\{v\in V\mid \varphi(g)(v)=v\text{ 对所有 }g\in G\}$ 为 $V$ 中被 $G$ 所有元素逐点固定的子空间。推出 $\dim W=t$，即 $G$ 在 $\mathcal B$ 上的轨道个数。
+  \end{enumerate}
+  \item 证明如下结果（有时称为 Burnside 引理，虽然其起源归于 Frobenius）：设 $G$ 是 $S_n$ 的子群，对每个 $\sigma\in G$，令 $\operatorname{Fix}(\sigma)$ 表示 $\sigma$ 在 $\{1,
+  \ldots,n\}$ 上的固定点个数。令 $t$ 是 $G$ 在 $\{1,
+  \ldots,n\}$ 上的轨道个数。则
+  \[
+    t|G|=\sum_{g\in G}\operatorname{Fix}(g).
+  \]
+  [用前两个练习。]
+  \item 令 $G$ 是有限集合 $\Omega$ 上一个非平凡传递置换群，令 $\psi$ 是由 $\Omega$ 得到的复线性表示所实现的特征标（参见第 1 节例 4），所以 $\psi(\sigma)$ 是 $\sigma$ 在 $\Omega$ 上的固定点个数。现在令 $G$ 作用在 $\Omega\times\Omega$ 上：
+  \[
+    g(\omega_1,
+    \omega_2)=(g\cdot\omega_1,
+    g\cdot\omega_2),
+  \]
+  并令 $\pi$ 是由这个作用得到的线性表示所实现的特征标。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\pi=\psi^2$。
+    \item 证明 $G$ 在 $\Omega\times\Omega$ 上的轨道个数由内积 $(\psi,
+    \psi)$ 给出。[由前面练习，$\Omega\times\Omega$ 上的轨道个数等于 $(\pi,
+    \chi_1)$，其中 $\chi_1$ 是主特征标。]
+    \item 回忆，若 $G$ 在 $\Omega\times\Omega$ 上的作用恰有 $2$ 个轨道，则称 $G$ 在 $\Omega$ 上是二重传递的（它总是至少有 $2$ 个轨道，因为对角线 $\{(\omega,
+    \omega)\mid \omega\in\Omega\}$ 是一个轨道）。证明若 $G$ 在 $\Omega$ 上二重传递，则 $\psi=\chi_1+\chi_2$，其中 $\chi_1$ 是主特征标，$\chi_2$ 是 $G$ 的一个非主不可约特征标。
+    \item 令 $\Omega=\{1,2,
+    \ldots,n\}$，令 $G=S_n$ 以自然方式作用在 $\Omega$ 上。说明相应线性表示的特征标分解为主特征标加上一个次数 $n-1$ 的不可约特征标。
+  \end{enumerate}
+  \item 令 $\psi$ 是群 $G$ 的任意二维表示的特征标，令 $x$ 是 $G$ 中阶为 $2$ 的元素。证明 $\psi(x)=2,0$ 或 $-2$。把这个结论推广到 $n$ 维表示。
+  \item 令 $\chi$ 是 $G$ 的一个不可约特征标。证明对 $G$ 中心中的每个元素 $z$，都有 $\chi(z)=\epsilon\chi(1)$，其中 $\epsilon$ 是某个单位根。[用 Schur 引理。]
+  \item 令 $\psi$ 是 $G$ 的某个表示 $\varphi$ 的特征标。证明对 $g\in G$，以下成立：
+  \begin{enumerate}[label=(\alph*)]
+    \item 若 $\psi(g)=\psi(1)$，则 $g\in\ker\varphi$；
+    \item 若 $|\psi(g)|=\psi(1)$ 且 $\varphi$ 忠实，则 $g\in Z(G)$（这里 $|\psi(g)|$ 是复绝对值）。[用命题 14 证明的方法。]
+  \end{enumerate}
+  \item 设 $\varphi:G\to\GL(V)$ 是表示，$\chi:G\to\CC^\times$ 是次数 $1$ 表示。证明 $\chi\varphi:G\to\GL(V)$ 定义为 $(\chi\varphi)(g)=\chi(g)\varphi(g)$ 是表示（注意用复数 $\chi(g)$ 乘线性变换 $\varphi(g)$ 是良定义的）。证明 $\chi\varphi$ 不可约当且仅当 $\varphi$ 不可约。若 $\psi$ 是由 $\varphi$ 实现的特征标，证明 $\chi\psi$ 是由 $\chi\varphi$ 实现的特征标。推出任一不可约特征标与次数 $1$ 特征标的乘积仍是不可约特征标。
+\end{enumerate}
+
+接下来的若干练习研究代数共轭特征标的概念。这些练习可看作命题 14 的推广及其若干推论。特别地，我们得到一个群论刻画，说明何时群的所有不可约特征标都取值于 $\QQ$。
+
+令 $F$ 为 $\CC$ 中所有在 $\QQ$ 上代数的元素所成的子域（代数数域）。因此 $F$ 是包含于 $\CC$ 的 $\QQ$ 的代数闭包，所有在 $\CC$ 上建立的结果在 $F$ 上不加改变地成立。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 注意由于 $F\subseteq\CC$，每个表示 $\varphi:G\to\GL_m(F)$ 也可看作复表示。证明若 $\varphi$ 是 $F$ 上不可约的表示，则把它看作较大域 $\CC$ 上表示时仍不可约（注意若 $F$ 不是代数闭的这不成立——参见上面练习 2(c)）。说明 $G$ 在 $F$ 上的不可约特征标集合与在 $\CC$ 上的不可约特征标集合相同（即它们作为 $G$ 上类函数完全是同一集合）。推出每个复表示都等价于一个在 $F$ 上的表示。[由于 $F$ 和 $\CC$ 都是特征为 $0$ 的代数闭域，其不可约特征标都由第一正交关系刻画。]
+\end{enumerate}
+
+令 $\varphi:G\to\GL_m(F)$ 是任意表示，特征标为 $\psi$。令 $\QQ(\varphi)$ 表示由所有矩阵 $\varphi(g)$（$g\in G$）的所有项生成的 $F$ 的子域。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明 $\QQ(\varphi)$ 是 $\QQ$ 的有限扩张。
+\end{enumerate}
+
+现在令 $K$ 是包含 $\QQ(\varphi)$ 的 $\QQ$ 的任意 Galois 扩张，令 $\sigma\in\Gal(K/\QQ)$。事实上，由于 $K$ 的每个自同构都延拓为 $F$ 的自同构，我们可假设 $\sigma$ 是 $F$ 的任意自同构。定义映射 $\varphi^\sigma:G\to\GL_n(F)$，令 $\varphi^\sigma(g)$ 是对矩阵 $\varphi(g)$ 的每个项施加域自同构 $\sigma$ 得到的 $n\times n$ 矩阵。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明 $\varphi^\sigma$ 是表示。还证明 $\varphi^\sigma$ 的特征标为 $\psi^\sigma$，其中 $\psi^\sigma(g)=\sigma(\psi(g))$。
+  \item 证明 $\varphi$ 不可约当且仅当 $\varphi^\sigma$ 不可约。
+\end{enumerate}
+表示 $\varphi^\sigma$（或特征标 $\psi^\sigma$）称为 $\varphi$（或 $\psi$）在 $\sigma$ 下的\emph{代数共轭}；若存在 $F$ 的某个自同构 $\sigma$ 使得 $\varphi_1^\sigma=\varphi_2$（或 $\psi_1^\sigma=\psi_2$），则称两个表示 $\varphi_1,
+\varphi_2$（或特征标 $\psi_1,
+\psi_2$）代数共轭。这里需要注意这个标准记号，因为指数记号通常表示右作用，而 $F$ 的自同构在表示上是左作用：$\varphi^{\sigma\tau}=(\varphi^\tau)^\sigma$。
+
+令 $\QQ(\psi)$ 是由所有 $\psi(g)$（$g\in G$）生成的 $F$ 的子域。令 $|G|=n$，令 $\epsilon$ 是 $F$ 中一个本原 $n$ 次单位根。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明 $\QQ(\psi)\subseteq\QQ(\epsilon)$。推出 $\QQ(\psi)$ 是 $\QQ$ 的 Galois 扩张，且其 Galois 群是 Abel 群。[见命题 14。]
+\end{enumerate}
+
+回忆第 14.5 节，$\Gal(\QQ(\epsilon)/\QQ)\cong(\ZZ/n\ZZ)^\times$，其 Galois 自同构由生成元 $\epsilon$ 上的作用给出：$\sigma_a:\epsilon\mapsto\epsilon^a$，其中 $a$ 是与 $n$ 互素的整数。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明：若 $\sigma_a\in\Gal(\QQ(\epsilon)/\QQ)$ 是上面定义的域自同构，则对所有 $g\in G$，有 $\psi^{\sigma_a}(g)=\psi(g^a)$。[用命题 14 的方法。]
+  \item 证明：若 $g\in G$ 与 $g^a$ 对所有与 $n$ 互素的整数 $a$ 都共轭，则对 $G$ 的每个特征标 $\psi$，都有 $\psi(g)\in\QQ$。[用前一练习与 $\QQ$ 是所有 $\sigma_a$ 的不动域这一事实。]
+  \item 证明：元素 $g\in G$ 与 $g^a$ 对所有与 $|G|$ 互素的整数 $a$ 共轭，当且仅当 $g$ 与 $g^{a'}$ 对所有与 $|g|$ 互素的整数 $a'$ 共轭。
+  \item 说明对任意正整数 $n$，对称群 $S_n$ 的每个特征标都是有理值的（即对所有 $g\in S_n$ 与 $S_n$ 的所有特征标 $\psi$，都有 $\psi(g)\in\QQ$）。
+\end{enumerate}
+
+接下来两个练习建立练习 20 的逆命题。
+\begin{enumerate}[label=\arabic*.,resume]
+  \item 证明：群 $G$ 中元素 $x$ 与 $y$ 共轭，当且仅当对 $G$ 的所有不可约特征标 $\chi$，都有 $\chi(x)=\chi(y)$。
+  \item 设 $g\in G$，并假设 $G$ 的每个不可约特征标在 $g$ 上都取有理值。证明对每个与 $|G|$ 互素的整数 $a$，$g$ 与 $g^a$ 共轭。[若对某个与 $|G|$ 互素的 $a$，$g$ 与 $g^a$ 不共轭，则由前一练习存在不可约特征标 $\chi$ 使得 $\chi(g)\neq\chi(g^a)$。由假设 $\chi(g)\in\QQ$ 推出矛盾。]
+  \item 描述 $n$ 阶循环群的哪些不可约特征标彼此代数共轭。
+  \item 证明 $Q_8$ 和 $D_8$ 的每个不可约特征标都是有理值的。证明 $D_{10}$ 有一个不可约特征标不是有理值的。
+  \item 令 $G=H\times K$，令 $\varphi:H\to\GL(V)$ 是 $H$ 的不可约表示，特征标为 $\chi$。则 $G\to H\to\GL(V)$ 给出 $G$ 的不可约表示，其中第一个映射是自然投影 $\pi_H$；该表示的特征标 $\widetilde\chi$ 满足
+  \[
+    \widetilde\chi((h,k))=\chi(h).
+  \]
+  同样，$K$ 的任一不可约特征标 $\psi$ 给出 $G$ 的不可约特征标 $\widetilde\psi$，其中
+  \[
+    \widetilde\psi((h,k))=\psi(k).
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明乘积 $\widetilde\chi\widetilde\psi$ 是 $G$ 的不可约特征标。[证明其范数为 $1$。]
+    \item 证明 $G$ 的每个不可约特征标都由直因子的不可约特征标的这种乘积得到。[用定理 10 的 (3) 或 (4)。]
+  \end{enumerate}
+  \item （$\GL_2(\QQ)$ 的有限子群）设 $G$ 是 $\GL_2(\QQ)$ 的有限子群。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $\GL_2(\QQ)$ 不含阶为 $n$ 的元素，其中 $n=5,7$ 或 $n\geq9$。推出 $|G|=2^a3^b$。[用有理标准形。]
+    \item 说明 Klein 四元群是 $\GL_2(\QQ)$ 中唯一的非循环 Abel 子群。由此和 (a) 推出 $|G|\mid24$。
+    \item 说明 $\GL_2(\QQ)$ 的有限子群只有阶为 $1,2,3,4,6$ 的循环群、Klein 四元群，以及阶为 $6,8,12$ 的二面体群。[用第 4.5 节中小阶群分类与第 1 节练习 10 把 $G$ 限定在此列表中。反过来说明列表中每个群都有一个二维忠实有理表示。]
+  \end{enumerate}
+\end{enumerate}
+

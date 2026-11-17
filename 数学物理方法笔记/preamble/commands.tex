@@ -1,0 +1,86 @@
+% preamble/commands.tex
+% 数学物理方法笔记 —— 自定义命令
+
+% ── 文本颜色 ──
+\newcommand{\red}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}}
+\newcommand{\darkblue}[1]{\textcolor[rgb]{0.00,0.00,0.50}{#1}}
+\newcommand{\darkgreen}[1]{\textcolor[rgb]{0.00,0.37,0.00}{#1}}
+\newcommand{\darkred}[1]{\textcolor[rgb]{0.60,0.00,0.00}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.50,0.30,0.00}{#1}}
+\newcommand{\purple}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+
+% ── 常用数学字体 ──
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\D}{\mathbb{D}}
+
+% ── 微分（\dd 由 physics 提供）──
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+
+% ── 内积（\abs, \norm 由 physics 提供）──
+\newcommand{\bkt}[1]{\left\langle #1 \right\rangle}
+
+% ── 向量 ──
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}
+\newcommand{\z}{\boldsymbol{z}}
+
+% ── 虚数单位 ──
+\newcommand{\iu}{{i\mkern1mu}}
+
+% ── 复分析专用 ──
+\newcommand{\RePart}[1]{\operatorname{Re}#1}
+\newcommand{\ImPart}[1]{\operatorname{Im}#1}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\Log}{\operatorname{Log}}
+% \Res 由 physics 宏包提供
+\newcommand{\Ind}{\operatorname{Ind}}
+
+% ── 积分号 ──
+\newcommand{\ointc}{\oint\limits}
+
+% ── 分析基础 ──
+\newcommand{\eps}{\varepsilon}
+\newcommand{\lime}{\lim_{\eps\to 0^+}}
+
+% ── 微分算子（\laplacian, \grad, \curl 由 physics 提供）──
+\newcommand{\diver}{\nabla\cdot}
+
+% ── 变换 ──
+\newcommand{\Fourier}{\mathcal{F}}
+\newcommand{\invFourier}{\mathcal{F}^{-1}}
+\newcommand{\Laplace}{\mathcal{L}}
+\newcommand{\invLaplace}{\mathcal{L}^{-1}}
+
+% ── 特殊函数 ──
+\newcommand{\BesselJ}{J}
+\newcommand{\BesselN}{N}
+\newcommand{\BesselH}{H}
+\newcommand{\LegendreP}{P}
+\newcommand{\LegendreQ}{Q}
+\newcommand{\LegendreAssoc}{P_{\ell}^{m}}
+
+% ── δ 函数 ──
+\newcommand{\deltaD}{\delta}
+\newcommand{\Heaviside}{\Theta}
+
+% ── Sturm-Liouville ──
+\newcommand{\SL}{Sturm-Liouville}
+
+% ── 方程组 ──
+\newcommand{\sys}[1]{\begin{cases}#1\end{cases}}
+
+% ── Green 函数 ──
+\newcommand{\Green}{G}
+
+% ── 泛函变分（\var, \fdv 由 physics 提供）──

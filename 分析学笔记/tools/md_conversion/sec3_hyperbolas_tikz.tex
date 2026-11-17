@@ -1,0 +1,25 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{ctex,amsmath,amssymb,tikz}
+\usetikzlibrary{arrows.meta,positioning,patterns,calc,decorations.pathreplacing}
+\begin{document}
+% xy=p、xy=q、y=ax、y=bx 围成的第一象限区域。
+\begin{tikzpicture}[>=Stealth,font=\small,scale=1.05]
+  \draw[->] (0,0) -- (3.75,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,3.55) node[above] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[gray!12]
+    (.816497,1.224745)
+    plot[domain=.816497:1.490712,samples=35] (\x,{1/\x})
+    -- (2.260777,1.017350)
+    plot[domain=2.260777:1.238278,samples=35] (\x,{2.3/\x})
+    -- cycle;
+  \draw[domain=.35:3.4,samples=60] plot (\x,{1/\x});
+  \draw[domain=.72:3.5,samples=60] plot (\x,{2.3/\x});
+  \draw (0,0) -- (3.35,1.5075) node[right] {$y=ax$};
+  \draw (0,0) -- (2.15,3.225) node[above] {$y=bx$};
+  \node[right] at (3.42,.28) {$xy=p$};
+  \node[right] at (3.5,.7) {$xy=q$};
+  \node at (1.45,1.2) {$D$};
+\end{tikzpicture}
+
+\end{document}

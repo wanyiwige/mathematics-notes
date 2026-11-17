@@ -1,0 +1,3904 @@
+% !TEX root = ../../main.tex
+%\setchapterimage{figure/chapter5封面图.jpg}
+\setchapterintro{}
+\chapter{线性变换以及相似理论}
+
+\section{不变子空间}
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l8}
+	设 $T\in\End(V)$，$W$ 是 $V$ 的子空间.若对任意 $\alpha\in W$，都有
+	\[
+	T(\alpha)\in W,
+	\]
+	则称 $W$ 是 $T$ 的一个不变子空间，或称 $W$ 是 $V$ 的一个 $T$-子空间.
+	
+	若 $W$ 是一个 $T$-子空间，则有线性变换 $T|_W\in\End(W)$：
+	\[
+	W\ni\alpha\longmapsto T(\alpha)\in W.
+	\]
+	称 $T|_W$ 为 $T$ 在 $W$ 上的限制.
+\end{definition}
+
+\phantomsection\label{p1:concept:c5-l22}对于 $T\in\End(V)$，显然地 $0,V$ 是 $T$-子空间，称为 $T$ 的平凡不变子空间.
+注意：一个线性映射可能没有任何非平凡不变子空间，如 $\mathbb{R}^2$ 上的旋转.
+
+\begin{proposition}
+	设 $T\in\End(V)$，则 $\ker T$ 与 $\Im T$ 是 $T$-子空间.
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}
+	\item 对任意 $\alpha\in\ker T$，有
+	\[
+	T\alpha=0\in\ker T,
+	\]
+	故 $T|_{\ker T}=0$.
+	
+	\item 对任意 $\beta\in\Im T$，有
+	\[
+	T(\beta)\in\Im T,
+	\]
+	故 $T|_{\Im T}=T$.
+\end{enumerate}
+\end{proof}
+
+
+\begin{corollary}
+设 $T\in\End(V)$，$f\in\F[x]$，则 $\ker f(T)$ 与 $\Im f(T)$ 是 $T$-子空间.
+\end{corollary}
+
+\begin{example}
+设 $T\in\End(V)$.若 $W_1,W_2$ 是 $T$-子空间，则 $W_1\cap W_2$ 与 $W_1+W_2$ 仍是 $T$-子空间.
+\end{example}
+
+\begin{example}
+设 $T\in\End(V)$，$\alpha\in V$，则
+\[
+\langle \alpha,T\alpha,T^2\alpha,\cdots,T^n\alpha,\cdots\rangle
+\]
+\phantomsection\label{p1:concept:c5-l59}是一个 $T$-子空间，称为 Krylov 空间，或循环子空间.
+\end{example}
+
+\begin{example}
+设 $S,T\in\End(V)$ 且 $ST=TS$，则 $\ker S$ 与 $\Im S$ 是 $T$-子空间.
+\end{example}
+
+\begin{proof}
+对任意 $\alpha\in\ker S$，有
+\[
+S(T\alpha)=TS(\alpha)=0,
+\]
+故 $T\alpha\in\ker S$.对任意 $\beta\in\Im S$，存在 $\alpha\in V$ 使得 $S(\alpha)=\beta$，于是
+\[
+T\beta=TS(\alpha)=ST(\alpha)\in\Im S.
+\]
+\end{proof}
+
+\begin{example}
+设 $T\in\End(V)$，$f\in\F[x]$，令
+\[
+S=T|_{\ker f(T)}.
+\]
+问 $S$ 的零化多项式.
+\end{example}
+
+\begin{proof}
+对任意 $\alpha\in\ker f(T)$，有
+\[
+f(T)(\alpha)=0.
+\]
+于是
+\[
+f(S)(\alpha)=f\bigl(T|_{\ker f(T)}\bigr)(\alpha)=f(T)(\alpha)=0.
+\]
+故 $f(S)=0$.
+\end{proof}
+
+\begin{example}
+设 $f=f_1\cdots f_s$，其中 $f_1,\cdots,f_s$ 两两互素.若 $f(T)=0$，则
+\[
+V=\ker f_1(T)\oplus\cdots\oplus\ker f_s(T).
+\]
+因此 $V$ 是 $s$ 个不变子空间的直和.
+\end{example}
+
+\begin{proposition}
+设 $T\in\End(V)$，且
+\[
+V=V_1\oplus\cdots\oplus V_s,
+\]
+其中 $V_i$ 是 $T$-子空间.设 $T|_{V_i}$ 的极小多项式为 $m_i(x)$，则 $T$ 的极小多项式为
+\[
+[m_1(x),\cdots,m_s(x)].
+\]
+\end{proposition}
+
+\begin{proof}
+令
+\[
+f(x)=[m_1(x),\cdots,m_s(x)],
+\qquad
+f(x)=m_i(x)h_i(x),\quad 1\leq i\leq s.
+\]
+对任意 $\beta_i\in V_i$，都有
+\[
+\begin{aligned}
+	f(T)(\beta_i)
+	&=h_i(T)m_i(T)(\beta_i)\\
+	&=h_i(T)m_i\bigl(T|_{V_i}\bigr)(\beta_i)=0.
+\end{aligned}
+\]
+对任意 $\alpha\in V$，存在唯一的 $\alpha_i\in V_i$，使得
+\[
+\alpha=\alpha_1+\cdots+\alpha_s.
+\]
+于是
+\[
+f(T)(\alpha)=f(T)(\alpha_1)+\cdots+f(T)(\alpha_s)=0.
+\]
+故 $f$ 是 $T$ 的零化多项式.
+
+设 $m(x)$ 是 $T$ 的极小多项式.由 $f(T)=0$，得 $m\mid f$.又对任意 $\gamma_i\in V_i$，有
+\[
+0=m(T)(\gamma_i)=m\bigl(T|_{V_i}\bigr)(\gamma_i),
+\]
+故 $m_i(x)\mid m(x)$，$1\leq i\leq s$，从而
+\[
+[m_1(x),\cdots,m_s(x)]\mid m(x).
+\]
+因此 $m=f$.
+\end{proof}
+\section{特征子空间、特征值、特征向量}
+
+先看一个最基本的例子.设 $T\in\End(V)$，$a\in\F$，令
+\[
+V_a=\{\gamma\in V:T\gamma=a\gamma\}.
+\]
+显然
+\[
+V_a=\ker(T-a\id_V),
+\]
+故 $V_a$ 是 $V$ 的一个子空间.并且 $V_a$ 是 $T$-子空间，因为若 $\gamma\in V_a$，则
+\[
+T(T\gamma)=T(a\gamma)=aT\gamma,
+\]
+所以 $T\gamma\in V_a$.同时
+\[
+T|_{V_a}=a\id_{V_a},
+\]
+即 $T$ 在 $V_a$ 上就是数乘变换.
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l171}
+	设 $T\in\End(V)$，$a\in\F$.若
+	\[
+	V_a=\ker(T-a\id_V)\neq0,
+	\]
+	则称 $a$ 为 $T$ 的一个特征值，称 $V_a$ 为 $T$ 属于特征值 $a$ 的特征子空间.$V_a$ 中的非零向量称为 $T$ 属于特征值 $a$ 的特征向量.
+	
+	若 $\dim V_a<\infty$，则称
+	\[
+	\dim V_a
+	\]
+	为特征值 $a$ 的几何重数.
+\end{definition}
+
+注意：$0$ 不称为特征向量.严格说，属于 $a$ 的特征向量全体为 $V_a\setminus\{0\}$.当 $\F$ 为无限域时，一个特征值若存在，则有无穷多个特征向量.
+
+另外一个特征向量只能属于一个特征值
+
+	设 $T\in\End(V)$，$a,b\in\F$，且 $a\neq b$.若 $\xi$ 同时属于特征值 $a,b$
+
+则$T\xi=a\xi$ 且 $T\xi=b\xi$，则
+	\[
+	(a-b)\xi=0.
+	\]
+	由 $a-b\neq0$，得 $\xi=0$.
+
+从而
+\[
+V_a\cap V_b=0.\text{且}V_a + V_b \text{是直和}
+\]
+
+\begin{proposition}
+	设 $T\in\End(V)$，$a_1,\cdots,a_s\in\F$ 是 $T$ 的互不相同的特征值，则
+	\[
+	V_{a_1}+\cdots+V_{a_s}
+	\]
+	是直和.
+\end{proposition}
+
+\begin{proof}
+	设
+	\[
+	0=\xi_1+\cdots+\xi_s,\qquad \xi_i\in V_{a_i}.
+	\]
+	对上式依次作用 $T^k$，$k=0,1,\cdots,s-1$，得
+	\[
+	\sum_{i=1}^s a_i^k\xi_i=0,
+	\qquad k=0,1,\cdots,s-1.
+	\]
+	即
+	\[
+	\begin{pmatrix}
+		1&1&\cdots&1\\
+		a_1&a_2&\cdots&a_s\\
+		\vdots&\vdots&&\vdots\\
+		a_1^{s-1}&a_2^{s-1}&\cdots&a_s^{s-1}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\xi_1\\ \xi_2\\ \vdots\\ \xi_s
+	\end{pmatrix}
+	=0.
+	\]
+	左边的 Vandermonde 矩阵行列式为
+	\[
+	\prod_{1\leq i<j\leq s}(a_j-a_i)\neq0,
+	\]
+	故 $\xi_1=\cdots=\xi_s=0$.因此和为直和.
+\end{proof}
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l241}
+	若 $V$ 可以分解为 $T$ 的特征子空间的直和，即存在互不相同的特征值 $a_1,\cdots,a_s$，使得
+	\[
+	V=V_{a_1}\oplus\cdots\oplus V_{a_s},
+	\]
+	则称 $T$ 可以对角化，或称 $T$ 是可对角化的.
+\end{definition}
+后面我们将证明，可对角化等价于可以取到一组基，使得 $T$ 的矩阵为对角矩阵.也即：
+
+若 $\xi_{i1},\cdots,\xi_{it_i}$ 是 $V_{a_i}$ 的一组基，则
+\[
+\xi_{11},\cdots,\xi_{1t_1},\xi_{21},\cdots,\xi_{2t_2},\cdots,
+\xi_{s1},\cdots,\xi_{st_s}
+\]
+是 $V$ 的一组基，且 $T$ 在这组基下的矩阵为
+\[
+\begin{pmatrix}
+	a_1I_{t_1}&&&0\\
+	&a_2I_{t_2}&&\\
+	&&\ddots&\\
+	0&&&a_sI_{t_s}
+\end{pmatrix}.
+\]
+
+
+
+
+
+\begin{example}
+	设 $f\in\F[x]$，定义
+	\[
+	T:\F[x]\longrightarrow\F[x],\qquad g\longmapsto fg.
+	\]
+	若 $f$ 不是常数多项式，则 $T$ 没有特征值.
+\end{example}
+
+\begin{proof}
+	若 $Tg=ag$，则
+	\[
+	fg=ag\rightarrow f = a
+	\]
+	
+\end{proof}
+
+\begin{example}
+	设
+	\[
+	T\binom{x}{y}=\binom{y}{-x}.
+	\]
+	在 $\mathbb{R}^2$ 上，$T$ 没有特征值；在 $\mathbb{C}^2$ 上，$T$ 有特征值 $i,-i$，并且
+	\[
+	V_i=\left\langle\binom{1}{i}\right\rangle,
+	\qquad
+	V_{-i}=\left\langle\binom{1}{-i}\right\rangle.
+	\]
+\end{example}
+
+\begin{proof}
+	若在 $\mathbb{R}^2$ 中有
+	\[
+	\binom{y}{-x}=a\binom{x}{y},
+	\]
+	则
+	\[
+	\begin{cases}
+		y=ax,\\
+		-x=ay.
+	\end{cases}
+	\]
+	故 $(a^2+1)x=0$，进而 $x=y=0$，矛盾.因此在 $\mathbb{R}^2$ 中无特征值.在 $\mathbb{C}^2$ 中直接代入可得 $i,-i$.
+\end{proof}
+
+\begin{example}
+	令
+	\[
+	T\in\End(M_n(\F)),
+	\qquad T(A)=A'.
+	\]
+	则 $T$ 的特征值为 $1,-1$，且
+	\[
+	V_1=S_n=\{A\in M_n(\F):A'=A\},
+	\]
+	\[
+	V_{-1}=A_n=\{A\in M_n(\F):A'=-A\}.
+	\]
+	并且
+	\[
+	M_n(\F)=S_n\oplus A_n.
+	\]
+\end{example}
+\begin{corollary}
+	设 $T\in\End(V)$，$a_1,\cdots,a_s\in\F$ 是 $T$ 的互不相同的特征值
+	, $\xi_{i1},\cdots,\xi_{it_i}$ 是 $V_{a_i}$ 的一组基，则
+	\[
+	\xi_{11},\cdots,\xi_{1t_1},\xi_{21},\cdots,\xi_{2t_2},\cdots,
+	\xi_{s1},\cdots,\xi_{st_s}
+	\]
+	是 $V=V_{a_1}\oplus\cdots\oplus V_{a_s}$ 的一组基
+\end{corollary}
+\begin{corollary}
+	有限维线性空间上的任意线性变换至多有有限个特征值
+\end{corollary}
+无限维情形中，特征值可以有无穷多个.例如在 $C^\infty(a,b)$ 上令
+\[
+D=\frac{d}{dx},
+\]
+则对任意 $\lambda\in\F$，都有
+\[
+D(e^{\lambda x})=\lambda e^{\lambda x},
+\]
+故 $\lambda$ 是 $D$ 的特征值.
+
+\begin{lemma}
+	设 $T\in\End(V)$，$a$ 是 $T$ 的一个特征值，$\xi\in V_a$，$f(x)\in\F[x]$.则
+	\[
+	f(T)\xi=f(a)\xi.
+	\]
+	特别地，若 $\xi\neq0$，则 $\xi$ 也是 $f(T)$ 属于特征值 $f(a)$ 的特征向量.
+\end{lemma}
+
+\begin{proof}
+	由 $T\xi=a\xi$ 可得
+	\[
+	T^k\xi=a^k\xi,
+	\qquad k\geq0.
+	\]
+	若 $f(x)=c_0+c_1x+\cdots+c_rx^r$，则
+	\[
+	f(T)\xi=\sum_{k=0}^r c_kT^k\xi
+	=\sum_{k=0}^r c_ka^k\xi=f(a)\xi.
+	\]
+\end{proof}
+
+反过来，$f(T)$ 的特征向量不一定都是 $T$ 的特征向量.
+
+\begin{example}
+	在 $C^\infty(a,b)$ 上令
+	\[
+	L=\frac{d^2}{dx^2}+p\frac{d}{dx}+qI,
+	\qquad p,q\in\mathbb{R}.
+	\]
+	对任意 $\lambda\in\mathbb{R}$，有
+	\[
+	L(e^{\lambda x})=(\lambda^2+p\lambda+q)e^{\lambda x}.
+	\]
+	因此 $e^{\lambda x}$ 是 $L$ 的特征向量，对应特征值为
+	\[
+	\lambda^2+p\lambda+q.
+	\]
+\end{example}
+
+\begin{example}
+	令
+	\[
+	T:M_n(\F)\longrightarrow M_n(\F),
+	\qquad T(A)=A'-aA.
+	\]
+	记 $T_0(A)=A'$，则 $T=T_0-aid
+	$.由上引理可知，$T$ 的特征值为
+	\[
+	1-a,
+	\qquad -1-a,
+	\]
+	其特征子空间分别为 $S_n$ 与 $A_n$.
+\end{example}
+
+\begin{lemma}
+	设 $T\in\End(V)$，$a_1,\cdots,a_s$ 是 $T$ 的互不相同的特征值.若 $W$ 是 $V$ 的一个 $T$-子空间，则
+	\[
+	W\cap(V_{a_1}\oplus\cdots\oplus V_{a_s})
+	=(W\cap V_{a_1})\oplus\cdots\oplus(W\cap V_{a_s}).
+	\]
+\end{lemma}
+
+\begin{proof}
+	只需证左边包含于右边.任取
+	\[
+	\alpha\in W\cap(V_{a_1}\oplus\cdots\oplus V_{a_s}),
+	\qquad
+	\alpha=\alpha_1+\cdots+\alpha_s,
+	\quad \alpha_i\in V_{a_i}.
+	\]
+	因 $W$ 是 $T$-子空间，$T^k\alpha\in W$，$k=0,1,\cdots,s-1$.又
+	\[
+	\begin{pmatrix}
+		\alpha\\ T\alpha\\ \vdots\\ T^{s-1}\alpha
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1&1&\cdots&1\\
+		a_1&a_2&\cdots&a_s\\
+		\vdots&\vdots&&\vdots\\
+		a_1^{s-1}&a_2^{s-1}&\cdots&a_s^{s-1}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\alpha_1\\ \alpha_2\\ \vdots\\ \alpha_s
+	\end{pmatrix}.
+	\]
+	Vandermonde 矩阵可逆，故每个 $\alpha_i$ 都是 $\alpha,T\alpha,\cdots,T^{s-1}\alpha$ 的线性组合，从而 $\alpha_i\in W$.于是 $\alpha_i\in W\cap V_{a_i}$.
+\end{proof}
+
+\begin{corollary}
+	若 $T\in\End(V)$ 可对角化，且 $W$ 是 $V$ 的一个 $T$-子空间，则 $T|_W$ 也可对角化.
+\end{corollary}
+
+\begin{proof}
+	设
+	\[
+	V=V_{a_1}\oplus\cdots\oplus V_{a_s}.
+	\]
+	由上一个引理，
+	\[
+	W=W\cap V=(W\cap V_{a_1})\oplus\cdots\oplus(W\cap V_{a_s}).
+	\]
+	而每个非零的 $W\cap V_{a_i}$ 都是 $T|_W$ 的特征子空间，故 $T|_W$ 可对角化.
+\end{proof}
+\begin{example}
+	设 $T \in \End(V)$ 可对角化，且 $\dim V = n$，且 $T$ 的每个特征子空间都是1维的.求 $T$ 的全部不变子空间的个数.
+	
+	
+\end{example}
+\begin{solution}
+	\begin{align*}
+		& \text{有 } n \text{ 个特征子空间}. \\
+		& \text{任取 } k \text{ 个求和 } \mathrm{C}_n^k \Rightarrow \sum_{k=0}^n \mathrm{C}_n^k = 2^n. \\
+		& \text{再证没有别的不变子空间}. \\
+		& \forall W \text{，证明 } W \text{ 可由特征子空间和出：} \\
+		W &= W \cap V = W \cap (V_{\lambda_1} \oplus \cdots \oplus V_{\lambda_n}) \\
+		&= W \cap V_{\lambda_1} \oplus \cdots \oplus W \cap V_{\lambda_n}
+	\end{align*}
+	故 $W$ 是这些交的直和，因此只能是若干特征子空间的直和，个数为 $2^n$.
+\end{solution}
+
+
+\begin{example}
+	设 $S,T\in\End(V)$ 且 $ST=TS$.若 $a$ 是 $S$ 的特征值，则 $S$ 的特征子空间
+	\[
+	V_a(S)=\ker(S-aI)
+	\]
+	是 $T$-子空间.
+\end{example}
+
+\begin{proof}
+	任取 $\xi\in V_a(S)$，则
+	\[
+	S(T\xi)=T(S\xi)=T(a\xi)=aT\xi.
+	\]
+	故 $T\xi\in V_a(S)$.
+\end{proof}
+
+\section{方阵特征多项式与三角化}
+
+这一节讨论方阵特征值、特征向量、特征多项式以及不变子空间和矩阵形状之间的关系.
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l495}
+	设 $A\in M_n(\F)$.称
+	\[
+	f_A(\lambda)=\det(\lambda E_n-A)
+	\]
+	为 $A$ 的特征多项式.若 $a\in\F$，则
+	\[
+	a\text{ 是 }A\text{ 的特征值}
+	\Longleftrightarrow
+	\mathcal N(A-aE_n)\neq0
+	\Longleftrightarrow
+	\det(aE_n-A)=0.
+	\]
+	特征值 $a$ 作为 $f_A(\lambda)$ 的根的重数称为 $a$ 的代数重数.
+\end{definition}
+
+若 $A=(a_{ij})$，则
+\[
+f_A(\lambda)=
+\begin{vmatrix}
+	\lambda-a_{11}&-a_{12}&\cdots&-a_{1n}\\
+	-a_{21}&\lambda-a_{22}&\cdots&-a_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	-a_{n1}&-a_{n2}&\cdots&\lambda-a_{nn}
+\end{vmatrix}.
+\]
+因此 $f_A(\lambda)$ 是一个关于 $\lambda$ 的 $n$ 次首一多项式，并且
+\[
+f_A(\lambda)=\lambda^n-\operatorname{tr}(A)\lambda^{n-1}+\cdots+(-1)^n\det A.
+\]
+
+若 $\F$ 是代数闭域，则 $f_A$ 在 $\F$ 中必有根，所以每个 $A\in M_n(\F)$ 都至少有一个特征值.但在 $\mathbb R$ 上不一定成立.
+
+\begin{example}
+	设
+	\[
+	A=\begin{pmatrix}0&-1\\ 1&0\end{pmatrix}.
+	\]
+	则
+	\[
+	f_A(\lambda)=\lambda^2+1.
+	\]
+	在 $\mathbb R$ 上，$A$ 没有特征值；在 $\mathbb C$ 上，$A$ 的特征值为 $i,-i$.
+\end{example}
+
+\begin{example}
+	若 $A$ 是幂零矩阵，即存在 $m>0$ 使得 $A^m=0$，则 $A$ 唯一可能的特征值是 $0$.
+\end{example}
+
+\begin{proof}
+	若 $A\xi=a\xi$ 且 $\xi\neq0$，则
+	\[
+	0=A^m\xi=a^m\xi.
+	\]
+	故 $a^m=0$，从而 $a=0$.
+\end{proof}
+
+\begin{example}
+	设 $A\in M_n(\F)$.则
+	\[
+	A\in \GL_n(\F)
+	\Longleftrightarrow
+	0\text{ 不是 }A\text{ 的特征值}.
+	\]
+	更一般地，$a$ 是 $A$ 的特征值当且仅当 $A-aE_n$ 不可逆.
+\end{example}
+	
+
+
+\begin{corollary}
+	若 $A\in \GL_n(\F)$，则 $a$ 是 $A$ 的特征值当且仅当 $a\neq0$ 且 $a^{-1}$ 是 $A^{-1}$ 的特征值.
+\end{corollary}
+
+\begin{proof}
+	若 $A\xi=a\xi$，$\xi\neq0$，则 $a\neq0$，且
+	\[
+	A^{-1}\xi=a^{-1}\xi.
+	\]
+	反过来同理.
+\end{proof}
+\begin{example}
+	若 $A,B\in M_n(\F)$，则 $AB$ 与 $BA$ 有相同的非零特征值.
+\end{example}
+
+\begin{proof}
+	由\[|E_n - \frac{1}{\lambda}AB| =|E_n - B\frac{1}{\lambda}A|\]易知
+\end{proof}
+
+
+\begin{example}
+	若 $A$ 是上三角矩阵
+	\[
+	A=\begin{pmatrix}
+		a_{11}&*&\cdots&*\\
+		0&a_{22}&\cdots&*\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&a_{nn}
+	\end{pmatrix},
+	\]
+	则
+	\[
+	f_A(\lambda)=(\lambda-a_{11})(\lambda-a_{22})\cdots(\lambda-a_{nn}).
+	\]
+	故上三角矩阵的特征值就是对角线上的元素.
+	
+	若是准上三角阵
+	\[
+	A=\begin{pmatrix}
+		A_{11}&*&\cdots&*\\
+		0&A_{22}&\cdots&*\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&A_{nn}
+	\end{pmatrix},
+	\]
+	则\[f(\lambda) = f_{A_{11}}(\lambda)\cdots f_{A_{nn}}(\lambda)\]
+\end{example}
+
+\begin{example}
+	任意一个首一 $n$ 次多项式
+	\[
+	f(\lambda)=\lambda^n+a_1\lambda^{n-1}+\cdots+a_{n-1}\lambda+a_n
+	\]
+	都是某个矩阵的特征多项式.事实上，取友阵
+	\[
+	C_f=\begin{pmatrix}
+	0&0&\cdots&0&-a_n\\
+	1&0&\cdots&0&-a_{n-1}\\
+	0&1&\cdots&0&-a_{n-2}\\
+	\vdots&\vdots&\ddots&\vdots&\vdots\\
+	0&0&\cdots&1&-a_1
+\end{pmatrix},
+\]
+则
+\[
+f_{C_f}(\lambda)=f(\lambda).
+\]
+\end{example}
+
+\begin{lemma}
+设 $C_f$ 为上面的伴随矩阵.若 $B\in M_n(\F)$ 且 $BC_f=C_fB$，则存在 $g(x)\in\F[x]$，使得
+\[
+B=g(C_f).
+\]
+\end{lemma}
+
+\begin{proof}
+记标准基为 $e_1,\cdots,e_n$.由于
+\[
+e_i=C_f^{i-1}e_1,
+\qquad 1\leq i\leq n,
+\]
+故 $e_1,C_f e_1,\cdots,C_f^{n-1} e_1$ 是$V$的一个基，设
+\[
+Be_1=b_0e_1+b_1C_fe_1+\cdots+b_{n-1}C_f^{n-1}e_1.
+\]
+令 $g(x)=b_0+b_1x+\cdots+b_{n-1}x^{n-1}$.因 $B$ 与 $C_f$ 可交换，故对每个 $i$，
+\[
+Be_i=B C_f^{i-1}e_1=C_f^{i-1}Be_1=g(C_f)e_i.
+\]
+于是 $B=g(C_f)$.
+\end{proof}
+设 $A\in M_n(\F)$.求 $A$ 的特征值与特征向量通常按如下步骤：
+\begin{enumerate}
+	\item 求特征多项式
+	\[
+	f_A(\lambda)=\det(\lambda E_n-A).
+	\]
+	由 $f_A(\lambda)=0$ 得到特征值 $\lambda_1,\cdots,\lambda_s$.
+	\item 对每个特征值 $a$，解齐次线性方程组
+	\[
+	(A-aE_n)x=0.
+	\]
+	其解空间 $\mathcal N(A-aE_n)$ 中的非零向量就是属于 $a$ 的特征向量.
+\end{enumerate}
+需要注意：一般的初等行变换或初等列变换会改变特征值
+
+
+设 $V$ 为 $n$ 维线性空间，$T\in\End(V)$，取 $V$ 的一组基
+\[
+\alpha_1,\cdots,\alpha_n,
+\]
+并设 $T$ 在这组基下的矩阵为 $A\in M_n(\F)$，即
+\[
+\bigl(T\alpha_1,\cdots,T\alpha_n\bigr)
+=\bigl(\alpha_1,\cdots,\alpha_n\bigr)A.
+\]
+对 $\xi=(\alpha_1,\cdots,\alpha_n)x\in V$，其中 $x\in\F^n$，有
+\[
+T\xi
+=\bigl(T\alpha_1,\cdots,T\alpha_n\bigr)x
+=\bigl(\alpha_1,\cdots,\alpha_n\bigr)Ax.
+\]
+因此当 $x\neq0$ 时，
+\[
+T\xi=a\xi
+\Longleftrightarrow
+Ax=ax.
+\]
+于是 
+\begin{corollary}
+$a$ 是 $T$ 的特征值当且仅当 $a$ 是矩阵 $A$ 的特征值
+\end{corollary}
+并且坐标映射给出同构
+\[
+V_a(T)=\ker(T-a\id_V)
+\cong
+\mathcal N(A-aE_n).
+\]
+换言之我们可以通过考虑$T$在某个基下的矩阵$A$的特征值以考虑$T$的特征值
+\begin{example}
+设
+\[
+V=\langle 1,\sin x,\cos x,e^x\rangle,
+\qquad D=\frac{d}{dx}.
+\]
+在基 $1,\sin x,\cos x,e^x$ 下，$D$ 的矩阵为
+\[
+[D]=
+\begin{pmatrix}
+	0&0&0&0\\
+	0&0&-1&0\\
+	0&1&0&0\\
+	0&0&0&1
+\end{pmatrix}.
+\]
+因此
+\[
+f_D(\lambda)=\lambda(\lambda^2+1)(\lambda-1).
+\]
+在 $\mathbb R$ 上，$D$ 的特征值为 $0,1$；在 $\mathbb C$ 上，还多出 $i,-i$.
+\end{example}
+根据代数基本定理，我们有
+\begin{corollary}
+	有限维复线性空间上的任意线性变换必然有复特征值与复特征向量
+\end{corollary}
+\begin{corollary}
+设 $V$ 是有限维复线性空间，$S,T\in\End(V)$，且 $ST=TS$.则 $S,T$ 有公共的特征向量.
+\end{corollary}
+
+\begin{proof}
+取 $S$ 的一个特征值 $a$.因为 $ST=TS$，所以 $S$ 的特征子空间
+\[
+V_a(S)=\ker(S-aE)
+\]
+是 $T$-子空间.由于 $V_a(S)\neq0$ 且是复线性空间，$T|_{V_a(S)}$ 有特征向量.该向量同时也是 $S$ 的特征向量.
+\end{proof}
+
+\begin{corollary}
+设 $A,B\in M_n(\mathbb C)$ 且 $AB=BA$.则 $A,B$ 在 $\mathbb C^n$ 中有公共的特征向量.
+\end{corollary}
+
+
+下面把不变子空间与矩阵形状联系起来.
+
+\begin{lemma}
+设 $T\in\End(V)$，$\dim_{\F}V=n$.则 $T$ 有一个 $r$ 维不变子空间，当且仅当存在 $V$ 的一组基，使得 $T$ 在这组基下的矩阵形如
+\[
+\begin{pmatrix}
+	A_{11}&A_{12}\\
+	0&A_{22}
+\end{pmatrix},
+\qquad A_{11}\in M_r(\F).
+\]
+这种矩阵称为准上三角矩阵.
+\end{lemma}
+
+\begin{proof}
+若 $U$ 是一个 $r$ 维 $T$-子空间，取 $U$ 的一组基
+\[
+\varepsilon_1,\cdots,\varepsilon_r
+\]
+并扩充为 $V$ 的一组基
+\[
+\varepsilon_1,\cdots,\varepsilon_r,
+\varepsilon_{r+1},\cdots,\varepsilon_n.
+\]
+由于 $T(\varepsilon_i)\in U$，$1\leq i\leq r$，故矩阵左下角为 $0$.反过来，若矩阵具有上述形状，则前 $r$ 个基向量张成的子空间就是 $T$-子空间.
+\end{proof}
+
+\begin{corollary}
+设 $T\in\End(V)$，$\dim_{\F}V=n$.则 $V$ 可分解为若干个 $T$-子空间的直和，当且仅当存在 $V$ 的一组基，使得 $T$ 在这组基下的矩阵为准对角阵
+\[
+\begin{pmatrix}
+	A_1&&&0\\
+	&A_2&&\\
+	&&\ddots&\\
+	0&&&A_s
+\end{pmatrix}.
+\]
+\end{corollary}
+
+\begin{proof}
+若
+\[
+V=V_1\oplus\cdots\oplus V_s
+\]
+且每个 $V_i$ 都是 $T$-子空间，则分别取 $V_i$ 的一组基并合并为 $V$ 的一组基.此时 $T$ 在该基下的矩阵就是准对角阵.反过来，准对角阵的每个对角块对应一组基向量张成的 $T$-子空间.
+\end{proof}
+\begin{corollary}
+	设$T \in \End(V),$且$\dim_{\F} V = n.$则 \(T\) 可对角化当且仅当 \(V\) 有一个基，使得 \(T\) 在这个基下的矩阵是对角阵.
+	
+	此时，这个基的每个向量都是 \(T\) 的特征向量.
+	也就是说，$	T \text{ 可对角化}$当且仅当
+	$T \text{ 有 } n \text{ 个线性无关的特征向量}.$
+\end{corollary}
+\section{相似}
+
+有限维空间上的线性变换在不同基下的矩阵是相似的.设$\dim_{\F}V=n,
+ T\in\End(V),$
+取 $V$ 的基 $\alpha_1,\ldots,\alpha_n$与$\beta_1,\ldots,\beta_n$，并设
+\[
+(\alpha_1,\ldots,\alpha_n)=(\beta_1,\ldots,\beta_n)P,
+\qquad P\in \GL_n(\F),
+\]
+设$T$在两基下的矩阵为$A,B$:
+\[
+(T\alpha_1\ldots T\alpha_n)
+=(\alpha_1\ldots\alpha_n)A,
+(T\beta_1\ldots T\beta_n)=(\beta_1\ldots\beta_n)B
+\]
+根据我们在第四章中的结果，有
+\[
+A=P^{-1}BP.
+\]
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l820}
+	设 $A,B\in M_n(\F)$.若存在 $P\in \GL_n(\F)$，使得
+	\[
+	A=P^{-1}BP,
+	\]
+	则称 $A$ 与 $B$ 相似，记作 $A\sim B$.
+\end{definition}
+
+显然，相似关系是等价关系
+
+\begin{proposition}
+	设 $A,B\in M_n(\F)$.则 $A\sim B$ 当且仅当 $A,B$ 分别是同一个 $n$ 维线性空间上同一个线性变换在两组不同基下的矩阵.
+\end{proposition}
+
+\begin{example}
+	若 $A\sim B$，则对任意 $k\geq 1$，有
+	\[
+	A^k\sim B^k.
+	\]
+	事实上，若 $A=P^{-1}BP$，则
+	\[
+	A^k=(P^{-1}BP)^k=P^{-1}B^kP.
+	\]
+	更一般地，对任意 $h(x)\in\F[x]$，有
+	\[
+	h(A)=P^{-1}h(B)P,
+	\]
+	所以 $h(A)\sim h(B)$.
+\end{example}
+
+\begin{proposition}
+	设 $A,B\in M_n(\F)$ 且 $A\sim B$.则
+	\begin{enumerate}
+		\item $\rankA=\rankB$；
+		\item 对任意 $c\in\F$，
+		\[
+		\dim\ker(A-cE_n)=\dim\ker(B-cE_n);
+		\]
+		\item $A,B$ 有相同的特征多项式，从而$\operatorname{tr}A = \operatorname{tr}B,|A|=|B|$：
+		\item $A,B$ 有相同的极小多项式：
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	设 $A=P^{-1}BP$.
+	
+	1. 由于左右乘可逆矩阵不改变秩，故 $\rankA=\rankB$.
+	
+	2. 有
+	\[
+	A-cE_n=P^{-1}(B-cE_n)P.
+	\]
+	映射 $x\mapsto Px$ 给出
+	\[
+	\ker(A-cE_n)\cong\ker(B-cE_n),
+	\]
+	从而维数相等.
+	
+	3. 由行列式乘法性，
+	\[
+	\begin{aligned}
+		\det(\lambda E_n-A)
+		&=\det\bigl(P^{-1}(\lambda E_n-B)P\bigr) \\
+		&=\det(\lambda E_n-B).
+	\end{aligned}
+	\]
+	4.设$A$的极小多项式为$m_A $,$B$的极小多项式为$m_B $,由$A\sim B$,得$m_B(A)\sim m_B(B)=0$从而$m_B $是$A$的零化多项式，$m_B|m_A$,同理$m_A|m_B$,故$m_A=m_B$
+\end{proof}
+\begin{example}
+	$A,B\in M_n(\F)$则$A\sim B\rightarrow A'\sim B'$
+\end{example}
+
+\begin{example}
+	两个 $n$ 阶对角矩阵相似当且仅当它们的对角元仅差一个排列.即
+	\[
+	D_1=\operatorname{diag}(a_1,\ldots,a_n),\qquad
+	D_2=\operatorname{diag}(b_1,\ldots,b_n),
+	\]
+	则
+	\[
+	D_1\sim D_2
+	\iff
+	(b_1,\ldots,b_n) \text{ 与 } (a_1,\ldots,a_n) \text{ 差一个排列}.
+	\]	例如
+	\[
+	\begin{pmatrix}
+		1&&&0\\
+		&1&&\\
+		&&\ddots&\\
+		0&&&3
+	\end{pmatrix}.
+	\text{与}
+	\begin{pmatrix}
+		1&&&0\\
+		&3&&\\
+		&&\ddots&\\
+		0&&&1
+	\end{pmatrix}.
+	\]
+\end{example}
+
+\begin{proof}
+	若 $D_1\sim D_2$，则二者有相同的特征多项式.于是
+	\[
+	f_{D_1}(\lambda)=\prod_{i=1}^n(\lambda-a_i),
+	\qquad
+	f_{D_2}(\lambda)=\prod_{i=1}^n(\lambda-b_i).
+	\]
+	由特征多项式相同可知，每个特征值出现的重数相同，故
+	\[
+	\{a_1,\ldots,a_n\}=\{b_1,\ldots,b_n\}
+	\]
+	作为含重数的集合相等.于是 $(b_1,\ldots,b_n)$ 只差 $(a_1,\ldots,a_n)$ 的一个排列.
+	
+	反过来，若存在排列 $\sigma\in S_n$，使得
+	\[
+	b_i=a_{\sigma(i)},\qquad 1\leq i\leq n,
+	\]
+	取置换矩阵
+	\[
+	P=(e_{\sigma(1)},e_{\sigma(2)},\ldots,e_{\sigma(n)}).
+	\]
+	则对任意 $1\leq i\leq n$，有
+	\[
+	D_1Pe_i=	D_1e_{\sigma(i)}
+	=
+	a_{\sigma(i)}e_{\sigma(i)}
+	=
+	b_iPe_i
+	=
+	PD_2e_i.
+	\]
+	因此
+	\[
+	D_1P=PD_2.
+	\]
+	由于 $P$ 可逆，所以
+	\[
+	P^{-1}D_1P=D_2.
+	\]
+	故 $D_1\sim D_2$.
+\end{proof}
+\begin{example}
+	若 $A_1\sim B_1$，$A_2\sim B_2$，则
+	\[
+	\begin{pmatrix}
+		A_1&0\\0&A_2
+	\end{pmatrix}
+	\sim
+	\begin{pmatrix}
+		B_1&0\\0&B_2
+	\end{pmatrix}.
+	\]
+	事实上，若 $A_i=P_i^{-1}B_iP_i$，$i=1,2$，则取
+	\[
+	P=\begin{pmatrix}
+		P_1&0\\0&P_2
+	\end{pmatrix},
+	\]
+	即可.多个分块的情形同理.
+\end{example}
+
+\begin{proposition}
+	设 $T\in\End(V)$，$\dim_{\F}V=n$，$W$ 是 $T$ 的一个不变子空间，$\dim W=r$.取 $W$ 的一组基
+	\[
+	\varepsilon_1,\ldots,\varepsilon_r,
+	\]
+	并扩充为 $V$ 的一组基
+	\[
+	\varepsilon_1,\ldots,\varepsilon_r,\varepsilon_{r+1},\ldots,\varepsilon_n.
+	\]
+	则 $T$ 在这组基下的矩阵形如
+	\[
+	\begin{pmatrix}
+		A&C\\
+		0&B
+	\end{pmatrix},
+	\]
+	其中 $A$ 是 $T|_W$ 在基 $\varepsilon_1,
+	\ldots,\varepsilon_r$ 下的矩阵.
+\end{proposition}
+
+\begin{proof}
+	由于 $W$ 是 $T$-子空间，对 $1\leq i\leq r$ 有
+	\[
+	T\varepsilon_i\in W=\langle \varepsilon_1,\ldots,\varepsilon_r\rangle.
+	\]
+	故矩阵左下角分块为 $0$，即得到准上三角阵.
+\end{proof}
+
+\begin{corollary}
+	在上述记号下，若 $T$ 的矩阵为
+	\[
+	\begin{pmatrix}
+		A&C\\
+		0&B
+	\end{pmatrix},
+	\]
+	则
+	\[
+	f_T(\lambda)=f_A(\lambda)f_B(\lambda).
+	\]
+	特别地，若
+	\[
+	V=V_1\oplus\cdots\oplus V_s
+	\]
+	且每个 $V_i$ 都是 $T$-子空间，则取各 $V_i$ 的基合并为 $V$ 的基，$T$ 的矩阵为准对角阵
+	\[
+	\begin{pmatrix}
+		A_1&&0\\
+		&\ddots&\\
+		0&&A_s
+	\end{pmatrix},
+	\]
+	并且
+	\[
+	f_T(\lambda)=f_{A_1}(\lambda)
+	\cdots f_{A_s}(\lambda)
+	=f_{T|_{V_1}}(\lambda)
+	\cdots f_{T|_{V_s}}(\lambda).
+	\]
+\end{corollary}
+
+\begin{proposition}
+	设 $A,B\in M_n(\F)$，若存在扩域 $\mathbb{K}\supseteq\F$，使得 $A,B$ 在 $\mathbb{K}$ 上相似，则 $A,B$ 在 $\F$ 上相似.
+\end{proposition}
+
+\begin{proof}
+	在 $\mathbb{K}$ 上相似等价于存在 $Q\in \GL_n(\mathbb{K})$，使得
+	\[
+	AQ=QB.
+	\]
+	考虑齐次线性方程组
+	\[
+	AX=XB,
+	\qquad X=(x_{ij}).
+	\]
+	其系数都在 $\F$ 中.$AX=XB$是一个包含了$n^2$个未知数的齐次线性方程组，在$\mathbb{K}$上有解，而有解不依赖于数域，故在$\F$上有解
+	
+	设
+	\[
+	\mathcal W_{\F}=\{X\in M_n(\F):AX=XB\},
+	\]
+	取其一组 $\F$-基 $X_1,
+	\ldots,X_r$.由于方程系数在 $\F$ 中，同一组矩阵在 $\mathbb{K}$ 上张成
+	\[
+	\mathcal W_{\mathbb{K}}=\{X\in M_n(K):AX=XB\}.
+	\]
+	于是存在 $c_1,
+	\ldots,c_r\in \mathbb{K}$，使得
+	\[
+	Q=c_1X_1+\cdots+c_rX_r.
+	\]
+	令
+	\[
+	g(t_1,
+	\ldots,t_r)=\det(t_1X_1+
+	\cdots+t_rX_r)\in\F[t_1,
+	\ldots,t_r].
+	\]
+	由于 $g(c_1,
+	\ldots,c_r)=\det Q\neq0$，故 $g$ 不是零多项式.所以存在 $a_1,
+	\ldots,a_r\in\F$，使得
+	\[
+	g(a_1,
+	\ldots,a_r)\neq0.
+	\]
+	于是
+	\[
+	P=a_1X_1+\cdots+a_rX_r\in \GL_n(\F),
+	\qquad AP=PB.
+	\]
+	因此 $A=PBP^{-1}$，即 $A\sim B$.
+\end{proof}
+
+
+
+\section{三角化与可对角化}
+
+本节继续讨论特征值、特征向量、三角化以及可对角化.以下默认 $A\in M_n(\F)$，若 $\mathbb K\supseteq\F$ 是扩域，则可把 $A$ 看成 $M_n(\mathbb K)$ 中的矩阵.
+
+\begin{lemma}
+	设 $a\in\mathbb K$ 是 $A$ 的特征值，记
+	\[
+	V_a=\ker(A-aE_n),\qquad r=\dim_{\mathbb K}V_a.
+	\]
+	则 $A$ 在 $\mathbb K$ 上相似于形如
+	\[
+	\begin{pmatrix}
+		aE_r& *\\
+		0&B
+	\end{pmatrix}
+	\]
+	的准上三角矩阵.因此
+	\[
+	f_A(\lambda)=(\lambda-a)^r f_B(\lambda),
+	\]
+	从而特征值 $a$ 的几何重数不超过它的代数重数.
+\end{lemma}
+
+\begin{proof}
+	取 $V_a$ 的一组基 $\xi_1,\ldots,\xi_r$，并扩充为 $\mathbb K^n$ 的一组基
+	\[
+	\xi_1,\ldots,\xi_r,\xi_{r+1},\ldots,\xi_n.
+	\]
+	由于 $A\xi_i=a\xi_i$，$1\leq i\leq r$，故 $A$ 在这组基下的矩阵左下角为 $0$，左上角为 $aE_r$.于是特征多项式由准上三角矩阵的对角块相乘得到.
+\end{proof}
+
+\begin{proposition}
+	(上三角化)
+	设 $A\in M_n(\F)$.则 $A$ 的特征多项式在 $\F$ 上完全分解(也即特征值全属于$\F$)当且仅当 $A$ 在 $\F$ 上相似于一个上三角矩阵.
+\end{proposition}
+
+\begin{proof}
+	必要性：若
+	\[
+	A\sim
+	\begin{pmatrix}
+		b_{11}&*&\cdots&*\\
+		0&b_{22}&\cdots&*\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&b_{nn}
+	\end{pmatrix},
+	\]
+	则
+	\[
+	f_A(\lambda)=(\lambda-b_{11})\cdots(\lambda-b_{nn})
+	\]
+	在 $\F$ 上完全分解.
+	
+	反过来，对 $n$ 归纳.$n=1$ 显然.设 $n>1$，由于 $f_A$ 在 $\F$ 上完全分解，$A$ 有特征值 $b\in\F$.取非零特征向量 $\xi$，并扩充为一组基，则
+	\[
+	A\sim
+	\begin{pmatrix}
+		b&*\\
+		0&A_1
+	\end{pmatrix},
+	\qquad A_1\in M_{n-1}(\F).
+	\]
+	由
+	\[
+	f_A(\lambda)=(\lambda-b)f_{A_1}(\lambda)
+	\]
+	知 $f_{A_1}$ 也在 $\F$ 上完全分解.由归纳假设，$A_1$ 相似于上三角矩阵，因此 $A$ 相似于上三角矩阵.
+\end{proof}
+
+\begin{corollary}\label{相似于一个上三角矩阵.}
+	任意 $A\in M_n(\mathbb C)$ 都在 $\mathbb C$ 上相似于一个上三角矩阵.
+\end{corollary}
+
+\begin{corollary}
+	设 $A\in M_n(\F)$ 的全部特征值为 $\lambda_1,\ldots,\lambda_n$，按代数重数计.则对任意 $g(x)\in\F[x]$，$g(A)$ 的全部特征值为
+	\[
+	g(\lambda_1),\ldots,g(\lambda_n),
+	\]
+	并且
+	\[
+	\det g(A)=g(\lambda_1)\cdots g(\lambda_n),
+	\qquad
+	\operatorname{tr} g(A)=g(\lambda_1)+\cdots+g(\lambda_n).
+	\]
+\end{corollary}
+
+\begin{proof}
+	由上三角化，存在可逆矩阵 $P$ 使
+	\[
+	P^{-1}AP=U
+	\]
+	为上三角矩阵，且 $U$ 的对角元为 $\lambda_1,\ldots,\lambda_n$.于是 $g(U)$ 仍为上三角矩阵，其对角元为 $g(\lambda_1),\ldots,g(\lambda_n)$.又 $g(A)\sim g(U)$，结论成立.
+\end{proof}
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l1191}
+	设 $A\in M_n(\F)$，$\mathbb K\supseteq\F$.若存在 $P\in \GL_n(\mathbb K)$，使得
+	\[
+	P^{-1}AP
+	\]
+	为对角矩阵，则称 $A$ 在 $\mathbb K$ 上可对角化.若 $\mathbb K=\F$，则简称 $A$ 可对角化.
+\end{definition}
+
+显然，若 $A\sim B$，则 $A$ 可对角化当且仅当 $B$ 可对角化.并且若 $A$ 在 $\F$ 上可对角化，则在任意扩域 $\mathbb K\supseteq\F$ 上仍可对角化.
+
+
+	设 $T\in\End(V)$，$\dim_{\F}V=n$,设$T$在某基下对应的矩阵是$A$.则下列条件等价：
+	\begin{enumerate}
+		\item $T$ 可对角化；
+		\item $V$ 可分解为 $T$ 的特征子空间的直和；
+		\item $V$ 有一组由 $T$ 的特征向量组成的基.
+		\item $A$在$\F$上可对角化
+	\end{enumerate}
+	此时，若
+	\[
+	V=V_{a_1}\oplus\cdots\oplus V_{a_s},
+	\qquad \dim V_{a_i}=t_i,
+	\]
+	并取 $V_{a_i}$ 的基
+	\[
+	\xi_{i1},\ldots,\xi_{it_i},
+	\]
+	则在基
+	\[
+	\xi_{11},\ldots,\xi_{1t_1},\ldots,
+	\xi_{s1},\ldots,\xi_{st_s}
+	\]
+	下，$T$ 的矩阵为
+	\[
+	\begin{pmatrix}
+		a_1E_{t_1}&&&0\\
+		&a_2E_{t_2}&&\\
+		&&\ddots&\\
+		0&&&a_sE_{t_s}
+	\end{pmatrix}.
+	\]
+
+\begin{proposition}
+	设 $A\in M_n(\F)$，$\mathbb K\supseteq\F$.则 $A$ 在 $\mathbb K$ 上可对角化当且仅当 $\mathbb K^n$ 有一组由 $A$ 的特征向量组成的基.
+\end{proposition}
+
+\begin{proof}
+	若 $P^{-1}AP=D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$，则
+	\[
+	AP=PD.
+	\]
+	令 $P=(\xi_1,
+	\ldots,\xi_n)$，则
+	\[
+	A\xi_i=\lambda_i\xi_i,
+	\qquad 1\leq i\leq n.
+	\]
+	由于 $P$ 可逆，$\xi_1,\ldots,\xi_n$ 是 $\mathbb K^n$ 的一组基.反过来，若取到这样的特征向量基，以它们为列组成 $P$，则 $P^{-1}AP$ 为对角矩阵.
+\end{proof}
+
+\begin{example}
+	矩阵
+	\[
+	A=\begin{pmatrix}0&1\\-1&0\end{pmatrix}
+	\]
+	在 $\mathbb R$ 上不可对角化，因为它没有实特征值；在 $\mathbb C$ 上可对角化，特征值为 $i,-i$.
+\end{example}
+
+\begin{example}
+	设 $A=(a_{ij})\in M_n(\F)$ 是上三角矩阵，且
+	\[
+	a_{11}=\cdots=a_{nn}=a,
+	\]
+	若 $A\neq aE_n$，则 $A$ 在任意扩域上都不可对角化.
+\end{example}
+
+\begin{proof}
+	$A$ 的唯一特征值为 $a$.若 $A$ 可对角化，则它相似于对角矩阵，而这个对角矩阵只能是 $aE_n$.但标量矩阵与任意矩阵可交换，且
+	\[
+	P^{-1}(aE_n)P=aE_n,
+	\]
+	故 $A=aE_n$，矛盾.
+\end{proof}
+
+\begin{theorem}
+	设 $A\in M_n(\F)$，$\mathbb K\supseteq\F$，$m_A(x)$ 为 $A$ 的极小多项式.则 $A$ 在 $\mathbb K$ 上可对角化当且仅当 $m_A(x)$ 在 $\mathbb K$ 上可分解为互不相同的一次因式的乘积.
+\end{theorem}
+
+\begin{proof}
+	若 $A$ 在 $\mathbb K$ 上可对角化，设
+	\[
+	A\sim D=\operatorname{diag}(\lambda_1E_{r_1},\ldots,\lambda_sE_{r_s}),
+	\]
+	其中 $\lambda_1,
+	\ldots,\lambda_s$ 两两不同.则
+	\[
+	m_A(x)=m_D(x)=(x-\lambda_1)\cdots(x-\lambda_s).
+	\]
+	
+	反过来，若
+	\[
+	m_A(x)=(x-a_1)\cdots(x-a_s),
+	\qquad a_i\neq a_j\ (i\neq j),
+	\]
+	则
+	\[
+	(A-a_1E_n)\cdots(A-a_sE_n)=0.
+	\]
+	由准素分解定理，
+	\[
+	\mathbb K^n=\ker(A-a_1E_n)\oplus\cdots\oplus\ker(A-a_sE_n),
+	\]
+	故 $A$ 在 $\mathbb K$ 上可对角化.
+\end{proof}
+\begin{corollary}
+	设 $A\in M_n(\F)$，$\mathbb K\supseteq\F$，$h(x)$ 为 $A$ 的零化多项式，若$(h,h')=1$,则$A$ 在 $\mathbb C$ 上可对角化
+\end{corollary}
+\begin{example}
+	若 $A\in M_n(\mathbb R)$ 且
+	\[
+	A^4+E_n=0,
+	\]
+	则 $A$ 在 $\mathbb R$ 上不可对角化，但在 $\mathbb C$ 上可对角化.
+\end{example}
+
+\begin{proof}
+	若 $A$ 在 $\mathbb R$ 上可对角化，则它的对角元应为实特征值.但 $x^4+1$ 在 $\mathbb R$ 上无根，故无实特征值，矛盾.
+	
+	在 $\mathbb C$ 上，$x^4+1$ 可分解为互不相同的一次因式，且 $m_A(x)\mid x^4+1$，故 $m_A$ 也没有重根，于是 $A$ 在 $\mathbb C$ 上可对角化.
+\end{proof}
+
+\begin{lemma}
+	设 $A\in M_n(\F)$，$\mathbb K\supseteq\F$.则 $A$ 在 $\mathbb K$ 上可对角化当且仅当 $A$ 的特征值都属于 $\mathbb K$，且每个特征值的几何重数等于它的代数重数.
+\end{lemma}
+
+\begin{proof}
+	若 $A$ 可对角化，则
+	\[
+	A\sim \operatorname{diag}(a_1E_{r_1},\ldots,a_sE_{r_s}),
+	\qquad a_i\neq a_j.
+	\]
+	于是
+	\[
+	f_A(\lambda)=(\lambda-a_1)^{r_1}\cdots(\lambda-a_s)^{r_s},
+	\]
+	且属于 $a_i$ 的几何重数为 $r_i$，同时 $a_i$ 的代数重数也为 $r_i$
+	
+	反过来，若
+	\[
+	f_A(\lambda)=(\lambda-a_1)^{r_1}\cdots(\lambda-a_s)^{r_s},
+	\qquad a_i\neq a_j,
+	\]
+	并且
+	\[
+	\dim\ker(A-a_iE_n)=r_i,
+	\qquad 1\leq i\leq s,
+	\]
+	则不同特征值对应的特征子空间和为直和，且维数之和为
+	\[
+	r_1+\cdots+r_s=n.
+	\]
+	故
+	\[
+	\mathbb K^n=V_{a_1}\oplus\cdots\oplus V_{a_s},
+	\]
+	从而 $A$ 在 $\mathbb K$ 上可对角化.
+\end{proof}
+
+\begin{algo}
+	判断 $A\in M_n(\F)$ 在扩域 $\mathbb K$ 上是否可对角化，通常按如下步骤：
+	\begin{enumerate}
+		\item 求
+		\[
+		f_A(\lambda)=\det(\lambda E_n-A).
+		\]
+		若 $f_A$ 在 $\mathbb K$ 上不能完全分解，则 $A$ 在 $\mathbb K$ 上不可对角化.
+		\item 设 $a_1,
+		\ldots,a_s$ 是 $f_A$ 在 $\mathbb K$ 中互不相同的根.对每个 $a_i$ 解
+		\[
+		(A-a_iE_n)x=0,
+		\]
+		其解空间维数为
+		\[
+		r_i=n-\rank(a_iE_n-A).
+		\]
+		若某个 $r_i$ 小于 $a_i$ 的代数重数，则不可对角化.
+		\item 若每个特征值的几何重数都等于代数重数，取
+		\[
+		\ker(A-a_iE_n)
+		\]
+		的一组基 $\xi_{i1},\ldots,\xi_{ir_i}$，令
+		\[
+		P=(\xi_{11},\ldots,\xi_{1r_1},\xi_{21},\ldots,\xi_{sr_s}).
+		\]
+		则
+		\[
+		P^{-1}AP=
+		\begin{pmatrix}
+			a_1E_{r_1}&&&0\\
+			&a_2E_{r_2}&&\\
+			&&\ddots&\\
+			0&&&a_sE_{r_s}
+		\end{pmatrix}.
+		\]
+	\end{enumerate}
+\end{algo}
+
+
+\section{Hamilton-Cayley 定理}
+
+
+\begin{example}
+	先看可对角化情形.设 $A\in M_n(\F)$ 可对角化，且
+\[
+\F^n=V_{a_1}\oplus\cdots\oplus V_{a_s},
+\qquad r_i=\dim V_{a_i}.
+\]
+于是 $A$ 的特征多项式为
+\[
+f_A(\lambda)=(\lambda-a_1)^{r_1}\cdots(\lambda-a_s)^{r_s}.
+\]
+对任意 $\alpha\in\F^n$，可唯一写成
+\[
+\alpha=\alpha_1+\cdots+\alpha_s,
+\qquad \alpha_i\in V_{a_i}.
+\]
+因此
+\[
+\begin{aligned}
+	f_A(A)\alpha
+	&=(A-a_1E_n)^{r_1}\cdots(A-a_sE_n)^{r_s}
+	(\alpha_1+\cdots+\alpha_s)       \\
+	&=\sum_{i=1}^s
+	\prod_{j=1}^s (A-a_jE_n)^{r_j}\alpha_i=0,
+\end{aligned}
+\]
+因为在第 $i$ 项中含有因子 $(A-a_iE_n)^{r_i}\alpha_i=0$.故 $f_A(A)=0$.
+
+也可以从矩阵形式看.若
+\[
+A\sim D=\begin{pmatrix}
+	a_1E_{r_1}&&&0\\
+	&a_2E_{r_2}&&\\
+	&&\ddots&\\
+	0&&&a_sE_{r_s}
+\end{pmatrix},
+\]
+则
+\[
+f_A(D)=\prod_{i=1}^s (D-a_iE_n)^{r_i}=0,
+\]
+从而 $f_A(A)=0$.
+\end{example}
+
+\begin{example}
+设 $A\in M_n(\F)$ 是幂零矩阵.若
+\[
+A\sim U,
+\]
+其中 $U\in M_n(\mathbb C)$ 是对角元全为 $0$ 的上三角矩阵，则 $U^n=0$，于是
+\[
+A^n\sim U^n=0.
+\]
+此时 $A$ 的特征多项式为
+\[
+f_A(\lambda)=\lambda^n,
+\]
+故 $f_A(A)=A^n=0$.
+\end{example}
+
+\begin{theorem}(Hamilton-Cayley 定理)
+设 $A\in M_n(\F)$，其特征多项式为
+\[
+f_A(\lambda)=\det(\lambda E_n-A),
+\]
+则
+\[
+f_A(A)=0.
+\]
+换言之，每个方阵的特征多项式是他的零化多项式.
+\end{theorem}
+
+\begin{proof}
+由\ref{相似于一个上三角矩阵.},$A$ 在$\C$相似于上三角矩阵.故只需证明上三角矩阵情形.
+
+对 $n$ 归纳.$n=1$ 显然.设
+\[
+B=\begin{pmatrix}
+b&*\\
+0&B_1
+\end{pmatrix},
+\qquad B_1\in M_{n-1}(\F).
+\]
+则
+\[
+f_B(\lambda)=(\lambda-b)f_{B_1}(\lambda).
+\]
+由归纳假设，$f_{B_1}(B_1)=0$，所以
+\[
+f_{B_1}(B)=
+\begin{pmatrix}
+f_{B_1}(b)&*\\
+0&0
+\end{pmatrix}.
+\]
+于是
+\[
+\begin{aligned}
+f_B(B)
+&=(B-bE_n)f_{B_1}(B)\\
+&=
+\begin{pmatrix}
+	0&*\\
+	0&B_1-bE_{n-1}
+\end{pmatrix}
+\begin{pmatrix}
+	f_{B_1}(b)&*\\
+	0&0
+\end{pmatrix}=0.
+\end{aligned}
+\]
+因此上三角情形成立，从而一般情形也成立.
+\end{proof}
+
+\begin{proposition}
+设 $T\in\End(V)$，且 $\dim V<\infty$.则 $T$ 的特征多项式是 $T$ 的一个零化多项式.
+\end{proposition}
+
+\begin{proof}
+取 $V$ 的一组基，使 $T$ 在该基下的矩阵为 $A$.由 Hamilton-Cayley 定理，$f_A(A)=0$，故 $f_T(T)=0$.
+\end{proof}
+
+\begin{corollary}
+设 $A\in M_n(\F)$，$m_A(x)$ 为 $A$ 的极小多项式，$f_A(x)$ 为 $A$ 的特征多项式，则
+\[
+m_A(x)\mid f_A(x).
+\]
+特别地，$A$ 的特征值一定是 $m_A(x)$ 的根.
+\end{corollary}
+
+\begin{example}
+若
+\[
+f_A(\lambda)=(\lambda^2+1)(\lambda-1)^2,
+\]
+则极小多项式可能为
+\[
+(\lambda^2+1)(\lambda-1)
+\qquad\text{或}\qquad
+(\lambda^2+1)(\lambda-1)^2.
+\]
+
+\end{example}
+
+\begin{example}
+	
+设 $A\in M_n(\F)$，则
+\[
+\F[A]=\{h(A):h(x)\in\F[x]\}
+\]
+满足
+\[
+\dim \F[A]\leq n.
+\]
+事实上，$\dim \F[A]$ 等于 $A$ 的极小多项式的次数.
+
+\end{example}
+
+\begin{proof}
+由 Hamilton-Cayley 定理，$f_A(A)=0$.对任意 $h(x)\in\F[x]$，用带余除法写成
+\[
+h(x)=q(x)f_A(x)+r(x),
+\qquad \deg r<n.
+\]
+于是
+\[
+h(A)=r(A)\in\langle E_n,A,\ldots,A^{n-1}\rangle,
+\]
+故 $\dim\F[A]\leq n$.
+更精确地，$\dim\F[A]$ 等于 $A$ 的极小多项式的次数.
+\end{proof}
+
+
+
+
+\begin{example}
+设 $A\in M_n(\F)$，$f_A(\lambda)=\det(\lambda E_n-A)$，$g(x)\in\F[x]$.则
+\[
+g(A)\in \GL_n(\F)
+\iff
+(f_A,g)=1.
+\]
+\end{example}
+
+\begin{proof}
+若 $(f_A,g)=1$，则存在 $u(x),v(x)\in\F[x]$，使
+\[
+u(x)f_A(x)+v(x)g(x)=1.
+\]
+代入 $A$ 得
+\[
+v(A)g(A)=E_n,
+\]
+故 $g(A)$ 可逆.
+
+反之，若 $(f_A,g)\neq1$，设公共根为 $\lambda_0$.因为 $\lambda_0$ 是 $f_A$ 的根，故存在非零向量 $\xi$ 使
+\[
+A\xi=\lambda_0\xi.
+\]
+又 $g(\lambda_0)=0$，于是
+\[
+g(A)\xi=g(\lambda_0)\xi=0.
+\]
+故 $g(A)$ 不可逆，矛盾
+\end{proof}
+
+\begin{example}
+设 $A,B\in M_n(\F)$，若 $A,B$ 的特征多项式互素，则矩阵方程
+\[
+AX=XB
+\]
+只有零解.
+\end{example}
+
+\begin{proof}
+若 $AX=XB$，则对任意 $h(x)\in\F[x]$，有
+\[
+h(A)X=Xh(B).
+\]
+取 $h=f_A$，由 Hamilton-Cayley 定理得
+\[
+0=f_A(A)X=Xf_A(B).
+\]
+由于 $(f_A,f_B)=1$，由上例知 $f_A(B)$ 可逆，故 $X=0$.
+\end{proof}
+
+\begin{example}
+设
+\[
+A=\begin{pmatrix}
+A_1&&&0\\
+&A_2&&\\
+&&\ddots&\\
+0&&&A_s
+\end{pmatrix}
+\]
+是准对角矩阵，且 $A_1,\ldots,A_s$ 的特征多项式两两互素.若矩阵 $B$ 与 $A$ 可交换，则 $B$ 也是与 $A$ 具有相同分块方式的准对角矩阵.
+\end{example}
+
+\begin{proof}
+按照 $A$ 的分块方式写
+\[
+B=(B_{ij})_{1\leq i,j\leq s}.
+\]
+由 $AB=BA$ 得
+\[
+A_iB_{ij}=B_{ij}A_j,
+\qquad 1\leq i,j\leq s.
+\]
+当 $i\neq j$ 时，$A_i,A_j$ 的特征多项式互素，由上一例知 $B_{ij}=0$.故 $B$ 为相同分块方式的准对角矩阵.
+\end{proof}
+
+下面由 Hamilton-Cayley 定理，把准素分解定理应用于特征多项式.
+
+\begin{example}
+设 $A\in\End(V)$，$\dim_{\F}V<\infty$，$f(\lambda)$ 为 $A$ 的特征多项式.若
+\[
+f(\lambda)=g(\lambda)h(\lambda),
+\qquad (g,h)=1,
+\]
+其中 $g(\lambda),h(\lambda)\in\F[\lambda]$ 均首一，则
+\[
+V=\ker g(A)\oplus\ker h(A).
+\]
+设
+\[
+A_1=A|_{\ker g(A)},
+\qquad
+A_2=A|_{\ker h(A)},
+\]
+则 $A_1$ 的特征多项式为 $g(\lambda)$，$A_2$ 的特征多项式为 $h(\lambda)$.
+\end{example}
+
+\begin{proof}
+由 Hamilton-Cayley 定理，$f(A)=0$.又 $(g,h)=1$，由准素分解定理，
+\[
+V=\ker g(A)\oplus\ker h(A).
+\]
+记 $A_1=A|_{\ker g(A)}$，$A_2=A|_{\ker h(A)}$.由于两个核都是 $A$-不变子空间，故在适当基下
+\[
+A\sim \begin{pmatrix}
+A_1&0\\
+0&A_2
+\end{pmatrix}.
+\]
+从而
+\[
+f_A(\lambda)=f_{A_1}(\lambda)f_{A_2}(\lambda).
+\]
+又 $g(A_1)=0$，故 $f_{A_1}$ 的根只能来自 $g$；同理，$f_{A_2}$ 的根只能来自 $h$.结合
+\[
+f_A(\lambda)=g(\lambda)h(\lambda),
+\]
+即得
+\[
+f_{A_1}(\lambda)=g(\lambda),
+\qquad
+f_{A_2}(\lambda)=h(\lambda).
+\]
+\end{proof}
+\section{$\lambda$-矩阵}
+
+我们已经知道，若 $A,B\in M_n(\F)$ 且 $A\sim B$，则
+\[
+\det(\lambda E_n-A)=\det(\lambda E_n-B).
+\]
+但仅有特征多项式相同一般不能推出 $A\sim B$.为了研究相似关系，需要引入 $\lambda$-矩阵.
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l1709}
+	设 $A\in M_n(\F)$，称
+	\[
+	\lambda E_n-A
+	\]
+	为 $A$ 的特征矩阵.
+	一般地，若
+	\[
+	A(\lambda)=\bigl(a_{ij}(\lambda)\bigr)\in M_n(\F[\lambda]),
+	\]
+	则称 $A(\lambda)$ 为一个 $n$ 阶 $\lambda$-矩阵.
+\end{definition}
+
+设 $A(\lambda)=\bigl(a_{ij}(\lambda)\bigr)\in M_n(\F[\lambda])$.记
+\[
+\deg A(\lambda)=\max_{1\leq i,j\leq n}\deg a_{ij}(\lambda),
+\]
+并约定 $\deg0=-\infty$.
+若 $\deg A(\lambda)=m$，则可写成
+\[
+A(\lambda)=\lambda^mA_m+\lambda^{m-1}A_{m-1}+\cdots+\lambda A_1+A_0,
+\qquad A_i\in M_n(\F).
+\]
+
+$M_n(\F[\lambda])$ 在通常的矩阵加法与乘法下成为一个环.若
+\[
+A(\lambda)=\bigl(a_{ij}(\lambda)\bigr),
+\qquad
+B(\lambda)=\bigl(b_{ij}(\lambda)\bigr),
+\]
+则
+\[
+A(\lambda)+B(\lambda)=\bigl(a_{ij}(\lambda)+b_{ij}(\lambda)\bigr),
+\]
+并且若 $C(\lambda)=A(\lambda)B(\lambda)$，则
+\[
+C(\lambda)=\bigl(c_{ij}(\lambda)\bigr),
+\qquad
+c_{ij}(\lambda)=\sum_{k=1}^n a_{ik}(\lambda)b_{kj}(\lambda).
+\]
+于是有
+\[
+\deg(A(\lambda)+B(\lambda))\leq \max\{\deg A(\lambda),\deg B(\lambda)\},
+\]
+\[
+\deg(A(\lambda)B(\lambda))\leq \deg A(\lambda)+\deg B(\lambda).
+\]
+
+
+\begin{lemma}
+	设
+	\[
+	A(\lambda)=\sum_{i=0}^m\lambda^iA_i,
+	\qquad
+	B(\lambda)=\sum_{j=0}^s\lambda^jB_j.
+	\]
+	则
+	\[
+	A(\lambda)B(\lambda)
+	=
+	\sum_{t=0}^{m+s}\lambda^t
+	\left(\sum_{i+j=t}A_iB_j\right).
+	\]
+\end{lemma}
+
+\begin{proof}
+	直接由矩阵乘法与多项式乘法展开即可.
+\end{proof}
+
+\begin{lemma}
+	设 $B\in M_n(\F)$.对任意 $P(\lambda)\in M_n(\F[\lambda])$，存在 $H(\lambda)\in M_n(\F[\lambda])$ 与 $R_1\in M_n(\F)$，使得
+	\[
+	P(\lambda)=(\lambda E_n-B)H(\lambda)+R_1.
+	\]
+	对任意 $Q(\lambda)\in M_n(\F[\lambda])$，存在 $G(\lambda)\in M_n(\F[\lambda])$ 与 $R_2\in M_n(\F)$，使得
+	\[
+	Q(\lambda)=G(\lambda)(\lambda E_n-B)+R_2.
+	\]
+\end{lemma}
+
+\begin{proof}
+	只证第一个式子.设
+	\[
+	P(\lambda)=\lambda^mP_m+\lambda^{m-1}P_{m-1}+\cdots+\lambda P_1+P_0.
+	\]
+	令
+	\[
+	H(\lambda)=\lambda^{m-1}H_{m-1}+\lambda^{m-2}H_{m-2}+\cdots+H_0.
+	\]
+	由
+	\[
+	P(\lambda)=(\lambda E_n-B)H(\lambda)+R_1
+	\]
+	比较各次项系数，得到
+	\[
+	\left\{
+	\begin{aligned}
+		H_{m-1}&=P_m,\\
+		H_{m-2}&=P_{m-1}+BH_{m-1},\\
+		&\ \ \vdots\\
+		H_0&=P_1+BH_1,\\
+		R_1&=P_0+BH_0.
+	\end{aligned}
+	\right.
+	\]
+	故可依次确定 $H_{m-1},\ldots,H_0,R_1$.
+	第二个式子同理，只需从右乘以 $\lambda E_n-B$.
+\end{proof}
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l1819}
+	设 $A(\lambda)=\bigl(a_{ij}(\lambda)\bigr)\in M_n(\F[\lambda])$.定义
+	\[
+	\det A(\lambda)
+	=
+	\sum_{i_1\cdots i_n\in S_n}(-1)^{\tau(i_1\cdots i_n)}
+	a_{1i_1}(\lambda)a_{2i_2}(\lambda)\cdots a_{ni_n}(\lambda)
+	\in\F[\lambda].
+	\]
+\end{definition}
+
+例如，若 $A\in M_n(\F)$，则
+\[
+\det(\lambda E_n-A)
+\]
+就是 $A$ 的特征多项式，是一个首一的 $n$ 次多项式.
+
+$\lambda$-矩阵的行列式与普通矩阵的行列式具有相同性质.特别地：
+\[
+\det(A(\lambda)B(\lambda))=\det A(\lambda)\det B(\lambda),
+\]
+并且若 $A(\lambda)^*$ 表示 $A(\lambda)$ 的伴随矩阵，则
+\[
+A(\lambda)A(\lambda)^*=A(\lambda)^*A(\lambda)=\det A(\lambda)E_n.
+\]
+
+\begin{proposition}(用$\lambda$阵证明Hamilton-Cayley 定理)
+	设 $A\in M_n(\F)$，
+	\[
+	f_A(\lambda)=\det(\lambda E_n-A).
+	\]
+	则
+	\[
+	f_A(A)=0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	设
+	\[
+	f_A(\lambda)=\lambda^n+a_1\lambda^{n-1}+\cdots+a_{n-1}\lambda+a_n.
+	\]
+	由伴随矩阵公式，
+	\[
+	(\lambda E_n-A)^*(\lambda E_n-A)=f_A(\lambda)E_n.
+	\]
+	记
+	\[
+	(\lambda E_n-A)^*
+	=
+	\lambda^{n-1}B_{n-1}+\lambda^{n-2}B_{n-2}+\cdots+\lambda B_1+B_0,
+	\qquad B_i\in M_n(\F).
+	\]
+	比较上式两边各次幂系数，得
+	\[
+	\left\{
+	\begin{aligned}
+		B_{n-1}&=E_n,\\
+		B_{n-2}-B_{n-1}A&=a_1E_n,\\
+		B_{n-3}-B_{n-2}A&=a_2E_n,\\
+		&\ \ \vdots\\
+		B_0-B_1A&=a_{n-1}E_n,\\
+		-B_0A&=a_nE_n.
+	\end{aligned}
+	\right.
+	\]
+	于是
+	\[
+	\left\{
+	\begin{aligned}
+		B_{n-1}A^n&=A^n,\\
+		B_{n-2}A^{n-1}-B_{n-1}A^n&=a_1A^{n-1},\\
+		B_{n-3}A^{n-2}-B_{n-2}A^{n-1}&=a_2A^{n-2},\\
+		&\ \ \vdots\\
+		B_0A-B_1A^2&=a_{n-1}A,\\
+		-B_0A&=a_nE_n.
+	\end{aligned}
+	\right.
+	\]
+	将这些等式相加，左边望远相消，得到
+	\[
+	A^n+a_1A^{n-1}+\cdots+a_{n-1}A+a_nE_n=0.
+	\]
+	即 $f_A(A)=0$.
+\end{proof}
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l1905}
+	设 $A(\lambda)\in M_n(\F[\lambda])$.若 $A(\lambda)$ 的非零子式的最高阶数为 $r$，则称 $A(\lambda)$ 的秩为 $r$，记为
+	\[
+	r(A(\lambda))=r
+	\qquad\text{或}\qquad
+	\rankA(\lambda)=r.
+	\]
+\end{definition}
+
+显然
+\[
+0\leq r(A(\lambda))\leq n.
+\]
+
+\begin{corollary}
+	设 $A(\lambda)\in M_n(\F[\lambda])$.则
+	\[
+	\det A(\lambda)\neq0
+	\iff
+	r(A(\lambda))=n.
+	\]
+\end{corollary}
+
+\begin{example}
+	设 $A\in M_n(\F)$，则
+	\[
+	r(\lambda E_n-A)=n.
+	\]
+	因为 $\det(\lambda E_n-A)$ 是首一 $n$ 次多项式，故不为零.
+\end{example}
+\section{$\lambda$矩阵的可逆性}
+
+\begin{definition}[可逆 $\lambda$-矩阵]\phantomsection\label{p1:concept:c5-l1937}
+	设 $A(\lambda)\in M_n(\F[\lambda])$.若存在 $B(\lambda)\in M_n(\F[\lambda])$，使得
+	\[
+	B(\lambda)A(\lambda)=A(\lambda)B(\lambda)=E_n,
+	\]
+	则称 $A(\lambda)$ 是可逆的，并称 $B(\lambda)$ 为 $A(\lambda)$ 的逆，记为
+	\[
+	A(\lambda)^{-1}=B(\lambda).
+	\]
+\end{definition}
+
+	逆矩阵若存在则唯一.事实上，若 $B_1(\lambda),B_2(\lambda)$ 都是 $A(\lambda)$ 的逆，则
+	\[
+	B_1(\lambda)=B_1(\lambda)E_n
+	=B_1(\lambda)A(\lambda)B_2(\lambda)
+	=E_nB_2(\lambda)=B_2(\lambda).
+	\]
+
+\begin{lemma}
+	设 $A(\lambda)\in M_n(\F[\lambda])$.则 $A(\lambda)$ 可逆当且仅当
+	\[
+	\det A(\lambda)\in \F\setminus\{0\}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	若 $A(\lambda)$ 可逆，则存在 $B(\lambda)$ 使得
+	\[
+	A(\lambda)B(\lambda)=E_n.
+	\]
+	于是
+	\[
+	\det A(\lambda)\det B(\lambda)=1.
+	\]
+	故 $\det A(\lambda)$ 是 $\F[\lambda]$ 中的可逆元，所以
+	\[
+	\det A(\lambda)\in\F\setminus\{0\}.
+	\]
+	反过来，若 $\det A(\lambda)=c\in\F\setminus\{0\}$，则由Laplace定理
+	\[
+	A(\lambda)A(\lambda)^*=A(\lambda)^*A(\lambda)=cE_n
+	\]
+	可知
+	\[
+	A(\lambda)^{-1}=c^{-1}A(\lambda)^*\in M_n(\F[\lambda]).
+	\]
+\end{proof}
+
+\begin{corollary}
+	设 $A(\lambda),B(\lambda)\in M_n(\F[\lambda])$.则 $A(\lambda)B(\lambda)$ 可逆当且仅当 $A(\lambda)$ 与 $B(\lambda)$ 都可逆.
+\end{corollary}
+
+注意：对 $A\in M_n(\F)$，特征矩阵 $\lambda E_n-A$ 一般不可逆，因为
+\[
+\det(\lambda E_n-A)
+\]
+通常不是 $\F[\lambda]$ 中的可逆元.但它的秩为 $n$，即
+\[
+r(\lambda E_n-A)=n.
+\]
+\begin{corollary}
+	$A(\lambda)\in M_n(\F[\lambda])$,则$A(\lambda)$可逆$\iff$$\exists B(\lambda)\in M_n(\F[\lambda])$使$A(\lambda)B(\lambda)=E_n $或$B(\lambda)A(\lambda)=E_n $
+\end{corollary}
+
+\begin{definition}[相抵]\phantomsection\label{p1:concept:c5-l2001}
+	设 $A(\lambda),B(\lambda)\in M_n(\F[\lambda])$.若存在可逆 $\lambda$-矩阵 $P(\lambda),Q(\lambda)$，使得
+	\[
+	P(\lambda)A(\lambda)Q(\lambda)=B(\lambda),
+	\]
+	则称 $A(\lambda)$ 与 $B(\lambda)$ 相抵,
+	这是一个等价关系.
+\end{definition}
+
+\begin{proposition}
+	设 $A,B\in M_n(\F)$.则
+	\[
+	A\text{ 与 }B\text{ 相似}
+	\iff
+	\lambda E_n-A\text{ 与 }\lambda E_n-B\text{ 相抵}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	若 $A\sim B$，则存在 $C\in \GL_n(\F)$，使得
+	\[
+	B=CAC^{-1}.
+	\]
+	于是
+	\[
+	C(\lambda E_n-A)C^{-1}=\lambda E_n-B,
+	\]
+	故 $\lambda E_n-A$ 与 $\lambda E_n-B$ 相抵.
+	
+	反过来，若存在可逆 $P(\lambda),Q(\lambda)\in M_n(\F[\lambda])$，使得
+	\[
+	P(\lambda)(\lambda E_n-A)Q(\lambda)=\lambda E_n-B.
+	\]
+	由 $\lambda$阵的带余除法，存在 $R_1,R_2\in M_n(\F)$ 以及 $H(\lambda),G(\lambda)\in M_n(\F[\lambda])$，使得
+	\[
+	P(\lambda)=(\lambda E_n-B)H(\lambda)+R_1,
+	\qquad
+	Q(\lambda)=G(\lambda)(\lambda E_n-B)+R_2.
+	\]
+	代入上式并整理，可得
+	\[
+	R_1(\lambda E_n-A)R_2
+	=(\lambda E_n-B)\bigl(E_n-L(\lambda)(\lambda E_n-B)\bigr)
+	\]
+	其中 $L(\lambda)\in M_n(\F[\lambda])$.比较两边关于 $\lambda$ 的次数，得 $L(\lambda)=0$.故
+	\[
+	R_1(\lambda E_n-A)R_2=\lambda E_n-B.
+	\]
+	比较 $\lambda$ 的系数与常数项，得
+	\[
+	R_1R_2=E_n,
+	\qquad
+	R_1AR_2=B.
+	\]
+	因此 $R_1\in \GL_n(\F)$，且 $B=R_1AR_1^{-1}$，所以 $A\sim B$.
+\end{proof}
+
+\begin{definition}[初等 $\lambda$-变换]\phantomsection\label{p1:concept:c5-l2058}
+	$\F$ 上的 $\lambda$-矩阵的初等行变换为下列三种操作：
+	\begin{enumerate}
+		\item 交换两行，记为$(i,j)$；
+		\item 用 $\F$ 中的非零数乘某一行,记为$c(i)$；
+		\item 将 $\F[\lambda]$ 中的一个多项式倍的某一行加到另一行上,记为$(j) + \varphi (\lambda)(i)$.
+	\end{enumerate}
+	初等列变换同理定义.相应的初等矩阵称为初等 $\lambda$-矩阵，分别记为$P(i,j),P(c(i)),P((j)+\varphi(
+	\lambda)(i))$
+	
+	初等列变换与初等行变换统称为$\lambda$-矩阵的初等变换
+\end{definition}
+
+
+	初等行变换等价于左乘初等 $\lambda$-矩阵，初等列变换等价于右乘初等 $\lambda$-矩阵.初等 $\lambda$-矩阵均可逆，且逆矩阵仍是初等 $\lambda$-矩阵.
+
+	容易发现，初等$\lambda$-矩阵可逆，其逆仍为初等$\lambda$-矩阵
+	\[P(i,j)P(i,j) =E_n,P(c(i))P(c^{-1}(i)) = E_n ,P((j)+\varphi(
+	\lambda)(i))P((j)-\varphi(
+	\lambda)(i)) = E_n\]
+\begin{theorem}(Smith 标准形)
+	设 $0\neq A(\lambda)\in M_n(\F[\lambda])$.则 $A(\lambda)$ 可经过有限次初等行变换与初等列变换化为
+	\[
+	\begin{pmatrix}
+		d_1(\lambda) & & & &&& \\
+		& d_2(\lambda) & & & &&\\
+		& & \ddots & & &&\\
+		& & & d_r(\lambda) &&& \\
+		& & & & 0&&\\
+		&&&&&\ddots&\\
+		&&&&&&0\\
+	\end{pmatrix},
+	\]
+	其中 $d_i(\lambda)$ 均为首一多项式，并且
+	\[
+	d_1(\lambda)\mid d_2(\lambda)\mid\cdots\mid d_r(\lambda).
+	\]
+	\phantomsection\label{p1:concept:c5-l2095}上式称为 $A(\lambda)$ 的 Smith 标准形.
+\end{theorem}
+
+\begin{proof}
+	对 $n$ 归纳。$n=1$ 时显然成立。设 $n>1$，并设结论对 $n-1$ 阶矩阵成立。
+	
+	记
+	\[
+	\mathcal X=\{Y(\lambda)\in M_n(\F[\lambda]):Y(\lambda)
+	\text{ 可由 }A(\lambda)\text{ 经有限步初等变换得到}\}.
+	\]
+	若 $A(\lambda)=0$，结论显然。否则取
+	\[
+	Z(\lambda)=(z_{ij}(\lambda))\in\mathcal X
+	\]
+	使得 $z_{11}(\lambda)\neq0$，$z_{11}(\lambda)$ 为首一，且
+	\[
+	\deg z_{11}(\lambda)
+	\]
+	在所有可作为 $(1,1)$ 元的非零首一多项式中最小。
+	
+	先证
+	\[
+	z_{11}(\lambda)\mid z_{i1}(\lambda),\qquad
+	z_{11}(\lambda)\mid z_{1j}(\lambda),
+	\qquad 1\leq i,j\leq n.
+	\]
+	若 $z_{11}\nmid z_{i1}$，由带余除法，
+	\[
+	z_{i1}=z_{11}q+r,\qquad r\neq0,\quad \deg r<\deg z_{11}.
+	\]
+	将第 $i$ 行减去第 $1$ 行的 $q$ 倍，再交换第 $1$ 行与第 $i$ 行，
+	便得到一个仍属于 $\mathcal X$ 的矩阵，其 $(1,1)$ 元为 $r$。
+	这与 $z_{11}$ 的选取矛盾。故 $z_{11}\mid z_{i1}$。
+	同理，对列作初等变换可得 $z_{11}\mid z_{1j}$。
+	
+	于是由初等行、列变换可把第一列和第一行除 $(1,1)$ 元外全部化为 $0$，即
+	\[
+	Z(\lambda)\sim
+	\begin{pmatrix}
+		z_{11}(\lambda) & 0 & \cdots & 0\\
+		0 & z'_{22}(\lambda) & \cdots & z'_{2n}(\lambda)\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & z'_{n2}(\lambda) & \cdots & z'_{nn}(\lambda)
+	\end{pmatrix}.
+	\]
+	对右下角的 $(n-1)$ 阶矩阵用归纳假设，可得
+	\[
+	A(\lambda)\sim
+	\operatorname{diag}\bigl(z_{11}(\lambda),d_2(\lambda),\ldots,d_n(\lambda)\big),
+	\]
+	其中
+	\[
+	d_2(\lambda)\mid d_3(\lambda)\mid\cdots\mid d_n(\lambda).
+	\]
+	
+	只需再证 $z_{11}(\lambda)\mid d_2(\lambda)$。若不然，由带余除法，
+	\[
+	d_2=z_{11}q_1+r_1,\qquad r_1\neq0,\quad \deg r_1<\deg z_{11}.
+	\]
+	对矩阵
+	\[
+	D=\operatorname{diag}\bigl(z_{11},d_2,d_3,\ldots,d_n\bigr)
+	\]
+	作如下初等变换：
+	\[
+	\begin{pmatrix}
+		z_{11} & 0 & \cdots & 0\\
+		0 & d_2 & \cdots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots & d_n
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		z_{11} & d_2 & \cdots & 0\\
+		0 & d_2 & \cdots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots & d_n
+	\end{pmatrix}
+	\longrightarrow
+	\begin{pmatrix}
+		z_{11} & r_1 & \cdots & 0\\
+		0 & d_2 & \cdots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots & d_n
+	\end{pmatrix}.
+	\]
+	再交换前两列，得到
+	\[
+	\begin{pmatrix}
+		r_1 & z_{11} & \cdots & 0\\
+		d_2 & 0 & \cdots & 0\\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots & d_n
+	\end{pmatrix}\in\mathcal X.
+	\]
+	其 $(1,1)$ 元为 $r_1$，且 $\deg r_1<\deg z_{11}$，与 $z_{11}$ 的最小性矛盾。
+	所以
+	\[
+	z_{11}\mid d_2.
+	\]
+	因此
+	\[
+	z_{11}\mid d_2\mid d_3\mid\cdots\mid d_n,
+	\]
+	从而得到所需的 Smith 标准型。若某些 $d_i=0$，把非零项排在前面即可。
+\end{proof}
+\section{$\lambda$-矩阵的行列式因子、不变因子与初等因子}
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l2205}
+	
+设 $X(\lambda)\in M_n(\F[\lambda])$，且 $r(X)=r\geq 1$. 对 $1\leq k\leq r$，
+称 $X(\lambda)$ 所有 $k$ 阶子式的首一最大公因式为 $X(\lambda)$ 的第 $k$ 个行列式因子，记为
+\[
+D_k(\lambda).
+\]
+若 $k>r$，则记
+\[
+D_k(\lambda)=0.
+\]
+
+\end{definition}
+由Laplace定理 我们可以得到以下的推论、
+
+
+\begin{corollary}
+		设 $X(\lambda)\in M_n(\F[\lambda])$ 的全部非零行列式因子为
+	\[
+	D_1(\lambda),D_2(\lambda),\ldots,D_r(\lambda),
+	\]
+	则
+	\[
+	D_i(\lambda)\mid D_{i+1}(\lambda),\qquad 1\leq i<r.
+	\]
+	特别地，若 $D_k(\lambda)=1$，则
+	\[
+	D_1(\lambda)=\cdots=D_{k-1}(\lambda)=1.
+	\]
+\end{corollary}
+
+
+\begin{proof}
+	由 Laplace 展开，每个 $(i+1)$ 阶子式都可以写成若干个 $i$ 阶子式的 $\F[\lambda]$-线性组合.
+	故 $D_i(\lambda)$ 整除每个 $(i+1)$ 阶子式，从而
+	\[
+	D_i(\lambda)\mid D_{i+1}(\lambda).
+	\]
+	后一句由整除链立即得到.
+\end{proof}
+
+\begin{example}
+	设 $0\neq X(\lambda)=(x_{ij}(\lambda))\in M_n(\F[\lambda])$，则 $X$ 的第一个行列式因子就是所有 $x_{ij}(\lambda)$ 的首一最大公因式.
+\end{example}
+
+\begin{example}
+	设 $A\in M_n(\F)$，则 $\lambda E_n-A$ 的第 $n$ 个行列式因子为
+	\[
+	D_n(\lambda)=\det(\lambda E_n-A),
+	\]
+	即 $A$ 的特征多项式. 此时
+	\[
+	r(\lambda E_n-A)=n.
+	\]
+\end{example}
+
+\begin{example}
+	考虑友矩阵
+	\[
+	A=\begin{pmatrix}
+		0&0&0&\cdots&0&-a_n\\
+		1&0&0&\cdots&0&-a_{n-1}\\
+		0&1&0&\cdots&0&-a_{n-2}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+		0&0&0&\cdots&0&-a_2\\
+		0&0&0&\cdots&1&-a_1
+	\end{pmatrix}.
+	\]
+	则 $\lambda E_n-A$ 的全部行列式因子为
+	\[
+	D_1=\cdots=D_{n-1}=1,
+	\]
+	且
+	\[
+	D_n=\lambda^n+a_1\lambda^{n-1}+\cdots+a_{n-1}\lambda+a_n.
+	\]
+\end{example}
+
+\begin{example}
+	设 $A\in M_n(\F)\subset M_n(\F[\lambda])$，且 $r(A)=r>0$. 则 $A$ 的全部非零行列式因子为
+	\[
+	D_1=\cdots=D_r=1.
+	\]
+	这是因为 $A$ 有一个非零的 $r$ 阶子式，而该子式是 $\F$ 中的非零数.
+\end{example}
+
+\begin{example}
+	若 $X(\lambda)\in M_n(\F[\lambda])$ 有一个 $r$ 阶子式是非零常数 $c\in\F$，则
+	\[
+	D_1=\cdots=D_r=1.
+	\]
+\end{example}
+
+\begin{example}
+	设 $X(\lambda)\in M_n(\F[\lambda])$，则 $X(\lambda)$ 可逆当且仅当它的全部行列式因子为
+	\[
+	D_1=\cdots=D_n=1.
+	\]
+\end{example}
+
+\begin{example}
+	若
+	\[
+	X(\lambda)\sim
+	\begin{pmatrix}
+		d_1(\lambda) \\
+		& d_2(\lambda) \\
+		&& \ddots \\
+		&&& d_r(\lambda) \\
+		&&&& 0 \\
+		&&&&& \ddots
+	\end{pmatrix},
+	\]
+	其中 $d_i(\lambda)$ 都是首一的，且
+	\[
+	d_i(\lambda)\mid d_{i+1}(\lambda),\qquad 1\leq i<r,
+	\]
+	则 $X(\lambda)$ 的行列式因子为
+	\[
+	D_1=d_1,
+	\]
+	\[
+	D_2=d_1d_2,
+	\]
+	\[
+	\cdots
+	\]
+	\[
+	D_r=d_1d_2\cdots d_r,
+	\qquad
+	D_j=0,\quad r+1\leq j\leq n.
+	\]
+	因此
+	\[
+	d_1=D_1,
+	\qquad
+	d_i=\frac{D_i}{D_{i-1}},\quad 2\leq i\leq r.
+	\]
+\end{example}
+
+\begin{lemma}
+	$\lambda$-矩阵的初等变换不改变它的行列式因子.
+\end{lemma}
+
+\begin{proof}
+	只需验证一次初等变换. 设 $X=(x_{ij})$ 经过一次初等行变换得到 $Y=(y_{ij})$.
+	
+	若是行交换，则每个子式至多差一个符号；若是某一行乘以非零常数，则每个子式至多差一个非零常数.
+	
+	若是将第 $i$ 行加上第 $j$ 行的 $\varphi(\lambda)$ 倍，则 $Y$ 的任意 $k$ 阶子式要么是 $X$ 的一个 $k$ 阶子式，
+	要么是 $X$ 的两个 $k$ 阶子式的 $\F[\lambda]$-线性组合. 因此 $X$ 的第 $k$ 个行列式因子整除 $Y$ 的所有 $k$ 阶子式.
+	反向作初等变换同理，故二者的第 $k$ 个行列式因子相同.
+	
+	列变换的证明完全相同.
+\end{proof}
+
+
+由 Smith 标准型和上面的例子可知，若 $0\neq X(\lambda)\in M_n(\F[\lambda])$ 的 Smith 标准型为
+\[
+\operatorname{diag}(d_1(\lambda),\ldots,d_r(\lambda),0,\ldots,0),
+\]
+则其中的 $d_i(\lambda)$ 被行列式因子唯一确定：
+\[
+d_1=D_1,
+\qquad
+d_i=\frac{D_i}{D_{i-1}},\quad 2\leq i\leq r.
+\]
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l2373}
+	设 $0\neq X(\lambda)\in M_n(\F[\lambda])$. 称其 Smith 标准型中的
+	\[
+	d_1(\lambda),\ldots,d_r(\lambda)
+	\]
+	为 $X(\lambda)$ 的不变因子.
+	
+	设 $A\in M_n(\F)$. 称 $\lambda E_n-A$ 的不变因子为 $A$ 的不变因子；称 $\lambda E_n-A$ 的行列式因子为 $A$ 的行列式因子.
+\end{definition}
+
+\begin{proposition}
+	设 $X(\lambda),Y(\lambda)\in M_n(\F[\lambda])$. 则下列条件等价：
+	\begin{enumerate}
+		\item $X(\lambda)$ 与 $Y(\lambda)$ 相抵；
+		\item $X(\lambda)$ 与 $Y(\lambda)$ 的行列式因子相同；
+		\item $X(\lambda)$ 与 $Y(\lambda)$ 的不变因子相同；
+		\item $X(\lambda)$ 与 $Y(\lambda)$ 有相同的 Smith 标准型.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	相抵矩阵可以由初等变换互相得到，故行列式因子相同.
+	行列式因子唯一确定不变因子，不变因子唯一确定 Smith 标准型.
+	反过来，若有相同 Smith 标准型，则二者都与同一个 Smith 标准型相抵，故彼此相抵.
+\end{proof}
+立刻得到以下定理
+
+\begin{theorem}
+	设 $A,B\in M_n(\F)$，则
+	\[
+	A\sim B
+	\]
+	当且仅当 $A$ 与 $B$ 的不变因子相同，当且仅当 $A$ 与 $B$ 的行列式因子相同.
+\end{theorem}
+
+\begin{corollary}
+	设 $A,B\in M_n(\F)$，$K$ 是数域且 $\F\subset K$. 则
+	\[
+	A\text{ 在 }\F\text{ 上相似于 }B
+	\quad\Longleftrightarrow\quad
+	A\text{ 在 }K\text{ 上相似于 }B.
+	\]
+\end{corollary}
+因为行列式因子不依赖于数域
+\begin{corollary}
+	设 $A\in M_n(\F)$，则
+	\[
+	A\sim A'.
+	\]
+\end{corollary}
+
+\begin{proof}
+	因为
+	\[
+	\lambda E_n-A'=(\lambda E_n-A)',
+	\]
+	而转置不改变行列式因子，所以 $A$ 与 $A'$ 的行列式因子相同.
+\end{proof}
+\begin{lemma}[同一不可约因子的重排]
+	设 $p(\lambda)\in\F[\lambda]$ 为首一不可约多项式，且 $p\nmid g_1,\ p\nmid g_2$.
+	则对任意 $a,b\geq 0$，有
+	\[
+	\operatorname{diag}\bigl(\cdots,p^a g_1,\cdots,\ p^b g_2,\cdots\bigr)
+	\text{与}
+	\operatorname{diag}\bigl(\cdots,p^b g_1,\cdots,\ p^a g_2,\cdots\bigr)\text{相抵}
+	\]
+\end{lemma}
+
+\begin{proof}
+	对行列式因子我们只需要考虑其最大公因子,不妨设$a>b$
+	\[(p^ag_1,p^b g_2) = p^b(p^{a-b}g_1,p g_2)= p^b(g_1, g_2)\]
+	\[(p^bg_1,p^a g_2) = p^b(g_1,p^{a-b} g_2)= p^b(g_1, g_2)\]
+	从而$D_1,\cdots,D_n$相同
+\end{proof}
+
+由此可知，在对角 $\lambda$-矩阵中，对于同一个首一不可约因子 $p(\lambda)$，
+可以把它在各对角元中的幂次重新排列，而不改变相抵关系.
+
+
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l2454}
+	设 $X(\lambda)$ 的非零不变因子为
+	\[
+	d_1(\lambda),\ldots,d_r(\lambda).
+	\]
+	也即$X(\lambda)$的Smith标准型
+	\[
+	X(\lambda)\sim
+	\begin{pmatrix}
+		1\\
+		&\ddots\\
+		&&1\\
+		&&&d_1(\lambda) \\
+		&&&& d_2(\lambda) \\
+		&&&&& \ddots \\
+		&&&&&& d_r(\lambda) \\
+		&&&&&&& 0 \\
+		&&&&&&&& \ddots
+	\end{pmatrix},
+	\]
+	把每个非单位不变因子在 $\F[\lambda]$ 中分解为首一不可约多项式幂的乘积：
+	\[
+	d_i(\lambda)=p_{i1}(\lambda)^{e_{i1}}\cdots p_{it_i}(\lambda)^{e_{it_i}}.
+	\]
+	其中出现的所有首一素因子幂
+	\[
+	p_{ij}(\lambda)^{e_{ij}}
+	\]
+	称为 $X(\lambda)$ 的初等因子. 对 $A\in M_n(\F)$，称 $\lambda E_n-A$ 的初等因子为 $A$ 的初等因子.
+\end{definition}
+\begin{example}
+	若
+	\[
+	X=\operatorname{diag}\bigl(1,\lambda^2(\lambda-1),1,\lambda,(\lambda-1)^3\bigr),
+	\]
+	则 $X$ 的初等因子为
+	\[
+	\lambda,\quad \lambda^2,
+	\qquad
+	\lambda-1,
+	\qquad
+	(\lambda-1)^3.
+	\]
+	按同一素因子从小到大排列，再从右向左相乘，得到 Smith 标准型
+	\[
+	\operatorname{diag}\bigl(1,1,1,\lambda(\lambda-1),\lambda^2(\lambda-1)^3\bigr).
+	\]
+\end{example}
+
+
+\begin{lemma}[满秩 $\lambda$-矩阵由初等因子确定相抵类]
+	设 $X,Y\in M_n(\F[\lambda])$ 都是满秩的 $\lambda$-矩阵. 则
+	\[
+	X\sim Y
+	\]
+	当且仅当 $X,Y$ 的初等因子相同.
+\end{lemma}
+
+\begin{proof}
+	若 $X\sim Y$，则 $X,Y$ 的不变因子相同，因此初等因子相同.
+	
+	反过来，只需说明满秩 $\lambda$-矩阵的不变因子可由全部初等因子唯一确定.
+	设满秩矩阵 $Z\in M_n(\F[\lambda])$ 的全部初等因子按首一不可约因子分类为
+	\[
+	\begin{array}{cccc}
+		p_1(\lambda)^{\ell_{11}}&p_1(\lambda)^{\ell_{12}}&\cdots&p_1(\lambda)^{\ell_{1t_1}}\\
+		p_2(\lambda)^{\ell_{21}}&p_2(\lambda)^{\ell_{22}}&\cdots&p_2(\lambda)^{\ell_{2t_2}}\\
+		\vdots&\vdots&&\vdots\\
+		p_s(\lambda)^{\ell_{s1}}&p_s(\lambda)^{\ell_{s2}}&\cdots&p_s(\lambda)^{\ell_{st_s}}
+	\end{array}
+	\]
+	其中 $p_1(\lambda),\ldots,p_s(\lambda)$ 在 $\F[\lambda]$ 上首一、不可约且两两不同，并且
+	\[
+	\ell_{i1}\geq \ell_{i2}\geq\cdots\geq \ell_{it_i}\geq1.
+	\]
+	若 $t_i<n$，就在第 $i$ 行后面补上 $n-t_i$ 个 $1$，得到一个 $s\times n$ 的表格：
+	\[
+	\begin{array}{ccccccc}
+		p_1^{\ell_{11}}&p_1^{\ell_{12}}&\cdots&p_1^{\ell_{1t_1}}&1&\cdots&1\\
+		p_2^{\ell_{21}}&p_2^{\ell_{22}}&\cdots&p_2^{\ell_{2t_2}}&1&\cdots&1\\
+		\vdots&\vdots&&\vdots&\vdots&&\vdots\\
+		p_s^{\ell_{s1}}&p_s^{\ell_{s2}}&\cdots&p_s^{\ell_{st_s}}&1&\cdots&1
+	\end{array}
+	\]
+	其中不足处均视为指数 $0$.
+	令每一列的乘积分别为
+	\[
+	d_n(\lambda),d_{n-1}(\lambda),\ldots,d_1(\lambda).
+	\]
+	由于同一行中指数递减，故
+	\[
+	d_1(\lambda)\mid d_2(\lambda)\mid\cdots\mid d_n(\lambda).
+	\]
+	于是
+	\[
+	\operatorname{diag}(d_1(\lambda),\ldots,d_n(\lambda))
+	\]
+	就是 $Z$ 的 Smith 标准型. 因而初等因子唯一确定不变因子. 由此得证.
+\end{proof}
+\begin{corollary}
+	设 $X,Y\in M_n(\F[\lambda])$. 则下列条件等价：
+	\begin{enumerate}
+		\item $X, Y$相抵；
+		\item $X$ 与 $Y$ 的不变因子相同；
+		\item $X$ 与 $Y$ 的行列式因子相同；
+		\item $X$ 与 $Y$ 的初等因子相同.
+	\end{enumerate}
+\end{corollary}
+\begin{corollary}
+		设 $A,B\in M_n(\F)$. 则下列条件等价：
+	\begin{enumerate}
+		\item $A\sim B$；
+		\item $A$ 与 $B$ 的不变因子相同；
+		\item $A$ 与 $B$ 的行列式因子相同；
+		\item $A$ 与 $B$ 的初等因子相同.
+	\end{enumerate}
+\end{corollary}
+
+
+
+	设 $X\in M_n(\F[\lambda])$ 是满秩的 $\lambda$-矩阵，且 $X$ 与对角 $\lambda$-矩阵
+	\[
+	Y=\operatorname{diag}(h_1(\lambda),h_2(\lambda),\ldots,h_n(\lambda))
+	\]
+	相抵，其中每个 $h_j(\lambda)$ 都首一. 则出现在所有 $h_j(\lambda)$ 的标准分解式中的首一素幂因子，按重数计算，正好是 $X$ 的全部初等因子.
+
+
+
+	因 $X\sim Y$，$X$ 与 $Y$ 有相同的初等因子，故只需看 $Y$.
+	设
+	\[
+	h_j(\lambda)=p_1(\lambda)^{e_{1j}}p_2(\lambda)^{e_{2j}}\cdots p_m(\lambda)^{e_{mj}},
+	\qquad e_{ij}\geq0.
+	\]
+	按照上面引理的操作方式，就可以得到\[d_n(\lambda),\cdots, d_1(\lambda)\]
+	那么，就可以得到$X$的Smith标准型
+	
+	也就是说，我们只要把$X$通过初等变换变为对角阵之后就可以使用上述的做法得到Smith标准型。
+\begin{example}
+	求下列 $X$ 的相抵标准型：
+	\[
+	X=\begin{pmatrix}
+	1&&&&\\
+	&\lambda^2(\lambda-1)&&&\\
+	&&1&&\\
+	&&&\lambda&\\
+	&&&& (\lambda-1)^3
+\end{pmatrix}.
+\]
+$X$ 的初等因子为
+\[
+\lambda,\quad \lambda^2,
+\qquad
+\lambda-1,
+\qquad
+(\lambda-1)^3.
+\]
+把同一首一素因子按次数从大到小排成列，再由右向左合并，得到
+\[
+\begin{array}{ccccc}
+	\lambda^2&\lambda&1&1&1\\
+	(\lambda-1)^3&\lambda-1&1&1&1
+\end{array}
+\]
+故 $X$ 的相抵标准型为
+\[
+\begin{pmatrix}
+	1&&&&\\
+	&1&&&\\
+	&&1&&\\
+	&&&\lambda(\lambda-1)&\\
+	&&&&\lambda^2(\lambda-1)^3
+\end{pmatrix}.
+\]
+\end{example}
+
+\begin{corollary}
+设 $A\in M_n(\F)$，$\mathbb{K}$ 是数域且 $\F\subset \mathbb{K}$. 则 $A$ 在 $\mathbb{K}$ 上可对角化，当且仅当 $A$ 在 $\mathbb{K}$ 上的初等因子全为 $\mathbb{K}$ 上的一次多项式.
+\end{corollary}
+
+
+\begin{proof}
+若 $A$ 在 $\mathbb{K}$ 上可对角化，则
+\[
+A\sim \operatorname{diag}(a_1,\ldots,a_n),\qquad a_i\in \mathbb{K}.
+\]
+于是 $A$ 的初等因子为
+\[
+\lambda-a_1,\ldots,\lambda-a_n.
+\]
+反过来，若 $A$ 的初等因子全为一次多项式
+\[
+\lambda-b_1,
+\ldots,
+\lambda-b_n,
+\]
+则 $\lambda E_n-A$ 与
+\[
+\operatorname{diag}(\lambda-b_1,
+\ldots,
+\lambda-b_n)
+\]
+相抵，故
+\[
+A\sim \operatorname{diag}(b_1,
+\ldots,b_n).
+\]
+所以 $A$ 在 $\mathbb{K}$ 上可对角化.
+\end{proof}
+
+\begin{corollary}
+对于任意准对角矩阵，把每个对角块的初等因子合起来，相同的要重复计，即可得到该准对角矩阵的全部初等因子.
+\end{corollary}
+
+\begin{proof}
+设
+\[
+A=\begin{pmatrix}
+	A_1&&&\\
+	&A_2&&\\
+	&&\ddots&\\
+	&&&A_s
+\end{pmatrix},
+\qquad
+A_i\in M_{r_i}(\F),
+\quad r_1+\cdots+r_s=n.
+\]
+则
+\[
+\lambda E_n-A=
+\begin{pmatrix}
+	\lambda E_{r_1}-A_1&&&\\
+	&\lambda E_{r_2}-A_2&&\\
+	&&\ddots&\\
+	&&&\lambda E_{r_s}-A_s
+\end{pmatrix}.
+\]
+对每个对角块分别作 $\lambda$-矩阵的初等变换，设
+\[
+\lambda E_{r_i}-A_i\sim D_i(\lambda),
+\qquad 1\leq i\leq s,
+\]
+其中 $D_i(\lambda)$ 为该块的 Smith 标准型. 于是
+\[
+\lambda E_n-A
+\sim
+\begin{pmatrix}
+	D_1(\lambda)&&&\\
+	&D_2(\lambda)&&\\
+	&&\ddots&\\
+	&&&D_s(\lambda)
+\end{pmatrix}.
+\]
+故整体的初等因子就是所有块的初等因子合并所得，且相同的要重复计.
+\end{proof}
+
+\section{有理标准型与 Jordan 标准型}
+
+设
+\[
+h(\lambda)=\lambda^m+b_1\lambda^{m-1}+\cdots+b_{m-1}\lambda+b_m\in\F[\lambda]
+\]
+\phantomsection\label{p1:concept:c5-l2716}为首一多项式.定义与 $h(\lambda)$ 对应的友矩阵
+\[
+\mathcal{R}(h)=
+\begin{pmatrix}
+	0&0&\cdots&0&-b_m\\
+	1&0&\cdots&0&-b_{m-1}\\
+	0&1&\cdots&0&-b_{m-2}\\
+	\vdots&\vdots&\ddots&\vdots&\vdots\\
+	0&0&\cdots&1&-b_1
+\end{pmatrix}\in M_m(\F).
+\]
+
+
+\begin{lemma}
+	设 $\mathcal{R}=\mathcal{R}(h)$，则
+	\[
+	\det(\lambda E_m-\mathcal{R})=h(\lambda),
+	\]
+	并且 $\lambda E_m-\mathcal{R}$ 的行列式因子为
+	\[
+	D_1=\cdots=D_{m-1}=1,\qquad D_m=h(\lambda).
+	\]
+	因此 $\mathcal{R}(h)$ 的唯一非平凡不变因子为 $h(\lambda)$.
+\end{lemma}
+
+\begin{proof}
+	由伴随矩阵的定义直接计算可得
+	\[
+	\det(\lambda E_m-\mathcal{R})=h(\lambda).
+	\]
+	又在 $\lambda E_m-\mathcal{R}$ 中含有一个 $(m-1)$ 阶子式等于 $1$，故
+	\[
+	D_1=\cdots=D_{m-1}=1.
+	\]
+	最后
+	\[
+	D_m=\det(\lambda E_m-\mathcal{R})=h(\lambda).
+	\]
+\end{proof}
+
+$\mathcal{R}$在$\F$上这只有一个初等因子当且仅当$h(\lambda)$是素幂，也即$h(\lambda)=p(\lambda)^\ell$，其中 $p(\lambda)$ 是首一不可约多项式
+
+$\forall p(\lambda)^l,\exists \mathcal{R}\in M_{n}(\F)$使$\mathcal{R}$的初等因子恰为$p(\lambda)^\ell$,对相应的$\mathcal{R}$我们定义
+\begin{definition}\phantomsection\label{p1:concept:c5-l2759}
+	 设$p(\lambda)$ 是首一不可约多项式，且\[p(\lambda)^\ell = \lambda^m + b_1 \lambda^{m-1} + \cdots + b_m\]
+	 ，令\[
+	 \mathcal{R}(h)=
+	 \begin{pmatrix}
+	 	0&0&\cdots&0&-b_m\\
+	 	1&0&\cdots&0&-b_{m-1}\\
+	 	0&1&\cdots&0&-b_{m-2}\\
+	 	\vdots&\vdots&\ddots&\vdots&\vdots\\
+	 	0&0&\cdots&1&-b_1
+	 \end{pmatrix}\in M_m(\F).
+	 \]
+	 称$\mathcal{R}$为$p(\lambda)^\ell$的有理块
+\end{definition}
+$\F$上的一个有理块不可能相似与一个由更低阶有理块构成的$\F$上的准对角阵
+
+$\R$上的有理块只能对应$(\lambda -a)^k$与$(\lambda^2 + p\lambda +q)^k$;$\C$上的有理块只能对应$(\lambda -c)^k$
+\begin{theorem}(有理标准型)
+	设 $A\in M_n(\F)$，且 $A$ 在 $\F$ 上的全部初等因子为
+	\[
+	p_i(\lambda)^{\ell_{ij}},
+	\qquad
+	1\leq i\leq s,\quad 1\leq j\leq t_i,
+	\]
+	其中 $p_1(\lambda),\ldots,p_s(\lambda)$ 是 $\F[\lambda]$ 中两两不同的首一不可约多项式.
+	令
+	\[
+	\mathcal{R}_{ij}=\mathcal{R}\bigl(p_i(\lambda)^{\ell_{ij}}\bigr).
+	\]
+	则 $A$ 相似于准对角矩阵
+	\[
+	\mathcal{R}=
+	\operatorname{diag}
+	\bigl(
+	\mathcal{R}_{11},\ldots,\mathcal{R}_{1t_1},
+	\mathcal{R}_{21},\ldots,\mathcal{R}_{2t_2},
+	\ldots,
+	\mathcal{R}_{s1},\ldots,\mathcal{R}_{st_s}
+	\bigr).
+	\]
+	\phantomsection\label{p1:concept:c5-l2799}称 $\mathcal{R}$ 为 $A$ 在 $\F$ 上的一个有理标准型.
+\end{theorem}
+
+\begin{proof}
+	对每个初等因子 $p_i(\lambda)^{\ell_{ij}}$，取对应有理块
+	\[
+	\mathcal{R}_{ij}=\mathcal{R}\bigl(p_i(\lambda)^{\ell_{ij}}\bigr).
+	\]
+	由上一个引理，$\mathcal{R}_{ij}$ 的唯一非平凡初等因子就是
+	\[
+	p_i(\lambda)^{\ell_{ij}}.
+	\]
+	故准对角矩阵 $\mathcal{R}$ 的全部初等因子正好是 $A$ 的全部初等因子.从而，$A\sim \mathcal{R}$.
+\end{proof}
+
+\begin{corollary}
+	设 $A\in M_n(\F)$，$A$ 在 $\F$ 上的全部初等因子为
+	\[
+	p_i(\lambda)^{\ell_{ij}},
+	\qquad
+	1\leq i\leq s,\quad 1\leq j\leq t_i,
+	\]
+	其中同一个 $i$ 下可令
+	\[
+	\ell_{i1}\geq\ell_{i2}\geq\cdots\geq\ell_{it_i}.
+	\]
+	则 $A$ 的极小多项式为
+	\[
+	m_A(\lambda)
+	=
+	p_1(\lambda)^{\ell_{11}}
+	p_2(\lambda)^{\ell_{21}}
+	\cdots
+	p_s(\lambda)^{\ell_{s1}},
+	\]
+	即每个不可约因子只取出现的最高次数.特别地，$A$ 的极小多项式等于 $A$ 的最后一个不变因子.
+\end{corollary}
+
+\begin{proof}
+	有理标准型中，对应 $p_i$ 的各块的零化多项式为
+	\[
+	p_i(\lambda)^{\ell_{i1}},\ldots,p_i(\lambda)^{\ell_{it_i}}.
+	\]
+	\textbf{整个准对角矩阵的极小多项式为各块极小多项式的最小公倍式}，因此只取每个 $p_i$ 的最高幂.
+\end{proof}
+也就是说：
+	$A$ 的特征多项式为
+	\[
+	f_A(\lambda)
+	=
+	\prod_{i=1}^{s}\prod_{j=1}^{t_i}
+	p_i(\lambda)^{\ell_{ij}}.
+	\]
+
+\begin{algo}
+	求 $A$ 在 $\F$ 上的有理标准型，可以按如下步骤：
+	\begin{enumerate}
+		\item 求出 $\lambda E_n-A$ 的全部初等因子；
+		\item 对每个初等因子 $p_i(\lambda)^{\ell_{ij}}$ 写出对应的友矩阵 $\mathcal{R}_{ij}$；
+		\item 将这些 $\mathcal{R}_{ij}$ 拼成准对角矩阵，即得 $A$ 的有理标准型.
+	\end{enumerate}
+\end{algo}
+
+	
+
+	设 $f(\lambda)\in\F[\lambda]$ 首一，且
+	\[
+	f(\lambda)=p(\lambda)^a
+	\]
+	为某个首一不可约多项式的幂.若
+	\[
+	a=a_1+\cdots+a_s,\qquad
+	a_1\geq a_2\geq\cdots\geq a_s\geq1,
+	\]
+	则称 $(a_1,\ldots,a_s)$ 是 $a$ 的一个划分.相应地，
+	\[
+	p(\lambda)^{a_1},\ldots,p(\lambda)^{a_s}
+	\]
+	给出以 $f(\lambda)$ 为特征多项式的初等因子的一种可能.
+	记 $a$ 的划分个数为 $\mathcal{P}(a)$.
+\begin{proposition}
+		设 $f(\lambda)\in\F[\lambda]$ 首一，且
+	\[
+	\deg f(\lambda)=n\geq1.
+	\]
+	设 $f(\lambda)$ 在 $\F$ 上的标准分解式为
+	\[
+	f(\lambda)=p_1(\lambda)^{r_1}\cdots p_s(\lambda)^{r_s},
+	\qquad r_i\geq1.
+	\]
+	则 $\F$ 上以 $f(\lambda)$ 为特征多项式的所有 $n$ 阶方阵，在相似意义下可以分为
+	\[
+	\mathcal{P}(r_1)\mathcal{P}(r_2)\cdots \mathcal{P}(r_s)
+	\]
+	类.
+\end{proposition}
+
+\begin{example}
+	设 $A\in M_n(\F)$，且 $A$ 的初等因子可分为两组：
+	第一组形如 $p(\lambda)^k$，其中 $p(0)\neq0$；第二组形如 $\lambda^r$.
+	则存在可逆矩阵 $P$，使
+	\[
+	P^{-1}AP=
+	\begin{pmatrix}
+		B&0\\
+		0&C
+	\end{pmatrix},
+	\]
+	其中 $B$ 可逆，$C$ 幂零.
+\end{example}
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l2911}
+	设 $a\in\F$，$r\in\mathbb{Z}^+$.定义 $r$ 阶 Jordan 块为
+	\[
+	J_r(a)=
+	\begin{pmatrix}
+		a&0&0&\cdots&0\\
+		1&a&0&\cdots&0\\
+		0&1&a&\cdots&0\\
+		\vdots&\vdots&\ddots&\ddots&\vdots\\
+		0&0&\cdots&1&a
+	\end{pmatrix}.
+	\]
+	以Jordan块为对角块的准对角阵称为一个Jordan阵
+\end{definition}
+$J_r(a)$的行列式因子为
+\[
+D_1=\cdots=D_{r-1}=1,\qquad
+D_r=(\lambda-a)^r.
+\]
+它与 $(\lambda-a)^r$ 的有理块相似
+因此 $J_r(a)$ 的唯一非平凡初等因子为$(\lambda-a)^r.$
+
+
+\begin{lemma}
+	设
+	\[
+	J=\operatorname{diag}
+	\bigl(
+	J_{r_1}(a_1),\ldots,J_{r_s}(a_s)
+	\bigr).
+	\]
+	则 $J$ 在 $\F$ 上的全部初等因子为
+	\[
+	(\lambda-a_1)^{r_1},\ldots,(\lambda-a_s)^{r_s},
+	\]
+	相同的要重复计算.
+\end{lemma}
+
+
+\begin{definition}\phantomsection\label{p1:concept:c5-l2950}
+	设 $A\in M_n(\F)$。若 $\F$ 上的与 $A$ 相似的 Jordan 矩阵存在，
+	则称它为 $A$ 在 $\F$ 上的 Jordan 标准型。
+\end{definition}
+
+\begin{theorem}[Jordan 标准型]
+	设 $A\in M_n(\F)$。则 $A$ 与 $\F$ 上的一个 Jordan 矩阵相似，
+	当且仅当 $A$ 的特征值全属于 $\F$。
+	此时，与 $A$ 相似的 Jordan 矩阵在允许交换对角块顺序的意义下是唯一的。
+\end{theorem}
+
+\begin{proof}
+	必要性,若
+	\[
+	A\sim J=\operatorname{diag}\bigl(J_{r_1}(a_1),\ldots,J_{r_s}(a_s)\bigr),
+	\]
+	则 $A$ 与 $J$ 的特征多项式相同，而
+	\[
+	f_J(\lambda)=(\lambda-a_1)^{r_1}\cdots(\lambda-a_s)^{r_s}.
+	\]
+	因此 $A$ 的特征值全属于 $\F$。
+	
+	反过来，设 $A$ 的特征值全属于 $\F$，即
+	\[
+	f_A(\lambda)=(\lambda-a_1)^{m_1}\cdots(\lambda-a_s)^{m_s},
+	\]
+	其中 $a_i\in\F$ 且两两不同。于是 $A$ 的全部初等因子必形如
+	\[
+	\begin{array}{cccc}
+		(\lambda-a_1)^{r_{11}},&
+		(\lambda-a_1)^{r_{12}},&
+		\cdots,&
+		(\lambda-a_1)^{r_{1t_1}},\\
+		(\lambda-a_2)^{r_{21}},&
+		(\lambda-a_2)^{r_{22}},&
+		\cdots,&
+		(\lambda-a_2)^{r_{2t_2}},\\
+		\vdots&\vdots&&\vdots\\
+		(\lambda-a_s)^{r_{s1}},&
+		(\lambda-a_s)^{r_{s2}},&
+		\cdots,&
+		(\lambda-a_s)^{r_{st_s}} .
+	\end{array}
+	\]
+	其中，对每个 $i$，$(r_{i1},r_{i2},\ldots,r_{it_i})$ 是 $m_i$ 的一个划分。
+	对每个初等因子 $(\lambda-a_i)^{r_{ij}}$ 取 Jordan 块
+	\[
+	J_{r_{ij}}(a_i),\qquad 1\leq i\leq s,\quad 1\leq j\leq t_i.
+	\]
+	令
+	\[
+	J=\operatorname{diag}\bigl(
+	J_{r_{11}}(a_1),\ldots,J_{r_{1t_1}}(a_1),
+	\ldots,
+	J_{r_{s1}}(a_s),\ldots,J_{r_{st_s}}(a_s)
+	\bigr).
+	\]
+	由上一个引理，$J$ 与 $A$ 的初等因子完全相同，故 $A\sim J$。
+	
+	唯一性由初等因子的唯一性得到：每个初等因子
+	$(\lambda-a_i)^{r_{ij}}$ 正好对应一个 Jordan 块
+	$J_{r_{ij}}(a_i)$，因此只可能交换对角块的顺序。
+\end{proof}
+
+\begin{corollary}
+	设 $A\in M_n(\F)$,在 $\mathbb C$ 上有 Jordan 标准型。
+\end{corollary}
+\begin{proposition}[由零度数恢复 Jordan 块]
+	设 $A\in M_n(\F)$ 在 $\F$ 上有 Jordan 标准型，$\lambda\in\F$ 是 $A$ 的一个特征值.记
+	\[
+	\nu_k=\dim\ker(A-\lambda E)^k,\qquad k=0,1,2,\ldots,
+	\]
+	其中约定 $\nu_0=0$.
+	
+	若 $A$ 关于特征值 $\lambda$ 的 Jordan 块大小分别为
+	\[
+	s_1,s_2,\ldots,s_m,
+	\]
+	即 $\lambda$ 对应的 Jordan 块为
+	\[
+	J_{s_1}(\lambda),J_{s_2}(\lambda),\ldots,J_{s_m}(\lambda),
+	\]
+	则
+	\[
+	\nu_k=\sum_{i=1}^m \min\{k,s_i\}.
+	\]
+	因此
+$\nu_k-\nu_{k-1}$ 等于大小至少为 $k$ 的 Jordan 块个数.
+	
+\end{proposition}
+
+\begin{proof}
+	由于相似不改变零空间维数，可设 $A$ 本身已经是 Jordan 标准型.先考虑一个 Jordan 块
+	\[
+	J_s(\lambda)=
+	\begin{pmatrix}
+		\lambda&0&0&\cdots&0\\
+		1&\lambda&0&\cdots&0\\
+		0&1&\lambda&\cdots&0\\
+		\vdots&\vdots&\ddots&\ddots&\vdots\\
+		0&0&\cdots&1&\lambda
+	\end{pmatrix}.
+	\]
+	令
+	\[
+	N_s=J_s(\lambda)-\lambda E_s.
+	\]
+	则
+	\[
+	N_s=
+	\begin{pmatrix}
+		0&0&0&\cdots&0\\
+		1&0&0&\cdots&0\\
+		0&1&0&\cdots&0\\
+		\vdots&\vdots&\ddots&\ddots&\vdots\\
+		0&0&\cdots&1&0
+	\end{pmatrix}.
+	\]
+	取标准基 $e_1,\ldots,e_s$，则
+	\[
+	N_s e_i=e_{i+1}\quad(1\leq i<s),\qquad N_s e_s=0.
+	\]
+	于是
+	\[
+	N_s^k e_i=
+	\begin{cases}
+		e_{i+k},& i+k\leq s,\\
+		0,& i+k>s.
+	\end{cases}
+	\]
+	所以当 $k\leq s$ 时，
+	\[
+	\ker N_s^k=\langle e_{s-k+1},\ldots,e_s\rangle,
+	\]
+	从而
+	\[
+	\dim\ker N_s^k=k.
+	\]
+	当 $k>s$ 时，$N_s^k=0$，故
+	\[
+	\dim\ker N_s^k=s.
+	\]
+	综上，
+	\[
+	\dim\ker\bigl(J_s(\lambda)-\lambda E_s\bigr)^k
+	=
+	\min\{k,s\}.
+	\]
+	
+	现在设 $A$ 关于 $\lambda$ 的 Jordan 块为
+	\[
+	J_{s_1}(\lambda),J_{s_2}(\lambda),\ldots,J_{s_m}(\lambda).
+	\]
+	由于 Jordan 标准型是准对角阵，$(A-\lambda E)^k$ 仍是准对角阵.因此其零空间是各个对角块零空间的直和，所以维数相加：
+	\[
+	\dim\ker(A-\lambda E)^k
+	=
+	\sum_{i=1}^m
+	\dim\ker\bigl(J_{s_i}(\lambda)-\lambda E_{s_i}\bigr)^k.
+	\]
+	于是
+	\[
+	\nu_k=\sum_{i=1}^m\min\{k,s_i\}.
+	\]
+	注意其他特征值 $\mu\neq\lambda$ 的 Jordan 块不贡献零空间，因为
+	\[
+	J_t(\mu)-\lambda E_t=(\mu-\lambda)E_t+N_t
+	\]
+	是可逆矩阵.
+	
+	最后考察差分.对一个大小为 $s$ 的 Jordan 块，有
+	\[
+	\min\{k,s\}-\min\{k-1,s\}
+	=
+	\begin{cases}
+		1,&s\geq k,\\
+		0,&s<k.
+	\end{cases}
+	\]
+	因此，每个大小至少为 $k$ 的 Jordan 块贡献 $1$，每个大小小于 $k$ 的 Jordan 块贡献 $0$.把所有 Jordan 块的贡献相加，得到
+$\nu_k-\nu_{k-1}$ 等于大小至少为 $k$ 的 Jordan 块个数.
+	证毕.
+	
+\end{proof}
+
+\begin{example}
+	设 $T\in M_5(\F)$ 只有一个特征值 $3$.记
+	\[
+	N=T-3E.
+	\]
+	若
+	\[
+	\dim\ker N=2,\qquad
+	\dim\ker N^2=3,\qquad
+	\dim\ker N^3=4,\qquad
+	\dim\ker N^4=5,
+	\]
+	则
+	\[
+	\nu_1=2,\qquad \nu_2=3,\qquad \nu_3=4,\qquad \nu_4=5.
+	\]
+	计算差分得
+	\[
+	\nu_1-\nu_0=2,\qquad
+	\nu_2-\nu_1=1,\qquad
+	\nu_3-\nu_2=1,\qquad
+	\nu_4-\nu_3=1.
+	\]
+	因此大小至少为 $1$ 的 Jordan 块有 $2$ 个，大小至少为 $2$ 的 Jordan 块有 $1$ 个，大小至少为 $3$ 的 Jordan 块有 $1$ 个，大小至少为 $4$ 的 Jordan 块有 $1$ 个.
+	
+	所以 $T$ 关于特征值 $3$ 的 Jordan 块大小为
+	\[
+	4,\ 1.
+	\]
+	故
+	\[
+	T\sim \operatorname{diag}\bigl(J_4(3),J_1(3)\bigr).
+	\]
+	
+\end{example}
+
+\begin{example}
+	设 $S\in M_5(\F)$ 有两个特征值 $2,-1$.对特征值 $2$，已知
+	\[
+	\dim\ker(S-2E)=2,\qquad
+	\dim\ker(S-2E)^2=4.
+	\]
+	于是
+	\[
+	\nu_1-\nu_0=2,\qquad
+	\nu_2-\nu_1=2.
+	\]
+	所以特征值 $2$ 对应两个 Jordan 块，并且这两个块的大小都至少为 $2$.
+	
+	又对特征值 $-1$，有
+	\[
+	\dim\ker(S+E)=1,
+	\]
+	故 $-1$ 至少对应一个 Jordan 块.由于 $S$ 是 $5$ 阶矩阵，总维数为 $5$，所以特征值 $2$ 只能占 $4$ 维，特征值 $-1$ 占 $1$ 维.因此 $2$ 对应的两个 Jordan 块大小为
+	\[
+	2,\ 2,
+	\]
+	而 $-1$ 对应的 Jordan 块大小为
+	\[
+	1.
+	\]
+	故
+	\[
+	S\sim \operatorname{diag}\bigl(J_2(2),J_2(2),J_1(-1)\bigr).
+	\]
+	
+\end{example}
+
+
+\section{一些有价值的习题}
+
+\begin{problem}[11]
+	设 $A$ 是一个 $n\times n$ 矩阵，它在 $n$ 维线性空间 $V$ 的一组基下定义线性变换.证明
+	\[
+	\dim(\Im A\cap\ker A)=\dim(\Im A)-\dim(\Im A^2).
+	\]
+	并推出：
+	\begin{enumerate}
+		\item $\ker A\subset \Im A$ 当且仅当
+		\[
+		\dim(\ker A)=\dim(\Im A)-\dim(\Im A^2);
+		\]
+		\item $\Im A\subset \ker A$ 当且仅当 $A^2=0$；
+		\item $\Im A=\ker A$ 当且仅当 $A^2=0$ 且 $\dim(\ker A)=\dim(\Im A)$；
+		\item $\dim(\Im A\cap\ker A)=0$ 当且仅当
+		\[
+		\dim(\Im A)=\dim(\Im A^2);
+		\]
+		\item $V=\Im A\oplus\ker A$ 当且仅当
+		\[
+		\dim(\Im A)=\dim(\Im A^2).
+		\]
+	\end{enumerate}
+\end{problem}
+
+\begin{proof}
+	考虑限制映射
+	\[
+	A|_{\Im A}:\Im A\longrightarrow \Im A.
+	\]
+	它的核与像分别为
+	\[
+	\ker(A|_{\Im A})=\Im A\cap\ker A,
+	\qquad
+	\Im(A|_{\Im A})=\Im A^2.
+	\]
+	由维数公式得
+	\[
+	\dim(\Im A\cap\ker A)+\dim(\Im A^2)=\dim(\Im A),
+	\]
+	即
+	\[
+	\dim(\Im A\cap\ker A)=\dim(\Im A)-\dim(\Im A^2).
+	\]
+	下面证明各个结论.
+	\begin{enumerate}
+		\item 因为 $\ker A\subset \Im A$ 当且仅当
+		\[
+		\ker A=\Im A\cap\ker A,
+		\]
+		所以由上式立得结论.
+		\item 有
+		\[
+		\Im A\subset \ker A
+		\Longleftrightarrow
+		A(\Im A)=0
+		\Longleftrightarrow
+		\Im A^2=0
+		\Longleftrightarrow A^2=0.
+		\]
+		\item 由 (2)，$\Im A\subset\ker A$ 当且仅当 $A^2=0$.此时再由二者维数相等，即得
+		$\Im A=\ker A$.
+		\item 由已证等式直接得到.
+		\item 由维数公式
+		\[
+		\dim V=\dim(\Im A)+\dim(\ker A),
+		\]
+		可知 $V=\Im A\oplus\ker A$ 当且仅当
+		$\Im A\cap\ker A=0$.再由 (4) 得证.
+	\end{enumerate}
+\end{proof}
+
+\begin{problem}[12]
+	若两个实方阵在复数域上相似，则它们在实数域上相似.
+\end{problem}
+
+\begin{proof}
+	设 $A,B\in M_n(\mathbb{R})$，且存在 $P\in \GL_n(\mathbb{C})$ 使得
+	\[
+	A=PBP^{-1},
+	\]
+	即
+	\[
+	AP=PB.
+	\]
+	写
+	\[
+	P=Q+iR,
+	\qquad Q,R\in M_n(\mathbb{R}).
+	\]
+	则
+	\[
+	A(Q+iR)=(Q+iR)B,
+	\]
+	比较实部与虚部，得
+	\[
+	AQ=QB,
+	\qquad
+	AR=RB.
+	\]
+	考虑实系数多项式
+	\[
+	p(t)=\det(Q+tR).
+	\]
+	若 $p(t)$ 恒为零，则 $p(i)=\det(Q+iR)=\det P=0$，矛盾.故可取 $t_0\in\mathbb{R}$ 使得
+	\[
+	\det(Q+t_0R)\neq0.
+	\]
+	令 $C=Q+t_0R$，则 $C\in \GL_n(\mathbb{R})$，且
+	\[
+	AC=CB.
+	\]
+	所以
+	\[
+	A=CBC^{-1}.
+	\]
+	故 $A,B$ 在实数域上相似.
+\end{proof}
+
+\begin{problem}[15]
+	设 $A$ 是一个数域上的 $n\times n$ 矩阵.证明
+	\[
+	\deg(\lambda E_n-A)^*=n-1.
+	\]
+\end{problem}
+
+\begin{proof}
+	由伴随矩阵的定义，
+	\[
+	(\lambda E_n-A)(\lambda E_n-A)^*=|\lambda E_n-A|E_n.
+	\]
+	设
+	\[
+	(\lambda E_n-A)^*=P_m\lambda^m+P_{m-1}\lambda^{m-1}+\cdots+P_0,
+	\qquad P_m\neq0.
+	\]
+	又
+	\[
+	|\lambda E_n-A|=\lambda^n+a_{n-1}\lambda^{n-1}+\cdots+a_0.
+	\]
+	于是左边最高次项为 $P_m\lambda^{m+1}$，右边最高次项为 $E_n\lambda^n$，比较次数得
+	\[
+	m+1=n.
+	\]
+	因此
+	\[
+	\deg(\lambda E_n-A)^*=n-1.
+	\]
+\end{proof}
+
+\begin{problem}[16]
+	设 $A(\lambda)$ 是一个 $\lambda$-矩阵.若 $\deg A(\lambda)=d$，是否必有
+	\[
+	\deg |A(\lambda)|\geq d?
+	\]
+\end{problem}
+
+\begin{solution}
+	不一定.例如取
+	\[
+	A(\lambda)=
+	\begin{pmatrix}
+		\lambda^2+1&\lambda^2\\
+		\lambda^2&\lambda^2-1
+	\end{pmatrix}.
+	\]
+	则
+	\[
+	\deg A(\lambda)=2,
+	\]
+	但
+	\[
+	|A(\lambda)|=(\lambda^2+1)(\lambda^2-1)-\lambda^4=-1,
+	\]
+	故
+	\[
+	\deg |A(\lambda)|=0<2.
+	\]
+\end{solution}
+
+\begin{problem}[17]
+	若 $n\times n$ 的 $\lambda$-矩阵 $A(\lambda)$ 可逆，则 $A(\lambda)$ 的秩为 $n$.反之是否成立？
+\end{problem}
+
+\begin{solution}
+	若 $A(\lambda)$ 可逆，则
+	\[
+	\det A(\lambda)\neq0,
+	\]
+	从而 $A(\lambda)$ 有一个 $n$ 阶子式不为零，故
+	\[
+	r(A(\lambda))=n.
+	\]
+	反之不成立.例如取
+	\[
+	A(\lambda)=\lambda E_n-B,
+	\qquad B\in M_n(\F).
+	\]
+	由于
+	\[
+	\det(\lambda E_n-B)
+	\]
+	是 $B$ 的特征多项式，故它是一个非零的 $n$ 次多项式，从而
+	\[
+	r(\lambda E_n-B)=n.
+	\]
+	但是 $\det(\lambda E_n-B)$ 不是非零常数，所以 $\lambda E_n-B$ 在 $\lambda$-矩阵意义下不可逆.
+\end{solution}
+
+\begin{problem}[34]
+	设 $\lambda_1,\lambda_2,\ldots,\lambda_n$ 是 $n\times n$ 矩阵 $A$ 的全部特征值，重数也计入其中.证明：对任意多项式 $g(x)$，有
+	\[
+	|g(A)|=\prod_{i=1}^n g(\lambda_i).
+	\]
+\end{problem}
+
+\begin{proof}
+	在包含所有特征值的扩域中，$A$ 可三角化.设 $A$ 与上三角矩阵 $U$ 相似，且 $U$ 的对角元依次为
+	\[
+	\lambda_1,\lambda_2,\ldots,\lambda_n.
+	\]
+	于是 $g(A)$ 与 $g(U)$ 相似，而 $g(U)$ 仍是上三角矩阵，且其对角元为
+	\[
+	g(\lambda_1),g(\lambda_2),\ldots,g(\lambda_n).
+	\]
+	所以
+	\[
+	|g(A)|=\prod_{i=1}^n g(\lambda_i).
+	\]
+\end{proof}
+
+\begin{problem}[45]
+	设 $A\in M_n(\F)$，$m_A(\lambda)$ 为 $A$ 的极小多项式.若 $g(\lambda)\in\F[\lambda]$，证明：
+	\[
+	(g(\lambda),m_A(\lambda))=1
+	\Longleftrightarrow
+	\det g(A)\neq0.
+	\]
+\end{problem}
+
+\begin{proof}
+	若 $(g,m_A)=1$，则存在 $u(\lambda),v(\lambda)\in\F[\lambda]$，使得
+	\[
+	u(\lambda)g(\lambda)+v(\lambda)m_A(\lambda)=1.
+	\]
+	代入 $A$ 得
+	\[
+	u(A)g(A)+v(A)m_A(A)=E_n.
+	\]
+	由于 $m_A(A)=0$，故
+	\[
+	u(A)g(A)=E_n,
+	\]
+	所以 $g(A)$ 可逆，因而 $\det g(A)\neq0$.
+	
+	反过来，若 $\det g(A)\neq0$，设 $\lambda_1,\ldots,\lambda_n$ 是 $A$ 的特征值.由上一题，
+	\[
+	\det g(A)=\prod_{i=1}^n g(\lambda_i)\neq0,
+	\]
+	故 $g(\lambda_i)\neq0$ 对所有 $i$ 成立.而 $m_A$ 的根正是 $A$ 的特征值，故 $g$ 与 $m_A$ 无公共根，从而
+	\[
+	(g,m_A)=1.
+	\]
+\end{proof}
+
+\begin{problem}[59]
+	设
+	\[
+	L=L_1\oplus L_2,
+	\]
+	其中 $L_1,L_2$ 是 $A$-子空间.证明
+	\[
+	f_A(\lambda)=f_{A|_{L_1}}(\lambda)f_{A|_{L_2}}(\lambda),
+	\]
+	其中 $f_A(\lambda)$ 是 $A$ 的特征多项式.
+\end{problem}
+
+\begin{proof}
+	设 $\dim L_1=r$，$\dim L=s$.取 $L_1$ 的一组基
+	\[
+	\xi_1,\ldots,\xi_r,
+	\]
+	以及 $L_2$ 的一组基
+	\[
+	\xi_{r+1},\ldots,\xi_s.
+	\]
+	由于 $L=L_1\oplus L_2$，故
+	\[
+	\xi_1,\ldots,\xi_r,\xi_{r+1},\ldots,\xi_s
+	\]
+	是 $L$ 的一组基.
+	
+	由于 $L_i$ 是 $A$-子空间，故
+	\[
+	A|_{L_i}\in\End(L_i),\qquad i=1,2.
+	\]
+	设 $A|_{L_1}$ 在基 $\xi_1,\ldots,\xi_r$ 下的矩阵为 $A_1$，$A|_{L_2}$ 在基 $\xi_{r+1},\ldots,\xi_s$ 下的矩阵为 $A_2$，即
+	\[
+	(A|_{L_1}\xi_1\ \cdots\ A|_{L_1}\xi_r)=(\xi_1\ \cdots\ \xi_r)A_1,
+	\]
+	\[
+	(A|_{L_2}\xi_{r+1}\ \cdots\ A|_{L_2}\xi_s)=(\xi_{r+1}\ \cdots\ \xi_s)A_2.
+	\]
+	又对任意 $\alpha\in L_i$，有 $A|_{L_i}\alpha=A\alpha$.所以
+	\[
+	(A\xi_1\ \cdots\ A\xi_r\ A\xi_{r+1}\ \cdots\ A\xi_s)
+	=(\xi_1\ \cdots\ \xi_r\ \xi_{r+1}\ \cdots\ \xi_s)
+	\begin{pmatrix}
+		A_1&0\\
+		0&A_2
+	\end{pmatrix}.
+	\]
+	即 $A$ 在这组基下的矩阵为
+	\[
+	\begin{pmatrix}
+		A_1&0\\
+		0&A_2
+	\end{pmatrix}.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		f_A(\lambda)
+		&=\left|\lambda E_s-
+		\begin{pmatrix}
+			A_1&0\\
+			0&A_2
+		\end{pmatrix}\right|\\
+		&=\left|\begin{matrix}
+			\lambda E_r-A_1&0\\
+			0&\lambda E_{s-r}-A_2
+		\end{matrix}\right|\\
+		&=|\lambda E_r-A_1|\,|\lambda E_{s-r}-A_2|\\
+		&=f_{A|_{L_1}}(\lambda)f_{A|_{L_2}}(\lambda).
+	\end{aligned}
+	\]
+\end{proof}
+
+
+
+\begin{problem}[65]
+	若两个数值矩阵 $A,B$ 作为 $\lambda$-矩阵相抵，则它们作为数值矩阵也相抵.
+\end{problem}
+
+\begin{proof}
+	法一：利用 $\lambda$-矩阵的初等变换不改变 $\lambda$-矩阵的秩.若 $A,B\in M_n(\F)$ 作为 $\lambda$-矩阵相抵，则它们作为 $\lambda$-矩阵的秩相等.由于 $A,B$ 是常数矩阵，它们作为 $\lambda$-矩阵时非零子式的最大阶数，正是作为数值矩阵时非零子式的最大阶数.故
+	\[
+	r(A)=r(B).
+	\]
+	由矩阵相抵的判别，$A$ 与 $B$ 作为数值矩阵相抵.
+	
+	法二：设存在可逆的 $\lambda$-矩阵 $P(\lambda),Q(\lambda)$，使得
+	\[
+	A=P(\lambda)BQ(\lambda).
+	\]
+	写
+	\[
+	P(\lambda)=\lambda^rP_r+\cdots+\lambda P_1+P_0,
+	\qquad
+	Q(\lambda)=\lambda^sQ_s+\cdots+\lambda Q_1+Q_0.
+	\]
+	由下面的引理可知 $P_0,Q_0$ 可逆.比较等式两边的常数项，得
+	\[
+	A=P_0BQ_0.
+	\]
+	故 $A,B$ 作为数值矩阵相抵.
+\end{proof}
+
+\begin{lemma}
+	设
+	\[
+	M(\lambda)=\lambda^mM_m+\cdots+\lambda M_1+M_0
+	\]
+	是 $n$ 阶可逆 $\lambda$-矩阵，其中 $M_i$ 是数值矩阵，则 $M_0$ 可逆.
+\end{lemma}
+
+\begin{proof}
+	设
+	\[
+	M(\lambda)^{-1}=\lambda^uN_u+\cdots+\lambda N_1+N_0.
+	\]
+	代入
+	\[
+	M(\lambda)M(\lambda)^{-1}=E_n
+	\]
+	并比较常数项，得到
+	\[
+	M_0N_0=E_n.
+	\]
+	故 $M_0$ 可逆.
+\end{proof}
+
+\begin{problem}[85]
+	设 $A$ 是一个 $4\times4$ 矩阵，特征多项式为 $(\lambda-1)^4$.
+	\begin{enumerate}
+		\item 证明 $A$ 的 Jordan 标准型有五种可能，但极小多项式只有四种可能.
+		\item 证明 $A$ 的 Jordan 标准型由极小多项式的次数与 $r(E-A)$ 共同决定.
+	\end{enumerate}
+\end{problem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item 由于 $\mathcal{P}(4)=5$，即
+		\[
+		4=4=3+1=2+2=2+1+1=1+1+1+1,
+		\]
+		所以 Jordan 标准型有五种可能：
+		\[
+		J_4(1),
+		\]
+		\[
+		\operatorname{diag}(J_3(1),J_1(1)),
+		\]
+		\[
+		\operatorname{diag}(J_2(1),J_2(1)),
+		\]
+		\[
+		\operatorname{diag}(J_2(1),J_1(1),J_1(1)),
+		\]
+		\[
+		\operatorname{diag}(J_1(1),J_1(1),J_1(1),J_1(1)).
+		\]
+		它们对应的极小多项式分别为
+		\[
+		(\lambda-1)^4,
+		\quad
+		(\lambda-1)^3,
+		\quad
+		(\lambda-1)^2,
+		\quad
+		(\lambda-1)^2,
+		\quad
+		(\lambda-1).
+		\]
+		因此 Jordan 标准型有五种，而极小多项式只有四种.
+		
+		\item 一般地，特征多项式与极小多项式不能完全决定 Jordan 标准型.在本题中，只有当极小多项式为 $(\lambda-1)^2$ 时，需要区分两种情形：
+		\[
+		\operatorname{diag}(J_2(1),J_2(1))
+		\quad\text{与}\quad
+		\operatorname{diag}(J_2(1),J_1(1),J_1(1)).
+		\]
+		此时
+		\[
+		r(E-\operatorname{diag}(J_2(1),J_2(1)))=2,
+		\]
+		而
+		\[
+		r(E-\operatorname{diag}(J_2(1),J_1(1),J_1(1)))=1.
+		\]
+		其余极小多项式次数对应的 Jordan 标准型唯一.因此 $A$ 的 Jordan 标准型由极小多项式的次数与 $r(E-A)$ 共同决定.
+	\end{enumerate}
+\end{proof}
+
+\begin{problem}[88]
+	\phantomsection\label{p1:concept:c5-l3660}设 $\F$ 是一个数域.对任意 $a_0,a_1,\ldots,a_{n-1}\in\F$，定义 $n\times n$ 循环矩阵
+	\[
+	A=C[a_0,a_1,\ldots,a_{n-1}]
+	=
+	\begin{pmatrix}
+		a_0&a_1&a_2&\cdots&a_{n-1}\\
+		a_{n-1}&a_0&a_1&\cdots&a_{n-2}\\
+		a_{n-2}&a_{n-1}&a_0&\cdots&a_{n-3}\\
+		\vdots&\vdots&\vdots&&\vdots\\
+		a_1&a_2&a_3&\cdots&a_0
+	\end{pmatrix}.
+	\]
+	证明：$A$ 可逆当且仅当多项式
+	\[
+	f(x)=\sum_{i=0}^{n-1}a_ix^i
+	\]
+	与 $x^n-1$ 互素.
+\end{problem}
+
+\begin{proof}
+	设
+	\[
+	f(x)=\sum_{i=0}^{n-1}a_ix^i.
+	\]
+	在包含 $x^n-1$ 全部根的扩域中，记
+	\[
+	\varepsilon_0=1,\varepsilon_1,\ldots,\varepsilon_{n-1}
+	\]
+	为 $x^n-1$ 的全部根.由于数域的特征为 $0$，这些根互不相同.
+	
+	取 Vandermonde 矩阵
+	\[
+	P=
+	\begin{pmatrix}
+		1&1&\cdots&1\\
+		1&\varepsilon_1&\cdots&\varepsilon_{n-1}\\
+		\vdots&\vdots&&\vdots\\
+		1&\varepsilon_1^{n-1}&\cdots&\varepsilon_{n-1}^{n-1}
+	\end{pmatrix}.
+	\]
+	由 Vandermonde 行列式知 $|P|\neq0$.直接计算可得
+	\[
+	AP=P
+	\begin{pmatrix}
+		f(1)&&&\\
+		&f(\varepsilon_1)&&\\
+		&&\ddots&\\
+		&&&f(\varepsilon_{n-1})
+	\end{pmatrix}.
+	\]
+	于是
+	\[
+	|A|=f(1)f(\varepsilon_1)\cdots f(\varepsilon_{n-1}).
+	\]
+	因此 $A$ 可逆当且仅当
+	\[
+	f(\varepsilon_i)\neq0,
+	\qquad i=0,1,\ldots,n-1.
+	\]
+	这等价于 $f(x)$ 与 $x^n-1$ 没有公共根，即
+	\[
+	(f(x),x^n-1)=1.
+	\]
+\end{proof}
+
+\begin{problem}[89]
+	证明：线性变换 $A$ 关于特征值 $\lambda_0$ 的 Jordan 块个数，等于属于 $\lambda_0$ 的特征子空间的维数.
+\end{problem}
+
+\begin{proof}
+	设 $A$ 的 Jordan 标准型中，属于 $\lambda_0$ 的 Jordan 块为
+	\[
+	J_{r_1}(\lambda_0),\ldots,J_{r_t}(\lambda_0).
+	\]
+	其他特征值对应的 Jordan 块合在一起记为 $J'$.则
+	\[
+	A\sim \operatorname{diag}(J_{r_1}(\lambda_0),\ldots,J_{r_t}(\lambda_0),J').
+	\]
+	对每个块有
+	\[
+	r(\lambda_0E_{r_i}-J_{r_i}(\lambda_0))=r_i-1.
+	\]
+	而 $\lambda_0E-J'$ 中的每个对角块均可逆.因此
+	\[
+	r(\lambda_0E-A)=n-t.
+	\]
+	于是
+	\[
+	\dim\ker(\lambda_0E-A)=n-r(\lambda_0E-A)=t.
+	\]
+	左边正是属于 $\lambda_0$ 的特征子空间维数，右边正是属于 $\lambda_0$ 的 Jordan 块个数.
+\end{proof}
+
+\begin{example}[Jordan 基的一种求法]
+	给定矩阵
+	\[
+	A=
+	\begin{pmatrix}
+		8&-3&3&-2\\
+		0&3&0&2\\
+		-10&6&-3&4\\
+		2&0&1&2
+	\end{pmatrix}.
+	\]
+	可算得 $A$ 的特征多项式为
+	\[
+	f_A(\lambda)=(\lambda-2)^2(\lambda-3)^2.
+	\]
+	对 $\lambda E-A$ 作初等变换，可得 $A$ 的初等因子为
+	\[
+	(\lambda-2)^2,
+	\qquad
+	(\lambda-3)^2.
+	\]
+	因此 $A$ 的 Jordan 标准型为
+	\[
+	J=
+	\begin{pmatrix}
+		2&0&0&0\\
+		1&2&0&0\\
+		0&0&3&0\\
+		0&0&1&3
+	\end{pmatrix}.
+	\]
+	
+	若 $P=(\xi_1\ \xi_2\ \xi_3\ \xi_4)$，且 $AP=PJ$，则
+	\[
+	(A\xi_1\ A\xi_2\ A\xi_3\ A\xi_4)
+	=(\xi_1\ \xi_2\ \xi_3\ \xi_4)
+	\begin{pmatrix}
+		2&0&0&0\\
+		1&2&0&0\\
+		0&0&3&0\\
+		0&0&1&3
+	\end{pmatrix},
+	\]
+	即
+	\[
+	\left\{
+	\begin{aligned}
+		A\xi_1&=2\xi_1+\xi_2,\\
+		A\xi_2&=2\xi_2,\\
+		A\xi_3&=3\xi_3+\xi_4,\\
+		A\xi_4&=3\xi_4.
+	\end{aligned}
+	\right.
+	\]
+	这说明 $\xi_2,\xi_4$ 分别是属于特征值 $2,3$ 的特征向量.
+	
+	对 $\lambda_1=2$，解
+	\[
+	(2E-A)X=0
+	\]
+	可取
+	\[
+	\eta_1=
+	\begin{pmatrix}
+		1\\0\\-2\\0
+	\end{pmatrix}.
+	\]
+	再解
+	\[
+	(A-2E)X=\eta_1,
+	\]
+	其通解为
+	\[
+	X=\frac14
+	\begin{pmatrix}
+		0\\-2\\0\\1
+	\end{pmatrix}
+	+t
+	\begin{pmatrix}
+		1\\0\\-2\\0
+	\end{pmatrix},
+	\qquad t\in\mathbb{C}.
+	\]
+	取 $t=0$，得
+	\[
+	\eta_2=
+	\begin{pmatrix}
+		0\\-rac12\\0\\\frac14
+	\end{pmatrix}.
+	\]
+	
+	对 $\lambda_2=3$，解
+	\[
+	(3E-A)X=0
+	\]
+	可取
+	\[
+	\zeta_1=
+	\begin{pmatrix}
+		-3\\1\\6\\0
+	\end{pmatrix}.
+	\]
+	再解
+	\[
+	(A-3E)X=\zeta_1,
+	\]
+	其通解为
+	\[
+	X=\frac16
+	\begin{pmatrix}
+		0\\7\\3\\3
+	\end{pmatrix}
+	+s
+	\begin{pmatrix}
+		-3\\1\\6\\0
+	\end{pmatrix},
+	\qquad s\in\mathbb{C}.
+	\]
+	取 $s=0$，得
+	\[
+	\zeta_2=\frac16
+	\begin{pmatrix}
+		0\\7\\3\\3
+	\end{pmatrix}.
+	\]
+	于是可取
+	\[
+	P=(\eta_2\ \eta_1\ \zeta_2\ \zeta_1)
+	=
+	\begin{pmatrix}
+		0&1&0&-3\\
+		-\frac12&0&\frac76&1\\
+		0&-2&\frac12&6\\
+		\frac14&0&\frac12&0
+	\end{pmatrix}.
+	\]
+	则
+	\[
+	P^{-1}AP=J.
+	\]
+\end{example}
+
+\begin{proposition}
+	设 $A\in M_n(\F)$.则 $A$ 在 $\F$ 上可对角化当且仅当下列条件之一成立：
+	\begin{enumerate}
+		\item $A$ 在 $\F^n$ 中有 $n$ 个线性无关的特征向量；
+		\item $A$ 的极小多项式在 $\F$ 上可以分解为互不相同的一次因式的乘积；
+		\item $A$ 的初等因子全是 $\F$ 上的一次因式；
+		\item $\F^n$ 可以分解为 $A$ 的特征子空间的直和；
+		\item $A$ 的每个特征值都属于 $\F$，且每个特征值的几何重数等于代数重数.
+	\end{enumerate}
+\end{proposition}

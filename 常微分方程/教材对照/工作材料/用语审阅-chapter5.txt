@@ -1,0 +1,138 @@
+\subsection*{Picard迭代的压缩映射解释}
+上述 Picard 证明利用阶乘估计控制全部迭代。缩小时间区间后，同一积分算子还可看作完备度量空间上的压缩映射；这一观点将在局部逆和不变流形的构造中再次使用。
+度量空间 $(M,d)$ 中，每个 Cauchy 序列都有极限时称 $M$ 完备。
+若映射 $A:M\to M$ 满足存在同一个常数 $0\leq\lambda<1$，使
+ 对所有 $x,y\in M$ 成立，则称它为压缩映射。
+满足 $Ax=x$ 的点称不动点。
+\begin{theorem}[压缩映射定理]\label{thm:arnold-banach}
+非空完备度量空间上的压缩映射有唯一不动点 $x_*$。
+任意初值的迭代 $x_{n+1}=Ax_n$ 收敛到它，并有
+\textbf{第一步：构造 Cauchy 序列。}
+固定 $x_0\in M$，令 $x_{n+1}=Ax_n$，记 $d_0=d(x_1,x_0)$。
+反复应用压缩条件，得到
+对 $m>n$，三角不等式和几何级数给出
+右端不依赖 $m$，且随 $n\to\infty$ 趋于零，所以这是 Cauchy 序列。
+由完备性，存在 $x_*\in M$ 使 $x_n\to x_*$。
+\textbf{第二步：验证不动点并证明唯一性。}
+由压缩估计，$A$ 连续，故
+若 $Ay_*=y_*$，则
+由于 $1-\lambda>0$，只能有 $d(x_*,y_*)=0$，即 $x_*=y_*$。
+\textbf{第三步：误差估计。}
+让第一步的不等式中 $m\to\infty$，便得到迭代误差界。
+对任意近似点 $x$，另由
+移项得到残差界 $d(x,x_*)\leq d(x,Ax)/(1-\lambda)$。
+只要求 $d(Ax,Ay)<d(x,y)$ 不够。例如
+$A(x)=\log(1+e^x)$ 在 $\R$ 上满足 $0<A'(x)<1$，却始终 $A(x)>x$ 而没有不动点。
+缺少的是统一小于 1 的常数。
+\begin{proposition}[Picard 算子]
+在矩形 $|t-t_0|\leq a,\ |x-x_0|\leq b$ 上，设 $|f|\leq M$，且 $f$ 关于 $x$
+的 Lipschitz 常数为 $L$。取 $h\leq a$，$Mh\leq b$、$Lh<1$。
+在连续函数的闭集 $\{u:\|u-x_0\|_\infty\leq b\}$ 上为压缩映射。
+令 $J=[t_0-h,t_0+h]$，在 $C(J,\R^n)$ 上取一致范数。
+连续函数列若依一致范数 Cauchy，便一致收敛到连续函数，故该空间完备。
+集合 $\mathcal M=\{u:\|u-x_0\|_\infty\leq b\}$ 是闭集，且包含常函数 $u=x_0$，
+因此是非空完备度量空间。
+若 $u\in\mathcal M$，则所有 $(t,u(t))$ 都在给定矩形内，所以积分有定义，且
+这证明 $A\mathcal M\subset\mathcal M$。
+对任意 $u,w\in\mathcal M$，Lipschitz 条件给出
+取上确界得 
+由于 $Lh<1$，压缩映射定理适用。
+其不动点满足积分方程，右端连续，所以对时间可微，微分后满足原初值问题。
+反过来，每个处于此矩形内的解积分后也是不动点，唯一性随之成立。
+\subsection*{唯一性条件下的Euler折线}
+Peano 定理利用紧性从 Euler 折线中抽取收敛子列。若另有 Lipschitz 条件，则第~\ref{sec:picard-contraction}~节的残差估计还能控制整个近似序列。
+必要时缩小共同存在区间，仍记其半长为 $h$，并使 $Lh<1$。在该区间的连续函数闭集上，令
+记真解为 $x$，则 $Ax=x$，且对任一留在该闭集内的近似曲线 $u$，
+在 Peano 定理的证明中已经得到 Euler 折线 $u_n$ 满足
+代入残差估计，便有
+因此在这个共同小区间上，整个 Euler 折线序列均一致收敛到解，而不只是某个子序列。
+\begin{proposition}[有限维紧集延拓判据]\label{prop:compact-extension-vector}
+设 $G\subset\R\times\R^n$ 为开集，$f:G\to\R^n$ 连续，且关于 $x$ 局部满足 Lipschitz 条件。
+若解 $x(t)$ 定义在 $[t_0,\beta)$，$\beta<\infty$，并且其图像始终包含在某个紧集 $K\subset G$ 中，
+则该解能够越过 $\beta$ 延拓。左端点有相同结论。
+这正是前面延拓证明的有限维形式。连续性与紧性给出 $\sup_K|f|=M<\infty$，故
+因此 $t\uparrow\beta$ 时 $x(t)$ 满足 Cauchy 准则，在 $\R^n$ 中有极限 $x_*$。
+$K$ 为闭集，故 $(\beta,x_*)\in K\subset G$。
+令 $x(\beta)=x_*$，在积分方程中取极限，知延长的函数仍满足积分方程。
+再在 $(\beta,x_*)$ 应用有限维 Picard 定理，便可将解继续接到 $\beta$ 右侧。
+由唯一性两段解相容。反向时间给出左端结论。
+\subsection*{用能量控制有限时间内的状态}
+第二章保守系统中的机械能也可用于延拓。这里不要求势能控制位置趋于无穷的行为：势能有下界即可先控制速度，再控制有限时间内的位置。
+\begin{theorem}[能量与全局延拓]\label{thm:energy-global-extension}
+设 $U\in C^2(\R^n)$ 有下界，$m_i>0$。则
+$m_i\ddot x_i=-\partial_iU(x)$ 的每个解都能双向延拓到整条时间轴。
+把二阶方程写成状态变量 $(x,v)$ 的一阶方程
+$\dot x_i=v_i,\ \dot v_i=-\partial_iU(x)/m_i$。其向量场为 $C^1$，
+所以每个初值有唯一最大解。沿该解计算
+设常能量为 $E_0$，取 $C$ 使 $U(x)\geq-C$，再令 $m_*:=\min_i m_i>0$。
+因此存在与时间无关的 $M$，使 $|v(t)|\leq M$。
+若最大正向存在端点 $\beta$ 有限，则对 $t_0\leq t<\beta$，
+所以 $(x(t),v(t))$ 始终留在整个状态空间中的一个紧球内。
+命题~\ref{prop:compact-extension-vector} 说明解可越过 $\beta$ 延拓，与最大性矛盾。
+负向时间同样有
+$|x(t)|\leq|x(t_0)|+M|t-t_0|$，故负向端点也不可能有限。
+两个方向的最大端点分别为 $+\infty$ 和 $-\infty$。
+	\textbf{法二：利用增量方程与Gronwall估计。}
+这一方法仍沿原来的思路：先构造候选导数，再证明解的增量与其线性部分之差为高阶小量。
+这里用 $f,\varphi,\lambda$ 简记原来的向量函数与参数。由线性方程的存在唯一性，矩阵初值问题
+有唯一解。其列分别满足线性非齐次方程；由已经证明的连续依赖性，$Z$ 关于 $(t,\lambda)$ 连续。
+对参数增量 $\Delta\lambda$，定义真正的解增量
+连续依赖性使它在固定紧时间段上一致趋于零。对 $f$ 使用带积分余项的一阶展开，得到
+其中 $E_1,E_2$ 分别为 $n\times n,n\times m$ 矩阵，并且
+这一一致性来自 $D_xf,D_\lambda f$ 在所考察紧邻域上的一致连续性。
+令 $u=\Delta x-Z\Delta\lambda$。将上式与 $Z'=AZ+B$ 相减，得
+取常数 $N$ 控制 $\|A\|$，并以 $\eta(\Delta\lambda)\to0$ 同时控制
+$\|E_1\|$ 和 $\|E_1Z+E_2\|$。积分后使用 Gronwall 不等式，正负时间分别估计，均得到
+所以 $D_\lambda\varphi=Z$。由 $Z$ 的连续性，参数导数连续；又
+$\partial_t\varphi=f(t,\varphi,\lambda)$ 连续，从而得到所需的联合 $C^1$ 依赖性。
+\begin{proposition}[初值导数的矩阵变分方程]\label{prop:matrix-variation}
+设有限维方程 $x'=f(t,x)$ 的右端 $f$ 连续，且偏导矩阵 $D_xf$ 存在并连续，记解为 $\varphi(t;t_0,\xi)$。
+在解共同存在的区间内，矩阵
+本章解的依赖性一节所用的平移把初值 $\xi$ 变成参数，因此 $C^1$ 依赖性定理保证这个导数存在且连续。
+对积分方程
+关于 $\xi$ 求导。在固定紧时间段内，相关导数连续，可交换参数微分与积分，得到
+再对 $t$ 求导即得方程，取 $t=t_0$ 得到初始矩阵 $I$。
+该矩阵方程逐列是一阶线性初值问题，故解唯一。
+\section{局部逆与沿解移动的坐标}\label{sec:inverse-moving-coordinates}
+解的 $C^1$、$C^r$ 依赖性已经由逐次逼近和变分方程证明。下面把这一分析工具与坐标变换联系起来：先构造局部逆，再沿已知解消去常数项和线性项。
+局部逆的证明只使用第~\ref{sec:picard-contraction}~节的压缩映射定理，不依赖后面的直化定理。
+\begin{definition}[赋范空间、Banach 空间与有界算子]\label{def:banach-operator}
+向量空间 $X$ 上的范数满足正定性、$\|ax\|=|a|\|x\|$ 及三角不等式；
+由距离 $d(x,y)=\|x-y\|$ 得到的空间称赋范空间。若此距离下每个 Cauchy 列都收敛，称 Banach 空间。
+线性映射 $T:X\to Y$ 有界，是指存在 $C$ 使 $\|Tx\|\leq C\|x\|$；其算子范数为
+它满足 $\|Tx\|\leq\|T\|\|x\|$ 与 $\|ST\|\leq\|S\|\|T\|$。
+线性有界等价于连续：有界估计直接保证连续；反之在零点使用连续性，再缩放向量即得有界估计。
+\begin{lemma}[Neumann 级数]\label{lem:neumann-series}
+若 $X$ 为 Banach 空间，$T:X\to X$ 线性有界且 $\|T\|<1$，则
+对每个 $x$，级数各项的范数由 $\|T\|^j\|x\|$ 控制，故由完备性收敛，记其和为 $Sx$。
+这一估计同时证明 $S$ 线性有界。有限和满足
+令 $m\to\infty$，右边趋于 $I$，所以 $S$ 是双侧逆，范数估计由几何级数得到。
+\begin{theorem}[由压缩映射得到局部逆]\label{thm:local-inverse}
+若 $F\in C^1$，且 $DF(x_0)$ 可逆，则 $F$ 在 $x_0$ 附近有 $C^1$ 局部逆。
+平移定义点、值域原点，再左乘 $DF(x_0)^{-1}$，只需研究
+$F(0)=0,DF(0)=I$ 的情形。写 $F(x)=x+R(x)$，则 $R(0)=0,DR(0)=0$。
+由 $DR$ 连续，可取闭球 $B_r$，使其中 $\|DR\|\leq\theta<1$。
+球的凸性与微积分中值估计给出
+特别地 $|R(x)|\leq\theta r$。
+给定 $|y|<(1-\theta)r$，定义 $A_y(x)=y-R(x)$。
+于是 $|A_y(x)|\leq|y|+\theta r\leq r$，且其压缩常数为 $\theta$。
+因此存在唯一 $G(y)\in B_r$ 满足 $G(y)+R(G(y))=y$。
+对 $y,z$ 的不动点方程相减，得到
+所以 $G$ 为 Lipschitz 连续，常数不超过 $(1-\theta)^{-1}$。
+还要证明逆可微。固定 $y$，令 $x=G(y)$、$u=G(y+v)-G(y)$。
+由刚得的界，$|u|\leq(1-\theta)^{-1}|v|$。
+Taylor 公式给出 
+$DF(x)=I+DR(x)$ 可逆，其逆由收敛 Neumann 级数给出，故
+右端连续，所以 $G\in C^1$；而 $F$ 在小球内的单射性还可由
+$|F(x)-F(z)|\geq(1-\theta)|x-z|$ 直接验证。
+这给出了局部互逆的两个映射。
+\paragraph{沿解移动坐标与消去线性部分。}
+设 $\varphi$ 是已知解，令 $x=\varphi(t)+\xi$，则新的右端在 $\xi=0$ 处为零。
+令 $A(t)=D_xf(t,\varphi(t))$，写新方程为
+其中 $R(t,\xi)=o(|\xi|)$。
+若 $X'=A(t)X$、$X(t_0)=I$，令 $\xi=X(t)\eta$，则
+新方程在 $\eta=0$ 的常数项和线性项同时为零。
+由近似解 $\eta(t)\equiv\eta_0$ 的积分残差
+$o(|\eta_0|)$，结合前述误差估计，得到真解
+回到原坐标即得初值导数由 $X(t)$ 给出，与本章
+命题~\ref{prop:matrix-variation} 相衔接。

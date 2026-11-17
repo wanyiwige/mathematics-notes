@@ -1,0 +1,156 @@
+\section{矩阵指数、线性演化与离散步进}\label{sec:linear-evolution}
+定理~\ref{thm:常系数线性方程组的矩阵指数解} 和 Jordan 块的计算已经给出连续演化 $e^{tA}$。本节反过来从群性质恢复生成矩阵，并用 Euler 极限和矩阵幂联系连续、离散两种演化。
+\begin{definition}[线性单参数群]
+设 $g^t\in GL(n,\R)$ 随 $t\in\R$ 光滑变化，且
+$g^0=I$、$g^{t+s}=g^tg^s$。称 $(g^t)$ 为线性单参数群，
+$A=\left.\frac{\dd}{\dd t}g^t\right|_{t=0}$ 为其\textbf{无穷小生成元}。
+\end{definition}
+\begin{theorem}
+每个线性单参数群唯一表示为 $g^t=e^{tA}$。
+\end{theorem}
+\begin{proof}
+首先由 $g^{t+h}=g^hg^t$，在固定 $t$ 时作差商：
+\[
+ \frac{g^{t+h}-g^t}{h}=\frac{g^h-I}{h}\,g^t.
+\]
+令 $h\to0$，生成元的定义给出 $(g^t)'=Ag^t$。
+又因为 $g^0=I$，对任意初始向量 $x_0$，曲线 $x(t)=g^tx_0$ 满足
+\[
+ x'=Ax,\qquad x(0)=x_0.
+\]
+由定理~\ref{thm:常系数线性方程组的矩阵指数解}，这一初值问题的解是
+$e^{tA}x_0$；唯一性说明 $g^tx_0=e^{tA}x_0$ 对所有 $x_0$ 成立。
+因此两个线性算子相同。
+
+若另有矩阵 $B$ 也满足 $g^t=e^{tB}$，对 $t=0$ 求导得到 $A=B$。
+这证明的不仅是表示的存在性，也包括生成元的唯一性。
+\end{proof}
+
+\begin{theorem}[Euler 极限]
+对任意方阵 $A$，
+\[
+ e^A=\lim_{m\to\infty}\left(I+\frac Am\right)^m.
+\]
+\end{theorem}
+\begin{proof}
+取次乘性矩阵范数，令 $a=\|A\|$。二项式展开为
+\[
+ \begin{aligned}
+ \left(I+\frac Am\right)^m&=\sum_{k=0}^m c_{m,k}A^k,\\
+ c_{m,k}&=\frac1{k!}\prod_{j=0}^{k-1}\left(1-\frac jm\right).
+\end{aligned}
+\]
+对固定 $k$，当 $m\to\infty$ 时 $c_{m,k}\to1/k!$；并且
+$0\leq c_{m,k}\leq1/k!$。把 $k>m$ 时的 $c_{m,k}$ 定义为零，则可统一比较无穷级数。
+
+给定 $\eta>0$，先由数项指数级数的收敛性选 $K$，使
+$2\sum_{k>K}a^k/k!<\eta/2$。随后对 $m>K$ 分成有限头部与尾部：
+\begin{align*}
+ \left\|e^A-\left(I+\frac Am\right)^m\right\|
+ &\leq\sum_{k=0}^K\left|\frac1{k!}-c_{m,k}\right|a^k
+       +2\sum_{k>K}\frac{a^k}{k!}.
+\end{align*}
+头部只有有限项，可令 $m$ 足够大使其小于 $\eta/2$；尾部已被统一控制。
+总差小于 $\eta$，因此范数极限成立。
+\end{proof}
+每一步 $x\mapsto x+(t/m)Ax$ 是沿当前速度走一步的 Euler 近似。
+极限因而把离散步进与连续线性演化连接起来。
+
+\begin{proposition}[迹与体积]
+对实方阵 $A$，
+\[
+ \det(I+\varepsilon A)=1+\varepsilon\operatorname{tr}A+O(\varepsilon^2),
+ \qquad \det e^{tA}=e^{t\operatorname{tr}A}>0.
+\]
+线性演化使体积乘以 $e^{t\operatorname{tr}A}$；迹为零时保持体积。
+\end{proposition}
+\begin{proof}
+把行列式按列的多线性展开。零次项是 1，恰好一列取自
+$\varepsilon A$ 的项之和是 $\varepsilon\sum_i a_{ii}$，其余项至少为二次。
+再由 Euler 极限和行列式的连续性，
+\[
+ \det e^{tA}=\lim_m
+ \left(1+\frac{t\operatorname{tr}A}{m}+O(m^{-2})\right)^m
+ =e^{t\operatorname{tr}A}.
+\]
+行列式的绝对值是体积伸缩因子，而这里行列式严格为正，所以同时保持定向。
+这正是定理~\ref{thm:Wronski判别与Liouville公式} 在常系数情形下的体积结论；这里的计算给出它与 Euler 极限的直接联系。
+\end{proof}
+
+\begin{definition}[常系数线性递推]
+满足 $a_{j+k}=c_1a_{j+k-1}+\cdots+c_ka_j$ 的序列称为 $k$ 阶常系数线性递推。
+以相邻 $k$ 项组成状态向量，它满足 $u_{j+1}=Bu_j$，其中 $B$ 是对应的伴随矩阵。
+\end{definition}
+\begin{proposition}
+递推的解为 $u_j=B^ju_0$。若 $B$ 的特征值非零，每个分量是
+$j^r\lambda^j$ 的有限线性组合；$r$ 小于相应 Jordan 块的大小。
+零特征值对应的部分仅在有限个初始时刻非零。
+\end{proposition}
+\begin{proof}
+递推关系给出 $u_1=Bu_0$。若已有 $u_j=B^ju_0$，则
+\[
+ u_{j+1}=Bu_j=B^{j+1}u_0,
+\]
+故归纳得到所有非负整数时刻的公式。
+
+令 $B=PJP^{-1}$，则 $B^j=PJ^jP^{-1}$。
+在大小为 $s$ 的 Jordan 块 $J_\lambda=\lambda I+N$ 中，$N^s=0$，
+且 $N$ 与 $\lambda I$ 交换，所以二项式给出
+\[
+ J_\lambda^j=\sum_{r=0}^{\min(j,s-1)}\binom jr\lambda^{j-r}N^r.
+\]
+当 $\lambda\ne0$，可提出 $\lambda^j$；
+\[
+ \binom jr=j(j-1)\cdots(j-r+1)/r!
+\]
+ 是 $j$ 的 $r$ 次多项式。
+所以该块的每个矩阵元都是 $\lambda^j$ 乘以次数至多 $s-1$ 的多项式。
+当 $\lambda=0$，该块就是 $N$，其 $j$ 次幂对 $j\geq s$ 为零。
+最后乘上固定矩阵 $P,P^{-1}$，只对这些矩阵元作有限线性组合，因此结论保持。
+\end{proof}
+例如 Fibonacci 递推的矩阵有特征值
+$\lambda_\pm=(1\pm\sqrt5)/2$，由初值 $a_0=0,a_1=1$ 得
+\[
+ a_j=(\lambda_+^j-\lambda_-^j)/\sqrt5.
+\]
+
+
+\section{保守系统的主振动}\label{sec:normal-modes}
+设 $A$ 为实对称矩阵，势能
+$U(x)=\frac12\langle Ax,x\rangle$，运动方程为 $\ddot x=-Ax$。
+\begin{definition}
+在 $A$ 的单位特征向量方向上的独立标量振动称为\textbf{主振动}。
+若特征值 $a_j>0$，称 $\omega_j=\sqrt{a_j}$ 为该主振动的固有频率。
+\end{definition}
+\begin{theorem}
+若 $A$ 非退化，则在正交坐标中方程分解为
+$\ddot q_j=-a_jq_j$。即使 $a_j$ 重复，也不需要时间多项式乘子。
+
+\end{theorem}
+\begin{proof}
+由实对称矩阵的谱定理，取正交矩阵 $S$，使
+\[
+ S^TAS=\operatorname{diag}(a_1,\ldots,a_n),
+\]
+令 $x=Sq$。
+正交性使动能保持为 $\frac12\sum_j\dot q_j^2$，方程逐个解耦。
+$a_j>0$ 时解为 $c_j\cos\omega_jt+d_j\sin\omega_jt$；
+$a_j<0$ 时为两个实指数之和。这一分解在重根时仍成立，原因是有完整的正交特征基。
+
+\end{proof}
+\begin{example}[球摆的水平投影]
+第一章球摆的小振动在这里对应 $A=\omega^2I_2$，因此
+\[
+ (x(t),y(t))=a\cos\omega t+b\sin\omega t,\qquad a,b\in\R^2.
+\]
+右端是单位圆在一个线性映射下的像，故水平投影为椭圆、圆或退化的线段。
+这是位置空间中的投影，完整状态仍由四个量 $(x,\dot x,y,\dot y)$ 组成。
+\end{example}
+正定势下的稳定性将在 Lyapunov 直接法中由能量严格证明，见命题~\ref{prop:normal-mode-stability}。
+
+二维位置轨迹是 Lissajous 曲线
+$(a\cos(\omega_1t+\alpha),b\cos(\omega_2t+\beta))$。
+频率可公度时轨迹闭合；不可公度时的稠密性将在环面线性流一节证明。
+恒等式 $T_n(\cos t)=\cos nt$ 定义 Chebyshev 多项式：
+$T_0=1,T_1=x,T_{n+1}=2xT_n-T_{n-1}$，递推直接来自余弦加法公式。
+这说明部分 Lissajous 曲线可以写成多项式的图像。

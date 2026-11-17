@@ -1,0 +1,23 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.1cm,y=1cm]
+ \draw[->,gray] (0,0)--(4,0) node[right]{$t$};
+ \draw[->,gray] (.2,0)--(.2,3.2) node[above]{$h_N(t-\xi)$};
+ \draw[gray,dashed] (2,0)--(2,3);
+\draw[GreenMain,thick,domain=1.00100:2.99900,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/1.0)^2))/(1.0*1.20690032)});
+\draw[GoldMain,thick,domain=1.50050:2.49950,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/0.5)^2))/(0.5*1.20690032)});
+\draw[GreenDark,thick,domain=1.70030:2.29970,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/0.3)^2))/(0.3*1.20690032)});
+
+ \node[below] at (2,0){$\xi$};\node at (2,-.6){支集缩小，面积保持为 1};
+\end{scope}
+\begin{scope}[shift={(6.5,0)},x=1.1cm,y=1.8cm]
+ \draw[->,gray] (0,0)--(4.4,0) node[right]{$t$};
+ \draw[->,gray] (0,0)--(0,1.7) node[above]{$G(t,\xi)$};
+ \draw[GreenMain,thick] (0,0)--(1,0);
+ \draw[GreenMain,thick,domain=1:4,samples=65] plot (\x,{exp(-.7*(\x-1))});
+ \draw[GoldMain,dashed] (1,0)--(1,1);
+ \draw[fill=white,GreenMain] (1,0) circle(1.8pt);\draw[fill=white,GreenMain] (1,1) circle(1.8pt);
+ \node[below] at (1,0){$\xi$};\node[left] at (0,1){$1$};
+ \node at (2,-.34){$a(t)=-0.7$};
+\end{scope}
+\end{tikzpicture}

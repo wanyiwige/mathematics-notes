@@ -1,0 +1,267 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第2章：Fourier级数的收敛性
+% 节：2.3 一个反例——连续函数的 Fourier 级数可能发散
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{一个反例——连续函数的 Fourier 级数可能发散}
+
+
+上一节说明,若函数在一点可微,则其 Fourier 级数在该点收敛到函数值.下面构造一个连续周期函数,使其 Fourier 级数在指定点发散.这表明,上一节中的可微条件不能直接削弱为连续条件.
+
+\begin{proposition}
+	存在圆周上的连续函数 $F$,使得其 Fourier 部分和在原点无界.更准确地说,存在严格递增的正整数列 $\{M_k\}$,满足
+	\[
+	\abs{S_{M_k}(F)(0)}\longrightarrow\infty.
+	\]
+	因此,$F$ 的 Fourier 级数在 $\theta=0$ 处发散.通过平移,也可以使发散发生在任意预先指定的点 $\theta_0$.
+\end{proposition}
+
+构造的关键是 Fourier 部分和中的\textbf{对称性破缺}.通常
+\[
+S_N(f)(\theta)=\sum_{-N}^{N}\widehat f(n)e^{in\theta}
+\]
+同时截取正频率与负频率,二者之间可能产生显著抵消.我们将先构造一个一致有界的对称频率块,再通过适当移动频率,使某个 Fourier 部分和恰好从中间切开该频率块.被截出的单边部分将在原点具有对数级增长.
+
+
+
+考虑 $h$ ,圆周上的锯齿函数：它关于 $\theta$ 为奇函数,并且当 $0<\theta<\pi$ 时,
+\[
+h(\theta)=i(\pi-\theta).
+\]
+由前面的计算可知,
+\begin{equation}\label{eq:sawtooth-fourier}
+	h(\theta)\sim\sum_{n\neq0}\frac{e^{in\theta}}{n}.
+\end{equation}
+式 \eqref{eq:sawtooth-fourier} 中正、负频率关于原点对称.若只保留负频率,得到形式级数
+\[
+\sum_{n=-\infty}^{-1}\frac{e^{in\theta}}{n}.
+\]
+这个单边级数不可能是某个 Riemann 可积函数的 Fourier 级数.事实上,若它是某个函数 $\widetilde h$ 的 Fourier 级数,则 $\widetilde h$ 有界,且在原点的 Abel 平均满足
+\[
+\abs{A_r(\widetilde h)(0)}
+=
+\sum_{n=1}^{\infty}\frac{r^n}{n}
+\longrightarrow\infty,
+\qquad r\to1^-.
+\]
+另一方面,由 Abel 平均的卷积表示及 Poisson 核的正性,
+\[
+\abs{A_r(\widetilde h)(0)}
+=
+\abs{(\widetilde h\ast P_r)(0)}
+\leq
+\sup_{\theta}\abs{\widetilde h(\theta)},
+\]
+得到矛盾.
+
+对每个正整数 $N$,定义三角多项式
+
+	\[ f_N(\theta)=\sum_{1\leq\abs{n}\leq N}\frac{e^{in\theta}}{n},
+	\qquad
+	\widetilde f_N(\theta)=\sum_{-N\leq n\leq-1}\frac{e^{in\theta}}{n}. \]
+
+在原点,
+\[
+\abs{\widetilde f_N(0)}
+=
+\sum_{n=1}^{N}\frac1n
+\geq
+\int_1^N\frac{\dd x}{x}
+=
+\log N.
+\]
+因此存在绝对常数 $c>0$,使得
+\begin{equation}\label{eq:one-sided-log-growth}
+	\abs{\widetilde f_N(0)}\geq c\log N.
+\end{equation}
+与此相反,\textbf{完整的对称和 $f_N$ 关于 $N$ 与 $\theta$ 一致有界}.为证明这一点,先给出一个简单引理.
+
+\begin{lemma}
+	设复数列 $\{c_n\}_{n\geq1}$ 的 Abel 平均
+	\[
+	A_r=\sum_{n=1}^{\infty}r^nc_n,
+	\qquad 0<r<1,
+	\]
+	在 $r\to1^-$ 时有界.若 $c_n=O(1/n)$,则其部分和
+	\[
+	T_N=\sum_{n=1}^{N}c_n
+	\]
+	也是有界的.
+\end{lemma}
+
+\begin{proof}
+	取 $r=1-1/N$.选择常数 $M>0$,使得对所有 $n$ 及充分接近 $1$ 的 $r$ 都有
+	\[
+	n\abs{c_n}\leq M,
+	\qquad
+	\abs{A_r}\leq M.
+	\]
+	于是
+	\[
+	S_N-A_r
+	=
+	\sum_{n=1}^{N}(1-r^n)c_n
+	-
+	\sum_{n=N+1}^{\infty}r^nc_n.
+	\]
+	利用
+	\[
+	1-r^n=(1-r)(1+r+\cdots+r^{n-1})\leq n(1-r),
+	\]
+	得到
+	\[
+	\begin{aligned}
+		\abs{S_N-A_r}
+		&\leq
+		\sum_{n=1}^{N}\abs{c_n}(1-r^n)
+		+
+		\sum_{n=N+1}^{\infty}r^n\abs{c_n}\\
+		&\leq
+		M\sum_{n=1}^{N}(1-r)
+		+
+		\frac{M}{N}\sum_{n=N+1}^{\infty}r^n\\
+		&\leq
+		MN(1-r)+\frac{M}{N(1-r)}
+		=2M.
+	\end{aligned}
+	\]
+	故 $\abs{S_N}\leq3M$,从而部分和有界.
+\end{proof}
+
+将引理应用于
+\[c_n=\frac{e^{in\theta}}{n}+\frac{e^{i(-n)\theta}}{-n}\]
+则
+\[
+f_N(\theta)=\sum_{n=1}^{N}c_n(\theta).
+\]
+显然 $n\abs{c_n(\theta)}\leq2$.另一方面,相应的 Abel 平均正是锯齿函数 $h$ 的 Abel 平均,
+\[
+\sum_{n=1}^{\infty}r^nc_n(\theta)
+=A_r(h)(\theta)
+=(h\ast P_r)(\theta),
+\]
+故
+\[
+\abs{A_r(h)(\theta)}\leq\sup_{\varphi}\abs{h(\varphi)}.
+\]
+上述估计与 $r,\theta$ 无关.因此存在绝对常数 $C>0$,使得
+\begin{equation}\label{eq:fN-uniform-bound}
+	\abs{f_N(\theta)}\leq C,
+	\qquad N\geq1,\quad\theta\in\R.
+\end{equation}
+
+
+
+定义
+\begin{equation}\label{eq:shifted-blocks}
+	P_N(\theta)=e^{i2N\theta}f_N(\theta),
+	\qquad
+	\widetilde P_N(\theta)=e^{i2N\theta}\widetilde f_N(\theta).
+\end{equation}
+乘以 $e^{i2N\theta}$ 会把所有频率向右移动 $2N$ 个单位.因此,$P_N$ 的非零 Fourier 系数只出现在
+\[
+N\leq n\leq3N,
+\qquad n\neq2N.
+\]
+其中区间 $[N,2N-1]$ 对应原来的负频率,区间 $[2N+1,3N]$ 对应原来的正频率.
+
+\begin{lemma}\label{lem:frequency-block-cut}
+	对任意正整数 $M,N$,有
+	\[
+	S_M(P_N)=
+	\begin{cases}
+		P_N,&M\geq3N,\\
+		\widetilde P_N,&M=2N,\\
+		0,&M<N.
+	\end{cases}
+	\]
+\end{lemma}
+
+\begin{proof}
+	当 $M<N$ 时,截断区间 $[-M,M]$ 不包含 $P_N$ 的任何频率,故 $S_M(P_N)=0$.当 $M\geq3N$ 时,全部频率都被保留,故 $S_M(P_N)=P_N$.最后,当 $M=2N$ 时,仅保留区间 $[N,2N-1]$ 中的频率,这恰好是 $\widetilde f_N$ 的频率向右移动 $2N$ 后所得的 $\widetilde P_N$.
+\end{proof}
+
+注意,由式 \eqref{eq:fN-uniform-bound},
+\begin{equation}\label{eq:PN-uniform-bound}
+	\abs{P_N(\theta)}=\abs{f_N(\theta)}\leq C,
+\end{equation}
+但由式 \eqref{eq:one-sided-log-growth},
+\begin{equation}\label{eq:Ptilde-log-growth}
+	\abs{\widetilde P_N(0)}
+	=
+	\abs{\widetilde f_N(0)}
+	\geq c\log N.
+\end{equation}
+因此,$P_N$ 本身一致有界,而部分和算子 $S_{2N}$ 从频率块中截出的部分却在原点具有对数级增长.
+
+
+
+\begin{proof}[命题的证明]
+	选择正数列与正整数列
+	\[
+	\alpha_k=\frac1{k^2},
+	\qquad
+	N_k=3^{2^k}.
+	\]
+	则
+	\[
+	\sum_{k=1}^{\infty}\alpha_k<\infty,
+	\qquad
+	N_{k+1}>3N_k,
+	\qquad
+	\alpha_k\log N_k
+	=
+	\frac{2^k\log3}{k^2}
+	\longrightarrow\infty.
+	\]
+	定义
+	\begin{equation}\label{eq:continuous-divergent-example}
+		F(\theta)=\sum_{k=1}^{\infty}\alpha_kP_{N_k}(\theta).
+	\end{equation}
+	由式 \eqref{eq:PN-uniform-bound} 与 Weierstrass 判别法,级数 \eqref{eq:continuous-divergent-example} 一致收敛.因此 $F$ 是圆周上的连续函数.
+	
+	由于 $N_{k+1}>3N_k$,不同 $P_{N_k}$ 的频率支集彼此分离.固定 $m$,考察阶数为 $2N_m$ 的 Fourier 部分和.由引理 \ref{lem:frequency-block-cut},当 $k>m$ 时,
+	\[
+	S_{2N_m}(P_{N_k})=0;
+	\]
+	当 $k<m$ 时,
+	\[
+	S_{2N_m}(P_{N_k})=P_{N_k};
+	\]
+	而当 $k=m$ 时,
+	\[
+	S_{2N_m}(P_{N_m})=\widetilde P_{N_m}.
+	\]
+	又因为
+	\[
+	P_{N_k}(0)=f_{N_k}(0)
+	=
+	\sum_{1\leq\abs{n}\leq N_k}\frac1n
+	=0,
+	\]
+	所以
+	\[
+	S_{2N_m}(F)(0)
+	=
+	\alpha_m\widetilde P_{N_m}(0).
+	\]
+	由式 \eqref{eq:Ptilde-log-growth},
+	\[
+	\abs{S_{2N_m}(F)(0)}
+	\geq
+	c\alpha_m\log N_m
+	=
+	c\frac{2^m\log3}{m^2}
+	\longrightarrow\infty.
+	\]
+	故 $F$ 的 Fourier 部分和在原点无界,从而其 Fourier 级数在原点发散.
+	
+	若希望发散发生在预先指定的点 $\theta_0$,只需令
+	\[
+	F_{\theta_0}(\theta)=F(\theta-\theta_0).
+	\]
+	此时
+	\[
+	S_N(F_{\theta_0})(\theta_0)=S_N(F)(0),
+	\]
+	结论成立.
+\end{proof}

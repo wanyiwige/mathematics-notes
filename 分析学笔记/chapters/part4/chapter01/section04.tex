@@ -1,0 +1,66 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第1章：Fourier级数的基本性质
+% 节：1.4 好核
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{好核}
+
+卷积可以看成一种加权平均。若 $K_n$ 是以 $2\pi$ 为周期的函数,则
+\[
+(f\ast K_n)(x)=\frac1{2\pi}\int_{-\pi}^{\pi}f(x-y)K_n(y)\dd y.
+\]
+$K_n$起到了加权的作用,称做卷积核
+
+\begin{definition}
+	定义在圆周上的一列函数 $\{K_n(x)\}_{n=1}^{\infty}$ 满足以下性质：
+	\[
+	\begin{array}{ll}
+		\mathrm{(a)} & \displaystyle \frac1{2\pi}\int_{-\pi}^{\pi}K_n(x)\dd x=1,\qquad n\geq1,\\[4mm]
+		\mathrm{(b)} & \displaystyle \text{存在 }M>0,\text{ 对所有 }n\geq1,\text{ 有 }
+		\int_{-\pi}^{\pi}|K_n(x)|\dd x\leq M,\\[4mm]
+		\mathrm{(c)} & \displaystyle \text{对每一个 }\delta>0,\text{ 当 }n\to\infty\text{ 时,}
+		\int_{\delta\leq |x|\leq\pi}|K_n(x)|\dd x\to0.
+	\end{array}
+	\]
+	则称 $\{K_n(x)\}_{n=1}^{\infty}$ 为好核。
+\end{definition}
+
+\begin{theorem}
+	假设 $\{K_n(x)\}_{n=1}^{\infty}$ 是好核列,且 $f$ 是圆周上的可积函数,则
+	\[
+	\lim_{n\to\infty}(f\ast K_n)(x)=f(x),
+	\]
+	其中 $f$ 在点 $x$ 连续。如果 $f$ 处处连续,那么上面的极限是一致收敛的。
+\end{theorem}
+
+\begin{proof}
+	假设 $f$ 在点 $x$ 连续。给定 $\eps>0$,由连续性,选取 $\delta>0$,使得当 $|y|<\delta$ 时,有
+	\[
+	|f(x-y)-f(x)|<\eps.
+	\]
+	由好核的第一个性质,有
+	\[
+	\begin{aligned}
+		(f\ast K_n)(x)-f(x)
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}K_n(y)f(x-y)\dd y-f(x) \\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}K_n(y)[f(x-y)-f(x)]\dd y.
+	\end{aligned}
+	\]
+	因此
+	\[
+	\begin{aligned}
+		|(f\ast K_n)(x)-f(x)|
+		&\leq \frac1{2\pi}\int_{|y|<\delta}|K_n(y)|\,|f(x-y)-f(x)|\dd y \\
+		&\quad +\frac1{2\pi}\int_{\delta\leq |y|\leq\pi}|K_n(y)|\,|f(x-y)-f(x)|\dd y \\
+		&\leq \frac{\eps}{2\pi}\int_{-\pi}^{\pi}|K_n(y)|\dd y
+		+\frac{2B}{2\pi}\int_{\delta\leq |y|\leq\pi}|K_n(y)|\dd y,
+	\end{aligned}
+	\]
+	其中 $B$ 是 $f$ 的界。由于好核的第二个性质,第一项被 $\eps M/(2\pi)$ 控制；由于好核的第三个性质,当 $n$ 足够大时,第二项可以任意小。因此存在常数 $C>0$,使得对充分大的 $n$,
+	\[
+	|(f\ast K_n)(x)-f(x)|<C\eps.
+	\]
+	这就证明了 $(f\ast K_n)(x)\to f(x)$。
+	
+	如果 $f$ 处处连续,则 $f$ 在圆周上一致连续,所以上面 $\delta$ 的选取可以独立于 $x$。于是上述估计对所有 $x$ 同时成立,从而得到一致收敛。
+\end{proof}
+

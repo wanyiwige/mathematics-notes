@@ -1,0 +1,15 @@
+{
+  "permutation_identities": "passed: textbook transposition identity, A4 commutator, S5 class closure counterexample",
+  "exercise12": "generator orders verified independently for n=3..12",
+  "chapter2.tex": {
+    "proofs": 49,
+    "solutions": 0,
+    "display_blocks": 143
+  },
+  "chapter2-exercises.tex": {
+    "proofs": 53,
+    "solutions": 6,
+    "display_blocks": 126
+  },
+  "structure": "11 source sections and 57 exercises retained; no support terminology, orbit first used in defined section"
+}

@@ -1,0 +1,1602 @@
+[
+  {
+    "ch": 1,
+    "start": 7,
+    "end": 56,
+    "terms": [
+      "代数结构",
+      "半群",
+      "幺半群",
+      "群",
+      "Abel群",
+      "环",
+      "交换环",
+      "整环",
+      "域",
+      "零因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 59,
+    "end": 66,
+    "terms": [
+      "整数的整除",
+      "整数的因子",
+      "整数的平凡因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 98,
+    "end": 100,
+    "terms": [
+      "素数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 101,
+    "end": 110,
+    "terms": [
+      "整数的公因子",
+      "最大公因子",
+      "整数互素"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 323,
+    "end": 332,
+    "terms": [],
+    "reason": "等式陈述，并未另定义一个概念。"
+  },
+  {
+    "ch": 1,
+    "start": 385,
+    "end": 388,
+    "terms": [],
+    "reason": "最大公因子的另一刻画，概念已收入第101行。"
+  },
+  {
+    "ch": 1,
+    "start": 518,
+    "end": 525,
+    "terms": [
+      "数域"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 526,
+    "end": 536,
+    "terms": [
+      "扩域",
+      "子域"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 558,
+    "end": 571,
+    "terms": [
+      "一元多项式",
+      "不定元",
+      "一元多项式环",
+      "多项式的系数",
+      "首系数",
+      "一元多项式的首项",
+      "一元多项式的次数",
+      "首一多项式",
+      "零多项式",
+      "相伴多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 573,
+    "end": 608,
+    "terms": [
+      "一元多项式的加法",
+      "一元多项式的减法",
+      "一元多项式的乘法"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 634,
+    "end": 640,
+    "terms": [
+      "多项式的整除",
+      "多项式的因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 789,
+    "end": 793,
+    "terms": [
+      "多项式的平凡因子",
+      "不可约多项式",
+      "可约多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 916,
+    "end": 918,
+    "terms": [
+      "重因子",
+      "重因子的重数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 926,
+    "end": 934,
+    "terms": [
+      "多项式的导数",
+      "多项式的高阶导数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 991,
+    "end": 1001,
+    "terms": [
+      "一元多项式函数",
+      "多项式的根",
+      "代数数",
+      "超越数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1154,
+    "end": 1156,
+    "terms": [
+      "本原多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1278,
+    "end": 1313,
+    "terms": [
+      "单项式",
+      "单项式的系数",
+      "指数组",
+      "单项式的次数",
+      "同类项",
+      "多元多项式",
+      "多元多项式环",
+      "代数无关"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1315,
+    "end": 1322,
+    "terms": [
+      "多元多项式的次数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1324,
+    "end": 1329,
+    "terms": [
+      "字典序",
+      "多元多项式的首项"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1334,
+    "end": 1351,
+    "terms": [
+      "多元多项式的加法",
+      "多元多项式的乘法"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1379,
+    "end": 1381,
+    "terms": [
+      "齐次多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1396,
+    "end": 1401,
+    "terms": [],
+    "reason": "多项式乘积的次数公式，并非新概念。"
+  },
+  {
+    "ch": 1,
+    "start": 1428,
+    "end": 1441,
+    "terms": [
+      "多元多项式函数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1460,
+    "end": 1468,
+    "terms": [
+      "对称多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 1,
+    "start": 1493,
+    "end": 1506,
+    "terms": [
+      "基本对称多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 7,
+    "end": 45,
+    "terms": [
+      "线性方程组",
+      "未知量",
+      "齐次线性方程组",
+      "线性方程组的解",
+      "等价的线性方程组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 47,
+    "end": 55,
+    "terms": [
+      "方程组的初等行变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 61,
+    "end": 114,
+    "terms": [
+      "阶梯形方程组",
+      "主元",
+      "严格阶梯形方程组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 206,
+    "end": 210,
+    "terms": [
+      "行简化阶梯方程组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 222,
+    "end": 230,
+    "terms": [
+      "向量",
+      "行向量",
+      "列向量",
+      "零向量",
+      "行向量空间",
+      "列向量空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 270,
+    "end": 282,
+    "terms": [
+      "向量的线性表示",
+      "线性相关",
+      "线性无关"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 383,
+    "end": 407,
+    "terms": [
+      "向量组的伸长组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 528,
+    "end": 546,
+    "terms": [
+      "向量组的线性表出",
+      "等价向量组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 548,
+    "end": 566,
+    "terms": [
+      "极大无关子组",
+      "向量组的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 654,
+    "end": 703,
+    "terms": [
+      "矩阵",
+      "矩阵的元素",
+      "方阵",
+      "矩阵空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 705,
+    "end": 737,
+    "terms": [
+      "系数矩阵",
+      "增广矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 739,
+    "end": 745,
+    "terms": [
+      "行秩",
+      "列秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 747,
+    "end": 774,
+    "terms": [
+      "阶梯形矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 857,
+    "end": 865,
+    "terms": [
+      "矩阵的初等行变换",
+      "矩阵的初等列变换",
+      "矩阵的初等变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 904,
+    "end": 912,
+    "terms": [
+      "矩阵的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 1057,
+    "end": 1061,
+    "terms": [
+      "导出方程组"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 2,
+    "start": 1151,
+    "end": 1158,
+    "terms": [
+      "基础解系"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 7,
+    "end": 25,
+    "terms": [
+      "坐标向量空间上的线性映射",
+      "坐标向量空间上的Hom空间",
+      "坐标向量空间上的End空间",
+      "零映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 209,
+    "end": 215,
+    "terms": [
+      "线性映射的核"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 248,
+    "end": 258,
+    "terms": [
+      "线性映射的像"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 300,
+    "end": 323,
+    "terms": [
+      "线性映射的加法",
+      "线性映射的数乘"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 328,
+    "end": 345,
+    "terms": [
+      "线性映射的复合"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 363,
+    "end": 391,
+    "terms": [
+      "线性变换的幂",
+      "线性变换的多项式",
+      "恒等映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 395,
+    "end": 429,
+    "terms": [
+      "矩阵加法"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 483,
+    "end": 500,
+    "terms": [
+      "矩阵数乘"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 504,
+    "end": 558,
+    "terms": [
+      "矩阵乘法"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 660,
+    "end": 668,
+    "terms": [
+      "基本矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 683,
+    "end": 698,
+    "terms": [
+      "矩阵的转置",
+      "复共轭转置"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 717,
+    "end": 734,
+    "terms": [
+      "矩阵的幂",
+      "单位矩阵",
+      "幂零矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 757,
+    "end": 760,
+    "terms": [
+      "零化多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 826,
+    "end": 832,
+    "terms": [
+      "矩阵的迹"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 856,
+    "end": 879,
+    "terms": [
+      "对称矩阵",
+      "反对称矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 881,
+    "end": 893,
+    "terms": [
+      "上三角矩阵",
+      "下三角矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 908,
+    "end": 918,
+    "terms": [
+      "对角矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 920,
+    "end": 927,
+    "terms": [
+      "初等矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1016,
+    "end": 1032,
+    "terms": [
+      "可逆矩阵",
+      "逆矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1171,
+    "end": 1176,
+    "terms": [
+      "一般线性群"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1322,
+    "end": 1356,
+    "terms": [
+      "分块矩阵",
+      "矩阵的块",
+      "准上三角矩阵",
+      "准对角矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1440,
+    "end": 1518,
+    "terms": [
+      "分块矩阵的转置",
+      "分块矩阵的数乘",
+      "分块矩阵的加法",
+      "分块矩阵的乘法"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1812,
+    "end": 1827,
+    "terms": [
+      "排列",
+      "自然排列",
+      "置换群"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1845,
+    "end": 1859,
+    "terms": [
+      "逆对",
+      "逆序数",
+      "排列的符号",
+      "奇排列",
+      "偶排列"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1870,
+    "end": 1878,
+    "terms": [
+      "对换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 1908,
+    "end": 1938,
+    "terms": [
+      "行列式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 2331,
+    "end": 2337,
+    "terms": [
+      "余子式",
+      "代数余子式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 2481,
+    "end": 2500,
+    "terms": [
+      "伴随矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 2544,
+    "end": 2556,
+    "terms": [
+      "子矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 3,
+    "start": 2632,
+    "end": 2638,
+    "terms": [
+      "子式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 7,
+    "end": 59,
+    "terms": [
+      "线性空间",
+      "向量加法",
+      "向量数乘",
+      "向量的负元"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 173,
+    "end": 175,
+    "terms": [
+      "线性无关集",
+      "线性相关集"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 177,
+    "end": 182,
+    "terms": [
+      "由向量集合表出"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 227,
+    "end": 234,
+    "terms": [
+      "基",
+      "基向量"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 276,
+    "end": 292,
+    "terms": [
+      "子空间的陪集",
+      "商空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 375,
+    "end": 386,
+    "terms": [
+      "维数",
+      "有限维线性空间",
+      "无穷维线性空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 502,
+    "end": 512,
+    "terms": [
+      "坐标",
+      "坐标分量",
+      "坐标映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 585,
+    "end": 595,
+    "terms": [
+      "子空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 639,
+    "end": 641,
+    "terms": [
+      "平凡子空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 708,
+    "end": 718,
+    "terms": [
+      "余维数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 722,
+    "end": 738,
+    "terms": [
+      "线性生成子空间",
+      "子空间的生成元"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 881,
+    "end": 890,
+    "terms": [
+      "子空间的和"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1080,
+    "end": 1093,
+    "terms": [
+      "子空间的直和"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1313,
+    "end": 1319,
+    "terms": [
+      "补子空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1323,
+    "end": 1347,
+    "terms": [
+      "子空间的嵌入",
+      "直和的投影"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1349,
+    "end": 1370,
+    "terms": [
+      "线性映射",
+      "线性变换",
+      "Hom空间",
+      "End空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1459,
+    "end": 1464,
+    "terms": [
+      "零度"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1707,
+    "end": 1736,
+    "terms": [
+      "映射空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1940,
+    "end": 1949,
+    "terms": [
+      "线性同构映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 1981,
+    "end": 1987,
+    "terms": [
+      "线性空间的自同构",
+      "线性空间的自同构群"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 2065,
+    "end": 2070,
+    "terms": [
+      "同构的线性空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 2360,
+    "end": 2373,
+    "terms": [
+      "线性映射在给定基下的矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 2617,
+    "end": 2622,
+    "terms": [
+      "线性映射的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 2846,
+    "end": 2848,
+    "terms": [
+      "线性变换的最小多项式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 3090,
+    "end": 3097,
+    "terms": [
+      "Hamel基"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 4,
+    "start": 3113,
+    "end": 3120,
+    "terms": [
+      "Schauder基"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 8,
+    "end": 20,
+    "terms": [
+      "不变子空间",
+      "线性变换的限制"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 171,
+    "end": 183,
+    "terms": [
+      "特征值",
+      "特征子空间",
+      "特征向量",
+      "几何重数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 241,
+    "end": 247,
+    "terms": [
+      "可对角化的线性变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 495,
+    "end": 509,
+    "terms": [
+      "特征值的代数重数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 820,
+    "end": 826,
+    "terms": [
+      "相似矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 1191,
+    "end": 1197,
+    "terms": [
+      "可对角化矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 1709,
+    "end": 1720,
+    "terms": [
+      "特征矩阵",
+      "$\\lambda$-矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 1819,
+    "end": 1828,
+    "terms": [
+      "$\\lambda$-矩阵的行列式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 1905,
+    "end": 1912,
+    "terms": [
+      "$\\lambda$-矩阵的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 1937,
+    "end": 1946,
+    "terms": [
+      "可逆$\\lambda$-矩阵",
+      "$\\lambda$-矩阵的逆"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2001,
+    "end": 2008,
+    "terms": [
+      "相抵的$\\lambda$-矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2058,
+    "end": 2069,
+    "terms": [
+      "初等$\\lambda$-行变换",
+      "初等$\\lambda$-列变换",
+      "初等$\\lambda$-矩阵",
+      "$\\lambda$-矩阵的初等变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2205,
+    "end": 2217,
+    "terms": [
+      "$\\lambda$-矩阵的行列式因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2373,
+    "end": 2381,
+    "terms": [
+      "不变因子",
+      "方阵的行列式因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2454,
+    "end": 2483,
+    "terms": [
+      "初等因子"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2759,
+    "end": 2772,
+    "terms": [
+      "有理块"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2911,
+    "end": 2924,
+    "terms": [
+      "Jordan块",
+      "Jordan矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 5,
+    "start": 2950,
+    "end": 2953,
+    "terms": [
+      "Jordan标准型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 6,
+    "end": 33,
+    "terms": [
+      "内积",
+      "双线性",
+      "内积的对称性",
+      "内积的正定性",
+      "实内积空间",
+      "欧氏空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 101,
+    "end": 120,
+    "terms": [
+      "向量正交",
+      "长度（范数）",
+      "向量间的距离",
+      "单位向量",
+      "单位化"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 245,
+    "end": 255,
+    "terms": [
+      "沿向量的正交投影"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 257,
+    "end": 263,
+    "terms": [
+      "正交补"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 386,
+    "end": 396,
+    "terms": [
+      "向子空间的正交投影",
+      "正交分量"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 399,
+    "end": 417,
+    "terms": [
+      "标准正交基",
+      "Kronecker符号"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 493,
+    "end": 503,
+    "terms": [
+      "度量映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 516,
+    "end": 518,
+    "terms": [
+      "等距映射"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 531,
+    "end": 533,
+    "terms": [
+      "等距的内积空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 572,
+    "end": 578,
+    "terms": [
+      "内积的度量矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 669,
+    "end": 675,
+    "terms": [
+      "合同（相合）矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 698,
+    "end": 708,
+    "terms": [
+      "正定矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 789,
+    "end": 795,
+    "terms": [
+      "正交变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 809,
+    "end": 817,
+    "terms": [
+      "反射变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 981,
+    "end": 987,
+    "terms": [
+      "正交矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 1043,
+    "end": 1049,
+    "terms": [
+      "正交群"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 1156,
+    "end": 1162,
+    "terms": [
+      "特殊正交群"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 1225,
+    "end": 1231,
+    "terms": [
+      "正交相似"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 1545,
+    "end": 1551,
+    "terms": [
+      "对称变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 2084,
+    "end": 2090,
+    "terms": [
+      "伴随变换（伴随算子）"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 2272,
+    "end": 2278,
+    "terms": [
+      "正规变换（正规算子）"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 2295,
+    "end": 2301,
+    "terms": [
+      "正规矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 6,
+    "start": 2464,
+    "end": 2480,
+    "terms": [
+      "复内积",
+      "酉空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 12,
+    "end": 23,
+    "terms": [
+      "线性函数",
+      "对偶空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 108,
+    "end": 126,
+    "terms": [
+      "坐标函数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 150,
+    "end": 154,
+    "terms": [
+      "对偶基"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 335,
+    "end": 357,
+    "terms": [
+      "双线性函数（双线性型）",
+      "双线性型空间"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 392,
+    "end": 407,
+    "terms": [
+      "双线性型的左根",
+      "双线性型的右根",
+      "非退化双线性型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 411,
+    "end": 421,
+    "terms": [
+      "双线性型的度量矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 485,
+    "end": 490,
+    "terms": [
+      "双线性型的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 668,
+    "end": 674,
+    "terms": [
+      "对称双线性型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 795,
+    "end": 797,
+    "terms": [
+      "初等合同变换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1012,
+    "end": 1014,
+    "terms": [
+      "二次型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1031,
+    "end": 1037,
+    "terms": [
+      "二次型的标准型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1056,
+    "end": 1075,
+    "terms": [
+      "二次型的矩阵",
+      "二次型的秩"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1164,
+    "end": 1180,
+    "terms": [
+      "非退化线性替换"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1182,
+    "end": 1188,
+    "terms": [
+      "等价二次型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1425,
+    "end": 1431,
+    "terms": [
+      "复二次型的规范型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1451,
+    "end": 1457,
+    "terms": [
+      "实二次型的规范型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1527,
+    "end": 1537,
+    "terms": [
+      "正惯性指数",
+      "负惯性指数",
+      "符号差"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1565,
+    "end": 1568,
+    "terms": [
+      "实对称矩阵的正惯性指数",
+      "实对称矩阵的负惯性指数"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1578,
+    "end": 1592,
+    "terms": [
+      "正定二次型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1623,
+    "end": 1629,
+    "terms": [
+      "正定矩阵（二次型定义）"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1848,
+    "end": 1861,
+    "terms": [
+      "顺序主子式"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1931,
+    "end": 1949,
+    "terms": [
+      "负定二次型",
+      "负定矩阵"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1972,
+    "end": 1974,
+    "terms": [
+      "不定矩阵",
+      "不定二次型"
+    ],
+    "reason": null
+  },
+  {
+    "ch": 7,
+    "start": 1976,
+    "end": 1987,
+    "terms": [
+      "半正定二次型",
+      "半正定矩阵"
+    ],
+    "reason": null
+  }
+]

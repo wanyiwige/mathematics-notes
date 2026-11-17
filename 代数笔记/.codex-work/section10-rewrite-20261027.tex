@@ -1,0 +1,151 @@
+\section{幺半群}
+
+群的定义要求每个元素都有逆元。若保留结合律和单位元而不要求逆元，就得到更一般的结构，许多自然的乘法系统都属于这一类。
+
+\begin{definition}
+设$S$为非空集合，其上定义二元运算，记为乘法。若对任意$a,b,c\in S$有
+\[
+a(bc)=(ab)c,
+\]
+且存在$e\in S$使$ea=ae=a$对每个$a\in S$成立，则称$S$为\textbf{幺半群}。元素$e$称为单位元。若还满足$ab=ba$，则称为\textbf{交换幺半群}。
+\end{definition}
+
+单位元仍然唯一：若$e,f$均为双边单位元，则$e=ef=f$。但幺半群中的元素不必可逆，因此不能直接使用群中的消去、移项等运算。
+
+\begin{example}
+环的全部元素在乘法下构成幺半群，只须该环有乘法单位元。例如$(\Z,\cdot)$的单位元为1，但0没有乘法逆元，故它不是群。
+
+非负整数集合$\N_0=\{0,1,2,\ldots\}$在加法下构成交换幺半群，单位元为0；正整数集合在乘法下也构成交换幺半群，单位元为1。
+\end{example}
+
+\begin{example}
+对非空集合$X$，记$M(X)$为$X$到自身的全部映射组成的集合。以映射复合为乘法，恒等映射为单位元，得到一个幺半群。它与置换群$S(X)$的区别在于，不要求映射为双射。
+
+$X$的幂集$\mathcal P(X)$在并运算下为交换幺半群，单位元为$\varnothing$；在交运算下也为交换幺半群，单位元为$X$。
+\end{example}
+
+\begin{example}
+对群$G$，在$G$之外添加一个符号0，并规定$0g=g0=0$以及$00=0$。所得$G\cup\{0\}$是幺半群：若三个因子均在$G$中，结合律来自$G$；若其中有0，两种加括号的结果都为0。单位元仍为$G$原来的$e$，不是新增的0。
+\end{example}
+
+\begin{definition}
+若$Q\subseteq S$包含$S$的单位元，且对乘法封闭，则称$Q$为$S$的\textbf{子幺半群}。集合$X$上的\textbf{变换幺半群}是$M(X)$的子幺半群。
+
+设$S,S'$为幺半群，单位元分别为$e,e'$。映射$\varphi:S\to S'$若满足
+\[
+\varphi(e)=e',\qquad\varphi(ab)=\varphi(a)\varphi(b),
+\]
+则称为\textbf{幺半群同态}。双射同态称为\textbf{同构}。
+\end{definition}
+
+\begin{theorem}
+每个幺半群$S$都同构于集合$S$上的一个变换幺半群。
+\end{theorem}
+\begin{proof}[补充证明]
+对$a\in S$，定义左乘映射$L_a:S\to S$，$L_a(x)=ax$。由结合律，
+\[
+(L_aL_b)(x)=a(bx)=(ab)x=L_{ab}(x),
+\qquad L_e=\operatorname{id}_S.
+\]
+因此$a\mapsto L_a$为到$M(S)$的同态。若$L_a=L_b$，在单位元处取值即得
+\[
+a=L_a(e)=L_b(e)=b.
+\]
+故它单射，满到其像，给出$S$与变换幺半群$\{L_a:a\in S\}$之间的同构。
+\end{proof}
+
+同态$\varphi:S\to S'$的像仍为子幺半群。也可仿照群定义它的核，但核在这里不足以记录全部被同态合并的元素。
+
+\begin{definition}
+幺半群同态$\varphi:S\to S'$的\textbf{核}定义为
+\[
+\ker\varphi=\{a\in S:\varphi(a)=e'\}.
+\]
+\end{definition}
+\begin{proposition}
+$\varphi(S)$是$S'$的子幺半群，$\ker\varphi$是$S$的子幺半群。
+\end{proposition}
+\begin{proof}[补充证明]
+由$\varphi(e)=e'$，单位元属于像。像中两个元素$\varphi(a),\varphi(b)$的积为$\varphi(ab)$，仍在像中。
+单位元$e$也属于核；若$a,b$属于核，则$\varphi(ab)=e'e'=e'$，所以$ab$也属于核。
+\end{proof}
+
+在群中，$\varphi(a)=\varphi(b)$等价于$\varphi(b^{-1}a)=e'$，故可由核恢复每个原像集合。幺半群中通常没有$b^{-1}$，这个步骤不能照搬。为完整记录哪些元素有相同的像，需要使用与乘法相容的等价关系。
+
+\begin{definition}
+幺半群$S$上的等价关系$\sim$若满足
+\[
+a\sim b,\quad c\sim d\quad\Longrightarrow\quad ac\sim bd,
+\]
+则称为$S$上的\textbf{同余关系}。相应的等价类称为\textbf{同余类}。
+\end{definition}
+
+\begin{example}
+在$(\N_0,+)$中，固定正整数$m$，令$a\sim b$当且仅当$m\mid a-b$。整除的性质保证它为等价关系；若又有$c\sim d$，则
+\[
+(a+c)-(b+d)=(a-b)+(c-d)
+\]
+被$m$整除，所以它也是同余关系，全部同余类就是模$m$的剩余类。
+\end{example}
+
+\begin{definition}
+对同余关系$\sim$，在全部同余类组成的集合上定义$[a][b]=[ab]$。所得幺半群称为\textbf{商幺半群}，记为$S/{\sim}$。映射
+\[
+\pi:S\longrightarrow S/{\sim},\qquad a\longmapsto[a]
+\]
+称为\textbf{自然同态}。
+\end{definition}
+\begin{proof}[补充验证]
+若$a\sim a'$、$b\sim b'$，同余条件给出$ab\sim a'b'$，所以类的乘法与代表选择无关。结合律由
+\[
+([a][b])[c]=[(ab)c]=[a(bc)]=[a]([b][c])
+\]
+得到。$[e]$为单位元，因为$[e][a]=[ea]=[a]=[ae]=[a][e]$。最后，$\pi(ab)=[ab]=[a][b]$且$\pi(e)=[e]$，故$\pi$为满同态。
+\end{proof}
+
+\begin{theorem}
+设$\varphi:S\to S'$为幺半群同态。在$S$上定义
+\[
+a\sim_\varphi b\quad\Longleftrightarrow\quad\varphi(a)=\varphi(b),
+\]
+则它为同余关系，且$S/{\sim_\varphi}\cong\varphi(S)$。
+\end{theorem}
+\begin{proof}[补充证明]
+相等关系的自反性、对称性、传递性使$\sim_\varphi$成为等价关系。若$a\sim_\varphi b$、$c\sim_\varphi d$，则
+\[
+\varphi(ac)=\varphi(a)\varphi(c)=\varphi(b)\varphi(d)=\varphi(bd),
+\]
+所以它是同余。定义$\theta([a])=\varphi(a)$，由同余的定义，它良定义，并且不同的类有不同的像。它满到$\varphi(S)$，又保持乘法与单位元，因此为同构。
+\end{proof}
+
+\begin{theorem}\label{p2:monoid-factor}
+设$\sim$为幺半群$S$上的同余，$\pi:S\to S/{\sim}$为自然同态。若同态$\varphi:S\to S'$满足
+\[
+a\sim b\quad\Longrightarrow\quad\varphi(a)=\varphi(b),
+\]
+则存在唯一的幺半群同态$\psi:S/{\sim}\to S'$，使$\psi\pi=\varphi$。
+\end{theorem}
+\begin{proof}
+题设说明$\varphi$在每个同余类上取值相同，因此可以定义
+\[
+\psi([a])=\varphi(a).
+\]
+这个定义与代表选择无关，且
+\[
+\psi([a][b])=\varphi(ab)=\varphi(a)\varphi(b)=\psi([a])\psi([b]),
+\quad\psi([e])=e'.
+\]
+所以$\psi$是同态，并有$(\psi\pi)(a)=\varphi(a)$。
+
+若另一同态$\psi'$也满足$\psi'\pi=\varphi$，则对任意同余类$[a]=\pi(a)$，
+\[
+\psi'([a])=\psi'(\pi(a))=\varphi(a)=\psi([a]).
+\]
+自然同态满射，所以这已经确定它在全部商幺半群上的值，证明唯一性。
+\end{proof}
+
+\begin{example}
+核相同的幺半群同态可诱导不同的同余。$(\N_0,+)$上的恒等映射的核为$\{0\}$。另一映射$q(k)=\min(k,1)$取值于$\{0,1\}$，目标以$\max$为运算、0为单位元。由$q(a+b)=\max(q(a),q(b))$，它也是同态，核仍为$\{0\}$；但它把全部正整数映到同一点，而恒等映射不合并任何不同元素。
+\end{example}
+
+若只要求运算结合而不要求单位元，所得结构称为\textbf{半群}。这里的幺半群讨论均要求有双边单位元，同态也须保持它。

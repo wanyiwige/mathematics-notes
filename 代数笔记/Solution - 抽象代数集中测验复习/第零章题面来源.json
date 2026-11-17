@@ -1,0 +1,104 @@
+{
+  "source": "D:\\四川大学学习资料\\四川大学大二教材\\代数学引论, 第三版 -- 聂灵沼, 丁石孙 .pdf",
+  "scope": "第零章指定9题；不包含这些页面上的其他题目与正文",
+  "pages": [
+    {
+      "page": 30,
+      "book_page": 20,
+      "route": "scanned",
+      "needs_vision": false,
+      "render": "source-p30.png",
+      "elements": []
+    },
+    {
+      "page": 31,
+      "book_page": 21,
+      "route": "scanned",
+      "needs_vision": false,
+      "render": "source-p31.png",
+      "elements": [
+        {
+          "type": "paragraph",
+          "exercise": 4,
+          "title": "判断关系的自反性、对称性与传递性",
+          "text_latex": "判断以下关系是否具有自反性、对称性、传递性：\n\\begin{enumerate}[label=(\\roman*)]\n\\item $S=\\R$，$x-y$为$2\\pi$的整数倍；\n\\item $S=\\R$，$x\\geq y$；\n\\item $S=\\R$，$x>y$；\n\\item $S$仅含一个元素，关系为$x>y$。\n\\end{enumerate}",
+          "note": "vision",
+          "additional_page": 30
+        },
+        {
+          "type": "paragraph",
+          "exercise": 5,
+          "title": "差与和所定义的关系",
+          "text_latex": "在$\\R$上分别以(i) $|x-y|=1$；(ii) $|x-y|\\leq1$；(iii) $x-y=1$；(iv) $x+y=1$定义关系，判断其自反性、对称性和传递性。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 6,
+          "title": "自然数加法、乘法的结合律与交换律",
+          "text_latex": "证明自然数的加法和乘法分别满足结合律和交换律。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 7,
+          "title": "乘法对加法的分配律",
+          "text_latex": "证明自然数乘法对加法的分配律成立。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 8,
+          "title": "自然数乘法的消去律",
+          "text_latex": "若$ax=ay$且$a\\ne0$，证明$x=y$。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 13,
+          "title": "两类大整数的最大公因数与素数无穷性",
+          "text_latex": "设$a>1$为正整数，$m>n>0$，$m,n\\in\\Z$。证明\n\\[\n\\gcd(a^{2^m}+1,a^{2^n}+1)=1\\text{或}2,\n\\]\n并由此证明有无穷多个素数。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 14,
+          "title": "莫比乌斯函数的约数和",
+          "text_latex": "在正整数上定义$\\mu(1)=1$；若$n$有素数平方因子，则$\\mu(n)=0$；若$n=p_1\\cdots p_r$是$r$个不同素数之积，则$\\mu(n)=(-1)^r$。证明对$n>1$有\n\\[\n\\sum_{d\\mid n}\\mu(d)=0.\n\\]",
+          "note": "vision",
+          "additional_page": null
+        }
+      ]
+    },
+    {
+      "page": 32,
+      "book_page": 22,
+      "route": "scanned",
+      "needs_vision": false,
+      "render": "source-p32.png",
+      "elements": [
+        {
+          "type": "paragraph",
+          "exercise": 23,
+          "title": "解线性同余方程",
+          "text_latex": "解$27x\\equiv25\\pmod{31}$。",
+          "note": "vision",
+          "additional_page": null
+        },
+        {
+          "type": "paragraph",
+          "exercise": 24,
+          "title": "解同余方程组",
+          "text_latex": "解\n\\[\n\\begin{cases}\nx\\equiv2\\pmod5,\\\\x\\equiv1\\pmod7,\\\\x\\equiv5\\pmod{11}.\n\\end{cases}\n\\]",
+          "note": "vision",
+          "additional_page": null
+        }
+      ]
+    }
+  ]
+}

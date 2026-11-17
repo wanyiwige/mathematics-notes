@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "17_vector_figures_linked_and_referenced": true,
+    "rounded_LV_level_error_below_1e-4": true,
+    "stable_coordinate_change_invertible": true,
+    "return_multiplier_strictly_between_0_and_1": true,
+    "trace_example_eigenvalue_product_1": true,
+    "gibbs_densities_normalized": true,
+    "bump_rescalings_preserve_mass": true,
+    "Hill_ellipse_satisfies_system": true,
+    "jet_cusp_has_slope_p": true,
+    "Sturm_examples_Wronskian_minus_one": true
+  },
+  "max_rounded_LV_level_error": 1.3089990804182605e-05,
+  "gibbs_mass_errors": {
+    "0.2": 2.220446049250313e-16,
+    "0.8": 2.220446049250313e-16
+  },
+  "bump_mass_errors": [
+    2.019948208697997e-09,
+    2.019948208697997e-09,
+    2.019948430742602e-09
+  ],
+  "passed": true
+}

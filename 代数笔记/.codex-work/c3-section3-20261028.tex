@@ -1,0 +1,95 @@
+\section{环的反同构}
+
+环同构保持加法与乘法。矩阵转置提供另一种自然的对应：它保持加法，却把乘法的次序颠倒。对数域$F$上的矩阵环$M_n(F)$，
+\[
+(A+B)^T=A^T+B^T,\qquad(AB)^T=B^TA^T.
+\]
+这引出反同构的概念。
+
+\begin{definition}
+若双射$\sigma:R\to R'$满足
+\[
+\sigma(a+b)=\sigma(a)+\sigma(b),\qquad
+\sigma(ab)=\sigma(b)\sigma(a),
+\]
+则称$\sigma$为$R$到$R'$的\textbf{反同构}，并称$R,R'$\textbf{反同构}。若$R'=R$，则称为\textbf{反自同构}。不要求双射时，满足这两式的映射称为\textbf{反同态}。
+\end{definition}
+
+\begin{proposition}
+若$R,R'$反同构，且$R$交换，则$R'$也交换，这时反同构同时也是同构。
+\end{proposition}
+\begin{proof}[补充证明]
+设$u=\sigma(a),v=\sigma(b)$为$R'$中任意元素。由$ab=ba$，
+\[
+uv=\sigma(ba)=\sigma(ab)=vu.
+\]
+故$R'$交换，且$\sigma(ab)=\sigma(b)\sigma(a)=\sigma(a)\sigma(b)$，也保持通常次序的乘法。
+\end{proof}
+
+\begin{example}
+\textbf{矩阵转置：}对交换域$F$上的矩阵，转置两次得到原矩阵，所以它是双射。又
+\[
+((AB)^T)_{ij}=(AB)_{ji}=\sum_k a_{jk}b_{ki}
+=\sum_k b_{ki}a_{jk}=(B^TA^T)_{ij}.
+\]
+因此转置为$M_n(F)$的反自同构。上述计算使用系数交换性；在非交换系数环上，普通转置不一定颠倒乘法。
+\end{example}
+
+\begin{example}
+\textbf{四元数共轭：}四元数体$H$中的元素写为
+\[
+\alpha=a_0+a_1I+a_2J+a_3K,\qquad a_i\in\R,
+\]
+其中$I^2=J^2=K^2=-1$、$IJ=-JI=K$、$JK=-KJ=I$、$KI=-IK=J$。定义
+\[
+\overline\alpha=a_0-a_1I-a_2J-a_3K.
+\]
+则$\alpha\mapsto\overline\alpha$是$H$的反自同构，且共轭两次为恒等映射。
+\end{example}
+\begin{proof}
+共轭保持加法，且$\overline{\overline\alpha}=\alpha$，所以它双射。为验证$\overline{\alpha\beta}=\overline\beta\,\overline\alpha$，由实数线性及分配律，只须在基$1,I,J,K$的乘积上验证。
+
+若其中一项为1，等式由定义成立。若两项为同一个虚基元$U$，则
+\[
+\overline{U^2}=-1=(-U)(-U)=\overline U\,\overline U.
+\]
+若为不同虚基元$U,V$，则$UV$为另一个虚基元或其负数，且$VU=-UV$，所以
+\[
+\overline{UV}=-UV=VU=(-V)(-U)=\overline V\,\overline U.
+\]
+这涵盖所有基的乘积，再对任意四元数展开即可得到所需等式。
+\end{proof}
+
+\begin{example}
+\textbf{四元数矩阵的共轭转置：}对$A=(\alpha_{ij})\in M_n(H)$，令$\overline A=(\overline{\alpha_{ij}})$，再取转置$\overline A^{\,T}$。则$A\mapsto\overline A^{\,T}$是反自同构，连续作用两次得到$A$。
+\end{example}
+\begin{proof}[补充证明]
+记$A^*=\overline A^{\,T}$。它保持加法且$(A^*)^*=A$。对$A=(\alpha_{ij}),B=(\beta_{ij})$，
+\begin{align*}
+((AB)^*)_{ij}
+&=\overline{\sum_k\alpha_{jk}\beta_{ki}}\\
+&=\sum_k\overline{\beta_{ki}}\,\overline{\alpha_{jk}}\\
+&=(B^*A^*)_{ij}.
+\end{align*}
+所以$(AB)^*=B^*A^*$。共轭与转置结合起来，才在非交换的四元数矩阵环上得到反自同构。
+\end{proof}
+
+\begin{proposition}
+环$R$的全部自同构与反自同构在复合下组成一个群$G$。自同构群$\Aut(R)$是它的子群，且$[G:\Aut(R)]\leq2$。
+\end{proposition}
+\begin{proof}[补充证明]
+两个保持乘法次序的映射复合仍保持次序；一个保持次序、一个颠倒次序时，复合颠倒次序；两个都颠倒次序时，复合恢复原次序。例如反自同构$\sigma,\tau$满足
+\[
+(\sigma\tau)(ab)=\sigma(\tau(b)\tau(a))
+=(\sigma\tau)(a)(\sigma\tau)(b).
+\]
+逆映射具有与原映射相同的保序或反序性质，恒等映射也在其中，因此构成群。
+
+若不存在反自同构，或$R$交换使两种映射重合，则$G=\Aut(R)$。否则固定一个反自同构$\tau$，任一反自同构$\sigma$都使$\sigma\tau^{-1}$为自同构，所以全部反自同构组成一个陪集$\Aut(R)\tau$。故至多有两个陪集。
+\end{proof}
+
+即使一个非交换环没有反自同构，也总能构造另一个与它反同构的环。取与$R$一一对应的副本$R'=\{x':x\in R\}$，规定
+\[
+x'+y'=(x+y)',\qquad x'y'=(yx)'.
+\]
+加法群结构不变；乘法满足结合律，因为$(x'y')z'=(zyx)'=x'(y'z')$，分配律也由$R$的分配律得到。于是$R'$为环，而$x\mapsto x'$为反同构。这个构造并不表示$R$一定存在到自身的反自同构。

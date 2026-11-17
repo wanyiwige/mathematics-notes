@@ -1,0 +1,417 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第6章：有限Fourier分析
+% 节：6.2 有限Abelian群上的Fourier分析
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{有限Abelian群上的Fourier分析}
+
+令 $G$ 是一个有限 Abelian 群，群运算记为乘法，$S^1$ 是复平面上的
+单位圆周。
+
+\begin{definition}\label{def:finite-group-character}
+	群 $G$ 上的一个\textbf{特征}是一个函数 $e:G\to S^1$，并且满足
+	\[
+	e(a\cdot b)=e(a)e(b),
+	\qquad a,b\in G.
+	\]
+	换句话说，特征就是从群 $G$ 到单位圆群 $S^1$ 的同态。
+	恒等于 $1$ 的函数称为\textbf{平凡特征}或\textbf{单位特征}。
+\end{definition}
+
+记 $\widehat G$ 为 $G$ 的所有特征组成的集合。它继承了 Abelian 群的
+结构。
+
+\begin{lemma}\label{lem:dual-group}
+	对 $e_1,e_2\in\widehat G$，定义
+	\[
+	(e_1e_2)(a)=e_1(a)e_2(a),
+	\qquad a\in G.
+	\]
+	则 $\widehat G$ 在此运算下是一个有限 Abelian 群，其单位元为平凡
+	特征。称 $\widehat G$ 为 $G$ 的\textbf{对偶群}。
+\end{lemma}
+
+\begin{proof}
+	逐点乘法保持特征的乘法性，结合律与交换律由复数乘法给出；单位元
+	是平凡特征，$e$ 的逆元为 $e^{-1}=\overline e$。
+\end{proof}
+
+\begin{lemma}\label{lem:finite-homomorphism-is-character}
+	令 $G$ 是一个有限 Abelian 群，并设
+	$e:G\to\C\setminus\{0\}$ 满足
+	\[
+	e(a\cdot b)=e(a)e(b),
+	\qquad a,b\in G.
+	\]
+	则 $e$ 是一个特征。
+\end{lemma}
+
+\begin{proof}
+	设 $b\in G$ 的阶为 $m$。由 $b^m=1$ 得
+	$e(b)^m=e(1)=1$，故 $\abs{e(b)}=1$。因此 $e(G)\subset S^1$。
+\end{proof}
+
+令 $V$ 表示有限 Abelian 群 $G$ 上所有复值函数组成的向量空间，
+则 $\dim_\C V=\abs{G}$。在 $V$ 上定义 Hermitian 内积
+\begin{equation}\label{eq:finite-group-hermitian-inner-product}
+	\langle f,g\rangle
+	=\frac1{\abs{G}}\sum_{a\in G}f(a)\overline{g(a)},
+	\qquad f,g\in V.
+\end{equation}
+
+\begin{theorem}\label{thm:characters-orthonormal-set}
+	在内积 \eqref{eq:finite-group-hermitian-inner-product} 下，$G$ 的所有
+	特征组成一个标准正交集。
+\end{theorem}
+
+事实上，对任意特征 $e$，由 $\abs{e(a)}=1$ 可得
+\[
+\langle e,e\rangle
+=\frac1{\abs{G}}\sum_{a\in G}e(a)\overline{e(a)}
+=\frac1{\abs{G}}\sum_{a\in G}\abs{e(a)}^2
+=1.
+\]
+两个不同特征之间的正交性由下面的引理给出。
+
+\begin{lemma}\label{lem:sum-nontrivial-character}
+	如果 $e$ 是群 $G$ 的非平凡特征，则
+	\[
+	\sum_{a\in G}e(a)=0.
+	\]
+\end{lemma}
+
+\begin{proof}
+	选取 $b\in G$ 使得 $e(b)\neq1$。由于 $a\mapsto ab$ 是 $G$ 上的
+	一个置换，
+	\[
+	e(b)\sum_{a\in G}e(a)
+	=\sum_{a\in G}e(b)e(a)
+	=\sum_{a\in G}e(ab)
+	=\sum_{a\in G}e(a).
+	\]
+	由 $e(b)\neq1$ 即得结论。
+\end{proof}
+
+\begin{proof}[定理的证明]
+	设 $e\neq e'$ 是两个特征，则 $e(e')^{-1}$ 是非平凡特征。由引理
+	\ref{lem:sum-nontrivial-character}，
+	\[
+	\sum_{a\in G}e(a)(e'(a))^{-1}=0.
+	\]
+	又因为 $(e'(a))^{-1}=\overline{e'(a)}$，故
+	$\langle e,e'\rangle=0$。结合上面的范数计算，正交性与无关性得证。
+\end{proof}
+
+因此不同的特征线性无关，特别地，$\widehat G$ 是有限集且
+$\abs{\widehat G}\leq\abs{G}$。事实上二者相等。
+
+\begin{theorem}\label{thm:characters-orthonormal-basis}
+	有限 Abelian 群 $G$ 上的所有特征组成 $V$ 的一组标准正交基。
+\end{theorem}
+
+为了证明该定理，先给出谱定理\footnote{实际上就是线性代数笔记中的度量矩阵可对角化的命题。+}的如下推广。
+
+\begin{lemma}\label{lem:simultaneous-diagonalization-unitary}
+	设 $T_1,\ldots,T_k$ 是有限维内积空间 $V$ 上的一族酉变换\footnote{就是线性代数中的度量变换，保内积，也即$(Tx,Ty)=(x,y)$}，并且
+	对任意 $i,j$ 都有
+	\[
+	T_iT_j=T_jT_i.
+	\]
+	则 $T_1,\ldots,T_k$ 可以同时对角化。换句话说，$V$ 存在一组由
+	所有 $T_i$ 的共同特征向量组成的标准正交基。
+\end{lemma}
+
+\begin{proof}
+	对 $k$ 归纳。$k=1$ 时结论就是酉变换的谱定理。设结论对
+	$k-1$ 个酉变换成立。对 $T_k$ 应用谱定理，得到正交直和
+	\[
+	V=V_{\lambda_1}\oplus\cdots\oplus V_{\lambda_s},
+	\]
+	其中 $V_{\lambda_i}$ 是 $T_k$ 对应于特征值 $\lambda_i$ 的特征
+	子空间。若 $v\in V_{\lambda_i}$ 且 $1\leq j\leq k-1$，则
+	\[
+	T_kT_jv=T_jT_kv=T_j(\lambda_i v)=\lambda_iT_jv,
+	\]
+	所以每个 $V_{\lambda_i}$ 都在 $T_1,\ldots,T_{k-1}$ 下不变。
+	将这些变换限制在各个 $V_{\lambda_i}$ 上并应用归纳假设，即得所需
+	的共同标准正交基。
+\end{proof}
+
+\begin{proof}[定理 \ref{thm:characters-orthonormal-basis} 的证明]
+	对每个 $a\in G$，定义线性变换 $T_a:V\to V$ 为
+	\[
+	(T_af)(x)=f(a\cdot x),
+	\qquad x\in G.
+	\]
+	由于 $G$ 是 Abelian 群，$T_aT_b=T_bT_a$；由
+	\eqref{eq:finite-group-hermitian-inner-product} 也容易验证每个
+	$T_a$ 都是酉变换。因此引理
+	\ref{lem:simultaneous-diagonalization-unitary} 表明 $V$ 有一组由
+	所有 $T_a$ 的共同特征向量组成的标准正交基。
+
+	设 $v$ 是其中一个共同特征向量，并写成
+	\[
+	T_av=\lambda_av,
+	\qquad a\in G.
+	\]
+	若 $1$ 是 $G$ 的单位元，则 $v(1)\neq0$；否则对任意 $a\in G$，
+	\[
+	v(a)=v(a\cdot1)=(T_av)(1)=\lambda_av(1)=0,
+	\]
+	这与 $v$ 是特征向量矛盾。定义
+	\[
+	w(x)=\lambda_x=\frac{v(x)}{v(1)}.
+	\]
+	于是对任意 $a,b\in G$，
+	\[
+	\begin{aligned}
+	w(a\cdot b)
+	&=\frac{v(a\cdot b)}{v(1)}
+	=\frac{\lambda_av(b)}{v(1)}
+	=\lambda_a\lambda_b
+	=w(a)w(b).
+	\end{aligned}
+	\]
+	由引理 \ref{lem:finite-homomorphism-is-character}，$w$ 是 $G$ 的
+	一个特征，而 $v=v(1)w$。因此上述共同特征向量基经单位复数倍的
+	调整后就是由 $G$ 的特征组成的标准正交基。
+\end{proof}
+
+\subsection*{有限 Abelian 群上的 Fourier 展开与卷积}
+
+以下记 $1_G$ 为群 $G$ 的单位元，并令 $q=\abs{G}$
+\begin{definition}
+	对函数
+$f:G\to\C$ 和特征 $e\in\widehat G$，定义 $f$ 相应于 $e$ 的
+Fourier 系数为
+\[
+\widehat f(e)=\langle f,e\rangle
+=\frac1{\abs G}\sum_{a\in G}f(a)\overline{e(a)}.
+\]
+形式和
+\[
+f\sim\sum_{e\in\widehat G}\widehat f(e)e
+\]
+称为 $f$ 的 Fourier 级数。
+\end{definition}
+
+\begin{theorem}(有限 Abelian 群上的 Fourier 反演)
+	\label{thm:finite-abelian-fourier-inversion}
+	若 $f:G\to\C$，则
+	\[
+	f=\sum_{e\in\widehat G}\widehat f(e)e,
+	\]
+	即对每个 $a\in G$，
+	\[
+	f(a)=\sum_{e\in\widehat G}\widehat f(e)e(a).
+	\]
+\end{theorem}
+
+\begin{proof}
+	由定理 \ref{thm:characters-orthonormal-basis}，$G$ 的所有特征组成
+	$V$ 的一组标准正交基。若
+	\[
+	f=\sum_{e\in\widehat G}c_ee,
+	\]
+	则对任意 $e\in\widehat G$，正交性给出
+	$c_e=\langle f,e\rangle=\widehat f(e)$，故得到上述展开式。
+\end{proof}
+
+\begin{theorem}[Parseval--Plancherel 公式]
+	\label{thm:finite-abelian-parseval}
+	若 $f:G\to\C$，则
+	\[
+	\norm{f}^2=\sum_{e\in\widehat G}\abs{\widehat f(e)}^2.
+	\]
+\end{theorem}
+
+\begin{proof}
+	这是标准正交基的 Parseval 恒等式。由
+	$\widehat f(e)=\langle f,e\rangle$，立即得到
+	\[
+	\norm f^2
+	=\sum_{e\in\widehat G}\abs{\langle f,e\rangle}^2
+	=\sum_{e\in\widehat G}\abs{\widehat f(e)}^2.
+	\]
+\end{proof}
+
+\begin{definition}
+	对 $f,g:G\to\C$，定义卷积
+\[
+(f*g)(a)=\frac1{\abs G}\sum_{b\in G}f(b)g(ab^{-1}),
+\qquad a\in G.
+\]
+\end{definition}
+
+\begin{proposition}[卷积的 Fourier 变换]
+	\label{prop:finite-abelian-convolution-theorem}
+	对任意 $e\in\widehat G$，都有
+	\[
+	\widehat{f*g}(e)=\widehat f(e)\widehat g(e).
+	\]
+\end{proposition}
+
+\begin{proof}
+	由定义，
+	\[
+	\begin{aligned}
+	\widehat{f*g}(e)
+	&=\frac1{\abs G}\sum_{a\in G}(f*g)(a)\overline{e(a)}\\
+	&=\frac1{\abs G^2}\sum_{b\in G}f(b)
+	\sum_{a\in G}g(ab^{-1})\overline{e(a)}.
+	\end{aligned}
+	\]
+	令 $c=ab^{-1}$，则 $a=cb$。当 $a$ 遍历 $G$ 时，$c$ 也遍历
+	$G$，并且
+	\[
+	\overline{e(a)}=\overline{e(cb)}
+	=\overline{e(c)}\,\overline{e(b)}.
+	\]
+	因此
+	\[
+	\begin{aligned}
+	\widehat{f*g}(e)
+	&=\left(\frac1{\abs G}\sum_{b\in G}
+	f(b)\overline{e(b)}\right)
+	\left(\frac1{\abs G}\sum_{c\in G}
+	g(c)\overline{e(c)}\right)\\
+	&=\widehat f(e)\widehat g(e).
+	\end{aligned}
+	\]
+\end{proof}
+
+下面研究特征关于群元素的对偶正交关系。
+
+\begin{lemma}[特征分离点]\label{lem:characters-separate-points}
+	若 $c\neq1_G$，则存在特征 $e_0\in\widehat G$，使得
+	\[
+	e_0(c)\neq1.
+	\]
+\end{lemma}
+
+\begin{proof}
+	若对每个 $e\in\widehat G$ 都有 $e(c)=1$，则由于特征总满足
+	$e(1_G)=1$，所有特征的线性组合 $f$ 都满足
+	\[
+	f(c)=f(1_G).
+	\]
+	但由定理 \ref{thm:characters-orthonormal-basis}，特征构成 $V$ 的
+	一组基，所以上式应对每个函数 $f:G\to\C$ 成立。取
+	\[
+	f(x)=
+	\begin{cases}
+	1,&x=1_G,\\
+	0,&x\neq1_G,
+	\end{cases}
+	\]
+	便得到 $f(1_G)=1$ 而 $f(c)=0$，矛盾。
+\end{proof}
+
+定义函数
+\[
+D(c)=\sum_{e\in\widehat G}e(c),
+\qquad c\in G.
+\]
+
+\begin{proposition}\label{prop:dual-character-sum}
+	函数 $D$ 满足
+	\[
+	D(c)=\sum_{e\in\widehat G}e(c)
+	=\begin{cases}
+	\abs{G},&c=1_G,\\
+	0,&c\neq1_G.
+	\end{cases}
+	\]
+\end{proposition}
+
+\begin{proof}
+	先设 $c\neq1_G$。由引理 \ref{lem:characters-separate-points}，可取
+	$e_0\in\widehat G$ 使得 $e_0(c)\neq1$。记
+	\[
+	S=\sum_{e\in\widehat G}e(c).
+	\]
+	由于映射 $e\mapsto e_0e$ 是 $\widehat G$ 上的双射，
+	\[
+	\begin{aligned}
+	e_0(c)S
+	&=\sum_{e\in\widehat G}e_0(c)e(c)
+	=\sum_{e\in\widehat G}(e_0e)(c)\\
+	&=\sum_{e\in\widehat G}e(c)=S.
+	\end{aligned}
+	\]
+	因此 $(e_0(c)-1)S=0$，从而 $S=0$。
+
+	若 $c=1_G$，则每个特征都满足 $e(1_G)=1$。又由定理
+	\ref{thm:characters-orthonormal-basis}，
+	$\abs{\widehat G}=\dim_\C V=\abs G$，故
+	\[
+	D(1_G)=\sum_{e\in\widehat G}e(1_G)=\abs G.
+	\]
+\end{proof}
+
+命题 \ref{prop:dual-character-sum} 是关于群元素的对偶正交关系。与前面
+关于特征的正交关系合在一起，可以写成
+\[
+\frac1{\abs G}\sum_{a\in G}e(a)\overline{e'(a)}
+=\delta_{e,e'}\footnote{这里是Kronecker记号},
+\qquad e,e'\in\widehat G,
+\]
+以及
+\[
+\frac1{\abs G}\sum_{e\in\widehat G}e(a)\overline{e(b)}
+=\delta_{a,b},
+\qquad a,b\in G.
+\]
+
+\begin{proposition}[Fourier 级数的卷积核表示]
+	\label{prop:finite-abelian-fourier-kernel}
+	对 $f:G\to\C$，记
+	\[
+	S_f(a)=\sum_{e\in\widehat G}\widehat f(e)e(a).
+	\]
+	则
+	\[
+	S_f=f*D=f.
+	\]
+\end{proposition}
+
+\begin{proof}
+	令$q=\abs G$,代入 Fourier 系数的定义并交换有限求和的次序，得到
+	\[
+	\begin{aligned}
+	S_f(a)
+	&=\sum_{e\in\widehat G}
+	\left[\frac1q\sum_{b\in G}f(b)\overline{e(b)}\right]e(a)\\
+	&=\frac1q\sum_{b\in G}f(b)
+	\sum_{e\in\widehat G}e(a)\overline{e(b)}.
+	\end{aligned}
+	\]
+	因为 $\overline{e(b)}=e(b^{-1})$，所以
+	\[
+	e(a)\overline{e(b)}=e(ab^{-1}).
+	\]
+	由 $D$ 的定义，
+	\[
+	S_f(a)=\frac1q\sum_{b\in G}f(b)D(ab^{-1})
+	=(f*D)(a).
+	\]
+	另一方面，由命题 \ref{prop:dual-character-sum}，只有当
+	$ab^{-1}=1_G$，即 $b=a$ 时，卷积中的项才不为零。因此
+	\[
+	(f*D)(a)=\frac1q f(a)D(1_G)
+	=\frac1q f(a)q=f(a).
+	\]
+	故 $S_f=f*D=f$，这也重新给出了 Fourier 反演公式。
+\end{proof}
+
+在上述归一化下，
+\[
+D(c)=
+\begin{cases}
+\abs G,&c=1_G,\\
+0,&c\neq1_G,
+\end{cases}
+\qquad
+\frac1{\abs G}\sum_{c\in G}D(c)=1.
+\]
+因此 $D$ 可以看作有限群上的 Dirac delta；两个正交关系分别表示
+不同特征彼此正交，以及全部特征能够分离群中的不同元素。

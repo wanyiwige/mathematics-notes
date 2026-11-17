@@ -1,0 +1,181 @@
+% preamble/commands.tex
+% ── 文本颜色快捷指令 ──
+\newcommand{\red}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}}
+\newcommand{\darkblue}[1]{\textcolor[rgb]{0.00,0.00,0.50}{#1}}
+\newcommand{\darkgreen}[1]{\textcolor[rgb]{0.00,0.37,0.00}{#1}}
+\newcommand{\darkred}[1]{\textcolor[rgb]{0.60,0.00,0.00}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.50,0.30,0.00}{#1}}
+\newcommand{\purple}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+
+% ── 数域 ──
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+
+% ── 排版辅助 ──
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\bkt}[1]{\left\langle #1 \right\rangle}
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+
+% ── 向量 ──
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}
+\newcommand{\z}{\boldsymbol{z}}
+
+% ── 线性代数 ──
+\newcommand{\Ker}{\mathrm{ker}}
+\let\Im\relax \DeclareMathOperator{\Im}{Im}
+\let\Coker\relax \DeclareMathOperator{\Coker}{Coker}
+\let\End\relax \DeclareMathOperator{\End}{End}
+\let\Hom\relax \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\detm}{det}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\lcm}{lcm}
+
+% ── 群论 ──
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Or}{O}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Alt}{Alt}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orbit}{Orbit}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fix}{Fix}
+
+% 子群记号
+\newcommand{\normal}{\trianglelefteq}
+\newcommand{\normalin}{\trianglelefteq}
+\newcommand{\ngen}[1]{\langle #1 \rangle}
+\newcommand{\gen}[1]{\bkt{#1}}
+
+% 商群
+\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}}
+
+% Sylow 子群
+\newcommand{\Syl}{\operatorname{Syl}}
+\newcommand{\syl}[2]{\operatorname{Syl}_{#1}(#2)}
+
+% ── 环论 ──
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{MaxSpec}
+\newcommand{\ideal}[1]{\langle #1 \rangle}
+
+% ── 域论与 Galois 理论 ──
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Autk}{Aut}
+\DeclareMathOperator{\Irr}{Irr}
+
+% ── 模论 ──
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\pd}{pd}
+\DeclareMathOperator{\idm}{id}
+
+% ── 直积/直和 ──
+\newcommand{\dirprod}{\times}
+\newcommand{\dirsum}{\oplus}
+\newcommand{\semidirprod}{\rtimes}
+% ── 数集（黑板体）──
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+
+% ── 花体 ──
+\newcommand{\mcA}{\mathcal{A}}
+\newcommand{\mcB}{\mathcal{B}}
+\newcommand{\mcC}{\mathcal{C}}
+\newcommand{\mcD}{\mathcal{D}}
+\newcommand{\mcF}{\mathcal{F}}
+\newcommand{\mcG}{\mathcal{G}}
+\newcommand{\mcI}{\mathcal{I}}
+\newcommand{\mcL}{\mathcal{L}}
+\newcommand{\mcM}{\mathcal{M}}
+\newcommand{\mcN}{\mathcal{N}}
+\newcommand{\mcO}{\mathcal{O}}
+\newcommand{\mcP}{\mathcal{P}}
+\newcommand{\mcS}{\mathcal{S}}
+\newcommand{\mcT}{\mathcal{T}}
+\newcommand{\mcU}{\mathcal{U}}
+
+% ── 哥特体 ──
+\newcommand{\mfa}{\mathfrak{a}}
+\newcommand{\mfb}{\mathfrak{b}}
+\newcommand{\mfg}{\mathfrak{g}}
+\newcommand{\mfh}{\mathfrak{h}}
+\newcommand{\mfm}{\mathfrak{m}}
+\newcommand{\mfn}{\mathfrak{n}}
+\newcommand{\mfp}{\mathfrak{p}}
+\newcommand{\mfq}{\mathfrak{q}}
+\newcommand{\mfr}{\mathfrak{r}}
+\newcommand{\mfs}{\mathfrak{s}}
+
+% ── 群论 ──
+%\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hol}{Hol}
+%\DeclareMathOperator{\Inn}{Inn}
+%\DeclareMathOperator{\End}{End}
+%\DeclareMathOperator{\Hom}{Hom}
+%\DeclareMathOperator{\Syl}{Syl}
+%\DeclareMathOperator{\Stab}{Stab}
+%\DeclareMathOperator{\sgn}{sgn}
+%\DeclareMathOperator{\GL}{GL}
+%\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+%\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\charac}{char}
+
+% ── 环论与模论 ──
+%\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\nilrad}{nil}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Jac}{Jac}
+%\DeclareMathOperator{\Ann}{Ann}
+%\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\coker}{coker}
+%\DeclareMathOperator{\Ext}{Ext}
+%\DeclareMathOperator{\Tor}{Tor}
+
+% ── 域论 ──
+%\DeclareMathOperator{\Gal}{Gal}
+%\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Nm}{Nm}
+
+% ── 常用 ──
+%\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\newcommand{\divides}{\mid}
+\newcommand{\ndivides}{\nmid}
+%\newcommand{\normal}{\trianglelefteq}
+\newcommand{\semidirect}{\rtimes}
+\newcommand{\dsum}{\bigoplus}
+\newcommand{\tensor}{\otimes}

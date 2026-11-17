@@ -1,0 +1,227 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.12 Cauchy数列与Cauchy收敛原理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{Cauchy数列与Cauchy收敛原理}
+\begin{definition}
+	如果数列 $\left\{x_n\right\}$ 具有以下特性： $\forall\varepsilon>0$ ， $\exists N$ ，使得$\forall n, m>N$ 时成立
+	
+	$$
+	\left|x_n-x_m\right|<\varepsilon,
+	$$
+	
+	
+	则称数列 $\left\{x_n\right\}$ 是一个Cauchy数列(基本数列)或Cauchy收敛．
+	
+	一个等价的定义是
+	
+	$\forall\varepsilon>0$ ， $\exists N$ ，使得 $\forall n>N,p\geqslant1$ 时成立
+	
+	$$
+	\left|x_{n+p}-x_n\right|<\varepsilon,
+	$$
+\end{definition}
+我们给出Cauchy数列的逆定义
+\begin{definition}
+	$\exists\varepsilon_0>0$ ， $\forall N$ ，使得$\exists n, m>N$ 时成立
+	
+	$$
+	\left|x_n-x_m\right|\geqslant\varepsilon,
+	$$
+	
+	$\Leftrightarrow$
+	
+	$\exists\varepsilon_0>0$ ， $\forall N$ ，使得 $\exists n>N,p\geqslant1$ 时成立
+	
+	$$
+	\left|x_{n+p}-x_n\right|\geqslant\varepsilon,
+	$$
+	
+	那么$\left\{x_n\right\}$不是一个Cauchy数列.
+\end{definition}
+由\(\{x_n\}\)Cauchy不收敛的定义，运用数列的子列，我们得到以下命题作为一种判定Cauchy数列的依据.
+\begin{proposition}
+	那么$\left\{x_n\right\}$不是一个Cauchy 数列当且仅当 $\exists\left\{x_n\right\}$ 的两个子列 $\left\{x_{n^{\prime}_k}\right\}$ 与 $\left\{x_{n_ k}\right\}$ 与 $\varepsilon_0>0$ 满足
+	
+	$$
+	\left|x_{n_k^{\prime}}-x_{n_k}\right| \geqslant \varepsilon_0
+	$$
+\end{proposition}
+
+\begin{proof}
+	$\Rightarrow$: 已知 $\left\{x_n\right\}$ 不是一个：Cauchy数列
+	
+	那么$\exists \varepsilon_0>0, \forall N \in \Z_{+}, \exists n>N, p \geqslant 1 \text { 使得 },\left|x_{n+p}-x_n\right| \geqslant \varepsilon_0 $
+	$$\begin{aligned}
+		\textbf{对} \varepsilon_0 ,&\textbf{取} N_1=1, \exists n_1>N_1, n_{1^{\prime}}=n_1+p_1>n_1 ,\textbf{使得}\left|x_{n^{\prime}_1}-x_{n_1}\right| \geqslant \varepsilon_0\\
+		&\text { 取 } N_2=n_1^{\prime}+1, \exists n_2>N_2, n_2^{\prime}>n_2, \text { 使得 }\left|x_{n_2^{\prime}}-x_{n_2}\right| \geqslant \varepsilon_0\\
+		&\vdots
+	\end{aligned}$$
+	
+	这样我们得到两列下标$\left\{n_k\right\}$,$\left\{n_k^{\prime}\right\}$都趋于无穷，且
+	
+	$$
+	\forall k,\left|x_{n_k}-x_{n^{\prime}_k}\right| \geqslant \varepsilon_0,
+	$$
+	
+	$\left\{x_{n_k}\right\}$与$\left\{x_{n_k^{\prime}}\right\}$正是我们构造出的子列.
+\end{proof}
+\begin{theorem}(Cauchy收敛原理)
+	数列 $\left\{x_n\right\}$ 收敛的充分必要条件是：$\left\{x_n\right\}$ 是Cauchy数列．
+\end{theorem}
+
+\begin{proof}
+	$\Rightarrow$:设 $\left\{x_n\right\}$ 收敛于 $a$ ，按照定义，$\forall \varepsilon>0, \exists N, \forall n, n+p>N$ ：
+	
+	$$
+	\left|x_n-a\right|<\dfrac{\varepsilon}{2},\left|x_{n+p}-a\right|<\dfrac{\varepsilon}{2},
+	$$
+	
+	
+	于是
+	
+	$$
+	\left|x_{n+p}-x_n\right| \leqslant\left|x_{n+p}-a\right|+\left|x_n-a\right|<\varepsilon
+	$$
+	
+	$\Leftarrow$: 设 $\left\{x_n\right\}$ 是一个 Canchy 数列
+	
+	对 $\varepsilon_0=1 ,\exists N_0 , \forall n>N_0 , p \geqslant 1 ,\text{使得}\left|x_n+p-x_n\right|<\varepsilon_0=1$
+	
+	$\Rightarrow \forall n>N_0+1$ ，都有 $\left|x_n-x_{N_0+1}\right|<1$（此处由上面的全称量词得）
+	
+	$\Leftrightarrow 1-x_{N_0+1}<x_n<1+x_{N_0+1} \Leftrightarrow\left|x_n\right|<1+\left|x_{N_0+1}\right|$
+	
+	取 $M=\max \left(\left|x_1\right|,\left|x_2\right|, \cdots,\left|x_{N_0}\right|,\left|x_{N_0+1}\right|+1\right)$
+	
+	那么 $\forall n ,\left|x_n\right|<M$ ，数列 $\left\{x_n\right\}$ 有界.
+	
+	由Bolzano-Weierstrass致密性定理，$\left\{x_n\right\}$ 有一个收敛子列，设 $x_{n_k} \rightarrow a$
+	$\Rightarrow \forall \varepsilon>0, \exists K , \forall k>K$ 有 $\left|x_{n_k}-a\right|<\dfrac{\varepsilon}{2}  $
+	
+	又 $\left\{x_n\right\}$ 是Cauchy数列，对上述 $\varepsilon>0 ,\exists N_0, \forall n>N_0,p \geqslant 1$
+	
+	$$
+	\left|x_{n+p}-x_n\right|<\varepsilon
+	$$
+	
+	
+	因为 $n_k \rightarrow \infty$ 对上述 $N_0 ,\exists K_0 , \forall k>K_0$ 有 $n_k>N$ 
+	
+	取 $\widetilde{K}=\max \left(K, K_0\right)$
+	
+	取 $p(k)$ 使 $p+n$ 在指标的意义 上$p+k=n_k$
+	
+	也就有 $\forall k>\widetilde{K} ,\left|x_{n_k}-a\right|<\dfrac{\varepsilon}{2}  $ 且 $\left|x_{n k}-x_n\right|<\dfrac{\varepsilon}{2}$
+	
+	$$
+	\left|x_n-a\right|=\left|x_n-x_{n k}+x_{n k}-a\right| \leqslant\left|x_{n_k}-a\right|+\left|x_{n_k}-x_n\right|<\varepsilon
+	$$
+\end{proof}
+这一条定理称之为实数的完备性定理.
+\begin{proposition}
+	Cauchy收敛原理$\Rightarrow$Bolzano-Weierstrass定理
+\end{proposition}
+\begin{proof}
+	设 $\left[a_1, b_1\right]$ 包含所有 $x_n$
+	
+	二等分 $\left[a_1, b_1\right]$，得
+	$$\left[a_1, \dfrac{a_1+b_1}{2}\right],\left[\dfrac{a_1+b_1}{2}, b_1\right]$$ 
+	
+	取其中包含 $\left\{x_n\right\}$ 无限多项的区间称之为 $\left[a_2, b_2\right]$ .从此类推，取出 $\left[a_3, b_3\right],\cdots$
+	
+	在 $I_k=\left[a_k, b_k\right]$ 中取出 $\left\{x_n\right\}$ 中的 $x_{n_k}$
+	
+	在 $\left[a_{k+1}, b_{k+1}\right]$ 取 $\left\{x_n\right\}$中的 $x_{n_{k+1}}$ 使 $n_{k+1}>n_k$
+	
+	设 $\left[a_n, b_n\right]$ 的长度为 $L_n=\dfrac{b_1-a_1}{2^{n-1}} \rightarrow 0$
+	
+	$\forall \varepsilon>0$ 取 $k$,使得$L_ k<\varepsilon$ 
+	
+	$\forall k \geqslant K$ 有 $x_{n_k} \in I_k \quad \forall p, q \geqslant k \quad x_{n_p}, x_{n_q} \in I_k$ 且 $L_k<\varepsilon$ 故 
+	$$\left|x_{n_p}-x_{n _q}\right| \leqslant L_k<\varepsilon$$
+	
+	因此，$\left\{x_n\right\}$是Cauchy数列，由Cauchy收敛原理，
+	$\left\{x_{n_k}\right\}$收敛.
+	
+	由此，我们得到了$\left\{x_n\right\}$的收敛子列$\left\{x_{n_k}\right\}$
+\end{proof}
+\begin{proposition}
+	设数列 $\left\{x_n\right\}$ 满足压缩性条件：
+	
+	$$
+	\left|x_{n+1}-x_n\right| \leqslant k\left|x_n-x_{n-1}\right|, 0<k<1, n=2,3, \cdots,
+	$$
+	
+	
+	则 $\left\{x_n\right\}$ 收敛.
+\end{proposition}
+
+\begin{proof}
+	只要证明 $\left\{x_n\right\}$ 是Cauchy数列即可.首先对于一切 $n$ ，我们有
+	$$
+	\left|x_{n+1}-x_n\right| \leqslant k\left|x_n-x_{n-1}\right| \leqslant k^2\left|x_{n-1}-x_{n-2}\right| \leqslant \cdots \leqslant k^{n-1}\left|x_2-x_1\right| .
+	$$
+	
+	
+	则
+	
+	$$
+	\begin{aligned}
+		\left|x_m-x_n\right| & \leqslant\left|x_m-x_{m-1}\right|+\left|x_{m-1}-x_{m-2}\right|+\cdots+\left|x_{n+1}-x_n\right| \\
+		& \leqslant k^{m-2}\left|x_2-x_1\right|+k^{m-3}\left|x_2-x_1\right|+\cdots+k^{n-1}\left|x_2-x_1\right| \\
+		& <\dfrac{k^{n-1}}{1-k}\left|x_2-x_1\right| \rightarrow 0 \quad(n \rightarrow \infty),
+	\end{aligned}
+	$$
+	
+	
+	因此 $\left\{x_n\right\}$ 是Cauchy数列，从而收敛．
+\end{proof}
+\begin{construction}
+	有理数的序列 $\left\{a_n\right\}_{n=1}^{\infty}$ 叫做 Cauchy 数列，如果
+	
+	$$
+	\forall \varepsilon \in \mathbb{Q}, \varepsilon>0, \exists N \in \mathbb{N}, \forall m, n \geqslant N,\left|a_m-a_n\right|<\varepsilon .
+	$$
+	
+	
+	记所有有理 Cauchy 数列的集合为
+	
+	$$
+	\mathcal{C}=\left\{ \left\{a_n\right\}:\left\{a_n\right\}\text { 是 Cauchy 数列 }\right\} \text {. }
+	$$
+	
+	在 $\mathcal{C}$ 上定义等价关系：
+	$\left\{a_n\right\}\sim\left\{b_n\right\}$ 当且仅当
+	
+	$$
+	\lim _{n \rightarrow \infty}\left|a_n-b_n\right|=0
+	$$
+	
+	
+	即
+	
+	$$
+	\forall \varepsilon>0, \exists N, \forall n \geqslant N,\left|a_n-b_n\right|<\varepsilon .
+	$$
+	
+	那么
+	
+	$$
+	\mathbb{R}:=\mathcal{C} / \sim
+	$$
+	
+	定义
+	
+	$$
+	\begin{aligned}
+		&\left[\left\{a_n\right\}\right]+\left[\left\{b_n\right\}\right]:=\left[\left\{a_n+b_n\right\}\right]\\
+		&\left[\left\{a_n\right\}\right] \cdot\left[\left\{b_n\right\}\right]:=\left[\left\{a_n \cdot b_n\right\}\right]\\
+		&\left[\left\{a_n\right\}\right]<\left[\left\{b_n\right\}\right] \Longleftrightarrow \exists \delta \in \mathbb{Q}^{+} ,\exists N ,\forall n \geqslant N, b_n-a_n>\delta
+	\end{aligned}
+	$$
+	容易验证这是良定的.
+	
+	
+	
+\end{construction}

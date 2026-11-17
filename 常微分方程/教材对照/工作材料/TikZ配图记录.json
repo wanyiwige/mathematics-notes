@@ -1,0 +1,146 @@
+{
+  "figures": [
+    {
+      "name": "flowbox",
+      "chapter": "chapter7.tex",
+      "anchor": "\\section{对称群与齐次性}",
+      "caption": "流盒坐标将弯曲的积分曲线化为平行直线；横截面上的标号保持不变。",
+      "intro": "图~\\ref{fig:ode-tikz-flowbox} 用 $F(s,z)=(s,z+s^2/5)$ 示意直化坐标：曲线的弯曲来自坐标，而运动时间仍由 $s$ 表示。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "blowup-cusp",
+      "chapter": "chapter7.tex",
+      "anchor": "\\section{相似性与时间尺度}",
+      "caption": "半三次抛物线的实吹起：严格变换在 $(x,v)$ 图中成为光滑曲线。",
+      "intro": "图~\\ref{fig:ode-tikz-blowup-cusp} 对比压回前后的曲线；右图的虚线 $x=0$ 是这一坐标图中的例外纤维。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "energy-level",
+      "chapter": "chapter6.tex",
+      "anchor": "\\begin{proposition}[数学摆的周期]",
+      "caption": "势阱与闭合能量层：以 $U(x)=x^2/2$、$E=1$ 为例。",
+      "intro": "图~\\ref{fig:ode-tikz-energy-level} 将转向点与相平面中的上下两支对应起来；箭头表示真实的时间方向。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "lv-levels",
+      "chapter": "chapter6.tex",
+      "anchor": null,
+      "caption": "参数 $a=b=c=d=1$ 时的 Lotka--Volterra 闭轨；各曲线为首次积分的等值线。",
+      "intro": "图~\\ref{fig:ode-tikz-lv-levels} 中闭轨围绕唯一极小点，各坐标的周期平均值均为 1。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "return-map",
+      "chapter": "chapter6.tex",
+      "anchor": null,
+      "caption": "返回映射的吸引不动点与吸引闭轨：模型 $\\dot r=0.12r(1-r^2)$、$\\dot\\theta=-1$。",
+      "intro": "图~\\ref{fig:ode-tikz-return-map} 示意横截面上的半径如何逐次趋近闭轨；这对应返回映射在不动点处的压缩。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "sturm-separation",
+      "chapter": "chapter8.tex",
+      "anchor": "\\section{比较定理与零点间距}",
+      "caption": "同一方程的独立解零点交错；右图中每经过一个零点，相位穿过一个 $k\\pi$。",
+      "intro": "图~\\ref{fig:ode-tikz-sturm-separation} 取 $x_1=\\sin t,x_2=\\cos t$；右图使用本章的相位约定 $(x,y)=\\rho(\\sin\\theta,\\cos\\theta)$。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "monodromy-trace",
+      "chapter": "chapter9.tex",
+      "anchor": "\\section{参数共振与振动稳定}",
+      "caption": "二维保面积单周期矩阵的迹判据：稳定区间为 $|\\operatorname{tr}M|<2$。",
+      "intro": "图~\\ref{fig:ode-tikz-monodromy-trace} 展示乘子随迹所处区间的三种位置；边界 $\\pm2$ 仍须检查 Jordan 块。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "torus-flow",
+      "chapter": "chapter10.tex",
+      "anchor": "\\section{均匀分布与高维推广}",
+      "caption": "将环面沿经纬线展开为正方形；同向箭头标明需粘合的对边，右图只画有限轨道段。",
+      "intro": "图~\\ref{fig:ode-tikz-torus-flow} 中，轨道从一条边离开后从对边继续。有理斜率给出闭轨，无理斜率的完整轨道稠密。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "burgers-characteristics",
+      "chapter": "chapter12.tex",
+      "anchor": "\\section{隐式常微分方程的 1-jet 几何}",
+      "caption": "初始速度 $g(\\xi)=-\\xi$ 的特征线在 $(t,x)=(1,0)$ 汇合；虚线表示交叉后的形式延长。",
+      "intro": "图~\\ref{fig:ode-tikz-burgers-characteristics} 用线性初值展示投影退化：$x=\\xi(1-t)$，在 $t=1$ 无法由 $x$ 唯一反解初始标号。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "jet-cusp",
+      "chapter": "chapter12.tex",
+      "anchor": "\\section{一般非线性方程的特征系统}",
+      "caption": "隐式方程 $p^2=t$ 的两支与积分曲线投影：$t=p^2$、$x=2p^3/3$。",
+      "intro": "图~\\ref{fig:ode-tikz-jet-cusp} 取积分常数 $C=0$，用同一参数 $p$ 将斜率分支与半三次尖点对应起来。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "stereographic",
+      "chapter": "chapter11.tex",
+      "anchor": "\\section{光滑映射、子流形与例子}",
+      "caption": "立体投影的二维截面：从北极 $N$ 出发的直线将球面点 $P$ 映到平面点 $q$。",
+      "intro": "图~\\ref{fig:ode-tikz-stereographic} 画出球面的一张坐标图；北极自身不在这张图的定义域内。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "node-saddle-index",
+      "chapter": "chapter13.tex",
+      "anchor": "\\section{指标的应用}",
+      "caption": "结点与鞍点的指标。虚圆是计算指标的边界，箭头表示边界各点的场向量。",
+      "intro": "图~\\ref{fig:ode-tikz-node-saddle-index} 中，沿虚圆正向走一周，左图的向量方向正转一周，右图反转一周。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "hill-ellipse",
+      "chapter": "chapter14.tex",
+      "anchor": "\\section{分层介质中的光线与 Clairaut 守恒量}",
+      "caption": "初始径向速度为 $v>0$ 的线性相对轨道：椭圆中心在 $(0,-2v)$，并非空间站位置。",
+      "intro": "图~\\ref{fig:ode-tikz-hill-ellipse} 取 $v=1$，标出空间站所在的相对原点及相对轨道的中心。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "optical-geodesics",
+      "chapter": "chapter14.tex",
+      "anchor": "\\section{一维二重零点的光滑正规形}",
+      "caption": "折射率 $n(y)=1/y$ 时的射线：与边界正交的半圆及竖直直线。",
+      "intro": "图~\\ref{fig:ode-tikz-optical-geodesics} 中只画上半平面 $y>0$ 内的曲线，边界 $y=0$ 不属于该介质模型。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "stable-manifolds",
+      "chapter": "chapter15.tex",
+      "anchor": "\\section{非线性双曲平衡点的局部共轭}",
+      "caption": "局部稳定、不稳定流形及其线性模型；粗线箭头分别趋向和离开平衡点。",
+      "intro": "图~\\ref{fig:ode-tikz-stable-manifolds} 的曲线由局部换元 $(u,v)=(s+0.18r^2,r+0.18s^2)$ 得到，故两条不变曲线在原点的切线分别是稳定与不稳定子空间。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "pulse-green",
+      "chapter": "chapter3.tex",
+      "anchor": null,
+      "caption": "左：单位面积光滑集中脉冲。右：$a=-0.7$ 时推迟影响函数在扰动时刻产生单位跳跃。",
+      "intro": "图~\\ref{fig:ode-tikz-pulse-green} 将光滑脉冲的集中过程与极限响应分开表示；空心点不指定 $t=\\xi$ 处的单点取值。",
+      "embedded_in_chapter": true
+    },
+    {
+      "name": "gibbs-concentration",
+      "chapter": "chapter14.tex",
+      "anchor": null,
+      "caption": "同一周期势的归一化 Gibbs 稳态；扩散变小时，质量更集中于唯一势阱 $x=0$。",
+      "intro": "图~\\ref{fig:ode-tikz-gibbs-concentration} 取周期势 $U=1-\\cos x$，两条密度曲线均已归一化。",
+      "embedded_in_chapter": true
+    }
+  ],
+  "checks": {
+    "LV_level_residual": 8.881784197001252e-16,
+    "stable_chart_min_jacobian": 0.727516,
+    "gibbs_Z_0.8": 2.5750764721715993,
+    "gibbs_Z_0.2": 1.1532209370547335
+  }
+}

@@ -1,0 +1,232 @@
+% !TEX root = main.tex
+\section{第零章：集合与整数（补充证明）}
+本章题面据教材书页20--22核对。二元关系是集合$S\times S$的子集，记$x\sim y$表示$(x,y)$属于该关系。自反性指每个$x\in S$满足$x\sim x$；对称性指$x\sim y$推出$y\sim x$；传递性指$x\sim y$且$y\sim z$推出$x\sim z$。三者同时成立时称为等价关系。
+
+\subsection{习题4：判断关系的自反性、对称性与传递性}\label{exercise:0:4}
+\paragraph{题目}判断以下关系是否具有自反性、对称性、传递性：
+\begin{enumerate}[label=(\roman*)]
+\item $S=\R$，$x-y$为$2\pi$的整数倍；
+\item $S=\R$，$x\geq y$；
+\item $S=\R$，$x>y$；
+\item $S$仅含一个元素，关系为$x>y$。
+\end{enumerate}
+\paragraph{考点与思路}证明某性质须对任意元素成立；否定只需一个反例。空关系的传递性与对称性是条件命题，前提不能成立时仍成立。\textbf{原文依据：}第零章第1节等价关系的三条定义，书页2；本题无附带证明，按原定义逐项补证。
+\paragraph{所用结论}\toolref{n-relations}。
+\begin{proof}[详细证明]
+(i) 因$x-x=2\pi\cdot0$，自反性成立。若$x-y=2\pi k$，$k\in\Z$，则$y-x=2\pi(-k)$，故对称性成立。若另有$y-z=2\pi l$，则$x-z=2\pi(k+l)$，故传递性成立。
+
+(ii) 任意$x$满足$x\geq x$，所以自反。取$x=1,y=0$，有$x\geq y$却没有$y\geq x$，所以不对称。由$x\geq y$及$y\geq z$得到$x\geq z$，所以传递。
+
+(iii) $x>x$对每个实数都不成立，故不自反。取$1>0$，反向$0>1$不成立，故不对称。若$x>y>z$，则$x>z$，故传递。
+
+(iv) 设$S=\{a\}$。因$a>a$不成立，关系是空关系，且不自反。不存在满足$x>y$的$x,y\in S$，因此不存在违反对称性或传递性的实例，这两个性质均成立。
+\end{proof}
+\paragraph{复习提示}依次为“全成立”“自反、传递”“仅传递”“对称、传递”。最后一项不能因关系为空而把所有性质一律判为不成立。
+
+\subsection{习题5：差与和所定义的关系}\label{exercise:0:5}
+\paragraph{题目}在$\R$上分别以(i) $|x-y|=1$；(ii) $|x-y|\leq1$；(iii) $x-y=1$；(iv) $x+y=1$定义关系，判断其自反性、对称性和传递性。
+\paragraph{考点与思路}把三个性质逐项代入，注意距离的三角不等式只能给出上界$2$，不能自动保持上界$1$。\textbf{原文依据：}第零章第1节等价关系的三条定义，书页2；本题无附带证明，按原定义逐项补证。
+\paragraph{所用结论}\toolref{n-relations}。
+\begin{proof}[详细证明]
+(i) $|x-x|=0\ne1$，不自反。由$|x-y|=|y-x|$，对称。取$x=0,y=1,z=0$，前两个距离均为$1$，而$|x-z|=0$，不传递。
+
+(ii) $|x-x|=0\leq1$，自反；距离对称，故关系对称。取$x=0,y=1,z=2$，有$|x-y|=|y-z|=1$，而$|x-z|=2>1$，不传递。
+
+(iii) $x-x=0$，不自反。取$x=1,y=0$，则$x-y=1$而$y-x=-1$，不对称。取$x=2,y=1,z=0$，则$x-y=y-z=1$而$x-z=2$，不传递。
+
+(iv) 要自反须所有实数均满足$2x=1$，取$x=0$即否定。交换加数不改变和，因此对称。取$x=0,y=1,z=0$，有$x+y=y+z=1$而$x+z=0$，不传递。
+\end{proof}
+\paragraph{复习提示}依次为“仅对称”“自反、对称”“全不成立”“仅对称”。反例必须同时满足传递性中的两个前提。
+
+\subsection{习题6：自然数加法、乘法的结合律与交换律}\label{exercise:0:6}
+\paragraph{题目}证明自然数的加法和乘法分别满足结合律和交换律。
+\paragraph{考点与思路}\textbf{原文依据：}第零章第2节的递归定理、加法与乘法递归定义，书页5--6。原文将运算律证明省略，以下从同一递归定义出发，用数学归纳法补全。与原文一致取$\N=\{0,1,2,\ldots\}$，写$S(n)=n+1$表示原文的后继$n^+$，使用递归定义
+\[
+a+0=a,\quad a+S(b)=S(a+b),\quad a\cdot0=0,\quad aS(b)=ab+a.
+\]
+\paragraph{所用结论}\toolref{n-recursion}、\toolref{n-induction}。
+\begin{proof}[详细证明]
+\textbf{第一步：加法的两个准备等式。}对$b$归纳，$0+0=0$，且若$0+b=b$，则$0+S(b)=S(0+b)=S(b)$。所以$0+b=b$。
+
+同样对$b$归纳证明$S(a)+b=S(a+b)$：$b=0$时成立；若对$b$成立，则
+\[
+S(a)+S(b)=S(S(a)+b)=S(S(a+b))=S(a+S(b)).
+\]
+\textbf{第二步：加法交换律。}固定$a$，对$b$归纳。$a+0=0+a$。若$a+b=b+a$，则
+\[
+a+S(b)=S(a+b)=S(b+a)=S(b)+a.
+\]
+因此$a+b=b+a$。
+
+\textbf{第三步：加法结合律。}固定$a,b$，对$c$归纳。$c=0$时$(a+b)+0=a+(b+0)$。若对$c$成立，则
+\begin{align*}
+(a+b)+S(c)&=S((a+b)+c)\\
+&=S(a+(b+c))=a+(b+S(c)).
+\end{align*}
+故$(a+b)+c=a+(b+c)$。
+
+\textbf{第四步：先证左分配律。}固定$a,b$，对$c$归纳。$a(b+0)=ab=ab+a0$。若$a(b+c)=ab+ac$，则
+\begin{align*}
+a(b+S(c))&=aS(b+c)=a(b+c)+a\\
+&=(ab+ac)+a=ab+(ac+a)=ab+aS(c).
+\end{align*}
+这一步只用了递归定义和已证加法结合律，并未使用乘法交换律。
+
+\textbf{第五步：乘法交换律。}先对$b$归纳得$0b=0$。再对$b$归纳证明$S(a)b=ab+b$。初始$b=0$成立；归纳步中
+\begin{align*}
+S(a)S(b)&=S(a)b+S(a)=(ab+b)+(a+1)\\
+&=(ab+a)+(b+1)=aS(b)+S(b),
+\end{align*}
+其中加数的换序只使用已经证明的加法交换律与结合律。
+
+现对$b$归纳：$a0=0=0a$；若$ab=ba$，则
+\[
+aS(b)=ab+a=ba+a=S(b)a.
+\]
+故$ab=ba$。
+
+\textbf{第六步：乘法结合律。}固定$a,b$，对$c$归纳。$c=0$时两边为$0$；若$(ab)c=a(bc)$，则用第四步得
+\begin{align*}
+(ab)S(c)&=(ab)c+ab=a(bc)+ab\\
+&=a(bc+b)=a(bS(c)).
+\end{align*}
+所以$(ab)c=a(bc)$。四项结论全部得证。
+\end{proof}
+\paragraph{复习提示}不要在证明乘法交换律之前，未经证明就交换乘数。这里先证左分配律作为引理，避免各运算律之间循环引用。
+
+\subsection{习题7：乘法对加法的分配律}\label{exercise:0:7}
+\paragraph{题目}证明自然数乘法对加法的分配律成立。
+\paragraph{考点与思路}以加法的第二个变量为归纳变量；右分配律再由乘法交换律推出。\textbf{原文依据：}第零章第2节的乘法递归定义与原文省略证明的分配律，书页5--6；以下为在该定义下的补充证明。
+\paragraph{所用结论}\toolref{n-recursion}、\toolref{n-induction}。另使用前题已证明的加法结合律与乘法交换律（第零章习题6）。
+\begin{proof}[详细证明]
+固定$a,b\in\N$，对$c$证明$a(b+c)=ab+ac$。$c=0$时两边均为$ab$。设对$c$已成立，则
+\begin{align*}
+a(b+(c+1))&=a((b+c)+1)\\
+&=a(b+c)+a\\
+&=(ab+ac)+a\\
+&=ab+(ac+a)=ab+a(c+1).
+\end{align*}
+第一、第四步用加法结合律，第二、末一步用乘法递归定义。故左分配律成立。
+
+由习题6的乘法交换律，
+\[
+(a+b)c=c(a+b)=ca+cb=ac+bc.
+\]
+因而右分配律也成立。
+\end{proof}
+\paragraph{复习提示}归纳步须写清楚如何把$c+1$化归$c$，不能仅说“由归纳法成立”。
+
+\subsection{习题8：自然数乘法的消去律}\label{exercise:0:8}
+\paragraph{题目}若$ax=ay$且$a\ne0$，证明$x=y$。
+\paragraph{考点与思路}使用自然数的次序：若$x<y$，则$y=x+t$，其中$t$为正整数，乘以正整数后差仍为正。\textbf{原文依据：}第零章第2节自然数次序以$a+t=b$定义，书页6，以及习题7所补的分配律；原书未附本题证明，以下据这些原有工具补证。
+\paragraph{所用结论}\toolref{n-order}、\toolref{n-recursion}、\toolref{n-induction}，并用本章习题7已证的分配律。
+\begin{proof}[详细证明]
+自然数乘法递归定义表明：对正整数$a$，$a\cdot1=a>0$；若$at>0$，则$a(t+1)=at+a>0$。所以对所有正整数$t$都有$at>0$。
+
+若$x\ne y$，自然数的三歧性保证$x<y$或$y<x$。若$x<y$，取正整数$t$使$y=x+t$。由分配律，
+\[
+ay=a(x+t)=ax+at>ax,
+\]
+与$ax=ay$矛盾。若$y<x$，同理得$ax>ay$，也矛盾。因此$x=y$。
+\end{proof}
+\paragraph{复习提示}$a\ne0$不可删去，$0\cdot1=0\cdot2$即为反例。此证明没有先假设分式或除法已经定义。
+
+\subsection{习题13：两类大整数的最大公因数与素数无穷性}\label{exercise:0:13}
+\paragraph{题目}设$a>1$为正整数，$m>n>0$，$m,n\in\Z$。证明
+\[
+\gcd(a^{2^m}+1,a^{2^n}+1)=1\text{或}2,
+\]
+并由此证明有无穷多个素数。
+\paragraph{考点与思路}模共同因子把$a^{2^n}$替换成$-1$。为推出素数无穷性，选择偶数$a$，使最大公因数必为$1$。\textbf{原文依据：}第零章第3节整除与素因子、算术基本定理（书页10--11）和第4节同余运算法则（书页12）；原书本题没有提供证明或提示，以下为使用本章工具的补充证明，不标作原书原证。
+\paragraph{所用结论}\toolref{n-gcd}、\toolref{n-prime-factor}、\toolref{n-congruence}。
+\begin{proof}[详细证明]
+设$d$为上述两数的最大公因数，则$a^{2^n}\equiv-1\pmod d$。因$m>n$，$2^{m-n}$为偶数，故
+\[
+a^{2^m}=(a^{2^n})^{2^{m-n}}\equiv(-1)^{2^{m-n}}=1\pmod d.
+\]
+另一方面$d\mid a^{2^m}+1$，所以同一数也同余于$-1$。相减得$d\mid2$，即$d=1$或$2$。
+
+更具体地，若$a$为偶数，两数均为奇数，故$d=1$；若$a$为奇数，两数均为偶数，故$d=2$。
+
+令$a=2$。对每个$n\geq1$，整数$F_n=2^{2^n}+1>1$，故至少有一个素因子$p_n$。当$m\ne n$时，$\gcd(F_m,F_n)=1$，所以$p_m\ne p_n$；否则同一素数将同时整除这两个互素数。由此构造出无穷多个不同素数。
+\end{proof}
+\paragraph{复习提示}不需要断言每个$F_n$都是素数，只需每个大于$1$的整数有素因子。
+
+\subsection{习题14：莫比乌斯函数的约数和}\label{exercise:0:14}
+\paragraph{题目}在正整数上定义$\mu(1)=1$；若$n$有素数平方因子，则$\mu(n)=0$；若$n=p_1\cdots p_r$是$r$个不同素数之积，则$\mu(n)=(-1)^r$。证明对$n>1$有
+\[
+\sum_{d\mid n}\mu(d)=0.
+\]
+\paragraph{考点与思路}只有无平方因子的约数有贡献；这些约数恰与不同素因子集合的子集一一对应。\textbf{原文依据：}本题的莫比乌斯函数定义，以及第零章第3节算术基本定理，书页11；原书本题未附证明，以下按素因数分解与定义补证。
+\paragraph{所用结论}\toolref{n-prime-factor}、\toolref{n-binomial-count}。
+\begin{proof}[详细证明]
+由唯一分解，写$n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$，其中$p_i$两两不同，$\alpha_i\geq1$。由于$n>1$，$r\geq1$。
+
+若$d\mid n$且$\mu(d)\ne0$，则$d$中每个素因子的指数只能是$0$或$1$，故存在唯一子集$J\subseteq\{1,\ldots,r\}$使
+\[
+d=\prod_{j\in J}p_j,\qquad \mu(d)=(-1)^{|J|}.
+\]
+空子集对应$d=1$，其贡献为$1$；其他含平方因子的约数贡献为$0$。按$|J|=k$分组，因此
+\begin{align*}
+\sum_{d\mid n}\mu(d)
+&=\sum_{J\subseteq\{1,\ldots,r\}}(-1)^{|J|}\\
+&=\sum_{k=0}^r\binom rk(-1)^k=(1-1)^r=0.
+\end{align*}
+\end{proof}
+\paragraph{复习提示}条件$n>1$保证至少有一个素因子。当$n=1$时约数和为$\mu(1)=1$。
+
+\subsection{习题23：解线性同余方程}\label{exercise:0:23}
+\paragraph{题目}解$27x\equiv25\pmod{31}$。
+\paragraph{考点与思路}先用欧几里得算法找逆元，再相乘。模$m$同余指$m$整除两数之差。\textbf{原文依据：}第零章第4节定理4，书页13；原证明先由互素性构造$au+nv=1$，将其乘以右端常数得到解，再用同余消去说明唯一性。以下保留此路线，具体以回代算出$u$。
+\paragraph{所用结论}\toolref{n-gcd}、\toolref{n-bezout}、\toolref{n-congruence}。
+\begin{proof}[详细解答]
+由$31=27+4$、$27=6\cdot4+3$、$4=3+1$，回代得
+\begin{align*}
+1&=4-3=4-(27-6\cdot4)\\
+ &=7\cdot4-27=7\cdot31-8\cdot27.
+\end{align*}
+所以$27$在模$31$下的逆元为$-8\equiv23$。原同余等价于
+\[
+x\equiv23\cdot25=575\equiv17\pmod{31}.
+\]
+检验：$27\cdot17-25=434=14\cdot31$。因$27$可逆，这一剩余类是唯一解。全部整数解为$x=17+31t$，$t\in\Z$。
+\end{proof}
+\paragraph{复习提示}同余方程的“唯一解”指模$31$唯一剩余类，整数解仍有无穷多个。
+
+\subsection{习题24：解同余方程组}\label{exercise:0:24}
+\paragraph{题目}解
+\[
+\begin{cases}
+x\equiv2\pmod5,\\x\equiv1\pmod7,\\x\equiv5\pmod{11}.
+\end{cases}
+\]
+\paragraph{考点与思路}沿用原文孙子定理证明中的构造：先求只在一个模数下同余于$1$、在其余模数下同余于$0$的整数，再按给定余数组合。\textbf{原文依据：}第零章第4节定理5（孙子定理），书页14；本题未附原书证明，以下按该定理的构造补写。
+\paragraph{所用结论}\toolref{n-crt}、\toolref{n-bezout}、\toolref{n-congruence}。
+\begin{proof}[详细解答]
+模数$5,7,11$两两互素，令$M=5\cdot7\cdot11=385$，并令
+\[
+M_1=77,\qquad M_2=55,\qquad M_3=35.
+\]
+它们分别被另外两个模数整除。由于
+\[
+3\cdot77\equiv1\pmod5,\qquad
+6\cdot55\equiv1\pmod7,\qquad
+6\cdot35\equiv1\pmod{11},
+\]
+取$e_1=231$、$e_2=330$、$e_3=210$。则$e_i$在第$i$个模数下同余于$1$，在其余两个模数下同余于$0$。
+
+如同原文定理5证明中以$x=b_1e_1+b_2e_2$构造两个条件的公共解，这里取三个对应项之和：
+\begin{align*}
+x_0&=2e_1+e_2+5e_3\\
+&=2\cdot231+330+5\cdot210\\
+&=1842=302+4\cdot385.
+\end{align*}
+对模$5$、模$7$、模$11$分别取余时，只有相应的那一项留下，因此$x_0$分别同余于$2,1,5$。故$302$也是一个解。
+
+最后按原文证明的唯一性步骤：若$x,y$都是解，则$5,7,11$均整除$x-y$；它们两两互素，所以$385\mid x-y$。反过来，给任一解加$385k$不会改变三个余数。因此全部解为
+\[
+\boxed{x=302+385k,\qquad k\in\Z.}
+\]
+直接检验：$302-2=300$被$5$整除，$302-1=301$被$7$整除，$302-5=297$被$11$整除。
+\end{proof}
+\paragraph{复习提示}原文先处理两个模数，再说明可用归纳法推广；这里将同一个构造用于三个模数。给出一个解后，还须用互素性说明模$385$唯一。

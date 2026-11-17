@@ -1,0 +1,133 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第1章：Fourier级数的基本性质
+% 节：1.3 卷积
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{卷积}
+考虑\[
+\begin{aligned}
+	S_N(f)(x)
+	&=\sum_{n=-N}^{N}\widehat f(n)e^{inx} \\
+	&=\sum_{n=-N}^{N}\left(\frac1{2\pi}\int_{-\pi}^{\pi}f(y)e^{-iny}\dd y\right)e^{inx} \\
+	&=\frac1{2\pi}\int_{-\pi}^{\pi}f(y)\left(\sum_{n=-N}^{N}e^{in(x-y)}\right)\dd y \\
+\end{aligned}
+\]
+回忆$N$ 次 Dirichlet 核$D_N$ ,即
+\[
+D_N(x)=\sum_{n=-N}^{N}e^{inx}.
+\]
+可以给出以下的定义
+\begin{definition}
+	
+给定两个在 $\R$ 上的、以 $2\pi$ 为周期的可积函数 $f$ 和 $g$,定义它们在 $[-\pi,\pi]$ 上的卷积为
+
+	\[(f\ast g)(x)=\frac1{2\pi}\int_{-\pi}^{\pi}f(y)g(x-y)\dd y .\]
+
+\end{definition}
+因为两个可积函数的乘积也是可积的,故上面的积分对任意的 $x$ 都有意义。同样,由于函数具有周期性,通过改变变量可得
+\[
+(f\ast g)(x)=\frac1{2\pi}\int_{-\pi}^{\pi}f(x-y)g(y)\dd y .
+\]
+
+那么\[S_N(f)(x)=f\ast D_N(x)\]
+
+因此,理解 $S_N(f)$ 的问题就简化为对卷积 $f\ast D_N$ 的理解。
+
+\begin{proposition}
+	假设 $f,g,h$ 是以 $2\pi$ 为周期的可积函数,则有：
+	\[
+	\begin{array}{ll}
+		\mathrm{(i)}  & f\ast(g+h)=(f\ast g)+(f\ast h),\\[2mm]
+		\mathrm{(ii)} & (cf)\ast g=c(f\ast g)=f\ast(cg),\quad \forall c\in\C,\\[2mm]
+		\mathrm{(iii)}& f\ast g=g\ast f,\\[2mm]
+		\mathrm{(iv)} & (f\ast g)\ast h=f\ast(g\ast h),\\[2mm]
+		\mathrm{(v)}  & f\ast g \text{ 是连续的},\\[2mm]
+		\mathrm{(vi)} & \widehat{f\ast g}(n)=\widehat f(n)\widehat g(n),\quad n\in\Z.
+	\end{array}
+	\]
+\end{proposition}
+前四点描述的是卷积的代数性质：线性性、交换性、结合性。性质 $\mathrm{(v)}$ 展示了一个重要原则：卷积具有平滑效果。这就是说,即使 $f$ 和 $g$ 只是 Riemann 可积的,$f\ast g$ 也是连续函数。最后 $\mathrm{(vi)}$ 是研究 Fourier 系数的关键,它说明卷积的 Fourier 系数等于 Fourier 系数的乘积。
+\begin{proof}
+	性质 $\mathrm{(i)}$ 和 $\mathrm{(ii)}$ 由积分的线性性立即得到。先假设 $f$ 和 $g$ 都是连续函数,则可以自由交换积分顺序(实际上在这一个问题中,仅仅有可积性,就可以交换积分次序)。对于性质 $\mathrm{(vi)}$,有
+	\[
+	\begin{aligned}
+		\widehat{f\ast g}(n)
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}(f\ast g)(x)e^{-inx}\dd x \\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}
+		\left(\frac1{2\pi}\int_{-\pi}^{\pi}f(y)g(x-y)\dd y\right)e^{-inx}\dd x \\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}f(y)e^{-iny}
+		\left(\frac1{2\pi}\int_{-\pi}^{\pi}g(x-y)e^{-in(x-y)}\dd x\right)\dd y \\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}f(y)e^{-iny}\widehat g(n)\dd y \\
+		&=\widehat f(n)\widehat g(n).
+	\end{aligned}
+	\]
+	
+	为了证明性质 $\mathrm{(iii)}$,注意到如果 $F$ 是以 $2\pi$ 为周期的连续函数,则对任意 $x\in\R$,
+	\[
+	\int_{-\pi}^{\pi}F(y)\dd y
+	=\int_{-\pi}^{\pi}F(x-y)\dd y.
+	\]
+	于是由变量替换可得
+	\[
+	(f\ast g)(x)=\frac1{2\pi}\int_{-\pi}^{\pi}f(x-y)g(y)\dd y=(g\ast f)(x).
+	\]
+	同样,性质 $\mathrm{(iv)}$ 在交换两个积分符号并作适当变量变换后得到。
+	
+	最后证明连续性。若 $f$ 和 $g$ 都连续,则 $g$ 在圆周上一致连续。任取 $\eps>0$,存在 $\delta>0$,使得当 $|s-t|<\delta$ 时,
+	\[
+	|g(s)-g(t)|<\eps.
+	\]
+	若 $|x_1-x_2|<\delta$,则对任意 $y$,有
+	\[
+	|(x_1-y)-(x_2-y)|<\delta.
+	\]
+	故
+	\[
+	\begin{aligned}
+		|(f\ast g)(x_1)-(f\ast g)(x_2)|
+		&\leq \frac1{2\pi}\int_{-\pi}^{\pi}|f(y)|\,|g(x_1-y)-g(x_2-y)|\dd y \\
+		&\leq \frac{\eps}{2\pi}\int_{-\pi}^{\pi}|f(y)|\dd y.
+	\end{aligned}
+	\]
+	于是 $f\ast g$ 是连续的。
+	
+	一般情况下,当 $f$ 和 $g$ 仅仅是可积函数时,需要用连续函数来逼近它们。\ref{C在R中一致有界稠密}给出这一点。
+
+	对 $f$ 和 $g$ 应用\ref{C在R中一致有界稠密},得到近似的连续函数列 $\{f_k\}$ 和 $\{g_k\}$。于是
+	\[
+	f\ast g-f_k\ast g_k=(f-f_k)\ast g+f_k\ast(g-g_k).
+	\]
+	由引理的性质,当 $k\to\infty$ 时,
+	\[
+	\begin{aligned}
+		|(f-f_k)\ast g(x)|
+		&\leq \frac1{2\pi}\int_{-\pi}^{\pi}|f(x-y)-f_k(x-y)|\,|g(y)|\dd y \\
+		&\leq \frac1{2\pi}\sup_y|g(y)|\int_{-\pi}^{\pi}|f(y)-f_k(y)|\dd y
+		\to0.
+	\end{aligned}
+	\]
+	所以 $(f-f_k)\ast g$ 关于 $x$ 一致收敛到 $0$。同理,$f_k\ast(g-g_k)$ 也一致收敛到 $0$。因此
+	\[
+	f_k\ast g_k\to f\ast g
+	\]
+	一致收敛。因为每个 $f_k\ast g_k$ 都是连续函数,故 $f\ast g$ 也是连续函数,从而得到了性质 $\mathrm{(v)}$。
+	
+	接下来证明性质 $\mathrm{(vi)}$。对每个固定的 $n$,由 $f_k\ast g_k$ 一致收敛于 $f\ast g$,得到
+	\[
+	\widehat{f_k\ast g_k}(n)\to\widehat{f\ast g}(n).
+	\]
+	另一方面,连续情形已经证明
+	\[
+	\widehat{f_k\ast g_k}(n)=\widehat f_k(n)\widehat g_k(n).
+	\]
+	并且
+	\[
+	|\widehat f(n)-\widehat f_k(n)|
+	\leq \frac1{2\pi}\int_{-\pi}^{\pi}|f(x)-f_k(x)|\dd x\to0,
+	\]
+	类似地,$\widehat g_k(n)\to\widehat g(n)$。令 $k\to\infty$,便得到
+	\[
+	\widehat{f\ast g}(n)=\widehat f(n)\widehat g(n).
+	\]
+	最后,性质 $\mathrm{(iii)}$ 和性质 $\mathrm{(iv)}$ 也可以由连续函数情形再通过上述逼近过程得到。
+\end{proof}
+

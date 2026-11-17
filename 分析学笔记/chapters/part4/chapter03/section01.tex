@@ -1,0 +1,155 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第3章：Fourier级数的一些应用
+% 节：3.1 等周不等式
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{等周不等式}
+
+这一节中,我们考虑的问题是：对一条有固定周长的闭曲线,其围成面积的最大值.在此之前我们需要一些基本的定义（即便其中的一些在 Part2 中已经讲过了）.
+
+\begin{definition}
+	一条参数化的曲线 $\gamma$ 为一个映射
+\[
+\gamma:[a,b]\to\R^2.
+\]
+$\gamma$ 的图像为平面上的一个点集,称为一条曲线,记为 $\Gamma$.
+
+若 $\Gamma$ 不是自相交的,称其为简单曲线.
+
+若它的两个端点重合,称其为闭曲线.
+
+在上述的参数化形式下,两种情况可表示为 $\gamma(s_1)\neq\gamma(s_2)$（除非 $s_1=a$ 和 $s_2=b$,此时有 $\gamma(a)=\gamma(b)$）.
+
+\end{definition}
+可以将 $\gamma$ 延拓为 $\R$ 上周期为 $b-a$ 的周期函数,因此可以把 $\gamma$ 视为圆上的函数.
+
+对于任意 $C^1$ 的双射 $s:[c,d]\to[a,b]$,通过公式
+\[
+\eta(t)=\gamma(s(t))
+\]
+可以给出 $\Gamma$ 的另一种参数式.显然,对于给定的参数式,$\Gamma$ 是否为闭的或是简单的是独立于参数表达式的.称两个参数式 $\gamma$ 和 $\eta$ 是等价的,若对于所有的 $t$,$s'(t)>0$；这意味着 $\gamma$ 和 $\eta$ 在曲线 $\Gamma$ 上诱导了相同的方向.如果 $s'(t)<0$,则 $\eta$ 是反向的.
+
+\begin{definition}
+	若 $\Gamma$ 通过 $\gamma(s)=(x(s),y(s))$ 参数化定义,则曲线 $\Gamma$ 的长度定义为
+\[
+\ell=\int_a^b\abs{\gamma'(s)}\dd s
+=\int_a^b\bigl(x'(s)^2+y'(s)^2\bigr)^{1/2}\dd s.
+\]
+\end{definition}
+曲线 $\Gamma$ 的长度是它的固有属性,不依赖于参数式.为表明这一点,假定 $\eta(t)=\gamma(s(t))$.通过变量替换公式与链式法则,有
+\[
+\int_a^b\abs{\gamma'(s)}\dd s
+=\int_c^d\abs{\gamma'(s(t))}\abs{s'(t)}\dd t
+=\int_c^d\abs{\eta'(t)}\dd t,
+\]
+在下面定理的证明中,我们将使用 $\Gamma$ 参数式的一种特殊形式.
+\begin{definition}
+	称 $\gamma$ 是弧长化的参数式,若对于所有的 $s$,$\abs{\gamma'(s)}=1$.
+\end{definition}这意味着,$\gamma(s)$ 以一个常速度变化,从而,$\Gamma$ 的长度精确地为 $b-a$.因此,经过一个可行的变换,一个弧长化的参数式可以在 $[0,\ell]$ 上定义.
+
+\begin{proposition}
+	任意曲线都有一个弧长化的参数式.
+\end{proposition}
+
+\begin{proof}
+	设 $\eta:[a,b]\to\R^2$ 是曲线 $\Gamma$ 的一个 $C^1$ 参数式,且 $\eta'(t)\neq0$.定义弧长函数 $h:[a,b]\to[0,\ell]$
+	\[
+	h(s)=\int_a^s\abs{\eta'(t)}\dd t.
+	\]
+	由 $\eta'(t)\neq0$,有 $\abs{\eta'(s)}>0$,从而
+	\[
+	h'(s)=\abs{\eta'(s)}>0.
+	\]
+	故 $h(s)$ 单调,存在反函数 $h^{-1}:[0,\ell]\to[a,b]$.定义新的参数化
+	\[
+	\gamma(u)=\eta\bigl(h^{-1}(u)\bigr),
+	\qquad 0\leq u\leq\ell.
+	\]
+	令 $s=h^{-1}(u)$,则
+	\[
+	\gamma'(u)=\eta'(s)\bigl(h^{-1}(u)\bigr)'
+	=\frac{\eta'(s)}{\abs{\eta'(s)}},
+	\]
+	从而
+	\[
+	\abs{\gamma'(u)}=\frac{\abs{\eta'(s)}}{\abs{\eta'(s)}}=1,
+	\]
+	且 $\gamma$ 与 $\eta$ 有相同的方向.得证.
+\end{proof}
+
+现在回到等周问题上来.给出一条简单闭曲线围成的区域 $\mathcal A$ 的面积的准确公式的工作涉及许多艰深的问题.在许多简单情况下,使用Green公式，面积可由如下的积分式
+\begin{equation}\label{eq:area-formula}
+	\begin{aligned}
+		\mathcal A
+		&=\frac12\abs{\int_\Gamma(x\,\dd y-y\,\dd x)}\\
+		&=\frac12\abs{\int_a^b\bigl(x(s)y'(s)-y(s)x'(s)\bigr)\dd s}.
+	\end{aligned}
+\end{equation}
+
+\begin{theorem}
+	\textbf{（等周不等式）}
+	假定 $\Gamma$ 是 $\R^2$ 中一条长为 $\ell$ 的简单闭曲线,记 $\mathcal A$ 为这条曲线围成的区域的面积.则
+	\[
+	\mathcal A\leq\frac{\ell^2}{4\pi},
+	\]
+	等号当且仅当 $\Gamma$ 为圆时成立.
+\end{theorem}
+
+\begin{proof}
+考虑映射 $(x,y)\mapsto(\delta x,\delta y)$,它把平面 $\R^2$ 映射到自身.观察曲线长度的公式,可知若曲线 $\Gamma$ 的长度为 $\ell$,则它在这个映射下的象长度为 $\delta\ell$.因此这一操作将长度扩大或缩小了 $\delta$ 倍（取决于 $\delta>1$ 或 $\delta<1$）.类似地,可以看出这一映射将面积扩大或缩小了 $\delta^2$.
+
+令 $\delta=2\pi/\ell$,则只需证明若 $\ell=2\pi$,则 $\mathcal A\leq\pi$,等号当且仅当 $\Gamma$ 为圆时成立.
+	
+	令 $\gamma:[0,2\pi]\to\R^2$ 满足 $\gamma(s)=(x(s),y(s))$ 为曲线 $\Gamma$ 的弧长化的参数式,也就是说,$x'(s)^2+y'(s)^2=1$,对所有的 $s\in[0,2\pi]$.这表明
+	\begin{equation}\label{eq:isoperimetric-arc}
+		\frac1{2\pi}\int_0^{2\pi}\bigl(x'(s)^2+y'(s)^2\bigr)\dd s=1.
+	\end{equation}
+	因为曲线是闭的,函数 $x(s)$ 和 $y(s)$ 是以 $2\pi$ 为周期的,所以可以考虑其 Fourier 级数
+	\[
+	x'(s)\sim\sum a_ne^{ins}
+	\quad\text{和}\quad
+	y'(s)\sim\sum b_ne^{ins}.
+	\]
+	对式 \eqref{eq:isoperimetric-arc} 应用 Parseval 等式,得到
+	\begin{equation}\label{eq:isoperimetric-parseval}
+		\sum_{n=-\infty}^{\infty}\abs{n}^2\bigl(\abs{a_n}^2+\abs{b_n}^2\bigr)=1.
+	\end{equation}
+	现在对 $\mathcal A$ 的定义式应用 \ref{Parseval 等式的双线性形式}.因为 $x(s)$ 和 $y(s)$ 是实值的,故有 $a_n=\overline{a_{-n}}$ 和 $b_n=\overline{b_{-n}}$,因此可知
+	\[
+	\mathcal A
+	=\frac12\abs{\int_0^{2\pi}\bigl(x(s)y'(s)-y(s)x'(s)\bigr)\dd s}
+	=\pi\abs{\sum_{n=-\infty}^{\infty}n\bigl(a_n\overline{b_n}-b_n\overline{a_n}\bigr)}.
+	\]
+	接下来观察到
+	\begin{equation}\label{eq:isoperimetric-key-estimate}
+		\abs{a_n\overline{b_n}-b_n\overline{a_n}}
+		\leq2\abs{a_n}\abs{b_n}
+		\leq\abs{a_n}^2+\abs{b_n}^2.
+	\end{equation}
+	因为 $\abs{n}\leq\abs{n}^2$,用式 \eqref{eq:isoperimetric-parseval} 得
+	\[
+	\mathcal A
+	\leq\pi\sum_{n=-\infty}^{\infty}\abs{n}^2\bigl(\abs{a_n}^2+\abs{b_n}^2\bigr)
+	\leq\pi.
+	\]
+	
+	当 $\mathcal A=\pi$ 时,因为 $\abs{n}\geq2$ 时有 $\abs{n}<\abs{n}^2$,从上述讨论中可知
+	\[
+	x(s)=a_{-1}e^{-is}+a_0+a_1e^{is}
+	\quad\text{和}\quad
+	y(s)=b_{-1}e^{-is}+b_0+b_1e^{is}.
+	\]
+	可知 $x(s)$ 和 $y(s)$ 是实值的,所以 $a_{-1}=\overline{a_1}$ 和 $b_{-1}=\overline{b_1}$.式 \eqref{eq:isoperimetric-parseval} 表明 $2(\abs{a_1}^2+\abs{b_1}^2)=1$.式 \eqref{eq:isoperimetric-key-estimate} 中等号成立,则 $\abs{a_1}=\abs{b_1}=1/2$.记
+	\[
+	a_1=\frac12e^{i\alpha},
+	\qquad
+	b_1=\frac12e^{i\beta},
+	\]
+	$1=2\abs{a_1\overline{b_1}-\overline{a_1}b_1}$ 表明 $\abs{\sin(\alpha-\beta)}=1$,因此当 $k$ 为奇数时,$\alpha-\beta=k\pi/2$.从中可得
+	\[
+	x(s)=a_0+\cos(\alpha+s)
+	\quad\text{和}\quad
+	y(s)=b_0\pm\sin(\alpha+s),
+	\]
+	其中 $y(s)$ 表达式中的符号取决于 $(k-1)/2$ 的奇偶性.可以看出无论哪种情况,等号成立仅当 $\Gamma$ 是一个圆.证明完毕.
+\end{proof}
+\newpage

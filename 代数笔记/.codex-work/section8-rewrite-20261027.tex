@@ -1,0 +1,146 @@
+\section{群的直和}
+
+下面介绍由已有群构造新群的方法。先取两个群$G_1,G_2$，在笛卡尔积$G_1\times G_2$上定义
+\[
+(a_1,b_1)(a_2,b_2)=(a_1a_2,b_1b_2).
+\]
+第一分量在$G_1$中相乘，第二分量在$G_2$中相乘。两个群的结合律使这个运算结合；若$e_i$为$G_i$的单位元，则$(e_1,e_2)$为单位元，而$(a,b)$的逆为$(a^{-1},b^{-1})$。所以这确实构成一个群。
+
+\begin{definition}
+设$G_1,\ldots,G_s$为有限多个群。在集合$G_1\times\cdots\times G_s$上按分量定义乘法
+\[
+(a_1,\ldots,a_s)(b_1,\ldots,b_s)=(a_1b_1,\ldots,a_sb_s).
+\]
+所得群称为这些群的\textbf{外直和}，记为$G_1\oplus\cdots\oplus G_s$。对于有限个因子，也称为\textbf{直积}，可记为$G_1\times\cdots\times G_s$。
+\end{definition}
+\begin{proof}[补充验证]
+设$x=(x_i)$、$y=(y_i)$、$z=(z_i)$。逐分量计算得
+\begin{align*}
+(xy)z&=((x_iy_i)z_i)_i=(x_i(y_iz_i))_i=x(yz),\\
+(e_i)_i(x_i)_i&=(x_i)_i=(x_i)_i(e_i)_i,\\
+(x_i)_i(x_i^{-1})_i&=(e_i)_i=(x_i^{-1})_i(x_i)_i.
+\end{align*}
+因此单位元为$(e_1,\ldots,e_s)$，逆元也按分量取，群公理均成立。
+\end{proof}
+
+直和的运算完全由各个因子的运算决定。如果各因子有限，则
+\[
+|G_1\oplus\cdots\oplus G_s|=|G_1|\cdots|G_s|.
+\]
+各个$G_i$还可在直和内部实现为只在第$i$个坐标变化的子群。
+
+\begin{proposition}
+在$G=G_1\oplus\cdots\oplus G_s$中，令
+\[
+\overline G_i=\{(e_1,\ldots,e_{i-1},a_i,e_{i+1},\ldots,e_s):a_i\in G_i\}.
+\]
+则$\overline G_i\cong G_i$、$\overline G_i\trianglelefteq G$，且每个$x\in G$都可唯一表示为$x=x_1\cdots x_s$，其中$x_i\in\overline G_i$。
+\end{proposition}
+\begin{proof}
+映射$a_i\mapsto(e_1,\ldots,a_i,\ldots,e_s)$保持乘法，且是到$\overline G_i$的双射，故为同构。对$a=(a_j)\in G$及$x_i=(e_1,\ldots,b_i,\ldots,e_s)$，
+\[
+ax_ia^{-1}=(e_1,\ldots,a_ib_ia_i^{-1},\ldots,e_s)\in\overline G_i.
+\]
+所以$\overline G_i$正规。
+
+若$x=(a_1,\ldots,a_s)$，则取$x_i$为仅在第$i$坐标等于$a_i$的元素，即有$x=x_1\cdots x_s$。反过来，在这种乘积中，第$i$个坐标只能来自$x_i$，所以每个$x_i$都由$x$唯一确定。
+\end{proof}
+
+这说明直和内部含有与各因子同构的正规子群。下面反过来讨论：一个群具有怎样的正规子群时，能由这些子群的外直和来恢复？
+
+\begin{theorem}\label{p2:internal-product}
+设$N_1,\ldots,N_s\trianglelefteq G$，满足
+\[
+G=N_1\cdots N_s,
+\]
+且每个$x\in G$的表示$x=x_1\cdots x_s$（$x_i\in N_i$）唯一。则
+\[
+G\cong N_1\oplus\cdots\oplus N_s.
+\]
+此时称$G$为$N_1,\ldots,N_s$的\textbf{内直和}。在上述正规性和乘积等于$G$的条件下，表示唯一等价于：单位元只有平凡表示；也等价于
+\[
+N_i\cap(N_1\cdots N_{i-1}N_{i+1}\cdots N_s)=\{e\}
+\qquad(1\leq i\leq s).
+\]
+\end{theorem}
+\begin{proof}
+由表示的存在性与唯一性，可先定义双射
+\[
+\Phi:G\longrightarrow N_1\oplus\cdots\oplus N_s,
+\qquad x_1\cdots x_s\longmapsto(x_1,\ldots,x_s).
+\]
+要证明它保持乘法，先说明不同因子中的元素相互交换。
+
+若$i\ne j$，则$N_i\cap N_j=\{e\}$。否则其中某个非单位元$x$既可放在乘积的第$i$个位置，也可放在第$j$个位置，其他位置取$e$，产生两个不同表示。
+取$x_i\in N_i,x_j\in N_j$，考虑$c=x_ix_jx_i^{-1}x_j^{-1}$。由于两个子群都正规，
+\begin{align*}
+c&=x_i(x_jx_i^{-1}x_j^{-1})\in N_i,\\
+c&=(x_ix_jx_i^{-1})x_j^{-1}\in N_j.
+\end{align*}
+因此$c=e$，即$x_ix_j=x_jx_i$。
+
+若$x=x_1\cdots x_s$、$y=y_1\cdots y_s$，便可只交换属于不同因子的元素，将乘积整理为
+\[
+xy=(x_1y_1)\cdots(x_sy_s).
+\]
+这就是$xy$的唯一表示，所以
+\[
+\Phi(xy)=(x_1y_1,\ldots,x_sy_s)=\Phi(x)\Phi(y).
+\]
+故$\Phi$为群同构。
+
+\textbf{单位元表示的判别：}一般表示唯一时，单位元当然只有平凡表示。反过来，若只有单位元的表示已知唯一，则先以同样的方法推出两两交平凡，继而推出不同因子交换。若$x_1\cdots x_s=y_1\cdots y_s$，移项并重排得
+\[
+(y_1^{-1}x_1)\cdots(y_s^{-1}x_s)=e.
+\]
+由单位元表示唯一，每个$y_i^{-1}x_i=e$，所以$x_i=y_i$。
+
+\textbf{交条件的判别：}有限个正规子群的乘积仍为子群，且交换因子次序不改变该乘积集合。若交条件成立，从$x_1\cdots x_s=e$中隔离$x_i$，可知$x_i$也属于其他因子的乘积，故$x_i=e$。这给出单位元表示唯一。
+反过来，若$x\in N_i$又属于其他因子的乘积，写$x=\prod_{j\ne i}x_j$。则$x^{-1}\prod_{j\ne i}x_j=e$可整理为按$N_1,\ldots,N_s$次序排列的表示；由唯一性，其中第$i$项$x^{-1}$必须为$e$，所以$x=e$。
+\end{proof}
+
+对上述正规子群乘积中使用的事实，也可直接验证：若$A,B\trianglelefteq G$，则$ab=b(b^{-1}ab)$给出$AB\subseteq BA$，交换角色得$AB=BA$；再按第二同构定理中的乘积、逆元计算得$AB\leq G$，且共轭后仍为$AB$，所以$AB$正规。对因子个数归纳，便得到有限乘积的结论。
+
+\begin{remark}
+当$s>2$时，不能把交条件换成仅要求$N_i\cap N_j=\{e\}$。例如$V_4$的三个二阶子群两两交平凡，但第三个已包含在前两个的乘积中，所以三个因子的表达不唯一。
+\end{remark}
+
+\begin{definition}
+非平凡群若不能分解成两个非平凡正规子群的内直和，则称为\textbf{不可分解群}。等价地，它不同构于两个非平凡群的外直和。
+\end{definition}
+
+\begin{proposition}
+每个非平凡有限群均可分解成有限多个不可分解群的直和。
+\end{proposition}
+\begin{proof}[补充证明]
+对群阶归纳。若$G$不可分解，取$G$本身作为唯一因子。否则$G\cong H\oplus K$，其中$H,K$均非平凡，因此
+\[
+1<|H|,|K|<|G|.
+\]
+对两个较小的群应用归纳假设，再把它们的直和因子合在一起，便得到$G$的分解。
+\end{proof}
+
+下面以有限交换群为例应用内直和判别。
+
+\begin{theorem}
+有限交换群是它的各西罗子群的内直和。
+\end{theorem}
+\begin{proof}
+设$|G|=p_1^{r_1}\cdots p_s^{r_s}$，其中$p_i$为不同素数。令$G_i$为西罗$p_i$子群。交换群的每个子群都正规，因此各$G_i$由西罗共轭定理可知唯一。
+
+固定$i$，令$M_i=\prod_{j\ne i}p_j^{r_j}$。其他因子乘积中的元素可写为$x=\prod_{j\ne i}x_j$，其中$x_j\in G_j$。因为所有元素交换，且每个$|G_j|$都整除$M_i$，
+\[
+x^{M_i}=\prod_{j\ne i}x_j^{M_i}=e.
+\]
+因此$x$的阶整除$M_i$；而$G_i$中元素的阶整除$p_i^{r_i}$。两数互素，所以
+\[
+G_i\cap\Bigl(\prod_{j\ne i}G_j\Bigr)=\{e\}.
+\]
+令$H=G_1\cdots G_s$，在$H$中应用内直和判别，得$H\cong G_1\oplus\cdots\oplus G_s$，从而
+\[
+|H|=\prod_i|G_i|=|G|.
+\]
+所以$H=G$，得到所述分解。平凡群的情形可视为空直和。
+\end{proof}
+
+因此，研究有限交换群可先分别研究各个素数对应的交换$p$群。交换$p$群还可能继续分解；它的进一步结构将在交换群的结构理论中讨论。

@@ -1,0 +1,334 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第2章：Fourier级数的收敛性
+% 节：2.4 Fourier系数的衰减估计
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{Fourier系数的衰减估计}
+
+\begin{proposition}
+
+设 $f$ 是 $2\pi$-周期的 $C^k$ 函数,则
+\[
+\widehat f(n)=o\left(\frac1{\abs{n}^k}\right),
+\qquad \abs{n}\to\infty.
+\]
+等价地,
+\[
+\abs{n}^k\widehat f(n)\longrightarrow0.
+\]
+\end{proposition}
+
+\begin{proof}
+对 $n\neq0$ 分部积分.由于 $f$ 是周期函数,
+\[
+f(\pi)=f(-\pi),
+\qquad
+ e^{-in\pi}=e^{in\pi}=(-1)^n,
+\]
+故边界项消失,从而
+\[
+\widehat f(n)
+=\frac1{in}\widehat{f'}(n).
+\]
+周期函数的各阶导数仍是周期函数,因此重复分部积分 $k$ 次可得
+
+\[ \widehat f(n)=\frac1{(in)^k}\widehat{f^{(k)}}(n). \]
+
+于是
+\[
+\abs{n}^k\abs{\widehat f(n)}
+=\abs{\widehat{f^{(k)}}(n)}.
+\]
+函数 $f^{(k)}$ 连续,因而 Riemann 可积.由 Riemann--Lebesgue 引理,
+\[
+\abs{n}^k\widehat f(n)=\widehat{f^{(k)}}(n)\longrightarrow0,
+\qquad \abs{n}\to\infty.
+\]
+
+\end{proof}
+
+\ref{f(n)=O(1/n^k)}只能直接给出
+\[
+\widehat f(n)=O\left(\frac1{\abs{n}^k}\right),
+\]
+而 Riemann--Lebesgue 引理进一步把 $O$ 改进为 $o$.
+
+\begin{lemma}
+
+设 $f$ 是 $2\pi$-周期函数,并且在 $[-\pi,\pi]$ 上 Riemann 可积.对每个 $n\neq0$,有
+
+\[ \widehat f(n)
+=-\frac1{2\pi}\int_{-\pi}^{\pi}
+ f\left(x+\frac{\pi}{n}\right)e^{-inx}\dd x, \]
+
+从而
+
+\[ \widehat f(n)
+=\frac1{4\pi}\int_{-\pi}^{\pi}
+\left[f(x)-f\left(x+\frac{\pi}{n}\right)\right]
+ e^{-inx}\dd x. \]
+
+\end{lemma}
+
+\begin{proof}
+在积分
+\[
+\frac1{2\pi}\int_{-\pi}^{\pi}
+ f\left(x+\frac{\pi}{n}\right)e^{-inx}\dd x
+\]
+中作变量代换 $y=x+\pi/n$,则
+\[
+e^{-inx}=e^{-in(y-\pi/n)}=-e^{-iny}.
+\]
+又因为 $f(y)e^{-iny}$ 是 $2\pi$-周期函数,所以它在任意长度为 $2\pi$ 的区间上的积分相同.因此
+\[
+\frac1{2\pi}\int_{-\pi}^{\pi}
+ f\left(x+\frac{\pi}{n}\right)e^{-inx}\dd x
+=-\widehat f(n),
+\]
+即得.再将该式与 Fourier 系数的定义相加,便得证
+\end{proof}
+
+\begin{proposition}
+若 $f$ 满足阶数为 $\alpha$ 的 Hölder 条件
+\[
+\abs{f(x+h)-f(x)}\leq C\abs{h}^{\alpha},
+\qquad 0<\alpha\leq1,
+\]
+则
+\[
+\widehat f(n)=O\left(\frac1{\abs{n}^{\alpha}}\right).
+\]
+更准确地说,对 $n\neq0$,
+\[
+\abs{\widehat f(n)}
+\leq \frac{C\pi^{\alpha}}{2\abs{n}^{\alpha}}.
+\]
+\end{proposition}
+
+\begin{proof}
+由上面引理的第二个公式 以及 $\abs{e^{-inx}}=1$,
+\[
+\begin{aligned}
+\abs{\widehat f(n)}
+&=\frac1{4\pi}\int_{-\pi}^{\pi}
+\abs{f(x)-f\left(x+\frac{\pi}{n}\right)}\dd x\\
+&\leq\frac1{4\pi}\int_{-\pi}^{\pi}
+C\left(\frac{\pi}{\abs{n}}\right)^{\alpha}\dd x
+=\frac{C\pi^{\alpha}}{2\abs{n}^{\alpha}}.
+\end{aligned}
+\]
+结论成立.
+\end{proof}
+上面的命题在 $\alpha=1$ 时只给出 $\widehat f(n)=O(1/\abs{n})$.由于调和级数发散,这一逐项估计尚不足以推出 Fourier 级数绝对收敛.下面利用 Parseval 恒等式对频率作二进分块,得到更强的结论.
+
+\begin{proposition}
+设 $f$ 是 $2\pi$-周期函数,并满足 Lipschitz 条件
+\[
+\abs{f(x)-f(y)}\leq K\abs{x-y}.
+\]
+则
+\[
+\sum_{n\in\Z}\abs{\widehat f(n)}<\infty.
+\]
+因此 $f$ 的 Fourier 级数绝对且一致收敛.
+
+更一般地,若 $f$ 满足阶数 $\alpha>1/2$ 的 Hölder 条件,则其 Fourier 级数绝对收敛.这一结论称为 Bernstein 定理.
+\end{proposition}
+
+\begin{proof}
+对 $h>0$ 定义
+\[
+g_h(x)=f(x+h)-f(x-h).
+\]
+由 Fourier 系数的平移性质,
+\[
+\widehat{g_h}(n)
+=\left(e^{inh}-e^{-inh}\right)\widehat f(n)
+=2i\sin(nh)\widehat f(n).
+\]
+Parseval 恒等式给出
+
+\begin{equation}\label{eq:gh-parseval}
+	\frac1{2\pi}\int_0^{2\pi}\abs{g_h(x)}^2\dd x
+=4\sum_{n\in\Z}\abs{\sin(nh)}^2\abs{\widehat f(n)}^2.
+\end{equation} 
+
+
+先考虑 Lipschitz 情形.此时
+\[
+\abs{g_h(x)}
+=\abs{f(x+h)-f(x-h)}
+\leq2Kh.
+\]
+那么,
+
+\[ \sum_{n\in\Z}\abs{\sin(nh)}^2\abs{\widehat f(n)}^2
+\leq K^2h^2. \]
+
+
+固定正整数 $p$,取$h=\dfrac{\pi}{2^{p+1}}.$当 $2^{p-1}<\abs{n}\leq2^p$ 时,
+\[
+\frac{\pi}{4}<\abs{n}h\leq\frac{\pi}{2},
+\qquad
+\abs{\sin(nh)}^2\geq\frac12.
+\]
+故\[ \sum_{2^{p-1}<\abs{n}\leq2^p}\abs{\widehat f(n)}^2
+\leq\frac{K^2\pi^2}{2^{2p+1}}. \]
+
+该频率块中共有 $2^p$ 个整数.由 Cauchy--Schwarz 不等式,
+\[\sum_{2^{p-1}<\abs{n}\leq2^p}\abs{\widehat f(n)}\leq 2^{p/2}
+\left(
+\sum_{2^{p-1}<\abs{n}\leq2^p}\abs{\widehat f(n)}^2
+\right)^{1/2}\leq \frac{K\pi}{2^{(p+1)/2}}.\]
+对 $p$ 求和便得
+\[
+\sum_{n\in\Z}\abs{\widehat f(n)}<\infty.
+\]
+又因为$\abs{\widehat f(n)e^{inx}}=\abs{\widehat f(n)},$由 Weierstrass 判别法,Fourier 级数一致收敛.
+
+现在设 $f$ 满足阶数为 $\alpha>1/2$ 的 Hölder 条件.则
+\[
+\abs{g_h(x)}\leq K(2h)^{\alpha}.
+\]
+利用式 \eqref{eq:gh-parseval},得到
+\[
+\sum_{n\in\Z}\abs{\sin(nh)}^2\abs{\widehat f(n)}^2
+\leq K^2 2^{2\alpha-2}h^{2\alpha}.
+\]
+仍取 $h=\pi/2^{p+1}$,可得
+\[
+\sum_{2^{p-1}<\abs{n}\leq2^p}\abs{\widehat f(n)}^2
+\leq K^2\pi^{2\alpha}2^{-2\alpha p-1}.
+\]
+再次应用 Cauchy--Schwarz 不等式,
+\[
+\sum_{2^{p-1}<\abs{n}\leq2^p}\abs{\widehat f(n)}
+\leq\frac{K\pi^{\alpha}}{\sqrt2}
+2^{-p(\alpha-1/2)}.
+\]
+由于 $\alpha>1/2$,右侧关于 $p$ 可求和,故
+\[
+\sum_{n\in\Z}\abs{\widehat f(n)}<\infty.
+\]
+Bernstein 定理得证.
+\end{proof}
+\begin{proposition}
+若 $f$ 是 $[-\pi,\pi]$ 上的有界单调函数,则
+\[
+\widehat f(n)=O\left(\frac1{\abs{n}}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+不妨设 $f$ 单调递增,且 $\abs{f(x)}\leq M$.首先,对任意区间 $[a,b]\subset[-\pi,\pi]$ 及 $n\neq0$,
+\[
+\widehat{\chi_{[a,b]}}(n)
+=\frac1{2\pi}\int_a^b e^{-inx}\dd x
+=\frac{e^{-ina}-e^{-inb}}{2\pi in},
+\]
+故
+\begin{equation}\label{eq:interval-indicator-decay}
+\abs{\widehat{\chi_{[a,b]}}(n)}
+\leq\frac1{\pi\abs{n}}.
+\end{equation}
+
+设 $g$ 是单调递增的阶梯函数,
+\[
+g(x)=\sum_{k=1}^{N}\alpha_k\chi_{[a_k,a_{k+1}]}(x),
+\]
+其中
+\[
+-\pi=a_1<a_2<\cdots<a_{N+1}=\pi,
+\qquad
+-M\leq\alpha_1\leq\cdots\leq\alpha_N\leq M.
+\]
+忽略有限个端点处的取值,可将其写为
+\[
+g(x)=\alpha_1+
+\sum_{k=1}^{N-1}(\alpha_{k+1}-\alpha_k)
+\chi_{[a_{k+1},\pi]}(x).
+\]
+当 $n\neq0$ 时,常数项的 Fourier 系数为零.因此由式 \eqref{eq:interval-indicator-decay},
+\[\abs{\widehat g(n)}
+\leq\frac1{\pi\abs{n}}
+\sum_{k=1}^{N-1}(\alpha_{k+1}-\alpha_k)=\frac{\alpha_N-\alpha_1}{\pi\abs{n}}
+\leq\frac{2M}{\pi\abs{n}}.\]
+这一估计与阶梯数 $N$ 无关.
+
+最后用上述阶梯函数一致逼近 $f$.对正整数 $m$,定义
+\[
+g_m(x)=f(-\pi)+\frac1m
+\left\lfloor m\bigl(f(x)-f(-\pi)\bigr)\right\rfloor.
+\]
+因为 $f$ 单调且有界,$g_m$ 是只取有限多个值的单调阶梯函数,并且
+\[
+0\leq f(x)-g_m(x)<\frac1m.
+\]
+同时 $g_m$ 的值介于 $f(-\pi)$ 与 $f(\pi)$ 之间,故前面的估计给出
+\[
+\abs{\widehat{g_m}(n)}\leq\frac{2M}{\pi\abs{n}}.
+\]
+又因为 $g_m\to f$ 一致收敛,对每个固定的 $n$,
+\[
+\abs{\widehat f(n)-\widehat{g_m}(n)}
+\leq\norm{f-g_m}_{\infty}\longrightarrow0.
+\]
+令 $m\to\infty$,便得到
+\[
+\abs{\widehat f(n)}\leq\frac{2M}{\pi\abs{n}}.
+\]
+若 $f$ 单调递减,则对 $-f$ 应用上述结论即可.
+\end{proof}
+
+
+
+前面的结果表明,额外的限制条件会带来明确的衰减速度.然而,连续性本身并不能保证任何预先指定的统一速度.也就是说,连续函数的 Fourier 系数可以衰减得任意慢.
+
+\begin{proposition}
+设 $\{\eps_n\}_{n\geq1}$ 是任意非负实数列,且 $\eps_n\to0$.则存在连续的 $2\pi$-周期函数 $f$,使得
+\[
+\abs{\widehat f(n)}\geq\eps_n
+\]
+对无穷多个正整数 $n$ 成立.
+\end{proposition}
+
+\begin{proof}
+因为 $\eps_n\to0$,可以递归选择严格递增的正整数列$n_1<n_2<\cdots$使得$\eps_{n_k}\leq2^{-k}.$于是
+\[
+\sum_{k=1}^{\infty}\eps_{n_k}<\infty.
+\]
+定义
+\begin{equation}\label{eq:arbitrarily-slow-decay-function}
+f(x)=\sum_{k=1}^{\infty}\eps_{n_k}e^{in_kx}.
+\end{equation}
+由 Weierstrass 判别法,式 \eqref{eq:arbitrarily-slow-decay-function} 在 $\R$ 上绝对且一致收敛.因此 $f$ 是连续的 $2\pi$-周期函数.
+
+一致收敛允许逐项积分.由复指数函数的正交性,
+\[
+\begin{aligned}
+\widehat f(n)
+&=\sum_{k=1}^{\infty}\eps_{n_k}
+\frac1{2\pi}\int_{-\pi}^{\pi}e^{i(n_k-n)x}\dd x\\
+&=
+\begin{cases}
+\eps_{n_k},&n=n_k\text{ 对某个 }k,\\
+0,&n\notin\{n_1,n_2,\ldots\}.
+\end{cases}
+\end{aligned}
+\]
+特别地,
+\[
+\abs{\widehat f(n_k)}=\eps_{n_k}
+\]
+对每个 $k$ 都成立,所以所需不等式对无穷多个 $n$ 成立.
+\end{proof}
+
+\textbf{注：}
+若希望得到实值函数,可改取
+\[
+f(x)=2\sum_{k=1}^{\infty}\eps_{n_k}\cos(n_kx).
+\]
+此时
+\[
+\widehat f(n_k)=\widehat f(-n_k)=\eps_{n_k}.
+\]

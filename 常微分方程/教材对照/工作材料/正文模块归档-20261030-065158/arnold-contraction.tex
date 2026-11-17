@@ -1,0 +1,63 @@
+\section{局部逆与沿解移动的坐标}\label{sec:inverse-moving-coordinates}
+解的 $C^1$、$C^r$ 依赖性已经由逐次逼近和变分方程证明。下面把这一分析工具与坐标变换联系起来：先构造局部逆，再沿已知解消去常数项和线性项。
+局部逆的证明只使用第~\ref{sec:picard-contraction}~节的压缩映射定理，不依赖后面的直化定理。
+\begin{theorem}[由压缩映射得到局部逆]\label{thm:local-inverse}
+若 $F\in C^1$，且 $DF(x_0)$ 可逆，则 $F$ 在 $x_0$ 附近有 $C^1$ 局部逆。
+\end{theorem}
+\begin{proof}
+平移定义点、值域原点，再左乘 $DF(x_0)^{-1}$，只需研究
+$F(0)=0,DF(0)=I$ 的情形。写 $F(x)=x+R(x)$，则 $R(0)=0,DR(0)=0$。
+由 $DR$ 连续，可取闭球 $B_r$，使其中 $\|DR\|\leq\theta<1$。
+球的凸性与微积分中值估计给出
+\[
+ |R(x)-R(z)|\leq\theta|x-z|,
+\]
+特别地 $|R(x)|\leq\theta r$。
+
+给定 $|y|<(1-\theta)r$，定义 $A_y(x)=y-R(x)$。
+于是 $|A_y(x)|\leq|y|+\theta r\leq r$，且其压缩常数为 $\theta$。
+因此存在唯一 $G(y)\in B_r$ 满足 $G(y)+R(G(y))=y$。
+对 $y,z$ 的不动点方程相减，得到
+\[
+ |G(y)-G(z)|\leq|y-z|+\theta|G(y)-G(z)|,
+\]
+所以 $G$ 为 Lipschitz 连续，常数不超过 $(1-\theta)^{-1}$。
+
+还要证明逆可微。固定 $y$，令 $x=G(y)$、$u=G(y+v)-G(y)$。
+由刚得的界，$|u|\leq(1-\theta)^{-1}|v|$。
+Taylor 公式给出 
+\[
+ v=F(x+u)-F(x)=DF(x)u+o(|u|).
+\]
+$DF(x)=I+DR(x)$ 可逆，其逆由收敛 Neumann 级数给出，故
+\[
+ u=DF(x)^{-1}v+o(|v|).
+\]
+于是 
+\[
+ DG(y)=DF(G(y))^{-1}.
+\]
+右端连续，所以 $G\in C^1$；而 $F$ 在小球内的单射性还可由
+$|F(x)-F(z)|\geq(1-\theta)|x-z|$ 直接验证。
+这给出了局部互逆的两个映射。
+\end{proof}
+
+\paragraph{沿解移动坐标与消去线性部分。}
+设 $\varphi$ 是已知解，令 $x=\varphi(t)+\xi$，则新的右端在 $\xi=0$ 处为零。
+令 $A(t)=D_xf(t,\varphi(t))$，写新方程为
+\[
+ \dot\xi=A(t)\xi+R(t,\xi),
+\]
+其中 $R(t,\xi)=o(|\xi|)$。
+若 $X'=A(t)X$、$X(t_0)=I$，令 $\xi=X(t)\eta$，则
+\[
+ \dot\eta=X(t)^{-1}R(t,X(t)\eta).
+\]
+新方程在 $\eta=0$ 的常数项和线性项同时为零。
+由近似解 $\eta(t)\equiv\eta_0$ 的积分残差
+$o(|\eta_0|)$，结合前述误差估计，得到真解
+\[
+ \eta(t)=\eta_0+o(|\eta_0|).
+\]
+回到原坐标即得初值导数由 $X(t)$ 给出，与本章
+命题~\ref{prop:matrix-variation} 相衔接。

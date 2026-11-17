@@ -1,0 +1,87 @@
+% main.tex
+\documentclass[10pt]{book}
+
+% 加载所有配置
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+% 各部分独立编号；PDF 锚点保留 Part 编号，避免两个 Chapter 1 跳转混淆。
+\renewcommand{\theHchapter}{\arabic{part}.\arabic{chapter}}
+\renewcommand{\theHsection}{\theHchapter.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHequation}{\theHchapter.\arabic{equation}}
+% 定理计数器按节重置，内部目标也须包含部分、章、节。
+\makeatletter
+\@for\algebraenv:=theorem,lemma,corollary,proposition,definition,remark,example,construction,problem,axiom,prp,note,ill,algo,theorem*,problem*\do{%
+  \expandafter\gdef\csname theH\algebraenv\endcsname{\theHsection.\arabic{theorem}}%
+}
+\makeatother
+% \include 的分章 .aux 路径含空格时会被传统 BibTeX 拒绝。
+% 保留分章分页行为，用 \input 将辅助信息统一写入 main.aux。
+\newcommand{\algebrachapter}[1]{\clearpage\input{#1}\clearpage}
+
+% ── 文档元信息与封面 ──
+\title{代数学笔记}
+\author{Algebra Notes}
+\date{\today}
+% 封面图用 JPEG（或任何已压缩格式）而非 PNG：
+% xdvipdfmx 默认会以 zlib 最高档重压缩 PNG 数据，已压缩的 PNG 是最坏情况，
+% 每趟编译因此多花约 12 秒；JPEG 直接原样嵌入，不产生这项开销。
+\coverimage{figure/封面.jpg}
+
+\begin{document}
+
+\makecover
+
+\frontmatter
+	
+\chapter*{前言}
+\addcontentsline{toc}{chapter}{前言}
+今天是2026年7月18日，我已经完成了线性代数部分，但是我没有做到所谓的融入血液，接下来我打算以这部笔记为基础，继续在B站上录两道三遍课。除此之外，我还要阅读一下谢启鸿的高代习题集，把其中有价值的内容写进来
+
+\vspace{1cm}
+\begin{flushright}
+	Huginn Wong\\
+	2026年7月18日
+\end{flushright}
+	\tableofcontents
+	\newpage
+	
+	
+	\mainmatter
+	\setcounter{page}{1}
+	
+	% 引入章节
+%\setpartimage{figure/part1封面图.jpg}
+%\setpartintro{从整数与多项式的代数结构出发，建立线性方程组、矩阵、行列式与线性空间的基本理论，为后续抽象代数与现代数学打下坚实基础。}
+%\part{线性代数}
+%\algebrachapter{chapters/Part 1/chapter1}
+%\algebrachapter{chapters/Part 1/chapter2}
+%\algebrachapter{chapters/Part 1/chapter3}
+%\algebrachapter{chapters/Part 1/chapter4}
+%\algebrachapter{chapters/Part 1/chapter5}
+%\algebrachapter{chapters/Part 1/chapter6}
+%\algebrachapter{chapters/Part 1/chapter7}
+
+\setpartimage{figure/part2封面图.jpg}
+\setpartintro{以《代数学引论》第三版为依据，整理群、环与域的基本概念、重要命题和证明，并结合典型习题复习代数结构。}
+\part{抽象代数}
+\setcounter{chapter}{0}
+\algebrachapter{chapters/Part 2/chapter1}
+\algebrachapter{chapters/Part 2/chapter2}
+\algebrachapter{chapters/Part 2/chapter3}
+%\algebrachapter{chapters/Part 2/chapter4}
+	
+	
+	
+	\backmatter
+	\nocite{axler_linear_2014,lay_linear_2018,strang_introduction_2016,peng_linear_nodate,xie_advanced_2022}
+	\bibliographystyle{IEEEtran}
+	\bibliography{bibliography/references}
+	
+\end{document}

@@ -1,0 +1,558 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.7 定积分的几何应用
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{定积分的几何应用}
+本节整理定积分在几何问题中的若干基本应用。
+\subsection*{平面图形的面积}
+
+\begin{proposition}[直角坐标下的曲边梯形面积]
+	设 $f$ 在 $[a,b]$ 上连续。
+	\begin{enumerate}
+		\item 若 $f(x)\geq 0$，则由 $y=f(x)$、$x=a$、$x=b$ 与 $x$ 轴围成的曲边梯形面积为
+		\[
+		S=\int_a^b f(x)\dd x .
+		\]
+		\item 若 $f(x)\leq 0$，则对应面积为
+		\[
+		S=-\int_a^b f(x)\dd x=\int_a^b \abs{f(x)}\dd x .
+		\]
+		\item 一般地，若 $f$ 在区间内可能变号，则面积为
+		\[
+		S=\int_a^b \abs{f(x)}\dd x .
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	当 $f(x)\geq 0$ 时，面积由 Riemann 和
+	\[
+	\sum_{i=1}^n f(\xi_i)\Delta x_i
+	\]
+	的极限给出，因此为 $\displaystyle\int_a^b f(x)\dd x$。若 $f(x)\leq 0$，图形在 $x$ 轴下方，几何面积应取正值，故为 $-\displaystyle\int_a^b f(x)\dd x$。若 $f$ 有变号点，则把 $[a,b]$ 按变号点分成有限个小区间，在每段分别应用前两种情形，合并后得到
+	\[
+	S=\int_a^b \abs{f(x)}\dd x .
+	\]
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.05,>=Stealth]
+			\draw[->] (-0.3,0) -- (3.6,0) node[right] {$x$};
+			\draw[->] (0,-0.25) -- (0,2.25) node[above] {$y$};
+			\fill[blue!12] (0,0) -- plot[domain=0:3,samples=80] ({\x},{0.75+0.75*\x-0.16*\x*\x}) -- (3,0) -- cycle;
+			\draw[thick,blue!70!black,domain=0:3,samples=80] plot ({\x},{0.75+0.75*\x-0.16*\x*\x});
+			\draw[dashed] (0,0) -- (0,{0.75});
+			\draw[dashed] (3,0) -- (3,{0.75+0.75*3-0.16*9});
+			\fill[blue!30] (1.05,0) rectangle (1.35,{0.75+0.75*1.2-0.16*1.2*1.2});
+			\fill[blue!30] (1.75,0) rectangle (2.05,{0.75+0.75*1.9-0.16*1.9*1.9});
+			\draw[blue!70!black] (1.05,0) rectangle (1.35,{0.75+0.75*1.2-0.16*1.2*1.2});
+			\draw[blue!70!black] (1.75,0) rectangle (2.05,{0.75+0.75*1.9-0.16*1.9*1.9});
+			\node[below] at (0,0) {$a$};
+			\node[below] at (3,0) {$b$};
+			\node[above right] at (2.05,1.55) {$y=f(x)\geq 0$};
+			\node at (1.62,0.55) {$S=\displaystyle\int_a^b f(x)\dd x$};
+			\node[below] at (1.20,-0.05) {$\Delta x_i$};
+			\node[above] at (1.20,1.30) {$f(\xi_i)$};
+		\end{tikzpicture}
+	\end{center}
+	\caption{曲边梯形面积：用小矩形面积之和逼近曲线下方区域。}
+\end{figure}
+
+
+\begin{proposition}[两条曲线之间的面积]
+	设 $f,g$ 在 $[a,b]$ 上连续，且 $f(x)\geq g(x)$。则由 $y=f(x)$、$y=g(x)$、$x=a$ 与 $x=b$ 围成的平面图形面积为
+	\[
+	S=\int_a^b \bigl[f(x)-g(x)\bigr]\dd x .
+	\]
+	更一般地，若两曲线在区间内有交点，则应按交点分段；等价地可以写成
+	\[
+	S=\int_a^b \abs{f(x)-g(x)}\dd x .
+	\]
+\end{proposition}
+
+\begin{proof}
+	在每个小区间 $[x_{i-1},x_i]$ 上，面积近似为高为 $f(\xi_i)-g(\xi_i)$、宽为 $\Delta x_i$ 的小矩形面积，故
+	\[
+	S\approx \sum_{i=1}^n \bigl[f(\xi_i)-g(\xi_i)\bigr]\Delta x_i .
+	\]
+	令分割的最大长度趋于 $0$，由定积分定义得
+	\[
+	S=\int_a^b \bigl[f(x)-g(x)\bigr]\dd x .
+	\]
+	若上下关系发生改变，则在交点处分段，合并后得到绝对值形式。
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.05,>=Stealth]
+			\draw[->] (-0.3,0) -- (3.6,0) node[right] {$x$};
+			\draw[->] (0,-0.25) -- (0,2.35) node[above] {$y$};
+			\fill[orange!18] plot[domain=0:3,samples=80] ({\x},{1.85-0.18*(\x-1.5)*(\x-1.5)}) --
+			plot[domain=3:0,samples=80] ({\x},{0.45+0.20*\x}) -- cycle;
+			\draw[thick,red!70!black,domain=0:3,samples=80] plot ({\x},{1.85-0.18*(\x-1.5)*(\x-1.5)});
+			\draw[thick,green!45!black,domain=0:3,samples=80] plot ({\x},{0.45+0.20*\x});
+			\draw[dashed] (0,0) -- (0,{1.85-0.18*2.25});
+			\draw[dashed] (3,0) -- (3,{1.85-0.18*2.25});
+			\draw[<->] (1.5,{0.45+0.20*1.5}) -- (1.5,{1.85});
+			\node[right] at (1.5,1.15) {$f(x)-g(x)$};
+			\node[above] at (2.25,1.72) {$y=f(x)$};
+			\node[below right] at (2.0,0.85) {$y=g(x)$};
+			\node[below] at (0,0) {$a$};
+			\node[below] at (3,0) {$b$};
+			\node at (1.45,0.35) {$S=\displaystyle\int_a^b [f(x)-g(x)]\dd x$};
+		\end{tikzpicture}
+	\end{center}
+	\caption{两条曲线之间的面积：小矩形的高为上曲线与下曲线的函数值之差。}
+\end{figure}
+
+
+\begin{proposition}[参数方程下的面积]
+	设曲线由参数方程
+	\[
+	x=x(t),\qquad y=y(t),\qquad t\in[\alpha,\beta]
+	\]
+	给出，其中 $x,y$ 连续可微，且 $x(t)$ 在 $[\alpha,\beta]$ 上单调。若曲线与 $x$ 轴围成的区域位于 $x$ 轴同侧，则面积可写为
+	\[
+	S=\int_{\alpha}^{\beta}\abs{y(t)x'(t)}\dd t .
+	\]
+	若已经知道 $x'(t)\geq 0$，则
+	\[
+	S=\int_{\alpha}^{\beta} y(t)x'(t)\dd t;
+	\]
+	若 $x'(t)\leq 0$，则
+	\[
+	S=-\int_{\alpha}^{\beta} y(t)x'(t)\dd t .
+	\]
+\end{proposition}
+\begin{proposition}[极坐标下的面积]
+	设平面曲线由极坐标方程
+	\[
+	r=r(\theta),\qquad \theta\in[\alpha,\beta]
+	\]
+	给出。若曲线在该角区间内围成的区域可由射线角度单调扫过，则面积为
+	\[
+	S=\frac12\int_{\alpha}^{\beta}r^2(\theta)\dd\theta .
+	\]
+\end{proposition}
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.0,>=Stealth]
+			\begin{scope}
+				\draw[->] (-0.2,0) -- (3.3,0) node[right] {$x$};
+				\draw[->] (0,-0.2) -- (0,2.4) node[above] {$y$};
+				\fill[blue!12] (0.35,0) -- plot[domain=0:3,samples=80] ({0.35+\x},{0.55+0.55*sin(55*\x)+0.25*\x}) -- (3.35,0) -- cycle;
+				\draw[thick,blue!70!black,domain=0:3,samples=80] plot ({0.35+\x},{0.55+0.55*sin(55*\x)+0.25*\x});
+				\node[below] at (0.35,0) {$x(\alpha)$};
+				\node[below] at (3.35,0) {$x(\beta)$};
+				\node at (1.8,0.45) {$S=\displaystyle\int_\alpha^\beta |y(t)x'(t)|\dd t$};
+				\node[above] at (1.8,2.15) {参数方程面积};
+			\end{scope}
+			\begin{scope}[xshift=5.2cm]
+				\draw[->] (-0.2,0) -- (3.0,0) node[right] {$x$};
+				\draw[->] (0,-0.2) -- (0,2.6) node[above] {$y$};
+				\fill[green!18] (0,0) -- plot[domain=25:125,variable=\t,samples=120]
+				({(1.65+0.28*sin(2*\t))*cos(\t)},{(1.65+0.28*sin(2*\t))*sin(\t)}) -- cycle;
+				\draw[thick,green!45!black,domain=25:125,variable=\t,samples=120]
+				plot ({(1.65+0.28*sin(2*\t))*cos(\t)},{(1.65+0.28*sin(2*\t))*sin(\t)});
+				\draw[thick] (0,0) -- ({(1.65+0.28*sin(50))*cos(25)},{(1.65+0.28*sin(50))*sin(25)});
+				\draw[thick] (0,0) -- ({(1.65+0.28*sin(250))*cos(125)},{(1.65+0.28*sin(250))*sin(125)});
+				\draw[->] (0.75,0) arc (0:25:0.75);
+				\draw[->] (0.95,0) arc (0:125:0.95);
+				\node at (0.95,0.25) {$\alpha$};
+				\node at (-0.45,1.08) {$\beta$};
+				\node at (0.8,1.05) {$r(\theta)$};
+				\node[above] at (0.95,2.35) {极坐标面积};
+				\node at (1.1,-0.35) {$S=\displaystyle\frac12\int_\alpha^\beta r^2(\theta)\dd\theta$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\caption{参数方程面积与极坐标面积的图形来源。左图来自变量代换 $\dd x=x'(t)\dd t$；右图来自小扇形面积 $\frac12 r^2\Delta\theta$。}
+\end{figure}
+\newpage
+
+\subsection*{曲线弧长}
+
+\begin{proposition}[显式方程的弧长]
+	设 $f$ 在 $[a,b]$ 上连续可微。曲线 $y=f(x)$ 在 $[a,b]$ 上的弧长为
+	\[
+	L=\int_a^b \sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+	对应的弧长微分为
+	\[
+	\dd l=\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+\end{proposition}
+
+\begin{proof}
+	取分割
+	\[
+	a=x_0<x_1<\cdots<x_n=b .
+	\]
+	在小区间 $[x_{i-1},x_i]$ 上，用两端点连线长度近似曲线弧长，则
+	\[
+	\Delta l_i\approx
+	\sqrt{(x_i-x_{i-1})^2+\bigl(f(x_i)-f(x_{i-1})\bigr)^2} .
+	\]
+	由 Lagrange 中值定理，存在 $\xi_i\in(x_{i-1},x_i)$，使得
+	\[
+	f(x_i)-f(x_{i-1})=f'(\xi_i)(x_i-x_{i-1}).
+	\]
+	因此
+	\[
+	\Delta l_i\approx \sqrt{1+\bigl(f'(\xi_i)\bigr)^2}\Delta x_i .
+	\]
+	求和并令分割最大长度趋于 $0$，得到
+	\[
+	L=\int_a^b \sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.05,>=Stealth]
+			\draw[->] (-0.2,0) -- (4.4,0) node[right] {$x$};
+			\draw[->] (0,-0.2) -- (0,2.6) node[above] {$y$};
+			\draw[thick,blue!70!black,domain=0:4,samples=120] plot ({\x},{0.55+0.33*\x+0.28*sin(90*\x)});
+			\draw[red!70!black,thick] (0,{0.55}) -- (1,{0.55+0.33+0.28*sin(90)});
+			\draw[red!70!black,thick] (1,{0.55+0.33+0.28*sin(90)}) -- (2,{0.55+0.66+0.28*sin(180)});
+			\draw[red!70!black,thick] (2,{0.55+0.66+0.28*sin(180)}) -- (3,{0.55+0.99+0.28*sin(270)});
+			\draw[red!70!black,thick] (3,{0.55+0.99+0.28*sin(270)}) -- (4,{0.55+1.32+0.28*sin(360)});
+			\node[above] at (2.65,0.8) {$y=f(x)$};
+			\node[below] at (2.3,0.65) {折线长度 $\longrightarrow$ 曲线弧长};
+			\node at (2.25,2.35) {$L=\displaystyle\int_a^b\sqrt{1+[f'(x)]^2}\dd x$};
+		\end{tikzpicture}
+	\end{center}
+	\caption{显式方程弧长：先用相邻分点连成的折线近似曲线，再令分割加细。}
+\end{figure}
+
+
+\begin{proposition}[参数方程的弧长]
+	设曲线由
+	\[
+	x=x(t),\qquad y=y(t),\qquad t\in[\alpha,\beta]
+	\]
+	给出，其中 $x,y$ 连续可微。若曲线无重复地由参数扫过，则其弧长为
+	\[
+	L=\int_{\alpha}^{\beta}
+	\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t .
+	\]
+	对应的弧长微分为
+	\[
+	\dd l=\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t .
+	\]
+\end{proposition}
+\begin{proposition}[极坐标方程的弧长]
+	设曲线由
+	\[
+	r=r(\theta),\qquad \theta\in[\alpha,\beta]
+	\]
+	给出，其中 $r$ 连续可微。则弧长为
+	\[
+	L=\int_{\alpha}^{\beta}
+	\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta .
+	\]
+	对应的弧长微分为
+	\[
+	\dd l=\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta .
+	\]
+\end{proposition}
+\begin{example}[椭圆周长]
+	设椭圆
+	\[
+	\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+	\qquad a>b>0,
+	\]
+	取参数方程
+	\[
+	x=a\cos t,
+	\qquad
+	y=b\sin t,
+	\qquad 0\leq t\leq 2\pi .
+	\]
+	则
+	\[
+	\begin{aligned}
+		L
+		&=\int_0^{2\pi}\sqrt{a^2\sin^2t+b^2\cos^2t}\dd t \\
+		&=a\int_0^{2\pi}\sqrt{1-k^2\cos^2t}\dd t,
+		\qquad k=\frac{\sqrt{a^2-b^2}}{a} \\
+		&=4a\int_0^{\frac{\pi}{2}}\sqrt{1-k^2\sin^2u}\dd u .
+	\end{aligned}
+	\]
+	若记
+	\[
+	E(k,\varphi)=\int_0^{\varphi}\sqrt{1-k^2\sin^2u}\dd u,
+	\]
+	则 $E(k,\varphi)$ 称为第二类不完全椭圆积分；若进一步记
+	\[
+	E(k)=E\left(k,\frac{\pi}{2}\right),
+	\]
+	则椭圆周长可写为
+	\[
+	L=4aE(k).
+	\]
+\end{example}
+
+\subsection*{旋转体体积}
+
+\begin{proposition}[已知截面积的体积]
+	设立体在垂直于 $x$ 轴的截面面积为 $A(x)$，其中 $x\in[a,b]$。若 $A$ 在 $[a,b]$ 上连续，则立体体积为
+	\[
+	V=\int_a^b A(x)\dd x .
+	\]
+\end{proposition}
+
+\begin{proof}
+	取分割 $a=x_0<x_1<\cdots<x_n=b$。在小区间 $[x_{i-1},x_i]$ 内任取 $\xi_i$，小段体积近似为
+	\[
+	A(\xi_i)\Delta x_i .
+	\]
+	于是
+	\[
+	V\approx \sum_{i=1}^n A(\xi_i)\Delta x_i .
+	\]
+	令分割最大长度趋于 $0$，由定积分定义得到
+	\[
+	V=\int_a^b A(x)\dd x .
+	\]
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.0,>=Stealth]
+			\draw[->] (-0.2,0) -- (5.0,0) node[right] {$x$};
+			\foreach \x/\h in {0.7/0.55,1.5/0.85,2.3/1.05,3.1/0.82,3.9/0.50}
+			{
+				\fill[blue!10] (\x,0) ellipse (0.18 and \h);
+				\draw[blue!60!black] (\x,0) ellipse (0.18 and \h);
+			}
+			\draw[thick,blue!50!black] (0.7,0.55) .. controls (1.6,1.05) and (2.7,1.25) .. (3.9,0.50);
+			\draw[thick,blue!50!black] (0.7,-0.55) .. controls (1.6,-1.05) and (2.7,-1.25) .. (3.9,-0.50);
+			\draw[dashed] (0.7,-0.8) -- (0.7,0.8);
+			\draw[dashed] (3.9,-0.8) -- (3.9,0.8);
+			\node[below] at (0.7,-0.85) {$a$};
+			\node[below] at (3.9,-0.85) {$b$};
+			\node[above] at (2.3,1.25) {截面积 $A(x)$};
+			\draw[<->] (2.3,-1.35) -- (2.75,-1.35);
+			\node[below] at (2.52,-1.35) {$\Delta x$};
+			\node at (2.45,-2.75) {$V=\displaystyle\int_a^b A(x)\dd x$};
+		\end{tikzpicture}
+	\end{center}
+	\caption{已知截面积求体积：把立体切成许多薄片，小薄片体积近似为 $A(\xi_i)\Delta x_i$。}
+\end{figure}
+
+
+\begin{corollary}[绕 $x$ 轴旋转所得旋转体体积]
+	若 $f$ 在 $[a,b]$ 上连续，且 $f(x)\geq 0$，则曲边梯形绕 $x$ 轴旋转所得旋转体的体积为
+	\[
+	V=\pi\int_a^b f^2(x)\dd x .
+	\]
+\end{corollary}
+
+\begin{proof}
+	垂直于 $x$ 轴的截面是半径为 $f(x)$ 的圆，所以
+	\[
+	A(x)=\pi f^2(x).
+	\]
+	代入截面积公式 $V=\int_a^b A(x)\dd x$，得到
+	\[
+	V=\pi\int_a^b f^2(x)\dd x .
+	\]
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.0,>=Stealth]
+			\begin{scope}
+				\draw[->] (-0.2,0) -- (3.8,0) node[right] {$x$};
+				\draw[->] (0,-0.2) -- (0,2.2) node[above] {$y$};
+				\fill[purple!12] (0.3,0) -- plot[domain=0:3,samples=80] ({0.3+\x},{0.55+0.65*sin(45*\x)+0.22*\x}) -- (3.3,0) -- cycle;
+				\draw[thick,purple!70!black,domain=0:3,samples=80] plot ({0.3+\x},{0.55+0.65*sin(45*\x)+0.22*\x});
+				\node at (1.8,0.35) {绕 $x$ 轴旋转};
+				\draw[->,thick] (1.8,-0.1) arc (-80:260:0.23 and 0.10);
+			\end{scope}
+			\begin{scope}[xshift=4.9cm]
+				\draw[->] (-0.2,0) -- (3.8,0) node[right] {$x$};
+				\draw[thick,purple!70!black] (0.3,0.65) .. controls (1.3,1.35) and (2.5,1.55) .. (3.3,1.05);
+				\draw[thick,purple!70!black] (0.3,-0.65) .. controls (1.3,-1.35) and (2.5,-1.55) .. (3.3,-1.05);
+				\foreach \x/\r in {0.7/0.82,1.7/1.35,2.7/1.28}
+				{
+					\fill[purple!12] (\x,0) ellipse (0.16 and \r);
+					\draw[purple!60!black] (\x,0) ellipse (0.16 and \r);
+				}
+				\draw[<->] (1.7,0) -- (1.7,1.35);
+				\node[right] at (1.7,0.68) {$f(x)$};
+				\node at (1.9,-1.75) {$V=\displaystyle\pi\int_a^b f^2(x)\dd x$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\caption{圆盘法：垂直于 $x$ 轴的截面是半径为 $f(x)$ 的圆，因此 $A(x)=\pi f^2(x)$。}
+\end{figure}
+
+
+
+	若旋转区域由 $y=f(x)$ 与 $y=g(x)$ 围成，且 $f(x)\geq g(x)\geq 0$，则绕 $x$ 轴旋转得到的截面为圆环，体积为
+	\[
+	V=\pi\int_a^b \left(f^2(x)-g^2(x)\right)\dd x .
+	\]
+	这一公式是圆盘法的直接推广。
+
+
+\subsection*{旋转曲面面积}
+
+\begin{proposition}[显式方程的旋转曲面面积]
+	设 $f$ 在 $[a,b]$ 上连续可微。曲线 $y=f(x)$ 绕 $x$ 轴旋转一周所得曲面的面积为
+	\[
+	S=2\pi\int_a^b \abs{f(x)}\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+	若 $f(x)\geq 0$，则可写成
+	\[
+	S=2\pi\int_a^b f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+\end{proposition}
+
+\begin{proof}
+	取分割
+	\[
+	a=x_0<x_1<\cdots<x_n=b .
+	\]
+	在小区间 $[x_{k-1},x_k]$ 上，用连接两端点的线段代替曲线段。该线段绕 $x$ 轴旋转后得到圆台侧面。记
+	\[
+	\ell_k=\sqrt{(x_k-x_{k-1})^2+\bigl(f(x_k)-f(x_{k-1})\bigr)^2} .
+	\]
+	圆台侧面积近似为
+	\[
+	S_k=\pi\ell_k\bigl(\abs{f(x_k)}+\abs{f(x_{k-1})}\bigr).
+	\]
+	由中值定理，存在 $\xi_k\in(x_{k-1},x_k)$，使得
+	\[
+	\ell_k=\sqrt{1+\bigl(f'(\xi_k)\bigr)^2}\Delta x_k .
+	\]
+	因此
+	\[
+	S_k=\pi\sqrt{1+\bigl(f'(\xi_k)\bigr)^2}
+	\bigl(\abs{f(x_k)}+\abs{f(x_{k-1})}\bigr)\Delta x_k .
+	\]
+	当分割充分细时，$\abs{f(x_k)}$ 与 $\abs{f(x_{k-1})}$ 都趋近于同一小区间内的函数值，于是
+	\[
+	S\approx 2\pi\sum_{k=1}^n
+	\abs{f(\xi_k)}\sqrt{1+\bigl(f'(\xi_k)\bigr)^2}\Delta x_k .
+	\]
+	令分割最大长度趋于 $0$，得到
+	\[
+	S=2\pi\int_a^b \abs{f(x)}\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x .
+	\]
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[scale=1.05,>=Stealth]
+			\draw[->] (-0.2,0) -- (5.2,0) node[right] {$x$};
+			\draw[thick,blue!70!black] (0.4,0.65) .. controls (1.4,1.25) and (3.3,1.45) .. (4.5,0.85);
+			\draw[thick,blue!70!black,dashed] (0.4,-0.65) .. controls (1.4,-1.25) and (3.3,-1.45) .. (4.5,-0.85);
+			\draw[blue!60!black] (1.4,0) ellipse (0.16 and 1.15);
+			\draw[blue!60!black] (3.4,0) ellipse (0.18 and 1.25);
+			\draw[thick,red!70!black] (1.4,1.15) -- (3.4,1.25);
+			\draw[thick,red!70!black] (1.4,-1.15) -- (3.4,-1.25);
+			\draw[<->] (1.4,0) -- (1.4,1.15);
+			\draw[<->] (3.4,0) -- (3.4,1.25);
+			\node[left] at (1.4,0.58) {$|f(x_{k-1})|$};
+			\node[right] at (3.4,0.63) {$|f(x_k)|$};
+			\node[above] at (2.4,1.34) {$\ell_k\approx\sqrt{1+[f'(\xi_k)]^2}\Delta x_k$};
+			\node at (2.55,-1.6) {$S_k\approx\pi\ell_k\bigl(|f(x_{k-1})|+|f(x_k)|\bigr)$};
+			\node at (2.55,-2.3) {$S=\displaystyle2\pi\int_a^b |f(x)|\sqrt{1+[f'(x)]^2}\dd x$};
+		\end{tikzpicture}
+	\end{center}
+	\caption{旋转曲面面积：小曲线段绕 $x$ 轴旋转后近似为圆台侧面。}
+\end{figure}
+
+
+\begin{corollary}[参数方程与极坐标下的旋转曲面面积]
+	若曲线由
+	\[
+	x=x(t),\qquad y=y(t),\qquad t\in[T_1,T_2]
+	\]
+	给出，且绕 $x$ 轴旋转，则旋转曲面面积为
+	\[
+	S=2\pi\int_{T_1}^{T_2}
+	\abs{y(t)}\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t .
+	\]
+	若曲线由极坐标方程
+	\[
+	r=r(\theta),\qquad \theta\in[\alpha,\beta]
+	\]
+	给出，且绕极轴旋转，则由于 $y=r(\theta)\sin\theta$，有
+	\[
+	S=2\pi\int_{\alpha}^{\beta}
+	\abs{r(\theta)\sin\theta}
+	\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta .
+	\]
+\end{corollary}
+
+
+
+下面把常用的面积、弧长、体积与旋转曲面面积公式统一整理如下。表中若涉及面积或半径，应根据具体图形关系取非负值；当图形位于标准位置时，可以省略绝对值。
+
+\begin{center}
+	\renewcommand{\arraystretch}{2.2}
+	\small
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			& 直角坐标显式方程
+			& 直角坐标参数方程
+			& 极坐标方程 \\
+			& $y=f(x),\ x\in[a,b]$
+			& $\begin{cases}x=x(t),\\ y=y(t),\end{cases}\ t\in[T_1,T_2]$
+			& $r=r(\theta),\ \theta\in[\alpha,\beta]$ \\
+			\hline
+			平面图形面积
+			& $\displaystyle \int_a^b f(x)\dd x$
+			& $\displaystyle \int_{T_1}^{T_2}\abs{y(t)x'(t)}\dd t$
+			& $\displaystyle \frac12\int_{\alpha}^{\beta}r^2(\theta)\dd\theta$ \\
+			\hline
+			弧长的微分
+			& $\displaystyle \dd l=\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x$
+			& $\displaystyle \dd l=\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t$
+			& $\displaystyle \dd l=\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta$ \\
+			\hline
+			曲线弧长
+			& $\displaystyle \int_a^b\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x$
+			& $\displaystyle \int_{T_1}^{T_2}\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t$
+			& $\displaystyle \int_{\alpha}^{\beta}\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta$ \\
+			\hline
+			旋转体体积
+			& $\displaystyle \pi\int_a^bf^2(x)\dd x$
+			& $\displaystyle \pi\int_{T_1}^{T_2}y^2(t)\abs{x'(t)}\dd t$
+			& $\displaystyle \frac{2\pi}{3}\int_{\alpha}^{\beta}r^3(\theta)\sin\theta\dd\theta$ \\
+			\hline
+			旋转曲面面积
+			& $\displaystyle 2\pi\int_a^b\abs{f(x)}\sqrt{1+\bigl(f'(x)\bigr)^2}\dd x$
+			& $\displaystyle 2\pi\int_{T_1}^{T_2}\abs{y(t)}\sqrt{\bigl(x'(t)\bigr)^2+\bigl(y'(t)\bigr)^2}\dd t$
+			& $\displaystyle 2\pi\int_{\alpha}^{\beta}\abs{r(\theta)\sin\theta}\sqrt{r^2(\theta)+\bigl(r'(\theta)\bigr)^2}\dd\theta$ \\
+			\hline
+		\end{tabular}%
+	}
+\end{center}
+
+
+	上表中的公式都有共同结构：
+	\[
+	\text{几何量}=\int \text{局部几何量的微分}.
+	\]
+	例如弧长公式来自
+	\[
+	\dd l=\sqrt{(\dd x)^2+(\dd y)^2},
+	\]
+	旋转曲面面积来自
+	\[
+	\dd S=2\pi\cdot \text{旋转半径}\cdot \dd l,
+	\]
+	旋转体体积来自
+	\[
+	\dd V=\text{截面积}\cdot \dd x .
+	\]
+
+
+

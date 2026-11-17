@@ -1,0 +1,193 @@
+\section{群的同态定理}
+
+设$N\trianglelefteq G$，自然满同态$\pi:G\to G/N$由$\pi(x)=xN$给出。下面先研究$G/N$的子群与$G$的子群之间的关系，再说明相应商群之间的同构。
+
+若$H\leq G$且$N\leq H$，则$\pi(H)=\{hN:h\in H\}$是$G/N$的子群，通常记为$H/N$。反过来，对$G/N$中的子群$\overline H$，定义其\textbf{完全反像}
+\[
+\pi^{-1}(\overline H)=\{x\in G:\pi(x)\in\overline H\}.
+\]
+这里的$\pi^{-1}$表示集合的反像，不要求$\pi$存在逆映射。
+
+\begin{theorem}\label{p2:correspondence}
+\textbf{子群对应定理：}设$N\trianglelefteq G$。自然同态$\pi:G\to G/N$建立$G$中包含$N$的子群与$G/N$的全部子群之间的一一对应，互逆的映射为
+\[
+H\longmapsto H/N,\qquad
+\overline H\longmapsto\pi^{-1}(\overline H).
+\]
+该对应保持包含关系，并使正规子群与正规子群对应。若$H\trianglelefteq G$且$N\leq H$，则
+\[
+G/H\cong(G/N)/(H/N).
+\]
+\end{theorem}
+\begin{proof}
+\textbf{子群的像与反像：}若$N\leq H\leq G$，则$\pi(H)$包含单位元$N$，且对$h_1,h_2\in H$，
+\[
+\pi(h_1)\pi(h_2)^{-1}=\pi(h_1h_2^{-1})\in\pi(H).
+\]
+所以$\pi(H)=H/N$为子群。
+
+若$\overline H\leq G/N$，则$\pi^{-1}(\overline H)$包含$N$，因为$N$的元素都映到$\overline H$的单位元。对$x,y\in\pi^{-1}(\overline H)$，
+\[
+\pi(xy^{-1})=\pi(x)\pi(y)^{-1}\in\overline H,
+\]
+故$xy^{-1}\in\pi^{-1}(\overline H)$，它也是子群。
+
+\textbf{两个对应互逆：}若$z\in\pi(\pi^{-1}(\overline H))$，则$z=\pi(x)$，其中$x\in\pi^{-1}(\overline H)$，从而$z\in\overline H$。反过来，任取$z\in\overline H$，由$\pi$满射，可取$x\in G$使$\pi(x)=z$。这时$x\in\pi^{-1}(\overline H)$，所以
+\[
+\pi(\pi^{-1}(\overline H))=\overline H.
+\]
+
+再设$N\leq H$。每个$h\in H$都满足$\pi(h)\in\pi(H)$，故$H\subseteq\pi^{-1}(\pi(H))$。若$x\in\pi^{-1}(\pi(H))$，则有$h\in H$使$\pi(x)=\pi(h)$，于是
+\[
+h^{-1}x\in\ker\pi=N,\qquad x\in hN\subseteq H.
+\]
+所以$\pi^{-1}(\pi(H))=H$，两种映射互逆。集合的像与反像都保持包含关系，因此这一对应也保持包含关系。
+
+\textbf{正规子群的对应：}若$H\trianglelefteq G$且$N\leq H$，任取$g\in G$，则
+\[
+\pi(g)\pi(H)\pi(g)^{-1}=\pi(gHg^{-1})=\pi(H).
+\]
+由于$G/N$中的元素均为$\pi(g)$，这证明$H/N\trianglelefteq G/N$。
+反过来，若$\overline H\trianglelefteq G/N$，则对$g\in G$和$x\in\pi^{-1}(\overline H)$，
+\[
+\pi(gxg^{-1})=\pi(g)\pi(x)\pi(g)^{-1}\in\overline H.
+\]
+故完全反像在共轭下封闭，因而在$G$中正规。
+
+\textbf{商群的同构：}设$H\trianglelefteq G$且$N\leq H$。将自然同态
+\[
+q:G/N\longrightarrow(G/N)/(H/N)
+\]
+与$\pi$复合，得到满同态$q\pi$。其核由
+\[
+g\in\ker(q\pi)
+\iff gN\in H/N
+\iff g\in H
+\]
+确定为$H$。由同态基本定理，得到所述同构，具体映射为
+\[
+gH\longmapsto(gN)(H/N).
+\]
+\end{proof}
+
+自然同态只是满同态的一种。对于任意满同态，先把值域识别为核的商群，便得到同样的对应。
+
+\begin{theorem}\label{p2:correspondence-onto}
+\textbf{满同态的子群对应定理：}设$\sigma:G\to G'$满射，$K=\ker\sigma$。映射$H\mapsto\sigma(H)$与$H'\mapsto\sigma^{-1}(H')$给出
+\[
+\{H\leq G:K\leq H\}\longleftrightarrow\{H'\leq G'\}
+\]
+之间保持包含关系的一一对应，且正规子群与正规子群对应。若$H\trianglelefteq G$且$K\leq H$，记$H'=\sigma(H)$，则
+\[
+G/H\cong G'/H',\qquad gH\longmapsto\sigma(g)H'.
+\]
+\end{theorem}
+\begin{proof}
+同态基本定理给出同构
+\[
+\theta:G/K\longrightarrow G',\qquad gK\longmapsto\sigma(g).
+\]
+前一定理把包含$K$的子群$H$对应于$G/K$的子群$H/K$，而$\theta$将$H/K$映到$\sigma(H)$。同构把子群映为子群，也保持正规性与包含关系，所以得到所述对应。
+
+具体地，$\sigma$满射说明$\sigma(\sigma^{-1}(H'))=H'$。若$K\leq H$，则
+\begin{align*}
+x\in\sigma^{-1}(\sigma(H))
+&\iff\text{存在 }h\in H\text{ 使 }\sigma(x)=\sigma(h)\\
+&\iff\text{存在 }h\in H\text{ 使 }h^{-1}x\in K\\
+&\iff x\in H.
+\end{align*}
+最后，$G/H\cong(G/K)/(H/K)$，而$\theta$又诱导$(G/K)/(H/K)\cong G'/H'$。两者复合就是所列的商群同构。
+\end{proof}
+
+如果$H$并不包含$N$，自然同态限制在$H$上仍然有意义。此时核变为$H\cap N$，同时可把$H$扩大为$HN$，使它包含$N$。
+
+\begin{theorem}\label{p2:second-iso}
+\textbf{第二同构定理：}设$H\leq G$、$N\trianglelefteq G$，并记$HN=\{hn:h\in H,n\in N\}$。则$HN\leq G$、$H\cap N\trianglelefteq H$，且
+\[
+HN/N\cong H/(H\cap N),\qquad hN\longmapsto h(H\cap N).
+\]
+\end{theorem}
+\begin{proof}
+先将自然同态$\pi:G\to G/N$限制到$H$。其核为$H\cap N$，所以$H\cap N\trianglelefteq H$，并且
+\[
+H/(H\cap N)\cong\pi(H).
+\]
+
+再验证$HN$是子群。它包含$e$，对$h_1,h_2\in H$和$n_1,n_2\in N$，由$N$正规可得
+\begin{align*}
+(h_1n_1)(h_2n_2)
+&=h_1h_2(h_2^{-1}n_1h_2)n_2\in HN,\\
+(h_1n_1)^{-1}
+&=h_1^{-1}(h_1n_1^{-1}h_1^{-1})\in HN.
+\end{align*}
+其中括号内的共轭元素仍属于$N$，故两个结果都有$hn$的形式。
+
+因为$N\leq HN$，限制同态$\pi|_{HN}$的核为$N$。又因$\pi(hn)=\pi(h)$，有$\pi(HN)=\pi(H)$，所以
+\[
+HN/N\cong\pi(H)\cong H/(H\cap N).
+\]
+第一个同构把$hN$映到$\pi(h)$，第二个把$\pi(h)$映到$h(H\cap N)$，因而复合映射正如定理所述。
+\end{proof}
+
+下面讨论另一问题：交换群的同态像仍交换，但同态像交换并不能推出原群交换。要说明这种满同态的核具有什么性质，需要先引入由子集生成的子群。
+
+\begin{definition}
+设$S\subseteq G$。所有包含$S$的子群之交称为\textbf{由$S$生成的子群}，记为
+\[
+\langle S\rangle=\bigcap_{S\subseteq H\leq G}H.
+\]
+若$\langle S\rangle=G$，则称$S$为$G$的一组\textbf{生成元}；若可取有限的$S$，则称$G$为\textbf{有限生成群}。简记$\langle a,b\rangle=\langle\{a,b\}\rangle$。
+\end{definition}
+
+因为$G$本身包含$S$，参与求交的子群非空；子群之交仍为子群，所以$\langle S\rangle$确为包含$S$的最小子群。
+
+\begin{proposition}
+$\langle S\rangle$恰由$S\cup S^{-1}$中元素的全部有限乘积组成，其中$S^{-1}=\{s^{-1}:s\in S\}$，并允许空乘积$e$。特别地，$\langle\varnothing\rangle=\{e\}$。
+\end{proposition}
+\begin{proof}[补充证明]
+令$W$为上述有限乘积组成的集合。它包含$e$及$S$；连接两串乘积仍得到这样的乘积。若$w=x_1\cdots x_r$，则
+\[
+w^{-1}=x_r^{-1}\cdots x_1^{-1}\in W,
+\]
+因为每个$x_i^{-1}$仍在$S\cup S^{-1}$中。因此$W$是包含$S$的子群，故$\langle S\rangle\subseteq W$。
+反过来，任一包含$S$的子群都包含$S^{-1}$及这些有限乘积，故$W\subseteq\langle S\rangle$。两边相等。
+\end{proof}
+
+有限群可取自身为一组有限生成元，但有限生成群不一定有限，例如$\Z=\langle1\rangle$。由单个元素生成的群称为循环群。
+
+若满同态$\sigma:G\to G'$的目标群交换，则任取$a,b\in G$，有
+\[
+\sigma(a^{-1}b^{-1}ab)
+=\sigma(a)^{-1}\sigma(b)^{-1}\sigma(a)\sigma(b)=e_{G'}.
+\]
+这说明核必须包含下面这类元素及其生成的子群。
+
+\begin{definition}
+元素$[a,b]=a^{-1}b^{-1}ab$称为$a,b$的\textbf{换位子}。全部换位子生成的子群称为$G$的\textbf{换位子群}，记为$G^{(1)}$或$[G,G]$。
+\end{definition}
+
+\begin{theorem}\label{p2:abelianization}
+设$\sigma:G\to G'$为满同态，则
+\[
+G'\text{交换}\quad\Longleftrightarrow\quad G^{(1)}\leq\ker\sigma.
+\]
+此外，$G^{(1)}\trianglelefteq G$，且$G/G^{(1)}$为交换群。
+\end{theorem}
+\begin{proof}[补充证明]
+若$G'$交换，上面的计算说明全部换位子都在$\ker\sigma$中。因为核是子群，它也包含这些元素生成的$G^{(1)}$。
+
+反过来，若$G^{(1)}\leq\ker\sigma$，则对任意$a,b\in G$，
+\[
+\sigma(a)^{-1}\sigma(b)^{-1}\sigma(a)\sigma(b)
+=\sigma([a,b])=e_{G'}.
+\]
+这等价于$\sigma(a)\sigma(b)=\sigma(b)\sigma(a)$。满射性使$G'$中的任意两个元素均能如此表示，所以$G'$交换。
+
+再证正规性。对任意$g,a,b\in G$，直接展开得
+\[
+g[a,b]g^{-1}=[gag^{-1},gbg^{-1}].
+\]
+共轭因此把每个生成换位子映为另一个换位子，也把它们的逆及有限乘积映入$G^{(1)}$。故$gG^{(1)}g^{-1}\subseteq G^{(1)}$。将$g$换为$g^{-1}$并移项，得反向包含，因此$G^{(1)}$正规。
+
+将已证的等价条件用于自然满同态$G\to G/G^{(1)}$，其核正是$G^{(1)}$，便知该商群交换。
+\end{proof}

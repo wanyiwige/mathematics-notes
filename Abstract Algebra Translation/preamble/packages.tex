@@ -1,0 +1,28 @@
+% ============================================
+%  packages.tex — 基础宏包
+%  基于大笔记模板，精简至最小必要集合
+% ============================================
+
+% ── 中文支持 ──
+\usepackage[scheme=plain,heading=true,fontset=none]{ctex}
+
+% ── 数学 ──
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools}
+\usepackage{mathrsfs}
+
+% ── 页边距 ──
+\usepackage{geometry}
+
+% ── 颜色（必须在 hyperref 之前，明确 xetex 驱动）──
+\usepackage[xetex,svgnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% ── 文档结构 ──
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{etoolbox}

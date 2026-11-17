@@ -1,0 +1,106 @@
+% main.tex
+% Dummit & Foote《抽象代数》读书笔记
+% 编译：latexmk -xelatex main.tex
+\documentclass[10pt]{book}
+
+% ── 加载所有配置 ──
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+
+% ── 文档元信息与封面 ──
+\title{抽象代数笔记}
+\author{Abstract Algebra Notes}
+\date{\today}
+\coverimage{figure/封面.png}
+
+\begin{document}
+
+\makecover
+
+\frontmatter
+	\tableofcontents
+	\newpage
+	
+\mainmatter
+\setcounter{page}{1}
+
+% ═══════════════════════════════════════════════════════
+%  Part I：群论 (Group Theory)
+% ═══════════════════════════════════════════════════════
+\setpartimage{}
+\setpartintro{从群的基本定义出发，系统学习子群、商群、群同态、群作用以及 Sylow 定理等群论核心内容，建立抽象代数的第一块基石。}
+\part{群论}
+
+%\include{chapters/chapter01}
+%\include{chapters/chapter02}
+\include{chapters/chapter03}
+%\include{chapters/chapter04}
+%\include{chapters/chapter05}
+%\include{chapters/chapter06}
+%
+%% ═══════════════════════════════════════════════════════
+%%  Part II：环论 (Ring Theory)
+%% ═══════════════════════════════════════════════════════
+%\setpartimage{}
+%\setpartintro{从环的公理化定义切入，研究整环、理想、商环、同态基本定理，并深入 Euclid 整环、主理想整环与唯一分解整环的结构理论。}
+%\part{环论}
+%
+%\include{chapters/chapter07}
+%\include{chapters/chapter08}
+%\include{chapters/chapter09}
+%
+%% ═══════════════════════════════════════════════════════
+%%  Part III：模与向量空间 (Modules and Vector Spaces)
+%% ═══════════════════════════════════════════════════════
+%\setpartimage{}
+%\setpartintro{模是环上「线性代数」的自然推广。从模的基本概念出发，研究自由模、向量空间的深入性质，以及主理想整环上有限生成模的结构定理。}
+%\part{模与向量空间}
+%
+%\include{chapters/chapter10}
+%\include{chapters/chapter11}
+%\include{chapters/chapter12}
+%
+%% ═══════════════════════════════════════════════════════
+%%  Part IV：域论与 Galois 理论 (Field Theory and Galois Theory)
+%% ═══════════════════════════════════════════════════════
+%\setpartimage{}
+%\setpartintro{域扩张与 Galois 理论是抽象代数的华彩乐章。从域的代数扩张到 Galois 群与 Galois 对应，最终解决古典的方程根式可解性问题。}
+%\part{域论与 Galois 理论}
+%
+%\include{chapters/chapter13}
+%\include{chapters/chapter14}
+%
+%% ═══════════════════════════════════════════════════════
+%%  Part V：交换环、代数几何与同调代数导引
+%% ═══════════════════════════════════════════════════════
+%\setpartimage{}
+%\setpartintro{从交换环的局部化与整闭包出发，探索 Noether 环、仿射代数集与 Hilbert 零点定理，并学习 Artin 环、投射模、内射模及同调代数的初步工具。}
+%\part{交换环、代数几何与同调代数导引}
+%
+%\include{chapters/chapter15}
+%\include{chapters/chapter16}
+%\include{chapters/chapter17}
+%
+%% ═══════════════════════════════════════════════════════
+%%  Part VI：有限群表示论导引
+%% ═══════════════════════════════════════════════════════
+%\setpartimage{}
+%\setpartintro{用线性代数的方法研究有限群的结构。从群表示与特征标的基本理论出发，通过大量实例展现表示论在群论中的强大应用。}
+%\part{有限群表示论导引}
+%
+%\include{chapters/chapter18}
+%\include{chapters/chapter19}
+
+
+\backmatter
+\nocite{dummit_abstract_2004}
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography/references}
+
+\end{document}

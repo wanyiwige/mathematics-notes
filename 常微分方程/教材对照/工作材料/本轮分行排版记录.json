@@ -1,0 +1,523 @@
+{
+  "files": [
+    {
+      "file": "arnold-contraction.tex",
+      "edits": 10,
+      "sha256_before": "a3685c47ea9a7deca52029be45268bb59d391347c86373800706c4807060ad60",
+      "sha256_after": "3e3ebae310f03be5e7dee6a0942f937a85ca85ee54b178f019db157831a2d611"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "edits": 6,
+      "sha256_before": "e9c8bcdc4deda813ec6faa62687536f481337c2b2b196f4f0613f335034f2743",
+      "sha256_after": "0baa06a3793977d38df6e48f55afae8559bb3b725f46bec53b8e6390b39c961c"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "edits": 10,
+      "sha256_before": "7aef25645d41a6f417db7f667011cb502c8130792bba92266bd78feb8e68235f",
+      "sha256_after": "15bfd6a8022bf603b84e103a6847fa1759fac4747b9968bdaf4c9ca5b3e286fe"
+    },
+    {
+      "file": "chapter10.tex",
+      "edits": 5,
+      "sha256_before": "3405cf86dcaaa075e6c65f54f3550c02c6a292e67f2ef279dd99b54aa38ae793",
+      "sha256_after": "d785898cfc6596831e9949ffd16929b31efc6e7a4affe68e00821f24d9bd01c6"
+    },
+    {
+      "file": "chapter11.tex",
+      "edits": 11,
+      "sha256_before": "2a27a45d7699a0412f5f712e5c5b208543b9a1a2d35846ad7215fbc607be149b",
+      "sha256_after": "162bccb9e5671f418d3e9eb8f78dec9b401a2ebdca32d7a501fb5330dfb748e8"
+    },
+    {
+      "file": "chapter12.tex",
+      "edits": 3,
+      "sha256_before": "015a39ab257ee1bd19d1f68ab782e1638e6d321e50a802accc03be1454cdf319",
+      "sha256_after": "466d66236f451b0e814b82bbd2ef66c618dac37831fbd369bae0feaa8a500be5"
+    },
+    {
+      "file": "chapter13.tex",
+      "edits": 5,
+      "sha256_before": "86f1c81480418754d96247af2ce0dc57d35e80865c89462b63aa32c4716025fb",
+      "sha256_after": "e68bac2ef9a35cd41cc81c8916ab9362a3e4cb7256a2b4d7f93bca8dcedf3352"
+    },
+    {
+      "file": "chapter14.tex",
+      "edits": 9,
+      "sha256_before": "75fb4ef841973b50507a26fb7e24702f6dceafa82c21f225409329feb1f90861",
+      "sha256_after": "544844564861db49b9f3472e62ebfc6e32ec68e42e8b3eb4e9f8b0cb1c3b2c01"
+    },
+    {
+      "file": "chapter15.tex",
+      "edits": 11,
+      "sha256_before": "480d3116c64a1145d69673618c7e0acb48662d97c9966202e036fbe021fb6990",
+      "sha256_after": "9b774686e2b62c6565cc9225f79680caf586c035550007a17e8a49e6cea0ead5"
+    },
+    {
+      "file": "chapter7.tex",
+      "edits": 3,
+      "sha256_before": "602f0fb9b8c4a8137b8bf8ab587178593ad91b1d401841cfcf70812f40bf6ca9",
+      "sha256_after": "e6e2f713039ec8ae2b7cac9f29b64b937dba391528ecedd02b917aa3771ce0ff"
+    },
+    {
+      "file": "chapter8.tex",
+      "edits": 3,
+      "sha256_before": "544654c017d6c0652052fe366ab088695e320bb33e1552ea873b6a35cfe8f25c",
+      "sha256_after": "c70eae40968ea36fee7de996d751a0c2856f6be34cfcb2f495aef4822c7c5649"
+    },
+    {
+      "file": "chapter9.tex",
+      "edits": 13,
+      "sha256_before": "f0e6b20b022e72aef4af8536750311e258e59b26891c5f2217fa1016f2e2c59e",
+      "sha256_after": "a2cb2f041ec069356882c24768500be4b21396d6f03275ba9efcb35a157b621a"
+    }
+  ],
+  "edits": [
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$d(Ax,Ay)\\leq\\lambda d(x,y)$",
+      "after": "\n\\[\n d(Ax,Ay)\\leq\\lambda d(x,y)\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$Ax_*=\\lim Ax_n=\\lim x_{n+1}=x_*$。",
+      "after": "\n\\[\n Ax_*=\\lim Ax_n=\\lim x_{n+1}=x_*.\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$d(x_*,y_*)\\leq\\lambda d(x_*,y_*)$。",
+      "after": "\n\\[\n d(x_*,y_*)\\leq\\lambda d(x_*,y_*).\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$\\|Au-Aw\\|_\\infty\\leq Lh\\|u-w\\|_\\infty$。",
+      "after": "\n\\[\n \\|Au-Aw\\|_\\infty\\leq Lh\\|u-w\\|_\\infty.\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$\\|u-x\\|_\\infty\\leq\\|u-Au\\|_\\infty/(1-Lh)$。",
+      "after": "\n\\[\n \\|u-x\\|_\\infty\\leq\\|u-Au\\|_\\infty/(1-Lh).\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$|R(x)-R(z)|\\leq\\theta|x-z|$，",
+      "after": "\n\\[\n |R(x)-R(z)|\\leq\\theta|x-z|,\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$v=F(x+u)-F(x)=DF(x)u+o(|u|)$。",
+      "after": "\n\\[\n v=F(x+u)-F(x)=DF(x)u+o(|u|).\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$DG(y)=DF(G(y))^{-1}$。",
+      "after": "\n\\[\n DG(y)=DF(G(y))^{-1}.\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$\\dot\\xi=A(t)\\xi+R(t,\\xi)$，",
+      "after": "\n\\[\n \\dot\\xi=A(t)\\xi+R(t,\\xi),\n\\]\n"
+    },
+    {
+      "file": "arnold-contraction.tex",
+      "before": "$\\eta(t)=\\eta_0+o(|\\eta_0|)$。",
+      "after": "\n\\[\n \\eta(t)=\\eta_0+o(|\\eta_0|).\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$u_{j+1}=Bu_j=B^{j+1}u_0$，",
+      "after": "\n\\[\n u_{j+1}=Bu_j=B^{j+1}u_0,\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$\\binom jr=j(j-1)\\cdots(j-r+1)/r!$",
+      "after": "\n\\[\n \\binom jr=j(j-1)\\cdots(j-r+1)/r!\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$a_j=(\\lambda_+^j-\\lambda_-^j)/\\sqrt5$。",
+      "after": "\n\\[\n a_j=(\\lambda_+^j-\\lambda_-^j)/\\sqrt5.\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$Ef=(f(t_1),\\ldots,f(t_n))$",
+      "after": "\n\\[\n Ef=(f(t_1),\\ldots,f(t_n))\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$V=\\bigoplus_\\lambda E_\\lambda^{m_\\lambda}$。",
+      "after": "\n\\[\n V=\\bigoplus_\\lambda E_\\lambda^{m_\\lambda}.\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$y=e^{\\lambda t}t^\\nu q(t)$，",
+      "after": "\n\\[\n y=e^{\\lambda t}t^\\nu q(t),\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$y=e^{\\lambda t}\\sum_{j=0}^{k+\\nu-1}c_jt^j$。",
+      "after": "\n\\[\n y=e^{\\lambda t}\\sum_{j=0}^{k+\\nu-1}c_jt^j.\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$P(D)y_0=Q(N)N^\\nu y_0=0$。",
+      "after": "\n\\[\n P(D)y_0=Q(N)N^\\nu y_0=0.\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$S^TAS=\\operatorname{diag}(a_1,\\ldots,a_n)$，",
+      "after": "\n\\[\n S^TAS=\\operatorname{diag}(a_1,\\ldots,a_n),\n\\]\n"
+    },
+    {
+      "file": "arnold-linear-algebra.tex",
+      "before": "$E=\\frac12\\sum_j(\\dot q_j^2+a_jq_j^2)$",
+      "after": "\n\\[\n E=\\frac12\\sum_j(\\dot q_j^2+a_jq_j^2)\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$V(t)=\\displaystyle\\int_DJ(t,x)\\,dx$，",
+      "after": "\n\\[\n V(t)=\\displaystyle\\int_DJ(t,x)\\,dx,\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$c_1(x-a)\\leq E-U(x)\\leq c_2(x-a)$；",
+      "after": "\n\\[\n c_1(x-a)\\leq E-U(x)\\leq c_2(x-a);\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$\\dot x^2=2(\\cos x-\\cos A)$。",
+      "after": "\n\\[\n \\dot x^2=2(\\cos x-\\cos A).\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$0=-aT+b\\displaystyle\\int_0^Ty(t)\\,\\dd t$，",
+      "after": "\n\\[\n 0=-aT+b\\displaystyle\\int_0^Ty(t)\\,\\dd t,\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$0=cT-d\\displaystyle\\int_0^Tx(t)\\,\\dd t$。",
+      "after": "\n\\[\n 0=cT-d\\displaystyle\\int_0^Tx(t)\\,\\dd t.\n\\]\n"
+    },
+    {
+      "file": "arnold-energy.tex",
+      "before": "$\\displaystyle\\int_0^tu(s)\\,\\dd s=(\\sqrt{1+2u_0^2t}-1)/u_0$，",
+      "after": "\n\\[\n \\displaystyle\\int_0^tu(s)\\,\\dd s=(\\sqrt{1+2u_0^2t}-1)/u_0,\n\\]\n"
+    },
+    {
+      "file": "chapter7.tex",
+      "before": "$\\ddot x_\\lambda(t)=\\lambda c^{-2}F(x(t/c))\n=\\lambda^mF(x(t/c))=F(x_\\lambda(t))$。",
+      "after": "\n\\[\n \\ddot x_\\lambda(t)=\\lambda c^{-2}F(x(t/c))\n=\\lambda^mF(x(t/c))=F(x_\\lambda(t)).\n\\]\n"
+    },
+    {
+      "file": "chapter7.tex",
+      "before": "$L_v(c_1f+c_2g)=c_1L_vf+c_2L_vg$；",
+      "after": "\n\\[\n L_v(c_1f+c_2g)=c_1L_vf+c_2L_vg;\n\\]\n"
+    },
+    {
+      "file": "chapter7.tex",
+      "before": "$L_v(fg)=fL_vg+gL_vf$。",
+      "after": "\n\\[\n L_v(fg)=fL_vg+gL_vf.\n\\]\n"
+    },
+    {
+      "file": "chapter8.tex",
+      "before": "$c(t)=\\displaystyle\\int_0^1\\partial_s f_Q(t,\\alpha(t)+\\tau w(t))\\,d\\tau$",
+      "after": "\n\\[\n c(t)=\\displaystyle\\int_0^1\\partial_s f_Q(t,\\alpha(t)+\\tau w(t))\\,d\\tau\n\\]\n"
+    },
+    {
+      "file": "chapter8.tex",
+      "before": "$x=e^{-\\frac12\\displaystyle\\int p}u$，",
+      "after": "\n\\[\n x=e^{-\\frac12\\displaystyle\\int p}u,\n\\]\n"
+    },
+    {
+      "file": "chapter8.tex",
+      "before": "$x'w-xw'=\\displaystyle\\int_0^t x(s,\\lambda)^2ds$。",
+      "after": "\n\\[\n x'w-xw'=\\displaystyle\\int_0^t x(s,\\lambda)^2ds.\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$P_{nT+s,0}=P_{nT+s,nT}M^n=P_{s,0}M^n$。",
+      "after": "\n\\[\n P_{nT+s,0}=P_{nT+s,nT}M^n=P_{s,0}M^n.\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\mu=\\exp\\displaystyle\\int_0^Ta(t)\\,\\dd t>0$。",
+      "after": "\n\\[\n \\mu=\\exp\\displaystyle\\int_0^Ta(t)\\,\\dd t>0.\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$p(\\lambda)=\\lambda^2-(\\operatorname{tr}M)\\lambda+1$。",
+      "after": "\n\\[\n p(\\lambda)=\\lambda^2-(\\operatorname{tr}M)\\lambda+1.\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$|M^nv|\\geq n|Nv|-|v|\\to\\infty$，",
+      "after": "\n\\[\n |M^nv|\\geq n|Nv|-|v|\\to\\infty,\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\|X(t)-\\widetilde X(t)\\|\\leq\\eta t e^{Bt}$。",
+      "after": "\n\\[\n \\|X(t)-\\widetilde X(t)\\|\\leq\\eta t e^{Bt}.\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\|M-\\widetilde M\\|\\leq\\eta T e^{BT}$，",
+      "after": "\n\\[\n \\|M-\\widetilde M\\|\\leq\\eta T e^{BT},\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$|\\operatorname{tr}\\widetilde M-\\operatorname{tr}M|<\\gamma/2$，",
+      "after": "\n\\[\n |\\operatorname{tr}\\widetilde M-\\operatorname{tr}M|<\\gamma/2,\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$M=R_{\\omega_2}(\\tau_2)R_{\\omega_1}(\\tau_1)$，",
+      "after": "\n\\[\n M=R_{\\omega_2}(\\tau_2)R_{\\omega_1}(\\tau_1),\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\eta=\\pm\\varepsilon/[\\pi(k+1/2)]+o(\\varepsilon)$。",
+      "after": "\n\\[\n \\eta=\\pm\\varepsilon/[\\pi(k+1/2)]+o(\\varepsilon).\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\omega_1/\\omega_2+\\omega_2/\\omega_1\n=2+4\\varepsilon^2/\\omega^2+O(\\varepsilon^4)$，",
+      "after": "\n\\[\n \\omega_1/\\omega_2+\\omega_2/\\omega_1\n=2+4\\varepsilon^2/\\omega^2+O(\\varepsilon^4),\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$2\\cos a\\cos b-2\\sin a\\sin b=2\\cos(a+b)$。",
+      "after": "\n\\[\n 2\\cos a\\cos b-2\\sin a\\sin b=2\\cos(a+b).\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$2\\cosh\\sqrt s\\cos\\sqrt s=2-s^2/3+O(s^4)$。",
+      "after": "\n\\[\n 2\\cosh\\sqrt s\\cos\\sqrt s=2-s^2/3+O(s^4).\n\\]\n"
+    },
+    {
+      "file": "chapter9.tex",
+      "before": "$\\cos((1-A^2/16)t)=\\cos t+(A^2/16)t\\sin t+O(A^4)$",
+      "after": "\n\\[\n \\cos((1-A^2/16)t)=\\cos t+(A^2/16)t\\sin t+O(A^4)\n\\]\n"
+    },
+    {
+      "file": "chapter10.tex",
+      "before": "$B=HAH^{-1}$，",
+      "after": "\n\\[\n B=HAH^{-1},\n\\]\n"
+    },
+    {
+      "file": "chapter10.tex",
+      "before": "$He^{tA}=e^{tB}H$，",
+      "after": "\n\\[\n He^{tA}=e^{tB}H,\n\\]\n"
+    },
+    {
+      "file": "chapter10.tex",
+      "before": "$e^{Ct}Q(x)\\leq Q(e^{tA}x)\\leq e^{ct}Q(x)$。",
+      "after": "\n\\[\n e^{Ct}Q(x)\\leq Q(e^{tA}x)\\leq e^{ct}Q(x).\n\\]\n"
+    },
+    {
+      "file": "chapter10.tex",
+      "before": "$Q(e^{-tA}x)=1$，",
+      "after": "\n\\[\n Q(e^{-tA}x)=1,\n\\]\n"
+    },
+    {
+      "file": "chapter10.tex",
+      "before": "$t\\leq C^{-1}\\log Q(x)\\to-\\infty$。",
+      "after": "\n\\[\n t\\leq C^{-1}\\log Q(x)\\to-\\infty.\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$L_a u=\\sum_i a_i(x)\\partial_i u=0$。",
+      "after": "\n\\[\n L_a u=\\sum_i a_i(x)\\partial_i u=0.\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$F(s,z)=\\varphi^s(\\sigma(z))$。",
+      "after": "\n\\[\n F(s,z)=\\varphi^s(\\sigma(z)).\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$u(F(s,z))=g(\\sigma(z))$。",
+      "after": "\n\\[\n u(F(s,z))=g(\\sigma(z)).\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$\\frac{\\dd}{\\dd s}u(F(s,z))=b(F(s,z))$。",
+      "after": "\n\\[\n \\frac{\\dd}{\\dd s}u(F(s,z))=b(F(s,z)).\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$u_x=g'(\\xi)/(1+tg'(\\xi))$。",
+      "after": "\n\\[\n u_x=g'(\\xi)/(1+tg'(\\xi)).\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$u_t+uu_x=-x\\sec^2t+x\\tan^2t=-x$。",
+      "after": "\n\\[\n u_t+uu_x=-x\\sec^2t+x\\tan^2t=-x.\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$dF(X_F)=F_tF_p+F_xpF_p-F_p(F_t+pF_x)=0$。",
+      "after": "\n\\[\n dF(X_F)=F_tF_p+F_xpF_p-F_p(F_t+pF_x)=0.\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$d\\alpha=\\sum_{i,j}(\\partial_i a_j)\\,dz_i\\wedge dz_j$，",
+      "after": "\n\\[\n d\\alpha=\\sum_{i,j}(\\partial_i a_j)\\,dz_i\\wedge dz_j,\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$\\mathcal L_X\\alpha=d(\\alpha(X))+\\iota_Xd\\alpha$。",
+      "after": "\n\\[\n \\mathcal L_X\\alpha=d(\\alpha(X))+\\iota_Xd\\alpha.\n\\]\n"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "$\\nabla(r^2)=2(x-q(z(x)))$。",
+      "after": "\n\\[\n \\nabla(r^2)=2(x-q(z(x))).\n\\]\n"
+    },
+    {
+      "file": "chapter12.tex",
+      "before": "$T_xf:T_xM\\to T_{f(x)}N$，",
+      "after": "\n\\[\n T_xf:T_xM\\to T_{f(x)}N,\n\\]\n"
+    },
+    {
+      "file": "chapter12.tex",
+      "before": "$TM=\\coprod_{x\\in M}T_xM$",
+      "after": "\n\\[\n TM=\\coprod_{x\\in M}T_xM\n\\]\n"
+    },
+    {
+      "file": "chapter12.tex",
+      "before": "$T_xf[\\gamma]=[f\\gamma]$，",
+      "after": "\n\\[\n T_xf[\\gamma]=[f\\gamma],\n\\]\n"
+    },
+    {
+      "file": "chapter13.tex",
+      "before": "$\\operatorname{ind}_v\\gamma=(\\theta(1)-\\theta(0))/(2\\pi)$。",
+      "after": "\n\\[\n \\operatorname{ind}_v\\gamma=(\\theta(1)-\\theta(0))/(2\\pi).\n\\]\n"
+    },
+    {
+      "file": "chapter13.tex",
+      "before": "$\\omega=(P\\,dQ-Q\\,dP)/(P^2+Q^2)$。",
+      "after": "\n\\[\n \\omega=(P\\,dQ-Q\\,dP)/(P^2+Q^2).\n\\]\n"
+    },
+    {
+      "file": "chapter13.tex",
+      "before": "$\\operatorname{ind}_v(x_0)=\\operatorname{sgn}\\det A$。",
+      "after": "\n\\[\n \\operatorname{ind}_v(x_0)=\\operatorname{sgn}\\det A.\n\\]\n"
+    },
+    {
+      "file": "chapter13.tex",
+      "before": "$\\displaystyle\\int_MF_1^*\\eta-\\displaystyle\\int_MF_0^*\\eta=\\displaystyle\\int_{[0,1]\\times M}dF^*\\eta=0$。",
+      "after": "\n\\[\n \\displaystyle\\int_MF_1^*\\eta-\\displaystyle\\int_MF_0^*\\eta=\\displaystyle\\int_{[0,1]\\times M}dF^*\\eta=0.\n\\]\n"
+    },
+    {
+      "file": "chapter13.tex",
+      "before": "$m_0-m_1+m_2=\\chi(M)$。",
+      "after": "\n\\[\n m_0-m_1+m_2=\\chi(M).\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\frac{\\dd}{\\dd t}(r\\times\\dot r)=\\dot r\\times\\dot r+r\\times\\ddot r\n=r\\times a(|r|)r=0$。",
+      "after": "\n\\[\n \\frac{\\dd}{\\dd t}(r\\times\\dot r)=\\dot r\\times\\dot r+r\\times\\ddot r\n=r\\times a(|r|)r=0.\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$L-y'L_{y'}=n(y)/\\sqrt{1+y'^2}$",
+      "after": "\n\\[\n L-y'L_{y'}=n(y)/\\sqrt{1+y'^2}\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$L=(\\dot s^2+r(s)^2\\dot\\phi^2)/2$",
+      "after": "\n\\[\n L=(\\dot s^2+r(s)^2\\dot\\phi^2)/2\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$g'(x)/[g(x)^2+Cg(x)^3]=1/v(x)$，",
+      "after": "\n\\[\n g'(x)/[g(x)^2+Cg(x)^3]=1/v(x),\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\rho=C_\\varepsilon e^{-U/\\varepsilon}$。",
+      "after": "\n\\[\n \\rho=C_\\varepsilon e^{-U/\\varepsilon}.\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\varepsilon\\rho'+U'\\rho=\\varepsilon C_\\varepsilon(e^{c/\\varepsilon}-1)$，",
+      "after": "\n\\[\n \\varepsilon\\rho'+U'\\rho=\\varepsilon C_\\varepsilon(e^{c/\\varepsilon}-1),\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\mathcal E(t)=\\displaystyle\\int_0^L\\rho(w-1)^2\\,dx$。",
+      "after": "\n\\[\n \\mathcal E(t)=\\displaystyle\\int_0^L\\rho(w-1)^2\\,dx.\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\mathcal E\\leq(L/m)\\displaystyle\\int\\rho w_x^2$。",
+      "after": "\n\\[\n \\mathcal E\\leq(L/m)\\displaystyle\\int\\rho w_x^2.\n\\]\n"
+    },
+    {
+      "file": "chapter14.tex",
+      "before": "$\\displaystyle\\int_0^L|u-\\rho|\\,dx\\leq(\\displaystyle\\int\\rho)^{1/2}\\mathcal E^{1/2}=\\mathcal E^{1/2}$。",
+      "after": "\n\\[\n \\displaystyle\\int_0^L|u-\\rho|\\,dx\\leq(\\displaystyle\\int\\rho)^{1/2}\\mathcal E^{1/2}=\\mathcal E^{1/2}.\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$v_n=U^{-1}v_{n+1}-U^{-1}g(z_n)$",
+      "after": "\n\\[\n v_n=U^{-1}v_{n+1}-U^{-1}g(z_n)\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$(Gf)'=A(Gf)+f$。",
+      "after": "\n\\[\n (Gf)'=A(Gf)+f.\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$|Ax+R(x)|\\leq\\|A\\||x|+M$；",
+      "after": "\n\\[\n |Ax+R(x)|\\leq\\|A\\||x|+M;\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$y'=Ax+R(x)-[AG(R(x))+R(x)]=Ay$。",
+      "after": "\n\\[\n y'=Ax+R(x)-[AG(R(x))+R(x)]=Ay.\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$h(\\varphi^tx_0)=e^{tA}h(x_0)$。",
+      "after": "\n\\[\n h(\\varphi^tx_0)=e^{tA}h(x_0).\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$z_{j+1}=G(R(e^{\\cdot A}y_0+z_j))$。",
+      "after": "\n\\[\n z_{j+1}=G(R(e^{\\cdot A}y_0+z_j)).\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$\\Psi(x_1,\\ldots,x_n)=\\det(\\phi_i(x_j))_{i,j=1}^n$。",
+      "after": "\n\\[\n \\Psi(x_1,\\ldots,x_n)=\\det(\\phi_i(x_j))_{i,j=1}^n.\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "$\\Delta=\\{0<x_1<\\cdots<x_n<l\\}$。",
+      "after": "\n\\[\n \\Delta=\\{0<x_1<\\cdots<x_n<l\\}.\n\\]\n"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "F(u,v)=(Su+f(u,v),Uv+g(u,v)),\\qquad\n f(0)=g(0)=0,\\quad Df(0)=Dg(0)=0.",
+      "after": "\\begin{aligned}\n F(u,v)&=(Su+f(u,v),Uv+g(u,v)),\\\\\n f(0)&=g(0)=0,\\qquad Df(0)=Dg(0)=0.\n\\end{aligned}"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "\\|z(\\xi)\\|_\\sigma\\leq\\frac{|\\xi|}{1-q},\\qquad\n \\|z(\\xi)-z(\\eta)\\|_\\sigma\\leq\\frac{|\\xi-\\eta|}{1-q}.",
+      "after": "\\begin{aligned}\n \\|z(\\xi)\\|_\\sigma&\\leq\\frac{|\\xi|}{1-q},\\\\\n \\|z(\\xi)-z(\\eta)\\|_\\sigma&\\leq\\frac{|\\xi-\\eta|}{1-q}.\n\\end{aligned}"
+    },
+    {
+      "file": "chapter15.tex",
+      "before": "(Gf)(t)=\\int_{-\\infty}^te^{A(t-s)}P_sf(s)\\,ds\n -\\int_t^\\infty e^{A(t-s)}P_uf(s)\\,ds.",
+      "after": "\\begin{aligned}\n (Gf)(t)={}&\\int_{-\\infty}^te^{A(t-s)}P_sf(s)\\,ds\\\\\n &-\\int_t^\\infty e^{A(t-s)}P_uf(s)\\,ds.\n\\end{aligned}"
+    },
+    {
+      "file": "chapter11.tex",
+      "before": "\\dot x_i=F_{p_i},\\qquad\n \\dot p_i=-F_{x_i}-p_iF_u,\\qquad\n \\dot u=\\sum_i p_iF_{p_i}.",
+      "after": "\\begin{aligned}\n \\dot x_i&=F_{p_i},\\\\\n \\dot p_i&=-F_{x_i}-p_iF_u,\\\\\n \\dot u&=\\sum_i p_iF_{p_i}.\n\\end{aligned}"
+    }
+  ]
+}

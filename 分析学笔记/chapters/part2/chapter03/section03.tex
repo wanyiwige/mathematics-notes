@@ -1,0 +1,704 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第3章：重积分
+% 节：3.3 重积分的变量代换
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{重积分的变量代换}
+\subsection*{二重积分的变量代换}
+
+\begin{definition}
+	设 $U\subset\R^2$ 为开集，考虑映射
+\[
+T:U\longrightarrow V=T(U),\qquad
+(u,v)\longmapsto\bigl(x(u,v),y(u,v)\bigr).
+\]
+要求 $T$ 为一一映射，并满足：
+\begin{enumerate}
+\item $x(u,v)$、$y(u,v)$ 在 $U$ 上连续可导；
+\item Jacobian 行列式
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\begin{vmatrix}
+\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[5pt]
+\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}
+\end{vmatrix}
+\ne0.
+\]
+\end{enumerate}
+这样的 $T$ 是 $U$ 到 $V$ 的一个微分同胚，称$T$为平面上的一个坐标变换。
+\end{definition}
+
+在 $U$ 中取直线 $u=u_0$，它在 $xy$ 平面中对应一条曲线
+\[
+x=x(u_0,v),\qquad y=y(u_0,v),
+\]
+称为 $v$-曲线。
+同样，直线 $v=v_0$ 对应曲线
+\[
+x=x(u,v_0),\qquad y=y(u,v_0),
+\]
+称为 $u$-曲线。
+
+由于 $T$ 为一一映射，$V$ 中的每一点既可唯一地用 $(x,y)$ 表示，
+也可唯一地用 $(u,v)$ 表示。
+称这些 $u$-曲线和 $v$-曲线构成曲线坐标网，
+称 $(u,v)$ 为该点的曲线坐标。
+
+\begin{center}
+\input{figure/P2/sec3_coordinates_tikz.tex}
+\end{center}
+
+\begin{theorem}[二重积分的变量代换]\label{p2-double-change-of-variables}
+设 $U$ 是 $uv$ 平面上的开集，
+\[
+T:U\longrightarrow T(U),\qquad
+(u,v)\longmapsto\bigl(x(u,v),y(u,v)\bigr)
+\]
+为一一映射。
+设 $x(u,v)$、$y(u,v)$ 在 $U$ 上连续可导，且
+$\partial(x,y)/\partial(u,v)\ne0$。
+若 $D\subset U$ 为有界零边界闭区域，$f$ 在 $T(D)$ 上连续，则
+\[
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\iint_D f\bigl(x(u,v),y(u,v)\bigr)
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+\,\dd u\,\dd v.
+\]
+\end{theorem}
+% 变量代换定理的补充证明见本节末。
+
+\subsection*{变量代换的例子}
+
+在下面的例子中，原来的 $xy$ 平面区域记为 $D$，
+对应的参数平面区域记为 $D'$，即 $T(D')=D$。
+
+\begin{example}[线性代换计算面积]
+设 $a>0$，求曲线 $(x-y)^2+x^2=a^2$ 所围区域的面积。
+\end{example}
+\begin{solution}
+原区域为
+\[
+D=\{(x,y):(x-y)^2+x^2\le a^2\},
+\qquad
+S_D=\iint_D\dd x\,\dd y.
+\]
+令
+\[
+u=x,\qquad v=x-y.
+\]
+则逆变换为
+\[
+x=u,\qquad y=u-v,
+\]
+并且
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\begin{vmatrix}1&0\\1&-1\end{vmatrix}=-1.
+\]
+由于
+\[
+(x-y)^2+x^2=u^2+v^2,
+\]
+原区域对应圆盘
+\[
+D'=\{(u,v):u^2+v^2\le a^2\}.
+\]
+因此
+\[
+S_D=\iint_{D'}1\,\dd u\,\dd v=\pi a^2.
+\]
+\end{solution}
+
+\begin{example}[双曲线与射线围成区域的面积]
+设 $0<a<b$、$0<p<q$，求第一象限内由
+\[
+xy=p,\qquad xy=q,\qquad y=ax,\qquad y=bx
+\]
+围成的区域 $D$ 的面积。
+\end{example}
+\begin{solution}
+
+\begin{center}
+\input{figure/P2/sec3_hyperbolas_tikz.tex}
+\end{center}
+
+令
+\[
+u=xy,\qquad v=\frac yx.
+\]
+由于 $x,y>0$，可解得
+\[
+x=\sqrt{\frac uv},\qquad y=\sqrt{uv}.
+\]
+原区域变为矩形
+\[
+D'=\{(u,v):p\le u\le q,\ a\le v\le b\}.
+\]
+计算 Jacobian 行列式：
+\[
+\begin{aligned}
+\frac{\partial(x,y)}{\partial(u,v)}
+&=\begin{vmatrix}
+\dfrac1{2\sqrt{uv}}&-\dfrac12\sqrt{\dfrac u{v^3}}\\[7pt]
+\dfrac12\sqrt{\dfrac vu}&\dfrac12\sqrt{\dfrac uv}
+\end{vmatrix}\\
+&=\frac1{4v}+\frac1{4v}
+=\frac1{2v}.
+\end{aligned}
+\]
+因此
+\[
+\begin{aligned}
+S_D
+&=\iint_D\dd x\,\dd y\\
+&=\iint_{D'}\frac1{2v}\,\dd u\,\dd v\\
+&=\frac12\int_p^q\dd u\int_a^b\frac1v\,\dd v\\
+&=\frac12\int_p^q\ln\frac ba\,\dd u\\
+&=\frac{q-p}{2}\ln\frac ba.
+\end{aligned}
+\]
+
+\end{solution}
+
+\subsection*{极坐标变换}
+
+对于含有 $x^2+y^2$ 的表达式，可以考虑极坐标变换
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+其 Jacobian 行列式为
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=\begin{vmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{vmatrix}
+=r.
+\]
+例如，圆域 $x^2+y^2<a^2$ 在参数平面中对应
+$0<r<a$、$0<\theta<2\pi$，另需处理原点和角度接缝。
+\textbf{半径约定：}本段用 $a$ 表示圆域半径，
+所以写成 $x^2+y^2<a^2$，与径向上限 $r<a$ 相对应。
+
+注意，当 $r=0$ 时，极坐标变换不是一一对应的。
+在应用变量代换公式时，还需避开角度接缝，即在 $xy$ 平面中去掉非负实轴。
+可以先在避开这些点的区域上应用公式，再取极限。
+
+\begin{example}[圆域上的极坐标积分]
+计算
+\[
+I=\iint_D\sin\!\left(\pi\sqrt{x^2+y^2}\right)\,\dd x\,\dd y,
+\qquad
+D=\{(x,y):x^2+y^2\le1\}.
+\]
+\end{example}
+\begin{solution}
+引入极坐标 $x=r\cos\theta$、$y=r\sin\theta$。
+形式上，$D$ 对应参数区域
+\[
+D_1=\{(r,\theta):0\le r\le1,\ 0\le\theta\le2\pi\}.
+\]
+于是
+\[
+\begin{aligned}
+&=\iint_{D_1}(\sin\pi r)\,r\,\dd r\,\dd\theta\\
+&=\int_0^{2\pi}\dd\theta\int_0^1r\sin\pi r\,\dd r\\
+&=2\pi\left[-\frac r\pi\cos\pi r
++\frac{\sin\pi r}{\pi^2}\right]_0^1\\
+&=2.
+\end{aligned}
+\]
+
+严格地说，需先避开原点和非负实轴。
+对充分小的 $\varepsilon>0$，取参数矩形
+\[
+D_{1,\varepsilon}
+=\{(r,\theta):\varepsilon\le r\le1,\
+\varepsilon\le\theta\le2\pi-\varepsilon\},
+\]
+并记其在 $xy$ 平面中的像为 $D_\varepsilon$。
+在这个参数矩形上，极坐标变换是一一的，且 Jacobian 行列式不为零。
+
+\begin{center}
+\input{figure/P2/sec3_polar_cut_tikz.tex}
+\end{center}
+
+因此，按原图避开接缝后取极限的步骤，
+\[
+\begin{aligned}
+I
+&=\lim_{\varepsilon\to0^+}
+\iint_{D_\varepsilon}
+\sin\!\left(\pi\sqrt{x^2+y^2}\right)\,\dd x\,\dd y\\
+&=\lim_{\varepsilon\to0^+}
+\int_\varepsilon^{2\pi-\varepsilon}\dd\theta
+\int_\varepsilon^1r\sin\pi r\,\dd r\\
+&=\lim_{\varepsilon\to0^+}
+(2\pi-2\varepsilon)
+\left[-\frac r\pi\cos\pi r
++\frac{\sin\pi r}{\pi^2}\right]_\varepsilon^1\\
+&=2.
+\end{aligned}
+\]
+
+\textbf{补充说明：}记本例的被积函数为
+$f(x,y)=\sin(\pi\sqrt{x^2+y^2})$。
+上面取极限的依据是，$|f(x,y)|\le1$，
+而删去的部分包含于半径为 $\varepsilon$ 的圆盘
+以及总角度为 $2\varepsilon$ 的单位圆扇形之并。
+所以
+\[
+\left|\iint_D f\,\dd x\,\dd y
+-\iint_{D_\varepsilon}f\,\dd x\,\dd y\right|
+\le m(D\setminus D_\varepsilon)
+\le\pi\varepsilon^2+\varepsilon\longrightarrow0.
+\]
+\end{solution}
+
+\subsubsection*{广义极坐标变换}
+
+对于椭圆
+\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}\le1,
+\qquad a>0,\ b>0,
+\]
+可取
+\[
+x=ar\cos\theta,\qquad y=br\sin\theta.
+\]
+相应的参数范围为 $0\le r\le1$、$0\le\theta\le2\pi$，
+且
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=\begin{vmatrix}
+a\cos\theta&-ar\sin\theta\\
+b\sin\theta&br\cos\theta
+\end{vmatrix}
+=abr.
+\]
+
+\subsubsection*{平移后的极坐标变换}
+
+例如，对于圆域
+\[
+(x-x_0)^2+(y-y_0)^2\le a^2,
+\]
+可先平移坐标，再作极坐标变换：
+\[
+x=x_0+r\cos\theta,\qquad
+y=y_0+r\sin\theta.
+\]
+参数区域为 $0\le r\le a$、$0\le\theta\le2\pi$，
+原点和角度接缝按前述方法处理。
+
+\begin{center}
+\input{figure/P2/sec3_translation_tikz.tex}
+\end{center}
+
+\subsection*{变量代换定理的证明}
+
+
+
+\subsubsection*{内外矩形逼近与零面积集的像}
+
+取一个包含 $D$ 的闭矩形 $S$。
+把它的两边不断二等分，得到一列逐次加细的矩形网格，网格的模长趋于零。
+记完全包含于 $D$ 的小矩形之并为 $A_n$，
+与 $D$ 相交的小矩形之并为 $B_n$，则
+\[
+A_n\subset A_{n+1}\subset D\subset B_{n+1}\subset B_n.
+\]
+由 $D$ 可求面积，
+\[
+mA_n\longrightarrow mD,\qquad mB_n\longrightarrow mD,
+\qquad mB_n-mA_n\longrightarrow0.
+\]
+特别地，把与 $D$ 相交但不完全包含于 $D$ 的网格小矩形记为 $R_j$，则
+\[
+\sum_jmR_j=mB_n-mA_n\longrightarrow0.
+\]
+这些闭矩形只在零面积的边界上重叠，因此这里的面积相加不会重复计算正面积部分。
+虽然 $S$ 不一定包含于 $U$，但 $D$ 是 $U$ 中的紧集，
+所以充分细的网格中所有与 $D$ 相交的小矩形都包含于 $U$。
+
+\subsubsection*{特殊变换下小矩形的面积}
+
+\begin{lemma}[保留一个坐标的变换]\label{p2-triangular-area}
+设 $T$ 是前述坐标变换，并且具有下列形式之一：
+\[
+T(u,v)=(u,y(u,v)),\qquad T(u,v)=(x(u,v),v).
+\]
+我们称这样的映射为\textbf{本原映射}.
+
+若闭矩形 $R=[e,f]\times[h,j]$ 包含于 $U$，其中 $e<f$、$h<j$，
+则存在 $(\widetilde u,\widetilde v)\in R$，使
+\[
+mT(R)=|J_T(\widetilde u,\widetilde v)|\,mR.
+\]
+\end{lemma}
+\begin{proof}
+先设 $T(u,v)=(u,y(u,v))$。此时 $J_T=y_v\ne0$。
+由于 $R$ 连通，$y_v$ 在 $R$ 上符号不变。
+先讨论 $y_v>0$ 的情形。
+
+固定 $u$，函数 $v\mapsto y(u,v)$ 严格递增，故
+\[
+T(R)=\{(x,y):e\le x\le f,\ y(x,h)\le y\le y(x,j)\}.
+\]
+
+\[
+mT(R)=\int_e^f\bigl(y(x,j)-y(x,h)\bigr)\,\dd x.
+\]
+
+\begin{center}
+\input{figure/P2/sec3_triangular_proof_tikz.tex}
+\end{center}
+
+先对上面的一元积分应用积分中值定理，再对 $v\mapsto y(\widetilde u,v)$
+应用微分中值定理，得到 $\widetilde u\in[e,f]$、$\widetilde v\in(h,j)$，使
+\begin{align*}
+mT(R)
+&=(f-e)\bigl(y(\widetilde u,j)-y(\widetilde u,h)\bigr)\\
+&=(f-e)(j-h)y_v(\widetilde u,\widetilde v)\\
+&=mR\,|J_T(\widetilde u,\widetilde v)|.
+\end{align*}
+若 $y_v<0$，交换上下两条边界曲线，便得到相同的绝对值公式。
+对于 $T(u,v)=(x(u,v),v)$，交换两个坐标的作用，按同样的步骤证明即可。
+\end{proof}
+
+\subsubsection*{由小矩形的面积公式推出积分公式}
+
+\begin{lemma}
+	变量代换公式对本原映射成立.
+\end{lemma}
+\begin{proof}
+	仍用第一步中的网格。记完全包含于 $D$ 的小矩形为
+$D_1,\ldots,D_{N_n}$，其余与 $D$ 相交的小矩形为 $R_1,\ldots,R_{M_n}$。
+令
+\[
+E_j=D\cap R_j.
+\]
+这些集合都是零边界紧集；它们及其像都可求面积。
+因为 $T$ 是一一映射，它们的像也只在零面积边界上重叠。
+
+对每个 $D_i$，按假设取 $(\widetilde u_i,\widetilde v_i)\in D_i$，使
+\[
+mT(D_i)=|J_T(\widetilde u_i,\widetilde v_i)|\,mD_i.
+\]
+再任取 $(a_j,b_j)\in E_j$。由 $T$ 在 $D$ 上一致连续，
+当网格的模长趋于零时，上述各像集的直径也一致趋于零。
+因此下面两个式子分别是 $f$ 在 $T(D)$ 上以及
+$f(x(u,v),y(u,v))|J_T(u,v)|$ 在 $D$ 上的 Riemann 和：
+\begin{align*}
+S_n
+&=\sum_{i=1}^{N_n}
+ f\bigl(T(\widetilde u_i,\widetilde v_i)\bigr)mT(D_i)
+ +\sum_{j=1}^{M_n}f\bigl(T(a_j,b_j)\bigr)mT(E_j),\\
+S'_n
+&=\sum_{i=1}^{N_n}
+ f\bigl(T(\widetilde u_i,\widetilde v_i)\bigr)
+ |J_T(\widetilde u_i,\widetilde v_i)|\,mD_i\\
+&\quad+\sum_{j=1}^{M_n}
+ f\bigl(T(a_j,b_j)\bigr)|J_T(a_j,b_j)|\,mE_j.
+\end{align*}
+这里 $T(u,v)$ 写在 $f$ 的自变量位置时，表示有序对
+$\bigl(x(u,v),y(u,v)\bigr)$。
+
+记这两个和式的第二部分分别为 $B_n$、$B'_n$。
+由小矩形的面积公式，它们的第一部分完全相同，因而
+\[
+S_n-S'_n=B_n-B'_n.
+\]
+取常数 $H,K>0$，使 $|f|\le H$、$|J_T|\le K$。
+有
+\begin{align*}
+|B_n|
+&\le H\sum_jmT(E_j)
+ \le HK\sum_jmR_j\longrightarrow0,\\
+|B'_n|
+&\le HK\sum_jmE_j
+ \le HK\sum_jmR_j\longrightarrow0.
+\end{align*}
+两个被积函数都连续，而相应积分区域均为零边界紧集，所以它们都可积。
+令网格模长趋于零，就得到
+\begin{equation}\label{p2-triangular-substitution}
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+=\iint_D f\bigl(x(u,v),y(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v.
+\end{equation}
+\end{proof}
+
+
+
+\subsubsection*{一般变换的局部分解}
+
+\begin{lemma}[局部分解]\label{p2-local-triangular-factorization}
+在定理 \ref{p2-double-change-of-variables} 的条件下，
+对每个 $(u_0,v_0)\in U$，适当交换自变量或像坐标的次序后，
+可以在 $(u_0,v_0)$ 的一个邻域内将 $T$ 分解为
+\[
+T=T_2\circ T_1,
+\]
+其中 $T_1$、$T_2$ 都是本原映射.
+\end{lemma}
+\begin{proof}
+因为 $J_T(u_0,v_0)\ne0$，四个一阶偏导数中至少有一个非零。
+适当交换坐标后，可设 $x_u(u_0,v_0)\ne0$。
+由连续性，缩小邻域后可使 $x_u$ 在其中处处非零。
+
+令
+\[
+T_1:\quad \xi=x(u,v),\qquad \eta=v.
+\]
+其 Jacobian 为 $x_u\ne0$。由反函数定理，进一步缩小邻域后，
+$T_1$ 有连续可导的逆映射，可写为
+\[
+u=g(\xi,\eta),\qquad v=\eta.
+\]
+再令
+\[
+T_2:\quad x=\xi,\qquad y=y\bigl(g(\xi,\eta),\eta\bigr).
+\]
+这就得到 $T_2\circ T_1=T$。
+
+对恒等式 $x(g(\xi,\eta),\eta)=\xi$ 求偏导，得到
+\[
+g_\xi=\frac1{x_u},\qquad g_\eta=-\frac{x_v}{x_u}.
+\]
+所以
+\begin{align*}
+\frac{\partial(x,y)}{\partial(\xi,\eta)}
+&=\frac{\partial}{\partial\eta}
+ y\bigl(g(\xi,\eta),\eta\bigr)\\
+&=y_ug_\eta+y_v
+ =\frac{x_uy_v-x_vy_u}{x_u}
+ =\frac{J_T}{x_u}\ne0.
+\end{align*}
+上式右边的偏导数均在 $(u,v)=(g(\xi,\eta),\eta)$ 处取值。
+$T_2=T\circ T_1^{-1}$ 也是一一映射，故两个映射都满足所需条件。
+坐标交换的 Jacobian 的绝对值为 $1$，不会改变最后公式中的绝对值因子。
+\end{proof}
+
+设 $D'$ 是上述分解邻域内的任意零边界紧集。
+先对 $T_2$ 使用已经证明的特殊情形，再对 $T_1$ 使用一次，得到
+\begin{align*}
+\iint_{T(D')}f(x,y)\,\dd x\,\dd y
+&=\iint_{T_1(D')}
+ f\bigl(T_2(\xi,\eta)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(\xi,\eta)}\right|
+ \,\dd\xi\,\dd\eta\\
+&=\iint_{D'} f\bigl(T(u,v)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(\xi,\eta)}
+       \frac{\partial(\xi,\eta)}{\partial(u,v)}\right|
+ \,\dd u\,\dd v\\
+&=\iint_{D'}f\bigl(T(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v.
+\end{align*}
+第二行中的第一个 Jacobian 要在 $(\xi,\eta)=T_1(u,v)$ 处取值；
+最后一步使用了复合映射的 Jacobian 乘法公式。
+这样就证明了变量代换公式的局部形式。
+
+\subsubsection*{有限覆盖与整体公式}
+
+\begin{proof}[定理 \ref{p2-double-change-of-variables} 的证明]
+对每个 $p\in D$，按局部分解引理取开邻域 $U_p\subset U$，
+使刚才的局部公式在 $U_p$ 内成立。
+再取 $r_p>0$，使开球 $O(p,2r_p)\subset U_p$。
+开球族 $\{O(p,r_p):p\in D\}$ 覆盖紧集 $D$。
+由 Heine--Borel 定理，可取有限子覆盖
+\[
+D\subset\bigcup_{k=1}^sO(p_k,r_{p_k}).
+\]
+令
+\[
+\delta=\min_{1\le k\le s}r_{p_k}>0.
+\]
+
+用直径小于 $\delta$ 的网格小矩形 $Q_j$ 分割 $D$，记 $D_j=D\cap Q_j$，
+忽略空集。
+任取 $q\in D_j$，存在 $k$ 使 $q\in O(p_k,r_{p_k})$。
+对任意 $q'\in D_j$，有
+\[
+|q'-p_k|\le|q'-q|+|q-p_k|<\delta+r_{p_k}\le2r_{p_k}.
+\]
+因此 $D_j\subset O(p_k,2r_{p_k})\subset U_{p_k}$，
+可以在每个 $D_j$ 上使用局部公式。
+
+各 $D_j$ 的公共部分都在网格分割线上，面积为零，
+其像的面积也为零。
+对有限个小块的局部公式求和，并利用积分的区域可加性，得到
+\begin{align*}
+\iint_{T(D)}f(x,y)\,\dd x\,\dd y
+&=\sum_j\iint_{T(D_j)}f(x,y)\,\dd x\,\dd y\\
+&=\sum_j\iint_{D_j}
+ f\bigl(x(u,v),y(u,v)\bigr)|J_T(u,v)|\,\dd u\,\dd v\\
+&=\iint_D f\bigl(x(u,v),y(u,v)\bigr)
+ \left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,\dd u\,\dd v.
+\end{align*}
+这就完成了定理的证明。
+\end{proof}
+
+\subsection*{高维情形与柱面、球面坐标}
+
+\begin{theorem}[重积分的变量代换]
+设 $U\subset\R^n$ 为开集，$T:U\to V=T(U)$ 为一一映射，
+\[
+T:\quad y_i=y_i(x_1,\ldots,x_n),\qquad i=1,\ldots,n.
+\]
+设各 $y_i$ 连续可导，且 Jacobian 行列式处处非零。
+其逆映射也连续可导，记为
+\[
+x_i=x_i(y_1,\ldots,y_n),\qquad i=1,\ldots,n.
+\]
+由逆映射的链式法则，
+\[
+\frac{\partial(x_1,\ldots,x_n)}{\partial(y_1,\ldots,y_n)}\bigl(T(x)\bigr)
+=\left(\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}(x)\right)^{-1}
+\ne0.
+\]
+若 $\Omega\subset U$ 为有界零边界闭区域，$F$ 在 $T(\Omega)$ 上连续，则有
+\[
+\begin{aligned}
+&\int\cdots\int_{T(\Omega)}F(y_1,\ldots,y_n)\,\dd y_1\cdots\dd y_n\\
+&\quad=\int\cdots\int_\Omega
+ F\bigl(y_1(x),\ldots,y_n(x)\bigr)
+ \left|\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|
+ \,\dd x_1\cdots\dd x_n,
+\end{aligned}
+\]
+其中 $x=(x_1,\ldots,x_n)$。
+\end{theorem}
+\begin{proof}
+先考虑只改变一个坐标的变换
+\[
+H(t_1,\ldots,t_n)
+=(t_1,\ldots,t_{k-1},h(t),t_{k+1},\ldots,t_n),
+\qquad h_{t_k}\ne0.
+\]
+对闭长方体 $Q$，固定其余 $n-1$ 个坐标，
+像集沿第 $k$ 个坐标的截面是由两个端点值确定的区间。
+由累次积分公式，它的体积是这些区间长度在其余坐标上的积分。
+先对这个连续的区间长度用积分中值定理，
+再对第 $k$ 个坐标用一元微分中值定理，便得到
+\[
+mH(Q)=|h_{t_k}(\widetilde t)|\,mQ
+=|\det DH(\widetilde t)|\,mQ
+\]
+对某个 $\widetilde t\in Q$ 成立。
+
+将二维证明中的小正方形换成小正方体，
+零体积集的像仍为零体积集：若 $H$ 在紧集附近满足 Lipschitz 估计，
+边长为 $a$ 的小正方体的像可用体积不超过
+$(2\sqrt nL)^na^n$ 的正方体覆盖。
+因此原来的边界估计及 Riemann 和证明逐项适用，
+从而得到这种单坐标变换的积分公式。
+
+下面说明一般变换可以局部分解成这些变换。
+固定一点，由 Jacobian 矩阵可逆，作适当的像坐标置换后，
+可以使各阶顺序主子式在该点都非零。
+这是带行选主元的消元法的直接结果。
+由连续性，缩小邻域后，这些主子式在邻域内都非零。
+定义
+\[
+S_0(x)=x,\qquad
+S_k(x)=\bigl(y_1(x),\ldots,y_k(x),x_{k+1},\ldots,x_n\bigr),
+\quad 1\le k\le n.
+\]
+$S_k$ 的 Jacobian 恰为相应的 $k$ 阶顺序主子式。
+由反函数定理，可以取同一个充分小的邻域，使所有 $S_k$ 都有连续可导的逆。
+令
+\[
+H_k=S_k\circ S_{k-1}^{-1}.
+\]
+$H_k$ 只改变第 $k$ 个坐标，而且 Jacobian 非零。
+又有
+\[
+T=H_n\circ\cdots\circ H_1.
+\]
+依次使用单坐标变换公式，Jacobian 的绝对值因子相乘，
+由链式法则正好得到 $|\det DT|$。
+这证明了局部公式。
+
+最后用紧集 $\Omega$ 的有限开覆盖，取足够细的正方体网格，
+使每个小块都包含于一个分解邻域。
+各小块的公共边界及其像均为零体积集，
+对各局部公式求和，便得到整体公式。
+\end{proof}
+
+\subsubsection*{柱面与球面坐标变换}
+
+在三维空间中，柱面坐标变换为
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,\qquad z=z,
+\]
+其中 $0\le r<+\infty$、$0\le\theta\le2\pi$、$-\infty<z<+\infty$。
+计算得
+\[
+\frac{\partial(x,y,z)}{\partial(r,\theta,z)}
+=\begin{vmatrix}
+\cos\theta&-r\sin\theta&0\\
+\sin\theta&r\cos\theta&0\\
+0&0&1
+\end{vmatrix}=r.
+\]
+因此相应的体积元素为 $r\,\dd r\,\dd\theta\,\dd z$。
+
+\begin{center}
+\input{figure/P2/sec3_cylindrical_spherical_tikz.tex}
+\end{center}
+
+
+
+球面坐标变换为
+\[
+x=r\sin\varphi\cos\theta,\qquad
+y=r\sin\varphi\sin\theta,\qquad z=r\cos\varphi,
+\]
+其中 $0\le r<+\infty$、$0\le\varphi\le\pi$、$0\le\theta\le2\pi$。
+注意 Jacobian 的分母按 $(r,\varphi,\theta)$ 排列：
+\[
+\begin{aligned}
+\frac{\partial(x,y,z)}{\partial(r,\varphi,\theta)}
+&=\begin{vmatrix}
+\sin\varphi\cos\theta&r\cos\varphi\cos\theta&-r\sin\varphi\sin\theta\\
+\sin\varphi\sin\theta&r\cos\varphi\sin\theta&r\sin\varphi\cos\theta\\
+\cos\varphi&-r\sin\varphi&0
+\end{vmatrix}\\
+&=r^2\sin\varphi.
+\end{aligned}
+\]
+所以体积元素为 $r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta$。
+若将分母次序写成 $(r,\theta,\varphi)$，行列式变号，但其绝对值不变。
+
+与平面的极坐标一样，上面的完整参数范围包含坐标退化点或角度接缝。
+严格应用定理时，应先限制在 $r>0$、$0<\theta<2\pi$，
+球面坐标还需 $0<\varphi<\pi$ 的开参数域内。
+对有界区域，可以先避开接缝及退化点应用公式，再用零体积集的邻域估计取极限。
+
+\subsubsection*{$n$ 维球面坐标变换}
+
+在 $\R^n$（$n\ge3$）中，球面坐标可写为
+\[
+\begin{aligned}
+x_1&=r\cos\varphi_1,\\
+x_k&=r\sin\varphi_1\cdots\sin\varphi_{k-1}\cos\varphi_k,
+\qquad 2\le k\le n-1,\\
+x_n&=r\sin\varphi_1\cdots\sin\varphi_{n-2}\sin\varphi_{n-1},
+\end{aligned}
+\]
+其中
+\[
+0\le r<+\infty,\qquad
+0\le\varphi_1,\ldots,\varphi_{n-2}\le\pi,\qquad
+0\le\varphi_{n-1}\le2\pi.
+\]
+逐次使用 $\cos^2\alpha+\sin^2\alpha=1$，得到
+\[
+x_1^2+\cdots+x_n^2=r^2.
+\]
+相应 Jacobian 的绝对值为
+\[
+\left|\frac{\partial(x_1,\ldots,x_n)}
+{\partial(r,\varphi_1,\ldots,\varphi_{n-1})}\right|
+=r^{n-1}\sin^{n-2}\varphi_1\sin^{n-3}\varphi_2\cdots\sin\varphi_{n-2}.
+\]
+
+% !TEX root = ../../main.tex
+% 来源：Page1.png 左栏、右栏，再接 Page2.png 左栏；右栏为空。

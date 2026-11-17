@@ -1,0 +1,281 @@
+% preamble/cover.tex
+% ============================================
+%  封面设计 —— 墨绿 + 暗金配色
+%  张芷芬等《微分方程定性理论》LaTeX 重排本 专用封面
+%  几何风格：强调相图、奇点、极限环、向量场
+%
+%  接口（在 main.tex 中使用）：
+%    \booktitle{标题}        —— 封面标题
+%    \bookauthor{作者}       —— 作者
+%    \bookdate{日期}         —— 日期
+%    \seriestitle{系列名}     —— 系列标识
+%    \coverimage{封面图片路径} —— 底部封面大图
+%    \makecover              —— 生成封面
+% ============================================================
+
+\makeatletter
+
+\newcommand{\@seriestitle}{数学经典 · LaTeX 重排}
+\newcommand{\seriestitle}[1]{\renewcommand{\@seriestitle}{#1}}
+
+\newcommand{\@booktitle}{微分方程定性理论}
+\newcommand{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
+
+\newcommand{\@bookauthor}{张芷芬、丁同仁、黄文灶、董镇喜}
+\newcommand{\bookauthor}[1]{\renewcommand{\@bookauthor}{#1}}
+
+\newcommand{\@bookdate}{\today}
+\newcommand{\bookdate}[1]{\renewcommand{\@bookdate}{#1}}
+
+\providecommand{\@coverimage}{}
+\newcommand{\coverimage}[1]{\renewcommand{\@coverimage}{#1}}
+
+\newcommand{\makecover}{%
+\begin{titlepage}
+\thispagestyle{empty}
+
+% ============================================================
+%  第一层：左侧墨绿竖条 + 渐变纹理 + 装饰圆点
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[BlueMain!90]
+    (current page.south west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  \shade[top color=BlueDark!90, bottom color=BlueMain!90]
+    ([xshift=0cm,yshift=-5cm]current page.north west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  \shade[bottom color=BlueDark!90, top color=BlueMain!90]
+    ([xshift=0cm,yshift=5cm]current page.south west) rectangle
+    ([xshift=2.8cm]current page.south west);
+  \draw[BlueLight!40,line width=1pt]
+    ([xshift=2.8cm]current page.south west) --
+    ([xshift=2.8cm]current page.north west);
+  \draw[BlueLight!20,line width=0.4pt]
+    ([xshift=0.4cm]current page.south west) --
+    ([xshift=0.4cm]current page.north west);
+  \foreach \y/\r/\o in {
+    0.08/1.1/0.06, 0.22/0.7/0.10, 0.40/1.4/0.05,
+    0.55/0.55/0.09, 0.68/0.9/0.07, 0.82/0.6/0.10, 0.93/0.75/0.08
+  } {
+    \fill[white, opacity=\o]
+      ([xshift=1.4cm, yshift=-\y\paperheight]current page.north west)
+      circle (\r cm);
+  }
+  \draw[white, line width=0.3pt, opacity=0.15]
+    ([xshift=0.5cm]current page.north west) --
+    ([xshift=0.5cm]current page.south west);
+  \draw[white, line width=0.3pt, opacity=0.15]
+    ([xshift=2.1cm]current page.north west) --
+    ([xshift=2.1cm]current page.south west);
+\end{tikzpicture}
+
+% ============================================================
+%  第二层：顶部/底部装饰金线带
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[GoldMain!45,line width=0.6pt]
+    ([xshift=3.0cm,yshift=-1.6cm]current page.north west) --
+    ([xshift=-2.0cm,yshift=-1.6cm]current page.north east);
+  \foreach \x in {3.5,7,10.5,14} {
+    \fill[GoldMain!55]
+      ([xshift=\x cm,yshift=-1.45cm]current page.north west)
+      circle (1.5pt);
+  }
+  \draw[GoldMain!35,line width=0.5pt]
+    ([xshift=3.0cm,yshift=2.2cm]current page.south west) --
+    ([xshift=-1.5cm,yshift=2.2cm]current page.south east);
+  \foreach \x in {4,8,12} {
+    \fill[GoldMain!40]
+      ([xshift=\x cm,yshift=2.35cm]current page.south west)
+      circle (1.2pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第三层：右上角装饰几何图形
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[GoldMain!30,line width=0.7pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (22pt);
+  \draw[BlueLight!25,line width=0.5pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (14pt);
+  \fill[GoldMain!50]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (2.5pt);
+  \foreach \ang in {0,90,180,270} {
+    \draw[GoldMain!25,line width=0.4pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:28pt);
+  }
+  \foreach \ang in {45,135,225,315} {
+    \draw[BlueLight!18,line width=0.3pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:26pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第四层：左下角几何曲线簇 —— 相图 / 极限环风格
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 相流曲线簇：一维向量场方向示意
+  \draw[GoldMain!15,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=3.0cm]current page.south west)
+    to[out=30,in=210] ++(3.0,2.0);
+  \draw[BlueLight!12,line width=0.5pt,smooth]
+    ([xshift=3.3cm,yshift=3.0cm]current page.south west)
+    to[out=35,in=205] ++(3.2,2.2);
+  \draw[GoldMain!12,line width=0.5pt,smooth]
+    ([xshift=3.7cm,yshift=2.8cm]current page.south west)
+    to[out=25,in=215] ++(2.8,1.8);
+  \draw[BlueMain!10,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=4.0cm]current page.south west)
+    to[out=-15,in=195] ++(2.5,-1.5);
+  \draw[GoldMain!10,line width=0.4pt,smooth]
+    ([xshift=3.7cm,yshift=4.2cm]current page.south west)
+    to[out=-20,in=190] ++(2.3,-1.3);
+  % 方向箭头
+  \draw[GoldMain!22,-{Stealth[length=3pt,width=3pt]}]
+    ([xshift=5.0cm,yshift=4.2cm]current page.south west)
+    -- ++(0.8,0.5);
+  \draw[BlueLight!18,-{Stealth[length=3pt,width=3pt]}]
+    ([xshift=5.2cm,yshift=3.5cm]current page.south west)
+    -- ++(0.7,-0.5);
+\end{tikzpicture}
+
+% ============================================================
+%  第五层：公式背景区 —— 定性理论风格公式
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \shade[top color=GoldPale!40, bottom color=GoldPale!22]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+  \draw[GoldMain!28,line width=0.4pt]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+
+  % 后继函数（极限环重次）
+  \draw[GoldMain!30,line width=0.4pt,-{Stealth[length=3.5pt,width=3.5pt]}]
+    ([xshift=5.5cm,yshift=-4.3cm]current page.north west) --
+    ([xshift=5.5cm,yshift=-4.8cm]current page.north west);
+  \draw[GoldMain!30,line width=0.4pt,-{Stealth[length=3.5pt,width=3.5pt]}]
+    ([xshift=5.7cm,yshift=-5.3cm]current page.north west) --
+    ([xshift=5.7cm,yshift=-5.8cm]current page.north west);
+
+  % 定性理论公式：自治系统、奇点、极限环、Poincaré 映射
+  \node[anchor=west,BlueMain!65] at ([xshift=3.7cm,yshift=-3.5cm]current page.north west)
+    {$\displaystyle \dot{\vect{x}}=\vect{v}(\vect{x}),\quad
+      \vect{x}\in\R^2$};
+
+  \node[anchor=west,BlueLight!55] at ([xshift=3.8cm,yshift=-4.5cm]current page.north west)
+    {$\displaystyle \flow^t\colon \R^2\to\R^2,\quad
+      \flow^{t+s}=\flow^t\circ\flow^s$};
+
+  \node[anchor=west,GoldMain!70] at ([xshift=3.9cm,yshift=-5.5cm]current page.north west)
+    {$\displaystyle \frac{\dd}{\dd t}\,
+      \flow(t,\vect{x})=\vect{v}\bigl(\flow(t,\vect{x})\bigr)$};
+
+  \node[anchor=west,BlueMain!50] at ([xshift=3.7cm,yshift=-6.5cm]current page.north west)
+    {$\displaystyle \dot{\vect{x}}=A\vect{x},\quad
+      \vect{x}(t)=e^{tA}\vect{x}_0$};
+
+  \node[anchor=west,BlueLight!45] at ([xshift=3.8cm,yshift=-7.5cm]current page.north west)
+    {$\displaystyle \Pi(\theta)=P(\theta)-\theta,\quad
+      \Pi(\theta_0)=0$};
+
+  \node[anchor=west,GoldMain!55] at ([xshift=4.0cm,yshift=-8.5cm]current page.north west)
+    {$\displaystyle \lambda=\mathrm{Ind}_O\vect{v}
+      =\frac{1}{2\pi}\oint\dif\arg\vect{v}$};
+
+  \foreach \y/\c in {
+    -3.5/BlueMain!30, -4.5/BlueLight!28, -5.5/GoldMain!32,
+    -6.5/BlueMain!25, -7.5/BlueLight!22, -8.5/GoldMain!28
+  } {
+    \fill[\c]
+      ([xshift=-2.0cm,yshift=\y cm]current page.north west)
+      circle (1.8pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第六层：标题区
+% ============================================================
+\vspace*{2cm}
+\hspace*{3.3cm}
+\begin{minipage}{0.72\textwidth}
+  {\large\bfseries\color{BlueLight} \@seriestitle\par}
+  \vspace{0.3cm}
+  \begin{tikzpicture}
+    \draw[GoldMain!60,line width=1.2pt] (0,0) -- (2.0,0);
+    \fill[GoldMain!70] (2.3,0) circle (2pt);
+    \fill[GoldMain!50] (2.8,0) circle (1.2pt);
+    \fill[GoldMain!30] (3.2,0) circle (0.8pt);
+  \end{tikzpicture}
+  
+  \vspace{0.6cm}
+  {\huge\bfseries\color{BlueDark} \@booktitle\par}
+  \vspace{0.5cm}
+  {\Large\color{BlueMain!70} \@bookauthor\par}
+  \vspace{0.4cm}
+  \begin{tikzpicture}
+    \draw[GoldMain!40,line width=0.7pt] (0,0) -- (3.5,0);
+    \fill[GoldMain!45] (0,0) circle (1.5pt);
+    \fill[GoldMain!45] (3.5,0) circle (1.5pt);
+  \end{tikzpicture}
+  \vspace{0.8cm}
+  {\large\color{GoldMain!80} \par}
+  \vspace{0.5cm}
+  {\small\color{GoldMed!80}
+    依据扫描版原书逐页录入的 LaTeX 重排本\par}
+\end{minipage}
+
+% ============================================================
+%  第七层：右下角 logo
+% ============================================================
+\begin{tikzpicture}[remember picture, overlay]
+  \begin{scope}[shift={([xshift=-5.5cm, yshift=1.5cm]current page.south east)}]
+    \draw[BlueMain, line width=0.8pt] (0,0) rectangle (0.9,0.72);
+    \draw[BlueMain, line width=0.8pt] (0,0.72) -- (0.45,1.08) -- (0.9,0.72);
+    \draw[GoldMain, line width=0.5pt] (0.45,0.72) -- (0.45,1.08);
+    \draw[BlueMain, line width=0.4pt] (0.23,0) -- (0.23,0.72);
+    \draw[BlueMain, line width=0.4pt] (0.67,0) -- (0.67,0.72);
+    \fill[GoldMain] (0.45,1.08) circle (1.5pt);
+    \node[anchor=west, BlueMain, font=\footnotesize] at (1.1,0.32)
+      {定性理论 · 重排本};
+  \end{scope}
+\end{tikzpicture}
+
+% ============================================================
+%  第八层：底部封面图片
+% ============================================================
+\ifdefempty{\@coverimage}{}{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=south west,inner sep=0pt,outer sep=0pt]
+			at ([xshift=3.3cm,yshift=3.05cm]current page.south west)
+		{
+			\includegraphics[
+				width=\dimexpr\paperwidth-4.8cm\relax
+			]{\@coverimage}
+		};
+	\end{tikzpicture}
+}
+
+% ============================================================
+%  第九层：散落装饰点
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[GoldMain!18] ([xshift=-3.0cm,yshift=-9.5cm]current page.north west) circle (1.0pt);
+  \fill[BlueLight!18] ([xshift=-3.8cm,yshift=-9.8cm]current page.north west) circle (0.7pt);
+  \fill[GoldMain!16] ([xshift=-2.5cm,yshift=-10.2cm]current page.north west) circle (0.8pt);
+  \fill[BlueMain!12] ([xshift=-4.0cm,yshift=3.5cm]current page.south west) circle (1.2pt);
+  \fill[GoldMain!13] ([xshift=-5.5cm,yshift=4.0cm]current page.south west) circle (0.9pt);
+  \fill[GoldMain!20] ([xshift=14.5cm,yshift=-6.0cm]current page.north west) circle (1.0pt);
+  \fill[BlueLight!16] ([xshift=14.0cm,yshift=-5.5cm]current page.north west) circle (0.6pt);
+  \fill[GoldMain!18] ([xshift=15.0cm,yshift=-5.8cm]current page.north west) circle (0.8pt);
+\end{tikzpicture}
+
+\end{titlepage}
+}
+\makeatother

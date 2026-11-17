@@ -1,0 +1,417 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第6章：有限Fourier分析
+% 节：6.1 $\Z(N)$上的Fourier分析
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{$\Z(N)$上的Fourier分析}
+
+\begin{definition}\label{def:finite-cyclic-group-ZN}
+	所有 $N$ 次单位根组成的集合记为
+	\[
+	\Z(N)
+	=\left\{1,e^{2\pi i/N},\ldots,e^{2\pi i(N-1)/N}\right\}.
+	\]
+	在复数乘法下，$\Z(N)$ 是一个 Abelian 群，并且与
+	$\Z/N\Z$ 同构。
+\end{definition}
+
+记
+\[
+\zeta_N=e^{2\pi i/N},
+\]
+并设 $V$ 为 $\Z(N)$ 上所有复值函数组成的向量空间。以后简记
+\[
+F(k)=F(\zeta_N^k),
+\qquad 0\leq k\leq N-1.
+\]
+函数 $F\in V$ 由
+\[
+F(0),F(1),\ldots,F(N-1)
+\]
+唯一确定，因此 $V\cong\C^N$，且 $\dim_\C V=N$。
+
+在 $V$ 上定义 Hermitian 内积与范数
+\[
+\langle F,G\rangle
+=\sum_{k=0}^{N-1}F(k)\overline{G(k)},
+\qquad
+\norm{F}^2=\sum_{k=0}^{N-1}\abs{F(k)}^2.
+\]
+
+类似于 $\R$ 上的 Fourier 分析，下面寻找 $V$ 的一组标准正交基。
+对 $0\leq\ell\leq N-1$，定义
+\[
+e_\ell(k)=\zeta_N^{\ell k}
+=e^{2\pi i\ell k/N},
+\qquad 0\leq k\leq N-1.
+\]
+
+\begin{lemma}\label{lem:finite-fourier-orthogonality}
+	函数组 $\{e_0,\ldots,e_{N-1}\}$ 两两正交。更准确地，
+	\[
+	\langle e_m,e_\ell\rangle
+	=\begin{cases}
+	N,&m=\ell,\\
+	0,&m\neq\ell.
+	\end{cases}
+	\]
+\end{lemma}
+
+\begin{proof}
+	由定义，
+	\[
+	\langle e_m,e_\ell\rangle
+	=\sum_{k=0}^{N-1}\zeta_N^{mk}\zeta_N^{-\ell k}
+	=\sum_{k=0}^{N-1}\zeta_N^{(m-\ell)k}.
+	\]
+	当 $m=\ell$ 时，每一项均为 $1$，故和为 $N$。当
+	$m\neq\ell$ 时，令 $q=\zeta_N^{m-\ell}$，则 $q\neq1$ 且
+	$q^N=1$，从而
+	\[
+	1+q+\cdots+q^{N-1}=\frac{1-q^N}{1-q}=0.
+	\]
+\end{proof}
+
+由于 $\dim_\C V=N$，引理 \ref{lem:finite-fourier-orthogonality}
+表明 $\{e_0,\ldots,e_{N-1}\}$ 是 $V$ 的一组正交基。令
+\[
+e_\ell^*=\frac1{\sqrt N}e_\ell,
+\]
+则 $\{e_0^*,\ldots,e_{N-1}^*\}$ 是一组标准正交基。因此对任意
+$F\in V$，
+\[
+F=\sum_{n=0}^{N-1}\langle F,e_n^*\rangle e_n^*,
+\qquad
+\norm{F}^2
+=\sum_{n=0}^{N-1}\abs{\langle F,e_n^*\rangle}^2.
+\]
+
+\begin{definition}\label{def:finite-fourier-coefficients}
+	函数 $F\in V$ 的第 $n$ 个 Fourier 系数定义为
+	\[
+	a_n
+	=\frac1N\sum_{k=0}^{N-1}
+	F(k)e^{-2\pi ikn/N},
+	\qquad 0\leq n\leq N-1.
+	\]
+\end{definition}
+
+\begin{theorem}(Fourier 反演与 Parseval--Plancherel 公式)
+	\label{thm:finite-fourier-inversion-parseval}
+	设 $F$ 是 $\Z(N)$ 上的函数，则
+	\[
+	F(k)=\sum_{n=0}^{N-1}a_ne^{2\pi ink/N},
+	\qquad 0\leq k\leq N-1.
+	\]
+	此外，
+	\[
+	\sum_{n=0}^{N-1}\abs{a_n}^2
+	=\frac1N\sum_{k=0}^{N-1}\abs{F(k)}^2.
+	\]
+\end{theorem}
+
+\begin{proof}
+	由定义，
+	\[
+	a_n=\frac1N\langle F,e_n\rangle
+	=\frac1{\sqrt N}\langle F,e_n^*\rangle.
+	\]
+	将其代入标准正交基展开式与 Parseval 恒等式，立即得到上述两个公式。
+\end{proof}
+
+
+	圆周上充分光滑的函数，例如 $C^2$ 函数，其 Fourier 逆变换
+	可以通过令模 $N\to\infty$，把上述有限和看作 Riemann 和得到。具体有以下的命题。
+
+
+
+
+
+令 $f$ 是定义在单位圆周 $S^1$ 上的函数。对每个 $N\geq1$，定义
+有限 Fourier 系数
+\[
+a_N(n)=\frac1N\sum_{k=1}^N
+f\left(e^{2\pi ik/N}\right)e^{-2\pi ikn/N},
+\qquad n\in\Z.
+\]
+同时记
+\[
+a(n)=\int_0^1 f\left(e^{2\pi ix}\right)e^{-2\pi inx}\dd x
+\]
+为 $f$ 通常的 Fourier 系数。
+
+\begin{proposition}\label{prop:finite-circle-fourier-limit}
+	上述有限 Fourier 系数满足
+	\[
+	a_N(n+N)=a_N(n),
+	\qquad n\in\Z.
+	\]
+	若 $f$ 连续，则对每个固定的 $n\in\Z$，当 $N\to\infty$ 时，
+	\[
+	a_N(n)\longrightarrow a(n).
+	\]
+0\end{proposition}
+
+\begin{proof}
+	首先，
+	\[
+	\begin{aligned}
+	a_N(n+N)
+	&=\frac1N\sum_{k=1}^N
+	f\left(e^{2\pi ik/N}\right)e^{-2\pi ik(n+N)/N}\\
+	&=\frac1N\sum_{k=1}^N
+	f\left(e^{2\pi ik/N}\right)e^{-2\pi ikn/N}
+	=a_N(n).
+	\end{aligned}
+	\]
+	若 $f$ 连续，则
+	\[
+	g_n(x)=f\left(e^{2\pi ix}\right)e^{-2\pi inx}
+	\]
+	在 $[0,1]$ 上连续，而
+	\[
+	a_N(n)=\frac1N\sum_{k=1}^Ng_n\left(\frac{k}{N}\right)
+	\]
+	是 $g_n$ 的 Riemann 和，故它收敛到
+	$\displaystyle\int_0^1g_n(x)\dd x=a(n)$。
+\end{proof}
+
+\begin{proposition}\label{prop:finite-circle-fourier-C1-decay}
+	若 $f\in C^1(S^1)$，则存在只依赖于 $f$ 的常数 $c>0$，使得
+	\[
+	\abs{a_N(n)}\leq\frac{c}{\abs n},
+	\qquad 0<\abs n\leq\frac N2.
+	\]
+\end{proposition}
+
+\begin{proof}
+	令
+	\[
+	F(x)=f\left(e^{2\pi ix}\right),
+	\qquad
+	M_1=\sup_{x\in\R}\abs{F'(x)}.
+	\]
+	函数 $F$ 是以 $1$ 为周期的 $C^1$ 函数。取整数 $\ell$ 使得
+	\[
+	\abs{\ell-\frac{N}{2\abs n}}\leq\frac12.
+	\]
+	由 $0<\abs n\leq N/2$ 可得
+	\[
+	\frac14\leq\frac{\ell\abs n}{N}\leq\frac34.
+	\]
+	利用 $F$ 的周期性，将有限和的指标平移 $\ell$，得到
+	\[
+	\begin{aligned}
+	a_N(n)\left(1-e^{2\pi i\ell n/N}\right)
+	=\frac1N\sum_{k=1}^N
+	\left[F\left(\frac{k}{N}\right)
+	-F\left(\frac{k+\ell}{N}\right)\right]
+	e^{-2\pi ikn/N}.
+	\end{aligned}
+	\]
+	一方面，由中值定理，
+	\[
+	\abs{F\left(\frac{k}{N}\right)
+	-F\left(\frac{k+\ell}{N}\right)}
+	\leq M_1\frac{\ell}{N}.
+	\]
+	另一方面，
+	\[
+	\abs{1-e^{2\pi i\ell n/N}}
+	=2\abs{\sin\frac{\pi\ell n}{N}}
+	\geq\sqrt2.
+	\]
+	因此
+	\[
+	\abs{a_N(n)}
+	\leq\frac{M_1}{\sqrt2}\frac{\ell}{N}
+	\leq\frac{3M_1}{4\sqrt2}\frac1{\abs n},
+	\]
+	取 $c=3M_1/(4\sqrt2)$ 即可。
+\end{proof}
+
+\begin{proposition}\label{prop:finite-circle-fourier-C2-decay-inversion}
+	若 $f\in C^2(S^1)$，则存在只依赖于 $f$ 的常数 $c>0$，使得
+	\[
+	\abs{a_N(n)}\leq\frac{c}{\abs n^2},
+	\qquad 0<\abs n\leq\frac N2.
+	\]
+	此外，$f$ 满足 Fourier 反演公式
+	\[
+	f\left(e^{2\pi ix}\right)
+	=\sum_{n=-\infty}^{\infty}a(n)e^{2\pi inx}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	仍令 $F(x)=f(e^{2\pi ix})$，并记
+	\[
+	M_2=\sup_{x\in\R}\abs{F''(x)}.
+	\]
+	沿用上一个证明中 $\ell$ 的选取，令
+	\[
+	h=\frac{\ell}{N},
+	\qquad
+	\theta=\frac{2\pi\ell n}{N}.
+	\]
+	将求和指标分别向两侧平移 $\ell$，可得
+	\[
+	\left(e^{i\theta}+e^{-i\theta}-2\right)a_N(n)
+	=\frac1N\sum_{k=1}^N
+	\left[F\left(\frac{k}{N}+h\right)
+	+F\left(\frac{k}{N}-h\right)
+	-2F\left(\frac{k}{N}\right)\right]
+	e^{-2\pi ikn/N}.
+	\]
+	Taylor 公式给出
+	\[
+	\abs{F(x+h)+F(x-h)-2F(x)}\leq M_2h^2.
+	\]
+	又因为
+	\[
+	\abs{e^{i\theta}+e^{-i\theta}-2}
+	=4\sin^2\frac{\theta}{2}
+	=4\sin^2\frac{\pi\ell n}{N}
+	\geq2,
+	\]
+	所以
+	\[
+	\abs{a_N(n)}
+	\leq\frac{M_2}{2}h^2
+	\leq\frac{9M_2}{32}\frac1{\abs n^2}.
+	\]
+
+	下面由有限 Fourier 反演公式推出圆周上的反演公式。只取奇数
+	$N$，并对给定的 $x\in[0,1]$ 选取整数 $k_N$，使得
+	$k_N/N\to x$。有限 Fourier 反演公式和
+	命题 \ref{prop:finite-circle-fourier-limit} 的周期性给出
+	\[
+	F\left(\frac{k_N}{N}\right)
+	=\sum_{\abs n\leq(N-1)/2}
+	a_N(n)e^{2\pi ink_N/N}.
+	\]
+	固定 $M\in\Z^+$。当 $N\to\infty$ 时，有限项部分满足
+	\[
+	\sum_{\abs n\leq M}a_N(n)e^{2\pi ink_N/N}
+	\longrightarrow
+	\sum_{\abs n\leq M}a(n)e^{2\pi inx}.
+	\]
+	而由上面的二阶衰减估计，
+	\[
+	\abs{\sum_{M<\abs n\leq(N-1)/2}
+	a_N(n)e^{2\pi ink_N/N}}
+	\leq\sum_{\abs n>M}\frac{c}{n^2},
+	\]
+	右端在 $M\to\infty$ 时趋于 $0$。又因 $F$ 连续，
+	$F(k_N/N)\to F(x)$。先令 $N\to\infty$，再令
+	$M\to\infty$，便得到
+	\[
+	f\left(e^{2\pi ix}\right)=F(x)
+	=\sum_{n=-\infty}^{\infty}a(n)e^{2\pi inx}.
+	\]
+\end{proof}
+也就是说，连续的Fourier级数可以看成有限Fourier分析的极限。
+\subsection*{快速 Fourier 变换}
+
+快速 Fourier 变换是在计算 $\Z(N)$ 上函数的 Fourier 系数时
+产生和发展起来的，它已经成为数值分析中的一个重要工具。
+下面估计计算一组 Fourier 系数所需的运算次数。
+
+固定 $N$，设 $F(0),\ldots,F(N-1)$ 已知，并记
+\[
+\omega_N=e^{-2\pi i/N}.
+\]
+函数 $F$ 的第 $k$ 个 Fourier 系数写为
+\[
+a_k^N(F)
+=\frac1N\sum_{r=0}^{N-1}F(r)\omega_N^{kr}.
+\]
+记 $\#(N)$ 为计算全部 $N$ 个 Fourier 系数所需的运算次数。
+直接计算时，需要预先求出
+\[
+\omega_N^2,\ldots,\omega_N^{N-1},
+\]
+再逐项求和。粗略估计有
+\[
+\#(N)<2N^2+N,
+\]
+因而直接算法的复杂度为 $O(N^2)$。
+
+若 $N=2^n$，可以利用偶数项和奇数项的分解显著减少运算次数。
+
+\begin{theorem}[快速 Fourier 变换的复杂度]
+	\label{thm:fft-complexity}
+	若 $N=2^n$，其中 $n\geq1$，则
+	\[
+	\#(N)\leq4N\log_2N=4Nn.
+	\]
+\end{theorem}
+
+\begin{lemma}\label{lem:fft-recursion}
+	设 $\omega_{2M}=e^{-2\pi i/(2M)}$，则
+	\[
+	\#(2M)\leq2\#(M)+8M.
+	\]
+\end{lemma}
+
+\begin{proof}
+	计算 $\omega_{2M},\ldots,\omega_{2M}^{2M}$ 至多需要
+	$2M$ 次运算。注意
+	\[
+	\omega_M=e^{-2\pi i/M}=\omega_{2M}^2.
+	\]
+	对给定的 $F:\Z(2M)\to\C$，定义两个 $\Z(M)$ 上的函数
+	\[
+	F_0(r)=F(2r),
+	\qquad
+	F_1(r)=F(2r+1),
+	\qquad 0\leq r\leq M-1.
+	\]
+	将 Fourier 系数中的求和分成偶数项与奇数项，得到
+	\[
+	\begin{aligned}
+	a_k^{2M}(F)
+	&=\frac1{2M}\sum_{r=0}^{2M-1}F(r)\omega_{2M}^{kr}\\
+	&=\frac12\left[
+	\frac1M\sum_{\ell=0}^{M-1}F(2\ell)\omega_{2M}^{2k\ell}
+	+\frac1M\sum_{m=0}^{M-1}
+	F(2m+1)\omega_{2M}^{k(2m+1)}
+	\right]\\
+	&=\frac12\left[
+	\frac1M\sum_{\ell=0}^{M-1}F_0(\ell)\omega_M^{k\ell}
+	+\frac1M\sum_{m=0}^{M-1}
+	F_1(m)\omega_M^{km}\omega_{2M}^k
+	\right]\\
+	&=\frac12\left[a_k^M(F_0)+a_k^M(F_1)\omega_{2M}^k\right].
+	\end{aligned}
+	\]
+	这里 $a_k^M$ 的下标按模 $M$ 理解。计算 $F_0,F_1$ 的全部
+	Fourier 系数需要 $2\#(M)$ 次运算；得到每个
+	$a_k^{2M}(F)$ 至多再需三次运算。因此
+	\[
+	\#(2M)\leq2M+2\#(M)+3(2M)
+	=2\#(M)+8M.
+	\]
+\end{proof}
+
+\begin{proof}[定理的证明]
+	对 $n$ 归纳。当 $n=1$ 时，$N=2$，两个 Fourier 系数为
+	\[
+	a_0^2(F)=\frac12\bigl(F(1)+F(-1)\bigr),
+	\qquad
+	a_1^2(F)=\frac12\bigl(F(1)-F(-1)\bigr).
+	\]
+	计算它们至多需要 $5$ 次运算，故 $\#(2)\leq8$。
+
+	假设结论对 $2^{n-1}$ 成立。令 $M=2^{n-1}$，由引理
+	\ref{lem:fft-recursion}，
+	\[
+	\begin{aligned}
+	\#(2^n)
+	&\leq2\#(2^{n-1})+8\cdot2^{n-1}\\
+	&\leq2\cdot4\cdot2^{n-1}(n-1)+8\cdot2^{n-1}\\
+	&=4\cdot2^n n.
+	\end{aligned}
+	\]
+	归纳完成。
+\end{proof}
+

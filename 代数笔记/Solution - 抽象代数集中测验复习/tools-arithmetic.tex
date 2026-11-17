@@ -1,0 +1,77 @@
+% !TEX root = main.tex
+\subsection{集合、自然数与整数工具}
+
+\begin{reviewdefinition}[关系的自反、对称与传递]\label{tool:n-relations}
+设$S$是集合，$\sim$是$S$上的二元关系。自反性指对所有$x\in S$有$x\sim x$；对称性指对所有$x,y\in S$，$x\sim y$蕴含$y\sim x$；传递性指对所有$x,y,z\in S$，$x\sim y$且$y\sim z$蕴含$x\sim z$。同时满足三者称为等价关系。否定任一性质只需给出违反其全称命题的实例；对称性、传递性的反例须满足相应蕴含式的前提。若前提对所有元素均不成立，则这条蕴含式成立。
+
+\textbf{出处：}教材第零章第1节等价关系定义，书页2；本册第零章习题4、5直接按这三条定义核对。
+\end{reviewdefinition}
+
+\begin{reviewtheorem}[数学归纳法]\label{tool:n-induction}
+设$P(n)$是关于$n\in\N=\{0,1,2,\ldots\}$的命题。若$P(0)$成立，且对每个$n\in\N$，$P(n)$成立蕴含$P(n+1)$成立，则$P(n)$对所有自然数成立。从$n_0$开始的归纳须检验$P(n_0)$并对全部$n\ge n_0$检验归纳步。强归纳形式是：对每个$n$，若所有$k<n$的$P(k)$成立便能推出$P(n)$，则所有$P(n)$成立。
+
+\textbf{出处：}教材第零章第2节自然数公理与归纳法，书页4--6：第一归纳法见书页4，强归纳法见书页6。该部分尚无对应的原代数笔记章节，本册据已核对教材补入。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[自然数递归构造]\label{tool:n-recursion}
+给定集合$X$、元素$a\in X$和映射$\varphi:X\to X$，存在唯一映射$f:\N\to X$使$f(0)=a$、$f(n+1)=\varphi(f(n))$。据此自然数加法、乘法分别由
+\[
+m+0=m,\quad m+(n+1)=(m+n)+1,\qquad
+m\cdot0=0,\quad m(n+1)=mn+m
+\]
+定义。此条只给递归定义，不预先把加法、乘法的交换律、结合律和分配律作为习题6的前提；这些运算律在该题内按原定义补证。
+
+\textbf{出处：}教材第零章第2节递归定理及运算定义，书页5--6。
+\end{reviewtheorem}
+
+\begin{reviewprop}[自然数的次序]\label{tool:n-order}
+对$a,b\in\N$，$a\le b$当且仅当存在$t\in\N$使$a+t=b$；$a<b$当且仅当可取$t>0$。任意两自然数满足$a<b$、$a=b$、$b<a$恰有一项成立。次序可传递，且加同一个自然数保持严格不等式。正整数乘积为正可由乘法递归定义归纳证明，习题8中保留了该步，未用乘法消去律反证它。
+
+\textbf{出处：}教材第零章第2节次序与良序性的讨论，书页6；本册第零章习题8补证正整数乘积为正。
+\end{reviewprop}
+
+\begin{reviewtheorem}[带余除法与欧几里得算法]\label{tool:n-gcd}
+对整数$a$及正整数$b$，存在唯一整数$q,r$使$a=qb+r$、$0\le r<b$。若$a=qb+r$，则$a,b$的公共因子恰为$b,r$的公共因子，因而$\gcd(a,b)=\gcd(b,r)$。重复带余除法，非零余数严格递减，故有限步终止，最后非零余数是正最大公因数。非全为零的有限个整数也有正最大公因数。
+
+\textbf{出处：}教材第零章第3节整除、最大公因数及辗转相除法，书页9--10；现有笔记第二章习题7使用同一整数工具。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[贝祖等式与互素整除]\label{tool:n-bezout}
+整数$a_1,\ldots,a_t$不全为零，令$d=\gcd(a_1,\ldots,a_t)>0$，则存在整数$u_i$使$d=\sum_i u_ia_i$；全部整数线性组合构成$d\Z$。特别地，$a,b$互素当且仅当$au+bv=1$有整数解。若$\gcd(a,b)=1$且$a\mid bc$，则$a\mid c$。若两两互素的正整数$m_1,\ldots,m_r$均整除$c$，则$\prod_i m_i\mid c$。
+
+\textbf{出处：}教材第零章第3节定理2、定理3，书页10；多整数形式由两整数形式迭代。现有笔记第二章习题7、第二章循环群一节沿用此性质。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[算术基本定理与素因子]\label{tool:n-prime-factor}
+每个大于$1$的整数$n$可唯一写成$n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$，其中$p_i$是两两不同的素数、$\alpha_i\ge1$，唯一性忽略因子排列。特别地，$n>1$总有素因子；$n$的正约数均且仅为$\prod_i p_i^{\beta_i}$，其中$0\le\beta_i\le\alpha_i$。无平方因子的约数对应$\beta_i\in\{0,1\}$，即不同素因子集合的子集。
+
+\textbf{出处：}教材第零章第3节算术基本定理及标准分解式，书页11--12；本册第零章习题13、14使用。
+\end{reviewtheorem}
+
+\begin{reviewprop}[同余运算、逆元及一次方程]\label{tool:n-congruence}
+固定正整数$m$，$a\equiv b\pmod m$指$m\mid a-b$。同余可相加、相减、相乘，也可取相同正整数次幂。若$\gcd(a,m)=1$，则$a$在模$m$下有唯一逆元剩余类；若$au+mv=1$，则逆元为$u\pmod m$。此时$ax\equiv b\pmod m$的全部解为$x\equiv ub\pmod m$。同余消去只有在乘数与模数互素时才可直接使用：$ac\equiv ad$且$\gcd(a,m)=1$推出$c\equiv d$。
+
+\textbf{出处：}教材第零章第4节同余性质与定理4，书页12--13；构造路线为贝祖等式后乘以右端常数。
+\end{reviewprop}
+
+\begin{reviewtheorem}[孙子定理及原文构造]\label{tool:n-crt}
+设$m_1,\ldots,m_r>1$两两互素，$M=\prod_i m_i$。对任意整数$b_i$，方程组$x\equiv b_i\pmod{m_i}$有且仅有一个模$M$的解。令$M_i=M/m_i$，由互素性选择整数$u_i$使$u_iM_i\equiv1\pmod{m_i}$，并令$e_i=u_iM_i$，则
+\[
+e_i\equiv1\pmod{m_i},\qquad e_i\equiv0\pmod{m_j}\ (j\ne i),\qquad
+x\equiv\sum_i b_i e_i\pmod M.
+\]
+任意两整数解之差被所有$m_i$整除，故被$M$整除，给出唯一性。
+
+\textbf{出处：}教材第零章第4节定理5及其证明，书页14；原文先给两模数构造再用归纳推广，本册习题24保持该构造。
+\end{reviewtheorem}
+
+\begin{reviewlemma}[有限集计数与二项式计数]\label{tool:n-binomial-count}
+以下集合均有限。分成互不相交的部分时，总基数等于各部分基数之和；逐步选择的每一步若有与此前选择无关的固定选择数$c_i$，总数为$\prod_i c_i$。满射$f:X\to Y$若每个纤维均有$d$个元素，则$|X|=d|Y|$。同一有限集合$S$的子集$A,B$若$|A|+|B|>|S|$，则$A\cap B\ne\varnothing$。多个集合并集的大小不超过各基数之和；若所有集合均含某个共同元素，可将此元素只计一次。
+
+$r$元集合有$\binom rk$个$k$元子集，故在交换数系中
+\[
+(x+y)^r=\sum_{k=0}^r\binom rkx^ky^{r-k},\qquad
+\sum_{k=0}^r\binom rk(-1)^k=(1-1)^r.
+\]
+\textbf{出处：}前半为本册习题的计数步骤汇总（第一章习题21、44，第二章习题29、30、32），不是另称原书编号定理；末式为第零章习题14使用的二项式计数。环中的无幺元版本另见群与环基础工具。
+\end{reviewlemma}

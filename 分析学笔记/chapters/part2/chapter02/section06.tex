@@ -1,0 +1,294 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第2章：多元函数微分学
+% 节：2.6 条件极值
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{条件极值}
+
+目标函数： $f(x_1,\ldots,x_n)$ 与若干约束条件。以三元函数为例，
+
+
+设目标函数为 $f(x,y,z)$，约束条件为
+\[
+F(x,y,z)=0,\qquad G(x,y,z)=0.
+\]
+设 $f,F,G$ 一阶连续可导，且 Jacobi 矩阵
+\[
+J=\frac{\partial(F,G)}{\partial(x,y,z)}
+=\begin{pmatrix}
+F_x&F_y&F_z\\
+G_x&G_y&G_z
+\end{pmatrix}
+\]
+满秩，即 $\operatorname{rank}J=2$。
+
+我们现在考虑一个必要性的条件.
+
+假设 $(x_0,y_0,z_0)$ 是一个条件极值点。不妨设在此点
+\[
+\begin{vmatrix}
+F_y&F_z\\
+G_y&G_z
+\end{vmatrix}_{(x_0,y_0,z_0)}\ne0.
+\]
+由隐函数定理，在 $(x_0,y_0,z_0)$ 的某邻域内，
+可由方程组
+\[
+\begin{cases}
+F(x,y,z)=0,\\
+G(x,y,z)=0
+\end{cases}
+\]
+解出其中两个未知数，即
+\[
+y=y(x),\qquad z=z(x).
+\]
+于是令
+\[
+\varphi(x)=f(x,y,z)=f(x,y(x),z(x)).
+\]
+因 $(x_0,y_0,z_0)$ 是条件极值点，$x_0$ 是
+$\varphi(x)$ 的一个极值点。由 Fermat 引理，
+\[
+\begin{aligned}
+0=\varphi'(x_0)
+&=\left.
+\left(
+\frac{\partial f}{\partial x}
++\frac{\partial f}{\partial y}\frac{\mathrm dy}{\mathrm dx}
++\frac{\partial f}{\partial z}\frac{\mathrm dz}{\mathrm dx}
+\right)\right|_{(x_0,y_0,z_0)}\\
+&=\left.
+\nabla f(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)\right|_{x=x_0}.
+\end{aligned}
+\]
+又由
+\[
+F(x,y(x),z(x))=0,\qquad G(x,y(x),z(x))=0
+\]
+可得
+\[
+\begin{aligned}
+\nabla F(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)_{x=x_0}&=0,\\
+\nabla G(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)_{x=x_0}&=0.
+\end{aligned}
+\]
+因此 $\nabla f(x_0,y_0,z_0)$、$\nabla F(x_0,y_0,z_0)$、
+$\nabla G(x_0,y_0,z_0)$ 均与同一切向量垂直；
+又 $\operatorname{rank}J=2$，
+$\nabla F(x_0,y_0,z_0)$ 与 $\nabla G(x_0,y_0,z_0)$ 无关。
+从而存在 $\lambda,\mu$，使
+\[
+\nabla f=\lambda\nabla F+\mu\nabla G,
+\qquad
+\nabla(f-\lambda F-\mu G)=0.
+\]
+这就得到了 Lagrange 乘数法。
+
+\begin{proposition}
+	构造 Lagrange 函数
+\[
+L(x,y,z,\lambda,\mu)
+=f(x,y,z)-\lambda F(x,y,z)-\mu G(x,y,z).
+\]
+在 $(x_0,y_0,z_0)$ 处有
+\[
+\begin{cases}
+\displaystyle\frac{\partial L}{\partial x}
+=\frac{\partial f}{\partial x}
+-\lambda\frac{\partial F}{\partial x}
+-\mu\frac{\partial G}{\partial x}=0,\\[6pt]
+\displaystyle\frac{\partial L}{\partial y}
+=\frac{\partial f}{\partial y}
+-\lambda\frac{\partial F}{\partial y}
+-\mu\frac{\partial G}{\partial y}=0,\\[6pt]
+\displaystyle\frac{\partial L}{\partial z}
+=\frac{\partial f}{\partial z}
+-\lambda\frac{\partial F}{\partial z}
+-\mu\frac{\partial G}{\partial z}=0,\\[6pt]
+F(x,y,z)=0,\\
+G(x,y,z)=0.
+\end{cases}
+\]
+从而求出 $(x_0,y_0,z_0)$ 以及 $\lambda_0,\mu_0$，
+再进一步验证它是否为极值点。
+\end{proposition}
+
+条件极值的一般情况：$n$ 个自变量、$m$ 个约束条件，$m<n$。
+目标函数为 $f(x_1,\ldots,x_n)$，约束条件为
+\[
+\begin{cases}
+g_1(x_1,\ldots,x_n)=0,\\
+\qquad\vdots\\
+g_m(x_1,\ldots,x_n)=0.
+\end{cases}\tag{*}
+\]
+所有函数属于 $C^2$，且 Jacobi 矩阵
+\[
+J=
+\begin{pmatrix}
+\dfrac{\partial g_1}{\partial x_1}&\cdots&
+\dfrac{\partial g_1}{\partial x_n}\\
+\vdots&&\vdots\\
+\dfrac{\partial g_m}{\partial x_1}&\cdots&
+\dfrac{\partial g_m}{\partial x_n}
+\end{pmatrix}_{m\times n}
+\]
+满秩，即 $\operatorname{rank}J=m<n$。
+
+设前 $m$ 个变量由条件 $(*)$ 可以解出唯一解
+\[
+\begin{cases}
+x_1=h_1(x_{m+1},\ldots,x_n),\\
+\qquad\vdots\\
+x_m=h_m(x_{m+1},\ldots,x_n).
+\end{cases}
+\]
+代入
+\[
+\varphi(x_{m+1},\ldots,x_n)
+=f(h_1,\ldots,h_m,x_{m+1},\ldots,x_n).
+\]
+将复合函数求导，条件极值点处有
+\[
+\begin{aligned}
+0=\frac{\partial\varphi}{\partial x_{m+1}}
+&=\frac{\partial f}{\partial x_1}
+\frac{\partial h_1}{\partial x_{m+1}}
++\cdots+
+\frac{\partial f}{\partial x_m}
+\frac{\partial h_m}{\partial x_{m+1}}
++\frac{\partial f}{\partial x_{m+1}}\\
+&=\nabla f\cdot
+\underbrace{\left(
+\frac{\partial h_1}{\partial x_{m+1}},
+\ldots,
+\frac{\partial h_m}{\partial x_{m+1}},
+1,0,\ldots,0
+\right)}_{\vect\eta_1},
+\end{aligned}
+\]
+同理
+\[
+0=\frac{\partial\varphi}{\partial x_n}
+=\nabla f\cdot
+\underbrace{\left(
+\frac{\partial h_1}{\partial x_n},
+\ldots,
+\frac{\partial h_m}{\partial x_n},
+0,\ldots,1
+\right)}_{\vect\eta_{n-m}}.
+\]
+所以在条件极值点，
+$\nabla f$ 与 $\vect\eta_1,\ldots,\vect\eta_{n-m}$ 正交，即
+\[
+\nabla f\in
+\bigl(\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}\bigr)^\perp,
+\qquad
+\dim\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}=n-m.
+\]
+对
+\[
+g_1(h_1,\ldots,h_m,x_{m+1},\ldots,x_n)=0,\quad
+\ldots,\quad
+g_m(h_1,\ldots,h_m,x_{m+1},\ldots,x_n)=0
+\]
+求导，得到
+\[
+\nabla g_1,\ldots,\nabla g_m
+\in
+\bigl(\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}\bigr)^\perp.
+\]
+又 $\operatorname{rank}J=m$，故
+$\nabla g_1,\ldots,\nabla g_m$ 无关，且
+$\nabla f$ 由它们线性表出：
+\[
+\nabla f=\lambda_1\nabla g_1+\cdots+\lambda_m\nabla g_m,
+\qquad
+\nabla(f-\lambda_1g_1-\cdots-\lambda_mg_m)=0.
+\]
+令
+\[
+L(x_1,\ldots,x_n,\lambda_1,\ldots,\lambda_m)
+=f-\lambda_1g_1-\cdots-\lambda_mg_m.
+\]
+于是必要条件为方程组
+\[
+\begin{cases}
+\displaystyle\frac{\partial L}{\partial x_1}
+=\frac{\partial f}{\partial x_1}
+-\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_1}=0,\\
+\qquad\vdots\\
+\displaystyle\frac{\partial L}{\partial x_n}
+=\frac{\partial f}{\partial x_n}
+-\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_n}=0,\\
+g_1=\cdots=g_m=0.
+\end{cases}\tag{*}
+\]
+
+\begin{theorem}
+设点 $x_0=(x_1^0,x_2^0,\ldots,x_n^0)$ 及 $m$ 个常数
+$\lambda_1,\lambda_2,\ldots,\lambda_m$ 满足方程组 $(*)$。
+若方阵
+\[
+\left(
+\frac{\partial^2L}{\partial x_i\partial x_j}
+(x_0,\lambda_1,\lambda_2,\ldots,\lambda_m)
+\right)_{n\times n}
+\]
+为正定（负定）矩阵，则 $x_0$ 为满足约束条件的条件极小（大）值点，
+因此 $f(x_0)$ 为满足约束条件的条件极小（大）值。
+\end{theorem}
+
+\begin{proof}
+固定方程组 $(*)$ 给出的乘子
+$\lambda_1,\ldots,\lambda_m$，记
+\[
+A=\left(
+\frac{\partial^2L}{\partial x_i\partial x_j}
+(x_0,\lambda_1,\ldots,\lambda_m)
+\right)_{n\times n}.
+\]
+由方程组 $(*)$ 可知
+$\nabla_xL(x_0,\lambda_1,\ldots,\lambda_m)=0$。
+对 $\vect h\to0$，在乘子固定的情况下使用二阶 Taylor 公式，
+\[
+\begin{aligned}
+&L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)\\
+&\qquad=
+\frac12\vect h^{\mathsf T}A\vect h
++o\!\left(\lVert\vect h\rVert^2\right).
+\end{aligned}
+\]
+
+若 $A$ 正定，则存在 $c>0$，使得
+$\vect h^{\mathsf T}A\vect h\ge c\lVert\vect h\rVert^2$。
+当非零的 $\vect h$ 充分小时，余项的绝对值小于
+$\dfrac c4\lVert\vect h\rVert^2$，故
+\[
+L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)>0.
+\]
+对满足约束条件的点 $x_0+\vect h$，有
+$g_k(x_0+\vect h)=g_k(x_0)=0$，因而
+\[
+f(x_0+\vect h)-f(x_0)
+=L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)>0.
+\]
+所以 $x_0$ 是严格的条件极小值点。
+若 $A$ 负定，对 $-L$ 作同样的论证，即得
+$f(x_0+\vect h)<f(x_0)$，故 $x_0$ 是严格的条件极大值点。
+\end{proof}

@@ -1,0 +1,338 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.1 定积分定义与和式极限
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{定积分定义与和式极限}
+
+本节主要讨论如何把有限和式写成定积分的积分和，从而计算极限。核心思想是：若 $f(x)$ 在 $[a,b]$ 上连续，且
+\[
+a=x_0<x_1<\cdots <x_n=b,\qquad \lambda_n=\max_{1\leq i\leq n}\Delta x_i\to 0,
+\]
+其中 $\Delta x_i=x_i-x_{i-1}$，$\xi_i\in[x_{i-1},x_i]$，则
+\[
+\lim_{n\to\infty}\sum_{i=1}^n f(\xi_i)\Delta x_i=\int_a^b f(x)\dd x.
+\]
+
+
+
+\begin{problem}
+	求下列极限：
+	\[
+	\begin{aligned}
+		&(1)\quad \lim_{n\to\infty}\left(\frac1{n^2+1}+\frac2{n^2+2}+\cdots+\frac n{n^2+n}\right),\\
+		&(2)\quad \lim_{n\to\infty}\left(\frac1{n^2+1^2}+\frac2{n^2+2^2}+\cdots+\frac n{n^2+n^2}\right),\\
+		&(3)\quad \lim_{n\to\infty}\left(\frac1{\sqrt{n^2+1^2}}+\frac1{\sqrt{n^2+2^2}}+\cdots+\frac1{\sqrt{n^2+n^2}}\right),\\
+		&(4)\quad \lim_{n\to\infty}\left(\frac1{\sqrt{n^2+1}}+\frac1{\sqrt{n^2+2}}+\cdots+\frac1{\sqrt{n^2+n}}\right).
+	\end{aligned}
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 有
+	\[
+	\frac{k}{n^2+k}=\frac1n\cdot \frac{\frac{k}{n}}{1+\frac{k}{n^2}},
+	\]
+	因为 $\dfrac1{1+k/n^2}\to1$ 且一致有界，故
+	\[
+	\sum_{k=1}^n\frac{k}{n^2+k}\to \int_0^1x\dd x=\frac12.
+	\]
+	
+	(2) 有
+	\[
+	\frac{k}{n^2+k^2}=\frac1n\cdot\frac{\frac{k}{n}}{1+\left(\frac{k}{n}\right)^2},
+	\]
+	故
+	\[
+	\sum_{k=1}^n\frac{k}{n^2+k^2}\to
+	\int_0^1\frac{x}{1+x^2}\dd x=\frac12\ln2.
+	\]
+	
+	(3) 有
+	\[
+	\frac1{\sqrt{n^2+k^2}}=\frac1n\cdot\frac1{\sqrt{1+\left(\frac{k}{n}\right)^2}},
+	\]
+	故
+	\[
+	\sum_{k=1}^n\frac1{\sqrt{n^2+k^2}}\to
+	\int_0^1\frac{\dd x}{\sqrt{1+x^2}}=\ln(1+\sqrt2).
+	\]
+	
+	(4) 有
+	\[
+	\frac1{\sqrt{n^2+k}}=\frac1n\cdot\frac1{\sqrt{1+\frac{k}{n^2}}}.
+	\]
+	因为 $0\leq k/n^2\leq 1/n\to0$，所以
+	\[
+	\sum_{k=1}^n\frac1{\sqrt{n^2+k}}\to \int_0^1 1\dd x=1.
+	\]
+\end{solution}
+
+\begin{problem}
+	求极限
+	\[
+	\lim_{n\to\infty}\left(
+	\frac{\sin\frac{\pi}{n}}{n+\frac1n}
+	+\frac{\sin\frac{2\pi}{n}}{n+\frac2n}
+	+\cdots+
+	\frac{\sin\frac{n\pi}{n}}{n+\frac nn}
+	\right).
+	\]
+\end{problem}
+
+\begin{solution}
+	一般项可写为
+	\[
+	\frac{\sin\frac{k\pi}{n}}{n+\frac{k}{n} }
+	=\frac1n\cdot\frac{\sin\left(\pi\frac{k}{n}\right)}{1+\frac{k}{n^2}}.
+	\]
+	因为 $\dfrac{k}{n^2}\leq \dfrac1n\to0$，故原式是 $\sin(\pi x)$ 在 $[0,1]$ 上的积分和，因此
+	\[
+	\lim_{n\to\infty}\sum_{k=1}^n\frac{\sin\frac{k\pi}{n}}{n+\frac{k}{n} }
+	=\int_0^1\sin(\pi x)\dd x=\frac2\pi.
+	\]
+\end{solution}
+
+\begin{problem}
+	取对数再用定积分定义，求下列极限：
+	\[
+	(1)\quad \lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n};
+	\qquad
+	(2)\quad \lim_{n\to\infty}\frac{\sqrt[n]{(n+1)(n+2)\cdots(n+n)}}{n}.
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 设
+	\[
+	L_n=\frac{\sqrt[n]{n!}}{n}.
+	\]
+	取对数得
+	\[
+	\begin{aligned}
+		\ln L_n
+		&=\frac1n\ln(n!)-\ln n
+		=\frac1n\sum_{k=1}^n\ln k-\ln n\\
+		&=\frac1n\sum_{k=1}^n\ln\frac{k}{n}
+		\to \int_0^1\ln x\dd x=-1.
+	\end{aligned}
+	\]
+	因此
+	\[
+	\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}=e^{-1}=\frac1e.
+	\]
+	
+	(2) 设
+	\[
+	M_n=\frac{\sqrt[n]{(n+1)(n+2)\cdots(n+n)}}{n}.
+	\]
+	取对数得
+	\[
+	\begin{aligned}
+		\ln M_n
+		&=\frac1n\sum_{k=1}^n\ln(n+k)-\ln n\\
+		&=\frac1n\sum_{k=1}^n\ln\left(1+\frac{k}{n}\right)
+		\to \int_0^1\ln(1+x)\dd x=2\ln2-1.
+	\end{aligned}
+	\]
+	所以
+	\[
+	\lim_{n\to\infty}M_n=e^{2\ln2-1}=\frac4e.
+	\]
+\end{solution}
+
+
+
+\begin{problem}
+	求极限
+	\[
+	\lim_{n\to\infty}\left(
+	\frac{\sin\frac{\pi}{n}}{n+2026}
+	+\frac{\sin\frac{2\pi}{n}}{n+\frac{2026}{2}}
+	+\cdots+
+	\frac{\sin\frac{n\pi}{n}}{n+\frac{2026}{n}}
+	\right).
+	\]
+\end{problem}
+
+\begin{solution}
+	一般项为
+	\[
+	\frac{\sin\frac{k\pi}{n}}{n+\frac{2026}{k}}
+	=\frac1n\cdot \frac{\sin\left(\pi\frac{k}{n}\right)}{1+\frac{2026}{kn}}.
+	\]
+	对任意固定的 $\delta\in(0,1)$，当 $k\geq \delta n$ 时，
+	\[
+	0\leq \frac{2026}{kn}\leq \frac{2026}{\delta n^2}\to0,
+	\]
+	因而这一段和趋于
+	\[
+	\int_\delta^1\sin(\pi x)\dd x.
+	\]
+	对 $1\leq k<\delta n$ 的前段，利用 $0\leq \sin(\pi k/n)\leq 1$，有
+	\[
+	0\leq \sum_{1\leq k<\delta n}\frac{\sin\frac{k\pi}{n}}{n+\frac{2026}{k}}
+	\leq \frac{\lfloor \delta n\rfloor}{n}\leq \delta.
+	\]
+	令 $n\to\infty$ 后再令 $\delta\to0^+$，得原极限为
+	\[
+	\int_0^1\sin(\pi x)\dd x=\frac2\pi.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $\alpha>-1,\ \beta>-1$，求极限
+	\[
+	\lim_{n\to\infty}
+	\frac{\left(1^\alpha+3^\alpha+\cdots+(2n+1)^\alpha\right)^{\beta+1}}
+	{\left(2^\beta+4^\beta+\cdots+(2n)^\beta\right)^{\alpha+1}}.
+	\]
+\end{problem}
+
+\begin{solution}
+	将分子、分母分别化为 $[0,2]$ 上的积分和。因为
+	\[
+	\begin{aligned}
+		1^\alpha+3^\alpha+\cdots+(2n+1)^\alpha
+		&=n^\alpha\left[\left(\frac1n\right)^\alpha+
+		\left(\frac3n\right)^\alpha+\cdots+
+		\left(\frac{2n+1}{n}\right)^\alpha\right],\\
+		2^\beta+4^\beta+\cdots+(2n)^\beta
+		&=n^\beta\left[\left(\frac2n\right)^\beta+
+		\left(\frac4n\right)^\beta+\cdots+
+		\left(\frac{2n}{n}\right)^\beta\right].
+	\end{aligned}
+	\]
+	于是
+	\[
+	\begin{aligned}
+		&\frac{\left(1^\alpha+3^\alpha+\cdots+(2n+1)^\alpha\right)^{\beta+1}}
+		{\left(2^\beta+4^\beta+\cdots+(2n)^\beta\right)^{\alpha+1}}\\
+		&=2^{\alpha-\beta}
+		\frac{\left[\dfrac2n\left(\left(\dfrac1n\right)^\alpha+
+			\left(\dfrac3n\right)^\alpha+\cdots+
+			\left(\dfrac{2n+1}{n}\right)^\alpha\right)\right]^{\beta+1}}
+		{\left[\dfrac2n\left(\left(\dfrac2n\right)^\beta+
+			\left(\dfrac4n\right)^\beta+\cdots+
+			\left(\dfrac{2n}{n}\right)^\beta\right)\right]^{\alpha+1}}.
+	\end{aligned}
+	\]
+	当 $n\to\infty$ 时，两个括号分别是 $f(t)=t^\alpha$ 与 $g(t)=t^\beta$ 在 $[0,2]$ 上的积分和。故
+	\[
+	\dfrac2n\sum_{i=1}^{n+1}\left(\frac{2i-1}{n}\right)^\alpha
+	\to \int_0^2t^\alpha\dd t=\frac{2^{\alpha+1}}{\alpha+1},
+	\]
+	以及
+	\[
+	\dfrac2n\sum_{i=1}^{n}\left(\frac{2i}{n}\right)^\beta
+	\to \int_0^2t^\beta\dd t=\frac{2^{\beta+1}}{\beta+1}.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		\lim_{n\to\infty}
+		\frac{\left(1^\alpha+3^\alpha+\cdots+(2n+1)^\alpha\right)^{\beta+1}}
+		{\left(2^\beta+4^\beta+\cdots+(2n)^\beta\right)^{\alpha+1}}
+		&=2^{\alpha-\beta}
+		\frac{\left(\dfrac{2^{\alpha+1}}{\alpha+1}\right)^{\beta+1}}
+		{\left(\dfrac{2^{\beta+1}}{\beta+1}\right)^{\alpha+1}}\\
+		&=2^{\alpha-\beta}\frac{(\beta+1)^{\alpha+1}}{(\alpha+1)^{\beta+1}}.
+	\end{aligned}
+	\]
+\end{solution}
+\begin{problem}
+	求极限
+	\[
+	\lim_{n\to\infty}\left(b^{\frac1n}-1\right)
+	\sum_{i=0}^{n-1}b^{\frac{i}{n}}\sin b^{\frac{2i+1}{2n}},\qquad b>1.
+	\]
+\end{problem}
+
+\begin{solution}
+	先把和式改写为
+	\[
+	\begin{aligned}
+		&\left(b^{\frac1n}-1\right)
+		\sum_{i=0}^{n-1}b^{\frac{i}{n}}\sin b^{\frac{2i+1}{2n}}  \\
+		&=\sum_{i=0}^{n-1}\sin b^{\frac{2i+1}{2n}}
+		\left(b^{\frac{i+1}{n}}-b^{\frac{i}{n}}\right).
+	\end{aligned}
+	\]
+	令
+	\[
+	x_i=b^{\frac{i}{n}},\qquad i=0,1,\ldots,n.
+	\]
+	则
+	\[
+	1=x_0<x_1<\cdots <x_n=b,
+	\qquad \Delta x_i=x_{i+1}-x_i=b^{\frac{i+1}{n}}-b^{\frac{i}{n}}.
+	\]
+	又
+	\[
+	\xi_i=b^{\frac{2i+1}{2n}}=\sqrt{b^{\frac{i}{n}}b^{\frac{i+1}{n}}}\in[x_i,x_{i+1}],
+	\]
+	且最大分割长度满足
+	\[
+	\lambda_n=\max_{0\leq i\leq n-1}\Delta x_i
+	=b-b^{\frac{n-1}{n}}=b\left(1-b^{-\frac1n}\right)\to 0.
+	\]
+	因此原式是函数 $\sin x$ 在 $[1,b]$ 上的一个积分和，故
+	\[
+	\lim_{n\to\infty}\left(b^{\frac1n}-1\right)
+	\sum_{i=0}^{n-1}b^{\frac{i}{n}}\sin b^{\frac{2i+1}{2n} }
+	=\int_1^b\sin x\dd x=\cos 1-\cos b.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,1]$ 上连续，证明
+	\[
+	\lim_{n\to\infty}\frac1n\sum_{k=1}^n(-1)^{k+1}f\left(\frac{k}{n}\right)=0.
+	\]
+\end{problem}
+
+\begin{proof}
+	记
+	\[
+	a_n=\frac1n\sum_{k=1}^n(-1)^{k+1}f\left(\frac{k}{n}\right).
+	\]
+	当 $n=2m$ 时，利用
+	\[
+	b_1-b_2+b_3-b_4+\cdots+b_{2m-1}-b_{2m}
+	=(b_1+b_2+\cdots+b_{2m})-2(b_2+b_4+\cdots+b_{2m}),
+	\]
+	得
+	\[
+	\begin{aligned}
+		a_{2m}
+		&=\frac1{2m}\sum_{k=1}^{2m}f\left(\frac{k}{2m}\right)
+		-\frac{2}{2m}\sum_{k=1}^{m}f\left(\frac{2k}{2m}\right)\\
+		&=\frac1n\sum_{k=1}^{n}f\left(\frac{k}{n}\right)
+		-\frac2n\sum_{k=1}^{m}f\left(\frac{2k}{n}\right).
+	\end{aligned}
+	\]
+	第一项是 $f$ 在 $[0,1]$ 上右端点取样的积分和，所以
+	\[
+	\frac1n\sum_{k=1}^{n}f\left(\frac{k}{n}\right)\to \int_0^1 f(x)\dd x.
+	\]
+	第二项可看作把 $[0,1]$ 分成 $m$ 个小区间，每个小区间长度为 $1/m=2/n$，并取右端点 $2k/n$ 的积分和，所以
+	\[
+	\frac2n\sum_{k=1}^{m}f\left(\frac{2k}{n}\right)\to \int_0^1 f(x)\dd x.
+	\]
+	因此 $a_{2m}\to 0$。
+	
+	当 $n=2m+1$ 时，同理有
+	\[
+	\begin{aligned}
+		a_{2m+1}
+		&=\frac1n\sum_{k=1}^{n}f\left(\frac{k}{n}\right)
+		-\frac2n\sum_{k=1}^{m}f\left(\frac{2k}{n}\right).
+	\end{aligned}
+	\]
+	第二项对应的是 $[0,2m/n]$ 上的积分和，而 $2m/n\to 1$，故它仍趋于 $\int_0^1f(x)\dd x$；第一项也趋于同一积分。因此 $a_{2m+1}\to0$。
+	
+	综上，偶子列与奇子列极限都为 $0$，故
+	\[
+	\lim_{n\to\infty}a_n=0.
+	\]
+\end{proof}
+

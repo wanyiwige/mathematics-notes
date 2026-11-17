@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "Lotka_Volterra_energy": true,
+    "Jordan_boundary_growth": true,
+    "sphere_transition_direction": true,
+    "Van_der_Pol_increment": true,
+    "Sturm_parameter_identity": true,
+    "folded_field_trace_det": true,
+    "stable_kernel_sum": true,
+    "unstable_kernel_sum": true,
+    "no_source_editorial_notes": true,
+    "math_environments_balanced": true
+  },
+  "passed": true
+}

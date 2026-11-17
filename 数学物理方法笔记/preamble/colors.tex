@@ -1,0 +1,45 @@
+% preamble/colors.tex
+% ============================================
+% 配色方案：青蓝 & 金色 学术风格
+% 主色：深青蓝（PhysTeal）—— 定理、命题、章节彩带
+% 辅色：暖金（Gold）—— 装饰线、点缀
+% ============================================
+
+% ---- 青蓝色系（主结构色）----
+\definecolor{PhysTeal}{RGB}{14, 120, 130}
+\definecolor{PhysCyan}{RGB}{18, 155, 168}
+\definecolor{PhysDark}{RGB}{6, 68, 74}
+
+\colorlet{WaveMain}{PhysTeal}        % 主青蓝色 —— 封面侧边条、章节彩带
+\colorlet{WaveDark}{PhysDark}        % 深青蓝色 —— 标题、强调
+\colorlet{WaveLight}{PhysCyan}       % 浅青蓝色 —— 次强调
+
+% ---- 暖金色系（装饰点缀用，与其它笔记一致）----
+\definecolor{GoldDark}{RGB}{140, 100, 35}      % 暗金
+\definecolor{GoldMain}{RGB}{178, 132, 55}      % 主金 —— 章节扉页装饰条、分割线
+\definecolor{GoldLight}{RGB}{210, 172, 100}    % 浅金
+\definecolor{GoldPale}{RGB}{242, 230, 205}     % 淡金背景
+
+% ---- 兼容旧名称（各 preamble 文件内部桥接）----
+\colorlet{BlueMain}{WaveMain}
+\colorlet{BlueDark}{WaveDark}
+\colorlet{BlueLight}{WaveLight}
+\colorlet{GreenMain}{WaveMain}
+\colorlet{OrangeMain}{WaveMain}       % chapter.title.tex 中的彩带
+
+% ---- 旧几何色名桥接（消除 geometry.tex 残留依赖）----
+\colorlet{mainblue}{WaveMain}
+\colorlet{mediumblue}{WaveDark}
+\colorlet{lightblue}{WaveLight}
+\colorlet{grayblue}{WaveMain!50}
+\colorlet{brightblue}{GoldMain}
+\colorlet{paleblue}{WaveMain!5}
+
+% ---- 代码块样式 ----
+\lstset{
+	backgroundcolor=\color{WaveMain!4},
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{WaveMain},
+	commentstyle=\color{WaveMain!40},
+	escapeinside={(*@}{@*)},
+}

@@ -1,0 +1,149 @@
+\subsection*{能量层的轨道分解与振动周期}
+\phantomsection\label{sec:energy-levels}
+定理~\ref{thm:Hamilton函数沿轨道守恒} 说明轨道包含在能量层中；平衡点分类给出了临界点附近的形状。下面进一步区分能量层的各条轨道，并由沿轨道的速度计算周期。全局延拓的能量估计已见定理~\ref{thm:energy-global-extension}。
+\begin{definition}
+对一自由度系统 $\ddot x=-U'(x)$，记能量
+$H(x,y)=y^2/2+U(x)$。若 $E$ 不等于任何 $U$ 的临界值，称为非临界能量。
+满足 $U(a)=E$ 的位置称为转向点；当 $U'(a)\ne0$ 时称为简单转向点。
+趋近平衡点的非平衡轨道称为分离轨道；两端趋于同一平衡点时称同宿轨道，
+趋于两个不同平衡点时称异宿轨道。
+\end{definition}
+\begin{theorem}[非临界能量层]\label{thm:regular-energy-level}
+设 $U\in C^2(\R)$，$E$ 为非临界能量。
+集合 $\{x:U(x)<E\}$ 的每个有界连通分支 $(a,b)$ 对应一条闭轨，周期为
+\[
+ T(E)=2\int_a^b\frac{\dd x}{\sqrt{2(E-U(x))}}.
+\]
+无界分支对应直线型轨道；当该集合为整个实轴时，对应两条轨道
+$y=\pm\sqrt{2(E-U(x))}$。
+\end{theorem}
+\begin{proof}
+设 $(a,b)$ 是 $\{U<E\}$ 的一个有界连通分支。连续性给出
+$U(a)=U(b)=E$；非临界假设又给出 $U'(a),U'(b)\ne0$。
+由分支内部 $U<E$，必有 $U'(a)<0$、$U'(b)>0$。一阶展开于是给出
+\[
+ \begin{aligned}
+ \lim_{x\downarrow a}\frac{E-U(x)}{x-a}&=-U'(a)>0,\\
+ \lim_{x\uparrow b}\frac{E-U(x)}{b-x}&=U'(b)>0.
+\end{aligned}
+\]
+故存在正常数 $c_1,c_2$，使靠近左端时
+\[
+ c_1(x-a)\leq E-U(x)\leq c_2(x-a);
+\]
+右端有对应估计。
+因为 $\displaystyle\int_0^\delta s^{-1/2}\,ds=2\sqrt\delta<\infty$，下式收敛：
+\[
+ \tau=\int_a^b\frac{dx}{\sqrt{2(E-U(x))}}.
+\]
+在上半支 $y=\sqrt{2(E-U(x))}$ 上，$\dot x=y>0$，分离变量说明
+从 $a$ 到 $b$ 的时间正是 $\tau$。到达 $(b,0)$ 时，向量场为
+$(0,-U'(b))$，竖直向下且非零；存在唯一性把解接到下半支。
+下半支满足 $\dot x=-\sqrt{2(E-U(x))}$，在同样的时间 $\tau$ 内返回 $(a,0)$。
+在 $(a,0)$ 处向量场竖直向上，解遂重复。第一次回到初始状态需要完整走过两支，
+故其最小正周期为 $2\tau$。
+
+再看曲线的光滑性。能量层上
+$\nabla H=(U'(x),y)$ 不为零，隐函数定理表明它在每一点附近都是可用单个坐标参数化的光滑曲线。
+在转向点附近可用 $y$ 为坐标，因此两条显式平方根分支虽然在 $x$ 坐标中
+斜率无穷，接合后的曲线仍光滑。两支加两个端点构成一条简单闭曲线。
+
+若分支只有一个有限端点，正负两支经此端点接合，构成一条非闭合的直线型曲线。
+若分支是整个实轴，则 $y$ 始终不为零，两支分别构成两条直线型曲线。
+每一支上的非零向量场使任意两个有限位置之间的行程时间有限，
+所以这里所述每条连通曲线确是一条最大轨道的像。
+这些分支穷尽全部非临界能量层，分类因而完整。
+\end{proof}
+在临界能量层，$U'(a)=0$、$y=0$ 的点本身是一条平衡轨道，
+不能同与之相接的分离轨道算成一条轨道。
+唯一性说明非平衡运动不可能在有限时间到达平衡点；
+若它在有限端点有此极限，则延拓后与常值解具有同一初值，矛盾。
+
+
+图~\ref{fig:ode-tikz-energy-level} 将转向点与相平面中的上下两支对应起来；箭头表示真实的时间方向。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+\input{figure/tikz/energy-level}
+\captionof{figure}{势阱与闭合能量层：以 $U(x)=x^2/2$、$E=1$ 为例。}
+\label{fig:ode-tikz-energy-level}
+\end{minipage}
+\end{center}
+
+\begin{proposition}[数学摆的周期]
+对 $\ddot x=-\sin x$，振幅 $0<A<\pi$ 时
+\[
+ T(A)=4\int_0^{\pi/2}
+ \frac{\dd u}{\sqrt{1-k^2\sin^2u}},\qquad k=\sin(A/2).
+\]
+当 $A\to0$，
+$T(A)=2\pi(1+A^2/16+O(A^4))$；当 $A\uparrow\pi$ 时周期按对数阶发散。
+\end{proposition}
+\begin{proof}
+能量式给出 
+\[
+ \dot x^2=2(\cos x-\cos A).
+\]
+把四分之一周期的积分中令 $\sin(x/2)=k\sin u$，约去 $\cos u$，得到上述公式。
+小 $k$ 时，积分号内一致展开为
+$1+\frac12k^2\sin^2u+O(k^4)$，再用
+$\displaystyle\int_0^{\pi/2}\sin^2u\,\dd u=\pi/4$ 和 $k^2=A^2/4+O(A^4)$ 即得渐近式。
+
+令 $\delta=1-k^2$。在 $u=\pi/2$ 附近写 $s=\pi/2-u$，
+分母平方是 $\delta+k^2\sin^2s$。
+小 $s$ 时 $\sin s$ 与 $s$ 之比有正常数上下界，所以相应积分与
+$\displaystyle\int_0^c(\delta+s^2)^{-1/2}\,\dd s$ 同阶。
+后一积分为 $\operatorname{arsinh}(c/\sqrt\delta)$，是 $|\log\delta|$ 阶；
+离开端点的部分有界，故证明对数发散。
+\end{proof}
+角度 $x$ 与 $x+2\pi$ 表示同一位置，因此摆的自然相空间是圆柱
+$(\R/2\pi\Z)\times\R$。平面展开图中不闭合的旋转运动，在圆柱上可以闭合。
+
+
+\subsection*{Lotka--Volterra系统的闭轨与平均值}
+\phantomsection\label{sec:lv-energy}
+回到绪论中的捕食者--食饵模型。虽然原坐标中的方程不直接具有标准 Hamilton 形式，仍可沿用“首次积分—紧等值线—周期运动”的论证。把参数记为正数 $a,b,c,d$，考虑
+\[
+ \dot x=x(-a+by),\qquad \dot y=y(c-dx),\qquad x,y>0.
+\]
+\begin{theorem}
+函数
+\[
+ H(x,y)=dx-c\log x+by-a\log y
+\]
+是首次积分。正象限内除平衡点 $(c/d,a/b)$ 外的每条轨道均闭合。
+任意周期轨道上，$x,y$ 的时间平均值分别为 $c/d,a/b$。
+\end{theorem}
+\begin{proof}
+直接相乘可得
+\[
+ \dot H=(dx-c)(-a+by)+(by-a)(c-dx)=0.
+\]
+$H$ 的 Hessian 为 $\operatorname{diag}(c/x^2,a/y^2)$，正定；
+$H$ 向象限边界或无穷远均趋于无穷，所以有唯一严格最小点 $(c/d,a/b)$。
+每个非最小等值集紧，且梯度非零。
+从最小点沿任意射线出发，$H$ 严格增加到无穷，因此每个较高等值集
+在每个方向上恰交一点，并由隐函数定理构成一条光滑简单闭曲线。
+向量场在其上非零且相切，紧性给出非零速度的正下界，所以有限时间内走完一周。
+
+设周期为 $T$。对 $\dot x/x=-a+by$ 积分得
+\[
+ 0=-aT+b\displaystyle\int_0^Ty(t)\,\dd t,
+\]
+对 $\dot y/y$ 积分得
+\[
+ 0=cT-d\displaystyle\int_0^Tx(t)\,\dd t.
+\]
+除以 $T$ 即得平均值。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-lv-levels} 中闭轨围绕唯一极小点，各坐标的周期平均值均为 1。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+\input{figure/tikz/lv-levels}
+\captionof{figure}{参数 $a=b=c=d=1$ 时的 Lotka--Volterra 闭轨；各曲线为首次积分的等值线。}
+\label{fig:ode-tikz-lv-levels}
+\end{minipage}
+\end{center}

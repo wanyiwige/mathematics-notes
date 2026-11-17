@@ -1,0 +1,776 @@
+\setchapterimage{figure/Chapter4封面图}
+\setchapterintro{}
+\chapter{常系数线性方程}\label{chap:常系数线性方程}
+
+考虑一般的 $n$ 阶常系数线性微分方程
+\[
+	\dfrac{\dd^n x}{\dd t^n}
+	+a_1\dfrac{\dd^{n-1}x}{\dd t^{n-1}}
+	+\cdots
+	+a_{n-1}\dfrac{\dd x}{\dd t}
+	+a_nx=f(t),
+\]
+其中 $a_1,a_2,\ldots,a_n$ 都是常数。引入微分算子
+\[
+	D=\dfrac{\dd}{\dd t},
+	\qquad
+	D^n=\dfrac{\dd^n}{\dd t^n},
+\]
+则上述方程可以简写为
+\[
+	P(D)x=f(t),
+\]
+其中
+\[
+	P(D)=D^n+a_1D^{n-1}+\cdots+a_{n-1}D+a_n
+\]
+是关于 $D$ 的 $n$ 次多项式。
+
+算子 $D$ 可以看作从连续可微函数空间 $C^1(J)$ 到连续函数空间
+$C^0(J)$ 的映射，其中 $J$ 是函数的定义域。$C^1(J)$ 是
+$C^0(J)$ 的子空间，二者都是线性空间，而 $D$ 是其上的线性算子。
+
+由第三章可知，非齐次线性方程的通解由一个特解与相应齐次方程通解之和构成。
+因此，首先研究齐次方程
+\[
+	\dfrac{\dd^n x}{\dd t^n}
+	+a_1\dfrac{\dd^{n-1}x}{\dd t^{n-1}}
+	+\cdots
+	+a_{n-1}\dfrac{\dd x}{\dd t}
+	+a_nx=0.
+\]
+一旦确定了这个齐次方程的通解，原非齐次方程的特解原则上可由常数变易法得到。
+
+\section{齐次问题}\label{sec:常系数线性方程的齐次问题}
+
+设齐次方程具有形如
+\[
+	x(t)=\mathrm{e}^{\lambda t}
+\]
+的解，其中 $\lambda$ 为待定常数。代入齐次方程可得
+\[
+	P(D)\mathrm{e}^{\lambda t}=P(\lambda)\mathrm{e}^{\lambda t}=0,
+\]
+从而问题化为多项式方程
+\[
+	P(\lambda)
+	=\lambda^n+a_1\lambda^{n-1}+\cdots+a_{n-1}\lambda+a_n=0
+\]
+的求根问题。多项式 $P(\lambda)$ 称为\textbf{特征多项式}，
+$P(\lambda)=0$ 称为\textbf{特征方程}，它的根称为\textbf{特征根}；
+相应的指数函数解称为\textbf{特征解}。
+
+\begin{theorem}\label{thm:互异特征根的基本解组}
+	若特征方程有 $n$ 个互异的根
+	$\lambda_1,\lambda_2,\ldots,\lambda_n$，则齐次方程有基本解组
+	\[
+		\mathrm{e}^{\lambda_1t},\mathrm{e}^{\lambda_2t},\ldots,\mathrm{e}^{\lambda_nt}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	这些函数显然都是齐次方程的解。它们的 Wronski 行列式为
+	\[
+		\begin{aligned}
+		W(t)
+		&=
+		\begin{vmatrix}
+			1&1&\cdots&1\\
+			\lambda_1&\lambda_2&\cdots&\lambda_n\\
+			\lambda_1^2&\lambda_2^2&\cdots&\lambda_n^2\\
+			\vdots&\vdots&&\vdots\\
+			\lambda_1^{n-1}&\lambda_2^{n-1}&\cdots&\lambda_n^{n-1}
+		\end{vmatrix}
+		\mathrm{e}^{(\lambda_1+\lambda_2+\cdots+\lambda_n)t}\\
+		&=\prod_{1\leq j<k\leq n}(\lambda_k-\lambda_j)\mathrm{e}^{-a_1t}\neq0.
+		\end{aligned}
+	\]
+	这里使用了 Vandermonde 行列式以及根与系数的关系
+	$\lambda_1+\cdots+\lambda_n=-a_1$。故这些解线性无关，因而构成基本解组。
+\end{proof}
+
+\begin{theorem}\label{thm:重特征根的基本解组}
+	设特征方程只有 $r$ 个互异的根
+	$\lambda_1,\lambda_2,\ldots,\lambda_r$，其重数分别为
+	$n_1,n_2,\ldots,n_r$，其中
+	\[
+		n_1+n_2+\cdots+n_r=n.
+	\]
+	则对每个 $i=1,2,\ldots,r$，函数
+	\[
+		\mathrm{e}^{\lambda_it},
+		t\mathrm{e}^{\lambda_it},
+		\ldots,
+		t^{n_i-1}\mathrm{e}^{\lambda_it}
+	\]
+	都是齐次方程的解；将各组函数合在一起，便得到该方程的一个基本解组。
+\end{theorem}
+
+\begin{proof}
+	证明分为两步。
+
+	先固定 $i$。对任意非负整数 $l$，由 Leibniz 公式或算子恒等式
+	$D^m(\mathrm{e}^{\lambda t}u)=\mathrm{e}^{\lambda t}(D+\lambda)^mu$，有
+	\[
+		P(D)\bigl(t^l\mathrm{e}^{\lambda t}\bigr)
+		=\mathrm{e}^{\lambda t}P(D+\lambda)t^l
+		=\mathrm{e}^{\lambda t}
+		\sum_{k=0}^{l}\binom{l}{k}P^{(k)}(\lambda)t^{l-k}.
+	\]
+	若 $\lambda_i$ 是 $n_i$ 重根，则
+	\[
+		P(\lambda_i)=P'(\lambda_i)=\cdots
+		=P^{(n_i-1)}(\lambda_i)=0.
+	\]
+	因此当 $l=0,1,\ldots,n_i-1$ 时，
+	$t^l\mathrm{e}^{\lambda_it}$ 都是齐次方程的解。若
+	\[
+		\sum_{k=0}^{n_i-1}C_kt^k\mathrm{e}^{\lambda_it}\equiv0,
+	\]
+	由于 $\mathrm{e}^{\lambda_it}\neq0$，便有
+	$\sum\limits_{k=0}^{n_i-1}C_kt^k\equiv0$，从而所有 $C_k$ 均为零。
+	故同一特征根对应的这一组解线性无关。
+
+	再证明不同特征根所对应的各组解合在一起仍然线性无关。
+	若存在恒等式
+	\[
+		\mathrm{e}^{\lambda_1t}\phi_1(t)
+		+\mathrm{e}^{\lambda_2t}\phi_2(t)
+		+\cdots
+		+\mathrm{e}^{\lambda_rt}\phi_r(t)\equiv0,
+	\]
+	其中 $\deg\phi_i<n_i$，则除以 $\mathrm{e}^{\lambda_1t}$ 
+	\[
+	\phi_1(t)
+	+\mathrm{e}^{\lambda_2t-\lambda_1t}\phi_2(t)
+	+\cdots
+	+\mathrm{e}^{\lambda_rt-\lambda_1t}\phi_r(t)\equiv0,\]
+	求一次导数
+	\[	\phi_1'(t)
+	+\mathrm{e}^{\lambda_2t-\lambda_1t}[\phi_2'(t)+(\lambda_2-\lambda_1)\phi_2(t)]
+	+\cdots
+	+\mathrm{e}^{\lambda_rt-\lambda_1t}[\phi_r'(t)+(\lambda_r-\lambda_1)\phi_r(t)]\equiv0,\]
+	后面的项次数不变，连续作用
+	$n_1$ 次微分算子。第一项被消去，其余各项仍是非零指数函数与同次数多项式的乘积。
+	再依次消去第二项、第三项，最终得到
+	\[
+		\mathrm{e}^{\mu t}\pi(t)\equiv0,
+	\]
+	其中 $\pi(t)$ 是不恒为零的多项式。这与
+	$\mathrm{e}^{\mu t}\neq0$ 矛盾。因此所有 $\phi_i$ 都只能恒为零，各组解合在一起线性无关。
+	这些解的总数为 $n_1+\cdots+n_r=n$，故它们构成齐次方程的基本解组。
+\end{proof}
+
+\noindent\textbf{补充：利用 Jordan 块构造重根对应的解}\quad
+固定特征根 $\lambda_i$，记 $m=n_i$。由于
+\[
+	P(z)=(z-\lambda_i)^mQ_i(z),
+\]
+只要构造出 $(D-\lambda_i)^mx=0$ 的解，就得到原齐次方程的解。
+令
+\[
+	y_1=x,\qquad y_2=(D-\lambda_i)x,\qquad\ldots,\qquad
+	y_m=(D-\lambda_i)^{m-1}x,
+\]
+则方程 $(D-\lambda_i)^mx=0$ 等价于一阶方程组
+\[
+	\vect{y}'=J_i\vect{y},\qquad
+	J_i=\lambda_iI_m+N_m,\qquad
+	N_m=
+	\begin{pmatrix}
+		0&1&0&\cdots&0\\
+		0&0&1&\ddots&\vdots\\
+		\vdots&\ddots&\ddots&\ddots&0\\
+		0&\cdots&0&0&1\\
+		0&\cdots&\cdots&0&0
+	\end{pmatrix}_{m\times m}.
+\]
+这里 $J_i$ 是一个 $m$ 阶 Jordan 块；当 $m=1$ 时，取 $N_1=(0)$。
+作代换 $\vect{y}=\mathrm{e}^{\lambda_it}\vect{u}$，方程组化为
+\[
+	\vect{u}'=N_m\vect{u},
+	\qquad
+	u_1'=u_2,\quad\ldots,\quad u_{m-1}'=u_m,\quad u_m'=0.
+\]
+从最后一个方程开始逐次积分，得到
+\[
+	u_m=c_m,\qquad u_{m-1}=c_{m-1}+c_mt,\qquad\ldots,\qquad
+	u_1=c_1+c_2t+\cdots+c_m\dfrac{t^{m-1}}{(m-1)!}.
+\]
+因此，取第一分量便得到
+\[
+	x(t)=\mathrm{e}^{\lambda_it}
+	\left(c_1+c_2t+\cdots+c_m\dfrac{t^{m-1}}{(m-1)!}\right).
+\]
+分别令 $(c_1,\ldots,c_m)$ 为各个标准基向量，就构造出
+\[
+	\mathrm{e}^{\lambda_it},\quad
+	t\mathrm{e}^{\lambda_it},\quad\ldots,\quad
+	\dfrac{t^{m-1}}{(m-1)!}\mathrm{e}^{\lambda_it}.
+\]
+将各函数乘以相应的非零常数 $0!,1!,\ldots,(m-1)!$，即得定理中的
+$\mathrm{e}^{\lambda_it},t\mathrm{e}^{\lambda_it},\ldots,
+t^{n_i-1}\mathrm{e}^{\lambda_it}$。
+上述构造也可写成矩阵形式
+\[
+	\vect{y}(t)=\mathrm{e}^{\lambda_it}
+	\left(I_m+tN_m+\cdots+\dfrac{t^{m-1}}{(m-1)!}N_m^{m-1}\right)\vect{c}.
+\]
+由于 $N_m^m=0$，括号中的有限和就是 $\mathrm{e}^{tN_m}$，
+从而整个矩阵为 $\mathrm{e}^{tJ_i}$；矩阵指数的定义及一般性质将在
+第~\ref{sec:常系数线性方程组}~节中讨论。
+
+上述结论先是在复数域中讨论的。对实系数方程，成对出现的共轭复根可以转化为实函数解。
+
+\begin{corollary}\label{cor:实系数常系数方程的基本解组}
+	设实系数齐次线性方程具有 $r$ 个互异的实特征根
+	$\lambda_1,\lambda_2,\ldots,\lambda_r$，其重数分别为
+	$n_1,n_2,\ldots,n_r$；又具有 $l$ 对互异的复特征根
+	\[
+		\alpha_1\pm\mathrm{i}\beta_1,
+		\alpha_2\pm\mathrm{i}\beta_2,
+		\ldots,
+		\alpha_l\pm\mathrm{i}\beta_l,
+	\]
+	其重数分别为 $m_1,m_2,\ldots,m_l$，并且
+	\[
+		\sum_{k=1}^{r}n_k+2\sum_{j=1}^{l}m_j=n.
+	\]
+	则该方程的下列实函数组成一个基本解组：
+	\[
+		\begin{gathered}
+			t^q\mathrm{e}^{\lambda_kt},
+			\qquad q=0,1,\ldots,n_k-1,
+			\quad k=1,2,\ldots,r,\\
+			t^q\mathrm{e}^{\alpha_jt}\cos\beta_jt,
+			\qquad q=0,1,\ldots,m_j-1,
+			\quad j=1,2,\ldots,l,\\
+			t^q\mathrm{e}^{\alpha_jt}\sin\beta_jt,
+			\qquad q=0,1,\ldots,m_j-1,
+			\quad j=1,2,\ldots,l.
+		\end{gathered}
+	\]
+\end{corollary}
+
+\begin{proof}
+	由命题~\ref{thm:实系数齐次方程组的复值解}，实系数齐次线性方程的复值解
+	$x(t)=u(t)+\mathrm{i} v(t)$ 的实部 $u(t)$ 与虚部 $v(t)$ 仍是该方程的解。
+	将定理~\ref{thm:重特征根的基本解组} 中共轭复根对应的解取实部和虚部，
+	便得到上述实函数。原来的 $n$ 个复值解线性无关，且它们都可由上述
+	$n$ 个实函数作常系数线性组合表示，因此这些实函数也线性无关，从而构成基本解组。
+\end{proof}
+
+\section{非齐次问题}\label{sec:常系数线性方程的非齐次问题}
+
+对一般问题来说，利用常数变易法求非齐次方程的特解，计算可能相当复杂。
+针对几类特殊而常见的函数，可以采用更简便的\textbf{算子解法}。
+
+考虑非齐次线性方程
+\[
+	P(D)x=f(t).
+\]
+将 $P(D)$ 的逆算子形式地记为 $\dfrac{1}{P(D)}$，则可将方程的一个特解写成
+\[
+	x(t)=\dfrac{1}{P(D)}f(t).
+\]
+先说明逆算子记号的含义。例如，$\dfrac{1}{D}$ 作用于可积函数 $f(t)$ 时，
+\[
+	\dfrac{1}{D}f(t)=\int f(t)\,\dd t.
+\]
+由于这里只需求任意一个特解，可以在每次积分时选取一个方便的原函数，
+而不计积分常数。以下算子等式都在这个意义下理解。
+
+逆算子 $\dfrac{1}{P(D)}$ 具有下列基本性质。
+
+\noindent\textbf{性质 1}\quad
+\[
+	\dfrac{1}{D^n}f(t)
+	=\underbrace{\int\cdots\int}_{n\text{ 次}}f(t)\,(\dd t)^n,
+\]
+即作 $n$ 次积分。
+
+\noindent\textbf{性质 2}\quad 逆算子的作用是线性的，即
+\[
+	\dfrac{1}{P(D)}\bigl(\alpha f_1(t)+\beta f_2(t)\bigr)
+	=\alpha\dfrac{1}{P(D)}f_1(t)
+	+\beta\dfrac{1}{P(D)}f_2(t).
+\]
+
+\noindent\textbf{性质 3}\quad 若 $P(D)=P_1(D)P_2(D)$，则
+\[
+	\dfrac{1}{P(D)}
+	=\dfrac{1}{P_1(D)}\dfrac{1}{P_2(D)}
+	=\dfrac{1}{P_2(D)}\dfrac{1}{P_1(D)}.
+\]
+
+这些性质均可由微分算子 $P(D)$ 的线性及可交换性直接验证。
+下面给出三种重要的计算公式。
+
+\begin{proposition}\label{thm:逆算子的三种计算方法}
+	逆算子 $\dfrac{1}{P(D)}$ 有以下计算方法。
+
+	\textup{i）解析展开法（解析相除法）}\quad
+	设 $f_k(t)$ 是 $k$ 次多项式。若 $\dfrac{1}{P(x)}$ 在 $x=0$ 处解析，且
+	\[
+		\dfrac{1}{P(x)}=Q_k(x)+H_k(x),
+	\]
+	其中 $Q_k(x)$ 是 $k$ 次多项式，$H_k(x)$ 只含 $k+1$ 次及以上的项，则
+	\[
+		\dfrac{1}{P(D)}f_k(t)=Q_k(D)f_k(t).
+	\]
+
+	\textup{ii）代换法}\quad 若 $P(\lambda)\neq0$，则
+	\[
+		\dfrac{1}{P(D)}\mathrm{e}^{\lambda t}
+		=\dfrac{1}{P(\lambda)}\mathrm{e}^{\lambda t}.
+	\]
+
+	\textup{iii）二项式法}\quad 对任意适当的函数 $v(t)$，有
+	\[
+		\dfrac{1}{P(D)}\bigl(\mathrm{e}^{\lambda t}v(t)\bigr)
+		=\mathrm{e}^{\lambda t}\dfrac{1}{P(D+\lambda)}v(t).
+	\]
+\end{proposition}
+
+\begin{proof}
+	对解析展开法，由于 $f_k(t)$ 是 $k$ 次多项式，故
+	$D^{k+i}f_k(t)=0$（$i\geq1$）。因此 $H_k(D)f_k(t)=0$，从而只留下
+	$Q_k(D)f_k(t)$。
+
+	对代换法，由
+	\[
+		P(D)\mathrm{e}^{\lambda t}=P(\lambda)\mathrm{e}^{\lambda t}
+	\]
+	即可得到结论。
+
+	对二项式法，由 Leibniz 公式，对任意正整数 $m$ 有
+	\[
+		\begin{aligned}
+		D^m\bigl(\mathrm{e}^{\lambda t}v(t)\bigr)
+		&=\sum_{j=0}^{m}\binom{m}{j}
+		D^j\mathrm{e}^{\lambda t}\,D^{m-j}v(t)\\
+		&=\mathrm{e}^{\lambda t}
+		\sum_{j=0}^{m}\binom{m}{j}\lambda^jD^{m-j}v(t)\\
+		&=\mathrm{e}^{\lambda t}(D+\lambda)^mv(t).
+		\end{aligned}
+	\]
+	于是
+	\[
+		P(D)\bigl(\mathrm{e}^{\lambda t}v(t)\bigr)
+		=\mathrm{e}^{\lambda t}P(D+\lambda)v(t).
+	\]
+	将 $v(t)$ 换成 $\dfrac{1}{P(D+\lambda)}v(t)$，便得
+	\[
+		P(D)\left[
+		\mathrm{e}^{\lambda t}\dfrac{1}{P(D+\lambda)}v(t)
+		\right]
+		=\mathrm{e}^{\lambda t}v(t),
+	\]
+	即得二项式法公式。
+\end{proof}
+
+\noindent\textbf{注 4.1}\quad
+解析展开法最直接、最常用的一个情形是
+\[
+	\dfrac{1}{1-D}f_k(t)
+	=\bigl(1+D+D^2+\cdots+D^k\bigr)f_k(t).
+\]
+
+\noindent\textbf{注 4.2}\quad
+对只含 $D^2$ 的多项式，可由代换法得到
+\[
+	\dfrac{1}{P(D^2)}
+	\begin{Bmatrix}
+		\cos at\\
+		\sin at
+	\end{Bmatrix}
+	=\dfrac{1}{P(-a^2)}
+	\begin{Bmatrix}
+		\cos at\\
+		\sin at
+	\end{Bmatrix},
+	\qquad P(-a^2)\neq0.
+\]
+事实上，对辅助函数 $\mathrm{e}^{\mathrm{i}at}$ 应用代换法，有
+\[
+	\dfrac{1}{P(D^2)}\mathrm{e}^{\mathrm{i}at}
+	=\dfrac{1}{P\bigl((\mathrm{i}a)^2\bigr)}\mathrm{e}^{\mathrm{i}at}
+	=\dfrac{1}{P(-a^2)}\mathrm{e}^{\mathrm{i}at}.
+\]
+分别取实部和虚部即得上述公式。
+
+\noindent\textbf{注 4.3}\quad
+当 $P(\lambda)=0$ 时不能直接使用代换法，但仍可使用二项式法：
+\[
+	\dfrac{1}{P(D)}\mathrm{e}^{\lambda t}
+	=\mathrm{e}^{\lambda t}\dfrac{1}{P(D+\lambda)}\,1.
+\]
+
+\section{常系数线性方程组}\label{sec:常系数线性方程组}
+
+考虑常系数齐次线性方程组
+\[
+	\dfrac{\dd}{\dd t}
+	\begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&&\vdots\\
+		a_{n1}&\cdots&a_{nn}
+	\end{pmatrix}
+	\begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix}.
+\]
+由于下面需要使用特征值，先在复数域上讨论。令
+\[
+	\vect{x}=(x_1,x_2,\ldots,x_n)^{\mathsf T},
+	\qquad
+	A=(a_{ij})_{n\times n},
+\]
+则方程组可简写为
+\[
+	\vect{x}'=A\vect{x}.
+\]
+设它具有形如
+\[
+	\vect{x}(t)=\vect{c}\,\mathrm{e}^{\lambda t}
+\]
+的特解，其中 $\lambda\in\C$，非零向量
+$\vect{c}=(c_1,c_2,\ldots,c_n)^{\mathsf T}\in\C^n$。代入方程组得到
+\[
+	(\lambda I-A)\vect{c}=\vect{0}.
+\]
+因此，问题化为求矩阵 $A$ 的特征值及相应特征向量。方程
+\[
+	\det(\lambda I-A)=0
+\]
+称为矩阵 $A$ 的特征方程。
+
+\begin{proposition}\label{thm:互异特征值常系数方程组的基本解组}
+	若矩阵 $A$ 有 $n$ 个互异的特征值
+	$\lambda_1,\lambda_2,\ldots,\lambda_n$，相应的特征向量为
+	$\vect{c}^{(1)},\vect{c}^{(2)},\ldots,\vect{c}^{(n)}$，则方程组
+	$\vect{x}'=A\vect{x}$ 有基本解组
+	\[
+		\vect{c}^{(1)}\mathrm{e}^{\lambda_1t},
+		\vect{c}^{(2)}\mathrm{e}^{\lambda_2t},
+		\ldots,
+		\vect{c}^{(n)}\mathrm{e}^{\lambda_nt}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	每个函数都是方程组的解。互异特征值所对应的特征向量线性无关，故在
+	$t=0$ 时，上述 $n$ 个解向量组成的矩阵可逆。由基本解组的判别条件，
+	它们构成方程组的基本解组。
+\end{proof}
+
+当 $A$ 不可对角化时，需要借助矩阵指数函数与 Jordan 标准形处理。
+
+\subsection*{一、矩阵指数函数}
+
+记全体 $n$ 阶复方阵组成的线性空间为 $\mathscr{M}(n)$，并定义矩阵范数
+\[
+	\norm{A}=\sum_{i,j=1}^{n}\abs{a_{ij}},
+	\qquad A=(a_{ij})\in\mathscr{M}(n).
+\]
+
+\begin{lemma}\label{lem:矩阵指数级数的收敛性}
+	空间 $\mathscr{M}(n)$ 关于上述范数是完备的，并且对任意
+	$A,B\in\mathscr{M}(n)$，有
+	\[
+		\norm{AB}\leq\norm{A}\norm{B}.
+	\]
+	特别地，当 $k\geq1$ 时，$\norm{A^k}\leq\norm{A}^k$。此外，矩阵幂级数
+	\[
+		I+A+\dfrac{1}{2!}A^2+\cdots+\dfrac{1}{k!}A^k+\cdots
+	\]
+	绝对收敛。
+\end{lemma}
+
+\begin{proof}
+	完备性由有限维线性空间的完备性得到。矩阵乘法的分量估计直接给出
+	$\norm{AB}\leq\norm{A}\norm{B}$，进而归纳得到
+	$\norm{A^k}\leq\norm{A}^k$。令 $M=\norm{A}$，则
+	\[
+		\sum_{k=0}^{\infty}\norm{\dfrac{A^k}{k!}}
+		\leq\sum_{k=0}^{\infty}\dfrac{M^k}{k!}
+		=\mathrm{e}^{M}<\infty,
+	\]
+	故矩阵幂级数绝对收敛。
+\end{proof}
+
+\begin{definition}\label{def:矩阵指数函数}
+	对任意 $A\in\mathscr{M}(n)$，定义
+	\[
+		\mathrm{e}^{A}=\sum_{k=0}^{\infty}\dfrac{A^k}{k!},
+	\]
+	称为矩阵 $A$ 的\textbf{指数函数}。
+\end{definition}
+
+由幂级数运算可得矩阵指数函数的基本性质：
+
+\begin{enumerate}
+	\item 若 $AB=BA$，则
+	\[
+		\mathrm{e}^{A+B}
+		=\mathrm{e}^{A}\mathrm{e}^{B}
+		=\mathrm{e}^{B}\mathrm{e}^{A}.
+	\]
+	\item $\bigl(\mathrm{e}^{A}\bigr)^{-1}=\mathrm{e}^{-A}$。
+	\item 若 $P$ 可逆，则
+	\[
+		\mathrm{e}^{PAP^{-1}}=P\mathrm{e}^{A}P^{-1}.
+	\]
+\end{enumerate}
+
+利用矩阵指数函数，可以简洁地表述常系数线性方程组的基本结果。
+
+\begin{theorem}\label{thm:常系数线性方程组的矩阵指数解}
+	对齐次方程组 $\vect{x}'=A\vect{x}$，矩阵
+	\[
+		X(t)=\mathrm{e}^{tA}
+	\]
+	是其标准解矩阵，即 $X(0)=I$。非齐次方程组
+	\[
+		\vect{x}'=A\vect{x}+\vect{f}(t)
+	\]
+	的通解为
+	\[
+		\vect{x}(t)
+		=\mathrm{e}^{tA}\vect{c}
+		+\int_{t_0}^{t}\mathrm{e}^{(t-s)A}\vect{f}(s)\,\dd s,
+	\]
+	其中 $\vect{c}$ 为任意常向量。
+\end{theorem}
+
+\begin{proof}
+	在任意有限区间上，$\mathrm{e}^{tA}$ 的幂级数及其逐项求导级数一致收敛，故
+	\[
+		\dfrac{\dd}{\dd t}\mathrm{e}^{tA}
+		=A+tA^2+\dfrac{t^2}{2!}A^3+\cdots
+		=A\mathrm{e}^{tA}.
+	\]
+	又 $\mathrm{e}^{0A}=I$，所以 $\mathrm{e}^{tA}$ 是标准解矩阵。
+	非齐次方程的通解公式则由常数变易公式直接得到。
+\end{proof}
+
+\subsection*{二、标准解矩阵的初等表达}
+
+由定义可知，标准解矩阵 $\mathrm{e}^{tA}$ 是一个无穷和。下面利用 Jordan 标准形，
+把它写成初等函数的有限和。
+
+存在可逆矩阵 $P$，使得
+\[
+	P^{-1}AP
+	=J
+	=\operatorname{diag}(J_1,J_2,\ldots,J_s),
+\]
+其中 $J_i$ 是 $n_i$ 阶 Jordan 块：
+\[
+	J_i=
+	\begin{pmatrix}
+		\lambda_i&1&0&\cdots&0\\
+		0&\lambda_i&1&\ddots&\vdots\\
+		\vdots&\ddots&\ddots&\ddots&0\\
+		0&\cdots&0&\lambda_i&1\\
+		0&\cdots&\cdots&0&\lambda_i
+	\end{pmatrix}_{n_i\times n_i},
+	\qquad i=1,2,\ldots,s,
+\]
+且 $n_1+n_2+\cdots+n_s=n$。作变量代换 $\vect{x}=P\vect{y}$，
+原齐次方程组化为
+\[
+	\vect{y}'=J\vect{y}.
+\]
+由矩阵指数函数的相似不变性，
+\[
+	\mathrm{e}^{tA}=P\mathrm{e}^{tJ}P^{-1},
+	\qquad
+	\mathrm{e}^{tA}P=P\mathrm{e}^{tJ}
+\]
+$P\mathrm{e}^{tJ}$也是原方程组的一个基本解矩阵。因此只需计算各 Jordan 块的指数函数。
+
+写成
+\[
+	J_i=\lambda_iI+Z_i,
+	\qquad
+	Z_i=
+	\begin{pmatrix}
+		0&1&0&\cdots&0\\
+		0&0&1&\ddots&\vdots\\
+		\vdots&\ddots&\ddots&\ddots&0\\
+		0&\cdots&0&0&1\\
+		0&\cdots&\cdots&0&0
+	\end{pmatrix}_{n_i\times n_i}.
+\]
+矩阵 $Z_i$ 是幂零矩阵，$Z_i^{n_i}=0$，从而
+\[
+	\mathrm{e}^{tZ_i}
+	=I+tZ_i+\dfrac{t^2}{2!}Z_i^2+\cdots
+	+\dfrac{t^{n_i-1}}{(n_i-1)!}Z_i^{n_i-1}.
+\]
+由于 $\lambda_iI$ 与 $Z_i$ 可交换，
+\[
+	\mathrm{e}^{tJ_i}
+	=\mathrm{e}^{\lambda_it}\mathrm{e}^{tZ_i}
+	=\mathrm{e}^{\lambda_it}
+	\begin{pmatrix}
+		1&t&\dfrac{t^2}{2!}&\cdots&\dfrac{t^{n_i-1}}{(n_i-1)!}\\
+		0&1&t&\cdots&\dfrac{t^{n_i-2}}{(n_i-2)!}\\
+		\vdots&\ddots&\ddots&\ddots&\vdots\\
+		0&\cdots&0&1&t\\
+		0&\cdots&\cdots&0&1
+	\end{pmatrix}.
+\]
+
+将 $P$ 按照 Jordan 块分为列块
+\[
+	P=(P_1,P_2,\ldots,P_s),
+	\qquad
+	P_i=(\vect{p}_1,\vect{p}_2,\ldots,\vect{p}_{n_i}),
+\]
+则
+\[
+	P\mathrm{e}^{tJ}
+	=\bigl(P_1\mathrm{e}^{tJ_1},
+	P_2\mathrm{e}^{tJ_2},\ldots,
+	P_s\mathrm{e}^{tJ_s}\bigr).
+\]
+其中
+\[
+	P_i\mathrm{e}^{tJ_i}
+	=\mathrm{e}^{\lambda_it}
+	\left(
+	\vect{p}_1,
+	t\vect{p}_1+\vect{p}_2,
+	\ldots,
+	\dfrac{t^{n_i-1}}{(n_i-1)!}\vect{p}_1
+	+\cdots+t\vect{p}_{n_i-1}+\vect{p}_{n_i}
+	\right).
+\]
+因此，与特征值 $\lambda_i$ 对应的每个解向量都具有形式
+\[
+	\vect{x}(t)
+	=\mathrm{e}^{\lambda_it}
+	\left[
+		\vect{c}_0+\dfrac{t}{1!}\vect{c}_1+\cdots
+		+\dfrac{t^{n_i-1}}{(n_i-1)!}\vect{c}_{n_i-1}
+	\right].
+\]
+这就是基本解组的有限和表达。
+
+\subsection*{三、重特征根情形的结论}
+
+设矩阵 $A$ 有互异的特征值
+$\lambda_1,\lambda_2,\ldots,\lambda_s$，其代数重数分别为
+$n_1,n_2,\ldots,n_s$，且 $n_1+n_2+\cdots+n_s=n$。
+
+\begin{lemma}\label{lem:广义特征子空间分解}
+	令
+	\[
+		V_i
+		=\left\{
+		\vect{c}\in\C^n:
+		(A-\lambda_iI)^{n_i}\vect{c}=\vect{0}
+		\right\}.
+	\]
+	则 $V_i$ 是 $n_i$ 维的 $A$-不变子空间，并且
+	\[
+		\C^n=V_1\oplus V_2\oplus\cdots\oplus V_s.
+	\]
+\end{lemma}
+\begin{lemma}[待定系数的确定]\label{lem:向量多项式解的递推条件}
+	设 $\lambda_i$ 是 $A$ 的 $n_i$ 重特征值，则向量函数
+	\[
+		\vect{x}(t)
+		=\mathrm{e}^{\lambda_it}
+		\left[
+			\vect{c}_0+\dfrac{t}{1!}\vect{c}_1+\cdots
+			+\dfrac{t^{n_i-1}}{(n_i-1)!}\vect{c}_{n_i-1}
+		\right]
+	\]
+	是齐次方程组$\vect{x}'=A\vect{x}$的非零解，当且仅当系数向量满足
+	\[
+		\begin{cases}
+			(A-\lambda_iI)^{n_i}\vect{c}_0=\vect{0},
+			\qquad \vect{c}_0\neq\vect{0},\\
+			\vect{c}_1=(A-\lambda_iI)\vect{c}_0,\\
+			\vect{c}_2=(A-\lambda_iI)\vect{c}_1,\\
+			\hspace{2.5cm}\vdots\\
+			\vect{c}_{n_i-1}
+			=(A-\lambda_iI)\vect{c}_{n_i-2}.
+		\end{cases}
+	\]
+\end{lemma}
+
+\begin{proof}
+	将上述待定式代入 $\vect{x}'=A\vect{x}$，消去公因子
+	$\mathrm{e}^{\lambda_it}$ 后比较 $t$ 的同次幂，得到
+	\[
+		(A-\lambda_iI)\vect{c}_0=\vect{c}_1,
+		\quad\ldots,\quad
+		(A-\lambda_iI)\vect{c}_{n_i-2}=\vect{c}_{n_i-1},
+		\quad
+		(A-\lambda_iI)\vect{c}_{n_i-1}=\vect{0}.
+	\]
+	于是
+	$(A-\lambda_iI)^k\vect{c}_0=\vect{c}_k$，并且
+	$(A-\lambda_iI)^{n_i}\vect{c}_0=\vect{0}$。反之，若这些递推关系成立，
+	直接代回即可验证该函数是解。为得到非零解，必须有
+	$\vect{c}_0\neq\vect{0}$。
+\end{proof}
+
+\begin{theorem}\label{thm:重特征值常系数方程组的基本解组}
+	设 $A$ 有互不相同的特征值
+	$\lambda_1,\lambda_2,\ldots,\lambda_s$，其重数分别为
+	$n_1,n_2,\ldots,n_s$，且 $n_1+n_2+\cdots+n_s=n$。
+	则齐次线性方程组有基本解组
+	\[
+		\begin{gathered}
+		\mathrm{e}^{\lambda_1t}\vect{P}^{(1)}_1(t),
+		\ldots,
+		\mathrm{e}^{\lambda_1t}\vect{P}^{(1)}_{n_1}(t),\\
+		\mathrm{e}^{\lambda_2t}\vect{P}^{(2)}_1(t),
+		\ldots,
+		\mathrm{e}^{\lambda_2t}\vect{P}^{(2)}_{n_2}(t),\\
+		\hspace{3.5cm}\vdots\\
+		\mathrm{e}^{\lambda_st}\vect{P}^{(s)}_1(t),
+		\ldots,
+		\mathrm{e}^{\lambda_st}\vect{P}^{(s)}_{n_s}(t).
+		\end{gathered}
+	\]
+	这里，对每个 $i=1,2,\ldots,s$，
+	\[
+		\vect{P}^{(i)}_j(t)
+		=\vect{c}^{(i)}_{j0}
+		+\dfrac{t}{1!}\vect{c}^{(i)}_{j1}
+		+\cdots
+		+\dfrac{t^{n_i-1}}{(n_i-1)!}
+		\vect{c}^{(i)}_{j(n_i-1)},
+		\qquad j=1,2,\ldots,n_i,
+	\]
+	且零次项向量
+	$\vect{c}^{(i)}_{10},\ldots,\vect{c}^{(i)}_{n_i0}$
+	构成广义特征子空间 $V_i$ 的一组基，其余系数由递推关系
+	\[
+		\vect{c}^{(i)}_{jk}
+		=(A-\lambda_iI)^k\vect{c}^{(i)}_{j0}
+	\]
+	确定。当 $A$ 为实矩阵时，可将共轭复解的实部与虚部分别取出，得到实基本解组。
+\end{theorem}
+
+\begin{proof}
+	由引理~\ref{lem:向量多项式解的递推条件}，上述 $n$ 个函数都是方程组的解。
+	令它们组成解矩阵 $X(t)$，则 $X(0)$ 的列向量恰为各子空间 $V_i$ 所选的基。
+	由引理~\ref{lem:广义特征子空间分解}，这些列向量合在一起构成
+	$\C^n$ 的一组基，故 $\det X(0)\neq0$。因此上述 $n$ 个解线性无关，
+	构成方程组的基本解组。
+\end{proof}

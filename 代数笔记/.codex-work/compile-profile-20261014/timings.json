@@ -1,0 +1,18 @@
+{
+  "images": {
+    "xelatex_seconds": [
+      3.237,
+      2.726
+    ],
+    "pdf_conversion_seconds": 10.943,
+    "pdf_bytes": 5767295
+  },
+  "draft_images": {
+    "xelatex_seconds": [
+      2.686,
+      3.168
+    ],
+    "pdf_conversion_seconds": 1.255,
+    "pdf_bytes": 411415
+  }
+}

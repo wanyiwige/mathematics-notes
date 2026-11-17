@@ -1,0 +1,176 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.2 导数的运算与法则
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{导数的运算与法则}
+\begin{proposition}\label{calofder}
+	$f, g$ 定义在 $[a, b]$ 上，并且都在点 $x \in[a, b]$ 可导，那么 $f+g, f g, \dfrac{f}{g}$ 也在 $x$ 点可导，而且：
+	
+	（a）$$(f+g)^{\prime}(x)=f^{\prime}(x)+g^{\prime}(x)$$
+	
+	（b）$$\left(f g)^{\prime}(x)=f^{\prime}(x) g(x)+f(x) g^{\prime}(x)\right.$$
+	
+	（c）$$\left(\dfrac{f}{g}\right)^{\prime}(x)=\dfrac{g(x) f^{\prime}(x)-g^{\prime}(x) f(x)}{g^2(x)}$$
+	
+	对 $(c)$ ，假定 $g(x) \neq 0$
+\end{proposition}
+
+\begin{proof}
+	(a) $$\begin{aligned} \lim _{\Delta x \rightarrow 0} \frac{(f+g)(x+\Delta x)-(f+g)(x)}{\Delta x} & =\lim _{\Delta x \rightarrow 0} \frac{f(x+\Delta x)-f(x)}{\Delta x}+\lim _{\Delta x \rightarrow 0} \frac{g(x+\Delta x)-g(x)}{\Delta x} \\ & =f^{\prime}(x)+g^{\prime}(x)\end{aligned}$$
+	
+	(b)令$h=fg$,则
+	$$h(x+\Delta x)-h(x)=f(x+\Delta x)(g(x+\Delta x)-g(x))+g(x)(f(x+\Delta x)-f(x))$$
+	带入得
+	$$\begin{aligned} \lim _{\Delta x \rightarrow 0} \frac{(f g)(x+\Delta x)-(f g)(x)}{\Delta x} & =\lim _{\Delta x \rightarrow 0} f(x+\Delta x) \frac{g(x+\Delta x)-g(x)}{\Delta x}+g(x) \frac{f(x+\Delta x)-f(x)}{\Delta x} \\ & =f(x) g^{\prime}(x)+g(x) f^{\prime}(x)\end{aligned}$$
+	
+	(c)$$\begin{aligned}
+		&\lim _{\Delta x \rightarrow 0} \dfrac{\left(\dfrac{f}{g}\right)(x+\Delta x)-\left(\dfrac{f}{g}\right)(x)}{\Delta x}\\ & =\lim _{\Delta x \rightarrow 0} \dfrac{1}{g(x) g(x+\Delta x)}\left[g(x) \dfrac{f(x+\Delta x)-f(x)}{\Delta x}-f(x) \dfrac{g(x+\Delta x)-g(x)}{\Delta x}\right] \\
+		& =\dfrac{f^{\prime}(x) g(x)-f(x) g^{\prime}(x)}{g^2(x)}
+	\end{aligned}$$
+	
+\end{proof}
+上述定理的微分形式为
+
+（a）$\mathrm{d}[f(x)+g(x)]=\mathrm{d}[f(x)]+\mathrm{d}[g(x)]$
+
+（b）$\mathrm{d}[(f g)(x)]=\mathrm{d}[f(x)] g(x)+f(x) \mathrm{d}[g(x)]$
+
+（c）$\mathrm{d}\left[\left(\dfrac{f}{g}\right)(x)\right]=\dfrac{\mathrm{d}[f(x)] g(x)-f(x) \mathrm{d}[g(x)]}{g^2(x)}$
+
+更一般地，有 $$\left[\sum_{i=1}^n c_i f_i(x)\right]^{\prime}=\sum_{i=1}^n c_i f_i^{\prime}(x)$$
+
+$$
+\left[\prod_{i=1}^n f_i(x)\right]^{\prime}=\sum_{j=1}^n\left\{f_j^{\prime}(x) \prod_{i=1, i\neq j}^n f_i(x)\right\}
+$$
+\begin{theorem}(反函数求导定理)
+	设 $y=f(x)$ 在 $(a, b)$ 上连续，严格单调，可导且 $f^{\prime}(x) \neq 0$ ，设
+	
+	$$
+	\alpha=\min \left\{f(a+), f(b-)\right\}, \beta=\max\left\{f(a+), f(b-)\right\}  .
+	$$
+	
+	
+	则反函数 $x=f^{-1}(y)$ 在 $(\alpha, \beta)$ 上存在且
+	
+	$$
+	\left(f^{-1}(y)\right)^{\prime}=\frac{1}{f^{\prime}(x)}=\frac{1}{f^{\prime}\left(f^{-1}(y)\right)}
+	$$
+\end{theorem}
+1, $ \alpha$ 可以为 $-\infty, \beta$ 可以为 $+\infty $ 
+
+2,若 $f^{\prime}\left(x_0\right)=0$ ，则 $(f^{-1}(y))^{\prime}=\dfrac{1}{f^{\prime}(x)}$ 在 $x_0$ 处不成立
+\begin{proof}
+	取 $\Delta y$ ,使得$y+\Delta y \in(\alpha, \beta)$ ，不妨设 $f$ 严格单调增加,$y=f(x), y+\Delta y=f(x+\Delta x)$ ,由 $x=f^{-1}(y)$ 的连续性, $\Delta y \rightarrow 0$ 时 $\Delta x \rightarrow 0$
+	
+	$$
+	\frac{f^{-1}(y+\Delta y)-f^{-1}(y)}{\Delta y}=\frac{\Delta x}{f(x+\Delta x)-f(x)}=\left(\frac{f(x+\Delta x)-f(x)}{\Delta x}\right)^{-1}
+	$$
+	
+	则
+	$$
+	\left(f^{-1}(y)\right)^{\prime}=\lim _{\Delta y \rightarrow 0} \frac{f^{-1}(y+\Delta y)-f^{-1}(y)}{\Delta y}=\lim _{\Delta x \rightarrow 0}\left(\frac{f(x+\Delta x)-f(x)}{\Delta x}\right)^{-1}=\left(f^{\prime}(x)\right)^{-1}
+	$$
+\end{proof}
+\begin{proposition}
+	$u=g(x)$ 在 $x=x_0$ 处可导，$y=f(u)$ 在 $u=u_0=g\left(x_0\right)$ 处可导，则 $y=f\circ g(x)$
+	在 $x=x_0$ 处可导且
+	$$
+	[f(g(x))]^{\prime}|_{x=x_0}=f^{\prime}\left(g\left(x_0\right)\right) g^{\prime}\left(x_0\right)
+	$$
+	微分形式
+	$$
+	\frac{\mathrm{d} y}{\mathrm{d}  x}=\frac{\mathrm{d}  y}{\mathrm{d}  u} \cdot \frac{\mathrm{d}  u}{\mathrm{d}  x}
+	$$	
+\end{proposition}
+
+\begin{proof}
+	考虑
+	
+	$$
+	\lim _{\Delta x \rightarrow 0} \frac{f(g(x_0+\Delta x))-f(g(x_0))}{\Delta x}
+	$$
+	
+	
+	令 $g\left(x_0\right)=u$ ，由连续性 $\exists \Delta u \rightarrow 0(\Delta x \rightarrow 0)$ ，使得$g\left(x_0+\Delta x\right)=u_0+\Delta u$那么
+	$$\lim _{\Delta x \rightarrow 0} \frac{f( g\left(x_0+\Delta x\right)) -f\left(g\left(x_0\right)\right)}{\Delta x}=\lim _{\Delta x \rightarrow 0} \frac{f\left(u_0+\Delta u\right)-f\left(u_0\right)}{\Delta x}$$
+	因 $f(u)$ 在 $u=u_0$ 处可微，
+	
+	$$
+	f\left(u_0+\Delta u\right)-f\left(u_0\right)=f^{\prime}\left(u_0\right) \Delta u+o(\Delta u)
+	$$
+	
+	如此
+	$$\begin{aligned}
+		\text { 上式 } & =\lim _{\Delta x \rightarrow 0} \frac{f^{\prime}\left(u_0\right) \Delta u+o(\Delta u)}{\Delta x} \\
+		& =\lim _{\Delta x \rightarrow 0} f^{\prime}\left(u_0\right) \frac{\Delta u}{\Delta x}+\lim _{\Delta x \rightarrow 0} \frac{o(\Delta u)}{\Delta u} \cdot \frac{\Delta u}{\Delta x} \\
+		& =f^{\prime}\left(g\left(x_0\right)\right) g^{\prime}\left(x_0\right)
+	\end{aligned}$$
+\end{proof}
+\begin{proposition}
+	对式子$$\dd[f(u)]=f^{\prime}(u) \dd u$$
+	无论 $u$ 是自变量,还是中间变量，上述的形式是不变的.
+\end{proposition}
+
+\begin{proof}
+	$$\mathrm{d}[f(g(x))]=f^{\prime}(u) g^{\prime}(x) \mathrm{d} x$$
+	由于 $\mathrm{d} u=g^{\prime}(x) \mathrm{d} x$ ，故
+	$$\mathrm{d}[f(u)]=f^{\prime}(u) \mathrm{d} u$$
+\end{proof}
+下面简单叙述隐函数求导,依据是隐函数定理,因理论的不完备,我们在这里不给出证明,具体的证明在Part2中给出.
+\begin{theorem}
+	对 $F(x, y)$ ，与某个点 $(a, b)$ ，若满足
+	
+	1．$F(a, b)=0$
+	
+	2．$F$ 在$\left(a,b\right)$的某个邻域内连续可微
+	
+	3.
+	$$\frac{\partial F}{\partial y}(a, b) \neq 0 $$
+	那么存在一个以 $a$ 为中心的邻域和一个唯一的可微函数 $f$ ，使得 $y=f(x)$ 且 $F(x, f(x))=0$ 对所有有该邻域内 $x$ 成立
+	特别地，有
+	$$f^{\prime}(x)=-\dfrac{\dfrac{\partial F}{\partial x}}{\dfrac{\partial F}{\partial y}}$$
+\end{theorem}
+这也就是二维情况下的隐函数定理.
+
+\begin{example}
+	1.$$
+	\begin{aligned}
+		& x^2+y^2=1 \Rightarrow x^2+y^2-1=0 \\
+		& y^{\prime}=f^{\prime}(x)=-\frac{2 x}{2 y}=-\dfrac{x}{y}
+	\end{aligned}
+	$$
+	2.$$\begin{aligned}
+		&e^{x y}+x^2 y-1=0 \\
+		&\dfrac{\mathrm{d}}{\mathrm{d}x} e^{x y}+\dfrac{\mathrm{d}}{\mathrm{d} x} x^2 y=0 \\
+		&(y+xy') e^{x y}+2 x y+x^2 y'=0 \\
+		&y'=-\dfrac{2 x y+y e^{x y}}{x e^{x y}+x^2}
+	\end{aligned}$$
+\end{example}
+\begin{proposition}\label{derof}
+	
+	$$\begin{cases}
+		x=\varphi(t)\\
+		y=\psi(t)
+	\end{cases}$$$t\in \left(\alpha,\beta\right)$,$\varphi(t),\psi(t)$ 连续可导，严格
+	单调，且$\varphi^{\prime}(t) \neq 0 \text{则}\forall t \in[\alpha, \beta]$
+	那么
+	
+	$$
+	\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{ \psi^{\prime}(t)}{\varphi^{\prime}(t)}
+	$$
+	
+	
+	或用微分形式
+	
+	$$
+	\left\{\begin{array}{l}
+		\mathrm{d} x=\varphi^{\prime}(t) \mathrm{d} t \\
+		\mathrm{d} y=\psi^{\prime}(t) \mathrm{d} t
+	\end{array}\right.
+	$$
+	
+\end{proposition}
+\begin{proof}
+	显而易见
+\end{proof}
+\newpage

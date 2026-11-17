@@ -1,0 +1,574 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.3 Riemann积分的定义以及可积性
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{Riemann积分的定义以及可积性}
+\begin{definition}
+	区间 \([a, b]\) 上的分划$P$定义为 一列点$x_0,x_1,\cdots,x_n\in[a,b]$,满足\[  a = x_0 < x_1 < x_2 < \cdots < x_n = b, x_k \in [a, b]\]
+	定义分划 \(P\) 的模长为 \(\lambda = \max\limits_{1 \leq k \leq n} \Delta x_k\)
+\end{definition}
+\begin{definition}(常义积分)
+	设 \( f(x) \) 在 \([a, b]\) 上有界,\(I\) 是一个常数,若对任意划分  
+	\[
+	P: a = x_0 < x_1 < \cdots < x_n = b
+	\]  
+	以及在 \([x_{k-1}, x_k]\) 任取的 \(\xi_k \in [x_{k-1}, x_k]\), \(k = 1, 2, \cdots, n\),当 \(\lambda(P) \to 0\) 时,Riemann 和  
+	\[
+	S = \sum_{k=1}^n f(\xi_k) \Delta x_k
+	\]  
+	有极限 \(I\),且不依赖于划分的方式和 \(\xi_1, \cdots, \xi_n\) 的选取,称 \(f(x)\) 在 \([a, b]\) 上 Riemann 可积或 Riemann 积分存在.  
+	其积分值记为 \(I\),记为  
+	\[
+	I = \int_a^b f(x) \dd x.
+	\]  
+	
+	\(b\) 为积分上限,\(a\) 为积分下限.\(f(x)\) 为被积函数.\(\dd x\) 中的 \(x\) 称为积分变量.
+	
+	这里的极限不是数列或者函数极限,用 \(\varepsilon\)-\(\delta\) 语言定义为：  
+	$\forall \varepsilon > 0, \exists \delta > 0, $使得对任意划分  
+	\[
+	P: a = x_0 < x_1 < \cdots < x_n = b
+	\]  
+	与任意选取的 \(\xi_i \in [x_{i-1}, x_i]\),只要  
+	\[
+	\lambda = \max_{1 \leq i \leq n} (\Delta x_i) < \delta,
+	\]  
+	便有  
+	\[
+	\left| \sum_{i=1}^n f(\xi_i) \Delta x_i - I \right| < \varepsilon.
+	\]  
+	
+	则称 \( f(x) \) 在 \([a, b]\) 上 Riemann 可积.记为 \( f \in \mathcal{R}[a, b] \).
+\end{definition}
+\begin{example}
+	讨论 \( D(x) \) 在 \([0,1]\) 上的可积性
+\end{example}
+\begin{solution}
+	\(\forall P: a = x_0 < x_1 < \cdots < x_n = b, \forall[x_{i-1}, x_i]  \exists a \in \mathbb{Q}, b \in \mathbb{Q}^c\),  
+	满足 \(a \in [x_{i-1}, x_i], b \in [x_{i-1}, x_i]\).
+	
+	取 $\xi_i$ 为有理数
+	
+	\[\lim_{\lambda \to 0} \sum_{i=1}^n f(\xi_i) \Delta x_i = \lim_{\lambda \to 0} \sum_{i=1}^n 1 \cdot \Delta x_i = 1\]
+	
+	$\xi_i$ 为无理数
+	
+	\[\lim_{\lambda \to 0} \sum_{i=1}^n f(\xi_i) \Delta x_i = \lim_{\lambda \to 0} \sum_{i=1}^n 0 \cdot \Delta x_i = 0\]
+	
+	
+\end{solution}
+上面的定义方式依赖于$I$的选取,下面介绍另一种考察可积性的方式
+\begin{definition}
+	
+	设 $f(x)$ 在 $[a,b]$ 上有界,对 $[a,b]$ 的一个划分
+	\[
+	P: a = x_0 < x_1 < \cdots < x_n = b
+	\]
+	在 $[x_{k-1}, x_k]$ 上
+	\[
+	M_k = \sup_{x \in [x_{k-1}, x_k]} f(x), \quad m_k = \inf_{x \in [x_{k-1}, x_k]} f(x)
+	\]
+	存在且唯一,称
+	\[
+	\overline{S}(P) = \sum_{k=1}^n M_k \Delta x_k
+	\]
+	为 Darboux 大和；
+	\[
+	\underline{S}(P) = \sum_{k=1}^n m_k \Delta x_k
+	\]
+	为 Darboux 小和.
+	
+\end{definition}
+
+
+注意 Darboux 和不是 Riemann 和的特殊形式,例如
+\[
+f(x)=
+\begin{cases}
+	1-x, & x>0 \\[4pt]
+	0, & x=0 \\[4pt]
+	x-1, & x<0
+\end{cases}
+\]
+在 $(-\varepsilon, \varepsilon)$ 上的 Darboux 和不可能是 Riemann 和.
+\begin{definition}
+	将一个分划的加细定义为在一个划分的分点上加入新的分点
+\end{definition}
+\begin{lemma}\label{大和不增,小和不减}
+	设 $f(x)$ 在 $[a,b]$ 上有界,设 $P: x_0 = a < x_1 < \cdots < x_n = b$ 为 $[a,b]$ 的一个划分,对 $P$ 的加细后,大和不增,小和不减.
+\end{lemma}
+\begin{proof}
+	仅需证明在 $P$ 中插入一个新分点后结果成立即可.现考虑大和,
+	\[
+	P': x_0 = a < x_1 < \cdots < x_{k-1} < x_k' < x_k < \cdots < x_n = b
+	\]
+	令
+	\[
+	M_k' = \sup_{x \in [x_{k-1}, x_k']} f(x), \quad M_k'' = \sup_{x \in [x_k', x_k]} f(x)
+	\]
+	\[
+	\begin{aligned}
+		\overline{S}(P') - \overline{S}(P) &= M_k'(x_k' - x_{k-1}) + M_k''(x_k - x_k') - M_k(x_k - x_{k-1}) \\
+		&\leq M_k(x_k' - x_{k-1}) + M_k(x_k - x_k') - M_k(x_k - x_{k-1}) = 0
+	\end{aligned}
+	\]
+	
+	对小和同理.
+\end{proof}
+\begin{lemma}
+	$f(x)$ 在 $[a,b]$ 上有界,设
+	\[
+	P': a = x_0' < x_1' < \cdots < x_n' = b
+	\]
+	\[
+	P'': a = x_0'' < x_1'' < \cdots < x_n'' = b
+	\]
+	且
+	\[
+	M = \sup_{x \in [a,b]} f(x), \quad m = \inf_{x \in [a,b]} f(x)
+	\]
+	那么
+	\[
+	m(b-a) \leq \underline{S}(P') \leq \overline{S}(P'') \leq M(b-a)
+	\]
+	或者
+	\[
+	m(b-a) \leq \underline{S}(P'') \leq \overline{S}(P') \leq M(b-a)
+	\]
+\end{lemma}
+\begin{proof}
+	以第一个不等式为例
+	
+	取 $P: x_0 = a < b = x_1$,$\underline{S}(P) = m(b-a)$,$\overline{S}(P) = M(b-a)$
+	
+	$P', P''$ 是 $P$ 的加细,由\ref{大和不增,小和不减}.
+	\[
+	\underline{S}(P) \leq \underline{S}(P')
+	\]
+	\[
+	\overline{S}(P'') \leq \overline{S}(P)
+	\]
+	
+	将 $P', P''$ 的所有分点合并为一个新的划分 $P^*$,是 $P', P''$ 的加细,那么
+	\[
+	\overline{S}(P'') \geq \overline{S}(P^*) \geq \underline{S}(P^*) \geq \underline{S}(P')
+	\]
+	
+	
+\end{proof}
+由 $\mathbb{R}$ 上的确界存在定理,我们得到以下结论：
+
+在加细意义下：Darboux 大和单调下降有界,有下确界 $L$,Darboux 小和单调上升有界,有上确界 $l$,且 $l \leq L$
+\begin{proposition}(Darboux定理)\label{Darboux定理}
+	设 $P: a = x_0 < x_1 < \cdots < x_n = b$ 为 $[a,b]$ 的一个划分,称
+	$\lambda(P) = \max\limits_{1 \leq k \leq n} \Delta x_k$ 为 $P$ 的模长,当 $\lambda(P) \to 0$ 时,
+	\[
+	\lim_{\lambda \to 0} \overline{S}(P) = L, \quad \lim_{\lambda \to 0} \underline{S}(P) = l
+	\]
+	
+	用 $\varepsilon$-$\delta$ 语言：$\forall \varepsilon > 0$, $\exists \delta > 0$, 当 $\lambda(P) < \delta$ 时,都有
+	\[
+	0 \leq \overline{S}(P) - L < \varepsilon
+	\]
+	\[
+	-\varepsilon < \underline{S}(P) - l \leq 0
+	\]
+0\end{proposition}
+
+\begin{proof}
+	以 $\lim\limits_{\lambda \to 0} \overline{S}(P) = L$ 为例,设 $M = \sup\limits_{x \in [a,b]} f(x)$,$m = \inf\limits_{x \in [a,b]} f(x)$
+	\begin{enumerate}
+		\item 若 $M=m$,则 $f(x) \equiv M$,任对 $[a,b]$ 上的划分 $P$,均有
+		\[
+		\overline{S}(P) = \underline{S}(P) = M(b-a)
+		\]
+		\item  若 $M>m$,且 $L$ 为大和的下确界,$\forall \varepsilon>0$,$\exists P': a = x_0' < x_1' < \cdots < x_p' = b$,使
+		\[
+		0 \leq \overline{S}(P') - L < \varepsilon
+		\]
+	\end{enumerate}
+	取 $\delta_1 = \min\{\Delta x_1', \dots, \Delta x_p'\}$,下面找一个 $\delta_2$ 与 $\varepsilon$ 建立一定的不等关系.
+	
+	任对划分 $P: x_0=a < x_1 < \dots < x_n = b$,$\lambda(P) < \delta=\min(\delta_1,\delta_2)$.将 $P$ 与 $P'$ 合并,得 $P^*$,为 $P$ 的一个加细,$\overline{S}(P) - \overline{S}(P^*) \geq 0$.将 $P$ 的子区间分为两类：
+	
+	1、没有新分点的区间 $[x_{k-1}, x_k]$,这类子区间对 $\overline{S}(P) - \overline{S}(P^*)$ 无影响.
+	
+	2、有新分点的区间,由 $\lambda(P) < \delta \leq \min_{1\leq i\leq p} \{\Delta x_i'\}$
+	故 $P$ 的一个子区间 $[x_{k-1}, x_k]$ 至多有一个新分点,记为 $x_j'$,这样的分点至多有 $p-1$ 个.记 $\Lambda$ 为这类子区间的指标集.令
+	\[
+	M_k = \sup_{x \in [x_{k-1}, x_k]} f(x), \quad M_k' = \sup_{x \in [x_{k-1}, x_j']} f(x), \quad M_k'' = \sup_{x \in [x_j', x_k]} f(x)
+	\]
+	
+	\[
+	\begin{aligned}
+		0 \leq \overline{S}(P) - \overline{S}(P^*) &= \sum_{k \in \Lambda} M_k (x_k - x_{k-1}) - M_k' (x_j' - x_{k-1}) - M_k'' (x_k - x_j') \\
+		&= \sum_{k \in \Lambda} M_k (x_k - x_j' + x_j' - x_{k-1}) - M_k' (x_j' - x_{k-1}) - M_k'' (x_k - x_j') \\
+		&= \sum_{k \in \Lambda} (M_k - M_k')(x_j' - x_{k-1}) + (M_k - M_k'')(x_k - x_j') \\
+		&\leq (M - m) \sum_{k \in \Lambda} \Delta x_k \leq (M - m)(p-1)\delta < \varepsilon
+	\end{aligned}
+	\]
+	
+	取 $\delta_2 = \dfrac{\varepsilon}{(M - m)(p-1)}$,令 $\delta = \min\{\delta_1, \delta_2\}$,那么
+	\[
+	\begin{aligned}
+		0 \leq \overline{S}(P) - L &= \overline{S}(P) - \overline{S}(P^*) + \overline{S}(P^*) - L \\
+		&< \varepsilon + \overline{S}(P') - L < 2\varepsilon
+	\end{aligned}
+	\]
+	
+	
+\end{proof}
+\begin{proposition}
+	设 $f(x)$ 在 $[a,b]$ 上有界,则 $f$ 在 $[a,b]$ 上 Riemann 可积的充要条件是上述的 $L=l$.
+	
+	
+\end{proposition}
+\begin{proof}
+	必要性:设 $f \in R[a,b]$,令
+	\[
+	I = \int_a^b f(x) \dd x
+	\]
+	那么,$\forall \varepsilon>0$,$\exists \delta>0$,对 $[a,b]$ 上的任意划分 $P$：
+	\[
+	x_0 = a < x_1 < \cdots < x_n = b
+	\]
+	且 $\lambda(P) < \delta$,以及 $\forall \xi_k \in [x_{k-1}, x_k] \ (1 \leq k \leq n)$,有
+	\[
+	\left| \sum_{k=1}^n f(\xi_k) \Delta x_k - I \right| < \varepsilon
+	\]
+	
+	取 $M_k = \sup\limits_{x \in [x_{k-1}, x_k]} f(x)$,应有 $M_k - c\varepsilon \leq f(\xi_k) \leq M_k$,其中 $c$ 待定.
+	那么
+	\[
+	\sum (M_k - c\varepsilon) \Delta x_k \leq \sum f(\xi_k) \Delta x_k \leq \sum M_k \Delta x_k
+	\]
+	\[
+	\overline{S}(P) - c(b-a)\varepsilon \leq S(P) \leq \overline{S}(P)
+	\]
+	
+	取 $c = \dfrac{1}{b-a}$,同时减去 $I$,得
+	\[
+	\overline{S}(P) - I - \varepsilon \leq S(P) - I \leq \overline{S}(P) - I
+	\]
+	\[
+	-\varepsilon \leq \overline{S}(P) - I \leq 2\varepsilon
+	\]
+	
+	也即
+	\[
+	\lim_{\lambda(P) \to 0} \overline{S}(P) = L = I
+	\]
+	
+	同理
+	\[
+	\lim_{\lambda(P) \to 0} \underline{S}(P) = l = I
+	\]
+	充分性：设 $L = l = I$,由 Darboux 定理,$\forall \varepsilon>0$,$\exists \delta_1, \delta_2 > 0$
+	
+	当划分 $P': x_0' = a < x_1' < \cdots < x_p' = b$,$\lambda(P') < \delta_1$,$0 \leq \overline{S}(P') - I < \varepsilon$
+	
+	划分 $P'': x_0'' = a < x_1'' < \cdots < x_q' = b$,$\lambda(P'') < \delta_2$,$-\varepsilon < \underline{S}(P'') - I \leq 0$
+	
+	取 $\delta = \min\{\delta_1, \delta_2\}$,则 $\forall P: x_0 = a < x_1 < \cdots < x_n = b$,当 $\lambda(P) < \delta$ 时,
+	\[
+	-\varepsilon < \underline{S}(P) - I \leq 0 \leq \overline{S}(P) - I<\eps
+	\]
+	
+	则 $\forall \xi_k \in [x_{k-1}, x_k]$
+	\[
+	-\varepsilon < \underline{S}(P) - I \leq \sum_{k=1}^n f(\xi_k) \Delta x_k - I \leq \overline{S}(P) - I < \varepsilon
+	\]
+	
+	也即 $f(x) \in \mathcal{R}[a,b]$ 且 $\int_a^b f(x) \dd x = L = l$
+\end{proof}
+规定 $\omega_k = M_k - m_k$ 为 $f(x)$ 在 $[x_{k-1}, x_k]$ 上的振幅.
+\begin{theorem}（Riemann可积的第一充要条件）\label{Riemann可积的第一充要条件}
+	有界函数 $f(x)$ 在 $[a,b]$ 可积的充要条件是,对任意划分 $P$,当 $\lambda(P) \to 0$ 时
+	\[
+	\lim_{\lambda \to 0} \sum_{i=1}^n \omega_i \Delta x_i = 0
+	\]
+	
+	用 $\varepsilon$-$\delta$ 语言：$\forall \varepsilon>0$,$\exists \delta>0$,对任意划分 $P: x_0 = a < x_1 < \cdots < x_n = b$,只要
+	$\lambda(P) = \max\{\Delta x_i\} < \delta$,就有
+	\[
+	\sum_{i=1}^n \omega_i \Delta x_i < \varepsilon
+	\]
+\end{theorem}
+\begin{proof}
+	由 Darboux 定理,$\overline{S}(P) \to L$,$\underline{S}(P) \to l$.
+	\[
+	\begin{aligned}
+		f(x) \in \mathcal{R}[a,b] &\Leftrightarrow \lim_{\lambda \to 0} \left( \overline{S}(P) - \underline{S}(P) \right) = 0 \\
+		&\Leftrightarrow \lim_{\lambda \to 0} \sum_{k=1}^n (M_k - m_k) \Delta x_k = 0 \\
+		&\Leftrightarrow \lambda < \delta \text{ 时,} \sum_{k=1}^n \omega_k \Delta x_k < \varepsilon
+	\end{aligned}
+	\]
+	
+\end{proof}
+\begin{theorem}(Riemann可积的第二充要条件)\label{Riemann可积的第二充要条件}
+	有界函数 $f(x) \in \mathcal{R}[a,b]$ 的充要条件为,$\forall \varepsilon>0$,$\exists P$ 使得
+	\[
+	\sum_{i=1}^n \omega_i \Delta x_i < \varepsilon
+	\]
+\end{theorem}
+\begin{proof}
+	必要性：显然.
+	
+	充分性：已知 $\forall \varepsilon>0$,$\exists P'$,使得 $\sum\limits_{i=1}^p \omega_i' \Delta x_i' < \varepsilon$.
+	要证 $f \in \mathcal{R}[a,b]$,由\ref{Riemann可积的第一充要条件},只需 $\forall P$,$\exists \delta$,当 $\lambda(P)<\delta$ 时,使得
+	\[
+	\overline{S}(P) - \underline{S}(P) = \sum_{i=1}^n \omega_i \Delta x_i < \varepsilon
+	\]
+	
+	设 $\delta_1 = \min\{\Delta x_1', \dots, \Delta x_p'\}$
+	
+	$\forall P$,将 $P$ 与 $P'$ 合并为 $P^*$,有 $\overline{S}(P) \geq \overline{S}(P^*)$,$\underline{S}(P) \leq \underline{S}(P^*)$.
+	
+	$P$ 的子区间中至多 $p-1$ 个子区间中,每一个至多一个分点,那么同 \ref{Darboux定理} 中的证明有
+	\[
+	0 \leq \overline{S}(P) - \overline{S}(P^*) < (M-m)(p-1)\delta < \varepsilon
+	\]
+	\[
+	0 \geq \underline{S}(P) - \underline{S}(P^*) > -(M-m)(p-1)\delta > -\varepsilon
+	\]
+	
+	取 $\delta_2 = \dfrac{\varepsilon}{(M-m)(p-1)}$,$\delta = \min\{\delta_1, \delta_2\}$
+	
+	\[
+	\begin{aligned}
+		\overline{S}(P) - \underline{S}(P) &= \left( \overline{S}(P) - \overline{S}(P^*) \right) + \overline{S}(P^*) - \overline{S}(P') + \overline{S}(P') \\
+		&\quad - \left( \underline{S}(P) - \underline{S}(P^*) \right) + \underline{S}(P^*) - \underline{S}(P') + \underline{S}(P') < 3\varepsilon
+	\end{aligned}
+	\]
+	
+	得证.
+\end{proof}
+\begin{theorem}( Riemann可积的第三充要条件)\label{Riemann可积的第三充要条件}
+	有界函数 $f \in \mathcal{R}[a,b]$ 当且仅当：对任意 $\varepsilon>0, \eta>0$,存在 $[a,b]$ 的一个划分 $P$,使得振幅不小于 $\eta$ 的子区间的长度之和小于 $\varepsilon$.
+\end{theorem}
+\begin{proof}
+	设对所有 $x \in [a,b]$,有 $m \leq f(x) \leq M$.
+	
+	充分性：
+	任给 $\varepsilon>0$,取
+	\[
+	\varepsilon' = \frac{\varepsilon}{2(M-m)}, \quad \eta = \frac{\varepsilon}{2(b-a)}
+	\]
+	由条件,存在划分 $P$,使得振幅不小于 $\eta$ 的子区间的长度之和小于 $\varepsilon'$.
+	将 $P$ 的子区间分为两类,用 $\sum\limits'$ 表示对振幅不小于 $\eta$ 的子区间求和,$\sum\limits''$ 表示对振幅小于 $\eta$ 的子区间求和,则：
+	\[
+	\sum' \omega_i \Delta x_i \leq (M-m) \sum' \Delta x_i < (M-m)\varepsilon'
+	\]
+	\[
+	\sum'' \omega_i \Delta x_i \leq \eta \sum'' \Delta x_i \leq \eta (b-a)
+	\]
+	因此
+	\[
+	\sum \omega_i \Delta x_i = \sum' \omega_i \Delta x_i + \sum'' \omega_i \Delta x_i < \varepsilon
+	\]
+	由定理 \ref{Riemann可积的第二充要条件} 可知 $f \in \mathcal{R}[a,b]$.
+	
+	必要性：
+	设 $f \in \mathcal{R}[a,b]$,由定理 \ref{Riemann可积的第二充要条件},对任意 $\varepsilon>0, \eta>0$,存在划分 $P$,使得
+	\[
+	\sum_{P} \omega_i \Delta x_i < \varepsilon \eta
+	\]
+	设 $\sum'$ 为对振幅不小于 $\eta$ 的子区间求和,则：
+	\[
+	\eta \sum' \Delta x_i \leq \sum' \omega_i \Delta x_i \leq \sum \omega_i \Delta x_i < \varepsilon \eta
+	\]
+	故 $\sum' \Delta x_i < \varepsilon$,得证.
+\end{proof}
+\begin{proposition}
+	闭区间上的连续函数可积
+\end{proposition}
+\begin{proof}
+	设 \( f(x) \in C[a,b] \),则 \( f \) 在 \( [a,b] \) 上一致连续.
+	对任意 \( \varepsilon>0 \),存在 \( \delta>0 \),对任意 \( x',x'' \in [a,b] \),只要 \( |x'-x''| < \delta \),就有 \( |f(x')-f(x'')| < \varepsilon \).
+	
+	取划分 \( P \),使得其模长 \( \lambda(P) < \delta \),则对任意 \( x',x'' \in [x_{k-1},x_k] \),都有 \( |f(x')-f(x'')| < \varepsilon \),因此每个区间上的振幅 \( \omega_k < \varepsilon \).
+	
+	于是有
+	\[
+	\sum_{k=1}^n \omega_k \Delta x_k < \sum_{k=1}^n \Delta x_k \cdot \varepsilon = (b-a)\varepsilon
+	\]
+	
+	由可积的充要条件可知,\( f \in \mathcal{R}[a,b] \).
+\end{proof}
+\begin{proposition}\label{单调函数（可能有无限多个不连续点）必可积}
+	区间 $[a,b]$ 上的单调函数（可能有无限多个不连续点）必可积.
+\end{proposition}
+\begin{proof}
+	不妨设 $f(x)$ 在 $[a,b]$ 上单调递增,则 $f(x)$ 在 $[a,b]$ 上有界.
+	
+	对任意 $\varepsilon>0$,取 $\delta = \varepsilon$,任取划分 $P$,满足其模长 $\lambda(P) < \delta = \varepsilon$.
+	由于 $f$ 单调递增,在每个子区间 $[x_{i-1},x_i]$ 上的振幅为
+	\[
+	\omega_i = f(x_i) - f(x_{i-1})
+	\]
+	因此,振幅和满足：
+	\[
+	\begin{aligned}
+		\sum_{i=1}^n \omega_i \Delta x_i &= \sum_{i=1}^n \left(f(x_i) - f(x_{i-1})\right) \Delta x_i \\
+		&\leq \varepsilon \sum_{i=1}^n \left(f(x_i) - f(x_{i-1})\right) \\
+		&= \varepsilon \left(f(b) - f(a)\right)
+	\end{aligned}
+	\]
+	由 Riemann 可积的第一充要条件,可知 $f(x)$ 在 $[a,b]$ 上可积.
+	
+	
+\end{proof} 
+\begin{problem}
+	在 $[0,1]$ 上,构造一个有无限多个不连续点的单调Riemann可积函数.
+\end{problem}
+\begin{proof}
+	令 $\{q_n\}_{n=1}^\infty$ 为 $(0,1)$ 中所有有理数构成的序列,定义 $f: [0,1] \to \mathbb{R}$
+	\[
+	f(x) = \sum_{n=1}^\infty 2^{-n} \cdot I_{[q_n,1]}(x) = \sum_{\substack{n \ge 1 \\ q_n \le x}} 2^{-n}
+	\]
+	其中
+	\[
+	I_{[q_n,1]}(x) = 
+	\begin{cases}
+		1, & x \ge q_n \\
+		0, & x < q_n
+	\end{cases}
+	\]
+	
+	特别地,
+	\[
+	f(0) = 0, \quad f(1) = \sum_{n=1}^\infty 2^{-n} = 1
+	\]
+	且 $0 \le f(x) \le 1$ 对所有 $x \in [0,1]$.
+	
+	下证 $f(x)$ 严格单调增：
+	$\forall 0 \le x < y \le 1$,$\exists q_k \in (x,y]$,且 $q_k$ 是编号最小的.
+	\[
+	f(y) = \sum_{q_n \le y} 2^{-n} = \sum_{q_n \le x} 2^{-n} + \sum_{q_n \in (x,y]} 2^{-n} \ge f(x) + 2^{-k} > f(x)
+	\]
+	
+	下证 $f(x)$ 在有理点处间断,无理点处连续：
+	$\forall q_k$,
+	\[
+	f(q_k^-) = \sum_{q_n < q_k} 2^{-n} = \left( \sum_{q_n \le q_k} 2^{-n} \right) - 2^{-k} = f(q_k) - 2^{-k}
+	\]
+	
+	\[
+	f(q_k^+) = \sum_{q_n \le q_k} 2^{-n} = f(q_k)
+	\]
+	故 \(f(q_k^+) \ne f(q_k^-)\).
+	
+	\(\forall x_0 \in (0,1)\) 是无理点,取 \(N \in \mathbb{N}\),使得
+	\[
+	\sum_{n > N} 2^{-n} = 2^{-N} < \varepsilon
+	\]
+	\(x_0 \in [0,1] \setminus \mathbb{Q}\),取
+	\[
+	\delta = \min\{|q_1 - x_0|, \dots, |q_N - x_0|\} > 0
+	\]
+	使 \((x_0-\delta, x_0+\delta)\) 不含 \(q_1, \dots, q_N\).\(\forall x \in (x_0-\delta, x_0+\delta)\),当 \(x > x_0\) 时：
+	\[
+	|f(x) - f(x_0)| = \sum_{q_n \in (x_0, x]} 2^{-n} \le \sum_{n > N} 2^{-n} < \varepsilon
+	\]
+	\(x < x_0\) 时同理.故在无理点处连续.
+	
+	下证 \(f \in \mathcal{R}[0,1]\),使用 \ref{Riemann可积的第三充要条件}.\(\forall \varepsilon, \eta > 0\),取
+	\[
+	N = \left\lceil -\log_2 \eta \right\rceil
+	\]
+	则 \(2^{-N} < \eta \le 2^{-(N-1)}\),从而：
+	对 \(k \le N-1\),\(\omega(q_k) = 2^{-k} \ge 2^{-N+1} > \eta\)
+	,对 \(k \ge N\),\(\omega(q_k) = 2^{-k} < 2^{-N} < \eta\)
+	
+	其中 \(\omega(q_k) := \lim\limits_{\delta \to 0} \omega([q_k-\delta, q_k+\delta])\).
+	
+	对 \(i=1,2,\dots,N-1\),取
+	\[
+	\delta_i = \frac{\varepsilon}{2^{i+2}}, \quad I_i = (q_i - \delta_i, q_i + \delta_i)
+	\]
+	以 \(I_i\) 的所有端点为 \(P\) 的分点,在 \(I_i\) 中 \(\omega(I_i) > \omega(q_k) > \eta\),但
+	\[
+	\sum |I_i| < \frac{\varepsilon}{2}
+	\]
+	由 \ref{Riemann可积的第三充要条件},\(f\) 可积.
+\end{proof}
+
+\begin{proposition}
+	
+	若函数 $f(x)$ 在 $[a,b]$ 上有界,且仅有有限多个不连续点,则 $f(x) \in \mathcal{R}[a,b]$.
+	
+\end{proposition}
+\begin{proof}
+	
+	以一个不连续点为例,设 $c \in (a,b)$ 为 $f$ 的不连续点.
+	
+	对任意 $\varepsilon>0$,我们构造一个划分 $P$,使得振幅和满足
+	\[
+	\sum \omega_i \Delta x_i < \varepsilon
+	\]
+	
+	
+	取邻域 $[c-\sigma, c+\sigma]$.函数 $f(x)$ 在 $[a, c-\sigma]$ 上连续,故可积,因此存在划分 $P_1$,使得
+	\[
+	\sum_{P_1} \omega_k \Delta x_k < \frac{\varepsilon}{3}
+	\]
+	同理,在 $[c+\sigma, b]$ 上也存在划分 $P_2$,使得
+	\[
+	\sum_{P_2} \omega_k \Delta x_k < \frac{\varepsilon}{3}
+	\]
+	
+	在邻域 $[c-\sigma, c+\sigma]$ 上,振幅和满足
+	\[
+	\omega_{[c-\sigma, c+\sigma]} \cdot \Delta x \leq (M-m) \cdot 2\sigma < \frac{\varepsilon}{3}
+	\]
+	为此,只需取
+	\[
+	\sigma < \frac{\varepsilon}{6(M-m+1)}
+	\]
+	
+	合并划分 $P_1$、$P_2$ 与邻域端点,得到 $[a,b]$ 上的一个划分 $P$,其振幅和满足
+	\[
+	\sum \omega_i \Delta x_i < \varepsilon
+	\]
+	根据 Riemann 可积的充要条件,$f(x) \in \mathcal{R}[a,b]$.
+\end{proof}
+\begin{example}
+	证明 Riemann 函数 \( R(x) \in \mathcal{R}[0,1] \)
+	
+	Riemann 函数定义为：
+	\[
+	R(x)=
+	\begin{cases}
+		\dfrac{1}{p}, & x=\dfrac{q}{p}\ (\text{其中 } p,q\in\mathbb{Z},\ p>0,\ (p,q)=1,\ q\neq0) \\[4pt]
+		1, & x=0 \\[4pt]
+		0, & x\in\mathbb{Q}^c
+	\end{cases}
+	\]
+\end{example}
+\begin{proof}
+	对任意 \( \varepsilon>0 \),集合 \( \{x\in[0,1]\mid R(x)\ge\varepsilon\} \) 是有限集,设为 \( \{p_1,p_2,\dots,p_k\} \).
+	
+	对每个 \( p_i \),取一个充分小的子区间将其覆盖：
+	\[
+	x_1 < p_1 < x_2,\quad x_3 < p_2 < x_4,\quad \dots,\quad x_{2k-1} < p_k < x_{2k}
+	\]
+	并令
+	\[
+	x_2-x_1 < \frac{\varepsilon}{k},\quad x_4-x_3 < \frac{\varepsilon}{k},\quad \dots,\quad x_{2k}-x_{2k-1} < \frac{\varepsilon}{k}
+	\]
+	
+	这样得到划分 \( P \)：
+	\[
+	0 = x_0 < x_1 < x_2 < \dots < x_{2k-1} < x_{2k} = 1
+	\]
+	
+	其振幅和为：
+	\[
+	\begin{aligned}
+		\sum_{m=1}^{2k+1} \omega_m \Delta x_m
+		&= \omega_1(x_1-x_0) + \omega_2(x_2-x_1) + \dots + \omega_{2k}(x_{2k}-x_{2k-1}) + \omega_{2k+1}(1-x_{2k}) \\
+		&< \varepsilon + \frac{\varepsilon}{k} \cdot k = 2\varepsilon
+	\end{aligned}
+	\]
+	由 Riemann 可积的充要条件,可知 \( R(x) \in \mathcal{R}[0,1] \).
+\end{proof}

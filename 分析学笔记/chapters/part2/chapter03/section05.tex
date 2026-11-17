@@ -1,0 +1,144 @@
+% !TEX root = ../../../main.tex
+% 第二部分第三章第五节：微分形式
+\section{微分形式}
+
+\begin{definition}[向量的外积与有向面积]
+设 $a=(a_1,a_2)$、$b=(b_1,b_2)\in\R^2$。称由 $a,b$ 围成的平行四边形的带符号面积为\textbf{有向面积}，定义
+\[
+a\wedge b=\begin{vmatrix}a_1&a_2\\b_1&b_2\end{vmatrix}=a_1b_2-a_2b_1.
+\]
+称此运算为向量的外积。
+\end{definition}
+
+由行列式的性质，对 $a,b,c\in\R^2$、$\lambda\in\R$，
+\[
+a\wedge b=-b\wedge a,\qquad a\wedge a=0,
+\]
+\[
+\begin{aligned}
+a\wedge(b+c)&=a\wedge b+a\wedge c,\\
+(a+b)\wedge c&=a\wedge c+b\wedge c,\\
+(\lambda a)\wedge b&=a\wedge(\lambda b)=\lambda(a\wedge b).
+\end{aligned}
+\]
+
+\subsection*{微分形式}
+
+设 $U\subset\R^n$ 为区域，$x=(x_1,\ldots,x_n)$，$C^1(U)$ 为 $U$ 上具有连续偏导数的实值函数全体。
+
+\begin{definition}[一次微分形式]
+将 $\dd x_1,\ldots,\dd x_n$ 看作一组基，其线性组合
+\[
+\omega=a_1(x)\dd x_1+\cdots+a_n(x)\dd x_n,
+\qquad a_i\in C^1(U),
+\]
+称为一次微分形式，简称 $1$-形式。全体 $1$-形式记为 $\Lambda^1$，严格写作 $\Lambda^1(U)$。
+\end{definition}
+
+对于 $\omega=\sum_i a_i\dd x_i$、$\eta=\sum_i b_i\dd x_i$ 及 $\lambda\in C^1(U)$，定义
+\[
+\omega+\eta=\sum_{i=1}^n(a_i+b_i)\dd x_i,\qquad
+\lambda\omega=\sum_{i=1}^n(\lambda a_i)\dd x_i.
+\]
+零元及加法逆元分别为
+\[
+0=0\dd x_1+\cdots+0\dd x_n,\qquad
+-\omega=(-a_1)\dd x_1+\cdots+(-a_n)\dd x_n.
+\]
+这些运算满足交换律、结合律及分配律。严格地说，$C^1(U)$ 一般是环而非域，故 $\Lambda^1$ 是 $C^1(U)$ 上的模；若只用实数作标量，它也是实向量空间。
+
+\begin{definition}[高次微分形式]
+对形式符号规定
+\[
+\dd x_i\wedge\dd x_j=-\dd x_j\wedge\dd x_i,\qquad
+\dd x_i\wedge\dd x_i=0.
+\]
+以 $\dd x_i\wedge\dd x_j$（$1\le i<j\le n$）为基的形式称为二次微分形式，简称 $2$-形式，其标准形式为
+\[
+\sum_{1\le i<j\le n}g_{ij}(x)\,\dd x_i\wedge\dd x_j,
+\qquad g_{ij}\in C^1(U).
+\]
+全体记为 $\Lambda^2$。
+
+一般地，取 $i_1,\ldots,i_k\in\{1,\ldots,n\}$，规定相邻两个指标交换时改变符号；若有重复指标，则该形式符号为零。
+以
+\[
+\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k},
+\qquad 1\le i_1<\cdots<i_k\le n
+\]
+为基的形式称为 $k$ 次微分形式，简称 $k$-形式，其标准形式为
+\[
+\omega=\sum_{1\le i_1<\cdots<i_k\le n}
+g_{i_1\cdots i_k}(x)\,\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}.
+\]
+全体记为 $\Lambda^k$，它是以这 $\binom nk$ 个形式符号为基的 $C^1(U)$-模。
+\end{definition}
+
+特别地，$\Lambda^n$ 的基为 $\dd x_1\wedge\cdots\wedge\dd x_n$，其元素为 $g(x)\dd x_1\wedge\cdots\wedge\dd x_n$。
+当 $k>n$ 时必有重复指标，故 $\Lambda^k=\{0\}$。
+规定 $0$-形式为 $C^1(U)$ 中的函数，全体记为 $\Lambda^0$，其基为 $1$。
+
+\subsection*{微分形式的外积}
+
+\begin{definition}[外积]
+先考虑 $\omega=\sum_i a_i\dd x_i$、$\eta=\sum_j b_j\dd x_j\in\Lambda^1$，定义
+\[
+\begin{aligned}
+\omega\wedge\eta
+&=\sum_{i,j=1}^n a_i(x)b_j(x)\,\dd x_i\wedge\dd x_j\\
+&=\sum_{1\le i<j\le n}(a_i b_j-a_j b_i)\,\dd x_i\wedge\dd x_j\\
+&=\sum_{1\le i<j\le n}\begin{vmatrix}a_i&a_j\\b_i&b_j\end{vmatrix}
+\dd x_i\wedge\dd x_j\in\Lambda^2.
+\end{aligned}
+\]
+
+令 $\Lambda=\Lambda^0\oplus\Lambda^1\oplus\cdots\oplus\Lambda^n$，
+其元素唯一写为 $\omega=\omega_0+\cdots+\omega_n$，其中 $\omega_i\in\Lambda^i$。
+它是秩为 $\sum\limits_{k=0}^n\binom nk=2^n$ 的 $C^1(U)$-模，基为各 $\Lambda^k$ 的基的并。
+
+对递增指标组 $I=(i_1,\ldots,i_p)$、$J=(j_1,\ldots,j_q)$，记
+$\dd x_I=\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_p}$，并同样定义 $\dd x_J$。
+定义 $\dd x_I\wedge\dd x_J$ 为将两组符号依次连接所得的形式；若指标有重复，其值为零。
+对 $\omega=\sum_Ig_I(x)\dd x_I\in\Lambda^p$、$\eta=\sum_Jh_J(x)\dd x_J\in\Lambda^q$，定义
+\[
+\omega\wedge\eta=\sum_{I,J}g_I(x)h_J(x)\,\dd x_I\wedge\dd x_J\in\Lambda^{p+q}.
+\]
+当 $f\in\Lambda^0=C^1(U)$ 时，规定
+\[
+f\wedge\omega=\omega\wedge f=f\omega=\sum_I f(x)g_I(x)\dd x_I.
+\]
+对 $\Lambda$ 中的非齐次形式，按各次数分量的双线性展开定义外积。
+\end{definition}
+
+\begin{proposition}[外积的性质]
+设 $\omega\in\Lambda^p$、$\eta\in\Lambda^q$。
+\begin{enumerate}
+\item 若 $p+q>n$，则 $\omega\wedge\eta=0$。
+\item $\omega\wedge\eta=(-1)^{pq}\eta\wedge\omega$。
+\item 对任意 $\omega,\eta,\sigma\in\Lambda$，外积满足左右分配律及结合律：
+\[
+\begin{aligned}
+(\omega+\eta)\wedge\sigma&=\omega\wedge\sigma+\eta\wedge\sigma,\\
+\sigma\wedge(\omega+\eta)&=\sigma\wedge\omega+\sigma\wedge\eta,\\
+(\omega\wedge\eta)\wedge\sigma&=\omega\wedge(\eta\wedge\sigma).
+\end{aligned}
+\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+\item 当 $p+q>n$ 时，两个指标组连接后共有 $p+q$ 个指标，但可选值只有 $1,\ldots,n$，故必有重复指标。每一项均为零，因此外积为零。
+\item 由线性性，只需考虑 $\omega=g(x)\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_p}$ 和 $\eta=h(x)\dd x_{j_1}\wedge\cdots\wedge\dd x_{j_q}$。若两组指标有公共元素，两边均为零。否则，将第一个指标组中的每个符号移过第二组的 $q$ 个符号，共交换 $pq$ 次；每次改变符号，因而得到 $(-1)^{pq}$。
+\item 对基形式，左右两侧都按相同次序连接指标，并将系数相乘；因此结合律成立。对一般形式逐项展开，系数乘法的分配律给出两个分配律，同时结合律也逐项成立。
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+若 $\omega\in\Lambda^p$ 且 $p$ 为奇数，则 $\omega\wedge\omega=0$。
+\end{corollary}
+\begin{proof}
+由交换公式，$\omega\wedge\omega=(-1)^{p^2}\omega\wedge\omega=-\omega\wedge\omega$，故结论成立。
+\end{proof}
+
+当 $p$ 为偶数时，不一定有 $\omega\wedge\omega=0$。
+

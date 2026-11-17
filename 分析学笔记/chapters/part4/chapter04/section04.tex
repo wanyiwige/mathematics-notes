@@ -1,0 +1,194 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第4章：$\R$上的Fourier变换
+% 节：4.4 Poisson 公式
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{Poisson 公式}
+
+\begin{definition}
+	 给定实直线上的函数 $f\in\mathcal S(\R)$，定义
+\[
+F_1(x)=\sum_{n=-\infty}^{\infty}f(x+n)
+\]
+\end{definition}
+得到一个定义在圆周上的函数。由于 $f$ 是迅速下降的，这个级数在 $\R$ 的任意紧集上一致且绝对收敛，因此 $F_1$ 连续。将求和指标 $n$ 替换为 $n+1$，可得
+\[
+F_1(x+1)=F_1(x),
+\]
+所以 $F_1$ 是以 $1$ 为周期的函数，称 $F_1$ 为函数 $f$ 的\textbf{周期化}。
+
+\begin{definition}
+	由 Fourier 反演公式，
+\[
+f(x)=\int_{-\infty}^{\infty}\widehat f(\xi)e^{2\pi i\xi x}\dd\xi.
+\]
+考虑该式的离散化形式，即用求和代替积分，得到
+\[
+F_2(x)=\sum_{n=-\infty}^{\infty}\widehat f(n)e^{2\pi i n x}.
+\]
+\end{definition}
+由于 $\widehat f\in\mathcal S(\R)$，这个级数一致且绝对收敛，因此 $F_2$ 连续。又因为每个指数函数 $e^{2\pi i n x}$ 都以 $1$ 为周期，故 $F_2$ 也是以 $1$ 为周期的函数。
+
+\begin{theorem}
+	\textbf{（Poisson 求和公式）}
+	若 $f\in\mathcal S(\R)$，则
+	\[
+	\sum_{n=-\infty}^{\infty}f(x+n)
+	=
+	\sum_{n=-\infty}^{\infty}\widehat f(n)e^{2\pi i n x}.
+	\]
+	特别地，取 $x=0$，有
+	\[
+	\sum_{n=-\infty}^{\infty}f(n)
+	=
+	\sum_{n=-\infty}^{\infty}\widehat f(n).
+	\]
+	\label{thm:poisson-summation}
+\end{theorem}
+\newpage
+\begin{proof}
+	由\ref{Fourier级数的唯一性},只需证明等式两边作为连续的 $1$-周期函数，具有相同的 Fourier 系数。右端的第 $m$ 项 Fourier 系数显然为 $\widehat f(m)$。对于左端，由局部一致绝对收敛可交换求和与积分，故
+	\[
+	\begin{aligned}
+		&\int_0^1\left(\sum_{n=-\infty}^{\infty}f(x+n)\right)e^{-2\pi i m x}\dd x=\sum_{n=-\infty}^{\infty}\int_0^1f(x+n)e^{-2\pi i m x}\dd x\\
+		&\qquad=\sum_{n=-\infty}^{\infty}\int_n^{n+1}f(y)e^{-2\pi i m y}\dd y=\int_{-\infty}^{\infty}f(y)e^{-2\pi i m y}\dd y
+		=\widehat f(m).
+	\end{aligned}
+	\]
+	由连续周期函数的 Fourier 级数唯一性，等式成立。
+\end{proof}
+
+\begin{definition}
+	 当 $s>0$ 时，定义 Theta 函数
+\[
+\vartheta(s)=\sum_{n=-\infty}^{\infty}e^{-\pi n^2s}.
+\]
+\end{definition}
+$\vartheta$函数满足这个重要的函数方程。
+\begin{theorem}	\label{thm:theta-functional-equation}
+	当 $s>0$ 时，有
+	\[
+	s^{-1/2}\vartheta(1/s)=\vartheta(s).
+	\]
+\end{theorem}
+
+\begin{proof}
+	取
+	\[
+	f(x)=e^{-\pi s x^2}.
+	\]
+	由 Gaussian 函数的 Fourier 变换公式，
+	\[
+	\widehat f(\xi)=s^{-1/2}e^{-\pi\xi^2/s}.
+	\]
+	在 Poisson 求和公式中取 $x=0$，即得
+	\[
+	\vartheta(s)
+	=\sum_{n=-\infty}^{\infty}e^{-\pi n^2s}
+	=s^{-1/2}\sum_{n=-\infty}^{\infty}e^{-\pi n^2/s}
+	=s^{-1/2}\vartheta(1/s).
+	\]
+\end{proof}
+
+Theta 函数 $\vartheta(s)$ 还可以拓展至复数域 $\operatorname{Re}(s)>0$，并且上面的函数方程仍然成立。在数论中，Theta 函数与定义在 $\operatorname{Re}(s)>1$ 上的 Riemann $\zeta$ 函数
+\[
+\zeta(s)=\sum_{n=1}^{\infty}\frac1{n^s}
+\]
+有着本质联系。以后会看到，这个函数包含了素数的一些基本信息（见第 7 章）。
+
+\begin{proposition}	\label{prop:theta-zeta-mellin}
+	当 $s>1$ 时，
+	\[
+	\pi^{-s/2}\Gamma\left(\frac{s}{2}\right)\zeta(s)
+	=
+	\frac12\int_0^{\infty}t^{s/2-1}\bigl[\vartheta(t)-1\bigr]\dd t.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由
+	\[
+	\vartheta(t)
+	=\sum_{n=-\infty}^{\infty}e^{-\pi n^2t}
+	=1+2\sum_{n=1}^{\infty}e^{-\pi n^2t},
+	\]
+	可得
+	\[
+	\frac12\bigl[\vartheta(t)-1\bigr]
+	=\sum_{n=1}^{\infty}e^{-\pi n^2t}.
+	\]
+	令
+	\[
+	F_N(t)=\sum_{n=1}^{N}t^{s/2-1}e^{-\pi n^2t}.
+	\]
+	则 $F_N(t)$ 单调增加到 $t^{s/2-1}\sum\limits_{n=1}^{\infty}e^{-\pi n^2t}$。由单调收敛定理，可交换求和与积分：
+	\[
+	\frac12\int_0^{\infty}t^{s/2-1}\bigl[\vartheta(t)-1\bigr]\dd t
+	=
+	\sum_{n=1}^{\infty}\int_0^{\infty}t^{s/2-1}e^{-\pi n^2t}\dd t.
+	\]
+	令 $u=\pi n^2t$，则
+	\[
+	\begin{aligned}
+		\int_0^{\infty}t^{s/2-1}e^{-\pi n^2t}\dd t
+		&=(\pi n^2)^{-s/2}
+		\int_0^{\infty}u^{s/2-1}e^{-u}\dd u\\
+		&=\pi^{-s/2}n^{-s}\Gamma\left(\frac{s}{2}\right).
+	\end{aligned}
+	\]
+	因此
+	\[
+	\frac12\int_0^{\infty}t^{s/2-1}\bigl[\vartheta(t)-1\bigr]\dd t
+	=
+	\pi^{-s/2}\Gamma\left(\frac{s}{2}\right)
+	\sum_{n=1}^{\infty}\frac1{n^s},
+	\]
+	即得所证。条件 $s>1$ 保证 $\zeta(s)$ 收敛。
+\end{proof}
+
+\begin{definition}
+定义一般化的 Theta 函数
+	\[
+	\Theta(z\mid\tau)
+	=
+	\sum_{n=-\infty}^{\infty}
+	e^{i\pi n^2\tau}e^{2\pi i n z},
+	\]
+	其中 $\operatorname{Im}(\tau)>0$ 且 $z\in\C$。此时级数绝对收敛。取 $z=0$ 以及 $\tau=is$，便得到
+	\[
+	\Theta(0\mid is)=\vartheta(s).
+	\]
+\end{definition}
+\newpage
+下面讨论圆盘上和上半平面上的 Poisson 核，即
+\[
+P_r(\theta)=\frac{1-r^2}{1-2r\cos\theta+r^2},
+\qquad
+P_y(x)=\frac1\pi\frac{y}{y^2+x^2},
+\]
+以及它们之间的联系。
+
+\begin{theorem}
+	当 $r=e^{-2\pi y}$ 时，有
+	\[
+	P_r(2\pi x)=\sum_{n\in\Z}P_y(x+n).
+	\]
+	\label{thm:poisson-kernel-periodization}
+\end{theorem}
+
+\begin{proof}
+	由标准 Fourier 变换公式
+	\[
+	\widehat{P_y}(\xi)=e^{-2\pi y\abs{\xi}}.
+	\]
+	由于 $P_y(x+n)=O(n^{-2})$，级数 $\sum_{n\in\Z}P_y(x+n)$ 在 $[0,1]$ 上一致且绝对收敛，因而其和连续且以 $1$ 为周期。它的第 $m$ 个 Fourier 系数为
+	\[
+	\int_{-\infty}^{\infty}P_y(x)e^{-2\pi i m x}\dd x
+	=e^{-2\pi y\abs{m}}
+	=r^{\abs{m}}.
+	\]
+	另一方面，圆盘 Poisson 核的 Fourier 展开为
+	\[
+	P_r(2\pi x)=\sum_{m\in\Z}r^{\abs{m}}e^{2\pi i m x}.
+	\]
+	两边具有相同的 Fourier 系数，故由唯一性定理得到结论。
+\end{proof}

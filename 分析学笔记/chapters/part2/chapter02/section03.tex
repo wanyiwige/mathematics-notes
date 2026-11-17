@@ -1,0 +1,261 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第2章：多元函数微分学
+% 节：2.3 中值定理与 Taylor 公式
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{中值定理与 Taylor 公式}
+
+\subsection*{中值定理}
+
+\begin{definition}
+	设 $D\subset\R^n$.若对任意两点 $\vect x,\vect y\in D$ 及任意
+	$\lambda\in[0,1]$，均有
+	\[
+	\lambda\vect x+(1-\lambda)\vect y\in D,
+	\]
+	则称 $D$ 为\textbf{凸集}.换言之，$D$ 中任意两点之间的线段都包含在 $D$ 中.
+\end{definition}
+
+\begin{theorem}[Lagrange 中值定理]
+	设 $D\subset\R^2$ 为凸开集，函数 $f:D\to\R$ 在 $D$ 上可微.
+	对任意 $(x_1,y_1),(x_2,y_2)\in D$，存在 $\theta\in(0,1)$，使得
+	\[
+	\begin{aligned}
+	&f(x_1,y_1)-f(x_2,y_2)\\
+	&\quad=
+	f_x\bigl(x_1+\theta(x_2-x_1),y_1+\theta(y_2-y_1)\bigr)(x_1-x_2)\\
+	&\qquad+
+	f_y\bigl(x_1+\theta(x_2-x_1),y_1+\theta(y_2-y_1)\bigr)(y_1-y_2).
+	\end{aligned}
+	\]
+\end{theorem}
+
+\begin{proof}
+	令
+	\[
+	\varphi(t)
+	=
+	f\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr),
+	\qquad t\in[0,1].
+	\]
+	由于 $D$ 为凸集，$\varphi$ 在 $[0,1]$ 上有定义.由 $f$ 可微，
+	$\varphi$ 在 $[0,1]$ 上连续并在 $(0,1)$ 上可导，且
+	\[
+	\begin{aligned}
+	\varphi'(t)
+	={}&
+	f_x\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr)(x_2-x_1)\\
+	&+
+	f_y\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr)(y_2-y_1).
+	\end{aligned}
+	\]
+	对 $\varphi$ 应用一元函数的 Lagrange 中值定理，存在 $t_0\in(0,1)$，使得
+	\[
+	\varphi(1)-\varphi(0)=\varphi'(t_0).
+	\]
+	将上式整理，并令 $\theta=t_0$，即得所证公式.
+\end{proof}
+
+\begin{proposition}
+	设 $D\subset\R^2$ 为区域，函数 $f\in C^1(D)$.若在 $D$ 上
+	\[
+	\frac{\partial f}{\partial x}=0,
+	\qquad
+	\frac{\partial f}{\partial y}=0,
+	\]
+	即 $\operatorname{grad}f=\vect 0$，则 $f$ 在 $D$ 上为常数.
+\end{proposition}
+
+\begin{proof}
+	若 $D$ 为凸区域，则对任意 $P,Q\in D$，由 Lagrange 中值定理立即得到
+	\[
+	f(P)-f(Q)=0,
+	\]
+	故 $f(P)=f(Q)$.
+
+	一般地，区域 $D$ 是开连通集，因而是折线连通的.对任意 $P,Q\in D$，
+	存在完全包含在 $D$ 中的折线
+	\[
+	P=P_0,P_1,\ldots,P_m=Q.
+	\]
+	每条线段 $[P_{i-1},P_i]$ 都包含在 $D$ 中.
+	在各条线段上依次应用 Lagrange 中值定理，有
+	\[
+	f(P_{i-1})=f(P_i),
+	\qquad i=1,2,\ldots,m.
+	\]
+	于是
+	\[
+	f(P)=f(P_1)=\cdots=f(P_m)=f(Q).
+	\]
+	由于 $P,Q$ 任意，故 $f$ 在 $D$ 上为常数.
+\end{proof}
+
+\begin{theorem}[多元函数的中值公式]
+	设 $n$ 元函数 $f(x_1,x_2,\ldots,x_n)$ 在凸区域
+	$D\subset\R^n$ 上可微. 对于 $D$ 内任意两点
+	\[
+	(x_1^0,x_2^0,\ldots,x_n^0)
+	\quad\text{与}\quad
+	(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n),
+	\]
+	至少存在一个 $\theta\in(0,1)$, 使得
+	\[
+	\begin{aligned}
+	&f(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n)
+	-f(x_1^0,x_2^0,\ldots,x_n^0)\\
+	&\qquad=
+	\sum_{i=1}^n
+	f_{x_i}(x_1^0+\theta\Delta x_1,x_2^0+\theta\Delta x_2,
+	\ldots,x_n^0+\theta\Delta x_n)\Delta x_i.
+	\end{aligned}
+	\]
+	
+	使用向量与点积，可以将上述的定理表述为如下形式
+	设 $n$ 元函数 $f(\vect x)$ 在凸区域
+	$D\subset\R^n$ 上可微. 对于 $D$ 内任意两点
+	\[
+	\vect x
+	\quad\text{与}\quad
+	\vect x +\vect{\Delta x},
+	\]
+	
+	至少存在一个 $\theta\in(0,1)$, 使得
+	\[f(\vect x +\vect{\Delta x})
+		-f(\vect x )=\nabla f(\vect x +\theta \vect{\Delta x}) \cdot \vect {\Delta x}\]
+\end{theorem}
+
+\subsection*{二元函数的 Taylor 公式}
+\begin{proposition}
+设 $z=f(x,y)$ 在 $(x_0,y_0)$ 的某邻域内具有直到 $k+1$ 阶的连续偏导数,
+且 $(x_0+\Delta x,y_0+\Delta y)$ 仍在该邻域内. 则
+\[
+\begin{aligned}
+	f(x_0+\Delta x,y_0+\Delta y)
+	={}&f(x_0,y_0)
+	+\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)f(x_0,y_0)\\
+	&+\cdots+
+	\frac{1}{k!}
+	\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)^k f(x_0,y_0)
+	+R_k,
+\end{aligned}
+\]
+其中
+\[
+R_k=
+\frac{1}{(k+1)!}
+\left(
+\Delta x\frac{\partial}{\partial x}
++\Delta y\frac{\partial}{\partial y}
+\right)^{k+1}
+f(x_0+\theta\Delta x,y_0+\theta\Delta y),
+\qquad
+\theta\in(0,1),
+\]
+称为 Lagrange 余项.   
+\end{proposition}
+
+
+\begin{proof}
+	令
+	\[
+	\varphi(t)=f(x_0+t\Delta x,y_0+t\Delta y).
+	\]
+	于是
+	\[
+	\varphi(0)=f(x_0,y_0),
+	\qquad
+	\varphi(1)=f(x_0+\Delta x,y_0+\Delta y).
+	\]
+	由于对 $t\in[0,1]$, $\varphi(t)$ 有定义且具有 $k+1$ 阶导数,
+	对 $\varphi(t)$ 在 $t=0$ 处应用一元函数的 Taylor 公式,
+	\[
+	\varphi(1)
+	=
+	\varphi(0)+\varphi'(0)
+	+\frac{1}{2!}\varphi''(0)
+	+\cdots+
+	\frac{1}{k!}\varphi^{(k)}(0)
+	+\widetilde R_k,
+	\]
+	其中
+	\[
+	\widetilde R_k
+	=
+	\frac{1}{(k+1)!}\varphi^{(k+1)}(\theta),
+	\qquad
+	\theta\in(0,1).
+	\]
+	又
+	\[
+	\varphi^{(j)}(t)
+	=
+	\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)^j
+	f(x_0+t\Delta x,y_0+t\Delta y),
+	\]
+	代入即得所述 Taylor 公式与 Lagrange 余项.
+\end{proof}
+
+若
+\[
+r=\sqrt{\Delta x^2+\Delta y^2}\to0,
+\]
+则还可将余项写成
+\[
+R_k=o(r^k)
+=o\left(\left(\sqrt{\Delta x^2+\Delta y^2}\right)^k\right),
+\]
+称为 Peano 余项.
+
+\begin{theorem}[$n$ 元函数的 Taylor 公式]
+	设 $n$ 元函数 $f(x_1,x_2,\ldots,x_n)$ 在点
+	$(x_1^0,x_2^0,\ldots,x_n^0)$ 附近具有 $k+1$ 阶的连续偏导数,
+	则在该点附近成立
+	\[
+	\begin{aligned}
+	&f(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n)\\
+	&\quad=
+	f(x_1^0,x_2^0,\ldots,x_n^0)
+	+\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)f(x_1^0,x_2^0,\ldots,x_n^0)\\
+	&\qquad+
+	\frac{1}{2!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^2 f(x_1^0,x_2^0,\ldots,x_n^0)
+	+\cdots\\
+	&\qquad+
+	\frac{1}{k!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^k f(x_1^0,x_2^0,\ldots,x_n^0)
+	+R_k,
+	\end{aligned}
+	\]
+	其中
+	\[
+	\begin{aligned}
+	R_k
+	={}&
+	\frac{1}{(k+1)!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^{k+1}\\
+	&\quad\cdot
+	f(x_1^0+\theta\Delta x_1,x_2^0+\theta\Delta x_2,
+	\ldots,x_n^0+\theta\Delta x_n),
+	\qquad 0<\theta<1,
+	\end{aligned}
+	\]
+	为 Lagrange 余项.
+\end{theorem}
+

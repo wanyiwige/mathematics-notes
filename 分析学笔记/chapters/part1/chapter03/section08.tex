@@ -1,0 +1,67 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.8 单调有界定理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{单调有界定理}
+在本节中我们对单调有界定理进行互证.
+\begin{definition}
+	对数列$\left\{x_n\right\}$,若$\forall n\in\Z_+$,有
+	\begin{itemize}
+		\item $x_n\leqslant x_{n+1}$,就称$\left\{x_n\right\}$是单调增的
+		\item$x_n< x_{n+1}$,就称$\left\{x_n\right\}$是严格单调增的
+		\item$x_n\geqslant x_{n+1}$,就称$\left\{x_n\right\}$是单调减的
+		\item$x_n>" x_{n+1}$,就称$\left\{x_n\right\}$是严格单调减的
+	\end{itemize}
+\end{definition}
+\begin{theorem}
+	单调有界数列必收敛
+\end{theorem}
+\begin{proof}
+	不妨设数列 $\left\{x_n\right\}$ 单调增加且有上界，根据确界存在定理，由 $\left\{x_n\right\}$ 构成的数集必有上确界 $\beta$ ，满足：
+	
+	（1）$\forall n \in \N^{+}: x_n \leqslant \beta ;$
+	
+	（2）$\forall \varepsilon>0, \exists x_{n_0}: x_{n_0}>\beta-\varepsilon$ ．
+	
+	取 $N=n_0, \forall n>N$ ：
+	
+	$$
+	\beta-\varepsilon<x_{n_0} \leqslant x_n \leqslant \beta,
+	$$
+	
+	
+	因而 $\left|x_n-\beta\right|<\varepsilon$ ，于是得到
+	
+	$$
+	\lim _{n \rightarrow \infty} x_n=\beta
+	$$
+	
+	对下界的考量是同理的.
+\end{proof}
+我们在下一章介绍其应用.
+\begin{proposition}
+	单调有界定理$\Rightarrow$确界原理.
+\end{proposition}
+
+\begin{proof}
+	设 $S$ 是非空有上界的实数集.
+	
+	取 $T=\{t \in \mathbb{Q}: t$ 是 $S$ 的上界 $\}$ ，
+	显然 $T$ 非空.
+	
+	将 $T$ 中元素排成序列 $\left\{r_n\right\}$.
+	令 $x_n=\min \left\{r_1, r_2, \ldots, r_n\right\}$ ，则 $\left\{x_n\right\}$ 单调递减，且 $x_n$ 是 $S$ 的上界）.
+	
+	又 $S$ 非空，取 $a \in S$ ，则 $a \leqslant x_n$ 对所有 $n$ 成立，所以 $\left\{x_n\right\}$ 有下界 $a$
+	由单调有界定理，$\left\{x_n\right\}$ 收敛，设 $\lim\limits_{n\rightarrow\infty}x_n=\xi$ .
+	
+	下证 $\xi$ 是 $S$ 的上界：
+	
+	如若不然，存在 $s \in S$ 使 $s>\xi$ ，取 $\varepsilon=s-\xi>0$ ，则存在 $N$ ，当 $n \geqslant N$ 时，$x_n-\xi<s-\xi\Rightarrow x_n<s$ ，但 $x_n$ 是 $S$ 的上界，矛盾.
+	
+	下证 $\xi$ 是最小上界：
+	
+	如若不然，存在上界 $M^{\prime}$ 使 $M^{\prime}<\xi$ ，取有理数 $q$ 满足 $M^{\prime}<q<\xi$ .则 $q$ 也是 $S$ 的上界，所以 $q \in T$ ，因此 $q=r_k$ 对某个 $k$ .于是 $x_n \leqslant q$ 对所有 $n \geqslant k$ ，所以 $\lim\limits_{n\rightarrow\infty} x_n \leqslant q<\xi$ ，矛盾.
+	
+	因此 $\xi=\sup S$ .
+\end{proof}

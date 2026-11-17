@@ -1,0 +1,84 @@
+Contents
+9
+1. The Norm of an Operator ....
+155
+2. The Metric Space of Operators.
+156
+3.Proof of Completeness
+156
+4.Series.
+157
+5.Definition of the Exponential eA
+158
+6. An Example..
+159
+7. The Exponential of a Diagonal Operator..
+160
+8. The Exponential of a Nilpotent Operator ....
+160
+9. Quasi-polynomials...
+161
+§15.Properties of the Exponential.
+162
+1. The Group Property.
+163
+2.TheFundamentalTheorem of theTheory ofLinear
+Equations with Constant Coefficients ..:
+164
+3. The General Form of One-paraimeter Groups of Linear
+Transformations of the Space Rn
+165
+4. A Second Definition of the Exponential ..
+165
+5.An Example: Euler's Formula. for e²
+166
+6.Euler's Broken Lines..
+167
+16.TheDeterminantofanExponential
+169
+1. The Determinant of an Operator...
+169
+2. The Trace of an Operator.
+170
+3.The Connection Between the Determinant and the Trace...
+171
+4. The Determinant of the Operator eA
+171
+$17.Practical Computation of the Matrix of an Exponential
+The Case when the Eigenvalues are Real and Distinct..
+173
+1. The Diagonalizable Operator ....
+173
+2.An Example
+174
+3. The Discrete Case...
+175
+ 18. Compiexification and Realification.
+177
+1. Realification..
+177
+2.Complexification...
+177
+3. The Complex Conjugatc..
+178
+4. The Exponential, Determinant, and Trace of a Complex Operator
+179
+5.The Derivative of a Curve with ComplexValues.
+180
+§ 19. The Linear Equation with a Complex Phase Space .
+181
+1.Definitions.
+181
+2.The Fundamental Theorem..
+181
+3. The Diagonalizable Case..
+182
+4. Example: A Linear Equation whose Phase Space is a Complex
+Line...
+182
+5.Corollary....
+185
+§ 20. The Complexification of a Real Linear Equation ..
+185
+1. The Complexified Equation...
+185

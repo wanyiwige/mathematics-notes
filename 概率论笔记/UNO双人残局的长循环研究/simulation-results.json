@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "generatedAt": "2026-09-19T00:00:00+08:00",
+    "nodeRequirement": ">=22.13.0",
+    "actionDefinition": "一次 playCard、drawCardsForTurn 或 passDrawnCard 调用计一个动作；draw+play 计两个动作。",
+    "interpretation": "统计量只属于本文明示的自动策略，不代表真人策略或标准 UNO 的精确分布。心理策略使用相对权重；罚牌目标受行动顺序约束，不能任意指定。",
+    "strategyDefinitions": {
+      "uniform": {
+        "name": "uniform",
+        "description": "从合法牌中等概率选择；摸到可出的牌时立即打出。"
+      },
+      "psychological": {
+        "name": "psychological",
+        "description": "前期保留万能牌和罚牌，手牌剩 1–2 张时优先使用；受罚时用叠加牌保命；罚牌目标是手牌最少者时提高出牌权重。",
+        "earlyWildWeight": 0.15,
+        "earlyWildPenaltyWeight": 0.35,
+        "lateWildWeight": 8,
+        "earlyPenaltyWeight": 0.35,
+        "latePenaltyWeight": 3,
+        "stackDefenseWeight": 25,
+        "lowestHandTargetWeight": 6,
+        "otherTargetWeight": 0.6,
+        "drawnEarlyWildPlayProbability": 0.15,
+        "drawnEarlyPenaltyPlayProbability": 0.35,
+        "drawnEarlyWildPenaltyPlayProbability": 0.08
+      }
+    },
+    "strategyWeightAssertions": {
+      "passed": true,
+      "earlyOrdinary": 1,
+      "earlyWild": 0.15,
+      "lateOrdinary": 1,
+      "lateWild": 8,
+      "earlyPenaltyToLeast": 2.0999999999999996,
+      "earlyPenaltyToOther": 0.21,
+      "earlyWildPenalty": 0.11024999999999999,
+      "defensiveWildPenalty": 22.5
+    }
+  },
+  "experiments": [
+    {
+      "label": "双人：积极出牌，叠加开，摸牌即出开",
+      "seed": "0xC0FFEE01",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 49.26,
+        "median": 41,
+        "p95": 115,
+        "p99": 167,
+        "max": 304
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 49.26,
+        "median": 41,
+        "p95": 115,
+        "p99": 167,
+        "max": 304
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 45579,
+        "earlyWildSelections": 17653,
+        "lateWildChoiceOpportunities": 147,
+        "lateWildSelections": 78,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 58686,
+        "penaltyPlaysTargetingLeastHand": 58686,
+        "multiplayerPenaltyPlaysWithTarget": 0,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 0,
+        "stackDefensePlays": 19944,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.3873,
+        "lateWildSelectionRateWhenAlternativeExists": 0.5306,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 1,
+        "multiplayerPenaltyTargetLeastHandRate": null
+      }
+    },
+    {
+      "label": "双人：积极出牌，叠加关，摸牌即出关",
+      "seed": "0xC0FFEE02",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 58.72,
+        "median": 47,
+        "p95": 145,
+        "p99": 208,
+        "max": 391
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 58.72,
+        "median": 47,
+        "p95": 145,
+        "p99": 208,
+        "max": 391
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 56232,
+        "earlyWildSelections": 21647,
+        "lateWildChoiceOpportunities": 561,
+        "lateWildSelections": 272,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 63528,
+        "penaltyPlaysTargetingLeastHand": 63528,
+        "multiplayerPenaltyPlaysWithTarget": 0,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 0,
+        "stackDefensePlays": 2973,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.385,
+        "lateWildSelectionRateWhenAlternativeExists": 0.4848,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 1,
+        "multiplayerPenaltyTargetLeastHandRate": null
+      }
+    },
+    {
+      "label": "双人：有牌可出时以 10% 概率主动摸牌",
+      "seed": "0xC0FFEE03",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 68.06,
+        "median": 55,
+        "p95": 162,
+        "p99": 237,
+        "max": 583
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 68.06,
+        "median": 55,
+        "p95": 162,
+        "p99": 237,
+        "max": 583
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 55088,
+        "earlyWildSelections": 20619,
+        "lateWildChoiceOpportunities": 139,
+        "lateWildSelections": 61,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 75383,
+        "penaltyPlaysTargetingLeastHand": 75383,
+        "multiplayerPenaltyPlaysWithTarget": 0,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 0,
+        "stackDefensePlays": 23655,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.3743,
+        "lateWildSelectionRateWhenAlternativeExists": 0.4388,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 1,
+        "multiplayerPenaltyTargetLeastHandRate": null
+      }
+    },
+    {
+      "label": "双人：有牌可出时以 25% 概率主动摸牌",
+      "seed": "0xC0FFEE04",
+      "games": 3000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 146.29,
+        "median": 111,
+        "p95": 396,
+        "p99": 606,
+        "max": 920
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 146.29,
+        "median": 111,
+        "p95": 396,
+        "p99": 606,
+        "max": 920
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 29619,
+        "earlyWildSelections": 10223,
+        "lateWildChoiceOpportunities": 21,
+        "lateWildSelections": 9,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 44714,
+        "penaltyPlaysTargetingLeastHand": 44714,
+        "multiplayerPenaltyPlaysWithTarget": 0,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 0,
+        "stackDefensePlays": 12713,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.3452,
+        "lateWildSelectionRateWhenAlternativeExists": 0.4286,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 1,
+        "multiplayerPenaltyTargetLeastHandRate": null
+      }
+    },
+    {
+      "label": "四人开局：积极出牌",
+      "seed": "0xC0FFEE05",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 130.26,
+        "median": 122,
+        "p95": 227,
+        "p99": 283,
+        "max": 461
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 33.46,
+        "median": 24,
+        "p95": 99,
+        "p99": 151,
+        "max": 329
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 104570,
+        "earlyWildSelections": 39628,
+        "lateWildChoiceOpportunities": 299,
+        "lateWildSelections": 149,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 149276,
+        "penaltyPlaysTargetingLeastHand": 85721,
+        "multiplayerPenaltyPlaysWithTarget": 117565,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 54010,
+        "stackDefensePlays": 50040,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.379,
+        "lateWildSelectionRateWhenAlternativeExists": 0.4983,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 0.5742,
+        "multiplayerPenaltyTargetLeastHandRate": 0.4594
+      }
+    },
+    {
+      "label": "四人开局：有牌可出时以 10% 概率主动摸牌",
+      "seed": "0xC0FFEE06",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 185.81,
+        "median": 171,
+        "p95": 336,
+        "p99": 434,
+        "max": 705
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 51.89,
+        "median": 37,
+        "p95": 152,
+        "p99": 230,
+        "max": 474
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 132679,
+        "earlyWildSelections": 49223,
+        "lateWildChoiceOpportunities": 291,
+        "lateWildSelections": 136,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 202951,
+        "penaltyPlaysTargetingLeastHand": 121102,
+        "multiplayerPenaltyPlaysWithTarget": 151775,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 69926,
+        "stackDefensePlays": 62945,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.371,
+        "lateWildSelectionRateWhenAlternativeExists": 0.4674,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 0.5967,
+        "multiplayerPenaltyTargetLeastHandRate": 0.4607
+      }
+    },
+    {
+      "label": "三人开局：等概率积极出牌（基线）",
+      "seed": "0xC0FFEE07",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "uniform",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 89.96,
+        "median": 81,
+        "p95": 172,
+        "p99": 227,
+        "max": 383
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 34.72,
+        "median": 25,
+        "p95": 101,
+        "p99": 152,
+        "max": 323
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 74732,
+        "earlyWildSelections": 28584,
+        "lateWildChoiceOpportunities": 223,
+        "lateWildSelections": 114,
+        "drawnPlayableEarlyWilds": 0,
+        "drawnPlayableEarlyWildsKept": 0,
+        "drawnPlayableEarlyPenalties": 0,
+        "drawnPlayableEarlyPenaltiesKept": 0,
+        "penaltyPlaysWithTarget": 103983,
+        "penaltyPlaysTargetingLeastHand": 73998,
+        "multiplayerPenaltyPlaysWithTarget": 70898,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 40913,
+        "stackDefensePlays": 35020,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.3825,
+        "lateWildSelectionRateWhenAlternativeExists": 0.5112,
+        "drawnPlayableEarlyWildKeepRate": null,
+        "drawnPlayableEarlyPenaltyKeepRate": null,
+        "penaltyTargetLeastHandRate": 0.7116,
+        "multiplayerPenaltyTargetLeastHandRate": 0.5771
+      }
+    },
+    {
+      "label": "三人开局：保牌、叠加保命与攻击领先者",
+      "seed": "0xC0FFEE08",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "psychological",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 78.28,
+        "median": 70,
+        "p95": 153,
+        "p99": 200,
+        "max": 317
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 32.23,
+        "median": 24,
+        "p95": 92,
+        "p99": 136,
+        "max": 240
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 111966,
+        "earlyWildSelections": 10496,
+        "lateWildChoiceOpportunities": 1926,
+        "lateWildSelections": 1714,
+        "drawnPlayableEarlyWilds": 18471,
+        "drawnPlayableEarlyWildsKept": 16100,
+        "drawnPlayableEarlyPenalties": 11505,
+        "drawnPlayableEarlyPenaltiesKept": 8888,
+        "penaltyPlaysWithTarget": 93360,
+        "penaltyPlaysTargetingLeastHand": 71061,
+        "multiplayerPenaltyPlaysWithTarget": 61261,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 38962,
+        "stackDefensePlays": 34999,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.0937,
+        "lateWildSelectionRateWhenAlternativeExists": 0.8899,
+        "drawnPlayableEarlyWildKeepRate": 0.8716,
+        "drawnPlayableEarlyPenaltyKeepRate": 0.7725,
+        "penaltyTargetLeastHandRate": 0.7612,
+        "multiplayerPenaltyTargetLeastHandRate": 0.636
+      }
+    },
+    {
+      "label": "四人开局：保牌、叠加保命与攻击领先者",
+      "seed": "0xC0FFEE09",
+      "games": 10000,
+      "actionLimit": 20000,
+      "strategy": "psychological",
+      "unresolved": 0,
+      "allCompleted": {
+        "mean": 114.11,
+        "median": 107,
+        "p95": 196,
+        "p99": 252,
+        "max": 378
+      },
+      "completedTwoPlayerPhase": {
+        "mean": 30.76,
+        "median": 22,
+        "p95": 90,
+        "p99": 134,
+        "max": 241
+      },
+      "behavioralDiagnostics": {
+        "earlyWildChoiceOpportunities": 160159,
+        "earlyWildSelections": 15231,
+        "lateWildChoiceOpportunities": 2715,
+        "lateWildSelections": 2404,
+        "drawnPlayableEarlyWilds": 26286,
+        "drawnPlayableEarlyWildsKept": 22872,
+        "drawnPlayableEarlyPenalties": 16349,
+        "drawnPlayableEarlyPenaltiesKept": 12631,
+        "penaltyPlaysWithTarget": 133837,
+        "penaltyPlaysTargetingLeastHand": 84784,
+        "multiplayerPenaltyPlaysWithTarget": 103479,
+        "multiplayerPenaltyPlaysTargetingLeastHand": 54426,
+        "stackDefensePlays": 50088,
+        "earlyWildSelectionRateWhenAlternativeExists": 0.0951,
+        "lateWildSelectionRateWhenAlternativeExists": 0.8855,
+        "drawnPlayableEarlyWildKeepRate": 0.8701,
+        "drawnPlayableEarlyPenaltyKeepRate": 0.7726,
+        "penaltyTargetLeastHandRate": 0.6335,
+        "multiplayerPenaltyTargetLeastHandRate": 0.526
+      }
+    }
+  ],
+  "explicitNonTerminationConstruction": {
+    "constructionActions": 146,
+    "handSizes": [
+      61,
+      60
+    ],
+    "drawPileSize": 0,
+    "discardPileSize": 1,
+    "completeGameStateRepeats": false,
+    "strategicProjectionHasPeriodTwo": true,
+    "explanation": "turn 与 message 会变化；剔除展示字段后的战略状态每两个空摸动作重复。"
+  }
+}

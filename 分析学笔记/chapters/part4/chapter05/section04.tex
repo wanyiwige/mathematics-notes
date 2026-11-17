@@ -1,0 +1,540 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第5章：$\R^d$上的Fourier变换
+% 节：5.4 Radon 变换
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{Radon 变换}
+
+首先说明函数在平面上积分的含义。对单位向量
+$\gamma\in S^2$ 及 $t\in\R$，定义平面
+\[
+P_{t,\gamma}
+=\left\{x\in\R^3:x\cdot\gamma=t\right\}.
+\]
+选取单位向量 $e_1,e_2$，使 $e_1,e_2,\gamma$ 构成
+$\R^3$ 的一组标准正交基。于是每个 $x\in P_{t,\gamma}$
+都可唯一写成
+\[
+x=t\gamma+u,
+\qquad
+u=u_1e_1+u_2e_2,
+\qquad u_1,u_2\in\R.
+\]
+
+\begin{definition}\label{def:plane-integral-r3}
+	设 $f\in\mathcal S(\R^3)$，定义
+	\[
+	\int_{P_{t,\gamma}}f
+	=\int_{\R^2}f(t\gamma+u_1e_1+u_2e_2)
+	\dd u_1\dd u_2.
+	\]
+\end{definition}
+
+\begin{proposition}\label{prop:plane-integral-well-defined}
+	定义 \ref{def:plane-integral-r3} 与 $e_1,e_2$ 的选取无关，并且
+	\[
+	\int_{-\infty}^{\infty}
+	\left(\int_{P_{t,\gamma}}f\right)\dd t
+	=\int_{\R^3}f(x)\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	若 $e_1',e_2'$ 是 $\gamma^\perp$ 的另一组标准正交基，
+	则存在 $\R^2$ 上的正交变换 $Q$ 将 $e_1,e_2$ 变为
+	$e_1',e_2'$。在平面积分中作变量替换 $u'=Q(u)$，
+	便知该定义与基的选取无关。
+
+	再令 $R$ 为把 $\R^3$ 的标准正交基依次映为
+	$\gamma,e_1,e_2$ 的正交变换。由旋转不变性和 Fubini 定理，
+	\[
+	\begin{aligned}
+	\int_{\R^3}f(x)\dd x
+	&=\int_{\R^3}f(Rx)\dd x\\
+	&=\int_{\R^3}f(x_1\gamma+x_2e_1+x_3e_2)
+	\dd x_1\dd x_2\dd x_3\\
+	&=\int_{-\infty}^{\infty}
+	\left(\int_{P_{t,\gamma}}f\right)\dd t.
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{definition}\label{def:radon-transform-r3}
+	函数 $f\in\mathcal S(\R^3)$ 的 Radon 变换定义为
+	\[
+	\mathcal R(f)(t,\gamma)
+	=\int_{P_{t,\gamma}}f,
+	\qquad (t,\gamma)\in\R\times S^2.
+	\]
+\end{definition}
+
+因此，$\mathcal R(f)$ 可以看作 $\R\times S^2$ 上的函数。
+记 $\mathcal S(\R\times S^2)$ 为所有连续函数 $F(t,\gamma)$
+组成的函数空间，其中 $F$ 关于 $t$ 无穷次可微，并且对任意
+非负整数 $k,\ell$ 都有
+\[
+\sup_{t\in\R,\,\gamma\in S^2}
+\abs{t^k\frac{\partial^\ell F}{\partial t^\ell}(t,\gamma)}
+<\infty.
+\]
+
+\begin{lemma}[Fourier 切片定理]\label{lem:fourier-slice-radon}
+	若 $f\in\mathcal S(\R^3)$，则对每个固定的
+	$\gamma\in S^2$，有 $\mathcal R(f)(t,\gamma)\in
+	\mathcal S(\R)$。此外，
+	\[
+	\widehat{\mathcal R(f)}(s,\gamma)
+	=\widehat f(s\gamma),
+	\]
+	其中左端是关于变量 $t$ 的一维 Fourier 变换。
+\end{lemma}
+
+\begin{proof}
+	由于 $f\in\mathcal S(\R^3)$，对任意正整数 $N$，存在常数
+	$A_N$，使得
+	\[
+	(1+\abs{t})^N(1+\abs{u})^N
+	\abs{f(t\gamma+u)}\leq A_N,
+	\qquad u\in\gamma^\perp.
+	\]
+	因此当 $N>2$ 时，
+	\[
+	(1+\abs{t})^N\abs{\mathcal R(f)(t,\gamma)}
+	\leq A_N\int_{\R^2}\frac{\dd u}{(1+\abs{u})^N}<\infty.
+	\]
+	在积分号下关于 $t$ 求导，对 $f$ 的方向导数作同样估计，
+	便得到 $\mathcal R(f)(\,\cdot\,,\gamma)\in\mathcal S(\R)$。
+
+	最后，由 $x=t\gamma+u_1e_1+u_2e_2$ 及
+	$t=\gamma\cdot x$，有
+	\[
+	\begin{aligned}
+	\widehat{\mathcal R(f)}(s,\gamma)
+	&=\int_{-\infty}^{\infty}
+	\int_{\R^2}f(t\gamma+u_1e_1+u_2e_2)
+	e^{-2\pi ist}\dd u_1\dd u_2\dd t\\
+	&=\int_{\R^3}f(x)e^{-2\pi i(s\gamma)\cdot x}\dd x
+	=\widehat f(s\gamma).
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{corollary}\label{cor:radon-injective}
+	若 $f,g\in\mathcal S(\R^3)$ 且
+	$\mathcal R(f)=\mathcal R(g)$，则 $f=g$。
+\end{corollary}
+
+\begin{proof}
+	对 $f-g$ 使用引理 \ref{lem:fourier-slice-radon}，可得
+	$\widehat{f-g}(s\gamma)=0$。每个 $\xi\in\R^3$ 都可写成
+	$\xi=s\gamma$，故由 Fourier 逆变换知 $f-g=0$。
+\end{proof}
+
+\begin{definition}\label{def:dual-radon-transform}
+	对 $\R\times S^2$ 上的函数 $F$，定义它的对偶 Radon 变换为
+	\[
+	\mathcal R^*(F)(x)
+	=\int_{S^2}F(x\cdot\gamma,\gamma)\dd\sigma(\gamma).
+	\]
+\end{definition}
+点 $x$ 属于 $P_{t,\gamma}$ 当且仅当 $x\cdot\gamma=t$，
+因此 $\mathcal R^*(F)(x)$ 可以理解为 $F$ 在所有经过 $x$ 的
+平面上的积分。
+
+在 $V_1=\mathcal S(\R^3)$ 与
+$V_2=\mathcal S(\R\times S^2)$ 上分别考虑 Hermitian 内积
+\[
+\begin{aligned}
+\langle f,g\rangle_1
+&=\int_{\R^3}f(x)\overline{g(x)}\dd x,\\
+\langle F,G\rangle_2
+&=\int_{\R}\int_{S^2}
+F(t,\gamma)\overline{G(t,\gamma)}
+\dd\sigma(\gamma)\dd t.
+\end{aligned}
+\]
+\begin{proposition}
+	在上述积分收敛时，$\mathcal R^*$ 是 $\mathcal R$ 的形式伴随，
+即
+\[
+\langle\mathcal R(f),F\rangle_2
+=\langle f,\mathcal R^*(F)\rangle_1.
+\]
+\end{proposition}
+\begin{proof}
+	选取 $e_1,e_2,\gamma$ 为标准正交基，由 Fubini 定理，
+	\[
+	\begin{aligned}
+	\langle\mathcal R(f),F\rangle_2
+	&=\int_{S^2}\int_{\R}\int_{\R^2}
+	f(t\gamma+u_1e_1+u_2e_2)\overline{F(t,\gamma)}
+	\dd u_1\dd u_2\dd t\dd\sigma(\gamma)\\
+	&=\int_{\R^3}f(x)
+	\overline{\left(\int_{S^2}F(x\cdot\gamma,\gamma)
+	\dd\sigma(\gamma)\right)}\dd x\\
+&=\langle f,\mathcal R^*(F)\rangle_1.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{theorem}[Radon 反演公式]\label{thm:radon-inversion-r3}
+	设 $f\in\mathcal S(\R^3)$，则
+	\[
+	\Delta\bigl(\mathcal R^*\mathcal R(f)\bigr)
+	=-8\pi^2f,
+	\]
+	其中
+	\[
+	\Delta
+	=\frac{\partial^2}{\partial x_1^2}
+	+\frac{\partial^2}{\partial x_2^2}
+	+\frac{\partial^2}{\partial x_3^2}
+	\]
+	是 Laplacian 算子。
+\end{theorem}
+
+\begin{proof}
+	由引理 \ref{lem:fourier-slice-radon} 及一维 Fourier 逆变换，
+	\[
+	\mathcal R(f)(t,\gamma)
+	=\int_{-\infty}^{\infty}
+	\widehat f(s\gamma)e^{2\pi ist}\dd s.
+	\]
+	因此
+	\[
+	\mathcal R^*\mathcal R(f)(x)
+	=\int_{S^2}\int_{-\infty}^{\infty}
+	\widehat f(s\gamma)e^{2\pi isx\cdot\gamma}
+	\dd s\dd\sigma(\gamma).
+	\]
+	在积分号内求导，并利用 $\abs{\gamma}=1$，得到
+	\[
+	\begin{aligned}
+	\Delta\bigl(\mathcal R^*\mathcal R(f)\bigr)(x)
+	&=-4\pi^2\int_{S^2}\int_{-\infty}^{\infty}
+	\widehat f(s\gamma)e^{2\pi isx\cdot\gamma}s^2
+	\dd s\dd\sigma(\gamma)\\
+	&=-8\pi^2\int_{S^2}\int_0^\infty
+	\widehat f(s\gamma)e^{2\pi isx\cdot\gamma}s^2
+	\dd s\dd\sigma(\gamma)\\
+	&=-8\pi^2f(x).
+	\end{aligned}
+	\]
+	第二个等号由变量替换 $(s,\gamma)\mapsto(-s,-\gamma)$ 得到；
+	最后一个等号则由 $\R^3$ 上的极坐标公式和 Fourier 逆变换得到。
+\end{proof}
+
+\subsection*{一般维数上的Radon变化}
+
+下面给出 $\R^d$ 中相应对象的定义，其中 $d\geq2$。
+
+\begin{definition}[$\R^d$ 中的 Radon 变换]
+	\label{def:radon-transform-rd}
+	对 $\gamma\in S^{d-1}$ 及 $t\in\R$，记
+	\[
+	P_{t,\gamma}
+	=\left\{x\in\R^d:x\cdot\gamma=t\right\}.
+	\]
+	选取 $\gamma^\perp$ 的一组标准正交基
+	$e_1,\ldots,e_{d-1}$。对 $f\in\mathcal S(\R^d)$，定义
+	\[
+	\begin{aligned}
+	\mathcal R(f)(t,\gamma)
+	&=\int_{P_{t,\gamma}}f\\
+	&=\int_{\R^{d-1}}
+	f\left(t\gamma+\sum_{j=1}^{d-1}u_je_j\right)
+	\dd u_1\cdots\dd u_{d-1}.
+	\end{aligned}
+	\]
+\end{definition}
+\begin{proposition}\label{prop:plane-integral-well-defined-rd}
+	定义 \ref{def:radon-transform-rd} 与标准正交基
+	$e_1,\ldots,e_{d-1}$ 的选取无关，并且
+	\[
+	\int_{-\infty}^{\infty}\mathcal R(f)(t,\gamma)\dd t
+	=\int_{\R^d}f(x)\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	$\gamma^\perp$ 的任意两组标准正交基之间相差一个
+	$\R^{d-1}$ 上的正交变换。作相应的变量替换，因其 Jacobian
+	的绝对值为 $1$，故超平面积分与基的选取无关。
+	
+	再令 $R$ 为把 $\R^d$ 的标准正交基依次映为
+	$\gamma,e_1,\ldots,e_{d-1}$ 的正交变换。由变量替换和
+	Fubini 定理，
+	\[
+	\begin{aligned}
+		\int_{\R^d}f(x)\dd x
+		&=\int_{\R^d}f(Rx)\dd x\\
+		&=\int_{\R}\int_{\R^{d-1}}
+		f\left(t\gamma+\sum_{j=1}^{d-1}u_je_j\right)
+		\dd u_1\cdots\dd u_{d-1}\dd t\\
+		&=\int_{-\infty}^{\infty}
+		\mathcal R(f)(t,\gamma)\dd t.
+	\end{aligned}
+	\]
+\end{proof}
+
+
+	$\mathcal S(\R\times S^{d-1})$ 是所有连续函数
+	$F(t,\gamma)$ 组成的函数空间，其中 $F$ 关于 $t$ 无穷次可微，
+	并且对任意非负整数 $k,\ell$ 都有
+	\[
+	\sup_{t\in\R,\,\gamma\in S^{d-1}}
+	\abs{t^k\frac{\partial^\ell F}{\partial t^\ell}(t,\gamma)}
+	<\infty.
+	\]
+
+
+\begin{definition}[$\R^d$ 中的对偶 Radon 变换]
+	\label{def:dual-radon-transform-rd}
+	对 $F\in\mathcal S(\R\times S^{d-1})$，定义
+	\[
+	\mathcal R^*(F)(x)
+	=\int_{S^{d-1}}F(x\cdot\gamma,\gamma)
+	\dd\sigma(\gamma),
+	\qquad x\in\R^d.
+	\]
+	它表示 $F$ 在所有经过点 $x$ 的超平面上的积分。
+\end{definition}
+
+
+
+\begin{lemma}[一般维数的 Fourier 切片定理]
+	\label{lem:fourier-slice-radon-rd}
+	若 $f\in\mathcal S(\R^d)$，则
+	$\mathcal R(f)\in\mathcal S(\R\times S^{d-1})$。此外，
+	\[
+	\widehat{\mathcal R(f)}(s,\gamma)
+	=\widehat f(s\gamma),
+	\qquad \gamma\in S^{d-1},
+	\]
+	其中左端是关于变量 $t$ 的一维 Fourier 变换。
+\end{lemma}
+
+\begin{proof}
+	由 $f\in\mathcal S(\R^d)$，对任意非负整数 $N,\ell$，
+	存在常数 $A_{N,\ell}$，使得
+	\[
+	(1+\abs{t})^N(1+\abs{u})^N
+	\abs{ \frac{\partial^\ell}{\partial t^\ell}f(t\gamma+u)}
+	\leq A_{N,\ell},
+	\qquad u\in\gamma^\perp.
+	\]
+	当 $N>d-1$ 时，在积分号下关于 $t$ 求导可得
+	\[
+	\sup_{t\in\R,\,\gamma\in S^{d-1}}
+	\abs{t^N\frac{\partial^\ell}{\partial t^\ell}
+	\mathcal R(f)(t,\gamma)}<\infty.
+	\]
+	连续性由支配收敛定理得到，故
+	$\mathcal R(f)\in\mathcal S(\R\times S^{d-1})$。
+
+	最后，由分解 $x=t\gamma+u$ 及 $t=x\cdot\gamma$，
+	\[
+	\begin{aligned}
+	\widehat{\mathcal R(f)}(s,\gamma)
+	&=\int_{\R}\int_{\gamma^\perp}
+	f(t\gamma+u)e^{-2\pi ist}\dd u\dd t\\
+	&=\int_{\R^d}f(x)e^{-2\pi i(s\gamma)\cdot x}\dd x
+	=\widehat f(s\gamma).
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{corollary}\label{cor:radon-injective-rd}
+	若 $f,g\in\mathcal S(\R^d)$ 且
+	$\mathcal R(f)=\mathcal R(g)$，则 $f=g$。
+\end{corollary}
+
+\begin{proof}
+	对 $f-g$ 使用引理 \ref{lem:fourier-slice-radon-rd}，得到
+	$\widehat{f-g}(s\gamma)=0$。每个 $\xi\in\R^d$ 都可写成
+	$\xi=s\gamma$，故由 Fourier 逆变换知 $f-g=0$。
+\end{proof}
+
+在 $V_1=\mathcal S(\R^d)$ 与
+$V_2=\mathcal S(\R\times S^{d-1})$ 上分别考虑 Hermitian 内积
+\[
+\begin{aligned}
+\langle f,g\rangle_1
+&=\int_{\R^d}f(x)\overline{g(x)}\dd x,\\
+\langle F,G\rangle_2
+&=\int_{\R}\int_{S^{d-1}}
+F(t,\gamma)\overline{G(t,\gamma)}
+\dd\sigma(\gamma)\dd t.
+\end{aligned}
+\]
+
+\begin{proposition}\label{prop:radon-adjoint-rd}
+	在上述积分收敛时，$\mathcal R^*$ 是 $\mathcal R$ 的形式伴随，
+	即
+	\[
+	\langle\mathcal R(f),F\rangle_2
+	=\langle f,\mathcal R^*(F)\rangle_1.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由 Fubini 定理，
+	\[
+	\begin{aligned}
+	\langle\mathcal R(f),F\rangle_2
+	&=\int_{S^{d-1}}\int_{\R}\int_{\gamma^\perp}
+	f(t\gamma+u)\overline{F(t,\gamma)}
+	\dd u\dd t\dd\sigma(\gamma)\\
+	&=\int_{\R^d}f(x)
+	\overline{\left(\int_{S^{d-1}}F(x\cdot\gamma,\gamma)
+	\dd\sigma(\gamma)\right)}\dd x\\
+	&=\langle f,\mathcal R^*(F)\rangle_1.
+	\end{aligned}
+	\]
+\end{proof}
+
+\subsection*{分数阶 Laplacian}
+
+\begin{definition}\label{def:fractional-laplacian}
+	设 $a>0$，$f\in\mathcal S(\R^d)$。定义 $f$ 的
+	$a$ 阶分数 Laplacian 为
+	\[
+	(-\Delta)^a f(x)
+	=\int_{\R^d}(2\pi\abs{\xi})^{2a}
+	\widehat f(\xi)e^{2\pi i\xi\cdot x}\dd\xi.
+	\]
+\end{definition}
+
+\begin{proposition}\label{prop:fractional-laplacian-properties}
+	设 $a>0$，$f\in\mathcal S(\R^d)$，则：
+	\begin{enumerate}[label=(\alph*)]
+		\item 当 $a=n$ 为正整数时，定义
+		\ref{def:fractional-laplacian} 与通常的 $(-\Delta)^n$ 一致；
+
+		\item $(-\Delta)^a f\in C^\infty(\R^d)$；
+
+		\item 当 $a\notin\Z$ 且 $\widehat f(0)\neq0$ 时，
+		$(-\Delta)^a f$ 不是快速衰减函数。因而当 $a$ 不是整数时，
+		$(-\Delta)^a$ 一般不把 $\mathcal S(\R^d)$ 映入自身。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	先证明 (a)。由 Fourier 变换对微分的作用，
+	\[
+	\widehat{\frac{\partial f}{\partial x_j}}(\xi)
+	=2\pi i\xi_j\widehat f(\xi),
+	\qquad
+	\widehat{\frac{\partial^2f}{\partial x_j^2}}(\xi)
+	=-4\pi^2\xi_j^2\widehat f(\xi).
+	\]
+	因此
+	\[
+	\widehat{-\Delta f}(\xi)
+	=(2\pi\abs{\xi})^2\widehat f(\xi).
+	\]
+	若 $a=n$ 为正整数，反复应用上式并作 Fourier 逆变换，得到
+	\[
+	(-\Delta)^n f(x)
+	=\int_{\R^d}(2\pi\abs{\xi})^{2n}
+	\widehat f(\xi)e^{2\pi i\xi\cdot x}\dd\xi,
+	\]
+	这正是定义 \ref{def:fractional-laplacian}。
+
+	对 (b)，记 $g=(-\Delta)^a f$。对任意 multi-index
+	$\alpha$，在积分号内求导可得
+	\[
+	\partial^\alpha g(x)
+	=\int_{\R^d}(2\pi\abs{\xi})^{2a}
+	(2\pi i\xi)^\alpha\widehat f(\xi)
+	e^{2\pi i\xi\cdot x}\dd\xi.
+	\]
+	由于 $\widehat f\in\mathcal S(\R^d)$，被积函数在无穷远处
+	比任意多项式衰减得更快，而在原点附近由
+	$\abs{\xi}^{2a+\abs{\alpha}}$ 控制，故绝对可积。
+	因此任意阶导数均存在且连续，即 $g\in C^\infty(\R^d)$。
+
+	最后证明 (c)。按照定义，
+	\[
+	\widehat g(\xi)
+	=(2\pi\abs{\xi})^{2a}\widehat f(\xi).
+	\]
+	若 $a\notin\Z$ 且 $\widehat f(0)\neq0$，则
+	$\abs{\xi}^{2a}\widehat f(\xi)$ 在 $\xi=0$ 处不是
+	$C^\infty$ 函数。若 $g$ 快速衰减，则对任意 multi-index
+	$\beta$ 都有 $x^\beta g(x)\in L^1(\R^d)$，从而
+	$\widehat g\in C^\infty(\R^d)$，产生矛盾。因此 $g$ 不是
+	快速衰减函数。
+\end{proof}
+
+\subsection*{一般维数的 Radon 反演公式}
+
+\begin{theorem}\label{thm:radon-inversion-rd}
+	设 $d\geq2$，$f\in\mathcal S(\R^d)$，则
+	\[
+	\frac{(2\pi)^{1-d}}{2}
+	(-\Delta)^{(d-1)/2}\mathcal R^*\mathcal R(f)
+	=f.
+	\]
+\end{theorem}
+
+\begin{proof}
+	由对偶 Radon 变换的定义、引理
+	\ref{lem:fourier-slice-radon-rd} 及一维 Fourier 逆变换，
+	\[
+	\begin{aligned}
+	\mathcal R^*\mathcal R(f)(x)
+	&=\int_{S^{d-1}}\mathcal R(f)(x\cdot\gamma,\gamma)
+	\dd\sigma(\gamma)\\
+	&=\int_{S^{d-1}}\int_{\R}
+	\widehat f(s\gamma)e^{2\pi isx\cdot\gamma}
+	\dd s\dd\sigma(\gamma).
+	\end{aligned}
+	\]
+	分数阶 Laplacian 的 Fourier 乘子满足
+	\[
+	(-\Delta)^a e^{2\pi ix\cdot\xi}
+	=(2\pi\abs{\xi})^{2a}e^{2\pi ix\cdot\xi}.
+	\]
+	取 $a=(d-1)/2$。由于 $\xi=s\gamma$ 且
+	$\abs{\gamma}=1$，有 $\abs{\xi}=\abs{s}$，从而
+	\[
+	\begin{aligned}
+	&(-\Delta)^{(d-1)/2}\mathcal R^*\mathcal R(f)(x)\\
+	&\quad=(2\pi)^{d-1}
+	\int_{S^{d-1}}\int_{\R}
+	\abs{s}^{d-1}\widehat f(s\gamma)
+	e^{2\pi isx\cdot\gamma}
+	\dd s\dd\sigma(\gamma).
+	\end{aligned}
+	\]
+	上述积分及换序均由 $\widehat f$ 的快速衰减保证。
+
+	将关于 $s$ 的积分分成正、负两个半轴。在负半轴令
+	$s=-r$，再在球面上作变量替换 $\gamma'=-\gamma$。由于
+	球面测度在该变换下不变，负半轴部分与正半轴部分相等。因此
+	\[
+	\begin{aligned}
+	&\int_{S^{d-1}}\int_{\R}
+	\abs{s}^{d-1}\widehat f(s\gamma)
+	e^{2\pi isx\cdot\gamma}\dd s\dd\sigma(\gamma)\\
+	&\quad=2\int_{S^{d-1}}\int_0^\infty
+	\widehat f(r\gamma)e^{2\pi irx\cdot\gamma}
+	r^{d-1}\dd r\dd\sigma(\gamma).
+	\end{aligned}
+	\]
+	在 $\R^d$ 中令 $\xi=r\gamma$。由极坐标公式
+	$\dd\xi=r^{d-1}\dd r\dd\sigma(\gamma)$ 和 Fourier 逆变换，
+	\[
+	\begin{aligned}
+	(-\Delta)^{(d-1)/2}\mathcal R^*\mathcal R(f)(x)
+	&=2(2\pi)^{d-1}
+	\int_{\R^d}\widehat f(\xi)e^{2\pi ix\cdot\xi}\dd\xi\\
+	&=2(2\pi)^{d-1}f(x).
+	\end{aligned}
+	\]
+	两边同乘 $(2\pi)^{1-d}/2$ 即得结论。
+
+	当 $d=3$ 时，该公式化为
+	$\Delta\bigl(\mathcal R^*\mathcal R(f)\bigr)=-8\pi^2f$，
+	与定理 \ref{thm:radon-inversion-r3} 一致。
+\end{proof}

@@ -1,0 +1,202 @@
+% preamble/part.title.tex
+% Part 扉页设计（绿金配色，概率论笔记）
+%
+% 与章节扉页保持一致的绿金风格，布局为章节页的"镜像"：
+%   - 顶部全宽深绿横条（与章节页中部的彩条完全一致）
+%   - 左上：大号金色罗马数字 + Part 标题
+%   - 右上：简介区域
+%   - 金色装饰分割线
+%   - 下方：整页宽图片填满剩余空间
+%
+% 接口：
+%   \setpartimage{<path>}   -- 设置下方大图
+%   \setpartintro{<text>}   -- 设置右上简介文字
+%
+% 用法示例：
+%   \setpartimage{figure/part1.png}
+%   \setpartintro{这一部分从概率空间出发......}
+%   \part{概率论基础}
+% ============================================================
+
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox}
+\RequirePackage{setspace}
+
+\makeatletter
+
+% -------- 每 Part 图片接口 --------
+\gdef\partimage{}
+\newcommand{\setpartimage}[1]{\gdef\partimage{#1}}
+
+% -------- Part 简介接口 --------
+\gdef\partintro{}
+\newcommand{\setpartintro}[1]{\gdef\partintro{#1}}
+
+% -------- 版式参数 --------
+% 顶部绿色横条（与章节页中部彩条一致）
+\newlength{\PartRibbonHeight}
+\setlength{\PartRibbonHeight}{2.35cm}
+
+% 横条下方到内容区域的间距
+\newlength{\PartContentTop}
+\setlength{\PartContentTop}{\dimexpr\PartRibbonHeight+1.2cm\relax}
+
+% 金色分割线的垂直位置
+\newlength{\PartDividerY}
+\setlength{\PartDividerY}{\dimexpr\PartRibbonHeight+6.8cm\relax}
+
+% -------- 左上 Part 标题 block --------
+\newcommand{\PartTitleBlock}[2]{%
+	\ifdefempty{#1}{%
+		% 无编号：菱形装饰
+		\fill[GoldMain!55]
+		([xshift=1.8cm,yshift=-\PartContentTop]current page.north west)
+		-- ++(0.22,0.22) -- ++(-0.22,0.22) -- ++(-0.22,-0.22) -- cycle;
+	}{%
+		% Part 罗马数字（大号金色）
+		\node[anchor=north west,text=GoldMain!72,font=\fontsize{52}{62}\bfseries]
+		at ([xshift=1.8cm,yshift=-\PartContentTop]current page.north west)
+		{#1};
+		% "Part" 标注
+		\node[anchor=north west,text=GoldMain!48,font=\Large\bfseries]
+		at ([xshift=1.8cm,yshift=-\PartContentTop-3.1cm]current page.north west)
+		{Part};
+	}%
+	% Part 标题（深绿色）
+	\node[anchor=north west,text=GreenDark,font=\fontsize{22}{28}\bfseries,
+	text width=8cm,align=left]
+	at ([xshift=1.8cm,yshift=-\PartContentTop-4.4cm]current page.north west)
+	{#2};
+}
+
+% -------- 右上简介 block --------
+\newcommand{\PartIntroBlock}{%
+	\ifdefempty{\partintro}{}{%
+		% "简介" 标题
+		\node[anchor=north east,text=GreenMain!80,font=\Large\bfseries]
+		at ([xshift=-1.8cm,yshift=-\PartContentTop]current page.north east)
+		{简\quad 介};
+		% 简介正文
+		\node[anchor=north east,text=GreenDark!55,font=\large\itshape,
+		text width=7.4cm,align=right,inner sep=0pt]
+		at ([xshift=-1.8cm,yshift=-\PartContentTop-1.5cm]current page.north east)
+		{\setstretch{1.45}\partintro};
+	}%
+}
+
+% -------- Part 扉页 --------
+%   #1 = Part 编号（罗马数字，如 I, II），空串表示无编号
+%   #2 = Part 标题
+\newcommand{\PartTitlePage}[2]{%
+	\thispagestyle{empty}%
+	\vspace*{-\baselineskip}%
+	\begin{tikzpicture}[remember picture,overlay]
+		% ============================================================
+		%  第一层：顶部全宽深绿横条（与章节页中部彩条完全一致）
+		% ============================================================
+		\fill[GreenMain!94]
+		(current page.north west) rectangle
+		([yshift=-\PartRibbonHeight]current page.north east);
+		% 左侧金色装饰竖条
+		\fill[GoldMain!75]
+		(current page.north west) rectangle
+		([xshift=0.18cm,yshift=-\PartRibbonHeight]current page.north west);
+		% 右侧金色装饰竖条
+		\fill[GoldMain!75]
+		([xshift=-0.18cm]current page.north east) rectangle
+		([yshift=-\PartRibbonHeight]current page.north east);
+		
+		% ============================================================
+		%  第二层：左上 —— Part 编号 + 标题
+		% ============================================================
+		\PartTitleBlock{#1}{#2}
+		
+		% ============================================================
+		%  第三层：右上 —— 简介区域
+		% ============================================================
+		\PartIntroBlock
+		
+		% ============================================================
+		%  第四层：左右区域之间的金色装饰虚线
+		% ============================================================
+		\draw[GoldMain!20,line width=0.5pt,dash pattern=on 3pt off 5pt]
+		([xshift=11.0cm,yshift=-\PartContentTop]current page.north west) --
+		([xshift=11.0cm,yshift=-\PartDividerY+0.3cm]current page.north west);
+		
+		% ============================================================
+		%  第五层：金色装饰分割线（两端圆点 + 中央菱形）
+		% ============================================================
+		\draw[GoldMain!42,line width=0.7pt]
+		([yshift=-\PartDividerY]current page.north west) --
+		([yshift=-\PartDividerY]current page.north east);
+		\fill[GoldMain!50]
+		([yshift=-\PartDividerY]current page.north west) circle (1.8pt);
+		\fill[GoldMain!50]
+		([yshift=-\PartDividerY]current page.north east) circle (1.8pt);
+		\fill[GoldMain!60]
+		([yshift=-\PartDividerY]current page.north)
+		-- ++(0.13,0.13) -- ++(-0.13,0.13) -- ++(-0.13,-0.13) -- cycle;
+		
+		% ============================================================
+		%  第六层：下方全宽图片（填满剩余空间）
+		% ============================================================
+		\ifdefempty{\partimage}{%
+			% 无图片时显示浅绿占位渐变
+			\shade[top color=GreenMain!12,bottom color=GreenMain!3]
+			([yshift=-\PartDividerY]current page.north west) rectangle
+			(current page.south east);
+			\node[align=center,text=GreenDark!40,font=\large\itshape]
+			at ([yshift=-5.5cm]current page.center)
+			{请在 \texttt{\textbackslash part} 前用
+				\texttt{\textbackslash setpartimage} 设置图片};
+		}{%
+			\node[anchor=north west,inner sep=0pt,outer sep=0pt]
+			at ([yshift=-\PartDividerY]current page.north west)
+			{\includegraphics[
+				width=\paperwidth,
+				height=\dimexpr\paperheight-\PartDividerY\relax
+				]{\partimage}};
+		}%
+	\end{tikzpicture}%
+	\clearpage%
+	% 双面模式下的空白页
+	\if@twoside
+	\if@openright
+	\null
+	\thispagestyle{empty}%
+	\newpage
+	\fi
+	\fi
+}
+
+% ============================================================
+%  重定义 \@part（编号 Part）
+% ============================================================
+\def\@part[#1]#2{%
+	\ifnum \c@secnumdepth >-2\relax
+	\refstepcounter{part}%
+	\addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+	\else
+	\addcontentsline{toc}{part}{#1}%
+	\fi
+	\markboth{}{}%
+	\PartTitlePage{\thepart}{#2}%
+	\@endpart
+}
+
+% ============================================================
+%  重定义 \@spart（无编号 Part）
+% ============================================================
+\def\@spart#1{%
+	\PartTitlePage{}{#1}%
+	\@endpart
+}
+
+\def\@endpart{%
+	\if@tempswa
+	\twocolumn
+	\fi
+}
+
+\makeatother

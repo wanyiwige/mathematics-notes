@@ -1,0 +1,1051 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.3 积分不等式~~ 一
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{积分不等式~~ 一}
+
+本节主要整理定积分不等式的若干证明方法：构造辅助函数、利用被积函数的单调性与对称性、逐次积分得到不等式，以及通过分部积分选择合适的辅助因子。
+
+\subsection*{用辅助函数方法证明积分不等式}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,1]$ 上可微，且当 $x\in(0,1)$ 时，
+	\[
+	0<f'(x)<1,\qquad f(0)=0.
+	\]
+	证明：
+	\[
+	\left(\int_0^1 f(x)\dd x\right)^2>\int_0^1 f^3(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	由 $f(0)=0$ 与 $f'(x)>0$ 知，当 $x\in(0,1)$ 时有 $f(x)>0$。
+	
+	\textbf{证法一.} 令
+	\[
+	F(x)=\left(\int_0^x f(t)\dd t\right)^2-\int_0^x f^3(t)\dd t.
+	\]
+	则 $F(0)=0$，且
+	\[
+	F'(x)
+	=2f(x)\int_0^x f(t)\dd t-f^3(x)
+	=f(x)\left(2\int_0^x f(t)\dd t-f^2(x)\right).
+	\]
+	再令
+	\[
+	G(x)=2\int_0^x f(t)\dd t-f^2(x).
+	\]
+	则 $G(0)=0$，且
+	\[
+	G'(x)=2f(x)-2f(x)f'(x)=2f(x)(1-f'(x))>0.
+	\]
+	故 $G(x)>0$，从而 $F'(x)>0$，于是
+	\[
+	F(1)>F(0)=0.
+	\]
+	即
+	\[
+	\left(\int_0^1 f(x)\dd x\right)^2>\int_0^1 f^3(x)\dd x.
+	\]
+	
+	\textbf{证法二.} 令
+	\[
+	F(x)=\left(\int_0^x f(t)\dd t\right)^2,\qquad
+	G(x)=\int_0^x f^3(t)\dd t.
+	\]
+	由 Cauchy 中值定理，存在 $\xi\in(0,1)$，使得
+	\[
+	\frac{\left(\int_0^1 f(x)\dd x\right)^2}{\int_0^1 f^3(x)\dd x}
+	=\frac{F(1)-F(0)}{G(1)-G(0)}
+	=\frac{F'(\xi)}{G'(\xi)}
+	=\frac{2\int_0^\xi f(t)\dd t}{f^2(\xi)}.
+	\]
+	再对
+	\[
+	H(x)=2\int_0^x f(t)\dd t,\qquad K(x)=f^2(x)
+	\]
+	在 $[0,\xi]$ 上用 Cauchy 中值定理，存在 $\eta\in(0,\xi)$，使得
+	\[
+	\frac{2\int_0^\xi f(t)\dd t}{f^2(\xi)}
+	=\frac{H(\xi)-H(0)}{K(\xi)-K(0)}
+	=\frac{2f(\eta)}{2f(\eta)f'(\eta)}
+	=\frac1{f'(\eta)}>1.
+	\]
+	故原不等式成立。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)\in C[0,1]$，且满足 $0\leq f(x)\leq x$。证明：
+	\[
+	\int_0^1 x^2 f(x)\dd x\geq \left(\int_0^1 f(x)\dd x\right)^2,
+	\]
+	并求使上式成为等式的所有连续函数 $f(x)$。
+\end{problem}
+
+\begin{solution}
+	令
+	\[
+	F(x)=\int_0^x t^2 f(t)\dd t-\left(\int_0^x f(t)\dd t\right)^2.
+	\]
+	则 $F(0)=0$，且
+	\[
+	F'(x)=x^2f(x)-2f(x)\int_0^x f(t)\dd t
+	=f(x)\left(x^2-2\int_0^x f(t)\dd t\right).
+	\]
+	令
+	\[
+	G(x)=x^2-2\int_0^x f(t)\dd t.
+	\]
+	由于
+	\[
+	G(0)=0,\qquad
+	G'(x)=2x-2f(x)\geq 0,
+	\]
+	故 $G(x)\geq0$。又 $f(x)\geq0$，于是 $F'(x)\geq0$，所以
+	\[
+	F(1)\geq F(0)=0,
+	\]
+	即
+	\[
+	\int_0^1 x^2 f(x)\dd x\geq \left(\int_0^1 f(x)\dd x\right)^2.
+	\]
+	
+	下面讨论等号情形。若 $f\equiv0$，显然等号成立；若 $f\not\equiv0$，则存在 $c\in(0,1]$ 使 $f(c)>0$。等号成立时 $F(1)=0$，又 $F'\geq0$，故 $F'\equiv0$。于是 $f(c)G(c)=0$，从而 $G(c)=0$。但
+	\[
+	G(c)=2\int_0^c(t-f(t))\dd t,
+	\]
+	且 $t-f(t)\geq0$，故 $f(t)=t$ 在 $[0,c]$ 上成立。由连续性再向右延拓可得 $f(x)=x$ 在 $[0,1]$ 上成立。
+	
+	因此等号成立当且仅当
+	\[
+	f(x)\equiv0\qquad\text{或}\qquad f(x)=x.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $f(x),g(x)$ 为 $[a,b]$ 上单调递增的连续函数，证明：
+	\[
+	(b-a)\int_a^b f(x)g(x)\dd x
+	\geq
+	\int_a^b f(x)\dd x\int_a^b g(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	\[
+	F(x)=(x-a)\int_a^x f(t)g(t)\dd t
+	-
+	\int_a^x f(t)\dd t\int_a^x g(t)\dd t.
+	\]
+	\[F'(x) = \int_{a}^{x}(f(t)-f(x))(g(t)-g(x))\dd t>0\]
+	又$F(0)=0$，得证
+\end{solution}
+
+\begin{problem}
+	设函数 $f(x),g(x)$ 在 $[a,b]$ 上连续，且 $f(x)$ 单调增加，$0\leq g(x)\leq1$。证明：
+	\[
+	\int_a^{a+\int_a^b g(t)\dd t} f(x)\dd x
+	\leq
+	\int_a^b f(x)g(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	\[
+	F(x)=\int_a^{a+\int_a^x g(t)\dd t} f(t)\dd t
+	-
+	\int_a^x f(t)g(t)\dd t.
+	\]
+	\[F'(x)=f(a+\int_a^b g(t)\dd t)-f(x)g(x)\]
+	由$0\leq g(x)\leq1$，$\displaystyle\int_{a}^{x}g(x)\dd x    \leqslant x-a$,且 $f(x)$ 单调增加，故\[f(a+\int_a^b g(t)\dd t)-f(x)g(x)\leqslant 0\]
+	从而$F'(x)\leqslant 0$\[F(x)\leqslant 0\]
+\end{solution}
+
+\subsection*{利用被积函数的性质}
+
+\begin{problem}
+	证明：
+	\[
+	\int_0^1\frac{\cos x}{\sqrt{1-x^2}}\dd x>
+	\int_0^1\frac{\sin x}{\sqrt{1-x^2}}\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	对左端作代换 $x=\sin t$，得
+	\[
+	\int_0^1\frac{\cos x}{\sqrt{1-x^2}}\dd x
+	=\int_0^{\frac\pi2}\cos(\sin t)\dd t.
+	\]
+	对右端作代换 $x=\cos t$，得
+	\[
+	\int_0^1\frac{\sin x}{\sqrt{1-x^2}}\dd x
+	=\int_0^{\frac\pi2}\sin(\cos t)\dd t.
+	\]
+	而对 $t\in[0,\pi/2]$，有
+	\[
+	\frac\pi2-\sin t>\cos t,
+	\]
+	且二者均在 $[0,\pi/2]$ 内。由 $\sin x$ 在 $[0,\pi/2]$ 上单调递增，得
+	\[
+	\cos(\sin t)>\cos t>\sin(\cos t).
+	\]
+	两端积分，即得所证。
+\end{solution}
+
+\begin{problem}
+	函数 $f(x)$ 在闭区间 $[0,1]$ 上有连续的一阶导数，证明：
+	\[
+	\int_0^1 |f(x)|\dd x\leq
+	\max\left\{\int_0^1 |f'(x)|\dd x,\ \left|\int_0^1 f(x)\dd x\right|\right\}.
+	\]
+\end{problem}
+
+\begin{solution}
+	若
+	\[
+	\left|\int_0^1 f(x)\dd x\right|=\int_0^1 |f(x)|\dd x,
+	\]
+	则结论显然成立。
+	
+	若
+	\[
+	\left|\int_0^1 f(x)\dd x\right|<\int_0^1 |f(x)|\dd x,
+	\]
+	则 $f$ 在 $[0,1]$ 上变号。由连续性，存在 $x_0\in(0,1)$，使得 $f(x_0)=0$。于是对任意 $x\in[0,1]$，
+	\[
+	|f(x)|=|f(x)-f(x_0)|
+	=\left|\int_{x_0}^x f'(t)\dd t\right|
+	\leq\int_0^1 |f'(t)|\dd t.
+	\]
+	积分即得
+	\[
+	\int_0^1 |f(x)|\dd x\leq \int_0^1 |f'(x)|\dd x.
+	\]
+	故原不等式成立。
+\end{solution}
+
+\begin{problem}
+	函数 $f(x)$ 在 $[0,1]$ 上单调不增，证明：对于任意 $\alpha\in(0,1)$，
+	\[
+	\int_0^\alpha f(x)\dd x\geq \alpha\int_0^1 f(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	原不等式等价于
+	\[
+	(1-\alpha)\int_0^\alpha f(x)\dd x
+	\geq
+	\alpha\int_\alpha^1 f(x)\dd x,
+	\]
+	也即
+	\[
+	\frac1\alpha\int_0^\alpha f(x)\dd x
+	\geq
+	\frac1{1-\alpha}\int_\alpha^1 f(x)\dd x.
+	\]
+	由积分中值定理，存在 $\xi\in(0,\alpha)$ 与 $\eta\in(\alpha,1)$，使得
+	\[
+	\frac1\alpha\int_0^\alpha f(x)\dd x=f(\xi),\qquad
+	\frac1{1-\alpha}\int_\alpha^1 f(x)\dd x=f(\eta).
+	\]
+	由于 $f$ 单调不增，且 $\xi<\eta$，故 $f(\xi)\geq f(\eta)$。结论成立。
+\end{solution}
+
+\begin{problem}
+	设函数 $f(x)\geq0$ 在 $[0,1]$ 上连续递减，试证：若 $0<\alpha<\beta<1$，则
+	\[
+	\int_0^\alpha f(x)\dd x
+	\geq
+	\frac{\alpha}{\beta-\alpha}\int_\alpha^\beta f(x)\dd x
+	>
+	\frac{\alpha}{\beta}\int_0^\beta f(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	由积分中值定理，存在 $\xi\in(0,\alpha)$ 与 $\eta\in(\alpha,\beta)$，使得
+	\[
+	\int_0^\alpha f(x)\dd x=\alpha f(\xi),\qquad
+	\frac{\alpha}{\beta-\alpha}\int_\alpha^\beta f(x)\dd x=\alpha f(\eta).
+	\]
+	由于 $f$ 递减，且 $\xi<\eta$，故 $f(\xi)\geq f(\eta)$，从而
+	\[
+	\int_0^\alpha f(x)\dd x
+	\geq
+	\frac{\alpha}{\beta-\alpha}\int_\alpha^\beta f(x)\dd x.
+	\]
+
+	所以
+\[
+\int_0^\alpha f(x)\dd x
+\geq
+\frac{\alpha}{\beta-\alpha}\int_\alpha^\beta f(x)\dd x
+>
+\frac{\alpha}{\beta}\int_0^\beta f(x)\dd x.
+\]
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 是 $[a,b]$ 上连续递增函数，证明：
+	\[
+	\int_a^b x f(x)\dd x
+	\geq
+	\frac{a+b}{2}\int_a^b f(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	记
+	\[
+	c=\frac{a+b}{2},\qquad h=\frac{b-a}{2}.
+	\]
+	只需证明
+	\[
+	\int_a^b (x-c)f(x)\dd x\geq0.
+	\]
+	作变换 $x=c-t$ 与 $x=c+t$，得
+	\[
+	\begin{aligned}
+		\int_a^b (x-c)f(x)\dd x
+		&=-\int_0^h t f(c-t)\dd t+\int_0^h t f(c+t)\dd t\\
+		&=\int_0^h t\bigl(f(c+t)-f(c-t)\bigr)\dd t.
+	\end{aligned}
+	\]
+	由于 $f$ 递增，故 $f(c+t)\geq f(c-t)$，于是上式非负，结论成立。
+\end{solution}
+
+\begin{problem}
+	设 $a,b>0,\ f(x)\geq0$，且 $f(x)$ 在 $[a,b]$ 上可积，
+	\[
+	\int_{a}^b x f(x)\dd x=0.
+	\]
+	证明：
+	\[
+	\int_{a}^b x^2 f(x)\dd x\leq
+	ab\int_{a}^b f(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	当 $x\in[a,b]$ 时，
+	\[
+	(x+a)(b-x)f(x)\geq0.
+	\]
+	两端积分得
+	\[
+	\int_{a}^b\bigl(-x^2+(b-a)x+ab\bigr)f(x)\dd x\geq0.
+	\]
+	由
+	\[
+	\int_{a}^b x f(x)\dd x=0
+	\]
+	可得
+	\[
+	-\int_{a}^b x^2 f(x)\dd x
+	+ab\int_{a}^b f(x)\dd x\geq0,
+	\]
+	即所证。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 与 $g(x)$ 为 $[a,b]$ 上同序的，即任意 $x_1,x_2\in[a,b]$ 有
+	\[
+	(f(x_1)-f(x_2))(g(x_1)-g(x_2))\geq0.
+	\]
+	证明：
+	\[
+	\int_a^b f(x)\dd x\int_a^b g(x)\dd x
+	\leq
+	(b-a)\int_a^b f(x)g(x)\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	将
+	\[
+	(f(x)-f(y))(g(x)-g(y))\geq0
+	\]
+	在 $[a,b]\times[a,b]$ 上积分，得
+	\[
+	0\leq
+	\int_a^b\int_a^b(f(x)-f(y))(g(x)-g(y))\dd x\dd y.
+	\]
+	展开得
+	\[
+	0\leq
+	2(b-a)\int_a^b f(x)g(x)\dd x
+	-2\int_a^b f(x)\dd x\int_a^b g(x)\dd x.
+	\]
+	整理即得结论。
+\end{solution}
+
+\begin{problem}
+	设 $f'(x)$ 在 $[a,b]$ 上连续。证明：
+	\[
+	\max_{a\leq x\leq b}|f(x)|
+	\leq
+	\left|\frac1{b-a}\int_a^b f(x)\dd x\right|
+	+\int_a^b |f'(x)|\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	由积分中值定理，存在 $\xi\in[a,b]$，使得
+	\[
+	f(\xi)=\frac1{b-a}\int_a^b f(x)\dd x.
+	\]
+	任取 $x\in[a,b]$，则
+	\[
+	\begin{aligned}
+		|f(x)|
+		&=|f(x)-f(\xi)+f(\xi)|\\
+		&\leq \left|\int_\xi^x f'(t)\dd t\right|+|f(\xi)|\\
+		&\leq \int_a^b |f'(t)|\dd t
+		+\left|\frac1{b-a}\int_a^b f(t)\dd t\right|.
+	\end{aligned}
+	\]
+	对 $x$ 取最大值，即得所证。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,1]$ 上二阶连续可导，
+	\[
+	f(0)=f(1)=0,\qquad f(x)\neq0\quad (\forall x\in(0,1)),
+	\]
+	且
+	\[
+	\int_0^1\left|\frac{f''(x)}{f(x)}\right|\dd x
+	\]
+	存在有限。证明：
+	\[
+	\int_0^1\left|\frac{f''(x)}{f(x)}\right|\dd x\geq4.
+	\]
+\end{problem}
+
+\begin{solution}
+	由条件知 $f$ 在 $(0,1)$ 内不变号。取 $x_0\in(0,1)$，使得
+	\[
+	|f(x_0)|=\max_{0\leq x\leq1}|f(x)|.
+	\]
+	则 $f'(x_0)=0$，且 $|f(x_0)|>0$。
+	
+	由 Lagrange 中值定理，存在 $\xi\in(0,x_0)$ 与 $\eta\in(x_0,1)$，使得
+	\[
+	f'(\xi)=\frac{f(x_0)-f(0)}{x_0}
+	=\frac{f(x_0)}{x_0},
+	\]
+	\[
+	f'(\eta)=\frac{f(1)-f(x_0)}{1-x_0}
+	=-\frac{f(x_0)}{1-x_0}.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		\int_0^1 |f''(x)|\dd x
+		&\geq \left|\int_\xi^\eta f''(x)\dd x\right|\\
+		&=|f'(\eta)-f'(\xi)|\\
+		&=|f(x_0)|\left(\frac1{x_0}+\frac1{1-x_0}\right)\\
+		&\geq4|f(x_0)|.
+	\end{aligned}
+	\]
+	又 $|f(x)|\leq|f(x_0)|$，故
+	\[
+	\int_0^1\left|\frac{f''(x)}{f(x)}\right|\dd x
+	=
+	\int_0^1\frac{|f''(x)|}{|f(x)|}\dd x
+	\geq
+	\frac1{|f(x_0)|}\int_0^1 |f''(x)|\dd x
+	\geq4.
+	\]
+\end{solution}
+
+\begin{problem}
+	设函数 $f(x):[0,1]\to\mathbb{R}$ 连续可微，并且
+	\[
+	\int_0^1 f(x)\dd x=0.
+	\]
+	证明：对于任意 $a\in(0,1)$，有
+	\[
+	\left|\int_0^a f(x)\dd x\right|
+	\leq
+	\frac18\max_{0\leq x\leq1}|f'(x)|.
+	\]
+\end{problem}
+
+\begin{solution}
+	令
+	\[
+	g(x)=\int_0^x f(t)\dd t.
+	\]
+	则
+	\[
+	g(0)=g(1)=0,\qquad g'(x)=f(x),\qquad g''(x)=f'(x).
+	\]
+	记
+	\[
+	M=\max_{0\leq x\leq1}|g''(x)|=\max_{0\leq x\leq1}|f'(x)|.
+	\]
+	对 $g$ 分别在点 $a$ 处向 $0$ 与 $1$ 作 Taylor 公式，存在 $\xi_1\in(0,a)$ 与 $\xi_2\in(a,1)$，使得
+	\[
+	0=g(0)=g(a)-ag'(a)+\frac{g''(\xi_1)}2a^2,
+	\]
+	\[
+	0=g(1)=g(a)+(1-a)g'(a)+\frac{g''(\xi_2)}2(1-a)^2.
+	\]
+	第一式乘以 $1-a$，第二式乘以 $a$，相加得
+	\[
+	g(a)=-\frac{a(1-a)}2\left(ag''(\xi_1)+(1-a)g''(\xi_2)\right).
+	\]
+	故
+	\[
+	|g(a)|\leq \frac{a(1-a)}2M\leq\frac18M.
+	\]
+	即
+	\[
+	\left|\int_0^a f(x)\dd x\right|
+	\leq
+	\frac18\max_{0\leq x\leq1}|f'(x)|.
+	\]
+\end{solution}
+
+\begin{problem}
+	设函数 $f(x)$ 在 $[a,b]$ 上连续可导。证明：
+	\[
+	\int_a^b |f(x)|\dd x
+	\leq
+	\max\left\{
+	(b-a)\int_a^b |f'(x)|\dd x,\ 
+	\left|\int_a^b f(x)\dd x\right|
+	\right\}.
+	\]
+\end{problem}
+
+\begin{solution}
+	若
+	\[
+	\int_a^b |f(x)|\dd x=\left|\int_a^b f(x)\dd x\right|,
+	\]
+	则结论显然成立。
+	
+	否则 $f$ 在 $[a,b]$ 上变号。由连续性，存在 $x_0\in[a,b]$，使得 $f(x_0)=0$。于是对任意 $x\in[a,b]$，
+	\[
+	|f(x)|=|f(x)-f(x_0)|
+	=\left|\int_{x_0}^x f'(t)\dd t\right|
+	\leq
+	\int_a^b |f'(t)|\dd t.
+	\]
+	两端积分得
+	\[
+	\int_a^b |f(x)|\dd x
+	\leq
+	(b-a)\int_a^b |f'(x)|\dd x.
+	\]
+	故原不等式成立。
+\end{solution}
+
+\subsection*{对三角函数不等式的两例练习}
+
+\begin{problem}
+	证明：当 $x>0$ 时，
+	\[
+	x-\frac{x^3}{6}<\sin x<x-\frac{x^3}{6}+\frac{x^5}{120}.
+	\]
+\end{problem}
+
+\begin{solution}
+	由于 $\cos x\leq1$，对 $[0,x]$ 积分得
+	\[
+	\sin x=\int_0^x\cos t\dd t\leq\int_0^x\dd t=x.
+	\]
+	再积分一次，
+	\[
+	1-\cos x=\int_0^x\sin t\dd t\leq\int_0^x t\dd t=\frac{x^2}{2}.
+	\]
+	于是
+	\[
+	x-\sin x=\int_0^x(1-\cos t)\dd t
+	\leq\int_0^x\frac{t^2}{2}\dd t=\frac{x^3}{6},
+	\]
+	故
+	\[
+	x-\frac{x^3}{6}\leq\sin x.
+	\]
+	由于 $x>0$，上述不等式实际上为严格不等式。
+	
+	另一方面，由
+	\[
+	x-\sin x\leq\frac{x^3}{6}
+	\]
+	再积分，得
+	\[
+	\frac{x^2}{2}+\cos x-1
+	=\int_0^x(t-\sin t)\dd t
+	\leq\int_0^x\frac{t^3}{6}\dd t=\frac{x^4}{24}.
+	\]
+	继续积分，得
+	\[
+	\frac{x^3}{6}-x+\sin x
+	=\int_0^x\left(\frac{t^2}{2}-1+\cos t\right)\dd t
+	\leq\int_0^x\frac{t^4}{24}\dd t
+	=\frac{x^5}{120}.
+	\]
+	故
+	\[
+	\sin x\leq x-\frac{x^3}{6}+\frac{x^5}{120}.
+	\]
+	同样因为 $x>0$，上式为严格不等式。
+\end{solution}
+
+\subsection*{用待定系数法证明}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,1]$ 上有一阶连续导数，且 $f(0)=f(1)=0$，
+	\[
+	M=\max_{x\in[0,1]}|f'(x)|.
+	\]
+	证明：
+	\[
+	\left|\int_0^1 f(x)\dd x\right|\leq \frac{M}{4}.
+	\]
+\end{problem}
+
+\begin{solution}
+	对任意 $a\in[0,1]$，由分部积分得
+	\[
+	\int_0^1 f(x)\dd x
+	=\int_0^1 f(x)\dd(x-a)
+	=[f(x)(x-a)]_0^1-\int_0^1 f'(x)(x-a)\dd x
+	=-\int_0^1 f'(x)(x-a)\dd x.
+	\]
+	于是
+	\[
+	\left|\int_0^1 f(x)\dd x\right|
+	\leq
+	M\int_0^1|x-a|\dd x
+	=M\left(\int_0^a(a-x)\dd x+\int_a^1(x-a)\dd x\right).
+	\]
+	所以
+	\[
+	\left|\int_0^1 f(x)\dd x\right|
+	\leq
+	M\left(a^2-a+\frac12\right).
+	\]
+	取 $a=\dfrac12$，即得
+	\[
+	\left|\int_0^1 f(x)\dd x\right|\leq \frac{M}{4}.
+	\]
+\end{solution}
+
+\begin{problem}
+	设函数 $f(x)$ 在闭区间 $[0,1]$ 上连续，且
+	\[
+	\int_0^1 f(x)\dd x=0,\qquad
+	\int_0^1 x f(x)\dd x=1.
+	\]
+	求证：
+	\[
+	(1)\quad \exists x_0\in(0,1),\ |f(x_0)|>4;
+	\]
+	\[
+	(2)\quad \exists x_1\in[0,1],\ |f(x_1)|=4.
+	\]
+\end{problem}
+
+\begin{solution}
+	由 $\int_0^1 f(x)\dd x=0$，得
+	\[
+	1=\int_0^1 x f(x)\dd x
+	=\int_0^1\left(x-\frac12\right)f(x)\dd x.
+	\]
+	若 $|f(x)|\leq4$ 在 $[0,1]$ 上恒成立，则
+	\[
+	1
+	=\left|\int_0^1\left(x-\frac12\right)f(x)\dd x\right|
+	\leq
+	4\int_0^1\left|x-\frac12\right|\dd x
+	=1.
+	\]
+	若等号成立，则三角不等式与放缩中都必须取等号，从而 $f(x)$ 的符号须与 $x-\frac12$ 的符号一致，且在除 $x=\frac12$ 外几乎处处满足 $|f(x)|=4$。这与 $f$ 的连续性矛盾。因此必有一点 $x_0\in(0,1)$，使得
+	\[
+	|f(x_0)|>4.
+	\]
+	又由 $\int_0^1 f(x)\dd x=0$ 以及 $\int_0^1 x f(x)\dd x=1$ 知 $f$ 不恒为 $0$，且 $f$ 在 $[0,1]$ 上必有零点或至少有一点满足 $|f(x)|<4$。由连续性与介值定理，存在 $x_1\in[0,1]$，使得
+	\[
+	|f(x_1)|=4.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $f\in C^1[0,1]$，且 $f(0)=f(1)=0$。证明：
+	\[
+	\left(\int_0^1 f(x)\dd x\right)^2
+	\leq
+	\frac1{12}\int_0^1 (f'(x))^2\dd x.
+	\]
+\end{problem}
+
+\begin{solution}
+	对任意 $a\in[0,1]$，由分部积分得
+	\[
+	\int_0^1 f(x)\dd x
+	=-\int_0^1 (x-a)f'(x)\dd x.
+	\]
+	由 Cauchy 不等式(下一节讲)，
+	\[
+	\left(\int_0^1 f(x)\dd x\right)^2
+	\leq
+	\int_0^1(x-a)^2\dd x
+	\int_0^1(f'(x))^2\dd x.
+	\]
+	取 $a=\dfrac12$，则
+	\[
+	\int_0^1\left(x-\frac12\right)^2\dd x=\frac1{12}.
+	\]
+	故
+	\[
+	\left(\int_0^1 f(x)\dd x\right)^2
+	\leq
+	\frac1{12}\int_0^1(f'(x))^2\dd x.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 在区间 $[0,1]$ 上连续可导，且 $f(0)=f(1)=0$。求证：
+	\[
+	\left(\int_0^1 x f(x)\dd x\right)^2
+	\leq
+	\frac1{45}\int_0^1 (f'(x))^2\dd x,
+	\]
+	等号当且仅当
+	\[
+	f(x)=A(x-x^3)
+	\]
+	时成立，其中 $A$ 是常数。
+\end{problem}
+
+\begin{solution}
+	对任意常数 $a$，由分部积分得
+	\[
+	\int_0^1 x f(x)\dd x
+	=\frac12\int_0^1 f(x)\dd(x^2-a)
+	=-\frac12\int_0^1 (x^2-a)f'(x)\dd x.
+	\]
+	由 Cauchy 不等式，
+	\[
+	\left(\int_0^1 x f(x)\dd x\right)^2
+	\leq
+	\frac14\int_0^1(x^2-a)^2\dd x
+	\int_0^1(f'(x))^2\dd x.
+	\]
+	而
+	\[
+	\int_0^1(x^2-a)^2\dd x
+	=\frac15-\frac{2a}{3}+a^2.
+	\]
+	右端关于 $a$ 的二次式在 $a=\dfrac13$ 处取最小值
+	\[
+	\frac15-\frac29+\frac19=\frac4{45}.
+	\]
+	因此
+	\[
+	\left(\int_0^1 x f(x)\dd x\right)^2
+	\leq
+	\frac1{45}\int_0^1(f'(x))^2\dd x.
+	\]
+	
+	等号成立当且仅当 Cauchy 不等式取等号，即存在常数 $\lambda$，使得
+	\[
+	f'(x)=\lambda\left(x^2-\frac13\right).
+	\]
+	积分得
+	\[
+	f(x)=\lambda\left(\frac{x^3}{3}-\frac{x}{3}\right)+C.
+	\]
+	由 $f(0)=0$ 得 $C=0$，故
+	\[
+	f(x)=A(x-x^3).
+	\]
+	反之，此类函数使上面的 Cauchy 不等式取等号，因此等号成立。
+\end{solution}
+\subsection*{Taylor 公式在积分不等式中的应用}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,a]$ 上二阶可导，$a>0$，且 $f''(x)\geqslant0$，证明：
+	\[
+	\int_0^a f(x)\dd x\geqslant a f\left(\frac a2\right).
+	\]
+\end{problem}
+
+\begin{proof}
+	对 $x$ 在 $a/2$ 处作 Taylor 展开，由 $f''\geqslant0$ 得
+	\[
+	f(x)\geqslant f\left(\frac a2\right)+f'\left(\frac a2\right)\left(x-\frac a2\right).
+	\]
+	两边在 $[0,a]$ 上积分，得
+	\[
+	\int_0^a f(x)\dd x
+	\geqslant a f\left(\frac a2\right)+f'\left(\frac a2\right)\int_0^a\left(x-\frac a2\right)\dd x
+	=a f\left(\frac a2\right).
+	\]
+\end{proof}
+
+\begin{problem}
+	设函数 $f(x)$ 在 $[0,1]$ 上二阶可导，且 $f''(x)\leqslant0$，$x\in[0,1]$，证明：
+	\[
+	\int_0^1 f(x^2)\dd x\leqslant f\left(\frac13\right).
+	\]
+\end{problem}
+
+\begin{proof}
+	对 $f$ 在 $1/3$ 处作 Taylor 展开，由 $f''\leqslant0$ 得
+	\[
+	f(x^2)\leqslant f\left(\frac13\right)+f'\left(\frac13\right)\left(x^2-\frac13\right).
+	\]
+	两边在 $[0,1]$ 上积分，注意 $\displaystyle\int_0^1\left(x^2-\frac13\right)\dd x=0$，故
+	\[
+	\int_0^1 f(x^2)\dd x\leqslant f\left(\frac13\right).
+	\]
+\end{proof}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,a^n]$ 上二阶可导，$a>0$，且 $f''(x)\geqslant0$，证明：对 $n\geqslant1$，
+	\[
+	\int_0^a f(x^n)\dd x\geqslant a f\left(\frac{a^n}{n+1}\right).
+	\]
+\end{problem}
+
+\begin{proof}
+	记 $\mu=\dfrac{a^n}{n+1}$。由 $f''\geqslant0$，在 $\mu$ 处作 Taylor 展开得
+	\[
+	f(x^n)\geqslant f(\mu)+f'(\mu)(x^n-\mu).
+	\]
+	两边积分，得
+	\[
+	\int_0^a f(x^n)\dd x
+	\geqslant af(\mu)+f'(\mu)\left(\int_0^a x^n\dd x-a\mu\right)
+	=af(\mu),
+	\]
+	即
+	\[
+	\int_0^a f(x^n)\dd x\geqslant a f\left(\frac{a^n}{n+1}\right).
+	\]
+\end{proof}
+
+\begin{problem}
+	设 $f(x)$ 在 $[a,b]$ 上二阶连续可导，且 $f(a)=f(b)=0$，证明：
+	\[
+	\int_a^b f(x)\dd x=\frac12\int_a^b (x-a)(x-b)f''(x)\dd x,
+	\]
+	并且
+	\[
+	\left|\int_a^b f(x)\dd x\right|
+	\leqslant \frac{(b-a)^3}{12}\max_{a\leqslant x\leqslant b}|f''(x)|.
+	\]
+\end{problem}
+
+\begin{proof}
+	由分部积分，
+	\[
+	\begin{aligned}
+		\int_a^b (x-a)(x-b)f''(x)\dd x
+		&=-\int_a^b (2x-a-b)f'(x)\dd x\\
+		&=2\int_a^b f(x)\dd x.
+	\end{aligned}
+	\]
+	故
+	\[
+	\int_a^b f(x)\dd x=\frac12\int_a^b (x-a)(x-b)f''(x)\dd x.
+	\]
+	令 $M=\max\limits_{a\leqslant x\leqslant b}|f''(x)|$，则
+	\[
+	\begin{aligned}
+		\left|\int_a^b f(x)\dd x\right|
+		&\leqslant \frac12 M\int_a^b (x-a)(b-x)\dd x\\
+		&=\frac{M(b-a)^3}{12}.
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{problem}
+	已知函数 $f(x)$ 在 $[a,b]$ 上三次可导，$f(a)=f'(a)=f(b)=0$，且 $|f'''(x)|\leqslant M$ 在 $[a,b]$ 上恒成立，证明：
+	\[
+	\left|\int_a^b f(x)\dd x\right|\leqslant \frac{M(b-a)^4}{72}.
+	\]
+\end{problem}
+
+\begin{proof}
+	取
+	\[
+	w(x)=(x-a)(x-b)^2.
+	\]
+	连续分部积分三次。因 $w(a)=w(b)=0$，$w'(b)=0$，且 $f(a)=f'(a)=f(b)=0$，有
+	\[
+	\begin{aligned}
+		\int_a^b w(x)f'''(x)\dd x
+		&=-\int_a^b w'(x)f''(x)\dd x\\
+		&=\int_a^b w''(x)f'(x)\dd x\\
+		&=-\int_a^b w'''(x)f(x)\dd x
+		=-6\int_a^b f(x)\dd x.
+	\end{aligned}
+	\]
+	于是
+	\[
+	\int_a^b f(x)\dd x=-\frac16\int_a^b (x-a)(x-b)^2 f'''(x)\dd x.
+	\]
+	从而
+	\[
+	\begin{aligned}
+		\left|\int_a^b f(x)\dd x\right|
+		&\leqslant \frac{M}{6}\int_a^b (x-a)(b-x)^2\dd x\\
+		&=\frac{M}{6}\cdot\frac{(b-a)^4}{12}
+		=\frac{M(b-a)^4}{72}.
+	\end{aligned}
+	\]
+\end{proof}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,1]$ 上有连续的二阶导数，且
+	\[
+	f(0)=f(1)=f'(0)=0,\qquad f'(1)=1.
+	\]
+	证明：
+	\[
+	\int_0^1 \left(f''(x)\right)^2\dd x\geqslant4.
+	\]
+\end{problem}
+
+\begin{proof}
+	由条件，
+	\[
+	\int_0^1 f''(x)\dd x=f'(1)-f'(0)=1.
+	\]
+	又由分部积分，
+	\[
+	\int_0^1 x f''(x)\dd x
+	=xf'(x)\bigg|_0^1-\int_0^1 f'(x)\dd x
+	=1-f(1)+f(0)=1.
+	\]
+	于是
+	\[
+	\int_0^1 \left(x-\frac13\right)f''(x)\dd x=\frac23.
+	\]
+	由 Cauchy-Schwarz 不等式，
+	\[
+	\frac49
+	\leqslant \int_0^1\left(x-\frac13\right)^2\dd x\int_0^1\left(f''(x)\right)^2\dd x
+	=\frac19\int_0^1\left(f''(x)\right)^2\dd x.
+	\]
+	故
+	\[
+	\int_0^1\left(f''(x)\right)^2\dd x\geqslant4.
+	\]
+\end{proof}
+
+\begin{problem}
+	已知 $f(x)$ 为 $[0,2]$ 上的可微函数，且 $|f'(x)|\leqslant1$，$f(0)=f(2)=1$，证明：
+	\[
+	\int_0^2 f(x)\dd x>1.
+	\]
+\end{problem}
+
+\begin{proof}
+	当 $x\in[0,1]$ 时，由 $|f'|\leqslant1$ 得
+	\[
+	f(x)\geqslant f(0)-x=1-x.
+	\]
+	当 $x\in[1,2]$ 时，同理
+	\[
+	f(x)\geqslant f(2)-(2-x)=x-1.
+	\]
+	因此
+	\[
+	\int_0^2 f(x)\dd x
+	\geqslant \int_0^1(1-x)\dd x+\int_1^2(x-1)\dd x=1.
+	\]
+	若等号成立，则必有
+	\[
+	f(x)=
+	\begin{cases}
+		1-x,&0\leqslant x\leqslant1,\\
+		x-1,&1\leqslant x\leqslant2,
+	\end{cases}
+	\]
+	这在 $x=1$ 处不可微，矛盾。故严格不等式成立。
+\end{proof}
+
+\begin{problem}
+	已知 $f(x)\in C[a,b]$，且
+	\[
+	\int_a^b f(x)\dd x=\int_a^b x f(x)\dd x=0,
+	\]
+	则在 $(a,b)$ 内至少存在两个互异的点 $\xi_1,\xi_2$，使得
+	\[
+	f(\xi_1)=f(\xi_2)=0.
+	\]
+\end{problem}
+
+\begin{proof}
+	令
+	\[
+	F(x)=\int_a^x f(t)\dd t.
+	\]
+	由 $\displaystyle\int_a^b f(x)\dd x=0$，得 $F(a)=F(b)=0$。又
+	\[
+	0=\int_a^b x f(x)\dd x
+	=xF(x)\bigg|_a^b-\int_a^b F(x)\dd x
+	=-\int_a^b F(x)\dd x.
+	\]
+	令
+	\[
+	G(x)=\int_a^x F(t)\dd t.
+	\]
+	则 $G(a)=G(b)=0$。由 Rolle 定理，存在 $c\in(a,b)$，使得
+	\[
+	G'(c)=F(c)=0.
+	\]
+	于是 $F(a)=F(c)=0$，再由 Rolle 定理，存在 $\xi_1\in(a,c)$，使得
+	\[
+	F'(\xi_1)=f(\xi_1)=0.
+	\]
+	同理，由 $F(c)=F(b)=0$，存在 $\xi_2\in(c,b)$，使得
+	\[
+	F'(\xi_2)=f(\xi_2)=0.
+	\]
+	显然 $\xi_1\neq\xi_2$。
+\end{proof}
+
+\subsection*{Jensen 不等式}
+
+\begin{proposition}
+	（Jensen 不等式）设 $f\in\mathcal{R}[a,b]$，$g$ 为区间上的凸函数，且 $g(f(x))$ 可积，则
+	\[
+	g\left(\frac1{b-a}\int_a^b f(x)\dd x\right)
+	\leqslant
+	\frac1{b-a}\int_a^b g(f(x))\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	记
+	\[
+	m=\frac1{b-a}\int_a^b f(x)\dd x.
+	\]
+	由凸函数的切线性质，
+	\[
+	g(y)\geqslant g(m)+g'(m)(y-m).
+	\]
+	令 $y=f(x)$，得到
+	\[
+	g(f(x))\geqslant g(m)+g'(m)(f(x)-m).
+	\]
+	两边积分，得
+	\[
+	\int_a^b g(f(x))\dd x
+	\geqslant (b-a)g(m)+g'(m)\left(\int_a^b f(x)\dd x-(b-a)m\right)
+	=(b-a)g(m).
+	\]
+	整理即得 Jensen 不等式。
+\end{proof}

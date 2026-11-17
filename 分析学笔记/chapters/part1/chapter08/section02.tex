@@ -1,0 +1,349 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.2 一些例子,一些应用以及有理函数的积分
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{一些例子,一些应用以及有理函数的积分}
+\begin{problem}
+	计算以下不定积分：
+	
+	(1) $$\int \sin^2 x \dd x$$
+	
+	(2)$$\int \frac{(x+\sqrt{x})(x-2\sqrt{x})^2}{\sqrt{x}} \dd x$$
+	
+	(3) $$\int \frac{x^4}{1+x^2} \dd x$$
+\end{problem}
+\begin{solution}
+	(1) 由于 $\sin^2 x = \dfrac{1}{2}(1 - \cos 2x)$,所以
+	\[
+	\int \sin^2 x \dd x = \frac{1}{2} \int (1 - \cos 2x) \dd x = \frac{1}{2} x - \frac{1}{2} \int \cos 2x \dd x
+	\]
+	\[
+	= \frac{1}{2} x - \frac{1}{4} \sin 2x + C
+	\]
+	
+	(2) \[\begin{aligned}
+		\text{原式} &= \int \dfrac{x^3 - 2x^{5/2} + 4x^{3/2}}{x^{1/2}} \dd x\\& = \int (x^{5/2} - 3x^2 + 4x) \dd x\\
+		&= \frac{2}{7} x^{7/2} -  x^3 + 2 x^3 + C
+	\end{aligned}\]
+	
+	
+	(3)\[\text{原式}= \int \frac{x^4 + x^2 - x^2}{1 + x^2} \dd x = \int \left(x^2 - 1 + \frac{1}{1+x^2}\right) \dd x= \frac{1}{3} x^3 - x + \tan^{-1} x + C\]  
+\end{solution}
+\begin{problem}
+	(1)\[\int x\cos x\dd x\]
+	(2)\[\int x^2e^x\dd x\]
+	(3)\[\int\ln x\dd x\]
+	(4)\[\int e^x\sin x\dd x\]
+\end{problem}
+\begin{solution}
+	(1) $$\int x \cos x \dd x = \int x \dd\sin x = x \sin x - \int \sin x \dd x = x \sin x + \cos x + C$$
+	
+	(2)\[\begin{aligned}
+		\int x^2 e^x \dd x &= \int x^2 \dd e^x = x^2 e^x - 2 \int x e^x \dd x\\&= x^2 e^x - 2 \int x \dd e^x = x^2 e^x - 2(x e^x - \int e^x \dd x) \\&= x^2 e^x - 2x e^x + 2 e^x + C = (x^2 - 2x + 2)e^x + C
+	\end{aligned}\] 
+	
+	(3) $$\int \ln x \dd x = x \ln x - \int x \dd\ln x = x \ln x - \int x \cdot \frac{1}{x} \dd x = x \ln x - x + C$$
+	
+	(4) 设 $I = \displaystyle\int e^x \sin x \dd x$,$J = \displaystyle\int e^x \cos x \dd x$,
+	\[
+	\begin{cases}
+		I = \displaystyle\int \sin x \dd e^x = e^x \sin x - \displaystyle\int e^x \cos x \dd x = e^x \sin x - J \\
+		J = \displaystyle\int \cos x \dd e^x = e^x \cos x + \displaystyle\int e^x \sin x \dd x = e^x \cos x + I
+	\end{cases}
+	\]
+	解得：
+	\[
+	I = \frac{1}{2} e^x (\sin x - \cos x) + C, \quad J = \frac{1}{2} e^x (\cos x + \sin x) + C
+	\]
+\end{solution}
+\begin{problem}
+	(1)$$\int\frac{\dd x}{x^2+a^2}\text{与}\int \frac{\dd x}{\sqrt{a^2-x^2}}$$
+	(2)$$\int\tan x\dd x\text{与}\int\cot x\dd x$$
+	(3)$$\int\sec x\dd x\text{与}\int\csc x\dd x$$
+	(4)$$\int\frac{\dd x}{\sqrt{x}(1+x)}$$
+\end{problem}
+\begin{solution}
+	(1)
+	\[
+	\int \frac{\dd x}{x^2 + a^2} = \frac{1}{a} \int \frac{\dd\left(\dfrac{x}{a}\right)}{\left(\dfrac{x}{a}\right)^2 + 1} = \frac{1}{a} \tan^{-1} \frac{x}{a} + C
+	\]
+	
+	\[
+	\int \frac{\dd x}{\sqrt{a^2-x^2}} = \int \frac{\dd\left(\dfrac{x}{a}\right)}{1 - \sqrt{\left(\dfrac{x}{a}\right)^2}} = \sin^{-1} \dfrac{x}{a} + C
+	\]
+	
+	(2)
+	\[
+	\int \tan x \dd x = \int \frac{\sin x}{\cos x} \dd x = -\ln |\cos x| + C
+	\]
+	
+	\[
+	\int \cot x \dd x = \int \frac{\cos x}{\sin x} \dd x = \ln |\sin x| + C
+	\]
+	
+	(3)
+	\[
+	\int \sec x \dd x = \int \frac{\sec x (\sec x + \tan x)}{\sec x + \tan x} \dd x = \ln |\sec x + \tan x| + C
+	\]
+	
+	\[
+	\int \csc x \dd x = \int \frac{\csc x (\csc x - \cot x)}{\csc x - \cot x} \dd x = -\ln |\csc x - \cot x| + C
+	\]
+	
+	(4)
+	\[
+	\int \frac{\dd x}{x \sqrt{1 + x}} = 2 \int \frac{\dd(\sqrt{x})}{1 + (\sqrt{x})^2} = 2 \tan^{-1} \sqrt{x} + C
+	\]
+\end{solution}
+\begin{problem}
+	(1)\[\int \sqrt{a^2-x^2}\dd x\]
+	(2)\[\int\frac{\dd x}{\sqrt{x^2-a^2}}\text{和}\int\frac{\dd x}{\sqrt{x^2+a^2}}\]
+	(3)\[\int \sqrt{x^2+a^2}\dd x\text{和}\int \sqrt{x^2-a^2}\dd x\]
+\end{problem}
+\begin{solution}
+	(1) 设 $x = a \sin \theta$,则 $\dd x = a \cos \theta \dd \theta$,
+	\[\begin{aligned}
+		\int \sqrt{a^2 - x^2} \dd x &= \int a^2 \cos^2 \theta \dd \theta = a^2 \int \frac{1 + \cos 2\theta}{2} \dd \theta\\
+		&= \frac{1}{2} a^2 \theta + \frac{1}{4} a^2 \sin 2\theta + C\\	&= \frac{1}{2} a^2 \sin^{-1} \frac{x}{a} + \frac{1}{2} a^2 \cdot \frac{x}{a^2} \sqrt{a^2 - x^2} + C\\&= \frac{1}{2} x \sqrt{a^2 - x^2} + \frac{a^2}{2} \sin^{-1} \frac{x}{a} + C
+	\end{aligned}\]
+	(2) 设 $x = a \sec \theta$,则 $\dd x = a \sec \theta \tan \theta \dd \theta$,
+	\[\begin{aligned}
+		\int \frac{\dd x}{ \sqrt{x^2 - a^2}} &= \int \frac{a \sec \theta \tan \theta \dd \theta}{ a \tan \theta} = \int \sec \theta \dd \theta = \ln |\sec \theta + \tan \theta| + C\\&= \ln \left| \frac{x}{a} + \frac{\sqrt{x^2 - a^2}}{a} \right| + C = \ln \left| x + \sqrt{x^2 - a^2} \right| + C
+	\end{aligned}\]
+	
+	
+	同理
+	\[
+	\int \frac{\dd x}{\sqrt{x^2 + a^2}} = \ln \left| x + \sqrt{x^2 + a^2} \right| + C
+	\]
+	(3) 考虑 $\displaystyle\int \sqrt{x^2 + a^2} \dd x$：
+	
+	\[\begin{aligned}
+		\int \sqrt{x^2 + a^2} \dd x &= x \sqrt{x^2 + a^2} - \int \frac{x^2}{\sqrt{x^2 + a^2}} \dd x\\& = x \sqrt{x^2 + a^2} + \int \frac{a^2}{\sqrt{x^2 + a^2}} \dd x - \int \sqrt{x^2 + a^2} \dd x
+	\end{aligned}\]
+	
+	移项得：
+	\[
+	2 \int \sqrt{x^2 + a^2} \dd x = x \sqrt{x^2 + a^2} + a^2 \ln \left| x + \sqrt{x^2 + a^2} \right| + C
+	\]
+	
+	因此：
+	\[
+	\int \sqrt{x^2 + a^2} \dd x = \frac{1}{2} \left( x \sqrt{x^2 + a^2} + a^2 \ln \left| x + \sqrt{x^2 + a^2} \right| \right) + C
+	\]
+	
+	同理
+	\[
+	\int \sqrt{x^2 - a^2} \dd x = \frac{1}{2} \left( x \sqrt{x^2 - a^2} - a^2 \ln \left| x + \sqrt{x^2 - a^2} \right| \right) + C
+	\]
+\end{solution}
+这样我们得到基本积分表的下半部分
+\begin{proposition}
+	(1) $$\int \tan x \dd x = -\ln |\cos x| + C$$
+	
+	(2) $$\int \cot x \dd x = \ln |\sin x| + C$$
+	
+	(3) $$\int \sec x \dd x = \ln |\sec x + \tan x| + C$$
+	
+	(4) $$\int \csc x \dd x = \ln |\csc x - \cot x| + C$$
+	
+	(5) $$\int \frac{\dd x}{\sqrt{x^2 \pm a^2}} = \ln \left| x + \sqrt{x^2 \pm a^2} \right| + C$$
+	
+	(6)$$\int \frac{\dd x}{\sqrt{a^2 - x^2}} =  \sin^{-1} \frac{x}{a} + C$$
+	
+	(7) $$\int \frac{\dd x}{x^2 - a^2} = \frac{1}{2a} \ln \left| \frac{x - a}{x + a} \right| + C$$
+	
+	(8) $$\int \frac{\dd x}{x^2 + a^2} = \frac{1}{a} \tan^{-1} \frac{x}{a} + C$$
+	
+	(9) $$\int \sqrt{a^2 - x^2} \dd x = \frac{1}{2} x \sqrt{a^2 - x^2} + \frac{a^2}{2} \sin^{-1} \frac{x}{a} + C$$
+	
+	(10)$$\int \sqrt{x^2 \pm a^2} \dd x = \frac{1}{2} \left( x \sqrt{x^2 \pm a^2} \pm a^2 \ln \left| x + \sqrt{x^2 \pm a^2} \right| \right) + C$$
+\end{proposition}
+\begin{problem}计算下列积分
+	\begin{enumerate}
+		\item[(1)]
+		$\displaystyle \int \frac{\dd x}{\sqrt{x^2 + 2\xi x + \eta^2}}$
+		
+		\item[(2)]
+		$\displaystyle \int \frac{ax + b}{\sqrt{x^2 + 2\xi x + \eta^2}} \dd x$
+		
+		\item[(3)]
+		$\displaystyle \int \frac{ax + b}{x^2 + 2\xi x + \eta^2} \dd x$
+		
+		\item[(4)]
+		$\displaystyle \int (ax + b) \sqrt{x^2 + 2\xi x + \eta^2} \dd x$
+	\end{enumerate}
+	
+\end{problem}
+\begin{solution}
+	(1)\[\int \frac{\dd x}{\sqrt{x^2 + 2\xi x + \eta^2}} = \int \frac{\dd(x + \xi)}{\sqrt{(x + \xi)^2 \pm |\eta^2 - \xi^2|}} = \ln \left| x + \xi + \sqrt{x^2 + 2\xi x + \eta^2} \right| + C\]
+	(2)$$\begin{aligned}
+		&\int \frac{ax + b}{x^2 + 2\xi x + \eta^2} \dd x
+		= \frac{a}{2} \int \frac{\dd(x^2 + 2\xi x + \eta^2)}{x^2 + 2\xi x + \eta^2} + (b - a\xi) \int \frac{\dd x}{(x+\xi)^2+\eta^2-\xi^2} \\
+		&= \begin{cases}
+			a \ln \left| x + \xi  \right| - \dfrac{b - a\xi}{x+\xi}  + C, & |\xi| =|\eta| \\
+			\dfrac{a}{2} \ln \left| x^2 + 2\xi x + \eta^2 \right| + \dfrac{b - a\xi}{\sqrt{\eta^2 - \xi^2}} \arctan\dfrac{x+\xi}{\sqrt{\eta^2-\xi^2}} + C, & |\xi| < |\eta| \\
+			\dfrac{a}{2} \ln \left| x^2 + 2\xi x + \eta^2 \right| + \dfrac{b - a\xi}{2\sqrt{\xi^2 - \eta^2}}\ln \left| \dfrac{x + \xi - \sqrt{\xi^2 - \eta^2}}{x + \xi + \sqrt{\xi^2 + \eta^2}} \right|  + C, & |\xi| > |\eta|
+		\end{cases}
+	\end{aligned}$$
+	
+	(3)\[\begin{aligned}
+		\int \frac{ax + b}{\sqrt{x^2 + 2\xi x + \eta^2}} \dd x
+		&= \dfrac{a}{2} \int \frac{\dd(x^2 + 2\xi x + \eta^2)}{\sqrt{x^2 + 2\xi x + \eta^2}} + (b - a\xi) \int \frac{\dd x}{\sqrt{x^2 + 2\xi x + \eta^2}} \\
+		&= \sqrt{x^2 + 2\xi x + \eta^2} +(b - a\xi)\ln|x+\xi+ \sqrt{x^2 + 2\xi x + \eta^2}|+C
+	\end{aligned}\]
+	(4)\[\begin{aligned}
+		&\int(ax+b) \sqrt{x^2 + 2\xi x + \eta^2}\dd x\\
+		=&\dfrac{a}{2}\int \sqrt{x^2 + 2\xi x + \eta^2}\dd( x^2 + 2\xi x + \eta^2)+(b-a\xi)\int \sqrt{x^2 + 2\xi x + \eta^2}\dd x\\
+		=&\dfrac{a}{3} (x^2 + 2\xi x + \eta^2)^{3/2}+\frac{b-a\xi}{2}[(x+\xi) \sqrt{x^2 + 2\xi x + \eta^2}+(\eta^2-\xi^2)\ln|x+\xi+ \sqrt{x^2 + 2\xi x + \eta^2}|]+C
+	\end{aligned}\]
+\end{solution}
+\begin{problem}\label{积分10}
+	(1)$$I_n=\int \frac{\dd x}{(x^2+a^2)^n}$$
+	(2)\[I_n\int x^ne^x\dd x\]
+	(3)\[I_n=\int\cos^nx\dd x\]
+\end{problem}
+\newpage
+\begin{solution}
+	(1)对于 $n \geq 2$：
+	
+	\begin{align*}
+		I_n &= \int \frac{\dd x}{(x^2 + a^2)^n} \\
+		&= \frac{1}{a^2} \int \frac{\dd x}{(x^2 + a^2)^{n-1}} - \frac{1}{a^2} \int \frac{x^2}{(x^2 + a^2)^n} \dd x \\
+		&= \frac{I_{n-1}}{a^2} + \frac{1}{2a^2(n-1)} \int x \, d\left[ \frac{1}{(x^2 + a^2)^{n-1}} \right] \\
+		&= \frac{I_{n-1}}{a^2} + \frac{1}{2a^2(n-1)} \left( \frac{x}{(x^2 + a^2)^{n-1}} - \int \frac{\dd x}{(x^2 + a^2)^{n-1}} \right) \\
+		&= \frac{I_{n-1}}{a^2} + \frac{1}{2a^2(n-1)} \cdot \frac{x}{(x^2 + a^2)^{n-1}} - \frac{I_{n-1}}{2a^2(n-1)} \\
+		&= \frac{2n-3}{2a^2(n-1)} I_{n-1} + \frac{1}{2a^2(n-1)} \cdot \frac{x}{(x^2 + a^2)^{n-1}}
+	\end{align*}
+	\[\begin{cases}
+		I_n= \dfrac{2n-3}{2a^2(n-1)} I_{n-1} + \dfrac{1}{2a^2(n-1)} \cdot \dfrac{x}{(x^2 + a^2)^{n-1}}\\
+		I_1=\dfrac{1}{a}\arctan\dfrac{x}{a}+C
+	\end{cases}\]
+	(2)\[
+	I_n = \int x^n e^x \dd x = x^n e^x - \int e^x \dd(x^n) = x^n e^x - n \int x^{n-1} e^x \dd x = x^n e^x - n I_{n-1}
+	\]
+	
+	所以,
+	\[
+	I_n + n I_{n-1} = x^n e^x
+	\]
+	
+	有初值
+	\[
+	I_1 = \int x e^x \dd x = x e^x - \int e^x \dd x = (x - 1)e^x + C
+	\]
+	(3)\[\begin{aligned}
+		I_n &= \int \cos^n x \dd x = \int \cos^{n-1} x \cdot \cos x \dd x = \int \cos^{n-1} x \dd(\sin x)\\&= \cos^{n-1} x \sin x + (n-1) \int \sin^2 x \cos^{n-2} x \dd x\\&= \cos^{n-1} x \sin x + (n-1) \int (1 - \cos^2 x) \cos^{n-2} x \dd x\\&	= \cos^{n-1} x \sin x + (n-1) I_{n-2} - (n-1) I_n
+	\end{aligned}\]
+	整理得：
+	
+	\[
+	I_n = \frac{1}{n} \cos^{n-1} x \sin x + \left(1 - \frac{1}{n}\right) I_{n-2}
+	\]
+\end{solution}
+\begin{problem}(有理函数的积分)
+	给定 $P_m(x), Q_n(x) \in \mathbb{R}[x]$,且 $m = \deg P_m$,$n = \deg Q_n$,计算有理函数的积分：
+	
+	\[
+	\int \frac{P_m(x)}{Q_n(x)} \dd x
+	\]
+\end{problem}
+\begin{solution}
+	若\( m \geqslant n \),由带余除法 
+	
+	\[
+	P_m(x) = g(x) Q_n(x) + \tilde{P}_m(x)
+	\]
+	
+	所以,
+	
+	\[
+	\frac{P_m(x)}{Q_n(x)} = g(x) + \frac{\tilde{P}_m(x)}{Q_n(x)}, \quad \deg \tilde{P}_m < \deg Q_n
+	\]
+	
+	其中 \( g(x) \) 是多项式,直接积分即可,后面只需考虑 \( n > m \) 的情况,由代数基本定理：
+	
+	\[
+	Q_n(x) = (x - \alpha_1)^{m_1} \cdots (x - \alpha_t)^{m_t} (x^2 + 2\xi_1 x + \eta_1^2)^{n_1} \cdots (x^2 + 2\xi_s x + \eta_s^2)^{n_s}
+	\]
+	
+	其中 \(\alpha_k, \xi_k, \eta_k \in \mathbb{R}\) 且 \(\xi_k^2 - \eta_k^2 < 0\)
+	
+	对 \(\dfrac{P_m(x)}{Q_n(x)}\) 写出部分分式分解的形式.
+	
+	每一个一次项：$(x - \alpha_k)^{m_k}$ 对应的展开形式：
+	
+	\[
+	\frac{\lambda_{k1}}{x - \alpha_k} + \frac{\lambda_{k2}}{(x - \alpha_k)^2} + \cdots + \frac{\lambda_{km_k}}{(x - \alpha_k)^{m_k}}
+	\]
+	
+	每一个二次项：$(x^2 + 2\xi_k x + \eta_k^2)^{n_k}$ 对应的展开形式：
+	
+	\[
+	\frac{\mu_{k1}x + \nu_{k1}}{x^2 + 2\xi_k x + \eta_k^2} + \frac{\mu_{k2}x + \nu_{k2}}{(x^2 + 2\xi_k x + \eta_k^2)^2} + \cdots + \frac{\mu_{kn_k}x + \nu_{kn_k}}{(x^2 + 2\xi_k x + \eta_k^2)^{n_k}}
+	\]
+	
+	这些系数可以由待定系数法得出
+	
+	只需考虑
+	
+	1.
+	\[
+	\int \frac{\dd x}{(x - \alpha)^n} =
+	\begin{cases}
+		\ln |x - \alpha| + C, & n = 1 \\
+		\dfrac{1}{1-n} \cdot \dfrac{1}{(x - \alpha)^{n-1}} + C, & n >1
+	\end{cases}
+	\]
+	
+	2.\[\begin{aligned}
+		\int \frac{\mu x + \nu}{(x^2 + 2\xi x + \eta^2)^n} \dd x &= \frac{\mu}{2} \int \frac{\dd(x^2 + 2\xi x + \eta^2)}{(x^2 + 2\xi x + \eta^2)^n} + (\nu-2\xi) \int \frac{\dd x}{(x^2 + 2\xi x + \eta^2)^n}\\&= \dfrac{\mu}{2(1-n)} \cdot \frac{1}{(x^2 + 2\xi x + \eta^2)^{n-1}} + (\nu-2\xi) I_n
+	\end{aligned}\]
+	$I_n=\displaystyle\int\dfrac{\dd x}{(x^2+2\xi x+\eta^2)^n}=\displaystyle\int\dfrac{\dd x}{((x+\xi)^2\pm|\eta^2-\xi^2|)^n}$,由\ref{积分10}得
+\end{solution}
+\begin{problem}
+	(可化成有理函数的形式)
+	令 \( R(u, v) \)表示关于两个变量 \( u, v \) 的有理函数（分母,分子为二元有理函数）,考虑以下类型的积分：
+	
+	1.
+	\[
+	\int R\left(x, \sqrt[n]{\frac{\xi x+\eta}{\mu x+\nu}}\right) \dd x
+	\]
+	
+	2.
+	\[
+	\int R(\sin x, \cos x) \dd x
+	\] 
+	
+\end{problem}
+\begin{solution}
+	
+	1. 设
+	\[
+	t = \sqrt[n]{\frac{\xi x+\eta}{\mu x+\nu}}, x = \varphi(t) = \frac{-\nu t^n + \eta}{\mu t^n - \xi}
+	\]
+	
+	则
+	\[
+	\int R\left(x, \sqrt[n]{\frac{\xi x+\eta}{\mu x+\nu}}\right) \dd x = \int R\left(\frac{-\nu t^n + \eta}{\mu t^n - \xi}, t\right) \varphi'(t) \dd t
+	\]
+	
+	2. 令 \(\tan \dfrac{x}{2} = t\)
+	\[
+	\sin x = 2 \sin \frac{x}{2} \cos \frac{x}{2} = \frac{2t}{1 + t^2}, \cos x = \frac{1 - t^2}{1 + t^2},  \dd x = \dd(2 \arctan t) = \frac{2 \dd t}{1 + t^2}
+	\]
+	
+	因此
+	\[
+	\int R(\sin x, \cos x) \dd x = \int R\left(\frac{2t}{1 + t^2}, \frac{1 - t^2}{1 + t^2}\right) \frac{2}{1 + t^2} \dd t
+	\]
+\end{solution}
+\begin{problem}
+	\[\int \frac{\dd x}{x(\sqrt[3]{x}-\sqrt{x})}\]
+\end{problem}
+
+\begin{solution}
+	令$x=t^6,\dd x=6t^5\dd t$
+	\[\int \frac{\dd x}{x(\sqrt[3]{x}-\sqrt{x})}=6\int \frac{\dd t}{t^3(1-t)}=6(\ln|\frac{\sqrt[6]{x}}{\sqrt[6]{x}-1}|-\frac{1}{\sqrt[6]{x}}-\frac{1}{2\sqrt[3]{x}})+C\]
+\end{solution}
+

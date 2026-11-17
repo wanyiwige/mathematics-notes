@@ -1,0 +1,1472 @@
+\chapter{商群与同态}
+
+\section{定义与例子}
+
+本章引入群 $G$ 的\emph{商群}概念，这是从群 $G$ 得到一个“较小”群的另一种方法；正如我们对待子群那样，我们将用商群来研究 $G$ 的结构。群 $G$ 的结构反映在它的商群和子群的结构之中。例如，我们将看到，$G$ 的一个商群的子群格会以精确的方式反映在 $G$ 的子群格的“顶部”，而 $G$ 的一个子群的子群格则自然出现在“底部”。因此，人们可以把这些信息结合起来以获得关于 $G$ 的信息；我们也将说明某些分类定理如何由此产生。
+
+研究 $G$ 的商群本质上等价于研究 $G$ 的同态，即把群 $G$ 映到另一个群并保持群结构的映射。回忆：若 $\varphi$ 是从 $G$ 到群 $H$ 的同态，则 $\varphi$ 的纤维是 $G$ 中映到 $H$ 的单个元素上的元素集合。可以把这种情形图示为图 1，其中点 $a$ 上方方框中的竖线表示 $\varphi$ 在 $a$ 上方的纤维。
+
+\begin{center}
+\begin{tikzpicture}[scale=.95, every node/.style={inner sep=1pt}]
+  \draw (-3.8,1) rectangle (3.8,2.4);
+  \foreach \x in {-3.1,-2.8,-.55,.55,2.8,3.1}{\draw (\x,1.15)--(\x,2.25);} 
+  \node at (-1.65,1.7) {$\cdots$};
+  \node at (1.65,1.7) {$\cdots$};
+  \node[right] at (4.0,1.7) {$G$};
+  \draw (-3.8,0)--(3.8,0);
+  \foreach \x in {-3.1,-2.8,0,2.8,3.1}{\fill (\x,0) circle (1.7pt);}
+  \foreach \x in {-3.1,-2.8,0,2.8,3.1}{\draw[->] (\x,1.0)--(\x,.13);} 
+  \node[below] at (0,0) {$a$};
+  \node[right] at (4.0,0) {$H$};
+  \node at (3.95,-.55) {图 1};
+\end{tikzpicture}
+\end{center}
+
+$H$ 中的群运算给出一种方法来相乘 $\varphi$ 的像中的两个元素。这提示我们用一种自然方法相乘位于这两个点之上的纤维，使纤维集合本身成为一个群：若 $X_a$ 是 $a$ 上方的纤维，$X_b$ 是 $b$ 上方的纤维，则定义 $X_a$ 与 $X_b$ 的乘积为 $ab$ 上方的纤维 $X_{ab}$，即
+\[
+  X_aX_b=X_{ab}.
+\]
+这种乘法是结合的，因为 $H$ 中的乘法结合；单位元是 $H$ 的单位元上方的纤维；$a$ 上方纤维的逆是 $a^{-1}$ 上方的纤维。例如，结合律证明如下：
+\[
+  (X_aX_b)X_c=(X_{ab})X_c=X_{(ab)c},\qquad
+  X_a(X_bX_c)=X_a(X_{bc})=X_{a(bc)}.
+\]
+由于 $(ab)c=a(bc)$ 在 $H$ 中成立，故 $(X_aX_b)X_c=X_a(X_bX_c)$。粗略地说，群 $G$ 被分划成若干片（纤维），而这些片本身具有群结构，称为 $G$ 的商群（正式定义见下面的例子之后）。
+
+由于纤维的乘法由 $H$ 中的乘法定义，按构造，带有这种乘法的商群自然同构于 $G$ 在同态 $\varphi$ 下的像（纤维 $X_a$ 与它在 $H$ 中的像 $a$ 对应）。
+
+\paragraph{例}
+令 $G=\ZZ$，令 $H=Z_n=\langle x\rangle$ 是阶为 $n$ 的循环群，定义
+\[
+  \varphi:\ZZ\longrightarrow Z_n,
+  \qquad \varphi(a)=x^a.
+\]
+由于
+\[
+  \varphi(a+b)=x^{a+b}=x^a x^b=\varphi(a)\varphi(b),
+\]
+$\varphi$ 是同态（注意 $\ZZ$ 中的运算是加法，而 $Z_n$ 中的运算是乘法）。显然 $\varphi$ 是满射。$\varphi$ 在 $x^a$ 上方的纤维是
+\begin{align*}
+  \varphi^{-1}(x^a)
+  &=\{m\in\ZZ\mid x^m=x^a\}  \\
+  &=\{m\in\ZZ\mid x^{m-a}=1\} \\
+  &=\{m\in\ZZ\mid n\text{ 整除 }m-a\}  \\
+  &=\{m\in\ZZ\mid m\equiv a\pmod n\}=\overline a.
+\end{align*}
+也就是说，$\varphi$ 的纤维正是模 $n$ 的剩余类。图 1 在这里成为图 2。
+
+\begin{center}
+\begin{tikzpicture}[scale=.82, every node/.style={inner sep=1pt}]
+  \draw (-4,0) rectangle (4,2.7);
+  \draw (-2.8,0)--(-2.8,2.7); \draw (-1.6,0)--(-1.6,2.7); \draw (1.4,0)--(1.4,2.7); \draw (2.8,0)--(2.8,2.7);
+  \node at (-3.4,2.35) {$0$}; \node at (-3.4,1.95) {$\pm n$}; \node at (-3.4,1.55) {$\pm2n$}; \node at (-3.4,1.15) {$\pm3n$}; \node at (-3.4,.55) {$\vdots$};
+  \node at (-2.2,2.35) {$1$}; \node at (-2.2,1.95) {$1\pm n$}; \node at (-2.2,1.55) {$1\pm2n$}; \node at (-2.2,1.15) {$1\pm3n$}; \node at (-2.2,.55) {$\vdots$};
+  \node at (-.8,1.35) {$\cdots$};
+  \node at (.0,2.35) {$a$}; \node at (.0,1.95) {$a\pm n$}; \node at (.0,1.55) {$a\pm2n$}; \node at (.0,1.15) {$a\pm3n$}; \node at (.0,.55) {$\vdots$};
+  \node at (2.1,1.35) {$\cdots$};
+  \node at (3.4,2.35) {$n-1$}; \node at (3.4,1.95) {$(n-1)\pm n$}; \node at (3.4,1.55) {$(n-1)\pm2n$}; \node at (3.4,1.15) {$(n-1)\pm3n$}; \node at (3.4,.55) {$\vdots$};
+  \node[right] at (4.2,1.35) {$\ZZ$};
+  \foreach \x/\lab in {-3.4/x^0,-2.2/x^1,0/x^a,3.4/x^{n-1}}{\draw[->] (\x,0)--(\x,-1.0); \node[below] at (\x,-1.0) {$\lab$};}
+  \node[right] at (4.2,-1.0) {$Z_n$};
+  \node at (3.8,-1.55) {图 2};
+\end{tikzpicture}
+\end{center}
+
+$Z_n$ 中的乘法就是 $x^a x^b=x^{a+b}$。对应的纤维为 $\overline a$、$\overline b$ 和 $\overline{a+b}$，所以纤维上的对应群运算为
+\[
+  \overline a\cdot\overline b=\overline{a+b}.
+\]
+这正是加法下的群 $\ZZ/n\ZZ$，它同构于 $\varphi$ 的像（即整个 $Z_n$）。
+
+这个群的单位元（$Z_n$ 中单位元上方的纤维）由 $\ZZ$ 中所有 $n$ 的倍数组成，即 $n\ZZ$，这是 $\ZZ$ 的一个子群；其余纤维只是这个子群的平移 $a+n\ZZ$。群运算也可直接定义为：从这些纤维中取代表元，在 $\ZZ$ 中相加，再取含有此和的纤维（这正是群 $\ZZ/n\ZZ$ 的原始定义）。从计算角度看，直接把代表元 $a$ 与 $b$ 相加来计算 $\overline a$ 与 $\overline b$ 的乘积，比先求这些纤维在 $\varphi$ 下的像（$x^a$ 与 $x^b$）、在 $H$ 中相乘（得到 $x^{a+b}$）、再取这个乘积上方的纤维要容易得多。
+
+我们先考虑同态及其纤维的一些基本性质。给同态 $\varphi:G\to H$ 位于 $H$ 的单位元上方的纤维一个名称：
+
+\noindent\textbf{定义.} 若 $\varphi:G\to H$ 是同态，则 $\varphi$ 的\emph{核}是集合
+\[
+  \{g\in G\mid \varphi(g)=1\},
+\]
+记为 $\ker\varphi$（这里 $1$ 是 $H$ 的单位元）。
+
+\medskip
+\noindent\textbf{命题 1.} 设 $G$ 和 $H$ 是群，$\varphi:G\to H$ 是同态。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\varphi(1_G)=1_H$，其中 $1_G$ 与 $1_H$ 分别为 $G$ 与 $H$ 的单位元。
+  \item 对所有 $g\in G$，$\varphi(g^{-1})=\varphi(g)^{-1}$。
+  \item 对所有 $n\in\ZZ$，$\varphi(g^n)=\varphi(g)^n$。
+  \item $\ker\varphi$ 是 $G$ 的子群。
+  \item $\im(\varphi)$，即 $G$ 在 $\varphi$ 下的像，是 $H$ 的子群。
+\end{enumerate}
+
+\begin{proof}
+(1) 由于
+\[
+  \varphi(1_G)=\varphi(1_G1_G)=\varphi(1_G)\varphi(1_G),
+\]
+由消去律得 $\varphi(1_G)=1_H$。
+
+(2) 由 (1)，
+\[
+  1_H=\varphi(1_G)=\varphi(gg^{-1})=\varphi(g)\varphi(g^{-1}).
+\]
+左乘 $\varphi(g)^{-1}$ 并化简，得结论。
+
+(3) 当 $n\in\ZZ^+$ 时由归纳法即可；负整数情形由 (2) 推出。
+
+(4) 由 (1)，$1_G\in\ker\varphi$，所以核非空。若 $x,y\in\ker\varphi$，则 $\varphi(x)=\varphi(y)=1_H$，于是
+\[
+  \varphi(xy^{-1})=\varphi(x)\varphi(y^{-1})
+  =\varphi(x)\varphi(y)^{-1}=1_H1_H^{-1}=1_H.
+\]
+所以 $xy^{-1}\in\ker\varphi$。由子群判别法，$\ker\varphi\leq G$。
+
+(5) 由 $\varphi(1_G)=1_H$，$H$ 的单位元属于 $\im(\varphi)$。若 $x,y\in\im(\varphi)$，设 $x=\varphi(a)$，$y=\varphi(b)$，则由 (2)，$y^{-1}=\varphi(b^{-1})$，所以
+\[
+  xy^{-1}=\varphi(a)\varphi(b^{-1})=\varphi(ab^{-1})
+\]
+仍在像中。由子群判别法，$\im(\varphi)\leq H$。
+\end{proof}
+
+现在可以定义与商群相关的术语。
+
+\noindent\textbf{定义.} 设 $\varphi:G\to H$ 是同态，其核为 $K$。\emph{商群}或\emph{因子群} $G/K$（读作 $G$ 模 $K$，或简称 $G$ mod $K$）是一个群，其元素是 $\varphi$ 的纤维，群运算定义如上：若 $X$ 是 $a$ 上方的纤维，$Y$ 是 $b$ 上方的纤维，则 $X$ 与 $Y$ 的乘积定义为 $ab$ 上方的纤维。
+
+记号强调：核 $K$ 是群 $G/K$ 中的一个单元素；下面的命题 2 将说明，正如上面 $\ZZ/n\ZZ$ 的例子一样，$G/K$ 的其他元素只是核 $K$ 的“平移”。因此我们可把 $G/K$ 看作由把 $K$ 压缩掉或“除掉”而得到（更精确地说，是模 $K$ 等价）。这解释了为何 $G/K$ 称为“商”群。
+
+上面关于商群 $G/K$ 的定义显式要求给出映射 $\varphi$，因为纤维的乘法先通过 $\varphi$ 投影到 $H$，在 $H$ 中相乘，再确定这个乘积上方的纤维。与 $\ZZ/n\ZZ$ 一样，也可直接用纤维中的代表元定义纤维乘法；这在计算上更简单，且不显式出现 $\varphi$。我们先证明同态的纤维可用同态核来表示，就像上面的例子中核为 $n\ZZ$，纤维为 $a+n\ZZ$ 的平移一样。
+
+\medskip
+\noindent\textbf{命题 2.} 设 $\varphi:G\to H$ 是群同态，核为 $K$。设 $X\in G/K$ 是 $a$ 上方的纤维，即 $X=\varphi^{-1}(a)$。则
+\begin{enumerate}[label=(\arabic*)]
+  \item 对任意 $u\in X$，有 $X=\{uk\mid k\in K\}$；
+  \item 对任意 $u\in X$，有 $X=\{ku\mid k\in K\}$。
+\end{enumerate}
+
+\begin{proof}
+证明 (1)，(2) 留作练习。取 $u\in X$，于是 $\varphi(u)=a$。令
+\[
+  uK=\{uk\mid k\in K\}.
+\]
+先证 $uK\subseteq X$。若 $k\in K$，则
+\[
+  \varphi(uk)=\varphi(u)\varphi(k)=\varphi(u)1=a,
+\]
+所以 $uk\in X$。反过来，设 $g\in X$，令 $k=u^{-1}g$。则
+\[
+  \varphi(k)=\varphi(u^{-1})\varphi(g)=\varphi(u)^{-1}\varphi(g)=a^{-1}a=1.
+\]
+因此 $k\in K$。又 $k=u^{-1}g$，故 $g=uk\in uK$。于是 $X=uK$。
+\end{proof}
+
+命题 2 中描述同态纤维的集合，可对 $G$ 的任意子群 $K$ 定义，不必假设它是某个同态的核（稍后我们会确定一个子群成为某个同态核的充要条件）。这些集合有专门名称。
+
+\noindent\textbf{定义.} 对任意 $N\leq G$ 和任意 $g\in G$，令
+\[
+  gN=\{gn\mid n\in N\},\qquad Ng=\{ng\mid n\in N\},
+\]
+分别称为 $N$ 在 $G$ 中的\emph{左陪集}和\emph{右陪集}。陪集中的任意元素称为该陪集的一个\emph{代表元}。
+
+我们已在命题 2 中看到，若 $N$ 是同态的核，且 $g_1$ 是陪集 $gN$ 的任意代表元，则 $g_1N=gN$（若 $g_1\in Ng$，则 $Ng_1=Ng$）。命题 4 会说明这一事实对任意子群 $N$ 都成立，这解释了“代表元”这个术语。
+
+若 $G$ 是加法群，我们写 $g+N$ 和 $N+g$ 分别表示代表元为 $g$ 的左、右陪集。一般地，可把左陪集 $gN$ 看作 $N$ 被 $g$ 左平移所得的集合。
+
+用这个定义来说，命题 2 表明同态的纤维是核的左陪集（也是核的右陪集），即商 $G/K$ 的元素是左陪集 $gK$，$g\in G$。在 $\ZZ/n\ZZ$ 的例子中，商群中的乘法也可用代表元来定义。下面的结果说明一般的 $G/K$ 中也如此（只要知道 $K$ 是某个同态的核）：两个左陪集 $X$ 和 $Y$ 在 $G/K$ 中的乘积，通过任取 $X$ 的代表元 $u$、$Y$ 的代表元 $v$，在 $G$ 中相乘，并取陪集 $(uv)K$ 来计算。
+
+\medskip
+\noindent\textbf{定理 3.} 设 $G$ 是群，$K$ 是从 $G$ 到另一群的某个同态的核。则 $K$ 在 $G$ 中的左陪集组成的集合，在运算
+\[
+  uK\circ vK=(uv)K
+\]
+下构成群 $G/K$。特别地，此运算是良定义的：若 $u_1$ 是 $uK$ 中任意元素，$v_1$ 是 $vK$ 中任意元素，则 $u_1v_1\in uvK$，即 $u_1v_1K=uvK$，所以乘法不依赖于陪集代表元的选择。把“左陪集”换成“右陪集”也有相同结论。
+
+\begin{proof}
+设 $X,Y\in G/K$，令 $Z=XY$。由命题 2(1)，$X,Y,Z$ 都是 $K$ 的左陪集。按假设，$K$ 是某个同态 $\varphi:G\to H$ 的核，所以 $X=\varphi^{-1}(a)$，$Y=\varphi^{-1}(b)$，其中 $a,b\in H$。根据 $G/K$ 中的运算定义，$Z=\varphi^{-1}(ab)$。任取 $X$、$Y$ 的代表元 $u$、$v$，则 $\varphi(u)=a$，$\varphi(v)=b$，且 $X=uK$、$Y=vK$。要证 $uv\in Z$。确实，
+\[
+  uv\in Z \Longleftrightarrow uv\in\varphi^{-1}(ab)
+  \Longleftrightarrow \varphi(uv)=ab
+  \Longleftrightarrow \varphi(u)\varphi(v)=ab,
+\]
+而最后一个等式成立。故 $uv\in Z$，因此 $Z=uvK$。这证明了对任意代表元 $u\in X$、$v\in Y$，$X$ 与 $Y$ 的乘积都是陪集 $uvK$。最后关于右陪集的断言由命题 2 中 $uK=Ku$、$vK=Kv$ 立即推出。
+\end{proof}
+
+用代表元作 $G/K$ 中的乘法，可如图 3 所示。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9, every node/.style={inner sep=1pt}]
+  \draw (-3.8,1) rectangle (3.8,2.55);
+  \foreach \x in {-3.1,-.6,2.6}{\draw (\x,1.1)--(\x,2.45);} 
+  \node at (.85,1.78) {$\cdots$};
+  \node at (-3.1,2.62) {$u$}; \node at (-.6,2.62) {$v$}; \node at (2.6,2.62) {$uv$};
+  \draw[dashed,->] (-3.0,2.35) .. controls (-2.0,2.95) and (-1.2,2.95) .. (-.65,2.35);
+  \draw[dashed,->] (-.55,2.35) .. controls (.4,2.95) and (1.7,2.95) .. (2.55,2.35);
+  \node[right] at (4.0,1.78) {$G$};
+  \draw (-3.8,0)--(3.8,0);
+  \foreach \x/\lab in {-3.1/a,-.6/b,2.6/ab}{\fill (\x,0) circle (1.7pt); \node[below] at (\x,0) {$\lab$}; \draw[->] (\x,1.0)--(\x,.13);} 
+  \draw[dashed,->] (-3.0,.3) .. controls (-2.0,.75) and (1.2,.75) .. (2.55,.3);
+  \draw[dashed,->] (-.55,.25) .. controls (.6,.55) and (1.55,.55) .. (2.55,.25);
+  \node[right] at (4.0,0) {$H$};
+  \node at (3.9,-.55) {图 3};
+\end{tikzpicture}
+\end{center}
+
+我们强调：乘法与所选代表元无关。也就是说，两个陪集 $X$ 和 $Y$ 的乘积（若群写作加法，则为和）是含有乘积 $uv$ 的陪集 $uvK$，其中 $u$ 和 $v$ 可分别任取为 $X$ 和 $Y$ 的代表元。只考虑某元素所在陪集，或“模 $K$ 化简”的过程，正是我们在 $\ZZ/n\ZZ$ 中一直在做的事情。表示包含代表元 $u$ 的陪集 $uK$ 的一个有用记号是 $\overline u$。用这个记号，商群 $G/K$ 可记为 $\overline G$，元素 $\overline u$ 与 $\overline v$ 的乘积就是包含 $uv$ 的陪集，即 $\overline{uv}$。此记号也强调：$G/K$ 中的陪集 $uK$ 是 $G/K$ 中的元素 $\overline u$。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 本章开头从 $\ZZ$ 到 $Z_n$ 的同态 $\varphi$ 的纤维是核 $n\ZZ$ 的左陪集（也是右陪集）$a+n\ZZ$。定理 3 证明这些陪集在代表元相加下构成一个群，即 $\ZZ/n\ZZ$，这解释了该群的记号。此群自然同构于它在 $\varphi$ 下的像，所以我们重新得到第 2 章的同构 $\ZZ/n\ZZ\cong Z_n$。
+  \item 若 $\varphi:G\to H$ 是同构，则 $K=1$，$\varphi$ 的纤维是 $G$ 的单元素子集，因此 $G/1\cong G$。
+  \item 设 $G$ 是任意群，令 $H=1$ 为阶 $1$ 的群，定义 $\varphi:G\to H$ 为 $\varphi(g)=1$。显然 $\varphi$ 是同态，称为\emph{平凡同态}。此时 $\ker\varphi=G$，而 $G/G$ 是只有一个元素 $G$ 的群，即 $G/G\cong Z_1=\{1\}$。
+  \item 设 $G=\RR^2$（向量加法），$H=\RR$（加法），定义
+  \[
+    \varphi:\RR^2\to\RR,
+    \qquad \varphi((x,y))=x.
+  \]
+  这是到 $x$ 轴的投影。它是同态，因为
+  \[
+    \varphi((x_1,y_1)+(x_2,y_2))=x_1+x_2
+    =\varphi((x_1,y_1))+\varphi((x_2,y_2)).
+  \]
+  其核为
+  \[
+    \ker\varphi=\{(x,y)\mid x=0\},
+  \]
+  即 $y$ 轴。$a\in\RR$ 上方的纤维是直线 $x=a$，也就是以 $(a,0)$（或任何投影到 $a$ 的点）为代表元的核的陪集：
+  \[
+    (a,0)+(y\text{轴}).
+  \]
+  因此图 1 在此例中成为图 4。
+
+\begin{center}
+\begin{tikzpicture}[scale=.75, every node/.style={inner sep=1pt}]
+  \draw (-4,0) rectangle (4,3.1);
+  \draw[->] (-3.6,1.55)--(3.7,1.55) node[right] {$x$};
+  \draw[->] (0,.25)--(0,2.9) node[above] {$y$};
+  \foreach \x/\lab in {-2/-1,0/0,1.3/1,3/a}{\draw (\x,.4)--(\x,2.7); \node[below] at (\x,1.45) {$\lab$};}
+  \node[right] at (4.2,1.55) {$\RR^2$};
+  \foreach \x/\lab in {-2/-1,0/0,1.3/1,3/a}{\draw[->] (\x,0)--(\x,-1.1);}
+  \draw[->] (-3.6,-1.1)--(3.7,-1.1) node[right] {$\RR$};
+  \foreach \x/\lab in {-2/-1,0/0,1.3/1,3/a}{\fill (\x,-1.1) circle (1.7pt); \node[below] at (\x,-1.1) {$\lab$};}
+  \node at (3.6,-1.75) {图 4};
+\end{tikzpicture}
+\end{center}
+
+  群运算（此处为加法）既可通过 $\varphi$ 描述：直线 $x=a$ 与直线 $x=b$ 的和是直线 $x=a+b$；也可用陪集代表元直接描述：含 $(a,y_1)$ 的竖直线与含 $(b,y_2)$ 的竖直线之和，是含 $(a+b,y_1+y_2)$ 的竖直线。注意代表元的选择不重要（即 $y$ 坐标不重要）。
+  \item （一个 $G$ 非阿贝尔的例子。）令 $G=Q_8$，令 $H=V_4$ 为克莱因四元群。定义
+  \[
+    \varphi:Q_8\to V_4,
+    \qquad \varphi(\pm1)=1,
+    \quad \varphi(\pm i)=a,
+    \quad \varphi(\pm j)=b,
+    \quad \varphi(\pm k)=c.
+  \]
+  验证 $\varphi$ 是同态留作练习；利用对称性可减少检查 $\varphi(xy)=\varphi(x)\varphi(y)$ 的工作。显然 $\varphi$ 是满射，且 $\ker\varphi=\{\pm1\}$。可把 $\varphi$ 看作 $Q_8$ 上的一个“绝对值”函数；其纤维是
+  \[
+    E=\{\pm1\},\quad A=\{\pm i\},\quad B=\{\pm j\},\quad C=\{\pm k\},
+  \]
+  它们在 $Q_8/\langle -1\rangle$ 中分别被压缩为 $1,a,b,c$，并且这些纤维正是 $\ker\varphi$ 的左陪集（也是右陪集）。
+\end{enumerate}
+
+由定理 3，若给定群 $G$ 的子群 $K$，并知道 $K$ 是某个同态的核，则可不借助该同态而通过乘法 $uK\cdot vK=uvK$ 定义商 $G/K$。这引出一个问题：是否可对 $G$ 的任意子群 $N$ 都类似地定义商群 $G/N$？答案一般是否定的，因为这种乘法一般不是良定义的（见下面命题 5）。事实上，我们将看到，$N$ 的陪集集合能成为群，当且仅当 $N$ 是某个同态的核（命题 7）。我们也会给出判断一个子群 $N$ 是否为这种核的准则，这就是正规子群的概念；后续章节将研究非正规子群。
+
+我们先说明任意子群的陪集都会分划 $G$（即并为全 $G$，且不同陪集不交）。
+
+\medskip
+\noindent\textbf{命题 4.} 设 $N$ 是群 $G$ 的任意子群。$N$ 在 $G$ 中的左陪集组成 $G$ 的一个分划。此外，对所有 $u,v\in G$，
+\[
+  uN=vN\quad\Longleftrightarrow\quad v^{-1}u\in N,
+\]
+特别地，$uN=vN$ 当且仅当 $u$ 和 $v$ 是同一陪集的代表元。
+
+\begin{proof}
+首先，由于 $N$ 是 $G$ 的子群，$1\in N$。因此对所有 $g\in G$，$g=g\cdot1\in gN$，所以
+\[
+  G=\bigcup_{g\in G} gN.
+\]
+为证明不同左陪集不交，设 $uN\cap vN\neq\varnothing$。取 $x\in uN\cap vN$，写作
+\[
+  x=un=vm,
+\]
+其中 $n,m\in N$。在等式右端两边右乘 $n^{-1}$，得
+\[
+  u=vmn^{-1}=vm_1,
+\]
+其中 $m_1=mn^{-1}\in N$。于是对 $uN$ 的任意元素 $ut$（$t\in N$），有
+\[
+  ut=(vm_1)t=v(m_1t)\in vN.
+\]
+故 $uN\subseteq vN$。交换 $u$ 与 $v$ 可得 $vN\subseteq uN$。因此有非空交的两个陪集相等。
+
+由前面的结论，$uN=vN$ 当且仅当 $u\in vN$，当且仅当 $u=vn$ 对某个 $n\in N$ 成立，当且仅当 $v^{-1}u\in N$。最后，$v\in uN$ 等价于说 $v$ 是 $uN$ 的代表元，所以 $uN=vN$ 当且仅当 $u$ 与 $v$ 是同一个陪集的代表元。
+\end{proof}
+
+\medskip
+\noindent\textbf{命题 5.} 设 $G$ 是群，$N$ 是 $G$ 的子群。
+\begin{enumerate}[label=(\arabic*)]
+  \item 在 $N$ 的左陪集集合上由
+  \[
+    uN\cdot vN=(uv)N
+  \]
+  描述的运算是良定义的，当且仅当对所有 $g\in G$ 和所有 $n\in N$，都有 $gng^{-1}\in N$。
+  \item 若上述运算是良定义的，则它使 $N$ 的左陪集集合成为一个群。特别地，该群的单位元是陪集 $1N$，$gN$ 的逆是 $g^{-1}N$，即 $(gN)^{-1}=g^{-1}N$。
+\end{enumerate}
+
+\begin{proof}
+(1) 先假设该运算良定义。取任意 $g\in G$ 与 $n\in N$。令 $u=1$，$u_1=n$，且 $v=v_1=g^{-1}$。由良定义性得
+\[
+  1g^{-1}N=ng^{-1}N,
+\]
+即 $g^{-1}N=ng^{-1}N$。由于 $1\in N$，$ng^{-1}\in ng^{-1}N$，所以 $ng^{-1}\in g^{-1}N$，即 $ng^{-1}=g^{-1}n_1$，其中 $n_1\in N$。左乘 $g$，得 $gng^{-1}=n_1\in N$。
+
+反过来，假设 $gng^{-1}\in N$ 对所有 $g\in G$ 和 $n\in N$ 成立。设 $u_1\in uN$，$v_1\in vN$。写作 $u_1=un$，$v_1=vm$，其中 $n,m\in N$。要证 $u_1v_1\in uvN$：
+\[
+  u_1v_1=(un)(vm)=u(vv^{-1})nvm=(uv)(v^{-1}nv)m=(uv)(n_1m),
+\]
+其中 $n_1=v^{-1}nv\in N$。由于 $N$ 对乘积封闭，$n_1m\in N$。故 $u_1v_1=(uv)n_2$，其中 $n_2\in N$。于是左陪集 $uvN$ 与 $u_1v_1N$ 有公共元素 $u_1v_1$，由命题 4 它们相等。运算良定义。
+
+(2) 若陪集上的运算良定义，则群公理由 $G$ 中对应公理诱导。例如，对所有 $u,v,w\in G$，
+\begin{align*}
+  (uN)(vNwN)&=uN(vwN)=u(vw)N\\
+  &=(uv)wN=(uNvN)(wN),
+\end{align*}
+因为 $u(vw)=(uv)w$ 在 $G$ 中成立。由乘法定义可立即看出单位元是 $1N$，$gN$ 的逆是 $g^{-1}N$。
+\end{proof}
+
+如前所述，满足命题 5 条件、使商 $G/N$ 自然具有群结构的子群 $N$ 有专门名称。
+
+\noindent\textbf{定义.} 元素 $gng^{-1}$ 称为 $n\in N$ 关于 $g$ 的\emph{共轭}。集合
+\[
+  gNg^{-1}=\{gng^{-1}\mid n\in N\}
+\]
+称为 $N$ 关于 $g$ 的\emph{共轭}。若 $gNg^{-1}=N$，则称 $g$ \emph{正规化} $N$。群 $G$ 的子群 $N$ 称为\emph{正规子群}，如果 $G$ 的每个元素都正规化 $N$，即对所有 $g\in G$ 都有 $gNg^{-1}=N$。若 $N$ 是 $G$ 的正规子群，记为 $N\normal G$。
+
+注意，当 $N$ 是正规子群时，$G$ 的结构反映在商 $G/N$ 的结构中（例如，$G/N$ 中乘法的结合律由 $G$ 中的结合律诱导，$G/N$ 中的逆由 $G$ 中的逆诱导）。第 3 节讨论同构定理时，我们会看到更多 $G$ 与其商 $G/N$ 的关系。
+
+把上面的结果概括为：
+
+\medskip
+\noindent\textbf{定理 6.} 设 $N$ 是群 $G$ 的子群。以下条件等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item $N\normal G$；
+  \item $N_G(N)=G$（回忆 $N_G(N)$ 是 $N$ 在 $G$ 中的正规化子）；
+  \item 对所有 $g\in G$，$gN=Ng$；
+  \item 命题 5 中描述的左陪集运算使左陪集集合成为群；
+  \item 对所有 $g\in G$，$gNg^{-1}\subseteq N$。
+\end{enumerate}
+
+\begin{proof}
+困难的等价性已在上面完成；其余留作练习。
+\end{proof}
+
+在实际中，人们尽量减少判断某个子群 $N$ 是否在 $G$ 中正规所需的计算。特别地，应尽量避免对所有 $n\in N$ 和 $g\in G$ 计算全部共轭 $gng^{-1}$。例如，$N$ 中元素本身正规化 $N$，因为 $N$ 是子群。此外，若已知 $N$ 的一组生成元，则只需检查这些生成元的所有共轭都在 $N$ 中，即可证明 $N$ 是正规子群（这是因为乘积的共轭是共轭的乘积，逆的共轭是共轭的逆）——见后面的练习 26。类似地，若已知 $G$ 的生成元，只需检查 $G$ 的这些生成元正规化 $N$。特别地，若 $N$ 和 $G$ 的生成元都已知，则只需检查少量共轭。如果 $N$ 是有限群，则只需检查 $N$ 的一组生成元关于 $G$ 的一组生成元的共轭仍在 $N$ 中（练习 29）。最后，常常可以直接证明 $N_G(N)=G$ 而不作过多计算，从而证明 $N$ 是 $G$ 的正规子群。
+
+现在证明正规子群恰好就是前面所说的同态核。
+
+\medskip
+\noindent\textbf{命题 7.} 群 $G$ 的子群 $N$ 是正规子群，当且仅当它是某个同态的核。
+
+\begin{proof}
+若 $N$ 是同态 $\varphi$ 的核，则命题 2 表明 $N$ 的左陪集与右陪集相同（并且都是 $\varphi$ 的纤维）。由定理 6(3)，$N$ 是正规子群。
+
+反过来，若 $N\normal G$，令 $H=G/N$，并定义
+\[
+  \pi:G\to G/N,
+  \qquad \pi(g)=gN.
+\]
+由 $G/N$ 中运算的定义，
+\[
+  \pi(g_1g_2)=(g_1g_2)N=g_1N\,g_2N=\pi(g_1)\pi(g_2),
+\]
+故 $\pi$ 是同态。并且
+\[
+  \ker\pi=\{g\in G\mid \pi(g)=1N\}
+  =\{g\in G\mid gN=1N\}=N.
+\]
+所以 $N$ 是同态 $\pi$ 的核。
+\end{proof}
+
+上面构造的、把正规子群 $N$ 表示为某个同态的核的同态有一个名称：
+
+\noindent\textbf{定义.} 设 $N\normal G$。同态
+\[
+  \pi:G\to G/N,
+  \qquad \pi(g)=gN
+\]
+称为 $G$ 到 $G/N$ 上的\emph{自然投影（同态）}\footnote{“自然”一词在范畴论中有精确含义；这里我们用它表示这个同态的定义是“坐标无关”的，即只由元素本身描述，而不是由 $G$ 或 $N$ 的生成元描述。}。若 $\overline H\leq G/N$，则 $\overline H$ 在 $G$ 中的\emph{完全原像}是它在自然投影同态下的原像。
+
+商 $G/N$ 的一个子群的完全原像是 $G$ 的子群，并且包含 $N$，因为 $N$ 的元素映到单位元，而单位元属于任意子群。第 3 节的同构定理将说明，包含 $N$ 的 $G$ 的子群与商群 $G/N$ 的子群之间有一种自然对应。
+
+现在我们有了一个“内部”准则，可精确判断 $G$ 的子群 $N$ 何时是某个同态的核，即
+\[
+  N_G(N)=G.
+\]
+因此可把子群 $N$ 的正规化子看作 $N$ “离正规子群有多近”的一种度量（这解释了正规化子这个名称）。要记住，正规性是一种\emph{嵌入性质}，也就是说，它取决于 $N$ 与 $G$ 的关系，而不只取决于 $N$ 自身的内部结构（同一个群 $N$ 可以是 $G$ 的正规子群，但在包含 $G$ 的更大群中并不正规）。
+
+我们从存在一个从 $G$ 到 $H$ 的同态 $\varphi$ 开始讨论商群，说明这个同态的核是 $G$ 的正规子群 $N$，并且商 $G/N$（最初用纤维定义）自然同构于 $G$ 在 $H$ 中的像。反过来，若 $N\normal G$，则可以找到一个群 $H$（即 $G/N$）和同态 $\pi:G\to H$，使得 $\ker\pi=N$（即自然投影）。因此，研究 $G$ 的同态像等价于研究 $G$ 的商群；我们将用同态来产生正规子群，也反过来用正规子群来产生同态。
+
+我们借助同态来发展商群理论，而不是简单地先定义正规子群及其商群，是为了强调：商中的元素是原群 $G$ 的子集（即核 $N$ 的纤维或陪集）。前面的图示也强调，$N$（及其陪集）被投影（或压缩）为商 $G/N$ 中的单个元素。商群 $G/N$ 中的计算通过从相关陪集中取代表元完成。
+
+下面给出一些正规子群及其商群的例子。
+
+\paragraph{例}
+设 $G$ 是群。
+\begin{enumerate}[label=(\arabic*)]
+  \item 子群 $1$ 与 $G$ 总是 $G$ 的正规子群；$G/1\cong G$ 且 $G/G\cong1$。
+  \item 若 $G$ 是阿贝尔群，则 $G$ 的任意子群 $N$ 都正规，因为对所有 $g\in G$ 与 $n\in N$，
+  \[
+    gng^{-1}=gg^{-1}n=n\in N.
+  \]
+  注意重要的是 $G$ 阿贝尔，而不是仅仅 $N$ 阿贝尔。随着子群 $N$ 的不同，$G/N$ 的结构也可能不同。例如，若 $G=\ZZ$，则 $G$ 的每个子群 $N$ 都是循环的：
+  \[
+    N=\langle n\rangle=\langle -n\rangle=n\ZZ,
+    \qquad n\in\ZZ,
+  \]
+  且 $G/N=\ZZ/n\ZZ$ 是以 $\overline1=1+n\ZZ$ 为生成元的循环群。
+
+  再设 $G=Z_k$ 是阶为 $k$ 的循环群，$x$ 是 $G$ 的生成元，$N\normal G$。由命题 2.6，$N=\langle x^d\rangle$，其中 $d$ 是属于 $N$ 的 $x$ 的最小正幂。于是
+  \[
+    G/N=\{gN\mid g\in G\}=\{x^aN\mid a\in\ZZ\}.
+  \]
+  由于 $x^aN=(xN)^a$，得到 $G/N=\langle xN\rangle$，即 $G/N$ 是以 $xN$ 为生成元的循环群。综上：循环群的商群仍是循环群；且 $G$ 的生成元在商中的像是商群的生成元。若 $G$ 还是有限循环群且 $N\normal G$，则 $|G/N|=|G|/|N|$ 给出商群阶的公式。
+  \item 若 $N\leq Z(G)$，则 $N\normal G$，因为对所有 $g\in G$ 与 $n\in N$，$gng^{-1}=n\in N$。这推广了上一例（其中 $Z(G)=G$）。因此特别地 $Z(G)\normal G$。
+
+  子群 $\langle -1\rangle$ 在 $Q_8$ 中先前已被看作某个同态的核；现在由于 $\langle -1\rangle=Z(Q_8)$，可由另一种方式得到其正规性。我们已看到 $Q_8/\langle -1\rangle\cong V_4$。
+
+  令 $G=D_8$，令 $Z=\langle r^2\rangle=Z(D_8)$。由于 $Z=\{1,r^2\}$，每个陪集 $gZ$ 是二元素集合 $\{g,gr^2\}$。这些陪集把 $D_8$ 的 $8$ 个元素分成四对，故 $Z$ 在 $D_8$ 中有四个（互不相交的）左陪集：
+  \[
+    \overline1=1Z,\quad \overline r=rZ,
+    \quad \overline s=sZ,
+    \quad \overline{rs}=rsZ.
+  \]
+  由阶 $4$ 群的分类（第 2.5 节练习 10），$D_8/Z(D_8)$ 同构于 $Z_4$ 或 $V_4$。为判断是哪一个，只需注意
+  \[
+    \overline r^2=r^2Z=Z=\overline1,
+    \quad \overline s^2=s^2Z=Z=\overline1,
+    \quad \overline{rs}^2=(rs)^2Z=Z=\overline1.
+  \]
+  所以商中每个非单位元都有阶 $2$。特别地，商中没有阶 $4$ 的元素，因此 $D_8/Z(D_8)$ 不是循环群，故 $D_8/Z(D_8)\cong V_4$。
+\end{enumerate}
+
+\subsection*{练习}
+设 $G$ 和 $H$ 是群。
+\begin{enumerate}[label=\arabic*.]
+  \item 设 $\varphi:G\to H$ 是同态，$E$ 是 $H$ 的子群。证明 $\varphi^{-1}(E)\leq G$（即同态下子群的原像或拉回是子群）。若 $E\normal H$，证明 $\varphi^{-1}(E)\normal G$。推出 $\ker\varphi\normal G$。
+  \item 设 $\varphi:G\to H$ 是群同态，核为 $K$，且 $a,b\in\varphi(G)$。设 $X\in G/K$ 是 $a$ 上方的纤维，$Y$ 是 $b$ 上方的纤维，即 $X=\varphi^{-1}(a)$、$Y=\varphi^{-1}(b)$。固定 $X$ 的一个元素 $u$。证明若 $XY=Z$ 在商群 $G/K$ 中成立，且 $w\in Z$，则存在某个 $v\in Y$ 使得 $uv=w$。[证明 $u^{-1}w\in Y$。]
+  \item 设 $A$ 是阿贝尔群，$B$ 是 $A$ 的子群。证明 $A/B$ 是阿贝尔群。给出一个非阿贝尔群 $G$，它含有一个真正规子群 $N$，使得 $G/N$ 是阿贝尔群。
+  \item 证明在商群 $G/N$ 中，对所有 $a\in\ZZ$，$(gN)^a=g^aN$。
+  \item 用上一题证明，$G/N$ 中元素 $gN$ 的阶为 $n$，其中 $n$ 是使 $g^n\in N$ 的最小正整数；若不存在这样的正整数，则 $gN$ 有无限阶。举例说明 $gN$ 在 $G/N$ 中的阶可能严格小于 $g$ 在 $G$ 中的阶。
+  \item 定义 $\varphi:\RR^\times\to\{\pm1\}$ 为 $\varphi(x)=x/|x|$。描述 $\varphi$ 的纤维并证明 $\varphi$ 是同态。
+  \item 定义 $\pi:\RR^2\to\RR$ 为 $\pi((x,y))=x+y$。证明 $\pi$ 是满同态，并几何地描述其核与纤维。
+  \item 设 $\varphi:\RR^\times\to\RR^\times$ 为 $x\mapsto |x|$。证明 $\varphi$ 是同态，求其像，并描述其核与纤维。
+  \item 定义 $\varphi:\CC^\times\to\RR^\times$ 为 $\varphi(a+bi)=a^2+b^2$。证明 $\varphi$ 是同态，求其像，并几何地描述其核与纤维（作为平面中的子集）。
+  \item 令 $\varphi:\ZZ/8\ZZ\to\ZZ/4\ZZ$ 为 $\varphi(\overline a)=\overline a$。说明这是良定义的满同态，并明确描述其纤维与核（说明良定义性时要注意 $\overline a$ 在定义域与值域中的含义不同）。
+  \item 设 $F$ 是域，令
+  \[
+    G=\left\{\begin{pmatrix}a&b\\0&c\end{pmatrix}\mid a,b,c\in F,
+    \ ac\neq0\right\}\leq \GL_2(F).
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明映射 $\begin{pmatrix}a&b\\0&c\end{pmatrix}\mapsto a$ 是从 $G$ 到 $F^\times$ 的满同态。描述其纤维与核。
+    \item 证明映射 $\begin{pmatrix}a&b\\0&c\end{pmatrix}\mapsto (a,c)$ 是从 $G$ 到 $F^\times\times F^\times$ 的满同态。描述其纤维与核。
+    \item 令 $H=\left\{\begin{pmatrix}1&b\\0&1\end{pmatrix}\mid b\in F\right\}$。证明 $H$ 同构于 $F$ 的加法群。
+  \end{enumerate}
+  \item 设 $G$ 为实数加法群，$H$ 为绝对值为 $1$ 的复数乘法群（复平面中的单位圆 $S^1$），令 $\varphi:G\to H$ 为同态 $\varphi:r\mapsto e^{2\pi ir}$。在实线上画出位于 $\ker\varphi$ 中的点。类似地描述 $\varphi$ 在 $H$ 的点 $-1$、$i$ 和 $e^{4\pi i/3}$ 上方纤维中的元素。（这个同态的图 1 通常用下面的图 5 表示。）
+
+\begin{center}
+\begin{tikzpicture}[scale=.72, every node/.style={inner sep=1pt}]
+  \draw[domain=0:720,smooth,variable=\t] plot ({.009*\t*cos(\t)},{.009*\t*sin(\t)+1.8});
+  \node[right] at (2.6,1.8) {$G=\RR$};
+  \draw[->] (0,.75)--(0,-.25) node[midway,right] {$\varphi$};
+  \draw (0,-1.0) ellipse (1.9 and .55);
+  \node[right] at (2.2,-1.0) {$H=S^1$};
+  \node at (2.6,-1.7) {图 5};
+\end{tikzpicture}
+\end{center}
+  \item 把前一题中的映射换成 $r\mapsto e^{4\pi ir}$，重复前一题。
+  \item 考虑加法商群 $\QQ/\ZZ$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $\QQ/\ZZ$ 的每个陪集都含有唯一一个满足 $0\leq q<1$ 的代表元 $q\in\QQ$。
+    \item 说明 $\QQ/\ZZ$ 的每个元素都有有限阶，但其中有任意大阶的元素。
+    \item 说明 $\QQ/\ZZ$ 是 $\RR/\ZZ$ 的挠子群（参见第 2.1 节练习 6）。
+    \item 证明 $\QQ/\ZZ$ 同构于 $\CC^\times$ 中单位根的乘法群。
+  \end{enumerate}
+  \item 证明可除阿贝尔群关于任意真子群的商仍可除。推出 $\QQ/\ZZ$ 可除（参见第 2.4 节练习 19）。
+  \item 设 $G$ 是群，$N\normal G$，令 $\overline G=G/N$。证明若 $G=\langle x,y\rangle$，则 $\overline G=\langle\overline x,\overline y\rangle$。更一般地，若 $G=\langle S\rangle$，其中 $S$ 是 $G$ 的任意子集，则 $\overline G=\langle\overline S\rangle$。
+  \item 设 $G$ 是阶为 $16$ 的二面体群
+  \[
+    G=\langle r,s\mid r^8=s^2=1,rs=sr^{-1}\rangle,
+  \]
+  令 $\overline G=G/\langle r^4\rangle$。证明并完成以下内容：
+  \begin{enumerate}[label=(\alph*)]
+    \item $|\overline G|=8$。
+    \item 将 $\overline G$ 的每个元素表示成 $\overline s^{\,a}\overline r^{\,b}$ 的形式。
+    \item 求 (b) 中各元素的阶。
+    \item 把 $rs$、$sr^{-2}s$、$s^{-1}r^{-1}sr$ 写成 (b) 中的形式。
+    \item 证明 $\overline H=\langle\overline s,\overline r^{\,2}\rangle$ 是 $\overline G$ 的正规子群，且 $\overline H\cong V_4$。描述 $\overline H$ 在 $G$ 中的完全原像的同构类型。
+    \item 求 $\overline G$ 的中心，并描述 $\overline G/Z(\overline G)$ 的同构类型。
+  \end{enumerate}
+  \item 设 $G$ 是阶为 $16$ 的拟二面体群（其格在第 2.5 节练习 11 中计算过）：
+  \[
+    G=\langle\sigma,\tau\mid \sigma^8=\tau^2=1,
+    \ \sigma\tau=\tau\sigma^3\rangle,
+  \]
+  并令 $\overline G=G/\langle\sigma^4\rangle$，即 $G$ 关于由 $\sigma^4$ 生成的子群的商（这个子群是 $G$ 的中心，因而正规）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $|\overline G|=8$。
+    \item 将 $\overline G$ 的每个元素表示成 $\overline\tau^{\,a}\overline\sigma^{\,b}$ 的形式，其中 $a,b$ 为某些整数。
+    \item 求 (b) 中列出的 $\overline G$ 的每个元素的阶。
+    \item 把下列每个元素写成 (b) 中的形式 $\overline\tau^{\,a}\overline\sigma^{\,b}$：$\sigma\tau$、$\tau\sigma^{-2}\tau$、$\tau^{-1}\sigma^{-1}\tau\sigma$。
+    \item 证明 $\overline G\cong D_8$。
+  \end{enumerate}
+  \item 设 $G$ 是第 2.5 节练习 14 中阶为 $16$ 的模群（其格在该练习中计算过）：
+  \[
+    G=\langle u,v\mid u^2=v^8=1,
+    \ vu=uv^5\rangle,
+  \]
+  并令 $\overline G=G/\langle v^4\rangle$，即 $G$ 关于由 $v^4$ 生成的子群的商（这个子群包含在 $G$ 的中心中，因而正规）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $|\overline G|=8$。
+    \item 将 $\overline G$ 的每个元素表示成 $\overline u^{\,a}\overline v^{\,b}$ 的形式，其中 $a,b$ 为某些整数。
+    \item 求 (b) 中列出的 $\overline G$ 的每个元素的阶。
+    \item 把下列每个元素写成 (b) 中的形式 $\overline u^{\,a}\overline v^{\,b}$：$vu$、$uv^{-2}u$、$u^{-1}v^{-1}uv$。
+    \item 证明 $\overline G$ 是阿贝尔群，并且同构于 $Z_2\times Z_4$。
+  \end{enumerate}
+  \item 设 $G\cong\ZZ/24\ZZ$，令 $\overline G=G/\langle\overline{12}\rangle$，其中为简化记号仍写 $\overline a$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $\overline G=\{\overline0,\overline1,\ldots,\overline{11}\}$。
+    \item 求 $\overline G$ 中每个元素的阶。
+    \item 证明 $\overline G\cong\ZZ/12\ZZ$。
+  \end{enumerate}
+  \item 令 $G=Z_4\times Z_4$，用以下生成元与关系给出：
+  \[
+    G=\langle x,y\mid x^4=y^4=1,
+    \ xy=yx\rangle.
+  \]
+  令 $\overline G=G/\langle x^2y^2\rangle$（注意阿贝尔群 $G$ 的每个子群都是正规子群）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $|\overline G|=8$。
+    \item 将 $\overline G$ 的每个元素表示成 $\overline x^{\,a}\overline y^{\,b}$ 的形式，其中 $a,b$ 为某些整数。
+    \item 求 (b) 中列出的 $\overline G$ 的每个元素的阶。
+    \item 证明 $\overline G\cong Z_4\times Z_2$。
+  \end{enumerate}
+  \item \begin{enumerate}[label=(\alph*)]
+    \item 证明若 $H$ 和 $K$ 是群 $G$ 的正规子群，则交 $H\cap K$ 也是 $G$ 的正规子群。
+    \item 证明任意非空正规子群族的交仍是正规子群（不要假设该族可数）。
+  \end{enumerate}
+  \item 证明任意非空正规子群族的并（见第 2.5 节的 join，即生成子群）仍是正规子群。
+  \item 证明若 $N\normal G$，$H$ 是 $G$ 的任意子群，则 $N\cap H\normal H$。
+  \item \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G$ 的子群 $N$ 正规，当且仅当对所有 $g\in G$，$gNg^{-1}\subseteq N$。
+    \item 令 $G=\GL_2(\QQ)$，令 $N$ 为对角线为 $1$、上三角且整数项的矩阵子群，令 $g=\operatorname{diag}(2,1)$。说明 $gNg^{-1}\subseteq N$，但 $g$ 不正规化 $N$。
+  \end{enumerate}
+  \item 设 $a,b\in G$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $ab$ 的共轭等于 $a$ 的共轭与 $b$ 的共轭的乘积。证明 $a$ 与任意一个共轭元素的阶相同。
+    \item 证明 $a^{-1}$ 的共轭等于 $a$ 的共轭的逆。
+    \item 若 $N=\langle S\rangle$，证明若对所有 $g\in G$，$gSg^{-1}\subseteq N$，则 $N\normal G$。
+    \item 推出若 $N=\langle x\rangle$ 是循环群，则 $N$ 在 $G$ 中正规，当且仅当对每个 $g\in G$，$gxg^{-1}=x^k$ 对某个 $k\in\ZZ$ 成立。
+    \item 设 $n$ 是正整数。证明由 $G$ 中所有阶为 $n$ 的元素生成的子群 $N$ 是 $G$ 的正规子群。
+  \end{enumerate}
+  \item 设 $N$ 是群 $G$ 的有限子群。说明 $gNg^{-1}\subseteq N$ 当且仅当 $gNg^{-1}=N$。推出
+  \[
+    N_G(N)=\{g\in G\mid gNg^{-1}\subseteq N\}.
+  \]
+  \item 设 $N$ 是 $G$ 的有限子群，且 $N=\langle S\rangle$。证明 $g\in G$ 正规化 $N$ 当且仅当 $gSg^{-1}\subseteq N$。
+  \item 设 $N$ 是 $G$ 的有限子群，且 $G=\langle T\rangle$、$N=\langle S\rangle$。证明 $N\normal G$ 当且仅当对所有 $t\in T$ 和 $s\in S$，$tst^{-1}\in N$。
+  \item 设 $N\leq G$，$g\in G$。证明 $gN=Ng$ 当且仅当 $g\in N_G(N)$。
+  \item 证明若 $H\leq G$ 且 $N\normal H$，则 $H\leq N_G(N)$。推出 $N_G(N)$ 是 $G$ 中使 $N$ 为正规子群的最大子群。
+  \item 证明 $Q_8$ 的每个子群都是正规的。对每个子群，求相应商群的同构类型。
+  \item 求 $D_8$ 的所有正规子群，并对每个正规子群求相应商群的同构类型。
+  \item 令
+  \[
+    D_{2n}=\langle r,s\mid r^n=s^2=1,rs=sr^{-1}\rangle
+  \]
+  是阶 $2n$ 的通常二面体群表示，令 $k$ 是整除 $n$ 的正整数。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\langle r^k\rangle$ 是 $D_{2n}$ 的正规子群。
+    \item 证明 $D_{2n}/\langle r^k\rangle\cong D_{2k}$。
+  \end{enumerate}
+  \item 证明 $\SL_n(F)\normal\GL_n(F)$，并描述商群的同构类型（参见第 2.1 节练习 9）。
+  \item 证明若 $G/Z(G)$ 是循环群，则 $G$ 是阿贝尔群。[若 $G/Z(G)$ 以 $xZ(G)$ 为生成元，说明 $G$ 的每个元素都可写成 $x^az$，其中 $a\in\ZZ$，$z\in Z(G)$。]
+  \item 设 $A$ 与 $B$ 是群。说明 $\{(a,1)\mid a\in A\}$ 是 $A\times B$ 的正规子群，且商群同构于 $B$。
+  \item 设 $A$ 是阿贝尔群，$D=\{(a,a)\mid a\in A\}$ 是 $A\times A$ 的对角子群。证明 $D\normal A\times A$ 且 $(A\times A)/D\cong A$。
+  \item 设 $A=S_3$ 是非阿贝尔群，$D=\{(a,a)\mid a\in A\}$ 是 $A\times A$ 的对角子群。证明 $D$ 不是 $A\times A$ 的正规子群。
+  \item 设 $G$ 是群，$N\normal G$，令 $\overline G=G/N$。证明 $\overline x$ 与 $\overline y$ 在 $\overline G$ 中交换，当且仅当 $x^{-1}y^{-1}xy\in N$。（元素 $x^{-1}y^{-1}xy$ 称为 $x$ 与 $y$ 的\emph{交换子}，记为 $[x,y]$。）
+  \item 设 $G$ 是群。证明
+  \[
+    N=\langle x^{-1}y^{-1}xy\mid x,y\in G\rangle
+  \]
+  是 $G$ 的正规子群，且 $G/N$ 是阿贝尔群（$N$ 称为 $G$ 的\emph{交换子子群}）。
+  \item 假设 $H$ 与 $K$ 都是 $G$ 的正规子群且 $H\cap K=1$。证明对所有 $x\in H$ 与 $y\in K$，$xy=yx$。[证明 $x^{-1}y^{-1}xy\in H\cap K$。]
+  \item 设 $\mathcal P=\{A_i\mid i\in I\}$ 是 $G$ 的一个分划，并假设 $\mathcal P$ 在如下“商运算”下成为群：计算 $A_i$ 与 $A_j$ 的乘积时，任取 $a_i\in A_i$ 与 $a_j\in A_j$，令 $A_iA_j$ 为含有 $a_ia_j$ 的 $\mathcal P$ 的元素（假设这个运算良定义）。证明 $\mathcal P$ 中含 $G$ 的单位元的元素是 $G$ 的正规子群，且 $\mathcal P$ 的元素正是这个子群的陪集（所以 $\mathcal P$ 就是通常意义下的商群）。
+\end{enumerate}
+
+\section{关于陪集与拉格朗日定理的进一步讨论}
+
+本节继续研究商群。对有限群而言，最重要的不变量之一是群的阶，因此我们首先证明有限群商群的阶很容易计算：
+\[
+  |G/N|=\frac{|G|}{|N|}.
+\]
+事实上，我们将把这作为一个更一般结果——拉格朗日定理——的推论得到。这一定理是有限群论中最重要的组合结果之一，后文将反复使用。说明拉格朗日定理的一些简单推论后，我们将研究非正规子群的陪集相关的更细问题。
+
+拉格朗日定理的证明直接且重要。它与上一节例 3 中计算 $|D_8/Z(D_8)|$ 所用的推理完全相同。
+
+\medskip
+\noindent\textbf{定理 8（拉格朗日定理）.} 若 $G$ 是有限群，$H$ 是 $G$ 的子群，则 $H$ 的阶整除 $G$ 的阶（即 $|H|\mid |G|$），并且 $H$ 在 $G$ 中的左陪集数等于
+\[
+  \frac{|G|}{|H|}.
+\]
+
+\begin{proof}
+设 $|H|=n$，$H$ 在 $G$ 中的左陪集数为 $k$。由命题 4，$H$ 在 $G$ 中的左陪集分划 $G$。按左陪集定义，映射
+\[
+  H\to gH,
+  \qquad h\mapsto gh
+\]
+是从 $H$ 到左陪集 $gH$ 的满射。左消去律说明该映射也是单射，因为 $gh_1=gh_2$ 蕴含 $h_1=h_2$。所以 $H$ 与 $gH$ 有相同阶：
+\[
+  |gH|=|H|=n.
+\]
+由于 $G$ 被分划为 $k$ 个互不相交、每个基数为 $n$ 的子集，$|G|=kn$。故
+\[
+  k=\frac{|G|}{n}=\frac{|G|}{|H|}.
+\]
+证明完成。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $G$ 是群（可无限），$H\leq G$，则 $H$ 在 $G$ 中左陪集的数目称为 $H$ 在 $G$ 中的\emph{指数}，记为 $|G:H|$。
+
+在有限群情形，$H$ 在 $G$ 中的指数为 $|G|/|H|$。若 $G$ 是无限群，则商 $|G|/|H|$ 没有意义。无限群可有有限指数或无限指数的子群（例如，$\{0\}$ 在 $\ZZ$ 中有无限指数，而对每个 $n>0$，$\langle n\rangle$ 在 $\ZZ$ 中指数为 $n$）。
+
+下面给出拉格朗日定理的一些简单推论。
+
+\medskip
+\noindent\textbf{推论 9.} 若 $G$ 是有限群，$x\in G$，则 $x$ 的阶整除 $G$ 的阶。特别地，对所有 $x\in G$，有 $x^{|G|}=1$。
+
+\begin{proof}
+由命题 2.2，$|x|=|\langle x\rangle|$。第一部分由拉格朗日定理应用于 $H=\langle x\rangle$ 得出。第二个断言因为 $|G|$ 是 $x$ 的阶的倍数而显然成立。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 10.} 若 $G$ 是素数阶 $p$ 的群，则 $G$ 是循环群，从而 $G\cong Z_p$。
+
+\begin{proof}
+取 $x\in G$，$x\neq1$。则 $|\langle x\rangle|>1$ 且 $|\langle x\rangle|$ 整除 $|G|$。由于 $|G|$ 是素数，必有 $|\langle x\rangle|=|G|$，故 $G=\langle x\rangle$ 是循环群（任一非单位元都是生成元）。由定理 2.4 得 $G\cong Z_p$。
+\end{proof}
+
+有了拉格朗日定理，我们再考察若干正规子群的例子。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $H=\langle(1\ 2\ 3)\rangle\leq S_3$，$G=S_3$。我们说明 $H\normal S_3$。如第 2.2 节所述，
+  \[
+    H\leq N_G(H)\leq G.
+  \]
+  由拉格朗日定理，$|H|$ 整除 $|N_G(H)|$，且 $|N_G(H)|$ 整除 $|G|$。由于 $|G|=6$、$|H|=3$，$N_G(H)$ 只能是 $H$ 或 $G$。直接计算
+  \[
+    (1\ 2)(1\ 2\ 3)(1\ 2)=(1\ 3\ 2)=(1\ 2\ 3)^{-1}.
+  \]
+  由于 $(1\ 2)=(1\ 2)^{-1}$，这说明 $(1\ 2)$ 把 $H$ 的一个生成元共轭到另一个生成元。由第 2.3 节练习 24，这足以证明 $(1\ 2)\in N_G(H)$。因此 $N_G(H)\neq H$，故 $N_G(H)=G$，即 $H\normal S_3$。这个论证说明，检查子群正规性时往往可减少到很少几个计算。下一个例子给出这一例子的推广。
+  \item 设 $G$ 是任意群，$H$ 是指数 $2$ 的子群。证明 $H\normal G$。取 $g\in G-H$。按假设，$H$ 在 $G$ 中有两个左陪集 $1H$ 和 $gH$。由于 $1H=H$ 且陪集分划 $G$，必有 $gH=G-H$。同理，两个右陪集为 $H1=H$ 和 $Hg$，故 $Hg=G-H$。于是 $gH=Hg$，所以 $H$ 的每个左陪集都是右陪集。由定理 6，$H\normal G$。按指数定义，$|G/H|=2$，故 $G/H\cong Z_2$。
+
+  要注意，$H$ 在这种情形下正规，不是因为可以对左右陪集选择同样的代表元 $1$ 与 $g$，而是因为一种抽屉原则在起作用：对任意子群 $H$ 都有 $1H=H=H1$，指数为 $2$ 的假设强迫剩余元素组成另一个陪集（无论是左还是右）。我们将看到，这个结果本身是下一章一个定理的特殊情形。
+
+  这个结果说明 $Q_8$ 中的 $\langle i\rangle$、$\langle j\rangle$、$\langle k\rangle$ 都正规，且 $D_8$ 中的 $\langle s,r^2\rangle$、$\langle r\rangle$、$\langle sr,r^2\rangle$ 也正规。
+  \item “是……的正规子群”这一性质不具有传递性。例如
+  \[
+    \langle s\rangle\normal\langle s,r^2\rangle\normal D_8
+  \]
+  （每个子群在下一个群中指数为 $2$），但 $\langle s\rangle$ 不是 $D_8$ 的正规子群，因为 $rsr^{-1}=sr^2\notin\langle s\rangle$。
+\end{enumerate}
+
+现在考察一些非正规子群的例子。虽然在阿贝尔群中每个子群都正规，但在非阿贝尔群中并非如此（某种意义上 $Q_8$ 是唯一例外）。事实上，有些群 $G$ 的正规子群只有平凡的 $1$ 和 $G$。这种群称为\emph{单群}（simple 并不意味着 easy）。单群在一般群的研究中扮演重要角色，这一角色将在第 4 节讨论。这里先强调：群 $G$ 的子群不一定都是 $G$ 的正规子群；事实上，正规子群在 $G$ 中可能相当稀少。寻找给定群的正规子群通常是一个非常非平凡的问题。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $H=\langle(1\ 2)\rangle\leq S_3$。由于 $H$ 在 $S_3$ 中指数为素数 $3$，由拉格朗日定理，$N_{S_3}(H)$ 只能是 $H$ 或 $S_3$。直接计算
+  \[
+    (1\ 3)(1\ 2)(1\ 3)^{-1}=(1\ 3)(1\ 2)(1\ 3)=(2\ 3)\notin H,
+  \]
+  所以 $N_{S_3}(H)\neq S_3$，即 $H$ 不是 $S_3$ 的正规子群。也可以通过左右陪集看出这一点，例如
+  \[
+    (1\ 3)H=\{(1\ 3),(1\ 2\ 3)\},\qquad
+    H(1\ 3)=\{(1\ 3),(1\ 3\ 2)\}.
+  \]
+  由于左陪集 $(1\ 3)H$ 是包含 $(1\ 3)$ 的唯一左陪集，右陪集 $H(1\ 3)$ 不可能是左陪集。还要注意，用代表元相乘在 $H$ 的左陪集上定义“群运算”甚至不是良定义的。例如考虑两个左陪集 $1H$ 和 $(1\ 3)H$ 的乘积。$1$ 和 $(1\ 2)$ 都是陪集 $1H$ 的代表元，但
+  \[
+    1\cdot(1\ 3)=(1\ 3),\qquad
+    (1\ 2)(1\ 3)=(1\ 3\ 2),
+  \]
+  它们不在同一个左陪集中；若陪集乘积与代表元选择无关，本应在同一个左陪集中。这是定理 6 的一个例子：子群的陪集形成群，当且仅当该子群正规。
+  \item 令 $G=S_n$，固定 $i\in\{1,2,\ldots,n\}$。如第 2.2 节，令
+  \[
+    G_i=\{\sigma\in G\mid \sigma(i)=i\}
+  \]
+  为点 $i$ 的稳定子。若 $\tau\in G$ 且 $\tau(i)=j$，由定义可直接看出，对所有 $\sigma\in G_i$，$\tau\sigma(i)=j$。此外，若 $\mu\in G$ 且 $\mu(i)=j$，则 $\tau^{-1}\mu(i)=i$，即 $\tau^{-1}\mu\in G_i$，故 $\mu\in\tau G_i$。因此
+  \[
+    \tau G_i=\{\mu\in G\mid \mu(i)=j\},
+  \]
+  即左陪集 $\tau G_i$ 由 $S_n$ 中把 $i$ 送到 $j$ 的所有置换组成。显然不同左陪集不交，且不同左陪集数等于整数 $i$ 在 $G$ 作用下的不同像数，即共有 $n$ 个左陪集。因此 $|G:G_i|=n$。类似地，令 $k=\tau^{-1}(i)$，则 $\tau(k)=i$，有
+  \[
+    G_i\tau=\{\lambda\in G\mid \lambda(k)=i\}.
+  \]
+  若 $n>2$，可取非单位元 $\tau$ 使 $\tau G_i\neq G_i\tau$，因为当然存在把 $i$ 送到 $j$ 但不把 $k$ 送到 $i$ 的置换。因此 $G_i$ 不是正规子群。事实上由第 1 节练习 30，$N_G(G_i)=G_i$，所以 $G_i$ 在某种意义上离在 $S_n$ 中正规很远。这个例子推广了前一个例子。
+  \item 在 $D_8$ 中，唯一正规的阶 $2$ 子群是中心 $\langle r^2\rangle$。
+\end{enumerate}
+
+随着理论的发展，我们会看到更多非正规子群的例子。
+
+拉格朗日定理的完全逆命题不成立：若 $G$ 是有限群且 $n$ 整除 $|G|$，则 $G$ 不一定有阶为 $n$ 的子群。例如，令 $A$ 为正四面体的对称群。由第 1.2 节练习 9，$|A|=12$。若 $A$ 有一个阶为 $6$ 的子群 $H$，则 $H$ 在 $A$ 中指数为 $2$，故 $H\normal A$ 且 $A/H\cong Z_2$。由于商群阶为 $2$，商中每个元素的平方都是单位元，所以对所有 $g\in A$，$(gH)^2=1H$，即 $g^2\in H$。若 $g$ 是 $A$ 中阶为 $3$ 的元素，则 $g=(g^2)^2\in H$。于是 $H$ 必须包含 $A$ 的所有阶为 $3$ 的元素。这矛盾，因为 $|H|=6$，但容易列出正四面体的 $8$ 个阶为 $3$ 的旋转。
+
+拉格朗日定理有一些部分逆命题。对于有限阿贝尔群，拉格朗日定理的完全逆命题成立：对 $|G|$ 的每个因子 $n$，阿贝尔群 $G$ 都有阶为 $n$ 的子群（事实上，这在比“阿贝尔”更弱的假设下也成立；第 6 章会看到）。对任意有限群都成立的一个部分逆命题是：
+
+\medskip
+\noindent\textbf{定理 11（柯西定理）.} 若 $G$ 是有限群，$p$ 是整除 $|G|$ 的素数，则 $G$ 有一个阶为 $p$ 的元素。
+
+\begin{proof}
+下一章将给出一个证明；练习 9 还勾勒了另一个优美证明。
+\end{proof}
+
+适用于任意有限群的最强拉格朗日逆命题是：
+
+\medskip
+\noindent\textbf{定理 12（西洛）.} 若有限群 $G$ 的阶为 $p^\alpha m$，其中 $p$ 是素数且 $p\nmid m$，则 $G$ 有一个阶为 $p^\alpha$ 的子群。
+
+我们将在下一章证明该定理，并得到关于阶为 $p^\alpha$ 的子群数目的更多信息。
+
+本节最后给出一些关于陪集的有用结果。
+
+\noindent\textbf{定义.} 设 $H$ 和 $K$ 是一个群的子群，定义
+\[
+  HK=\{hk\mid h\in H,
+  \ k\in K\}.
+\]
+
+\medskip
+\noindent\textbf{命题 13.} 若 $H$ 和 $K$ 是某群的有限子群，则
+\[
+  |HK|=\frac{|H|\,|K|}{|H\cap K|}.
+\]
+
+\begin{proof}
+注意 $HK$ 是 $K$ 的左陪集的并：
+\[
+  HK=\bigcup_{h\in H}hK.
+\]
+由于 $K$ 的每个陪集含 $|K|$ 个元素，只需求形如 $hK$（$h\in H$）的不同左陪集数。对 $h_1,h_2\in H$，有
+\[
+  h_1K=h_2K
+  \Longleftrightarrow h_2^{-1}h_1\in K
+  \Longleftrightarrow h_2^{-1}h_1\in H\cap K
+  \Longleftrightarrow h_1(H\cap K)=h_2(H\cap K).
+\]
+因此，$hK$（$h\in H$）的不同陪集数等于 $H$ 中 $H\cap K$ 的不同陪集数。由拉格朗日定理，这个数为 $|H|/|H\cap K|$。于是 $HK$ 由 $|H|/|H\cap K|$ 个不同的 $K$ 的陪集组成，每个陪集有 $|K|$ 个元素，得公式。
+\end{proof}
+
+注意命题 13 不假设 $HK$ 是子群。例如，若 $G=S_3$，$H=\langle(1\ 2)\rangle$，$K=\langle(2\ 3)\rangle$，则 $|H|=|K|=2$、$|H\cap K|=1$，所以 $|HK|=4$。由拉格朗日定理，$HK$ 不可能是子群。结果我们必须有 $S_3=\langle(1\ 2),(2\ 3)\rangle$。
+
+\medskip
+\noindent\textbf{命题 14.} 若 $H$ 和 $K$ 是某群的子群，则 $HK$ 是子群，当且仅当 $HK=KH$。
+
+\begin{proof}
+先假设 $HK=KH$。取 $a,b\in HK$，证明 $ab^{-1}\in HK$。设
+\[
+  a=h_1k_1,
+  \qquad b=h_2k_2,
+\]
+其中 $h_1,h_2\in H$、$k_1,k_2\in K$。则 $b^{-1}=k_2^{-1}h_2^{-1}$，所以
+\[
+  ab^{-1}=h_1k_1k_2^{-1}h_2^{-1}.
+\]
+令 $k_3=k_1k_2^{-1}\in K$，$h_3=h_2^{-1}\in H$。由于 $HK=KH$，$k_3h_3=h_4k_4$，其中 $h_4\in H$、$k_4\in K$。于是
+\[
+  ab^{-1}=h_1h_4k_4\in HK.
+\]
+由子群判别法，$HK$ 是子群。
+
+反过来，假设 $HK$ 是 $G$ 的子群。由于 $K\leq HK$ 且 $H\leq HK$，由子群封闭性得 $KH\subseteq HK$。为证反向包含，取 $hk\in HK$。因为 $HK$ 是子群，可写 $hk=a^{-1}$，其中 $a\in HK$。若 $a=h_1k_1$，则
+\[
+  hk=(h_1k_1)^{-1}=k_1^{-1}h_1^{-1}\in KH.
+\]
+证明完成。
+\end{proof}
+
+注意 $HK=KH$ 并不意味着 $H$ 的元素与 $K$ 的元素交换，而是意味着每个乘积 $hk$ 都可写成某个 $k'h'$ 的形式（不必 $h'=h$、$k'=k$），反之亦然。例如，若 $G=D_{2n}$、$H=\langle r\rangle$、$K=\langle s\rangle$，则 $G=HK=KH$，所以 $HK$ 是子群；但 $rs=sr^{-1}$，$H$ 的元素并不与 $K$ 的元素交换。这是下面充分条件的一个例子。
+
+\medskip
+\noindent\textbf{推论 15.} 若 $H$ 和 $K$ 是 $G$ 的子群，且 $H\leq N_G(K)$，则 $HK$ 是 $G$ 的子群。特别地，若 $K\normal G$，则对任意 $H\leq G$ 都有 $HK\leq G$。
+
+\begin{proof}
+证明 $HK=KH$。若 $h\in H$、$k\in K$，由假设 $hkh^{-1}\in K$，故
+\[
+  hk=(hkh^{-1})h\in KH.
+\]
+这说明 $HK\subseteq KH$。类似地，$kh=h(h^{-1}kh)\in HK$，得反向包含。于是由命题 14 得结论。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $A$ 是 $N_G(K)$（或 $C_G(K)$）的任意子集，则称 $A$ \emph{正规化} $K$（相应地，\emph{中心化} $K$）。
+
+用此术语，推论 15 说：若 $H$ 正规化 $K$，则 $HK$ 是子群（同样，若 $K$ 正规化 $H$，则 $HK$ 也是子群）。
+
+有时，可仅用命题 13 的阶公式证明一个有限群是它的两个子群的乘积。例如，令 $G=S_4$，令 $H=D_8$，令 $K=\langle(1\ 2\ 3)\rangle$，这里把 $D_8$ 看成 $S_4$ 的子群，即在固定标号下把每个正方形对称变换与其对四个顶点的置换相对应。由拉格朗日定理，$H\cap K=1$。命题 13 给出 $|HK|=24$，所以 $HK=S_4$。既然 $HK$ 是群，$HK=KH$。验证 $H$ 和 $K$ 都不正规化对方留作练习。
+
+最后，本章一直使用子群的左陪集。同样的组合结果也可用右陪集证明。对正规子群这当然显然，因为左右陪集相同；但对非正规子群，某些左陪集不是任何代表元下的右陪集，所以需要一些简单验证。例如，拉格朗日定理给出，在有限群 $G$ 中，子群 $H$ 的右陪集数也为
+\[
+  \frac{|G|}{|H|}.
+\]
+因此在有限群中，$H$ 的左陪集数等于右陪集数，尽管一般左陪集不是右陪集。练习 12 说明这对无限群也成立。因此就纯组合目的而言，可以使用左陪集或右陪集（但当需要 $G$ 的一个分划时不能混用）。我们一贯使用左陪集有些任意，不过在下一章讨论陪集上的作用时会有一些好处。读者可能在某些书中见到记号 $H\backslash G$ 表示 $H$ 在 $G$ 中的右陪集集合。某些文章中也可能用 $G/H$ 表示 $H$ 在 $G$ 中的左陪集集合，即使 $H$ 不正规（此时 $G/H$ 称为左陪集的陪集空间）。本书不采用这种记号。
+
+\subsection*{练习}
+设 $G$ 是群。
+\begin{enumerate}[label=\arabic*.]
+  \item 下列哪些数可以作为阶为 $120$ 的群的子群阶：$1,2,5,7,9,15,60,240$？对每个允许的阶，给出相应指数。
+  \item 证明第 2.5 节给出的 $S_3$ 子群格是正确的。
+  \item 证明第 2.5 节给出的 $Q_8$ 子群格是正确的。
+  \item 证明若 $|G|=pq$，其中 $p$、$q$ 是素数（不必相异），则 $G$ 是阿贝尔群或 $Z(G)=1$。[见第 1 节练习 36。]
+  \item 设 $H$ 是 $G$ 的子群，固定 $g\in G$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $gHg^{-1}$ 是 $G$ 的子群，且与 $H$ 同阶。
+    \item 推出若 $n\in\ZZ^+$ 且 $H$ 是 $G$ 的唯一阶为 $n$ 的子群，则 $H\normal G$。
+  \end{enumerate}
+  \item 设 $H\leq G$，$g\in G$。证明若右陪集 $Hg$ 等于 $G$ 中 $H$ 的某个左陪集，则它等于左陪集 $gH$，且 $g\in N_G(H)$。
+  \item 设 $H\leq G$，在 $G$ 上定义关系 $a\sim b$ 当且仅当 $b^{-1}a\in H$。证明 $\sim$ 是等价关系，并描述每个 $a\in G$ 的等价类。用此证明命题 4。
+  \item 证明若 $H$ 与 $K$ 是 $G$ 的有限子群且二者阶互素，则 $H\cap K=1$。
+  \item 本题勾勒 James McKay 给出的柯西定理证明。令 $G$ 为有限群，$p$ 为整除 $|G|$ 的素数。令 $S$ 表示 $G$ 中 $p$ 元组的集合，且坐标乘积为 $1$：
+  \[
+    S=\{(x_1,x_2,
+    \ldots,x_p)\mid x_i\in G,
+    \ x_1x_2\cdots x_p=1\}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明 $S$ 有 $|G|^{p-1}$ 个元素，因此其阶被 $p$ 整除。
+    \item 定义 $S$ 上关系 $\alpha\sim\beta$，若 $\beta$ 是 $\alpha$ 的一个循环置换。证明 $S$ 的元素的循环置换仍在 $S$ 中。
+    \item 证明 $\sim$ 是等价关系。
+    \item 证明一个等价类含单个元素，当且仅当它形如 $(x,x,
+    \ldots,x)$ 且 $x^p=1$。
+    \item 证明每个等价类阶为 $1$ 或 $p$（用到 $p$ 是素数）。推出 $|G|^{p-1}=k+pd$，其中 $k$ 是大小为 $1$ 的等价类数，$d$ 是大小为 $p$ 的等价类数。
+    \item 由于 $\{(1,1,\ldots,1)\}$ 是大小为 $1$ 的等价类，由 (e) 推出 $G$ 中存在非单位元 $x$ 使 $x^p=1$，即 $G$ 含有阶为 $p$ 的元素。[说明 $p\mid k$，所以 $k>1$。]
+  \end{enumerate}
+  \item 设 $H$ 与 $K$ 是（可无限）群 $G$ 的有限指数子群，$|G:H|=m$、$|G:K|=n$。证明
+  \[
+    \operatorname{lcm}(m,n)\leq |G:H\cap K|\leq mn.
+  \]
+  推出若 $m$ 与 $n$ 互素，则 $|G:H\cap K|=|G:H|\,|G:K|$。
+  \item 设 $H\leq K\leq G$。证明 $|G:H|=|G:K|\,|K:H|$（不要假设 $G$ 有限）。
+  \item 设 $H\leq G$。证明映射 $x\mapsto x^{-1}$ 把 $H$ 的每个左陪集送到 $H$ 的一个右陪集，并给出左陪集集合与右陪集集合之间的双射。
+  \item 固定正方形顶点的任意标号，并用此把 $D_8$ 识别为 $S_4$ 的子群。证明 $D_8$ 的元素与 $\langle(1\ 2\ 3)\rangle$ 的元素在 $S_4$ 中不交换。
+  \item 证明 $S_4$ 没有阶为 $8$ 的正规子群，也没有阶为 $3$ 的正规子群。
+  \item 令 $G=S_n$，固定 $i\in\{1,2,
+  \ldots,n\}$，令 $G_i$ 为 $i$ 的稳定子。证明 $G_i\cong S_{n-1}$。
+  \item 在乘法群 $(\ZZ/p\ZZ)^\times$ 中使用拉格朗日定理证明费马小定理：若 $p$ 是素数，则对所有 $a\in\ZZ$，$a^p\equiv a\pmod p$。
+  \item 设 $p$ 是素数，$n$ 是正整数。求 $p$ 在 $(\ZZ/(p^n-1)\ZZ)^\times$ 中的阶，并推出 $n\mid\varphi(p^n-1)$（这里 $\varphi$ 是欧拉函数）。
+  \item 设 $G$ 是有限群，$H\leq G$，$N\normal G$。证明若 $|H|$ 与 $|G:N|$ 互素，则 $H\leq N$。
+  \item 证明若 $N$ 是有限群 $G$ 的正规子群，且 $(|N|,|G:N|)=1$，则 $N$ 是 $G$ 的唯一阶为 $|N|$ 的子群。
+  \item 若 $A$ 是阿贝尔群且 $A\normal G$，$B$ 是 $G$ 的任意子群，证明 $A\cap B\normal AB$。
+  \item 证明 $\QQ$ 没有有限指数的真子群。推出 $\QQ/\ZZ$ 没有有限指数的真子群。[回忆第 1.6 节练习 21 和第 1 节练习 15。]
+  \item 在乘法群 $(\ZZ/n\ZZ)^\times$ 中使用拉格朗日定理证明欧拉定理：若整数 $a$ 与 $n$ 互素，则
+  \[
+    a^{\varphi(n)}\equiv1\pmod n,
+  \]
+  其中 $\varphi$ 表示欧拉函数。
+  \item 求 $3^{3^{100}}$ 的最后两位。[先求 $3^{100}\bmod\varphi(100)$，再用上一题。]
+\end{enumerate}
+
+\section{同构定理}
+
+本节推导第 1 节中商群与同态关系的一些直接后果。特别地，我们考虑商群 $G/N$ 的子群格与群 $G$ 的子群格之间的关系。第一个结果重述第 1 节中关于同态像与核商群之间关系的观察（有时称为同态基本定理）：
+
+\medskip
+\noindent\textbf{定理 16（第一同构定理）.} 若 $\varphi:G\to H$ 是群同态，则 $\ker\varphi\normal G$，且
+\[
+  G/\ker\varphi\cong \varphi(G).
+\]
+
+\medskip
+\noindent\textbf{推论 17.} 设 $\varphi:G\to H$ 是群同态。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\varphi$ 是单射，当且仅当 $\ker\varphi=1$。
+  \item $|G:\ker\varphi|=|\varphi(G)|$。
+\end{enumerate}
+
+\begin{proof}
+练习。
+\end{proof}
+
+在讨论抽象向量空间时，我们会看到推论 17(2) 给出线性变换理论中可能已熟悉的公式：若 $\varphi:V\to W$ 是向量空间的线性变换，则
+\[
+  \dim V=\operatorname{rank}\varphi+\operatorname{nullity}\varphi.
+\]
+
+\medskip
+\noindent\textbf{定理 18（第二同构定理或菱形同构定理）.} 设 $G$ 是群，$A$ 和 $B$ 是 $G$ 的子群，并假设 $A\leq N_G(B)$。则 $AB$ 是 $G$ 的子群，$B\normal AB$，$A\cap B\normal A$，且
+\[
+  AB/B\cong A/(A\cap B).
+\]
+
+\begin{proof}
+由推论 15，$AB$ 是 $G$ 的子群。由于 $A\leq N_G(B)$ 且 $B\leq N_G(B)$ 显然成立，所以 $AB\leq N_G(B)$，即 $B$ 是子群 $AB$ 的正规子群。
+
+因为 $B\normal AB$，商群 $AB/B$ 有定义。定义
+\[
+  \varphi:A\to AB/B,
+  \qquad \varphi(a)=aB.
+\]
+由于 $AB/B$ 中的群运算良定义，容易看出 $\varphi$ 是同态：
+\[
+  \varphi(a_1a_2)=(a_1a_2)B=a_1B\cdot a_2B=\varphi(a_1)\varphi(a_2).
+\]
+等价地，$\varphi$ 是自然投影 $\pi:AB\to AB/B$ 限制到子群 $A$ 上，所以也是同态。由 $AB$ 的定义可知 $\varphi$ 是满射。商 $AB/B$ 的单位元是陪集 $1B$，所以 $\ker\varphi$ 由满足 $aB=1B$ 的 $a\in A$ 组成；由命题 4，这正是 $a\in B$，即 $\ker\varphi=A\cap B$。由第一同构定理，$A\cap B\normal A$，且 $A/(A\cap B)\cong AB/B$。
+\end{proof}
+
+在 $A\leq N_G(B)$ 的特殊情形下，这给出了命题 13 的阶公式的一个新证明。这个定理称为菱形同构，是因为其中涉及 $G$ 的子群格中的菱形部分（见图 6）。格线上的标记表示哪些商群同构。商 $AB/A$ 未必是群（即 $A$ 未必在 $AB$ 中正规），但仍有
+
+\begin{center}
+\begin{tikzpicture}[scale=.9, every node/.style={inner sep=1pt}]
+  \node (G) at (0,3.6) {$G$};
+  \node (AB) at (0,2.7) {$AB$};
+  \node (A) at (-1.05,1.8) {$A$};
+  \node (B) at (1.05,1.8) {$B$};
+  \node (I) at (0,.9) {$A\cap B$};
+  \node (one) at (0,0) {$1$};
+  \draw (G)--(AB);
+  \draw (AB)--(A) node[midway,above left] {$\sim$};
+  \draw (AB)--(B);
+  \draw (A)--(I);
+  \draw (B)--(I) node[midway,above right] {$\sim$};
+  \draw (I)--(one);
+  \node at (2.1,.2) {图 6};
+\end{tikzpicture}
+\end{center}
+\[
+  |AB:A|=|B:A\cap B|.
+\]
+
+第三同构定理讨论商群的商群。
+
+\medskip
+\noindent\textbf{定理 19（第三同构定理）.} 设 $G$ 是群，$H$ 和 $K$ 是 $G$ 的正规子群，且 $H\leq K$。则 $K/H\normal G/H$，并且
+\[
+  (G/H)/(K/H)\cong G/K.
+\]
+若用横线表示模 $H$ 的商，则可写作
+\[
+  \overline G/\overline K\cong G/K.
+\]
+
+\begin{proof}
+$K/H\normal G/H$ 的验证留作简单练习。定义
+\[
+  \varphi:G/H\to G/K,
+  \qquad gH\mapsto gK.
+\]
+为说明 $\varphi$ 良定义，设 $g_1H=g_2H$。则 $g_1=g_2h$，其中 $h\in H$。由于 $H\leq K$，有 $h\in K$，故 $g_1K=g_2K$，于是 $\varphi(g_1H)=\varphi(g_2H)$。因为 $g$ 可在 $G$ 中任意选取，$\varphi$ 是满同态。最后
+\begin{align*}
+  \ker\varphi
+  &=\{gH\in G/H\mid \varphi(gH)=1K\}\\
+  &=\{gH\in G/H\mid gK=1K\}\\
+  &=\{gH\in G/H\mid g\in K\}=K/H.
+\end{align*}
+由第一同构定理，$(G/H)/(K/H)\cong G/K$。
+\end{proof}
+
+记忆第三同构定理的一个简单口诀是：“倒过来并消去”（像分式一样）。这个定理说明，对商群再取商群不会带来新的结构信息。
+
+最后一个同构定理描述商群 $G/N$ 的子群格与 $G$ 的子群格之间的关系。$G/N$ 的子群格可以通过把 $G$ 的子群格中的群 $N$ 压缩为单位元直接读出。更精确地说，包含 $N$ 的 $G$ 的子群与 $G/N$ 的子群之间存在一一对应；因此 $G/N$ 的子群格（或一个同构拷贝）出现在 $G$ 的子群格中，即位于 $N$ 与 $G$ 之间的那些子群。特别地，$G/N$ 的子群格出现在 $G$ 的子群格“顶部”，这正是本章开头提到的现象。
+
+\medskip
+\noindent\textbf{定理 20（第四同构定理或格同构定理）.} 设 $G$ 是群，$N\normal G$。则从包含 $N$ 的 $G$ 的子群 $A$ 到 $G/N$ 的子群 $\overline A=A/N$ 有一个双射。特别地，$G/N$ 的每个子群都形如 $A/N$，其中 $A$ 是 $G$ 的一个包含 $N$ 的子群（即它在自然投影同态下的原像）。此双射具有以下性质：若 $A,B\leq G$ 且 $N\leq A$、$N\leq B$，则
+\begin{enumerate}[label=(\arabic*)]
+  \item $A\leq B$ 当且仅当 $\overline A\leq \overline B$；
+  \item 若 $A\leq B$，则 $|B:A|=|\overline B:\overline A|$；
+  \item $\overline{\langle A,B\rangle}=\langle\overline A,\overline B\rangle$；
+  \item $\overline{A\cap B}=\overline A\cap\overline B$；
+  \item $A\normal G$ 当且仅当 $\overline A\normal G/N$。
+\end{enumerate}
+
+\begin{proof}
+$G/N$ 中子群的完全原像由第 1 节练习 1 是 $G$ 的子群。定理中需要检查的许多细节都完全直接，因此证明留作练习。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $G=Q_8$，令 $N=\langle -1\rangle$。$G/N$ 的子群格的同构拷贝由 $G$ 的子群格中包含 $N$ 的那部分组成。我们此前已证明 $Q_8/\langle -1\rangle\cong V_4$，而两个格确实一致。
+  \item 同样的过程可从 $D_8$ 的子群格中得到 $D_8/\langle r^2\rangle$ 的子群格：它由包含 $\langle r^2\rangle$ 的那些子群组成。
+\end{enumerate}
+
+注意在第二个例子中，$G$ 的某些子群并不直接对应于商群 $G/N$ 的子群，即那些不包含正规子群 $N$ 的子群。这是因为子群 $N$ 在 $G/N$ 中投影为一个点，因此 $G$ 的若干子群可以投影到商群中的同一个子群。$G$ 的子群 $H$ 在自然投影同态下的像与 $G$ 的子群 $HN$ 的像相同，而 $HN$ 包含 $N$。反过来，$G/N$ 的子群 $\overline H$ 的原像包含 $N$，并且是 $G$ 中唯一一个包含 $N$ 且在 $G/N$ 中像为 $\overline H$ 的子群。显式出现在 $G/N$ 的子群格中的，是 $G$ 中包含 $N$ 的那些子群。
+
+上面两个阶为 $8$ 的群的格强调了这样一个事实：仅知道 $G/N$ 与 $N$ 的同构类型，一般不能确定 $G$ 的同构类型，因为
+\[
+  Q_8/\langle -1\rangle\cong D_8/\langle r^2\rangle
+  \quad\text{且}\quad
+  \langle -1\rangle\cong\langle r^2\rangle,
+\]
+但 $Q_8$ 与 $D_8$ 不同构。下一节还会进一步讨论这个问题。
+
+我们经常在子群格中标出一个子群在另一个子群中的指数，例如
+\[
+\begin{array}{c}
+A\\[-1mm]
+|\,n\\[-1mm]
+B
+\end{array}
+\]
+其中整数 $n=|A:B|$。例如，$Q_8$ 和 $D_8$ 子群格中的所有实线边都可标为 $2$。于是任一子群 $A$ 的阶等于从单位子群向上到 $A$ 的任意路径上所有标号整数的乘积。又由定理 20(2)，若模去一个包含在 $B$ 中的 $G$ 的正规子群，这些指数在商中保持不变；即对应于商群子群格的那部分 $G$ 的格也具有商群中的正确指数。
+
+最后说明一点关于在商群上定义同态的注意事项。在同构定理的证明过程中，我们遇到过这样的情形：通过给出陪集 $gN$ 的代表元 $g$ 上的值来定义商群 $G/N$ 上的同态 $\varphi$。每次都必须证明 $\varphi$ 良定义，即与 $g$ 的选择无关。实际上，我们是在 $G$ 本身上定义一个同态 $\Phi$，然后用 $\Phi(g)$ 指定 $\varphi(gN)$。与 $g$ 无关等价于要求 $\Phi$ 在 $N$ 上平凡，即
+\[
+  \varphi \text{ 在 } G/N \text{ 上良定义}
+  \quad\Longleftrightarrow\quad N\leq\ker\Phi.
+\]
+这给出一种在商群上定义同态的简单准则：先在 $G$ 上定义同态，再检查 $N$ 包含于其核。在这种情形下，称同态 $\Phi$ \emph{通过 $N$ 分解}，而 $\varphi$ 是 $G/N$ 上\emph{诱导的同态}。可用交换图表示为图 7，其中图表示 $\Phi=\varphi\circ\pi$，即 $G$ 中元素在 $H$ 中的像不依赖于在图中选择哪条路径。若如此，则称该图\emph{交换}。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={inner sep=1pt}]
+  \node (G) at (0,1.4) {$G$};
+  \node (Q) at (3,1.4) {$G/N$};
+  \node (H) at (3,0) {$H$};
+  \draw[->] (G)--node[above] {$\pi$} (Q);
+  \draw[->] (Q)--node[right] {$\varphi$} (H);
+  \draw[->] (G)--node[below left] {$\Phi$} (H);
+  \node at (4.1,0) {图 7};
+\end{tikzpicture}
+\end{center}
+
+至此，我们已经发展了足够的背景材料；现在可以阅读第 6.3 节关于自由群与表示的内容。
+
+\subsection*{练习}
+设 $G$ 是群。
+\begin{enumerate}[label=\arabic*.]
+  \item 设 $F$ 是阶为 $q$ 的有限域，$n\in\ZZ^+$。证明 $|\GL_n(F):\SL_n(F)|=q-1$。[见第 1 节练习 35。]
+  \item 证明格同构定理的所有部分。
+  \item 证明若 $H$ 是 $G$ 的素数指数 $p$ 的正规子群，则对所有 $K\leq G$，要么 $K\leq H$，要么 $G=HK$ 且 $|K:K\cap H|=p$。
+  \item 设 $C\normal A$，$D\normal B$。证明 $(C\times D)\normal(A\times B)$，且
+  \[
+    (A\times B)/(C\times D)\cong (A/C)\times(B/D).
+  \]
+  \item 设 $QD_{16}=\langle\sigma,\tau\rangle$ 是第 2.5 节练习 11 中的拟二面体群。证明 $\langle\sigma^4\rangle$ 在 $QD_{16}$ 中正规，并用格同构定理画出 $QD_{16}/\langle\sigma^4\rangle$ 的子群格。哪个阶为 $8$ 的群有相同的格？用 $QD_{16}/\langle\sigma^4\rangle$ 的生成元与关系决定该群的同构类型。
+  \item 设 $M=\langle v,u\rangle$ 是第 2.5 节练习 14 中阶为 $16$ 的模群。证明 $\langle v^4\rangle$ 在 $M$ 中正规，并用格同构定理画出 $M/\langle v^4\rangle$ 的子群格。哪个阶为 $8$ 的群有相同的格？用生成元与关系决定该商群的同构类型。
+  \item 设 $M$ 和 $N$ 是 $G$ 的正规子群，且 $G=MN$。证明
+  \[
+    G/(M\cap N)\cong (G/M)\times(G/N).
+  \]
+  [画出格。]
+  \item 设 $p$ 是素数，$G$ 是 $\CC$ 中所有 $p$ 次幂阶单位根的群（参见第 2.4 节练习 18）。证明映射 $z\mapsto z^p$ 是满同态。推出 $G$ 同构于它自身的一个真商。
+  \item 设 $p$ 是素数，$|G|=p^am$，且 $p\nmid m$。设 $P$ 是 $G$ 的阶为 $p^a$ 的子群，$N\normal G$ 且 $|N|=p^bn$，其中 $p\nmid n$。证明 $|P\cap N|=p^b$，且 $|PN/N|=p^{a-b}$。（子群 $P$ 称为 $G$ 的一个西洛 $p$-子群。此练习说明任一西洛 $p$-子群与正规子群 $N$ 的交是 $N$ 的西洛 $p$-子群。）
+  \item 推广上一题如下：有限群 $G$ 的子群 $H$ 称为 Hall 子群，如果它在 $G$ 中的指数与其阶互素：$(|G:H|,|H|)=1$。证明若 $H$ 是 $G$ 的 Hall 子群，且 $N\normal G$，则 $H\cap N$ 是 $N$ 的 Hall 子群，而 $HN/N$ 是 $G/N$ 的 Hall 子群。
+\end{enumerate}
+
+\section{合成列与 Hölder 纲领}
+
+上一节关于格的讨论给我们一种直观图像：商群 $G/N$ 的结构（例如格）描述了正规子群 $N$ “上方”的 $G$ 的结构。虽然这种说法有些模糊，但至少说明了有限群论中（甚至某些无限群论分支中）最强有力技术之一的驱动力：归纳法的使用。许多时候，归纳过程的应用类似于下面对柯西定理一个特殊情形的证明。尽管柯西定理对任意群成立（参见第 2 节练习 9），但下面的证明很好地展示了如何利用正规子群 $N$ 与商群 $G/N$ 的信息来确定 $G$ 的信息；第 4 章中我们还会需要这个特殊结果。
+
+\medskip
+\noindent\textbf{命题 21.} 若 $G$ 是有限阿贝尔群，$p$ 是整除 $|G|$ 的素数，则 $G$ 含有阶为 $p$ 的元素。
+
+\begin{proof}
+证明按 $|G|$ 作归纳：假设结论对每个阶严格小于 $|G|$ 的群成立，然后证明它对 $G$ 成立（这有时称为完全归纳）。由于 $|G|>1$，存在 $x\in G$ 且 $x\neq1$。若 $|G|=p$，则由拉格朗日定理 $x$ 的阶为 $p$，结论成立。因此可假设 $|G|>p$。
+
+若 $p$ 整除 $|x|$，写 $|x|=pn$。由命题 2.5(3)，$|x^n|=p$，再次得到阶为 $p$ 的元素。因此可假设 $p\nmid |x|$。令 $N=\langle x\rangle$。由于 $G$ 阿贝尔，$N\normal G$。由拉格朗日定理，
+\[
+  |G/N|=\frac{|G|}{|N|},
+\]
+并且由于 $N\neq1$，有 $|G/N|<|G|$。又因 $p\nmid |N|$，必有 $p\mid |G/N|$。可对更小的群 $G/N$ 应用归纳假设，得到其中有一个阶为 $p$ 的元素 $\overline y=yN$。由于 $\overline y\neq1$ 但 $\overline y^{\,p}=1$，有 $y\notin N$ 且 $y^p\in N$。于是 $\langle y^p\rangle\neq\langle y\rangle$，即 $|y^p|<|y|$。命题 2.5(2) 蕴含 $p\mid |y|$。于是回到前一段情形，再次得到阶为 $p$ 的元素。归纳完成。
+\end{proof}
+
+这种证明方法背后的哲学是：若我们对 $G$ 的某个正规子群 $N$ 有足够信息，并且对 $G/N$ 有足够信息，则可以把这些信息拼接起来，迫使 $G$ 本身具有某种所需性质。归纳法能发挥作用，是因为 $N$ 和 $G/N$ 的阶都比 $G$ 小。一般而言，需要多少数据是一个微妙问题，因为我们已经看到，仅从 $N$ 与 $G/N$ 的同构类型不能决定 $G$ 的完整同构类型。
+
+显然，这一方法的基本障碍是必须产生一个正规子群 $N$，且 $N\neq1$、$N\neq G$。在上面的论证中这很容易，因为 $G$ 是阿贝尔群。没有非平凡真正规子群的群是这种证明方法的基本障碍。
+
+\noindent\textbf{定义.} 若 $|G|>1$，且 $G$ 的正规子群只有 $1$ 与 $G$，则称（有限或无限）群 $G$ 为\emph{单群}。
+
+由拉格朗日定理，若 $|G|$ 为素数，则它的子群（更不用说正规子群）只有 $1$ 与 $G$，故 $G$ 是单群。事实上，每个阿贝尔单群都同构于某个 $Z_p$，其中 $p$ 是素数（参见练习 1）。也存在非阿贝尔单群（有限阶和无限阶都有），其中最小的有限非阿贝尔单群阶为 $60$（下一节会把它作为一族无限单群的成员引入）。
+
+按定义，单群不能再被“分解”为 $N$ 与 $G/N$ 这样的部分，因此它们在群论中扮演的角色类似于素数在整数算术中的角色。这个类比由有限群的一个“唯一分解定理”支持，下面描述之。
+
+\noindent\textbf{定义.} 群 $G$ 中的一列子群
+\[
+  1=N_0\normal N_1\normal N_2\normal\cdots\normal N_{k-1}\normal N_k=G
+\]
+称为一个\emph{合成列}，如果 $N_i\normal N_{i+1}$ 且 $N_{i+1}/N_i$ 是单群，$0\leq i\leq k-1$。若上列是合成列，则商群 $N_{i+1}/N_i$ 称为 $G$ 的\emph{合成因子}。
+
+要记住，这里并不假设每个 $N_i\normal G$，只要求 $N_i\normal N_{i+1}$。因此
+\[
+  1\normal\langle s\rangle\normal\langle s,r^2\rangle\normal D_8,
+  \qquad
+  1\normal\langle r^2\rangle\normal\langle r\rangle\normal D_8
+\]
+是 $D_8$ 的两个合成列。在每个合成列中都有 $3$ 个合成因子，每个都同构于单群 $Z_2$。
+
+\medskip
+\noindent\textbf{定理 22（Jordan--Hölder）.} 设 $G$ 是有限群且 $G\neq1$。则
+\begin{enumerate}[label=(\arabic*)]
+  \item $G$ 有合成列；
+  \item 合成列中的合成因子是唯一的：若
+  \[
+    1=N_0\normal N_1\normal\cdots\normal N_r=G,
+    \qquad
+    1=M_0\normal M_1\normal\cdots\normal M_s=G
+  \]
+  是 $G$ 的两个合成列，则 $r=s$，并存在集合 $\{1,2,\ldots,r\}$ 的一个置换 $\pi$，使得
+  \[
+    M_{\pi(i)}/M_{\pi(i)-1}\cong N_i/N_{i-1},
+    \qquad 1\leq i\leq r.
+  \]
+\end{enumerate}
+
+\begin{proof}
+这个证明相当直接。由于本书不会显式用它来证明其他定理，我们只在本节末尾的一系列练习中勾勒证明。
+\end{proof}
+
+因此每个有限群都有一个“分解”（即合成列），而且尽管合成列本身未必唯一（如 $D_8$ 所示），但合成因子的数目及其同构类型是唯一确定的。进一步地，不同构群也可能有相同的合成因子列表（到同构为止；见练习 2）。这激发了按同构分类所有有限群的两部分纲领：
+
+\paragraph{Hölder 纲领}
+\begin{enumerate}[label=(\arabic*)]
+  \item 分类所有有限单群。
+  \item 找出把单群“拼合”成其他群的所有方式。
+\end{enumerate}
+
+这两个问题是群论大量发展的潜在动机之一。类似问题也反复出现在整个数学中。下面对这些问题目前的进展状态作一些评论。
+
+有限单群分类（Hölder 纲领的第 (1) 部分）在 1980 年完成，距离 Hölder 纲领提出约 100 年。超过 100 位数学家的努力，跨越约 5000 到 10000 页期刊论文（分布在大约 300 到 500 篇单独论文中），导致了如下结果的证明：
+
+\medskip
+\noindent\textbf{定理.} 存在一个列表，由 18 个无限单群族和 26 个不属于这些族的单群（散在单群）组成，使得每个有限单群都同构于这个列表中的某个群。
+
+有限单群的一个族是 $\{Z_p\mid p\text{ 是素数}\}$。另一个无限族是
+\[
+  \{\SL_n(\FF)/Z(\SL_n(\FF))\mid n\in\ZZ^+,
+  \ n\geq2,
+  \ \FF\text{ 是有限域}\}.
+\]
+这些群除 $\SL_2(\FF_2)$ 与 $\SL_2(\FF_3)$ 外都是单群，其中 $\FF_2$ 和 $\FF_3$ 分别是含 $2$、$3$ 个元素的有限域。这是一个二参数族（$n$ 和 $\FF$ 是独立参数）。我们不证明这些群是单群，而是请读者参阅 M. Aschbacher 的 \textit{Finite Group Theory}（Cambridge University Press, 1986）。有限单群的第三个族——交错群——将在下一节讨论；下一章将证明这些群是单群。
+
+为了感受有限单群分类的复杂性，读者可浏览整个分类的基石之一的证明：
+
+\medskip
+\noindent\textbf{定理（Feit--Thompson）.} 若 $G$ 是奇阶单群，则 $G\cong Z_p$，其中 $p$ 是某个素数。
+
+这个证明需要 255 页艰深数学。
+
+Hölder 纲领的第 (2) 部分，有时称为扩张问题，表述相当含糊。“把两个群拼合起来”的一个更精确描述是：给定群 $A$ 和 $B$，描述如何得到所有含有正规子群 $N$ 的群 $G$，使得 $N\cong B$ 且 $G/N\cong A$。例如，若 $A=B=Z_2$，则 $G$ 恰有两种可能，即 $Z_4$ 和 $V_4$；Hölder 纲领试图说明如何从两个 $Z_2$ 构造这两个阶为 $4$ 的群，而不预先知道阶为 $4$ 的群的存在。Hölder 纲领的这一部分极其困难，即使涉及的子群阶很小也是如此。例如，一个群 $G$ 的所有合成因子都阶为 $2$，当且仅当 $|G|=2^n$ 对某个 $n$ 成立（一个方向容易，第 6 章将证明两个方向）。然而已知阶为 $2^n$ 的不同构群的数目作为 $2^n$ 的函数指数增长，因此拼合 $2$ 幂阶群的方式数量没有界。尽管如此，这个精细领域有大量有趣且强有力的技术，用于揭示大类群的结构。我们只会讨论从较小群构造较大群的几种方法；但即使如此有限地进入群扩张领域，我们也将构造许多新的群例子，并证明一些分类定理。
+
+在多项式方程理论中，一个重要的群类是可解群：
+
+\noindent\textbf{定义.} 群 $G$ 称为\emph{可解}的，如果存在子群链
+\[
+  1=G_0\normal G_1\normal G_2\normal\cdots\normal G_s=G
+\]
+使得对 $i=0,1,
+\ldots,s-1$，商群 $G_{i+1}/G_i$ 是阿贝尔群。
+
+术语来自伽罗瓦理论中这些群与可用根式求解的多项式之间的对应（后者本质上意味着根有代数公式）。练习 8 说明，有限可解群正是那些合成因子全为素数阶的群。
+
+有限可解群的一个显著性质是 Philip Hall 对西洛定理的如下推广：
+
+\medskip
+\noindent\textbf{定理.} 有限群 $G$ 可解，当且仅当对 $|G|$ 的每个因子 $n$，只要
+\[
+  (n,|G|/n)=1,
+\]
+$G$ 就有一个阶为 $n$ 的子群。
+
+作为另一例，说明如何从正规子群 $N$ 与商群 $G/N$ 的综合信息推导 $G$ 的性质，我们证明：若 $N$ 和 $G/N$ 都可解，则 $G$ 可解。
+
+为此令 $\overline G=G/N$。设
+\[
+  1=N_0\normal N_1\normal\cdots\normal N_n=N
+\]
+是 $N$ 的一个子群链，使得 $N_{i+1}/N_i$ 阿贝尔；又设
+\[
+  \overline1=\overline G_0\normal\overline G_1\normal\cdots\normal\overline G_m=\overline G
+\]
+是 $\overline G$ 的一个子群链，使得 $\overline G_{i+1}/\overline G_i$ 阿贝尔。由格同构定理，存在 $G$ 的子群 $G_i$，且 $N\leq G_i$，使得 $G_i/N=\overline G_i$，并且 $G_i\normal G_{i+1}$。由第三同构定理，$G_{i+1}/G_i$ 阿贝尔。因此
+\[
+  1=N_0\normal N_1\normal\cdots\normal N_n=N=G_0\normal G_1\normal\cdots\normal G_m=G
+\]
+是 $G$ 的一个子群链，其所有相邻商群都是阿贝尔群。这证明 $G$ 可解。
+
+说有限群论只关心 Hölder 纲领是不准确的；但说 Hölder 纲领提出了大量问题并推动许多代数技术的发展则是准确的。例如，在扩张问题中，给定群 $A$ 与 $B$，希望寻找 $G$ 与 $N\normal G$ 使得 $N\cong B$、$G/N\cong A$，我们将看到（在某些条件下）这会引向群 $A$ 在集合 $B$ 上的作用。这类作用正是下一章的核心（并将产生关于单群与非单群的信息），而且这一概念在数学中非常有力，并不局限于群论。
+
+本章最后一节引入另一族群；虽然它与我们对单群的兴趣相一致，但它在全书中也有独立重要性，特别是在我们后面研究行列式和多项式方程可解性时。
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 证明若 $G$ 是阿贝尔单群，则 $G\cong Z_p$，其中 $p$ 是素数（不要假设 $G$ 有限）。
+  \item 列出 $Q_8$ 的全部 $3$ 条合成列和 $D_8$ 的全部 $7$ 条合成列，并列出每条中的合成因子。
+  \item 给出阶为 $16$ 的拟二面体群（参见第 2.5 节练习 11）的一个合成列。推出 $QD_{16}$ 可解。
+  \item 使用柯西定理和归纳法证明：有限阿贝尔群对其阶的每个正因子 $n$ 都有阶为 $n$ 的子群。
+  \item 证明可解群的子群和商群仍可解。
+  \item 对 $|G|$ 作归纳，证明 Jordan--Hölder 定理的第 (1) 部分。
+  \item 若 $G$ 是有限群且 $H\normal G$，证明 $G$ 有一条合成列，其中某一项是 $H$。
+  \item 设 $G$ 是有限群。证明以下条件等价：
+  \begin{enumerate}[label=(\roman*)]
+    \item $G$ 可解；
+    \item $G$ 有子群链 $1=H_0\normal H_1\normal H_2\normal\cdots\normal H_s=G$，使得 $H_{i+1}/H_i$ 循环；
+    \item $G$ 的所有合成因子都是素数阶；
+    \item $G$ 有子群链 $1=N_0\normal N_1\normal\cdots\normal N_t=G$，其中每个 $N_i$ 都是 $G$ 的正规子群，且 $N_{i+1}/N_i$ 阿贝尔。
+  \end{enumerate}
+  [对 (iv)，证明 $G$ 的一个极小非平凡正规子群 $M$ 必是阿贝尔的，然后用归纳。]
+  \item 证明 Jordan--Hölder 定理第 (2) 部分的如下特殊情形：若有限群 $G$ 有两条合成列
+  \[
+    1=N_0\normal N_1\normal\cdots\normal N_r=G,
+    \qquad
+    1=M_0\normal M_1\normal M_2=G,
+  \]
+  则 $r=2$，且合成因子列表相同。[使用第二同构定理。]
+  \item 对 $\min\{r,s\}$ 作归纳，证明 Jordan--Hölder 定理的第 (2) 部分。[令 $H=N_{r-1}\cap M_{s-1}$，并使用前面练习。]
+  \item 证明若 $H$ 是可解群 $G$ 的非平凡正规子群，则 $H$ 中存在一个非平凡子群 $A$，使得 $A\normal G$ 且 $A$ 阿贝尔。
+  \item 不使用 Feit--Thompson 定理，证明以下条件等价：
+  \begin{enumerate}[label=(\roman*)]
+    \item 每个奇阶群都是可解群；
+    \item 奇阶单群只有素数阶群。
+  \end{enumerate}
+\end{enumerate}
+
+\section{换位与交错群}
+
+\subsection*{$S_n$ 的换位与生成}
+
+如第 1.3 节所见（并将在下一章证明），$S_n$ 的每个元素都可以以本质唯一的方式写成不交循环的乘积。相反，$S_n$ 的每个元素也可以以许多不同方式写成（不要求不交的）循环乘积。例如，即使在 $S_3$ 中，元素 $\sigma=(1\ 2\ 3)$ 也可写作
+\[
+  \sigma=(1\ 2\ 3)=(1\ 3)(1\ 2)=(1\ 2)(1\ 3)(1\ 2)(1\ 3)=(1\ 2)(2\ 3),
+\]
+事实上还有无穷多种不同写法。不要求循环不交会完全破坏置换作为循环乘积表示的唯一性。不过，若把置换（非唯一地）写成 $2$-循环的乘积，我们可以得到一种“奇偶性检查”。
+
+\noindent\textbf{定义.} 一个 $2$-循环称为\emph{换位}。
+
+直观地说，$\{1,2,
+\ldots,n\}$ 的每个置换都可以通过一系列换位，即成对元素的简单交换来实现。下面说明如何做到这一点。首先注意对任意 $m$-循环，
+\[
+  (a_1\ a_2\ \cdots\ a_m)
+  =(a_1\ a_m)(a_1\ a_{m-1})(a_1\ a_{m-2})\cdots(a_1\ a_2).
+\]
+现在 $S_n$ 的任意置换都可写成循环乘积（例如其循环分解）。把每个循环依次按上式写成换位乘积，就得到
+\[
+  \text{$S_n$ 的每个元素都可写成换位的乘积，}
+\]
+等价地，
+\[
+  S_n=\langle T\rangle,
+  \qquad T=\{(i\ j)
+  \mid 1\leq i<j\leq n\}.
+\]
+例如第 1.3 节中的置换可写成
+\begin{align*}
+  \sigma&=(1\ 12\ 8\ 10\ 4)(2\ 13)(5\ 11\ 7)(6\ 9)\\
+  &=(1\ 4)(1\ 10)(1\ 8)(1\ 12)(2\ 13)(5\ 7)(5\ 11)(6\ 9).
+\end{align*}
+
+\subsection*{交错群}
+
+再次强调，对任意 $\sigma\in S_n$，可有许多方式把 $\sigma$ 写成换位乘积。现在证明，对固定的 $\sigma$，等于 $\sigma$ 的任意换位乘积的项数奇偶性相同。
+
+令 $x_1,
+\ldots,x_n$ 是独立变量，令 $\Delta$ 为多项式
+\[
+  \Delta=\prod_{1\leq i<j\leq n}(x_i-x_j),
+\]
+即所有 $x_i-x_j$（$i<j$）的乘积。例如，当 $n=4$ 时，
+\[
+  \Delta=(x_1-x_2)(x_1-x_3)(x_1-x_4)(x_2-x_3)(x_2-x_4)(x_3-x_4).
+\]
+对每个 $\sigma\in S_n$，令 $\sigma$ 通过按其置换指标的方式置换变量而作用在 $\Delta$ 上：
+\[
+  \sigma(\Delta)=\prod_{1\leq i<j\leq n}(x_{\sigma(i)}-x_{\sigma(j)}).
+\]
+例如，若 $n=4$ 且 $\sigma=(1\ 2\ 3\ 4)$，则
+\[
+  \sigma(\Delta)=(x_2-x_3)(x_2-x_4)(x_2-x_1)(x_3-x_4)(x_3-x_1)(x_4-x_1).
+\]
+一般地，$\Delta$ 中对每个 $i<j$ 有一个因子 $x_i-x_j$；由于 $\sigma$ 是指标集合的双射，$\sigma(\Delta)$ 对每个 $i<j$ 必含 $x_i-x_j$ 或 $x_j-x_i$ 中恰一个（且当然没有 $x_i-x_i$ 因子）。若 $\sigma(\Delta)$ 中出现因子 $x_j-x_i$ 且 $j>i$，将其写作 $-(x_i-x_j)$。把所有符号变化收集起来，可见 $\Delta$ 与 $\sigma(\Delta)$ 的因子相同，只差若干个 $-1$ 的乘积；即
+\[
+  \sigma(\Delta)=\pm\Delta,
+  \qquad \sigma\in S_n.
+\]
+
+对每个 $\sigma\in S_n$，令
+\[
+  \varepsilon(\sigma)=
+  \begin{cases}
+    +1,&\text{若 }\sigma(\Delta)=\Delta,\\
+    -1,&\text{若 }\sigma(\Delta)=-\Delta.
+  \end{cases}
+\]
+在上面 $n=4$、$\sigma=(1\ 2\ 3\ 4)$ 的例子中，$\sigma(\Delta)$ 中恰有 $3$ 个形如 $x_j-x_i$（$j>i$）的因子，因此每个贡献一个 $-1$。故
+\[
+  (1\ 2\ 3\ 4)(\Delta)=(-1)^3\Delta=-\Delta,
+\]
+所以 $\varepsilon((1\ 2\ 3\ 4))=-1$。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item $\varepsilon(\sigma)$ 称为 $\sigma$ 的\emph{符号}。
+  \item 若 $\varepsilon(\sigma)=1$，称 $\sigma$ 为\emph{偶置换}；若 $\varepsilon(\sigma)=-1$，称 $\sigma$ 为\emph{奇置换}。
+\end{enumerate}
+
+下一个结果表明，置换符号定义了一个同态。
+
+\medskip
+\noindent\textbf{命题 23.} 映射 $\varepsilon:S_n\to\{\pm1\}$ 是同态（其中 $\{\pm1\}$ 是阶为 $2$ 的循环群的乘法形式）。
+
+\begin{proof}
+按定义，
+\[
+  (\tau\sigma)(\Delta)=\prod_{1\leq i<j\leq n}(x_{\tau\sigma(i)}-x_{\tau\sigma(j)}).
+\]
+假设 $\sigma(\Delta)$ 中恰有 $k$ 个因子形如 $x_j-x_i$ 且 $j>i$，即 $\varepsilon(\sigma)=(-1)^k$。计算 $(\tau\sigma)(\Delta)$ 时，先把 $\sigma$ 作用于指标，可见其中恰有 $k$ 个因子形如 $x_{\tau(j)}-x_{\tau(i)}$，其中 $j>i$。交换这 $k$ 个因子中两项的顺序会产生符号变化 $(-1)^k=\varepsilon(\sigma)$；此时所有因子都形如 $x_{\tau(p)}-x_{\tau(q)}$，其中 $p<q$。因此
+\[
+  (\tau\sigma)(\Delta)=\varepsilon(\sigma)
+  \prod_{1\leq p<q\leq n}(x_{\tau(p)}-x_{\tau(q)}).
+\]
+由 $\varepsilon$ 的定义，
+\[
+  \prod_{1\leq p<q\leq n}(x_{\tau(p)}-x_{\tau(q)})=\varepsilon(\tau)\Delta.
+\]
+所以 $(\tau\sigma)(\Delta)=\varepsilon(\sigma)\varepsilon(\tau)\Delta$。于是
+\[
+  \varepsilon(\tau\sigma)=\varepsilon(\sigma)\varepsilon(\tau)=\varepsilon(\tau)\varepsilon(\sigma),
+\]
+如所需。
+\end{proof}
+
+为了看这个证明如何运作，令 $n=4$，$\sigma=(1\ 2\ 3\ 4)$，$\tau=(4\ 2\ 3)$，于是 $\tau\sigma=(1\ 3\ 2\ 4)$。由定义（使用此时 $\Delta$ 的显式表达式）有
+\begin{align*}
+  (\tau\sigma)(\Delta)\\
+  &=(1\ 3\ 2\ 4)(\Delta)\\
+  &=(x_3-x_4)(x_3-x_2)(x_3-x_1)(x_4-x_2)(x_4-x_1)(x_2-x_1)\\
+  &=(-1)^5\Delta,
+\end{align*}
+其中除了第一个因子外，其余所有因子都要翻转才能恢复 $\Delta$。这说明 $\varepsilon(\tau\sigma)=-1$。另一方面，由于我们已经计算过 $\sigma(\Delta)$，
+\begin{align*}
+  (\tau\sigma)(\Delta)
+  =\tau(\sigma(\Delta))\\
+  =\begin{aligned}
+  &(x_{\tau(2)}-x_{\tau(3)})(x_{\tau(2)}-x_{\tau(4)})(x_{\tau(2)}-x_{\tau(1)})\\
+  &\quad\times(x_{\tau(3)}-x_{\tau(4)})(x_{\tau(3)}-x_{\tau(1)})(x_{\tau(4)}-x_{\tau(1)})
+  \end{aligned}\\
+  =(-1)^3\!\prod_{1\leq p<q\leq 4}\!(x_{\tau(p)}-x_{\tau(q)})=(-1)^3\tau(\Delta),
+\end{align*}
+这里第三、第五、第六个因子需要交换两项，才能把所有因子写成 $x_{\tau(p)}-x_{\tau(q)}$ 且 $p<q$ 的形式。我们已经算出 $\varepsilon(\sigma)=(-1)^3=-1$；用同样方法容易看出 $\varepsilon(\tau)=(-1)^2=1$，所以
+\[
+  \varepsilon(\tau\sigma)=-1=\varepsilon(\tau)\varepsilon(\sigma).
+\]
+
+接下来计算任意换位 $(i\ j)$ 的符号。先做 $i=1,j=2$ 的情形，再化归到一般情形。显然，对任意 $n$，$(1\ 2)$ 作用于 $\Delta$ 时恰好翻转一个因子，即 $x_1-x_2$；因此 $\varepsilon((1\ 2))=-1$。对任意换位 $(i\ j)$，令 $\lambda$ 是交换 $1$ 与 $i$、交换 $2$ 与 $j$ 并固定其他数字的置换（若 $i=1$ 或 $j=2$，则相应地固定该数）。容易看出
+\[
+  (i\ j)=\lambda(1\ 2)\lambda.
+\]
+由于 $\varepsilon$ 是同态，得
+\[
+  \varepsilon((i\ j))=\varepsilon(\lambda(1\ 2)\lambda)
+  =\varepsilon(\lambda)\varepsilon((1\ 2))\varepsilon(\lambda)
+  =-\varepsilon(\lambda)^2=-1.
+\]
+
+\medskip
+\noindent\textbf{命题 24.} 所有换位都是奇置换，并且 $\varepsilon$ 是满同态。
+
+\noindent\textbf{定义.} \emph{$n$ 次交错群}，记为 $A_n$，是同态 $\varepsilon$ 的核（即所有偶置换的集合）。
+
+由第一同构定理，$S_n/A_n\cong\varepsilon(S_n)=\{\pm1\}$，所以
+\[
+  |A_n|=\frac12|S_n|=\frac12 n!.
+\]
+此外，$S_n-A_n$ 是 $A_n$ 的非单位陪集，即所有奇置换的集合。置换符号遵循通常的 $\ZZ/2\ZZ$ 法则：
+\[
+\begin{array}{c}
+(\text{偶})(\text{偶})=(\text{奇})(\text{奇})=\text{偶},\\
+(\text{偶})(\text{奇})=(\text{奇})(\text{偶})=\text{奇}.
+\end{array}
+\]
+
+又因为 $\varepsilon$ 是同态，且每个 $\sigma\in S_n$ 都是换位乘积，设 $\sigma=\tau_1\tau_2\cdots\tau_k$，则
+\[
+  \varepsilon(\sigma)=\varepsilon(\tau_1)\cdots\varepsilon(\tau_k)=(-1)^k.
+\]
+因此无论如何把 $\sigma$ 写成换位乘积，项数 $k$ 的模 $2$ 类，即换位个数的奇偶性，都是相同的：
+\[
+  \varepsilon(\sigma)=
+  \begin{cases}
+    +1,&\text{若 $\sigma$ 是偶数个换位的乘积},\\
+    -1,&\text{若 $\sigma$ 是奇数个换位的乘积}.
+  \end{cases}
+\]
+
+最后给出一种从循环分解快速计算 $\varepsilon(\sigma)$ 的方法。回忆一个 $m$-循环可写成 $m-1$ 个换位的乘积。因此
+\[
+  \text{$m$-循环是奇置换，当且仅当 $m$ 是偶数。}
+\]
+若置换 $\sigma$ 的循环分解为 $\alpha_1\alpha_2\cdots\alpha_k$，则
+\[
+  \varepsilon(\sigma)=\varepsilon(\alpha_1)\cdots\varepsilon(\alpha_k),
+\]
+且 $\varepsilon(\alpha_i)=-1$ 当且仅当 $\alpha_i$ 的长度为偶数。于是 $\varepsilon(\sigma)=-1$ 当且仅当这些因子中出现奇数个 $-1$。概括为：
+
+\medskip
+\noindent\textbf{命题 25.} 置换 $\sigma$ 是奇置换，当且仅当其循环分解中偶长度循环的个数为奇数。
+
+例如，
+\[
+  \sigma=(1\ 2\ 3\ 4\ 5\ 6)(7\ 8\ 9)(10\ 11)(12\ 13\ 14\ 15)(16\ 17\ 18)
+\]
+有 $3$ 个偶长度循环，所以 $\varepsilon(\sigma)=-1$。另一方面，
+\[
+  \tau=(1\ 12\ 8\ 10\ 4)(2\ 13)(5\ 11\ 7)(6\ 9)
+\]
+恰有 $2$ 个偶长度循环，故 $\varepsilon(\tau)=1$。
+
+注意不要把置换 $\sigma$ 的“奇”“偶”与其阶的奇偶混淆。事实上，若 $\sigma$ 有奇数阶，则 $\sigma$ 的循环分解中的所有循环长度都是奇数，所以 $\sigma$ 有偶数个（此处为 $0$ 个）偶长度循环，因此是偶置换。若 $|\sigma|$ 是偶数，则 $\sigma$ 可能是偶置换也可能是奇置换；例如 $(1\ 2)$ 是奇置换，$(1\ 2)(3\ 4)$ 是偶置换，但二者阶都为 $2$。
+
+如上一节所述，交错群 $A_n$ 在多项式可解性的研究中十分重要。下一章我们将证明：
+\[
+  A_n\text{ 对所有 }n\geq5\text{ 都是非阿贝尔单群。}
+\]
+对较小的 $n$，$A_n$ 已经是我们熟悉的群：$A_1$ 和 $A_2$ 都是平凡群，$|A_3|=3$（所以 $A_3=\langle(1\ 2\ 3)\rangle\cong Z_3$）。群 $A_4$ 的阶为 $12$。练习 7 说明 $A_4$ 同构于正四面体的对称群。$A_4$ 的子群格见图 8（练习 8 断言这是其完整子群格）。这个格的一个好处是（不像“几乎所有群”那样）它是平面图（除了在顶点处，线没有交叉；可参见 $D_{16}$ 的非平面格）。
+
+\begin{center}
+\begin{tikzpicture}[scale=.82, every node/.style={inner sep=1pt}]
+  \node (A4) at (0,4.2) {$A_4$};
+  \node (V) at (-2.8,3.0) {$\langle(1\ 2)(3\ 4),(1\ 3)(2\ 4)\rangle$};
+  \node (C1) at (-.6,3.0) {$\langle(1\ 2\ 3)\rangle$};
+  \node (C2) at (1.4,3.0) {$\langle(1\ 2\ 4)\rangle$};
+  \node (C3) at (3.4,3.0) {$\langle(1\ 3\ 4)\rangle$};
+  \node (C4) at (5.4,3.0) {$\langle(2\ 3\ 4)\rangle$};
+  \node (D1) at (-4.2,1.5) {$\langle(1\ 2)(3\ 4)\rangle$};
+  \node (D2) at (-2.4,1.5) {$\langle(1\ 3)(2\ 4)\rangle$};
+  \node (D3) at (-.6,1.5) {$\langle(1\ 4)(2\ 3)\rangle$};
+  \node (one) at (.6,0) {$1$};
+  \foreach \X in {V,C1,C2,C3,C4}{\draw (A4)--(\X);}
+  \foreach \X in {D1,D2,D3}{\draw (V)--(\X); \draw (\X)--(one);}
+  \foreach \X in {C1,C2,C3,C4}{\draw (\X)--(one);}
+  \node at (5.8,.4) {图 8};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 在第 1.3 节练习 1 和 2 中，你被要求求一些置换的循环分解。把每个置换写成换位的乘积，并判断它们是偶置换还是奇置换。
+  \item 证明对每个置换 $\sigma$，$\sigma^2$ 都是偶置换。
+  \item 证明 $S_n$ 由集合 $\{(i\ i+1)\mid 1\leq i\leq n-1\}$ 生成。[考虑共轭，例如 $(2\ 3)(1\ 2)(2\ 3)^{-1}$。]
+  \item 证明对所有 $n\geq2$，
+  \[
+    S_n=\langle(1\ 2),(1\ 2\ 3\ \cdots\ n)\rangle.
+  \]
+  \item 证明若 $p$ 是素数，则 $S_p=\langle\sigma,\tau\rangle$，其中 $\sigma$ 是任意换位，$\tau$ 是任意 $p$-循环。
+  \item 说明 $\langle(1\ 3),(1\ 2\ 3\ 4)\rangle$ 是 $S_4$ 的真子群。该子群的同构类型是什么？
+  \item 证明正四面体的刚体运动群同构于 $A_4$。[回忆第 1.7 节练习 20。]
+  \item 证明正文中给出的 $A_4$ 子群格是正确的。[由上一题以及拉格朗日定理之后的讨论，$A_4$ 没有阶为 $6$ 的子群。]
+  \item 证明 $A_4$ 中唯一阶为 $4$ 的子群正规，且同构于 $V_4$。
+  \item 给出 $A_4$ 的一个合成列，并推出 $A_4$ 可解。
+  \item 证明 $S_4$ 没有同构于 $Q_8$ 的子群。
+  \item 证明对每个 $n\geq3$，$A_n$ 含有一个同构于 $S_{n-2}$ 的子群。
+  \item 证明 $A_n$ 中每个阶为 $2$ 的元素都是 $S_n$ 中某个阶为 $4$ 的元素的平方。[提示：$A_n$ 中阶为 $2$ 的元素是 $2k$ 个两两交换的换位的乘积。]
+  \item 证明 $A_4$ 中由任一阶为 $2$ 的元素和任一阶为 $3$ 的元素生成的子群都是整个 $A_4$。
+  \item 证明若 $x$ 和 $y$ 是 $S_4$ 中不同的 $3$-循环且 $x\neq y^{-1}$，则由 $x$ 和 $y$ 生成的 $S_4$ 子群是 $A_4$。
+  \item 令 $x$ 和 $y$ 是 $S_5$ 中不同的 $3$-循环，且 $x\neq y^{-1}$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明若 $x$ 与 $y$ 固定 $\{1,
+    \ldots,5\}$ 的一个共同元素，则 $\langle x,y\rangle\cong A_4$。
+    \item 证明若 $x$ 与 $y$ 不固定共同元素，则 $\langle x,y\rangle=A_5$。
+  \end{enumerate}
+  \item 若 $x$ 与 $y$ 是 $S_n$ 中的 $3$-循环，证明 $\langle x,y\rangle$ 同构于 $Z_3$、$A_4$、$A_5$ 或 $Z_3\times Z_3$。
+\end{enumerate}

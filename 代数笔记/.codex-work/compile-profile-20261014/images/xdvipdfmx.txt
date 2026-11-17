@@ -1,0 +1,7 @@
+C:\Users\WANYIWIGE\Desktop\我的笔记\代数笔记\.codex-work\compile-profile-20261014\images\bench.xdv -> C:\Users\WANYIWIGE\Desktop\我的笔记\代数笔记\.codex-work\compile-profile-20261014\images\bench.pdf
+[1][2][3][4][5][6][7
+xdvipdfmx:warning: Object @page.1 already defined.
+][8
+xdvipdfmx:warning: Object @page.2 already defined.
+][9][10][11][12][13][14][15][16][17][18][19][20][21][22][23][24][25][26][27][28]
+5767295 bytes written

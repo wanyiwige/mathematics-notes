@@ -1,0 +1,518 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第2章：Fourier级数的收敛性
+% 节：2.1 Fourier级数的均方收敛
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{Fourier级数的均方收敛}
+
+\subsection*{预备知识}
+
+默认读者已经对内积与范数,酉空间有初步了解.下面先介绍本节中至关重要的无穷维空间 $\ell^2(\Z)$.
+
+
+\begin{definition}
+	$\ell^2(\Z)$ 是所有复的双向无穷序列
+	\[
+	A=(\ldots,a_{-n},\ldots,a_{-1},a_0,a_1,\ldots,a_n,\ldots)
+	\]
+	所成的集合,其中
+	\[
+	\sum_{n\in\Z}|a_n|^2<\infty.
+	\]
+	向量的加法与数乘均按分量定义.若
+	\[
+	A=(a_n)_{n\in\Z},\qquad B=(b_n)_{n\in\Z},
+	\]
+	则定义内积
+	\[
+	(A,B)=\sum_{n\in\Z}a_n\overline{b_n}.
+	\]
+	该级数绝对收敛,并由此定义范数
+	\[
+	\norm{A}=(A,A)^{1/2}
+	=\left(\sum_{n\in\Z}|a_n|^2\right)^{1/2}.
+	\]
+	
+\end{definition}
+
+下面证明 $\ell^2(\Z)$ 中的三角不等式与 Cauchy--Schwarz 不等式.
+
+\begin{proposition}
+	对任意 $A,B\in\ell^2(\Z)$,有
+	\begin{enumerate}
+		\item $\norm{A+B}\leq \norm{A}+\norm{B}$;
+		\item $|(A,B)|\leq \norm{A}\norm{B}$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	令
+	\[
+	A_N=(\ldots,0,a_{-N},\ldots,a_N,0,\ldots),
+	\qquad
+	B_N=(\ldots,0,b_{-N},\ldots,b_N,0,\ldots).
+	\]
+	在有限维空间中,三角不等式与 Cauchy--Schwarz 不等式成立,故
+	\[
+	\norm{A_N+B_N}\leq \norm{A_N}+\norm{B_N}
+	\leq \norm{A}+\norm{B}.
+	\]
+	令 $N\to\infty$,得到
+	\[
+	\norm{A+B}\leq \norm{A}+\norm{B}.
+	\]
+	另一方面,
+	\[
+	|(A_N,B_N)|\leq \norm{A_N}\norm{B_N}
+	\leq \norm{A}\norm{B}.
+	\]
+	同时,
+	\[
+	\sum_{|n|\leq N}|a_n b_n|
+	\leq
+	\left(\sum_{|n|\leq N}|a_n|^2\right)^{1/2}
+	\left(\sum_{|n|\leq N}|b_n|^2\right)^{1/2}
+	\leq \norm{A}\norm{B},
+	\]
+	所以 $\sum_{n\in\Z}a_n\overline{b_n}$ 绝对收敛.再令 $N\to\infty$,即得
+	\[
+	|(A,B)|\leq \norm{A}\norm{B}.
+	\]
+\end{proof}
+在 $\R^d$、$\C^d$ 与 $\ell^2(\Z)$ 中,内积和范数满足下面两个重要性质：
+\begin{enumerate}
+	\item 内积是正定的,即 $\norm{X}=0$ 当且仅当 $X=0$;
+	\item 空间是完备的,即每个 Cauchy 列都收敛,且其极限仍属于该空间.
+\end{enumerate}
+\begin{definition}
+	满足上述两个条件的内积空间称为 \textbf{Hilbert 空间}.若上面的两个条件中有任意的一个不满足,则空间成为\textbf{准Hilbert 空间}
+\end{definition}
+因此,\allowbreak $\R^d$ 与 $\C^d$ 是有限维 Hilbert 空间,而 $\ell^2(\Z)$ 是无穷维 Hilbert 空间.
+
+事实上,若 $\{A^{(k)}\}_{k\geq1}$ 是 $\ell^2(\Z)$ 中的 Cauchy 列,其中
+\[
+A^{(k)}=(a_n^{(k)})_{n\in\Z},
+\]
+则每个坐标列 $\{a_n^{(k)}\}_{k\geq1}$ 都是 $\C$ 中的 Cauchy 列.记其极限为 $a_n$,并令 $A=(a_n)_{n\in\Z}$.对充分大的 $k,m$ 及任意 $N$,有
+\[
+\sum_{|n|\leq N}|a_n^{(k)}-a_n^{(m)}|^2<\eps^2.
+\]
+先令 $m\to\infty$,再令 $N\to\infty$,便得到 $A\in\ell^2(\Z)$ 且 $\norm{A^{(k)}-A}\leq\eps$.因此 $\ell^2(\Z)$ 完备.
+
+现在给出本节中另一个重要的函数空间.可以证明这是一个准Hilbert 空间
+
+
+\begin{definition}
+	令 $\mathcal R$ 表示区间 $[0,2\pi]$ 上复值 Riemann 可积函数的集合,等价地,也可将其看作圆周上的 Riemann 可积函数空间.函数的加法与数乘按点定义,并定义
+	\[
+	(f,g)=\frac1{2\pi}\int_0^{2\pi}f(\theta)\overline{g(\theta)}\dd\theta.
+	\]
+	相应的范数为
+	\[
+	\norm{f}
+	=\left(\frac1{2\pi}\int_0^{2\pi}|f(\theta)|^2\dd\theta\right)^{1/2}.
+	\]
+\end{definition}
+
+首先证明这一函数空间中的 Cauchy--Schwarz 不等式.对任意实数 $A,B$ 有$2AB\leq A^2+B^2$.令 $A=\lambda^{1/2}|f(\theta)|$、$B=\lambda^{-1/2}|g(\theta)|$,其中 $\lambda>0$,则
+\[
+|f(\theta)g(\theta)|
+\leq \frac12\left(\lambda|f(\theta)|^2+\lambda^{-1}|g(\theta)|^2\right).
+\]
+对 $\theta$ 积分可得
+\[
+|(f,g)|
+\leq \frac12\left(\lambda\norm{f}^2+\lambda^{-1}\norm{g}^2\right).
+\]
+当 $\norm{f}\neq0$ 且 $\norm{g}\neq0$ 时,取 $\lambda=\norm{g}/\norm{f}$,便有
+\[
+|(f,g)|\leq \norm{f}\norm{g}.
+\]
+其余情形显然成立.三角不等式是该不等式的直接推论.
+
+不过,在 $\mathcal R$ 中,正定性并不成立.例如,令 $h(0)=1$,而在其余点令 $h(\theta)=0$,则 $h\neq0$ 但 $\norm{h}=0$.更本质地,这个空间也不是完备的.为说明这一点,定义
+\[
+f(\theta)=
+\begin{cases}
+	0,&\theta=0,\\
+	\log(1/\theta),&0<\theta\leq2\pi.
+\end{cases}
+\]
+由于 $f$ 在 $0$ 附近无界,故 $f\notin\mathcal R$.进一步定义
+\[
+f_n(\theta)=
+\begin{cases}
+	0,&0\leq\theta\leq 1/n,\\
+	f(\theta),&1/n<\theta\leq2\pi.
+\end{cases}
+\]
+每个 $f_n$ 都属于 $\mathcal R$.又因为 $\log^2(1/\theta)$ 在 $0$ 附近可积,所以
+\[
+\norm{f_m-f_n}^2
+=\frac1{2\pi}\int_{\min\{1/m,1/n\}}^{\max\{1/m,1/n\}}
+\log^2(1/\theta)\dd\theta=\theta(\log\theta)^2-2\theta\log\theta+2\theta\bigg|_{\min\{1/m,1/n\}}^{\max\{1/m,1/n\}}\longrightarrow0.
+\]
+因此 $\{f_n\}$ 是 $\mathcal R$ 中的 Cauchy 列,但它不可能收敛到 $\mathcal R$ 中的函数.事实上,$f_n$ 在上述范数下收敛到 $f$,而任何与 $f$ 几乎处处相等的函数都不可能是有界的 Riemann 可积函数.
+
+\subsection*{均方收敛与 Parseval 恒等式}
+
+对每个整数 $n$,令$e_n(\theta)=e^{in\theta}.$则 $\{e_n\}_{n\in\Z}$ 是标准正交族,即
+\[
+(e_n,e_m)=
+\begin{cases}
+	1,&n=m,\\
+	0,&n\neq m.
+\end{cases}
+\]
+若 $f$ 是圆周上的 Riemann 可积函数,其 Fourier 系数记为
+\[
+a_n=\widehat f(n)=\frac1{2\pi}\int_0^{2\pi}f(\theta)e^{-in\theta}\dd\theta,
+\]
+则
+\[
+a_n=(f,e_n),
+\qquad
+S_N(f)=\sum_{|n|\leq N}a_ne_n.
+\]
+由标准正交性可知,对任意 $|n|\leq N$,
+\[
+\left(f-\sum_{|k|\leq N}a_ke_k,e_n\right)=0.
+\]
+因此,对任意复数 $b_n$,有
+\begin{equation}\label{eq:orthogonal-decomposition}
+	\left(f-\sum_{|n|\leq N}a_ne_n,\sum_{|n|\leq N}b_ne_n\right)=0.
+\end{equation}
+取 $b_n=a_n$,由勾股定理得到
+\begin{equation}\label{eq:finite-parseval}
+	\norm{f}^2
+	=\norm{f-S_N(f)}^2+
+	\sum_{|n|\leq N}|a_n|^2.
+\end{equation}
+
+\begin{lemma}
+	\textbf{（最佳逼近）}
+	若 $f$ 是圆周上的 Riemann 可积函数,其 Fourier 系数为 $a_n$,则对任意复数 $c_n$,
+	\[
+	\norm{f-S_N(f)}
+	\leq
+	\norm{f-\sum_{|n|\leq N}c_ne_n}.
+	\]
+	并且等号成立当且仅当对所有 $|n|\leq N$ 都有 $c_n=a_n$.
+\end{lemma}
+
+\begin{proof}
+	由
+	\[
+	f-\sum_{|n|\leq N}c_ne_n
+	=f-S_N(f)+\sum_{|n|\leq N}(a_n-c_n)e_n
+	\]
+	以及式 \eqref{eq:orthogonal-decomposition},可得
+	\[
+	\norm{f-\sum_{|n|\leq N}c_ne_n}^2
+	=\norm{f-S_N(f)}^2+
+	\sum_{|n|\leq N}|a_n-c_n|^2.
+	\]
+	结论立即成立.
+\end{proof}
+
+\begin{theorem}
+	\textbf{（均方收敛与 Parseval 恒等式）}
+	设 $f$ 是圆周上的 Riemann 可积函数,且
+	\[
+	f(\theta)\sim\sum_{n=-\infty}^{\infty}a_ne^{in\theta}.
+	\]
+	则：
+	\begin{enumerate}
+		\item 当 $N\to\infty$ 时,$f$ 的 Fourier 级数均方收敛于 $f$,即
+		\[
+		\norm{f-S_N(f)}\longrightarrow0;
+		\]
+		\item Parseval 恒等式成立：
+		\[
+		\sum_{n=-\infty}^{\infty}|a_n|^2
+		=\frac1{2\pi}\int_0^{2\pi}|f(\theta)|^2\dd\theta
+		=\norm{f}^2.
+		\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	先设 $f$ 在圆周上连续.给定 $\eps>0$,由 Stone--Weierstrass 定理,存在次数为 $M$ 的三角多项式 $P$,使得
+	\[
+	|f(\theta)-P(\theta)|<\eps,
+	\qquad \theta\in[0,2\pi].
+	\]
+	于是 $\norm{f-P}<\eps$.当 $N\geq M$ 时,由最佳逼近引理,
+	\[
+	\norm{f-S_N(f)}\leq\norm{f-P}<\eps.
+	\]
+	因此连续函数的 Fourier 级数均方收敛于原函数.
+	
+	现在设 $f$ 仅为 Riemann 可积函数.令 $B\geq\sup_{\theta}|f(\theta)|$.由 Part1中的\ref{C在R中一致有界稠密},可取圆周上的连续函数 $g$,使得 $|g|\leq B$ 且 $\displaystyle\int_0^{2\pi}|f-g|\dd\theta$ 任意小.由于 $|f-g|\leq2B$,
+	\[
+	\norm{f-g}^2
+	=\frac1{2\pi}\int_0^{2\pi}|f-g|^2\dd\theta
+	\leq\frac{B}{\pi}\int_0^{2\pi}|f-g|\dd\theta.
+	\]
+	故可使 $\norm{f-g}<\eps/2$.再由连续情形,存在三角多项式 $P$,使得 $\norm{g-P}<\eps/2$.于是
+	\[
+	\norm{f-P}\leq\norm{f-g}+\norm{g-P}<\eps.
+	\]
+	设 $P$ 的次数为 $M$,则当 $N\geq M$ 时,最佳逼近引理给出
+	\[
+	\norm{f-S_N(f)}\leq\norm{f-P}<\eps.
+	\]
+	这证明了均方收敛.
+	
+	最后,由式 \eqref{eq:finite-parseval},
+	\[
+	\sum_{|n|\leq N}|a_n|^2
+	=\norm{f}^2-\norm{f-S_N(f)}^2.
+	\]
+	令 $N\to\infty$,便得到 Parseval 恒等式.
+\end{proof}
+在实际计算与应用中,我们经常采取Fourier展开的三角形式\[f(\theta)\sim \frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos n\theta+b_n\sin \theta)\]
+其Parseval公式为
+\[\frac{1}{2\pi}\int_{-\pi}^{\pi}|f(\theta)|^2\dd\theta=\frac{a_0^2}{4}+\sum_{n=1}^{\infty}(a_n^2+b_n^2)\]
+
+式 \eqref{eq:finite-parseval} 还给出了更一般的结论.若 $\{u_n\}_{n\in\Z}$ 是任意标准正交族,且 $a_n=(f,u_n)$,则对每个 $N$ 有
+\[
+\sum_{|n|\leq N}|a_n|^2\leq\norm{f}^2.
+\]
+令 $N\to\infty$,得到熟知的 Bessel 不等式
+\[
+\sum_{n=-\infty}^{\infty}|a_n|^2\leq\norm{f}^2.
+\]
+等号成立的条件是该标准正交族对 $f$ 是完备的,即
+\[
+\norm{f-\sum_{|n|\leq N}a_nu_n}\longrightarrow0.
+\]
+
+\begin{lemma}
+	\textbf{（Riemann--Lebesgue 引理）}
+	如果 $f$ 是圆周上的 Riemann 可积函数,那么当 $|n|\to\infty$ 时,
+	\[
+	\widehat f(n)\longrightarrow0.
+	\]
+	等价地,当 $N\to\infty$ 时,
+	\[
+	\int_0^{2\pi}f(\theta)\sin(N\theta)\dd\theta\longrightarrow0,
+	\qquad
+	\int_0^{2\pi}f(\theta)\cos(N\theta)\dd\theta\longrightarrow0.
+	\]
+\end{lemma}
+
+\begin{proof}
+	给定 $\eps>0$,由上面的均方收敛结论,可取三角多项式 $P$,使得 $\norm{f-P}<\eps$.若 $|n|$ 大于 $P$ 的次数,则 $\widehat P(n)=0$,从而由 Cauchy--Schwarz 不等式,
+	\[
+	|\widehat f(n)|
+	=|(f-P,e_n)|
+	\leq\norm{f-P}\norm{e_n}
+	<\eps.
+	\]
+	由于 $\norm{e_n}=1$,结论成立.正弦与余弦形式由
+	\[
+	e^{in\theta}=\cos(n\theta)+i\sin(n\theta)
+	\]
+	立即得到.
+\end{proof}
+
+\begin{lemma}\label{Parseval 等式的双线性形式}
+	设 $F$ 和 $G$ 是圆周上的 Riemann 可积函数,且
+	\[
+	F(\theta)\sim\sum_{n=-\infty}^{\infty}a_ne^{in\theta},
+	\qquad
+	G(\theta)\sim\sum_{n=-\infty}^{\infty}b_ne^{in\theta}.
+	\]
+	那么
+	\[\frac1{2\pi}\int_0^{2\pi}F(\theta)\overline{G(\theta)}\dd\theta
+	=\sum_{n=-\infty}^{\infty}a_n\overline{b_n}.
+	\]
+	并且右端级数绝对收敛.
+\end{lemma}
+
+\begin{proof}
+	由 Parseval 恒等式与复内积空间中的极化恒等式
+	\[
+	(F,G)=\frac14\left[
+	\norm{F+G}^2-\norm{F-G}^2
+	+i\bigl(\norm{F+iG}^2-\norm{F-iG}^2\bigr)
+	\right],
+	\]
+	分别对 $F+G$、$F-G$、$F+iG$ 与 $F-iG$ 使用 Parseval 恒等式,逐项化简便得到
+	\[
+	(F,G)=\sum_{n=-\infty}^{\infty}a_n\overline{b_n}.
+	\]
+	此外,由 $\ell^2(\Z)$ 中的 Cauchy--Schwarz 不等式,
+	\[
+	\sum_{n=-\infty}^{\infty}|a_n\overline{b_n}|
+	\leq
+	\left(\sum_{n=-\infty}^{\infty}|a_n|^2\right)^{1/2}
+	\left(\sum_{n=-\infty}^{\infty}|b_n|^2\right)^{1/2}
+	=\norm{F}\norm{G}<\infty.
+	\]
+\end{proof}
+利用 Parseval 恒等式,可以证明如下的 Wirtinger--Poincar\'e 不等式,它建立了函数的范数与其导数范数之间的关系.
+\begin{proposition}
+	\begin{enumerate}
+		\item[(a)] 设 $f$ 是 $T$-周期、连续且分段 $C^1$ 的函数,并满足$\displaystyle\int_0^T f(t)\dd t=0.$
+		
+		那么有Wirtinger不等式
+\[ \int_0^T \abs{f(t)}^2\dd t
+			\leq
+			\frac{T^2}{4\pi^2}
+			\int_0^T \abs{f'(t)}^2\dd t. \]
+
+		并且等号成立当且仅当$f(t)=A\sin\dfrac{2\pi t}{T}
+			+B\cos\dfrac{2\pi t}{T}.$
+		\item[(b)] 在 (a) 的条件下,若 $g$ 是 $C^1$ 的 $T$-周期函数,那么\[ \abs{\int_0^T \overline{f(t)}g(t)\dd t}^2
+			\leq
+			\frac{T^2}{4\pi^2}
+			\left(\int_0^T\abs{f(t)}^2\dd t\right)
+			\left(\int_0^T\abs{g'(t)}^2\dd t\right). \]
+		\item[(c)] 设 $[a,b]$ 是紧区间,$f\in C^1([a,b])$ 且
+		$f(a)=f(b)=0$.那么有Poincar\'e 不等式 
+		
+		\begin{equation}\label{eq:poincare-interval}
+			\int_a^b\abs{f(t)}^2\dd t
+			\leq
+			\frac{(b-a)^2}{\pi^2}
+			\int_a^b\abs{f'(t)}^2\dd t. 
+		\end{equation}
+		
+		等号成立当且仅当$f(t)=A\sin(\pi\dfrac{t-a}{b-a})$,并且常数 $(b-a)^2/\pi^2$ 不能改进.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\textbf{(a)} 对周期为 $T$ 的函数,其 Fourier 系数为
+	\[
+		\widehat f(n)
+		=
+		\frac1T\int_0^T f(t)e^{-2\pi int/T}\dd t,
+		\qquad n\in\Z.
+	\]
+	由 $f$ 的平均值为零,得到$\widehat f(0)=0.$Parseval 恒等式给出
+\[ \int_0^T\abs{f(t)}^2\dd t
+		=
+		T\sum_{n\in\Z}\abs{\widehat f(n)}^2
+		=
+		T\sum_{n\neq0}\abs{\widehat f(n)}^2. \]
+
+
+	下面计算 $f'$ 的 Fourier 系数.由于 $f$ 连续且分段 $C^1$,可在各个光滑区间上分部积分；内部边界项因 $f$ 连续而相消.再利用 $f(T)=f(0)$ 可得
+	\[\widehat{f'}(n)
+		=\frac{2\pi in}{T}\widehat f(n)\]
+	(在\ref{f(n)=O(1/n2)}中证明了)	因此,再次使用 Parseval 恒等式,得到
+\[\int_0^T\abs{f'(t)}^2\dd t
+		=
+		T\sum_{n\in\Z}\abs{\widehat{f'}(n)}^2=
+		\frac{4\pi^2}{T}
+		\sum_{n\neq0}n^2\abs{\widehat f(n)}^2.\]
+	因为 $n^2\geq1$ 对所有 $n\neq0$ 成立,所以由上面的推导
+	\[\int_0^T\abs{f(t)}^2\dd t
+		=T\sum_{n\neq0}\abs{\widehat f(n)}^2\leq T\sum_{n\neq0}n^2\abs{\widehat f(n)}^2=\frac{T^2}{4\pi^2}
+		\int_0^T\abs{f'(t)}^2\dd t.\]
+	得证
+
+	等号成立当且仅当
+	\[
+		(n^2-1)\abs{\widehat f(n)}^2=0,
+		\qquad n\neq0.
+	\]
+	也就是说,除 $n=\pm1$ 外,其余 Fourier 系数均为零.故
+	\[
+		f(t)=c_1e^{2\pi it/T}+c_{-1}e^{-2\pi it/T},
+	\]
+	等价地,
+	\[
+		f(t)=A\sin\frac{2\pi t}{T}
+		+B\cos\frac{2\pi t}{T}.
+	\]
+	若 $f$ 为实值函数,则 $A,B\in\R$；一般复值情形下可取
+	$A,B\in\C$.
+	
+	\textbf{(b)} 令
+	\[
+		g_0=\frac1T\int_0^T g(t)\dd t,
+		\qquad
+		h(t)=g(t)-g_0.
+	\]
+	则
+	\[
+		\int_0^T h(t)\dd t=0,
+		\qquad h'(t)=g'(t).
+	\]
+	又因为 $\displaystyle\int_0^T f(t)\dd t=0$,所以
+	\[
+		\int_0^T \overline{f(t)}g(t)\dd t
+		=
+		\int_0^T \overline{f(t)}h(t)\dd t.
+	\]
+	由 Cauchy--Schwarz 不等式及 (a) 应用于 $h$,有
+	\[
+	\begin{aligned}
+		\abs{\int_0^T\overline{f(t)}g(t)\dd t}^2
+		&\leq
+		\left(\int_0^T\abs{f(t)}^2\dd t\right)
+		\left(\int_0^T\abs{h(t)}^2\dd t\right)\leq
+		\frac{T^2}{4\pi^2}
+		\left(\int_0^T\abs{f(t)}^2\dd t\right)
+		\left(\int_0^T\abs{h'(t)}^2\dd t\right)\\
+		&=
+		\frac{T^2}{4\pi^2}
+		\left(\int_0^T\abs{f(t)}^2\dd t\right)
+		\left(\int_0^T\abs{g'(t)}^2\dd t\right).
+	\end{aligned}
+	\]
+	\textbf{(c)} 记 $L=b-a$.先在区间 $[a-L,a+L]$ 上定义
+	\[
+		F(t)=
+		\begin{cases}
+			-f(2a-t),&a-L\leq t\leq a,\\
+			f(t),&a\leq t\leq a+L=b,
+		\end{cases}
+	\]
+	再将 $F$ 延拓为周期 $2L$ 的函数.由于 $f(a)=f(b)=0$,函数
+	$F$ 连续且分段 $C^1$.它关于点 $a$ 为奇函数,因此在一个周期上的平均值为零：
+	\[
+		\int_{a-L}^{a+L}F(t)\dd t=0.
+	\]
+	同时,
+	\[
+		\int_{a-L}^{a+L}\abs{F(t)}^2\dd t
+		=2\int_a^b\abs{f(t)}^2\dd t,
+	\]
+	以及
+	\[
+		\int_{a-L}^{a+L}\abs{F'(t)}^2\dd t
+		=2\int_a^b\abs{f'(t)}^2\dd t.
+	\]
+	对周期为 $T=2L$ 的函数 $F$ 使用 (a),得到
+	\[2\int_a^b\abs{f(t)}^2\dd t
+		\leq
+		\frac{(2L)^2}{4\pi^2}
+		\,2\int_a^b\abs{f'(t)}^2\dd t=
+		\frac{L^2}{\pi^2}
+		\,2\int_a^b\abs{f'(t)}^2\dd t.	\]
+	整理即得
+	\[
+		\int_a^b\abs{f(t)}^2\dd t
+		\leq
+		\frac{(b-a)^2}{\pi^2}
+		\int_a^b\abs{f'(t)}^2\dd t.
+	\]
+
+	由 (a) 的等号条件,等号成立时,$F$ 只能包含周期 $2L$ 的第一频率.又因为 $F$ 关于 $a$ 为奇函数,余弦项必须消失.因此
+	\[
+		f(t)=A\sin\left(\frac{\pi(t-a)}{b-a}\right).
+	\]
+	反过来,这类函数确实使等号成立.
+
+	最后,取非零函数
+	\[
+		f(t)=\sin\left(\frac{\pi(t-a)}{b-a}\right).
+	\]
+	它在 \eqref{eq:poincare-interval} 中恰好取等号.因此若将常数
+	$(b-a)^2/\pi^2$ 换成任意更小的常数,不等式便会对该函数失效,故该常数不能改进.
+\end{proof}
+

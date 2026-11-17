@@ -1,0 +1,349 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "date": "2026-10-29",
+  "pdf_pages": 236,
+  "new_environments": {
+    "definition": 58,
+    "theorem": 50,
+    "proof": 114,
+    "proposition": 49,
+    "example": 9,
+    "lemma": 7,
+    "corollary": 7
+  },
+  "undefined_references": false,
+  "missing_characters": false,
+  "duplicate_labels": false,
+  "overfull_hboxes": 0,
+  "pdf_sha256": "dd89a58e9cec840bd955b6e38b6b8cee51a377393594432ab905763670ee9df1",
+  "new_cover_jpgs": 9,
+  "cover_dimensions": [
+    2280,
+    1500
+  ],
+  "cover_ratio": 1.52,
+  "deleted_original_pngs": 9,
+  "visual_check": "17 TikZ diagrams reviewed; 15 chapter covers within page; sampled in-context diagram pages.",
+  "inline_integrals_with_displaystyle": 21,
+  "source_editorial_notes_removed": true,
+  "revision_backup": "../常微分方程备份/知识衔接调整前-20261029-185708.zip",
+  "cover_pages": [
+    9,
+    17,
+    39,
+    63,
+    81,
+    121,
+    163,
+    173,
+    179,
+    187,
+    195,
+    203,
+    211,
+    219,
+    227
+  ],
+  "proof_sample_pages": [
+    97,
+    114,
+    115,
+    135,
+    151,
+    119,
+    156
+  ],
+  "layout_revision": {
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\排版调整前-20261029-084816.zip",
+    "changed_chapter_sources": [
+      "arnold-contraction.tex",
+      "arnold-energy.tex",
+      "arnold-linear-algebra.tex",
+      "chapter10.tex",
+      "chapter11.tex",
+      "chapter12.tex",
+      "chapter13.tex",
+      "chapter14.tex",
+      "chapter15.tex",
+      "chapter3.tex",
+      "chapter5.tex",
+      "chapter7.tex",
+      "chapter8.tex",
+      "chapter9.tex"
+    ],
+    "display_blocks": {
+      "before": 1079,
+      "after": 1168
+    },
+    "overfull_hboxes": 0,
+    "preview": "行间公式与分行排版抽查.jpg"
+  },
+  "tikz_revision": {
+    "added_figures": 17,
+    "source_directory": "figure/tikz",
+    "backup": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\常微分方程备份\\TikZ配图前-20261029-141104.zip",
+    "figures": [
+      {
+        "name": "flowbox",
+        "chapter": "chapter7.tex",
+        "anchor": "\\section{对称群与齐次性}",
+        "caption": "流盒坐标将弯曲的积分曲线化为平行直线；横截面上的标号保持不变。",
+        "intro": "图~\\ref{fig:ode-tikz-flowbox} 用 $F(s,z)=(s,z+s^2/5)$ 示意直化坐标：曲线的弯曲来自坐标，而运动时间仍由 $s$ 表示。",
+        "figure_number": "7.1",
+        "printed_page": 159,
+        "pdf_page": 167
+      },
+      {
+        "name": "blowup-cusp",
+        "chapter": "chapter7.tex",
+        "anchor": "\\section{相似性与时间尺度}",
+        "caption": "半三次抛物线的实吹起：严格变换在 $(x,v)$ 图中成为光滑曲线。",
+        "intro": "图~\\ref{fig:ode-tikz-blowup-cusp} 对比压回前后的曲线；右图的虚线 $x=0$ 是这一坐标图中的例外纤维。",
+        "figure_number": "7.2",
+        "printed_page": 161,
+        "pdf_page": 169
+      },
+      {
+        "name": "energy-level",
+        "chapter": "arnold-energy.tex",
+        "anchor": "\\begin{proposition}[数学摆的周期]",
+        "caption": "势阱与闭合能量层：以 $U(x)=x^2/2$、$E=1$ 为例。",
+        "intro": "图~\\ref{fig:ode-tikz-energy-level} 将转向点与相平面中的上下两支对应起来；箭头表示真实的时间方向。",
+        "figure_number": "6.19",
+        "printed_page": 151,
+        "pdf_page": 159
+      },
+      {
+        "name": "lv-levels",
+        "chapter": "arnold-energy.tex",
+        "anchor": null,
+        "caption": "参数 $a=b=c=d=1$ 时的 Lotka--Volterra 闭轨；各曲线为首次积分的等值线。",
+        "intro": "图~\\ref{fig:ode-tikz-lv-levels} 中闭轨围绕唯一极小点，各坐标的周期平均值均为 1。",
+        "figure_number": "6.20",
+        "printed_page": 153,
+        "pdf_page": 161
+      },
+      {
+        "name": "return-map",
+        "chapter": "qualitative-return-perturbation.tex",
+        "anchor": null,
+        "caption": "返回映射的吸引不动点与吸引闭轨：模型 $\\dot r=0.12r(1-r^2)$、$\\dot\\theta=-1$。",
+        "intro": "图~\\ref{fig:ode-tikz-return-map} 示意横截面上的半径如何逐次趋近闭轨；这对应返回映射在不动点处的压缩。",
+        "figure_number": "6.16",
+        "printed_page": 145,
+        "pdf_page": 153
+      },
+      {
+        "name": "sturm-separation",
+        "chapter": "chapter8.tex",
+        "anchor": "\\section{比较定理与零点间距}",
+        "caption": "同一方程的独立解零点交错；右图中每经过一个零点，相位穿过一个 $k\\pi$。",
+        "intro": "图~\\ref{fig:ode-tikz-sturm-separation} 取 $x_1=\\sin t,x_2=\\cos t$；右图使用本章的相位约定 $(x,y)=\\rho(\\sin\\theta,\\cos\\theta)$。",
+        "figure_number": "8.1",
+        "printed_page": 167,
+        "pdf_page": 175
+      },
+      {
+        "name": "monodromy-trace",
+        "chapter": "chapter9.tex",
+        "anchor": "\\section{参数共振与振动稳定}",
+        "caption": "二维保面积单周期矩阵的迹判据：稳定区间为 $|\\operatorname{tr}M|<2$。",
+        "intro": "图~\\ref{fig:ode-tikz-monodromy-trace} 展示乘子随迹所处区间的三种位置；边界 $\\pm2$ 仍须检查 Jordan 块。",
+        "figure_number": "9.1",
+        "printed_page": 175,
+        "pdf_page": 183
+      },
+      {
+        "name": "torus-flow",
+        "chapter": "chapter10.tex",
+        "anchor": "\\section{均匀分布与高维推广}",
+        "caption": "将环面沿经纬线展开为正方形；同向箭头标明需粘合的对边，右图只画有限轨道段。",
+        "intro": "图~\\ref{fig:ode-tikz-torus-flow} 中，轨道从一条边离开后从对边继续。有理斜率给出闭轨，无理斜率的完整轨道稠密。",
+        "figure_number": "10.1",
+        "printed_page": 184,
+        "pdf_page": 192
+      },
+      {
+        "name": "burgers-characteristics",
+        "chapter": "chapter12.tex",
+        "anchor": "\\section{隐式常微分方程的 1-jet 几何}",
+        "caption": "初始速度 $g(\\xi)=-\\xi$ 的特征线在 $(t,x)=(1,0)$ 汇合；虚线表示交叉后的形式延长。",
+        "intro": "图~\\ref{fig:ode-tikz-burgers-characteristics} 用线性初值展示投影退化：$x=\\xi(1-t)$，在 $t=1$ 无法由 $x$ 唯一反解初始标号。",
+        "figure_number": "12.1",
+        "printed_page": 198,
+        "pdf_page": 206
+      },
+      {
+        "name": "jet-cusp",
+        "chapter": "chapter12.tex",
+        "anchor": "\\section{一般非线性方程的特征系统}",
+        "caption": "隐式方程 $p^2=t$ 的两支与积分曲线投影：$t=p^2$、$x=2p^3/3$。",
+        "intro": "图~\\ref{fig:ode-tikz-jet-cusp} 取积分常数 $C=0$，用同一参数 $p$ 将斜率分支与半三次尖点对应起来。",
+        "figure_number": "12.2",
+        "printed_page": 199,
+        "pdf_page": 207
+      },
+      {
+        "name": "stereographic",
+        "chapter": "chapter11.tex",
+        "anchor": "\\section{光滑映射、子流形与例子}",
+        "caption": "立体投影的二维截面：从北极 $N$ 出发的直线将球面点 $P$ 映到平面点 $q$。",
+        "intro": "图~\\ref{fig:ode-tikz-stereographic} 画出球面的一张坐标图；北极自身不在这张图的定义域内。",
+        "figure_number": "11.1",
+        "printed_page": 189,
+        "pdf_page": 197
+      },
+      {
+        "name": "node-saddle-index",
+        "chapter": "chapter13.tex",
+        "anchor": "\\section{指标的应用}",
+        "caption": "结点与鞍点的指标。虚圆是计算指标的边界，箭头表示边界各点的场向量。",
+        "intro": "图~\\ref{fig:ode-tikz-node-saddle-index} 中，沿虚圆正向走一周，左图的向量方向正转一周，右图反转一周。",
+        "figure_number": "13.1",
+        "printed_page": 205,
+        "pdf_page": 213
+      },
+      {
+        "name": "hill-ellipse",
+        "chapter": "chapter14.tex",
+        "anchor": "\\section{分层介质中的光线与 Clairaut 守恒量}",
+        "caption": "初始径向速度为 $v>0$ 的线性相对轨道：椭圆中心在 $(0,-2v)$，并非空间站位置。",
+        "intro": "图~\\ref{fig:ode-tikz-hill-ellipse} 取 $v=1$，标出空间站所在的相对原点及相对轨道的中心。",
+        "figure_number": "14.1",
+        "printed_page": 213,
+        "pdf_page": 221
+      },
+      {
+        "name": "optical-geodesics",
+        "chapter": "chapter14.tex",
+        "anchor": "\\section{一维二重零点的光滑正规形}",
+        "caption": "折射率 $n(y)=1/y$ 时的射线：与边界正交的半圆及竖直直线。",
+        "intro": "图~\\ref{fig:ode-tikz-optical-geodesics} 中只画上半平面 $y>0$ 内的曲线，边界 $y=0$ 不属于该介质模型。",
+        "figure_number": "14.2",
+        "printed_page": 214,
+        "pdf_page": 222
+      },
+      {
+        "name": "stable-manifolds",
+        "chapter": "chapter15.tex",
+        "anchor": "\\section{非线性双曲平衡点的局部共轭}",
+        "caption": "局部稳定、不稳定流形及其线性模型；粗线箭头分别趋向和离开平衡点。",
+        "intro": "图~\\ref{fig:ode-tikz-stable-manifolds} 的曲线由局部换元 $(u,v)=(s+0.18r^2,r+0.18s^2)$ 得到，故两条不变曲线在原点的切线分别是稳定与不稳定子空间。",
+        "figure_number": "15.1",
+        "printed_page": 222,
+        "pdf_page": 230
+      },
+      {
+        "name": "pulse-green",
+        "chapter": "arnold-green.tex",
+        "anchor": null,
+        "caption": "左：单位面积光滑集中脉冲。右：$a=-0.7$ 时推迟影响函数在扰动时刻产生单位跳跃。",
+        "intro": "图~\\ref{fig:ode-tikz-pulse-green} 将光滑脉冲的集中过程与极限响应分开表示；空心点不指定 $t=\\xi$ 处的单点取值。",
+        "figure_number": "3.1",
+        "printed_page": 43,
+        "pdf_page": 51
+      },
+      {
+        "name": "gibbs-concentration",
+        "chapter": "chapter14.tex",
+        "anchor": null,
+        "caption": "同一周期势的归一化 Gibbs 稳态；扩散变小时，质量更集中于唯一势阱 $x=0$。",
+        "intro": "图~\\ref{fig:ode-tikz-gibbs-concentration} 取周期势 $U=1-\\cos x$，两条密度曲线均已归一化。",
+        "figure_number": "14.3",
+        "printed_page": 218,
+        "pdf_page": 226
+      }
+    ]
+  },
+  "coherence_revision": {
+    "active_chapter_files": [
+      "arnold-contraction.tex",
+      "arnold-energy.tex",
+      "arnold-green.tex",
+      "arnold-linear-algebra.tex",
+      "arnold-models.tex",
+      "chapter1.tex",
+      "chapter10.tex",
+      "chapter11.tex",
+      "chapter12.tex",
+      "chapter13.tex",
+      "chapter14.tex",
+      "chapter15.tex",
+      "chapter2.tex",
+      "chapter3.tex",
+      "chapter4.tex",
+      "chapter5.tex",
+      "chapter6.tex",
+      "chapter7.tex",
+      "chapter8.tex",
+      "chapter9.tex",
+      "continuity-banach.tex",
+      "continuity-compact-extension.tex",
+      "continuity-energy-extension.tex",
+      "continuity-euler.tex",
+      "continuity-harvest.tex",
+      "continuity-mode-stability.tex",
+      "linear-quasipolynomials.tex",
+      "qualitative-hamilton-volume.tex",
+      "qualitative-orbital-stability.tex",
+      "qualitative-return-perturbation.tex",
+      "qualitative-volume.tex"
+    ],
+    "retained_labels": 178,
+    "current_labels": 210,
+    "dependency_chains_checked": [
+      [
+        "thm:有限维Picard存在唯一性定理",
+        "sec:picard-contraction",
+        "thm:Peano存在性定理"
+      ],
+      [
+        "prop:compact-extension-vector",
+        "thm:energy-global-extension"
+      ],
+      [
+        "thm:C1依赖性定理",
+        "prop:matrix-variation",
+        "cor:Cr依赖性推论",
+        "thm:local-inverse"
+      ],
+      [
+        "def:动力系统与流",
+        "thm:nonlinear-liouville",
+        "def:Lyapunov稳定性",
+        "prop:harvest-threshold"
+      ],
+      [
+        "sec:normal-modes",
+        "thm:Lyapunov稳定性判据",
+        "prop:normal-mode-stability"
+      ],
+      [
+        "def:Poincare映射",
+        "prop:discrete-derivative-test",
+        "sec:perturbed-oscillation"
+      ],
+      [
+        "def:Hamilton系统",
+        "thm:Hamilton函数沿轨道守恒",
+        "cor:hamilton-volume",
+        "thm:regular-energy-level"
+      ],
+      [
+        "chap:manifolds",
+        "chap:characteristics"
+      ]
+    ],
+    "new_environments": {
+      "definition": 58,
+      "theorem": 50,
+      "proof": 114,
+      "proposition": 49,
+      "example": 9,
+      "lemma": 7,
+      "corollary": 7
+    },
+    "backup_crc_valid": true,
+    "chapter2_unchanged_this_revision": true
+  }
+}

@@ -1,0 +1,230 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第3章：Fourier级数的一些应用
+% 节：3.2 Weyl 等分布定理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{Weyl 等分布定理}
+
+若 $x$ 为一个实数,记 $[x]$ 为不大于 $x$ 的最大整数,称 $[x]$ 为 $x$ 的整数部分,$x$ 的分数部分则定义为 $\bkt{x}=x-[x]$.
+
+现在考虑一个不为零的实数 $\gamma\neq0$,观察序列 $\gamma,2\gamma,3\gamma,\ldots$. 考虑分数部分的序列
+\[
+\bkt{\gamma},\bkt{2\gamma},\bkt{3\gamma},\ldots
+\]
+
+\begin{proposition}
+\begin{enumerate}
+\item 如果 $\gamma$ 是有理数,那么只有有限多个不同的分数出现在 $\bkt{n\gamma}$ 中.
+\item 如果 $\gamma$ 是无理数,那么 $\bkt{n\gamma}$ 中所有的数都不同.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+	\item 若 $\gamma=p/q$,则序列的前 $q$ 项为
+	\[
+	\bkt{p/q},\bkt{2p/q},\ldots,\bkt{(q-1)p/q},\bkt{qp/q}=0,
+	\]
+	之后序列开始循环前 $q$ 项,因为
+	\[
+	\bkt{(q+1)p/q}=\bkt{1+p/q}=\bkt{p/q}.
+	\]
+	\item 假设存在两个相同的数,立即有对于某些 $n_1\neq n_2$,存在 $\bkt{n_1\gamma}=\bkt{n_2\gamma}$. 则 $n_1\gamma-n_2\gamma\in\Z$,因此 $\gamma$ 是有理数.
+\end{enumerate}	
+\end{proof}
+
+事实上,Kronecker 证明了,如果 $\gamma$ 是无理数,那么 $\bkt{n\gamma}$ 在 $[0,1)$ 中是稠密的. 换句话说,$\bkt{n\gamma}$ 在 $[0,1)$ 的每个区间中都可以取到值.这是本节核心定理的推论.
+
+\begin{definition}
+称 $[0,1)$ 中的序列 $\xi_1,\xi_2,\ldots,\xi_n,\ldots$ 是\textbf{等分布}的,若对于任意区间 $(a,b)\subset[0,1)$,
+\[
+\lim_{N\to\infty}\frac{\#\{1\leq n\leq N:\xi_n\in(a,b)\}}{N}=b-a,
+\]
+此处 $\#A$ 意为有限集 $A$ 的基数. 这意味着,对于足够大的 $N$,当 $n\leq N$ 时,$\xi_n\in(a,b)$ 的比例等于区间 $(a,b)$ 的长度与区间 $[0,1)$ 的长度之比. 换句话说,序列 $\xi_n$ 平均地扫过了整个区间,每个子集中有相同的分布. 需要注意的是，序列的排序十分重要.
+\end{definition}
+
+\begin{theorem}
+\textbf{(Weyl 等分布定理)}
+若 $\gamma$ 是无理数,则分数部分的序列 $\bkt{\gamma},\bkt{2\gamma},\bkt{3\gamma},\ldots$ 在 $[0,1)$ 中是等分布的.
+\label{Weyl等分布定理}
+\end{theorem}
+
+特别地,$\bkt{n\gamma}$ 在 $[0,1)$ 中是稠密的. Kronecker 的定理可以作为它的推论.
+
+固定 $(a,b)\subset[0,1)$,令 $\chi_{(a,b)}(x)$ 为 $(a,b)$ 的特征函数,即函数在 $(a,b)$ 为 1,在 $[0,1)-(a,b)$ 为 0. 将其以 1 为周期延拓到 $\R$ 上,记这一延拓仍然记为 $\chi_{(a,b)}(x)$. 容易得到
+\[
+\#\{1\leq n\leq N:\bkt{n\gamma}\in(a,b)\}=\sum_{n=1}^N\chi_{(a,b)}(n\gamma).
+\]
+于是定理成立,等价于当 $N\to\infty$ 时,
+\[
+\frac1N\sum_{n=1}^N\chi_{(a,b)}(n\gamma)\to\int_0^1\chi_{(a,b)}(x)\dd x.
+\]
+
+问题的核心在于以下的结果.
+
+\begin{lemma}
+若 $f$ 是连续函数,且以 1 为周期,$\gamma$ 为无理数,则当 $N\to\infty$ 时,
+\[
+\frac1N\sum_{n=1}^N f(n\gamma)\to\int_0^1 f(x)\dd x.
+\]
+\label{Weyl等分布的核心引理}
+\end{lemma}
+
+\begin{proof}
+引理的证明分为三步.
+
+\textbf{第一步:}首先验证 $f$ 为指数函数 $1,e^{2\pi ix},\ldots,e^{2\pi ikx},\ldots$ 时极限的存在性. 若 $f=1$,则极限显然存在. 若 $f=e^{2\pi ikx}$ ($k\neq0$),则积分为零. 因为 $\gamma$ 是无理数,有 $e^{2\pi ik\gamma}\neq1$. 因此,当 $N\to\infty$ 时,
+\[
+\frac1N\sum_{n=1}^N f(n\gamma)=\frac1N\cdot\frac{e^{2\pi ik\gamma}(1-e^{2\pi ikN\gamma})}{1-e^{2\pi ik\gamma}}
+\]
+趋于 0.
+
+\textbf{第二步:}若 $f$ 和 $g$ 满足引理,显然对于任意 $A,B\in\C$,$Af+Bg$ 也满足引理. 因此,第一步意味着引理对于所有的三角多项式成立.
+
+\textbf{第三步:}令 $\eps>0$. $f$ 为任意周期为 1 的连续函数. 选定三角多项式 $P$ 满足
+\[
+\sup_{x\in\R}\abs{f(x)-P(x)}<\eps/3
+\]
+（由 Stone--Weierstrass 定理可知）. 则由第一步,对于足够大的 $N$,有
+\[
+\abs{\frac1N\sum_{n=1}^N P(n\gamma)-\int_0^1 P(x)\dd x}<\eps/3.
+\]
+因此
+\[
+\begin{aligned}
+\abs{\frac1N\sum_{n=1}^N f(n\gamma)-\int_0^1 f(x)\dd x}
+\leq{}&\frac1N\sum_{n=1}^N\abs{f(n\gamma)-P(n\gamma)}
++\abs{\frac1N\sum_{n=1}^N P(n\gamma)-\int_0^1 P(x)\dd x}\\&+\int_0^1\abs{P(x)-f(x)}\dd x
+<\eps;
+\end{aligned}
+\]
+从而引理得证.
+\end{proof}
+\begin{proof}[定理的证明]
+	对任给 $\eps>0$,取阶梯函数 $f^-,f^+$ 使得
+	\[
+	\chi_{(a+\eps,b-\eps)}\leq f^-\leq\chi_{(a,b)}\leq f^+\leq\chi_{(a-\eps,b+\eps)},
+	\]
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{"figure/P4/appoarch to chi(x)"}
+	\end{center}
+	
+	从而
+	\[
+	b-a-2\eps\leq\int_0^1 f^-(x)\dd x
+	\quad\text{和}\quad
+	\int_0^1 f^+(x)\dd x\leq b-a+2\eps.
+	\]
+	若 $S_N=\dfrac1N\sum\limits_{n=1}^N\chi_{(a,b)}(n\gamma)$,则有
+	\[
+	\frac1N\sum_{n=1}^N f^-(n\gamma)\leq S_N\leq\frac1N\sum_{n=1}^N f^+(n\gamma),
+	\]
+	因此
+	\[
+	b-a-2\eps\leq\liminf_{N\to\infty}S_N
+	\quad\text{和}\quad
+	\limsup_{N\to\infty}S_N\leq b-a+2\eps.
+	\]
+	因为对所有 $\eps>0$ 这都是对的,所以 $\lim\limits_{N\to\infty}S_N$ 存在且等于 $b-a$. 这样就完成了等分布定理的证明.
+\end{proof}
+
+
+\begin{proposition}
+引理 \ref{Weyl等分布的核心引理} 的结论对于所有周期为 1 的,在 $[0,1]$ 上 Riemann 可积的函数都成立.
+\label{Weyl等分布的Riemann可积推论}
+\end{proposition}
+
+\begin{proof}
+假设 $f$ 是实值的,考虑 $[0,1]$ 区间的一个划分 $0=x_0<x_1<\ldots<x_N=1$. 定义
+\[
+f_U(x)=\sup_{x_{j-1}\leq y\leq x_j}f(y),\quad x\in[x_{j-1},x_j),
+\]
+\[
+f_L(x)=\inf_{x_{j-1}\leq y\leq x_j}f(y),\quad x\in(x_{j-1},x_j].
+\]
+若 $x\in(x_{j-1},x_j)$,则显然有 $f_L\leq f\leq f_U$,且
+\[
+\int_0^1 f_L(x)\dd x\leq\int_0^1 f(x)\dd x\leq\int_0^1 f_U(x)\dd x.
+\]
+进一步地,选择合适的划分,可以保证对于给定的 $\eps>0$,
+\[
+\int_0^1 f_U(x)\dd x-\int_0^1 f_L(x)\dd x\leq\eps.
+\]
+根据定理, $f_L$ 与 $f_U$ 都是区间的特征函数的有限线性组合,所以
+\[
+\frac1N\sum_{n=1}^N f_L(n\gamma)\to\int_0^1 f_L(x)\dd x,
+\quad
+\frac1N\sum_{n=1}^N f_U(n\gamma)\to\int_0^1 f_U(x)\dd x.
+\]
+由夹逼即得
+\[
+\frac1N\sum_{n=1}^N f(n\gamma)\to\int_0^1 f(x)\dd x.
+\]
+\end{proof}
+
+\begin{theorem}
+\textbf{(Weyl 准则)}
+一个 $[0,1)$ 中的实数序列是等分布的,当且仅当对于所有的整数 $k\neq0$,当 $N\to\infty$ 时,
+\[
+\frac1N\sum_{n=1}^N e^{2\pi ik\xi_n}\to0.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{充分性:} 由 $\dfrac1N\sum\limits_{n=1}^N e^{2\pi ik\xi_n}\to0$,重复引理 \ref{Weyl等分布的核心引理} 的第一步,后面的三角多项式逼近与夹逼证明同理.
+
+\textbf{必要性:} 设 $\xi_n\subset[0,1)$ 等分布,记
+\[
+A_N(f)=\frac1N\sum_{n=1}^N f(\xi_n).
+\]
+先证对任意 $f\in C^0$ (周期为 1),都有
+\[
+A_N(f)\to\int_0^1 f(x)\dd x.
+\]
+
+任取 $I=(a,b)\subset[0,1)$. 由 $\xi_n$ 的等分布性,
+\[
+A_N(\chi_{(a,b)})=\frac{\#\{1\leq n\leq N:\xi_n\in(a,b)\}}{N}\to b-a=\int_0^1\chi_{(a,b)}(x)\dd x.
+\]
+对单点集 $C=\{a\}$,同样可推出 $\dfrac{\#\{1\leq n\leq N:\xi_n\in C\}}{N}\to0$,从而
+\[
+A_N(\chi_{\{a\}})\to0=\int_0^1\chi_{\{a\}}(x)\dd x.
+\]
+因此
+\[
+A_N(\chi_{[a,b)})=A_N(\chi_{(a,b)})+A_N(\chi_{\{a\}})\to b-a,
+\]
+端点不影响极限.
+
+下面考虑分段函数
+\[
+g(x)=\sum_{j=1}^m C_j\chi_{[x_{j-1},x_j)}(x),\qquad 0=x_0<x_1<\ldots<x_m=1.
+\]
+由线性性,
+\[
+A_N(g)=\sum_{j=1}^m C_jA_N(\chi_{[x_{j-1},x_j)})\to\sum_{j=1}^m C_j(x_j-x_{j-1})=\int_0^1 g(x)\dd x.
+\]
+
+最后,任取 $f\in C^0$ (周期为 1). $f$ 在 $[0,1]$ 上一致连续,故对任意 $\eps>0$,可取一个充分细的分割 $0=x_0<x_1<\ldots<x_m=1$,使得对任意 $x,y\in[x_{j-1},x_j]$ 有 $\abs{f(x)-f(y)}<\eps$. 定义阶梯函数
+\[
+g(x)=f(x_{j-1}),\qquad x\in[x_{j-1},x_j).
+\]
+则 $\norm{f-g}_\infty<\eps$. 估计
+\[
+\abs{A_N(f)-\int_0^1 f\dd x}
+\leq\abs{A_N(f-g)}+\abs{A_N(g)-\int_0^1 g\dd x}+\abs{\int_0^1(g-f)\dd x}.
+\]
+因此
+\[
+\varlimsup_{N\to\infty}\abs{A_N(f)-\int_0^1 f\dd x}\leq2\eps.
+\]
+由 $\eps$ 的任意性得
+\[
+\frac1N\sum_{n=1}^N f(\xi_n)\to\int_0^1 f(x)\dd x.
+\]
+
+取 $f(x)=e^{2\pi ikx}$($k\in\Z,k\neq0$),则 $f\in C^\infty$,从而
+\[
+\frac1N\sum_{n=1}^N e^{2\pi ik\xi_n}\to\int_0^1 e^{2\pi ikx}\dd x=0.
+\]
+必要性得证.
+\end{proof}

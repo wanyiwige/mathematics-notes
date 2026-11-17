@@ -1,0 +1,63 @@
+Contents
+Chapter 1.BasicConcepts
+13
+§ 1. Phase Spaces..
+13
+1. Examples of Evolutionary Processes .
+13
+2. Phase Spaces ..
+14
+3. The Integral Curves of a Direction Field.
+16
+4.ADifferentialEquationand itsSolutions..
+17
+5. The Evolutionary Equation with a One-dimensional
+Phase Space...
+19
+6.Examplc:Thc Equation of Normal Rcproduction..
+21
+7. Example: The Explosion Equation..
+23
+8. Example: The Logistic Curve .
+24
+9. Example: Harvest Quotas.
+25
+10. Example: Harvesting with a Relative Quota..
+26
+11. Equations with a Multidimensional Phase Space ..
+27
+12. Example: The Differential Equation of a
+Predator-Prey System...
+28
+13.Example:A Free Particle on a Line..
+31
+14.Example: Free Fall..
+32
+15. Example: Small Oscillations .
+32
+16. Example: The Mathematical Pendulum...
+33
+17. Example: The Inverted Pendulum.
+34
+18. Example: Small Oscillations of a Spherical Pendulum ...
+34
+§ 2.Vector Fields on the Line..
+36
+1. Existence and Uniqueness of Solutions .
+36
+2.A Counterexample.
+36
+3.Proof of Uniqueness.
+37
+4.Direct Products ..
+39
+5. Examples of Direct Products .
+39
+6.Equations with Separable Variables.
+41
+7. An Example: The Lotka-Volterra Model
+43
+§3.LinearEquations..
+48
+1. Homogeneous Linear Equations.
+48

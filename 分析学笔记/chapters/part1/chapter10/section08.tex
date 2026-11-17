@@ -1,0 +1,866 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.8 Riemann--Stieltjes 积分
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{Riemann--Stieltjes 积分}
+
+本节把前面关于 Riemann 积分的定义、Darboux 判别、基本性质以及几何应用，逐项改写为 Riemann--Stieltjes 积分的形式。核心变化只有一处：在 Riemann 积分中，区间长度为
+\[
+\Delta x_i=x_i-x_{i-1},
+\]
+而在 Stieltjes 积分中，区间的“长度”由一个单调函数 $\alpha$ 给出：
+\[
+\Delta \alpha_i=\alpha(x_i)-\alpha(x_{i-1}).
+\]
+这里需要注意的是我们并不要求$\alpha$连续
+
+因此，Riemann 积分可以看作 $\alpha(x)=x$ 时的特殊情形。
+
+除特别说明外，本节总假设 $\alpha:[a,b]\to\R$ 单调递增。于是对任意划分
+\[
+P:a=x_0<x_1<\cdots<x_n=b
+\]
+均有
+\[
+\Delta\alpha_i:=\alpha(x_i)-\alpha(x_{i-1})\geq 0.
+\]
+
+\begin{definition}
+	设 $P:a=x_0<x_1<\cdots<x_n=b$ 是 $[a,b]$ 的一个划分，称
+	\[
+	\lambda(P)=\max_{1\leq i\leq n}(x_i-x_{i-1})
+	\]
+	为划分 $P$ 的模长。若 $\xi_i\in[x_{i-1},x_i]$，则称
+	\[
+	S(P,f,\alpha,\xi)=\sum_{i=1}^n f(\xi_i)\Delta\alpha_i
+	\]
+	为函数 $f$ 关于积分因子 $\alpha$ 的 Riemann--Stieltjes 和。
+	
+	若存在常数 $I$，使得对任意 $\eps>0$，存在 $\delta>0$，只要 $\lambda(P)<\delta$，并且任意选取 $\xi_i\in[x_{i-1},x_i]$，都有
+	\[
+	\left|\sum_{i=1}^n f(\xi_i)\Delta\alpha_i-I\right|<\eps,
+	\]
+	则称 $f$ 在 $[a,b]$ 上关于 $\alpha$ Riemann--Stieltjes 可积，记为
+	\[
+	f\in\mathcal R(\alpha;[a,b]),
+	\]
+	并记
+	\[
+	I=\int_a^b f(x)\dd\alpha(x).
+	\]
+\end{definition}
+
+\begin{definition}
+	设 $f$ 在 $[a,b]$ 上有界，$P:a=x_0<x_1<\cdots<x_n=b$ 是一个划分。在每个小区间 $[x_{i-1},x_i]$ 上记
+	\[
+	M_i=\sup_{x\in[x_{i-1},x_i]}f(x),\qquad
+	m_i=\inf_{x\in[x_{i-1},x_i]}f(x).
+	\]
+	定义 Stieltjes-Darboux 大和与小和分别为
+	\[
+	\overline S_\alpha(P,f)=\sum_{i=1}^n M_i\Delta\alpha_i,
+	\]
+	\[
+	\underline S_\alpha(P,f)=\sum_{i=1}^n m_i\Delta\alpha_i.
+	\]
+	称
+	\[
+	\omega_i=M_i-m_i
+	\]
+	为 $f$ 在 $[x_{i-1},x_i]$ 上的振幅。
+\end{definition}
+
+\begin{lemma}\label{lem:stieltjes-refinement}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增。若 $P'$ 是 $P$ 的加细，则
+	\[
+	\overline S_\alpha(P',f)\leq \overline S_\alpha(P,f),
+	\qquad
+	\underline S_\alpha(P',f)\geq \underline S_\alpha(P,f).
+	\]
+\end{lemma}
+
+\begin{proof}
+	只需证明在一个子区间中插入一个新分点的情形。设原来的一个子区间为 $[x_{k-1},x_k]$，插入新分点 $c$，其中
+	\[
+	x_{k-1}<c<x_k.
+	\]
+	记
+	\[
+	M_k=\sup_{[x_{k-1},x_k]}f,
+	\]
+	\[
+	M_k'=\sup_{[x_{k-1},c]}f,
+	\qquad
+	M_k''=\sup_{[c,x_k]}f.
+	\]
+	显然
+	\[
+	M_k'\leq M_k,
+	\qquad
+	M_k''\leq M_k.
+	\]
+	因此大和在这一段上的变化满足
+	\[
+	\begin{aligned}
+		& M_k'\bigl(\alpha(c)-\alpha(x_{k-1})\bigr)
+		+M_k''\bigl(\alpha(x_k)-\alpha(c)\bigr)
+		-M_k\bigl(\alpha(x_k)-\alpha(x_{k-1})\bigr) \\
+		&\leq
+		M_k\bigl(\alpha(c)-\alpha(x_{k-1})\bigr)
+		+M_k\bigl(\alpha(x_k)-\alpha(c)\bigr)
+		-M_k\bigl(\alpha(x_k)-\alpha(x_{k-1})\bigr)=0.
+	\end{aligned}
+	\]
+	所以加细后大和不增。对小和同理：若
+	\[
+	m_k=\inf_{[x_{k-1},x_k]}f,
+	\qquad
+	m_k'=\inf_{[x_{k-1},c]}f,
+	\qquad
+	m_k''=\inf_{[c,x_k]}f,
+	\]
+	则
+	\[
+	m_k'\geq m_k,
+	\qquad
+	m_k''\geq m_k,
+	\]
+	从而加细后小和不减。
+\end{proof}
+
+\begin{proposition}\label{prop:stieltjes-darboux-bounds}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增。记
+	\[
+	M=\sup_{[a,b]}f,
+	\qquad
+	m=\inf_{[a,b]}f.
+	\]
+	则对任意两个划分 $P,Q$，有
+	\[
+	m\bigl(\alpha(b)-\alpha(a)\bigr)
+	\leq \underline S_\alpha(P,f)
+	\leq \overline S_\alpha(Q,f)
+	\leq M\bigl(\alpha(b)-\alpha(a)\bigr).
+	\]
+\end{proposition}
+
+\begin{proof}
+	先由 $m\leq f(x)\leq M$ 得到每个小区间上
+	\[
+	m\leq m_i\leq M_i\leq M.
+	\]
+	由于 $\Delta\alpha_i\geq0$，故
+	\[
+	\underline S_\alpha(P,f)=\sum_i m_i\Delta\alpha_i
+	\geq m\sum_i\Delta\alpha_i
+	=m\bigl(\alpha(b)-\alpha(a)\bigr),
+	\]
+	并且
+	\[
+	\overline S_\alpha(Q,f)=\sum_j M_j\Delta\alpha_j
+	\leq M\sum_j\Delta\alpha_j
+	=M\bigl(\alpha(b)-\alpha(a)\bigr).
+	\]
+	为了证明中间不等式，取 $P$ 与 $Q$ 的公共加细 $P\vee Q$。由引理 \ref{lem:stieltjes-refinement}，有
+	\[
+	\underline S_\alpha(P,f)
+	\leq \underline S_\alpha(P\vee Q,f)
+	\leq \overline S_\alpha(P\vee Q,f)
+	\leq \overline S_\alpha(Q,f).
+	\]
+	命题得证。
+\end{proof}
+
+\begin{definition}
+	定义 $f$ 关于 $\alpha$ 的上 Stieltjes 积分与下 Stieltjes 积分为
+	\[
+	\overline{\int_a^b} f\dd\alpha
+	=\inf_P \overline S_\alpha(P,f),
+	\]
+	\[
+	\underline{\int_a^b} f\dd\alpha
+	=\sup_P \underline S_\alpha(P,f),
+	\]
+	其中上下确界均对 $[a,b]$ 的全体划分 $P$ 取。
+\end{definition}
+
+
+\begin{theorem}\label{thm:stieltjes-darboux-criterion}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增。则 $f\in\mathcal R(\alpha;[a,b])$ 的充要条件是：对任意 $\eps>0$，存在 $\delta>0$，使得对任意划分 $P$，只要 $\lambda(P)<\delta$，就有
+	\[
+	\overline S_\alpha(P,f)-\underline S_\alpha(P,f)<\eps.
+	\]
+	等价地，
+	\[
+	\lim_{\lambda(P)\to0}\sum_{i=1}^n\omega_i\Delta\alpha_i=0.
+	\]
+\end{theorem}
+
+\begin{proof}
+	先证必要性。设
+	\[
+	\int_a^b f\dd\alpha=I.
+	\]
+	任给 $\eps>0$。由 Riemann--Stieltjes 可积的定义，存在 $\delta>0$，使得只要 $\lambda(P)<\delta$，任意 Stieltjes 和都满足
+	\[
+	\left|S(P,f,\alpha,\xi)-I\right|<\frac\eps4.
+	\]
+	固定这样的划分 $P$。记
+	\[
+	A=\alpha(b)-\alpha(a).
+	\]
+	若 $A=0$，则所有 $\Delta\alpha_i=0$，结论显然。以下设 $A>0$。由上确界、下确界定义，在每个小区间上可选取 $\xi_i',\xi_i''\in[x_{i-1},x_i]$，使得
+	\[
+	f(\xi_i')>M_i-\frac{\eps}{4A},
+	\qquad
+	f(\xi_i'')<m_i+\frac{\eps}{4A}.
+	\]
+	于是
+	\[
+	\overline S_\alpha(P,f)
+	<\sum_i f(\xi_i')\Delta\alpha_i+\frac\eps4,
+	\]
+	\[
+	\underline S_\alpha(P,f)
+	>\sum_i f(\xi_i'')\Delta\alpha_i-\frac\eps4.
+	\]
+	两式相减并利用两个 Stieltjes 和都距 $I$ 小于 $\eps/4$，得
+	\[
+	\begin{aligned}
+		\overline S_\alpha(P,f)-\underline S_\alpha(P,f)
+		&<\left(\sum_i f(\xi_i')\Delta\alpha_i-I\right)
+		+\left(I-\sum_i f(\xi_i'')\Delta\alpha_i\right)+\frac\eps2 \\
+		&<\eps.
+	\end{aligned}
+	\]
+	必要性得证。
+	
+	再证充分性。设对任意 $\eps>0$，存在 $\delta>0$，使得 $\lambda(P)<\delta$ 时
+	\[
+	\overline S_\alpha(P,f)-\underline S_\alpha(P,f)<\eps.
+	\]
+	要证明所有足够细的 Stieltjes 和收敛到同一极限。任取两个划分 $P,Q$，且
+	\[
+	\lambda(P)<\delta,
+	\qquad
+	\lambda(Q)<\delta.
+	\]
+	令 $R=P\vee Q$ 为公共加细。先比较 $P$ 上的任一 Stieltjes 和与 $R$ 上的某一 Stieltjes 和。对 $P$ 的一个子区间 $I_i=[x_{i-1},x_i]$，$R$ 把它分成若干小区间。无论这些小区间的标签怎样选取，它们对应的函数值都位于 $[m_i,M_i]$ 中，因此这一段上的和与 $f(\xi_i)\Delta\alpha_i$ 的差的绝对值不超过
+	\[
+	\omega_i\Delta\alpha_i.
+	\]
+	对所有 $i$ 求和，得到
+	\[
+	|S(P)-S(R)|\leq\sum_i\omega_i(P)\Delta\alpha_i
+	=\overline S_\alpha(P,f)-\underline S_\alpha(P,f)<\eps.
+	\]
+	同理
+	\[
+	|S(Q)-S(R)|<\eps.
+	\]
+	因此
+	\[
+	|S(P)-S(Q)|\leq |S(P)-S(R)|+|S(R)-S(Q)|<2\eps.
+	\]
+	这说明当划分模长趋于 $0$ 时，全体 Stieltjes 和构成 Cauchy 族。由实数完备性，存在极限 $I$，且与划分和标签选取无关，即
+	\[
+	f\in\mathcal R(\alpha;[a,b]).
+	\]
+\end{proof}
+
+\begin{corollary}\label{cor:stieltjes-oscillation-criterion}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增。则 $f\in\mathcal R(\alpha;[a,b])$ 的充要条件是：对任意 $\eps>0$，存在 $\delta>0$，使得只要 $\lambda(P)<\delta$，就有
+	\[
+	\sum_{i=1}^n\omega_i\Delta\alpha_i<\eps.
+	\]
+\end{corollary}
+
+\begin{proof}
+	由定义直接计算
+	\[
+	\begin{aligned}
+		\overline S_\alpha(P,f)-\underline S_\alpha(P,f)
+		&=\sum_{i=1}^n M_i\Delta\alpha_i-
+		\sum_{i=1}^n m_i\Delta\alpha_i \\
+		&=\sum_{i=1}^n (M_i-m_i)\Delta\alpha_i
+		=\sum_{i=1}^n \omega_i\Delta\alpha_i.
+	\end{aligned}
+	\]
+	代入定理 \ref{thm:stieltjes-darboux-criterion} 即得。
+\end{proof}
+
+\begin{corollary}\label{cor:stieltjes-one-partition-criterion}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增且连续。则 $f\in\mathcal R(\alpha;[a,b])$ 的充要条件是：对任意 $\eps>0$，存在划分 $P$，使得
+	\[
+	\sum_i\omega_i\Delta\alpha_i<\eps.
+	\]
+\end{corollary}
+
+\begin{proof}
+	必要性由推论 \ref{cor:stieltjes-oscillation-criterion} 立即得到。
+	
+	充分性只需把一个“好划分”推广为所有足够细划分。设 $P_0:a=y_0<y_1<\cdots<y_p=b$ 满足
+	\[
+	\sum_{j=1}^p\omega_j(P_0)\Delta\alpha_j<\frac\eps3.
+	\]
+	设 $|f(x)|\leq M$。由于 $\alpha$ 在有限个点 $y_1,\dots,y_{p-1}$ 处连续，可取 $\delta>0$，使得任意包含某个 $y_j$ 且长度小于 $2\delta$ 的区间 $J$ 都有
+	\[
+	\Delta\alpha(J)<\frac{\eps}{6M(p+1)}.
+	\]
+	同时令 $\delta$ 小于 $P_0$ 相邻分点距离的一半。若 $Q$ 是任意满足 $\lambda(Q)<\delta$ 的划分，令 $R=Q\vee P_0$。从 $Q$ 加细到 $R$ 时，只有那些含有 $P_0$ 内部分点的小区间会被切开，这样的小区间至多 $p-1$ 个；每个这样的区间对大和与小和的总影响不超过 $2M\Delta\alpha(J)$。故
+	\[
+	\begin{aligned}
+		\overline S_\alpha(Q,f)-\underline S_\alpha(Q,f)
+		&\leq \overline S_\alpha(R,f)-\underline S_\alpha(R,f)
+		+2M\sum_J\Delta\alpha(J) \\
+		&\leq \overline S_\alpha(P_0,f)-\underline S_\alpha(P_0,f)+\frac{\eps}{3}<\eps.
+	\end{aligned}
+	\]
+	由推论 \ref{cor:stieltjes-oscillation-criterion}，$f\in\mathcal R(\alpha;[a,b])$。
+\end{proof}
+
+\begin{corollary}\label{cor:stieltjes-third-criterion}
+	设 $f$ 在 $[a,b]$ 上有界，$\alpha$ 单调递增且连续。则 $f\in\mathcal R(\alpha;[a,b])$ 的一个等价表述为：对任意 $\eps>0$ 与 $\eta>0$，存在划分 $P$，使得振幅不小于 $\eta$ 的子区间的 $\alpha$-长度之和小于 $\eps$，即
+	\[
+	\sum_{\omega_i\geq\eta}\Delta\alpha_i<\eps.
+	\]
+\end{corollary}
+
+\begin{proof}
+	设 $m\leq f(x)\leq M$。若 $f\in\mathcal R(\alpha;[a,b])$，由推论 \ref{cor:stieltjes-oscillation-criterion}，对任意 $\eps\eta>0$，存在划分 $P$，使
+	\[
+	\sum_i\omega_i\Delta\alpha_i<\eps\eta.
+	\]
+	于是
+	\[
+	\eta\sum_{\omega_i\geq\eta}\Delta\alpha_i
+	\leq \sum_{\omega_i\geq\eta}\omega_i\Delta\alpha_i
+	\leq \sum_i\omega_i\Delta\alpha_i
+	<\eps\eta,
+	\]
+	故
+	\[
+	\sum_{\omega_i\geq\eta}\Delta\alpha_i<\eps.
+	\]
+	
+	反之，任给 $\eps>0$。取
+	\[
+	\eta=\frac{\eps}{2(\alpha(b)-\alpha(a)+1)},
+	\qquad
+	\eps' =\frac{\eps}{2(M-m+1)}.
+	\]
+	由条件，存在划分 $P$，使得
+	\[
+	\sum_{\omega_i\geq\eta}\Delta\alpha_i<\eps'.
+	\]
+	将求和分成两部分：
+	\[
+	\begin{aligned}
+		\sum_i\omega_i\Delta\alpha_i
+		&=\sum_{\omega_i\geq\eta}\omega_i\Delta\alpha_i
+		+\sum_{\omega_i<\eta}\omega_i\Delta\alpha_i \\
+		&\leq (M-m)\sum_{\omega_i\geq\eta}\Delta\alpha_i
+		+\eta\sum_{\omega_i<\eta}\Delta\alpha_i \\
+		&< (M-m)\eps'+\eta(\alpha(b)-\alpha(a))<\eps.
+	\end{aligned}
+	\]
+	由推论 \ref{cor:stieltjes-one-partition-criterion} 可知 $f\in\mathcal R(\alpha;[a,b])$。
+\end{proof}
+
+
+\begin{proposition}\label{prop:continuous-integrand-stieltjes}
+	若 $f\in C[a,b]$，$\alpha$ 单调递增，则
+	\[
+	f\in\mathcal R(\alpha;[a,b]).
+	\]
+\end{proposition}
+
+\begin{proof}
+	因 $f\in C[a,b]$，由闭区间连续函数一致连续性，对任意 $\eps>0$，存在 $\delta>0$，使得只要 $|x-y|<\delta$，就有
+	\[
+	|f(x)-f(y)|<\frac{\eps}{\alpha(b)-\alpha(a)+1}.
+	\]
+	取划分 $P$ 满足 $\lambda(P)<\delta$。则每个小区间上的振幅满足
+	\[
+	\omega_i<\frac{\eps}{\alpha(b)-\alpha(a)+1}.
+	\]
+	因此
+	\[
+	\sum_i \omega_i\Delta\alpha_i
+	<\frac{\eps}{\alpha(b)-\alpha(a)+1}
+	\sum_i\Delta\alpha_i
+	\leq \eps.
+	\]
+	由推论 \ref{cor:stieltjes-oscillation-criterion}，$f$ 关于 $\alpha$ 可积。
+\end{proof}
+
+\begin{proposition}\label{prop:finite-discontinuities-alpha-continuous}
+	若 $\alpha$ 单调递增且连续，$f$ 在 $[a,b]$ 上有界，并且只有有限多个不连续点，则
+	\[
+	f\in\mathcal R(\alpha;[a,b]).
+	\]
+\end{proposition}
+
+\begin{proof}
+	设 $f$ 的不连续点为 $c_1,\dots,c_N$，并设 $m\leq f(x)\leq M$。由于 $\alpha$ 连续且单调，函数
+	\[
+	\mu_\alpha([u,v])=\alpha(v)-\alpha(u)
+	\]
+	具有如下性质：当 $u,v$ 同时趋于 $c_j$ 时，
+	\[
+	\alpha(v)-\alpha(u)\to0.
+	\]
+	因此可取互不相交的小区间 $I_j=[c_j-\rho_j,c_j+\rho_j]\cap[a,b]$，使得
+	\[
+	\sum_{j=1}^N \mu_\alpha(I_j)<\frac{\eps}{2(M-m+1)}.
+	\]
+	在剩余的有限个闭区间上，$f$ 连续，故一致连续。于是可以继续加细划分，使得这些闭区间内每个小区间的振幅小于
+	\[
+	\frac{\eps}{2(\alpha(b)-\alpha(a)+1)}.
+	\]
+	于是总振幅和满足
+	\[
+	\begin{aligned}
+		\sum_i \omega_i\Delta\alpha_i
+		&=\sum_{I_i\subset \cup_j I_j}\omega_i\Delta\alpha_i
+		+\sum_{I_i\cap \{c_1,\dots,c_N\}=\varnothing}\omega_i\Delta\alpha_i \\
+		&\leq (M-m)\sum_{j=1}^N\mu_\alpha(I_j)
+		+\frac{\eps}{2(\alpha(b)-\alpha(a)+1)}\bigl(\alpha(b)-\alpha(a)\bigr)
+		<\eps.
+	\end{aligned}
+	\]
+	故 $f\in\mathcal R(\alpha;[a,b])$。
+\end{proof}
+\begin{proposition}\label{prop:ordinary-reduction}
+	若 $\alpha\in C^1[a,b]$，$\alpha'(x)\geq0$，且 $f\in C[a,b]$，则
+	\[
+	\int_a^b f(x)\dd\alpha(x)
+	=\int_a^b f(x)\alpha'(x)\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	任取划分 $P:a=x_0<\cdots<x_n=b$ 及标签 $\xi_i\in[x_{i-1},x_i]$。由 Newton--Leibniz 公式，
+	\[
+	\Delta\alpha_i
+	=\alpha(x_i)-\alpha(x_{i-1})
+	=\int_{x_{i-1}}^{x_i}\alpha'(t)\dd t.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		\sum_i f(\xi_i)\Delta\alpha_i
+		&=\sum_i f(\xi_i)\int_{x_{i-1}}^{x_i}\alpha'(t)\dd t \\
+		&=\sum_i\int_{x_{i-1}}^{x_i}f(\xi_i)\alpha'(t)\dd t.
+	\end{aligned}
+	\]
+	因为 $f$ 一致连续，且 $\alpha'$ 连续从而有界，设 $|\alpha'|\leq A$。当 $\lambda(P)$ 足够小时，对 $t\in[x_{i-1},x_i]$ 有
+	\[
+	|f(\xi_i)-f(t)|<\eta.
+	\]
+	所以
+	\[
+	\begin{aligned}
+		\left|
+		\sum_i f(\xi_i)\Delta\alpha_i
+		-\int_a^b f(t)\alpha'(t)\dd t
+		\right|
+		&\leq \sum_i\int_{x_{i-1}}^{x_i}|f(\xi_i)-f(t)|\,|\alpha'(t)|\dd t \\
+		&\leq A\eta(b-a).
+	\end{aligned}
+	\]
+	令 $\eta\to0$ 即得结论。
+\end{proof}
+\begin{proposition}\label{prop:linear-integrand}
+	设 $f,g\in\mathcal R(\alpha;[a,b])$，$k_1,k_2\in\R$。则
+	\[
+	k_1f+k_2g\in\mathcal R(\alpha;[a,b]),
+	\]
+	且
+	\[
+	\int_a^b (k_1f+k_2g)\dd\alpha
+	=k_1\int_a^b f\dd\alpha+k_2\int_a^b g\dd\alpha.
+	\]
+\end{proposition}
+
+\begin{proof}
+	对任意子区间 $I$，有
+	\[
+	\omega_I(k_1f+k_2g)
+	\leq |k_1|\omega_I(f)+|k_2|\omega_I(g).
+	\]
+	因此
+	\[
+	\sum_i\omega_i(k_1f+k_2g)\Delta\alpha_i
+	\leq |k_1|\sum_i\omega_i(f)\Delta\alpha_i
+	+|k_2|\sum_i\omega_i(g)\Delta\alpha_i.
+	\]
+	由 $f,g$ 的可积性与振幅判别可知 $k_1f+k_2g$ 可积。
+	
+	积分值的线性由 Stieltjes 和的线性直接推出：
+	\[
+	\sum_i (k_1f(\xi_i)+k_2g(\xi_i))\Delta\alpha_i
+	=k_1\sum_i f(\xi_i)\Delta\alpha_i
+	+k_2\sum_i g(\xi_i)\Delta\alpha_i.
+	\]
+	令 $\lambda(P)\to0$ 即得等式。
+\end{proof}
+
+\begin{proposition}\label{prop:linear-integrator}
+	设 $\alpha,\beta$ 均单调递增，$f\in\mathcal R(\alpha;[a,b])\cap\mathcal R(\beta;[a,b])$，$c,d\geq0$。则
+	\[
+	f\in\mathcal R(c\alpha+d\beta;[a,b]),
+	\]
+	且
+	\[
+	\int_a^b f\dd(c\alpha+d\beta)
+	=c\int_a^b f\dd\alpha+d\int_a^b f\dd\beta.
+	\]
+\end{proposition}
+
+\begin{proof}
+	对任意划分，
+	\[
+	\Delta(c\alpha+d\beta)_i
+	=c\Delta\alpha_i+d\Delta\beta_i.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		\sum_i\omega_i(f)\Delta(c\alpha+d\beta)_i
+		&=c\sum_i\omega_i(f)\Delta\alpha_i
+		+d\sum_i\omega_i(f)\Delta\beta_i.
+	\end{aligned}
+	\]
+	由 $f$ 分别关于 $\alpha$ 与 $\beta$ 可积，可知右端可任意小，所以 $f$ 关于 $c\alpha+d\beta$ 可积。积分值等式由 Stieltjes 和线性取极限得到。
+\end{proof}
+
+\begin{proposition}\label{prop:product-stieltjes}
+	若 $f,g\in\mathcal R(\alpha;[a,b])$，则
+	\[
+	fg\in\mathcal R(\alpha;[a,b]).
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 $f,g$ 可积，二者有界。取 $M>0$，使得
+	\[
+	|f(x)|\leq M,
+	\qquad
+	|g(x)|\leq M.
+	\]
+	任取同一小区间内的 $x,y$，有
+	\[
+	\begin{aligned}
+		|f(x)g(x)-f(y)g(y)|
+		&\leq |f(x)|\,|g(x)-g(y)|+|g(y)|\,|f(x)-f(y)| \\
+		&\leq M\omega(g)+M\omega(f).
+	\end{aligned}
+	\]
+	故
+	\[
+	\omega(fg)\leq M\bigl(\omega(f)+\omega(g)\bigr).
+	\]
+	乘以 $\Delta\alpha_i$ 并求和，得
+	\[
+	\sum_i\omega_i(fg)\Delta\alpha_i
+	\leq M\sum_i\omega_i(f)\Delta\alpha_i
+	+M\sum_i\omega_i(g)\Delta\alpha_i.
+	\]
+	由 $f,g$ 的可积性，右端可任意小，故 $fg$ 可积。
+\end{proof}
+
+\begin{proposition}\label{prop:composition-stieltjes}
+	设 $f\in\mathcal R(\alpha;[a,b])$，且
+	\[
+	A\leq f(x)\leq B.
+	\]
+	若 $\varphi\in C[A,B]$，则
+	\[
+	\varphi\circ f\in\mathcal R(\alpha;[a,b]).
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 $\varphi$ 在闭区间 $[A,B]$ 上连续，故一致连续且有界。设
+	\[
+	|\varphi(u)|\leq M.
+	\]
+	任给 $\eps>0$。由一致连续性，存在 $\eta>0$，使得只要 $|u-v|<\eta$，就有
+	\[
+	|\varphi(u)-\varphi(v)|<\frac{\eps}{2(\alpha(b)-\alpha(a)+1)}.
+	\]
+	由推论 \ref{cor:stieltjes-third-criterion}，存在划分 $P$，使得振幅 $\omega_i(f)\geq\eta$ 的子区间的 $\alpha$-长度之和小于
+	\[
+	\frac{\eps}{4M+1}.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		\sum_i\omega_i(\varphi\circ f)\Delta\alpha_i
+		&=\sum_{\omega_i(f)<\eta}\omega_i(\varphi\circ f)\Delta\alpha_i
+		+\sum_{\omega_i(f)\geq\eta}\omega_i(\varphi\circ f)\Delta\alpha_i \\
+		&\leq \frac{\eps}{2(\alpha(b)-\alpha(a)+1)}\sum_i\Delta\alpha_i
+		+2M\sum_{\omega_i(f)\geq\eta}\Delta\alpha_i
+		<\eps.
+	\end{aligned}
+	\]
+	由振幅判别，$\varphi\circ f$ 可积。
+\end{proof}
+
+\begin{proposition}\label{prop:monotonicity-stieltjes}
+	若 $f,g\in\mathcal R(\alpha;[a,b])$，且对任意 $x\in[a,b]$ 有
+	\[
+	f(x)\geq g(x),
+	\]
+	则
+	\[
+	\int_a^b f\dd\alpha\geq \int_a^b g\dd\alpha.
+	\]
+\end{proposition}
+
+\begin{proof}
+	令 $h=f-g$，则 $h\in\mathcal R(\alpha;[a,b])$ 且 $h(x)\geq0$。对任意 Stieltjes 和有
+	\[
+	\sum_i h(\xi_i)\Delta\alpha_i\geq0,
+	\]
+	因为 $\Delta\alpha_i\geq0$。令 $\lambda(P)\to0$，得
+	\[
+	\int_a^b h\dd\alpha\geq0.
+	\]
+	再由线性性得到结论。
+\end{proof}
+
+\begin{proposition}\label{prop:absolute-value-stieltjes}
+	若 $f\in\mathcal R(\alpha;[a,b])$，则
+	\[
+	|f|\in\mathcal R(\alpha;[a,b]),
+	\]
+	且
+	\[
+	\left|\int_a^b f\dd\alpha\right|
+	\leq \int_a^b |f|\dd\alpha.
+	\]
+\end{proposition}
+
+\begin{proof}
+	由绝对值函数的不等式
+	\[
+	\bigl||u|-|v|\bigr|\leq |u-v|
+	\]
+	可得每个小区间上
+	\[
+	\omega(|f|)\leq\omega(f).
+	\]
+	故
+	\[
+	\sum_i\omega_i(|f|)\Delta\alpha_i
+	\leq\sum_i\omega_i(f)\Delta\alpha_i.
+	\]
+	由 $f$ 的可积性知 $|f|$ 可积。
+	
+	又因
+	\[
+	-|f(x)|\leq f(x)\leq |f(x)|,
+	\]
+	由保序性得
+	\[
+	-\int_a^b |f|\dd\alpha
+	\leq \int_a^b f\dd\alpha
+	\leq \int_a^b |f|\dd\alpha.
+	\]
+	于是
+	\[
+	\left|\int_a^b f\dd\alpha\right|
+	\leq \int_a^b |f|\dd\alpha.
+	\]
+\end{proof}
+
+\begin{proposition}\label{prop:additivity-stieltjes}
+	设 $c\in(a,b)$。则 $f\in\mathcal R(\alpha;[a,b])$ 当且仅当
+	\[
+	f\in\mathcal R(\alpha;[a,c])
+	\quad\text{且}\quad
+	f\in\mathcal R(\alpha;[c,b]).
+	\]
+	此时
+	\[
+	\int_a^b f\dd\alpha
+	=\int_a^c f\dd\alpha+
+	\int_c^b f\dd\alpha.
+	\]
+\end{proposition}
+
+\begin{proof}
+	若 $f$ 在 $[a,b]$ 上可积，则对任意 $\eps>0$，存在 $[a,b]$ 的划分 $P$，使得
+	\[
+	\sum_i\omega_i\Delta\alpha_i<\eps.
+	\]
+	若 $c$ 不是分点，就把 $c$ 加入划分。加细后振幅和不增。于是限制在 $[a,c]$ 与 $[c,b]$ 上的振幅和均不超过 $\eps$，故两段上均可积。
+	
+	反之，若两段上均可积，则分别取划分 $P_1,P_2$，使得
+	\[
+	\sum_{P_1}\omega_i\Delta\alpha_i<\frac\eps2,
+	\qquad
+	\sum_{P_2}\omega_i\Delta\alpha_i<\frac\eps2.
+	\]
+	合并两段划分得到 $[a,b]$ 上的划分 $P$，则
+	\[
+	\sum_P\omega_i\Delta\alpha_i<\eps.
+	\]
+	故 $f$ 在 $[a,b]$ 上可积。
+	
+	积分等式由 Stieltjes 和拆分得到：任意含 $c$ 的划分均有
+	\[
+	\sum_{[a,b]} f(\xi_i)\Delta\alpha_i
+	=\sum_{[a,c]} f(\xi_i)\Delta\alpha_i
+	+\sum_{[c,b]} f(\xi_i)\Delta\alpha_i.
+	\]
+	令模长趋于 $0$ 即得。
+\end{proof}
+
+\begin{proposition}\label{prop:first-mean-stieltjes}
+	设 $f\in C[a,b]$，$g\in\mathcal R(\alpha;[a,b])$，且 $g$ 不变号。若 $\alpha$ 单调递增，则存在 $\xi\in[a,b]$，使得
+	\[
+	\int_a^b f(x)g(x)\dd\alpha(x)
+	=f(\xi)\int_a^b g(x)\dd\alpha(x).
+	\]
+	特别地，取 $g\equiv1$，则存在 $\xi\in[a,b]$，使得
+	\[
+	\int_a^b f(x)\dd\alpha(x)
+	=f(\xi)\bigl(\alpha(b)-\alpha(a)\bigr).
+	\]
+\end{proposition}
+
+\begin{proof}
+	不妨设 $g(x)\geq0$。因 $f$ 连续，存在最小值 $m$ 与最大值 $M$，满足
+	\[
+	m\leq f(x)\leq M.
+	\]
+	于是
+	\[
+	mg(x)\leq f(x)g(x)\leq Mg(x).
+	\]
+	由保序性得
+	\[
+	m\int_a^b g\dd\alpha
+	\leq \int_a^b fg\dd\alpha
+	\leq M\int_a^b g\dd\alpha.
+	\]
+	若 $\int_a^b g\dd\alpha=0$，则等式对任意 $\xi$ 成立。若 $\int_a^b g\dd\alpha>0$，则存在
+	\[
+	\eta\in[m,M]
+	\]
+	使
+	\[
+	\int_a^b fg\dd\alpha=\eta\int_a^b g\dd\alpha.
+	\]
+	由连续函数的介值性，存在 $\xi\in[a,b]$ 使得 $f(\xi)=\eta$。故结论成立。
+\end{proof}
+
+
+
+\begin{proposition}\label{prop:integration-by-parts-stieltjes}
+	设 $f$ 与 $\alpha$ 均为 $[a,b]$ 上连续单调递增函数，则
+	\[
+	\int_a^b f\dd\alpha+\int_a^b \alpha\dd f
+	=f(b)\alpha(b)-f(a)\alpha(a).
+	\]
+\end{proposition}
+
+\begin{proof}
+	取划分 $P:a=x_0<x_1<\cdots<x_n=b$。记
+	\[
+	f_i=f(x_i),
+	\qquad
+	\alpha_i=\alpha(x_i).
+	\]
+	对任意划分，有恒等式
+	\[
+	\begin{aligned}
+		&\sum_{i=1}^n f(x_{i-1})\bigl(\alpha(x_i)-\alpha(x_{i-1})\bigr)
+		+\sum_{i=1}^n \alpha(x_i)\bigl(f(x_i)-f(x_{i-1})\bigr) \\
+		&=\sum_{i=1}^n \bigl(f_{i-1}\alpha_i-f_{i-1}\alpha_{i-1}+\alpha_i f_i-\alpha_i f_{i-1}\bigr) \\
+		&=\sum_{i=1}^n(f_i\alpha_i-f_{i-1}\alpha_{i-1})
+		=f(b)\alpha(b)-f(a)\alpha(a).
+	\end{aligned}
+	\]
+	由于 $f,\alpha$ 连续，由命题 \ref{prop:continuous-integrand-stieltjes}，$f$ 关于 $\alpha$ 可积，$\alpha$ 关于 $f$ 可积。令 $\lambda(P)\to0$，左侧第一项趋于 $\int_a^b f\dd\alpha$，第二项趋于 $\int_a^b\alpha\dd f$，从而得到公式。
+\end{proof}
+
+\begin{proposition}\label{prop:change-variable-stieltjes}
+	设 $\varphi:[A,B]\to[a,b]$ 连续、严格递增，且
+	\[
+	\varphi(A)=a,
+	\qquad
+	\varphi(B)=b.
+	\]
+	若 $f\in\mathcal R(\alpha;[a,b])$，则
+	\[
+	f\circ\varphi\in\mathcal R(\alpha\circ\varphi;[A,B]),
+	\]
+	且
+	\[
+	\int_a^b f(x)\dd\alpha(x)
+	=\int_A^B f(\varphi(t))\dd(\alpha\circ\varphi)(t).
+	\]
+\end{proposition}
+
+\begin{proof}
+	任取 $[A,B]$ 的划分
+	\[
+	Q:A=t_0<t_1<\cdots<t_n=B.
+	\]
+	由 $\varphi$ 严格递增可得 $[a,b]$ 的划分
+	\[
+	P:a=\varphi(t_0)<\varphi(t_1)<\cdots<\varphi(t_n)=b.
+	\]
+	若 $\tau_i\in[t_{i-1},t_i]$，则 $\xi_i=\varphi(\tau_i)\in[\varphi(t_{i-1}),\varphi(t_i)]$。并且
+	\[
+	\Delta(\alpha\circ\varphi)_i
+	=\alpha(\varphi(t_i))-\alpha(\varphi(t_{i-1}))
+	=\Delta\alpha_i.
+	\]
+	因此两个 Stieltjes 和完全相同：
+	\[
+	\begin{aligned}
+		\sum_i f(\varphi(\tau_i))\Delta(\alpha\circ\varphi)_i
+		&=\sum_i f(\xi_i)\Delta\alpha_i.
+	\end{aligned}
+	\]
+	当 $\lambda(Q)\to0$ 时，由 $\varphi$ 在闭区间上一致连续，$\lambda(P)\to0$。取极限即得变量代换公式。
+\end{proof}
+
+\begin{definition}
+	设 $f\in\mathcal R(\alpha;[a,b])$。定义变上限 Stieltjes 积分函数
+	\[
+	F(x)=\int_a^x f(t)\dd\alpha(t),
+	\qquad x\in[a,b].
+	\]
+\end{definition}
+
+\begin{proposition}\label{prop:upper-limit-continuity-stieltjes}
+	若 $f\in C[a,b]$，$\alpha$ 单调递增且连续，则
+	\[
+	F(x)=\int_a^x f(t)\dd\alpha(t)
+	\]
+	在 $[a,b]$ 上连续。
+\end{proposition}
+
+\begin{proof}
+	由于 $f$ 连续，存在 $M>0$，使 $|f(x)|\leq M$。若 $x<y$，则
+	\[
+	\begin{aligned}
+		|F(y)-F(x)|
+		&=\left|\int_x^y f(t)\dd\alpha(t)\right| \\
+		&\leq \int_x^y |f(t)|\dd\alpha(t)
+		\leq M\bigl(\alpha(y)-\alpha(x)\bigr).
+	\end{aligned}
+	\]
+	由于 $\alpha$ 连续，当 $y\to x$ 时
+	\[
+	\alpha(y)-\alpha(x)\to0.
+	\]
+	故 $F(y)\to F(x)$，即 $F$ 连续。
+\end{proof}
+

@@ -1,0 +1,33 @@
+Chapter 1. Basic Concepts
+§ 1.Phase Spaces
+The theory of ordinary differential equations is one of the basic tools of math-
+ematical science. This theory makes it possible to study all evolutionary pro-
+cesses that possess the properties of determinacy, finite-dimensionality,and
+differentiability. Before giving precise mathematical definitions, let us consider
+several examples.
+1.ExamplesofEvolutionaryProcesses
+A process is called deterministic if its entire future course and its entire past
+are uniquely determined by its state atthe present time.The set of all states
+of the process is called the phase space.
+Thus, for example, classical mechanics considers the motion of systems
+whose future and past are uniquely determined by the initial positions and
+initial velocities of all points of the system. The phase space of a mechanical
+system is the set whose elements are the sets of positions and velocities of all
+points of the given system.
+The motion of particles in quantum mechanics is not described by a de-
+terministic process. The propagation of heat is a semideterministic process:
+the future is determined by the present, but the past is not.
+A process is called finite-dimensional if its phase space is finite-dimen-
+sional, i.e., if the number of parameters needed to describe its states is finite.
+Thus, for example, the Newtonian mechanics of systems consisting of a finite
+number of material points or rigid bodies belongs to this class. The dimension
+of the phase space of a system of n material points is 6n, and that of a system
+of n rigid bodies is 12n. The motions of a fuid studied in fuid mechanics, the
+vibrating processes of a string and a membrane, the propagation of waves in
+optics and acoustics are examples of processes that cannot be described using
+a finite-dimensional phase space.
+A process is called differentiable if its phase space has thc structure of
+a differentiable manifold, and the change of state with time is described by
+differentiablefunctions.
+Thus, for example, the coordinates and velocities of the points of a me-
+chanical system vary differentiably with time.

@@ -1,0 +1,236 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第6章：函数的极限与连续性
+% 节：6.3 连续性
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{连续性}
+\begin{definition}
+	对 函数$f(x)$，若满足：
+	\begin{enumerate}
+		\item $f(x) $在$ O(x_0, \rho)$ 上有定义，对某 $\rho$(此处无需去心邻域)
+		\item $\lim\limits_{x \to x_0} f(x)$ 存在
+		\item $\lim\limits_{x \to x_0} f(x) = f(x_0)$
+	\end{enumerate}
+	
+	就说 $f(x)$ 在 $x_0$ 处连续.或等价地，用“$\varepsilon-\delta$”语言：
+	
+	$f(x) $在$ O(x_0, \rho)$ 上有定义，对某 $\rho$，$\forall \varepsilon > 0$，$\exists \delta(\varepsilon, x_0)> 0$，$\forall x (|x - x_0| < \delta)$：
+	\[
+	|f(x) - f(x_0)| < \varepsilon
+	\]
+	
+\end{definition}
+\begin{definition}
+	对 $f(x)$，若：
+	\begin{itemize}
+		\item $f(x)$ 在 $[x_0, x_0 + \rho)$ 上有定义，且 $\lim\limits_{x \to x_0^+} f(x) = f(x_0)$，则称 $f(x)$ 在$x_0$右连续.
+		\item $f(x)$ 在 $(x_0 - \rho, x_0]$ 上有定义，且 $\lim\limits_{x \to x_0^-} f(x) = f(x_0)$，则称 $f(x)$ 在$x_0$左连续.
+	\end{itemize}
+	显然，若 $f(x)$ 在 $x_0$ 处连续，则必有
+	\[
+	\lim_{x \to x_0^+} f(x) = \lim_{x \to x_0^-} f(x) = f(x_0)
+	\]
+\end{definition}
+
+\begin{definition}
+	若 $f(x)$ 在开区间 $(a, b)$ 上的任意一点处连续，那么称 $f(x)$ 在开区间 $(a, b)$ 上连续.记为$f\in C(a,b)$.
+	
+	若 $f(x)$ 在 $(a, b)$ 上连续，同时在 $x = a$ 处右连续，在 $x = b$ 处左连续，那么称 $f(x)$ 在闭区间 $[a, b]$ 上连续.记为$f\in C[a,b]$
+	
+	
+\end{definition}
+\begin{proposition}
+	
+	设 $f(x), g(x)$ 在 $x_0$ 处连续，那么有
+	
+	(1) $$\lim_{x \to x_0} (\alpha f(x) + \beta g(x)) = \alpha f(x_0) + \beta g(x_0)$$
+	
+	更一般地，有限个连续函数的线性组合仍连续，而无限个连续函数的“线性组合”未必连续，甚至未必有意义.
+	
+	(2) $$\lim_{x \to x_0} f(x)g(x) = f(x_0)g(x_0)$$
+	
+	更一般地，有限个连续函数的乘积仍连续，无限个连续的乘积则未必，甚至未必有定义
+	
+	(3) $$\lim_{x \to x_0} \frac{f(x)}{g(x)} = \frac{f(x_0)}{g(x_0)}\quad g(x_0) \neq 0$$ 
+\end{proposition}
+\begin{proof}
+	由函数极限的定义的易知
+\end{proof}
+
+考虑 $f(x)$ 在 $x_0$ 处连续的定义：
+\begin{enumerate}
+	\item 在 $x_0$ 处左右极限存在且相等；
+	\item 在 1 下，$\lim\limits_{x \to x_0^+} f(x) =\lim\limits_{x \to x_0^-} f(x)= f(x_0)$
+\end{enumerate}
+
+逐一的破坏极限的定义，我们得出 $f(x)$在$x_0$ 的三类不连续点的定义.
+\begin{definition}
+	设 $f(x)$ 在 $x_0$ 的某邻域内有定义
+	\begin{enumerate}
+		\item  若 $f(x)$ 在 $x_0$ 处的左右极限存在，且 $f(x_0-) \neq f(x_0+)$，则称 $x_0$ 为第一类间断点，又称跳跃间断点（$|f(x_0+) - f(x_0-)|$ 为 $x_0$ 上的跃度）.
+		\item 若 $f(x)$ 在 $x_0$ 处的左右极限至少有一不存在，则称 $x_0$ 为第二类间断点.
+		\item 若 $f(x)$ 在 $x_0$ 处的左右极限都存在且相等，但 $f(x_0+) = f(x_0-) \neq f(x_0)$，则称 $x_0$ 为第三类间断点.此时，令	
+		\[
+		\widetilde{f}(x) = \begin{cases}
+			f(x) & x \neq x_0 \\
+			f(x_0+) = f(x_0-) & x = x_0
+		\end{cases}
+		\]
+	\end{enumerate}
+	在 $f$ 无其他不连续点的情况下，$\widetilde{f}(x)$ 是连续的.第三类间断点又称可去间断点.
+	
+	有些时候，$f$ 在 $x_0$ 处无定义，我们把这种情况也归入第三类间断点
+	
+	还有一种间断点，顾名思义的，无穷间断点，因各个教材的分类不同，此处单取一类
+\end{definition}
+我们给出几个例子
+
+\begin{example}
+	考虑从下列函数的不连续点以及不连续点的类型：
+	
+	(1) $f(x) = \dfrac{\sin x}{x}$
+	
+	(2) $D(x) = \begin{cases}
+		1, & x \in \mathbb{Q} \\
+		0, & x \in \mathbb{R} \setminus\mathbb{Q}
+	\end{cases}$
+	
+	(3) $R(x) = \begin{cases}
+		\dfrac{1}{p}, & x = \dfrac{q}{p}, p\in\Z_+,q\in\Z\setminus\{0\},\text{$p$ 和 $q$ 互质}\\
+		1, & x = 0 \\
+		0, & x \in \mathbb{R} \setminus \mathbb{Q}
+	\end{cases}$
+	
+	(4) $g(x) = \text{sgn}(x)$
+\end{example}
+\begin{proof}
+	1. 函数 \( f(x) \) 在 \( x = 0 \) 处无定义，但 \(\lim\limits_{x \to 0^+} \dfrac{\sin x}{x} = \lim\limits_{x \to 0^-} \dfrac{\sin x}{x} = 1\)，故 \( x = 0 \) 是第三类间断点；
+	
+	2. 对 \(\forall x_0 \in \mathbb{R}\)，考虑两个列 $\{x_n\},\{y_n\}$满足 \(x_n \in \mathbb{Q}, y_n \in \mathbb{R} \setminus \mathbb{Q}\)，
+	且 \(x_n, y_n < x_0\)，\(x_n, y_n \to x_0\)，那么
+	\[
+	\lim_{n \to \infty} D(x_n) = 1, \quad \lim_{n \to \infty} D(y_n) = 0
+	\]
+	
+	由 Heine 定理 \(\lim\limits_{x \to x_0} D(x)\) 不存在，即 \(D(x)\) 在 \(x_0\) 处间断.故任意一点都是第二类间断点.
+	
+	(3) $R(x+1) = R(x)$，故 $R(x)$ 是 1 为周期的函数，只需考虑 $[0,1]$ 这一区间上的点即可.
+	
+	对任意无理点 $x_0 \in \mathbb{R} \setminus \mathbb{Q}$，对 $R(x_0) = 0$ 且 $\lim\limits_{x \to x_0} R(x) = 0$，故在任意无理点处连续.
+	
+	下面考虑 $[0,1]$ 上的有理数 $x_0$，下证 $\lim\limits_{x \to x_0} R(x) = 0$.
+	
+	$\forall \varepsilon > 0$，考虑 $|R(x)| < \varepsilon$，求相应的$\delta$.
+	
+	反向的考虑：在 $[0,1]$ 的区间里，$R(x) \geqslant \varepsilon$ 的点有多少个.
+	
+	$\eps>0,\exists n$，使得$\dfrac{1}{10^{n-1}}>\eps\geqslant \dfrac{1}{10^n}$，$R(x)>\dfrac{1}{10^n}$
+	
+	比如 ,$n=1$ 时，$R(x) = 1, \dfrac{1}{2}, \dots, \dfrac{1}{9}>\dfrac{1}{10}$;$n=2$ 时，$R(x) = 1, \dfrac{1}{2}, \dots, \dfrac{1}{99}>\dfrac{1}{100}$
+	
+	显然，使 $R(x) > \dfrac{1}{10^n}$ 的有理数 $x \in [0,1]$ 是有限的.设为 $x_1, \dots, x_n$，假设其中不含$x_0$,$\forall1\leqslant k\leqslant n,|x_k - x_0|>0$，取 $\delta= \min\limits_{1 \leqslant k \leqslant n} |x_k - x_0|>0$.则 $0 < |x - x_0| < \delta$ 时，$R(x) < \varepsilon$.
+	
+	综上 $\lim\limits_{x \to x_0} R(x) = 0$而$R(x_0) = \dfrac{1}{p}$，故在有理点上不连续，属第二类间断点.
+	
+	(4) 显然，$\lim\limits_{x \to 0^-} \text{sgn}(x) = -1$，$\lim\limits_{x \to 0^+} \text{sgn}(x) = 1$，而 $\text{sgn}(0) = 0$.故 $x = 0$ 为第一类间断点，且跃度为 2.
+\end{proof}
+\begin{proposition}
+	设函数 $f$ 在区间 $(a, b)$ 上单调，那么$(a, b)$ 中使$f$ 间断的点的集是至多可数.
+\end{proposition}
+
+\begin{proof}
+	设 $E$ 是 $f$ 所有间断点构成的集合，假设$f$是单调递增的.对于 $\forall x \in E$，$\exists r \in \mathbb{Q},r=r(x)$，使得 $f(x-) < r(x) < f(x+)$.
+	
+	由 $x_1 < x_2$，若 $f(x_1+) \leqslant f(x_2-)$，所以$x_1 \neq x_2$ 时，$r(x_1) \neq r(x_2)$.
+	
+	因此，在 $E$ 与 $\mathbb{Q}$ 的子集上建立了一一对应.
+\end{proof}
+\begin{proposition}
+	$(a, b)$ 上的单调函数(未必严格单调)的不连续点必为第一类间断点.
+	\label{monouni}
+	
+\end{proposition}
+\begin{proof}
+	不妨设函数 $f(x)$ 单调上升，
+	
+	令 $S = \{ f(x): x \in (a, x_0) \}$.
+	
+	因 $f\left(\dfrac{x_0 + a}{2}\right) \in S$ 故 $S \neq \varnothing$ 且有上界（$f(x_0)$ 是 $S$ 的一个上界）.
+	
+	那么，由确界原理 $\beta = \sup S$ 存在.
+	
+	对 $\beta = \sup S$，$\forall \varepsilon > 0$，$\exists x^* \in (a, x_0)$，使 $f(x^*) > \beta - \varepsilon$.
+	
+	取 $\delta = x_0 - x^* > 0$，当 $x \in (x_0 - \delta, x_0)$，$x^* < x < x_0$，
+	
+	$$\beta - \varepsilon < f(x^*) \leqslant f(x) \leqslant \beta \Leftrightarrow-\eps<f(x)-\beta\leqslant0$$
+	
+	因此 $f(x_0-)$ 存在，同理 $f(x_0+)$存在.
+\end{proof}
+下面我们考虑连续性之于反函数
+\begin{proposition}\label{infunex}
+	证明：$f(x)$ 在 $D_f \subset \mathbb{R}$ 上严格单调增（或严格单调减），则 $y = f(x)$ 的反函数 $x = f^{-1}(y)$：$R_f \to D_f$ 存在，且 $f^{-1}(y)$ 也为严格单调增（或严格单调减）.
+	
+\end{proposition}
+\begin{proof}
+	
+	存在性：由 $f$ 是严格单调，$f^{-1}$ 满足映射定义一 对一的条件，存在性得证.
+	
+	单调性：设 $f$ 是严格单调增，
+	若 $f^{-1}$ 不严格单调增，则$f^{-1}$为单调减，那么 $\forall y_1, y_2 \in R_f$，设 $y_1 < y_2$，但 $x_1 = f^{-1}(y_1) \geqslant x_2 = f^{-1}(y_2)$，又因 $f$ 单增，$x_1 \geqslant x_2$，$f(x_1) \geqslant f(x_2)$ 矛盾.
+	
+\end{proof}
+\begin{proposition}
+	设函数 $y = f(x)$ 在闭区间 $[a, b]$ 上连续且严格单调增，$f(a) = \alpha$，$f(b) = \beta$，则其反函数 $x = f^{-1}(y)$ 在 $[\alpha, \beta]$ 上连续且严格单调增.
+	
+	
+\end{proposition}
+\begin{proof}
+	先证$\forall y_0 \in [\alpha, \beta]$，$\exists x_0 \in [a, b]$，使得 $f(x_0) = y_0$，换言之$$f([a, b]) = [\alpha, \beta]$$
+	
+	设 $\gamma \in (\alpha, \beta)$，设
+	$$S = \{x : x \in [a, b], f(x) < \gamma
+	\}$$
+	由$a\in S$,$S$ 非空，且 $f(b) > \gamma$，$S$ 有上界，由确界原理，$\exists x_0 = \sup S$，$x_0 \in (a, b)$.
+	由 $f$ 单调递增，$x<x_0$时，$f(x)<\gamma$;$x>x_0$时，$f(x)>\gamma$.由\ref{monouni}
+	$$f(x_0-) \leqslant \gamma \leqslant f(x_0+)$$
+	而 $f$ 在 $x_0$ 处连续，$f(x_0) =f(x_0+)=f(x_0-)= \gamma$，这样$f$ 的值域是 $[\alpha, \beta]$
+	
+	由\ref{infunex}，在 $[\alpha, \beta]$ 上存在$f$的反函数$x=f^{-1}(y)$，且 $f^{-1}$ 严格单调增.
+	
+	下证 $f^{-1}$ 在 $[\alpha, \beta]$ 上的连续性：
+	
+	设 $y_0 \in (\alpha, \beta)$，相应的有 $f^{-1}(y_0) = x_0 \in (a, b)$.对于任意 $\varepsilon > 0$，找出$\delta > 0$，使得 $|y - y_0| < \delta$ 时，
+	有 
+	$$|f^{-1}(y)-f^{-1}(y_0)|=|f^{-1}(y)-x_0|<\eps$$
+	即$$x_0-\eps<f^{-1}(y)<x_0+\eps$$
+	设$y_1 = f(x_0 - \varepsilon),y_2 = f(x_0 + \varepsilon)$
+	，令 $\delta = \min\{|y_1 - y_0|, |y_2 - y_0|\}$
+	
+	$\forall y$ 满足 $|y - y_0| < \delta$，$f^{-1}(y) \in (x_0 - \varepsilon, x_0 + \varepsilon)$，即 $f^{-1}$ 连续.
+	
+\end{proof}
+\begin{proposition}
+	设 $u = g(x)$ 在 $x = x_0$ 处连续，$u_0 = g(x_0)$；$y = f(u)$ 在 $u = u_0$ 处连续，则 $y = f \circ g(x)$ 在 $x = x_0$ 处连续，且 $y_0 = f \circ g(x_0)$.
+	
+	
+\end{proposition}
+\begin{proof}
+	设函数的值域在所讨论的区间中有定义
+	
+	由 $y = f(u)$ 在 $u = u_0$ 处连续，$\forall \varepsilon > 0$，$\exists \eta > 0$，使 $|u - u_0| < \eta$ 时，
+	\[ |f(u) - f(u_0)| < \varepsilon \]
+	
+	$u = g(x)$ 在 $x = x_0$ 处连续，对上述 $\eta > 0$，$\exists \delta > 0$，使 $|x - x_0| < \delta$ 时，
+	\[ |g(x) - g(x_0)| < \eta \Leftrightarrow|u - u_0| < \eta \]
+	
+	因此，对 $\delta$，$|x-x_0|<\delta$时，
+	\[ |f \circ g(x) - f \circ g(x_0)| < \varepsilon \]
+	
+	即 $f \circ g$ 在 $x = x_0$ 处连续.
+\end{proof}
+\begin{corollary}
+	有限多连续函数的复合依旧是连续的
+\end{corollary}
+\begin{proof}
+	用数学归纳法即可证明
+\end{proof}

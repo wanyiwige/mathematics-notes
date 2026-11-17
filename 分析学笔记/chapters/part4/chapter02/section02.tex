@@ -1,0 +1,127 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第2章：Fourier级数的收敛性
+% 节：2.2 Fourier级数的逐点收敛
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{Fourier级数的逐点收敛}
+
+\begin{theorem}
+	令 $f$ 是圆周上的可积函数,且在 $\theta_0$ 点可微.那么当 $N\to\infty$ 时,
+	\[
+	S_N(f)(\theta_0)\longrightarrow f(\theta_0).
+	\]
+\end{theorem}
+
+\begin{proof}
+	定义
+	\[
+	F(t)=
+	\begin{cases}
+		\displaystyle\frac{f(\theta_0-t)-f(\theta_0)}{t},
+		& t\neq0,\ \abs{t}<\pi,\\[3mm]
+		-f'(\theta_0),&t=0.
+	\end{cases}
+	\]
+	首先,因为 $f$ 在 $\theta_0$ 点可微,所以 $F$ 在 $0$ 附近有界.其次,对充分小的 $\delta>0$,函数 $F$ 在
+	\[
+	[-\pi,-\delta]\cup[\delta,\pi]
+	\]
+	上可积；再由分段可积函数的拼接性质可知,$F$ 在整个区间 $[-\pi,\pi]$ 上可积.
+	
+	由
+	\[
+	S_N(f)(\theta_0)=(f\ast D_N)(\theta_0),
+	\qquad
+	\frac1{2\pi}\int_{-\pi}^{\pi}D_N(t)\dd t=1,
+	\]
+	可得
+	\[
+	\begin{aligned}
+		S_N(f)(\theta_0)-f(\theta_0)
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}f(\theta_0-t)D_N(t)\dd t-f(\theta_0)\\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}
+		\bigl[f(\theta_0-t)-f(\theta_0)\bigr]D_N(t)\dd t\\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}F(t)tD_N(t)\dd t.
+	\end{aligned}
+	\]
+	再回顾 Dirichlet 核的公式
+	\[
+	tD_N(t)
+	=\frac{t}{\sin(t/2)}
+	\sin\bigl((N+\tfrac12)t\bigr),
+	\]
+	其中,$t/\sin(t/2)$ 在区间 $[-\pi,\pi]$ 上连续.又因为
+	\[
+	\sin\bigl((N+\dfrac12)t\bigr)
+	=\sin(Nt)\cos(t/2)+\cos(Nt)\sin(t/2),
+	\]
+	所以
+	\[
+	\begin{aligned}
+		S_N(f)(\theta_0)-f(\theta_0)
+		={}&\frac1{2\pi}\int_{-\pi}^{\pi}
+		F(t)\frac{t\cos(t/2)}{\sin(t/2)}\sin(Nt)\dd t\\
+		&+\frac1{2\pi}\int_{-\pi}^{\pi}F(t)t\cos(Nt)\dd t.
+	\end{aligned}
+	\]
+	上式中两个系数函数均为 Riemann 可积函数.对这两个积分应用 Riemann--Lebesgue 引理,便得
+	\[
+	S_N(f)(\theta_0)-f(\theta_0)\longrightarrow0.
+	\]
+\end{proof}
+
+可以看出,上述证明中可微条件只用于保证函数
+\[
+F(t)=\frac{f(\theta_0-t)-f(\theta_0)}{t}
+\]
+在原点附近有界.定义
+\[
+F(t)=
+\begin{cases}
+	\dfrac{f(\theta_0-t)-f(\theta_0)}{t},
+	& t\neq 0,\ |t|<\pi,\\[6pt]
+	0,  & t=0.
+\end{cases}
+\]
+因此,如果仅假设 $f$ 在 $\theta_0$ 点满足
+Lipschitz 条件,定理的结论仍然成立.
+
+事实上,设存在 $M>0$ 及 $\theta_0$ 的一个邻域,使得对该邻域内
+任意的 $\theta$ 都有
+\[
+\abs{f(\theta)-f(\theta_0)}
+\leq M\abs{\theta-\theta_0}.
+\]
+令 $\theta=\theta_0-t$,则当 $t$ 充分小时,
+\[
+\abs{F(t)}
+=
+\frac{\abs{f(\theta_0-t)-f(\theta_0)}}{\abs{t}}
+\leq M.
+\]
+故 $F$ 在原点附近有界,其余证明与上述定理完全相同.
+此时也称 $f$ 在 $\theta_0$ 点满足一阶 H\"older 条件.
+
+\begin{corollary}
+	假设 $f$ 和 $g$ 是定义在圆周上的两个可积函数,且对于某个 $\theta_0$,存在包含 $\theta_0$ 的开区间 $I$,满足
+	\[
+	f(\theta)=g(\theta),
+	\qquad \theta\in I.
+	\]
+	那么当 $N\to\infty$ 时,
+	\[
+	S_N(f)(\theta_0)-S_N(g)(\theta_0)\longrightarrow0.
+	\]
+\end{corollary}
+
+\begin{proof}
+	令 $h=f-g$.因为 $h$ 在 $I$ 上恒为 $0$,所以 $h$ 在 $\theta_0$ 处可微,且 $h(\theta_0)=0$.由上一个定理,
+	\[
+	S_N(h)(\theta_0)\longrightarrow h(\theta_0)=0.
+	\]
+	再由 Fourier 部分和的线性性,
+	\[
+	S_N(h)(\theta_0)
+	=S_N(f)(\theta_0)-S_N(g)(\theta_0),
+	\]
+	结论成立.
+\end{proof}

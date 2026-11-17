@@ -1,0 +1,125 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.10 数列的子列与Bolzano-Weierstrass致密性定理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{数列的子列与Bolzano-Weierstrass致密性定理}
+\begin{definition}
+	设 $\left\{x_n\right\}$ 是一个数列，而
+	
+	$$
+	n_1<n_2<\cdots<n_k<n_{k+1}<\cdots
+	$$
+	
+	
+	是一列严格单调增加的正整数，则
+	
+	$$
+	x_{n_1}, x_{n_2}, \cdots, x_{n_k}, \cdots
+	$$
+	
+	
+	也形成一个数列，称为数列 $\left\{x_n\right\}$ 的子列，记为 $\left\{x_{n_k}\right\}$ ．
+\end{definition}
+\begin{proposition}
+	数列$\left\{x_n\right\}$收敛于$a$的充要条件是$\forall\left\{n_k\right\}$,子列$\left\{x_{n_k}\right\}$收敛于$a$.
+\end{proposition}
+
+\begin{proof}
+	$\Rightarrow: \lim\limits_{n \rightarrow \infty} x_n=a \Rightarrow \forall \varepsilon>0, \exists N , \forall n>N$ 有 $|x_n-a|<\varepsilon$
+	
+	又 $n_{k}$ 严格单调增加,且$n_k\rightarrow+\infty$
+	
+	对 $N$ ，$\exists K,~$使得,~$k>K$ 时，$n_k>N$，那么
+	$\forall k>K$ ，有 $\left|x_{n_k}-a\right|<\varepsilon$
+	
+	
+	$\Leftarrow$: 取 $n_k=k$,就有$\left\{x_k\right\}$收敛于 $a$
+\end{proof}
+\begin{definition}
+	令 $S$ 表示 $\left\{x_n\right\}$ 所有子列收敛值所构成的集合（被广义实数系所包含），定义 $\left\{x_n\right\}$ 的上极限为  $\sup S$ ，记为 $\limsup\limits _{n \rightarrow \infty} x_n$下极限为$\inf S$，记为 $\liminf\limits _{n \rightarrow \infty} x_n$
+	
+	由上一条定理若 $\lim\limits_{n \rightarrow \infty} x_n=a$ ，则必有
+	
+	$$
+	\limsup\limits_{n \rightarrow \infty} x_n=\liminf\limits _{n \rightarrow \infty} x_n=a
+	$$
+\end{definition}
+\begin{example}
+	令 $\left\{r_n\right\}$ 是一切有理数构成的序列，那么每个实数是部分极限，也即$S=\R$,且 
+	
+	$$\limsup _{n \rightarrow \infty} r_n=+\infty \quad \liminf _{n \rightarrow \infty} r_n=-\infty$$
+	
+	
+\end{example}
+上，下极限，是我们研究子列的一种有力工具.一条常用的结论是奇偶子列的收敛.
+\begin{proposition}\label{oddandeven}
+	若 $x_{2 n} \rightarrow a, ~ x_{2 n+1} \rightarrow a \quad$ 那么 $x_n \rightarrow a$
+\end{proposition}
+
+\begin{proof}
+	\begin{align*}
+		\textbf{对 }\forall \varepsilon>0,&\exists N_1 \forall n>N_1, &\left|x_{2n}-a\right|<\varepsilon \\
+		&\exists N_2 \forall n>N_2 ,&\left|x_{2 n+1}-a\right|<\varepsilon
+	\end{align*}
+	取$ N_0=\max(2 N_1,2 N_2+1)$,$\forall n>N_0$,$\left|x_n-a\right|<\varepsilon$
+	
+	即$  x_n \rightarrow a$
+\end{proof}
+\begin{corollary}
+	若 $ x_{k n+i} \rightarrow a \quad i=0, . ., k-1$ , 那么  $ x_n \rightarrow a$
+\end{corollary}
+\begin{theorem}(Bolzano-Weierstrass致密性定理)
+	有界数列必有收敛子列.
+\end{theorem}
+\begin{proof}
+	设 $\left\{x_n\right\}$ 有界，则存在 $\left[a_1, b_1\right]$ 包含 $\left\{x_n\right\}$ 的所有项.
+	
+	将 $\left[a_1, b_1\right]$ 分成两半 $\Rightarrow\left[a_1, \dfrac{a_1+b_1}{2}\right],\left[\dfrac{a_1+b_1}{2}, b_1\right]$两个区间中必有一个包含 $\left[x_n\right]$ 的无限多项记为 $\left[a_2, b_2\right]$
+	
+	重复以上分法，取出 $\left[a_3, b_3\right],\left[a_4, b_4\right], \cdots$
+	
+	对 $\left\{\left[a_n,b_n\right]\right\}$ 有
+	
+	（1）$\left[a_n, b_n\right] \supset\left[a_{n+1}, b_{n+1}\right]$
+	
+	（2）$b_n-a_n=\dfrac{b_1-a_1}{2^n} \rightarrow 0$
+	
+	（3）$\forall n,\left[a_n, b_n\right]$ 中含 $\left[x_n\right]$ 中的无限多项
+	
+	在 $\left[a_1, b_1\right]$ 中任取 $\left\{x_n\right\}$中 $x_{n_1}$
+	
+	在 $\left[a_2, b_2\right]$ 中任取 $\left\{x_n\right\}$ 中 $x_{n_2}$
+	
+	$\vdots$
+	
+	取出 $\left\{x_{n_1}, x_{n_2}, \cdots\right\}$$ \Rightarrow\left\{x_{n_k}\right\}_{k=1}^{\infty} \Rightarrow a_k \leqslant x_{n_k} \leqslant b_k$
+	
+	由 $\xi=\lim\limits _{n \rightarrow \infty} a_n=\lim\limits _{n \rightarrow \infty}b_n$ 与极限的夹逼性
+	
+	$$
+	\lim _{k \rightarrow \infty} x_{n_k}=\xi
+	$$
+\end{proof}
+\begin{proposition}
+	Bolzano-Weierstrass致密性定理$\Rightarrow$Cantor闭区间套定理 
+\end{proposition}
+\begin{proof}
+	对闭区间套$\left\{\left[a_n,b_n\right]\right\}$,$\left\{a_n\right\}$有界，由Bolzano-Weierstrass致密性定理，存在$\left\{a_n\right\}$的一个子列$a_{n_k}\rightarrow\xi$
+	
+	$\exists m\in \N,\forall n_K\geqslant m$,有$a_{n_k}\in\left[a_m,b_m\right]$
+	
+	由$\left[a_m,b_m\right]$是闭区间，极限$\xi=\lim\limits_{k\rightarrow\infty}a_{n_k}\in\left[a_m,b_m\right]$
+	
+	这样$\forall m\in\Z_+,\xi\in\left[a_m,b_m\right]$,即$\xi\in\bigcap\left[a_m,b_m\right]$
+	
+	$
+	a_n \leqslant \xi \leqslant b_n $ 且 $ \lim\limits _{n \rightarrow \infty}\left(b_n-a_n\right)=0 \Leftrightarrow \lim\limits _{n \rightarrow \infty} b_n=\lim\limits _{n \rightarrow \infty} a_n
+	$
+	
+	由夹逼性， $\lim\limits _{n \rightarrow \infty} b_n=\lim\limits _{n \rightarrow \infty} a_n=\xi$
+	
+	
+	若 $\exists \xi^{\prime} \neq \xi$ 使得$\xi^{\prime} \in \bigcap\left[a_n, b_n\right]$
+	
+	则 $\left|\xi-\xi^{\prime}\right| \leqslant b_n-a_n \rightarrow 0$ 故 $\xi=\xi^{\prime}$
+\end{proof}

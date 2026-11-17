@@ -1,0 +1,579 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第5章：级数理论
+% 节：5.2 正项级数
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{正项级数}
+\begin{definition}
+	若对级数 $\sum a_n$，存在 $N \in \mathbb{N}^+$，使得对所有 $n > N$，都有 $a_n > 0$，则称 $\sum a_n$ 为正项级数。
+\end{definition}
+\begin{proposition}
+	一个正项级数收敛，当且仅当其部分和数列有界。
+\end{proposition}
+\begin{proof}
+	根据单调有界收敛定理,显然
+\end{proof}
+
+\begin{proposition}\label{比较判别法}
+	（比较判别法）对正项级数 $\sum x_n$ 与 $\sum y_n$，若存在常数 $A>0$ 与正整数 $N$，使得对所有 $n > N$，都有
+	\[
+	0 \le x_n \le A y_n
+	\]
+	则：
+	\begin{enumerate}
+		\item 若 $\sum y_n$ 收敛，则 $\sum x_n$ 收敛；
+		\item 若 $\sum x_n$ 发散，则 $\sum y_n$ 发散。
+	\end{enumerate}
+
+	
+\end{proposition}
+\begin{proof}
+	由于1和2互为逆否命题，我们只需证明1。
+	
+	设 $\sum x_n$ 的部分和为 $S_n$，$\sum y_n$ 的部分和为 $T_n$。
+	已知 $\sum y_n$ 收敛，则其部分和数列 $\{T_n\}$ 有界，即存在常数 $M>0$，使得 $T_n \le M$ 对所有 $n$ 成立。
+	
+	对于 $n > N$，有
+	\[
+	0 \le x_n \le A y_n
+	\]
+	对 $n > N$ 求和可得：
+	\[
+	S_n = x_1 + \dots + x_N + x_{N+1} + \dots + x_n
+	\le \sum_{k=1}^{N} x_k + A \sum_{k=N+1}^{n} y_k
+	\]
+	而
+	\[
+	\sum_{k=N+1}^{n} y_k = T_n - T_N \le T_n \le M
+	\]
+	因此
+	\[
+	0 \le S_n \le \sum_{k=1}^{N} x_k + A M
+	\]
+	这说明部分和数列 $\{S_n\}$ 单调上升且有上界，故 $\{S_n\}$ 收敛，即级数 $\sum x_n$ 收敛。
+\end{proof}
+\begin{corollary}
+	（比较判别法的极限形式）设 $\sum x_n$ 与 $\sum y_n$ 为正项级数，且
+	\[
+	\lim_{n\to\infty} \frac{x_n}{y_n} = l
+	\]
+	
+	则
+	\begin{enumerate}
+		\item 若 $0 \le l < +\infty$，且 $\sum y_n$ 收敛，则 $\sum x_n$ 收敛；
+		\item 若 $0 < l \le +\infty$，且 $\sum x_n$ 发散，则 $\sum y_n$ 发散。
+	\end{enumerate}
+	
+\end{corollary}
+\begin{proof}
+	取 $\varepsilon = 1$，由极限定义，存在 $N \in \mathbb{N}^+$，当 $n > N$ 时
+	\[
+	\left| \frac{x_n}{y_n} - l \right| < 1
+	\]
+	即
+	\[
+	l-1 < \frac{x_n}{y_n} < l+1
+	\]
+	
+	\begin{itemize}
+		\item 当 $0 \le l < +\infty$ 时，$x_n < (l+1)y_n$，由比较判别法，$\sum y_n$ 收敛 $\implies \sum x_n$ 收敛。
+		\item 当 $0 < l \le +\infty$ 时，$x_n > (l-1)y_n$，由比较判别法，$\sum x_n$ 发散 $\implies \sum y_n$ 发散。
+	\end{itemize}
+	
+	
+	
+	
+\end{proof}
+特别地，若 $0 < l < +\infty$，则 $\sum x_n$ 与 $\sum y_n$ 有相同的敛散性。
+\begin{proposition}
+	（Cauchy 判别法，根值判别法）
+	设 $\sum\limits_{n=1}^{\infty} x_n$ 是正项级数，令
+	\[
+	r = \varlimsup_{n \to \infty} \sqrt[n]{x_n}
+	\]
+	
+	则
+	\begin{enumerate}
+		\item 当 $r < 1$ 时，级数 $\sum x_n$ 收敛；
+		\item 当 $r > 1$ 时，级数 $\sum x_n$ 发散；
+		\item 当 $r = 1$ 时，级数可能收敛也可能发散。
+	\end{enumerate}
+	
+\end{proposition}
+
+对3：例如，调和级数 $\sum \dfrac{1}{n}$，此时 $r=1$，级数发散；而 $p$-级数 $\sum \dfrac{1}{n^2}$，此时 $r=1$，级数收敛。
+\begin{proof}
+	1.  当 $r < 1$ 时，取 $\varepsilon_0 = \dfrac{1-r}{2} > 0$，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	\sqrt[n]{x_n} < r + \varepsilon_0 = \frac{1+r}{2}
+	\]
+	即
+	\[
+	x_n < \left( \frac{1+r}{2} \right)^n
+	\]
+	由于 $0 < \dfrac{1+r}{2} < 1$，等比级数 $\sum \left( \dfrac{1+r}{2} \right)^n$ 收敛，由\ref{比较判别法}可知，级数 $\sum x_n$ 收敛。
+	
+	2.  当 $r > 1$ 时，取 $\varepsilon_0 = \dfrac{r-1}{2} > 0$，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	\sqrt[n]{x_n} > r - \varepsilon_0 = \frac{r+1}{2}
+	\]
+	即
+	\[
+	x_n > \left( \frac{r+1}{2} \right)^n
+	\]
+	由于 $\dfrac{r+1}{2} > 1$，等比级数 $\sum \left( \dfrac{r+1}{2} \right)^n$ 发散，由比较判别法可知，级数 $\sum x_n$ 发散。
+\end{proof}
+
+
+
+
+我们可以看到 Cauchy 判别法是包含 d'Alembert 判别法的，也就是说，能用 Cauchy 判别法的，d'Alembert 判别法可能失效；能用 d'Alembert 判别法的，理论上满足 Cauchy 判别法，依据是以下的命题。
+\begin{proposition}\label{Cauchy 判别法是包含 d'Alembert 判别法}
+	设 $\{x_n\}$ 是正项数列，则
+	\[
+	\varliminf_{n \to \infty} \frac{x_{n+1}}{x_n} \le \varliminf_{n \to \infty} \sqrt[n]{x_n} \le \varlimsup_{n \to \infty} \sqrt[n]{x_n} \le \varlimsup_{n \to \infty} \frac{x_{n+1}}{x_n}
+	\]
+\end{proposition}
+\begin{proof}
+	设
+	\[
+	\overline{r} = \varlimsup_{n \to \infty} \frac{x_{n+1}}{x_n}
+	\]
+	对任意 $\varepsilon > 0$，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	\frac{x_{n+1}}{x_n} < \overline{r} + \varepsilon
+	\]
+	于是
+	\[
+	x_n < (\overline{r} + \varepsilon)^{n-N-1} \cdot x_{N+1}
+	\]
+	从而
+	\[
+	\varlimsup_{n \to \infty} \sqrt[n]{x_n} \le \varlimsup_{n \to \infty} \sqrt[n]{(\overline{r} + \varepsilon)^{n-N-1} \cdot x_{N+1}} = \overline{r} + \varepsilon
+	\]
+	由 $\varepsilon$ 的任意性，得
+	\[
+	\varlimsup_{n \to \infty} \sqrt[n]{x_n} \le \overline{r} = \varlimsup_{n \to \infty} \frac{x_{n+1}}{x_n}
+	\]
+	
+	对下极限的情况同理可证。
+	
+\end{proof}
+\begin{proposition}
+	（Raabe 判别法）设 $\sum x_n$ 为正项级数，且 $x_n \neq 0$，若极限
+	\[
+	\lim_{n \to \infty} n \left( \frac{x_n}{x_{n+1}} - 1 \right) = r
+	\]
+	存在且有限，则
+	\begin{enumerate}
+		\item 当 $r > 1$ 时，级数 $\sum x_n$ 收敛；
+		\item 当 $r < 1$ 时，级数 $\sum x_n$ 发散。
+	\end{enumerate}
+	
+\end{proposition}
+\begin{proof}
+	1.  当 $r > 1$ 时，取 $q = \dfrac{1+r}{2}$，则 $1 < q < r$。
+	由极限定义，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	n \left( \frac{x_n}{x_{n+1}} - 1 \right) > q
+	\]
+	即
+	\[
+	\frac{x_n}{x_{n+1}} > 1 + \frac{q}{n}
+	\]
+	当 $n \to \infty$ 时，$\dfrac{1}{n} \to 0$，存在正整数 $N_2$，当 $n > N_2$ 时，有
+	\[
+	1 + \frac{q}{n} > \left( 1 + \frac{1}{n} \right)^{q_0}
+	\]
+	其中$q_0$略小于$q$,大于$1$，因此
+	\[
+	\frac{x_n}{x_{n+1}} > \left( 1 + \frac{1}{n} \right)^{q_0} = \frac{(n+1)^{q_0}}{n^{q_0}}
+	\]
+	即
+	\[
+	\frac{x_{n+1}}{x_n} < \frac{n^{q_0}}{(n+1)^{q_0}}
+	\]
+	递推可得
+	\[
+	x_{n+1} = \frac{x_{n+1}}{x_n} \cdot \frac{x_n}{x_{n-1}} \cdot \dots \cdot \frac{x_{N+2}}{x_{N+1}} \cdot x_{N+1} < \frac{(N+1)^{q_0}}{(n+1)^{q_0}} \cdot x_{N+1}
+	\]
+	由于 ${q_0} > 1$，$p$-级数 $\sum \dfrac{1}{n^{q_0}}$ 收敛，由比较判别法可知，级数 $\sum x_n$ 收敛。
+	
+	2.  当 $r < 1$ 时，取 $p = \dfrac{1+r}{2}$，则 $p < 1$。
+	由极限定义，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	n \left( \frac{x_n}{x_{n+1}} - 1 \right) < p
+	\]
+	即
+	\[
+	\frac{x_n}{x_{n+1}} < 1 + \frac{p}{n} < \frac{n+1}{n}
+	\]
+	因此
+	\[
+	\frac{x_{n+1}}{x_n} > \frac{n}{n+1}
+	\]
+	递推可得
+	\[
+	x_{n+1} = \frac{x_{n+1}}{x_n} \cdot \dots \cdot \frac{x_{N+2}}{x_{N+1}} \cdot x_{N+1} > \frac{x_{N+1}}{n+1}
+	\]
+	由于调和级数 $\sum \dfrac{1}{n+1}$ 发散，由比较判别法可知，级数 $\sum x_n$ 发散。
+	
+	
+\end{proof}
+
+
+
+\begin{proposition}
+	（高斯判别法）
+	设 $\sum\limits_{n=1}^{\infty} x_n$ 为正项级数，且 $x_n>0$。
+	若存在常数 $\alpha$ 和 $\lambda>1$，使得
+	\[
+	\frac{x_n}{x_{n+1}}
+	=
+	1+\frac{\alpha}{n}+O\left(\frac{1}{n^\lambda}\right),
+	\qquad n\to\infty,
+	\]
+	则有
+	\[
+	\begin{cases}
+		\alpha>1, & \displaystyle \sum_{n=1}^{\infty}x_n \text{ 收敛},\\[6pt]
+		\alpha\leq 1, & \displaystyle \sum_{n=1}^{\infty}x_n \text{ 发散}.
+	\end{cases}
+	\]
+\end{proposition}
+若
+\[
+\frac{x_n}{x_{n+1}}
+=
+1+\frac{\alpha}{n}+O\left(\frac{1}{n^\lambda}\right),
+\qquad \lambda>1,
+\]
+则
+\[
+n\left(\frac{x_n}{x_{n+1}}-1\right)
+=
+\alpha+O\left(\frac{1}{n^{\lambda-1}}\right).
+\]
+因为 $\lambda>1$，所以
+\[
+O\left(\frac{1}{n^{\lambda-1}}\right)\to 0.
+\]
+于是
+\[
+\lim_{n\to\infty}
+n\left(\frac{x_n}{x_{n+1}}-1\right)
+=
+\alpha.
+\]
+因此，当 $\alpha>1$ 或 $\alpha<1$ 时，Raabe 判别法已经可以判断级数的敛散性。
+高斯判别法的意义在于，它还可以处理临界情形 $\alpha=1$，
+并进一步给出发散结论。
+
+
+\begin{lemma}
+设 $\{z_n\}$ 为正项数列。若
+\[
+\frac{z_n}{z_{n+1}}=1+\varepsilon_n,
+\]
+且$\sum\limits_{n=1}^{\infty}|\varepsilon_n|$收敛，则存在常数 $L>0$，使得
+\[
+\lim_{n\to\infty} z_n=L.
+\]
+\end{lemma}
+\begin{proof}
+	由于$\sum\limits_{n=1}^{\infty}|\varepsilon_n|$
+收敛，所以$\varepsilon_n\to 0.$因此存在正整数 $N$，当 $n>N$ 时，$|\varepsilon_n|<\frac12.$于是 $1+\varepsilon_n>0$，并且 $\ln(1+\varepsilon_n)$ 有意义。
+
+当 $|t|<\dfrac12$ 时，
+\[
+|\ln(1+t)|\leq 2|t|.
+\]
+所以
+\[
+\sum_{n=N}^{\infty}|\ln(1+\varepsilon_n)|
+\leq
+2\sum_{n=N}^{\infty}|\varepsilon_n|
+<+\infty.
+\]
+故级数$\sum_{n=N}^{\infty}\ln(1+\varepsilon_n)$收敛。
+
+由
+\[
+\frac{z_n}{z_{n+1}}=1+\varepsilon_n
+\]
+可得
+\[
+\ln z_{n+1}
+=
+\ln z_n-\ln(1+\varepsilon_n).
+\]
+于是递推得到
+\[
+\ln z_n
+=
+\ln z_N-\sum_{k=N}^{n-1}\ln(1+\varepsilon_k).
+\]
+由于右端的级数收敛，所以 $\ln z_n$ 收敛于某个有限实数。
+设
+\[
+\ln z_n\to \ln L,
+\]
+则
+\[
+z_n\to L.
+\]
+又因为 $z_n>0$，所以 $L>0$。
+引理得证。
+\end{proof}
+
+
+
+下面证明高斯判别法。
+
+\begin{proof}
+	由条件可知
+\[
+\frac{x_n}{x_{n+1}}
+=
+1+\frac{\alpha}{n}+O\left(\frac{1}{n^\lambda}\right),
+\qquad \lambda>1.
+\]
+
+构造新的正项数列
+\[
+z_n=n^\alpha x_n.
+\]
+则
+\[
+\frac{z_n}{z_{n+1}}
+=
+\frac{n^\alpha x_n}{(n+1)^\alpha x_{n+1}}
+=
+\left(\frac{n}{n+1}\right)^\alpha
+\frac{x_n}{x_{n+1}}.
+\]
+因此
+\[
+\frac{z_n}{z_{n+1}}
+=
+\left(1+\frac{1}{n}\right)^{-\alpha}
+\left[
+1+\frac{\alpha}{n}
++
+O\left(\frac{1}{n^\lambda}\right)
+\right].
+\]
+
+由 Taylor 展开可得
+\[
+\left(1+\frac{1}{n}\right)^{-\alpha}
+=
+1-\frac{\alpha}{n}
++
+O\left(\frac{1}{n^2}\right).
+\]
+于是
+\[
+\frac{z_n}{z_{n+1}}
+=
+\left[
+1-\frac{\alpha}{n}
++
+O\left(\frac{1}{n^2}\right)
+\right]
+\left[
+1+\frac{\alpha}{n}
++
+O\left(\frac{1}{n^\lambda}\right)
+\right].
+\]
+展开得
+\[
+\frac{z_n}{z_{n+1}}
+=
+1
++
+O\left(\frac{1}{n^2}\right)
++
+O\left(\frac{1}{n^\lambda}\right).
+\]
+
+令$\rho=\min\{2,\lambda\}.$因为 $\lambda>1$，所以$\rho>1.$因此
+\[
+\frac{z_n}{z_{n+1}}
+=
+1+O\left(\frac{1}{n^\rho}\right),
+\qquad \rho>1.
+\]
+即存在数列 $\varepsilon_n$，使得
+\[
+\frac{z_n}{z_{n+1}}=1+\varepsilon_n,
+\]
+且$|\varepsilon_n|\leq \dfrac{C}{n^\rho}.$由于$\sum\limits_{n=1}^{\infty}\dfrac{1}{n^\rho}$收敛，所以$\sum\limits_{n=1}^{\infty}|\varepsilon_n|$收敛。
+
+由引理可知，存在常数 $L>0$，使得$z_n\to L.$即$n^\alpha x_n\to L.$因此
+\[
+x_n\sim \frac{L}{n^\alpha}.
+\]
+
+于是由
+\[
+\sum_{n=1}^{\infty}\frac{1}{n^\alpha}
+\begin{cases}
+	\text{收敛}, & \alpha>1,\\
+	\text{发散}, & \alpha\leq 1.
+\end{cases}
+\]
+所以
+\[
+\sum_{n=1}^{\infty}x_n
+\begin{cases}
+	\text{收敛}, & \alpha>1,\\
+	\text{发散}, & \alpha\leq 1.
+\end{cases}
+\]
+高斯判别法得证。
+\end{proof}
+
+
+
+
+\begin{proposition}
+	（Cauchy 凝聚判别法）
+	对正项级数 $\sum a_n$，若 $\{a_n\}$ 单调递减，则级数 $\sum a_n$ 收敛，当且仅当级数
+	\[
+	\sum_{k=0}^{\infty} 2^k a_{2^k} = a_1 + 2a_2 + 4a_4 + \dots
+	\]
+	收敛。
+\end{proposition}
+\begin{proof}
+	只需考虑 $\sum a_n$ 与 $\sum 2^k a_{2^k}$ 的部分和是否有界即可。
+	设原级数的部分和为 $S_n = a_1 + a_2 + \dots + a_n$，
+	凝聚级数的部分和为 $T_k = a_1 + 2a_2 + \dots + 2^k a_{2^k}$。
+	
+	当 $n < 2^k$ 时，
+	\[
+	\begin{aligned}
+		S_n &\le a_1 + (a_2 + a_3) + \dots + (a_{2^k} + \dots + a_{2^{k+1}-1}) \\
+		&\le a_1 + 2a_2 + \dots + 2^k a_{2^k} = T_k
+	\end{aligned}
+	\]
+	即
+	\[
+	S_n \le T_k \tag{1}
+	\]
+	
+	当 $n > 2^k$ 时，
+	\[
+	\begin{aligned}
+		S_n &\ge a_1 + a_2 + (a_3 + a_4) + \dots + (a_{2^{k-1}+1} + \dots + a_{2^k}) \\
+		&\ge \frac{1}{2}a_1 + a_2 + 2a_4 + \dots + 2^{k-1}a_{2^k} = \frac{1}{2}T_k
+	\end{aligned}
+	\]
+	因此
+	\[
+	2S_n \ge T_k \tag{2}
+	\]
+	
+	由 (1) 和 (2) 可知，部分和数列 $\{S_n\}$ 与 $\{T_k\}$ 同时有界或同时无界，故原级数与凝聚级数具有相同的敛散性。
+\end{proof}
+\begin{lemma}\label{级数1/nlnn}
+	级数 $\sum\limits_{n=2}^{\infty} \dfrac{1}{n(\ln n)^p}$ 当 $p>1$ 时收敛，当 $p \le 1$ 时发散。
+\end{lemma}
+\begin{proof}
+	对
+	\[
+	a_n = \frac{1}{n(\ln n)^p}
+	\]
+	$\{a_n\}$ 单调递减，计算
+	\[
+	2^k a_{2^k} = 2^k \cdot \frac{1}{2^k (\ln 2^k)^p} = \frac{1}{(k \ln 2)^p} = \frac{1}{(\ln 2)^p} \cdot \frac{1}{k^p}
+	\]
+	那么
+	\[
+	\sum_{k=1}^{\infty} 2^k a_{2^k} = \frac{1}{(\ln 2)^p} \cdot \sum_{k=1}^{\infty} \frac{1}{k^p}
+	\]
+	这是 $p$-级数，故当 $p > 1$ 时收敛，当 $ p \le 1$ 时发散。
+	
+\end{proof}
+
+类似地，
+\[
+\sum_{n=3}^{\infty} \frac{1}{n \ln n \cdot \ln \ln n} \quad \text{发散},
+\]
+\[
+\sum_{n=3}^{\infty} \frac{1}{n \ln n (\ln \ln n)^2} \quad \text{收敛}.\]
+\begin{proposition}
+	（Bertrand 判别法）对正项级数 $\sum x_n$，设
+	\[
+	\lim_{n \to \infty} (\ln n) \left[ n \left( \frac{x_n}{x_{n+1}} - 1 \right) - 1 \right] = r
+	\]
+	则
+	\begin{itemize}
+		\item 当 $r > 1$ 时，级数 $\sum x_n$ 收敛；
+		\item 当 $r < 1$ 时，级数 $\sum x_n$ 发散。
+	\end{itemize}
+
+\end{proposition}
+\begin{proof}
+	考虑级数 $\sum \dfrac{1}{n(\ln n)^p}$，设 $y_n = \dfrac{1}{n(\ln n)^p}$，则
+	\[
+	\frac{y_n}{y_{n+1}} = \left(1 + \frac{1}{n}\right) \left( \frac{\ln(n+1)}{\ln n} \right)^p
+	\]
+	利用 Taylor 展开，
+	\[
+	\ln(n+1) = \ln n + \ln\left(1+\frac{1}{n}\right) = \ln n + \frac{1}{n} - \frac{1}{2n^2} + O\left(\frac{1}{n^3}\right)
+	\]
+	因此
+	\[
+	\left( \frac{\ln(n+1)}{\ln n} \right)^p = \left( 1 + \frac{1}{n \ln n} - \frac{1}{2n^2 \ln n} + \dots \right)^p = 1 + \frac{p}{n \ln n} + o\left( \frac{1}{n \ln n} \right)
+	\]
+	从而
+	\[
+	\frac{y_n}{y_{n+1}} = 1 + \frac{1}{n} + \frac{p}{n \ln n} + o\left( \frac{1}{n \ln n} \right)
+	\]
+	整理得
+	\[
+	n \left( \frac{y_n}{y_{n+1}} - 1 \right) - 1 = \frac{p}{\ln n} + o\left( \frac{1}{\ln n} \right)
+	\]
+	因此
+	\[
+	\lim_{n \to \infty} (\ln n) \left[ n \left( \frac{y_n}{y_{n+1}} - 1 \right) - 1 \right] = p
+	\]
+	
+	1.  当 $r > 1$ 时，取 $p$ 使得 $1 < p < r$，则 $\sum y_n$ 收敛，且
+	\[
+	\lim_{n \to \infty} (\ln n) \left[ n \left( \frac{y_n}{y_{n+1}} - 1 \right) - 1 \right] = p < r
+	\]
+	考虑$x_n$与$y_n$相邻项之比的差
+	\[
+	(\ln n) \left[ n \left( \frac{x_n}{x_{n+1}} - 1 \right) - 1 \right]-(\ln n) \left[ n \left( \frac{y_n}{y_{n+1}} - 1 \right) - 1 \right] = n \ln n (\frac{x_n}{x_{n+1}} -\frac{y_n}{y_{n+1}} )
+	\]
+	由极限的保号性，存在正整数 $N$，当 $n > N$ 时，有
+	\[
+	\frac{x_n}{x_{n+1}} > \frac{y_n}{y_{n+1}} \implies \frac{x_{n+1}}{x_n} < \frac{y_{n+1}}{y_n}
+	\]
+	递推可得，当 $n > N$ 时
+	\[
+	\frac{x_n}{x_N} < \frac{y_n}{y_N} \implies x_n < \frac{x_N}{y_N} y_n
+	\]
+	由于 $\sum y_n$ 收敛，由比较判别法可知 $\sum x_n$ 收敛。
+	
+	2.  当 $r < 1$ 时，取 $p$ 使得 $r < p < 1$，则 $\sum y_n$ 发散，同理，由极限的保号性，存在正整数 $N$，当 $n > N$ 时
+	\[
+	x_n > \frac{x_N}{y_N} y_n
+	\]
+	由于 $\sum y_n$ 发散，故 $\sum x_n$ 发散。
+	
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+

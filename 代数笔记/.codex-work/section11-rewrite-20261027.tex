@@ -1,0 +1,182 @@
+\section{自由幺半群与自由群}
+
+下面从一组符号出发构造幺半群与群。先只把符号依次排列，不规定任何额外关系；再引入与每个符号配对的符号，使它在商结构中成为逆元。这就是自由幺半群与自由群的构造。
+
+\begin{definition}
+设$X=\{a_1,\ldots,a_n\}$为非空有限集合，称为\textbf{字母表}。由$X$中元素组成的有限序列$x_1\cdots x_r$称为一个\textbf{字}，其\textbf{长度}为$r$。也允许长度为0的\textbf{空字}，记为$\Lambda$。全部字组成的集合记为$\widetilde X$。
+
+在$\widetilde X$中，以两个字的连接为乘法：
+\[
+(x_1\cdots x_r)(y_1\cdots y_s)=x_1\cdots x_ry_1\cdots y_s.
+\]
+所得幺半群称为\textbf{由$X$生成的自由幺半群}。
+\end{definition}
+
+字的相等是指字长相等，且各个位置的字母都相同。例如$a_1a_2a_1$与$a_1a_1a_2$在$a_1\ne a_2$时是不同的字。连接三个字时，无论怎样加括号，字母排列都不变，故连接满足结合律；空字不增加任何字母，是双边单位元。
+
+\begin{theorem}
+设$S$为幺半群。任意映射$f:X\to S$都可唯一延拓为幺半群同态$\varphi:\widetilde X\to S$，使$\varphi(a)=f(a)$对每个$a\in X$成立。
+\end{theorem}
+\begin{proof}
+令$e$为$S$的单位元，定义
+\[
+\varphi(\Lambda)=e,\qquad
+\varphi(x_1\cdots x_r)=f(x_1)\cdots f(x_r).
+\]
+每个字的序列唯一确定，$S$的结合律保证右侧乘积与括号无关，所以映射良定义。连接两个字时，右侧也只是把两串乘积依次相乘，故$\varphi(uv)=\varphi(u)\varphi(v)$；空字映到单位元。因此$\varphi$是同态，并延拓$f$。
+
+若$\varphi'$也是这样的同态，则它必须把空字映到$e$，并且
+\[
+\varphi'(x_1\cdots x_r)=\varphi'(x_1)\cdots\varphi'(x_r)
+=f(x_1)\cdots f(x_r)=\varphi(x_1\cdots x_r).
+\]
+所以延拓唯一。
+\end{proof}
+
+“字”的名称来自通常的文字排列：若字母表是26个拉丁字母，则英文单词都是其上的字；加入空格符号后，句子也可视为字。不过自由幺半群包含所有有限排列，并不只包含语言中有意义的单词或句子。
+
+\begin{construction}
+取与$X$不相交的集合$X'=\{a_1',\ldots,a_n'\}$，使$a_i'$与$a_i$一一配对，令
+\[
+X^*=X\cup X'.
+\]
+这里$X^*$表示扩大的字母表，而它生成的自由幺半群记为$\widetilde{X^*}$。对扩大后的字母规定$(a_i)'=a_i'$、$(a_i')'=a_i$。
+
+如果两个字中，一个为$ua_ia_i'v$而另一个为$uv$，或一个为$ua_i'a_iv$而另一个为$uv$，则称它们\textbf{相邻}。若两个字可通过有限次这样的插入、删除互相得到，则称它们\textbf{等价}，记为$w_1\sim w_2$。
+\end{construction}
+
+\begin{proposition}
+$\sim$是$\widetilde{X^*}$上的同余关系，且商幺半群$\widetilde{X^*}/{\sim}$是群。
+\end{proposition}
+\begin{proof}[补充证明]
+零次操作使每个字与自身等价；倒序执行插入、删除步骤给出对称性；接续两串有限步骤给出传递性。因此$\sim$为等价关系。
+
+若$w_1\sim w_2$，则在同一串操作的左右接上固定的字$u,v$，所有步骤仍然可以执行，所以$uw_1v\sim uw_2v$。若再有$z_1\sim z_2$，便有
+\[
+w_1z_1\sim w_2z_1\sim w_2z_2.
+\]
+这就是同余条件。
+
+设一个同余类$A$由字$w=x_1\cdots x_r$代表。取反序配对字$w'=x_r'\cdots x_1'$，其同余类记为$B$。在$ww'$中，从中间开始依次删除相邻配对字母，得到
+\[
+x_1\cdots x_rx_r'\cdots x_1'\sim\Lambda.
+\]
+同理$w'w\sim\Lambda$，所以$AB=BA=[\Lambda]$。每个元素都有双边逆元，故该商幺半群是群。
+\end{proof}
+
+\begin{definition}
+群$\widetilde{X^*}/{\sim}$称为\textbf{由$X$生成的自由群}，记为$F(X)$。在该群中，单字母$a_i'$的类为$a_i$的类的逆元，因此通常将其写成$a_i^{-1}$。
+
+若字中含有相邻的$a_ia_i'$或$a_i'a_i$，则称它\textbf{可约}；否则称为\textbf{不可约字}，也称\textbf{既约字}。
+\end{definition}
+
+\begin{proposition}
+每个$F(X)$的元素均有唯一的不可约字代表。
+\end{proposition}
+\begin{proof}[补充证明]
+\textbf{存在性：}对字长归纳。空字和单字母字已经不可约；任意字若可约，删除一对相邻配对字母，便得到长度减少2的等价字，再用归纳假设。因此每个同余类至少含有一个不可约字。
+
+\textbf{唯一性：}规定一个从左向右的约简过程。逐个读入字母，始终保留一串不可约字：若读入的新字母与末尾字母配对，就删掉末尾字母；否则将新字母接到末尾。所得最终结果记为$\operatorname{red}(w)$。每一步都保持已保留部分不可约，并且只相当于删除相邻配对字母，所以$w\sim\operatorname{red}(w)$。
+
+关键是，这个过程不受一次插入或删除配对字母的影响。设已经读完某个前缀，接下来连续读入$x,x'$。若原来保留的字不以$x'$结尾，则先添上$x$，再由$x'$将它消去，恢复原字。若原来以$x'$结尾，则先由$x$消去这个末尾，再由$x'$将其添回。后一种情形中，删去末尾后剩余部分不能以$x$结尾，否则原先保留的字并非不可约。
+
+所以连续读入$x,x'$后，保留的字总能恢复原状；再读入相同的后缀也就得到相同结果。因此
+\[
+\operatorname{red}(uxx'v)=\operatorname{red}(uv).
+\]
+这里$x$可为任意扩大后的字母，故同时涵盖$a_ia_i'$与$a_i'a_i$。有限次插入、删除也不改变约简结果。
+
+若不可约字$w_1,w_2$等价，则
+\[
+w_1=\operatorname{red}(w_1)=\operatorname{red}(w_2)=w_2.
+\]
+所以不可约代表唯一。特别地，非空不可约字不能代表单位元。
+\end{proof}
+
+这样，$F(X)$的元素可直接用不可约字表示；乘法是先连接两个字，再约简。它由原来的字母$a_1,\ldots,a_n$生成，配对字母在群中就是它们的逆元。
+
+\begin{theorem}\label{p2:free-universal}
+设$G$为群。对任意映射$f:X\to G$，存在唯一群同态$\psi:F(X)\to G$，使$\psi(a)=f(a)$对每个$a\in X$成立。
+\end{theorem}
+\begin{proof}
+先将$f$扩充到$X^*$，规定
+\[
+f(a_i')=f(a_i)^{-1}\qquad(1\leq i\leq n).
+\]
+由自由幺半群的性质，它唯一延拓为同态$\varphi:\widetilde{X^*}\to G$。
+插入、删除$a_ia_i'$或$a_i'a_i$不会改变$\varphi$的值，因为
+\[
+f(a_i)f(a_i')=f(a_i')f(a_i)=e_G.
+\]
+因此等价字有相同的像，由定理\ref{p2:monoid-factor}，$\varphi$可分解为同态
+\[
+\psi:\widetilde{X^*}/{\sim}=F(X)\longrightarrow G.
+\]
+这就是所求延拓。
+
+因为$a_i$在$F(X)$中的类生成整个自由群，群同态又必须把逆元映成逆元，所以一旦指定全部$\psi(a_i)$，每个字的像都被唯一确定。因此$\psi$唯一。
+\end{proof}
+
+\begin{example}
+若$X=\{a\}$，则不可约字只能是$a^k$（$k\in\Z$），空字对应$k=0$；不同整数给出不同不可约字。因此$k\mapsto a^k$为$\Z\to F(\{a\})$的同构。
+若$X$至少含两个不同字母$a,b$，则$ab,ba$是不同的不可约字，所以自由群不交换。
+\end{example}
+
+\begin{corollary}
+每个有限生成群都同构于一个有限字母表上的自由群的商群。
+\end{corollary}
+\begin{proof}
+设$g_1,\ldots,g_n$生成$G$，取$X=\{a_1,\ldots,a_n\}$，令$f(a_i)=g_i$。由上一定理，得到同态$\psi:F(X)\to G$。它的像包含全部生成元，所以满射。令$N=\ker\psi$，由同态基本定理，
+\[
+G\cong F(X)/N.
+\]
+对平凡群，可取一个字母并将它映到单位元，结论同样成立。
+\end{proof}
+
+核$N$在这里记录了生成元之间的关系：若一个字$w\in N$，则把各$a_i$替换为$g_i$、各$a_i'$替换为$g_i^{-1}$，所得乘积在$G$中等于单位元。反过来，每一个这样的关系都对应于$N$中的一个字。为了用较少的关系描述整个核，需要区别普通子群生成与正规生成。
+
+\begin{definition}
+对群$K$的子集$A$，所有包含$A$的正规子群之交称为$A$的\textbf{正规闭包}，记为$\langle\!\langle A\rangle\!\rangle$。它是包含$A$的最小正规子群，称为由$A$\textbf{正规生成}的子群。
+\end{definition}
+\begin{proposition}
+$\langle\!\langle A\rangle\!\rangle$是由全部$wa^{\pm1}w^{-1}$（$w\in K,a\in A$）生成的普通子群。
+\end{proposition}
+\begin{proof}[补充证明]
+令$L$为这些元素生成的子群。取$w=e$知$L$包含$A$。任一包含$A$的正规子群都包含这些共轭及其有限乘积，故包含$L$。另一方面，对$g\in K$，
+\[
+g(wa^{\pm1}w^{-1})g^{-1}=(gw)a^{\pm1}(gw)^{-1},
+\]
+仍是所列生成元之一。因此共轭保持$L$，$L$正规，故它就是所述最小正规子群。
+\end{proof}
+
+\begin{definition}
+若$G\cong F(X)/N$，且$N$由字$w_1,\ldots,w_k$正规生成，则等式
+\[
+w_1=e,\ldots,w_k=e
+\]
+称为所选生成元的一组\textbf{生成关系}，记为
+\[
+G=\langle X\mid w_1=e,\ldots,w_k=e\rangle.
+\]
+若生成元及所需关系均可取为有限个，则称$G$为\textbf{有限展示群}。
+\end{definition}
+
+这里要求核作为正规子群可由有限个关系正规生成，不要求它作为普通子群有限生成；正规闭包允许使用关系的全部共轭。有限生成群也未必有限展示。
+
+\begin{example}
+\textbf{二面体群的生成关系：}对$n\geq3$，有
+\[
+D_n=\langle a,b\mid a^n=e,\ b^2=e,\ b^{-1}ab=a^{-1}\rangle.
+\]
+准确地说，右侧是$F(\{a,b\})$模去$a^n,b^2,b^{-1}aba$的正规闭包所得到的群，下面验证它确为$D_n$。
+
+在该商群中，$a^{-1}=a^{n-1}$、$b^{-1}=b$，且$ab=ba^{-1}$。利用最后一个等式，可逐次将字中的$b$移到左侧，再用$b^2=e$与$a^n=e$约去多余幂次。因此每个元素都可写为
+\[
+a^j\quad\text{或}\quad ba^j,\qquad0\leq j<n,
+\]
+故商群至多有$2n$个元素。
+
+另一方面，将$a$映到正$n$边形的一次基本旋转，$b$映到一个反射，几何二面体群中的这两个元素满足全部关系，并生成一个恰有$2n$个元素的群。自由群的延拓性质给出到$D_n$的满同态；所列关系及其正规闭包均在核中，所以该同态可下降到上述商群。商群因此至少有$2n$个元素，结合上界恰有$2n$个，满同态为同构。
+\end{example}
+
+本节按非空有限字母表书写，以便与有限生成的情形对应；任意字母表上的构造也一样，因为每个字本身仍然只含有限多个字母。

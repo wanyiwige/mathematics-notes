@@ -1,0 +1,266 @@
+% 题目依据：原笔记 chapters/Part 2/chapter3-exercises.tex。
+\section{第三章：环论}
+
+\subsection*{本章使用的定义与约定}
+\begin{itemize}
+  \item \textbf{幺环}是有乘法单位元 $1$ 的环；乘法不预设交换。若 $u,v\in R$ 满足 $uv=1$，称 $v$ 为 $u$ 的\textbf{右逆}，称 $u$ 为 $v$ 的左逆。若还满足 $vu=1$，则 $u$ 是\textbf{单位}，$v=u^{-1}$。
+  \item 非零元素 $a$ 若存在非零 $b$ 使 $ab=0$，本资料称 $a$ 为\textbf{左零因子}；若存在非零 $b$ 使 $ba=0$，称 $a$ 为\textbf{右零因子}。两种情况至少发生一种，就称 $a$ 为\textbf{零因子}。不同教材可能对左右名称采用相反约定，考试时写出所用等式即可消除歧义。
+  \item 若存在正整数 $m$ 使 $a^m=0$，称 $a$ 为\textbf{幂零元}；若 $e^2=e$，称 $e$ 为\textbf{幂等元}。零元同时满足这两种性质。
+  \item \textbf{保幺环同态} $\eta:R\to R'$ 满足
+  \[
+  \eta(a+b)=\eta(a)+\eta(b),\qquad
+  \eta(ab)=\eta(a)\eta(b),\qquad \eta(1)=1'.
+  \]
+  它还满足 $\eta(0)=0'$、$\eta(-a)=-\eta(a)$。\textbf{整环}指 $1\ne0$、乘法交换且没有零因子的幺环。
+\end{itemize}
+本章四题均沿用现有笔记本题解答的构造、论证顺序及反例，只补充计算、条件检查和中间理由。已核对第三章正文；这四题原解并未援引正文中某个具名同态定理，故不另换用定理证明，也不虚列定理编号。
+
+\subsection{习题1：由\texorpdfstring{$1-ab$}{1-ab}可逆推出\texorpdfstring{$1-ba$}{1-ba}可逆}\label{exercise:3:1}
+\paragraph{题目}
+设幺环 $R$ 中 $a,b\in R$，且 $1-ab$ 可逆。证明 $1-ba$ 可逆。
+
+\paragraph{考点与思路}
+在非交换环中，不能将 $ab$ 与 $ba$ 直接互换。先记 $c=(1-ab)^{-1}$，再尝试把原来的逆元嵌入 $bca$，构造 $1-ba$ 的逆元。必须分别验证左右两个乘积。
+\textbf{原文依据：}现有笔记第三章习题1解答：令 $c=(1-ab)^{-1}$，先验算 $(1-ba)(1+bca)$，再验算反向乘积。
+
+\paragraph{所用结论}\toolref{r-ring-laws}、\toolref{r-unit-laws}。
+\begin{proof}[详细证明]
+由 $c=(1-ab)^{-1}$ 的定义，
+\[
+(1-ab)c=1,\qquad c(1-ab)=1.
+\]
+把两式分别展开，得到
+\[
+c-abc=1,\qquad c-cab=1.
+\]
+令 $d=1+bca$。先计算 $(1-ba)d$，使用结合律把含 $b$ 和 $a$ 的项提取出来：
+\begin{align*}
+(1-ba)(1+bca)
+  &=1+bca-ba-babca\\
+  &=1+b(c-1-abc)a\\
+  &=1.
+\end{align*}
+最后一步用了 $c-abc=1$。
+
+另一方向需要使用另一条逆元等式：
+\begin{align*}
+(1+bca)(1-ba)
+  &=1-ba+bca-bcaba\\
+  &=1+b(c-1-cab)a\\
+  &=1,
+\end{align*}
+其中最后一步用了 $c-cab=1$。因此 $d$ 是 $1-ba$ 的双侧逆元，且
+\[
+\boxed{(1-ba)^{-1}=1+b(1-ab)^{-1}a.}
+\]
+\end{proof}
+
+\paragraph{复习提示}
+记住逆元的构造次序是 $1+bca$。证明中没有交换任意两个因子，因此适用于非交换幺环。将 $a,b$ 对换也得到逆命题，故 $1-ab$ 可逆当且仅当 $1-ba$ 可逆。
+
+\subsection{习题2：右逆不唯一、零因子与非单位的等价性}\label{exercise:3:2}
+\paragraph{题目}
+设幺环 $R$ 中的元素 $u$ 有右逆。证明下列三个条件等价：
+\begin{enumerate}
+  \item $u$ 有多于一个右逆；
+  \item $u$ 是零因子；
+  \item $u$ 不是单位。
+\end{enumerate}
+
+\paragraph{考点与思路}
+先固定一个右逆 $v$，即 $uv=1$。两个右逆相减后落入方程 $ut=0$ 的解集中；反过来，给 $v$ 加上这样的 $t$ 就能产生新的右逆。条件 $uv=1$ 还排除了非零元素在 $u$ 左侧乘出零的可能。
+\textbf{原文依据：}现有笔记第三章习题2解答：先以右逆之差证明零因子条件的等价性，再以 $v+(vu-1)$ 为右逆证明唯一右逆推出单位。
+
+\paragraph{所用结论}\toolref{r-ring-laws}、\toolref{r-unit-laws}。
+\begin{proof}[详细证明]
+固定 $v\in R$ 满足 $uv=1$。若 $R$ 是只有一个元素的零环，则 $u$ 是单位，只有一个右逆且不是零因子，三个条件均不成立，等价性仍成立。以下设 $1\ne0$，于是 $u\ne0$。
+
+\textbf{第一步：证明条件 (1) 与条件 (2) 等价。}
+若另有 $w\ne v$ 满足 $uw=1$，则 $w-v\ne0$，且
+\[
+u(w-v)=uw-uv=1-1=0.
+\]
+因此 $u$ 是左零因子，特别是零因子。
+
+反过来，先注意到：对于任意 $x\in R$，若 $xu=0$，则
+\[
+x=x\cdot1=x(uv)=(xu)v=0.
+\]
+所以不存在非零 $x$ 使 $xu=0$。若 $u$ 是零因子，必有非零 $t$ 满足 $ut=0$。于是
+\[
+u(v+t)=uv+ut=1,
+\]
+而 $v+t\ne v$，故 $u$ 至少有两个右逆。
+
+\textbf{第二步：证明条件 (1) 与条件 (3) 等价。}
+若 $u$ 是单位，任取右逆 $w$，由 $uw=1$ 得
+\[
+w=u^{-1}(uw)=u^{-1}.
+\]
+因而右逆唯一。所以右逆不唯一必推出 $u$ 不是单位。
+
+另一方面，设 $u$ 的右逆唯一。注意
+\[
+u(vu-1)=(uv)u-u=u-u=0.
+\]
+因此 $v+(vu-1)$ 也是右逆，因为
+\[
+u\bigl(v+vu-1\bigr)=uv+u(vu-1)=1.
+\]
+由右逆的唯一性，$v+vu-1=v$，在加法群中消去 $v$，得到 $vu=1$。结合 $uv=1$，可知 $u$ 是单位。
+
+取这条结论的逆否命题，$u$ 不是单位便推出其右逆不唯一。至此三个条件两两等价。
+\end{proof}
+
+\paragraph{复习提示}
+这里的前提“已经有一个右逆”不可遗漏。一般幺环中“不是单位”未必是零因子，例如整数环中的 $2$。本题还证明：有右逆的非单位只能以 $ut=0$ 的形式成为零因子，不能有非零 $x$ 满足 $xu=0$。
+
+\subsection{习题3：右逆不唯一便有无穷多个右逆}\label{exercise:3:3}
+\paragraph{题目}
+设幺环中 $u$ 有多于一个右逆，证明 $u$ 有无穷多个右逆。
+
+\paragraph{考点与思路}
+由 $uv=1$ 但 $vu\ne1$ 构造非零元素 $e=1-vu$。它满足 $ue=0$、$ev=0$，适合用来给已有的右逆 $v$ 添加不同的修正项。不能仅写 $v+ne$，因为正特征下这些元素可能重复。
+\textbf{原文依据：}现有笔记第三章习题3解答及其引用的习题2：构造 $e=1-vu$ 和 $v+eu^k$，再在假定两项相等后右乘 $v^j$ 导出矛盾。
+
+\paragraph{所用结论}\toolref{r-ring-laws}、\toolref{r-unit-laws}、\toolref{n-induction}。并使用本章习题2（\ref{exercise:3:2}）已经证明的“右逆不唯一推出非单位”；不将本题结论作为前提。
+\begin{proof}[详细证明]
+取一个右逆 $v$，使 $uv=1$。由习题2，$u$ 不是单位。若 $vu=1$，则 $v$ 同时是左逆和右逆，$u$ 便是单位，矛盾。因此
+\[
+e=1-vu\ne0.
+\]
+由 $uv=1$，有
+\begin{align*}
+ue&=u(1-vu)=u-(uv)u=0,\\
+ev&=(1-vu)v=v-v(uv)=0.
+\end{align*}
+
+对每个整数 $k\ge0$，令
+\[
+x_k=v+eu^k,
+\]
+这里 $u^0=1$。因为 $ue=0$，
+\[
+ux_k=uv+(ue)u^k=1,
+\]
+所以每个 $x_k$ 都是 $u$ 的右逆。
+
+下面证明它们两两不同。先由 $uv=1$ 归纳得到，对每个整数 $m\ge0$，
+\[
+u^mv^m=1.
+\]
+归纳步骤为
+\[
+u^{m+1}v^{m+1}=u^m(uv)v^m=u^mv^m=1.
+\]
+于是当 $0\le i<j$ 时，
+\[
+u^iv^j=(u^iv^i)v^{j-i}=v^{j-i}.
+\]
+
+假设 $x_i=x_j$，其中 $i<j$。消去 $v$ 后，$eu^i=eu^j$。两边右乘 $v^j$，得到
+\[
+ev^{j-i}=e.
+\]
+但 $j-i\ge1$ 且 $ev=0$，所以
+\[
+ev^{j-i}=(ev)v^{j-i-1}=0,
+\]
+从而 $e=0$，与构造矛盾。因此 $x_0,x_1,x_2,\ldots$ 两两不同，$u$ 有无穷多个右逆。
+\end{proof}
+
+\paragraph{复习提示}
+证明的核心是“构造右逆”和“证明构造出的元素互异”两个步骤。等式 $u^mv^m=1$ 来自逐对消去中间的 $uv$，绝不意味着 $u,v$ 可以交换。本题也说明有限幺环中，有右逆的元素必为单位。
+
+\subsection{习题8：满同态下的元素性质与整环性质}\label{exercise:3:8}
+\paragraph{题目}
+设 $\eta:R\twoheadrightarrow R'$ 为保幺满同态。判断下列命题是否成立，并证明或举反例：
+\begin{enumerate}
+  \item[(i)] 幂零元、幂等元的像仍是相应元素；
+  \item[(ii)] 零因子的像仍是零因子；
+  \item[(iii)] 若 $R$ 为整环，则 $R'$ 为整环；
+  \item[(iv)] 若 $R'$ 为整环，则 $R$ 为整环；
+  \item[(v)] 单位的像仍是单位；
+  \item[(vi)] 像为单位的元素必为单位。
+\end{enumerate}
+
+\paragraph{考点与思路}
+同态保留由加法、乘法和 $0,1$ 写出的等式，却未必保留“非零”“不存在非零零乘积”等条件。零因子的定义涉及非零元素，所以不能只把 $ab=0$ 两边取像就认定像仍为零因子。
+\textbf{原文依据：}现有笔记第三章习题8解答：按原六项顺序，分别取像验证；反例依次沿用 $\Z/6\Z\to\Z/3\Z$、$\Z\to\Z/6\Z$、$\Z/6\Z\to\Z/2\Z$、$\Z\to\Z/5\Z$，不更换实例。
+
+\paragraph{所用结论}\toolref{r-homomorphism}、\toolref{r-quotients}。
+\begin{proof}[详细证明]
+\textbf{(i) 成立。}
+若 $a$ 是幂零元，取正整数 $m$ 使 $a^m=0$。由同态保乘法，
+\[
+\eta(a)^m=\eta(a^m)=\eta(0)=0'.
+\]
+故 $\eta(a)$ 仍为幂零元。若 $e^2=e$，则
+\[
+\eta(e)^2=\eta(e^2)=\eta(e),
+\]
+故 $\eta(e)$ 仍为幂等元。两项结论都不要求满射或保幺。
+
+\textbf{(ii) 不成立。}
+考虑映射
+\[
+\eta:\Z/6\Z\longrightarrow\Z/3\Z,\qquad
+\overline{k}_{6}\longmapsto\overline{k}_{3}.
+\]
+若 $k\equiv\ell\pmod6$，则 $3\mid k-\ell$，所以像不依赖代表元，映射良定义。模运算保留加法和乘法，且 $\eta(\overline1_6)=\overline1_3$；每个 $\overline{k}_3$ 都是 $\overline{k}_6$ 的像，故这是保幺满同态。
+
+在源环中，$\overline4_6\ne0$、$\overline3_6\ne0$，且
+\[
+\overline4_6\,\overline3_6=\overline{12}_6=\overline0_6,
+\]
+所以 $\overline4_6$ 是零因子。它的像却是 $\overline1_3$。若 $\overline1_3 y=0$，则 $y=0$，故该像不是零因子。这一反例甚至将零因子映成了非零单位。
+
+\textbf{(iii) 不成立。}
+取自然映射
+\[
+\pi:\Z\twoheadrightarrow\Z/6\Z,\qquad k\longmapsto\overline{k}_6.
+\]
+该映射保加法、乘法和单位元，并且满射。源环 $\Z$ 是整环，但目标中
+\[
+\overline2_6\ne0,\qquad \overline3_6\ne0,\qquad
+\overline2_6\,\overline3_6=0,
+\]
+所以 $\Z/6\Z$ 不是整环。
+
+\textbf{(iv) 不成立。}
+取映射
+\[
+\rho:\Z/6\Z\twoheadrightarrow\Z/2\Z,\qquad
+\overline{k}_{6}\longmapsto\overline{k}_{2}.
+\]
+因为 $2\mid6$，同余模 $6$ 蕴含同余模 $2$，映射良定义；模运算说明它保加法、乘法及单位元，每个模 $2$ 的剩余类都有原像，所以满射。
+
+目标 $\Z/2\Z$ 只有两个元素，唯一非零元素是 $\overline1_2$，且 $\overline1_2\,\overline1_2=\overline1_2\ne0$，因此它是整环。源环却有上一项给出的非零零乘积，故不是整环。
+
+\textbf{(v) 成立。}
+若 $u$ 是单位，令 $v=u^{-1}$，则 $uv=vu=1$。取像得
+\begin{align*}
+\eta(u)\eta(v)&=\eta(uv)=\eta(1)=1',\\
+\eta(v)\eta(u)&=\eta(vu)=\eta(1)=1'.
+\end{align*}
+因此 $\eta(u)$ 是单位，且
+\[
+\eta(u)^{-1}=\eta(u^{-1}).
+\]
+这一结论只需要保幺同态，不需要满射。
+
+\textbf{(vi) 不成立。}
+取自然保幺满同态
+\[
+\sigma:\Z\twoheadrightarrow\Z/5\Z,\qquad
+k\longmapsto\overline{k}_5.
+\]
+整数 $2$ 不是 $\Z$ 中的单位：若 $2m=1$，则偶数等于奇数，故没有整数解。它的像 $\overline2_5$ 却满足
+\[
+\overline2_5\,\overline3_5=\overline6_5=\overline1_5,
+\]
+因而是单位。这说明像可逆不保证原元素可逆。
+\end{proof}
+
+\paragraph{复习提示}
+六项判断依次为：\textbf{对、错、错、错、对、错}。构造剩余类环之间的映射时，先检验模数之间的整除关系，确保“按原整数取剩余类”的规则良定义。证明零因子的反例时，须同时写明两个因子非零；证明单位的反例时，须给出像的实际逆元。

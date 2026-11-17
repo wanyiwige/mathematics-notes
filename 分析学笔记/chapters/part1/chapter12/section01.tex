@@ -1,0 +1,182 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.1 函数项序列以及函数项级数的定义
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{函数项序列以及函数项级数的定义}
+
+
+\begin{definition}
+	设 $S_n:D\to\mathbb{R}$, $S:D\to\mathbb{R}$. 若对任意固定的 $x_0\in D$,都有
+	\[
+	\lim_{n\to\infty}S_n(x_0)=S(x_0),
+	\]
+	则称 $\{S_n\}$ 在 $D$ 上逐点收敛于 $S$,$D$称为$\{S_n\}$ 的收敛域，记为
+	\[
+	S_n(x)\to S(x),\qquad x\in D.
+	\]
+	称为$\{S_n\}$的极限函数
+	
+	等价地说,对任意 $x\in D$ 与任意 $\varepsilon>0$,存在 $N=N(\varepsilon,x)$,使得当 $n>N$ 时,
+	\[
+	|S_n(x)-S(x)|<\varepsilon.
+	\]
+	这里的 $N$ 一般依赖于 $x$.
+\end{definition}
+类似的，我们可以给出函数项级数点态收敛的定义
+\begin{definition}
+	设 $D\subset \mathbb{R}$, $u_n:D\to \mathbb{R}$, $n=1,2,\cdots$. 对每个固定的 $x\in D$, 数项级数
+	\[
+	\sum_{n=1}^{\infty}u_n(x)
+	\]
+	收敛.  若它在 $D$ 中每一点都收敛,则称函数项级数在 $D$ 上逐点收敛或点态收敛.$D$称为$\sum\limits_{n=1}^{\infty}u_n(x)$ 的收敛域， 此时定义和函数
+	\[
+	S(x)=\sum_{n=1}^{\infty}u_n(x),\qquad x\in D.
+	\]
+	其部分和函数记为
+	\[
+	S_n(x)=\sum_{k=1}^{n}u_k(x).
+	\]
+	于是,函数项级数 $\sum\limits_{n=1}^{\infty}u_n(x)$ 在 $D$ 上逐点收敛到 $S(x)$,等价于函数项序列 $\{S_n(x)\}$ 在 $D$ 上逐点收敛到 $S(x)$.
+\end{definition}
+可以看到函数项序列与函数项级数可以互相转化，
+函数项级数的点态收敛等价于其部分和函数列的点态收敛.
+而函数项序列$\{S_n(x)\}$的点态收敛,等价于令$u_1=S_1$, $u_n=S_n-S_{n-1}$ ($n\ge2$) 后的函数项级数 $\sum u_n(x)$ 的点态收敛.
+因此在研究函数项序列与函数项级数的收敛性质时,我们可以在两者之间自由切换,根据需要选择更方便的形式进行分析.
+
+这一章我们研究的重点是函数项序列以及函数项级数极限函数或和函数的性质，考虑即使$\{S_n(x)\}$或$\{u_n(x)\}$在其
+收敛域上连续，可导，可积等,极限函数或和函数是否也具有相同的性质. 
+
+也即是说对$\sum\limits_{n=1}^{\infty}u_n(x)$,是否有
+\begin{enumerate}
+	\item \[\lim\limits_{x\to x_0}\sum_{n=1}^{\infty}u_n(x)=\sum_{n=1}^{\infty}\lim\limits_{x\to x_0}u_n(x)\]
+	\item \[\frac{\dd}{\dd x}\sum_{n=1}^{\infty}u_n(x)= \sum_{n=1}^{\infty}\frac{\dd}{\dd x}u_n(x)\]
+	\item \[\int_{a}^{b}\sum_{n=1}^{\infty}u_n(x) \dd x = \sum_{n=1}^{\infty}\int_{a}^{b}u_n(x) \dd x\]
+\end{enumerate}
+下面我们来看几个例子
+\begin{example}
+	设
+	\[
+	S_n(x)=x^n,
+	\qquad x\in[0,1].
+	\]
+	计算
+	\[
+	\lim_{x\to1^-}\lim_{n\to\infty}x^n,
+	\qquad
+	\lim_{n\to\infty}\lim_{x\to1^-}x^n
+	\]
+\end{example}
+
+\begin{solution}
+	当 $0\leq x<1$ 时,$x^n\to0$;当 $x=1$ 时,$x^n=1$. 因此
+	\[
+	S(x)=\lim_{n\to\infty}S_n(x)=
+	\begin{cases}
+		0,&0\leq x<1,\\
+		1,&x=1.
+	\end{cases}
+	\]
+	所以 $S_n$ 在 $[0,1]$ 上逐点收敛于 $S$.
+	
+	这个例子也说明两次极限不能任意交换，也就是说$S_n(x)$的连续性没有在$S(x)$上保持:
+	\[
+	\lim_{x\to1^-}\lim_{n\to\infty}x^n=0,
+	\qquad
+	\lim_{n\to\infty}\lim_{x\to1^-}x^n=1.
+	\]
+\end{solution}
+\begin{example}
+	设
+	\[
+	S_n(x)=\frac{\sin nx}{\sqrt n},
+	\qquad x\in\mathbb{R}.
+	\]
+	讨论$S_n(x)$的导数，以及其极限函数的导数
+\end{example}
+\begin{solution}
+	\[
+	S_n'(x)=\sqrt n\cos nx.
+	\]
+	导函数列不收敛 
+	
+	而$\forall x \in (-\infty,+\infty),S_n(x)\to S(x)=0 (n\to \infty)$
+	\[\frac{\dd}{\dd x }S(x)= 0\]
+	可以看到
+	\[\frac{\dd}{\dd x }\lim\limits_{n\to\infty}S_n(x)\neq\lim\limits_{n\to\infty}\frac{\dd}{\dd x }S_n(x)\]
+\end{solution}
+
+\begin{problem}
+	设
+	\[
+	f_n(x)=
+	\begin{cases}
+		1,& n!x\in\mathbb{Z},\\
+		0,& n!x\notin\mathbb{Z},
+	\end{cases}
+	\qquad x\in[0,1].
+	\]
+	讨论其逐点极限与 Riemann 可积性.
+\end{problem}
+
+\begin{solution}
+	若 $x\in[0,1]\cap\mathbb{Q}$,设 $x=\dfrac pq$,其中 $p,q\in\mathbb{Z}$, $q>0$. 当 $n\geq q$ 时,$q\mid n!$,故 $n!x\in\mathbb{Z}$,于是 $f_n(x)=1$. 因而
+	\[
+	\lim_{n\to\infty}f_n(x)=1,
+	\qquad x\in\mathbb{Q}\cap[0,1].
+	\]
+	若 $x\notin\mathbb{Q}$,则 $n!x\notin\mathbb{Z}$ 对所有 $n$ 成立,故 $f_n(x)=0$,于是
+	\[
+	\lim_{n\to\infty}f_n(x)=0.
+	\]
+	因此逐点极限为 Dirichlet 函数
+	\[
+	D(x)=
+	\begin{cases}
+		1,&x\in\mathbb{Q}\cap[0,1],\\
+		0,&x\in[0,1]\setminus\mathbb{Q}.
+	\end{cases}
+	\]
+	每个 $f_n$ 只在有限个点处取值为 $1$,故 $f_n\in \mathcal{R}[0,1]$ 且
+	\[
+	\int_0^1 f_n(x)\dd x=0.
+	\]
+	 $D \notin \mathcal{R}[0,1]$. 这说明逐点极限不一定保持 Riemann 可积性
+\end{solution}
+实际上，Dirichlet 函数可以定义为
+\[D(x)= \lim_{n \to \infty} \lim_{m \to \infty}[\cos(n!\pi x)]^2n\]
+下面一个例子告诉我们，即使逐点极限保持 Riemann 可积性，也不能交换极限与积分算符
+\begin{example}
+		设
+	\[
+	S_n(x)=nx(1-x^2)^n,
+	\qquad x\in[0,1].
+	\]
+	证明 $S_n(x)\to0$,但不能把极限与积分交换.
+\end{example}
+
+
+\begin{solution}
+	当 $x=0$ 或 $x=1$ 时,$S_n(x)=0$. 当 $0<x<1$ 时,$0<1-x^2<1$,且指数衰减快于多项式增长,故
+	\[
+	nx(1-x^2)^n\to0.
+	\]
+	因此 $S_n(x)\to0$, $x\in[0,1]$.
+	
+	另一方面,
+	\[
+	\int_0^1 nx(1-x^2)^n\dd x
+	=\frac n2\int_0^1(1-t)^n\dd t
+	=\frac n{2(n+1)}\to\frac12.
+	\]
+	但是
+	\[
+	\int_0^1\lim_{n\to\infty}S_n(x)\dd x=\int_0^1 0\dd x=0.
+	\]
+	故
+	\[
+	\lim_{n\to\infty}\int_0^1S_n(x)\dd x
+	\neq
+	\int_0^1\lim_{n\to\infty}S_n(x)\dd x.
+	\]
+	
+\end{solution}

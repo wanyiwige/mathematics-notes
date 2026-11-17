@@ -1,0 +1,3271 @@
+\setchapterimage{figure/chapter7封面图.jpg}
+\setchapterintro{}
+\chapter{线性型，双线性型和二次型}
+
+% !TEX root = ../../main.tex
+
+\section{线性函数、对偶空间}
+
+回顾：$\mathbb{F}^n,\mathbb{F},\Hom(V_1,V_2)$，线性空间的基，线性映射的存在唯一性定理，
+同构定理以及线性映射的维数公式.
+
+\begin{definition}
+	设 $V$ 是数域 $\mathbb{F}$ 上的线性空间. 如果
+	\[
+	f:V\longrightarrow \mathbb{F}
+	\]
+	是线性映射，则称 $f$ 是 $V$ 上的一个线性函数(linear function).
+	
+	称 $\Hom(V,\mathbb{F})$ 为 $V$ 的对偶空间(dual space)，记为
+	\[
+	V^*=\Hom(V,\mathbb{F}).
+	\]
+\end{definition}
+
+\begin{example}
+	如果 $\dim V=n$，则
+	\[
+	\dim V^*=n.
+	\]
+\end{example}
+
+\begin{example}
+	设 $0\ne f\in V^*$. 则 $f$ 是满射. 因为 $\dim \mathbb{F}=1$，所以
+	\[
+	\dim \operatorname{im} f=\dim \mathbb{F}=1.
+	\]
+	从而，由线性映射的维数公式，$\ker f$ 是 $V$ 的余维数为 $1$ 的子空间.
+\end{example}
+
+\begin{example}
+	设 $f_1,\cdots,f_s\in V^*$ 互不相同. 则存在 $\alpha\in V$ 使得
+	\[
+	f_1(\alpha),\cdots,f_s(\alpha)
+	\]
+	互不相同.
+\end{example}
+
+\begin{proof}
+	对任意 $1\leq i\ne j\leq s$，由于 $f_i\ne f_j$，所以 $f_i-f_j\ne 0$. 因此
+	\[
+	\ker(f_i-f_j)
+	\]
+	是 $V$ 的真子空间. 又数域 $\mathbb{F}$ 是无限域，所以 $V$ 不能被有限多个真子空间覆盖.
+	于是可以取
+	\[
+	\alpha\notin \bigcup_{1\leq i\ne j\leq s}\ker(f_i-f_j).
+	\]
+	于是对任意 $i\ne j$ 有
+	\[
+	(f_i-f_j)(\alpha)\ne0,
+	\]
+	即 $f_i(\alpha)\ne f_j(\alpha)$.
+\end{proof}
+
+\begin{example}
+	设 $U,V$ 是 $\mathbb{F}$ 上的线性空间，$g\in \Hom(U,V)$，$f\in V^*$. 则
+	\[
+	fg=f\circ g\in U^*.
+	\]
+\end{example}
+
+\begin{example}
+	设$V=V_1\oplus V_2,$考虑投影$p_i:V\longrightarrow V_i.$
+	对任意 $f\in V_i^*$，有$fp_i\in V^*.$并且$fp_i(V_j)=0, j\neq i.$
+\end{example}
+
+\begin{example}
+	设 $V$ 是 $\mathbb{F}$ 上的非零线性空间. 任意取定 $0\ne \alpha\in V$，都存在 $f\in V^*$ 使得
+	\[
+	f(\alpha)\ne0.
+	\]
+\end{example}
+
+\begin{proof}
+	考虑一维子空间 $\langle\alpha\rangle$. 定义
+	\[
+	g:\langle\alpha\rangle\longrightarrow \mathbb{F},\qquad g(k\alpha)=k.
+	\]
+	先做投影映射将$V$映到$\langle \alpha \rangle$，再与$g$复合即可 
+\end{proof}
+
+\begin{example}
+	设 $(V,(\ ,\ ))$ 是实内积空间. 对任意 $\alpha\in V$，定义
+	\[
+	f_\alpha:V\longrightarrow \mathbb{R},\qquad f_\alpha(\beta)=(\alpha,\beta),\qquad \forall \beta\in V.
+	\]
+	则 $f_\alpha\in V^*$.
+	
+	于是，有嵌入
+	\[
+	\rho:V\longrightarrow V^*,\qquad \alpha\longmapsto f_\alpha.
+	\]
+	特别地，当 $\dim V<\infty$ 时，$\rho:V\to V^*$ 是同构映射.
+\end{example}
+
+
+
+\begin{definition}
+		设 $V$ 是 $\mathbb{F}$ 上的 $n$ 维线性空间，取定 $V$ 的一个基
+	\[
+	\alpha_1,\cdots,\alpha_n.
+	\]
+	固定 $1\leq i\leq n$. 对任意
+	\[
+	\alpha=x_1\alpha_1+\cdots+x_n\alpha_n,
+	\]
+	定义
+	\[
+	f_i(\alpha)=x_i\in \mathbb{F}.
+	\]
+	则 $f_i\in V^*$，称为基 $\alpha_1,\cdots,\alpha_n$ 的第 $i$ 个坐标函数. 并且
+	\[
+	f_i(\alpha_j)=\delta_{ij}.
+	\]
+
+\end{definition}
+
+\begin{lemma}
+	设 $V$ 是 $\mathbb{F}$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一个基.
+	则 $\alpha_1,\cdots,\alpha_n$ 的坐标函数 $f_1,\cdots,f_n$ 构成 $V^*$ 的一个基.
+\end{lemma}
+
+\begin{proof}
+	由于 $\dim V^*=n$，所以只需验证 $f_1,\cdots,f_n$ 线性无关.
+	设
+	\[
+	t_1f_1+\cdots+t_nf_n=0\in V^*,\qquad t_i\in\mathbb{F}.
+	\]
+	对每个 $1\leq i\leq n$，有
+	\[
+	(t_1f_1+\cdots+t_nf_n)(\alpha_i)=0(\alpha_i).
+	\]
+	于是
+	\[
+	t_i=0.
+	\]
+	故 $t_1=\cdots=t_n=0$，从而 $f_1,\cdots,f_n$ 线性无关.
+\end{proof}
+
+\begin{definition}
+	设 $V$ 是数域 $\mathbb{F}$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一个基.
+	称 $\alpha_1,\cdots,\alpha_n$ 的坐标函数 $f_1,\cdots,f_n$ 所构成的 $V^*$ 的基为
+	$\alpha_1,\cdots,\alpha_n$ 的对偶基(dual basis).
+\end{definition}
+
+
+	$V$ 的基 $\alpha_1,\cdots,\alpha_n$ 的对偶基也记为
+	\[
+	\alpha_1^*,\cdots,\alpha_n^*.
+	\]
+	即 $\alpha_i^*=f_i$ 是第 $i$ 个坐标函数，并且
+	\[
+	\alpha_i^*(\alpha_j)=\delta_{ij}.
+	\]
+
+
+\begin{lemma}
+	设 $V$ 是 $\mathbb{F}$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一个基.
+	对任意 $f\in V^*$，设
+	\[
+	\bigl(f(\alpha_1)\ \cdots\ f(\alpha_n)\bigr)=(a_1\ \cdots\ a_n).
+	\]
+	若 $\alpha_1^*,\cdots,\alpha_n^*$ 为 $\alpha_1,\cdots,\alpha_n$ 的对偶基，则
+	\[
+	f=a_1\alpha_1^*+\cdots+a_n\alpha_n^*.
+	\]
+\end{lemma}
+
+\begin{proof}
+	设
+	\[
+	f=t_1\alpha_1^*+\cdots+t_n\alpha_n^*,\qquad t_i\in\mathbb{F}.
+	\]
+	对每个 $1\leq i\leq n$，有
+	\[
+	f(\alpha_i)=t_i\alpha_i^*(\alpha_i)=t_i.
+	\]
+	因此 $t_i=a_i$，从而
+	\[
+	f=a_1\alpha_1^*+\cdots+a_n\alpha_n^*.
+	\]
+\end{proof}
+
+
+	此时
+	\[
+	V^*=\Hom(V,\mathbb{F})\cong M_{1\times n}(\mathbb{F})
+	\]
+	是行向量空间. 即 $(a_1\ \cdots\ a_n)$ 是 $f$ 在 $V$ 的基 $\alpha_1,\cdots,\alpha_n$ 和
+	$\mathbb{F}$ 的基 $1$ 下的矩阵.
+	因此，对任意
+	\[
+	\alpha=(\alpha_1\ \cdots\ \alpha_n)X\in V,
+	\]
+	其中 $X=(x_1,\cdots,x_n)'$，都有
+	\[
+	f(\alpha)=a_1x_1+\cdots+a_nx_n.
+	\]
+	当 $f\ne0$ 时，$\ker f$ 同构于方程
+	\[
+	a_1x_1+\cdots+a_nx_n=0
+	\]
+	在 $\mathbb{F}^n$ 中的解空间，即 $\mathbb{F}^n$ 中的一张超平面.
+
+
+\begin{lemma}
+	设 $V$ 是 $\mathbb{F}$ 上的线性空间，$\alpha_1,\cdots,\alpha_n$ 和 $\beta_1,\cdots,\beta_n$ 是 $V$ 的基，
+	其对偶基分别为 $\alpha_1^*,\cdots,\alpha_n^*$ 和 $\beta_1^*,\cdots,\beta_n^*$.
+	若
+	\[
+	(\beta_1\ \cdots\ \beta_n)=(\alpha_1\ \cdots\ \alpha_n)C,
+	\]
+	则
+	\[
+	(\beta_1^*\ \cdots\ \beta_n^*)=(\alpha_1^*\ \cdots\ \alpha_n^*)(C^{-1})'.
+	\]
+\end{lemma}
+
+\begin{proof}
+	设
+	\[
+	(\beta_1^*\ \cdots\ \beta_n^*)=(\alpha_1^*\ \cdots\ \alpha_n^*)D,
+	\qquad D\in M_n(\mathbb{F}).
+	\]
+	则
+	\[
+	\delta_{ij}
+	=\beta_i^*(\beta_j)=\sum_{k=1}^nD(k,i)\alpha_k^*\left(\sum_{\ell=1}^n C(\ell,j)\alpha_\ell\right)=\sum_{k,\ell=1}^nD(k,i)C(\ell,j)\alpha_k^*(\alpha_\ell)=\sum_{k=1}^nD(k,i)C(k,j)=\sum_{k=1}^nD'(i,k)C(k,j).
+	\]
+	故
+	\[
+	D'C=E_n.
+	\]
+	于是 $D'=C^{-1}$，即
+	\[
+	D=(C^{-1})'.
+	\]
+\end{proof}
+
+设 $V$ 是数域 $\mathbb{F}$ 上的任意线性空间，把 $(V^*)^*$ 简记为 $V^{**}$.
+当 $\dim V=n$ 时，有
+\[
+\dim V^{**}=n,
+\]
+从而 $V\cong V^{**}$.
+
+\begin{lemma}
+	设 $V$ 是数域 $\mathbb{F}$ 上的线性空间. 对任意 $\alpha\in V$，定义映射
+	\[
+	\alpha^{**}:V^*\longrightarrow \mathbb{F},\qquad \alpha^{**}(f)=f(\alpha),\qquad \forall f\in V^*.
+	\]
+	则：
+	\begin{enumerate}
+		\item $\alpha^{**}\in V^{**}$;
+		\item 映射
+		\[
+		\rho:V\longrightarrow V^{**},\qquad \alpha\longmapsto \alpha^{**}
+		\]
+		是单的线性映射.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	先证 $\alpha^{**}\in V^{**}$. 对任意 $f_1,f_2\in V^*$ 和 $k_1,k_2\in\mathbb{F}$，有
+	\[
+	\begin{aligned}
+		\alpha^{**}(k_1f_1+k_2f_2)
+		&=(k_1f_1+k_2f_2)(\alpha)\\
+		&=k_1f_1(\alpha)+k_2f_2(\alpha)\\
+		&=k_1\alpha^{**}(f_1)+k_2\alpha^{**}(f_2).
+	\end{aligned}
+	\]
+	故 $\alpha^{**}$ 是 $V^*$ 上的线性函数，即 $\alpha^{**}\in V^{**}$.
+	
+	再证 $\rho$ 线性. 对任意 $\alpha_1,\alpha_2\in V$，$k_1,k_2\in\mathbb{F}$ 和 $f\in V^*$，有
+	\[
+	\begin{aligned}
+		\rho(k_1\alpha_1+k_2\alpha_2)(f)
+		&=(k_1\alpha_1+k_2\alpha_2)^{**}(f)\\
+		&=f(k_1\alpha_1+k_2\alpha_2)\\
+		&=k_1f(\alpha_1)+k_2f(\alpha_2)\\
+		&=k_1\alpha_1^{**}(f)+k_2\alpha_2^{**}(f)\\
+		&=(k_1\rho(\alpha_1)+k_2\rho(\alpha_2))(f).
+	\end{aligned}
+	\]
+	故
+	\[
+	\rho(k_1\alpha_1+k_2\alpha_2)=k_1\rho(\alpha_1)+k_2\rho(\alpha_2).
+	\]
+	
+	最后证 $\rho$ 为单射. 若 $\alpha\in\ker\rho$，则 $\alpha^{**}=0\in V^{**}$，即对任意
+	$f\in V^*$ 都有
+	\[
+	\alpha^{**}(f)=f(\alpha)=0.
+	\]
+	若 $\alpha\ne0$，由前面的例子，存在 $h\in V^*$ 使得 $h(\alpha)\ne0$，矛盾. 故 $\alpha=0$，从而
+	\[
+	\ker\rho=0.
+	\]
+\end{proof}
+
+\begin{theorem}[对偶定理]
+	设 $V$ 是数域 $\mathbb{F}$ 上的有限维线性空间. 则上述映射
+	\[
+	\rho:V\longrightarrow V^{**}
+	\]
+	是同构映射.
+\end{theorem}
+
+\begin{proof}
+	由上面的引理，$\rho$ 是单的线性映射. 又因为 $V$ 有限维，且
+	\[
+	\dim V=\dim V^{**},
+	\]
+	故 $\rho$ 是满射. 因此 $\rho$ 是同构映射.
+\end{proof}
+
+即，对于有限维线性空间 $V$ 而言，可以把 $V$ 和 $V^{**}$ 自然地（不依赖于基的选取）等同起来.
+
+
+\section{双线性型}
+
+本节中，若未特别说明，$V$ 总表示域 $\F$ 上的线性空间。
+
+\begin{definition}[双线性型]
+	设 $V$ 是域 $\F$ 上的线性空间。若映射
+	\[
+	f:V\times V\longrightarrow \F
+	\]
+	满足：对任意 $\alpha_1,\alpha_2,\beta\in V$，$k_1,k_2\in\F$，有
+	\[
+	f(k_1\alpha_1+k_2\alpha_2,\beta)
+	=k_1f(\alpha_1,\beta)+k_2f(\alpha_2,\beta),
+	\]
+	并且对任意 $\alpha,\beta_1,\beta_2\in V$，$k_1,k_2\in\F$，有
+	\[
+	f(\alpha,k_1\beta_1+k_2\beta_2)
+	=k_1f(\alpha,\beta_1)+k_2f(\alpha,\beta_2),
+	\]
+	则称 $f$ 为 $V$ 上的一个双线性函数，或双线性型。
+	
+	记 $B(V)$ 为 $V$ 上所有双线性型构成的集合。若 $f,g\in B(V)$，$k_1,k_2\in\F$，定义
+	\[
+	(k_1f+k_2g)(\alpha,\beta)=k_1f(\alpha,\beta)+k_2g(\alpha,\beta),
+	\]
+	则 $B(V)$ 是 $\F$ 上的线性空间。
+\end{definition}
+
+
+
+\begin{example}
+	\begin{enumerate}
+		\item 若 $(V,(\ ,\ ))$ 是实内积空间，则内积是 $V$ 上的一个双线性型。
+		\item 任取 $A\in M_n(\F)$，定义
+		\[
+		f:\F^n\times\F^n\longrightarrow\F,
+		\qquad
+		f(X,Y)=X'AY,
+		\]
+		其中 $X,Y\in\F^n$ 均看作列向量，则 $f\in B(\F^n)$。
+		\item 设 $V$ 是 $\F$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一组基，任取 $A\in M_n(\F)$。若
+		\[
+		\alpha=(\alpha_1,\cdots,\alpha_n)X,
+		\qquad
+		\beta=(\alpha_1,\cdots,\alpha_n)Y,
+		\]
+		则定义
+		\[
+		f(\alpha,\beta)=X'AY .
+		\]
+		由坐标唯一性可知 $f$ 是 $V$ 上的双线性型。
+		\item 设 $f_1,f_2\in V'$，定义
+		\[
+		f:V\times V\longrightarrow\F,
+		\qquad
+		f(\alpha,\beta)=f_1(\alpha)f_2(\beta),
+		\]
+		则 $f\in B(V)$。
+	\end{enumerate}
+\end{example}
+
+\begin{definition}[根与非退化]
+	设 $f\in B(V)$。定义
+	\[
+	\operatorname{rad}_L(f)=\{\alpha\in V:f(\alpha,\beta)=0,\ \forall \beta\in V\},
+	\]
+	称为 $f$ 的左根；定义
+	\[
+	\operatorname{rad}_R(f)=\{\beta\in V:f(\alpha,\beta)=0,\ \forall \alpha\in V\},
+	\]
+	称为 $f$ 的右根。
+	若
+	\[
+	\operatorname{rad}_L(f)=\operatorname{rad}_R(f)=0,
+	\]
+	则称 $f$ 是非退化的。
+\end{definition}
+
+实内积空间上的内积是非退化的。
+
+\begin{definition}[度量矩阵]
+	设 $V$ 是域 $\F$ 上的 $n$ 维线性空间，取 $V$ 的一组基
+	\[
+	\alpha_1,\cdots,\alpha_n.
+	\]
+	对 $f\in B(V)$，称矩阵
+	\[
+	A=(f(\alpha_i,\alpha_j))\in M_n(\F)
+	\]
+	为 $f$ 在基 $\alpha_1,\cdots,\alpha_n$ 下的度量矩阵。
+\end{definition}
+
+于是得到映射
+\[
+\rho:B(V)\longrightarrow M_n(\F),
+\qquad
+f\longmapsto (f(\alpha_i,\alpha_j)).
+\]
+
+\begin{lemma}
+	若 $\dim V=n$，则 $\rho:B(V)\to M_n(\F)$ 是同构。因此
+	\[
+	\dim B(V)=n^2.
+	\]
+\end{lemma}
+
+\begin{proof}
+	线性性直接来自
+	\[
+	(k_1f+k_2g)(\alpha_i,\alpha_j)
+	=k_1f(\alpha_i,\alpha_j)+k_2g(\alpha_i,\alpha_j).
+	\]
+	若 $\rho(f)=0$，则 $f(\alpha_i,\alpha_j)=0$ 对任意 $i,j$ 成立。任取
+	\[
+	\alpha=\sum_{i=1}^n x_i\alpha_i,
+	\qquad
+	\beta=\sum_{j=1}^n y_j\alpha_j,
+	\]
+	由双线性性得
+	\[
+	f(\alpha,\beta)=\sum_{i,j}x_iy_jf(\alpha_i,\alpha_j)=0,
+	\]
+	故 $f=0$，从而 $\rho$ 单射。
+	任取 $A\in M_n(\F)$，按上例定义 $f(\alpha,\beta)=X'AY$，则 $\rho(f)=A$，故 $\rho$ 满射。
+\end{proof}
+
+\begin{lemma}[度量矩阵的基变换]
+	设 $\alpha_1,\cdots,\alpha_n$ 与 $\beta_1,\cdots,\beta_n$ 是 $V$ 的两组基，$f\in B(V)$。
+	若 $f$ 在 $\alpha_1,\cdots,\alpha_n$ 下的度量矩阵为 $A$，在 $\beta_1,\cdots,\beta_n$ 下的度量矩阵为 $B$，且
+	\[
+	(\beta_1,\cdots,\beta_n)=(\alpha_1,\cdots,\alpha_n)C,
+	\]
+	则
+	\[
+	B=C'AC.
+	\]
+	也就是说，$A$与$B$合同
+\end{lemma}
+
+\begin{proof}
+	记 $C=(c_{ij})$，则
+	\[
+	\beta_i=\sum_{k=1}^n c_{ki}\alpha_k,
+	\qquad
+	\beta_j=\sum_{\ell=1}^n c_{\ell j}\alpha_\ell.
+	\]
+	于是
+	\[
+	B(i,j)=f(\beta_i,\beta_j)
+	=\sum_{k,\ell}c_{ki}c_{\ell j}f(\alpha_k,\alpha_\ell)
+	=(C'AC)(i,j).
+	\]
+\end{proof}
+
+\begin{definition}[双线性型的秩]
+	设 $V$ 是域 $\F$ 上的有限维线性空间，$f\in B(V)$。称 $f$ 在 $V$ 的任一组基下的度量矩阵的秩为 $f$ 的秩，记作
+	\[
+	r(f).
+	\]
+\end{definition}
+
+上面的定义是合理的。事实上，不同基下的度量矩阵满足 $B=C'AC$，其中 $C$ 可逆，故二者秩相同。
+
+\begin{lemma}
+	设 $V$ 是域 $\F$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一组基，$f\in B(V)$，其度量矩阵为 $A$。则
+	\[
+	\operatorname{rad}_L(f)\cong \{X\in\F^n:A'X=0\},
+	\qquad
+	\operatorname{rad}_R(f)\cong \{X\in\F^n:AX=0\}.
+	\]
+	从而
+	\[
+	\dim\operatorname{rad}_L(f)=\dim\operatorname{rad}_R(f)=n-r(f).
+	\]
+\end{lemma}
+
+\begin{proof}
+	任取 $\alpha=(\alpha_1,\cdots,\alpha_n)X$。则 $\alpha\in\operatorname{rad}_L(f)$ 当且仅当对任意 $Y\in\F^n$，有
+	\[
+	0=f(\alpha,(\alpha_1,\cdots,\alpha_n)Y)=X'AY.
+	\]
+	这等价于 $X'A=0$，即 $A'X=0$。右根同理，由
+	\[
+	f((\alpha_1,\cdots,\alpha_n)X,\beta)=X'AY
+	\]
+	对任意 $X$ 为 $0$ 得 $AY=0$。
+	最后由齐次线性方程组解空间维数公式得结论。
+\end{proof}
+\begin{corollary}
+	
+	设 $V$ 是域 $\F$ 上的 $n$ 维线性空间，$f\in B(V)$。则
+	\[
+	f\text{ 非退化}
+	\Longleftrightarrow
+	\operatorname{rad}_L(f)=0
+	\Longleftrightarrow
+	\operatorname{rad}_R(f)=0
+	\Longleftrightarrow
+	r(f)=n.
+	\]
+\end{corollary}
+
+
+\begin{example}
+	设 $V$ 是数域 $\F$ 上的有限维线性空间，$f\in B(V)$ 是反对称的，即对任意 $\alpha,\beta\in V$ 都有
+	\[
+	f(\alpha,\beta)=-f(\beta,\alpha).
+	\]
+	如果 $f$ 是非退化的，则 $\dim V$ 是偶数.
+\end{example}
+\begin{proof}
+	任意取定 $V$ 的一个基 $\alpha_1,\cdots,\alpha_n$，设
+	\[
+	A=(f(\alpha_i,\alpha_j))\in M_n(\F).
+	\]
+	则
+	\[
+	f\text{ 是反对称的}\Longleftrightarrow A'=-A.
+	\]
+	事实上，若 $f$ 是反对称的，则
+	\[
+	A(i,j)=f(\alpha_i,\alpha_j)=-f(\alpha_j,\alpha_i)=-A(j,i).
+	\]
+	反之，若 $A'=-A$，对任意
+	\[
+	\alpha=(\alpha_1,	\cdots,\alpha_n)X,
+	\qquad
+	\beta=(\alpha_1,	\cdots,\alpha_n)Y,
+	\qquad X,Y\in\F^n,
+	\]
+	有
+	\[
+	\begin{aligned}
+		f(\alpha,\beta)&=X'AY=(Y'A'X)'=Y'A'X=-Y'AX=-f(\beta,\alpha).
+	\end{aligned}
+	\]
+	若 $f$ 非退化，则 $A$ 可逆. 由 $A'=-A$ 得
+	\[
+	\det A=\det(-A')=(-1)^n\det A.
+	\]
+	若 $n$ 是奇数，则 $\det A=0$，与 $A$ 可逆矛盾. 因此 $n$ 是偶数.
+\end{proof}
+即，奇数维的线性空间上没有非退化的反对称双线性型.
+\begin{lemma}
+	设 $V$ 是数域 $\F$ 上的线性空间. 对任意 $\varphi\in\operatorname{Hom}(V,V^*)$，定义
+	\[
+	f_\varphi:V\times V\longrightarrow \F
+	\]
+	为
+	\[
+	f_\varphi(\alpha,\beta)=\varphi(\alpha)(\beta),\qquad \text{任意 }\alpha,\beta\in V.
+	\]
+	则 $f_\varphi\in B(V)$，称为由 $\varphi$ 所诱导的双线性型.
+\end{lemma}
+\begin{proof}
+	对任意 $\alpha_1,\alpha_2,\beta\in V$，$k_1,k_2\in\F$，有
+	\[
+	\begin{aligned}
+		f_\varphi(k_1\alpha_1+k_2\alpha_2,\beta)
+		&=\varphi(k_1\alpha_1+k_2\alpha_2)(\beta)\\
+		&=(k_1\varphi(\alpha_1)+k_2\varphi(\alpha_2))(\beta)\\
+		&=k_1\varphi(\alpha_1)(\beta)+k_2\varphi(\alpha_2)(\beta)\\
+		&=k_1f_\varphi(\alpha_1,\beta)+k_2f_\varphi(\alpha_2,\beta).
+	\end{aligned}
+	\]
+	对任意 $\alpha,\beta_1,\beta_2\in V$，$k_1,k_2\in\F$，有
+	\[
+	\begin{aligned}
+		f_\varphi(\alpha,k_1\beta_1+k_2\beta_2)
+		&=\varphi(\alpha)(k_1\beta_1+k_2\beta_2)\\
+		&=k_1\varphi(\alpha)(\beta_1)+k_2\varphi(\alpha)(\beta_2)\\
+		&=k_1f_\varphi(\alpha,\beta_1)+k_2f_\varphi(\alpha,\beta_2).
+	\end{aligned}
+	\]
+	故 $f_\varphi\in B(V)$.
+\end{proof}
+\begin{corollary}
+	设 $V$ 是数域 $\F$ 上的有限维线性空间，则映射
+	\[
+	\tau:\operatorname{Hom}(V,V^*)\longrightarrow B(V),\qquad \varphi\longmapsto f_\varphi
+	\]
+	是单的线性映射.
+\end{corollary}
+\begin{proof}
+	对任意 $\varphi_1,\varphi_2\in\operatorname{Hom}(V,V^*)$，$k_1,k_2\in\F$，要验证
+	\[
+	f_{k_1\varphi_1+k_2\varphi_2}=k_1f_{\varphi_1}+k_2f_{\varphi_2}.
+	\]
+	对任意 $\alpha,\beta\in V$ 有
+	\[
+	\begin{aligned}
+		f_{k_1\varphi_1+k_2\varphi_2}(\alpha,\beta)
+		&=(k_1\varphi_1+k_2\varphi_2)(\alpha)(\beta)\\
+		&=k_1\varphi_1(\alpha)(\beta)+k_2\varphi_2(\alpha)(\beta)\\
+		&=k_1f_{\varphi_1}(\alpha,\beta)+k_2f_{\varphi_2}(\alpha,\beta)\\
+		&=(k_1f_{\varphi_1}+k_2f_{\varphi_2})(\alpha,\beta).
+	\end{aligned}
+	\]
+	因此 $\tau$ 线性.
+	
+	要验证 $\tau$ 是单射，即验证 $\ker\tau=0$. 设 $\varphi\in\ker\tau$，即 $f_\varphi=0\in B(V)$. 则对任意 $\alpha,\beta\in V$ 都有
+	\[
+	0=f_\varphi(\alpha,\beta)=\varphi(\alpha)(\beta),
+	\]
+	故 $\varphi(\alpha)=0$ 对任意 $\alpha\in V$ 都成立，从而 $\varphi=0\in\operatorname{Hom}(V,V^*)$.
+\end{proof}
+\begin{corollary}
+	设 $V$ 是数域 $\F$ 上的有限维线性空间，则映射
+	\[
+	\tau:\operatorname{Hom}(V,V^*)\longrightarrow B(V),\qquad \varphi\longmapsto f_\varphi
+	\]
+	是一个同构映射.
+\end{corollary}
+\begin{proof}
+	注意到：如果 $\dim V=n$，则
+	\[
+	\dim\operatorname{Hom}(V,V^*)=n^2=\dim B(V).
+	\]
+	由上一推论，$\tau$ 是单射，故 $\tau$ 是同构.
+\end{proof}
+\begin{lemma}
+	设 $V$ 是数域 $\F$ 上的线性空间. 对任意 $f\in B(V)$，定义 $\varphi_f:V\to V^*$ 为：对任意 $\alpha\in V$，$\varphi_f(\alpha)\in V^*$ 为
+	\[
+	\varphi_f(\alpha)(\beta)=f(\alpha,\beta),\qquad \text{任意 }\beta\in V.
+	\]
+	则 $\varphi_f\in\operatorname{Hom}(V,V^*)$.
+\end{lemma}
+
+\begin{corollary}
+	设 $V$ 是数域 $\F$ 上的线性空间，则映射
+	\[
+	\sigma:B(V)\longrightarrow \operatorname{Hom}(V,V^*),\qquad f\longmapsto \varphi_f
+	\]
+	是线性映射，也是一个同构
+\end{corollary}
+
+\section{对称双线性型与对称阵}
+\begin{definition}[对称双线性型]
+	设 $V$ 是域 $\F$ 上的线性空间，$f\in B(V)$。若对任意 $\alpha,\beta\in V$ 都有
+	\[
+	f(\alpha,\beta)=f(\beta,\alpha),
+	\]
+	则称 $f$ 是 $V$ 上的一个对称双线性型。
+\end{definition}
+
+\begin{lemma}
+	设 $V$ 是域 $\F$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一组基，$f\in B(V)$，$A=(f(\alpha_i,\alpha_j))\in M_n(\F)$。则 $f$ 是对称双线性型当且仅当 $A$ 是对称阵。
+\end{lemma}
+
+\begin{proof}
+	若 $f$ 对称，则
+	\[
+	A(i,j)=f(\alpha_i,\alpha_j)=f(\alpha_j,\alpha_i)=A(j,i),
+	\]
+	故 $A'=A$。
+	反之，若 $A'=A$，任取
+	\[
+	\alpha=(\alpha_1,\cdots,\alpha_n)X,
+	\qquad
+	\beta=(\alpha_1,\cdots,\alpha_n)Y,
+	\]
+	则
+	\[
+	f(\alpha,\beta)=X'AY=(X'AY)'=Y'A'X=Y'AX=f(\beta,\alpha).
+	\]
+\end{proof}
+
+记 $S(V)$ 为 $V$ 上所有对称双线性型构成的集合。由上面的引理，$S(V)$ 与 $M_n(\F)$ 中所有对称矩阵构成的线性空间同构，因此
+\[
+\dim S(V)=\frac{1}{2}n(n+1).
+\]
+
+\begin{lemma}
+	若 $f\in S(V)$ 且 $f\ne 0$，则存在 $\alpha\in V$，使得
+	\[
+	f(\alpha,\alpha)\ne 0.
+	\]
+\end{lemma}
+
+\begin{proof}
+	反设对任意 $\alpha\in V$ 都有 $f(\alpha,\alpha)=0$。则对任意 $\alpha,\beta\in V$，
+	\[
+	0=f(\alpha+\beta,\alpha+\beta)
+	=f(\alpha,\alpha)+2f(\alpha,\beta)+f(\beta,\beta)
+	=2f(\alpha,\beta).
+	\]
+	得 $f(\alpha,\beta)=0$，故 $f=0$，矛盾。
+\end{proof}
+
+\begin{corollary}
+	若 $A=A'\in M_n(\F)$，则
+	\[
+	A=0
+	\Longleftrightarrow
+	X'AX=0,\quad \forall X\in\F^n.
+	\]
+\end{corollary}
+
+\begin{theorem}(对称双线性型的基本定理)
+	设 $V$ 是 $\F$ 上的有限维线性空间，$f\in S(V)$。则存在 $V$ 的一组基，使得 $f$ 在该基下的度量矩阵为对角阵。
+\end{theorem}
+
+\begin{proof}
+	对 $n=\dim V$ 归纳。$n=1$ 时显然成立。设 $n>1$。
+	若 $f=0$，任取一组基即可。若 $f\ne0$，由上面的引理，存在 $\alpha\in V$ 使$f(\alpha,\alpha)\ne0.$将 $\alpha$ 扩充为 $V$ 的一组基$\alpha,\xi_2,\cdots,\xi_n.$令
+	\[
+	\eta_i=\xi_i-\frac{f(\xi_i,\alpha)}{f(\alpha,\alpha)}\alpha,
+	\qquad 2\le i\le n.
+	\]
+	则
+	\[
+	f(\eta_i,\alpha)=0,
+	\qquad 2\le i\le n.
+	\]
+	设
+	\[
+	W=\langle \eta_2,\cdots,\eta_n\rangle.
+	\]
+	则 $\dim W=n-1$，且
+	\[
+	V=\langle\alpha\rangle\oplus W.
+	\]
+	将 $f$ 限制在 $W$ 上，仍为 $W$ 上的对称双线性型。由归纳假设，存在 $W$ 的一组基 $\gamma_2,\cdots,\gamma_n$，使 $f|_W$ 的度量矩阵为对角阵$D_1$。
+	于是 在$\alpha,\gamma_2,\cdots,\gamma_n$ 下，$f$对应的度量阵为\[\begin{pmatrix}
+		f(\alpha,\alpha) &0\\
+		0&D_1
+	\end{pmatrix}\]
+\end{proof}
+
+\begin{corollary}[矩阵形式]
+	$A\in M_n(\F)$，则\[A'=A \iff A\text{在}\F\text{上合同于一个对角阵}\]
+\end{corollary}
+\begin{proof}
+	$\Leftarrow$：设
+	\[
+	A=C'DC,
+	\]
+	其中 $C,D\in M_n(\F)$，$C$ 可逆，$D$ 是对角阵. 则
+	\[
+	A'=(C'DC)'=C'D'(C')'=C'DC=A.
+	\]
+	
+	$\Rightarrow$：设 $V$ 是 $\F$ 上的 $n$ 维线性空间，$\alpha_1,\cdots,\alpha_n$ 是 $V$ 的一个基. 设 $f\in B(V)$，且 $f$ 在 $\alpha_1,\cdots,\alpha_n$ 下的度量阵为 $A$. 由于 $A'=A$，所以 $f$ 是 $V$ 上的对称双线性型.
+	
+	于是，存在 $V$ 的一个基 $\beta_1,\cdots,\beta_n$，使得 $f$ 在 $\beta_1,\cdots,\beta_n$ 下的度量阵是对角阵 $D$. 又 $f$ 在两个基下的度量阵是合同的，故 $A$ 合同于 $D$.
+	
+	
+\end{proof}
+
+
+	如果 $\F=\R$，则也可由 $A$ 正交相似于对角阵得到结论. 还可以利用 $\F$ 上二次型的配方法证明. 与 $A$ 合同的对角阵不唯一.
+
+
+\section{对称阵的合同变换法}
+
+
+若
+\[
+C=P_1P_2\cdots P_s,
+\]
+其中 $P_i$ 均为初等矩阵，则
+\[
+C'AC=P_s'\cdots P_2'P_1'AP_1P_2\cdots P_s.
+\]
+\begin{definition}
+	对 $A$ 先作一次初等列变换，再作相同类型、相同参数的初等行变换，就得到一个与 $A$ 合同的矩阵。这样的操作称为一次初等合同变换
+\end{definition}
+也就是说\[\begin{pmatrix}
+	A\\
+	E_n
+\end{pmatrix}\to \begin{pmatrix}
+D\\
+C
+\end{pmatrix}\]
+其中$C'AC=D$是对角阵
+\begin{example}
+	设
+	\[
+	A=\begin{pmatrix}
+		7&-4&0\\
+		-4&5&4\\
+		0&4&3
+	\end{pmatrix}.
+	\]
+	求可逆阵 $C$ 使得 $C'AC$ 是对角阵.
+	\[
+	\left(\begin{array}{ccc}
+		7&-4&0\\
+		-4&5&4\\
+		0&4&3\\ \hline
+		1&0&0\\
+		0&1&0\\
+		0&0&1
+	\end{array}\right)
+	\longrightarrow
+	\left(\begin{array}{ccc}
+		7&0&0\\
+		0&\frac{19}{7}&4\\
+		0&4&3\\ \hline
+		1&\frac{4}{7}&0\\
+		0&1&0\\
+		0&0&1
+	\end{array}\right)
+	\longrightarrow
+	\left(\begin{array}{ccc}
+		7&0&0\\
+		0&\frac{19}{7}&0\\
+		0&0&-\frac{55}{19}\\ \hline
+		1&\frac{4}{7}&-\frac{16}{19}\\
+		0&1&-\frac{28}{19}\\
+		0&0&1
+	\end{array}\right).
+	\]
+	令
+	\[
+	C=\begin{pmatrix}
+		1&\frac{4}{7}&-\frac{16}{19}\\
+		0&1&-\frac{28}{19}\\
+		0&0&1
+	\end{pmatrix},
+	\]
+	则 $C'AC$ 是对角阵. 事实上，
+	\[
+	C'AC=\begin{pmatrix}
+		7&0&0\\
+		0&\frac{19}{7}&0\\
+		0&0&-\frac{55}{19}
+	\end{pmatrix}.
+	\]
+\end{example}
+
+
+\begin{lemma}
+	设
+	\[
+	D_1=\operatorname{diag}(a_1,\cdots,a_n),
+	\qquad
+	D_2=\operatorname{diag}(a_{i_1},\cdots,a_{i_n}),
+	\]
+	其中 $i_1,\cdots,i_n$ 是 $1,2,\cdots,n$ 的一个排列。则 $D_1$ 与 $D_2$ 合同。
+\end{lemma}
+
+\begin{proof}
+设$f\in B(V)$且$f$在$V$的一个基$\alpha_1,\cdots,\alpha_n$下的度量阵是$D_1$，那么$f$在基$\alpha_{i_1},\cdots,\alpha_{i_1}$下的度量阵是$D_2$,从而两者合同
+\end{proof}
+
+逆命题一般不成立。例如在 $\R$ 上，
+\[
+\begin{pmatrix}
+	1&0\\
+	0&2
+\end{pmatrix}
+\quad\text{与}\quad
+\begin{pmatrix}
+	1&0\\
+	0&3
+\end{pmatrix}
+\]
+是合同的，因为取
+\[
+C=\begin{pmatrix}
+	1&0\\
+	0&\sqrt{\frac32}
+\end{pmatrix},
+\]
+则
+\[
+C'
+\begin{pmatrix}
+	1&0\\
+	0&2
+\end{pmatrix}
+C
+=
+\begin{pmatrix}
+	1&0\\
+	0&3
+\end{pmatrix}.
+\]
+
+
+
+
+\begin{corollary}
+	设 $A=A'\in M_n(\F)$. 则
+	\[
+	r(A)=r
+	\Longleftrightarrow
+	A\text{ 在复数域 }\C\text{ 上合同于 }
+	\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix}.
+	\]
+\end{corollary}
+\begin{proof}
+	$\Leftarrow$：两个方阵合同，则它们的秩相等.
+	
+	$\Rightarrow$：设 $r(A)=r$. 由于 $A'=A$，所以存在可逆矩阵
+	$P\in M_n(\F)$，使得
+	\[
+	P'AP=D_1
+	\]
+	是对角阵，且 $r(D_1)=r$.
+	
+	把 $D_1(P(i,j)D_1 P(i,j)'=\operatorname{diag}(a_1,\cdots,a_j,\cdots,a_i,\cdots,a_n))$ 的对角元重新排序，使得其前 $r$ 个对角元非零，其余的对角元为 $0$，得到对角阵
+	\[
+	D_2=\operatorname{diag}(b_1,\cdots,b_r,0,\cdots,0).
+	\]
+	则 $D_1$ 与 $D_2$ 在 $\F$ 上合同，从而 $A$ 与 $D_2$ 在 $\F$ 上合同.
+	
+	取 $c_i\in\C$，使得 $c_i^2=b_i$，$1\leq i\leq r$. 则
+	\[
+	\begin{aligned}
+		&\operatorname{diag}\left(\frac1{c_1},\cdots,\frac1{c_r},1,\cdots,1\right)
+		\operatorname{diag}(b_1,\cdots,b_r,0,\cdots,0)
+		\operatorname{diag}\left(\frac1{c_1},\cdots,\frac1{c_r},1,\cdots,1\right) \\
+		&\qquad =
+		\begin{pmatrix}
+			E_r&0\\
+			0&0
+		\end{pmatrix}.
+	\end{aligned}
+	\]
+	故 $A$ 在 $\C$ 上合同于
+	\[
+	\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix},
+	\]
+	即存在可逆矩阵 $Q\in M_n(\C)$，使得
+	\[
+	Q'AQ=
+	\begin{pmatrix}
+		E_r&0\\
+		0&0
+	\end{pmatrix}.
+	\]
+\end{proof}
+
+
+
+\begin{corollary}\label{7.4.5}
+	设 $A=A'\in M_n(\R)$。则 $A$ 在 $\R$ 上合同于
+	\[
+	\begin{pmatrix}
+		E_p&0&0\\
+		0&-E_q&0\\
+		0&0&0
+	\end{pmatrix},
+	\]
+	其中 $p+q=r(A)$。
+\end{corollary}
+
+\begin{proof}
+	由矩阵形式的基本定理，$A$ 在 $\R$ 上合同于
+	\[
+	D=\operatorname{diag}(a_1,\cdots,a_p,-b_1,\cdots,-b_q,0,\cdots,0),
+	\]
+	其中 $a_i>0$，$b_j>0$。令
+	\[
+	P=\operatorname{diag}\left(
+	\frac1{\sqrt{a_1}},\cdots,\frac1{\sqrt{a_p}},
+	\frac1{\sqrt{b_1}},\cdots,\frac1{\sqrt{b_q}},
+	1,\cdots,1
+	\right),
+	\]
+	则
+	\[
+	P'DP=
+	\begin{pmatrix}
+		E_p&0&0\\
+		0&-E_q&0\\
+		0&0&0
+	\end{pmatrix}.
+	\]
+\end{proof}
+\section{二次型}
+
+
+\begin{definition}
+	给定数域 $\F$. $\F$ 上的一个关于 $x_1,\cdots,x_n$ 的二次齐次多项式称为 $\F$ 上的一个 $n$ 元二次型(quadratic form). 也就是说，$\F$ 上的一个 $n$ 元二次型是 $n$ 元二次函数.
+\end{definition}
+
+$\F$ 上的 $n$ 元二次型的一般形式为
+\[
+\begin{aligned}
+	f(x_1,\cdots,x_n)
+	&=a_{11}x_1^2+\cdots+a_{nn}x_n^2
+	+2a_{12}x_1x_2+\cdots+2a_{1n}x_1x_n \\
+	&\quad +2a_{23}x_2x_3+\cdots+2a_{2n}x_2x_n
+	+\cdots+2a_{n-1,n}x_{n-1}x_n \\
+	&=\sum_{i=1}^n a_{ii}x_i^2+2\sum_{1\le i<j\le n}a_{ij}x_ix_j,
+\end{aligned}
+\]
+其中 $a_{ij}\in\F$ 为 $f(x_1,\cdots,x_n)$ 的系数. 形如 $a_{ii}x_i^2$ 的项称为平方项，形如 $a_{ij}x_ix_j$ 的项称为交叉项.
+
+
+
+\begin{definition}
+	没有交叉项的二次型称为一个标准型，即形如
+	\[
+	d_1x_1^2+\cdots+d_nx_n^2
+	\]
+	的二次型称为标准型.
+\end{definition}
+
+记
+\[
+X=\begin{pmatrix}
+	x_1\\x_2\\ \vdots\\x_n
+\end{pmatrix}.
+\]
+
+\begin{example}
+	任意取定 $B\in M_n(\F)$，则
+	\[
+	f(x_1,\cdots,x_n)=X'BX
+	\]
+	是 $\F$ 上的一个 $n$ 元二次型.
+\end{example}
+
+
+
+\begin{definition}
+	$\F$ 上的 $n$ 元二次型
+	\[
+	f(x_1,\cdots,x_n)=\sum_{i=1}^n a_{ii}x_i^2+2\sum_{1\le i<j\le n}a_{ij}x_ix_j
+	\]
+	的矩阵为
+	\[
+	A=(a_{ij})\in M_n(\F),
+	\]
+	其中
+	\[
+	a_{ij}=a_{ji},\qquad 1\le i,j\le n.
+	\]
+	即
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\F).
+	\]
+	称 $f(x_1,\cdots,x_n)$ 的矩阵的秩为 $f(x_1,\cdots,x_n)$ 的秩.
+\end{definition}
+
+\begin{example}
+	二次型
+	\[
+	f(x_1,x_2,x_3)=-2x_1^2+x_2x_3
+	\]
+	的矩阵为
+	\[
+	A=\begin{pmatrix}
+		-2&0&0\\
+		0&0&\frac12\\
+		0&\frac12&0
+	\end{pmatrix}.
+	\]
+\end{example}
+
+\begin{example}
+	$\F$ 上的关于 $x_1,\cdots,x_n$ 的二次型 $f(x_1,\cdots,x_n)$ 是标准型当且仅当其矩阵是一个对角阵.
+\end{example}
+
+\begin{example}
+	设 $B\in M_n(\F)$. 则
+	\[
+	f(x_1,\cdots,x_n)=X'BX
+	\]
+	的矩阵是
+	\[
+	\frac12(B+B'),
+	\]
+	这是 $B$ 的对称化.
+	
+	也就是说，在二次型中，任意矩阵的非对称部分对二次型不起作用，可以看到\[X'BX =X'(\dfrac{1}{2}(B+B'))X\]
+\end{example}
+
+\begin{example}
+	二次型
+	\[
+	f(x_1,x_2,x_3)=2x_1^2-3x_1x_2
+	\]
+	的矩阵为
+	\[
+	\begin{pmatrix}
+		2&-\dfrac32&0\\
+		-\dfrac32&0&0\\
+		0&0&0
+	\end{pmatrix},
+	\]
+	而不是
+	\[
+	\begin{pmatrix}
+		2&-\dfrac32\\
+		-\dfrac32&0
+	\end{pmatrix}.
+	\]
+\end{example}
+
+\begin{lemma}
+	存在集合
+	\[
+	\{\F\text{ 上的关于 }x_1,\cdots,x_n\text{ 的 }n\text{ 元二次型}\}
+	\]
+	与
+	\[
+	\{A\in M_n(\F)\mid A'=A\}
+	\]
+	之间的一一对应：
+	\[
+	\sigma:f(x_1,\cdots,x_n)\longmapsto f(x_1,\cdots,x_n)\text{ 的矩阵 }A.
+	\]
+\end{lemma}
+
+\begin{proof}
+	先证 $\sigma$ 是满射. 任意 $A'=A\in M_n(\F)$，令
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\]
+	则 $f$ 的矩阵就是 $A$.
+	
+	再证 $\sigma$ 是单射. 设 $A'=A$，$B'=B$ 且
+	\[
+	X'AX=X'BX,
+	\qquad \forall X\in\F^n.
+	\]
+	比较二次型中各平方项与交叉项的系数，即得 $A=B$.
+\end{proof}
+
+
+
+\begin{definition}
+	设 $C\in M_n(\F)$ 可逆. 称
+	\[
+	X=CY
+	\]
+	是一个非退化线性替换，其中
+	\[
+	X=\begin{pmatrix}
+		x_1\\x_2\\ \vdots\\x_n
+	\end{pmatrix},
+	\qquad
+	Y=\begin{pmatrix}
+		y_1\\y_2\\ \vdots\\y_n
+	\end{pmatrix}.
+	\]
+	这相当于坐标变换.
+\end{definition}
+
+\begin{definition}
+	设 $f(x_1,\cdots,x_n)$ 和 $g(y_1,\cdots,y_n)$ 是 $\F$ 上的 $n$ 元二次型. 如果存在可逆的 $C\in M_n(\F)$，使得在非退化线性替换 $X=CY$ 下有
+	\[
+	f(x_1,\cdots,x_n)=g(y_1,\cdots,y_n),
+	\]
+	则称 $f(x_1,\cdots,x_n)$ 等价于 $g(y_1,\cdots,y_n)$.
+\end{definition}
+
+$\F$ 上的 $n$ 元二次型之间的等价关系满足反身性、对称性和传递性.
+
+\begin{lemma}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\F),
+	\]
+	\[
+	g(y_1,\cdots,y_n)=Y'BY,
+	\qquad B'=B\in M_n(\F).
+	\]
+	则
+	\[
+	f\text{ 与 }g\text{ 等价}
+	\Longleftrightarrow
+	A\text{ 与 }B\text{ 在 }\F\text{ 上合同}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	若 $f$ 经过非退化线性替换 $X=CY$ 变为 $g$，则
+	\[
+	g(y_1,\cdots,y_n)=f(CY)=(CY)'A(CY)=Y'(C'AC)Y.
+	\]
+	由二次型矩阵的唯一性，$B=C'AC$.
+	
+	反之，若 $B=C'AC$，则以上每步可逆，于是在 $X=CY$ 下有 $f=g$.
+\end{proof}
+
+\begin{corollary}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\F).
+	\]
+	则在 $\F$ 上，$f(x_1,\cdots,x_n)$ 等价于一个标准型
+	\[
+	d_1y_1^2+\cdots+d_ny_n^2.
+	\]
+	称之为 $f(x_1,\cdots,x_n)$ 的一个在 $\F$ 上的标准型.
+\end{corollary}
+
+\begin{proof}
+	由对称阵的基本定理，存在可逆的 $C\in M_n(\F)$，使得 $C'AC$ 为对角阵. 于是，在非退化线性替换 $X=CY$ 下，$f$ 化为一个标准型.
+\end{proof}
+
+
+	$f(x_1,\cdots,x_n)$ 的在 $\F$ 上的标准型不唯一，并且二次型的标准型依赖于数域.
+
+
+\noindent\textbf{算法：求二次型的标准型}
+\noindent\textbf{法一：配方法.}
+
+\begin{example}
+	求
+	\[
+	f(x_1,x_2,x_3)=x_1^2+2x_2^2-3x_3^2-2x_1x_2+3x_2x_3
+	\]
+	的一个标准型.
+	\[
+	\begin{aligned}
+		f(x_1,x_2,x_3)
+		&=(x_1-x_2)^2+x_2^2+3x_2x_3-3x_3^2\\
+		&=(x_1-x_2)^2+\left(x_2+\frac32x_3\right)^2+
+		\left(-3-\frac94\right)x_3^2\\
+		&=(x_1-x_2)^2+\left(x_2+\frac32x_3\right)^2-
+		\frac{21}{4}x_3^2.
+	\end{aligned}
+	\]
+	所以，
+	\[
+	y_1^2+y_2^2-\frac{21}{4}y_3^2
+	\]
+	就是它的一个标准型，所作的非退化线性替换为
+	\[
+	\begin{pmatrix}
+		y_1\\y_2\\y_3
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1&-1&0\\
+		0&1&\frac32\\
+		0&0&1
+	\end{pmatrix}
+	\begin{pmatrix}
+		x_1\\x_2\\x_3
+	\end{pmatrix},
+	\]
+	即
+	\[
+	\begin{pmatrix}
+		x_1\\x_2\\x_3
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1&-1&0\\
+		0&1&\frac32\\
+		0&0&1
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		y_1\\y_2\\y_3
+	\end{pmatrix}.
+	\]
+\end{example}
+
+配方法通常先考虑含 $x_1$ 的项，配方后，再对剩下的项进行配方. 若二次型没有平方项，则不能直接配方，需要先作非退化线性替换.
+
+\begin{example}
+	求
+	\[
+	f(x_1,x_2,x_3)=x_1x_2-x_2x_3
+	\]
+	的一个标准型. 先作非退化线性替换
+	\[
+	\begin{cases}
+		x_1=y_1+y_2,\\
+		x_2=y_1-y_2,\\
+		x_3=y_3.
+	\end{cases}
+	\]
+	按课件中的化简过程，有
+	\[
+	\begin{aligned}
+		f(x_1,x_2,x_3)
+		&=(y_1+y_2)(y_1-y_2)-(y_1-y_2)y_3\\
+		&=y_1^2-y_2^2-y_1y_2+y_2y_3\\
+		&=\left(y_1-\frac12y_2\right)^2-\frac54y_2^2+y_2y_3\\
+		&=\left(y_1-\frac12y_2\right)^2-
+		\frac54\left(y_2^2-\frac45y_2y_3\right)\\
+		&=\left(y_1-\frac12y_2\right)^2-
+		\frac54\left(y_2-\frac25y_3\right)^2+
+		\frac15y_3^2.
+	\end{aligned}
+	\]
+	所以，
+	\[
+	z_1^2-\frac54z_2^2+\frac15z_3^2
+	\]
+	就是 $f(x_1,x_2,x_3)$ 的一个标准型.
+\end{example}
+
+\noindent\textbf{法二：合同变换法.}
+
+先写出 $f(x_1,\cdots,x_n)$ 的矩阵 $A$，用合同变换求出可逆阵 $C$，使得 $C'AC$ 是对角阵.
+
+\begin{example}
+	求非退化线性替换把
+	\[
+	f(x_1,x_2,x_3)=7x_1^2+5x_2^2+3x_3^2-8x_1x_2+8x_2x_3
+	\]
+	变为一个标准型.
+	
+	$f(x_1,x_2,x_3)$ 的矩阵为
+	\[
+	A=\begin{pmatrix}
+		7&-4&0\\
+		-4&5&4\\
+		0&4&3
+	\end{pmatrix}.
+	\]
+	由合同变换
+	\[
+	\left(\begin{array}{ccc}
+		7&-4&0\\
+		-4&5&4\\
+		0&4&3\\ \hline
+		1&0&0\\
+		0&1&0\\
+		0&0&1
+	\end{array}\right)
+	\longrightarrow
+	\left(\begin{array}{ccc}
+		7&0&0\\
+		0&\frac{19}{7}&4\\
+		0&4&3\\ \hline
+		1&\frac47&0\\
+		0&1&0\\
+		0&0&1
+	\end{array}\right)
+	\longrightarrow
+	\left(\begin{array}{ccc}
+		7&0&0\\
+		0&\frac{19}{7}&0\\
+		0&0&-\frac{55}{19}\\ \hline
+		1&\frac47&-\frac{16}{19}\\
+		0&1&-\frac{28}{19}\\
+		0&0&1
+	\end{array}\right).
+	\]
+	令
+	\[
+	C=\begin{pmatrix}
+		1&\frac47&-\frac{16}{19}\\
+		0&1&-\frac{28}{19}\\
+		0&0&1
+	\end{pmatrix},
+	\]
+	则在非退化线性替换 $X=CY$ 下得到 $f(x_1,x_2,x_3)$ 的一个标准型为
+	\[
+	7y_1^2+\frac{19}{7}y_2^2-\frac{55}{19}y_3^2.
+	\]
+\end{example}
+
+\noindent\textbf{法三：正交变换法.}
+
+实数域上的二次型可以用正交变换求其标准型. 写出实二次型 $f(x_1,\cdots,x_n)$ 的矩阵 $A$，求出正交阵 $P$ 使得
+\[
+P^{-1}AP=P'AP=D
+\]
+是对角阵. 此时 $D$ 的对角元恰好是 $A$ 的全部特征值.
+
+
+
+
+
+由对称阵的基本定理在复数域上的推论可得如下结论.
+
+\begin{corollary}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\F).
+	\]
+	则在复数域 $\C$ 上，$f(x_1,\cdots,x_n)$ 等价于标准型
+	\[
+	z_1^2+\cdots+z_r^2,
+	\qquad r=r(A).
+	\]
+	即，存在可逆的 $C\in M_n(\C)$，使得在非退化线性替换 $X=CZ$ 下，
+	\[
+	f(x_1,\cdots,x_n)=z_1^2+\cdots+z_r^2.
+	\]
+\end{corollary}
+
+\begin{definition}
+	称上述推论中的
+	\[
+	z_1^2+\cdots+z_r^2
+	\]
+	为 $f(x_1,\cdots,x_n)$ 的在复数域上的规范型.
+\end{definition}任意 $n$ 元二次型 $X'AX$ 的在复数域上的规范型存在且唯一，其中\[r=r(A).\]因此，在复数域上对 $n$ 元二次型按等价关系进行分类，也就是按其矩阵的秩进行分类.
+由对称阵的基本定理在实数域上的推论可得如下结论.
+
+\begin{corollary}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\R).
+	\]
+	则在实数域 $\R$ 上，$f(x_1,\cdots,x_n)$ 等价于
+	\[
+	y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2,
+	\qquad p+q=r(A).
+	\]
+	即，存在可逆的 $C\in M_n(\R)$，使得在非退化线性替换 $X=CY$ 下，
+	\[
+	f(x_1,\cdots,x_n)=y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2.
+	\]
+\end{corollary}
+
+\begin{definition}
+	称上述推论中的
+	\[
+	y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2
+	\]
+	为实二次型 $f(x_1,\cdots,x_n)$ 的在实数域上的规范型.
+\end{definition}
+
+
+
+\begin{theorem}(惯性定理,Sylvester定理)
+	设两个 $n$ 元二次型
+	\[
+	y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2
+	\]
+	和
+	\[
+	z_1^2+\cdots+z_{p'}^2-z_{p'+1}^2-\cdots-z_{p'+q'}^2
+	\]
+	在实数域 $\R$ 上等价，则当且仅当
+	\[
+	p=p',\qquad q=q'.
+	\]
+\end{theorem}
+
+\begin{proof}
+	$\Leftarrow$：作非退化线性替换 $Y=E_nZ$ 即可.
+	
+	$\Rightarrow$：设存在非退化线性替换 $Y=CZ$，使得
+	\[
+	y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2
+	=
+	z_1^2+\cdots+z_{p'}^2-z_{p'+1}^2-\cdots-z_{p'+q'}^2.
+	\]
+	非退化线性替换不改变二次型的秩，故
+	\[
+	p+q=p'+q'.
+	\]
+	只需验证 $p=p'$. 反设 $p<p'$. 记 $C=(c_{ij})\in M_n(\R)$，考虑关于 $z_1,\cdots,z_n$ 的齐次线性方程组
+	\[
+	\begin{cases}
+		y_1=c_{11}z_1+\cdots+c_{1n}z_n=0,\\
+		\qquad\vdots\\
+		y_p=c_{p1}z_1+\cdots+c_{pn}z_n=0,\\
+		z_{p'+1}=0,\\
+		\qquad\vdots\\
+		z_n=0.
+	\end{cases}
+	\]
+	方程个数为
+	\[
+	p+(n-p')=n-(p'-p)<n,
+	\]
+	所以它必有非零解. 任取一个非零解
+	\[
+	Z^0=(z_1^0,\cdots,z_n^0)'\in\R^n.
+	\]
+	令
+	\[
+	Y^0=(y_1^0,\cdots,y_n^0)'=CZ^0.
+	\]
+	则
+	\[
+	z_{p'+1}^0=\cdots=z_n^0=0,
+	\]
+	且至少有一个 $z_j^0\ne0\ (1\le j\le p')$. 因此右边二次型在 $Z^0$ 处的函数值 $>0$. 另一方面，
+	\[
+	y_1^0=\cdots=y_p^0=0,
+	\]
+	所以左边二次型在 $Y^0$ 处的函数值 $\le0$，矛盾. 故 $p\ge p'$. 同理可得 $p'\ge p$，从而 $p=p'$. 再由 $p+q=p'+q'$ 得 $q=q'$.
+\end{proof}
+
+\begin{corollary}
+	任意 $n$ 元实二次型的在实数域上的规范型是唯一的.
+\end{corollary}
+
+\begin{definition}
+	设实二次型 $f(x_1,\cdots,x_n)$ 的规范型为
+	\[
+	y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2.
+	\]
+	则称 $p,q$ 分别为 $f(x_1,\cdots,x_n)$ 的正惯性指数、负惯性指数，称
+	\[
+	p-q
+	\]
+	为 $f(x_1,\cdots,x_n)$ 的符号差
+\end{definition}
+
+\begin{corollary}
+	对任意 $n$ 元实二次型 $f(x_1,\cdots,x_n)$ 都有：
+	\[
+	d_1y_1^2+\cdots+d_ny_n^2
+	\]
+	是 $f(x_1,\cdots,x_n)$ 的在实数域上的标准型，当且仅当 $d_1,\cdots,d_n$ 中正数的个数等于 $f$ 的正惯性指数，且 $d_1,\cdots,d_n$ 中负数的个数等于 $f$ 的负惯性指数.
+\end{corollary}
+
+\begin{corollary}
+	两个 $n$ 元实二次型在实数域上等价，当且仅当它们的正惯性指数相等且负惯性指数也相等.
+\end{corollary}
+
+\begin{corollary}
+	设 $A\in M_n(\R)$. 则
+	\[
+	A'=A
+	\Longleftrightarrow
+	\text{存在唯一的 }p,q\text{ 使得 }A\text{ 在 }\R\text{ 上合同于 }
+	\begin{pmatrix}
+		E_p&0&0\\
+		0&-E_q&0\\
+		0&0&0
+	\end{pmatrix}.
+	\]
+\end{corollary}
+这是\ref{7.4.5}的推论，加强了其中的唯一性
+\begin{definition}
+	设 $A=A'\in M_n(\R)$. 称上述 $p,q$ 分别为 $A$ 的正惯性指数、负惯性指数.
+	即，对于 $A=A'\in M_n(\R)$，$A$ 的正负惯性指数就是二次型 $X'AX$ 的正负惯性指数.
+\end{definition}
+
+\begin{corollary}
+	设 $A=A'\in M_n(\R)$. 则 $A$ 的正惯性指数等于 $A$ 的正特征值的个数，负惯性指数等于 $A$ 的负特征值的个数，重根按重数计算.
+\end{corollary}
+
+\begin{corollary}
+	设 $A=A'\in M_n(\R)$，$B=B'\in M_n(\R)$. 则 $A$ 与 $B$ 在 $\R$ 上合同，当且仅当 $A,B$ 分别有相同的正惯性指数和负惯性指数.
+\end{corollary}
+\section{正定二次型、正定阵}
+\begin{definition}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,\qquad A'=A\in M_n(\R).
+	\]
+	如果对任意 $X\in\R^n$ 都有
+	\[
+	X'AX\geq 0,
+	\]
+	且
+	\[
+	X'AX=0\Longleftrightarrow X=0,
+	\]
+	则称 $f(x_1,\cdots,x_n)$ 是一个正定的二次型.
+\end{definition}
+
+\begin{example}
+	设
+	\[
+	f(x_1,\cdots,x_n)=d_1x_1^2+\cdots+d_nx_n^2,
+	\qquad d_i\in\R.
+	\]
+	则 $f(x_1,\cdots,x_n)$ 是正定的当且仅当
+	\[
+	d_i>0,\qquad 1\leq i\leq n.
+	\]
+	特别地，$f(x_1,x_2,x_3)=x_1^2+2x_2^2$ 不是正定的，因为取 $X=(0,0,1)'\ne0$ 时有 $f(X)=0$.
+\end{example}
+
+\begin{example}
+	设 $B\in M_{m\times n}(\R)$ 且 $r(B)=n$. 令
+	\[
+	f(x_1,\cdots,x_n)=X'(B'B)X.
+	\]
+	则 $f(x_1,\cdots,x_n)$ 是正定的.
+\end{example}
+
+\begin{proof}
+	对任意 $X\in\R^n$，利用 $\R^m$ 上的标准内积有
+	\[
+	X'(B'B)X=(BX)'(BX)\geq0.
+	\]
+	若 $X'(B'B)X=0$，则 $(BX)'(BX)=0$，故 $BX=0$. 又 $r(B)=n$，所以 $X=0$.
+\end{proof}
+
+\begin{definition}
+	设 $A=A'\in M_n(\R)$. 如果二次型
+	\[
+	f(x_1,\cdots,x_n)=X'AX
+	\]
+	是正定的，则称 $A$ 是正定矩阵.
+\end{definition}
+
+\begin{example}
+	设 $D=\operatorname{diag}(d_1,\cdots,d_n)$，$d_i\in\R$. 则 $D$ 是正定矩阵当且仅当
+	\[
+	d_i>0,\qquad 1\leq i\leq n.
+	\]
+\end{example}
+
+
+\begin{lemma}
+	设 $A,B$ 是 $n$ 阶实对称阵，且 $A$ 与 $B$ 在实数域上合同. 则
+	\[
+	A\text{ 正定}\Longleftrightarrow B\text{ 正定}.
+	\]
+	即，正定性在合同关系下不变.
+\end{lemma}
+
+\begin{proof}
+	设存在可逆的 $C\in M_n(\R)$ 使得
+	\[
+	A=C'BC.
+	\]
+	若 $B$ 正定，则对任意 $X\in\R^n$ 有
+	\[
+	X'AX=X'C'BCX=(CX)'B(CX)\geq0.
+	\]
+	若 $X'AX=0$，则 $(CX)'B(CX)=0$，由 $B$ 正定得 $CX=0$. 又 $C$ 可逆，所以 $X=0$.
+	反向同理.
+\end{proof}
+
+\begin{proposition}
+	设 $A=A'\in M_n(\R)$. 则以下命题等价：
+	\[
+	\begin{aligned}
+		A\text{ 是正定阵}
+		&\Longleftrightarrow A\text{ 是某个 }n\text{ 维欧氏空间的内积的度量矩阵}\\
+		&\Longleftrightarrow A\text{ 的正惯性指数是 }n\\
+		&\Longleftrightarrow A\text{ 的特征值全为正数}\\
+		&\Longleftrightarrow A\text{ 合同于单位阵}\\
+		&\Longleftrightarrow \text{存在可逆的 }C\in M_n(\R)\text{ 使得 }A=C'C.
+	\end{aligned}
+	\]
+\end{proposition}
+
+\begin{proof}
+	由正定二次型的定义、惯性定理以及实对称阵正交相似于对角阵可得前四个等价关系.
+	又 $A$ 的正惯性指数为 $n$ 当且仅当 $A$ 在 $\R$ 上合同于 $E_n$.
+	若 $P'AP=E_n$，则
+	\[
+	A=(P^{-1})'E_n(P^{-1})=C'C,
+	\qquad C=P^{-1}.
+	\]
+	反过来，若 $A=C'C$ 且 $C$ 可逆，则 $A$ 合同于 $E_n$.
+\end{proof}
+
+\begin{corollary}
+	设 $A$ 是正定阵. 则
+	\[
+	|A|>0.
+	\]
+	逆命题不成立.
+\end{corollary}
+
+\begin{proof}
+	由上面的命题，存在可逆的 $C\in M_n(\R)$ 使得 $A=C'C$. 因而
+	\[
+	|A|=|C'|\,|C|=|C|^2>0.
+	\]
+	例如 $-E_2$ 的行列式为 $1$，但 $-E_2$ 不是正定阵.
+\end{proof}
+
+\begin{proposition}
+	设 $A\in M_n(\R)$. 则
+	\[
+	A\text{ 正定}\Longleftrightarrow A^{-1}\text{ 正定}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	若 $A$ 正定，则存在可逆的 $C\in M_n(\R)$ 使得 $A=C'C$. 于是
+	\[
+	A^{-1}=C^{-1}(C^{-1})'
+	=\bigl((C^{-1})'\bigr)'(C^{-1})'
+	\]
+	是正定阵. 反向对 $A^{-1}$ 使用同样的结论即可.
+\end{proof}
+
+\begin{lemma}
+	设 $A,B$ 是 $n$ 阶正定阵. 则 $A+B$ 是正定阵.
+\end{lemma}
+\begin{example}
+	\begin{enumerate}
+		\item 设 $A,B$ 是 $n$ 阶实对称阵，且 $A$ 正定. 则存在可逆的 $P\in M_n(\R)$，使得
+		\[
+		P'AP\quad\text{和}\quad P'BP
+		\]
+		都是对角阵.
+		\begin{proof}
+			由 $A$ 正定可得，存在可逆的 $P_1\in M_n(\R)$ 使得
+			\[
+			P_1'AP_1=E_n.
+			\]
+			因为 $B'=B$，所以 $P_1'BP_1$ 是实对称阵. 因此存在正交阵 $P_2$ 使得
+			\[
+			P_2'(P_1'BP_1)P_2=D
+			\]
+			是对角阵. 令 $P=P_1P_2$，则
+			\[
+			P'BP=(P_1P_2)'B(P_1P_2)=D
+			\]
+			是对角阵，并且
+			\[
+			P'AP=P_2'(P_1'AP_1)P_2=P_2'E_nP_2=E_n
+			\]
+			也是对角阵.
+		\end{proof}
+		\item 设 $A$ 是 $n$ 阶正定阵. 则对任意正数 $t$，都有
+		\[
+		tE_n+A
+		\]
+		可逆.\begin{proof}
+			事实上，$tE_n+A$ 是正定阵.
+		\end{proof}
+		\item 设 $A,B\in M_n(\R)$ 且 $A,B$ 正定. 则
+		\[
+		AB\text{ 正定}\Longleftrightarrow AB=BA.
+		\]
+		
+		\begin{proof}
+			$\Rightarrow$：若 $AB$ 正定，则 $AB$ 对称，所以
+			\[
+			AB=(AB)'=B'A'=BA.
+			\]
+			$\Leftarrow$：若 $AB=BA$，则 $AB$ 对称. 又 $A$ 正定，故存在可逆的 $C\in M_n(\R)$ 使得
+			\[
+			A=CC'.
+			\]
+			于是
+			\[
+			AB=CC'B=C(C'BC)C^{-1},
+			\]
+			所以 $AB$ 与 $C'BC$ 相似. 由于 $B$ 正定，$C'BC$ 也正定，故 $C'BC$ 的特征值全大于 $0$. 因而 $AB$ 的特征值全大于 $0$. 又 $AB$ 对称，所以 $AB$ 正定.
+		\end{proof}
+		\item 设 $A=A'\in M_n(\R)$. 则 $A$ 正定当且仅当存在唯一的正定阵 $B$ 使得
+		\[
+		A=B^2.
+		\]
+		\begin{proof}
+			$\Leftarrow$：若 $B$ 正定，则 $B^2$ 的特征值全为正数，故 $A=B^2$ 正定.
+			
+			$\Rightarrow$：设 $A$ 正定. 由于 $A$ 是实对称阵，存在正交阵 $T$，使得
+			\[
+			A=T^{-1}\operatorname{diag}(\lambda_1,\cdots,\lambda_n)T,
+			\qquad \lambda_i>0.
+			\]
+			令
+			\[
+			B=T^{-1}\operatorname{diag}(\sqrt{\lambda_1},\cdots,\sqrt{\lambda_n})T.
+			\]
+			则 $B$ 正定，且 $A=B^2$.
+			
+			下面证明唯一性. 设 $B^2=C^2$，其中 $B,C$ 都正定. 任取 $B$ 的一个特征值 $\lambda$ 和属于 $\lambda$ 的特征向量 $\xi$，则
+			\[
+			C^2\xi=B^2\xi=\lambda^2\xi.
+			\]
+			由于 $B$ 正定，$\lambda>0$；由于 $C$ 正定，$C+\lambda E_n$ 可逆. 因而
+			\[
+			(C+\lambda E_n)(C-\lambda E_n)\xi=0
+			\]
+			推出
+			\[
+			C\xi=\lambda\xi.
+			\]
+			故 $B$ 的每个特征向量也是 $C$ 的属于同一特征值的特征向量. 又 $B$ 可对角化，所以 $B=C$.
+		\end{proof}
+		
+	\end{enumerate}
+\end{example}
+
+\begin{lemma}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\R).
+	\]
+	对任意
+	\[
+	1\leq i_1<\cdots<i_k\leq n,
+	\]
+	令
+	\[
+	g(x_{i_1},\cdots,x_{i_k})
+	=f(0,\cdots,0,x_{i_1},0,\cdots,0,x_{i_2},0,\cdots,0,x_{i_k},0,\cdots,0),
+	\]
+	也就是在 $f(x_1,\cdots,x_n)$ 中令 $x_j=0\ (j\ne i_t)$. 如果 $f$ 正定，则 $g$ 正定.
+	并且 $k$ 元实二次型 $g$ 的矩阵为主子阵
+	\[
+	A(i_1,\cdots,i_k;i_1,\cdots,i_k).
+	\]
+\end{lemma}
+
+\begin{proof}
+	由正定二次型的定义直接可得 $g$ 正定. 由二次型矩阵的写法可知，$g$ 的矩阵正是从 $A$ 中取第 $i_1,\cdots,i_k$ 行和第 $i_1,\cdots,i_k$ 列所得的主子阵.
+\end{proof}
+\begin{corollary}
+	设 $A$ 是 $n$ 阶正定阵. 则 $A$ 的任意 $k$ 阶主子阵
+	\[
+	A(i_1,\cdots,i_k;i_1,\cdots,i_k)
+	\]
+	是正定阵. 从而，正定阵的任意 $k$ 阶主子式都大于 $0$.
+\end{corollary}
+
+
+
+
+	设 $A=(a_{ij})$ 是 $n$ 阶正定阵. 取一节主子式，即对角元得 $A$ 的对角元都大于 $0$.
+
+
+\begin{definition}
+	设 $A\in M_n(\F)$. 称
+	\[
+	\det A(1,\cdots,k;1,\cdots,k)
+	\]
+	为 $A$ 的第 $k$ 个顺序主子式，记为
+	\[
+	\Delta_k.
+	\]
+	特别地，
+	\[
+	\Delta_1=a_{11},\qquad \Delta_n=|A|.
+	\]
+\end{definition}
+
+	设 $A$ 是 $n$ 阶正定阵. 则 $A$ 的每个顺序主子式都大于 $0$，即
+	\[
+	\Delta_k>0,\qquad 1\leq k\leq n.
+	\]
+\begin{theorem}(Sylvester判别法)
+	设 $A=A'\in M_n(\R)$. 则
+	\[
+	A\text{ 是正定阵}\Longleftrightarrow A\text{ 的每个顺序主子式都大于 }0.
+	\]
+\end{theorem}
+
+\begin{proof}
+	$\Rightarrow$：由上面的例子即得.
+	
+	$\Leftarrow$：对 $n$ 作归纳. 当 $n=1$ 时，结论显然成立. 设结论对任意 $n-1$ 阶实对称阵成立. 对于 $A=A'\in M_n(\R)$，记
+	\[
+	A=\begin{pmatrix}
+		A_1&\delta\\
+		\delta'&a_{nn}
+	\end{pmatrix},
+	\qquad A_1=A_1'\in M_{n-1}(\R).
+	\]
+	则 $A_1$ 的顺序主子式都是 $A$ 的顺序主子式，从而都大于 $0$. 由归纳假设，$A_1$ 正定.
+	因此存在可逆的 $C_1\in M_{n-1}(\R)$ 使得
+	\[
+	C_1'A_1C_1=D_1=\operatorname{diag}(a_1,\cdots,a_{n-1}),
+	\qquad a_i>0.
+	\]
+	取
+	\[
+	C=\begin{pmatrix}
+		C_1&\alpha\\
+		0&1
+	\end{pmatrix}\in M_n(\R),
+	\qquad \alpha\in\R^{n-1}.
+	\]
+	则
+	\[
+	C'AC=
+	\begin{pmatrix}
+		C_1'A_1C_1&C_1'(A_1\alpha+\delta)\\
+		(A_1\alpha+\delta)'C_1&(A_1\alpha+\delta)'\alpha+\alpha'\delta+a_{nn}
+	\end{pmatrix}.
+	\]
+	由于 $A_1$ 正定，故 $A_1$ 可逆. 取
+	\[
+	\alpha=-A_1^{-1}\delta,
+	\]
+	则 $A_1\alpha+\delta=0$，于是
+	\[
+	C'AC=
+	\begin{pmatrix}
+		D_1&0\\
+		0&a_n
+	\end{pmatrix},
+	\qquad
+	a_n=a_{nn}-\delta'A_1^{-1}\delta.
+	\]
+	两边取行列式得
+	\[
+	a_1\cdots a_{n-1}a_n=|C|^2|A|>0.
+	\]
+	又 $a_1,\cdots,a_{n-1}>0$，所以 $a_n>0$. 因此 $A$ 在 $\R$ 上合同于一个对角元全为正数的对角阵，故 $A$ 正定.
+\end{proof}
+
+
+
+
+\begin{definition}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A=A'\in M_n(\R).
+	\]
+	如果对任意 $X\in\R^n$ 都有
+	\[
+	X'AX\leq0,
+	\]
+	且
+	\[
+	X'AX=0\Longleftrightarrow X=0,
+	\]
+	则称 $f(x_1,\cdots,x_n)$ 是负定的.
+	若二次型 $X'AX$ 是负定的，则称 $A$ 是负定矩阵.
+	
+	
+\end{definition}
+
+\begin{proposition}
+	设 $A=A'\in M_n(\R)$. 则以下命题等价：
+	\[
+	\begin{aligned}
+		A\text{ 负定}
+		&\Longleftrightarrow -A\text{ 正定}\\
+		&\Longleftrightarrow A\text{ 的负惯性指数是 }n\\
+		&\Longleftrightarrow A\text{ 的特征值全为负数}\\
+		&\Longleftrightarrow A\text{ 合同于 }-E_n\\
+		&\Longleftrightarrow \text{存在可逆的 }C\in M_n(\R)\text{ 使得 }A=-C'C.
+	\end{aligned}
+	\]
+	特别地，若 $\Delta_k$ 是 $A$ 的第 $k$ 个顺序主子式，则
+	\[
+	A\text{ 负定}\Longleftrightarrow (-1)^k\Delta_k>0,
+	\qquad 1\leq k\leq n.
+	\]
+\end{proposition}
+
+
+
+\begin{definition}
+	设 $A=A'\in M_n(\R)$. 如果 $A$ 既不是正定的，也不是负定的，则称 $A$ 是不定的，其二次型 $X'AX$ 为一个不定二次型.
+\end{definition}
+
+\begin{definition}
+	设
+	\[
+	f(x_1,\cdots,x_n)=X'AX,
+	\qquad A'=A\in M_n(\R).
+	\]
+	如果对任意 $X\in\R^n$ 都有
+	\[
+	X'AX\geq0,
+	\]
+	则称 $f(x_1,\cdots,x_n)$ 是半正定的. 若二次型 $X'AX$ 是半正定的，则称 $A$ 是半正定的.
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}
+		\item 实二次型$f(x_1,\cdots,x_n)=d_1x_1^2+\cdots+d_nx_n^2$是半正定的当且仅当
+		\[
+		d_i\geq0,
+		\qquad 1\leq i\leq n.
+		\]
+		\item 设 $A=A',B=B'\in M_n(\R)$. 若 $A$ 与 $B$ 在 $\R$ 上合同，则
+		\[
+		A\text{ 半正定}\Longleftrightarrow B\text{ 半正定}.
+		\]
+		\begin{proof}
+			设 $A=C'BC$，其中 $C$ 可逆. 对任意 $X\in\R^n$，有
+			\[
+			X'AX=(CX)'B(CX).
+			\]
+			由于 $C$ 可逆，$CX$ 取遍 $\R^n$，故半正定性在合同关系下不变.
+		\end{proof}
+		\item 设 $A=A'\in M_n(\R)$. 则
+		\[
+		A\text{ 半正定}\Longleftrightarrow A\text{ 的负惯性指数为 }0
+		\Longleftrightarrow A\text{ 的特征值都是非负的}.\]
+		\item 设 $A\in M_{m\times n}(\R)$. 则
+		\[
+		f(x_1,\cdots,x_n)=(AX)'(AX)=X'(A'A)X
+		\]
+		是半正定的. 因而 $A'A$ 是半正定阵.
+		\item 设 $A=A'\in M_n(\R)$. 则
+		\[
+		A\text{ 半正定}\Longleftrightarrow \text{存在 }C\in M_n(\R)\text{ 使得 }A=C'C.
+		\]
+		这里的 $C$ 未必可逆，并且必有
+		\[
+		r(A)=r(C'C)=r(C).
+		\]
+		\begin{proof}
+			$\Leftarrow$：若 $A=C'C$，则
+			\[
+			X'AX=X'C'CX=(CX)'(CX)\geq0,
+			\]
+			故 $A$ 半正定.
+			
+			$\Rightarrow$：若 $A$ 半正定，设 $r(A)=r$. 由半正定的规范型，存在可逆的 $P\in M_n(\R)$，使得
+			\[
+			A=P'
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}P.
+			\]
+			又
+			\[
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}
+			=
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}.
+			\]
+			令
+			\[
+			C=\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}P,
+			\]
+			则 $A=C'C$.
+		\end{proof}
+		\item 设 $A=A'\in M_n(\R)$ 半正定. 则
+		\[
+		V=\{X\in\R^n\mid X'AX=0\}
+		\]
+		是 $\R^n$ 的子空间，且
+		\[
+		\dim V=n-r(A).
+		\]
+		\begin{proof}
+			由于 $A$ 半正定，所以存在 $C\in M_n(\R)$ 使得 $A=C'C$. 于是
+			\[
+			X\in V\Longleftrightarrow (CX)'(CX)=0\Longleftrightarrow CX=0.
+			\]
+			故 $V$ 是齐次线性方程组 $CX=0$ 的解空间. 因而
+			\[
+			\dim V=n-r(C)=n-r(A).
+			\]
+		\end{proof}
+		\item 设 $A=A'\in M_n(\R)$ 半正定. 若 $A(i,i)=0$，则 $A$ 的第 $i$ 行和第 $i$ 列的元都为 $0$.
+		\begin{proof}
+			由半正定性，存在 $C\in M_n(\R)$ 使得 $A=C'C$. 设
+			\[
+			C=(\beta_1\ \cdots\ \beta_n),
+			\]
+			其中 $\beta_i$ 是 $C$ 的第 $i$ 列. 则
+			\[
+			A(i,j)=\beta_i'\beta_j,
+			\qquad 1\leq i,j\leq n.
+			\]
+			若 $A(i,i)=0$，则 $\beta_i'\beta_i=0$，故 $\beta_i=0$. 因而 $A(i,j)=0$，$1\leq j\leq n$.
+		\end{proof}
+		\item 设实对称阵
+		\[
+		M=\begin{pmatrix}
+			A&B\\
+			B'&C
+		\end{pmatrix}
+		\]
+		是半正定的. 则 $M$ 在实数域上合同于
+		\[
+		\begin{pmatrix}
+			A&0\\
+			0&D
+		\end{pmatrix}
+		\]
+		的形式.
+		\begin{proof}
+			若 $A(1,1)\ne0$，则利用合同变换可以把 $B$ 的第 $1$ 行和第 $1$ 列变为 $0$；若 $A(1,1)=0$，则由上一个例子可知对应的行列本来就是 $0$. 类似地，依次考虑 $A(2,2),\cdots,A(r,r)$，即可把非对角块 $B,B'$ 化为 $0$，得到所需的分块对角形式.
+		\end{proof}
+		\item 设 $A,B$ 是 $n$ 阶半正定阵. 则在 $\R$ 上 $A,B$ 可以同时合同于对角阵. 即存在可逆的 $P\in M_n(\R)$，使得
+		\[
+		P'AP\quad\text{和}\quad P'BP
+		\]
+		都是对角阵.
+		\begin{proof}
+			由 $A$ 半正定可知，存在可逆的 $P_1\in M_n(\R)$，使得
+			\[
+			P_1'AP_1=\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}:=A_1.
+			\]
+			记
+			\[
+			B_1=P_1'BP_1.
+			\]
+			则 $B_1$ 是半正定的. 把 $B_1$ 按照 $A_1$ 的分块方式进行分块：
+			\[
+			B_1=\begin{pmatrix}
+				B_{11}&B_{12}\\
+				B_{12}'&B_{22}
+			\end{pmatrix}.
+			\]
+			利用上一个例子，且只使用保持 $A_1$ 不变的合同变换，可取可逆的 $P_2\in M_n(\R)$，使得
+			\[
+			P_2'B_1P_2=\begin{pmatrix}
+				\widetilde B_{11}&0\\
+				0&B_{22}
+			\end{pmatrix},
+			\qquad
+			P_2'A_1P_2=A_1.
+			\]
+			再取正交阵 $Q_1,Q_2$，使得
+			\[
+			Q_1'\widetilde B_{11}Q_1=D_1,
+			\qquad
+			Q_2'B_{22}Q_2=D_2
+			\]
+			都是对角阵. 设
+			\[
+			P_3=\begin{pmatrix}
+				Q_1&0\\
+				0&Q_2
+			\end{pmatrix}.
+			\]
+			则
+			\[
+			P_3'
+			\begin{pmatrix}
+				\widetilde B_{11}&0\\
+				0&B_{22}
+			\end{pmatrix}
+			P_3=
+			\begin{pmatrix}
+				D_1&0\\
+				0&D_2
+			\end{pmatrix}
+			\]
+			是对角阵，且
+			\[
+			P_3'
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}
+			P_3=
+			\begin{pmatrix}
+				E_r&0\\
+				0&0
+			\end{pmatrix}.
+			\]
+			取
+			\[
+			P=P_1P_2P_3
+			\]
+			即可.
+		\end{proof}
+		\item 设
+		\[
+		f(x_1,x_2,\cdots,x_n)=\ell_1^2+\cdots+\ell_p^2-\ell_{p+1}^2-\cdots-\ell_{p+q}^2,
+		\]
+		其中 $\ell_i\ (i=1,2,\cdots,p+q)$ 是 $x_1,\cdots,x_n$ 的一次齐次式. 证明：$f$ 的正惯性指数 $\leq p$，负惯性指数 $\leq q$.
+		\begin{proof}
+			设
+			\[
+			\ell_i=\sum_{j=1}^n a_{ij}x_j,\qquad 1\leq i\leq p,
+			\]
+			并记 $A=(a_{ij})\in M_{p\times n}(\R)$. 则
+			\[
+			\ell_1^2+\cdots+\ell_p^2=(AX)'(AX)=X'(A'A)X.
+			\]
+			再设
+			\[
+			\ell_{p+t}=\sum_{j=1}^n b_{tj}x_j,
+			\qquad 1\leq t\leq q,
+			\]
+			并记 $B=(b_{tj})\in M_{q\times n}(\R)$. 则
+			\[
+			\ell_{p+1}^2+\cdots+\ell_{p+q}^2=(BX)'(BX)=X'(B'B)X.
+			\]
+			因此 $f(x_1,\cdots,x_n)$ 的矩阵为
+			\[
+			A'A-B'B.
+			\]
+			其中 $A'A$ 半正定，且 $r(A'A)=r_1\leq p$；$B'B$ 半正定，且 $r(B'B)=r_2\leq q$.
+			由半正定阵的同时合同对角化，存在可逆的 $C\in M_n(\R)$，使得
+			\[
+			C'A'AC=D_1=\operatorname{diag}(a_1,\cdots,a_{r_1},0,\cdots,0),
+			\]
+			\[
+			C'B'BC=D_2=\operatorname{diag}(b_1,\cdots,b_{r_2},0,\cdots,0).
+			\]
+			于是 $f$ 的矩阵合同于
+			\[
+			D_1-D_2.
+			\]
+			对角阵 $D_1-D_2$ 的对角元中正数的个数不超过 $p$，负数的个数不超过 $q$. 因而 $f$ 的正惯性指数 $\leq p$，负惯性指数 $\leq q$.
+		\end{proof}
+		\item 设
+		\[
+		f(x_1,\cdots,x_n)=X'AX,
+		\qquad
+		g(x_1,\cdots,x_n)=X'BX
+		\]
+		是实二次型，其中 $A,B$ 是实对称矩阵. 若存在实方阵 $C,D$ 满足
+		\[
+		A=D'BD,
+		\qquad
+		B=C'AC,
+		\]
+		则 $f(x_1,\cdots,x_n)$ 和 $g(x_1,\cdots,x_n)$ 具有相同的规范型.
+		\begin{proof}
+			只需证明 $A,B$ 有相同的正惯性指数和负惯性指数. 设 $A$ 的正、负惯性指数分别为 $p_A,q_A$，设 $B$ 的正、负惯性指数分别为 $p_B,q_B$.
+			取可逆的 $P\in M_n(\R)$，使得
+			\[
+			A=P'
+			\begin{pmatrix}
+				E_{p_A}&0&0\\
+				0&-E_{q_A}&0\\
+				0&0&0
+			\end{pmatrix}P.
+			\]
+			由 $B=C'AC$ 得
+			\[
+			B=C'P'
+			\begin{pmatrix}
+				E_{p_A}&0&0\\
+				0&-E_{q_A}&0\\
+				0&0&0
+			\end{pmatrix}PC.
+			\]
+			从而
+			\[
+			X'BX=y_1^2+\cdots+y_{p_A}^2-y_{p_A+1}^2-\cdots-y_{p_A+q_A}^2,
+			\qquad Y=PCX.
+			\]
+			由上一个例子可得
+			\[
+			p_B\leq p_A,
+			\qquad
+			q_B\leq q_A.
+			\]
+			类似地，由 $A=D'BD$ 可得
+			\[
+			p_A\leq p_B,
+			\qquad
+			q_A\leq q_B.
+			\]
+			因此
+			\[
+			p_A=p_B,
+			\qquad
+			q_A=q_B.
+			\]
+			故 $f$ 与 $g$ 具有相同的规范型.
+		\end{proof}
+	\end{enumerate}
+	
+	
+\end{example}
+\section{有价值的习题}
+
+\begin{problem}\label{习题7}
+	
+	设 $\varepsilon_1,\cdots,\varepsilon_n$ 是 $V$ 的一组基，且
+	\[
+	\eta=\sum_{i=1}^n c_i\varepsilon_i\in V.
+	\]
+	定义
+	\[
+	\eta^*\left(\sum_{i=1}^n a_i\varepsilon_i\right)=\sum_{i=1}^n a_ic_i.
+	\]
+	证明映射
+	\[
+	\varphi:V\longrightarrow V^*,\qquad \eta\longmapsto \eta^*
+	\]
+	诱导出 $V$ 与 $V^*$ 之间的同构.
+\end{problem}
+
+\begin{solution}
+	先验证对任意 $\eta\in V$ 都有 $\eta^*\in V^*$. 设
+	\[
+	\alpha=\sum_{i=1}^n x_i\varepsilon_i,
+	\qquad
+	\beta=\sum_{i=1}^n y_i\varepsilon_i,
+	\qquad a,b\in\F.
+	\]
+	则
+	\[
+	\begin{aligned}
+		\eta^*(a\alpha+b\beta)
+		&=\eta^*\left(\sum_{i=1}^n(ax_i+by_i)\varepsilon_i\right)  \\
+		&=\sum_{i=1}^n c_i(ax_i+by_i)  \\
+		&=a\sum_{i=1}^n c_ix_i+b\sum_{i=1}^n c_iy_i  \\
+		&=a\eta^*(\alpha)+b\eta^*(\beta).
+	\end{aligned}
+	\]
+	故 $\eta^*$ 是 $V$ 上的线性函数，即 $\eta^*\in V^*$.
+	
+	下面证明 $\varphi$ 线性. 设
+	\[
+	\eta_1=\sum_{i=1}^n c_i\varepsilon_i,
+	\qquad
+	\eta_2=\sum_{i=1}^n d_i\varepsilon_i,
+	\qquad k,l\in\F.
+	\]
+	对任意 $\alpha=\sum_{i=1}^n x_i\varepsilon_i\in V$，有
+	\[
+	\begin{aligned}
+		\varphi(k\eta_1+l\eta_2)(\alpha)
+		&=\sum_{i=1}^n(kc_i+ld_i)x_i \\
+		&=k\sum_{i=1}^n c_ix_i+l\sum_{i=1}^n d_ix_i \\
+		&=(k\varphi(\eta_1)+l\varphi(\eta_2))(\alpha).
+	\end{aligned}
+	\]
+	所以 $\varphi:V\to V^*$ 是线性映射.
+	
+	最后证明 $\varphi$ 是同构. 若 $\eta=\sum_{i=1}^n c_i\varepsilon_i\in\ker\varphi$，则
+	\[
+	\eta^*(\alpha)=0,\qquad \forall \alpha\in V.
+	\]
+	特别地，取 $\alpha=\varepsilon_j$，得 $c_j=0$，$1\le j\le n$. 因此 $\eta=0$，故 $\ker\varphi=0$.
+	又 $\dim V=\dim V^*=n$，所以 $\varphi$ 是同构映射.
+	
+	也可直接说明满射：任取 $f\in V^*$，设
+	\[
+	f(\varepsilon_i)=a_i,
+	\qquad 1\le i\le n.
+	\]
+	令 $\eta=\sum_{i=1}^n a_i\varepsilon_i$，则对任意 $\alpha=\sum_{i=1}^n x_i\varepsilon_i$，有
+	\[
+	\eta^*(\alpha)=\sum_{i=1}^n a_ix_i
+	=\sum_{i=1}^n x_if(\varepsilon_i)=f(\alpha).
+	\]
+	故 $\varphi(\eta)=f$，从而 $\varphi$ 为满射.
+\end{solution}
+
+\begin{problem}
+	\textbf{线性型与对偶基.}
+	\begin{enumerate}
+		\item 证明：$\R^n$ 上的任意线性型均可写成
+		\[
+		f(x_1,\cdots,x_n)=a_1x_1+\cdots+a_nx_n,
+		\]
+		其中 $a_1,\cdots,a_n\in\R$.
+		\item 求 $\R^3$ 关于
+		\[
+		\alpha_1=(2,2,3),
+		\qquad
+		\alpha_2=(1,-1,0),
+		\qquad
+		\alpha_3=(-1,2,1)
+		\]
+		的对偶基.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\begin{enumerate}
+		\item 设 $e_i$ 是 $\R^n$ 的第 $i$ 个基本向量，$1\le i\le n$. 则 $e_1,\cdots,e_n$ 是 $\R^n$ 的一组基. 对任意 $f\in(\R^n)^*$，设
+		\[
+		f(e_i)=a_i.
+		\]
+		则对任意 $(x_1,\cdots,x_n)'\in\R^n$，有
+		\[
+		\begin{aligned}
+			f((x_1,\cdots,x_n)')
+			&=f\left(\sum_{i=1}^n x_ie_i\right) \\
+			&=\sum_{i=1}^n x_if(e_i)
+			=\sum_{i=1}^n a_ix_i.
+		\end{aligned}
+		\]
+		
+		也可用对偶基说明. 若 $e_1^*,\cdots,e_n^*$ 是 $e_1,\cdots,e_n$ 的对偶基，则任意 $f\in(\R^n)^*$ 可唯一写成
+		\[
+		f=\sum_{i=1}^n a_ie_i^*,
+		\]
+		从而
+		\[
+		f\left(\sum_{i=1}^n x_ie_i\right)=\sum_{i=1}^n a_ix_i.
+		\]
+		
+		\item 设 $e_1,e_2,e_3$ 是 $\R^3$ 的标准基. 由题设有
+		\[
+		(\alpha_1\ \alpha_2\ \alpha_3)=(e_1\ e_2\ e_3)A,
+		\qquad
+		A=\begin{pmatrix}
+			2&1&-1\\
+			2&-1&2\\
+			3&0&1
+		\end{pmatrix}.
+		\]
+		若 $\alpha_1^*,\alpha_2^*,\alpha_3^*$ 是 $\alpha_1,\alpha_2,\alpha_3$ 的对偶基，则其系数矩阵等于
+		\[
+		(A^{-1})'
+		=\begin{pmatrix}
+			1&1&-1\\
+			-4&-5&6\\
+			-3&-3&4
+		\end{pmatrix}.
+		\]
+		于是
+		\[
+		\begin{aligned}
+			\alpha_1^*&=e_1^*+e_2^*-e_3^*,
+			&\alpha_1^*((x,y,z)')&=x+y-z,\\
+			\alpha_2^*&=-4e_1^*-5e_2^*+6e_3^*,
+			&\alpha_2^*((x,y,z)')&=-4x-5y+6z,\\
+			\alpha_3^*&=-3e_1^*-3e_2^*+4e_3^*,
+			&\alpha_3^*((x,y,z)')&=-3x-3y+4z.
+		\end{aligned}
+		\]
+	\end{enumerate}
+\end{solution}
+
+\begin{problem}
+	设 $x,y\in V$，且对任意 $f\in V^*$ 都有
+	\[
+	f(x)=f(y).
+	\]
+	证明 $x=y$.
+\end{problem}
+
+\begin{solution}
+	令 $\alpha=x-y$. 若 $\alpha\ne0$，由前面关于对偶空间的结论，存在 $f\in V^*$ 使得
+	\[
+	f(\alpha)\ne0.
+	\]
+	于是
+	\[
+	f(x)-f(y)=f(x-y)=f(\alpha)\ne0,
+	\]
+	这与题设矛盾. 因此 $\alpha=0$，即 $x=y$.
+\end{solution}
+
+\begin{problem}
+	\textbf{一个秩为 $1$ 的双线性型判别.}
+	设 $V$ 是数域 $\F$ 上的有限维线性空间，$f$ 是 $V$ 上的一个双线性型. 证明：存在 $f_1,f_2\in V^*$ 使得
+	\[
+	f(\alpha,\beta)=f_1(\alpha)f_2(\beta),
+	\qquad \forall \alpha,\beta\in V,
+	\]
+	的充分必要条件是
+	\[
+	\rank(f)\le 1.
+	\]
+\end{problem}
+
+\begin{solution}
+	取 $V$ 的一组基 $\alpha_1,\cdots,\alpha_n$. 设 $f$ 在该基下的度量矩阵为
+	\[
+	A=(f(\alpha_i,\alpha_j)).
+	\]
+	
+	充分性：若 $\rank(f)\le1$，即 $\rank(A)\le1$，则 $A$ 可写成
+	\[
+	A=\begin{pmatrix}
+		a_1\\ \vdots\\ a_n
+	\end{pmatrix}
+	(b_1\ \cdots\ b_n),
+	\qquad a_i,b_j\in\F.
+	\]
+	定义
+	\[
+	f_1=\sum_{i=1}^n a_i\alpha_i^*\in V^*,
+	\qquad
+	f_2=\sum_{j=1}^n b_j\alpha_j^*\in V^*.
+	\]
+	对任意
+	\[
+	\alpha=(\alpha_1\ \cdots\ \alpha_n)X,
+	\qquad
+	\beta=(\alpha_1\ \cdots\ \alpha_n)Y,
+	\]
+	其中 $X=(x_1\ \cdots\ x_n)'$，$Y=(y_1\ \cdots\ y_n)'$，有
+	\[
+	\begin{aligned}
+		f(\alpha,\beta)
+		&=X'AY \\
+		&=(x_1\ \cdots\ x_n)
+		\begin{pmatrix}
+			a_1\\ \vdots\\ a_n
+		\end{pmatrix}
+		(b_1\ \cdots\ b_n)Y \\
+		&=\left(\sum_{i=1}^n a_ix_i\right)
+		\left(\sum_{j=1}^n b_jy_j\right)
+		=f_1(\alpha)f_2(\beta).
+	\end{aligned}
+	\]
+	
+	必要性：若 $f(\alpha,\beta)=f_1(\alpha)f_2(\beta)$，设
+	\[
+	f_1=\sum_{i=1}^n a_i\alpha_i^*,
+	\qquad
+	f_2=\sum_{j=1}^n b_j\alpha_j^*,
+	\]
+	则 $f$ 的度量矩阵为
+	\[
+	A=\begin{pmatrix}
+		a_1\\ \vdots\\ a_n
+	\end{pmatrix}
+	(b_1\ \cdots\ b_n),
+	\]
+	故 $\rank(A)\le1$，即 $\rank(f)\le1$.
+\end{solution}
+
+\begin{problem}
+
+	设 $A$ 是双线性型 $f$ 在 $V$ 的一组基 $\eta_1,\cdots,\eta_n$ 下的度量矩阵. 证明：
+	\[
+	f(\alpha,\beta)=X'AY,
+	\]
+	其中 $X,Y$ 分别是 $\alpha,\beta$ 关于 $\eta_1,\cdots,\eta_n$ 的坐标.
+\end{problem}
+
+\begin{solution}
+	由题设有
+	\[
+	A(i,j)=f(\eta_i,\eta_j),
+	\qquad 1\le i,j\le n.
+	\]
+	对任意
+	\[
+	\alpha=(\eta_1\ \cdots\ \eta_n)X,
+	\qquad
+	\beta=(\eta_1\ \cdots\ \eta_n)Y,
+	\]
+	其中
+	\[
+	X=(x_1\ \cdots\ x_n)',
+	\qquad
+	Y=(y_1\ \cdots\ y_n)'
+	\]
+	都有
+	\[
+	\begin{aligned}
+		f(\alpha,\beta)
+		&=f\left(\sum_{i=1}^n x_i\eta_i,\sum_{j=1}^n y_j\eta_j\right) \\
+		&=\sum_{i,j=1}^n x_iy_jf(\eta_i,\eta_j) \\
+		&=\sum_{i,j=1}^n x_iA(i,j)y_j
+		=X'AY.
+	\end{aligned}
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $f$ 是线性空间 $V$ 上的双线性型，$\varepsilon_1,\cdots,\varepsilon_m$ 是 $V$ 中的一组向量. 定义矩阵
+	\[
+	\Delta=(b_{ij})_{m\times m},
+	\qquad b_{ij}=f(\varepsilon_i,\varepsilon_j).
+	\]
+	设 $\eta_1,\cdots,\eta_n$ 是 $V$ 的一组基，且
+	\[
+	(\varepsilon_1\ \cdots\ \varepsilon_m)=(\eta_1\ \cdots\ \eta_n)C,
+	\]
+	其中 $C$ 是一个 $n\times m$ 矩阵. 若 $A=(f(\eta_i,\eta_j))$，证明：
+	\[
+	\Delta=C'AC.
+	\]
+	并说明：若 $\Delta$ 可逆，则 $\varepsilon_1,\cdots,\varepsilon_m$ 线性无关；反之不一定成立.
+\end{problem}
+
+\begin{solution}
+	由题设可得
+	\[
+	\varepsilon_i=\sum_{k=1}^n C(k,i)\eta_k,
+	\qquad
+	\varepsilon_j=\sum_{\ell=1}^n C(\ell,j)\eta_\ell.
+	\]
+	于是 $\Delta$ 的 $(i,j)$ 元为
+	\[
+	\begin{aligned}
+		\Delta(i,j)
+		&=f(\varepsilon_i,\varepsilon_j) \\
+		&=f\left(\sum_{k=1}^n C(k,i)\eta_k,
+		\sum_{\ell=1}^n C(\ell,j)\eta_\ell\right) \\
+		&=\sum_{k,\ell=1}^n C(k,i)A(k,\ell)C(\ell,j) \\
+		&=\sum_{k,\ell=1}^n C'(i,k)A(k,\ell)C(\ell,j) \\
+		&=(C'AC)(i,j).
+	\end{aligned}
+	\]
+	故 $\Delta=C'AC$.
+	
+	若 $\Delta$ 可逆，则 $\rank(\Delta)=m$. 由 $\Delta=C'AC$ 可知
+	\[
+	\rank(C)\ge \rank(\Delta)=m.
+	\]
+	又 $C$ 是 $n\times m$ 矩阵，所以 $\rank(C)\le m$，从而 $\rank(C)=m$.
+	由于 $\eta_1,\cdots,\eta_n$ 线性无关，且
+	\[
+	(\varepsilon_1\ \cdots\ \varepsilon_m)=(\eta_1\ \cdots\ \eta_n)C,
+	\]
+	故向量组 $\varepsilon_1,\cdots,\varepsilon_m$ 的秩等于 $\rank(C)=m$，从而线性无关.
+	
+	反之不成立. 例如当 $f=0$ 时，$\Delta=0$ 是零矩阵，即使 $\varepsilon_1,\cdots,\varepsilon_m$ 线性无关，$\Delta$ 也不可逆.
+\end{solution}
+
+\begin{problem}\label{习题18}
+	设 $U,V$ 是数域 $\F$ 上的两个线性空间. 设 $\varepsilon_1,\cdots,\varepsilon_n$ 是 $U$ 的一组基，$\eta_1,\cdots,\eta_m$ 是 $V$ 的一组基. 对 $u\in U$，$v\in V$，定义
+	\[
+	(u\otimes v)(\xi^*)=\xi^*(u)v,
+	\qquad \xi^*\in U^*.
+	\]
+	这里习题 7 已经定义了 $U^*$ 中的元素. 本题中定义
+	\[
+	U\otimes V=\Hom(U^*,V).
+	\]
+	证明下列结论：
+	\begin{enumerate}
+		\item $u\otimes v\in U\otimes V$；
+		\item 对 $u_1\in U$，$v_1\in V$，$k\in\F$，有
+		\[
+		(u+u_1)\otimes v=u\otimes v+u_1\otimes v,
+		\]
+		\[
+		u\otimes(v+v_1)=u\otimes v+u\otimes v_1,
+		\]
+		\[
+		(ku)\otimes v=u\otimes(kv)=k(u\otimes v);
+		\]
+		\item 若 $f\in U\otimes V$ 且
+		\[
+		f(\varepsilon_i^*)=\sum_{k=1}^m a_{ki}\eta_k,
+		\qquad i=1,2,\cdots,n,
+		\]
+		其中 $a_{ki}\in\F$，则
+		\[
+		f=\sum_{i=1}^n\sum_{k=1}^m a_{ki}\,\varepsilon_i\otimes\eta_k;
+		\]
+		\item 
+		\[
+		\dim(U\otimes V)=\dim U\cdot\dim V,
+		\]
+		且 $\varepsilon_i\otimes\eta_j\ (1\le i\le n,1\le j\le m)$ 构成 $U\otimes V$ 的一组基；
+		\item 若 $u\otimes v=0$，则 $u=0$ 或 $v=0$；
+		\item $U\otimes V$ 与 $V\otimes U$ 之间存在一个自然同构；
+		\item 判断下式是否总成立：
+		\[
+		U\otimes V=\{u\otimes v\mid u\in U,
+		v\in V\}.
+		\]
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\begin{enumerate}
+		\item 对任意 $\xi_1^*,\xi_2^*\in U^*$ 和 $k,l\in\F$，有
+		\[
+		\begin{aligned}
+			(u\otimes v)(k\xi_1^*+l\xi_2^*)
+			&=(k\xi_1^*+l\xi_2^*)(u)v \\
+			&=k\xi_1^*(u)v+l\xi_2^*(u)v \\
+			&=k(u\otimes v)(\xi_1^*)+l(u\otimes v)(\xi_2^*).
+		\end{aligned}
+		\]
+		因此 $u\otimes v$ 是从 $U^*$ 到 $V$ 的线性映射，即 $u\otimes v\in U\otimes V$.
+		
+		\item 只需验证两边在任意 $\xi^*\in U^*$ 上的作用相同. 例如
+		\[
+		\begin{aligned}
+			((u+u_1)\otimes v)(\xi^*)
+			&=\xi^*(u+u_1)v \\
+			&=\xi^*(u)v+\xi^*(u_1)v \\
+			&=(u\otimes v)(\xi^*)+(u_1\otimes v)(\xi^*).
+		\end{aligned}
+		\]
+		所以
+		\[
+		(u+u_1)\otimes v=u\otimes v+u_1\otimes v.
+		\]
+		其余两个等式同理.
+		
+		\item 要证
+		\[
+		f=\sum_{i=1}^n\sum_{k=1}^m a_{ki}\varepsilon_i\otimes\eta_k,
+		\tag{$*$}
+		\]
+		只需验证等式两边在任意 $\xi^*\in U^*$ 上的作用相同. 设
+		\[
+		\xi^*=\sum_{i=1}^n x_i\varepsilon_i^*.
+		\]
+		则
+		\[
+		\begin{aligned}
+			f(\xi^*)
+			&=\sum_{i=1}^n x_if(\varepsilon_i^*)
+			=\sum_{i=1}^n x_i\sum_{k=1}^m a_{ki}\eta_k \\
+			&=\sum_{k=1}^m\left(\sum_{i=1}^n a_{ki}x_i\right)\eta_k.
+		\end{aligned}
+		\tag{1}
+		\]
+		另一方面，
+		\[
+		\begin{aligned}
+			\left(\sum_{i=1}^n\sum_{k=1}^m a_{ki}\varepsilon_i\otimes\eta_k\right)(\xi^*)
+			&=\sum_{i=1}^n\sum_{k=1}^m a_{ki}(\varepsilon_i\otimes\eta_k)(\xi^*) \\
+			&=\sum_{i=1}^n\sum_{k=1}^m a_{ki}\xi^*(\varepsilon_i)\eta_k \\
+			&=\sum_{k=1}^m\left(\sum_{i=1}^n a_{ki}x_i\right)\eta_k.
+		\end{aligned}
+		\tag{2}
+		\]
+		比较 (1)(2)，即得 $(*)$.
+		
+		\item 由 (3) 可知 $\varepsilon_i\otimes\eta_j$ 张成 $U\otimes V$. 设
+		\[
+		\sum_{i=1}^n\sum_{j=1}^m c_{ij}\varepsilon_i\otimes\eta_j=0.
+		\]
+		对任意 $1\le k\le n$，令上式作用于 $\varepsilon_k^*$，得
+		\[
+		\sum_{j=1}^m c_{kj}\eta_j=0.
+		\]
+		因为 $\eta_1,\cdots,\eta_m$ 线性无关，所以 $c_{kj}=0$，对所有 $j$ 成立. 再令 $k$ 任意，得所有 $c_{ij}=0$. 因而 $\varepsilon_i\otimes\eta_j$ 线性无关. 所以它们构成一组基，并且
+		\[
+		\dim(U\otimes V)=mn=\dim U\cdot \dim V.
+		\]
+		
+		\item 若 $u\ne0$ 且 $v\ne0$，由前面对偶空间的结论，存在 $\xi^*\in U^*$，使得 $\xi^*(u)\ne0$. 于是
+		\[
+		(u\otimes v)(\xi^*)=\xi^*(u)v\ne0,
+		\]
+		从而 $u\otimes v\ne0$. 因此若 $u\otimes v=0$，则 $u=0$ 或 $v=0$.
+		
+		\item 定义映射
+		\[
+		\Phi:U\otimes V\longrightarrow V\otimes U.
+		\]
+		对 $F\in U\otimes V=\Hom(U^*,V)$ 和 $\theta^*\in V^*$，令 $\Phi(F)(\theta^*)\in U$ 是满足
+		\[
+		\xi^*(\Phi(F)(\theta^*))=\theta^*(F(\xi^*)),
+		\qquad \forall \xi^*\in U^*,
+		\]
+		的唯一向量. 这里使用了有限维情形下 $U\cong U^{**}$ 的自然同构. 由定义可知 $\Phi(F)$ 关于 $\theta^*$ 线性，故 $\Phi(F)\in V\otimes U$.
+		
+		特别地，对单纯张量有
+		\[
+		\Phi(u\otimes v)=v\otimes u.
+		\]
+		由第 (4) 问的基表示可知，$\Phi$ 把 $U\otimes V$ 的基
+		\[
+		\varepsilon_i\otimes\eta_j
+		\]
+		一一对应到 $V\otimes U$ 的基
+		\[
+		\eta_j\otimes\varepsilon_i,
+		\]
+		因此 $\Phi$ 是同构.
+		
+		\item 一般不成立. 设 $\dim U\ge2$ 且 $\dim V\ge2$，取线性无关的 $\alpha_1,\alpha_2\in U$ 与线性无关的 $\beta_1,\beta_2\in V$. 若
+		\[
+		\alpha_1\otimes\beta_1+\alpha_2\otimes\beta_2=u\otimes v,
+		\]
+		取 $\alpha_1^*,\alpha_2^*\in U^*$ 使得
+		\[
+		\alpha_i^*(\alpha_j)=\delta_{ij}.
+		\]
+		作用于 $\alpha_1^*$ 与 $\alpha_2^*$ 得
+		\[
+		\beta_1=\alpha_1^*(u)v,
+		\qquad
+		\beta_2=\alpha_2^*(u)v.
+		\]
+		这说明 $\beta_1,\beta_2$ 都是 $v$ 的倍数，与 $\beta_1,\beta_2$ 线性无关矛盾. 因此并非每个 $U\otimes V$ 中的元素都是形如 $u\otimes v$ 的单纯张量.
+	\end{enumerate}
+\end{solution}
+
+\begin{problem}
+	设 $U,U_1,V,V_1$ 是数域 $\F$ 上的线性空间，且
+	\[
+	f:U\longrightarrow U_1,
+	\qquad
+	g:V\longrightarrow V_1
+	\]
+	是 $\F$ 上的线性映射.
+	\begin{enumerate}
+		\item 证明存在唯一线性映射
+		\[
+		f\otimes g:U\otimes V\longrightarrow U_1\otimes V_1
+		\]
+		使得
+		\[
+		(f\otimes g)(u\otimes v)=f(u)\otimes g(v),
+		\qquad \forall u\in U,
+		\forall v\in V.
+		\]
+		\item 设 $\varepsilon_1,\cdots,\varepsilon_n$ 和 $\varepsilon_1',\cdots,\varepsilon_k'$ 分别是 $U$ 和 $U_1$ 的基，$A$ 是 $f$ 的矩阵；设 $\eta_1,\cdots,\eta_m$ 和 $\eta_1',\cdots,\eta_\ell'$ 分别是 $V$ 和 $V_1$ 的基，$B$ 是 $g$ 的矩阵. 证明 $A\otimes B$ 是 $f\otimes g$ 在相应张量积基下的矩阵.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\begin{enumerate}
+		\item 由\ref{习题18} 可知，$\varepsilon_i\otimes\eta_j$ 构成 $U\otimes V$ 的一组基. 定义
+		\[
+		(f\otimes g)(\varepsilon_i\otimes\eta_j)=f(\varepsilon_i)\otimes g(\eta_j),
+		\qquad 1\le i\le n,
+		\ 1\le j\le m.
+		\]
+		由线性映射的存在唯一性定理，该定义唯一延拓为线性映射
+		\[
+		f\otimes g:U\otimes V\to U_1\otimes V_1.
+		\]
+		再利用习题 18 中关于 $\otimes$ 的线性关系，对任意
+		\[
+		u=\sum_i x_i\varepsilon_i,
+		\qquad
+		v=\sum_j y_j\eta_j
+		\]
+		都有
+		\[
+		\begin{aligned}
+			(f\otimes g)(u\otimes v)
+			&=(f\otimes g)\left(\sum_{i,j}x_iy_j\varepsilon_i\otimes\eta_j\right) \\
+			&=\sum_{i,j}x_iy_j f(\varepsilon_i)\otimes g(\eta_j) \\
+			&=\left(\sum_i x_if(\varepsilon_i)\right)\otimes
+			\left(\sum_j y_jg(\eta_j)\right) \\
+			&=f(u)\otimes g(v).
+		\end{aligned}
+		\]
+		唯一性也由 $\varepsilon_i\otimes\eta_j$ 构成基得到.
+		
+		\item 设
+		\[
+		f(\varepsilon_i)=\sum_{p=1}^k a_{pi}\varepsilon_p',
+		\qquad
+		g(\eta_j)=\sum_{q=1}^{\ell} b_{qj}\eta_q'.
+		\]
+		则
+		\[
+		\begin{aligned}
+			(f\otimes g)(\varepsilon_i\otimes\eta_j)
+			&=f(\varepsilon_i)\otimes g(\eta_j) \\
+			&=\left(\sum_{p=1}^k a_{pi}\varepsilon_p'\right)
+			\otimes
+			\left(\sum_{q=1}^{\ell} b_{qj}\eta_q'\right) \\
+			&=\sum_{p=1}^k\sum_{q=1}^{\ell} a_{pi}b_{qj}\,
+			\varepsilon_p'\otimes\eta_q'.
+		\end{aligned}
+		\]
+		若张量积基均按字典序排列，则上述系数正是 Kronecker 积矩阵 $A\otimes B$ 的系数. 因此 $A\otimes B$ 是 $f\otimes g$ 在相应基下的矩阵.
+	\end{enumerate}
+\end{solution}
+
+\begin{problem}
+	设 $W$ 是 $V$ 的子空间，$f$ 是 $V$ 上的对称双线性型. 定义
+	\[
+	W^\perp=\{\alpha\in V\mid f(\alpha,\beta)=0,
+	\forall \beta\in W\}.
+	\]
+	\begin{enumerate}
+		\item 证明 $W^\perp$ 是 $V$ 的子空间；
+		\item 是否一定有 $W+W^\perp=V$？
+		\item 证明 $V^\perp=\{0\}$ 当且仅当 $f$ 非退化.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\begin{enumerate}
+		\item 首先 $W^\perp$ 非空，因为 $f(0,\beta)=0$ 对任意 $\beta\in W$ 成立，故 $0\in W^\perp$. 其次，若 $\alpha_1,\alpha_2\in W^\perp$，$a_1,a_2\in\F$，则对任意 $\beta\in W$，有
+		\[
+		f(a_1\alpha_1+a_2\alpha_2,\beta)
+		=a_1f(\alpha_1,\beta)+a_2f(\alpha_2,\beta)=0.
+		\]
+		所以 $a_1\alpha_1+a_2\alpha_2\in W^\perp$，故 $W^\perp$ 是 $V$ 的子空间.
+		
+		\item 不一定. 若 $f$ 是欧氏空间中的内积，则该结论成立；但一般对称双线性型不必成立. 例如取 $V=\R^2$，定义
+		\[
+		f((x_1,x_2),(y_1,y_2))=x_1y_2+x_2y_1.
+		\]
+		这是一个对称双线性型. 取 $W=\langle (1,0)\rangle$，则
+		\[
+		W^\perp=\{(a,b)\mid f((a,b),(1,0))=b=0\}
+		=\langle(1,0)\rangle=W.
+		\]
+		因此
+		\[
+		W+W^\perp=W\ne V.
+		\]
+		
+		\item 若 $f$ 非退化，则由非退化定义，若 $\alpha\in V^\perp$，即
+		\[
+		f(\alpha,\beta)=0,
+		\qquad \forall \beta\in V,
+		\]
+		则 $\alpha=0$，所以 $V^\perp=\{0\}$.
+		
+		反之，若 $V^\perp=\{0\}$，而 $\alpha\in V$ 满足
+		\[
+		f(\alpha,\beta)=0,
+		\qquad \forall \beta\in V,
+		\]
+		则 $\alpha\in V^\perp$，故 $\alpha=0$. 因为 $f$ 对称，左根与右根相同，于是 $f$ 非退化.
+	\end{enumerate}
+\end{solution}
+
+\begin{problem}
+
+	设 $Q(x_1,\cdots,x_n)$ 是数域 $\F$ 上的 $n$ 元二次型. 对 $X,Y\in\F^n$，定义
+	\[
+	B(X,Y)=\frac12\bigl(Q(X+Y)-Q(X)-Q(Y)\bigr).
+	\]
+	证明 $B(X,Y)$ 是 $\F^n$ 上的对称双线性型.
+\end{problem}
+
+\begin{solution}
+	设二次型 $Q$ 的矩阵为 $A=A'$，即
+	\[
+	Q(X)=X'AX.
+	\]
+	则
+	\[
+	\begin{aligned}
+		B(X,Y)
+		&=\frac12\left((X+Y)'A(X+Y)-X'AX-Y'AY\right) \\
+		&=\frac12\left(X'AY+Y'AX\right).
+	\end{aligned}
+	\]
+	因为 $A'=A$，所以
+	\[
+	Y'AX=(Y'AX)'=X'A'Y=X'AY.
+	\]
+	于是
+	\[
+	B(X,Y)=X'AY.
+	\]
+	由矩阵表示可知，$B$ 关于 $X$ 与 $Y$ 分别线性，因此 $B$ 是双线性型. 又
+	\[
+	B(Y,X)=Y'AX=(Y'AX)'=X'AY=B(X,Y),
+	\]
+	所以 $B$ 是对称双线性型.
+\end{solution}
+
+\begin{algo}
+	\textbf{实二次型正交化为标准型.}
+	\begin{enumerate}
+		\item 写出二次型的矩阵 $A$，其中 $A$ 必须是实对称矩阵；
+		\item 求出正交阵 $T$，使得
+		\[
+		T'AT=T^{-1}AT
+		\]
+		为对角阵，其对角元为 $A$ 的全部特征值；
+		\item 作非退化线性替换 $X=TY$，则二次型化为
+		\[
+		Y'(T'AT)Y=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2.
+		\]
+	\end{enumerate}
+\end{algo}
+
+\begin{problem}
+
+	用正交替换将下列实二次型化为标准型：
+	\[
+	x_1x_2+x_1x_3-x_2x_3.
+	\]
+\end{problem}
+
+\begin{solution}
+	原二次型的矩阵为
+	\[
+	A=\begin{pmatrix}
+		0&\frac12&\frac12\\
+		\frac12&0&-\frac12\\
+		\frac12&-\frac12&0
+	\end{pmatrix}.
+	\]
+	其特征多项式为
+	\[
+	\begin{aligned}
+		\det(\lambda E-A)
+		&=\begin{vmatrix}
+			\lambda&-\frac12&-\frac12\\
+			-\frac12&\lambda&\frac12\\
+			-\frac12&\frac12&\lambda
+		\end{vmatrix} \\
+		&=\left(\lambda-\frac12\right)^2(\lambda+1).
+	\end{aligned}
+	\]
+	所以 $A$ 的特征值为
+	\[
+	\lambda_1=\frac12\quad (\text{二重}),
+	\qquad
+	\lambda_2=-1.
+	\]
+	方程组 $(\lambda_1E-A)X=0$ 的一组基解系可取
+	\[
+	\xi_{11}=(1,0,1)',
+	\qquad
+	\xi_{12}=(1,1,0)'.
+	\]
+	对其正交化并单位化，可取
+	\[
+	\eta_{11}=\frac{\sqrt2}{2}(1,0,1)',
+	\qquad
+	\eta_{12}=\frac{\sqrt6}{3}\left(\frac12,1,-\frac12\right)'.
+	\]
+	方程组 $(\lambda_2E-A)X=0$ 的一组基解系可取
+	\[
+	\xi_{21}=(-1,1,1)'.
+	\]
+	单位化后得
+	\[
+	\eta_{21}=\frac{\sqrt3}{3}(-1,1,1)'.
+	\]
+	令
+	\[
+	T=(\eta_{11}\ \eta_{12}\ \eta_{21}),
+	\]
+	则 $T$ 是正交阵. 在正交替换
+	\[
+	X=TY
+	\]
+	下，原二次型化为标准型
+	\[
+	\frac12y_1^2+\frac12y_2^2-y_3^2.
+	\]
+\end{solution}
+
+\begin{problem}
+	求可逆线性替换，将下列二次型化为对角型：
+	\begin{enumerate}
+		\item $2x_1x_2+2x_3x_4$；
+		\item $7x_1^2+5x_2^2+3x_3^2-8x_1x_2+8x_2x_3$.
+	\end{enumerate}
+\end{problem}
+
+\begin{solution}
+	\begin{enumerate}
+		\item 用平方差公式，作
+		\[
+		\begin{cases}
+			x_1=y_1+y_2,\\
+			x_2=y_1-y_2,\\
+			x_3=y_3+y_4,\\
+			x_4=y_3-y_4.
+		\end{cases}
+		\]
+		即
+		\[
+		X=\begin{pmatrix}
+			1&1&0&0\\
+			1&-1&0&0\\
+			0&0&1&1\\
+			0&0&1&-1
+		\end{pmatrix}Y.
+		\]
+		代入可得
+		\[
+		2x_1x_2+2x_3x_4
+		=2y_1^2-2y_2^2+2y_3^2-2y_4^2.
+		\]
+		故得到原二次型的一个标准型
+		\[
+		2y_1^2-2y_2^2+2y_3^2-2y_4^2.
+		\]
+		
+		\item 原二次型的矩阵为
+		\[
+		A=\begin{pmatrix}
+			7&-4&0\\
+			-4&5&4\\
+			0&4&3
+		\end{pmatrix}.
+		\]
+		对矩阵 $(A:E)$ 作合同变换：
+		\[
+		\left(\begin{array}{ccc|ccc}
+			7&-4&0&1&0&0\\
+			-4&5&4&0&1&0\\
+			0&4&3&0&0&1
+		\end{array}\right)
+		\longrightarrow
+		\left(\begin{array}{ccc|ccc}
+			7&0&0&1&0&0\\
+			0&\frac{19}{7}&4&\frac47&1&0\\
+			0&4&3&0&0&1
+		\end{array}\right)
+		\]
+		\[
+		\longrightarrow
+		\left(\begin{array}{ccc|ccc}
+			7&0&0&1&0&0\\
+			0&\frac{19}{7}&0&\frac47&1&0\\
+			0&0&-\frac{55}{19}&-\frac{16}{19}&-\frac{28}{19}&1
+		\end{array}\right).
+		\]
+		令
+		\[
+		C=\begin{pmatrix}
+			1&\frac47&-\frac{16}{19}\\
+			0&1&-\frac{28}{19}\\
+			0&0&1
+		\end{pmatrix}.
+		\]
+		则在非退化线性替换 $X=CY$ 下，得到原二次型的一个标准型
+		\[
+		7y_1^2+\frac{19}{7}y_2^2-\frac{55}{19}y_3^2.
+		\]
+	\end{enumerate}
+\end{solution}
+
+\begin{problem}
+	设 $A$ 是一个 $n\times n$ 实矩阵，$X=(x_1,\cdots,x_n)'$. 证明：存在正实数 $c$，使得对任意 $X\in\R^n$，有
+	\[
+	|X'AX|\le cX'X.
+	\]
+\end{problem}
+
+\begin{solution}
+	由于
+	\[
+	X'AX=X'\left(\frac12(A+A')\right)X,
+	\]
+	不妨设 $A$ 是实对称矩阵. 于是存在正交阵 $P$，使得
+	\[
+	P^{-1}AP=P'AP=\operatorname{diag}(\lambda_1,\cdots,\lambda_n),
+	\]
+	其中 $\lambda_1,\cdots,\lambda_n\in\R$ 是 $A$ 的全部特征值.
+	
+	取
+	\[
+	c=\max_{1\le i\le n}|\lambda_i|.
+	\]
+	若 $A=0$，则任取 $c>0$ 即可；下设 $c>0$. 对任意 $X\in\R^n$，令
+	\[
+	P^{-1}X=P'X=Y=(y_1,\cdots,y_n)'.
+	\]
+	由于 $P$ 是正交阵，故
+	\[
+	X'X=Y'Y=\sum_{i=1}^n y_i^2.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		|X'AX|
+		&=\left|Y'\operatorname{diag}(\lambda_1,\cdots,\lambda_n)Y\right| \\
+		&=\left|\sum_{i=1}^n \lambda_i y_i^2\right| \\
+		&\le \sum_{i=1}^n |\lambda_i|y_i^2 \\
+		&\le c\sum_{i=1}^n y_i^2
+		=cX'X.
+	\end{aligned}
+	\]
+\end{solution}
+
+\begin{problem}
+
+	证明：任意实对称矩阵都可以写成一个正定矩阵与一个负定矩阵之和.
+\end{problem}
+
+\begin{solution}
+	设 $A$ 是任意 $n$ 阶实对称矩阵. 由实对称阵的正交对角化，存在正交阵 $T$，使得
+	\[
+	A=T\operatorname{diag}(\lambda_1,\cdots,\lambda_n)T^{-1},
+	\]
+	其中 $\lambda_1,\cdots,\lambda_n$ 是 $A$ 的全部特征值.
+	
+	对每个 $1\le i\le n$，取 $a_i>0$ 与 $b_i<0$，使得
+	\[
+	\lambda_i=a_i+b_i.
+	\]
+	例如可先取充分大的正数 $M$，令 $a_i=\lambda_i+M$，$b_i=-M$.
+	定义
+	\[
+	B=T\operatorname{diag}(a_1,\cdots,a_n)T^{-1},
+	\qquad
+	C=T\operatorname{diag}(b_1,\cdots,b_n)T^{-1}.
+	\]
+	则 $B$ 是正定矩阵，$C$ 是负定矩阵，并且
+	\[
+	A=B+C.
+	\]
+	因此任意实对称矩阵均可写成一个正定矩阵与一个负定矩阵之和.
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[scale=1.25]
+ \draw[gray,->] (-1.9,0)--(2.1,0) node[right]{$\Sigma$};
+ \draw[GreenMain,thick] (0,0) circle(1);
+ \draw[GoldMain,thick,domain=0:14,samples=200,variable=\t]
+  plot ({cos(\t r)/sqrt(1+(1/2.89-1)*exp(-.24*\t))},{-sin(\t r)/sqrt(1+(1/2.89-1)*exp(-.24*\t))});
+ \draw[->,GreenMain,thick] (135:1) arc[start angle=135,end angle=105,radius=1];
+ \fill[GoldMain] (1.7,0) circle(1.7pt) node[above]{$A$};
+ \fill[GoldMain] ({1/sqrt(1+(1/2.89-1)*exp(-.24*2*pi))},0) circle(1.7pt) node[below right]{$P(A)$};
+ \node[GreenMain] at (-.9,-1.2){$\Gamma$};
+\end{scope}
+\begin{scope}[shift={(7,-1.6)},scale=1.5]
+ \draw[->,gray] (0,0)--(2,0) node[right]{$A$};
+ \draw[->,gray] (0,0)--(0,2) node[above]{$P(A)$};
+ \draw[gray,dashed] (.25,.25)--(1.8,1.8) node[above right]{$P=A$};
+ \draw[GreenMain,thick,domain=.3:1.8,samples=70] plot (\x,{1/sqrt(1+(1/(\x*\x)-1)*exp(-.24*2*pi))});
+ \draw[GoldMain,dashed] (1,0)--(1,1)--(0,1);
+ \fill[GoldMain] (1,1) circle(1.7pt);
+ \node[below] at (1,0){$1$};\node[left] at (0,1){$1$};
+\end{scope}
+\end{tikzpicture}

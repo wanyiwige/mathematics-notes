@@ -1,0 +1,294 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第5章：$\R^d$上的Fourier变换
+% 节：5.2 Fourier 变换的初等理论
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{Fourier 变换的初等理论}
+
+\begin{definition}
+	Schwartz 空间 $\mathcal S(\R^d)$（有时简记为 $\mathcal S$）是由所有满足下述不等式的无穷次可微函数 $f$ 组成的空间：
+	\[
+	\sup_{x\in\R^d}
+	\abs{x^\alpha
+	\left(\frac{\partial}{\partial x}\right)^\beta f(x)}
+	<\infty,
+	\]
+	其中 $\alpha$ 和 $\beta$ 为任意多重指标。换而言之，$f$ 连同它的所有导函数均为快速下降的函数。
+\end{definition}
+
+\begin{example}
+	$\mathcal S(\R^d)$ 中函数的一个例子是 $d$ 维 Gaussian 函数
+	\[
+	e^{-\pi\abs{x}^2}.
+	\]
+
+\end{example}
+
+\begin{definition}
+	Schwartz 函数 $f$ 的 Fourier 变换定义为
+\[
+\widehat f(\xi)
+=\int_{\R^d}f(x)e^{-2\pi i x\cdot\xi}\dd x,
+\qquad \xi\in\R^d.
+\]
+\end{definition}
+注意上述公式与一维情形的不同是在 $\R^d$ 上积分，并且用向量的内积替代 $x$ 与 $\xi$ 的乘积。
+
+现在列举 Fourier 变换的一些简单性质。在下面的命题中，箭头表示 Fourier 变换的作用，即
+\[
+F(x)\longmapsto G(\xi)
+\]
+表示 $G(\xi)=\widehat F(\xi)$。
+
+\begin{proposition}\label{prop:fourier-properties-Rd}
+	令 $f\in\mathcal S(\R^d)$，则：
+	\begin{enumerate}[label=(\roman*)]
+		\item 对 $h\in\R^d$，
+		\[
+		f(x+h)\longmapsto
+		\widehat f(\xi)e^{2\pi i\xi\cdot h};
+		\]
+
+		\item 对 $h\in\R^d$，
+		\[
+		f(x)e^{-2\pi i x\cdot h}
+		\longmapsto\widehat f(\xi+h);
+		\]
+
+		\item 对 $\delta>0$，
+		\[
+		f(\delta x)\longmapsto
+		\delta^{-d}\widehat f(\delta^{-1}\xi);
+		\]
+
+		\item 对任意多重指标 $\alpha$，
+		\[
+		\left(\frac{\partial}{\partial x}\right)^\alpha f(x)
+		\longmapsto
+		(2\pi i\xi)^\alpha\widehat f(\xi);
+		\]
+
+		\item 对任意多重指标 $\alpha$，
+		\[
+		(-2\pi i x)^\alpha f(x)
+		\longmapsto
+		\left(\frac{\partial}{\partial\xi}\right)^\alpha
+		\widehat f(\xi);
+		\]
+
+		\item 若 $\mathcal{R}$ 是旋转变换，则
+		\[
+		f(\mathcal{R}x)\longmapsto\widehat f(\mathcal{R}\xi).
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	前五条性质的证明和一维情形相同，分别使用变量替换、积分号下求导和分部积分即可。这里只验证最后一条。令 $y=\mathcal{R}x$，由于 $\mathcal{R}$ 是旋转变换，
+	\[
+	\abs{\det(\mathcal{R})}=1,
+	\qquad
+	\mathcal{R}^{-1}y\cdot\xi=y\cdot \mathcal{R}\xi.
+	\]
+	因此
+	\[
+	\begin{aligned}
+	\int_{\R^d}f(\mathcal{R}x)e^{-2\pi i x\cdot\xi}\dd x
+	&=\int_{\R^d}f(y)e^{-2\pi i(\mathcal{R}^{-1}y)\cdot\xi}\dd y\\
+	&=\int_{\R^d}f(y)e^{-2\pi i y\cdot \mathcal{R}\xi}\dd y
+	=\widehat f(\mathcal{R}\xi).
+	\end{aligned}
+	\]
+\end{proof}
+\begin{corollary}\label{cor:fourier-maps-schwartz-Rd}
+	Fourier 变换将 $\mathcal S(\R^d)$ 映到 $\mathcal S(\R^d)$。
+\end{corollary}
+
+\begin{proof}
+	由命题 \ref{prop:fourier-properties-Rd} 的性质 (iv) 和性质 (v)，对任意多重指标 $\alpha,\beta$，
+	\[
+	\xi^\alpha
+	\left(\frac{\partial}{\partial\xi}\right)^\beta
+	\widehat f(\xi)
+	\]
+	可写成某个 Schwartz 函数的 Fourier 变换乘以常数。该 Fourier 变换有界，因此上述函数有界，故 $\widehat f\in\mathcal S(\R^d)$。
+\end{proof}
+
+\begin{definition}
+	函数 $f$ 称为\textbf{径向的}，如果该函数仅仅依赖于 $\abs{x}$。换而言之，$f$ 是径向函数，当且仅当存在定义于 $u\geq0$ 上的函数 $f_0(u)$，使得
+	\[
+	f(x)=f_0(\abs{x}).
+	\]
+\end{definition}
+
+\begin{proposition}\label{prop:radial-rotation-invariant}
+	函数 $f$ 是径向的，当且仅当对任意旋转 $\mathcal{R}$，都有
+	\[
+	f(x)=f(\mathcal{R}x).
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 $\abs{\mathcal{R}x}=\abs{x}$，必要性是显然的。反之，假设对所有旋转 $\mathcal{R}$ 都有 $f(\mathcal{R}x)=f(x)$，定义
+	\[
+	f_0(u)=
+	\begin{cases}
+		f(0),&u=0,\\
+		f(x),&\abs{x}=u.
+	\end{cases}
+	\]
+	这个定义是明确的，因为若 $\abs{x}=\abs{x'}$，则存在旋转 $\mathcal{R}$ 使得 $x'=\mathcal{R}x$，从而 $f(x')=f(x)$。因此 $f(x)=f_0(\abs{x})$。
+\end{proof}
+
+\begin{corollary}\label{cor:fourier-radial-Rd}
+	径向函数的 Fourier 变换是径向的。
+\end{corollary}
+
+\begin{proof}
+	由命题 \ref{prop:fourier-properties-Rd} 的性质 (vi)，若 $f(\mathcal{R}x)=f(x)$ 对所有旋转 $\mathcal{R}$ 成立，则
+	\[
+	\widehat f(\mathcal{R}\xi)=\widehat f(\xi)
+	\]
+	对所有旋转 $\mathcal{R}$ 也成立。再由命题 \ref{prop:radial-rotation-invariant} 即得结论。
+\end{proof}
+
+\begin{theorem}[Fourier 反演与 Plancherel 公式]\label{thm:fourier-inversion-plancherel-Rd}
+	设 $f\in\mathcal S(\R^d)$，则
+	\[
+	f(x)=\int_{\R^d}\widehat f(\xi)e^{2\pi i x\cdot\xi}\dd\xi.
+	\]
+	此外，
+	\[
+	\int_{\R^d}\abs{\widehat f(\xi)}^2\dd\xi
+	=\int_{\R^d}\abs{f(x)}^2\dd x.
+	\]
+\end{theorem}
+
+类似于我们在单变量下情形做的，定理的证明按照下列步骤进行。
+
+	\textbf{第一步：Gaussian 函数的 Fourier 变换。}
+
+\begin{proposition}
+\[\widehat{e^{-\pi|x|^2}}=e^{-\pi|x|^2}\]
+\end{proposition}
+\begin{proof}
+			事实上，
+\[
+e^{-\pi\abs{x}^2}
+=e^{-\pi x_1^2}\cdots e^{-\pi x_d^2},
+\qquad
+e^{-2\pi i x\cdot\xi}
+=e^{-2\pi i x_1\xi_1}\cdots e^{-2\pi i x_d\xi_d}.
+\]
+	故 Fourier 变换的被积函数是 $d$ 个函数的乘积，每个函数依次仅依赖于变量 $x_j$。将 $\R^d$ 上的积分写成每个 $\R$ 上的累次积分，并使用一维 Gaussian 函数的 Fourier 变换公式，即得上述结论。例如，当 $d=2$ 时，
+	\[
+	\begin{aligned}
+	\int_{\R^2}e^{-\pi\abs{x}^2}e^{-2\pi i x\cdot\xi}\dd x&=\int_{\R}e^{-\pi x_2^2}e^{-2\pi i x_2\xi_2}
+	\left(\int_{\R}e^{-\pi x_1^2}e^{-2\pi i x_1\xi_1}\dd x_1\right)\dd x_2\\
+	&=\int_{\R}e^{-\pi x_2^2}e^{-2\pi i x_2\xi_2}
+	e^{-\pi\abs{\xi_1}^2}\dd x_2=e^{-\pi\abs{\xi_1}^2}e^{-\pi\abs{\xi_2}^2}
+	=e^{-\pi\abs{\xi}^2}.
+	\end{aligned}
+	\]
+\end{proof}
+	由命题 \ref{prop:fourier-properties-Rd}，用 $\delta^{1/2}$ 替代伸缩参数，可知
+	\[
+	\widehat{\left(e^{-\pi\delta\abs{x}^2}\right)}(\xi)
+	=\delta^{-d/2}e^{-\pi\abs{\xi}^2/\delta}.
+	\]
+
+	\textbf{第二步：Gaussian 好核。}
+\begin{proposition}
+		函数族
+	\[
+	K_\delta(x)=\delta^{-d/2}e^{-\pi\abs{x}^2/\delta}
+	\]
+	是 $\R^d$ 中的一族好核，即
+	\begin{enumerate}[label=(\roman*)]
+		\item
+		\[
+		\int_{\R^d}K_\delta(x)\dd x=1;
+		\]
+
+		\item
+		\[
+		\int_{\R^d}\abs{K_\delta(x)}\dd x\leq M
+		\qquad\text{（事实上 $K_\delta(x)\geq0$）};
+		\]
+
+		\item 对任意 $\eta>0$，当 $\delta\to0$ 时，
+		\[
+		\int_{\abs{x}\geq\eta}\abs{K_\delta(x)}\dd x\longrightarrow0.
+		\]
+	\end{enumerate}
+\end{proposition}
+	这些论断的证明和一维情形几乎相同。因此，当 $F$ 是 Schwartz 函数时，或者更一般地，当 $F$ 有界且在原点连续时，
+	\[
+	\int_{\R^d}K_\delta(x)F(x)\dd x
+	\longrightarrow F(0),
+	\qquad \delta\to0.
+	\]
+
+	\textbf{第三步：乘法公式}
+\begin{proposition}
+		对于 $f,g\in\mathcal S(\R^d)$，有
+	\[
+	\int_{\R^d}f(x)\widehat g(x)\dd x
+	=\int_{\R^d}\widehat f(y)g(y)\dd y.
+	\]
+\end{proposition}
+	事实上，只需将 $\widehat g(x)$ 展开，并交换 $\R^{2d}=\R^d\times\R^d$ 上累次积分的次序；由于 Schwartz 函数绝对可积，该交换是合法的。
+
+	和第 4 章类似，Fourier 反演公式是乘法公式与好核 $K_\delta$ 的简单结果。它表明 Fourier 变换 $\mathcal F$ 是 $\mathcal S(\R^d)$ 到自身的双射，它的逆映射为
+	\[
+	\mathcal F^*(g)(x)
+	=\int_{\R^d}g(\xi)e^{2\pi i x\cdot\xi}\dd\xi.
+	\]
+
+	\textbf{第四步：卷积}
+\begin{definition}
+		定义
+	\[
+	(f*g)(x)=\int_{\R^d}f(y)g(x-y)\dd y,
+	\qquad f,g\in\mathcal S(\R^d).
+	\]
+\end{definition}
+	于是
+	\[
+	f*g\in\mathcal S(\R^d),
+	\qquad
+	f*g=g*f,
+	\qquad
+	\widehat{f*g}(\xi)=\widehat f(\xi)\widehat g(\xi).
+	\]
+	这些等式的论证和一维情形类似；卷积的 Fourier 变换涉及
+	\[
+	f(y)g(x-y)e^{-2\pi i x\cdot\xi}
+	\]
+	在 $\R^{2d}=\R^d\times\R^d$ 上的累次积分。
+
+\begin{proof}[定理的证明]
+		现在，由第一步可知
+	\[
+	\widehat K_\delta(\xi)=e^{-\pi\delta\abs{\xi}^2}.
+	\]
+	利用乘法公式与卷积公式，得到
+	\[
+	(f*K_\delta)(x)
+	=\int_{\R^d}\widehat f(\xi)
+	e^{-\pi\delta\abs{\xi}^2}e^{2\pi i x\cdot\xi}\dd\xi.
+	\]
+	当 $\delta\to0$ 时，左端由好核性质趋于 $f(x)$，右端由控制收敛定理趋于
+	\[
+	\int_{\R^d}\widehat f(\xi)e^{2\pi i x\cdot\xi}\dd\xi,
+	\]
+	从而得到 Fourier 反演公式。
+
+	最后，令 $g=\overline{\widehat f}$。由推论 \ref{cor:fourier-maps-schwartz-Rd} 可知 $g\in\mathcal S(\R^d)$，并由 Fourier 反演公式得到 $\widehat g=\overline f$。在乘法公式中代入此 $g$，便有
+	\[
+	\int_{\R^d}\abs{f(x)}^2\dd x
+	=\int_{\R^d}\abs{\widehat f(\xi)}^2\dd\xi,
+	\]
+	这就完成了定理的证明。
+
+\end{proof}
+

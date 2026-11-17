@@ -1,0 +1,275 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第5章：$\R^d$上的Fourier变换
+% 节：5.1 预备知识
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{预备知识}
+
+这一章考虑的空间为 $\R^d$，它是由所有 $d$ 元数组
+\[
+x=(x_1,x_2,\ldots,x_d)
+\]
+组成的，其中 $x_i\in\R$。向量加法定义为对应分量相加，向量数乘的定义类似。对于
+$x=(x_1,x_2,\ldots,x_d)\in\R^d$，定义
+\[
+\abs{x}=\left(x_1^2+\cdots+x_d^2\right)^{1/2},
+\]
+使 $\abs{x}$ 正是一般欧氏范数下向量 $x$ 的长度。实际上，赋予 $\R^d$ 的内积为
+\[
+x\cdot y=x_1y_1+\cdots+x_dy_d,
+\]
+使得 $\abs{x}^2=x\cdot x$。在$\R^d$上，我们用 $x\cdot y$ 替代$\langle x,y\rangle$。
+
+\begin{definition}
+给定 $d$ 元非负整数数组
+\[
+\alpha=(\alpha_1,\ldots,\alpha_d),
+\]
+称其为一个多重指标，单项式 $x^\alpha$ 定义为
+\[
+x^\alpha=x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_d^{\alpha_d}.
+\]
+类似地，定义微分算子 $(\partial/\partial x)^\alpha$ 为
+\[
+\left(\frac{\partial}{\partial x}\right)^\alpha
+=\left(\frac{\partial}{\partial x_1}\right)^{\alpha_1}
+ \left(\frac{\partial}{\partial x_2}\right)^{\alpha_2}
+ \cdots
+ \left(\frac{\partial}{\partial x_d}\right)^{\alpha_d}
+=\frac{\partial^{\abs{\alpha}}}
+{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}},
+\]
+其中
+\[
+\abs{\alpha}=\alpha_1+\cdots+\alpha_d
+\]
+是多重指标 $\alpha$ 的阶数。
+\end{definition}
+
+空间 $\R^d$ 上的分析，特别是 Fourier 变换理论，由底空间的三个重要的对称群所塑造：
+\begin{enumerate}[label=(\roman*)]
+	\item 平移；
+	\item 伸缩；
+	\item 旋转。
+\end{enumerate}
+我们已经看到平移 $x\longmapsto x+h$，其中 $h\in\R^d$ 固定，以及伸缩
+$x\longmapsto\delta x$，其中 $\delta>0$。
+\newpage
+\begin{definition}
+	$\R^d$ 中的旋转是保持内积的线性变换
+	\[
+	\mathcal{R}:\R^d\longrightarrow\R^d.
+	\]
+	换而言之，
+	\begin{enumerate}[label=\textbullet]
+		\item 对所有 $x,y\in\R^d$ 和 $a,b\in\R$，有
+		\[
+		\mathcal{R}(ax+by)=a\mathcal{R}(x)+b\mathcal{R}(y);
+		\]
+		\item 对所有 $x,y\in\R^d$，有
+		\[
+		\mathcal{R}(x)\cdot \mathcal{R}(y)=x\cdot y.
+		\]
+	\end{enumerate}
+\end{definition}
+
+第二个条件等价于
+\[
+\abs{\mathcal{R}(x)}=\abs{x},\qquad x\in\R^d,
+\]
+也等价于
+\[
+\mathcal{R}^{ T}=\mathcal{R}^{-1},
+\]
+其中 $\mathcal{R}^{ T}$ 和 $\mathcal{R}^{-1}$ 分别表示 $\mathcal{R}$ 的转置和逆变换。特别地，
+\[
+\det(\mathcal{R})=\pm1,
+\]
+其中 $\det(\mathcal{R})$ 表示 $\mathcal{R}$ 的行列式。如果 $\det(\mathcal{R})=1$，则称 $\mathcal{R}$ 为正常旋转；否则称其为反常旋转。
+
+\begin{definition}
+	$\R^d$ 上的连续复值函数 $f$ 称为\textbf{速降的}，如果对于每个多重指标 $\alpha$，函数
+	\[
+	\abs{x^\alpha f(x)}
+	\]
+	是有界的。等价地，连续函数 $f$ 为速降函数，如果
+	\[
+	\sup_{x\in\R^d}\abs{x}^k\abs{f(x)}<\infty,
+	\qquad k=0,1,2,\ldots.
+	\]
+\end{definition}
+
+\newpage
+\subsection*{积分}
+\begin{definition}
+	给定一个速降函数$f$，定义
+\[
+\int_{\R^d}f(x)\dd x
+:=\lim_{N\to\infty}\int_{Q_N}f(x)\dd x,
+\]
+其中 $Q_N$ 表示中心在原点、边长为 $N$ 的闭立方体，并且立方体的各边平行于坐标轴，即
+\[
+Q_N=\left\{x\in\R^d:\abs{x_i}\leq\frac{N}{2},\ i=1,\ldots,d\right\}.
+\]
+立方体 $Q_N$ 上的积分为通常意义下 Riemann 积分。由于上述积分
+\[
+I_N=\int_{Q_N}f(x)\dd x
+\]
+当 $N$ 趋于无穷时构成 Cauchy 序列，故上述极限存在
+\end{definition}
+
+事实上，取 $k>d$。由速降性，存在常数 $C>0$，使得当 $\abs{x}\geq1$ 时，
+\[
+\abs{f(x)}\leq C\abs{x}^{-k}.
+\]
+而立方壳 $Q_{n+1}\setminus Q_n$ 的体积为 $O(n^{d-1})$，故积分的尾项可由收敛级数
+$\sum_{n=1}^{\infty}n^{d-1-k}$ 控制，从而 $\{I_N\}$ 是 Cauchy 序列。
+
+依次有下面两个观察：
+
+首先，可以用球
+\[
+B_N=\left\{x\in\R^d:\abs{x}\leq N\right\}
+\]
+来替代立方体 $Q_N$ 而不改变定义；
+
+其次，不需要速降函数的所有条件来保证极限的存在。实际上，只需假设 $f$ 是连续的，并且对某个 $\eps>0$ 有
+\[
+\sup_{x\in\R^d}\abs{x}^{d+\eps}\abs{f(x)}<\infty.
+\]
+例如，$\R$ 上适度下降函数对应于 $\eps=1$
+\begin{definition}
+	定义 $\R^d$ 上的适度下降函数为满足
+\[
+\sup_{x\in\R^d}\abs{x}^{d+1}\abs{f(x)}<\infty
+\]
+的连续函数。
+\end{definition}
+
+积分与三个重要对称群的相互作用如下。
+
+\begin{proposition}
+	若 $f$ 是 $\R^d$ 上的适度下降函数，那么：
+	\begin{enumerate}[label=(\roman*)]
+		\item 对任意 $h\in\R^d$，
+		\[
+		\int_{\R^d}f(x+h)\dd x=\int_{\R^d}f(x)\dd x;
+		\]
+
+		\item 对任意 $\delta>0$，
+		\[
+		\delta^d\int_{\R^d}f(\delta x)\dd x
+		=\int_{\R^d}f(x)\dd x;
+		\]
+
+		\item 对任意旋转 $R$，
+		\[
+		\int_{\R^d}f(R(x))\dd x
+		=\int_{\R^d}f(x)\dd x.
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	三式均由多重积分的变量替换得到。分别令
+	\[
+	u=x+h,\qquad u=\delta x,\qquad u=R(x).
+	\]
+	相应的 Jacobian 行列式的绝对值依次为
+	\[
+	1,\qquad \delta^d,\qquad \abs{\det(R)}=1,
+	\]
+	代入即得结论。
+\end{proof}
+
+\subsection*{极坐标}
+
+在 $\R^d$ 中引进极坐标并找出相应的积分公式将为我们提供便利。先以 $d=2$ 和 $d=3$ 的情形为例
+
+\begin{example}
+	在 $\R^2$ 上，极坐标由 $(r,\theta)$ 给出，其中 $r\geq0$ 且 $0\leq\theta<2\pi$。变量代换
+	\[
+	(r,\theta)\longmapsto(r\cos\theta,r\sin\theta)
+	\]
+	的 Jacobian 行列式为 $r$，因此
+	\[
+	\int_{\R^2}f(x)\dd x
+	=\int_0^{2\pi}\int_0^\infty
+	f(r\cos\theta,r\sin\theta)\,r\dd r\dd\theta.
+	\]
+\end{example}
+
+现将单位圆 $S^1$ 上的点写成
+\[
+\gamma=(\cos\theta,\sin\theta).
+\]
+考虑圆 $S^1$ 上的函数 $g$，定义它在 $S^1$ 上的积分为
+\[
+\int_{S^1}g(\gamma)\dd\sigma(\gamma)
+:=\int_0^{2\pi}g(\cos\theta,\sin\theta)\dd\theta.
+\]
+利用此记号，有
+\[
+\int_{\R^2}f(x)\dd x
+=\int_{S^1}\int_0^\infty f(r\gamma)\,r\dd r\dd\sigma(\gamma).
+\]
+
+\begin{example}
+	在 $\R^3$ 上，使用如下球面坐标公式：
+	\[
+	\begin{cases}
+		x_1=r\sin\theta\cos\varphi,\\
+		x_2=r\sin\theta\sin\varphi,\\
+		x_3=r\cos\theta,
+	\end{cases}
+	\]
+	其中 $r>0$，$0\leq\theta\leq\pi$ 且 $0\leq\varphi\leq2\pi$。变量代换的 Jacobian 行列式为
+	$r^2\sin\theta$，因此
+	\[
+	\int_{\R^3}f(x)\dd x
+	=\int_0^{2\pi}\int_0^\pi\int_0^\infty
+	f(r\sin\theta\cos\varphi,
+	  r\sin\theta\sin\varphi,
+	  r\cos\theta)
+	\,r^2\dd r\sin\theta\dd\theta\dd\varphi.
+	\]
+\end{example}
+
+如果 $g$ 是单位球面
+\[
+S^2=\left\{x\in\R^3:\abs{x}=1\right\}
+\]
+上的函数，令
+\[
+\gamma=(\sin\theta\cos\varphi,
+        \sin\theta\sin\varphi,
+        \cos\theta),
+\]
+定义球面积分为
+\[
+\int_{S^2}g(\gamma)\dd\sigma(\gamma)
+:=\int_0^{2\pi}\int_0^\pi
+g(\gamma)\sin\theta\dd\theta\dd\varphi.
+\]
+因此，
+\[
+\int_{\R^3}f(x)\dd x
+=\int_{S^2}\int_0^\infty
+f(r\gamma)r^2\dd r\dd\sigma(\gamma).
+\]
+
+一般地，可将 $\R^d\setminus\{0\}$ 的任一点唯一表示为
+\[
+x=r\gamma,
+\]
+其中 $\gamma$ 在球面 $S^{d-1}\subset\R^d$ 上且 $r>0$。实际上，取
+\[
+r=\abs{x},\qquad \gamma=\frac{x}{\abs{x}}.
+\]
+如同 $d=2$ 或 $d=3$ 的情形，可以接着定义一般的球面坐标。用到的公式为
+\[
+\int_{\R^d}f(x)\dd x
+=\int_{S^{d-1}}\int_0^\infty
+f(r\gamma)r^{d-1}\dd r\dd\sigma(\gamma),
+\]
+只要 $f$ 是适度下降函数。此处 $\dd\sigma(\gamma)$ 表示由球面坐标导出的球面 $S^{d-1}$ 中的面积元。
+

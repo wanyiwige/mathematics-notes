@@ -1,0 +1,273 @@
+\section{整环上的一元多项式环}
+
+\begin{definition}
+设$f(x)=a_0+\cdots+a_nx^n$且$a_n\ne0$。称$n$为$f$的\textbf{次数}，记作$\deg f$；称$a_n$为\textbf{首项系数}。首项系数为$1$的非零多项式称为\textbf{首一多项式}。约定$\deg0=-\infty$。
+\end{definition}
+
+\begin{proposition}
+对交换幺环$R$上的多项式，有
+\[
+\deg(f+g)\le\max\{\deg f,\deg g\},\qquad
+\deg(fg)\le\deg f+\deg g.
+\]
+若$\deg f\ne\deg g$，第一式取等号。若$f,g$非零且首项系数之积非零，第二式取等号；特别地，当$R$为整环时，非零多项式乘积的次数等于次数之和。
+\end{proposition}
+\begin{proof}
+两多项式相加不会出现高于两者次数的项。若次数不同，次数较高者的首项没有同次项与之抵消，所以和仍有该次数。
+
+设$f$、$g$的次数分别为$n,m$，首项系数分别为$a_n,b_m$。乘积中次数超过$n+m$的项均不存在，而$x^{n+m}$的系数恰为$a_nb_m$。因此当且仅当这个乘积非零时，乘积次数为$n+m$；否则次数下降或乘积为零。这也说明整环条件在这里起到什么作用。
+\end{proof}
+
+\begin{proposition}
+若$R$为整环，则$R[x]$也是整环，且$R[x]$中的可逆元恰为$R$中的可逆元。进而，$R[x_1,\ldots,x_n]$也是整环。
+\end{proposition}
+\begin{proof}
+两个非零多项式的首项系数均非零，其积在整环中非零，所以多项式乘积非零，证明了无零因子性。常数$1$非零，故$R[x]$是整环。
+
+若$fg=1$，则$f,g$均非零，并有
+\[
+0=\deg1=\deg f+\deg g.
+\]
+两者次数均为非负整数，只能都为零，即$f,g\in R$。因此$f$已经是$R$的可逆元。反过来，$R$中可逆元的逆仍是常数，当然也在$R[x]$中。
+
+多元情形对变量个数归纳，每次把前面的多项式环作为新的整环，应用一元结论即可。
+\end{proof}
+
+\begin{corollary}
+若$P$为交换幺环$R$的素理想，则$P[x_1,\ldots,x_n]$是$R[x_1,\ldots,x_n]$的素理想。
+\end{corollary}
+\begin{proof}
+$R/P$为整环，所以$(R/P)[y_1,\ldots,y_n]$为整环。上一节的商环同构表明，多项式环模$P[x_1,\ldots,x_n]$也是整环，故该理想为素理想。
+\end{proof}
+
+下面的带余除法不要求系数环本身为域；真正需要的是除式的首项系数可以相除。
+
+\begin{theorem}\label{p2:poly-division}
+设$R$为交换幺环，$g\in R[x]$非零且首项系数可逆。则对任意$f\in R[x]$，唯一存在$q,r\in R[x]$使
+\[
+f=qg+r,\qquad \deg r<\deg g.
+\]
+其中允许$r=0$。
+\end{theorem}
+\begin{proof}
+\textbf{存在性：}记$\deg g=m$，首项系数为$b_m$。若$f=0$或$\deg f<m$，取$q=0,r=f$即可。
+
+其余情形对$n=\deg f$归纳。设$f$的首项系数为$a_n$，取
+\[
+f_1=f-a_nb_m^{-1}x^{n-m}g.
+\]
+所减项的首项恰为$a_nx^n$，故$\deg f_1<n$。若$f_1=0$或次数小于$m$，直接令它为余式；否则由归纳假设，写成$f_1=q_1g+r$且$\deg r<m$。于是
+\[
+f=\bigl(q_1+a_nb_m^{-1}x^{n-m}\bigr)g+r,
+\]
+得到了所需分解。
+
+\textbf{唯一性：}若$f=qg+r=q'g+r'$，则
+\[
+(q-q')g=r'-r.
+\]
+若$q-q'\ne0$，它的非零首项系数乘以可逆元$b_m$仍非零。因此
+\[
+\deg\bigl((q-q')g\bigr)=\deg(q-q')+m\ge m,
+\]
+而右端次数小于$m$，矛盾。所以$q=q'$，进而$r=r'$。
+\end{proof}
+
+\begin{corollary}
+对$c\in R$及$f\in R[x]$，存在唯一的$q\in R[x]$使
+\[
+f(x)=q(x)(x-c)+f(c).
+\]
+特别地，$c$是$f$的根当且仅当$(x-c)\mid f$。
+\end{corollary}
+\begin{proof}
+用首一多项式$x-c$作除式，余式次数小于$1$，所以余式为常数$r$。代入$x=c$即得$r=f(c)$。因而余式为零恰好等价于$f(c)=0$，也恰好等价于整除关系成立。
+\end{proof}
+
+\begin{theorem}\label{p2:poly-roots}
+整环$R$上的非零$n$次多项式至多有$n$个不同的根。
+\end{theorem}
+\begin{proof}
+先把$R$嵌入其商域$F$。原多项式在$F[x]$中仍非零且次数不变，$R$中的根也都是$F$中的根，所以只须在域上证明。
+
+对次数$n$归纳。$n=0$时，非零常数没有根。若$n>0$且$f$没有根，结论成立。若有根$c$，由因式定理，
+\[
+f(x)=(x-c)g(x),\qquad\deg g=n-1.
+\]
+若$d\ne c$也是$f$的根，则
+\[
+0=f(d)=(d-c)g(d).
+\]
+由于$d-c\ne0$且$F$为域，有$g(d)=0$。除$c$之外的根均为$g$的根，由归纳假设至多有$n-1$个，加上$c$后至多有$n$个。
+\end{proof}
+
+\begin{example}
+上述条件不能任意删去。在四元数体中，若
+\[
+u=aI+bJ+cK,\qquad a,b,c\in\mathbb R,\quad a^2+b^2+c^2=1,
+\]
+则由$I^2=J^2=K^2=-1$及不同虚单位相乘反交换，$u^2=-1$。所以$x^2+1$有无穷多个四元数根；这里乘法不交换。
+
+在交换环$\mathbb Z/(8)$中，$x^2-1$有$1,3,5,7$四个根，因为奇数$2k+1$的平方减$1$为$4k(k+1)$，被$8$整除。在$\mathbb Z/(15)$中，它的根为$1,4,11,14$；可分别模$3$和模$5$选择$1$或$-1$，再用中国剩余定理得到这四个解。这两个环都有零因子，不能应用整环上的根数定理。
+\end{example}
+
+\begin{theorem}\label{p2:finite-multiplicative-subgroup}
+整环中非零元素的任一有限乘法子群都是循环群。特别地，有限域$F$的乘法群$F\setminus\{0\}$是循环群。
+\end{theorem}
+\begin{proof}
+设$G$为这样的有限子群。对任意正整数$d$，群中满足$g^d=1$的元素，都是多项式$x^d-1$的根。由根数定理，这样的元素至多有$d$个。
+
+第二章关于方程$x^d=e$的根数与循环群的判别定理\ref{p2:cyclic-root-count}说明，满足上述条件的有限群是循环群，故$G$为循环群。有限域的全部非零元素对乘法及取逆封闭，构成有限群，因而也是循环群。
+\end{proof}
+
+\begin{corollary}
+设有限域$F$有$q$个元素，则每个$a\in F$满足$a^q=a$。若$p$为素数，则模$p$有原根，原根的个数为$\varphi(p-1)$。
+\end{corollary}
+\begin{proof}
+若$a\ne0$，由乘法群的阶为$q-1$及拉格朗日定理，$a^{q-1}=1$；$a=0$时结论同样成立。
+
+所谓模$p$的原根，是指$\mathbb Z/(p)$的非零剩余类乘法群的生成元。这个群是$p-1$阶循环群，故生成元存在。循环群中生成元的个数等于欧拉函数$\varphi(p-1)$，得到计数结论。
+\end{proof}
+
+\begin{definition}
+若整环$R$的每个理想都由一个元素生成，则称$R$为\textbf{主理想整环}。例如整数环$\mathbb Z$是主理想整环。
+\end{definition}
+
+\begin{theorem}\label{p2:field-poly-pid}
+若$F$为域，则$F[x]$为主理想整环。它的每个非零理想都有唯一的首一生成元。
+\end{theorem}
+\begin{proof}
+$F[x]$为整环。零理想等于$(0)$，只需考虑非零理想$I$。在$I$中选取次数最小的非零多项式$f$。对任意$g\in I$作带余除法，
+\[
+g=qf+r,\qquad\deg r<\deg f.
+\]
+因$I$为理想，$r=g-qf\in I$。若$r\ne0$，就违反$f$次数最小的选择，所以$r=0$。于是$g\in(f)$，证明$I\subseteq(f)$；另一包含关系由$f\in I$得到。因此$I=(f)$。
+
+把$f$除以非零首项系数，可使其首一而不改变生成理想。若两个首一多项式$f,g$生成同一非零理想，则$f=ag$且$g=bf$。比较次数得$\deg f=\deg g$，故$a,b$均为非零常数。再比较首项系数得$a=b=1$，所以$f=g$。
+\end{proof}
+
+\begin{definition}
+设$F$为域，$u$是包含$F$的交换幺环中的元素，且$u$在$F$上代数。代入同态$F[x]\to F[u]$的核是非零理想，其唯一的首一生成元称为$u$在$F$上的\textbf{最小多项式}。
+\end{definition}
+
+\begin{proposition}
+设$f$为$u$的最小多项式，则$\deg f\ge1$，且对每个$g\in F[x]$，
+\[
+g(u)=0\quad\Longleftrightarrow\quad f\mid g.
+\]
+因此$f$是使$u$为根的非零多项式中次数最小的首一多项式，且
+\[
+F[u]\cong F[x]/(f).
+\]
+\end{proposition}
+\begin{proof}
+非零常数代入后不为零，所以核不含非零常数，$\deg f\ge1$。由核等于$(f)$，$g(u)=0$等价于$g\in(f)$，也就是$f\mid g$。非零倍式的次数不小于$\deg f$，所以它确有最小次数。商环同构由代入同态及同构定理得到。
+\end{proof}
+
+\begin{definition}
+域$F$上的正次数多项式$f$，若不能写成两个正次数多项式之积，就称为\textbf{不可约多项式}；否则称为\textbf{可约多项式}。等价地，$f=gh$时至少有一个因子是非零常数，即$F[x]$的可逆元。
+\end{definition}
+
+\begin{theorem}\label{p2:irreducible-maximal}
+设$F$为域，$f\in F[x]$的次数为正。以下条件等价：
+\begin{enumerate}
+\item $f$不可约；
+\item $(f)$为极大理想；
+\item $F[x]/(f)$为域；
+\item $F[x]/(f)$为整环；
+\item $(f)$为素理想。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\textbf{由第一项推出第二项：}若$(f)\subseteq I\subseteq F[x]$，由主理想性，写$I=(g)$。因$f\in(g)$，存在$h$使$f=gh$。由不可约性，$g,h$中至少一个为可逆常数。
+
+若$g$可逆，则$I=F[x]$；若$h$可逆，则$(g)=(f)$，所以$I=(f)$。又因$\deg f>0$，$(f)$为真理想，因此它是极大理想。
+
+\textbf{第二项至第五项：}极大理想的商环为域，域是整环，而商环为整环等价于所模理想为素理想。依次应用这些已经证明的判别，得到第二项推出第三项，第三项推出第四项，第四项推出第五项。
+
+\textbf{由第五项推出第一项：}若$f$可约，写$f=gh$，其中$0<\deg g,\deg h<\deg f$。于是$gh\in(f)$。素理想性迫使$g\in(f)$或$h\in(f)$；但非零的$f$的倍式次数至少为$\deg f$，两者均不可能。矛盾，故$f$不可约。
+\end{proof}
+
+\begin{corollary}
+若$u$在域$F$上代数，最小多项式为$f$，则
+\[
+f\text{ 不可约}\quad\Longleftrightarrow\quad F[u]\text{ 为域}
+\quad\Longleftrightarrow\quad F[u]\text{ 为整环}.
+\]
+特别地，若整环$S$包含域$F$，且$S$中每个元素都在$F$上代数，则$S$本身是域。
+\end{corollary}
+\begin{proof}
+第一部分把$F[u]\cong F[x]/(f)$代入上述等价条件即可。对第二部分，任取$0\ne u\in S$，子环$F[u]$为整环，所以它已经是域。于是$u$在$F[u]\subseteq S$中有逆元。$S$中每个非零元素均可逆，故$S$为域。
+\end{proof}
+
+\begin{example}
+设$F$为有限域。由于其加法群有限，单位元的加法阶是某个正整数$p$；这就是$F$的特征。若$p=ab$且$1<a,b<p$，则
+\[
+(a\cdot1)(b\cdot1)=p\cdot1=0,
+\]
+而两个因子均非零，与域无零因子矛盾。因此$p$为素数，$F$包含由$1$生成的子域$F_p\cong\mathbb Z/(p)$。
+
+由$F$的非零乘法群循环，选其生成元$\alpha$。每个非零元素都是$\alpha$的幂，所以$F=F_p[\alpha]$。因$F$有限，$1,\alpha,\alpha^2,\ldots$中必有重复，从而$\alpha$满足非零多项式。设其最小多项式为$f$，$\deg f=n$，则
+\[
+F\cong F_p[x]/(f),\qquad f\text{ 为首一不可约多项式}.
+\]
+由带余除法，每个剩余类唯一地由次数小于$n$的多项式代表；$n$个系数各有$p$种选择，所以$|F|=p^n$。
+
+反过来，给定$F_p$上的$n$次首一不可约多项式$f$，商环$F_p[x]/(f)$是具有$p^n$个元素的域。这里尚未证明对每个$n$这样的不可约多项式都存在。
+\end{example}
+
+\begin{example}
+设$A\in M_n(F)$。把$a\in F$视为标量矩阵$aE$，则它与$A$可交换。因此即使矩阵环本身不交换，
+\[
+F[A]=\{a_0E+a_1A+\cdots+a_mA^m:a_i\in F\}
+\]
+仍是交换幺环，可以应用上述结论。
+
+矩阵空间$M_n(F)$的维数为$n^2$，所以$E,A,\ldots,A^{n^2}$线性相关，存在不全为零的$c_i$使
+\[
+c_0E+c_1A+\cdots+c_{n^2}A^{n^2}=0.
+\]
+故$A$在$F$上代数，最小多项式的次数不超过$n^2$。若最小多项式为$f$，则$F[A]\cong F[x]/(f)$；它是域当且仅当$f$不可约。
+\end{example}
+
+\begin{example}
+设$A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in M_2(\mathbb Q)$不是标量矩阵。直接计算可得
+\[
+A^2-(a+d)A+(ad-bc)E=0.
+\]
+例如左上角为$a^2+bc-(a+d)a+ad-bc=0$，右上角为$ab+bd-(a+d)b=0$；另两项同样分别为$ca+dc-(a+d)c=0$和$cb+d^2-(a+d)d+ad-bc=0$。
+
+若$A$满足一次关系$uA+vE=0$且$u\ne0$，则$A=-v/u\,E$为标量矩阵，矛盾。因此$A$的最小多项式为
+\[
+f(x)=x^2-(a+d)x+ad-bc.
+\]
+按$f$在$\mathbb Q$上的分解，有以下三种完备情形。
+
+\textbf{第一种：$f$不可约。}此时$\mathbb Q[A]$为域。每个元素唯一地写成$uE+vA$，所以它作为$\mathbb Q$上的线性空间维数为$2$。
+
+\textbf{第二种：$f=(x-\lambda_1)(x-\lambda_2)$，$\lambda_1\ne\lambda_2$。}令
+\[
+B=\frac{A-\lambda_1E}{\lambda_2-\lambda_1},\qquad
+C=-\frac{A-\lambda_2E}{\lambda_2-\lambda_1}.
+\]
+因$A$不是标量矩阵，$B,C$均非零。由$f(A)=0$，
+\[
+B+C=E,\qquad BC=CB=0.
+\]
+于是$B=B(B+C)=B^2$，同理$C^2=C$。又有$A=\lambda_2B+\lambda_1C$，所以
+\[
+\mathbb Q[A]=\mathbb QB+\mathbb QC.
+\]
+若$rB+sC=0$，分别乘$B,C$即得$rB=0,sC=0$，故$r=s=0$。两部分相乘为零，各自以$B,C$为单位元，因而
+\[
+\mathbb Q[A]=\mathbb QB\oplus\mathbb QC\cong\mathbb Q\oplus\mathbb Q.
+\]
+
+\textbf{第三种：$f=(x-\lambda)^2$。}令$B=A-\lambda E$，则$B\ne0$、$B^2=0$，并且$\mathbb Q[A]=\mathbb QE+\mathbb QB$。若$u\ne0$，则
+\[
+(uE+vB)\left(u^{-1}E-vu^{-2}B\right)=E,
+\]
+所以$uE+vB$可逆。若$u=0$，则$(vB)^2=0$，不能可逆。因此任一真理想只能包含$\mathbb QB$中的元素；若又非零，含某个$vB\ne0$，乘$v^{-1}E$得到$B$，故该理想就是$\mathbb QB$。
+
+因此它只有一个非零真理想$N=\mathbb QB$，且$N^2=0$。一般地，若理想$N$满足某个正整数$m$使$N^m=0$，便称其为\textbf{幂零理想}；这里$N$就是一个幂零理想。
+\end{example}

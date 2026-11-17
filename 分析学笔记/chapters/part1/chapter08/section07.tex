@@ -1,0 +1,381 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.7 反常积分验敛法
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{反常积分验敛法}
+\begin{proposition}（Cauchy 收敛原理）
+	\[
+	\int_a^{+\infty} f(x)\dd x \text{ 收敛} \iff
+	\]
+	$\forall \varepsilon>0$，$\exists M>0$ 且 $M \ge a$，使得 $\forall A_1,A_2 \ge M$，都有
+	\[
+	\left| \int_{A_2}^{A_1} f(x)\dd x \right| < \varepsilon
+	\]
+\end{proposition}
+\begin{proof}
+	由函数极限的 Cauchy 收敛原理易得.
+\end{proof}
+同时，我们给出无限区间上反常积分的 Cauchy 不收敛原理.
+
+\begin{proposition}
+	\[
+	\int_a^{+\infty} f(x)\dd x \text{ 发散} \iff \exists \varepsilon_0>0,\ \forall M>0 \text{ 且 } M \ge a,\ \forall A_1,A_2 \ge M,
+	\]
+	都有
+	\[
+	\left| \int_{A_2}^{A_1} f(x)\dd x \right| \ge \varepsilon_0
+	\]
+	
+\end{proposition}
+\begin{definition}
+	对 $f(x)$，若
+	\[
+	\int_a^{+\infty} |f(x)|\dd x
+	\]
+	收敛，则称 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 绝对收敛，又称 $f(x)$ 在 $[a,+\infty)$ 绝对可积.
+	
+\end{definition}
+
+\begin{proposition}
+	若 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 绝对收敛，则 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛.
+\end{proposition}
+\begin{proof}
+	由 $\displaystyle\int_a^{+\infty} |f(x)|\dd x$ 收敛，$\forall \varepsilon>0$，$\exists M>0$ 且 $M \ge a$，使得 $\forall A_1,A_2 \ge M$ 且 $A_1>A_2$，有
+	\[
+	\int_{A_2}^{A_1} |f(x)|\dd x < \varepsilon
+	\]
+	而 $f \in \mathcal{R}[A_2,A_1]$，故
+	\[
+	\left| \int_{A_2}^{A_1} f(x)dx \right| \le \int_{A_2}^{A_1} |f(x)|\dd x < \varepsilon
+	\]
+	由Cauchy收敛原理，$\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛.
+\end{proof}
+
+\begin{definition}
+	若 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛，但 $\displaystyle\int_a^{+\infty} |f(x)|\dd x$ 发散，则称 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 条件收敛.
+	
+\end{definition}
+下面我们考虑定号函数反常积分的敛散性
+\begin{proposition}（比较验敛法）\label{比较验敛法}
+	设函数 $f$ 在 $[a,+\infty)$ 上有定义，$\exists A \ge a$，使得 $f(x)$ 在 $[A,+\infty)$ 上满足 $f \ge 0$（或 $f \le 0$），函数 $\varphi$ 在 $[A,+\infty)$ 上满足
+	\[
+	0 \le f(x) \le k \varphi(x), \quad k \ge 0
+	\]
+	则
+	\begin{enumerate}
+		\item 若 $\displaystyle\int_a^{+\infty} \varphi(x)\dd x$ 收敛 $\implies \displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛；
+		\item 若 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 发散 $\implies \displaystyle\int_a^{+\infty} \varphi(x)\dd x$ 发散.
+	\end{enumerate}
+	
+	
+\end{proposition}
+
+
+\begin{proof}
+	显然地，1 与 2 互为逆否命题，只需证明 1.
+	
+	由 $\displaystyle\int_a^{+\infty} \varphi(x)\dd x$ 收敛，根据 Cauchy 收敛准则，
+	$\forall \varepsilon>0$，$\exists M \ge A$，$\forall A_1,A_2 \ge M$ 且 $A_1 \le A_2$，有
+	\[
+	0 < \int_{A_1}^{A_2} \varphi(x)\dd x < \varepsilon
+	\]
+	于是
+	\[
+	0 \le \int_{A_1}^{A_2} f(x)\dd x \le k \int_{A_1}^{A_2} \varphi(x)\dd x < k\varepsilon
+	\]
+	故 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛.
+\end{proof} 
+下面给出\ref{比较验敛法}的极限形式
+\begin{corollary}
+	设 $f(x)$ 与 $\varphi(x)$ 在 $[a,+\infty)$ 为非负函数，且
+	\[
+	\lim_{x \to +\infty} \frac{f(x)}{\varphi(x)} = l
+	\]
+	\begin{enumerate}
+		\item 若 $0 \le l < +\infty$，则
+		\[
+		\int_a^{+\infty} \varphi(x)\dd x \text{ 收敛} \implies \int_a^{+\infty} f(x)\dd x \text{ 收敛}
+		\] 
+		\item  若 $0 < l \le +\infty$，则
+		\[
+		\int_a^{+\infty} \varphi(x)\dd x \text{ 发散} \implies \int_a^{+\infty} f(x)\dd x \text{ 发散}
+		\]
+	\end{enumerate}
+	
+	也就是说，$0<l<+\infty$时,$\varphi(x)$ 与 $f(x)$ 有相同的敛散性.
+	
+\end{corollary}
+\begin{proof}
+	\begin{enumerate}
+		\item 由 $\lim\limits_{x \to +\infty} \dfrac{f(x)}{\varphi(x)} = l < +\infty$，则对 $\varepsilon=1$，$\exists M_0 \ge a$，当 $x > M_0$ 时
+		\[
+		0 \le \frac{f(x)}{\varphi(x)} - l < 1
+		\]
+		即
+		\[
+		0 \le l\varphi(x) \le f(x) \le (1+l)\varphi(x)
+		\]
+		由 $\displaystyle\int_a^{+\infty} \varphi(x)\dd x$ 收敛，推出 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛.
+		
+		\item 若 $0 < l \le +\infty$，令 $l' = \dfrac{1}{l}$，则 $0 \le l' < +\infty$，且
+		\[
+		\lim_{x \to +\infty} \frac{\varphi(x)}{f(x)} = l' \in [0,+\infty)
+		\]
+		对 $\varepsilon=1$，$\exists \widetilde{M}_0 \ge a$，$\forall x > \widetilde{M}_0$，有
+		\[
+		0 \le \frac{\varphi(x)}{f(x)} \le l' + 1
+		\]
+		即
+		\[
+		0 \le \varphi(x) \le (l'+1)f(x)
+		\]
+		由 $\displaystyle\int_a^{+\infty} \varphi(x)\dd x$ 发散，得 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 发散.
+	\end{enumerate}
+\end{proof}
+使用 $p$-积分与比较验敛法，我们得到 Cauchy 判别法.
+\begin{corollary}
+	（Cauchy 判别法）
+	在 $[a,+\infty) \subset (0,+\infty)$ 上恒有 $f(x) \ge 0$，$K$ 是正常数.
+	
+	(1) 若 $f(x) \le \dfrac{K}{x^p}$，且 $p>1$，则 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛；
+	
+	(2) 若 $f(x) \ge \dfrac{K}{x^p}$，且 $p \le 1$，则 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 发散.
+\end{corollary}
+\begin{corollary}
+	（Cauchy 判别法的极限形式）
+	设在 $[a,+\infty) \subset (0,+\infty)$ 上恒有 $f(x) \ge 0$，且
+	\[
+	\lim_{x \to +\infty} x^p f(x) = l
+	\]
+	则
+	
+	(1) 若 $0 \le l < +\infty$ 且 $p>1$，则 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛；
+	
+	(2) 若 $0 < l \le +\infty$ 且 $p \le 1$，则 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 发散.
+\end{corollary}
+
+
+下面，我们先再次证明第二积分中值定理的一个特殊情况，证明的方法更有技巧性.
+\begin{proposition}
+	设 $f$ 在 $[a,b]$ 上连续且常义可积，$g$ 在 $[a,b]$ 上单调、连续可导且常义可积，则 $\exists \xi \in [a,b]$，使得
+	\[
+	\int_a^b f(x)g(x)\dd x = g(a)\int_a^\xi f(x)x + g(b)\int_\xi^b f(x)\dd x
+	\]
+\end{proposition}
+\begin{proof}
+	令 $F(x) = \displaystyle\int_a^x f(t)\dd t$，因 $f(x)$ 连续，故 $F'(x)=f(x)$.由分部积分法，
+	\[
+	\begin{aligned}
+		\int_a^b f(x)g(x)\dd x &= \int_a^b g(x) d\left( \int_a^x f(t)\dd t \right) \\
+		&= \left. g(x)F(x) \right|_a^b - \int_a^b F(x)g'(x)\dd x
+	\end{aligned}
+	\]
+	因 $g$ 单调，故 $g'(x)$ 在 $[a,b]$ 上不变号，由积分第一中值定理，$\exists \xi \in [a,b]$，使得
+	\[
+	\int_a^b F(x)g'(x)dx = F(\xi)\int_a^b g'(x)\dd x
+	\]
+	代入上式得
+	\[
+	\begin{aligned}
+		\int_a^b f(x)g(x)\dd x &= g(b)F(b) - F(\xi)\int_a^b g'(x)\dd x \\
+		&= g(b)\int_a^b f(x)\dd x - \int_a^\xi f(x)\dd x \cdot \left( g(b)-g(a) \right) \\
+		&= g(a)\int_a^\xi f(x)\dd x + g(b)\int_\xi^b f(x)\dd x
+	\end{aligned}
+	\]
+\end{proof}
+
+下面介绍 A-D 判别法.
+\begin{proposition}(A-D 判别法)
+	
+	\begin{enumerate}
+		\item Abel 判别法：若 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛，$g(x)$ 在 $[a,+\infty)$ 上单调有界，则 $\displaystyle\int_a^{+\infty} f(x)g(x)\dd x$ 收敛.
+		\item Dirichlet 判别法：若 $F(A)=\displaystyle\int_a^A f(x)\dd x$ 在 $[a,+\infty)$ 上有界，$g(x)$ 在 $[a,+\infty)$ 上单调且 $\lim\limits_{x \to +\infty} g(x)=0$，则 $\displaystyle\int_a^{+\infty} f(x)g(x)\dd x$ 收敛.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item 由 $g(x)$ 在 $[a,+\infty)$ 上有界，$\exists M \ge 0$，使得 $|g(x)| \le M$ 对 $\forall x \in [a,+\infty)$ 成立.
+		因 $\displaystyle\int_a^{+\infty} f(x)\dd x$ 收敛，由 Cauchy 收敛准则，$\forall \varepsilon>0$，$\exists G \ge a$，对 $\forall A_1,A_2 > G$ 且 $A_1 < A_2$，有
+		\[
+		\left| \int_{A_1}^{A_2} f(x)\dd x \right| < \varepsilon
+		\]
+		由第二积分中值定理，$\exists \xi \in [A_1,A_2]$，使得
+		\[
+		\int_{A_1}^{A_2} f(x)g(x)dx = g(A_1)\int_{A_1}^\xi f(x)dx + g(A_2)\int_\xi^{A_2} f(x)dx
+		\]
+		因此
+		\[
+		\begin{aligned}
+			\left| \int_{A_1}^{A_2} f(x)g(x)\dd x \right|
+			&= \left| g(A_1)\int_{A_1}^\xi f(x)\dd x + g(A_2)\int_\xi^{A_2} f(x)\dd x \right| \\
+			&\le |g(A_1)| \cdot \left| \int_{A_1}^\xi f(x)\dd x \right| + |g(A_2)| \cdot \left| \int_\xi^{A_2} f(x)\dd x \right| \\
+			&\le M \left( \left| \int_{A_1}^\xi f(x)\dd x \right| + \left| \int_\xi^{A_2} f(x)\dd x \right| \right) \\
+			&< 2M\varepsilon
+		\end{aligned}
+		\]
+		由 Cauchy 收敛准则，$\displaystyle\int_a^{+\infty} f(x)g(x)\dd x$ 收敛.
+		\item 由 $F(A)=\displaystyle\int_a^A f(x)\dd x$ 在 $[a,+\infty)$ 上有界，$\exists L>0$，对 $\forall A \in [a,+\infty)$，有
+		\[
+		|F(A)| = \left| \int_a^A f(x)\dd x \right| < L
+		\]
+		由 $\lim\limits_{x \to +\infty} g(x)=0$，$\forall \varepsilon>0$，$\exists X > a$，对 $\forall x > X$，有 $|g(x)| < \varepsilon$.
+		对 $\forall A_1,A_2 > X$ 且 $A_1 \le A_2$，有 $|g(A_1)| < \varepsilon$，$|g(A_2)| < \varepsilon$.
+		由第二积分中值定理，$\exists \xi \in [A_1,A_2]$，使得
+		\[
+		\int_{A_1}^{A_2} f(x)g(x)\dd x = g(A_1)\int_{A_1}^\xi f(x)\dd x + g(A_2)\int_\xi^{A_2} f(x)\dd x
+		\]
+		因此
+		\[
+		\begin{aligned}
+			\left| \int_{A_1}^{A_2} f(x)g(x)\dd x \right|
+			&= \left| g(A_1)\int_{A_1}^\xi f(x)\dd x + g(A_2)\int_\xi^{A_2} f(x)\dd x \right| \\
+			&\le |g(A_1)| \cdot \left| \int_{A_1}^\xi f(x)\dd x \right| + |g(A_2)| \cdot \left| \int_\xi^{A_2} f(x)\dd x \right| \\
+			&< \varepsilon \left( \left| \int_a^\xi f(x)\dd x - \int_a^{A_1} f(x)\dd x \right| + \left| \int_a^{A_2} f(x)\dd x - \int_a^\xi f(x)\dd x \right| \right) \\
+			&< \varepsilon (L + L + L + L) = 4L\varepsilon
+		\end{aligned}
+		\]
+		由 Cauchy 收敛准则，$\displaystyle\int_a^{+\infty} f(x)g(x)\dd x$ 收敛.
+	\end{enumerate}
+	
+	
+\end{proof}
+\begin{example}
+	考虑反常积分 $$ \int_0^{+\infty} \frac{\sin x}{x} \dd x$$ 的敛散性.
+\end{example}
+\begin{solution}
+	将积分拆分为两部分：
+	\[
+	\int_0^{+\infty} \frac{\sin x}{x} dx = \int_0^1 \frac{\sin x}{x} dx + \int_1^{+\infty} \frac{\sin x}{x} dx = I + J
+	\]
+	
+	对于 $I = \displaystyle\int_0^1 \dfrac{\sin x}{x} \dd x$：
+	由于 $\lim\limits_{x\to0} \dfrac{\sin x}{x} = 1$，因此被积函数在 $x=0$ 附近有界，$I$ 是常义（Riemann）积分，必然收敛.
+	
+	对于 $J = \displaystyle\int_1^{+\infty} \dfrac{\sin x}{x} \dd x$：
+	应用 Dirichlet 判别法：
+	令 $f(x) = \sin x$，$g(x) = \dfrac{1}{x}$.
+	
+	1.  $F(A) = \displaystyle\int_1^A \sin x \dd x = -\cos A + \cos 1$ 在 $[1,+\infty)$ 上显然有界.
+	
+	2.  $g(x) = \dfrac{1}{x}$ 在 $[1,+\infty)$ 上单调递减，且 $\lim\limits_{x\to+\infty} g(x) = 0$.
+	故 $J$ 收敛，因此原积分 $\displaystyle \int_0^{+\infty} \dfrac{\sin x}{x} \dd x$ 收敛.
+	
+	接下来判断其是否绝对收敛：
+	\[
+	\int_0^{+\infty} \left| \frac{\sin x}{x} \right| \dd x \ge \int_0^{+\infty} \frac{|\sin x|}{x} \dd x
+	\]
+	利用恒等式 $|\sin x|^2 = \sin^2 x = \dfrac{1-\cos 2x}{2}$，有：
+	\[
+	\int_0^{+\infty} \frac{|\sin x|}{x} \dd x \ge \int_0^{+\infty} \frac{\sin^2 x}{x} \dd x = \int_0^{+\infty} \frac{1-\cos 2x}{2x} \dd x = \int_0^{+\infty} \frac{1}{2x} \dd x - \int_0^{+\infty} \frac{\cos 2x}{2x} \dd x
+	\]
+	其中，$\displaystyle \int_0^{+\infty} \frac{1}{2x} dx$ 是 $p=1$ 的 $p$-积分，发散因此，原不等式右边整体发散，从而 $\displaystyle \int_0^{+\infty} \left| \frac{\sin x}{x} \right| dx$ 发散.
+	
+	综上，$\displaystyle \int_0^{+\infty} \frac{\sin x}{x} \dd x$ 条件收敛.
+\end{solution}
+对于有限闭区间上的无界函数的反常积分
+\[
+\int_a^b f(x)\dd x
+\]
+且 \(f(x)\) 在 \([a,b]\) 上有唯一的奇点 \(b\)。我们作变换
+\[
+t=\frac{1}{b-x},
+\]
+那么
+\[
+I=\int_a^b f(x)\dd x=\int_{\tfrac{1}{b-a}}^{+\infty} \frac{1}{t^2} f\left(b-\frac{1}{t}\right) \dd t.
+\]
+我们可以得到对应的 Cauchy 收敛原理、Cauchy 判别法与 A-D 判别法。
+\begin{proposition}
+	对上述的 $\displaystyle \int_a^b f(x)\dd x$ 收敛的充分必要条件是：
+	$\forall \varepsilon>0,\ \exists \delta>0$，对任意 $\eta,\eta' \in (0,\delta)$，有
+	\[
+	\left| \int_{b-\eta}^{b-\eta'} f(x)\dd x \right| < \varepsilon
+	\]
+\end{proposition}
+\begin{proposition}
+	设在 $[a,b)$ 上恒有 $f(x) \ge 0$，若当 $x$ 属于 $b$ 的某个左邻域 $[b-\eta_0,b)$ 时，存在正常数 $K$与函数$\varphi(x)$，使得
+	\begin{enumerate}
+		\item 若 $f(x) \le K\varphi(x)$ 且 $\displaystyle\int_a^b \varphi(x)\dd x$收敛，则 $\displaystyle \int_a^b f(x)\dd x$ 收敛；
+		\item 若 $f(x) \ge  K\varphi(x)$ 且$\displaystyle\int_a^b \varphi(x)\dd x$发散，则 $\displaystyle \int_a^b f(x)\dd x$ 发散。
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}
+	设在 $[a,b)$ 上恒有 $f(x),\varphi(x) \ge 0$，且
+	\[
+	\lim_{x \to b^-} \dfrac{f(x)}{\varphi(x)} = l
+	\]
+	则
+	\begin{enumerate}
+		\item 若 $0 \le l < +\infty$ 且 $\displaystyle\int_a^b \varphi(x)\dd x$收敛，则 $\displaystyle \int_a^b f(x)\dd x$ 收敛；
+		\item 若 $0 < l \le +\infty$ 且 $\displaystyle\int_a^b \varphi(x)\dd x$发散，则 $\displaystyle \int_a^b f(x)\dd x$ 发散。
+	\end{enumerate}
+	
+\end{proposition}
+\begin{proposition}
+	设在 $[a,b)$ 上恒有 $f(x) \ge 0$，若当 $x$ 属于 $b$ 的某个左邻域 $[b-\eta_0,b)$ 时，存在正常数 $K$，使得\begin{enumerate}
+		\item 若 $f(x) \le \dfrac{K}{(b-x)^p}$ 且 $p<1$，则 $\displaystyle \int_a^b f(x)\dd x$ 收敛；
+		\item 若 $f(x) \ge \dfrac{K}{(b-x)^p}$ 且 $p \ge 1$，则 $\displaystyle \int_a^b f(x)\dd x$ 发散。
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}
+	设在 $[a,b)$ 上恒有 $f(x) \ge 0$，且
+	\[
+	\lim_{x \to b^-} (b-x)^p f(x) = l
+	\]
+	则
+	\begin{enumerate}
+		\item 若 $0 \le l < +\infty$ 且 $p<1$，则 $\displaystyle \int_a^b f(x)\dd x$ 收敛；
+		\item 若 $0 < l \le +\infty$ 且 $p \ge 1$，则 $\displaystyle \int_a^b f(x)\dd x$ 发散。
+	\end{enumerate}
+	
+\end{proposition}
+\begin{proposition}
+	若下列两个条件之一满足，则 $\displaystyle \int_a^b f(x)g(x)\dd x$ 收敛：
+	\begin{enumerate}
+		\item \textbf{Abel 判别法}：$\displaystyle \int_a^b f(x)\dd x$ 收敛，$g(x)$ 在 $[a,b)$ 上单调有界；
+		\item \textbf{Dirichlet 判别法}：$F(\eta)=\displaystyle \int_a^{b-\eta} f(x)\dd x$ 在 $(0,b-a]$ 上有界，$g(x)$ 在 $[a,b)$ 上单调且 $\lim_{x \to b^-} g(x)=0$。
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}
+	设 $f(x)$ 在 $[a,+\infty)$ 上一致连续，且反常积分 $\displaystyle \int_a^{+\infty} f(x)\dd x$ 收敛，则
+	\[
+	\lim_{x\to+\infty} f(x)=0\]
+\end{proposition}
+\begin{proof}
+	（反证法）
+	若不然，即 $\lim\limits_{x\to+\infty} f(x)\neq 0$，则 $\exists \varepsilon_0>0$，对任意 $M>0$，总能找到 $x_0>M$，使得 $|f(x_0)|\ge \varepsilon_0$。
+	
+	取 $M_1=a+1$，则 $\exists x_1>M_1$，但 $|f(x_1)|\ge \varepsilon_0$；
+	
+	再取 $M_2=x_1+1$，则 $\exists x_2>M_2$，但$|f(x_2)|\ge \varepsilon_0$；
+	
+	$\vdots$
+	
+	以此类推，我们可以得到一个严格单调递增趋于 $+\infty$ 的数列 $\{x_n\}_{n=1}^\infty \subset [a,+\infty)$，满足 $|f(x_n)|\ge \varepsilon_0$。
+	
+	由于数列有无穷多个点，$f(x_n)$ 要么恒正，要么恒负。不失一般性，我们假设所有 $f(x_n)\ge \varepsilon_0>0$。
+	
+	由 $f(x)$ 在 $[a,+\infty)$ 上一致连续，对 $\dfrac{\varepsilon_0}{2}>0$，$\exists \delta_0>0$，使得对任意 $x',x''$，只要 $0<|x'-x''|<\delta_0$，就有
+	\[
+	|f(x')-f(x'')|<\frac{\varepsilon_0}{2}
+	\]
+	特别地，对任意 $x$ 满足 $|x-x_n|<\delta_0$，有
+	\[
+	f(x) > f(x_n) - \frac{\varepsilon_0}{2} \ge \varepsilon_0 - \frac{\varepsilon_0}{2} = \frac{\varepsilon_0}{2}
+	\]
+	因此，对任意 $n\ge 1$，有
+	\[
+	\int_{x_n-\delta_0/2}^{x_n+\delta_0/2} f(x)dx \ge \int_{x_n-\delta_0/2}^{x_n+\delta_0/2} \frac{\varepsilon_0}{2} dx = \delta_0 \cdot \frac{\varepsilon_0}{2} = C_0
+	\]
+	其中 $C_0=\dfrac{\delta_0\varepsilon_0}{2}>0$ 是一个常数。
+	
+	令 $y_n=x_n+\delta_0/2$，$y'_n=x_n-\delta_0/2$，则得到两个数列 $\{y_n\}$ 和 $\{y'_n\}$，它们都严格单调趋于 $+\infty$，且满足
+	\[
+	\int_{y'_n}^{y_n} f(x)dx \ge C_0
+	\]
+	这与反常积分 $\displaystyle \int_a^{+\infty} f(x)\dd x$ 收敛的 Cauchy 准则矛盾。
+	
+	因此，原命题成立，即 $\displaystyle \lim_{x\to+\infty} f(x)=0$。
+	
+	
+\end{proof}

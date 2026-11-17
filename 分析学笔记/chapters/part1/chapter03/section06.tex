@@ -1,0 +1,226 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.6 紧集，Cantor集与Heine-Borel定理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{紧集，Cantor集与Heine-Borel定理}
+\begin{definition}
+	$\mathcal{O}=\left\{O_i\right\}$是$\X$子集构成的族，$i \in I$ ，$I$是指标集．$A$是 $\X$的一个子集.则若
+	
+	$$
+	A \subset \bigcup_{i \in I} O_i
+	$$
+	
+	
+	称 $O_i, i \in I$ 为 $A$ 的覆盖.
+	
+	若上述定义中的 $O_i$ 为 $(\X, \T)$ 中的开集，则 $O_i, i \in I$ 称为 $A$ 的一个开覆盖.
+	
+	将$O_i, i \in I$ 的有限子族$O_{i_1}, O_{i_2}, \cdots, O_{i_n}$  称 $A$ 的有限子覆盖.若 $A \subset O_{i_1} \cup O_{i_2} \cup \cdots \cup O_{i_n}$
+\end{definition}
+\begin{definition}
+	$(\X,\T)$的子集$A$被称为是紧的，若$A$的任意开覆盖存在一个有限子覆盖.
+	
+	若$(\X,\T)$的紧子集$A=\X$,则称$(\X,\T)$是紧空间
+\end{definition}
+\begin{proposition}
+	$f:(\X,\T_1)\rightarrow(\Y,\T_2)$是一个同胚映射，若$(\X,\T_1)$是紧空间，则$(\Y,\T_2)$紧空间.
+\end{proposition}
+\begin{proof}
+	$\forall\left\{U_i\right\}_{i\in I}$ 使得，
+	$$U_i \in \T_2$$且 $$\Y \subset \bigcup_{i \in I} U_i$$
+	
+	由 $f$是一个同胚，$f^{-1}\left(U_i\right) \in \T_1$,$\forall x \in \X, f(x) \in \Y . f(x)$ 必属于某 $U_j$ ，故 $x \in f^{-1}\left(U_j\right)$
+	于是 $\left\{f^{-1}\left(U_i\right)\right\}_{i \in I}$ 是$\X$的一个开覆盖.
+	
+	由$X$紧，存在有限子覆盖.
+	$$\X\subset f^{-1}(U_{i_{1}})\cup\cdots\cup f^{-1}(U_{i_{n}})$$
+	则
+	$$\Y=f(\X)\subset U_{i_{1}}\cup\cdots\cup U_{i_{n}}$$
+	
+	
+	于是$\Y$是紧空间.
+	
+\end{proof}
+\begin{theorem}[Heine-Borel 定理]\label{HB_Th}
+	$\R$的子集是紧的当且仅当该子集为有界闭集
+\end{theorem}
+在证明\ref{HB_Th}之前我们先做一些准备工作.
+\begin{proposition}
+	$\left[0,1\right]$是紧的
+\end{proposition}
+\begin{proof}
+	$O_i, i \in I$ 是 $[0,1]$ 的一个开覆盖. $\forall x \in[0,1], \exists O_i$ 使得$x \in O_i$ ．而$O_i$是开的,存在在 $[0,1]$ 中开的区间 $U_x$，使得$x \in U_x \subset O_i$
+	
+	定义 $[0,1]$ 的子集 $S$：
+	$$S=\left\{z:\left[0, z\right] \textbf{可以被有限个} U_x \textbf{覆盖} \right\}$$
+	也即 $z \in S \Rightarrow\left[0, z\right] \subset U_{x_1} \cup U_{x_2} \cup \cdots \cup U_{x_n}$ ,对某些 $x_1, \cdots, x_n$ 
+	
+	现在，令 $x \in S$ 和 $y \in U_x$ .那么 $U_x$ 是一个包含 $x$ 和 $y$ 的区间.
+	
+	$[x, y] \subset U_x .(\textbf{不失一般性} x \leqslant y)$ 所以
+	
+	$$
+	[0, y] \subset U_{x_1} \cup U_{x_2} \cup \cdots \cup U_{x_n} \cup U_x
+	$$
+	
+	
+	因此 $y \in S$ ．
+	
+	$
+	\forall x \in[0,1], U_x \cap S=U_x \text { 或 } \varnothing
+	$
+	
+	
+	这说明
+	
+	$$
+	S=\bigcup_{x \in S} U_x
+	$$
+	
+	
+	并且
+	
+	$$
+	[0,1]\setminus S=\bigcup_{x \notin S} U_x
+	$$
+	
+	
+	因此，$S$ 既是开的，也是闭的在 $[0,1]$ 中，由 $[0,1]$ 的连通性，$S=[0,1]$ 或 $\varnothing$
+	
+	而 $0 \in S$ ，故 $S=[0,1]$ ，这就是说 $[0,1]$ 可以被有限个 $U_x$覆盖.故 $[0,1] \subset U_{x_1} \cup \cdots \cup U_{x_m} \subset O_{i_1} \cup \cdots \cup O_{i_m}$ ，因此 $[0,1]$ 是紧的.
+	
+	
+\end{proof}
+由同胚映射对紧性的保持，$\left[a,b\right]$也是紧的.
+\begin{proposition}
+	任何紧空间的闭子集都是紧的.
+\end{proposition}
+\begin{proof}
+	令 $A$ 是紧空间$(\X,\T)$的一个闭子集.今 $U_i \in \T, i \in I$ 是 $A$ 的任意开覆盖,那么
+	
+	$$
+	\X \subset\left(\bigcup_{i \in I} U_i\right) \cup(\X\setminus A)
+	$$
+	
+	
+	而$\X$紧，故存在 $i_1, \cdots, i_k $使得
+	
+	$$
+	\X \subset U_{i_1} \cup U_{i_2} \cup \cdots \cup U_{i_k} \cup(X\setminus A)
+	$$
+	
+	
+	那么
+	
+	$$
+	A \subset U_{i_1} \cup U_{i_2} \cup \cdots \cup U_{i_k}
+	$$
+	
+	
+	因$A \cap(X\setminus A)=\varnothing$ ,故 $A$ 是紧的
+\end{proof}
+现在我们回归到\ref{HB_Th}的证明
+\begin{proof}
+	对有界闭的集合 $A$ ，必存在区间 $[a, b]$ ，使得$A \subset[a, b]$, $A$是紧空间$\left[a,b\right]$的闭子集,故$A$是紧的.
+	
+	下面,已知$A$是$\R$的紧子集，证明$A$是有界闭集
+	
+	$(i)$紧$\Rightarrow$有界
+	
+	A是紧的，取开覆盖
+	
+	$$
+	\{(-n, n): n \in \mathbb{N}\}
+	$$
+	
+	
+	存在有限子覆盖
+	$$A \subset\left(-n_1, n_1\right) \cup \cdots \cup\left(-n_k, n_k\right)$$
+	令 $N=\max \left\{n_1, \cdot, n_k\right\}$．
+	
+	$$A \subset(-N, N) \subset \left[-N,N\right]$$
+	故A有界.
+	
+	$(ii)$紧$\Rightarrow$闭
+	
+	只需证 $A$ 包含其所有极限点，也即若 $x \notin A$ ，则存在包含 $x$ 的开集与 $A$交集为空集.
+	
+	取定 $x \notin A$ ，对每个 $y \in A$ ，令 $\varepsilon_y=\dfrac{|x-y|}{2}>0$
+	取开集
+	
+	$$
+	U_y=\left(y-\varepsilon_y, y+\varepsilon_y\right), \quad V_y=\left(x-\varepsilon_y, x+\varepsilon_y\right)
+	$$
+	
+	
+	则 $U_y \cap V_y=\varnothing$
+	
+	$\left\{U_y\right\}_{y \in A}$ 是 $A$ 的一个开覆盖.由 $A$ 的紧性，存在有限子覆盖，
+	
+	
+	$$
+	A \subset U_{y_1} \cup U_{y_2} \cup \cdots \cup U_{y_n}
+	$$
+	再令
+	
+	$$
+	V=V_{y_1}\cup V_{y_2}\cup \cdots \cup V_{y_n}
+	$$
+	
+	
+	$V$是开集且$x \in V$ .
+	
+	
+	$\forall z \in A, \exists j$ ,使得 $z \in U_{y_j}$而, $U_{y_j} \cap V_{y_j}=\varnothing$ ,故 $z \notin V_{y _j}$ 从而 $z \notin V$因此 $A \cap V=\varnothing$
+	
+	于是我们找到了$x$一个邻域且与$A$不交,故$A$为闭集.
+\end{proof}
+
+Heine-Borel定理在$\R^n$上依旧成立,这一点我们在多元分析的部分中讨论.
+
+回顾我们已经做的，
+\[\text{确界原理}\Rightarrow\text{连通性定理}\Rightarrow\text{Heine-Borel定理}\]
+下面，我们证明这三者等价，只需证明$\text{Heine-Borel定理}\Rightarrow\text{确界原理}$
+\begin{theorem}
+	$\text{Heine-Borel定理}\Rightarrow\text{确界原理}$
+\end{theorem}
+\begin{proof}
+	$S$是一个上有界的集合,设其一个上界为$b$,任取$a\in S$,考察区间$\left[a,b\right]$.假设$S$无上确界，对$\left[a,b\right]$中的元素$x$,分别构造开集
+	
+	\begin{enumerate}
+		\item$U\subset\left[a,b\right]\cap S$,若$x\in U$
+		
+		因$S$无上确界，$\exists y_x>x\textbf{且}y_x\in S$,自然的$y_x\in U$,令$\delta_x=\dfrac{y_x-x}{2}$,取$\left(x-\delta_x,x+\delta_x\right)$,令
+		$$U_x=\left(x-\delta_x,x+\delta_x\right)\cap\left[a,b\right] ,U_x\subset U,\textbf{不含S的上界}$$
+		
+		\item$U^C=\left[a,b\right]\setminus U$,若$x\in U^C$
+		
+		因$S$无上确界,$U^C$无最小下界，$\exists z_x<x\textbf{且}z_x\in U^C$,令$\delta_x=\dfrac{x-z_x}{2}$,取$\left(x-\delta_x,x+\delta_x\right)$,令
+		$$U_x=\left(x-\delta_x,x+\delta_x\right)\cap\left[a,b\right] ,U_x\subset U^C,\text{只含S的上界}$$
+	\end{enumerate}
+	这样，我们得到了一个$\left[a,b\right]$的开覆盖$\left\{U_x\right\},x\in\left[a,b\right]$,其中$U_x$要么全是上界，要么完全不含上界.
+	
+	有Heine-Borel定理，有有限子覆盖，$\left\{U_{x_i}\right\}_{i=1}^n$,$\left[a,b\right]\subset \bigcup_{i=1}^n U_{x_i}$
+	
+	从$b$开始，$\exists U_{x_k}=(c_1,b]$,使得$b\in U_{x_k}$,不失一般性的，设$k=1$
+	
+	$b\in U_{x_1}$,且$U_{x_1}$中只包含$S$的上界，根据$U_{x_1}$的构造方式，$c_1\in U^C$
+	
+	对$c$,$\exists U_{x_2}=\left(c_2,d_2\right)$,使得$c_1\in U_{x_2}$,$U_{x_2}$中只包含$S$的上界,$c_2\in U^C$.
+	
+	不断向左进行，在有限次内，必可以使$a\in U_{x_j}$且$U_{x_j}$只包含$S$的上界，与$a\in S$矛盾
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

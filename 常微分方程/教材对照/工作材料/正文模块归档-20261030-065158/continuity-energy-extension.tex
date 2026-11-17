@@ -1,0 +1,35 @@
+\subsection*{用能量控制有限时间内的状态}
+第二章保守系统中的机械能也可用于延拓。这里不要求势能控制位置趋于无穷的行为：势能有下界即可先控制速度，再控制有限时间内的位置。
+\begin{theorem}[能量与全局延拓]\label{thm:energy-global-extension}
+设 $U\in C^2(\R^n)$ 有下界，$m_i>0$。则
+$m_i\ddot x_i=-\partial_iU(x)$ 的每个解都能双向延拓到整条时间轴。
+\end{theorem}
+\begin{proof}
+把二阶方程写成状态变量 $(x,v)$ 的一阶方程
+$\dot x_i=v_i,\ \dot v_i=-\partial_iU(x)/m_i$。其向量场为 $C^1$，
+所以每个初值有唯一最大解。沿该解计算
+\[
+ \frac{d}{dt}\left(\frac12\sum_i m_iv_i^2+U(x)\right)
+ =\sum_i v_i\bigl(m_i\dot v_i+\partial_iU(x)\bigr)=0.
+\]
+设常能量为 $E_0$，取 $C$ 使 $U(x)\geq-C$，再令 $m_*:=\min_i m_i>0$。
+于是
+\[
+ \begin{aligned}
+ \frac{m_*}{2}|v(t)|^2&\leq\frac12\sum_i m_iv_i(t)^2\\
+ &=E_0-U(x(t))\\
+ &\leq E_0+C.
+\end{aligned}
+\]
+因此存在与时间无关的 $M$，使 $|v(t)|\leq M$。
+若最大正向存在端点 $\beta$ 有限，则对 $t_0\leq t<\beta$，
+\[
+ |x(t)|\leq |x(t_0)|+\int_{t_0}^t|v(s)|\,ds
+ \leq |x(t_0)|+M(\beta-t_0).
+\]
+所以 $(x(t),v(t))$ 始终留在整个状态空间中的一个紧球内。
+命题~\ref{prop:compact-extension-vector} 说明解可越过 $\beta$ 延拓，与最大性矛盾。
+负向时间同样有
+$|x(t)|\leq|x(t_0)|+M|t-t_0|$，故负向端点也不可能有限。
+两个方向的最大端点分别为 $+\infty$ 和 $-\infty$。
+\end{proof}

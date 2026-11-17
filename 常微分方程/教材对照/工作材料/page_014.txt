@@ -1,0 +1,86 @@
+10
+Contents
+2. The Invariant Subspaces of a Real Operator....
+187
+3. The Linear Equation on the Plane ...
+189
+4. The Classification of Singular Points in the Plane ...
+190
+5.Example: The Pendulum with Friction.
+191
+6.The General Solution of a Linear Equation in the Casc whcn thc
+Characteristic Equation Has Only Simple Roots....
+193
+§ 21.The Classification of Singular Points of Linear Systems.
+195
+1. Example: Singular Points in Three-dimensional Space.
+195
+2. Linear, Differentiable, and Topological Equivalence....
+197
+3.The Linear Classification.
+198
+4.The Differentiable Classification.
+199
+22.The Topological Classification of Singular Points....
+199
+1. Theorem.
+199
+2.Reduction to the Case m_= 0..
+200
+3.The Lyapunov Function..
+201
+4.Construction of the Lyapunov Function.
+202
+5. An Estimate of the Derivative .
+204
+6.Construction of the Homeomorphism h..
+206
+7. Proof of Lemma 3.....
+207
+8. Proof of the Topological Classification Theorem.
+208
+23.StabilityofEquilibriumPositions.
+210
+1.Lyapunov Stability.
+210
+2.Asymptotic Stability
+211
+3.A Theorem on Stability in First Approximation.
+211
+4.Proof of the Theorem...
+212
+$ 24. The Case of Purely Imaginary Eigenvalues....
+215
+1. The Topological Classification
+215
+2.An Example...
+215
+3. The Phase Curves of Eq. (4) on the Torus .
+217
+4. Corollaries.
+219
+5. The Multidimensional Case ..
+219
+6.ThcUniformDistribution
+220
+§25. The Case of Multiple Eigenvalues.
+221
+1. The Computation of eAt, where A is a Jordan Block
+221
+2. Applications..
+223
+3.Applications to Systems of Equations of Order Higher than the
+First.
+224
+4.The Case of a Single nth-order Equation...
+225
+5.On Recursive Sequences.
+226
+6.Small Oscillations
+227
+26.Quasi-polynomials.
+229
+1. A Linear Function Space ..
+229
+2. The Vector Space of Solutions of a Linear Equation
+230

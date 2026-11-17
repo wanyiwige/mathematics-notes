@@ -1,0 +1,79 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.3 Peano公理与$\N$自然数集的构建
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Peano公理与$\N$自然数集的构建}
+\begin{axiom}Peano公理\label{peano}
+	\begin{enumerate}
+		\item 0 是自然数.
+		\item 每一个自然数 $n$ 都有且仅有一个后继 $S(n)$ ，且 $S(n)$ 也是自然数.
+		
+		\item 0不是任何自然数的后继.
+		\item 不同的自然数有不同的后继.
+		\item P(n)是一个关于自然数的命题.若 $P(0)$ 成立，对任意自然数 $k$ ，如果 $P(k)$ 能推出 $P(S(k))$ 成立，那么 $P(n)$ 对所有自然数成立.
+		
+		
+	\end{enumerate}
+	
+\end{axiom}
+
+现在 $0$ 是那个起始的数，$S(0)$ 称为 $1, S(S(0))$ 称为 2 … 以此类推得 $0,1,2,3,4$ ．．把这些不断后继得到的东西构成一个无限的集合.这个集合就是自然数集$\N$.
+
+这样，我们就把自然数这个直观的概念建立在了不依赖直观的公理上.
+\begin{definition}设$a,b\in \N$，定义$\N$上的二元运算
+	\begin{itemize}
+		\item 加法 
+		\begin{enumerate}
+			\item $ a+0=a$ 任何数加 0 等于它本身.
+			\item $a+S(b)=S(a+b) $一个数加另一个数的后继，等于这两个数和的后继.
+		\end{enumerate}
+		\item 乘法
+		\begin{enumerate}
+			\item $a \cdot 0=0$
+			\item$ a \cdot S(b)=a \cdot b+a$
+		\end{enumerate} 
+	\end{itemize}
+	
+	
+	
+\end{definition}
+
+在这种加法和乘法的定义下，自然数集对加法能构成交换幺半群，对乘法同样.
+
+现在，我们进述冯诺依曼对Peano公理的集合论叙述.
+\begin{axiom}Peano公理的集合论叙述\label{peano2}
+	\begin{enumerate}
+		\item $0:=\varnothing$
+		\item$S(n):=n \cup\left\{n\right\}$\\
+		这样 $0:=\varnothing, 1:=S(0)=\varnothing \cup\left\{\varnothing\right\}=\left\{\varnothing\right\}=\left\{0\right\}$,
+		$2:=S(1)=\left\{\varnothing\right\} \cup\{\left\{\varnothing\right\}\}=\left\{\varnothing,\left\{\varnothing\right\}\right\}=\left\{0,1\right\}\ldots$
+		\item 无穷公理： $\exists$ 集合 $I$ 使得 $\varnothing\in I\text{且}x\in I\rightarrow S(x)\in I$.就称$I$为归纳集.
+	\end{enumerate}
+	取 $\N:=\bigcap\left\{I:I\text{是一个归纳集}\right\}$，也就是说$\N$是最小的归纳集.
+\end{axiom}
+
+
+
+说明取交的原因，集 $I=\left\{0,1,2,3,4\ldots\text{苹果},\text{苹果}^+,\text{苹果}^{++}\ldots\right\}$, 定义 0 ，苹果为起始，$S$（苹果）$=\text{苹果}^+$  ，$I$亦是归纳集，这个$I$是丑陋不堪的，不纯的，故取所有$I$的交，只留下最小的那个. \[\left\{0,1,2,3\ldots\right\}\]
+现在，我们用\ref{peano2}反验\ref{peano}
+\begin{proposition}
+		由\ref{peano2}可以推出\ref{peano}.
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}
+		\item $0=\varnothing \in$ 每一个归纳集，故 $0=\varnothing \in \bigcap I$ 成立.
+		\item  $n \in \N$ 则n属于每一个归纳集，那么每一个$I$包含 $S(n)$ .
+		故 $S(n) \in \N \quad$ 成立.
+		\item $S(n)=n \cup\left\{n\right\}$ 包含元素 $n$ ，而 $0=\varnothing$ 不含任何元素,
+		$S(n)$ 不可能是空集 ,成立.
+		\item 对 $m, n \in \mathbb{N}$ ，假设 $S(m)=S(n) \Rightarrow m \cup\left\{m\right\}=n \cup\left\{n\right\}$,
+		若 $m \in n$，则由 $\mathbb{N}$ 中元素的传递性（每个自然数等于其所有元素之并的子集）有 $m \subseteq n$；
+		若 $m = n$，则显然 $m \subseteq n$. 无论何种情形 $m \subseteq n$.
+		对称地 $n \subseteq m$，故 $m=n$ 成立.
+		\item 考虑集合 $A=\left\{n \in \mathbb{N}: P(n)\text{为真}\right\}$ \\
+		$P(0)$ 真，故 $0 \in A \quad$ ,若 $P(k)$ 真则 $P(S(k))$ 真，故 $k \in A \rightarrow S(k) \in A$故 $A$ 是一个归纳集 $\Rightarrow \mathbb{N} \subset A$ 又 $A \subset \N \Rightarrow A=\mathbb{N} \Rightarrow$ 对所有 $n \in \mathbb{N}$ 成立
+	\end{enumerate}
+\end{proof}
+现在，任何关于数的理论都建立在了集合论的基础上.而我们的集合论是公理化的，严谨的，我们的数学大厦就有了坚实的地基.
+

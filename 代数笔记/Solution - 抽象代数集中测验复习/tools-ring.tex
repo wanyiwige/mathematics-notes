@@ -1,0 +1,45 @@
+% !TEX root = main.tex
+\subsection{非交换环、逆元与商环工具}
+
+\begin{reviewprop}[环的零、负元与分配律]\label{tool:r-ring-laws}
+环的加法是交换群，故可在加法等式两侧消去同一加数。乘法结合并对加法左右分配，不预设乘法交换。对任意$a,b$，
+\[
+a0=0a=0,\quad a(-b)=(-a)b=-(ab),\quad(-a)(-b)=ab.
+\]
+分配展开和提取公因子时，须保留乘法次序；一般不能把$ab$换成$ba$。
+
+\textbf{出处：}现有代数笔记抽象代数第一章第8节“环、子环”，环定义与零、负元运算命题；源文件\path{chapter1.tex}第779--827行。
+\end{reviewprop}
+
+\begin{reviewprop}[双侧逆元唯一与左右逆相等]\label{tool:r-unit-laws}
+在幺环$R$中，若$uv=vu=1$，则$u$为单位、$v=u^{-1}$，且双侧逆元唯一。若$b u=1$、$u c=1$，则$b=b(uc)=(bu)c=c$，所以一个左逆和一个右逆同时存在时必相等。仅给定$uv=1$不能在无限环中直接断言$vu=1$。
+
+给定$uv=1$，若$xu=0$，则$x=(xu)v=0$；并且对整数$0\le i\le j$，
+\[
+u^jv^j=1,\qquad u^iv^j=v^{j-i}.
+\]
+这些幂等式由结合律逐对消去中间的$uv$，不需要$uv=vu$。
+
+\textbf{出处：}现有笔记第一章第9节“各种特殊类型的环”，单位与逆元唯一性命题，\path{chapter1.tex}第952--972行；幂消去是第三章习题3原解中使用并在本册题内归纳验证的步骤。
+\end{reviewprop}
+
+\begin{reviewprop}[环同态保持的等式与单位]\label{tool:r-homomorphism}
+环同态$\eta:R\to S$保加法和乘法，因此对整数$k$及正整数$m$有
+\[
+\eta(0)=0,\quad\eta(-a)=-\eta(a),\quad
+\eta(ka)=k\eta(a),\quad\eta(a^m)=\eta(a)^m.
+\]
+因而幂零元、幂等元的像仍为相应元素。若$R,S$均为幺环且$\eta(1_R)=1_S$，则单位$u$的像是单位，且$\eta(u)^{-1}=\eta(u^{-1})$，不要求$\eta$满射。一般环同态不预设保幺；“单位的像是单位”必须保留保幺条件。零因子要求元素本身及消去它的另一个因子都非零，这两个非零条件不由一般同态保持。
+
+\textbf{出处：}第一章第10节“环的同态、理想”，同态定义及基本性质，\path{chapter1.tex}第1150--1198行；正幂由保乘法归纳。关于幂零元、幂等元和单位的结论在原第三章习题8及本册该题中实际证明，列在此处便于定位，不据此省略原题证明。
+\end{reviewprop}
+
+\begin{reviewprop}[整数商环与自然满同态]\label{tool:r-quotients}
+对正整数$m$，$\Z/m\Z$以剩余类逐项加、乘构成交换幺环，单位元是$\overline1_m$，映射$k\mapsto\overline k_m$为保幺满同态。若正整数$d\mid m$，则
+\[
+\Z/m\Z\longrightarrow\Z/d\Z,\qquad\overline k_m\longmapsto\overline k_d
+\]
+良定义且为保幺满同态。$m\ge2$时，$\overline a_m$为单位当且仅当$\gcd(a,m)=1$；$\Z/m\Z$为整环当且仅当$m$为素数，此时也是域。整数环$\Z$本身是整环，单位只有$1,-1$。
+
+\textbf{出处：}第一章第11节“商环”，商环与自然同态以及整数模$n$环性质，\path{chapter1.tex}第1250--1388行；整数环及其零因子、单位见第一章第8、9节。$d\mid m$保证映射良定义这一检查仍在第三章习题8各反例中保留。
+\end{reviewprop}

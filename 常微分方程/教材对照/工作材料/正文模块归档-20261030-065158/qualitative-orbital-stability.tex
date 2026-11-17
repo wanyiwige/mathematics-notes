@@ -1,0 +1,28 @@
+\subsection*{轨道吸引与按时间参数的稳定}
+\phantomsection\label{sec:orbital-versus-time}
+前面的 Lyapunov 稳定性比较同一时刻的两个状态；极限环的稳定性则比较轨道与整个闭曲线的距离。为避免把两者混用，作如下区分。
+\begin{definition}
+周期轨道 $\Gamma$ 的轨道稳定性，是附近解始终与集合 $\Gamma$ 保持接近；
+轨道吸引性是其到 $\Gamma$ 的距离趋于零。
+一个指定解 $x_*(t)$ 的 Lyapunov 稳定性则比较同一时刻的
+$|x(t)-x_*(t)|$，不允许任意重新选择相位。
+\end{definition}
+\begin{proposition}
+自治系统的非常值周期解作为指定的时间函数不可能渐近稳定。
+轨道渐近稳定也不一定蕴含该指定解按同一时钟 Lyapunov 稳定。
+\end{proposition}
+\begin{proof}
+任取小时间平移 $\tau$，$x_*(t+\tau)$ 也是解且初值任意接近原初值。
+若相位差不是周期，连续周期函数
+$|x_*(t+\tau)-x_*(t)|$ 不恒为零，也不能趋于零，故不能渐近稳定。
+
+对第二个断言，在圆周附近使用坐标 $(u,\theta)$，其中 $u=r-1$，取
+$\dot u=-u^3,\ \dot\theta=1+u$。
+$u(t)=u_0/\sqrt{1+2u_0^2t}$ 始终保持小且趋于零，所以 $u=0$ 的周期轨道轨道渐近稳定。
+但 $u_0>0$ 时，与 $u=0$ 解的角差为
+\[
+ \displaystyle\int_0^tu(s)\,\dd s=(\sqrt{1+2u_0^2t}-1)/u_0,
+\]
+它无界，必达到 $\pi$。届时两点相距接近圆的直径，
+无论初值 $u_0$ 多小均如此，故指定的周期解不是 Lyapunov 稳定的。
+\end{proof}

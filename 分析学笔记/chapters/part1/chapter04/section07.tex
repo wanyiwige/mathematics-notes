@@ -1,0 +1,93 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第4章：数列极限的应用与一些反例
+% 节：4.7 其他问题
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{其他问题}
+\begin{definition}
+	二进有理数数列定义为$$a_n=\sum_{k=1}^n \frac{b_k}{2^k}, \quad b_k \in \{0,1\}$$
+\end{definition}
+二进有理数数列标志了一个0到1 的二进制数，也即每个实数 \( x \in [0,1) \) 都可以表示为无限二进制小数：
+\[
+x = 0.b_1b_2b_3\ldots = \lim\limits_{n\to\infty}\sum_{k=1}^n \frac{b_k}{2^k}, \quad b_k \in \{0,1\}
+\]
+其中 \( b_k \) 是 \( x \) 的第 \( k \) 位二进制数字.
+\begin{proposition}
+	对任意实数$x\in[0,1)$都存在唯一的二进有理数数列，使得$$x=\lim_{n \to \infty}a_n$$
+\end{proposition}
+\begin{proof}
+	\textbf{存在性：}
+	对于任意实数 $x \in [0,1)$，可以通过以下步骤构造其二进制表示：
+	\begin{itemize}
+		\item 令 $b_1 = \lfloor 2x \rfloor$
+		\item 对于 $k \geqslant 2$，令 $b_k = \left\lfloor 2^k \left(x - \sum\limits_{i=1}^{k-1} \dfrac{b_i}{2^i}\right) \right\rfloor$.
+		\item 这样，每一位 $b_k$ 都唯一确定，且 $b_k \in \{0,1\}$.
+	\end{itemize}
+	因此，数列 $\{a_n\}$ 由 $a_n = \sum\limits_{k=1}^n \dfrac{b_k}{2^k}$ 定义，且满足 $\lim\limits_{n \to \infty} a_n = x$.
+	
+	\textbf{唯一性：}
+	假设存在两个不同的二进有理数数列 $\{a_n\}$ 和 $\{a'_n\}$，使得
+	\[
+	\lim_{n \to \infty} a_n = \lim_{n \to \infty} a'_n = x.
+	\]
+	这意味着存在某个 $k$，使得 $b_k \neq b'_k$.设 $k$ 是最小的满足该条件的索引.
+	\begin{itemize}
+		\item 如果 $b_k = 0$ 且 $b'_k = 1$，那么
+		\[
+		a_n \leqslant \sum_{i=1}^{k-1} \frac{b_i}{2^i} + \sum_{i=k+1}^\infty \frac{1}{2^i} = \sum_{i=1}^{k-1} \frac{b_i}{2^i} + \frac{1}{2^k},
+		\]
+		而
+		\[
+		a'_n \geqslant \sum_{i=1}^{k-1} \frac{b_i}{2^i} + \frac{1}{2^k}.
+		\]
+		因此，$a_n < a'_n$ 对所有 $n \geqslant k$ 成立，这与 $\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} a'_n$ 矛盾.
+		\item 类似地，如果 $b_k = 1$ 且 $b'_k = 0$，也会导致矛盾.
+	\end{itemize}
+	因此，二进有理数数列 $\{a_n\}$ 是唯一的.
+	
+\end{proof}
+\red{待补}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

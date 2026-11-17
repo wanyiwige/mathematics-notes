@@ -1,0 +1,486 @@
+% !TEX root = ../../main.tex
+% 本文件可由 Part 2/chapter1.tex 输入。
+
+\subsection*{群的公理、交换性与例子（习题1--16）}
+
+\begin{problem}
+\textbf{习题1：平方公式判别交换群。}若群$G$中任意$a,b$满足$(ab)^2=a^2b^2$，则$G$交换。
+\end{problem}
+\begin{proof}
+从$abab=aabb$左消去$a$、右消去$b$，得$ba=ab$。
+反向，交换群中该公式成立。
+\end{proof}
+
+\begin{problem}
+\textbf{习题2：每个元素的平方为单位元。}若$a^2=e$对所有$a\in G$成立，则$G$交换。
+\end{problem}
+\begin{proof}
+每个元素都等于自身的逆元，故$ab=(ab)^{-1}=b^{-1}a^{-1}=ba$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题3：有限消去半群是群。}非空有限集合上的结合运算若同时满足左右消去律，则构成群。
+\end{problem}
+\begin{proof}
+固定$a$，左右乘$a$都是有限集的单射，所以均为满射。
+可取$e,f$使$ae=a,fa=a$。
+由$a(ex)=(ae)x=ax$左消去$a$得$ex=x$；由$(xf)a=x(fa)=xa$右消去$a$得$xf=x$。
+于是$e=ef=f$，得到双边单位元。
+满射性又给出$ab=e,ca=e$；$c=c(ab)=(ca)b=b$，故双边逆元存在。
+有限性不能删去，例如正整数在加法下结合且可消去，却无单位元和逆元。
+\end{proof}
+
+\begin{problem}
+\textbf{习题4：可解方程的结合系统。}非空集合上的结合运算，若对每对$a,b$，$ax=b$和$ya=b$都有解，则构成群。
+\end{problem}
+\begin{proof}
+固定$a$，取$e,f$使$ae=a,fa=a$。
+任意$x$可写成$ya$，所以$xe=y(ae)=ya=x$；任意$x$也可写成$az$，所以$fx=(fa)z=az=x$。
+因此$f=fe=e$，存在双边单位元。
+再取$ab=e,ca=e$，由$c=c(ab)=(ca)b=b$得双边逆元。
+这里无需预设有限性或解的唯一性；构成群后，解的唯一性由消去律推出。
+\end{proof}
+
+\begin{problem}
+\textbf{习题5：非交换平方公式的反例。}
+\end{problem}
+\begin{solution}
+在$S_3$中取$x=(12),y=(23)$。则$x^2y^2=e$，而$xy=(123)$，$(xy)^2=(132)\neq e$。
+\end{solution}
+
+\begin{problem}
+\textbf{习题6：任意偶数阶的非交换例子。}对$n>2$，构造一个$2n$阶非交换群。
+\end{problem}
+\begin{solution}
+取正$n$边形的二面体群$D_n$。正文已经证明其阶为$2n$，且$ST=T^{-1}S\neq TS$。
+\end{solution}
+
+\begin{problem}
+\textbf{习题7：反复共轭。}若$a^{-1}ba=b^r$，$r$为正整数，则对任意正整数$i$，$a^{-i}ba^i=b^{r^i}$。
+\end{problem}
+\begin{proof}
+对$i$归纳。由$a^{-1}b^ma=(a^{-1}ba)^m=b^{rm}$，若结论对$i$成立，则
+\[
+a^{-(i+1)}ba^{i+1}=a^{-1}b^{r^i}a=b^{r^{i+1}}.
+\]
+\end{proof}
+
+\begin{problem}
+\textbf{习题8：取逆映射的同态性。}群$G$交换当且仅当$a\mapsto a^{-1}$是群同构。
+\end{problem}
+\begin{proof}
+取逆映射总是双射。若它保乘法，则$a^{-1}b^{-1}=(ab)^{-1}=b^{-1}a^{-1}$，对所有$a,b$成立，故交换。
+反向，交换群中的反序公式与保乘法公式相同。
+\end{proof}
+
+\begin{problem}
+\textbf{习题9：由子集定义等价关系。}设$S\subseteq G$非空，定义$a\sim b\iff ab^{-1}\in S$。
+该关系是等价关系当且仅当$S$为子群。
+\end{problem}
+\begin{proof}
+若$S$为子群，则自反性由$e\in S$，对称性由取逆，传递性由
+$(ab^{-1})(bc^{-1})=ac^{-1}$成立。
+反之，自反性给出$e\in S$。若$u,v\in S$，则$u\sim e,e\sim v$（后者由$v\sim e$及对称性），传递性给出$uv^{-1}\in S$。
+用子群判别法即可。
+等价类是右陪集$Sb$，须留意$ab^{-1}$与$a^{-1}b$的次序。
+\end{proof}
+
+\begin{problem}
+\textbf{习题10：$n\Z\cong\Z$。}这里$n$是正整数，讨论加法群同构。
+\end{problem}
+\begin{proof}
+映射$k\mapsto nk$是$\Z\to n\Z$的保加法双射。
+当$n>1$时它不是按通常乘法的环同构，因为一般$n(kl)\neq(nk)(nl)$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题11：克莱因四元群。}
+$B=\{e,(12)(34),(13)(24),(14)(23)\}$为$S_4$的子群，且$B\cong U_4$不成立。
+\end{problem}
+\begin{proof}
+记三个非单位元为$u,v,w$，直接计算得$u^2=v^2=w^2=e$，$uv=vu=w$，其余两两乘积同理。
+故对积与逆封闭，构成子群，称克莱因四元群$V_4$。
+$U_4=\{1,i,-1,-i\}$有4阶元素$i$，而$B$的非单位元均为2阶；同构保持阶，故不同构。
+\end{proof}
+
+\begin{problem}
+\textbf{习题12：指数2的子群正规。}若$[G:H]=2$，则$H\trianglelefteq G$。
+\end{problem}
+\begin{proof}
+当$a\in H$，$aH=H=Ha$。当$a\notin H$，左、右陪集都与$H$不交，且由陪集数为2，均等于$G\setminus H$。
+故任意$a$均有$aH=Ha$。特别地，$|G|=2n$且$|H|=n$时结论成立。
+\end{proof}
+
+\begin{problem}
+\textbf{习题13：偶数阶群有2阶元素。}
+\end{problem}
+\begin{proof}
+把不等于自身逆元的元素配成$\{a,a^{-1}\}$。这些元素总数为偶数。
+剩下的元素满足$a=a^{-1}$，其中已有$e$。总阶为偶数，剩余数也为偶数，因此至少还有一个$a\neq e$。
+它满足$a^2=e$，阶为2。
+\end{proof}
+
+\begin{problem}
+\textbf{习题14：二面体群的矩阵实现。}对$n\geq3$，令$\zeta=e^{2\pi i/n}$，
+\[
+A=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad B=\begin{pmatrix}\zeta&0\\0&\zeta^{-1}\end{pmatrix}.
+\]
+则$\{B^k,AB^k:0\leq k<n\}\cong D_n$。
+\end{problem}
+\begin{proof}
+$B^n=E,A^2=E,AB=B^{-1}A$。这些关系使乘积与逆仍有两种规定形状。
+$B$的阶为$n$，故各$B^k$不同；各$AB^k$也不同。前一类为对角矩阵，后一类为非零反对角矩阵，两类不交。
+所以该集合成$2n$阶群。
+映射$T^k\mapsto B^k,ST^k\mapsto AB^k$是双射，并由相同的乘法关系保乘法，故为同构。
+\end{proof}
+
+\begin{problem}
+\textbf{习题15：连续三个指数的乘积公式。}固定正整数$i$。若对所有$a,b\in G$及$k=i,i+1,i+2$均有$(ab)^k=a^kb^k$，则$G$交换。
+\end{problem}
+\begin{proof}
+比较$(ab)^{i+1}=(ab)^i ab$与给定公式，得
+$a^{i+1}b^{i+1}=a^ib^iab$。左消去$a^i$、右消去$b$，得$ab^i=b^ia$。
+同理比较指数$i+1,i+2$，得$ab^{i+1}=b^{i+1}a$。
+$a$于是与$(b^i)^{-1}b^{i+1}=b$交换。
+\end{proof}
+
+\begin{problem}
+\textbf{习题16：有限阶元素的积可以无限阶。}在$\SL_2(\Q)$中令
+\[
+A=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad B=\begin{pmatrix}0&1\\-1&-1\end{pmatrix}.
+\]
+则$A$为4阶，$B$为3阶，$AB$为无限阶。
+\end{problem}
+\begin{proof}
+直接计算$A^2=-E,A^4=E$，$B^2=\left(\begin{smallmatrix}-1&-1\\1&0\end{smallmatrix}\right),B^3=E$，且更小正幂不为$E$。
+又$AB=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)$，归纳得
+$(AB)^m=\left(\begin{smallmatrix}1&m\\0&1\end{smallmatrix}\right)$，任意正整数$m$均不为$E$。
+\end{proof}
+
+\subsection*{子群、乘积与正规性（习题17--26）}
+
+\begin{problem}
+\textbf{习题17：交换群的有限阶元素成子群。}
+\end{problem}
+\begin{proof}
+集合含$e$。若$a^m=e,b^n=e$，由交换性得$(ab^{-1})^{mn}=a^{mn}b^{-mn}=e$，故满足子群判别法。
+交换性不能删去，习题16中的$A,B$均有限阶而$AB$无限阶。
+\end{proof}
+
+\begin{problem}
+\textbf{习题18：只有有限多个子群的群必有限。}
+\end{problem}
+\begin{proof}
+若有无限阶$a$，则$\langle a\rangle,\langle a^2\rangle,\langle a^3\rangle,\ldots$两两不同，因为无限循环群中的整数指数子群$m\Z$两两不同。
+这与子群数有限矛盾。故所有元素有限阶。
+每个元素属于一个有限循环子群，而循环子群也只有有限多个，因此$G$是有限多个有限集的并。
+\end{proof}
+
+\begin{problem}
+\textbf{习题19：$D_n$的全部正规子群。}使用正文中$|D_n|=2n$的约定，$n\geq3$。
+\end{problem}
+\begin{solution}
+所有$\langle T^d\rangle$（$d\mid n$）均正规，包含平凡子群$\langle T^n\rangle$。
+此外有整个$D_n$；若$n$为偶数，还有
+\[
+\langle T^2,S\rangle,\qquad\langle T^2,ST\rangle.
+\]
+\end{solution}
+\begin{proof}
+循环群$\langle T\rangle$的子群由最小正指数与带余除法得到，均为$\langle T^d\rangle$，$d\mid n$。
+反射把$T$共轭为$T^{-1}$，所以每个旋转子群均正规。
+若子群$H$含反射$ST^k$，设$H\cap\langle T\rangle=\langle T^d\rangle$。
+两反射之积为旋转，故$H=\langle T^d,ST^k\rangle$，其中$k$可模$d$选择。
+若$H$正规，共轭$T(ST^k)T^{-1}=ST^{k-2}$必须仍在$H$，所以$d\mid2$。
+因此$d=1$给出整个群，$d=2$要求$n$偶，给出$k=0,1$两群。
+这两群的指数均为2，因而正规，列表完整。
+\end{proof}
+
+\begin{problem}
+\textbf{习题20：子群乘积的判别。}对$H,K\leq G$，$HK$为子群当且仅当$HK=KH$。
+\end{problem}
+\begin{proof}
+若$HK$为子群，则$HK=(HK)^{-1}=KH$。
+若$HK=KH$，则$(HK)(HK)=H(KH)K=H(HK)K=HK$，且$(HK)^{-1}=KH=HK$。
+它非空并对积、逆封闭，故为子群。
+\end{proof}
+
+\begin{problem}
+\textbf{习题21：有限子群乘积的计数。}不要求$HK$为子群，也有
+\[
+|HK|=\frac{|H||K|}{|H\cap K|}.
+\]
+\end{problem}
+\begin{proof}
+映射$H\times K\to HK$，$(h,k)\mapsto hk$满。
+若$h'k'=hk$，则$t=h^{-1}h'=kk'^{-1}\in H\cap K$，而$(h',k')=(ht,t^{-1}k)$。
+反之每个$t\in H\cap K$都给出一个这样的表示，且彼此不同。
+因此每个像有$|H\cap K|$个原像，得到公式。
+\end{proof}
+
+\begin{problem}
+\textbf{习题22：正规子群的乘积。}若$M,N\trianglelefteq G$，则$MN=NM$且$MN\trianglelefteq G$。
+若$M\cap N=\{e\}$，则$MN/N\cong M$。
+\end{problem}
+\begin{proof}
+由$M$正规，$mn=n(n^{-1}mn)\in NM$，反向同理，故相等并成子群。
+对$a\in G$有$a(MN)a^{-1}=(aMa^{-1})(aNa^{-1})=MN$，故正规。
+定义$M\to MN/N$，$m\mapsto mN$，为满同态（$mnN=mN$），核为$M\cap N$。
+第一同构定理给出更一般的$M/(M\cap N)\cong MN/N$，在交平凡时即得原结论。
+\end{proof}
+
+\begin{problem}
+\textbf{习题23：中心化子与正规化子。}对非空$S\subseteq G$，定义
+\[
+C_G(S)=\{x:xa=ax\text{对所有 }a\in S\},\quad
+N_G(S)=\{x:x^{-1}Sx=S\}.
+\]
+则两者均为子群，且$C_G(S)\trianglelefteq N_G(S)$。
+\end{problem}
+\begin{proof}
+恒等元属于两者；与每个$a$交换的元素的积和逆也与$a$交换，所以$C_G(S)$为子群。
+若$x,y$正规化$S$，则$(xy)^{-1}S(xy)=y^{-1}(x^{-1}Sx)y=S$；取逆同样保持$S$，所以$N_G(S)$为子群。
+显然$C_G(S)\leq N_G(S)$。
+对$n\in N_G(S),c\in C_G(S),a\in S$，$n^{-1}an\in S$，故
+\[
+(ncn^{-1})a=n c(n^{-1}an)n^{-1}
+=n(n^{-1}an)c n^{-1}=a(ncn^{-1}).
+\]
+因此共轭仍在中心化子中，由正规性判别得结论。
+\end{proof}
+
+\begin{problem}
+\textbf{习题24--26：2阶、4阶与素数阶群。}
+\end{problem}
+\begin{solution}
+\textbf{24.}2阶群的非单位元$a$必为2阶，故$\{e,a\}\cong\{1,-1\}$。
+
+\textbf{25.}4阶群恰有两种同构类型：循环群$\Z/4\Z$与$V_4$。
+若有4阶元素，它生成全群；否则所有非单位元均为2阶，由习题2知交换。
+取不同非单位元$a,b$，则$e,a,b,ab$两两不同，乘法表由$a^2=b^2=e,ab=ba$确定，正是$V_4$。
+两者由是否有4阶元素区分。
+
+\textbf{26.}若$|G|=p$为素数，任意$a\neq e$的阶整除$p$且不是1，故为$p$，生成$G$。
+映射$\bar k\mapsto a^k$给出$\Z/p\Z\cong G$，所以任意两个$p$阶群同构。
+\end{solution}
+
+\subsection*{环的构造与单侧单位元（习题27--31）}
+
+\begin{problem}
+\textbf{习题27：整数对上的环。}在$\Z\times\Z$上定义
+\[
+(a,b)+(c,d)=(a+c,b+d),\qquad(a,b)(c,d)=(ac+bd,ad+bc).
+\]
+\end{problem}
+\begin{solution}
+映射$(a,b)\mapsto\left(\begin{smallmatrix}a&b\\b&a\end{smallmatrix}\right)$是到$M_2(\Z)$一个子环的保两种运算双射。
+故环公理由矩阵环继承。该环交换，零元为$(0,0)$，单位元为$(1,0)$。
+它有零因子，因为$(1,1)(1,-1)=(0,0)$，不是整环。
+\end{solution}
+
+\begin{problem}
+\textbf{习题28：交换整数加法与乘法的角色。}令$a\oplus b=ab$，$a\odot b=a+b$，这是否使$\Z$成环？
+\end{problem}
+\begin{solution}
+不成环。新“加法”是通常乘法，其单位元为整数1，但整数0没有新加法逆元，因为$0\oplus x=0$不可能等于1。
+所以首先就不满足加法群公理。
+\end{solution}
+
+\begin{problem}
+\textbf{习题29：改变坐标得到同构环。}在交换幺环$R$上令
+$a\oplus b=a+b-1$，$a\odot b=a+b-ab$。
+\end{problem}
+\begin{proof}
+双射$f(a)=1-a$满足
+\[
+f(a\oplus b)=f(a)+f(b),\qquad f(a\odot b)=f(a)f(b).
+\]
+所以新运算使$R$成一个与原环同构的交换幺环。
+新加法零元为原元素1，新乘法单位元为原元素0，新加法逆元为$2-a$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题30：子环与母环的单位元和交换性。}
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+\item 母环有$1$、子环无$1$：$R=\Z,S=2\Z$。
+\item 母环无$1$、子环有$1$：$R=2\Z\times\Z,S=\{0\}\times\Z$，逐分量运算。
+若$R$有$1=(u,v)$，首分量须满足$2u=2$，即$u=1\notin2\Z$；$S$的单位元却是$(0,1)$。
+\item 两者均有单位元但不同：$R=M_2(\R)$，$S=\{\operatorname{diag}(a,0):a\in\R\}$，单位元分别是$E$与$\operatorname{diag}(1,0)$。
+\item 母环不交换而子环交换：$R=M_2(\R)$，$S$为全部数量矩阵。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\textbf{习题31：单侧单位元。}若$e_La=a$对全部$a$成立，称$e_L$为左单位元；右单位元类似。
+\end{problem}
+\begin{proof}
+\textbf{(i)}若同时有左单位元$e$、右单位元$f$，则$ef=f$且$ef=e$，故$e=f$为双边单位元。
+
+\textbf{(ii)}若$R$无零因子且有左单位元$e$，对任意$a,b$，
+$(ae-a)b=a(eb)-ab=0$。若环非零，固定非零$b$，无零因子得$ae=a$；零环的唯一元素本来就是双边单位元。
+
+\textbf{(iii)}若有左单位元$e$却无右单位元，存在$a$使$d=a-ae\neq0$。
+因为$d x=ax-a(ex)=0$对全部$x$成立，所以$(e+d)x=x$。
+因此$e$与$e+d$是两个不同的左单位元。
+\end{proof}
+
+\subsection*{理想、幂零元与单位（习题32--42）}
+
+\begin{problem}
+\textbf{习题32：域没有非平凡双边理想。}
+\end{problem}
+\begin{proof}
+理想$I$若非零，取$a\in I\setminus\{0\}$，则$a^{-1}a=1\in I$，故$I=F$。
+同样证明适用于体。
+\end{proof}
+
+\begin{problem}
+\textbf{习题33：$Ra$何时是理想。}若$R$交换，则$Ra=\{ra:r\in R\}$是双边理想；非交换时未必。
+\end{problem}
+\begin{proof}
+差封闭：$ra-sa=(r-s)a$。左吸收：$t(ra)=(tr)a$；交换性给出右吸收$(ra)t=(rt)a$。
+非交换反例：$R=M_2(\Q),a=E_{11}$。
+$Ra$由第二列为0的矩阵组成，$E_{11}\in Ra$，却有$E_{11}E_{12}=E_{12}\notin Ra$。
+注意：无单位元时$Ra$未必包含$a$，所以不能总把它当成“包含$a$的最小理想”。
+\end{proof}
+
+\begin{problem}
+\textbf{习题34：理想的根。}在交换环$R$中定义
+$\sqrt I=\{r\in R:r^n\in I\text{对某个正整数 }n\}$，则$\sqrt I$为理想。
+\end{problem}
+\begin{proof}
+它含0。若$r^n,s^m\in I$，展开$(r-s)^{n+m-1}$，每个单项式不是含至少$n$个$r$，就是含至少$m$个$s$，因而在$I$中。
+整数系数由加法子群封闭性处理，故$r-s\in\sqrt I$。
+若$t\in R$，则$(tr)^n=t^nr^n\in I$，所以$tr\in\sqrt I$，交换性给出另一侧。
+此处只用正整数幂；即使环无$1$，二项式展开中某一因子的次数为0时省略该因子，证明仍成立。
+\end{proof}
+
+\begin{problem}
+\textbf{习题35：交换幺环仅有平凡理想时为域。}假设$1\neq0$。
+\end{problem}
+\begin{proof}
+任意$a\neq0$，理想$Ra$含$a=1a$而非零，故为全环。
+于是存在$r$使$ra=1$，交换性给出双边逆元，所以为域。
+条件“至少两个元素”不能删，否则零环是反例。
+\end{proof}
+
+\begin{problem}
+\textbf{习题36：全矩阵环是单环。}$M_n(\Q)$没有非平凡双边理想。
+\end{problem}
+\begin{proof}
+若理想$I$非零，取$A=(a_{ij})\in I$及非零系数$a_{ij}$。
+对任意$k,l$，$E_{ki}AE_{jl}=a_{ij}E_{kl}\in I$。
+再左乘$a_{ij}^{-1}E_{kk}$得到$E_{kl}\in I$。
+任意有理矩阵可写为$\sum q_{kl}E_{kl}$，而每个$q_{kl}E_{kl}=(q_{kl}E_{kk})E_{kl}\in I$，故$I$为全环。
+只用理想吸收性，无需假设理想预先为$\Q$-线性空间。
+\end{proof}
+
+\begin{problem}
+\textbf{习题37：$aba=0$判别零因子。}若$a,b\neq0$且$aba=0$，则$a$为左零因子或右零因子。
+\end{problem}
+\begin{proof}
+若$ba=0$，非零$b$使$a$为右零因子；若$ba\neq0$，则$a(ba)=0$，使$a$为左零因子。
+\end{proof}
+
+\begin{problem}
+\textbf{习题38：$1-a$的有限几何级数逆。}幺环中若$a^n=0$，则$a$称\textbf{幂零元}，且$1-a$可逆。
+\end{problem}
+\begin{proof}
+令$u=1+a+\cdots+a^{n-1}$。望远镜相消得到$(1-a)u=u(1-a)=1-a^n=1$。
+无须整个环交换，因为只涉及同一元素的幂。
+\end{proof}
+
+\begin{problem}
+\textbf{习题39：交换环的幂零元构成理想。}
+\end{problem}
+\begin{proof}
+这是习题34中$I=\{0\}$的情形。
+若$a^n=b^m=0$，则$(a-b)^{n+m-1}=0$；若$r\in R$，则$(ra)^n=r^na^n=0$。
+非交换环不成立，例如$M_2(\Q)$中$E_{12},E_{21}$均幂零，但$(E_{12}+E_{21})^2=E$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题40：有限幺环的单侧逆也是双侧逆。}若$R$有限且$xy=1$，则$yx=1$。
+\end{problem}
+\begin{proof}
+记$L_x(r)=xr,L_y(r)=yr$，则$L_xL_y=\operatorname{id}$，所以$L_x$满。
+有限集上的满射为双射，因此$L_y=L_x^{-1}$，有$L_yL_x=\operatorname{id}$。
+代入$r=1$得到$yx=1$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题41：单侧逆不成双侧逆时有无穷多个右逆。}若幺环中$ab=1$但$ba\neq1$，则满足$ax=1$的$x$有无穷多个。
+\end{problem}
+\begin{proof}
+令$c=1-ba\neq0$，则$ac=0,cb=0$。
+对每个$n\geq0$，令$x_n=b+ca^n$，有$ax_n=1$。
+若$x_i=x_j$，$i<j$，则$ca^i=ca^j$。
+右乘$b^j$，利用$ab=1$给出的$a^jb^j=1$及$a^ib^j=b^{j-i}$，得
+$0=cb^{j-i}=c$，矛盾。故这些右逆两两不同。
+\end{proof}
+
+\begin{problem}
+\textbf{习题42：唯一的广义逆推出体。}环$R$至少有两个元素，若每个$a\neq0$恰有一个$b$满足$aba=a$，则：无零因子，$bab=b$，有单位元，且$R$为体。
+\end{problem}
+\begin{proof}
+若$a\neq0$且$ax=0$，则$a(b+x)a=a$，由$b$的唯一性得$x=0$；若$xa=0$也同理。
+故无左右零因子。
+
+固定$a\neq0$及其$b$，由$aba=a$对任意$r\in R$有
+$a(bar-r)=0$，所以$bar=r$；又$(rab-r)a=0$，所以$rab=r$。
+故$ba$为左单位元、$ab$为右单位元，习题31(i)给出$ba=ab=1$。
+于是$b\neq0$，$bab=b$；每个非零$a$有双边逆元$b$，所以$R$为体。
+\end{proof}
+
+\subsection*{函数环、有限域与体中的恒等式（习题43--45）}
+
+\begin{problem}
+\textbf{习题43：连续函数环。}对$C[0,1]$，每个真理想$I\neq C[0,1]$有公共零点；对非零函数$f\in C[0,1]$，$f$为零因子当且仅当其零点集包含一个非空的相对开区间。
+\end{problem}
+\begin{proof}
+\textbf{(i)}若无公共零点，每个$t\in[0,1]$都有$f_t\in I$使$f_t(t)\neq0$。
+连续性给出这些函数非零的开邻域，它们覆盖$[0,1]$；紧致性给出有限子覆盖，设对应函数为$f_1,\ldots,f_m$。
+$g=\sum f_j^2\in I$且处处正，故$1/g$连续，理想吸收性给出$1=g(1/g)\in I$，与$I$真矛盾。
+
+\textbf{(ii)}对非零$f$，若$fg=0$且$g\neq0$，选$g(t)\neq0$的一点。
+连续性使$g$在一个非空相对开区间上非零，故$f$在该区间为0。
+反之，若$f$在一个非空相对开区间为0，可在其中选一个非零连续三角形状函数$g$，并使$g$在区间外为0，则$fg=0$。
+零函数也满足零点集条件，但按零因子的定义，它不是零因子。因此这里须限定$f\neq0$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题44：有限域上的矩阵计数。}若$F=\F_p$，则
+\[
+|M_n(F)|=p^{n^2},\qquad
+|\GL_n(F)|=\prod_{k=0}^{n-1}(p^n-p^k).
+\]
+\end{problem}
+\begin{proof}
+矩阵有$n^2$个独立位置，各有$p$种选择，故第一式成立。
+可逆矩阵的列向量必须构成有序基。
+第一列有$p^n-1$种；已选$k$个线性无关列后，它们张成的空间有$p^k$个向量，下一列必须在其外，有$p^n-p^k$种。
+乘法原理即得第二式。$n=1$时为$p-1$，与$F^\times$一致。
+\end{proof}
+
+\begin{problem}
+\textbf{习题45：华罗庚恒等式。}在体$K$中，若$a,b\neq0$且$ab\neq1$，则
+\[
+a-\bigl(a^{-1}+(b^{-1}-a)^{-1}\bigr)^{-1}=aba.
+\]
+\end{problem}
+\begin{proof}
+先验证所有逆元都有定义。令$c=b^{-1}-a$，若$c=0$则$ab=1$，矛盾，所以$c\neq0$。
+令$d=cba=a-aba$，因体无零因子且$c,b,a$均非零，$d\neq0$。
+计算时保留乘法次序：
+\[
+\bigl(a^{-1}+c^{-1}\bigr)d
+=a^{-1}(a-aba)+c^{-1}(cba)
+=(1-ba)+ba=1.
+\]
+因此$a^{-1}+c^{-1}=d^{-1}$，其逆为$d$，于是左边为$a-d=aba$。
+对$x\neq0,1$，还可验证$(x^{-1}-1)^{-1}=(1-x)^{-1}-1$：
+$x^{-1}-1=x^{-1}(1-x)$，所以其逆为$(1-x)^{-1}x=(1-x)^{-1}-1$。
+上述直接证明同时处理了非交换乘法与逆元存在条件。
+\end{proof}

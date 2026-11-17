@@ -1,0 +1,1514 @@
+
+
+
+\chapter{环导论}
+
+\section{基本定义与例子}
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 环 $R$ 是带有两个二元运算 $+$ 与 $\times$（称为加法与乘法）的集合，满足下列公理：
+  \begin{enumerate}[label=(\roman*)]
+    \item $(R,+)$ 是 Abel 群；
+    \item $\times$ 满足结合律：$(a\times b)\times c=a\times(b\times c)$ 对所有 $a,b,c\in R$ 成立；
+    \item $R$ 中满足分配律：对所有 $a,b,c\in R$，
+    \[
+      (a+b)\times c=(a\times c)+(b\times c),
+      \qquad
+      a\times(b+c)=(a\times b)+(a\times c).
+    \]
+  \end{enumerate}
+  \item 若乘法交换，则称环 $R$ 是\emph{交换的}。
+  \item 若存在元素 $1\in R$，使
+  \[
+    1\times a=a\times1=a\qquad\text{对所有 }a\in R
+  \]
+  成立，则称环 $R$ 有\emph{单位元}（或含有 $1$）。
+\end{enumerate}
+
+以后通常把 $a\times b$ 简写为 $ab$。$R$ 的加法单位元总记为 $0$，环元素 $a$ 的加法逆元记为 $-a$。
+
+要求 $R$ 在加法下为群是相当自然的；但要求这个群为 Abel 群看起来或许有些人为。一个动机是：如果环 $R$ 有 $1$，那么加法交换性事实上由分配律强制给出。为说明这一点，用两种不同方式计算 $(1+1)(a+b)$，只使用分配律（不假定加法交换）。一方面得到
+\[
+  (1+1)(a+b)=1(a+b)+1(a+b)=1a+1b+1a+1b=a+b+a+b,
+\]
+另一方面得到
+\[
+  (1+1)(a+b)=(1+1)a+(1+1)b=1a+1a+1b+1b=a+a+b+b.
+\]
+由于 $R$ 在加法下是群，消去可得 $b+a=a+b$，即 $R$ 在加法下必然交换。
+
+域是最重要的环例之一。注意下面的定义只是第 1.4 节中定义的另一种表述。
+
+\medskip
+\noindent\textbf{定义.} 带单位元 $1$ 且 $1\neq0$ 的环 $R$ 称为\emph{除环}（或\emph{斜域}），若每个非零元素 $a\in R$ 都有乘法逆元，即存在 $b\in R$ 使 $ab=ba=1$。交换除环称为\emph{域}。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 最简单的环例子是\emph{平凡环}：取 $R$ 为任意交换群（把群运算记为 $+$），并定义乘法 $a\times b=0$ 对所有 $a,b\in R$ 成立。容易看出这给出一个交换环。特别地，若 $R=\{0\}$ 是平凡群，所得环称为\emph{零环}，记为 $R=0$。除零环外，平凡环没有单位元（$R=0$ 是唯一满足 $1=0$ 的环；我们常通过条件 $1\neq0$ 排除它）。虽然平凡环有两个二元运算，乘法并不给加法群增加新的结构，环论在这里不能给出超出 Abel 群论的信息。
+  \item 整数环 $\ZZ$ 在通常加法与乘法下是带单位元（整数 $1$）的交换环。环公理和加法群公理一样，最终来自自然数系统的基本公理。注意在乘法下 $\ZZ-\{0\}$ 不是群（事实上，这个环中有乘法逆元的元素很少）。我们很快会回到逆元问题。
+  \item 同样，有理数 $\QQ$、实数 $\RR$、复数 $\CC$ 都是带单位元的交换环（事实上它们都是域）。这些环的环公理最终来自 $\ZZ$ 的环公理。当我们从 $\ZZ$ 构造 $\QQ$（第 7.5 节）以及从 $\RR$ 构造 $\CC$（第 13.1 节例 1）时，将验证这一点；这两种构造都是更一般过程的特例。从 $\QQ$ 构造 $\RR$ 以及验证环公理，则通常在基础分析教材中完成。
+  \item 商群 $\ZZ/n\ZZ$ 在剩余类的加法和乘法（通常称为“模算术”）下是带单位元（元素 $\bar1$）的交换环。我们已经看到，加法 Abel 群公理来自商群理论的一般原理。稍后我们将证明其余环公理，特别是剩余类乘法的良定义性，类似地来自商环的一般理论。
+  \item \textbf{（实 Hamilton 四元数）} 令 $\HH$ 为所有形如
+  \[
+    a+bi+cj+dk\qquad (a,b,c,d\in\RR)
+  \]
+  的元素组成的集合（粗略说，即以 $1,i,j,k$ 为“变量”且实系数的多项式）。加法逐分量定义：
+  \[
+  (a+bi+cj+dk)+(a'+b'i+c'j+d'k)
+  =(a+a')+(b+b')i+(c+c')j+(d+d')k.
+  \]
+  乘法由展开 $(a+bi+cj+dk)(a'+b'i+c'j+d'k)$、使用分配律（注意项的次序）并用关系
+  \[
+    i^2=j^2=k^2=-1,\\qquad ij=k,
+    \quad jk=i,\quad ki=j,
+  \]
+  \[
+    ji=-k,
+    \quad kj=-i,
+    \quad ik=-j
+  \]
+  化简来定义，其中实系数与 $i,j,k$ 交换。例如
+  \[
+  \begin{aligned}
+    (1+i+2j)(j+k)
+    &=1(j+k)+i(j+k)+2j(j+k)\\
+    &=j+k+ij+ik+2j^2+2jk\\
+    &=j+k+k+(-j)+2(-1)+2i\\
+    &=-2+2i+2k.
+  \end{aligned}
+  \]
+  $\HH$ 是环这一事实可由直接但较长的公理验证证明（乘法结合律尤其繁琐）。Hamilton 四元数是带单位元的非交换环，其中 $1=1+0i+0j+0k$。同样，把上面的 $a,b,c,d$ 取为有理数可定义有理 Hamilton 四元数环。实和有理 Hamilton 四元数都是除环，非零元素的逆元由
+  \[
+    (a+bi+cj+dk)^{-1}=\frac{a-bi-cj-dk}{a^2+b^2+c^2+d^2}
+  \]
+  给出。
+  \item 一个重要的环类由函数环给出。设 $X$ 是非空集合，$A$ 是任意环。所有集合映射 $f:X\to A$ 的集合 $R$ 在逐点加法和逐点乘法下构成环：
+  \[
+    (f+g)(x)=f(x)+g(x),\qquad (fg)(x)=f(x)g(x).
+  \]
+  $R$ 的每条环公理都直接来自 $A$ 的相应公理。$R$ 交换当且仅当 $A$ 交换；$R$ 有 $1$ 当且仅当 $A$ 有 $1$（此时 $R$ 的 $1$ 必然是 $X$ 上恒等取值为 $1$ 的函数）。
+
+  如果 $X$ 与 $A$ 有更多结构，还可形成尊重这些结构的函数环。例如，若 $A=\RR$，且 $X=[0,1]$ 是 $\RR$ 中闭区间，则所有从 $[0,1]$ 到 $\RR$ 的连续函数构成一个带 $1$ 的交换环（这需要基本极限定理保证连续函数之和与积仍连续）。
+  \item 没有单位元的环的一个例子是偶整数环 $2\ZZ$，在通常的整数加法和乘法下构成环（偶整数的和与积仍是偶整数）。
+
+  另一个自然出现在分析中的例子如下。函数 $f:\RR\to\RR$ 称为有\emph{紧支撑}，若存在实数 $a,b$（依赖于 $f$），使 $x\notin[a,b]$ 时 $f(x)=0$，即 $f$ 在某个有界区间外为零。所有有紧支撑的函数 $f:\RR\to\RR$ 构成没有单位元的交换环（单位函数不可能有紧支撑）。同样，所有有紧支撑的连续函数 $f:\RR\to\RR$ 也构成没有单位元的交换环。
+\end{enumerate}
+
+下一节我们给出从给定环构造“较大”环的三种重要方式（类似上面例 6），从而大大扩充例子列表。在此之前，我们先给出任意环的一些基本性质。整数环 $\ZZ$ 是一个很好的参考例子，尽管它具有比一般环更多的代数结构（例如它交换且有单位元）。不过，它的基本算术在一般环中仍成立，如下所示。
+
+\medskip
+\noindent\textbf{命题 1.} 设 $R$ 是环。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item 对所有 $a\in R$，$0a=a0=0$；
+  \item 对所有 $a,b\in R$，$(-a)b=a(-b)=-(ab)$；
+  \item 对所有 $a,b\in R$，$(-a)(-b)=ab$；
+  \item 若 $R$ 有单位元 $1$，则单位元唯一，且 $-a=(-1)a$。
+\end{enumerate}
+
+\begin{proof}
+这些都由分配律和加法群中的消去律推出。例如，(1) 来自
+\[
+  0a=(0+0)a=0a+0a.
+\]
+(2) 中等式 $(-a)b=-(ab)$ 来自
+\[
+  ab+(-a)b=(a+(-a))b=0b=0.
+\]
+其余结论类似，留给读者验证。
+\end{proof}
+
+这个命题说明，由于分配律，环的加法结构与乘法结构能很好地相互配合，正如熟悉的整数例子中那样。
+
+不过，与整数不同，一般环可能有许多具有乘法逆元的元素，也可能有非零元素 $a,b$ 其乘积为零。下面给出这些与乘法结构有关的性质的专门名称。
+
+\medskip
+\noindent\textbf{定义.} 设 $R$ 是环。
+\begin{enumerate}[label=(\arabic*)]
+  \item 非零元素 $a\in R$ 称为\emph{零因子}，若存在非零 $b\in R$，使 $ab=0$ 或 $ba=0$。
+  \item 假设 $R$ 有单位元 $1\neq0$。元素 $u\in R$ 称为 $R$ 中的\emph{单位}，若存在 $v\in R$，使 $uv=vu=1$。$R$ 中单位全体记为 $R^\times$。
+\end{enumerate}
+
+容易看出，环 $R$ 中的单位在乘法下构成群，所以 $R^\times$ 称为 $R$ 的\emph{单位群}。用这个术语，域就是带单位元 $1\neq0$ 的交换环 $F$，其中每个非零元素都是单位，即 $F^\times=F-\{0\}$。
+
+注意零因子不可能是单位。例如若 $a$ 是 $R$ 中单位且 $ab=0$，其中 $b\neq0$，取 $v\in R$ 使 $va=1$，则
+\[
+  b=1b=(va)b=v(ab)=v0=0,
+\]
+矛盾。类似地，若 $ba=0$ 对某个非零 $b$ 成立，则 $a$ 不可能是单位。因此域没有零因子。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 整数环 $\ZZ$ 没有零因子，其单位只有 $\pm1$，即 $\ZZ^\times=\{\pm1\}$。注意每个非零整数在较大的环 $\QQ$ 中都有逆元，所以“是单位”这一性质依赖于所处的环。
+  \item 设 $n\geq2$。在 $\ZZ/n\ZZ$ 中，与 $n$ 互素的元素 $\bar u$ 是单位（下一章将证明）。另一方面，若非零整数 $a$ 与 $n$ 不互素，则 $\bar a$ 是 $\ZZ/n\ZZ$ 中的零因子。令 $d=(a,n)$，取 $b=n/d$。由假设 $d>1$，故 $0<b<n$，于是 $\bar b\neq\bar0$；但构造表明 $n\mid ab$，即在 $\ZZ/n\ZZ$ 中 $\bar a\bar b=\bar0$。这说明 $\ZZ/n\ZZ$ 中每个非零元素要么是单位，要么是零因子。此外，每个非零元素都是单位当且仅当 $0<a<n$ 的每个整数 $a$ 都与 $n$ 互素；这当且仅当 $n$ 是素数。故 $\ZZ/n\ZZ$ 是域当且仅当 $n$ 是素数。
+  \item 若 $R$ 是从闭区间 $[0,1]$ 到 $\RR$ 的所有函数构成的环，则 $R$ 的单位是处处不为零的函数（其逆为函数 $1/f$）。若 $f$ 不是单位且不是零函数，则 $f$ 是零因子：定义
+  \[
+    g(x)=\begin{cases}0,& f(x)\neq0,\\ 1,& f(x)=0,
+    \end{cases}
+  \]
+  则 $g$ 不是零函数但 $f(x)g(x)=0$ 对所有 $x$ 成立。
+  \item 若 $R$ 是从 $[0,1]$ 到 $\RR$ 的所有连续函数构成的环，则单位仍是处处不为零的函数；但现在存在既不是单位也不是零因子的元素。例如 $f(x)=x-\frac12$ 只有一个零点，所以不是单位。另一方面，若 $gf=0$，则 $g$ 在所有 $x\neq\frac12$ 处为零；唯一具有此性质的连续函数是零函数。因此 $f$ 既不是单位也不是零因子。类似地，只有有限（甚至可数）个零点的函数都不是零因子。该环也含有许多零因子。例如令
+  \[
+    f(x)=\begin{cases}0,&0\leq x\leq\frac12,\\ x-\frac12,&\frac12\leq x\leq1,
+    \end{cases}
+  \]
+  并令 $g(x)=f(1-x)$，则 $f,g$ 是非零连续函数且乘积为零函数。
+  \item 设 $D$ 是一个不是 $\QQ$ 中完全平方数的有理数，定义
+  \[
+    \QQ(\sqrt D)=\{a+b\sqrt D\mid a,b\in\QQ\}\subseteq\CC.
+  \]
+  该集合显然对减法封闭，恒等式
+  \[
+    (a+b\sqrt D)(c+d\sqrt D)=(ac+bdD)+(ad+bc)\sqrt D
+  \]
+  表明它也对乘法封闭。因此 $\QQ(\sqrt D)$ 是 $\CC$ 的子环（若 $D>0$，甚至是 $\RR$ 的子环），特别是带单位元的交换环。容易证明，$D$ 不是平方数这一假设意味着 $\QQ(\sqrt D)$ 的每个元素都能唯一写成 $a+b\sqrt D$ 的形式。该假设还意味着若 $a,b$ 不全为 $0$，则 $a^2-Db^2\neq0$；又因
+  \[
+    (a+b\sqrt D)(a-b\sqrt D)=a^2-Db^2,
+  \]
+  若 $a+b\sqrt D\neq0$，则
+  \[
+    \frac{a-b\sqrt D}{a^2-Db^2}
+  \]
+  是 $a+b\sqrt D$ 在 $\QQ(\sqrt D)$ 中的逆元。这说明这个交换环中每个非零元素都是单位，即 $\QQ(\sqrt D)$ 是域，称为\emph{二次域}（参见第 13.2 节）。
+
+  有理数 $D$ 可写为 $D=f^2D'$，其中 $f\in\QQ$，$D'$ 是唯一的整数，且不被任何大于 $1$ 的整数的平方整除，即 $D'$ 是 $-1$ 或 $\pm1$ 乘以若干个 $\ZZ$ 中不同素数的乘积。称 $D'$ 为 $D$ 的无平方因子部分。于是 $\sqrt D=f\sqrt{D'}$，从而 $\QQ(\sqrt D)=\QQ(\sqrt{D'})$。因此在定义二次域 $\QQ(\sqrt D)$ 时，不妨假定 $D$ 是无平方因子整数。
+\end{enumerate}
+
+具有整数环 $\ZZ$ 的某些特征的环有专门名称。
+
+\medskip
+\noindent\textbf{定义.} 带单位元 $1\neq0$ 的交换环称为\emph{整环}，若它没有零因子。
+
+整环中没有零因子给出消去性质。
+
+\medskip
+\noindent\textbf{命题 2.} 设 $a,b,c$ 是任意环中的元素，且 $a$ 不是零因子。若 $ab=ac$，则 $a=0$ 或 $b=c$（即若 $a\neq0$，则可以消去 $a$）。特别地，若 $a,b,c$ 是整环中的任意元素，且 $ab=ac$，则 $a=0$ 或 $b=c$。
+
+\begin{proof}
+若 $ab=ac$，则 $a(b-c)=0$，故或者 $a=0$，或者 $b-c=0$。第二个断言由第一个断言和整环定义立即得到。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 3.} 任意有限整环都是域。
+
+\begin{proof}
+设 $R$ 是有限整环，$a$ 是 $R$ 的非零元素。由消去律，映射 $x\mapsto ax$ 是单射。由于 $R$ 有限，此映射也是满射。特别地，存在 $b\in R$ 使 $ab=1$，即 $a$ 是单位。由于 $a$ 是任意非零元素，$R$ 是域。
+\end{proof}
+
+Wedderburn 的一个著名结果断言，有限除环必为交换的，即必为域。这个定理的证明在第 13.6 节末的练习中给出提纲。
+
+在第 5 节中，我们会更详细地研究零因子与单位之间的关系。我们将看到，交换环中每个非零且不是零因子的元素，在某个较大的环中都有乘法逆元。这给命题 2 中的消去律提供了另一种视角。
+
+定义了环的概念以后，自然也有子环的概念。
+
+\medskip
+\noindent\textbf{定义.} 环 $R$ 的\emph{子环}是 $R$ 的一个加法子群，并且对乘法封闭。
+
+换言之，环 $R$ 的子集 $S$ 是子环，若 $R$ 中的加法和乘法限制到 $S$ 后使 $S$ 成为环。要证明环 $R$ 的一个子集是子环，只需检查它非空，并且对减法和乘法封闭。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item $\ZZ$ 是 $\QQ$ 的子环，$\QQ$ 是 $\RR$ 的子环。“是……的子环”这个性质显然具有传递性。
+  \item $2\ZZ$ 是 $\ZZ$ 的子环；任意整数 $n$ 的 $n\ZZ$ 也是 $\ZZ$ 的子环。当 $n\geq2$ 时，$\ZZ/n\ZZ$ 不是 $\ZZ$ 的子环（也不是子群）。
+  \item 从 $\RR$ 到 $\RR$ 的所有连续函数构成的环，是所有从 $\RR$ 到 $\RR$ 的函数构成的环的子环。从 $\RR$ 到 $\RR$ 的所有可微函数构成的环，是二者的子环。
+  \item $S=\ZZ+\ZZ i+\ZZ j+\ZZ k$，即整 Hamilton 四元数，构成实或有理 Hamilton 四元数环的子环：两个这类四元数相乘仍然得到整数系数的四元数。这个环（不是除环）可用于证明若干数论结果。
+  \item 若 $R$ 是含有域 $F$ 的单位元的子环，则 $R$ 是整环。反过来也成立：任意整环都包含在某个域中（参见第 5 节）。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{例（二次整数环）.}
+设 $D$ 是无平方因子整数。从加法和乘法可立即看出，子集
+\[
+  \ZZ[\sqrt D]=\{a+b\sqrt D\mid a,b\in\ZZ\}
+\]
+构成二次域 $\QQ(\sqrt D)$ 的子环。若 $D\equiv1\pmod4$，则稍大的子集
+\[
+  \ZZ\!bigg[\frac{1+\sqrt D}{2}\bigg]
+  =\left\{a+b\frac{1+\sqrt D}{2}\mid a,b\in\ZZ\right\}
+\]
+也是子环：对加法封闭显然，而
+\[
+\left(a+b\frac{1+\sqrt D}{2}\right)
+\left(c+d\frac{1+\sqrt D}{2}\right)
+=(ac+bd\frac{D-1}{4})+(ad+bc+bd)\frac{1+\sqrt D}{2}
+\]
+与 $D\equiv1\pmod4$ 一起说明它对乘法封闭。
+
+定义
+\[
+  \mcO=\mcO_{\QQ(\sqrt D)}=\ZZ[\omega]=\{a+b\omega\mid a,b\in\ZZ\},
+\]
+其中
+\[
+  \omega=\begin{cases}
+  \sqrt D,&D\equiv2,3\pmod4,\\[2mm]
+  \dfrac{1+\sqrt D}{2},&D\equiv1\pmod4.
+  \end{cases}
+\]
+它称为二次域 $\QQ(\sqrt D)$ 的\emph{整数环}。这个术语来自这样一个事实：域 $\QQ(\sqrt D)$ 的子环 $\mcO$ 中的元素有许多类似于有理数域 $\QQ$ 中整数子环 $\ZZ$ 的性质（并且它们正是第 15.3 节中解释的 $\ZZ$ 在 $\QQ(\sqrt D)$ 中的整闭包）。
+
+当 $D=-1$ 时，得到 Gaussian 整数环 $\ZZ[i]$，即复数 $a+bi\in\CC$ 中 $a,b$ 都是整数者。Gauss 在约 1800 年引入这些数，是为了陈述双二次互反律；该定律讨论素数模四次幂之间存在的优美关系。我们很快会看到这个环的代数结构在数论问题中的另一个有用应用。
+
+定义域范数
+\[
+  N:\QQ(\sqrt D)\to\QQ,
+  \qquad N(a+b\sqrt D)=(a+b\sqrt D)(a-b\sqrt D)=a^2-Db^2\in\QQ,
+\]
+如前所述，当 $a+b\sqrt D\neq0$ 时这个数非零。范数给出域 $\QQ(\sqrt D)$ 中“大小”的度量。例如当 $D=-1$ 时，$a+bi$ 的范数是 $a^2+b^2$，即这个复数作为复平面中向量时长度的平方。我们将在本例和后续例子中使用域范数来建立环 $\mcO$ 的许多性质。
+
+容易验证 $N$ 是乘法性的，即对所有 $\alpha,\beta\in\QQ(\sqrt D)$ 有 $N(\alpha\beta)=N(\alpha)N(\beta)$。在子环 $\mcO$ 上，域范数也容易写成
+\[
+N(a+b\omega)=(a+b\omega)(a+b\bar\omega)=
+\begin{cases}
+ a^2-Db^2,&D\equiv2,3\pmod4,\\[1mm]
+ a^2+ab+\dfrac{1-D}{4}b^2,&D\equiv1\pmod4,
+\end{cases}
+\]
+其中
+\[
+  \bar\omega=\begin{cases}
+  -\sqrt D,&D\equiv2,3\pmod4,\\[1mm]
+  \dfrac{1-\sqrt D}{2},&D\equiv1\pmod4.
+  \end{cases}
+\]
+于是对每个 $\alpha\in\mcO$，$N(\alpha)$ 实际上是整数。
+
+我们可用此范数刻画 $\mcO$ 中的单位。若 $\alpha\in\mcO$ 的域范数 $N(\alpha)=\pm1$，则上式说明 $\alpha^{-1}=\pm\bar\alpha$，仍属于 $\mcO$，故 $\alpha$ 是 $\mcO$ 中的单位。反过来，若 $\alpha$ 是 $\mcO$ 中的单位，设 $\alpha\beta=1$，其中 $\beta\in\mcO$。范数的乘法性给出
+\[
+  N(\alpha)N(\beta)=N(\alpha\beta)=N(1)=1.
+\]
+由于 $N(\alpha)$ 和 $N(\beta)$ 都是整数，它们都必须为 $\pm1$。因此
+\[
+  \alpha\text{ 是 }\mcO\text{ 中的单位，当且仅当 }N(\alpha)=\pm1.
+\]
+特别地，求整数方程 $x^2-Dy^2=\pm1$（初等数论中称为 Pell 方程）的整数解，本质上等价于求环 $\mcO$ 的单位。
+
+当 $D=-1$ 时，Gaussian 整数 $\ZZ[i]$ 中的单位是满足 $a^2+b^2=\pm1$ 的元素 $a+bi$，其中 $a,b\in\ZZ$，故单位群为 $\{\pm1,\pm i\}$。当 $D=-3$ 时，$\ZZ[(1+\sqrt{-3})/2]$ 中的单位由满足 $a^2+ab+b^2=\pm1$ 的整数 $a,b$ 决定，也即满足 $(2a+b)^2+3b^2=\pm4$；由此容易看出单位群为 $6$ 阶群 $\{\pm1,\pm\rho,\pm\rho^2\}$，其中 $\rho=(-1+\sqrt{-3})/2$。对任何其他 $D<0$，类似地容易看出唯一单位是 $\{\pm1\}$。
+
+相反，当 $D>0$ 时，可以证明单位群 $\mcO^\times$ 总是无限的。例如在环 $\mcO=\ZZ[\sqrt2]$ 中，$1+\sqrt2$ 是一个单位（域范数为 $-1$），且
+\[
+  \{\pm(1+\sqrt2)^n\mid n\in\ZZ\}
+\]
+是无限个互异单位（事实上这就是该情形的完整单位群，但证明较困难）。
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元 $1$ 的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 证明在 $R$ 中有 $(-1)^2=1$。
+	\item 证明若 $u$ 是 $R$ 中的单位，则 $-u$ 也是 $R$ 中的单位。
+	\item 设 $R$ 是带单位元的环，$S$ 是 $R$ 的含单位元子环。证明：若 $u$ 是 $S$ 中的单位，则 $u$ 是 $R$ 中的单位。举例说明反命题不成立。
+	\item 证明任意非空子环族的交仍是子环。
+	\item 判定下列各集合中哪些是 $\QQ$ 的子环：
+	\begin{enumerate}[label=(\alph*)]
+		\item 既约表示时分母为奇数的有理数全体；
+		\item 既约表示时分母为偶数的有理数全体；
+		\item 非负有理数全体；
+		\item 有理数平方全体；
+		\item 既约表示时分子为奇数的有理数全体；
+		\item 既约表示时分子为偶数的有理数全体。
+	\end{enumerate}
+	\item 判定下列各集合中哪些是闭区间 $[0,1]$ 到 $\RR$ 的所有函数构成的环的子环：
+	\begin{enumerate}[label=(\alph*)]
+		\item 所有满足 $f(q)=0$ 对一切 $q\in\QQ\cap[0,1]$ 成立的函数 $f(x)$；
+		\item 所有多项式函数；
+		\item 只有有限个零点的函数全体，再加上零函数；
+		\item 有无穷多个零点的函数全体；
+		\item 所有满足 $\lim_{x\to1^-}f(x)=0$ 的函数 $f$；
+		\item 函数 $\sin nx$ 与 $\cos mx$ 的所有有理线性组合，其中 $m,n\in\{0,1,2,\ldots\}$。
+	\end{enumerate}
+	\item 环 $R$ 的中心定义为 $\{z\in R\mid zr=rz\text{ 对所有 }r\in R\}$，即与 $R$ 中每个元素都交换的元素全体。证明环的中心是含单位元的子环。证明除环的中心是域。
+	\item 描述实 Hamilton 四元数环 $\HH$ 的中心。证明 $\{a+bi\mid a,b\in\RR\}$ 是 $\HH$ 的子环，且是一个域，但它不包含在 $\HH$ 的中心中。
+	\item 对固定元素 $a\in R$，定义 $C(a)=\{r\in R\mid ra=ar\}$。证明 $C(a)$ 是 $R$ 的含 $a$ 子环。证明 $R$ 的中心是所有 $a\in R$ 的子环 $C(a)$ 的交。
+	\item 证明若 $D$ 是除环，则对所有 $a\in D$，$C(a)$ 是除环（参见上一题）。
+	\item 证明若 $R$ 是整环且某个 $x\in R$ 满足 $x^2=1$，则 $x=\pm1$。
+	\item 证明含单位元的域的任意子环都是整环。
+	\item 环 $R$ 中元素 $x$ 称为幂零元，若存在 $m\in\ZZ^+$ 使 $x^m=0$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 若 $n=a^k b$，其中 $a,b$ 是整数，证明 $\bar a\bar b$ 是 $\ZZ/n\ZZ$ 中的幂零元。
+		\item 若 $a\in\ZZ$，证明 $\bar a\in\ZZ/n\ZZ$ 是幂零元，当且仅当 $n$ 的每个素因子也整除 $a$。特别地，显式确定 $\ZZ/72\ZZ$ 中的幂零元。
+		\item 设 $R$ 是从非空集合 $X$ 到域 $F$ 的所有函数构成的环。证明 $R$ 不含非零幂零元。
+	\end{enumerate}
+	\item 设 $x$ 是交换环 $R$ 中的幂零元（参见上一题）。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $x$ 要么为零，要么为零因子。
+		\item 证明对所有 $r\in R$，$rx$ 是幂零元。
+		\item 证明 $1+x$ 是 $R$ 中的单位。
+		\item 推出幂零元与单位之和仍是单位。
+	\end{enumerate}
+	\item 若环 $R$ 中对所有 $a\in R$ 都有 $a^2=a$，则称 $R$ 为 Boolean 环。证明每个 Boolean 环都是交换环。
+	\item 证明唯一的整环型 Boolean 环是 $\ZZ/2\ZZ$。
+	\item 设 $R,S$ 是环。证明直积 $R\times S$ 在逐分量加法与乘法下构成环。证明 $R\times S$ 交换当且仅当 $R,S$ 都交换。证明 $R\times S$ 有单位元当且仅当 $R,S$ 都有单位元。
+	\item 证明 $\{(r,r)\mid r\in R\}$ 是 $R\times R$ 的子环。
+	\item 设 $I$ 为任意非空指标集，并且对每个 $i\in I$，$R_i$ 是环。证明直积 $\prod_{i\in I}R_i$ 在逐分量加法与乘法下构成环。
+	\item 设 $R$ 是整数序列 $(a_1,a_2,a_3,\ldots)$ 的全体，其中 $a_i\in\ZZ$ 且除有限多个外均为 $0$（称为无穷多个 $\ZZ$ 的直和）。证明 $R$ 在逐分量加法与乘法下构成环，但没有单位元。
+	\item 设 $X$ 是任意非空集合，$\mcP(X)$ 是 $X$ 的所有子集构成的幂集。在 $\mcP(X)$ 上定义
+	\[
+	A+B=(A-B)\cup(B-A),\qquad A\times B=A\cap B,
+	\]
+	即加法为对称差，乘法为交。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\mcP(X)$ 在这些运算下构成环（$\mcP(X)$ 及其子环常称为集合环）。
+		\item 证明这个环是交换的、有单位元，并且是 Boolean 环。
+	\end{enumerate}
+	\item 给出一个无穷 Boolean 环的例子。
+	\item 设 $D$ 是无平方因子整数，$\mcO$ 是二次域 $\QQ(\sqrt D)$ 的整数环。对任意正整数 $f$，证明集合
+	\[
+	\mcO_f=\ZZ[f\omega]=\{a+bf\omega\mid a,b\in\ZZ\}
+	\]
+	是 $\mcO$ 的含单位元子环。证明 $[\mcO:\mcO_f]=f$（作为加法阿贝尔群的指数）。反过来，证明 $\mcO$ 的含单位元、且在 $\mcO$ 中作为加法阿贝尔群指数为 $f$ 的任意子环都等于 $\mcO_f$。（环 $\mcO_f$ 称为 $\QQ(\sqrt D)$ 中导子为 $f$ 的 order；整数环 $\mcO$ 称为 $\QQ(\sqrt D)$ 中的极大 order。）
+	\item 对 $D=3,5,6,7$，通过在每个二次整数环 $\mcO$ 中展示一个具有无穷乘法阶的显式单位，说明单位群 $\mcO^\times$ 是无穷的。
+	\item 设 $I$ 是整 Hamilton 四元数环，定义
+	\[
+	N:I\to\ZZ,
+	\qquad N(a+bi+cj+dk)=a^2+b^2+c^2+d^2
+	\]
+	（映射 $N$ 称为范数）。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $N(\alpha)=\alpha\bar\alpha$ 对所有 $\alpha\in I$ 成立，其中若 $\alpha=a+bi+cj+dk$，则 $\bar\alpha=a-bi-cj-dk$。
+		\item 证明 $N(\alpha\beta)=N(\alpha)N(\beta)$ 对所有 $\alpha,\beta\in I$ 成立。
+		\item 证明 $I$ 中元素是单位当且仅当它的范数为 $+1$。证明 $I^\times$ 同构于 $8$ 阶四元数群。\emph{提示：}非零元素 $\alpha$ 在有理四元数环中的逆元为 $\bar\alpha/N(\alpha)$。
+	\end{enumerate}
+	\item 设 $K$ 是域。$K$ 上的一个离散赋值是函数 $v:K^\times\to\ZZ$，满足
+	\begin{enumerate}[label=(\roman*)]
+		\item $v(ab)=v(a)+v(b)$，即 $v$ 是从 $K$ 的非零元素乘法群到 $\ZZ$ 的同态；
+		\item $v$ 是满射；
+		\item 若 $x,y\in K^\times$ 且 $x+y\neq0$，则 $v(x+y)\geq \min\{v(x),v(y)\}$。
+	\end{enumerate}
+	集合
+	\[
+	R=\{x\in K^\times\mid v(x)\geq0\}\cup\{0\}
+	\]
+	称为 $v$ 的赋值环。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R$ 是 $K$ 的含单位元子环。（一般地，若存在域 $K$ 和离散赋值 $v$，使 $R$ 是 $v$ 的赋值环，则称 $R$ 为离散赋值环。）
+		\item 证明对每个非零 $x\in K$，$x$ 或 $x^{-1}$ 属于 $R$。
+		\item 证明 $x$ 是 $R$ 的单位当且仅当 $v(x)=0$。
+	\end{enumerate}
+	\item 前一题的一个具体离散赋值环例子如下：$p$ 为素数，$K=\QQ$，并定义
+	\[
+	v_p:\QQ^\times\to\ZZ,
+	\qquad v_p(a/b)=\alpha,
+	\]
+	其中 $a/b=p^\alpha c/d$，且 $p\nmid c$、$p\nmid d$。证明相应赋值环 $R$ 是所有分母与 $p$ 互素的有理数构成的环。描述这个赋值环的单位。
+	\item 设 $R$ 是带 $1\neq0$ 的环。若非零元素 $a$ 满足存在非零 $x\in R$ 使 $ax=0$，则称 $a$ 是左零因子。对称地，若非零元素 $b$ 满足存在非零 $y\in R$ 使 $yb=0$，则称 $b$ 是右零因子（于是零因子是左或右零因子）。若存在 $s\in R$ 使 $su=1$，则称 $u$ 有左逆；若存在 $t\in R$ 使 $vt=1$，则称 $v$ 有右逆。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $u$ 是单位当且仅当它同时有左逆和右逆（即 $u$ 有双边逆）。
+		\item 证明若 $u$ 有右逆，则 $u$ 不是右零因子。
+		\item 证明若 $u$ 有不止一个右逆，则 $u$ 是左零因子。
+		\item 证明若 $R$ 是有限环，则每个有右逆的元素都是单位（即有双边逆）。
+	\end{enumerate}
+	\item 设 $A$ 是任意带单位元 $1\neq0$ 的交换环。令 $R$ 为加法群 $A$ 到自身的所有群同态的集合，其中加法定义为逐点加法，乘法定义为函数复合。证明这些运算使 $R$ 成为带单位元的环。证明 $R$ 的单位就是 $A$ 的群自同构（参见第 1.6 节练习 20）。
+	\item 设 $A=\ZZ\times\ZZ\times\ZZ\times\cdots$ 为按正整数编号的 $\ZZ$ 的直积（于是 $A$ 在逐分量加法与乘法下成环），并令 $R$ 为上一题中从 $A$ 到自身的所有群同态构成的环。设 $\varphi\in R$ 定义为
+	\[
+	\varphi(a_1,a_2,a_3,\ldots)=(a_2,a_3,\ldots),
+	\]
+	设 $\psi\in R$ 定义为
+	\[
+	\psi(a_1,a_2,a_3,\ldots)=(0,a_1,a_2,a_3,\ldots).
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\varphi\psi$ 是 $R$ 的单位元，但 $\psi\varphi$ 不是 $R$ 的单位元（即 $\psi$ 是 $\varphi$ 的右逆，但不是左逆）。
+		\item 给出 $\varphi$ 的无穷多个右逆。
+		\item 找出非零元素 $\pi\in R$，使 $\varphi\pi=0$ 但 $\pi\varphi\neq0$。
+		\item 证明不存在非零元素 $\lambda\in R$ 使 $\lambda\varphi=0$（即 $\varphi$ 是左零因子但不是右零因子）。
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\section{例子：多项式环、矩阵环与群环}
+
+本节介绍三类重要的环：多项式环、矩阵环与群环。随着本书的发展，我们将看到这三类环常常彼此相关。例如在第六部分中，我们会看到复数域上的群 $G$ 的群环 $\CC G$ 是若干个 $\CC$ 上矩阵环的直积。
+
+这些环除了本身有趣以外，还有许多重要应用。在第三部分中，我们将用多项式环证明矩阵的若干分类定理；特别地，它们决定何时一个矩阵相似于对角矩阵。在第六部分中，我们将用群环研究群作用，并证明若干进一步的重要分类定理。
+
+\subsection*{多项式环}
+固定一个带单位元的交换环 $R$。我们以一种可能已经熟悉的方式定义多项式环，至少对实系数多项式来说如此。用 Cartesian 积给出的定义见附录 I。令 $x$ 为不定元。形式和
+\[
+  a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+\]
+其中 $n\geq0$ 且每个 $a_i\in R$，称为以 $R$ 中 $a_i$ 为系数、关于 $x$ 的多项式。若 $a_n\neq0$，则该多项式称为次数为 $n$，$a_nx^n$ 称为首项，$a_n$ 称为首系数（零多项式的首系数约定为 $0$）。若 $a_n=1$，多项式称为首一的。所有这类多项式的集合称为以 $R$ 为系数、变量为 $x$ 的多项式环，记为 $R[x]$。
+
+使 $R[x]$ 成为环的加法与乘法，就是初等代数中熟悉的运算：加法逐项进行
+\[
+\begin{aligned}
+ &(a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0)\\
+ &\quad +(b_nx^n+b_{n-1}x^{n-1}+\cdots+b_1x+b_0)\\
+ &= (a_n+b_n)x^n+(a_{n-1}+b_{n-1})x^{n-1}+\cdots+(a_1+b_1)x+(a_0+b_0),
+\end{aligned}
+\]
+这里允许 $a_n$ 或 $b_n$ 为 $0$，以便定义不同次数多项式的和。乘法先对只有一个非零项的多项式定义
+\[
+  (ax^i)(bx^j)=abx^{i+j},
+\]
+再用分配律推广到所有多项式（通常称为“展开并合并同类项”）：
+\[
+\begin{aligned}
+ &(a_0+a_1x+a_2x^2+\cdots)(b_0+b_1x+b_2x^2+\cdots)\\
+ &=a_0b_0+(a_0b_1+a_1b_0)x+(a_0b_2+a_1b_1+a_2b_0)x^2+\cdots.
+\end{aligned}
+\]
+一般地，积中 $x^k$ 的系数为 $\sum_{i=0}^k a_i b_{k-i}$。这些运算有意义，因为 $R$ 是环，系数的和与积都已定义。容易验证这些加法和乘法确实使 $R[x]$ 成为环。
+
+环 $R$ 以常数多项式的形式出现在 $R[x]$ 中。注意由乘法定义，$R[x]$ 是带单位元的交换环（单位元是 $R$ 的单位元 $1$）。上面假设系数环 $R$ 交换，是因为这是我们主要关心的情形；但即使 $R$ 非交换或没有单位元，上述 $R[x]$ 中的加法与乘法定义仍然有效。若系数环为整数 $\ZZ$（分别为有理数 $\QQ$），则多项式环 $\ZZ[x]$（分别为 $\QQ[x]$）就是初等代数中熟悉的整系数（有理系数）多项式环。
+
+另一个例子是系数在 $\ZZ/3\ZZ$ 中的多项式环 $(\ZZ/3\ZZ)[x]$。这个环由 $x$ 的非负幂构成，系数为 $0,1,2$，系数按模 $3$ 计算。例如若
+\[
+  p(x)=x^2+2x+1,
+  \qquad q(x)=x^3+x+2,
+\]
+则
+\[
+  p(x)+q(x)=x^3+x^2,
+\]
+并且
+\[
+  p(x)q(x)=x^5+2x^4+2x^3+x^2+2x+2.
+\]
+
+系数所在的环会实质性地改变多项式的行为。例如，多项式 $x^2+1$ 在多项式环 $\ZZ[x]$ 中不是平方，但在多项式环 $(\ZZ/2\ZZ)[x]$ 中是平方，因为在这个环中
+\[
+  (x+1)^2=x^2+2x+1=x^2+1.
+\]
+
+\medskip
+\noindent\textbf{命题 4.} 设 $R$ 是整环，$p(x),q(x)$ 是 $R[x]$ 的非零元素。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item $\deg(p(x)q(x))=\deg p(x)+\deg q(x)$；
+  \item $R[x]$ 的单位恰好是 $R$ 的单位；
+  \item $R[x]$ 是整环。
+\end{enumerate}
+
+\begin{proof}
+若 $R$ 没有零因子，则 $R[x]$ 也没有零因子：若 $p(x)$ 和 $q(x)$ 的首项分别为 $a_nx^n$ 和 $b_mx^m$，则 $p(x)q(x)$ 的首项为 $a_nb_mx^{n+m}$，而 $a_nb_m\neq0$。这同时证明了 (3) 并验证了 (1)。若 $p(x)$ 是单位，设 $p(x)q(x)=1$，则由 (1)
+\[
+  \deg p(x)+\deg q(x)=0,
+\]
+所以 $p(x)$ 与 $q(x)$ 都是 $R$ 的元素。由于它们的积为 $1$，$p(x)$ 是 $R$ 中单位。这证明 (2)。
+\end{proof}
+
+若环 $R$ 有零因子，则 $R[x]$ 也有零因子，因为 $R\subseteq R[x]$。此外，若 $f(x)$ 是 $R[x]$ 中的零因子，即存在非零 $g(x)\in R[x]$ 使 $f(x)g(x)=0$，则事实上存在非零 $c\in R$ 使 $cf(x)=0$（参见练习 2）。
+
+若 $S$ 是 $R$ 的子环，则 $S[x]$ 是 $R[x]$ 的子环。例如 $\ZZ[x]$ 是 $\QQ[x]$ 的子环。$R[x]$ 的其他子环例子包括所有关于 $x^2$ 的多项式（即只出现 $x$ 的偶次幂的多项式）以及所有常数项为零的多项式（后一个子环没有单位元）。多项式环，特别是域上的多项式环，将在第 9 章中系统研究。
+
+\subsection*{矩阵环}
+固定任意环 $R$，令 $n$ 为正整数。用 $M_n(R)$ 表示所有以 $R$ 中元素为项的 $n\times n$ 矩阵的集合。元素 $(a_{ij})$ 是一个 $n\times n$ 方阵，其第 $i$ 行第 $j$ 列元素为 $a_{ij}\in R$。在通常的实矩阵加法与乘法规则下，矩阵集合成为环。加法逐项进行：$(a_{ij})+(b_{ij})$ 的第 $i,j$ 元为 $a_{ij}+b_{ij}$。矩阵积 $(a_{ij})(b_{ij})$ 的第 $i,j$ 元为 $\sum_{k=1}^n a_{ik}b_{kj}$（矩阵必须是方阵，才能使任意两个元素都可相乘）。直接计算可验证这些运算使 $M_n(R)$ 成为环。当 $R$ 是域时，第三部分中我们将用较少计算的方法证明 $M_n(R)$ 是环。
+
+注意若 $R$ 是任意非平凡环（即使交换），且 $n\geq2$，则 $M_n(R)$ 不交换：若 $ab\neq0$，令 $A$ 为第 $1,1$ 位为 $a$ 其余为 $0$ 的矩阵，$B$ 为第 $1,2$ 位为 $b$ 其余为 $0$ 的矩阵，则 $AB$ 在第 $1,2$ 位有非零项 $ab$，而 $BA$ 是零矩阵。这两个矩阵也说明当 $R$ 非零且 $n\geq2$ 时，$M_n(R)$ 有零因子。
+
+$M_n(R)$ 的元素 $(a_{ij})$ 称为\emph{标量矩阵}，若存在 $a\in R$，使 $a_{ii}=a$ 对所有 $i$ 成立，且当 $i\neq j$ 时 $a_{ij}=0$。标量矩阵全体是 $M_n(R)$ 的子环。这个子环是 $R$ 的一个拷贝：若矩阵 $A$ 主对角线上都是 $a$，矩阵 $B$ 主对角线上都是 $b$，则 $A+B$ 主对角线上都是 $a+b$，而 $AB$ 主对角线上都是 $ab$，其余项为 $0$。若 $R$ 交换，则标量矩阵与 $M_n(R)$ 的所有元素交换。若 $R$ 有 $1$，则主对角线上全为 $1$ 的标量矩阵（$n\times n$ 单位矩阵）是 $M_n(R)$ 的单位元。在这种情形，$M_n(R)$ 的单位就是可逆 $n\times n$ 矩阵，单位群记为 $\GL_n(R)$，称为 $R$ 上 $n$ 次一般线性群。
+
+若 $S$ 是 $R$ 的子环，则 $M_n(S)$ 是 $M_n(R)$ 的子环。例如 $M_n(\ZZ)$ 是 $M_n(\QQ)$ 的子环，$M_n(2\ZZ)$ 又是二者的子环。$M_n(R)$ 的另一个子环例子是上三角矩阵全体
+\[
+  \{(a_{ij})\mid a_{pq}=0\text{ whenever }p>q\},
+\]
+即主对角线以下的所有项都为零的矩阵；容易验证上三角矩阵的和与积仍为上三角。
+
+\subsection*{群环}
+固定带单位元 $1\neq0$ 的交换环 $R$，令 $G=\{g_1,g_2,\ldots,g_n\}$ 是有限群，群运算写作乘法。定义 $G$ 在 $R$ 上的\emph{群环} $RG$ 为所有形式和
+\[
+  a_1g_1+a_2g_2+\cdots+a_ng_n,
+  \qquad a_i\in R,
+\]
+组成的集合。若 $g_1$ 是 $G$ 的恒等元，则 $a_1g_1$ 简写为 $a_1$。类似地，对 $g\in G$，元素 $1g$ 简写为 $g$。
+
+加法逐分量定义：
+\[
+\begin{aligned}
+&(a_1g_1+a_2g_2+\cdots+a_ng_n)+(b_1g_1+b_2g_2+\cdots+b_ng_n)\\
+&=(a_1+b_1)g_1+(a_2+b_2)g_2+\cdots+(a_n+b_n)g_n.
+\end{aligned}
+\]
+乘法先定义
+\[
+  (ag_i)(bg_j)=(ab)g_k,
+\]
+其中 $ab$ 在 $R$ 中相乘，$g_ig_j=g_k$ 是群 $G$ 中的乘积。随后用分配律推广到所有形式和；在乘积
+\[
+(a_1g_1+\cdots+a_ng_n)(b_1g_1+\cdots+b_ng_n)
+\]
+中，$g_k$ 的系数为 $\sum_{g_ig_j=g_k}a_ib_j$。直接验证可知这些运算使 $RG$ 成为环（事实上这里不需要 $R$ 交换）。乘法结合律来自 $G$ 中群运算的结合律。$RG$ 交换当且仅当 $G$ 是交换群。
+
+\medskip
+\noindent\textbf{例.}
+设 $G=D_8$ 是 $8$ 阶二面体群，取通常生成元 $r,s$，满足 $r^4=s^2=1$ 且 $rs=sr^{-1}$，令 $R=\ZZ$。元素
+\[
+  \alpha=r+r^2-2s,
+  \qquad \beta=-3r^2+rs
+\]
+是 $\ZZ D_8$ 的典型成员。它们的和与积为
+\[
+  \alpha+\beta=r-2r^2-2s+rs,
+\]
+并且
+\[
+\begin{aligned}
+\alpha\beta&=(r+r^2-2s)(-3r^2+rs)\\
+&=r(-3r^2+rs)+r^2(-3r^2+rs)-2s(-3r^2+rs)\\
+&=-3r^3+r^2s-3+r^3s+6r^2s-2r^3\\
+&=-3-5r^3+7r^2s+r^3s.
+\end{aligned}
+\]
+
+环 $R$ 以“常数”形式和的方式出现在 $RG$ 中，即 $G$ 的恒等元的 $R$-倍（注意把 $RG$ 中的加法和乘法限制到这些元素时，正是 $R$ 中的加法和乘法）。这些 $R$ 的元素与 $RG$ 的所有元素交换。$R$ 的单位元也是 $RG$ 的单位元。
+
+群 $G$ 也出现在 $RG$ 中（元素 $g_i$ 作为 $1g_i$ 出现；例如上面的 $r,s\in D_8$ 也属于群环 $\ZZ D_8$）。把环 $RG$ 的乘法限制到 $G$，恰好是 $G$ 的群运算。特别地，$G$ 的每个元素在环 $RG$ 中都有乘法逆元（即它在 $G$ 中的逆元）。这说明 $G$ 是 $RG$ 的单位群的子群。
+
+若 $|G|>1$，则 $RG$ 总有零因子。例如，取 $G$ 中任意阶为 $m>1$ 的元素 $g$，则
+\[
+  (1-g)(1+g+\cdots+g^{m-1})=1-g^m=0.
+\]
+若第二个因子非零（例如当 $R$ 没有 $1$ 的非平凡周期时），这便给出零因子；在一般群环中还会出现许多其他零因子。群环是把群论与环论联系起来的基本对象，在第 18 章中将系统使用。
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元的交换环。
+\begin{enumerate}[label=\arabic*.]
+	\item 令 $p(x)=2x^3-3x^2+4x-5$，$q(x)=7x^3+3-3x^4$。在 (a)、(b)、(c) 中，分别假定两个给定多项式的系数取自指定环（(b)、(c) 中整数系数按模 $n$ 化简），计算 $p(x)+q(x)$ 与 $p(x)q(x)$：
+	\begin{enumerate}[label=(\alph*)]
+		\item $R=\ZZ$；
+		\item $R=\ZZ/2\ZZ$；
+		\item $R=\ZZ/3\ZZ$。
+	\end{enumerate}
+	\item 设 $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in R[x]$。证明 $p(x)$ 是 $R[x]$ 中的零因子，当且仅当存在非零 $b\in R$ 使 $bp(x)=0$。\emph{提示：}取次数最小的非零多项式 $g(x)=b_mx^m+b_{m-1}x^{m-1}+\cdots+b_0$ 满足 $g(x)p(x)=0$。证明 $b_ma_n=0$，从而 $a_ng(x)$ 是次数小于 $m$ 且与 $p(x)$ 相乘仍为 $0$ 的多项式；推出 $a_ng(x)=0$。类似地对 $i$ 归纳证明 $a_{n-i}g(x)=0$，$i=0,1,\ldots,n$，并推出 $b_mp(x)=0$。
+	\item 定义不定元 $x$ 上、系数在 $R$ 中的形式幂级数集合 $R[[x]]$ 为所有形式无穷和
+	\[
+	\sum_{n=0}^{\infty}a_nx^n=a_0+a_1x+a_2x^2+a_3x^3+\cdots .
+	\]
+	加法和乘法按实或复幂级数的通常规则定义，也就是把多项式的加法和乘法延伸到“无穷次数多项式”：
+	\[
+	\sum_{n=0}^\infty a_nx^n+\sum_{n=0}^\infty b_nx^n=\sum_{n=0}^\infty(a_n+b_n)x^n,
+	\]
+	\[
+	\left(\sum_{n=0}^\infty a_nx^n\right)\left(\sum_{n=0}^\infty b_nx^n\right)
+	=\sum_{n=0}^\infty\left(\sum_{k=0}^n a_kb_{n-k}\right)x^n.
+	\]
+	“形式”表示不考虑收敛性，因此形式幂级数不必表示 $\RR$ 上的函数。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R[[x]]$ 是带 $1$ 的交换环。
+		\item 证明 $1-x$ 是 $R[[x]]$ 中的单位，其逆元为 $1+x+x^2+\cdots$。
+		\item 证明 $\sum_{n=0}^{\infty}a_nx^n$ 是 $R[[x]]$ 中的单位，当且仅当 $a_0$ 是 $R$ 中的单位。
+	\end{enumerate}
+	\item 证明若 $R$ 是整环，则形式幂级数环 $R[[x]]$ 也是整环。
+	\item 设 $F$ 是域，定义系数在 $F$ 中的形式 Laurent 级数环 $F((x))$ 为
+	\[
+	F((x))=\left\{\sum_{n\geq N}a_nx^n\mid a_n\in F,\,N\in\ZZ\right\}.
+	\]
+	（$F((x))$ 的每个元素都是 $x$ 的幂级数加上 $1/x$ 的多项式，即负次幂项只有有限多个。）
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $F((x))$ 是域。
+		\item 定义映射
+		\[
+		v:F((x))^\times\to\ZZ,
+		\qquad v\!\bigg(\sum_{n\geq N}a_nx^n\bigg)=N,
+		\]
+		其中 $a_N$ 是级数的第一个非零系数（即 $N$ 是该级数在 $0$ 处零点或极点的阶）。证明 $v$ 是 $F((x))$ 上的离散赋值，其离散赋值环是 $F[[x]]$（参见第 7.1 节练习 26）。
+	\end{enumerate}
+	\item 设 $S$ 是带单位元 $1\neq0$ 的环。令 $n\in\ZZ^+$，并令 $A$ 是一个 $n\times n$ 矩阵，其元素来自 $S$，其 $i,j$ 元记为 $a_{ij}$。设 $E_{ij}$ 是 $M_n(S)$ 中第 $i,j$ 元为 $1$，其余元素全为 $0$ 的矩阵。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $E_{ij}A$ 是这样一个矩阵：它的第 $i$ 行等于 $A$ 的第 $j$ 行，其余所有行均为零。
+		\item 证明 $AE_{ij}$ 是这样一个矩阵：它的第 $j$ 列等于 $A$ 的第 $i$ 列，其余所有列均为零。
+		\item 推出 $E_{pq}AE_{rs}$ 是第 $p,s$ 元为 $a_{qr}$、其余元素全为零的矩阵。
+	\end{enumerate}
+	\item 证明环 $M_n(R)$ 的中心是标量矩阵全体（参见第 7.1 节练习 7）。\emph{提示：}使用上一题。
+	\item 设 $S$ 为任意环，$n\geq2$。证明若 $A$ 是 $M_n(S)$ 中任意严格上三角矩阵，则 $A^n=0$（严格上三角矩阵是指主对角线及其下方元素全为零的矩阵）。
+	\item 令 $\alpha=r+r^2-2s$，$\beta=-3r^2+rs$ 为本节中描述的整群环 $\ZZ D_8$ 的两个元素。计算 $\ZZ D_8$ 中的下列元素：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\beta\alpha$；
+		\item $\alpha^2$；
+		\item $\alpha\beta-\beta\alpha$；
+		\item $\beta\alpha\beta$。
+	\end{enumerate}
+	\item 考虑整群环 $\ZZ S_3$ 中的元素
+	\[
+	\alpha=3(12)-5(23)+14(123),
+	\qquad
+	\beta=6(1)+2(23)-7(132),
+	\]
+	其中 $(1)$ 是 $S_3$ 的恒等置换。计算：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\alpha+\beta$；
+		\item $2\alpha-3\beta$；
+		\item $\alpha\beta$；
+		\item $\beta\alpha$；
+		\item $\alpha^2$。
+	\end{enumerate}
+	\item 在假定 $\alpha$ 与 $\beta$ 的系数属于 $\ZZ/3\ZZ$ 的情况下（即 $\alpha,\beta\in(\ZZ/3\ZZ)S_3$），重复上一题。
+	\item 设 $G=\{g_1,\ldots,g_n\}$ 是有限群。证明元素
+	\[
+	N=g_1+g_2+\cdots+g_n
+	\]
+	属于群环 $RG$ 的中心（参见第 7.1 节练习 7）。
+	\item 设 $K=\{k_1,\ldots,k_m\}$ 是有限群 $G$ 的一个共轭类。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明元素 $\widehat K=k_1+\cdots+k_m$ 属于群环 $RG$ 的中心（参见第 7.1 节练习 7）。\emph{提示：}验证对所有 $g\in G$ 有 $g^{-1}\widehat K g=\widehat K$。
+		\item 设 $K_1,
+		\ldots,K_r$ 是 $G$ 的共轭类，并对每个 $K_i$ 令 $\widehat K_i$ 为 $RG$ 中 $K_i$ 元素之和。证明元素 $\alpha\in RG$ 属于 $RG$ 的中心，当且仅当
+		\[
+		\alpha=a_1\widehat K_1+a_2\widehat K_2+\cdots+a_r\widehat K_r
+		\]
+		其中 $a_1,a_2,\ldots,a_r\in R$。
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\section{环同态与商环}
+
+环同态是从一个环到另一个环、同时保持加法结构和乘法结构的映射。
+
+\medskip
+\noindent\textbf{定义.} 设 $R,S$ 是环。
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{环同态}是映射 $\varphi:R\to S$，满足
+  \begin{enumerate}[label=(\roman*)]
+    \item $\varphi(a+b)=\varphi(a)+\varphi(b)$ 对所有 $a,b\in R$ 成立（即 $\varphi$ 是加法群同态）；
+    \item $\varphi(ab)=\varphi(a)\varphi(b)$ 对所有 $a,b\in R$ 成立。
+  \end{enumerate}
+  \item 环同态 $\varphi$ 的\emph{核}记为 $\ker\varphi$，是 $R$ 中映到 $S$ 中 $0$ 的元素全体（即把 $\varphi$ 看作加法群同态时的核）。
+  \item 双射环同态称为\emph{同构}。
+\end{enumerate}
+
+若语境清楚，我们常把“环同态”简称为“同态”。类似地，若 $A$ 与 $B$ 是环，$A\cong B$ 总表示环同构，除非另有说明。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 映射 $\varphi:\ZZ\to\ZZ/2\ZZ$，把偶数送到 $0$，把奇数送到 $1$，是环同态。它保持加法，因为两个偶数或两个奇数之和为偶数，一个偶数与一个奇数之和为奇数；它保持乘法，因为两个奇数之积为奇数，偶数与任意整数之积为偶数。$\ker\varphi$ 是偶整数集合；$1\in\ZZ/2\ZZ$ 上方的纤维是奇整数集合。
+  \item 对 $n\in\ZZ$，映射 $\varphi_n:\ZZ\to\ZZ$，$\varphi_n(x)=nx$ 一般不是环同态，因为 $\varphi_n(xy)=nxy$，而 $\varphi_n(x)\varphi_n(y)=n^2xy$。因此 $\varphi_n$ 是环同态只有在 $n^2=n$，即 $n=0,1$ 时成立。注意 $\varphi_n$ 始终是加法群同态，所以处理环时必须小心检查两个环运算都被保持。$\varphi_0$ 是零同态，$\varphi_1$ 是恒等同态。
+  \item 令 $\varphi:\QQ[x]\to\QQ$ 为把有理系数多项式映到其常数项的映射，即 $\varphi(p(x))=p(0)$。这是环同态，因为两个多项式和的常数项是常数项之和，积的常数项是常数项之积。$a\in\QQ$ 上方的纤维由常数项为 $a$ 的所有多项式构成。特别地，核由常数项为 $0$ 的多项式构成。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{命题 5.} 设 $R,S$ 是环，$\varphi:R\to S$ 是同态。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\varphi$ 的像是 $S$ 的子环。
+  \item $\varphi$ 的核是 $R$ 的子环。进一步，若 $a\in\ker\varphi$，则对每个 $r\in R$ 有 $ra,ar\in\ker\varphi$；也就是说，$\ker\varphi$ 对来自 $R$ 的元素的左右乘法封闭。
+\end{enumerate}
+
+\begin{proof}
+(1) 若 $s_1,s_2\in\im\varphi$，则 $s_1=\varphi(r_1)$、$s_2=\varphi(r_2)$，其中 $r_1,r_2\in R$。于是
+\[
+  \varphi(r_1-r_2)=s_1-s_2,
+  \qquad \varphi(r_1r_2)=s_1s_2.
+\]
+故 $s_1-s_2$ 与 $s_1s_2$ 仍在像中，所以像对减法和乘法封闭，是 $S$ 的子环。
+
+(2) 若 $\alpha,\beta\in\ker\varphi$，则 $\varphi(\alpha)=\varphi(\beta)=0$。于是 $\varphi(\alpha-\beta)=0$ 且 $\varphi(\alpha\beta)=0$，所以核对减法和乘法封闭，是 $R$ 的子环。类似地，对任意 $r\in R$，
+\[
+  \varphi(r\alpha)=\varphi(r)\varphi(\alpha)=\varphi(r)0=0,
+  \qquad
+  \varphi(\alpha r)=\varphi(\alpha)\varphi(r)=0\varphi(r)=0,
+\]
+故 $r\alpha,\alpha r\in\ker\varphi$。
+\end{proof}
+
+群同态的情形中，同态的纤维自然具有一个群结构，并同构于像；这导致按正规子群取商群的概念。环同态也有类似结果。设 $\varphi:R\to S$ 是环同态，核为 $I$。由于 $R$ 和 $S$ 特别是加法 Abel 群，$\varphi$ 特别是 Abel 群同态；$\varphi$ 的纤维是核 $I$ 的加法陪集 $r+I$。这些纤维具有自然同构于 $\varphi$ 的像的环结构：若 $X$ 是 $a\in S$ 上方纤维，$Y$ 是 $b\in S$ 上方纤维，则 $X+Y$ 是 $a+b$ 上方纤维，$XY$ 是 $ab$ 上方纤维。用核的陪集表示，就是
+\[
+  (r+I)+(s+I)=(r+s)+I,
+  \tag{7.1}
+\]
+\[
+  (r+I)(s+I)=rs+I.
+  \tag{7.2}
+\]
+当 $I$ 是某个同态的核时，加法商群 $R/I$ 也因此具有乘法结构，称为 $R$ 对 $I$ 的\emph{商环}。
+
+现在考虑任意加法子群 $I$ 是否能用 (7.1)、(7.2) 定义商环。由于 $R$ 的加法群 Abel，$I$ 自动正规，所以 $R/I$ 自动是加法 Abel 群。问题在于乘法是否与代表元选择无关。若把代表元 $r,s$ 换成 $r+\alpha,s+\beta$（其中 $\alpha,\beta\in I$），必须有
+\[
+  (r+\alpha)(s+\beta)+I=rs+I
+\]
+对所有 $r,s\in R$、$\alpha,\beta\in I$ 成立。取 $r=s=0$ 得 $I$ 必须对乘法封闭；取 $s=0$ 得 $r\beta\in I$，取 $r=0$ 得 $\alpha s\in I$。反过来，如果 $I$ 对 $R$ 中元素的左右乘法封闭，则上式成立。所以这正是必要且充分条件。
+
+\medskip
+\noindent\textbf{定义.} 设 $R$ 是环，$I\subseteq R$，$r\in R$。
+\begin{enumerate}[label=(\arabic*)]
+  \item $rI=\{ra\mid a\in I\}$，$Ir=\{ar\mid a\in I\}$。
+  \item 若 $I$ 是 $R$ 的子环，并且 $rI\subseteq I$ 对所有 $r\in R$ 成立，则称 $I$ 是 $R$ 的\emph{左理想}。若改为 $Ir\subseteq I$ 对所有 $r\in R$ 成立，则称 $I$ 为\emph{右理想}。
+  \item 同时是左理想和右理想的子集称为\emph{理想}（或强调为\emph{双边理想}）。
+\end{enumerate}
+
+在交换环中，左、右和双边理想的概念相同。要证明一个子集 $I$ 是理想，必须证明它非空、对减法封闭，并且对乘以 $R$ 中任意元素封闭（不仅仅是对乘以 $I$ 中元素封闭）。若 $R$ 有 $1$，则 $(-1)a=-a$，于是此时也可检查非空、对加法封闭、对 $R$ 中元素乘法封闭。
+
+\medskip
+\noindent\textbf{命题 6.} 设 $R$ 是环，$I$ 是 $R$ 的理想。则加法商群 $R/I$ 在运算
+\[
+  (r+I)+(s+I)=(r+s)+I,
+  \qquad
+  (r+I)(s+I)=rs+I
+\]
+下成为环，称为 $R$ 对 $I$ 的商环。反之，若这些运算对加法子群 $I$ 良定义并使 $R/I$ 成为环，则 $I$ 是 $R$ 的理想。
+
+\begin{proof}
+良定义性的必要性和充分性已由上面的代表元讨论证明。若乘法良定义，则商环的每条公理都直接来自 $R$ 中相应公理。例如一个分配律为
+\[
+\begin{aligned}
+ (r+I)[(s+I)+(t+I)]&=(r+I)((s+t)+I)\\
+ &=r(s+t)+I=(rs+rt)+I\\
+ &=(rs+I)+(rt+I)\\
+ &=[(r+I)(s+I)]+[(r+I)(t+I)].
+\end{aligned}
+\]
+其余公理类似。
+\end{proof}
+
+\medskip
+\noindent\textbf{定理 7.}
+\begin{enumerate}[label=(\arabic*)]
+  \item \textbf{（环的第一同构定理）} 若 $\varphi:R\to S$ 是环同态，则
+  \[
+    R/\ker\varphi\cong\varphi(R).
+  \]
+  \item 若 $I$ 是 $R$ 的理想，则自然投影
+  \[
+    \pi:R\to R/I,
+    \qquad \pi(r)=r+I
+  \]
+  是满环同态，核为 $I$。因此理想恰好是环同态的核。
+\end{enumerate}
+
+\begin{proof}
+把第一同构定理用于加法群，得到 $R/\ker\varphi$ 与 $\varphi(R)$ 的加法群同构；该同构把 $r+\ker\varphi$ 送到 $\varphi(r)$。乘法也被保持，因为
+\[
+  (r+
+  \ker\varphi)(s+\ker\varphi)=rs+
+  \ker\varphi
+\]
+映到 $\varphi(rs)=\varphi(r)\varphi(s)$。第二部分由商环乘法定义立即得到；其核正是满足 $r+I=I$ 的元素，即 $r\in I$。
+\end{proof}
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 在任意环 $R$ 中，$R$ 与 $0$ 都是理想；相应商环为零环和 $R$ 本身。
+  \item 在 $\ZZ$ 中，$n\ZZ$ 是理想，商环为 $\ZZ/n\ZZ$。经典的“模 $n$ 化简”就是自然投影 $\ZZ\to\ZZ/n\ZZ$。
+  \item 在 $\ZZ[x]$ 中，所有常数项为零的多项式构成理想；更一般地，所有能被固定多项式 $f(x)$ 整除的多项式构成主理想 $(f(x))$。
+  \item 若 $R$ 是从集合 $X$ 到环 $A$ 的函数环，固定 $c\in X$，求值映射 $E_c(f)=f(c)$ 是环同态；其核是所有在 $c$ 处为零的函数构成的理想。
+  \item 若 $J$ 是 $R$ 的理想，则 $M_n(J)$ 是 $M_n(R)$ 的理想，且
+  \[
+    M_n(R)/M_n(J)\cong M_n(R/J).
+  \]
+  \item 群环 $RG$ 有\emph{增广映射}
+  \[
+    \epsilon\left(\sum a_i g_i\right)=\sum a_i.
+  \]
+  它是到 $R$ 的环同态；核称为增广理想。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{例（化简同态）.}
+从 $\ZZ$ 到 $\ZZ/n\ZZ$ 的自然投影通常称为“模 $n$ 化简”。这是环同态这一事实在初等数论中有重要后果。例如要解整数方程
+\[
+  x^2+y^2+z^2=8w+7
+\]
+或类似 Diophantine 方程时，若整数解存在，那么同一个等式在任意商环 $\ZZ/n\ZZ$ 中也必须成立。选取合适的 $n$ 常能给出矛盾，或至少限制可能的剩余类。比如模 $4$ 时平方只可能为 $0$ 或 $1$，因此许多方程可通过检查有限个模 $4$ 可能性排除。即使有解，此方法也能给出解模 $n$ 的限制；结合第 7.6 节的中国剩余定理，可得到模很大整数的限制，有助于数值搜索。类似地，从 $\ZZ[x]$ 到 $(\ZZ/p\ZZ)[x]$ 的“系数模 $p$ 化简”也是环同态，在第 9 章中将用于判断多项式能否分解。
+
+下面给出环的其余同构定理。每一个都可先用群论中的相应定理得到加法群同构（或第四同构定理中的对应），然后检查该同构保持乘法；检查直接来自商环乘法定义。例如 (2) 中的同构由 $r+I\mapsto r+J$ 给出，显然保持乘法。
+
+\medskip
+\noindent\textbf{定理 8.} 设 $R$ 是环。
+\begin{enumerate}[label=(\arabic*)]
+  \item \textbf{（环的第二同构定理）} 若 $A$ 是子环，$B$ 是 $R$ 的理想，则 $A+B=\{a+b\mid a\in A,b\in B\}$ 是 $R$ 的子环，$A\cap B$ 是 $A$ 的理想，并且
+  \[
+    (A+B)/B\cong A/(A\cap B).
+  \]
+  \item \textbf{（环的第三同构定理）} 若 $I\subseteq J$ 是 $R$ 的理想，则 $J/I$ 是 $R/I$ 的理想，并且
+  \[
+    (R/I)/(J/I)\cong R/J.
+  \]
+  \item \textbf{（环的第四或格同构定理）} 若 $I$ 是 $R$ 的理想，则对应 $A\mapsto A/I$ 给出包含 $I$ 的 $R$ 的子环与 $R/I$ 的子环之间保持包含关系的双射。并且，包含 $I$ 的子环 $A$ 是 $R$ 的理想，当且仅当 $A/I$ 是 $R/I$ 的理想。
+\end{enumerate}
+
+例如取 $R=\ZZ$，$I=12\ZZ$。商环 $\bar R=\ZZ/12\ZZ$ 的理想
+\[
+  \bar R,
+  \quad 2\ZZ/12\ZZ,
+  \quad 3\ZZ/12\ZZ,
+  \quad 4\ZZ/12\ZZ,
+  \quad 6\ZZ/12\ZZ,
+  \quad 0
+\]
+对应于 $\ZZ$ 中包含 $12\ZZ$ 的理想
+\[
+  \ZZ,
+  \quad 2\ZZ,
+  \quad 3\ZZ,
+  \quad 4\ZZ,
+  \quad 6\ZZ,
+  \quad 12\ZZ.
+\]
+
+若 $I,J$ 是环 $R$ 的理想，则所有 $a+b$（$a\in I,b\in J$）组成的集合不仅是 $R$ 的子环（如第二同构定理），而且是 $R$ 的理想。我们还可以定义两个理想的积。
+
+\medskip
+\noindent\textbf{定义.} 设 $I,J$ 是 $R$ 的理想。
+\begin{enumerate}[label=(\arabic*)]
+  \item 定义 $I$ 与 $J$ 的和为 $I+J=\{a+b\mid a\in I,b\in J\}$。
+  \item 定义 $I$ 与 $J$ 的积 $IJ$ 为所有形如 $ab$（$a\in I,b\in J$）的元素的有限和组成的集合。
+  \item 对 $n\geq1$，$I$ 的第 $n$ 次幂 $I^n$ 定义为所有形如 $a_1a_2\cdots a_n$（每个 $a_i\in I$）的元素的有限和组成的集合；等价地，$I^1=I$，$I^n=I I^{n-1}$。
+\end{enumerate}
+
+容易看出 $I+J$ 是包含 $I$ 与 $J$ 的最小理想，$IJ$ 是包含在 $I\cap J$ 中的理想（但可以严格小于 $I\cap J$，见练习）。注意 $IJ$ 的元素是来自 $I$ 和 $J$ 的乘积的有限和；单纯由乘积 $ab$ 构成的集合一般不对加法封闭，因而一般不是理想。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 在 $\ZZ$ 中令 $I=6\ZZ$，$J=10\ZZ$。则 $I+J$ 由所有 $6x+10y$ 组成，等于 $2\ZZ$；一般地，$m\ZZ+n\ZZ=d\ZZ$，其中 $d=(m,n)$。积 $IJ$ 由所有有限个 $(6x)(10y)$ 的和组成，即 $60\ZZ$。
+  \item 令 $I$ 是 $\ZZ[x]$ 中常数项为偶数的多项式理想。多项式 $2$ 与 $x$ 属于 $I$，故 $4=2\cdot2$ 与 $x^2=x\cdot x$ 都在 $I^2$ 中，和 $x^2+4$ 也在 $I^2$ 中。但容易检查，$x^2+4$ 不能写成 $I$ 中两个元素的单个乘积 $p(x)q(x)$。
+\end{enumerate}
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元 $1\neq0$ 的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 证明环 $2\ZZ$ 与 $3\ZZ$ 不同构。
+	\item 证明环 $\ZZ[x]$ 与 $\QQ[x]$ 不同构。
+	\item 找出 $\ZZ$ 的所有同态像。
+	\item 找出从 $\ZZ$ 到 $\ZZ/30\ZZ$ 的所有环同态。分别描述其核与像。
+	\item 描述从环 $\ZZ\times\ZZ$ 到 $\ZZ$ 的所有环同态。分别描述其核与像。
+	\item 判定下列从 $M_2(\ZZ)$ 到 $\ZZ$ 的映射中哪些是环同态：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{pmatrix}a&b\\ c&d\end{pmatrix}\mapsto a$（投影到 $(1,1)$ 元）；
+		\item $\begin{pmatrix}a&b\\ c&d\end{pmatrix}\mapsto a+d$（矩阵的迹）；
+		\item $\begin{pmatrix}a&b\\ c&d\end{pmatrix}\mapsto ad-bc$（矩阵的行列式）。
+	\end{enumerate}
+	\item 设
+	\[
+	R=\left\{\begin{pmatrix}a&b\\0&d\end{pmatrix}\mid a,b,d\in\ZZ\right\}
+	\]
+	是 $M_2(\ZZ)$ 中上三角矩阵构成的子环。证明映射
+	\[
+	\varphi:R\to\ZZ\times\ZZ,
+	\qquad
+	\begin{pmatrix}a&b\\0&d\end{pmatrix}\mapsto(a,d)
+	\]
+	是满同态，并描述其核。
+	\item 判定下列哪些是环 $\ZZ\times\ZZ$ 的理想：
+	\begin{enumerate}[label=(\alph*)]
+		\item $\{(a,a)\mid a\in\ZZ\}$；
+		\item $\{(2a,2b)\mid a,b\in\ZZ\}$；
+		\item $\{(2a,0)\mid a\in\ZZ\}$；
+		\item $\{(a,-a)\mid a\in\ZZ\}$。
+	\end{enumerate}
+	\item 判定第 7.1 节练习 6 中的哪些集合是从 $[0,1]$ 到 $\RR$ 的所有函数构成的环的理想。
+	\item 判定下列哪些是环 $\ZZ[x]$ 的理想：
+	\begin{enumerate}[label=(\alph*)]
+		\item 常数项是 $3$ 的倍数的所有多项式；
+		\item $x^2$ 的系数是 $3$ 的倍数的所有多项式；
+		\item 常数项、$x$ 的系数和 $x^2$ 的系数都为 $0$ 的所有多项式；
+		\item $\ZZ[x^2]$（即只出现 $x$ 的偶次幂的多项式）；
+		\item 系数和为 $0$ 的所有多项式；
+		\item 满足 $p'(0)=0$ 的所有多项式 $p(x)$，其中 $p'(x)$ 是 $p(x)$ 对 $x$ 的通常一阶导数。
+	\end{enumerate}
+	\item 设 $R$ 是闭区间 $[0,1]$ 上所有实值连续函数构成的环。证明映射
+	\[
+	\varphi:R\to\RR,
+	\qquad \varphi(f)=\int_0^1 f(t)\,dt
+	\]
+	是加法群同态，但不是环同态。
+	\item 设 $D$ 是不是 $\ZZ$ 中完全平方数的整数，并令
+	\[
+	S=\left\{\begin{pmatrix}a&b\\ Db&a\end{pmatrix}\mid a,b\in\ZZ\right\}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $S$ 是 $M_2(\ZZ)$ 的子环。
+		\item 若 $D$ 不是 $\ZZ$ 中的完全平方数，证明映射 $\varphi:\ZZ[\sqrt D]\to S$，
+		\[
+		\varphi(a+b\sqrt D)=\begin{pmatrix}a&b\\Db&a\end{pmatrix}
+		\]
+		是环同构。
+		\item 若 $D\equiv1\pmod4$ 且 $D$ 无平方因子，证明集合
+		\[
+		\left\{\begin{pmatrix}a&b\\ \frac{D-1}{4}b&a+b\end{pmatrix}\mid a,b\in\ZZ\right\}
+		\]
+		是 $M_2(\ZZ)$ 的子环，并且同构于二次整数环 $\mcO$。
+	\end{enumerate}
+	\item 证明环 $M_2(\RR)$ 含有一个同构于 $\CC$ 的子环。
+	\item 证明环 $M_4(\RR)$ 含有一个同构于实 Hamilton 四元数环 $\HH$ 的子环。
+	\item 设 $X$ 是非空集合，$\mcP(X)$ 是第 7.1 节练习 21 中定义的所有子集构成的 Boolean 环。设 $R$ 是从 $X$ 到 $\ZZ/2\ZZ$ 的所有函数构成的环。对每个 $A\in\mcP(X)$，定义函数
+	\[
+	\chi_A:X\to\ZZ/2\ZZ,
+	\qquad
+	\chi_A(x)=\begin{cases}1,&x\in A,\\0,&x\notin A.
+	\end{cases}
+	\]
+	（$\chi_A$ 称为 $A$ 的特征函数，其值在 $\ZZ/2\ZZ$ 中。）证明映射 $\mcP(X)\to R$，$A\mapsto\chi_A$ 是环同构。
+	\item 设 $\varphi:R\to S$ 是满环同态。证明 $R$ 的中心的像包含在 $S$ 的中心中（参见第 7.1 节练习 7）。
+	\item 设 $R,S$ 是带单位元的非零环，分别记其单位元为 $1_R$ 和 $1_S$。设 $\varphi:R\to S$ 是非零环同态。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $\varphi(1_R)\neq1_S$，则 $\varphi(1_R)$ 是 $S$ 中的零因子。推出若 $S$ 是整环，则每个从 $R$ 到 $S$ 的环同态都把 $R$ 的单位元送到 $S$ 的单位元。
+		\item 证明若 $\varphi(1_R)=1_S$，则对 $R$ 的每个单位 $u$，$\varphi(u)$ 是 $S$ 的单位，且 $\varphi(u^{-1})=\varphi(u)^{-1}$。
+	\end{enumerate}
+	\item \begin{enumerate}[label=(\alph*)]
+		\item 若 $I,J$ 是 $R$ 的理想，证明 $I\cap J$ 也是 $R$ 的理想。
+		\item 证明任意非空理想族的交仍是理想（不要假定该族可数）。
+	\end{enumerate}
+	\item 证明若 $I_1\subseteq I_2\subseteq\cdots$ 是 $R$ 的理想，则 $\bigcup_{n=1}^{\infty}I_n$ 是 $R$ 的理想。
+	\item 设 $I$ 是 $R$ 的理想，$S$ 是 $R$ 的子环。证明 $I\cap S$ 是 $S$ 的理想。举例说明：子环 $S$ 的理想不一定都能写成某个 $R$ 的理想 $I$ 与 $S$ 的交。
+	\item 证明 $M_n(R)$ 的每个双边理想都等于 $M_n(J)$，其中 $J$ 是 $R$ 的某个双边理想。\emph{提示：}先用第 7.2 节练习 6(c) 证明 $M_n(R)$ 的一个理想中所有矩阵元素的集合构成 $R$ 的理想。
+	\item 设 $a\in R$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\{x\in R\mid ax=0\}$ 是右理想，$\{y\in R\mid ya=0\}$ 是左理想（分别称为 $a$ 的右、左零化子）。
+		\item 证明若 $L$ 是 $R$ 的左理想，则 $\{x\in R\mid xa=0\text{ 对所有 }a\in L\}$ 是双边理想（称为 $L$ 的左零化子）。
+	\end{enumerate}
+	\item 设 $S$ 是 $R$ 的子环，$I$ 是 $R$ 的理想。证明若 $S\cap I=0$，则 $S\cong\bar S$，其中横线表示模 $I$ 到 $R/I$ 中。
+	\item 设 $\varphi:R\to S$ 是环同态。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $J$ 是 $S$ 的理想，则 $\varphi^{-1}(J)$ 是 $R$ 的理想。把它应用于 $R$ 是 $S$ 的子环且 $\varphi$ 是包含同态的情形，推出若 $J$ 是 $S$ 的理想，则 $J\cap R$ 是 $R$ 的理想。
+		\item 证明若 $\varphi$ 满且 $I$ 是 $R$ 的理想，则 $\varphi(I)$ 是 $S$ 的理想。给出一个例子说明若 $\varphi$ 不满，这个结论可能失败。
+	\end{enumerate}
+	\item 假设 $R$ 是带 $1$ 的交换环。证明二项式定理
+	\[
+	(a+b)^n=\sum_{k=0}^n {n\choose k}a^kb^{n-k}
+	\]
+	在 $R$ 中成立，其中二项式系数 ${n\choose k}$ 在 $R$ 中解释为 $R$ 的单位元 $1$ 相加 ${n\choose k}$ 次。
+	\item 环 $R$ 的特征是最小正整数 $n$，使 $1+1+\cdots+1=0$（$n$ 次）在 $R$ 中成立；若不存在这样的整数，则称 $R$ 的特征为 $0$。例如，$\ZZ/n\ZZ$ 的特征为 $n$，$\ZZ$ 的特征为 $0$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明映射 $\ZZ\to R$，
+		\[
+		k\mapsto
+		\begin{cases}
+			1+1+\cdots+1\ (k\text{ 次}),&k>0,\\
+			0,&k=0,\\
+			-1-1-\cdots-1\ (-k\text{ 次}),&k<0,
+		\end{cases}
+		\]
+		是环同态，其核为 $n\ZZ$，其中 $n$ 是 $R$ 的特征。（这解释了为什么对没有任何个 $1$ 之和为零的环使用“特征 $0$”而非旧式说法“特征 $\infty$”。）
+		\item 确定 $\QQ$、$\ZZ[x]$、$(\ZZ/n\ZZ)[x]$ 的特征。
+		\item 证明若 $p$ 是素数且 $R$ 是特征 $p$ 的交换环，则对所有 $a,b\in R$ 有 $(a+b)^p=a^p+b^p$。
+	\end{enumerate}
+	\item 证明非零 Boolean 环的特征为 $2$（参见第 7.1 节练习 15）。
+	\item 证明整环的特征是素数 $p$ 或 $0$（参见练习 26）。
+	\item 设 $R$ 是交换环。回忆（第 7.1 节练习 13）元素 $x\in R$ 称为幂零，若 $x^n=0$ 对某个 $n\in\ZZ^+$ 成立。证明所有幂零元构成一个理想，称为 $R$ 的 nilradical，记作 $\mathfrak N(R)$。\emph{提示：}用二项式定理证明 $\mathfrak N(R)$ 对加法封闭。
+	\item 证明若 $R$ 是交换环，$\mathfrak N(R)$ 是其 nilradical，则 $R/\mathfrak N(R)$ 中唯一的幂零元是零；即证明 $\mathfrak N(R/\mathfrak N(R))=0$。
+	\item 证明矩阵
+	\[
+	\begin{pmatrix}0&1\\0&0\end{pmatrix},
+	\qquad
+	\begin{pmatrix}0&0\\1&0\end{pmatrix}
+	\]
+	是 $M_2(\ZZ)$ 中的幂零元，但它们的和不是幂零元（注意这两个矩阵不交换）。推出非交换环 $M_2(\ZZ)$ 中幂零元全体不是理想。
+	\item 设 $\varphi:R\to S$ 是环同态。证明若 $x$ 是 $R$ 中的幂零元，则 $\varphi(x)$ 是 $S$ 中的幂零元。
+	\item 假设 $R$ 交换。令 $p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in R[x]$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $p(x)$ 是 $R[x]$ 中的单位，当且仅当 $a_0$ 是单位且 $a_1,a_2,\ldots,a_n$ 都是 $R$ 中的幂零元。\emph{提示：}参见第 7.1 节练习 14。
+		\item 证明 $p(x)$ 是 $R[x]$ 中的幂零元，当且仅当 $a_0,a_1,\ldots,a_n$ 都是 $R$ 中的幂零元。
+	\end{enumerate}
+	\item 设 $I,J$ 是 $R$ 的理想。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $I+J$ 是包含 $I$ 与 $J$ 的最小理想。
+		\item 证明 $IJ$ 是包含在 $I\cap J$ 中的理想。
+		\item 给出一个例子使 $IJ\neq I\cap J$。
+		\item 若 $R$ 交换且 $I+J=R$，证明 $IJ=I\cap J$。
+	\end{enumerate}
+	\item 设 $I,J,K$ 是 $R$ 的理想。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $I(J+K)=IJ+IK$ 且 $(I+J)K=IK+JK$。
+		\item 若 $J\subseteq I$，证明 $I\cap(J+K)=J+(I\cap K)$。
+	\end{enumerate}
+	\item 设 $I$ 是 $\ZZ[x]$ 中所有常数项为零的多项式组成的理想。证明
+	\[
+	I^n=\{a_nx^n+a_{n+1}x^{n+1}+\cdots+a_{n+m}x^{n+m}\mid a_i\in\ZZ,\,m\geq0\}
+	\]
+	即首个非零项次数至少为 $n$ 的多项式全体。
+	\item 若理想 $N$ 满足 $N^n=0$ 对某个 $n\geq1$ 成立，则称 $N$ 为幂零理想。证明在环 $\ZZ/p^n\ZZ$ 中，理想 $p\ZZ/p^n\ZZ$ 是幂零理想。
+\end{enumerate}
+
+
+
+\section{理想的性质}
+
+本节中 $R$ 总是带单位元 $1\neq0$ 的环。若 $A\subseteq R$，所有包含 $A$ 的理想的交仍是理想，因此存在包含 $A$ 的最小理想。
+
+\medskip
+\noindent\textbf{定义.} 对 $A\subseteq R$，记 $(A)$ 为包含 $A$ 的最小理想，称为由 $A$ 生成的理想。由单个元素生成的理想称为\emph{主理想}；由有限集合生成的理想称为\emph{有限生成理想}。
+
+若 $R$ 交换，则
+\[
+  (A)=\{r_1a_1+\cdots+r_na_n\mid n\geq0,
+  \ r_i\in R,
+  \ a_i\in A\}.
+\]
+特别地，$(a)=Ra=\{ra\mid r\in R\}$。在交换环中，$b\in(a)$ 当且仅当 $a$ 整除 $b$；这也等价于 $(b)\subseteq(a)$。
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item $0=(0)$，$R=(1)$。在 $\ZZ$ 中，每个理想都是主理想 $n\ZZ=(n)$；而 $(m,n)$ 由 $m$ 与 $n$ 的最大公因子生成。
+  \item $\ZZ[x]$ 中的理想 $(2,x)$ 不是主理想；它恰是所有常数项为偶数的整系数多项式。
+  \item 群环 $RG$ 的增广理想由 $\{g-1\mid g\in G\}$ 生成；若 $G=\langle a\rangle$ 是循环群，则增广理想由 $a-1$ 生成。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{命题 9.} 设 $I$ 是 $R$ 的理想。
+\begin{enumerate}[label=(\arabic*)]
+  \item $I=R$ 当且仅当 $I$ 含有单位。
+  \item 若 $R$ 是交换环，则 $R$ 是域当且仅当 $R$ 的理想只有 $0$ 与 $R$。
+\end{enumerate}
+
+\begin{proof}
+若 $I$ 含有单位 $u$，取 $v\in R$ 使 $vu=1$，由于 $I$ 是理想，$1=vu\in I$，故 $I=R$。反过来若 $I=R$，当然含有单位 $1$。若 $R$ 是域且 $I$ 是非零理想，取 $0\neq a\in I$，则 $a$ 是单位，故 $I=R$。反过来，若 $R$ 的理想只有 $0$ 与 $R$，对任意 $0\neq a\in R$，主理想 $(a)$ 非零，故等于 $R$，于是 $1=ra$ 对某个 $r\in R$ 成立；因 $R$ 交换，$a$ 是单位。故 $R$ 是域。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 10.} 若 $R$ 是域，则从 $R$ 到任意环的非零环同态都是单射。
+
+\begin{proof}
+非零同态的核是 $R$ 的真理想；由命题 9，域 $R$ 的真理想只能是 $0$。
+\end{proof}
+
+\medskip
+\noindent\textbf{定义.} 真理想 $M$ 称为\emph{极大理想}，若包含 $M$ 的理想只有 $M$ 与 $R$。
+
+\medskip
+\noindent\textbf{命题 11.} 在带单位元的环中，每个真理想都包含在某个极大理想中。
+
+\begin{proof}
+设 $I$ 是真理想。考虑所有包含 $I$ 的真理想组成的集合，按包含关系偏序。该集合非空，因为含有 $I$。若 $\mathcal C$ 是其中的一条链，则 $\bigcup_{J\in\mathcal C}J$ 是理想：两个元素同属链中某个较大的理想，因而对加法、取负和左右乘法封闭。它仍是真理想，否则若含有 $1$，则 $1$ 已在链中某个成员里，矛盾。由 Zorn 引理，存在极大元；这就是包含 $I$ 的极大理想。
+\end{proof}
+
+\medskip
+\noindent\textbf{命题 12.} 假设 $R$ 交换。理想 $M$ 是极大理想，当且仅当 $R/M$ 是域。
+
+\begin{proof}
+由格同构定理，$R/M$ 的理想与 $R$ 中包含 $M$ 的理想一一对应。于是 $M$ 极大当且仅当 $R/M$ 的理想只有 $0$ 与 $R/M$。由命题 9，这当且仅当 $R/M$ 是域。
+\end{proof}
+
+\medskip
+\noindent\textbf{定义.} 假设 $R$ 交换。真理想 $P$ 称为\emph{素理想}，若 $ab\in P$ 蕴含 $a\in P$ 或 $b\in P$。
+
+\medskip
+\noindent\textbf{命题 13.} 假设 $R$ 交换。理想 $P$ 是素理想，当且仅当 $R/P$ 是整环。
+
+\begin{proof}
+在商环中 $(a+P)(b+P)=0$ 当且仅当 $ab\in P$。因此 $R/P$ 没有非零零因子，正等价于：若 $ab\in P$，则 $a\in P$ 或 $b\in P$。
+\end{proof}
+
+\medskip
+\noindent\textbf{推论 14.} 交换环中的每个极大理想都是素理想。
+
+\begin{proof}
+若 $M$ 极大，则 $R/M$ 是域；域是整环，所以由命题 13，$M$ 素。
+\end{proof}
+
+\medskip
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 在 $\ZZ$ 中，极大理想为 $p\ZZ$，其中 $p$ 为素数；素理想为 $0$ 和所有 $p\ZZ$。
+  \item 在连续函数环 $R=C([0,1],\RR)$ 中，对 $c\in[0,1]$，
+  \[
+    M_c=\{f\in R\mid f(c)=0\}
+  \]
+  是极大理想，因为求值映射 $f\mapsto f(c)$ 的商同构于域 $\RR$。
+  \item 在非交换环中，极大理想和商为域之间需要更谨慎地区分。若商环是除环，则相应双边理想是极大双边理想；但非交换环也可能有许多一侧理想。
+\end{enumerate}
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元 $1\neq0$ 的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $L_j$ 是 $M_n(R)$ 的左理想，其元素只允许第 $j$ 列任意、其余列全为零；设 $E_{ij}$ 是 $M_n(R)$ 中第 $i,j$ 元为 $1$、其余元为零的矩阵。证明对任意 $i$，有 $L_j=M_n(R)E_{ij}$。（参见第 7.2 节练习 6。）
+	\item 假设 $R$ 交换。证明群环 $RG$ 的增广理想由 $\{g-1\mid g\in G\}$ 生成。证明若 $G=\langle a\rangle$ 是循环群，则增广理想由 $a-1$ 生成。
+	\item \begin{enumerate}[label=(\alph*)]
+		\item 设 $p$ 是素数，$G$ 是阶为 $p^n$ 的阿贝尔群。证明群环 $\FF_pG$ 的 nilradical 是增广理想（参见第 7.3 节练习 29）。\emph{提示：}使用上一题。
+		\item 设 $G=\{g_1,\ldots,g_n\}$ 是有限群，且 $R$ 交换。证明若 $r$ 是 $RG$ 的增广理想中任意元素，则
+		\[
+		r(g_1+\cdots+g_n)=0.
+		\]
+		\emph{提示：}使用上一题。
+	\end{enumerate}
+	\item 假设 $R$ 交换。证明 $R$ 是域当且仅当 $0$ 是极大理想。
+	\item 证明若 $M$ 是理想且 $R/M$ 是域，则 $M$ 是极大理想（不假定 $R$ 交换）。
+	\item 证明 $R$ 是除环当且仅当它的左理想只有 $(0)$ 与 $R$。（把“左”换成“右”也成立。）
+	\item 设 $R$ 是带 $1$ 的交换环。证明多项式环 $R[x]$ 中由 $x$ 生成的主理想是素理想，当且仅当 $R$ 是整环。证明 $(x)$ 是极大理想，当且仅当 $R$ 是域。
+	\item 设 $R$ 是整环。证明对 $a,b\in R$，$(a)=(b)$ 当且仅当存在 $R$ 的单位 $u$ 使 $a=ub$。
+	\item 令 $R$ 为 $[0,1]$ 上所有连续函数组成的环，令 $I$ 为满足 $f(1/3)=f(1/2)=0$ 的所有函数 $f(x)$ 的集合。证明 $I$ 是 $R$ 的理想，但不是素理想。
+	\item 假设 $R$ 交换。证明若 $P$ 是 $R$ 的素理想且 $P$ 不含零因子，则 $R$ 是整环。
+	\item 假设 $R$ 交换。设 $I,J$ 是 $R$ 的理想，并设 $P$ 是包含 $IJ$ 的素理想（例如 $P$ 包含 $I\cap J$）。证明 $I$ 或 $J$ 包含在 $P$ 中。
+	\item 假设 $R$ 交换，且 $I=(a_1,a_2,\ldots,a_n)$、$J=(b_1,b_2,\ldots,b_m)$ 是 $R$ 中两个有限生成理想。证明积理想 $IJ$ 由元素 $a_ib_j$（$i=1,
+	\ldots,n$，$j=1,\ldots,m$）有限生成。
+	\item 设 $\varphi:R\to S$ 是交换环同态。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $P$ 是 $S$ 的素理想，则 $\varphi^{-1}(P)=R$ 或 $\varphi^{-1}(P)$ 是 $R$ 的素理想。把它应用于 $R$ 是 $S$ 的子环且 $\varphi$ 是包含同态的情形，推出若 $P$ 是 $S$ 的素理想，则 $P\cap R$ 要么等于 $R$，要么是 $R$ 的素理想。
+		\item 证明若 $M$ 是 $S$ 的极大理想且 $\varphi$ 满，则 $\varphi^{-1}(M)$ 是 $R$ 的极大理想。举例说明若 $\varphi$ 不满则不一定成立。
+	\end{enumerate}
+	\item 假设 $R$ 交换。设 $x$ 是不定元，$f(x)$ 是 $R[x]$ 中次数 $n\geq1$ 的首一多项式。用横线表示模理想 $(f(x))$ 到商环 $R[x]/(f(x))$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R[x]/(f(x))$ 的每个元素都可写成 $\overline{p(x)}$，其中 $p(x)\in R[x]$ 的次数小于 $n$，即
+		\[
+		R[x]/(f(x))=\{\overline{a_0+a_1x+\cdots+a_{n-1}x^{n-1}}\mid a_0,
+		\ldots,a_{n-1}\in R\}.
+		\]
+		\emph{提示：}若 $f(x)=x^n+b_{n-1}x^{n-1}+\cdots+b_0$，则在商环中 $\bar x^n=-(b_{n-1}\bar x^{n-1}+\cdots+b_0)$。用它化简 $x$ 的高次幂。
+		\item 证明若 $p(x)$ 与 $q(x)$ 是 $R[x]$ 中不同且次数都小于 $n$ 的多项式，则 $\overline{p(x)}\neq\overline{q(x)}$。\emph{提示：}否则 $p(x)-q(x)$ 是首一多项式 $f(x)$ 的 $R[x]$ 倍数。
+		\item 若 $f(x)=a(x)b(x)$，且 $a(x),b(x)$ 的次数都小于 $n$，证明 $\overline{a(x)}$ 是 $R[x]/(f(x))$ 中的零因子。
+		\item 若 $f(x)=x^n-a$，其中 $a\in R$ 是幂零元，证明 $\bar x$ 在 $R[x]/(f(x))$ 中是幂零元。
+		\item 设 $p$ 是素数，$R=\FF_p$，且 $f(x)=x^p-a$，其中 $a\in\FF_p$。证明 $\bar x-a$ 在 $R[x]/(f(x))$ 中是幂零元。\emph{提示：}使用第 7.3 节练习 26(c)。
+	\end{enumerate}
+	\item 设 $x^2+x+1$ 是多项式环 $\FF_2[x]$ 的元素，并用横线表示通过商环 $E=\FF_2[x]/(x^2+x+1)$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $E$ 有 $4$ 个元素：$\bar0,\bar1,\bar x,\bar x+\bar1$。
+		\item 写出 $E$ 的 $4\times4$ 加法表，并推出加法群 $E$ 同构于 Klein 四元群。
+		\item 写出 $E^\times$ 的 $4\times4$ 乘法表，并证明 $E^\times$ 同构于 $3$ 阶循环群。推出 $E$ 是域。
+	\end{enumerate}
+	\item 设 $x^4-16$ 是多项式环 $\ZZ[x]$ 的元素，并用横线表示通过商环 $E=\ZZ[x]/(x^4-16)$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 找一个次数 $\leq3$ 的多项式，使它与 $7x^{13}-11x^9+5x^5-2x^3+3$ 模 $(x^4-16)$ 同余。
+		\item 证明 $\bar x-2$ 与 $\bar x+2$ 是 $E$ 中的零因子。
+	\end{enumerate}
+	\item 设 $x^3-2x+1$ 是多项式环 $\ZZ[x]$ 的元素，并用横线表示通过商环 $E=\ZZ[x]/(x^3-2x+1)$。令
+	\[
+	p(x)=2x^7-7x^5+4x^3-9x+1,
+	\qquad q(x)=(x-1)^4.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 将 $E$ 中下列每个元素表示成 $\overline{f(x)}$，其中 $f(x)$ 的次数 $\leq2$：$\overline{p(x)}$、$\overline{q(x)}$、$\overline{p(x)}+\overline{q(x)}$、$\overline{p(x)}\,\overline{q(x)}$。
+		\item 证明 $E$ 不是整环。
+		\item 证明 $\bar x$ 是 $E$ 中的单位。
+	\end{enumerate}
+	\item 证明若 $R$ 是整环，$R[[x]]$ 是不定元 $x$ 的形式幂级数环，则由 $x$ 生成的主理想是素理想（参见第 7.2 节练习 3）。证明由 $x$ 生成的主理想是极大理想，当且仅当 $R$ 是域。
+	\item 设 $R$ 是有限带单位交换环。证明 $R$ 的每个素理想都是极大理想。
+	\item 证明没有零因子的非零有限交换环是域（若有单位元，这是推论 3；本题不要假定环有 $1$）。
+	\item 证明带单位元 $1\neq0$ 且没有零因子的有限环是域（可以引用 Wedderburn 定理）。
+	\item 设 $p\in\ZZ^+$ 是素数，定义 $\FF_p$ 上的四元数为
+	\[
+	a+bi+cj+dk,
+	\qquad a,b,c,d\in\ZZ/p\ZZ,
+	\]
+	加法逐分量进行，乘法用实四元数中 $i,j,k$ 的相同关系定义。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\FF_p$ 上的四元数是整 Hamilton 四元数环的同态像（参见第 7.1 节）。
+		\item 证明 $\FF_p$ 上的四元数含有零因子（因而不可能是除环）。\emph{提示：}使用上一题。
+	\end{enumerate}
+	\item 证明在 Boolean 环中（参见第 7.1 节练习 15），每个素理想都是极大理想。
+	\item 证明在 Boolean 环中，每个有限生成理想都是主理想。
+	\item 假设 $R$ 交换，且对每个 $a\in R$ 都存在整数 $n>1$（依赖于 $a$）使 $a^n=a$。证明 $R$ 的每个素理想都是极大理想。
+	\item 证明交换环 $R$ 的素理想包含每个幂零元（参见第 7.1 节练习 13）。推出 $R$ 的 nilradical（参见第 7.3 节练习 29）包含在 $R$ 的所有素理想之交中。（第 15.2 节将证明 nilradical 等于所有素理想之交。）
+	\item 设 $R$ 是带 $1\neq0$ 的交换环。证明若 $a$ 是 $R$ 的幂零元，则对所有 $b\in R$，$1-ab$ 是单位。
+	\item 证明若 $R$ 是交换环，$N=(a_1,a_2,\ldots,a_m)$，其中每个 $a_i$ 都是幂零元，则 $N$ 是幂零理想（参见第 7.3 节练习 37）。推出若 $R$ 的 nilradical 是有限生成的，则它是幂零理想。
+	\item 设 $p$ 是素数，$G$ 是阶为 $p$ 的幂的有限群（即 $p$-群）。证明群环 $(\ZZ/p\ZZ)G$ 的增广理想是幂零理想。（注意这个环可以是非交换的。）\emph{提示：}使用练习 2。
+	\item 设 $I$ 是交换环 $R$ 的理想，定义
+	\[
+	\rad I=\{r\in R\mid r^n\in I\text{ 对某个 }n\in\ZZ^+\},
+	\]
+	称为 $I$ 的根。证明 $\rad I$ 是包含 $I$ 的理想，并且 $(\rad I)/I$ 是商环 $R/I$ 的 nilradical，即 $(\rad I)/I=\mathfrak N(R/I)$（参见第 7.3 节练习 29）。
+	\item 若交换环 $R$ 的理想 $I$ 满足 $\rad I=I$，则称 $I$ 为根理想。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R$ 的每个素理想都是根理想。
+		\item 设 $n>1$。证明 $0$ 是 $\ZZ/n\ZZ$ 中的根理想，当且仅当 $n$ 是不同素数一次幂的乘积（即 $n$ 无平方因子）。推出 $(n)$ 是 $\ZZ$ 的根理想，当且仅当 $n$ 是 $\ZZ$ 中不同素数的乘积。
+	\end{enumerate}
+	\item 设 $I$ 是交换环 $R$ 的理想，并定义
+	\[
+	\Jac I=\bigcap\{M\mid M\text{ 是 }R\text{ 的极大理想且 }I\subseteq M\},
+	\]
+	约定 $\Jac R=R$。（当 $I=0$ 时，$\Jac 0$ 称为环 $R$ 的 Jacobson 根；一般 $\Jac I$ 是 $R/I$ 的 Jacobson 根在 $R$ 中的原像。）
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\Jac I$ 是包含 $I$ 的 $R$ 的理想。
+		\item 证明 $\rad I\subseteq\Jac I$，其中 $\rad I$ 是练习 30 中定义的根。
+		\item 设 $n>1$。用 $n$ 的素因子分解描述 $\Jac(n\ZZ)$。
+	\end{enumerate}
+	\item 设 $R$ 是闭区间 $[0,1]$ 上所有连续函数构成的环，并且对每个 $c\in[0,1]$，令 $M_c=\{f\in R\mid f(c)=0\}$（回忆 $M_c$ 已被证明是 $R$ 的极大理想）。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明若 $M$ 是 $R$ 的任意极大理想，则存在实数 $c\in[0,1]$ 使 $M=M_c$。
+		\item 证明若 $b,c$ 是 $[0,1]$ 中不同点，则 $M_b\neq M_c$。
+		\item 证明 $M_c$ 不等于由 $x-c$ 生成的主理想。
+		\item 证明 $M_c$ 不是有限生成理想。
+	\end{enumerate}
+	上一题说明，闭区间 $[0,1]$ 的点与 $[0,1]$ 上连续函数环 $R$ 的极大理想集合之间有双射 $c\mapsto M_c$。对 $\RR$ 的任意子集 $X$，更一般地，对任意完全正则拓扑空间 $X$，映射 $c\mapsto M_c$ 是从 $X$ 到 $R$ 的极大理想集合的单射，其中 $R$ 是 $X$ 上有界连续实值函数环，$M_c$ 是在 $c$ 处为零的函数理想。令 $\beta(X)$ 为 $R$ 的极大理想集合。可以在 $\beta(X)$ 上定义一个拓扑，使得把 $X$ 与其在 $\beta(X)$ 中的像识别后，$X$（带原拓扑）成为 $\beta(X)$ 的子空间；而且 $\beta(X)$ 是紧空间，称为 $X$ 的 Stone--\v Cech 紧化。
+	\item 设 $R$ 是从 $\RR$ 到 $\RR$ 的所有连续函数构成的环，并且对每个 $c\in\RR$，令 $M_c=\{f\in R\mid f(c)=0\}$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 令 $I$ 为 $R$ 中所有紧支撑函数 $f(x)$ 的集合（即当 $|x|$ 充分大时 $f(x)=0$）。证明 $I$ 是 $R$ 的理想，但不是素理想。
+		\item 令 $M$ 是包含 $I$ 的极大理想（由 (a)，它真包含 $I$）。证明对任意 $c\in\RR$，$M\neq M_c$（参见上一题）。
+	\end{enumerate}
+	\item 设 $A=(a_1,a_2,\ldots,a_n)$ 是 $R$ 的非零有限生成理想。证明存在一个理想 $B$，它关于“不包含 $A$”这一性质是极大的。\emph{提示：}使用 Zorn 引理。
+	\item 假设 $R$ 交换。证明 $R$ 的素理想集合关于包含关系有极小元（可能是零理想）。\emph{提示：}使用 Zorn 引理。
+	\item 若交换环 $R$ 只有一个极大理想，则称 $R$ 为局部环。证明若 $R$ 是局部环且极大理想为 $M$，则 $R-M$ 中每个元素都是单位。反过来，证明若带 $1$ 交换环 $R$ 的非单位全体构成一个理想 $M$，则 $R$ 是以 $M$ 为唯一极大理想的局部环。
+	\item 证明所有分母为奇数的有理数构成的环是局部环，其唯一极大理想是由 $2$ 生成的主理想。
+	\item 沿用第 7.1 节练习 26 的记号，设 $K$ 是域，$v$ 是 $K$ 上的离散赋值，$R$ 是 $v$ 的赋值环。对每个整数 $k\geq0$，定义
+	\[
+	A_k=\{r\in R\mid v(r)\geq k\}\cup\{0\}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $A_k$ 是主理想，且 $A_0\supseteq A_1\supseteq A_2\supseteq\cdots$。
+		\item 证明若 $I$ 是 $R$ 的任意非零理想，则 $I=A_k$ 对某个 $k\geq0$ 成立。推出 $R$ 是以 $A_1$ 为唯一极大理想的局部环。
+	\end{enumerate}
+	\item 假设 $R$ 交换。证明下列条件等价（亦参见第 7.1 节练习 13、14）：
+	\begin{enumerate}[label=(\roman*)]
+		\item $R$ 恰有一个素理想；
+		\item $R$ 的每个元素要么是幂零元，要么是单位；
+		\item $R/\mathfrak N(R)$ 是域（参见第 7.3 节练习 29）。
+	\end{enumerate}
+	\item 交换环 $R$ 的真理想 $Q$ 称为 primary ideal，若 $ab\in Q$ 且 $a\notin Q$，则对某个正整数 $n$ 有 $b^n\in Q$。（注意该定义中 $a,b$ 的对称性意味着：若 $Q$ 是 primary ideal 且 $ab\in Q$，其中 $a,b$ 都不在 $Q$ 中，则 $a$ 的某个正幂与 $b$ 的某个正幂都在 $Q$ 中。）证明关于 primary ideal 的下列事实。
+	\begin{enumerate}[label=(\alph*)]
+		\item $\ZZ$ 的 primary ideal 是 $0$ 和 $(p^n)$，其中 $p$ 是素数，$n$ 是正整数。
+		\item $R$ 的每个素理想都是 primary ideal。
+		\item $R$ 的理想 $Q$ 是 primary ideal，当且仅当 $R/Q$ 中每个零因子都是 $R/Q$ 的幂零元。
+		\item 若 $Q$ 是 primary ideal，则 $\rad(Q)$ 是素理想（参见练习 30）。
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\section{分式环}
+
+本节 $R$ 为交换环。命题 2 说明：若 $a$ 不是零因子且 $ab=ac$，则可以消去 $a$。本节的目标是把这类可消去的元素变成真正的单位。对整环而言，所得的较大环是域，称为分式域或商域；原型是 $\ZZ\subseteq\QQ$。
+
+\medskip
+\noindent\textbf{定理 15.} 设 $R$ 是交换环，$D\subseteq R$ 非空，不含 $0$，不含零因子，并且对乘法封闭。则存在带单位元的交换环 $Q$，包含 $R$ 作为子环，并使 $D$ 的每个元素在 $Q$ 中成为单位。进一步：
+\begin{enumerate}[label=(\arabic*)]
+  \item $Q$ 的每个元素可写为 $rd^{-1}$，其中 $r\in R,d\in D$。若 $D=R-\{0\}$，则 $Q$ 是域。
+  \item $Q$ 是使 $D$ 中元素都可逆的最小环：若 $\varphi:R\to S$ 是到带单位交换环 $S$ 的单射同态，并且每个 $\varphi(d)$（$d\in D$）都是 $S$ 的单位，则存在单射同态 $\Phi:Q\to S$ 延拓 $\varphi$。
+\end{enumerate}
+
+\begin{proof}
+令
+\[
+  \mathcal F=\{(r,d)\mid r\in R,
+  \ d\in D\}.
+\]
+在 $\mathcal F$ 上定义关系
+\[
+  (r,d)\sim(s,e)
+  \quad\Longleftrightarrow\quad re=sd.
+\]
+由于 $D$ 中元素不是零因子，容易验证 $\sim$ 是等价关系：反身性和对称性显然；若 $(r,d)\sim(s,e)$ 且 $(s,e)\sim(t,f)$，即 $re=sd$、$sf=te$，则
+\[
+  (rf)ed=(re)fd=(sd)fd=sdfd=d(sf)d=d(te)d=(td)ed,
+\]
+消去非零因子 $ed\in D$，得 $rf=td$，故 $(r,d)\sim(t,f)$。
+
+记 $(r,d)$ 的等价类为 $r/d$。在等价类上定义
+\[
+  \frac ab+
+  \frac cd=\frac{ad+bc}{bd},
+  \qquad
+  \frac ab\frac cd=\frac{ac}{bd}.
+\]
+若改变代表元，由等价关系和 $R$ 的交换性可直接验证这些定义良定义。于是等价类集合在这些运算下成为交换环；零元为 $0/1$，单位元为 $1/1$，而 $a/b$ 的加法逆元为 $(-a)/b$。
+
+映射
+\[
+  R\longrightarrow Q,
+  \qquad r\longmapsto \frac r1
+\]
+是环同态。若 $r/1=0/1$，则 $r=0$，所以它是单射，于是可把 $R$ 视为 $Q$ 的子环。对 $d\in D$，元素 $d/1$ 的逆元是 $1/d$，因为 $(d/1)(1/d)=d/d=1/1$。每个 $Q$ 的元素按构造都是 $r/d=(r/1)(d/1)^{-1}$。若 $D=R-\{0\}$ 且 $r/d\neq0$，则 $r\neq0$，故 $r\in D$，并且
+\[
+  \frac dr
+\]
+是 $r/d$ 的逆元；因此 $Q$ 是域。
+
+最后证明最小性。设 $\varphi:R\to S$ 满足定理条件。定义
+\[
+  \Phi\!\left(\frac rd\right)=\varphi(r)\varphi(d)^{-1}.
+\]
+若 $r/d=s/e$，即 $re=sd$，则
+\[
+  \varphi(r)\varphi(e)=\varphi(s)\varphi(d),
+\]
+乘以 $\varphi(d)^{-1}\varphi(e)^{-1}$ 得到 $\varphi(r)\varphi(d)^{-1}=\varphi(s)\varphi(e)^{-1}$，故 $\Phi$ 良定义。它保持加法与乘法由定义直接验证，并显然延拓 $\varphi$。若 $\Phi(r/d)=0$，则 $\varphi(r)\varphi(d)^{-1}=0$，故 $\varphi(r)=0$；由 $\varphi$ 单射，$r=0$，从而 $r/d=0$。所以 $\Phi$ 单射。
+\end{proof}
+
+\medskip
+\noindent\textbf{定义.} 上述 $Q$ 称为 $R$ 关于分母集合 $D$ 的\emph{分式环}，记为 $D^{-1}R$。若 $R$ 是整环且 $D=R-\{0\}$，则 $Q$ 称为 $R$ 的\emph{分式域}，记为 $\Frac(R)$。
+
+\medskip
+\noindent\textbf{推论 16.} 设 $R$ 是整环，$Q=\Frac(R)$。若 $F$ 是任意包含 $R$ 的域，则 $Q$ 同构于 $F$ 的某个子域。
+
+\begin{proof}
+取 $D=R-\{0\}$，把包含映射 $R\hookrightarrow F$ 作为定理 15 中的 $\varphi$。由于 $F$ 是域，$D$ 中每个元素的像都是单位。定理 15 给出单射 $Q\to F$，于是 $Q$ 同构于其像，即 $F$ 的一个子域。
+\end{proof}
+
+例如 $\Frac(\ZZ)=\QQ$，若 $F$ 是域，则 $\Frac(F[x])$ 记为 $F(x)$，称为 $F$ 上的有理函数域。若 $D=\{1,d,d^2,\ldots\}$，则分式环常记为 $R[1/d]$。
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元 $1\neq0$ 的交换环。
+\begin{enumerate}[label=\arabic*.]
+	\item 补全定理 15 证明中的所有细节。
+	\item 设 $R$ 是整环，$D$ 是 $R$ 的非空乘法封闭子集。证明分式环 $D^{-1}R$ 同构于 $R$ 的分式域的某个子环（因而也是整环）。
+	\item 设 $F$ 是域。证明 $F$ 含有唯一的最小子域 $F_0$，并且 $F_0$ 同构于 $\QQ$ 或某个素数 $p$ 的 $\ZZ/p\ZZ$（$F_0$ 称为 $F$ 的素子域）。\emph{提示：}参见第 7.3 节练习 26。
+	\item 证明 $\RR$ 的任意子域都必须包含 $\QQ$。
+	\item 若 $F$ 是域，证明 $F[[x]]$（系数在 $F$ 中、不定元为 $x$ 的形式幂级数环）的分式域是形式 Laurent 级数域 $F((x))$（参见第 7.2 节练习 3 和 5）。证明幂级数环 $\ZZ[[x]]$ 的分式域真包含于 Laurent 级数域 $\QQ((x))$ 的真子域中。\emph{提示：}考虑 $e^x$ 的级数。
+	\item 证明实数域 $\RR$ 含有一个子环 $A$，满足 $1\in A$，并且 $A$ 关于性质 $1/2\notin A$ 在包含关系下极大。\emph{提示：}使用 Zorn 引理。（第 15.3 节练习 13 说明 $\RR$ 是 $A$ 的分式域，因此 $\RR$ 是一个真子环的分式域。）
+\end{enumerate}
+
+
+
+\section{中国剩余定理}
+
+本节除非另有说明，环均为带 $1\neq0$ 的交换环。环的直积按分量加法与乘法定义。两个理想 $A,B$ 称为\emph{互素}或\emph{余极大}，若
+\[
+  A+B=R.
+\]
+
+\medskip
+\noindent\textbf{定理 17（中国剩余定理）.} 设 $A_1,A_2,\ldots,A_k$ 是 $R$ 的理想。映射
+\[
+  R\longrightarrow R/A_1\times R/A_2\times\cdots\times R/A_k,
+  \qquad r\longmapsto(r+A_1,r+A_2,\ldots,r+A_k)
+\]
+是环同态，核为 $A_1\cap A_2\cap\cdots\cap A_k$。若这些理想两两互素，则此映射满，并且
+\[
+  A_1\cap A_2\cap\cdots\cap A_k=A_1A_2\cdots A_k,
+\]
+从而
+\[
+  R/(A_1A_2\cdots A_k)
+  \cong R/A_1\times R/A_2\times\cdots\times R/A_k.
+\]
+
+\begin{proof}
+该映射显然是环同态；一个元素 $r$ 落入核，当且仅当 $r\in A_i$ 对所有 $i$ 成立，故核为交。
+
+先证 $k=2$。令 $A=A_1$、$B=A_2$。若 $A+B=R$，取 $x\in A$、$y\in B$ 使 $x+y=1$。在 $R/A\times R/B$ 中，$x$ 的像为 $(0,1)$，$y$ 的像为 $(1,0)$。因此任意 $(r+A,s+B)$ 等于 $sy+rx$ 的像，故映射满。总有 $AB\subseteq A\cap B$。若 $c\in A\cap B$，则
+\[
+  c=c(x+y)=cx+cy.
+\]
+由于 $c\in B$ 且 $x\in A$，有 $cx\in AB$；由于 $c\in A$ 且 $y\in B$，有 $cy\in AB$。故 $c\in AB$，于是 $A\cap B=AB$。
+
+一般情形由归纳得到。若 $A_1,
+\ldots,A_k$ 两两互素，则 $A_1\cdots A_{k-1}$ 与 $A_k$ 互素，并且 $A_1\cap\cdots\cap A_{k-1}=A_1\cdots A_{k-1}$。把二理想情形应用于 $(A_1\cdots A_{k-1},A_k)$，即可同时得到满性和交等于积。
+\end{proof}
+
+当 $m,n$ 互素时，取 $R=\ZZ$、$A=m\ZZ$、$B=n\ZZ$，得到经典形式
+\[
+  \ZZ/mn\ZZ\cong \ZZ/m\ZZ\times\ZZ/n\ZZ.
+\]
+这说明模互素整数的同余方程组有解且解模乘积唯一。
+
+\medskip
+\noindent\textbf{推论 18.} 若
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+\]
+是正整数 $n$ 的不同素数幂分解，则
+\[
+  \ZZ/n\ZZ
+  \cong
+  \ZZ/p_1^{\alpha_1}\ZZ\times\ZZ/p_2^{\alpha_2}\ZZ\times\cdots\times
+  \ZZ/p_k^{\alpha_k}\ZZ
+\]
+作为环同构。特别地，
+\[
+  (\ZZ/n\ZZ)^\times
+  \cong
+  (\ZZ/p_1^{\alpha_1}\ZZ)^\times\times\cdots\times
+  (\ZZ/p_k^{\alpha_k}\ZZ)^\times.
+\]
+比较阶数得到 Euler 函数的乘法性：若 $(a,b)=1$，则 $\varphi(ab)=\varphi(a)\varphi(b)$；且
+\[
+  \varphi(p^\alpha)=p^{\alpha-1}(p-1).
+\]
+
+\begin{proof}
+理想 $p_i^{\alpha_i}\ZZ$ 两两互素，故中国剩余定理给出第一同构。环同构把单位送到单位并反映单位，所以诱导单位群同构。最后的 $\varphi$ 公式来自单位群阶数的乘法性，以及模 $p^\alpha$ 中恰有 $p^\alpha-p^{\alpha-1}$ 个与 $p$ 互素的剩余类。
+\end{proof}
+
+这个推论也是确定 $(\ZZ/n\ZZ)^\times$ 结构的第一步；接下来只需分别研究素数幂模的单位群。
+
+\subsection*{练习}
+在以下各题中，设 $R$ 是带单位元 $1\neq0$ 的环。
+\begin{enumerate}[label=\arabic*.]
+	\item 若 $e\in R$ 满足 $e^2=e$，称 $e$ 为幂等元。假设 $e$ 是 $R$ 中的幂等元并且 $er=re$ 对所有 $r\in R$ 成立。证明 $Re$ 和 $R(1-e)$ 是 $R$ 的双边理想，并且
+	\[
+	R\cong Re\times R(1-e).
+	\]
+	证明 $e$ 与 $1-e$ 分别是子环 $Re$ 与 $R(1-e)$ 的单位元。
+	\item 设 $R$ 是有限 Boolean 环，且有单位元 $1\neq0$（参见第 7.1 节练习 15）。证明
+	\[
+	R\cong \ZZ/2\ZZ\times\cdots\times\ZZ/2\ZZ.
+	\]
+	\emph{提示：}使用上一题。
+	\item 设 $R,S$ 是带单位元的环。证明 $R\times S$ 的每个理想都形如 $I\times J$，其中 $I$ 是 $R$ 的理想，$J$ 是 $S$ 的理想。
+	\item 证明若 $R,S$ 是非零环，则 $R\times S$ 永远不是域。
+	\item 设 $n_1,n_2,\ldots,n_k$ 两两互素：$(n_i,n_j)=1$ 对所有 $i\neq j$ 成立。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明中国剩余定理蕴含：对任意 $a_1,
+		\ldots,a_k\in\ZZ$，存在 $x\in\ZZ$ 满足同余方程组
+		\[
+		x\equiv a_1\pmod {n_1},\qquad x\equiv a_2\pmod {n_2},\qquad \ldots,
+		\qquad x\equiv a_k\pmod {n_k},
+		\]
+		并且解 $x$ 模 $n=n_1n_2\cdots n_k$ 唯一。
+		\item 令 $\bar n_i=n/n_i$。由于 $\bar n_i$ 与 $n_i$ 互素，令 $t_i$ 是 $\bar n_i$ 模 $n_i$ 的逆元。证明 (a) 中的解由
+		\[
+		x\equiv a_1t_1\bar n_1+a_2t_2\bar n_2+\cdots+a_kt_k\bar n_k\pmod n
+		\]
+		给出。注意，元素 $t_i$ 可由预备章第 2 节所述 Euclidean 算法快速求出（若 $an_i+b\bar n_i=(n_i,\bar n_i)=1$，则 $t_i=b$）；这些 $t_i$ 随即对任意 $a_1,a_2,
+		\ldots,a_k$ 快速给出同余方程组的解。
+		\item 解同余方程组
+		\[
+		x\equiv1\pmod8,
+		\qquad x\equiv2\pmod{25},
+		\qquad x\equiv3\pmod{81},
+		\]
+		以及同余方程组
+		\[
+		y\equiv5\pmod8,
+		\qquad y\equiv12\pmod{25},
+		\qquad y\equiv47\pmod{81}.
+		\]
+	\end{enumerate}
+	\item 设 $f_1(x),f_2(x),\ldots,f_k(x)$ 是次数相同为 $d$ 的整系数多项式。设 $n_1,n_2,\ldots,n_k$ 两两互素，即 $(n_i,n_j)=1$ 对所有 $i\neq j$ 成立。用中国剩余定理证明存在次数为 $d$ 的整系数多项式 $f(x)$，使
+	\[
+	f(x)\equiv f_1(x)\pmod {n_1},\qquad f(x)\equiv f_2(x)\pmod {n_2},\qquad \ldots,
+	\qquad f(x)\equiv f_k(x)\pmod {n_k},
+	\]
+	即 $f(x)$ 的系数与 $f_i(x)$ 的系数模 $n_i$ 一致。证明若所有 $f_i(x)$ 都是首一多项式，则 $f(x)$ 也可取为首一。\emph{提示：}对每个系数分别在 $\ZZ$ 中应用中国剩余定理。
+	\item 设 $m,n$ 是正整数，且 $n\mid m$。证明自然满环投影 $\ZZ/m\ZZ\to\ZZ/n\ZZ$ 在单位群上也是满的：
+	\[
+	(\ZZ/m\ZZ)^\times\twoheadrightarrow(\ZZ/n\ZZ)^\times.
+	\]
+	以下四题发展直极限及其“对偶”概念逆极限。在这些题中，$I$ 是带偏序 $\leq$ 的非空指标集（参见附录 I）。对每个 $i\in I$，令 $A_i$ 为加法阿贝尔群。在练习 8 中还假设 $I$ 是有向集：对任意 $i,j\in I$，存在 $k\in I$ 使 $i\leq k$ 且 $j\leq k$。
+	\item 假设对每对指标 $i,j$，当 $i\leq j$ 时给定映射 $\rho_{ij}:A_i\to A_j$，并且满足：
+	\begin{enumerate}[label=(\roman*)]
+		\item 若 $i\leq j\leq k$，则 $\rho_{ik}=\rho_{jk}\circ\rho_{ij}$；
+		\item 对所有 $i\in I$，$\rho_{ii}=1$。
+	\end{enumerate}
+	令 $B$ 为所有 $A_i$ 的不交并。对 $a\in A_i$、$b\in A_j$，定义关系 $\sim$：
+	\[
+	a\sim b\quad\Longleftrightarrow\quad \text{存在 }k\text{ 使 }i,j\leq k\text{ 且 }\rho_{ik}(a)=\rho_{jk}(b).
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\sim$ 是 $B$ 上的等价关系。（等价类集合称为有向系统 $\{A_i\}$ 的直极限或归纳极限，记为 $\varinjlim A_i$。在本题其余部分，令 $A=\varinjlim A_i$。）
+		\item 令 $\bar x$ 表示 $x$ 在 $A$ 中的等价类，定义 $\rho_i:A_i\to A$ 为 $\rho_i(a)=\bar a$。证明若每个 $\rho_{ij}$ 都是单射，则每个 $\rho_i$ 也是单射（于是可把每个 $A_i$ 识别为 $A$ 的子集）。
+		\item 假设所有 $\rho_{ij}$ 都是群同态。对 $a\in A_i$、$b\in A_j$，定义
+		\[
+		\bar a+\bar b=\overline{\rho_{ik}(a)+\rho_{jk}(b)},
+		\]
+		其中 $k$ 是任意满足 $i,j\leq k$ 的指标。证明该运算良定义，并使 $A$ 成为阿贝尔群。推出 (b) 中的映射 $\rho_i:A_i\to A$ 都是群同态。
+		\item 若所有 $A_i$ 都是带 $1$ 的交换环，且所有 $\rho_{ij}$ 都是把 $1$ 送到 $1$ 的环同态，证明 $A$ 同样可赋予带 $1$ 的交换环结构，使所有 $\rho_i$ 都成为环同态。
+		\item 在 (c) 的假设下，证明直极限有如下泛性质：若 $C$ 是任意阿贝尔群，并且对每个 $i\in I$ 有同态 $\phi_i:A_i\to C$，满足当 $i\leq j$ 时 $\phi_i=\phi_j\circ\rho_{ij}$，则存在唯一同态 $\phi:A\to C$，使 $\phi\circ\rho_i=\phi_i$ 对所有 $i$ 成立。
+	\end{enumerate}
+	\item 令 $I$ 为实直线上包含固定实数 $p$ 的所有开区间 $U=(a,b)$ 的集合。按反包含排序：$U\leq V$ 若 $V\subseteq U$（注意 $I$ 是有向集）。对每个 $U$，令 $A_U$ 为 $U$ 上所有连续实值函数构成的环。若 $V\subseteq U$，定义限制映射 $\rho_{UV}:A_U\to A_V$，$f\mapsto f|_V$。令 $A=\varinjlim A_U$。在上一题记号下，证明映射 $\rho_U:A_U\to A$ 并非单射，但全都是满射（$A$ 称为点 $p$ 处连续函数芽环）。
+	现在发展逆极限。继续假设 $I$ 是偏序集（不一定有向），并且每个 $A_i$ 是群。
+	\item 假设对每对指标 $i,j$，当 $i\leq j$ 时给定映射 $\pi_{ji}:A_j\to A_i$，并且满足：
+	\begin{enumerate}[label=(\roman*)]
+		\item 若 $i\leq j\leq k$，则 $\pi_{ji}\circ\pi_{kj}=\pi_{ki}$；
+		\item 对所有 $i\in I$，$\pi_{ii}=1$。
+	\end{enumerate}
+	令 $P$ 为直积 $\prod_{i\in I}A_i$ 中所有元素 $(a_i)_{i\in I}$ 组成的子集，满足当 $i\leq j$ 时 $\pi_{ji}(a_j)=a_i$（这里 $a_i,a_j$ 分别是直积元素的第 $i$ 与第 $j$ 分量）。集合 $P$ 称为系统 $\{A_i\}$ 的逆极限或射影极限，记为 $\varprojlim A_i$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 假设所有 $\pi_{ji}$ 都是群同态。证明 $P$ 是直积群的子群（参见第 5.1 节练习 15）。
+		\item 假设 (a) 的假设，并令 $I=\ZZ^+$（通常序）。对每个 $i\in I$，令 $\pi_i:P\to A_i$ 是到第 $i$ 分量的投影。证明若每个 $\pi_{ji}$ 都是满射，则每个 $\pi_i$ 也是满射（于是每个 $A_i$ 是 $P$ 的商群）。
+		\item 若所有 $A_i$ 都是带 $1$ 的交换环，且所有 $\pi_{ji}$ 都是把 $1$ 送到 $1$ 的环同态，证明 $P$ 同样可赋予带 $1$ 的交换环结构，使所有 $\pi_i$ 都成为环同态。
+		\item 在 (a) 的假设下，证明逆极限有如下泛性质：若 $D$ 是任意群，并且对每个 $i\in I$ 有同态 $\eta_i:D\to A_i$，满足当 $i\leq j$ 时 $\eta_i=\pi_{ji}\circ\eta_j$，则存在唯一同态 $\eta:D\to P$，使 $\pi_i\circ\eta=\eta_i$ 对所有 $i$ 成立。
+	\end{enumerate}
+	\item 设 $p$ 是素数，令 $I=\ZZ^+$，$A_i=\ZZ/p^i\ZZ$，并令 $\pi_{ji}$ 为自然投影
+	\[
+	\pi_{ji}:a\pmod {p^j}\longmapsto a\pmod {p^i}.
+	\]
+	逆极限 $\varprojlim \ZZ/p^i\ZZ$ 称为 $p$-进整数环，记为 $\ZZ_p$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\ZZ_p$ 的每个元素都可唯一写成无穷形式和
+		\[
+		b_0+b_1p+b_2p^2+b_3p^3+\cdots,
+		\qquad b_i\in\{0,1,\ldots,p-1\}.
+		\]
+		描述这些形式和在 $\ZZ_p$ 中加法与乘法所对应的规则。\emph{提示：}把每个 $\ZZ/p^i\ZZ$ 中的最小非负剩余写成 $p$ 进展开，再描述映射 $\pi_{ji}$。特别注意 $\ZZ_p$ 是不可数的。
+		\item 证明 $\ZZ_p$ 是含有一份整数环的整环。
+		\item 证明 (a) 中的 $b_0+b_1p+b_2p^2+b_3p^3+\cdots$ 是 $\ZZ_p$ 的单位，当且仅当 $b_0\neq0$。
+		\item 证明 $p\ZZ_p$ 是 $\ZZ_p$ 的唯一极大理想，且 $\ZZ_p/p\ZZ_p\cong\ZZ/p\ZZ$（其中 $p=0+1p+0p^2+0p^3+
+		\cdots$）。证明 $\ZZ_p$ 的每个理想都形如 $p^n\ZZ_p$，其中 $n\geq0$。
+		\item 证明若 $a_1\not\equiv0\pmod p$，则直极限 $\ZZ_p$ 中存在元素 $a=(a_i)$，满足 $a_1^{p-1}\equiv1\pmod p$，并且 $\pi_{j1}(a_j)=a_1$ 对所有 $j$ 成立。推出 $\ZZ_p$ 含有 $p-1$ 个不同的 $(p-1)$ 次单位根。
+	\end{enumerate}
+\end{enumerate}

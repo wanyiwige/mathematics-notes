@@ -1,0 +1,157 @@
+\documentclass[10pt]{book}
+\usepackage{ctex}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable,theorems}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usetikzlibrary{arrows.meta, positioning}
+
+% -------------------------------
+% 全局正文字体（英文 + 中文） + 伪粗体
+% -------------------------------
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}[AutoFakeBold={3}]
+\setCJKfamilyfont{theoremCJK}{FangSong}[AutoFakeBold={2.5}]
+\setCJKfamilyfont{proofCJK}{KaiTi}[AutoFakeBold={2.5}]
+\newcommand{\theoremFont}{\CJKfamily{theoremCJK}}
+
+% 证明字体
+\newcommand{\proofFont}{\CJKfamily{proofCJK}}
+
+% -------------------------------
+% 鲜明蓝色系配色方案
+% -------------------------------
+\definecolor{LogicBlue}{RGB}{0, 102, 204}
+\definecolor{LogicLightBlue}{RGB}{102, 204, 255}
+\definecolor{LogicDarkBlue}{RGB}{0, 51, 153}
+\definecolor{LogicAccentBlue}{RGB}{51, 153, 255}
+
+% -------------------------------
+% 逻辑符号快捷命令
+% -------------------------------
+\newcommand{\landand}{\land}
+\newcommand{\loror}{\lor}
+\newcommand{\limplies}{\to}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\entails}{\models}
+\newcommand{\turnstile}{\vdash}
+
+% -------------------------------
+% 练习（无编号）
+% -------------------------------
+\NewDocumentEnvironment{exercise}{}{\par\noindent{\bfseries\theoremFont 练习\quad}}{\par}
+
+% -------------------------------
+% 彩色 tcolorbox 环境 —— 所有共用同一计数器（以 mydefinition 的计数器为主）
+% -------------------------------
+% 第一个环境：正常带 section 内编号
+\newtcbtheorem[number within=section]{mydefinition}{定义}{
+	breakable, enhanced,
+	colback=white, colframe=LogicBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{df}
+
+% 后续环境：借用 mydefinition 的计数器（tcb@cnt@df）
+\newtcbtheorem[use counter from=mydefinition]{mytheorem}{定理}{
+	breakable, enhanced,
+	colback=white, colframe=LogicBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{th}
+
+\newtcbtheorem[use counter from=mydefinition]{mycorollary}{推论}{
+	breakable, enhanced,
+	colback=white, colframe=LogicLightBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{cor}
+
+\newtcbtheorem[use counter from=mydefinition]{myaxiom}{公理}{
+	breakable, enhanced,
+	colback=white, colframe=LogicDarkBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{ax}
+
+\newtcbtheorem[use counter from=mydefinition]{myinferencerule}{推理规则}{
+	breakable, enhanced,
+	colback=white, colframe=LogicAccentBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{ir}
+
+\newtcbtheorem[use counter from=mydefinition]{myexample}{范例}{
+	breakable, enhanced,
+	colback=white, colframe=LogicLightBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{ex}
+
+\newtcbtheorem[use counter from=mydefinition]{myremark}{注记}{
+	breakable, enhanced,
+	colback=white, colframe=LogicDarkBlue,
+	arc=4pt, boxrule=0.8pt, leftrule=4pt,
+	fonttitle=\bfseries\theoremFont,
+	fontupper=\normalsize\CJKfamily{theoremCJK},
+	left=16pt, right=12pt, top=10pt, bottom=10pt,
+	before skip=12pt, after skip=12pt,
+	boxsep=4pt, left skip=16pt,
+}{rm}
+
+% -------------------------------
+% 证明环境（楷体，无边框，不参与编号）
+% -------------------------------
+\RenewDocumentEnvironment{proof}{}{\par\noindent{\bfseries\proofFont 证明.\quad}}{\hfill$\square$\par\bigskip}
+
+% -------------------------------
+% 真值表环境（实用版）
+% -------------------------------
+\newenvironment{truthtable}[1][c|c|c|c|c|c]{%
+	\par\noindent\centering
+	\begin{tabular}{|#1|}\hline
+		\addlinespace[0.4ex]%
+	}{%
+		\hline\end{tabular}\par\bigskip
+}
+
+% -------------------------------
+% 页面样式
+% -------------------------------
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[bottom=1.5cm]{geometry}
+\setlength{\footskip}{1cm}

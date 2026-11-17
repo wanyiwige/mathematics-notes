@@ -1,0 +1,154 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.9 Cantor闭区间套定理
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{Cantor闭区间套定理}
+\begin{definition}
+	如果一列闭区间 $\left\{\left[a_n, b_n\right]\right\}$ 满足条件
+	\begin{enumerate}
+		\item $\left[a_{n+1}, b_{n+1}\right] \subset\left[a_n, b_n\right], n=1,2,3, \cdots$ ；
+		\item $\lim\limits_{n \rightarrow \infty}\left(b_n-a_n\right)=0$ 
+	\end{enumerate}
+	则称这列闭区间形成一个闭区间套．
+\end{definition}
+
+\begin{theorem}
+	(Cantor闭区间套定理)
+	如果 $\left\{\left[a_n, b_n\right]\right\}$ 形成一个闭区间套，则存在惟一的实数 $\xi$满足 $\xi\in\bigcap \left[a_n, b_n\right]$ ，且 $\xi=\lim\limits _{n \rightarrow \infty} a_n=\lim\limits _{n \rightarrow \infty} b_n$ ．
+\end{theorem}
+\begin{proof}
+	$$
+	a_1 \leqslant \cdots \leqslant a_{n-1} \leqslant a_n<b_n \leqslant b_{n-1} \leqslant \cdots \leqslant b_1 .
+	$$
+	
+	
+	显然 $\left\{a_n\right\}$ 单调增加而有上界 $b_1,\left\{b_n\right\}$ 单调减少而有下界 $a_1$ ，由单调有界定理，$\left\{a_n\right\}$ 与 $\left\{b_n\right\}$都收敛.
+	
+	设 $\lim\limits_{n \rightarrow \infty}a_n=\xi$，则
+	
+	$$
+	\lim _{n \rightarrow \infty} b_n=\lim _{n \rightarrow \infty}\left[\left(b_n-a_n\right)+a_n\right]=\lim _{n \rightarrow \infty}\left(b_n-a_n\right)+\lim _{n \rightarrow \infty} a_n=\xi .
+	$$
+	
+	下证唯一性，设 $\lim\limits_{n\rightarrow\infty} b_n=\xi^{\prime} \neq \xi$
+	
+	由保序性，$a_n \leqslant \xi \leqslant \xi^{\prime} \leqslant b_n$
+	
+	$$
+	\Rightarrow 0 \leqslant \xi-\xi^{\prime} \leqslant b_n-a_n
+	$$
+	
+	
+	由夹逼性 $\xi^{\prime}=\xi \quad$ 
+	
+\end{proof}
+下用Cantor闭区间套定理证明单调有界定理.
+\begin{proposition}
+	Cantor闭区间套定理$\Rightarrow$单调有界定理
+\end{proposition}
+
+\begin{proof}
+	设 $\left\{x_n\right\}$ 是一个单调增加且有上界的数列，取 $\left\{x_n\right\}$ 的一个上界为 $b_1$ ，取 $\left\{x_n\right\}$ 中的 $a_1=x_k$,取闭区间 $\left[a_1, b_1\right]$ 
+	
+	根据 $\left\{x_n\right\}$ 的单调性在 $\left[a_1, b_1\right]$ 内存在 $\left\{x_n\right\}$ 的无限多项.
+	
+	将 $\left[a_1, b_1\right]$ 二等分，得 $\left[a_1, \dfrac{a_1+b_1}{2}\right],\left[\dfrac{a_1+b_1}{2}, b_1\right]$
+	
+	由 $\left\{x_n\right\}$ 的单调性，在分出的两个区间中，必有一个包含 $\left\{x_n\right\}$ 的无限多项，
+	记之为 $\left[a_2, b_2\right]$ 
+	
+	再次二等分，以相同的方式，不断取出 $\left[a_3, b_3\right] \left[a_4, b_4\right], \cdots$ 满足 $\left[a_{n+1}, b_{n+1}\right] \subset\left[a_n, b_n\right] \quad n=1,2, \cdots$
+	
+	且 
+	$$\lim _{n \rightarrow \infty}\left(b_n-a_n\right)=\lim _{n \rightarrow \infty}\left(\dfrac{b_1-a_1}{2^n}\right)=0$$
+	
+	故 $\left\{\left[a_n, b_n\right]\right\}$ 是一个闭区间套：那么 $\exists!\xi \in \mathbb{R}$ ，使得$\xi \in \bigcap\left[a_n, b_n\right]$
+	
+	$$
+	\xi=\lim _{n \rightarrow \infty} a_n=\lim _{n \rightarrow \infty} b_n
+	$$
+	下证$\lim\limits_{n\rightarrow\infty}x_n=\xi$
+	
+	由于 $\left[a_n, b_n\right]$ 包含递增数列 $\left\{x_n\right\}$ 的无限多项，
+	$\exists N, \forall n>N$ 时 $ a_n \leqslant x_n \leqslant b_n$
+	
+	由夹逼性 $ \lim\limits_{n \rightarrow \infty} x_n=\xi$
+\end{proof}
+不同于在第一章所做的，我们用Cantor闭区间套定理证明$\R$不可数.
+\begin{proposition}
+	$\R$不可数.
+\end{proposition}
+
+\begin{proof}
+	如若不然，假设实数集 $\R$ 是可数集，即可以找到一种排列的规则，使
+	
+	$$
+	\mathbb{R}=\left\{x_1, x_2, \cdots, x_n, \cdots\right\} .
+	$$
+	
+	
+	先取闭区间 $\left[a_1, b_1\right]$ ，使 $x_1 \in\left[a_1, b_1\right]$ ，这总是可以做到的．
+	
+	然后将 $\left[a_1, b_1\right]$ 三等分，则在闭区间 $$\left[a_1, \dfrac{2 a_1+b_1}{3}\right],\left[\dfrac{2 a_1+b_1}{3}, \dfrac{a_1+2 b_1}{3}\right],\left[\dfrac{a_1+2 b_1}{3}, b_1\right]$$ 中，至少有一个不含有 $x_2$ ，把它记为 $\left[a_2, b_2\right]$ ．再将 $\left[a_2, b_2\right]$ 三等分，同样，在闭区间 $$\left[a_2, \dfrac{2 a_2+b_2}{3}\right],\left[\dfrac{2 a_2+b_2}{3}, \dfrac{a_2+2 b_2}{3}\right],\left[\dfrac{a_2+2 b_2}{3}, b_2\right]$$ 中，至少有一个不含有 $x_3$ ，把它记为 $\left[a_3, b_3\right]$ ．
+	
+	这样的步骤可一直做下去，于是得到一个闭区间套 $\left\{\left[a_n, b_n\right]\right\}$ ，满足
+	
+	$$
+	x_n \notin\left[a_n, b_n\right], n=1,2,3, \cdots
+	$$
+	且
+	$$
+	b_n-a_n=\dfrac{b_1-a_1}{3^{n-1}}\rightarrow\infty
+	$$
+	由闭区间套定理，存在惟一的实数 $\xi\in\bigcap\left\{\left[a_n,b_n\right]\right\}$ ，换言之，$\not\exists n,\xi \neq x_n(n=1$ ， $2,3, \cdots)$ ，这就与集合 $\left\{x_1, x_2, \cdots, x_n, \cdots\right\}$ 表示实数集 $\mathbb{R}$ 产生矛盾．
+\end{proof}
+\begin{construction}[用Cantor闭区间套从有理数构建$\R$]
+	
+	$$
+	I_n=\left[a_n, b_n\right] , a_n, b_n \in \mathbb{Q}, a_n<b_n
+	$$
+	
+	
+	满足
+	\begin{enumerate}
+		\item $I_{n+1} \subset I_n$
+		\item $\lim _{n \rightarrow \infty}\left(b_n-a_n\right)=0$
+	\end{enumerate}
+	定义若 $[[a_n, b_n]] \backsim[[c_n, d_n]] $ ，若 $\forall n $ 有
+	
+	$$
+	\left[a_n, b_n\right] \cap\left[c_n, d_n\right] \neq \varnothing
+	$$
+	显然地$\backsim$是一种等价关系
+	.
+	
+	令所有的闭区间套，构成一个集合 $\mathscr{C}$ ，那么
+	
+	$$
+	\mathbb{R}=\mathscr{C}/\backsim
+	$$
+	
+	记 $x=\left[\left[a_n, b_n\right]\right], y=\left[\left[c_n, d_n\right]\right]$
+	
+	序的定义：
+	
+	$$
+	x<y \Longleftrightarrow \exists \delta \in \mathbb{Q}^{+}, \exists N, \forall n \geqslant N, b_n<c_n-\delta
+	$$
+	
+	加法的定义：
+	
+	$$x+y:=\left[\left[a_n+c_n, b_n+d_n\right]\right]$$
+	
+	乘法的定义：
+	
+	$$x \cdot y:= \begin{cases}{\left[\left[a_n c_n, b_n d_n\right]\right],} & x \geqslant 0, y \geqslant 0 \\ -(x \cdot|y|), & x \geqslant 0, y<0 \\ -(|x| \cdot y), & x<0, y \geqslant 0 \\ |x| \cdot|y|, & x<0, y<0\end{cases}$$
+	
+	其中
+	\begin{itemize}
+		\item 绝对值：$|x|=\left[\left[\max \left(a_n, 0\right), \max \left(b_n, 0\right)\right]\right]$
+		\item 负号：$-x=\left[\left[-b_n,-a_n\right]\right]$
+	\end{itemize}
+	容易验证这是良定的.
+	
+\end{construction}

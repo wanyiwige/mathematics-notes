@@ -1,0 +1,206 @@
+\section{交换环上的多项式环}
+
+本节所有环均为交换幺环，同态保持单位元。说$R$是$R'$的子环时，本节还要求两者的单位元相同。先从扩环中的一个元素出发，说明为什么需要引入形式上的不定元。
+
+\begin{definition}
+设$R\subseteq R'$，$u\in R'$。记
+\[
+R[u]=\left\{a_0+a_1u+\cdots+a_nu^n:n\ge0,\ a_i\in R\right\},
+\qquad u^0=1.
+\]
+称它为$R$与$u$生成的子环。
+\end{definition}
+\begin{proposition}
+$R[u]$是包含$R$和$u$的最小子环。
+\end{proposition}
+\begin{proof}
+两个这样的表达式相减，仍具有相同形式。相乘时，因$u$与系数可交换，有
+\[
+\left(\sum_{i=0}^n a_i u^i\right)
+\left(\sum_{j=0}^m b_j u^j\right)
+=\sum_{k=0}^{n+m}\left(\sum_{i+j=k}a_i b_j\right)u^k.
+\]
+因此$R[u]$是子环。它包含所有常数及$u$；任何包含$R$与$u$的子环都包含$u$的各次幂及其有限线性组合，所以都包含$R[u]$。
+\end{proof}
+
+不同的系数组合可能给出$R'$中同一个元素，例如$u^2=1$时可以用$1$替换$u^2$。为把形式计算与这些特定关系分开，先构造一个系数表达式唯一的环。
+
+\begin{definition}
+以$R$中元素为系数的无穷序列
+\[
+(a_0,a_1,a_2,\ldots)
+\]
+称为一个\textbf{形式幂级数}，全体形式幂级数记为$R[[x]]$。定义逐项加法与乘法
+\begin{align*}
+(a_0,a_1,\ldots)+(b_0,b_1,\ldots)&=(a_0+b_0,a_1+b_1,\ldots),\\
+(a_0,a_1,\ldots)(b_0,b_1,\ldots)&=(c_0,c_1,\ldots),
+\qquad c_k=\sum_{i+j=k}a_i b_j.
+\end{align*}
+每个$c_k$仅涉及有限个乘积，因此定义不需要收敛性。
+\end{definition}
+
+\begin{proposition}
+$R[[x]]$在上述运算下是交换幺环。映射$a\mapsto(a,0,0,\ldots)$把$R$嵌入其中。
+\end{proposition}
+\begin{proof}
+逐项加法组成交换群，零元是全零序列，负元逐项取负。乘法可交换，因为$R$中乘法可交换。设三个序列的系数依次为$a_i,b_j,c_k$，则两种乘法结合次序所得第$n$项均为
+\[
+\sum_{i+j+k=n}a_i b_j c_k.
+\]
+这个和有限，故可重新分组，证明了结合律。类似地，第$n$项上有
+\[
+\sum_{i+j=n}a_i(b_j+c_j)
+=\sum_{i+j=n}a_i b_j+\sum_{i+j=n}a_i c_j,
+\]
+得到分配律。序列$(1,0,0,\ldots)$是单位元。常数序列的加法、乘法与$R$中相应运算一致，且不同常数给出不同序列，所以得到所述嵌入。
+\end{proof}
+
+\begin{definition}
+在$R[[x]]$中取$x=(0,1,0,\ldots)$。$R$与$x$生成的子环称为$R$上的\textbf{一元多项式环}，记为$R[x]$；$x$称为\textbf{不定元}。
+\end{definition}
+
+\begin{proposition}
+$R[x]$恰由只有有限个非零项的序列组成，且每个元素唯一地写成
+\[
+f(x)=a_0+a_1x+\cdots+a_nx^n.
+\]
+这里的唯一性指各次幂的系数唯一，允许在末尾添加零系数。
+\end{proposition}
+\begin{proof}
+按序列乘法计算，$x^i$只有第$i$个位置为$1$，其余位置均为$0$，其中第$0$个位置表示常数项。因此
+\[
+\sum_{i=0}^n a_i x^i=(a_0,a_1,\ldots,a_n,0,\ldots).
+\]
+这些序列组成子环并包含$R$和$x$；反过来每个这样的序列都是上述有限和，所以恰为$R[x]$。两个序列相等当且仅当每个位置相等，这就证明了系数的唯一性。
+\end{proof}
+
+\begin{theorem}\label{p2:poly-universal}
+设$\sigma:R\to S$为交换幺环之间保持单位元的同态，$u\in S$。则$\sigma$唯一地延拓为环同态
+\[
+\sigma_u:R[x]\to S,\qquad
+\sigma_u\left(\sum_i a_i x^i\right)=\sum_i\sigma(a_i)u^i,
+\]
+并满足$\sigma_u(x)=u$。
+\end{theorem}
+\begin{proof}
+系数表达式唯一，故公式定义了一个映射。按系数相加，得到它保持加法。对$f=\sum_i a_i x^i$、$g=\sum_j b_j x^j$，有
+\begin{align*}
+\sigma_u(fg)
+&=\sum_k\sigma\left(\sum_{i+j=k}a_i b_j\right)u^k\\
+&=\sum_{i,j}\sigma(a_i)\sigma(b_j)u^{i+j}\\
+&=\left(\sum_i\sigma(a_i)u^i\right)
+  \left(\sum_j\sigma(b_j)u^j\right)
+=\sigma_u(f)\sigma_u(g).
+\end{align*}
+所有和均为有限和，且$S$可交换，因而上述分组合法。又有$\sigma_u(1)=1$、$\sigma_u(a)=\sigma(a)$和$\sigma_u(x)=u$。
+
+若$\tau$也是这样的延拓，同态性迫使
+\[
+\tau\left(\sum_i a_i x^i\right)
+=\sum_i\tau(a_i)\tau(x)^i
+=\sum_i\sigma(a_i)u^i.
+\]
+所以$\tau=\sigma_u$，唯一性得证。
+\end{proof}
+
+\begin{definition}
+对$R\subseteq R'$和$u\in R'$，取包含映射的上述延拓，得到\textbf{代入同态}
+\[
+\varepsilon_u:R[x]\to R[u],\qquad f(x)\longmapsto f(u).
+\]
+若$f(u)=0$，称$u$为$f$的一个\textbf{根}。若存在非零$f\in R[x]$使$f(u)=0$，称$u$在$R$上\textbf{代数}；否则称$u$在$R$上\textbf{超越}。
+\end{definition}
+
+\begin{corollary}
+令$I=\ker\varepsilon_u$，则
+\[
+R[u]\cong R[x]/I,\qquad I\cap R=\{0\}.
+\]
+特别地，$u$在$R$上超越当且仅当代入同态为同构。
+\end{corollary}
+\begin{proof}
+由$R[u]$的定义，代入同态满射。环的同构定理给出商环描述。对$a\in R$，$\varepsilon_u(a)=a$，故常数的核只有零，即$I\cap R=\{0\}$。最后，超越性的定义恰好是$I=\{0\}$。
+\end{proof}
+
+\begin{proposition}
+反过来，若$I$为$R[x]$的理想且$I\cap R=\{0\}$，则$R$可嵌入$R[x]/I$。在此嵌入下，记$u=x+I$，有$R[x]/I=R[u]$。
+\end{proposition}
+\begin{proof}
+映射$a\mapsto a+I$在$R$上的核为$I\cap R$，所以为单同态。商环中每个元素可写成
+\[
+f(x)+I=(a_0+I)+(a_1+I)u+\cdots+(a_n+I)u^n,
+\]
+故整个商环由所嵌入的$R$与$u$生成。
+\end{proof}
+
+\begin{definition}
+归纳地定义\textbf{多元多项式环}
+\[
+R[x_1,\ldots,x_n]=\bigl(R[x_1,\ldots,x_{n-1}]\bigr)[x_n].
+\]
+其中$x_1^{i_1}\cdots x_n^{i_n}$称为一个\textbf{单项式}，$i_j$均为非负整数。多元多项式唯一地写成有限和
+\[
+f=\sum_{i_1,\ldots,i_n}a_{i_1\ldots i_n}x_1^{i_1}\cdots x_n^{i_n}.
+\]
+\end{definition}
+
+上述唯一性可以沿变量个数归纳：先按$x_n$的幂展开，每个系数属于$R[x_1,\ldots,x_{n-1}]$；再将这些系数按前$n-1$个变量展开。每一步的一元展开都唯一，因而最终每个单项式的系数唯一。
+
+\begin{theorem}\label{p2:multi-poly-universal}
+设$\sigma:R\to S$为交换幺环之间保持单位元的同态，$u_1,\ldots,u_n\in S$。存在唯一的环同态
+\[
+\widetilde\sigma:R[x_1,\ldots,x_n]\to S
+\]
+延拓$\sigma$且把$x_j$映为$u_j$。具体地，
+\[
+\widetilde\sigma(f)=
+\sum_{i_1,\ldots,i_n}\sigma(a_{i_1\ldots i_n})
+u_1^{i_1}\cdots u_n^{i_n}.
+\]
+\end{theorem}
+\begin{proof}
+对$n$归纳。$n=1$时即定理\ref{p2:poly-universal}。设前$n-1$个变量已经给出唯一同态
+\[
+\sigma_{n-1}:R[x_1,\ldots,x_{n-1}]\to S.
+\]
+再对系数环$R[x_1,\ldots,x_{n-1}]$应用一元情形，并指定$x_n\mapsto u_n$，便得到所需延拓。先展开$x_n$，再代入其系数，恰得到所列公式。
+
+任一满足条件的同态限制在前$n-1$个变量的多项式环上，必等于$\sigma_{n-1}$；再由一元情形的唯一性，它在加入$x_n$后也唯一。这完成归纳。
+\end{proof}
+
+\begin{definition}
+若$R\subseteq S$，记$R[u_1,\ldots,u_n]$为包含$R$及$u_1,\ldots,u_n$的最小子环，称为由这些元素生成的$R$代数。能由有限个元素这样生成的环称为\textbf{有限生成$R$代数}。
+
+若不存在非零$f\in R[x_1,\ldots,x_n]$使$f(u_1,\ldots,u_n)=0$，就称$u_1,\ldots,u_n$在$R$上\textbf{代数无关}。
+\end{definition}
+
+\begin{corollary}
+代入同态给出
+\[
+R[u_1,\ldots,u_n]\cong R[x_1,\ldots,x_n]/I,
+\quad I=\{f:f(u_1,\ldots,u_n)=0\},\quad I\cap R=\{0\}.
+\]
+这些元素代数无关当且仅当$I=\{0\}$。
+\end{corollary}
+\begin{proof}
+代入同态的像恰由所有有限多项式表达式组成，因此就是生成子环；其核为所列$I$。对常数的限制是包含映射，所以$I\cap R=\{0\}$。最后一项直接由代数无关的定义得到。
+\end{proof}
+
+\begin{proposition}
+设$N$为$R$的理想，记$N[x_1,\ldots,x_n]$为所有系数均在$N$中的多项式。则它是多项式环的理想，且
+\[
+R[x_1,\ldots,x_n]/N[x_1,\ldots,x_n]
+\cong(R/N)[y_1,\ldots,y_n].
+\]
+\end{proposition}
+\begin{proof}
+把自然同态$R\to R/N$延拓，并令$x_i\mapsto y_i$，得到
+\[
+\sum a_{i_1\ldots i_n}x_1^{i_1}\cdots x_n^{i_n}
+\longmapsto
+\sum(a_{i_1\ldots i_n}+N)y_1^{i_1}\cdots y_n^{i_n}.
+\]
+每个商环系数都可选取$R$中的代表元，故此映射满射。由多项式系数表达式的唯一性，像为零当且仅当各系数都在$N$中，其核就是$N[x_1,\ldots,x_n]$。核为理想，同构定理给出结论。
+\end{proof}
+
+生成元说明环中的元素怎样表示，而$I$说明这些表示之间有哪些关系。给出一个生成环的具体描述时，既要列出生成元，也要说明它们满足的关系；是否能用有限条关系生成整个理想，还需要关于系数环的进一步条件。

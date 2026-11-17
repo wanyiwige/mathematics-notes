@@ -1,0 +1,110 @@
+\section{素理想和极大理想}
+
+从本节开始，除特别说明外，讨论的环均为交换幺环。域与整环均要求$1\ne0$。理想$N$给出商环$R/N$，下面研究$N$具有什么性质时，该商环成为域或整环。
+
+\begin{definition}
+若理想$P\ne R$满足
+\[
+ab\in P\quad\Longrightarrow\quad a\in P\text{ 或 }b\in P,
+\]
+则称$P$为\textbf{素理想}。若理想$M\ne R$，且不存在理想$A$使$M\subsetneq A\subsetneq R$，则称$M$为\textbf{极大理想}。
+\end{definition}
+
+\begin{example}
+$\Z$中的素理想恰为$(0)$及各素数$p$生成的$(p)$；极大理想恰为这些$(p)$。
+\end{example}
+\begin{proof}[补充证明]
+若$ab\in(p)$，则$p\mid ab$，由$p$为素数得$p\mid a$或$p\mid b$，故$(p)$为素理想。若$(p)\subseteq(n)\subseteq\Z$，则$n\mid p$，取$n\geq0$后只能$n=1$或$p$，所以$(p)$极大。
+
+$(0)$为素理想，因为$\Z$无零因子；它不极大，例如$(0)\subsetneq(2)\subsetneq\Z$。其余非零真理想为$(n)$、$n>1$。若$n$合数，写$n=ab$、$1<a,b<n$，则$ab\in(n)$而$a,b\notin(n)$，故不是素理想；取$n$的素因子$p$又有$(n)\subsetneq(p)\subsetneq\Z$，所以也不是极大理想。
+\end{proof}
+
+\begin{theorem}\label{p2:prime-maximal}
+设$R$为交换幺环。
+\begin{enumerate}
+\item 满环同态$\sigma:R\to R'$诱导包含$\ker\sigma$的极大理想与$R'$的极大理想之间的一一对应。
+\item $R$是域，当且仅当$(0)$为极大理想。
+\item 理想$M\ne R$极大，当且仅当$R/M$是域。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\textbf{第一条：}环的理想对应保持并反映包含关系，且把$R$映到$R'$。若包含核的真理想$M$与$R$之间存在中间理想，则其像也位于$\sigma(M)$与$R'$之间；反过来，目标中的中间理想的完全反像也给出源中的中间理想。所以极大性在对应下保持。
+
+\textbf{第二条：}若$R$为域，任一非零理想$H$含非零元$a$，于是也含$a^{-1}a=1$，从而$H=R$。所以$(0)$极大。
+反过来，若$(0)$极大，对任意$a\ne0$，$Ra$是含$a$的非零理想，故$Ra=R$。于是存在$c\in R$使$ca=1$。交换性给出$ac=1$，所以每个非零元可逆，$R$为域。
+
+\textbf{第三条：}把第一条用于自然满同态$R\to R/M$，$M$对应零理想。因此$M$极大当且仅当$R/M$的零理想极大，再由第二条即得结论。
+\end{proof}
+
+\begin{theorem}\label{p2:prime-domain}
+理想$P\ne R$为素理想，当且仅当$R/P$为整环。特别地，$R$为整环当且仅当$(0)$为素理想。满环同态$\sigma:R\to R'$还诱导包含$\ker\sigma$的素理想与$R'$的素理想之间的一一对应。
+\end{theorem}
+\begin{proof}
+在$R/P$中，用$\overline a=a+P$表示剩余类。若$P$为素理想，则
+\[
+\overline a\,\overline b=0
+\Longrightarrow ab\in P
+\Longrightarrow a\in P\text{ 或 }b\in P
+\Longrightarrow\overline a=0\text{ 或 }\overline b=0.
+\]
+又$P\ne R$保证$R/P$非零，所以它是整环。
+反过来，若商环为整环，则$ab\in P$使$\overline a\,\overline b=0$，故至少一个类为零，即至少一个因子属于$P$。取$P=(0)$便得特别情形。
+
+最后，若$\ker\sigma\subseteq P$，由环同态定理，$R/P\cong R'/\sigma(P)$。两商环同时为整环或同时不是整环，结合理想对应，得到素理想的对应。
+\end{proof}
+
+域都是整环，所以每个极大理想均为素理想。反过来不成立，例如$\Z$的零理想。下面证明，在适当避开指定元素的条件下，素理想一定存在。
+
+\begin{definition}
+若$a\in R$满足$a^m=0$对某个正整数$m$成立，则称$a$为\textbf{幂零元}；否则称为非幂零元。
+\end{definition}
+
+\begin{theorem}\label{p2:prime-avoid-powers}
+若$a\in R$为非幂零元，则存在一个素理想$P$，不包含$a$的任何非负整数次幂$a^m$，$m\geq0$。
+\end{theorem}
+\begin{proof}
+令$T=\{a^m:m\geq0\}$，考虑全部与$T$不交的理想组成的集合$\mathcal S$，按包含关系排序。因为$a$非幂零，$(0)\cap T=\varnothing$，所以$\mathcal S$非空。
+
+取$\mathcal S$中的一条非空链$\{A_\alpha\}$，令$A=\bigcup_\alpha A_\alpha$。若$b,c\in A$，它们分别属于链中的两个理想；由全序性，其中一个包含另一个，所以$b,c$同属某个$A_\gamma$。于是$b-c\in A_\gamma\subseteq A$。对$r\in R$，$rb\in A$也由$b$所属理想的吸收性得到，故$A$为理想。
+若$A$包含某个$a^m$，则某个$A_\alpha$已经包含它，矛盾。所以$A\in\mathcal S$，为该链的上界。空链可取$(0)$为上界。由佐恩引理，$\mathcal S$有极大元$P$。
+
+由于$1=a^0\notin P$，$P$为真理想。反设$P$不是素理想，则存在$b,c\notin P$而$bc\in P$。令
+\[
+H=Rb+P,\qquad N=Rc+P.
+\]
+它们严格包含$P$，由$P$在$\mathcal S$中的极大性，$H,N$各与$T$相交。于是可取$a^r\in H$、$a^s\in N$，故$a^{r+s}\in HN$。
+但理想乘法展开给出
+\[
+HN=Rbc+RbP+RcP+P^2\subseteq P,
+\]
+因为$bc\in P$且其余各项也包含于$P$。于是$a^{r+s}\in P$，与$P\cap T=\varnothing$矛盾。所以$P$为所求素理想。
+\end{proof}
+
+\begin{corollary}
+每个非零交换幺环至少有一个极大理想。
+\end{corollary}
+\begin{proof}
+在上一定理的构造中取$a=1$，则$T=\{1\}$。与$T$不交的理想恰为全部真理想，因此由佐恩引理取得的极大元就是极大理想。
+\end{proof}
+
+\begin{corollary}
+$R$的全部素理想之交恰为全部幂零元组成的集合，记为
+\[
+r(R)=\bigcap_{P\text{为素理想}}P,
+\]
+称为$R$的\textbf{幂零根}。
+\end{corollary}
+\begin{proof}
+若$a^m=0$，任取素理想$P$。由$a^m\in P$反复使用素性，最终得到$a\in P$，所以$a\in r(R)$。
+若$a$非幂零，则前一定理给出不含$a$的素理想，故$a\notin r(R)$。两边相等。
+\end{proof}
+
+因此幂零元全体构成理想。也可直接验证：若$a^m=b^n=0$，则$(a-b)^{m+n-1}$的每个二项式展开项都含$a^m$或$b^n$，所以为零；对$c\in R$，$(ca)^m=c^ma^m=0$。这说明差与环元倍数仍幂零。
+
+\begin{example}
+$\Z$无非零幂零元，所以$r(\Z)=(0)$。若$n=\prod_i p_i^{e_i}>1$，由素理想对应，$\Z/(n)$中的全部素理想是$(p_i)/(n)$。因此
+\[
+r(\Z/(n))=\bigcap_i(p_i)/(n)=(p_1\cdots p_r)/(n).
+\]
+这里使用了不同素数生成的理想两两互素，从而交等于积。也可直接检查：模$n$的类$\overline a$幂零当且仅当每个$p_i$都整除$a$。
+\end{example}

@@ -1,0 +1,163 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.8 积分与级数
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{积分与级数}
+\begin{proposition}（积分判别法）
+	设函数 $f(x)$ 在 $[a, +\infty)$ 上恒大于等于 $0$，取一个严格单调上升且趋于 $+\infty$ 的数列 $a_1 = a < a_2 < a_3 < \dots$，令
+	\[
+	u_n = \int_{a_n}^{a_{n+1}} f(x) \dd x
+	\]
+	则级数 $\sum u_n$ 与反常积分 $\displaystyle\int_{a}^{+\infty} f(x) \dd x$ 有相同的敛散性，并且当它们收敛时，
+	\[
+	\sum_{n=1}^{\infty} u_n = \int_{a}^{+\infty} f(x) \dd x
+	\]
+\end{proposition}
+
+
+
+注意：当 $f(x) \ge 0$ 不成立时，由 $\displaystyle\int_{a}^{+\infty} f(x) \dd x$ 收敛可推得 $\sum u_n$ 收敛，但反之不成立。
+例如：反常积分 $\displaystyle\int_{a}^{+\infty} \sin x \dd x$ 发散，但取 $u_n = \displaystyle\int_{n\pi}^{2n\pi} \sin x \dd x = 0$，此时级数 $\sum u_n$ 收敛。
+\begin{proof}
+	令 $F(A) = \displaystyle\int_{a}^{A} f(x) \dd x$。对任意 $A \ge a$，存在 $n$ 使得 $a_n \le A \le a_{n+1}$。设 $\sum u_n$ 的部分和为 $S_n$，则
+	\begin{align*}
+		\int_{a}^{A} f(x) \dd x
+		&= \sum_{i=1}^{n-1} \int_{a_i}^{a_{i+1}} f(x) \dd x + \int_{a_n}^{A} f(x) \dd x \\
+		&= S_{n-1} + \int_{a_n}^{A} f(x) \dd x
+	\end{align*}
+	由于 $f(x) \ge 0$，有
+	\[
+	S_{n-1} \le \int_{a}^{A} f(x) \dd x \le S_{n-1} + \int_{a_n}^{a_{n+1}} f(x) \dd x = S_n
+	\]
+	即
+	\[
+	S_{n-1} \le F(A) \le S_n
+	\]
+	\begin{itemize}
+		\item 若 $\sum u_n$ 发散，则 $\{S_n\}$ 发散，从而 $F(A) \to +\infty$，即反常积分发散。
+		\item 若 $\sum u_n$ 收敛，则 $\{S_n\}$ 收敛，从而 $F(A)$ 收敛，即反常积分收敛。
+	\end{itemize}
+	
+	
+	
+\end{proof}
+特别地，当 $f(x)$ 单调减少时，取 $a_n = n$，则当 $n \ge N = \lfloor a \rfloor + 1$ 时，有
+\[
+f(n+1) \le u_n = \int_{n}^{n+1} f(x) \dd x \le f(n)
+\]
+由比较判别法可知，级数 $\sum_{n=1}^{\infty} f(n)$ 与 $\sum_{n=1}^{\infty} u_n$ 同时收敛或发散，从而 $\sum_{n=1}^{\infty} f(n)$ 与反常积分 $\displaystyle\int_{a}^{+\infty} f(x) \dd x$ 同时收敛或发散。
+\begin{example}
+		考虑级数 $\sum_{n=2}^{\infty} \dfrac{1}{n(\ln n)^p}$ 的敛散性。
+\end{example}
+
+
+\begin{proof}
+	与 \ref{级数1/nlnn}不同，我们用积分判别法来做。
+	由积分判别法，级数 $\sum\limits_{n=2}^{\infty} \dfrac{1}{n(\ln n)^p}$ 与反常积分 $\displaystyle\int_{2}^{+\infty} \frac{1}{x(\ln x)^p} \mathrm{d}x$ 有相同的敛散性。
+	
+	故只需考虑反常积分 $\displaystyle\int_{2}^{+\infty} \frac{1}{x(\ln x)^p} \dd x$ 的敛散性。
+	
+	\[
+	\int_{2}^{+\infty} \frac{1}{x(\ln x)^p} \dd x
+	= \int_{2}^{+\infty} \frac{1}{(\ln x)^p} \dd (\ln x)
+	=
+	\begin{cases}
+		\ln \ln x \Big|_{2}^{+\infty} \to +\infty, & p=1 \\[6pt]
+		\dfrac{1}{1-p} (\ln x)^{1-p} \Big|_{2}^{+\infty}, & p \ne 1
+	\end{cases}
+	\]
+	
+	当 $1-p < 0$，即 $p>1$ 时，反常积分收敛；当 $p \le 1$ 时，反常积分发散。
+	
+	因此，级数 $\sum\limits_{n=2}^{\infty} \dfrac{1}{n(\ln n)^p}$ 当 $p>1$ 时收敛，当 $p \le 1$ 时发散。
+	
+\end{proof}
+\begin{example}
+	证明：
+	
+	1.  $\displaystyle \int_{0}^{+\infty} \frac{\dd x}{1+x^2\sin^2 x}$ 发散
+	
+	2.  $\displaystyle \int_{0}^{+\infty} \frac{\dd x}{1+x^4\sin^2 x}$ 收敛
+\end{example}
+\begin{solution}
+	(1) 取 $a_n = n\pi,\ n=0,1,2,\dots$，令
+	\[
+	u_n = \int_{n\pi}^{(n+1)\pi} \frac{\dd x}{1+x^2\sin^2 x}
+	= \int_{0}^{\pi} \frac{\dd t}{1+(n\pi+t)^2\sin^2 t}
+	> \int_{0}^{\frac{1}{(n+1)\pi}} \frac{\dd t}{1+(n\pi+t)^2\sin^2 t}
+	\]
+	当 $0 < t < \dfrac{1}{(n+1)\pi}$ 时，有
+	\[
+	(n\pi+t)^2\sin^2 t < (n+1)^2\pi^2 t^2 < (n+1)^2\pi^2 \cdot \frac{1}{(n+1)^2\pi^2} = 1
+	\]
+	于是
+	\[
+	u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \frac{\dd t}{1+1} = \frac{1}{2} \cdot \frac{1}{(n+1)\pi} = \frac{1}{2\pi} \cdot \frac{1}{n+1}
+	\]
+	因为级数 $\sum \dfrac{1}{n+1}$ 发散，由比较判别法可知 $\sum u_n$ 发散，故由积分判别法得 $\displaystyle \int_{0}^{+\infty} \frac{\dd x}{1+x^2\sin^2 x}$ 发散。
+	
+	(2) 取 $a_n = n\pi,\ n=0,1,2,\dots$，令
+	\[
+	u_n = \int_{n\pi}^{(n+1)\pi} \frac{\dd x}{1+x^4\sin^2 x}
+	= \int_{0}^{\pi} \frac{\dd t}{1+(n\pi+t)^4\sin^2 t}
+	\]
+	将积分拆为两部分：
+	\[
+	u_n = \int_{0}^{\frac{\pi}{2}} \frac{\dd t}{1+(n\pi+t)^4\sin^2 t} + \int_{0}^{\frac{\pi}{2}} \frac{\dd t}{1+(n\pi+\pi-t)^4\sin^2 t} = u_n' + u_n''
+	\]
+	当 $0 < t < \dfrac{\pi}{2}$ 时，有 $\sin t \ge \dfrac{2}{\pi}t$，故
+	\[
+	(n\pi+t)^4\sin^2 t \ge n^4\pi^4 \left(\frac{2t}{\pi}\right)^2 = 4\pi^2n^4t^2
+	\]
+	于是
+	\[
+	u_n' \le \int_{0}^{\frac{\pi}{2}} \frac{\dd t}{1+4\pi^2n^4t^2}
+	= \frac{1}{2\pi n^2} \int_{0}^{\pi^2n^2} \frac{\dd s}{1+s^2}
+	< \frac{1}{2\pi n^2} \cdot \frac{\pi}{2} = \frac{1}{4n^2}
+	\]
+	由于级数 $\sum \dfrac{1}{n^2}$ 收敛，故 $\sum u_n'$ 收敛；同理可证 $\sum u_n''$ 收敛，因此 $\sum u_n$ 收敛，故由积分判别法得 $\displaystyle \int_{0}^{+\infty} \frac{\dd x}{1+x^4\sin^2 x}$ 收敛。
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

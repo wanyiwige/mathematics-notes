@@ -1,0 +1,24 @@
+\subsection*{主振动的能量与稳定性}
+\begin{proposition}\label{prop:normal-mode-stability}
+对第~\ref{sec:normal-modes}~节的系统 $\ddot x=-Ax$，若实对称矩阵 $A$ 正定，则零平衡稳定但不渐近稳定。
+\end{proposition}
+\begin{proof}
+第~\ref{sec:normal-modes}~节的正交换元把方程写成 $\ddot q_j=-a_jq_j$，其中 $a_j>0$。
+令 $p_j=\dot q_j$，取能量
+\[
+ E(q,p)=\frac12\sum_j(p_j^2+a_jq_j^2).
+\]
+记 $a_{\min}=\min_ja_j>0,a_{\max}=\max_ja_j$，则
+\[
+ \tfrac12\min\{1,a_{\min}\}(|q|^2+|p|^2)
+ \leq E(q,p)
+ \leq\tfrac12\max\{1,a_{\max}\}(|q|^2+|p|^2).
+\]
+所以 $E$ 是状态 $(q,p)$ 的正定二次型。沿解求导，
+\[
+ \dot E=\sum_jp_j(\dot p_j+a_jq_j)=0.
+\]
+由定理~\ref{thm:Lyapunov稳定性判据} 的第一种情形，零解稳定。
+另一方面，任何非零初值的能量都严格为正并保持不变；若相应解趋于零，则连续性使其能量趋于零，矛盾。
+因此它不渐近稳定。正交换元及其逆均连续，结论也适用于原坐标。
+\end{proof}

@@ -1,0 +1,248 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.5 Newton-Leibniz公式
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{Newton-Leibniz公式}
+\begin{definition}
+	设 \( f(x) \in \mathcal{R}[a,b] \)，则对任意 \( x \in [a,b] \)，\( \displaystyle\int_a^x f(t)dt \) 有定义.
+	
+	当 \( x \) 在 \( [a,b] \) 上变动时，\( \displaystyle\int_a^x f(t)dt \) 的值也随之改变，因此它是定义在 \( [a,b] \) 上的函数，记为
+	\[
+	F(x) = \int_a^x f(s)ds
+	\]
+	称为变上限积分.
+	
+	类似地，有变下限积分
+	\[
+	G(x) = \int_x^b f(s)ds = -\int_b^x f(s)ds
+	\]
+\end{definition}
+\begin{proposition}
+	若 \( f \in \mathcal{R}[a,b] \)，则 \( F(x) = \displaystyle\int_a^x f(s)\dd s \in C[a,b] \).
+	
+	
+\end{proposition}
+\begin{proof}
+	对任意 \( \Delta x \)，考虑
+	\[
+	F(x+\Delta x) - F(x) = \int_x^{x+\Delta x} f(t)dt = \eta \cdot \Delta x
+	\]
+	其中存在 \( \eta \in [m,M] \)，其中
+	\[
+	m = \inf_{t \in [x,x+\Delta x]} f(t), \quad M = \sup_{t \in [x,x+\Delta x]} f(t)
+	\]
+	
+	因此
+	\[
+	\lim_{\Delta x \to 0} \left[ F(x+\Delta x) - F(x) \right] = \lim_{\Delta x \to 0} \eta \cdot \Delta x = 0
+	\]
+	故 \( F(x) \) 在 \( [a,b] \) 上连续，即 \( F(x) \in C[a,b] \).
+\end{proof}
+应用变限积分的连续性，我们给出第二积分中值定理.
+\begin{lemma}(O.Bonnet公式)\label{O.Bonnet公式}
+	如果在 $[a,b]$ 上 $f(x)$ 单调递减且非负，而 $g(x)$ 可积，则存在 $\xi \in [a,b]$，使得
+	\[
+	\int_a^b f(x)g(x) \dd x = f(a)\int_a^\xi g(x) \dd x
+	\]
+\end{lemma}
+\begin{proof}
+	对任意划分 $P: x_0 = a < x_1 < \dots < x_n = b$，有
+	\[
+	I = \int_a^b f(x)g(x) \dd x = \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} f(x)g(x) \dd x
+	\]
+	将积分拆分为两部分：
+	\[
+	= \sum_{i=0}^{n-1} f(x_i) \int_{x_i}^{x_{i+1}} g(x) \dd x + \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} \left[f(x) - f(x_i)\right]g(x) \dd x = \sigma + \rho
+	\]
+	设对任意 \( x \in [a,b] \)，有 \( |g(x)| \leq L \).那么由第一积分中值定理，
+	\[
+	|\rho| \leq \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} |f(x) - f(x_i)| \cdot |g(x)| \dd x \leq L \sum_{i=0}^{n-1} \omega_i \Delta x_i
+	\]
+	
+	由\ref{单调函数（可能有无限多个不连续点）必可积}，\( f \in \mathcal{R}[a,b] \)，故当 \( \lambda(P) \to 0 \) 时，\( \rho \to 0 \).于是
+	\[
+	I = \lim_{\lambda \to 0} \sigma
+	\]
+	
+	令
+	\[
+	G(x) = \int_a^x g(t) \dd t
+	\]
+	则由Abel变换，
+	\[
+	\sigma = \sum_{i=0}^{n-1} f(x_i) \left[ G(x_{i+1}) - G(x_i) \right] = \sum_{i=1}^{n-1} G(x_i) \left[ f(x_{i-1}) - f(x_i) \right] + G(b) f(x_{n-1})
+	\]
+	
+	因 \( G(x) \) 连续，故存在 \( m,M \)，使得 \( m \leq G(x) \leq M \) 
+	\[
+	m f(a) \leq \sigma \leq M f(a)
+	\]
+	
+	因此存在 \( \xi \in [a,b] \)，使得 \( G(\xi) \in [m,M] \)，满足
+	\[
+	I = f(a) G(\xi) = f(a) \int_a^\xi g(x) \dd x
+	\]
+	
+\end{proof}
+
+类似地，若 \( f(x) \) 非负且单调递增，则存在 \( \xi \in (a,b) \)，使得
+\[
+\int_a^b f(x)g(x) \dd x = f(b) \int_\xi^b g(x) \dd x
+\]
+\begin{proposition}（第二积分中值定理）
+	若 \( f(x) \) 在 \( [a,b] \) 上单调，\( g(x) \in \mathcal{R}[a,b] \)，则存在 \( \xi \in (a,b) \)，使得
+	\[
+	\int_a^b f(x)g(x) \dd x = f(a)\int_a^\xi g(x) \dd x + f(b)\int_\xi^b g(x) \dd x
+	\]
+	
+	
+\end{proposition}
+\begin{proof}
+	若 \( f(x) \) 单调递减，则 \( f(x) - f(b) \geq 0 \)，对函数 \( f(x) - f(b) \) 应用\ref{O.Bonnet公式}即可得证；
+	若 \( f(x) \) 单调递增，同理可证.
+\end{proof}
+
+\begin{proposition}\label{F'(x) = f(x)}
+	若 \( f(x) \in C[a,b] \)，则 \( F(x) = \displaystyle\int_a^x f(t)\dd t \in D[a,b] \)，且 \( F'(x) = f(x) \).
+	
+\end{proposition}
+注： 此处是充分不必要的.
+\begin{proof}
+	沿用上面的记号，存在 \( \eta \in [m,M] \)，使得
+	\[
+	F(x+\Delta x) - F(x) = \eta \Delta x
+	\]
+	因 \( f(x) \in C[a,b] \)，故存在 \( \xi \in (a,b) \)，使得 \( f(\xi) = \eta \).因此
+	\[
+	F'(x) = \lim_{\Delta x \to 0} \frac{F(x+\Delta x) - F(x)}{\Delta x} = \lim_{\Delta x \to 0} f(\xi) = f(x)
+	\]
+	
+\end{proof}
+对变下限积分，若 \( f \in C[a,b] \)，\( G(x) = \displaystyle\int_x^b f(t)dt \)，则
+\[
+G'(x) = \left( -\int_b^x f(t)dt \right)' = -f(x)
+\]
+
+同时，对形如 \( F(x) = \displaystyle\int_a^{h(x)} f(t)\dd t \) 的变限积分，若 \( f \in C \)，\( h \in D \)，则
+\[
+F(x) \in D \quad \text{且} \quad F'(x) = f(h(x)) \cdot h'(x)
+\]
+
+对形如 \( F(x) =\displaystyle \int_{g(x)}^{h(x)} f(t)\dd t \) 的变限积分，若 \( f \in C \)，\( g,h \in D \)，取 \( c \in [a,b] \)，则
+\[
+F(x) = \int_c^{h(x)} f(t)\dd t - \int_c^{g(x)} f(t)\dd t
+\]
+求导得
+\[
+F'(x) = f(h(x)) \cdot h'(x) - f(g(x)) \cdot g'(x)
+\]
+\begin{theorem}（微积分基本定理,Newton-Leibniz公式）
+	若 $f \in C[a,b]$，$F$ 是 $f$ 在 $[a,b]$ 上的一个原函数，则
+	\[
+	\int_a^b f(x)\dd x = F(b) - F(a)
+	\]
+\end{theorem}
+\begin{proof}
+	令
+	\[
+	G(x) = \int_a^x f(t)\dd t,
+	\]
+	由 \ref{F'(x) = f(x)} 知 $G'(x) = f(x)$，即 $G(x)$ 也是 $f$ 的一个原函数.
+	两个原函数相差一个常数：
+	\[
+	F(x)= G(x)  + C.
+	\]
+	\[
+	\begin{aligned}
+		G(b) - G(a) &= F(b) - F(a) \\
+		&= \int_a^b f(x)\dd x - \int_a^a f(x)\dd x \\
+		&= \int_a^b f(x)\dd x
+	\end{aligned}
+	\]
+	得证.
+\end{proof}
+这里对 $f(x)$ 的条件可以放宽为 $f \in \mathcal{R}[a,b]$.
+\begin{proposition}
+	若 $f \in \mathcal{R}[a,b]$，且 $F(x)$ 是 $f(x)$ 在 $[a,b]$ 上的原函数，即 $F'(x) = f(x)$，则
+	\[
+	\int_a^b f(x) \dd x = F(b) - F(a)
+	\]
+\end{proposition}
+\begin{proof}
+	对 $[a,b]$ 上的任意划分 $P: a = x_0 < x_1 < \dots < x_n = b$，有
+	\[
+	F(b) - F(a) = F(x_n) - F(x_0) = \sum_{i=1}^n \left[ F(x_i) - F(x_{i-1}) \right]
+	\]
+	
+	由于 $F$ 是 $f$ 的原函数，$F$ 可导，对每个区间 $(x_{i-1},x_i)$，由拉格朗日中值定理，存在 $\xi_i \in (x_{i-1},x_i)$，使得
+	\[
+	F(x_i) - F(x_{i-1}) = f(\xi_i) \Delta x_i
+	\]
+	
+	因此
+	\[
+	F(b) - F(a) = \sum_{i=1}^n f(\xi_i) \Delta x_i
+	\]
+	
+	由 $f \in \mathcal{R}[a,b]$
+	\[
+	\left| F(b) - F(a) - \int_a^b f(x)\dd x \right| = \left| \sum_{i=1}^n f(\xi_i) \Delta x_i - \int_a^b f(x)\dd x \right| < \varepsilon
+	\]
+	
+	故
+	\[
+	F(b) - F(a) = \int_a^b f(x)\dd x
+	\]
+	
+\end{proof}
+
+运用牛顿-莱布尼茨（N-L）公式与不定积分的相关公式，我们可以得到定积分的如下公式：
+
+1. 定积分分部积分公式
+
+设 $u(x), v(x) \in C[a,b]$(或扩充为 $u'(x), v'(x) \in \mathcal{R}[a,b]$)，则
+\[
+\int_a^b u(x) v'(x) \dd x = u(x)v(x) \bigg|_a^b - \int_a^b u'(x) v(x) \dd x
+\] 
+
+2. 定积分换元公式
+
+设 $f(x)$ 在 $[a,b]$ 上连续，$x=\varphi(t)$ 在 $[\alpha,\beta]$ 上连续可导，且 $\varphi(t)$ 的值域包含于 $[a,b]$.记 $a = \varphi(\alpha),\ b = \varphi(\beta)$，则
+\[
+\int_a^b f(x) \dd x = \int_\alpha^\beta f\left( \varphi(t) \right) \varphi'(t) \dd t
+\]
+该公式无论 $\alpha \leq \beta$ 还是 $\beta \leq \alpha$ 均成立.
+
+结合函数的一些性质，我们给出以下的命题，其证明是不言自明的.
+\begin{proposition}
+	设 \( f \in \mathcal{R}(I) \)，则有如下结论：
+	\begin{enumerate}
+		\item 若 \( f(x) \) 为偶函数，且 \( f \in \mathcal{R}[-a,a] \)，则
+		\[
+		\int_{-a}^a f(x)\dd x = 2\int_0^a f(x)\dd x
+		\]
+		\item 若 \( f(x) \) 为奇函数，且 \( f \in \mathcal{R}[-a,a] \)，则
+		\[
+		\int_{-a}^a f(x)\dd x = 0
+		\]
+		\item \( f \in \mathcal{R}[-a,a] \)
+		\[
+		\int_{-a}^a f(x) \dd x = \frac{1}{2}\int_{-a}^a \left[ f(x) + f(-x) \right] \dd x = \int_0^a \left[ f(x) + f(-x) \right] \dd x
+		\]
+		\item \( f \in \mathcal{R}[a,b] \)
+		\[
+		\int_a^b f(x) \dd x = \int_a^b f(a+b-x) \dd x = \frac{1}{2}\int_a^b \left[ f(x) + f(a+b-x) \right] \dd x
+		\]
+		\item 若 \( f(x) \) 以 \( T \) 为周期，则
+		\[
+		\int_a^{a+T} f(x) \dd x = \int_0^T f(x) \dd x, \quad \int_0^T f(x+a) \dd x = \int_0^T f(x) \dd x,
+		\]
+		\[
+		\int_a^{a+nT} f(x) \dd x = n \int_0^T f(x) \dd x, \quad n \in \mathbb{N}
+		\]
+	\end{enumerate}
+	
+	
+	
+\end{proposition}
+

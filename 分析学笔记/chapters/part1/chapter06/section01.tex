@@ -1,0 +1,139 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第6章：函数的极限与连续性
+% 节：6.1 函数极限
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{函数极限}
+\begin{definition}\label{def1}
+	设函数 $f$ 在点 $x_0$ 的某个去心邻域上有定义，即 $\exists \rho > 0$，使得
+	
+	$$
+	O(x_0, \rho) \setminus \{x_0\} \subset D_f
+	$$
+	
+	对 $A \in \mathbb{R},\text{若} \forall \varepsilon > 0, \exists \delta = \delta(\varepsilon) $ 且 $\delta < \rho$，使得 $\forall x$ 满足 $0 < |x - x_0| < \delta$ 时，
+	
+	$$
+	|f(x) - A| < \eps
+	$$
+	
+	成立，则称 $A$ 为 $f(x)$ 在 $x_0$ 处的极限，记作
+	
+	$$
+	\lim_{x \to x_0} f(x) = A
+	$$
+	
+	若这样的 $A$ 不存在，我们说 $\lim\limits_{x \to x_0} f(x)$ 不存在.
+\end{definition}
+下面给出 $f(x)$ 在 $x_0$ 的极限不为 $A$ 的定义，这在证明中是经常用的到的.
+\begin{definition}\label{nopro}
+	$\exists \varepsilon_0 > 0, \forall \delta > 0$，对 $x$，尽管 $0 < |x - x_0| < \delta$，
+	
+	$$
+	|f(x) - A| \geqslant \varepsilon_0
+	$$
+\end{definition}
+接下来我们对极限的定义做出扩展，对$x$的行为以及$f(x)$的行为做出分类，$x$的行为有6种，$f(x)$的行为有4种，两两组合下我们可以得到24种不同极限的定义.
+
+\begin{definition}
+	$x$ 的行为：
+	
+	\begin{enumerate}
+		\item $x \to x_0$:~ ————，$\exists \delta > 0, \forall x (0 < |x - x_0| < \delta)$，————
+		\item $x \to x_0^+$: ————，$\exists \delta > 0, \forall x (0 < x - x_0 < \delta)$，————
+		\item $x \to x_0^-$: ————，$\exists \delta > 0, \forall x (-\delta < x - x_0 < 0)$，————
+		\item $x \to \infty$:~~————， $\exists X > 0, \forall x (|x| > X)$，————
+		\item $x \to +\infty$: ————，$\exists X > 0, \forall x (x > X)$，————
+		\item $x \to -\infty$: ————，$\exists X > 0, \forall x (x < -X)$，————
+	\end{enumerate}
+	
+	其中2、3条与分别对应$x$趋近于$x_0$的左极限与右极限.对函数$f(x)$，$x_0$处 的左右极限记为$f(x_0-),f(x_0+)$
+	
+	$f(x)$的行为：
+	
+	\begin{enumerate}
+		\item $f(x) \to A$ (有限): $\forall \varepsilon > 0$，————，$  |f(x) - A| < \varepsilon$
+		\item $f(x) \to \infty$: $\forall G > 0$，————，$|f(x)| > G$
+		\item $f(x) \to +\infty$: $\forall G > 0$，————，$ f(x) > G$
+		\item $f(x) \to -\infty$: $\forall G > 0$，————，$ f(x) < -G$
+	\end{enumerate}
+\end{definition}
+举例来说，
+
+$\lim\limits_{x \to x_0} f(x) = \infty$ 定义为
+
+$\forall G > 0, \exists \delta > 0, \forall x$ 满足 $-\delta < x - x_0 < 0$ 有 $|f(x)| > G$ 成立.
+
+$\lim\limits_{x \to +\infty} f(x) = A$ 定义为：
+
+$\forall \varepsilon > 0, \exists X > 0, \forall x$ 满足 $x > X$ 有 $|f(x) - A| < \varepsilon$ 成立.
+
+使用\ref{nopro}中取逆命题的技巧，我们得到一些不收敛于某值，不是无穷的定义
+
+下面给出几个使用定义证明极限的例子.
+
+\begin{example}
+	(1)  $$\lim_{x \to 0} e^x = 1$$
+	(2)$$\lim_{x \to 1} \frac{x(x-1)}{x^2-1} = \frac{1}{2}$$
+	(3)$$\lim_{x \to 1^-} \frac{x^2}{x-1} = -\infty$$
+	(4) $$\lim_{x \to \infty} \frac{x+1}{2x-1} = \frac{1}{2}$$
+\end{example}
+\begin{proof}
+	(1) $\forall \varepsilon > 0$，考虑
+	\[
+	|e^x - 1| < \varepsilon
+	\]
+	不妨设 $\varepsilon < 1$，
+	\[
+	1 - \varepsilon < e^x < 1 + \varepsilon
+	\]
+	取对数得
+	\[
+	\ln(1 - \varepsilon) < x < \ln(1 + \varepsilon)
+	\]
+	取 $\delta = \min\{-\ln(1 - \eps), \ln(1 + \eps)\}$，$\forall |x| < \delta$ 都有
+	\[
+	|e^x - 1| < \varepsilon
+	\]
+	(2) $\forall \varepsilon > 0$，考虑
+	$$\begin{aligned}
+		\left|\dfrac{x(x-1)}{x^2-1} - \dfrac{1}{2}\right| &< \varepsilon\\
+		\Rightarrow \left|\dfrac{\dfrac{1}{2}(x-1)^2}{x^2-1}\right| &< \eps\\
+		\Rightarrow \left|\dfrac{x-1}{2(x+1)}\right| &< \eps
+	\end{aligned}$$
+	取 $|x-1| < 1$，此时有 $0 < x < 2$，那么 $1 < x+1 < 3$，
+	\[
+	\left|\dfrac{x-1}{2(x+1)}\right| < \left|\dfrac{x-1}{2}\right| < \eps
+	\]
+	取 $\delta = \min\{1, 2\varepsilon\}$，$\forall 0 < |x-1| < \delta$ 都有
+	\[
+	\left|\dfrac{x(x-1)}{x^2-1} - \dfrac{1}{2}\right| < \varepsilon
+	\]
+	(3) $\forall G > 0$，考虑
+	\[
+	\frac{x^2}{x-1} < -G
+	\]
+	取 $-1 < x-1 < 0$，即 $x^2 > 4$，则
+	\[
+	\frac{x^2}{x-1} < \frac{4}{x-1} < -G
+	\]
+	取 $\delta = \min\{1, \dfrac{4}{G}\}$，则 $\forall -\delta < x-1 < 0$ 都有
+	\[
+	\frac{x^2}{x-1} < -G
+	\]
+	(4) $\forall \varepsilon > 0$，考虑
+	$$\begin{aligned}
+		\left|\frac{x+1}{2x-1} - \frac{1}{2}\right| &< \varepsilon\\
+		\Rightarrow \left|\frac{3}{2(2x-1)}\right| &< \varepsilon
+	\end{aligned}$$
+	取 $X = \max\left\{\dfrac{3}{4\varepsilon} + \dfrac{1}{2}, \dfrac{3}{-4\varepsilon} - \dfrac{1}{2}\right\}$，$\forall |x| > X$ 都有
+	\[
+	\left|\frac{x+1}{2x-1} - \frac{1}{2}\right| < \epsilon
+	\]
+\end{proof}
+根据左极限右极限的定义，容易得到以下命题
+\begin{proposition}
+	$\lim\limits_{x \to x_0} f(x)$ 存在的充要条件是 $f(x)$ 在 $x_0$ 处的左极限、右极限存在并且相等，也就是说：
+	\[
+	\lim_{x \to x_0} f(x) = A \iff \lim_{x \to x_0^-} f(x) = \lim_{x \to x_0^+} f(x) = A
+	\]
+\end{proposition}

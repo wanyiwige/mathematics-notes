@@ -1,0 +1,526 @@
+[
+  {
+    "Name": "被移动的点",
+    "Target": "p2:concept:c2-l405"
+  },
+  {
+    "Name": "变换群",
+    "Target": "p2:concept:c1-l248"
+  },
+  {
+    "Name": "不可分解群",
+    "Target": "p2:concept:c2-l1600"
+  },
+  {
+    "Name": "不相交轮换",
+    "Target": "p2:concept:c1-l210"
+  },
+  {
+    "Name": "乘法单位元",
+    "Target": "p2:concept:c1-l954"
+  },
+  {
+    "Name": "传递作用",
+    "Target": "p2:concept:c2-l1035"
+  },
+  {
+    "Name": "代数运算（二元运算）",
+    "Target": "p2:concept:c1-l19"
+  },
+  {
+    "Name": "单群",
+    "Target": "p2:concept:c2-l332"
+  },
+  {
+    "Name": "单位（可逆元）",
+    "Target": "p2:concept:c1-l956"
+  },
+  {
+    "Name": "单位群",
+    "Target": "p2:concept:c1-l963"
+  },
+  {
+    "Name": "单位元",
+    "Target": "p2:concept:c1-l40"
+  },
+  {
+    "Name": "导出列",
+    "Target": "p2:concept:c2-l504"
+  },
+  {
+    "Name": "导出子群",
+    "Target": "p2:concept:c2-l504"
+  },
+  {
+    "Name": "等价的作用",
+    "Target": "p2:concept:c2-l1004"
+  },
+  {
+    "Name": "$n$元对称群",
+    "Target": "p2:concept:c1-l193"
+  },
+  {
+    "Name": "对换",
+    "Target": "p2:concept:c1-l210"
+  },
+  {
+    "Name": "二面体群",
+    "Target": "p2:concept:c1-l164"
+  },
+  {
+    "Name": "非平凡子群",
+    "Target": "p2:concept:c1-l253"
+  },
+  {
+    "Name": "共轭类",
+    "Target": "p2:concept:c2-l1151"
+  },
+  {
+    "Name": "共轭元素",
+    "Target": "p2:concept:c2-l978"
+  },
+  {
+    "Name": "共轭子群",
+    "Target": "p2:concept:c2-l978"
+  },
+  {
+    "Name": "共轭作用",
+    "Target": "p2:concept:c2-l971"
+  },
+  {
+    "Name": "轨道",
+    "Target": "p2:concept:c2-l1031"
+  },
+  {
+    "Name": "环",
+    "Target": "p2:concept:c1-l781"
+  },
+  {
+    "Name": "环的零元",
+    "Target": "p2:concept:c1-l785"
+  },
+  {
+    "Name": "环的满同态",
+    "Target": "p2:concept:c1-l1157"
+  },
+  {
+    "Name": "环的自然同态",
+    "Target": "p2:concept:c1-l1328"
+  },
+  {
+    "Name": "环同构",
+    "Target": "p2:concept:c1-l923"
+  },
+  {
+    "Name": "环同态",
+    "Target": "p2:concept:c1-l1152"
+  },
+  {
+    "Name": "环同态的核",
+    "Target": "p2:concept:c1-l1156"
+  },
+  {
+    "Name": "环同态的像",
+    "Target": "p2:concept:c1-l1156"
+  },
+  {
+    "Name": "环中的整数倍",
+    "Target": "p2:concept:c1-l830"
+  },
+  {
+    "Name": "换位子",
+    "Target": "p2:concept:c2-l173"
+  },
+  {
+    "Name": "换位子群",
+    "Target": "p2:concept:c2-l173"
+  },
+  {
+    "Name": "极大正规子群",
+    "Target": "p2:concept:c2-l617"
+  },
+  {
+    "Name": "加法记号下的整数倍",
+    "Target": "p2:concept:c1-l106"
+  },
+  {
+    "Name": "加法逆元",
+    "Target": "p2:concept:c1-l785"
+  },
+  {
+    "Name": "交错群",
+    "Target": "p2:concept:c1-l290"
+  },
+  {
+    "Name": "交换环",
+    "Target": "p2:concept:c1-l958"
+  },
+  {
+    "Name": "交换律",
+    "Target": "p2:concept:c1-l37"
+  },
+  {
+    "Name": "交换群（阿贝尔群）",
+    "Target": "p2:concept:c1-l60"
+  },
+  {
+    "Name": "交换图",
+    "Target": "p2:concept:c1-l762"
+  },
+  {
+    "Name": "结合律",
+    "Target": "p2:concept:c1-l34"
+  },
+  {
+    "Name": "可解群",
+    "Target": "p2:concept:c2-l522"
+  },
+  {
+    "Name": "零环",
+    "Target": "p2:concept:c1-l1261"
+  },
+  {
+    "Name": "零同态",
+    "Target": "p2:concept:c1-l1157"
+  },
+  {
+    "Name": "零因子",
+    "Target": "p2:concept:c1-l989"
+  },
+  {
+    "Name": "轮换",
+    "Target": "p2:concept:c1-l209"
+  },
+  {
+    "Name": "轮换类型",
+    "Target": "p2:concept:c2-l372"
+  },
+  {
+    "Name": "内直和",
+    "Target": "p2:concept:c2-l1542"
+  },
+  {
+    "Name": "内自同构",
+    "Target": "p2:concept:c2-l790"
+  },
+  {
+    "Name": "内自同构群",
+    "Target": "p2:concept:c2-l799"
+  },
+  {
+    "Name": "逆元",
+    "Target": "p2:concept:c1-l42"
+  },
+  {
+    "Name": "欧拉函数",
+    "Target": "p2:concept:c1-l1356"
+  },
+  {
+    "Name": "偶置换",
+    "Target": "p2:concept:c1-l289"
+  },
+  {
+    "Name": "陪集代表",
+    "Target": "p2:concept:c1-l312"
+  },
+  {
+    "Name": "平凡理想",
+    "Target": "p2:concept:c1-l1203"
+  },
+  {
+    "Name": "平凡子群",
+    "Target": "p2:concept:c1-l252"
+  },
+  {
+    "Name": "齐性空间",
+    "Target": "p2:concept:c2-l986"
+  },
+  {
+    "Name": "奇置换",
+    "Target": "p2:concept:c1-l289"
+  },
+  {
+    "Name": "全变换群",
+    "Target": "p2:concept:c1-l192"
+  },
+  {
+    "Name": "群",
+    "Target": "p2:concept:c1-l52"
+  },
+  {
+    "Name": "群的阶",
+    "Target": "p2:concept:c1-l149"
+  },
+  {
+    "Name": "群的满同态",
+    "Target": "p2:concept:c1-l487"
+  },
+  {
+    "Name": "群的嵌入",
+    "Target": "p2:concept:c1-l487"
+  },
+  {
+    "Name": "群的中心",
+    "Target": "p2:concept:c2-l808"
+  },
+  {
+    "Name": "群的自然同态",
+    "Target": "p2:concept:c1-l727"
+  },
+  {
+    "Name": "群的左作用",
+    "Target": "p2:concept:c2-l924"
+  },
+  {
+    "Name": "群同构",
+    "Target": "p2:concept:c1-l388"
+  },
+  {
+    "Name": "群同态",
+    "Target": "p2:concept:c1-l482"
+  },
+  {
+    "Name": "群同态的核",
+    "Target": "p2:concept:c1-l483"
+  },
+  {
+    "Name": "群同态的像",
+    "Target": "p2:concept:c1-l483"
+  },
+  {
+    "Name": "商环",
+    "Target": "p2:concept:c1-l1252"
+  },
+  {
+    "Name": "商群",
+    "Target": "p2:concept:c1-l681"
+  },
+  {
+    "Name": "生成元（生成元组）",
+    "Target": "p2:concept:c2-l146"
+  },
+  {
+    "Name": "双边理想（理想）",
+    "Target": "p2:concept:c1-l1201"
+  },
+  {
+    "Name": "四元数体",
+    "Target": "p2:concept:c1-l1092"
+  },
+  {
+    "Name": "素域",
+    "Target": "p2:concept:c1-l1517"
+  },
+  {
+    "Name": "特征子群",
+    "Target": "p2:concept:c2-l891"
+  },
+  {
+    "Name": "体（除环）",
+    "Target": "p2:concept:c1-l1037"
+  },
+  {
+    "Name": "同构的群",
+    "Target": "p2:concept:c1-l388"
+  },
+  {
+    "Name": "图形的对称群",
+    "Target": "p2:concept:c1-l156"
+  },
+  {
+    "Name": "外直和",
+    "Target": "p2:concept:c2-l1501"
+  },
+  {
+    "Name": "外自同构群",
+    "Target": "p2:concept:c2-l845"
+  },
+  {
+    "Name": "完全群",
+    "Target": "p2:concept:c2-l885"
+  },
+  {
+    "Name": "稳定子群",
+    "Target": "p2:concept:c2-l1046"
+  },
+  {
+    "Name": "无限群",
+    "Target": "p2:concept:c1-l149"
+  },
+  {
+    "Name": "西罗$p$子群",
+    "Target": "p2:concept:c2-l1287"
+  },
+  {
+    "Name": "循环群",
+    "Target": "p2:concept:c2-l204"
+  },
+  {
+    "Name": "幺环",
+    "Target": "p2:concept:c1-l954"
+  },
+  {
+    "Name": "由单个元素生成的子群",
+    "Target": "p2:concept:c1-l353"
+  },
+  {
+    "Name": "由集合生成的子群",
+    "Target": "p2:concept:c2-l142"
+  },
+  {
+    "Name": "有限个群的直积",
+    "Target": "p2:concept:c2-l1505"
+  },
+  {
+    "Name": "有限群",
+    "Target": "p2:concept:c1-l149"
+  },
+  {
+    "Name": "有限生成群",
+    "Target": "p2:concept:c2-l146"
+  },
+  {
+    "Name": "有限$p$群",
+    "Target": "p2:concept:c2-l1111"
+  },
+  {
+    "Name": "右理想",
+    "Target": "p2:concept:c1-l1202"
+  },
+  {
+    "Name": "右零因子",
+    "Target": "p2:concept:c1-l989"
+  },
+  {
+    "Name": "右陪集",
+    "Target": "p2:concept:c1-l311"
+  },
+  {
+    "Name": "右正则表示",
+    "Target": "p2:concept:c1-l468"
+  },
+  {
+    "Name": "域",
+    "Target": "p2:concept:c1-l1035"
+  },
+  {
+    "Name": "域的特征",
+    "Target": "p2:concept:c1-l1442"
+  },
+  {
+    "Name": "元素的阶",
+    "Target": "p2:concept:c1-l354"
+  },
+  {
+    "Name": "元素的完全反像",
+    "Target": "p2:concept:c1-l488"
+  },
+  {
+    "Name": "元素的整数次幂",
+    "Target": "p2:concept:c1-l105"
+  },
+  {
+    "Name": "整环",
+    "Target": "p2:concept:c1-l990"
+  },
+  {
+    "Name": "正规化子",
+    "Target": "p2:concept:c2-l1208"
+  },
+  {
+    "Name": "正规子群",
+    "Target": "p2:concept:c1-l574"
+  },
+  {
+    "Name": "正整数幂",
+    "Target": "p2:concept:c1-l830"
+  },
+  {
+    "Name": "置换",
+    "Target": "p2:concept:c1-l194"
+  },
+  {
+    "Name": "置换的不动点",
+    "Target": "p2:concept:c2-l405"
+  },
+  {
+    "Name": "置换的符号",
+    "Target": "p2:concept:c1-l284"
+  },
+  {
+    "Name": "中心化子",
+    "Target": "p2:concept:c2-l1162"
+  },
+  {
+    "Name": "忠实（如实）作用",
+    "Target": "p2:concept:c2-l1001"
+  },
+  {
+    "Name": "自同构",
+    "Target": "p2:concept:c2-l718"
+  },
+  {
+    "Name": "自同构群",
+    "Target": "p2:concept:c2-l722"
+  },
+  {
+    "Name": "子环",
+    "Target": "p2:concept:c1-l887"
+  },
+  {
+    "Name": "子集的乘积",
+    "Target": "p2:concept:c1-l613"
+  },
+  {
+    "Name": "子集的逆集",
+    "Target": "p2:concept:c1-l613"
+  },
+  {
+    "Name": "子群",
+    "Target": "p2:concept:c1-l247"
+  },
+  {
+    "Name": "子群的完全反像",
+    "Target": "p2:concept:c2-l12"
+  },
+  {
+    "Name": "子群的指数",
+    "Target": "p2:concept:c1-l312"
+  },
+  {
+    "Name": "子域",
+    "Target": "p2:concept:c1-l1039"
+  },
+  {
+    "Name": "左单位元",
+    "Target": "p2:concept:c1-l55"
+  },
+  {
+    "Name": "左理想",
+    "Target": "p2:concept:c1-l1202"
+  },
+  {
+    "Name": "左零因子",
+    "Target": "p2:concept:c1-l988"
+  },
+  {
+    "Name": "左逆元",
+    "Target": "p2:concept:c1-l56"
+  },
+  {
+    "Name": "左陪集",
+    "Target": "p2:concept:c1-l311"
+  },
+  {
+    "Name": "左平移作用",
+    "Target": "p2:concept:c2-l963"
+  },
+  {
+    "Name": "左正则表示",
+    "Target": "p2:concept:c1-l468"
+  },
+  {
+    "Name": "作用的不动点及全体不动点",
+    "Target": "p2:concept:c2-l1035"
+  }
+]

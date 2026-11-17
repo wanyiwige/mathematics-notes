@@ -1,0 +1,194 @@
+﻿% preamble/theorems.tex
+% 基于 thmtools + tcolorbox 的彩色定理环境
+% 所有环境共享 theorem 计数器，按 section 编号
+
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+headpunct=,
+postheadspace=0.5em,
+bodyfont=\normalfont,
+headformat=\NAME
+]{mycolored}
+
+\declaretheorem[style=mycolored, name=, within=section]{theorem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{lemma}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{corollary}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{proposition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{definition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{remark}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{example}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{construction}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{problem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{axiom}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{note}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{ill}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{algo}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{conjecture}
+
+% ── 修正编号：title 中使用计数器+1 ──
+\newcommand{\NextTheoremNum}{\thesection.\number\numexpr\value{theorem}+1\relax}
+\newcommand{\NextLemmaNum}{\thesection.\number\numexpr\value{lemma}+1\relax}
+\newcommand{\NextCorNum}{\thesection.\number\numexpr\value{corollary}+1\relax}
+\newcommand{\NextPropNum}{\thesection.\number\numexpr\value{proposition}+1\relax}
+\newcommand{\NextDefNum}{\thesection.\number\numexpr\value{definition}+1\relax}
+\newcommand{\NextRemNum}{\thesection.\number\numexpr\value{remark}+1\relax}
+\newcommand{\NextExNum}{\thesection.\number\numexpr\value{example}+1\relax}
+\newcommand{\NextConNum}{\thesection.\number\numexpr\value{construction}+1\relax}
+\newcommand{\NextProblemNum}{\thesection.\number\numexpr\value{problem}+1\relax}
+\newcommand{\NextAxiomNum}{\thesection.\number\numexpr\value{axiom}+1\relax}
+\newcommand{\NextNoteNum}{\thesection.\number\numexpr\value{note}+1\relax}
+\newcommand{\NextIllNum}{\thesection.\number\numexpr\value{ill}+1\relax}
+\newcommand{\NextAlgoNum}{\thesection.\number\numexpr\value{algo}+1\relax}
+\newcommand{\NextConjNum}{\thesection.\number\numexpr\value{conjecture}+1\relax}
+
+% ════════════════════════════════════════
+%  蓝色系：定理、推论、命题、引理
+% ════════════════════════════════════════
+
+\AtBeginEnvironment{theorem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定理 \NextTheoremNum]}
+	\AtEndEnvironment{theorem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{corollary}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=推论 \NextCorNum]}
+	\AtEndEnvironment{corollary}{\end{tcolorbox}}
+
+\AtBeginEnvironment{proposition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=命题 \NextPropNum]}
+	\AtEndEnvironment{proposition}{\end{tcolorbox}}
+
+\AtBeginEnvironment{lemma}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicAccentRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=引理 \NextLemmaNum]}
+	\AtEndEnvironment{lemma}{\end{tcolorbox}}
+
+\AtBeginEnvironment{conjecture}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicAccentRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=猜想 \NextConjNum]}
+	\AtEndEnvironment{conjecture}{\end{tcolorbox}}
+
+% ════════════════════════════════════════
+%  深蓝色系：定义、注记、公理
+% ════════════════════════════════════════
+
+\AtBeginEnvironment{definition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicDarkRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定义 \NextDefNum]}
+	\AtEndEnvironment{definition}{\end{tcolorbox}}
+
+\AtBeginEnvironment{remark}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicDarkRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=注记 \NextRemNum]}
+	\AtEndEnvironment{remark}{\end{tcolorbox}}
+
+\AtBeginEnvironment{axiom}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicDarkRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=公理 \NextAxiomNum]}
+	\AtEndEnvironment{axiom}{\end{tcolorbox}}
+
+% ════════════════════════════════════════
+%  无框环境：示例
+% ════════════════════════════════════════
+
+\AtBeginEnvironment{example}{%
+	\par\theoremFont
+	\noindent\textbf{示例 \NextExNum.}\quad
+}
+\AtEndEnvironment{example}{\par}
+
+% ════════════════════════════════════════
+%  蓝框环境：构造、记号、说明、问题、算法
+% ════════════════════════════════════════
+
+\AtBeginEnvironment{construction}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=构造 \NextConNum]}
+	\AtEndEnvironment{construction}{\end{tcolorbox}}
+
+\AtBeginEnvironment{note}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=记号 \NextNoteNum]}
+	\AtEndEnvironment{note}{\end{tcolorbox}}
+
+\AtBeginEnvironment{problem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedAccent,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=问题 \NextProblemNum]}
+\AtEndEnvironment{problem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{ill}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=RedMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=说明 \NextIllNum]}
+	\AtEndEnvironment{ill}{\end{tcolorbox}}
+
+\AtBeginEnvironment{algo}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=white,colframe=LogicAccentRed,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=算法 \NextAlgoNum]}
+	\AtEndEnvironment{algo}{\end{tcolorbox}}
+
+% ════════════════════════════════════════
+%  证明环境：楷体，无框，□ 结尾
+% ════════════════════════════════════════
+
+\renewenvironment{proof}[1][证明]{%
+	\par\proofFont
+	\noindent\textbf{#1.}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% ════════════════════════════════════════
+%  解答环境：与证明相同样式
+% ════════════════════════════════════════
+
+\newenvironment{solution}{%
+	\par\proofFont
+	\noindent\textbf{解答:}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% ── 行距 ──
+\setstretch{1.2}

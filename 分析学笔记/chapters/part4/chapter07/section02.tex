@@ -1,0 +1,205 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第7章：Dirichlet定理
+% 节：7.2 Dirichlet定理
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{Dirichlet定理}
+
+本节的目标是为证明下面的定理做一些准备工作。
+
+\begin{theorem}[Dirichlet定理]\label{thm:dirichlet-primes-arithmetic-progressions}
+	设 $q$ 与 $\ell$ 是互素的正整数，则形如
+	\[
+	\ell+kq,\qquad k\in\Z,
+	\]
+	的素数有无穷多个。
+\end{theorem}
+
+沿用 Euler 的思想，Dirichlet 实际上证明了
+\[
+\sum_{p\equiv\ell\pmod q}\frac1p=\infty,
+\]
+其中求和取遍满足 $p\equiv\ell\pmod q$ 的素数。一般情形需要
+$\Z^*(q)$ 上的 Fourier 分析。在此之前，先考察 $q=4$、
+$\ell=1$ 的特殊情形。
+
+模 $4$ 的可逆元素组成群 $\Z^*(4)=\{1,3\}$。在其上定义非平凡特征
+\[
+\chi(1)=1,\qquad \chi(3)=-1,
+\]
+并将其延拓到所有整数：
+\[
+\chi(n)=
+\begin{cases}
+	0,&n\equiv0\pmod 2,\\
+	1,&n\equiv1\pmod 4,\\
+	-1,&n\equiv3\pmod 4.
+\end{cases}
+\]
+容易验证 $\chi(mn)=\chi(m)\chi(n)$。对 $s>1$，定义
+\[
+L(s,\chi)=\sum_{n=1}^{\infty}\frac{\chi(n)}{n^s}.
+\]
+当 $s=1$ 时，Leibniz 级数给出
+\[
+L(1,\chi)=1-\frac13+\frac15-\frac17+\cdots=\frac\pi4.
+\]
+稍后将证明 Euler 乘积公式
+\[
+L(s,\chi)=\prod_p\frac1{1-\chi(p)p^{-s}}.
+\]
+对乘积取对数，得到
+\[
+\log L(s,\chi)=\sum_p\frac{\chi(p)}{p^s}+O(1).
+\]
+由于 $L(s,\chi)\to L(1,\chi)=\pi/4\neq0$，所以当
+$s\to1^+$ 时，$\sum\limits_p\chi(p)p^{-s}$ 保持有界。
+
+记
+\[
+A(s)=\sum_{p\equiv1\pmod4}\frac1{p^s},\qquad
+B(s)=\sum_{p\equiv3\pmod4}\frac1{p^s}.
+\]
+则
+\[
+\sum_p\frac{\chi(p)}{p^s}=A(s)-B(s),
+\qquad
+\sum_p\frac1{p^s}=\frac1{2^s}+A(s)+B(s).
+\]
+由命题 \ref{prop:sum-reciprocals-primes-diverges}，当 $s\to1^+$ 时
+后一式趋于无穷。因此
+\[
+2A(s)=\sum_p\frac{\chi(p)}{p^s}
++\sum_p\frac1{p^s}-\frac1{2^s}\longrightarrow\infty.
+\]
+于是
+\[
+\sum_{p\equiv1\pmod4}\frac1p=\infty,
+\]
+特别地，形如 $4k+1$ 的素数有无穷多个。
+
+下面转向一般情形。令
+\[
+G=\Z^*(q),\qquad \abs G=\varphi(q),
+\]
+其中 $\varphi$ 是 Euler 函数。对 $\ell\in G$，定义
+\[
+\delta_\ell(n)=
+\begin{cases}
+	1,&n\equiv\ell\pmod q,\\
+	0,&\text{其他}.
+\end{cases}
+\]
+在有限 Abel 群 $G$ 上作 Fourier 展开，得到
+\[
+\delta_\ell(n)=\sum_{e\in\widehat G}\widehat{\delta_\ell}(e)e(n),
+\]
+其中
+\[
+\widehat{\delta_\ell}(e)
+=\frac1{\abs G}\sum_{m\in G}\delta_\ell(m)\overline{e(m)}
+=\frac1{\abs G}\overline{e(\ell)}.
+\]
+因此
+\[
+\delta_\ell(n)=\frac1{\abs G}\sum_{e\in\widehat G}
+\overline{e(\ell)}e(n).
+\]
+
+当 $m$ 与 $q$ 不互素时，令 $\delta_\ell(m)=0$，从而将
+$\delta_\ell$ 延拓到 $\Z$ 上。\begin{definition}
+	对任意 $e\in\widehat G$，定义
+\[
+\chi(m)=
+\begin{cases}
+	e(m),&(m,q)=1,\\
+	0,&(m,q)>1.
+\end{cases}
+\]
+称 $\chi$ 为模 $q$ 的 Dirichlet 特征。平凡特征的延拓记为
+$\chi_0$，即当 $(m,q)=1$ 时 $\chi_0(m)=1$，否则为 $0$。
+\end{definition}
+
+\begin{lemma}\label{lem:dirichlet-character-multiplicativity-delta}
+	Dirichlet 特征是完全可乘的，即
+	\[
+	\chi(mn)=\chi(m)\chi(n),\qquad m,n\in\Z.
+	\]
+	而且
+	\[
+	\delta_\ell(m)=\frac1{\varphi(q)}
+	\sum_\chi\overline{\chi(\ell)}\chi(m),
+	\]
+	其中求和取遍模 $q$ 的所有 Dirichlet 特征。
+\end{lemma}
+
+\begin{proof}
+	若 $m,n$ 均与 $q$ 互素，则可乘性来自群特征的可乘性；若其中
+	至少一个与 $q$ 不互素，则等式两边都为 $0$。第二个公式就是
+	上述 Fourier 展开，并且 $\abs G=\varphi(q)$。
+\end{proof}
+
+因此，对 $s>1$，
+\begin{equation}\label{eq:dirichlet-prime-sum-decomposition}
+\begin{aligned}
+\sum_{p\equiv\ell\pmod q}\frac1{p^s}
+&=\sum_p\frac{\delta_\ell(p)}{p^s}\\
+&=\frac1{\varphi(q)}
+\sum_\chi\overline{\chi(\ell)}\sum_p\frac{\chi(p)}{p^s}\\
+&=\frac1{\varphi(q)}\sum_{p\nmid q}\frac1{p^s}
++\frac1{\varphi(q)}
+\sum_{\chi\neq\chi_0}\overline{\chi(\ell)}
+\sum_p\frac{\chi(p)}{p^s}.
+\end{aligned}
+\end{equation}
+只有有限多个素数整除 $q$，所以当 $s\to1^+$ 时，最后一式的
+第一项发散。一般的 Dirichlet 定理由下面的结论推出。
+
+\begin{theorem}\label{thm:nonprincipal-prime-character-sum-bounded}
+	若 $\chi$ 是非平凡的 Dirichlet 特征，则当 $s\to1^+$ 时，级数
+	\[
+	\sum_p\frac{\chi(p)}{p^s}
+	\]
+	保持有界。
+\end{theorem}
+
+为证明这个定理，引入 Dirichlet $L$ 函数
+\[
+L(s,\chi)=\sum_{n=1}^{\infty}\frac{\chi(n)}{n^s},
+\qquad s>1.
+\]
+类似的我们有
+\begin{theorem}[Dirichlet $L$ 函数的 Euler 乘积]
+	\label{thm:dirichlet-L-euler-product}
+	若 $s>1$，则
+	\[
+	L(s,\chi)=\prod_p\frac1{1-\chi(p)p^{-s}},
+	\]
+	其中乘积取遍所有素数。
+\end{theorem}
+这个定理我们在下一节讲。先假设他成立。
+
+
+对 Euler 乘积形式上取复对数，并利用
+$-\log(1-z)=z+O(\abs z^2)$，可得
+\[
+\begin{aligned}
+\log L(s,\chi)
+&=-\sum_p\log\left(1-\frac{\chi(p)}{p^s}\right)\\
+&=\sum_p\frac{\chi(p)}{p^s}
++O\left(\sum_p\frac1{p^{2s}}\right)\\
+&=\sum_p\frac{\chi(p)}{p^s}+O(1).
+\end{aligned}
+\]
+因此，如果 $L(1,\chi)$ 有限且非零，那么当 $s\to1^+$ 时
+$\log L(s,\chi)$ 有界，从而 $\sum_p\chi(p)p^{-s}$ 有界。
+于是，定理
+\ref{thm:nonprincipal-prime-character-sum-bounded} 的证明归结为说明：
+对每个非平凡 Dirichlet 特征 $\chi$，$L(1,\chi)$ 有限且非零且证明\ref{thm:dirichlet-L-euler-product}。
+
+所以说我们现在需要解决三个问题
+\begin{enumerate}
+	\item 复对数与无穷乘积；
+	\item $L(s,\chi)$的性质；
+	\item 当$\chi$为非平凡函数时，$L(1,\chi)\neq 0$的证明
+\end{enumerate}
+

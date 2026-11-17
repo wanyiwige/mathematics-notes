@@ -1,0 +1,249 @@
+\section{商域和分式环}
+
+本节的环均为交换幺环，环之间的嵌入及以后涉及单位元的同态均保持单位元。整数环包含在有理数域中，而每个有理数都是两个整数之商。下面把这一构造推广到整环；随后再说明，存在零因子时怎样对指定的一部分元素作分母。
+
+\begin{definition}
+设$R$为整环。若域$F$包含$R$，并且$F$的每个元素都能写成
+\[
+\frac ab=ab^{-1},\qquad a,b\in R,\quad b\ne0,
+\]
+则称$F$为$R$的\textbf{商域}。
+\end{definition}
+
+\begin{theorem}\label{p2:fraction-field}
+每个整环$R$都有商域。
+\end{theorem}
+\begin{proof}
+\textbf{构造分数：}令$R^*=R\setminus\{0\}$，在$R\times R^*$中规定
+\[
+(a,b)\sim(c,d)\quad\Longleftrightarrow\quad ad=bc.
+\]
+自反性和对称性直接由等式得到。若$ad=bc$且$cf=de$，则
+\[
+adf=bcf=bde.
+\]
+由于$d\ne0$，可消去$d$，得到$af=be$。因此该关系还满足传递性，是等价关系。将$(a,b)$的等价类记作$a/b$，所有这些等价类组成的集合记作$F$。
+
+\textbf{定义运算并验证与代表元无关：}规定
+\[
+\frac ab+\frac cd=\frac{ad+bc}{bd},\qquad
+\frac ab\frac cd=\frac{ac}{bd}.
+\]
+因为$R$为整环，$bd\ne0$，所以右端仍有意义。若$ab'=a'b$、$cd'=c'd$，则
+\begin{align*}
+(ad+bc)b'd'&=(a'd'+b'c')bd,\\
+acb'd'&=a'c'bd.
+\end{align*}
+第一式可分别对两项使用$ab'=a'b$和$cd'=c'd$得到，第二式则把这两个等式相乘即可。因此两种运算均与代表元的选择无关。
+
+\textbf{验证域的运算律（补充证明）：}取$u=a/b$、$v=c/d$、$w=e/f$，有
+\begin{align*}
+(u+v)+w&=\frac{adf+bcf+bde}{bdf}=u+(v+w),\\
+(uv)w&=\frac{ace}{bdf}=u(vw),\\
+u(v+w)&=\frac{a(cf+de)}{bdf}=uv+uw.
+\end{align*}
+最后一式右端先通分为分母$bdf$。加法与乘法的交换律由$R$中的交换律得到。零元、负元和单位元分别为
+\[
+0_F=\frac01,\qquad -\frac ab=\frac{-a}{b},\qquad 1_F=\frac11.
+\]
+其中$a/b=0_F$当且仅当$a=0$，故$0_F\ne1_F$。对非零分数$a/b$，$a\ne0$，并且
+\[
+\frac ab\frac ba=\frac{ab}{ba}=1_F.
+\]
+所以$F$为域。
+
+\textbf{把$R$嵌入$F$：}映射$a\mapsto a/1$保持加法、乘法及单位元，且
+\[
+\frac a1=\frac c1\quad\Longleftrightarrow\quad a=c,
+\]
+故为单同态。把$R$与其像等同后，每个元素$a/b$恰好等于$(a/1)(b/1)^{-1}$，于是$F$是$R$的商域。
+\end{proof}
+
+\begin{theorem}\label{p2:fraction-field-extension}
+设$F$为整环$R$的商域，$\eta:R\to F'$为$R$到域$F'$的单同态。则存在唯一的单同态$\eta':F\to F'$延拓$\eta$，其表达式为
+\[
+\eta'\left(\frac ab\right)=\frac{\eta(a)}{\eta(b)}.
+\]
+\end{theorem}
+\begin{proof}
+由于$\eta$为单射，$b\ne0$蕴含$\eta(b)\ne0$，所以右端有意义。若$a/b=c/d$，则$ad=bc$，从而
+\[
+\eta(a)\eta(d)=\eta(b)\eta(c),\qquad
+\frac{\eta(a)}{\eta(b)}=\frac{\eta(c)}{\eta(d)}.
+\]
+这说明公式定义了一个映射。由分数的加法和乘法公式，
+\begin{align*}
+\eta'\left(\frac ab+\frac cd\right)
+&=\frac{\eta(a)\eta(d)+\eta(b)\eta(c)}{\eta(b)\eta(d)}
+=\eta'(a/b)+\eta'(c/d),\\
+\eta'\left(\frac ab\frac cd\right)
+&=\frac{\eta(a)\eta(c)}{\eta(b)\eta(d)}
+=\eta'(a/b)\eta'(c/d).
+\end{align*}
+又有$\eta'(1)=1$及$\eta'(a/1)=\eta(a)$，故它为所需的同态。若$\eta'(a/b)=0$，则$\eta(a)=0$，由单射性得$a=0$，所以$\eta'$也是单射。
+
+最后，任何延拓$\xi$都必须满足
+\[
+\xi(a/b)\eta(b)=\xi\bigl((a/b)b\bigr)=\eta(a),
+\]
+故$\xi(a/b)=\eta(a)/\eta(b)$。这证明唯一性。
+\end{proof}
+
+\begin{corollary}
+整环的商域在保持$R$中每个元素不动的意义下唯一。
+\end{corollary}
+\begin{proof}
+若$F_1,F_2$均为$R$的商域，对包含映射$R\hookrightarrow F_2$应用上述定理，得到单同态$F_1\to F_2$。$F_2$的每个元素都是$a/b$，而$a/b\in F_1$的像正是它，故该同态满射，是所需同构。
+\end{proof}
+
+\begin{definition}
+环$R$的非空子集$S$若对乘法封闭，就称为\textbf{乘法子集}。此处不要求$1\in S$。以后构造分式环时假定$0\notin S$。
+\end{definition}
+
+一般交换环可能有零因子。若希望$s\in S$变成可逆元，则$as=0$将强迫$a$在新环中变成零。因此先考虑
+\[
+N=\{a\in R:\text{存在 }s\in S\text{ 使 }as=0\}.
+\]
+
+\begin{lemma}
+$N$是$R$的理想。若$0\notin S$，则$N\cap S=\varnothing$；并且对$u\in S$，有
+\[
+uz\in N\quad\Longrightarrow\quad z\in N.
+\]
+\end{lemma}
+\begin{proof}
+由于$S$非空，$0\in N$。若$a_1s_1=a_2s_2=0$，其中$s_1,s_2\in S$，则
+\[
+(a_1-a_2)s_1s_2=0.
+\]
+又因$s_1s_2\in S$，$a_1-a_2\in N$。对$r\in R$，$(ra_1)s_1=r(a_1s_1)=0$，所以$ra_1\in N$，证明了理想性。
+
+若$a\in N\cap S$，存在$s\in S$使$as=0$；但乘法封闭性给出$0=as\in S$，与假设矛盾。最后，若$uz\in N$，取$t\in S$使$tuz=0$，由于$tu\in S$，即得$z\in N$。
+\end{proof}
+
+\begin{definition}
+设$S$为$R$中不含零的乘法子集。若交换幺环$R'$及保持单位元的同态$\sigma:R\to R'$满足：$\sigma(s)$对每个$s\in S$均可逆，$\ker\sigma=N$，且$R'$的每个元素均可写成$\sigma(a)\sigma(s)^{-1}$，则称$R'$为$R$关于$S$的\textbf{分式环}。
+\end{definition}
+
+\begin{theorem}\label{p2:localization-existence}
+设$R$为交换幺环，$S$为不含零的乘法子集，则$R$关于$S$的分式环存在，记作$S^{-1}R$。
+\end{theorem}
+\begin{proof}
+\textbf{等价关系：}在$R\times S$上规定
+\[
+(a,s)\sim(a',s')\quad\Longleftrightarrow\quad as'-a's\in N.
+\]
+这也等价于存在$t\in S$使$t(as'-a's)=0$。自反性和对称性由$N$为加法子群得到。若
+\[
+a_1s_2-a_2s_1\in N,\qquad a_2s_3-a_3s_2\in N,
+\]
+则
+\begin{align*}
+s_2(a_1s_3-a_3s_1)
+&=s_3(a_1s_2-a_2s_1)+s_1(a_2s_3-a_3s_2)\in N.
+\end{align*}
+应用上一引理，得$a_1s_3-a_3s_1\in N$，所以传递性成立。记等价类为$a/s$。
+
+\textbf{运算的定义：}仍规定
+\[
+\frac as+\frac bt=\frac{at+bs}{st},\qquad
+\frac as\frac bt=\frac{ab}{st}.
+\]
+分母属于$S$。为验证代表元无关，设$as'-a's\in N$、$bt'-b't\in N$。有
+\begin{align*}
+(at+bs)s't'-(a't'+b's')st
+&=tt'(as'-a's)+ss'(bt'-b't)\in N,\\
+ab s't'-a'b'st
+&=bt'(as'-a's)+a's(bt'-b't)\in N.
+\end{align*}
+因此加法、乘法均良好定义。
+
+\textbf{环的运算律（补充证明）：}若$u=a/s$、$v=b/t$、$w=c/v_0$，其中$v_0\in S$，则
+\begin{align*}
+(u+v)+w&=\frac{atv_0+bsv_0+cst}{stv_0}=u+(v+w),\\
+(uv)w&=\frac{abc}{stv_0}=u(vw),\\
+u(v+w)&=\frac{a(bv_0+ct)}{stv_0}=uv+uw.
+\end{align*}
+加法与乘法均可交换。任取$t\in S$，零元、负元、单位元分别为
+\[
+0=\frac0t,\qquad -\frac as=\frac{-a}{s},\qquad 1=\frac tt.
+\]
+例如$at/(st)=a/s$，因为交叉相乘的差为零；这同时验证了上述零元和单位元的作用。不同$t$给出相同的零元和单位元。又因$t\notin N$，有$0\ne1$。
+
+\textbf{自然同态：}即使$1\notin S$，也可定义
+\[
+\sigma(a)=\frac{at}{t}\qquad(t\in S).
+\]
+换用$t'\in S$时，$att'-at't=0$，故定义与$t$无关。计算可得
+\begin{align*}
+\sigma(a)+\sigma(b)&=\frac{(a+b)t^2}{t^2}=\sigma(a+b),\\
+\sigma(a)\sigma(b)&=\frac{abt^2}{t^2}=\sigma(ab),\qquad \sigma(1)=1.
+\end{align*}
+此外，$\sigma(a)=0$当且仅当$at^2\in N$。连续应用上一引理消去$t$，此条件等价于$a\in N$。因此$\ker\sigma=N$。
+
+对$s\in S$，分数$t/(st)$是$\sigma(s)=st/t$的逆元，因为
+\[
+\frac{st}{t}\frac{t}{st}=\frac{st^2}{st^2}=1.
+\]
+并且
+\[
+\sigma(a)\sigma(s)^{-1}
+=\frac{at}{t}\frac{t}{st}
+=\frac{at^2}{st^2}=\frac as.
+\]
+所以所构造的环满足分式环定义中的全部要求。
+\end{proof}
+
+\begin{theorem}\label{p2:localization-universal}
+设$\eta:R\to R'$为交换幺环之间保持单位元的同态，并且对每个$s\in S$，$\eta(s)$可逆。则存在唯一的保持单位元的环同态
+\[
+\xi:S^{-1}R\to R',\qquad
+\xi(a/s)=\eta(a)\eta(s)^{-1},
+\]
+使$\xi\sigma=\eta$。
+\end{theorem}
+\begin{proof}
+若$a\in N$，取$t\in S$使$at=0$，得到$\eta(a)\eta(t)=0$。因$\eta(t)$可逆，$\eta(a)=0$。因此$N\subseteq\ker\eta$。
+
+若$a/s=a'/s'$，则$as'-a's\in N$，从而
+\[
+\eta(a)\eta(s')=\eta(a')\eta(s).
+\]
+乘上$\eta(s)^{-1}\eta(s')^{-1}$，即得两种代表元产生同一像，证明了良好定义。再由
+\begin{align*}
+\xi\left(\frac as+\frac bt\right)
+&=\bigl(\eta(a)\eta(t)+\eta(b)\eta(s)\bigr)
+  \bigl(\eta(s)\eta(t)\bigr)^{-1}
+=\xi(a/s)+\xi(b/t),\\
+\xi\left(\frac as\frac bt\right)
+&=\eta(a)\eta(b)\bigl(\eta(s)\eta(t)\bigr)^{-1}
+=\xi(a/s)\xi(b/t),
+\end{align*}
+可知它是环同态。还满足$\xi(t/t)=1$及$\xi(\sigma(a))=\eta(a)$。
+
+若另一同态也满足$\xi\sigma=\eta$，则由$a/s=\sigma(a)\sigma(s)^{-1}$及同态保持逆元，其在每个分数上的值都被上述公式确定，所以延拓唯一。
+\end{proof}
+
+\begin{corollary}
+分式环在与自然同态相容的意义下唯一。自然同态$\sigma:R\to S^{-1}R$为单射，当且仅当$S$中没有零因子。
+\end{corollary}
+\begin{proof}
+对两个分式环分别应用延拓定理，得到两个方向的同态；它们的复合延拓同一个自然同态，由唯一性只能是恒等映射。
+
+又因$\ker\sigma=N$，$\sigma$为单射等价于：对$s\in S$，$as=0$总蕴含$a=0$。由于$0\notin S$，这正是$S$中没有零因子的条件。特别地，对整环取$S=R\setminus\{0\}$，所得分式环就是商域。
+\end{proof}
+
+\begin{example}
+设$p$为素数，取$R=\mathbb Z$、$S=\mathbb Z\setminus(p)$。由于素数整除乘积必整除某个因子，$S$为乘法子集，并且
+\[
+S^{-1}\mathbb Z
+=\left\{\frac ab\in\mathbb Q:p\nmid b\right\}.
+\]
+该环中每个非零元素都可写成$p^t r/s$，其中$t\ge0$，$p\nmid r$、$p\nmid s$。当$t=0$时，逆元$s/r$仍在该环中；当$t>0$时，其逆元的约分后分母被$p$整除，不在该环中。所以可逆元恰为$t=0$的元素。
+
+进一步，设$H$为非零理想。在$H$的非零元素中取$p$的指数最小者$p^m r/s$。因$r/s$可逆，$p^m\in H$，故$(p^m)\subseteq H$。另一方面，$H$中每个非零元素的指数均不小于$m$，所以都属于$(p^m)$。于是
+\[
+H=(p^m).
+\]
+因而所有非零真理想为$(p),(p^2),\ldots$；其中$(p)$是唯一的极大理想，也是唯一的非零素理想。对$m\ge2$，$p\cdot p^{m-1}\in(p^m)$，但两个因子均不在$(p^m)$，故$(p^m)$不是素理想。零理想也是素理想，因为此环是整环。
+\end{example}

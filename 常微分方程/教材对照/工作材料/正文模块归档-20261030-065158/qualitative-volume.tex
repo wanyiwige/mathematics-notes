@@ -1,0 +1,44 @@
+\subsection*{相流的体积变化}
+\phantomsection\label{sec:nonlinear-volume}
+流的群性质给出点的运动；由命题~\ref{prop:matrix-variation}，初值的微小变化满足线性变分方程。将定理~\ref{thm:Wronski判别与Liouville公式} 应用于该方程，就能计算相流的体积变化。
+\begin{definition}
+Euclidean 空间上 $C^1$ 向量场的散度定义为
+$\operatorname{div}v=\sum_i\partial_i v_i=\operatorname{tr}Dv$。
+若 $D$ 是初始区域，记 $D(t)=\varphi^t(D)$，$V(t)$ 为其体积。
+以下假定 $D$ 有界且闭包上的流在所考察时间段内存在。
+\end{definition}
+\begin{theorem}[非线性 Liouville 公式]\label{thm:nonlinear-liouville}
+\[
+ \det D\varphi^t(x)
+ =\exp\int_0^t\operatorname{div}v(\varphi^s(x))\,ds,
+ \qquad V'(t)=\int_{D(t)}\operatorname{div}v(y)\,dy.
+\]
+散度为零时，相流保持体积。
+\end{theorem}
+\begin{proof}
+固定初值 $x$，令 $Z(t)=D\varphi^t(x)$。命题~\ref{prop:matrix-variation} 给出
+\[
+ Z'(t)=Dv(\varphi^t(x))Z(t),\qquad Z(0)=I.
+\]
+这是系数连续的线性矩阵方程。应用线性 Liouville 公式，得到
+\[
+ J(t,x):=\det Z(t)
+ =\exp\left(\int_0^t\operatorname{tr}Dv(\varphi^s(x))\,ds\right)>0.
+\]
+流的逆是反向时间流，故 $\varphi^t$ 在所考察区域上为微分同胚。
+换元公式因而给出 
+\[
+ V(t)=\displaystyle\int_DJ(t,x)\,dx,
+\]
+这里不必再对行列式取绝对值。
+对上式求导，有
+\[
+ \partial_tJ(t,x)=\operatorname{div}v(\varphi^t(x))J(t,x).
+\]
+由于初值闭包和时间段紧，右端连续且一致有界，可在积分号下求导。因此
+\begin{align*}
+ V'(t)&=\int_D\operatorname{div}v(\varphi^t(x))J(t,x)\,dx\\
+ &=\int_{D(t)}\operatorname{div}v(y)\,dy.
+\end{align*}
+若散度恒为零，则 $J=1$，从而每个这样的区域都保持体积。
+\end{proof}

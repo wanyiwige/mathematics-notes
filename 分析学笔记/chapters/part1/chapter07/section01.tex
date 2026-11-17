@@ -1,0 +1,87 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.1 导数、微分与连续性
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{导数、微分与连续性}
+\begin{definition}
+	$y=f(x)$ 在 $x_0$ 的某个邻域 $O\left(x_0, \rho\right)$ 上有定义，若 $\forall \Delta x\left(x_0+\Delta x \in O\left(x_0, \rho\right)\right)$ ，极限
+	
+	$$
+	\lim _{\Delta x \rightarrow 0} \frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x}
+	$$
+	
+	
+	存在且有限，则称 $f(x)$ 在 $x=x_0$ 可导，该极限称为 $f(x)$ 在 $x=x_0$ 处的导数，记为 $f^{\prime}\left(x_0\right)$ .
+	
+
+\end{definition}	等价地，$f^{\prime}\left(x_0\right)$ 可以写作
+
+$$
+f^{\prime}\left(x_0\right)=\lim _{t \rightarrow x_0} \frac{f(t)-f\left(x_0\right)}{t-x_0}
+$$
+
+
+若 $f(x)$ 在 $(a, b)$ 上任一点处可导，则称 $f(x)$ 在 $(a, b)$ 上可导，记为$f\in D(a,b)$,若$f$的导函数也是连续的，则记为$f\in C^1(a,b)$
+\begin{definition}
+	$ y=f(x)$ 在 $O\left(x_0, \rho\right)$ 上有定义，$\forall \Delta x\left(x_0+\Delta x \in O\left(x_0, \rho\right)\right).$ 
+	极限
+	
+	$$
+	\lim _{\Delta x \rightarrow 0^{+}} \frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x}
+	$$
+	
+	
+	存在且有限，则称 $f(x)$ 在 $x=x_0$ 处右可导，记为 $f^{\prime}_{+}\left(x_0\right)$ ，称右导数.
+	
+	类似地，定义 $$f^{\prime}_{-}\left(x_0\right)=\lim _{\Delta x \rightarrow 0^{-}} \frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x}$$
+	显然地，$f^{\prime}\left(x_0\right)$ 存在的充要条件是 $f_{+}^{\prime}\left(x_0\right)=f_{-}^{\prime}\left(x_0\right)=f\left(x_0\right)$
+	
+	若 $f^{\prime}_{+}\left(x_0\right) \neq f^{\prime}\left(x_0\right)$ ，或其中有不存在者，则称 $x_0$ 为 $f(x)$ 的不可导点
+	
+	与连续性类似的，我们可以给出一个函数在闭区间上可导的定义：$f\in D(a,b)$，且$f'_{+}(a),f'_{-}(b)$存在且有限
+\end{definition}
+\begin{definition}
+	$y=f(x)$ 在 $x_0$ 的某个邻域 $O\left(x_0, \rho\right)$ 上有定义，若 $\Delta x \rightarrow 0$ 时，$$\quad \Delta y=f\left(x_0+\Delta x\right)-f\left(x_0\right)=A\left(x_0\right) \Delta x+o(\Delta x)$$则称 $y=f(x)$ 在 $x_0$ 处可微，记其微分为
+	$$\mathrm{d} y|_{y=y_0}=A\left(x_0\right) \mathrm{d} x$$
+\end{definition}
+\begin{theorem}
+	$y=f(x)$在$x=x_0$处可导的充要条件是$f(x)$在$x_0$处可微.
+\end{theorem}
+\begin{proof}
+	必要性：已知 $f(x)$ 在 $x_0$ 处可导，由定义
+	$$f^{\prime}\left(x_0\right)=\lim _{\Delta x \rightarrow 0} \frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x}$$
+	存在一个函数 $\varphi(\Delta x) \rightarrow 0(\Delta x \rightarrow 0$ 时 $)$
+	使得 $|\Delta x|$ 充分小时,
+	$$\frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x}=f^{\prime}\left(x_0\right)+\varphi(\Delta x)$$那么$$\Delta y=f\left(x_0+\Delta x\right)-f\left(x_0\right)=f^{\prime}\left(x_0\right) \Delta x+\varphi(\Delta x) \Delta x=f^{\prime}\left(x_0\right) \Delta x+o(\Delta x)$$
+	从而 $y=f(x)$ 在 $x=x_0$ 处可微且 $\mathrm{d}y =f^{\prime}(x) \mathrm{d} x$
+	
+	充分性：已知 $y=f(x)$ 在 $x=x_0$ 处可微，存在一个仅与 $x_0$ 有关的量 $A(x_0)$使得
+	$$\begin{aligned}
+		\Delta y=f\left(x_0+\Delta x\right)-f\left(x_0\right)=A\left(x_0\right) & \Delta x+o(\Delta x) \\
+		\frac{\Delta y}{\Delta x}=\frac{f\left(x_0+\Delta x\right)-f\left(x_0\right)}{\Delta x} & =A\left(x_0\right)+\frac{o(\Delta x)}{\Delta x} \\
+		& \rightarrow A\left(x_0\right)(\Delta x \rightarrow 0 \text { 时 })
+	\end{aligned}$$
+	$f(x)$ 在 $x=x_0$ 处可导，且 $A\left(x_0\right)=f^{\prime}\left(x_0\right)$ ，故有 $\mathrm{d} y=f^{\prime}(x) \mathrm{d} x$
+	
+	
+\end{proof}
+综上 $ f^{\prime}(x)=\dfrac{\mathrm{d} y}{\mathrm{d} x}$
+
+对 $\mathbb{R}^{1}$ 上的函数，可导等价于可微.
+
+对上式的两端,$f^{\prime}(x)$ 是一个整体,$\dfrac{\mathrm{d} y}{\mathrm{d} x}$ 又称微商,它可以做乘除的运算.
+\begin{proposition}
+	$y=f(x)$ 在 $x=x_0$ 处可导，则 $f(x)$ 在 $x=x_0$ 处连续.
+\end{proposition}
+
+
+\begin{proof}
+	设 $f(x)$ 在 $x=x_0$ 处可导，$|\Delta x|$ 充分小时,$\exists \varphi(x) \rightarrow 0(x \rightarrow 0)$,使得$$f\left(x_0+\Delta x\right)-f\left(x_0\right)=f^{\prime}\left(x_0\right) \Delta x+\varphi(\Delta x)$$
+	
+	$\Delta x \rightarrow 0$ 时，上式右侧$\rightarrow 0$ ,故$$\lim _{\Delta x \rightarrow 0} f\left(x_0+\Delta x\right)=f\left(x_0\right)$$
+	
+	这就是连续性的定义.
+\end{proof}
+连续不一定可导，例如 $y=|x|$ 在 $x=0$ 处
+
+

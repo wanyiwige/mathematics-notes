@@ -1,0 +1,2373 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex)
+ restricted \write18 enabled.
+entering extended mode
+(./抽象代数前三章全部习题详解.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg)
+(d:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
+(d:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-xetex.def))
+Document Class: ctexart 2022/07/14 v2.5.10 Chinese adapter for class article (C
+TEX)
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/ctexhook.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/ctexpatch.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/base/fix-cm.sty
+(d:/texlive/2025/texmf-dist/tex/latex/base/ts1enc.def))
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/config/ctexopts.cfg)
+(d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(d:/texlive/2025/texmf-dist/tex/latex/base/size11.clo))
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/engine/ctex-engine-xetex.def
+(d:/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+(d:/texlive/2025/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty
+(d:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+(d:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(d:/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg)))
+(d:/texlive/2025/texmf-dist/tex/latex/zhnumber/zhnumber.sty
+(d:/texlive/2025/texmf-dist/tex/latex/zhnumber/zhnumber-utf8.cfg))
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/scheme/ctex-scheme-chinese-article.d
+ef (d:/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex-name-utf8.cfg))
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def))
+(d:/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex.cfg)
+(d:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+(d:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+(d:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+(d:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(d:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+(d:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(d:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(d:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(d:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(d:/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/tools/array.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+(d:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(d:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(d:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(d:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+(d:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(d:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(d:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(d:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+(d:/texlive/2025/texmf-dist/tex/latex/url/url.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+(d:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(d:/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(d:/texlive/2025/texmf-dist/tex/latex/hyperref/hxetex.def
+(d:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(d:/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(d:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(d:/texlive/2025/texmf-dist/tex/latex/xurl/xurl.sty)
+(d:/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(./抽象代数前三章全部习题详解.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(./抽象代数前三章全部习题详解.out) (./抽象代数前三章全部习题详解.out)
+(d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+LaTeX Warning: Hyper reference `note:group' on page 1 undefined on input line 1
+93.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 1 undefined on input line 
+193.
+
+
+LaTeX Warning: Hyper reference `note:order' on page 1 undefined on input line 1
+93.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 1 undefined on input line 
+193.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 1 undefined on input lin
+e 193.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 1 undefined on input line 
+193.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 1 undefined on input line
+ 195.
+
+(./抽象代数前三章全部习题详解.toc)
+[1]
+[2] (./chapter1.tex
+
+LaTeX Warning: Hyper reference `note:cancel' on page 3 undefined on input line 
+14.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 3 undefined on input line 4
+4.
+
+
+LaTeX Warning: Hyper reference `note:group' on page 3 undefined on input line 7
+1.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 3 undefined on input line 7
+1.
+
+
+[3]
+
+LaTeX Warning: Hyper reference `note:group' on page 4 undefined on input line 1
+08.
+
+
+[4]
+
+LaTeX Warning: Hyper reference `note:cycles' on page 5 undefined on input line 
+152.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 5 undefined on input lin
+e 180.
+
+
+[5]
+
+LaTeX Warning: Hyper reference `note:powers' on page 6 undefined on input line 
+214.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 6 undefined on input line 2
+14.
+
+
+[6]
+
+LaTeX Warning: Hyper reference `note:glaws' on page 7 undefined on input line 2
+49.
+
+
+LaTeX Warning: Hyper reference `note:hom' on page 7 undefined on input line 249
+.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 7 undefined on input lin
+e 283.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 7 undefined on input line 
+283.
+
+
+[7]
+
+LaTeX Warning: Hyper reference `note:iso' on page 8 undefined on input line 317
+.
+
+
+LaTeX Warning: Hyper reference `note:ringiso' on page 8 undefined on input line
+ 317.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 8 undefined on input lin
+e 344.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 8 undefined on input line 344
+.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 8 undefined on input line 
+344.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 8 undefined on input lin
+e 353.
+
+
+[8]
+
+LaTeX Warning: Hyper reference `note:cosets' on page 9 undefined on input line 
+372.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 9 undefined on input line 
+372.
+
+
+LaTeX Warning: Hyper reference `note:order' on page 9 undefined on input line 3
+99.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 9 undefined on input line 3
+99.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 9 undefined on input lin
+e 429.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 9 undefined on input lin
+e 429.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 9 undefined on input line 429
+.
+
+
+[9]
+
+LaTeX Warning: Hyper reference `note:glaws' on page 10 undefined on input line 
+464.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 10 undefined on input line
+ 464.
+
+
+[10]
+
+LaTeX Warning: Hyper reference `note:order' on page 11 undefined on input line 
+502.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 11 undefined on input li
+ne 539.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 11 undefined on input line
+ 539.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 11 undefined on input li
+ne 550.
+
+
+[11]
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 12 undefined on input line
+ 569.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 12 undefined on input li
+ne 602.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 12 undefined on input line
+ 602.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 12 undefined on input line
+ 602.
+
+
+[12]
+
+LaTeX Warning: Hyper reference `note:setproduct' on page 13 undefined on input 
+line 646.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 13 undefined on input li
+ne 646.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 13 undefined on input li
+ne 662.
+
+
+[13]
+
+LaTeX Warning: Hyper reference `note:cosets' on page 14 undefined on input line
+ 683.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 14 undefined on input line
+ 721.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 14 undefined on input li
+ne 721.
+
+
+LaTeX Warning: Hyper reference `note:setproduct' on page 14 undefined on input 
+line 721.
+
+
+[14]
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 15 undefined on input li
+ne 752.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 15 undefined on input li
+ne 774.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 15 undefined on input line
+ 774.
+
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 15 undefined on input li
+ne 783.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 15 undefined on input line
+ 796.
+
+
+[15]
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 16 undefined on input li
+ne 813.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 16 undefined on input line 81
+3.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 16 undefined on input li
+ne 818.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 16 undefined on input li
+ne 837.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 16 undefined on input line
+ 837.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 16 undefined on input line 83
+7.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 16 undefined on input li
+ne 844.
+
+
+[16]
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 17 undefined on input li
+ne 870.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 17 undefined on input line
+ 870.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 17 undefined on input line 87
+0.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 17 undefined on input li
+ne 875.
+
+
+LaTeX Warning: Hyper reference `note:subring' on page 17 undefined on input lin
+e 901.
+
+
+LaTeX Warning: Hyper reference `note:ringiso' on page 17 undefined on input lin
+e 901.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 17 undefined on input lin
+e 901.
+
+
+LaTeX Warning: Hyper reference `note:subring' on page 17 undefined on input lin
+e 917.
+
+
+[17]
+
+LaTeX Warning: Hyper reference `note:ring' on page 18 undefined on input line 9
+45.
+
+
+LaTeX Warning: Hyper reference `note:group' on page 18 undefined on input line 
+945.
+
+
+LaTeX Warning: Hyper reference `note:ringiso' on page 18 undefined on input lin
+e 973.
+
+
+LaTeX Warning: Hyper reference `note:ring' on page 18 undefined on input line 9
+73.
+
+
+[18]
+
+LaTeX Warning: Hyper reference `note:subring' on page 19 undefined on input lin
+e 1013.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 19 undefined on input line 1
+013.
+
+
+[19]
+
+LaTeX Warning: Hyper reference `note:unit' on page 20 undefined on input line 1
+059.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 20 undefined on input lin
+e 1059.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 20 undefined on input li
+ne 1059.
+
+
+[20]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 21 undefined on input line 
+1095.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 21 undefined on input line 
+1095.
+
+
+LaTeX Warning: Hyper reference `note:idealunit' on page 21 undefined on input l
+ine 1095.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 21 undefined on input line 
+1120.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 21 undefined on input li
+ne 1120.
+
+
+[21]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 22 undefined on input line 
+1162.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 22 undefined on input li
+ne 1162.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 22 undefined on input line 
+1198.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 22 undefined on input line 
+1198.
+
+
+[22]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 23 undefined on input line 
+1224.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 23 undefined on input lin
+e 1258.
+
+
+[23]
+
+LaTeX Warning: Hyper reference `note:unit' on page 24 undefined on input line 1
+284.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 24 undefined on input li
+ne 1284.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 24 undefined on input line 
+1313.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 24 undefined on input li
+ne 1313.
+
+
+[24]
+
+LaTeX Warning: Hyper reference `note:unit' on page 25 undefined on input line 1
+347.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 25 undefined on input li
+ne 1347.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 25 undefined on input line 1
+379.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 25 undefined on input li
+ne 1379.
+
+
+[25]
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 26 undefined on input lin
+e 1415.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 26 undefined on input line 1
+415.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 26 undefined on input line 
+1415.
+
+
+[26]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 27 undefined on input line 
+1463.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 27 undefined on input lin
+e 1463.
+
+
+LaTeX Warning: Hyper reference `note:idealunit' on page 27 undefined on input l
+ine 1463.
+
+
+[27]
+
+LaTeX Warning: Hyper reference `note:iso' on page 28 undefined on input line 15
+20.
+
+
+[28]
+
+LaTeX Warning: Hyper reference `note:field' on page 29 undefined on input line 
+1560.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 29 undefined on input line 1
+560.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 29 undefined on input li
+ne 1560.
+
+) (./chapter2.tex
+[29]
+
+LaTeX Warning: Hyper reference `note:order' on page 30 undefined on input line 
+14.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 30 undefined on input li
+ne 14.
+
+
+LaTeX Warning: Hyper reference `note:quotient' on page 30 undefined on input li
+ne 14.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 30 undefined on input li
+ne 23.
+
+
+LaTeX Warning: Hyper reference `note:powerorder' on page 30 undefined on input 
+line 42.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 30 undefined on input line
+ 42.
+
+
+LaTeX Warning: Hyper reference `note:powerorder' on page 30 undefined on input 
+line 56.
+
+
+[30]
+
+LaTeX Warning: Hyper reference `note:order' on page 31 undefined on input line 
+78.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 31 undefined on input line
+ 78.
+
+
+LaTeX Warning: Hyper reference `note:order' on page 31 undefined on input line 
+106.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 31 undefined on input line 
+106.
+
+
+[31]
+
+LaTeX Warning: Hyper reference `note:order' on page 32 undefined on input line 
+134.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 32 undefined on input line 
+134.
+
+
+LaTeX Warning: Hyper reference `note:center' on page 32 undefined on input line
+ 158.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 32 undefined on input
+ line 158.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 32 undefined on input
+ line 163.
+
+
+[32]
+
+LaTeX Warning: Hyper reference `note:generated' on page 33 undefined on input l
+ine 192.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 33 undefined on input line
+ 192.
+
+
+LaTeX Warning: Hyper reference `note:generated' on page 33 undefined on input l
+ine 233.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 33 undefined on input line
+ 233.
+
+
+LaTeX Warning: Hyper reference `note:abelianpowers' on page 33 undefined on inp
+ut line 233.
+
+
+[33]
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 34 undefined on input line
+ 269.
+
+
+LaTeX Warning: Hyper reference `note:powerorder' on page 34 undefined on input 
+line 269.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 34 undefined on input line
+ 269.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 34 undefined on input line
+ 269.
+
+
+LaTeX Warning: Hyper reference `note:internal' on page 34 undefined on input li
+ne 269.
+
+
+LaTeX Warning: Hyper reference `note:coprime' on page 34 undefined on input lin
+e 269.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 34 undefined on input line
+ 286.
+
+
+LaTeX Warning: Hyper reference `note:powerorder' on page 34 undefined on input 
+line 288.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 34 undefined on input line
+ 294.
+
+
+[34]
+
+LaTeX Warning: Hyper reference `note:threecycles' on page 35 undefined on input
+ line 315.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 35 undefined on input
+ line 315.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 35 undefined on input
+ line 320.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 35 undefined on input
+ line 355.
+
+
+LaTeX Warning: Hyper reference `note:generated' on page 35 undefined on input l
+ine 355.
+
+
+[35]
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 36 undefined on input
+ line 389.
+
+
+LaTeX Warning: Hyper reference `note:threecycles' on page 36 undefined on input
+ line 389.
+
+
+[36]
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 37 undefined on input
+ line 406.
+
+
+LaTeX Warning: Hyper reference `note:centerizer' on page 37 undefined on input 
+line 435.
+
+
+LaTeX Warning: Hyper reference `note:orbit' on page 37 undefined on input line 
+435.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 37 undefined on input line
+ 435.
+
+
+[37]
+
+LaTeX Warning: Hyper reference `note:orbit' on page 38 undefined on input line 
+452.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 38 undefined on input
+ line 472.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 38 undefined on input line
+ 472.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 38 undefined on input line
+ 472.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 38 undefined on input li
+ne 472.
+
+
+LaTeX Warning: Hyper reference `note:sign' on page 38 undefined on input line 4
+72.
+
+
+[38]
+
+LaTeX Warning: Hyper reference `note:correspondence' on page 39 undefined on in
+put line 515.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 39 undefined on input line
+ 515.
+
+
+LaTeX Warning: Hyper reference `note:quotient' on page 39 undefined on input li
+ne 515.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 39 undefined on input line
+ 550.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 39 undefined on input line 
+550.
+
+
+[39]
+
+LaTeX Warning: Hyper reference `note:cosets' on page 40 undefined on input line
+ 583.
+
+
+LaTeX Warning: Hyper reference `note:action' on page 40 undefined on input line
+ 618.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 40 undefined on input li
+ne 618.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 40 undefined on input li
+ne 618.
+
+
+[40]
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 41 undefined on input li
+ne 627.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 41 undefined on input li
+ne 627.
+
+
+LaTeX Warning: Hyper reference `note:action' on page 41 undefined on input line
+ 648.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 41 undefined on input li
+ne 648.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 41 undefined on input li
+ne 648.
+
+
+LaTeX Warning: Hyper reference `note:orbit' on page 41 undefined on input line 
+648.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 41 undefined on input li
+ne 653.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 41 undefined on input li
+ne 653.
+
+
+LaTeX Warning: Hyper reference `note:orbit' on page 41 undefined on input line 
+659.
+
+
+LaTeX Warning: Hyper reference `note:pcenter' on page 41 undefined on input lin
+e 678.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 41 undefined on input li
+ne 678.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 41 undefined on input line
+ 678.
+
+
+LaTeX Warning: Hyper reference `note:internal' on page 41 undefined on input li
+ne 678.
+
+
+[41]
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 42 undefined on input line
+ 711.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 42 undefined on input line
+ 711.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 42 undefined on input line
+ 711.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 42 undefined on input li
+ne 711.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 42 undefined on input line 71
+1.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 42 undefined on input line
+ 716.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 42 undefined on input line
+ 716.
+
+
+[42]
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 43 undefined on input line
+ 743.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 43 undefined on input line
+ 743.
+
+
+LaTeX Warning: Hyper reference `note:coprime' on page 43 undefined on input lin
+e 743.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 43 undefined on input line
+ 748.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 43 undefined on input line
+ 774.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 43 undefined on input line
+ 774.
+
+
+LaTeX Warning: Hyper reference `note:coprime' on page 43 undefined on input lin
+e 774.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 43 undefined on input li
+ne 774.
+
+
+[43]
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 44 undefined on input line
+ 808.
+
+
+LaTeX Warning: Hyper reference `note:simple' on page 44 undefined on input line
+ 808.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 44 undefined on input line
+ 836.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 44 undefined on input li
+ne 836.
+
+
+[44]
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 45 undefined on input li
+ne 868.
+
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 45 undefined on input li
+ne 868.
+
+
+[45]
+
+LaTeX Warning: Hyper reference `note:cosets' on page 46 undefined on input line
+ 916.
+
+
+LaTeX Warning: Hyper reference `note:cayley' on page 46 undefined on input line
+ 953.
+
+
+LaTeX Warning: Hyper reference `note:sign' on page 46 undefined on input line 9
+53.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 46 undefined on input li
+ne 953.
+
+
+[46]
+
+LaTeX Warning: Hyper reference `note:cayley' on page 47 undefined on input line
+ 958.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 47 undefined on input li
+ne 964.
+
+
+LaTeX Warning: Hyper reference `note:setproduct' on page 47 undefined on input 
+line 985.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 47 undefined on input line 
+985.
+
+
+[47]
+
+LaTeX Warning: Hyper reference `note:orbit' on page 48 undefined on input line 
+1016.
+
+
+LaTeX Warning: Hyper reference `note:normalizer' on page 48 undefined on input 
+line 1016.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 48 undefined on input line
+ 1016.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 48 undefined on input line
+ 1052.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 48 undefined on input line
+ 1052.
+
+
+LaTeX Warning: Hyper reference `note:orbit' on page 48 undefined on input line 
+1052.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 48 undefined on input line
+ 1052.
+
+
+[48]
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 49 undefined on input line
+ 1096.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 49 undefined on input line
+ 1096.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 49 undefined on input li
+ne 1096.
+
+
+[49]
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 50 undefined on input li
+ne 1115.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 50 undefined on input line
+ 1132.
+
+
+LaTeX Warning: Hyper reference `note:normalizer' on page 50 undefined on input 
+line 1132.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 50 undefined on input line
+ 1139.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 50 undefined on input line
+ 1164.
+
+
+LaTeX Warning: Hyper reference `note:sylowdef' on page 50 undefined on input li
+ne 1164.
+
+
+LaTeX Warning: Hyper reference `note:secondiso' on page 50 undefined on input l
+ine 1164.
+
+
+[50]
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 51 undefined on input line
+ 1170.
+
+
+LaTeX Warning: Hyper reference `note:secondiso' on page 51 undefined on input l
+ine 1178.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 51 undefined on input line
+ 1200.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 51 undefined on input line
+ 1200.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 51 undefined on input li
+ne 1200.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 51 undefined on input line
+ 1205.
+
+
+[51]
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 52 undefined on input line
+ 1230.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 52 undefined on input line
+ 1230.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 52 undefined on input line
+ 1230.
+
+
+LaTeX Warning: Hyper reference `note:orbit' on page 52 undefined on input line 
+1230.
+
+
+[52]
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 53 undefined on input line
+ 1276.
+
+
+LaTeX Warning: Hyper reference `note:pcenter' on page 53 undefined on input lin
+e 1298.
+
+
+LaTeX Warning: Hyper reference `note:abelianization' on page 53 undefined on in
+put line 1298.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 53 undefined on input li
+ne 1298.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 53 undefined on input li
+ne 1303.
+
+
+[53]
+
+LaTeX Warning: Hyper reference `note:cyclicaut' on page 54 undefined on input l
+ine 1328.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 54 undefined on input li
+ne 1328.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 54 undefined on input li
+ne 1328.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 54 undefined on input li
+ne 1342.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 54 undefined on input li
+ne 1342.
+
+
+LaTeX Warning: Hyper reference `note:center' on page 54 undefined on input line
+ 1359.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 54 undefined on input line
+ 1359.
+
+
+LaTeX Warning: Hyper reference `note:powers' on page 54 undefined on input line
+ 1359.
+
+
+[54]
+
+LaTeX Warning: Hyper reference `note:cayley' on page 55 undefined on input line
+ 1394.
+
+
+LaTeX Warning: Hyper reference `note:sign' on page 55 undefined on input line 1
+394.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 55 undefined on input li
+ne 1394.
+
+
+LaTeX Warning: Hyper reference `note:normal' on page 55 undefined on input line
+ 1432.
+
+
+LaTeX Warning: Hyper reference `note:derived' on page 55 undefined on input lin
+e 1432.
+
+
+[55]
+
+LaTeX Warning: Hyper reference `note:derivedseries' on page 56 undefined on inp
+ut line 1462.
+
+
+LaTeX Warning: Hyper reference `note:derived' on page 56 undefined on input lin
+e 1462.
+
+
+LaTeX Warning: Hyper reference `note:solvabledef' on page 56 undefined on input
+ line 1462.
+
+
+LaTeX Warning: Hyper reference `note:solvable' on page 56 undefined on input li
+ne 1502.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 56 undefined on input line
+ 1502.
+
+
+LaTeX Warning: Hyper reference `note:pcenter' on page 56 undefined on input lin
+e 1502.
+
+
+[56]
+[57]
+
+LaTeX Warning: Hyper reference `note:classeq' on page 58 undefined on input lin
+e 1550.
+
+
+LaTeX Warning: Hyper reference `note:pcenter' on page 58 undefined on input lin
+e 1550.
+
+
+LaTeX Warning: Hyper reference `note:solvable' on page 58 undefined on input li
+ne 1550.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 58 undefined on input li
+ne 1578.
+
+
+LaTeX Warning: Hyper reference `note:derivedseries' on page 58 undefined on inp
+ut line 1578.
+
+
+LaTeX Warning: Hyper reference `note:solvable' on page 58 undefined on input li
+ne 1578.
+
+
+LaTeX Warning: Hyper reference `note:internal' on page 58 undefined on input li
+ne 1578.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 58 undefined on input li
+ne 1593.
+
+
+[58]
+
+LaTeX Warning: Hyper reference `note:inner' on page 59 undefined on input line 
+1623.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 59 undefined on input line
+ 1623.
+
+
+LaTeX Warning: Hyper reference `note:inner' on page 59 undefined on input line 
+1647.
+
+
+LaTeX Warning: Hyper reference `note:aut' on page 59 undefined on input line 16
+47.
+
+
+LaTeX Warning: Hyper reference `note:glaws' on page 59 undefined on input line 
+1647.
+
+
+[59]
+
+LaTeX Warning: Hyper reference `note:aut' on page 60 undefined on input line 16
+92.
+
+
+LaTeX Warning: Hyper reference `note:iso' on page 60 undefined on input line 16
+92.
+
+
+[60]
+
+LaTeX Warning: Hyper reference `note:inner' on page 61 undefined on input line 
+1724.
+
+
+LaTeX Warning: Hyper reference `note:complete' on page 61 undefined on input li
+ne 1724.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 61 undefined on input
+ line 1724.
+
+
+LaTeX Warning: Hyper reference `note:threecycles' on page 61 undefined on input
+ line 1724.
+
+
+[61]
+
+LaTeX Warning: Hyper reference `note:inner' on page 62 undefined on input line 
+1789.
+
+
+LaTeX Warning: Hyper reference `note:autcenterless' on page 62 undefined on inp
+ut line 1789.
+
+
+LaTeX Warning: Hyper reference `note:characteristic' on page 62 undefined on in
+put line 1789.
+
+
+LaTeX Warning: Hyper reference `note:complete' on page 62 undefined on input li
+ne 1789.
+
+
+LaTeX Warning: Hyper reference `note:simple' on page 62 undefined on input line
+ 1789.
+
+
+[62]
+
+LaTeX Warning: Hyper reference `note:complete' on page 63 undefined on input li
+ne 1829.
+
+
+LaTeX Warning: Hyper reference `note:characteristic' on page 63 undefined on in
+put line 1829.
+
+
+LaTeX Warning: Hyper reference `note:internal' on page 63 undefined on input li
+ne 1829.
+
+
+LaTeX Warning: Hyper reference `note:derived' on page 63 undefined on input lin
+e 1829.
+
+
+LaTeX Warning: Hyper reference `note:threecycles' on page 63 undefined on input
+ line 1829.
+
+
+LaTeX Warning: Hyper reference `note:sign' on page 63 undefined on input line 1
+829.
+
+
+[63]
+
+LaTeX Warning: Hyper reference `note:derived' on page 64 undefined on input lin
+e 1863.
+
+
+LaTeX Warning: Hyper reference `note:threecycles' on page 64 undefined on input
+ line 1863.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 64 undefined on input line
+ 1863.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 64 undefined on input
+ line 1900.
+
+
+LaTeX Warning: Hyper reference `note:cycles' on page 64 undefined on input line
+ 1900.
+
+
+LaTeX Warning: Hyper reference `note:generated' on page 64 undefined on input l
+ine 1900.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 64 undefined on input
+ line 1907.
+
+
+[64]
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 65 undefined on input
+ line 1930.
+
+
+LaTeX Warning: Hyper reference `note:sign' on page 65 undefined on input line 1
+930.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 65 undefined on input li
+ne 1930.
+
+
+LaTeX Warning: Hyper reference `note:conjugation' on page 65 undefined on input
+ line 1937.
+
+
+[65]
+
+LaTeX Warning: Hyper reference `note:dihedral' on page 66 undefined on input li
+ne 1964.
+
+
+LaTeX Warning: Hyper reference `note:quaternion' on page 66 undefined on input 
+line 1964.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 66 undefined on input li
+ne 1964.
+
+
+LaTeX Warning: Hyper reference `note:free' on page 66 undefined on input line 1
+964.
+
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 66 undefined on input li
+ne 1987.
+
+
+LaTeX Warning: Hyper reference `note:simple' on page 66 undefined on input line
+ 2006.
+
+
+LaTeX Warning: Hyper reference `note:action' on page 66 undefined on input line
+ 2006.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 66 undefined on input li
+ne 2006.
+
+
+LaTeX Warning: Hyper reference `note:sylow1' on page 66 undefined on input line
+ 2006.
+
+
+LaTeX Warning: Hyper reference `note:sylow2' on page 66 undefined on input line
+ 2006.
+
+
+LaTeX Warning: Hyper reference `note:sylow3' on page 66 undefined on input line
+ 2006.
+
+
+LaTeX Warning: Hyper reference `note:pcenter' on page 66 undefined on input lin
+e 2006.
+
+
+LaTeX Warning: Hyper reference `note:solvable' on page 66 undefined on input li
+ne 2006.
+
+
+LaTeX Warning: Hyper reference `note:an' on page 66 undefined on input line 200
+6.
+
+
+[66]
+[67]
+
+LaTeX Warning: Hyper reference `note:generated' on page 68 undefined on input l
+ine 2116.
+
+
+LaTeX Warning: Hyper reference `note:cosets' on page 68 undefined on input line
+ 2116.
+
+
+[68]) (./chapter3.tex
+[69]
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 70 undefined on input li
+ne 24.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 70 undefined on input line 2
+4.
+
+
+[70]
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 71 undefined on input li
+ne 86.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 71 undefined on input line 8
+6.
+
+
+[71]
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 72 undefined on input li
+ne 153.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 72 undefined on input line 1
+53.
+
+
+[72]
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 73 undefined on input li
+ne 224.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 73 undefined on input line 
+224.
+
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 73 undefined on input line 
+224.
+
+
+[73]
+
+LaTeX Warning: Hyper reference `note:ring' on page 74 undefined on input line 2
+67.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 74 undefined on input li
+ne 267.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 74 undefined on input line 
+267.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 74 undefined on input line 
+316.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 74 undefined on input line 3
+16.
+
+
+[74]
+
+LaTeX Warning: Hyper reference `note:c3product' on page 75 undefined on input l
+ine 370.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 75 undefined on input li
+ne 370.
+
+
+[75]
+
+LaTeX Warning: Hyper reference `note:ringiso' on page 76 undefined on input lin
+e 420.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 76 undefined on input line 
+420.
+
+
+[76]
+[77]
+
+LaTeX Warning: Hyper reference `note:quaternion' on page 78 undefined on input 
+line 520.
+
+
+LaTeX Warning: Hyper reference `note:c3conjugate' on page 78 undefined on input
+ line 520.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 78 undefined on input line 
+520.
+
+
+LaTeX Warning: Hyper reference `note:quaternion' on page 78 undefined on input 
+line 560.
+
+
+LaTeX Warning: Hyper reference `note:c3conjugate' on page 78 undefined on input
+ line 560.
+
+
+[78]
+
+LaTeX Warning: Hyper reference `note:quaternion' on page 79 undefined on input 
+line 605.
+
+
+[79]
+
+LaTeX Warning: Hyper reference `note:field' on page 80 undefined on input line 
+644.
+
+
+LaTeX Warning: Hyper reference `note:c3conjugate' on page 80 undefined on input
+ line 644.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 80 undefined on input line 
+688.
+
+
+LaTeX Warning: Hyper reference `note:c3product' on page 80 undefined on input l
+ine 688.
+
+
+[80]
+
+LaTeX Warning: Hyper reference `note:c3comaximal' on page 81 undefined on input
+ line 724.
+
+
+LaTeX Warning: Hyper reference `note:c3product' on page 81 undefined on input l
+ine 724.
+
+
+LaTeX Warning: Hyper reference `note:c3anti' on page 81 undefined on input line
+ 761.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 81 undefined on input line 7
+61.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 81 undefined on input line 
+761.
+
+
+[81]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 82 undefined on input line 
+799.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 82 undefined on input line
+ 799.
+
+
+[82]
+
+LaTeX Warning: Hyper reference `note:c3crt' on page 83 undefined on input line 
+851.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 83 undefined on input line 8
+51.
+
+
+[83]
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 84 undefined on input lin
+e 897.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 84 undefined on input line 
+897.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 84 undefined on input line 
+935.
+
+
+[84]
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 85 undefined on input lin
+e 980.
+
+
+LaTeX Warning: Hyper reference `note:c3principal' on page 85 undefined on input
+ line 980.
+
+
+LaTeX Warning: Hyper reference `note:c3maxexists' on page 85 undefined on input
+ line 980.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 85 undefined on input lin
+e 1016.
+
+
+[85]
+
+LaTeX Warning: Hyper reference `note:ideal' on page 86 undefined on input line 
+1058.
+
+
+[86]
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 87 undefined on input lin
+e 1093.
+
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 87 undefined on input line
+ 1128.
+
+
+LaTeX Warning: Hyper reference `note:firstiso' on page 87 undefined on input li
+ne 1128.
+
+
+LaTeX Warning: Hyper reference `note:correspondence' on page 87 undefined on in
+put line 1128.
+
+
+[87]
+
+LaTeX Warning: Hyper reference `note:hom' on page 88 undefined on input line 11
+77.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 88 undefined on input li
+ne 1215.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 88 undefined on input line 1
+215.
+
+
+[88]
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 89 undefined on input lin
+e 1276.
+
+
+[89]
+
+LaTeX Warning: Hyper reference `note:subgroup' on page 90 undefined on input li
+ne 1328.
+
+
+LaTeX Warning: Hyper reference `note:c3anti' on page 90 undefined on input line
+ 1328.
+
+
+[90]
+[91]
+
+LaTeX Warning: Hyper reference `note:c3correspondence' on page 92 undefined on 
+input line 1421.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 92 undefined on input lin
+e 1421.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 92 undefined on input lin
+e 1421.
+
+
+LaTeX Warning: Hyper reference `note:c3polyquot' on page 92 undefined on input 
+line 1469.
+
+
+LaTeX Warning: Hyper reference `note:c3degree' on page 92 undefined on input li
+ne 1469.
+
+
+[92]
+
+LaTeX Warning: Hyper reference `note:c3direct' on page 93 undefined on input li
+ne 1516.
+
+
+LaTeX Warning: Hyper reference `note:c3crt' on page 93 undefined on input line 
+1516.
+
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 93 undefined on input line 
+1516.
+
+
+[93]
+
+LaTeX Warning: Hyper reference `note:c3roots' on page 94 undefined on input lin
+e 1570.
+
+
+LaTeX Warning: Hyper reference `note:c3poly' on page 94 undefined on input line
+ 1570.
+
+
+[94]
+
+LaTeX Warning: Hyper reference `note:quaternion' on page 95 undefined on input 
+line 1606.
+
+
+LaTeX Warning: Hyper reference `note:c3qroots' on page 95 undefined on input li
+ne 1606.
+
+
+LaTeX Warning: Hyper reference `note:c3minimal' on page 95 undefined on input l
+ine 1653.
+
+
+LaTeX Warning: Hyper reference `note:c3division' on page 95 undefined on input 
+line 1653.
+
+
+[95]
+
+LaTeX Warning: Hyper reference `note:c3poly' on page 96 undefined on input line
+ 1707.
+
+
+LaTeX Warning: Hyper reference `note:c3minimal' on page 96 undefined on input l
+ine 1707.
+
+
+[96]
+
+LaTeX Warning: Hyper reference `note:c3irred' on page 97 undefined on input lin
+e 1756.
+
+
+LaTeX Warning: Hyper reference `note:c3division' on page 97 undefined on input 
+line 1756.
+
+
+[97]
+
+LaTeX Warning: Hyper reference `note:c3irred' on page 98 undefined on input lin
+e 1789.
+
+
+LaTeX Warning: Hyper reference `note:c3roots' on page 98 undefined on input lin
+e 1789.
+
+
+[98]
+
+LaTeX Warning: Hyper reference `note:c3irred' on page 99 undefined on input lin
+e 1838.
+
+
+LaTeX Warning: Hyper reference `note:c3division' on page 99 undefined on input 
+line 1838.
+
+
+LaTeX Warning: Hyper reference `note:c3irred' on page 99 undefined on input lin
+e 1883.
+
+
+LaTeX Warning: Hyper reference `note:c3polyquot' on page 99 undefined on input 
+line 1883.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 99 undefined on input lin
+e 1883.
+
+
+[99]
+
+LaTeX Warning: Hyper reference `note:c3polyquot' on page 100 undefined on input
+ line 1924.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 100 undefined on input li
+ne 1924.
+
+
+LaTeX Warning: Hyper reference `ex:3:40' on page 100 undefined on input line 19
+24.
+
+
+LaTeX Warning: Hyper reference `ex:3:40' on page 100 undefined on input line 19
+37.
+
+
+[100]
+
+LaTeX Warning: Hyper reference `note:c3irred' on page 101 undefined on input li
+ne 1963.
+
+
+LaTeX Warning: Hyper reference `note:c3degree' on page 101 undefined on input l
+ine 1963.
+
+
+LaTeX Warning: Hyper reference `note:c3polyquot' on page 101 undefined on input
+ line 2003.
+
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 101 undefined on input line
+ 2003.
+
+
+LaTeX Warning: Hyper reference `note:c3nilideal' on page 101 undefined on input
+ line 2003.
+
+
+[101]
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 102 undefined on input li
+ne 2039.
+
+
+LaTeX Warning: Hyper reference `note:c3poly' on page 102 undefined on input lin
+e 2039.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 102 undefined on input l
+ine 2039.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 102 undefined on input line 
+2081.
+
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 102 undefined on input line
+ 2081.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 102 undefined on input l
+ine 2081.
+
+
+[102]
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 103 undefined on input line
+ 2126.
+
+
+LaTeX Warning: Hyper reference `ex:3:43' on page 103 undefined on input line 21
+26.
+
+
+LaTeX Warning: Hyper reference `ex:3:43' on page 103 undefined on input line 21
+38.
+
+
+[103]
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 104 undefined on input line
+ 2162.
+
+
+LaTeX Warning: Hyper reference `note:c3multi' on page 104 undefined on input li
+ne 2162.
+
+
+LaTeX Warning: Hyper reference `ex:3:43' on page 104 undefined on input line 21
+62.
+
+
+LaTeX Warning: Hyper reference `ex:3:46' on page 104 undefined on input line 21
+62.
+
+
+LaTeX Warning: Hyper reference `ex:3:43' on page 104 undefined on input line 21
+68.
+
+
+LaTeX Warning: Hyper reference `ex:3:46' on page 104 undefined on input line 21
+68.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 104 undefined on input line 
+2206.
+
+
+[104]
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 105 undefined on input line
+ 2246.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 105 undefined on input li
+ne 2246.
+
+
+LaTeX Warning: Hyper reference `note:c3degree' on page 105 undefined on input l
+ine 2246.
+
+
+LaTeX Warning: Hyper reference `ex:3:45' on page 105 undefined on input line 22
+46.
+
+
+LaTeX Warning: Hyper reference `ex:3:46' on page 105 undefined on input line 22
+46.
+
+
+LaTeX Warning: Hyper reference `ex:3:45' on page 105 undefined on input line 22
+54.
+
+
+LaTeX Warning: Hyper reference `ex:3:46' on page 105 undefined on input line 22
+56.
+
+
+[105]
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 106 undefined on input li
+ne 2287.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 106 undefined on input line
+ 2287.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 106 undefined on input li
+ne 2322.
+
+
+LaTeX Warning: Hyper reference `note:c3principal' on page 106 undefined on inpu
+t line 2322.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 106 undefined on input l
+ine 2322.
+
+
+[106]
+
+LaTeX Warning: Hyper reference `note:c3nil' on page 107 undefined on input line
+ 2364.
+
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 107 undefined on input li
+ne 2364.
+
+
+LaTeX Warning: Hyper reference `note:c3maxexists' on page 107 undefined on inpu
+t line 2364.
+
+
+[107]
+
+LaTeX Warning: Hyper reference `note:c3principal' on page 108 undefined on inpu
+t line 2402.
+
+
+LaTeX Warning: Hyper reference `note:zerodiv' on page 108 undefined on input li
+ne 2402.
+
+
+LaTeX Warning: Hyper reference `note:field' on page 108 undefined on input line
+ 2402.
+
+
+[108]
+
+LaTeX Warning: Hyper reference `note:c3principal' on page 109 undefined on inpu
+t line 2444.
+
+
+LaTeX Warning: Hyper reference `ex:3:53' on page 109 undefined on input line 24
+44.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 109 undefined on input line 
+2476.
+
+
+LaTeX Warning: Hyper reference `note:ringlaws' on page 109 undefined on input l
+ine 2476.
+
+
+[109]
+
+LaTeX Warning: Hyper reference `note:field' on page 110 undefined on input line
+ 2529.
+
+
+LaTeX Warning: Hyper reference `note:c3anti' on page 110 undefined on input lin
+e 2529.
+
+
+[110]
+
+LaTeX Warning: Hyper reference `note:c3functions1' on page 111 undefined on inp
+ut line 2571.
+
+
+LaTeX Warning: Hyper reference `note:c3poly' on page 111 undefined on input lin
+e 2571.
+
+
+LaTeX Warning: Hyper reference `note:c3functionsN' on page 111 undefined on inp
+ut line 2618.
+
+
+LaTeX Warning: Hyper reference `note:c3degree' on page 111 undefined on input l
+ine 2618.
+
+
+LaTeX Warning: Hyper reference `note:c3roots' on page 111 undefined on input li
+ne 2618.
+
+
+[111]
+
+LaTeX Warning: Hyper reference `note:lagrange' on page 112 undefined on input l
+ine 2656.
+
+
+LaTeX Warning: Hyper reference `note:c3finite' on page 112 undefined on input l
+ine 2656.
+
+
+Overfull \hbox (1.09552pt too wide) in paragraph at lines 2664--2665
+[]\TU/SimSun(0)/m/n/10.95 在 原 点，| $\OML/cmm/m/it/10.95 g[] \OT1/cmr/m/n/10.95 =
+ [][](1 \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 x[]\OT1/cmr/m/n/10.95 )$ \T
+U/SimSun(0)/m/n/10.95 的 每 个 因 子 均 取 $\OT1/cmr/m/n/10.95 1$\TU/SimSun(0)/m/n/10.
+95 ，|  所 以 $\OML/cmm/m/it/10.95 g[]\OT1/cmr/m/n/10.95 (0\OML/cmm/m/it/10.95 ; [
+] ; \OT1/cmr/m/n/10.95 0) = 1$\TU/SimSun(0)/m/n/10.95 。|  在 任 意 非 零 点 $\OT1/cmr
+/m/n/10.95 (\OML/cmm/m/it/10.95 a[]; [] ; a[]\OT1/cmr/m/n/10.95 )$\TU/SimSun(0)
+/m/n/10.95 ，|
+
+LaTeX Warning: Hyper reference `note:c3functionsN' on page 112 undefined on inp
+ut line 2690.
+
+
+LaTeX Warning: Hyper reference `note:c3finite' on page 112 undefined on input l
+ine 2690.
+
+
+LaTeX Warning: Hyper reference `ex:3:59' on page 112 undefined on input line 26
+90.
+
+
+[112]
+
+LaTeX Warning: Hyper reference `ex:3:59' on page 113 undefined on input line 26
+96.
+
+
+LaTeX Warning: Hyper reference `note:c3finite' on page 113 undefined on input l
+ine 2734.
+
+
+LaTeX Warning: Hyper reference `note:c3functionsN' on page 113 undefined on inp
+ut line 2734.
+
+
+LaTeX Warning: Hyper reference `ex:3:59' on page 113 undefined on input line 27
+34.
+
+
+[113]
+
+LaTeX Warning: Hyper reference `note:c3fraction' on page 114 undefined on input
+ line 2778.
+
+
+LaTeX Warning: Hyper reference `note:c3poly' on page 114 undefined on input lin
+e 2778.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 114 undefined on input line 
+2778.
+
+
+[114]
+
+LaTeX Warning: Hyper reference `note:c3prime' on page 115 undefined on input li
+ne 2833.
+
+
+[115]
+
+LaTeX Warning: Hyper reference `note:field' on page 116 undefined on input line
+ 2873.
+
+
+LaTeX Warning: Hyper reference `note:c3algebraic' on page 116 undefined on inpu
+t line 2873.
+
+
+LaTeX Warning: Hyper reference `note:unit' on page 116 undefined on input line 
+2873.
+
+
+[116]
+
+LaTeX Warning: Hyper reference `note:c3degree' on page 117 undefined on input l
+ine 2919.
+
+
+LaTeX Warning: Hyper reference `note:c3functionsN' on page 117 undefined on inp
+ut line 2919.
+
+
+LaTeX Warning: Hyper reference `ex:3:58' on page 117 undefined on input line 29
+19.
+
+
+LaTeX Warning: Hyper reference `ex:3:58' on page 117 undefined on input line 29
+29.
+
+
+LaTeX Warning: Hyper reference `note:ideal' on page 117 undefined on input line
+ 2955.
+
+
+LaTeX Warning: Hyper reference `note:subring' on page 117 undefined on input li
+ne 2955.
+
+
+[117]
+
+LaTeX Warning: Hyper reference `note:ring' on page 118 undefined on input line 
+2995.
+
+
+LaTeX Warning: Hyper reference `note:hom' on page 118 undefined on input line 2
+995.
+
+
+LaTeX Warning: Hyper reference `note:aut' on page 118 undefined on input line 2
+995.
+
+
+[118]
+
+LaTeX Warning: Hyper reference `note:cyclic' on page 119 undefined on input lin
+e 3047.
+
+
+LaTeX Warning: Hyper reference `note:hom' on page 119 undefined on input line 3
+047.
+
+
+LaTeX Warning: Hyper reference `ex:3:67' on page 119 undefined on input line 30
+47.
+
+
+LaTeX Warning: Hyper reference `ex:3:67' on page 119 undefined on input line 30
+53.
+
+
+[119])
+[120] [121] [122] [123] [124]
+[125]
+
+LaTeX Warning: Hyper reference `ex:3:39' on page 126 undefined on input line 61
+8.
+
+
+LaTeX Warning: Hyper reference `ex:3:40' on page 126 undefined on input line 61
+9.
+
+
+LaTeX Warning: Hyper reference `ex:3:41' on page 126 undefined on input line 62
+0.
+
+
+LaTeX Warning: Hyper reference `ex:3:42' on page 126 undefined on input line 62
+1.
+
+
+LaTeX Warning: Hyper reference `ex:3:43' on page 126 undefined on input line 62
+2.
+
+
+LaTeX Warning: Hyper reference `ex:3:44' on page 126 undefined on input line 62
+3.
+
+
+LaTeX Warning: Hyper reference `ex:3:45' on page 126 undefined on input line 62
+4.
+
+
+LaTeX Warning: Hyper reference `ex:3:46' on page 126 undefined on input line 62
+5.
+
+
+LaTeX Warning: Hyper reference `ex:3:47' on page 126 undefined on input line 62
+6.
+
+
+LaTeX Warning: Hyper reference `ex:3:48' on page 126 undefined on input line 62
+7.
+
+
+LaTeX Warning: Hyper reference `ex:3:49' on page 126 undefined on input line 62
+8.
+
+
+LaTeX Warning: Hyper reference `ex:3:50' on page 126 undefined on input line 62
+9.
+
+
+LaTeX Warning: Hyper reference `ex:3:51' on page 126 undefined on input line 63
+0.
+
+
+LaTeX Warning: Hyper reference `ex:3:52' on page 126 undefined on input line 63
+1.
+
+
+LaTeX Warning: Hyper reference `ex:3:53' on page 126 undefined on input line 63
+2.
+
+
+LaTeX Warning: Hyper reference `ex:3:54' on page 126 undefined on input line 63
+3.
+
+
+LaTeX Warning: Hyper reference `ex:3:55' on page 126 undefined on input line 63
+4.
+
+
+LaTeX Warning: Hyper reference `ex:3:56' on page 126 undefined on input line 63
+5.
+
+
+LaTeX Warning: Hyper reference `ex:3:57' on page 126 undefined on input line 63
+6.
+
+
+LaTeX Warning: Hyper reference `ex:3:58' on page 126 undefined on input line 63
+7.
+
+
+LaTeX Warning: Hyper reference `ex:3:59' on page 126 undefined on input line 63
+8.
+
+
+LaTeX Warning: Hyper reference `ex:3:60' on page 126 undefined on input line 63
+9.
+
+
+LaTeX Warning: Hyper reference `ex:3:61' on page 126 undefined on input line 64
+0.
+
+
+LaTeX Warning: Hyper reference `ex:3:62' on page 126 undefined on input line 64
+1.
+
+
+LaTeX Warning: Hyper reference `ex:3:63' on page 126 undefined on input line 64
+2.
+
+
+LaTeX Warning: Hyper reference `ex:3:64' on page 126 undefined on input line 64
+3.
+
+
+LaTeX Warning: Hyper reference `ex:3:65' on page 126 undefined on input line 64
+4.
+
+
+LaTeX Warning: Hyper reference `ex:3:66' on page 126 undefined on input line 64
+5.
+
+
+LaTeX Warning: Hyper reference `ex:3:67' on page 126 undefined on input line 64
+6.
+
+
+LaTeX Warning: Hyper reference `ex:3:68' on page 126 undefined on input line 64
+7.
+
+[126] [127] [128]
+[129] (./抽象代数前三章全部习题详解.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `抽象代数前三章全部习题详解.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)
+Output written on 抽象代数前三章全部习题详解.pdf (129 pages).
+Transcript written on 抽象代数前三章全部习题详解.log.

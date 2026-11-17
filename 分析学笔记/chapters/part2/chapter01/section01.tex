@@ -1,0 +1,228 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第1章：Euclid空间
+% 节：1.1 Euclid空间的基本定义与性质
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Euclid空间的基本定义与性质}
+尽管下面的定义可以有part1的第二章中的一般定义对$\R^n$取限制获得，我们依旧用新的定义方式，因为这更符合几何直觉
+
+
+\begin{definition}
+记 $\R$ 为实数全体.定义 $n$ 个 $\R$ 的 Descartes 乘积集为
+\[
+\R^n=\R\times\R\times\cdots\times\R=\bigl\{(x_1,x_2,\cdots,x_n)\mid x_i\in\R,\;i=1,2,\cdots,n\bigr\}.
+\]
+$\R^n$ 中的元素 $\vect x=(x_1,x_2,\cdots,x_n)$ 称为\textbf{向量}或\textbf{点},$x_i$ 称为 $\vect x$ 的第 $i$ 个坐标.特别地,$\R^n$ 中的零元素记为 $\vect 0=(0,0,\cdots,0)$.
+
+设 $\vect x=(x_1,x_2,\cdots,x_n),\vect y=(y_1,y_2,\cdots,y_n)$ 为 $\R^n$ 中任意两个向量,$\lambda$ 为任意实数,定义 $\R^n$ 中的加法和数乘运算:
+\[
+\vect x+\vect y=(x_1+y_1,x_2+y_2,\cdots,x_n+y_n),\quad
+\lambda\vect x=(\lambda x_1,\lambda x_2,\cdots,\lambda x_n).
+\]
+$\R^n$ 就成为\textbf{向量空间}.
+
+如果再在 $\R^n$ 上引入\textbf{内积运算}
+\[
+\langle\vect x,\vect y\rangle=x_1y_1+x_2y_2+\cdots+x_ny_n=\sum_{k=1}^n x_k y_k,
+\]
+那么它就被称为 \textbf{Euclid 空间}.
+\end{definition}
+可以看到这与我们在线性代数中做的工作类似，因此这里的内积也有相应的性质。
+\begin{proposition}
+设 $\vect x,\vect y,\vect z\in\R^n,\lambda,\mu\in\R$,则
+\begin{enumerate}
+\item[(1)] (正定性) $\langle\vect x,\vect x\rangle\geq0$,而 $\langle\vect x,\vect x\rangle=0$ 当且仅当 $\vect x=\vect 0$;
+\item[(2)] (对称性) $\langle\vect x,\vect y\rangle=\langle\vect y,\vect x\rangle$;
+\item[(3)] (线性性) $\langle\lambda\vect x+\mu\vect y,\vect z\rangle=\lambda\langle\vect x,\vect z\rangle+\mu\langle\vect y,\vect z\rangle$;
+\item[(4)] (Schwarz 不等式) $\langle\vect x,\vect y\rangle^2\leq\langle\vect x,\vect x\rangle\langle\vect y,\vect y\rangle$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+我们仅证明 (4)，(1)—(3) 可直接由内积的定义验证。
+
+若 $\vect x=\vect 0$，不等式显然成立。若 $\vect x\neq\vect 0$，则对任意 $\lambda\in\R$ 都有
+\[
+\langle\lambda\vect x+\vect y,\lambda\vect x+\vect y\rangle
+=\lambda^2\langle\vect x,\vect x\rangle+2\lambda\langle\vect x,\vect y\rangle+\langle\vect y,\vect y\rangle\geq0.
+\]
+这是一个二次项系数为正的二次多项式，因此其判别式不大于零，即
+\[
+4\langle\vect x,\vect y\rangle^2-4\langle\vect x,\vect x\rangle\langle\vect y,\vect y\rangle\leq0.
+\]
+这就得到了 Schwarz 不等式。
+\end{proof}
+
+\begin{definition}
+Euclid 空间 $\R^n$ 中任意两点 $\vect x=(x_1,x_2,\cdots,x_n)$ 和 $\vect y=(y_1,y_2,\cdots,y_n)$ 的\textbf{距离}定义为
+\[
+|\vect x-\vect y|=\sqrt{(x_1-y_1)^2+(x_2-y_2)^2+\cdots+(x_n-y_n)^2}
+=\sqrt{\langle\vect x-\vect y,\vect x-\vect y\rangle}.
+\]
+并称
+\[
+\|\vect x\|=\sqrt{\langle\vect x,\vect x\rangle}=\sqrt{\sum_{i=1}^n x_i^2}
+\]
+为 $\vect x$ 的 Euclid 范数(简称范数).
+
+显然,$\vect x$ 的范数 $\|\vect x\|$ 就是 $\vect x$ 到 $\vect 0$ 的距离(即 $\vect x$ 的模长).
+\end{definition}
+
+\begin{proposition}
+距离满足以下性质:
+\begin{enumerate}
+\item[(1)] (正定性) $|\vect x-\vect y|\geq0$,而 $|\vect x-\vect y|=0$ 当且仅当 $\vect x=\vect y$;
+\item[(2)] (对称性) $|\vect x-\vect y|=|\vect y-\vect x|$;
+\item[(3)] (三角不等式) $|\vect x-\vect z|\leq|\vect x-\vect y|+|\vect y-\vect z|$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}[label={(\arabic*)}]
+\item $$|\vect x-\vect y|^2=\sum_{i=1}^n (x_i-y_i)^2\geq0$$若 $|\vect x-\vect y|=\sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2}=0$,那么对每个 $i$ 都有 $x_i-y_i=0$,从而 $\vect x=\vect y$.
+\item 显然.
+\item 利用内积的线性性,
+	\[
+	|\vect x-\vect z|^2=\langle\vect x-\vect z,\vect x-\vect z\rangle
+	=\langle(\vect x-\vect y)+(\vect y-\vect z),(\vect x-\vect y)+(\vect y-\vect z)\rangle
+	=|\vect x-\vect y|^2+2\langle\vect x-\vect y,\vect y-\vect z\rangle+|\vect y-\vect z|^2.
+	\]
+	由 Schwarz 不等式 $\langle\vect x-\vect y,\vect y-\vect z\rangle\leq\|\vect x-\vect y\|\|\vect y-\vect z\|$,于是
+	\[
+	|\vect x-\vect z|^2\leq|\vect x-\vect y|^2+2|\vect x-\vect y||\vect y-\vect z|+|\vect y-\vect z|^2
+	=(|\vect x-\vect y|+|\vect y-\vect z|)^2.
+	\]
+	两边开方即得三角不等式.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+设 $\vect a=(a_1,a_2,\cdots,a_n)\in\R^n,\delta>0$,则点集
+\[\begin{aligned}
+	O(\vect a,\delta)&=\bigl\{\vect x\in\R^n\mid|\vect x-\vect a|<\delta\bigr\}\\
+	&=\Bigl\{\vect x\in\R^n\mid\sqrt{(x_1-a_1)^2+(x_2-a_2)^2+\cdots+(x_n-a_n)^2}<\delta\Bigr\}
+\end{aligned}\]
+称为点 $\vect a$ 的 $\delta$ 邻域,$\vect a$ 称为这个邻域的中心,$\delta$ 称为邻域的半径.
+
+
+\end{definition}
+特别地,$O(\vect a,\delta)$ 在 $\R$ 上就是开区间,在 $\R^2$ 上是开圆盘,在 $\R^3$ 上则是开球.
+\begin{definition}
+设 $\{\vect x_k\}$ 是 $\R^n$ 中的一个点列. 若存在定点 $\vect a\in\R^n$,对于任意给定的 $\eps>0$,存在正整数 $K$,使得当 $k>K$ 时,
+\[
+|\vect x_k-\vect a|<\eps\quad(\text{即 }\vect x_k\in O(\vect a,\eps)),
+\]
+则称点列 $\{\vect x_k\}$ 收敛于 $\vect a$,记为 $\lim\limits_{k\to\infty}\vect x_k=\vect a$,而称 $\vect a$ 为点列 $\{\vect x_k\}$ 的极限.
+
+一个点列不收敛就称其发散.
+\end{definition}
+
+\begin{proposition}\label{极限与坐标收敛的等价}
+$\lim\limits_{k\to\infty}\vect x_k=\vect a$ 的充分必要条件是 $\lim\limits_{k\to\infty} x_i^k=a_i\ (i=1,2,\cdots,n)$.
+\end{proposition}
+
+\begin{proof}
+记 $\vect x_k=(x_1^k,x_2^k,\cdots,x_n^k)\ (k=1,2,\cdots),\vect a=(a_1,a_2,\cdots,a_n)$,利用不等式
+\[
+|x_i^k-a_i|\leq|\vect x_k-\vect a|=\sqrt{\sum_{j=1}^n (x_j^k-a_j)^2}\leq\sum_{j=1}^n|x_j^k-a_j|,\quad i=1,2,\cdots,n.
+\]
+由此即得等价性.
+\end{proof}
+
+\begin{definition}
+设 $S$ 是 $\R^n$ 上的点集.若存在正数 $M$,使得对于任意 $\vect x\in S$,$\|\vect x\|\leq M$(或等价地,存在正数 $M'$ 使得 $S\subset O(\vect 0,M')$),则称 $S$ 为\textbf{有界集}.
+\end{definition}
+
+可以证明唯一性(收敛点列的极限是唯一的)、有界性(收敛点列必定有界)和极限的线性运算法则在高维情况依然成立.
+
+\begin{definition}
+设 $S$ 是 $\R^n$ 上的点集,它在 $\R^n$ 上的补集 $\R^n\setminus S$ 记为 $S^c$.对于任意 $\vect x\in\R^n$,给出以下几个定义
+
+(1) 存在 $\vect x$ 的一个 $\delta$ 邻域 $O(\vect x,\delta)$ 完全落在 $S$ 中,这时称 $\vect x$ 是 $S$ 的\textbf{内点}.$S$ 的内点全体称为 $S$ 的\textbf{内部},记为 $S^\circ$.
+
+(2) 存在 $\vect x$ 的一个 $\delta$ 邻域 $O(\vect x,\delta)$ 完全不落在 $S$ 中,这时称 $\vect x$ 是 $S$ 的\textbf{外点}.
+
+(3) 不存在 $\vect x$ 的具有上述性质的 $\delta$ 邻域,即 $\vect x$ 的任意 $\delta$ 邻域既包含 $S$ 中的点,又包含不属于 $S$ 的点,那么就称 $\vect x$ 是 $S$ 的\textbf{边界点}.$S$ 的边界点的全体称为 $S$ 的\textbf{边界},记为 $\partial S$.
+
+(4) 进一步,若存在 $\vect x$ 的一个邻域,其中只有 $\vect x$ 点属于 $S$,则称 $\vect x$ 是 $S$ 的\textbf{孤立点}.显然,孤立点必是边界点.
+
+(5) 若 $\vect x$ 的任意邻域都含有 $S$ 中的无限个点,则称 $\vect x$ 是 $S$ 的\textbf{聚点}.$S$ 的聚点的全体记为 $S'$.显然,$S$ 的内点必是 $S$ 的聚点;$S$ 的边界点,只要不是 $S$ 的孤立点,也必是 $S$ 的聚点.
+
+
+\end{definition}
+因此 $S$ 的聚点可能属于 $S$,也可能不属于 $S$.例如在 $\R$ 中,$0$ 是点集 $\bigl\{\dfrac1n\mid n=1,2,\cdots\bigr\}$ 的聚点,但它不属于这个点集.
+\begin{proposition}
+$\vect x$ 是点集 $S(\subset\R^n)$ 的聚点的充分必要条件是:存在点列 $\{\vect x_k\}$ 满足 $\vect x_k\in S,\vect x_k\neq\vect x\ (k=1,2,\cdots)$,使得 $\lim\limits_{k\to\infty}\vect x_k=\vect x$.
+\end{proposition}
+
+\begin{proof}
+\textbf{必要性：} 若 $\vect x$ 是 $S$ 的聚点，则对每个 $k\in\Z^+$，都可以选取
+\[
+\vect x_k\in S\cap O\left(\vect x,\frac1k\right),\qquad \vect x_k\neq\vect x.
+\]
+于是 $|\vect x_k-\vect x|<1/k\to0$，从而 $\vect x_k\to\vect x$。
+
+\textbf{充分性：} 设 $\vect x_k\in S\setminus\{\vect x\}$ 且 $\vect x_k\to\vect x$。若 $\vect x$ 的某个邻域 $O(\vect x,r)$ 只含有 $S$ 中有限个点，则其中不等于 $\vect x$ 的点到 $\vect x$ 的距离有正的下界（若没有这样的点，则更直接与点列收敛矛盾）。因此可以取更小的邻域，使其中没有 $S\setminus\{\vect x\}$ 中的点，这与 $\vect x_k\to\vect x$ 矛盾。
+
+故 $\vect x$ 的任意邻域都包含 $S$ 中无限多个点，即 $\vect x$ 是 $S$ 的聚点。
+\end{proof}
+
+\begin{definition}
+设 $S$ 是 $\R^n$ 上的点集.若 $S$ 中的每一个点都是它的内点,则称 $S$ 为\textbf{开集};若 $S$ 中包含了它的所有的聚点,则称 $S$ 为\textbf{闭集}.
+
+$S$ 与它的聚点全体 $S'$ 的并集称为 $S$ 的\textbf{闭包},记为 $\overline S$.
+\end{definition}
+
+\begin{example}
+证明邻域是开集.
+\end{example}
+
+\begin{proof}
+设邻域为 $O(\vect a,r),\vect q$ 为 $O(\vect a,r)$ 上的任一点,则 $|\vect q-\vect a|<r$,因此存在正数 $h$ 使得
+\[
+|\vect q-\vect a|<r-h.
+\]
+于是,对任意 $\vect x\in O(\vect q,h)$,成立不等式
+\[
+|\vect x-\vect a|\leq|\vect x-\vect q|+|\vect q-\vect a|<r.
+\]
+因此 $\vect x\in O(\vect a,r)$,即 $\vect q$ 是 $O(\vect a,r)$ 的内点,由定义,$O(\vect a,r)$ 是开集.
+\end{proof}
+
+容易证明:集合 $\bigl\{\vect x\in\R^n\mid a_i<x_i<b_i,\ i=1,2,\cdots,n\bigr\}$ 和 $\bigl\{\vect x\in\R^n\mid\sum_{i=1}^n(x_i-a_i)^2<r^2\bigr\}$ 都是开集,它们分别称为 $n$ 维开矩形和 $n$ 维开球;集合 $\bigl\{\vect x\in\R^n\mid a_i\leq x_i\leq b_i,\ i=1,2,\cdots,n\bigr\}$ 和 $\bigl\{\vect x\in\R^n\mid\sum_{i=1}^n(x_i-a_i)^2\leq r^2\bigr\}$ 都是闭集,它们分别称为 $n$ 维闭矩形和 $n$ 维闭球.
+
+\begin{proposition}
+$\R^n$ 上的点集 $S$ 为闭集的充分必要条件是 $S^c$ 是开集.
+\end{proposition}
+
+\begin{proof}
+\textbf{必要性:} 若 $S$ 为闭集,由于 $S$ 的一切聚点都属于 $S$,因此,对于任意 $\vect x\in S^c,\vect x$ 不是 $S$ 的聚点,也就是说,存在 $\vect x$ 的邻域 $O(\vect x,\delta)$,使得 $O(\vect x,\delta)\cap S=\varnothing$,即 $O(\vect x,\delta)\subset S^c$.因此 $S^c$ 是开集.
+
+\textbf{充分性:} 对任意 $\vect x\in S^c$,由于 $S^c$ 是开集,因此存在 $\vect x$ 的邻域 $O(\vect x,\delta)$,使得 $O(\vect x,\delta)\subset S^c$,即 $\vect x$ 不是 $S$ 的聚点,所以如果 $S$ 有聚点,它就一定属于 $S$.因此 $S$ 为闭集.
+\end{proof}
+
+从这个定理立即得到:$\R^n$ 上的点集 $S$ 为开集的充分必要条件是 $S^c$ 是闭集.
+
+\begin{proposition}
+\begin{enumerate}
+\item[(1)] 任意一组开集 $\{S_\alpha\}$ 的并集 $\bigcup_\alpha S_\alpha$ 是开集;
+\item[(2)] 任意一组闭集 $\{T_\alpha\}$ 的交集 $\bigcap_\alpha T_\alpha$ 是闭集;
+\item[(3)] 任意有限个开集 $S_1,S_2,\cdots,S_k$ 的交集 $\bigcap_{i=1}^k S_i$ 是开集;
+\item[(4)] 任意有限个闭集 $T_1,T_2,\cdots,T_k$ 的并集 $\bigcup_{i=1}^k T_i$ 是闭集.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) 设 $\vect x\in\bigcup_\alpha S_\alpha$,那么存在某个 $\alpha$,使得 $\vect x\in S_\alpha$,而 $S_\alpha$ 是开集,因此 $\vect x$ 就是 $S_\alpha$ 的内点,所以也是 $\bigcup_\alpha S_\alpha$ 的内点,这说明 $\bigcup_\alpha S_\alpha$ 是开集.
+
+(2) 由 De Morgan 公式可得
+\[
+\Bigl(\bigcap_\alpha T_\alpha\Bigr)^c=\bigcup_\alpha T_\alpha^c.
+\]
+$T_\alpha$ 是闭集,从而 $T_\alpha^c$ 是开集.由 (1) 知 $\bigcup_\alpha T_\alpha^c$ 是开集,这说明了 $\bigcap_\alpha T_\alpha$ 的补集是开集,因此它是闭集.
+
+(3) 设 $\vect x\in\bigcap_{i=1}^k S_i$,则对每个 $i=1,2,\cdots,k$ 都有 $\vect x\in S_i$,由于 $S_i$ 是开集,因此存在 $\vect x$ 的邻域 $O(\vect x,r_i)$,使得 $O(\vect x,r_i)\subset S_i$. 取 $r=\min\limits_{1\leq i\leq k}(r_i)$,那么 $O(\vect x,r)\subset\bigcap_{i=1}^k S_i$,即 $\vect x$ 是 $\bigcap_{i=1}^k S_i$ 的内点,因此 $\bigcap_{i=1}^k S_i$ 是开集.
+
+(4) 利用 De Morgan 公式和 (3) 的结论就可以得出.
+\end{proof}
+
+

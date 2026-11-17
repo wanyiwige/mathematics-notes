@@ -1,0 +1,142 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第3章：Fourier级数的一些应用
+% 节：3.3 构造一个连续但是处处不可微的函数
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{构造一个连续但是处处不可微的函数}
+
+这里,我们对 Weierstrass 的一般构造取一个特例,并且用另外方式证明它.
+
+ 我们需要先了解一些相关的知识:部分和,Cesàro 和,推延平均.
+
+\begin{definition}
+定义\textbf{推延平均}
+\[
+\Delta_N(g)(x)=2\sigma_{2N}(g)(x)-\sigma_N(g)(x).
+\]
+\end{definition}
+
+由 Fejér 核 $F_N$ 的卷积表示
+\[
+\sigma_N(g)=g*F_N,
+\]
+立即可得
+\[ \Delta_N(g)=g*[2F_{2N}-F_N]. \]
+
+
+若 $g(x)\sim\sum a_ne^{inx}$,则利用上述定义直接计算可得
+\begin{enumerate}
+\item $S_N$ 在 $|n|\leq N$ 时,对 $a_ne^{inx}$ 贡献 1 倍,在 $|n|>N$ 时,贡献 0 倍;
+\item $\sigma_N$ 在 $|n|\leq N$ 时,对 $a_ne^{inx}$ 贡献 $1-\dfrac{|n|}{N}$ 倍,在 $|n|>N$ 时,贡献 0 倍;
+\item $\Delta_N$ 在 $|n|\leq N$ 时,对 $a_ne^{inx}$ 贡献 1 倍,在 $N<|n|\leq 2N$ 时,贡献 $2(1-\dfrac{|n|}{2N})$ 倍,在 $|n|>2N$ 时,贡献 0 倍.
+\end{enumerate}
+\begin{center}
+	\includegraphics[width=0.7\linewidth]{"figure/P4/fig for 3.3"}
+\end{center}
+\begin{theorem}
+
+若 $0<\alpha<1$,则函数
+\[
+f(x)=f_\alpha(x)=\sum_{n=0}^{\infty}2^{-n\alpha}e^{i2^n x}
+\]
+连续但是处处不可微.
+\end{theorem}
+
+由级数的绝对收敛性,连续性是显然的. $f$ 的关键性质是它的大多数 Fourier 系数为零,像上式那样缺少很多项的 Fourier 级数称为一个\textbf{缺项 Fourier 级数}.
+
+ 对于像 $f$ 这样的缺项级数,推延平均与部分和是基本相等的. 特别地,对函数 $f=f_\alpha$ 有
+
+\[ S_N(f)=\Delta_{N'}(f), \]
+
+其中 $N'$ 是不大于 $N$ 的形如 $2^k$ 的最大整数. 观察 $f$ 的定义,这一点是显然的.
+
+下面使用反证法证明,即假设对于某些 $x_0$,$f'(x_0)$ 存在. 先建立一个关于 Cesàro 平均导数的估计.
+
+\begin{lemma}
+设 $g$ 为任意在 $x_0$ 处可微的连续函数,则其 Cesàro 平均满足
+\[
+\sigma_N(g)'(x_0)=O(\log N).
+\]
+因此 $\Delta_N(g)'(x_0)=O(\log N)$.
+\label{Cesàro平均导数的对数增长}
+\end{lemma}
+
+\begin{proof}
+由卷积公式 $\sigma_N(g)=g*F_N$ 与 $g$ 在 $x_0$ 处的可微性,有
+\[
+\sigma_N(g)'(x_0)
+=\frac1{2\pi}\int_{-\pi}^{\pi}F_N'(t)g(x_0-t)\dd t.
+\]
+又因为 $F_N$ 的周期性给出 $\displaystyle\int_{-\pi}^{\pi}F_N'(t)\dd t=0$,故可减去常数 $g(x_0)$:
+\[
+\sigma_N(g)'(x_0)
+=\frac1{2\pi}\int_{-\pi}^{\pi}F_N'(t)\bigl[g(x_0-t)-g(x_0)\bigr]\dd t.
+\]
+
+假设 $g$ 在 $x_0$ 处可微,则对 $t$ 充分小有 $\abs{g(x_0-t)-g(x_0)}\leq C\abs{t}$. 因此
+\[
+\abs{\sigma_N(g)'(x_0)}
+\leq\frac C{2\pi}\int_{-\pi}^{\pi}\abs{F_N'(t)}\abs{t}\dd t.
+\]
+
+现在对 $\abs{F_N'(t)}$ 建立两个估计.
+\begin{itemize}
+\item 由 Fejér 核的 Fourier 形式 $F_N(t)=\sum\limits_{|k|\leq N}(1-\dfrac{\abs{k}}{N})e^{ikt}$ 求导得
+\[
+\abs{F_N'(t)}\leq\sum_{|k|\leq N}\abs{k}(1-\dfrac{\abs{k}}{N})\leq AN^2.
+\]
+\item 利用 $\sin(\dfrac{Nt}{2})\leq CN\abs{t}$ 与 $\sin(\dfrac t2)\geq c\abs{t}$ (对 $\abs{t}\leq\pi$),可以建立
+\[
+\abs{F_N'(t)}\leq\frac A{\abs{t}^2}.
+\]
+\end{itemize}
+
+综合两个估计并对积分区间拆分:
+\[
+\begin{aligned}
+\abs{\sigma_N(g)'(x_0)}
+&\leq\frac C{2\pi}\left[\int_{\abs{t}\geq1/N}\abs{F_N'(t)}\abs{t}\dd t
++\int_{\abs{t}\leq1/N}\abs{F_N'(t)}\abs{t}\dd t\right]\\
+&\leq\frac{CA}{2\pi}\left[\int_{\abs{t}\geq1/N}\frac{\dd t}{\abs{t}}
++N^2\int_{\abs{t}\leq1/N}\abs{t}\dd t\right]\\
+&=\frac{CA}{2\pi}\bigl[O(\log N)+O(1)\bigr]=O(\log N).
+\end{aligned}
+\]
+
+由 $\Delta_N(g)=2\sigma_{2N}(g)-\sigma_N(g)$ 立即得 $\Delta_N(g)'(x_0)=O(\log N)$.
+\end{proof}
+
+\begin{lemma}
+若 $2N=2^k$ (即 $N=2^{k-1}$),则
+\[
+\Delta_{2N}(f)(x)-\Delta_N(f)(x)=2^{-k\alpha}e^{i2^k x}.
+\]
+\label{缺项Fourier级数的差分}
+\end{lemma}
+
+\begin{proof}
+考虑$f$的定义 ，这一点显然
+\end{proof}
+
+\begin{proof}[定理的证明]
+连续性由绝对收敛性即得. 只需证 $f$ 在圆周上处处不可微.
+
+设存在 $x_0$,使 $f'(x_0)$ 存在. 则 $f$ 在 $x_0$ 处可微,且 $f$ 显然是连续函数. 由引理 \ref{Cesàro平均导数的对数增长},
+\[
+\abs{[\Delta_{2N}(f)-\Delta_N(f)]'(x_0)}=O(\log N).
+\]
+
+另一方面,任取 $k\geq1$,令 $N=2^{k-1}$,从而 $2N=2^k$. 由引理 \ref{缺项Fourier级数的差分},
+\[
+\Delta_{2N}(f)(x)-\Delta_N(f)(x)=2^{-k\alpha}e^{i2^k x}.
+\]
+对 $x$ 求导得
+\[
+[\Delta_{2N}(f)-\Delta_N(f)]'(x)=i2^k\cdot2^{-k\alpha}e^{i2^k x}.
+\]
+特别地,
+\[
+\abs{[\Delta_{2N}(f)-\Delta_N(f)]'(x_0)}=2^k\cdot2^{-k\alpha}=2^{k(1-\alpha)}=2N^{1-\alpha}.
+\]
+
+由于 $0<\alpha<1$,故 $1-\alpha>0$,从而 $2N^{1-\alpha}\to\infty$,其增长速度比 $\log N$ 快得多. 这与引理 \ref{Cesàro平均导数的对数增长} 矛盾. 因此 $f'(x_0)$ 不存在,即 $f$ 处处不可微.
+\end{proof}

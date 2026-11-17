@@ -1,0 +1,1806 @@
+\chapter{多项式环}
+
+本章研究多项式环。我们首先汇总前两章中已经出现的若干事实，并在需要时给出引用。基本定义在第 7.2 节已稍详细地给出。为方便起见，除非另有说明，本章中的 $R$ 总表示带单位元 $1\neq0$ 的交换环。
+
+\section{定义与基本性质}
+
+多项式环 $R[x]$ 是由形如
+\[
+a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+\]
+的形式和组成的集合，其中 $n\geq0$ 且 $a_i\in R$。若 $a_n\neq0$，则称该多项式次数为 $n$，$a_nx^n$ 为首项，$a_n$ 为首系数；零多项式的首系数定义为 $0$。若首系数为 $1$，称多项式为首一的。多项式加法按系数逐项定义：
+\[
+\sum_{i=0}^n a_ix^i+\sum_{i=0}^n b_ix^i
+=\sum_{i=0}^n (a_i+b_i)x^i,
+\]
+其中可把某些高次系数视为 $0$。乘法由
+\[
+(ax^i)(bx^j)=abx^{i+j}
+\]
+和分配律确定；一般地，
+\[
+\left(\sum_{i=0}^n a_i x^i\right)\left(\sum_{j=0}^m b_jx^j\right)
+=\sum_{k=0}^{n+m}\left(\sum_{i=0}^k a_i b_{k-i}\right)x^k,
+\]
+其中在指标超出范围时相应系数视为 $0$。这样 $R[x]$ 是带单位元的交换环，其单位元就是 $R$ 中的 $1$，并且我们把 $R$ 认作 $R[x]$ 中的常数多项式子环。
+
+我们已经知道，如果 $R$ 是整环，则非零多项式乘积的首项等于首项的乘积。下面把第 7.2 节命题 4 重新记录于此。
+
+\noindent\textbf{命题 1.} 设 $R$ 是整环，则：
+\begin{enumerate}[label=(\arabic*)]
+	\item 若 $p(x),q(x)\neq0$，则
+	\[
+	\deg(p(x)q(x))=\deg p(x)+\deg q(x).
+	\]
+	\item $R[x]$ 的单位正是 $R$ 的单位。
+	\item $R[x]$ 是整环。
+\end{enumerate}
+
+还应回忆：若 $R$ 是整环，则 $R[x]$ 的商域由所有 $p(x)/q(x)$ 组成，其中 $q(x)\neq0$；它称为系数在 $R$ 中的 $x$ 的有理函数域。
+
+\noindent\textbf{命题 2.} 设 $I$ 是环 $R$ 的一个理想，令 $(I)=I[x]$ 表示 $R[x]$ 中由 $I$ 生成的理想，即所有系数都属于 $I$ 的多项式组成的集合。则
+\[
+R[x]/(I)\cong (R/I)[x].
+\]
+特别地，若 $I$ 是 $R$ 的素理想，则 $(I)$ 是 $R[x]$ 的素理想。
+
+\begin{proof}
+	定义自然映射
+	\[
+	\varphi:R[x]\longrightarrow (R/I)[x]
+	\]
+	为把多项式的每个系数模 $I$ 化。加法和乘法的定义说明 $\varphi$ 是环同态。其核正是系数全在 $I$ 中的多项式，即 $I[x]=(I)$，故得到同构。若 $I$ 是素理想，则 $R/I$ 是整环，由命题 1，$(R/I)[x]$ 也是整环，故 $(I)$ 是素理想。
+\end{proof}
+
+注意：若 $I$ 是 $R$ 的极大理想，$(I)$ 不一定是 $R[x]$ 的极大理想。不过若 $I$ 在 $R$ 中极大，则 $R[x]$ 中由 $I$ 与 $x$ 共同生成的理想是极大理想。
+
+\paragraph{例}
+取 $R=\ZZ$，$I=n\ZZ$。上面的同构写成
+\[
+\ZZ[x]/n\ZZ[x]\cong (\ZZ/n\ZZ)[x].
+\]
+自然投影就是把整数系数多项式的系数模 $n$ 化。若 $n$ 合成，商环不一定是整环；若 $n=p$ 是素数，则 $(\ZZ/p\ZZ)[x]$ 是整环，甚至是 Euclidean 整环。因此在 $\ZZ[x]$ 中，系数全被 $p$ 整除的多项式构成一个素理想。
+
+\noindent\textbf{定义.} $R$ 上 $n$ 个变量 $x_1,x_2,\ldots,x_n$ 的多项式环记为
+\[
+R[x_1,x_2,\ldots,x_n],
+\]
+并递归地定义为
+\[
+R[x_1,x_2,\ldots,x_n]=R[x_1,x_2,\ldots,x_{n-1}][x_n].
+\]
+因此，$n$ 元多项式可视为关于 $x_n$ 的一元多项式，其系数是前 $n-1$ 个变量的多项式。
+
+更具体地，一个非零多项式是有限多个非零单项式项的和，每项形如
+\[
+a x_1^{d_1}x_2^{d_2}\cdots x_n^{d_n},
+\qquad a\in R,
+\]
+其中 $d_i\geq0$。首一项 $x_1^{d_1}x_2^{d_2}\cdots x_n^{d_n}$ 简称为一个单项式，并称为该项 $a x_1^{d_1}\cdots x_n^{d_n}$ 的单项式部分。指数 $d_i$ 称为该项关于 $x_i$ 的次数，和
+\[
+d=d_1+d_2+\cdots+d_n
+\]
+称为该项的次数。有序 $n$ 元组 $(d_1,d_2,\ldots,d_n)$ 称为该项的多次数。非零多项式的次数是其各单项式项次数的最大值。若所有项次数相同，则称该多项式是齐次的，或称为一个形式。若 $f$ 是 $n$ 个变量的非零多项式，则 $f$ 中所有次数为 $k$ 的单项式项之和称为 $f$ 的 $k$ 次齐次分量。次数为 $d$ 的非零多项式可唯一写成
+\[
+f=f_0+f_1+\cdots+f_d,
+\]
+其中 $f_k$ 是 $f$ 的 $k$ 次齐次分量。
+
+任意多个变量的多项式环也可类似定义为有限个单项式项的和；等价地，它是所有有限变量多项式环的并。
+
+\paragraph{例}
+二元多项式环 $\ZZ[x,y]$ 由所有形如 $a x^i y^j$ 的单项式项的有限和组成，其中 $a\in\ZZ$，该项的次数为 $i+j$。例如
+\[
+p(x,y)=2x^3+xy-y^2,
+\qquad
+q(x,y)=-3xy+2y^2+x^2y^3
+\]
+都是 $\ZZ[x,y]$ 中的元素，次数分别为 $3$ 与 $5$。我们有
+\[
+p(x,y)+q(x,y)=2x^3-2xy+y^2+x^2y^3
+\]
+以及
+\[
+\begin{aligned}
+p(x,y)q(x,y)= {}& -6x^4y+4x^3y^2+2x^5y^3-3x^2y^2+5xy^3+x^3y^4 \\
+&{}-2y^4-x^2y^5,
+\end{aligned}
+\]
+这是一个次数为 $8$ 的多项式。若把最后这个多项式看成关于 $y$ 的多项式，其系数在 $\ZZ[x]$ 中，则可写成
+\[
+(-6x^4)y+(4x^3-3x^2)y^2+(2x^5+5x)y^3+(x^3-2)y^4-(x^2)y^5.
+\]
+若 $f=f(x,y)=p(x,y)q(x,y)$，则 $f$ 的非零齐次分量为
+\[
+f_4=-3x^2y^2+5xy^3-2y^4,
+\]
+\[
+f_5=-6x^4y+4x^3y^2,
+\qquad
+f_7=x^3y^4-x^2y^5,
+\qquad
+f_8=2x^5y^3.
+\]
+
+命题 1 的所有陈述对任意多个变量的多项式环仍然成立；有限多个变量由归纳得到，任意多个变量由“有限变量多项式环的并”得到。
+
+
+\paragraph{练习}
+\begin{enumerate}[label=\arabic*.]
+	\item 设
+	\[
+	p(x,y,z)=2x^2y-3xy^3z+4y^2z^5,
+	\qquad q(x,y,z)=7x^2+5x^2y^3z^4-3x^2z^3
+	\]
+	是 $\ZZ[x,y,z]$ 中的多项式。
+	\begin{enumerate}[label=(\alph*)]
+		\item 把 $p$ 与 $q$ 都写成关于 $x$ 的多项式，其系数在 $\ZZ[y,z]$ 中。
+		\item 求 $p$ 与 $q$ 各自的次数。
+		\item 分别求 $p$ 与 $q$ 关于三个变量 $x,y,z$ 的次数。
+		\item 计算 $pq$，并分别求 $pq$ 关于三个变量 $x,y,z$ 的次数。
+		\item 把 $pq$ 写成关于变量 $z$ 的多项式，其系数在 $\ZZ[x,y]$ 中。
+	\end{enumerate}
+	
+	\item 在假定 $p$ 与 $q$ 的系数属于 $\ZZ/3\ZZ$ 的情形下，重复前一题。
+	
+	\item 设 $R$ 是交换环，$x_1,x_2,\ldots,x_n$ 是 $R$ 上彼此独立的变量。证明：对 $\{1,2,\ldots,n\}$ 的任意置换 $\pi$，有环同构
+	\[
+	R[x_{\pi(1)},x_{\pi(2)},\ldots,x_{\pi(n)}]\cong R[x_1,x_2,\ldots,x_n].
+	\]
+	
+	\item 证明 $\QQ[x,y]$ 中的理想 $(x)$ 与 $(x,y)$ 都是素理想，但只有后者是极大理想。
+	
+	\item 证明 $\ZZ[x,y]$ 中的理想 $(x,y)$ 与 $(2,x,y)$ 都是素理想，但只有后者是极大理想。
+	
+	\item 证明 $(x,y)$ 不是 $\QQ[x,y]$ 中的主理想。
+	
+	\item 设 $R$ 是含 $1$ 的交换环。证明：$R$ 上多于一个变量的多项式环不是主理想整环。
+	
+	\item 设 $F$ 是域，并令
+	\[
+	R=F[x,x^2y,x^3y^2,\ldots,x^ny^{n-1},\ldots]
+	\]
+	为多项式环 $F[x,y]$ 的子环。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R$ 与 $F[x,y]$ 的分式域相同。
+		\item 证明 $R$ 含有一个不是有限生成的理想。
+	\end{enumerate}
+	
+	\item 证明：以任意交换环为系数的无限多个变量的多项式环含有不是有限生成的理想。
+	
+	\item 证明环
+	\[
+	\ZZ[x_1,x_2,x_3,\ldots]/(x_1x_2,x_3x_4,x_5x_6,\ldots)
+	\]
+	含有无限多个极小素理想（参见第 7.4 节练习 36）。
+	
+	\item 证明 $\QQ[x,y]$ 中理想 $I=(x,y^2)$ 的根理想是 $(x,y)$（参见第 7.4 节练习 30）。由此推出 $I$ 是一个 primary 理想，但不是素理想的幂（参见第 7.4 节练习 41）。
+	
+	\item 设 $R=\QQ[x,y,z]$，并用横线表示到商环 $\QQ[x,y,z]/(xy-z^2)$ 的像。证明
+	\[
+	P=(\overline{x},\overline{z})
+	\]
+	是素理想。证明 $\overline{x}\overline{y}\in P^2$，但 $\overline{y}$ 的任何幂都不属于 $P^2$。（这说明 $P$ 是一个素理想，而它的平方不是 primary 理想；参见第 7.4 节练习 41。）
+	
+	\item 证明：对任意域 $F$，两个环
+	\[
+	F[x,y]/(y^2-x),\qquad F[x,y]/(y^2-x^2)
+	\]
+	不同构。
+	
+	\item 设 $R$ 是整环，$i,j$ 是互素整数。证明 $R[x,y]$ 中的理想 $(x^i-y^j)$ 是素理想。\emph{提示：}考虑环同态 $\varphi:R[x,y]\to R[t]$，定义为 $x\mapsto t^j$，$y\mapsto t^i$。证明 $R[x,y]$ 中任一元素模 $(x^i-y^j)$ 可化为一个关于 $y$ 次数至多为 $j-1$ 的多项式，并观察当 $0\leq s<j$ 时 $\varphi(x^r y^s)$ 的指数互不相同。
+	
+	\item 设 $p(x_1,x_2,\ldots,x_n)$ 是 $R[x_1,\ldots,x_n]$ 中次数为 $k$ 的齐次多项式。证明：对所有 $\lambda\in R$，有
+	\[
+	p(\lambda x_1,\lambda x_2,\ldots,\lambda x_n)=\lambda^k p(x_1,x_2,\ldots,x_n).
+	\]
+	
+	\item 证明两个齐次多项式的乘积仍是齐次多项式。
+	
+	\item 若 $I$ 是 $R[x_1,\ldots,x_n]$ 中的理想，并且只要 $p\in I$，$p$ 的每个齐次分量也都属于 $I$，则称 $I$ 为齐次理想。证明：一个理想是齐次理想，当且仅当它可由齐次多项式生成。\emph{提示：}用次数归纳证明“若”方向。
+	
+	\item 下面的练习说明在非交换环 $R$ 上处理多项式时，尤其是把多项式看成函数时，必须小心（$R[x]$ 中的环运算仍按交换环情形同样定义）。设 $R$ 是任意环，$\operatorname{Func}(R)$ 为从 $R$ 到自身的所有函数构成的环。若 $p(x)\in R[x]$，令 $\overline p\in\operatorname{Func}(R)$ 是由
+	\[
+	\overline p(r)=p(r)
+	\]
+	定义的函数，即通常把 $R[x]$ 中多项式“代入 $r$”所得的函数。
+	\begin{enumerate}[label=(\alph*)]
+		\item 对固定的 $a\in R$，证明“在 $a$ 处取值”是从 $\operatorname{Func}(R)$ 到 $R$ 的环同态（参见第 7.3 节定理 7 后例 4）。
+		\item 证明映射 $\varphi:R[x]\to\operatorname{Func}(R)$，$\varphi(p(x))=\overline p$，一般不是环同态。由此推出，多项式恒等式在把多项式视为函数后不一定给出相应的函数恒等式。\emph{提示：}若 $R=\mathbb H$ 是实 Hamilton 四元数环，证明 $p(x)=x^2+1$ 可分解为 $(x+i)(x-i)$，但 $p(j)=0$ 而 $(j+i)(j-i)\neq0$。
+		\item 对固定的 $a\in R$，证明 (a) 与 (b) 中映射的复合，即 $R[x]\to R$ 的“在 $a$ 处取值”映射，是环同态当且仅当 $a$ 属于 $R$ 的中心。
+	\end{enumerate}
+\end{enumerate}
+
+\section{域上的多项式环 I}
+
+现在更仔细地考虑系数环是域 $F$ 的情形。在 $F[x]$ 上定义范数
+\[
+N(p(x))=\deg p(x),\qquad N(0)=0.
+\]
+熟悉的多项式长除法在任意域上都成立。
+
+\noindent\textbf{定理 3.} 设 $F$ 是域，则 $F[x]$ 是 Euclidean 整环。更具体地，若 $a(x),b(x)\in F[x]$ 且 $b(x)\neq0$，则存在唯一的 $q(x),r(x)\in F[x]$ 使
+\[
+a(x)=q(x)b(x)+r(x),
+\qquad r(x)=0\text{ 或 }\deg r(x)<\deg b(x).
+\]
+
+\begin{proof}
+	若 $a(x)=0$，取 $q=r=0$。否则对 $n=\deg a(x)$ 归纳。设 $\deg b=m$。若 $n<m$，取 $q=0,r=a$。若 $n\geq m$，写
+	\[
+	a(x)=a_nx^n+\cdots+a_0,
+	\qquad b(x)=b_mx^m+\cdots+b_0,
+	\]
+	其中 $b_m\neq0$。因为 $F$ 是域，可令
+	\[
+	a'(x)=a(x)-{a_n\over b_m}x^{n-m}b(x),
+	\]
+	此多项式次数小于 $n$。由归纳假设，
+	\[
+	a'(x)=q'(x)b(x)+r(x),
+	\]
+	其中 $r=0$ 或 $\deg r<m$。令
+	\[
+	q(x)=q'(x)+{a_n\over b_m}x^{n-m}
+	\]
+	即得存在性。
+	
+	若另有 $a=q_1b+r_1$ 满足条件，则
+	\[
+	b(q-q_1)=r_1-r.
+	\]
+	右边次数小于 $m=\deg b$，而若 $q-q_1\neq0$，左边次数至少为 $m$，矛盾。因此 $q=q_1$，进而 $r=r_1$。
+\end{proof}
+
+\noindent\textbf{推论 4.} 若 $F$ 是域，则 $F[x]$ 是主理想整环，也是唯一分解整环。
+
+\begin{proof}
+	由上一章 Euclidean 整环、P.I.D. 与 U.F.D. 的关系立即得到。
+\end{proof}
+
+回忆第 8.2 节推论 8：若 $R[x]$ 是 P.I.D.（或 Euclidean 整环），则 $R$ 必为域。下一节将看到，U.F.D. 性质不同：只要 $R$ 是 U.F.D.，$R[x]$ 也是 U.F.D.。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 由上面的评注可知，环 $\ZZ[x]$ 不是主理想整环。我们已经见过（第 7.4 节开头例 3）理想 $(2,x)$ 不是这个环中的主理想。
+	\item $\QQ[x]$ 是主理想整环，因为系数取在域 $\QQ$ 中。在 $\ZZ[x]$ 这个子环中，由 $2$ 与 $x$ 生成的理想不是主理想；然而在 $\QQ[x]$ 中由它们生成的理想是主理想，事实上它就是整个环（所以生成元可取 $1$），因为 $2$ 是 $\QQ[x]$ 中的单位。
+	\item 若 $p$ 是素数，则将 $\ZZ[x]$ 按素理想 $(p)$ 约化得到的环 $\ZZ/p\ZZ[x]$ 是主理想整环，因为其系数取在域 $\ZZ/p\ZZ$ 中。这个例子说明，一个不是主理想整环的环的商环可能是主理想整环。继续跟踪上面理想 $(2,x)$：若 $p=2$，则理想 $(2,x)$ 在商环 $\ZZ/2\ZZ[x]$ 中约化为理想 $(x)$，这是一个真（极大）理想；若 $p\neq2$，则 $2$ 在商环中是单位，所以 $(2,x)$ 约化为整个环 $\ZZ/p\ZZ[x]$。
+	\item $\QQ[x,y]$，即有理系数二元多项式环，不是主理想整环，因为这个环是 $\QQ[x][y]$，而 $\QQ[x]$ 不是域（任何正次数元素都不可逆）。练习中要求证明理想 $(x,y)$ 不是这个环中的主理想。
+\end{enumerate}
+
+还要注意：若 $F\subseteq E$ 是域扩张，且 $a(x),b(x)\in F[x]$，则在 $F[x]$ 中对 $a$ 除以 $b$ 得到的商和余数，与在更大的环 $E[x]$ 中得到的商和余数相同。这由除法算法的唯一性推出。特别地，$b$ 在 $E[x]$ 中整除 $a$ 当且仅当它在 $F[x]$ 中整除 $a$；把最大公因子规定为首一后，在 $F[x]$ 与 $E[x]$ 中所得相同。
+
+
+\paragraph{练习}
+以下设 $F$ 为域，$x$ 为 $F$ 上的不定元。
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $f(x)\in F[x]$ 的次数为 $n\geq1$，并用横线表示到商环 $F[x]/(f(x))$ 的像。证明：对每个 $g(x)$，存在唯一的次数至多为 $n-1$ 的多项式 $g_0(x)$，使
+	\[
+	\overline{g(x)}=\overline{g_0(x)}.
+	\]
+	等价地，$1,x,\ldots,x^{n-1}$ 是 $F$-向量空间 $F[x]/(f(x))$ 的一组基；特别地，该空间维数为 $n$。\emph{提示：}使用除法算法。
+	
+	\item 设 $F$ 是有 $q$ 个元素的有限域，$f(x)\in F[x]$ 的次数为 $n\geq1$。证明 $F[x]/(f(x))$ 有 $q^n$ 个元素。\emph{提示：}使用前一题。
+	
+	\item 设 $f(x)\in F[x]$。证明 $F[x]/(f(x))$ 是域，当且仅当 $f(x)$ 不可约。\emph{提示：}使用第 8.2 节命题 7。
+	
+	\item 设 $F$ 是有限域。证明 $F[x]$ 含有无限多个素元。（注意在无限域上，一次多项式已经给出多项式环中的无限多个素元。）
+	
+	\item 设 $F$ 是域，$p(x)\in F[x]$。列出环 $F[x]/(p(x))$ 的所有理想，并用 $p(x)$ 的分解来描述它们。
+	
+	\item 简要描述下列环的环结构：
+	\[
+	\text{(a) }\ZZ[x]/(2),\quad
+	\text{(b) }\ZZ[x]/(x),\quad
+	\text{(c) }\ZZ[x]/(x^2),\quad
+	\text{(d) }\ZZ[x,y]/(x^2,y^2,2).
+	\]
+	证明在最后一个环中，对每个元素 $a$ 都有 $a^2=0$ 或 $1$，并确定满足 $a^2=0$ 的元素。确定这些环各自的特征（参见第 7.3 节练习 26）。
+	
+	\item 确定环 $\ZZ[x]/(2,x^3+1)$ 的所有理想。
+	
+	\item 在 $\QQ[x]$ 中求
+	\[
+	a(x)=x^3-2,
+	\qquad b(x)=x+1
+	\]
+	的最大公因子，并把它写成 $a(x)$ 与 $b(x)$ 的一个 $\QQ[x]$-线性组合。
+	
+	\item 在 $\QQ[x]$ 中求
+	\[
+	a(x)=x^5+2x^3+x^2+x+1,
+	\qquad b(x)=x^5+x^4+2x^3+2x^2+2x+1
+	\]
+	的最大公因子，并把它写成 $a(x)$ 与 $b(x)$ 的一个 $\QQ[x]$-线性组合。
+	
+	\item 在 $\QQ[x]$ 中求
+	\[
+	a(x)=x^3+4x^2+x-6,
+	\qquad b(x)=x^5-6x+5
+	\]
+	的最大公因子，并把它写成 $a(x)$ 与 $b(x)$ 的一个 $\QQ[x]$-线性组合。
+	
+	\item 设 $f(x),g(x)$ 是 $\QQ[x]$ 中两个非零多项式，最大公因子为 $d(x)$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 给定 $h(x)\in\QQ[x]$，证明存在 $a(x),b(x)\in\QQ[x]$ 满足
+		\[
+		a(x)f(x)+b(x)g(x)=h(x)
+		\]
+		当且仅当 $h(x)$ 被 $d(x)$ 整除。
+		\item 若 $a_0(x),b_0(x)\in\QQ[x]$ 是 (a) 中方程的一组特解，证明该方程的全部解为
+		\[
+		a(x)=a_0(x)+m(x){g(x)\over d(x)},
+		\qquad
+		b(x)=b_0(x)-m(x){f(x)\over d(x)},
+		\]
+		其中 $m(x)$ 遍历 $\QQ[x]$。参见第 8.1 节练习 4。
+	\end{enumerate}
+	
+	\item 设 $F[x,y_1,y_2,\ldots]$ 是域 $F$ 上变量 $x,y_1,y_2,\ldots$ 的多项式环，令
+	\[
+	I=(x-y_1^2,\,y_1-y_2^2,\,\ldots,\,y_i-y_{i+1}^2,\ldots)
+	\]
+	为其中的理想。定义
+	\[
+	R=F[x,y_1,y_2,\ldots]/I,
+	\]
+	于是，在 $R$ 中每个 $y_{i+1}$ 的平方都是 $y_i$，并且 $y_i^{2^i}=x$（模 $I$），也就是说 $x$ 对每个 $i$ 都有一个 $2^i$ 次根。记 $y_i$ 在 $R$ 中的像为 $x^{1/2^i}$。令 $R_n$ 为由 $F$ 与 $x^{1/2^n}$ 生成的 $R$ 的子环。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R_1\subseteq R_2\subseteq\cdots$，并且 $R=\bigcup_{n\geq1}R_n$。
+		\item 证明 $R_n$ 同构于 $F$ 上的一元多项式环，因此 $R_n$ 是 P.I.D.。推出 $R$ 是 Bezout 整环（参见第 8.2 节练习 7）。\emph{提示：}先证明
+		\[
+		S_n=F[x,y_1,\ldots,y_n]/(x-y_1^2,y_1-y_2^2,\ldots,y_{n-1}-y_n^2)
+		\]
+		同构于多项式环 $F[y_n]$。然后证明 $y_n$ 在 $R_n$ 中满足的任何多项式关系，都给出某个 $N\geq n$ 时 $S_N$ 中的相应关系。
+		\item 证明 $R$ 中由 $x,x^{1/2},x^{1/4},\ldots$ 生成的理想不是有限生成的（因此 $R$ 不是 P.I.D.）。
+	\end{enumerate}
+	
+	\item 本题介绍一个非交换环，它是“右”Euclidean 整环（也是“左”主理想整环），但不是“左”Euclidean 整环（也不是“右”主理想整环）。设 $F$ 是特征为 $p$ 的域，且并非每个元素都是 $p$ 次幂，即 $F\neq F^p$（例如有理函数域 $F=\FF_p(t)$）。令 $R=F\{x\}$ 为 $x$ 的“扭曲”多项式环，其元素为 $\sum_{i=0}^n a_i x^i$，其中 $a_i\in F$；加法按项定义，乘法由
+	\[
+	\left(\sum_{i=0}^n a_i x^i\right)
+	\left(\sum_{j=0}^m b_j x^j\right)
+	=
+	\sum_{k=0}^{n+m}\left(\sum_{i+j=k} a_i b_j^{p^i}\right)x^k
+	\]
+	定义。这来自规定 $xa=a^p x$（$a\in F$），因而 $x$ 的幂与系数不交换，再自然延拓。令 $N$ 为取多项式次数的范数：$N(f)=\deg f$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明对每个 $a\in F$ 和每个整数 $k\geq0$，有 $x^k a=a^{p^k}x^k$，并证明 $R$ 在上述乘法下是环。\emph{提示：}用特征 $p$ 中 $(a+b)^p=a^p+b^p$，从而 $(a+b)^{p^k}=a^{p^k}+b^{p^k}$。
+		\item 证明 $R$ 中两个元素乘积的次数等于两个元素次数之和。证明 $R$ 没有零因子。
+		\item 证明 $R$ 关于 $N$ 是“右 Euclidean”的：对任意 $f,g\in R$，$g\neq0$，存在 $q,r\in R$ 使
+		\[
+		f=qg+r,
+		\qquad r=0\text{ 或 }\deg r<\deg g.
+		\]
+		用此证明 $R$ 的每个左理想都是主理想。
+		\item 取 $f=cx$，其中 $c\in F$ 且 $c\notin F^p$，并取 $g=x$。证明不存在 $q,r\in R$ 使
+		\[
+		f=gq+r,
+		\qquad r=0\text{ 或 }\deg r<\deg g.
+		\]
+		特别地，$R$ 关于 $N$ 不是“左 Euclidean”的。证明由 $x$ 与 $cx$ 生成的 $R$ 的右理想不是主理想。推出 $R$ 关于任何范数都不是“左 Euclidean”的。
+	\end{enumerate}
+\end{enumerate}
+
+\section{唯一分解整环上的多项式环}
+
+若 $R$ 是整环，它嵌入其分式域 $F$，从而 $R[x]\subseteq F[x]$。由于 $F[x]$ 是 Euclidean 整环，许多计算可以先在 $F[x]$ 中完成，再尝试清去分母回到 $R[x]$。自然问题是：若 $R$ 是 U.F.D.，$R[x]$ 是否也是 U.F.D.？答案是肯定的。关键是 Gauss 引理。
+
+\noindent\textbf{命题 5（Gauss 引理）.} 设 $R$ 是 U.F.D.，$F$ 是其分式域，$p(x)\in R[x]$。若 $p(x)$ 在 $F[x]$ 中可约，则 $p(x)$ 在 $R[x]$ 中也可约。更准确地说，若
+\[
+p(x)=A(x)B(x)
+\]
+其中 $A(x),B(x)\in F[x]$ 是非常数多项式，则存在非零 $r,s\in F$，使
+\[
+rA(x)=a(x)\in R[x],\qquad sB(x)=b(x)\in R[x],
+\]
+并且
+\[
+p(x)=a(x)b(x)
+\]
+是在 $R[x]$ 中的分解。
+
+\begin{proof}
+	把 $A,B$ 的系数通分，得
+	\[
+	d p(x)=a'(x)b'(x),
+	\]
+	其中 $d\in R$ 非零，$a',b'\in R[x]$。若 $d$ 是单位，结论显然。否则把 $d$ 分解为不可约元乘积 $d=p_1\cdots p_n$。因为 $R$ 是 U.F.D.，不可约元 $p_1$ 是素元，所以 $(p_1)$ 是素理想。由命题 2，$(R/(p_1))[x]$ 是整环。将等式模 $p_1$ 化，得
+	\[
+	0=\overline{a'}(x)\overline{b'}(x),
+	\]
+	故两因子之一为零，即 $a'$ 或 $b'$ 的所有系数都被 $p_1$ 整除。于是可把 $p_1$ 从右边一个因子中消去，同时把左边的 $d$ 换成 $d/p_1$。依次对 $d$ 的所有不可约因子重复此过程，最终得到
+	\[
+	p(x)=a(x)b(x),\qquad a,b\in R[x],
+	\]
+	且 $a,b$ 分别为 $A,B$ 的 $F$-倍数。
+\end{proof}
+
+注意，一般不能要求 $a,b$ 是 $A,B$ 的 $R$-倍数。例如在 $\ZZ[x]$ 中把 $x^2$ 写为 $(2x)(\frac12x)$，虽然可清分母得到 $x\cdot x$，但不是原两因子的整数倍。
+
+\noindent\textbf{推论 6.} 设 $R$ 是 U.F.D.，$F$ 是其分式域，$p(x)\in R[x]$。若 $p(x)$ 的各系数最大公因子为 $1$，则 $p(x)$ 在 $R[x]$ 中不可约当且仅当它在 $F[x]$ 中不可约。特别地，若首一多项式 $p(x)$ 在 $R[x]$ 中不可约，则它在 $F[x]$ 中不可约。
+
+\begin{proof}
+	若 $p$ 在 $F[x]$ 中可约，由 Gauss 引理在 $R[x]$ 中可约。反过来，若 $p$ 在 $R[x]$ 中可约，由于系数最大公因子为 $1$，其分解中的两个因子都不能是 $R$ 中的常数非单位，故它在 $F[x]$ 中也可约。
+\end{proof}
+
+\noindent\textbf{定理 7.} $R$ 是 U.F.D. 当且仅当 $R[x]$ 是 U.F.D.。
+
+\begin{proof}
+	若 $R[x]$ 是 U.F.D.，则常数多项式的唯一分解迫使 $R$ 自身是 U.F.D.。
+	
+	反之设 $R$ 是 U.F.D.，$F$ 是其分式域。取非零 $p(x)\in R[x]$。令 $d$ 为 $p$ 的系数最大公因子，写
+	\[
+	p(x)=d p'(x),
+	\]
+	其中 $p'$ 的系数最大公因子为 $1$。$d$ 在 $R$ 中唯一分解；因此只需处理系数最大公因子为 $1$ 且次数正的情形。
+	
+	在 $F[x]$ 中，$p(x)$ 唯一分解为不可约多项式乘积。由 Gauss 引理，可清分母得到 $R[x]$ 中的分解；因为 $p$ 的系数最大公因子为 $1$，每个因子的系数最大公因子也为 $1$，由推论 6 它们在 $R[x]$ 中不可约。于是存在不可约分解。
+	
+	唯一性也由 $F[x]$ 中的唯一性推出。若
+	\[
+	p(x)=q_1(x)\cdots q_r(x)=q_1'(x)\cdots q_s'(x)
+	\]
+	是在 $R[x]$ 中的两个不可约分解，则在 $F[x]$ 中两边也是不可约分解，因此 $r=s$ 且适当重排后 $q_i$ 与 $q_i'$ 在 $F[x]$ 中相伴。设 $q=(a/b)q'$，其中 $a,b\in R$ 非零，且 $q,q'$ 的系数最大公因子均为 $1$。则
+	\[
+	bq=aq'.
+	\]
+	左边系数最大公因子为 $b$（至多差一个单位），右边为 $a$，故 $a$ 与 $b$ 在 $R$ 中相伴，从而 $q$ 与 $q'$ 在 $R[x]$ 中相伴。
+\end{proof}
+
+\noindent\textbf{推论 8.} 若 $R$ 是 U.F.D.，则以 $R$ 为系数的任意多个变量的多项式环仍是 U.F.D.。
+
+\begin{proof}
+	有限多个变量由定理 7 归纳得到；任意多个变量的情形由其为有限变量多项式环的并得到。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item $\ZZ[x]$、$\ZZ[x,y]$ 等都是 U.F.D.。$\ZZ[x]$ 是 U.F.D. 但不是 P.I.D. 的例子。
+	\item $\QQ[x]$、$\QQ[x,y]$ 等也都是 U.F.D.。
+\end{enumerate}
+
+若 $R$ 只是整环而非 U.F.D.，推论 6 的结论可能失败。例如 $R=\ZZ[2i]=\{a+2bi\mid a,b\in\ZZ\}$，其分式域为 $\QQ(i)$。多项式 $x^2+1$ 在 $R[x]$ 中不可约，但在 $\QQ(i)[x]$ 中分解为 $(x-i)(x+i)$。这也说明 $\ZZ[2i]$ 不是 U.F.D.。
+
+
+\paragraph{练习}
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $R$ 是整环，分式域为 $F$，且 $p(x)$ 是 $R[x]$ 中的首一多项式。假设
+	\[
+	p(x)=a(x)b(x),
+	\]
+	其中 $a(x),b(x)$ 是 $F[x]$ 中次数小于 $p(x)$ 的首一多项式。证明：若 $a(x)\notin R[x]$，则 $R$ 不是唯一分解整环。由此推出 $\ZZ[2\sqrt2]$ 不是 U.F.D.。
+	
+	\item 证明：若 $f(x),g(x)$ 是有理系数多项式，且乘积 $f(x)g(x)$ 有整数系数，则 $g(x)$ 的任一系数与 $f(x)$ 的任一系数的乘积都是整数。
+	
+	\item 设 $F$ 是域。证明 $F[x]$ 中 $x$ 的系数等于 $0$ 的所有多项式组成一个子环 $R$，并证明 $R$ 不是 U.F.D.。\emph{提示：}证明
+	\[
+	x^6=(x^2)^3=(x^3)^2
+	\]
+	给出 $x^6$ 到不可约元的两个不同分解。
+	
+	\item 设
+	\[
+	R=\ZZ+x\QQ[x]\subseteq\QQ[x]
+	\]
+	为常数项为整数的有理系数多项式集合。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $R$ 是整环，其单位为 $\pm1$。
+		\item 证明 $R$ 中的不可约元正是 $\pm p$（其中 $p$ 为 $\ZZ$ 中素数）以及那些在 $\QQ[x]$ 中不可约且常数项为 $\pm1$ 的多项式 $f(x)$。证明这些不可约元在 $R$ 中都是素元。
+		\item 证明 $x$ 不能写成 $R$ 中不可约元的乘积（特别地，$x$ 不是不可约元），并推出 $R$ 不是 U.F.D.。
+		\item 证明 $x$ 在 $R$ 中不是素元，并描述商环 $R/(x)$。
+	\end{enumerate}
+	
+	\item 设 $R=\ZZ+x\QQ[x]\subseteq\QQ[x]$ 为前一题中的环。
+	\begin{enumerate}[label=(\alph*)]
+		\item 设 $f(x),g(x)\in\QQ[x]$ 为两个非零有理系数多项式，$x^r$ 是在 $\QQ[x]$ 中同时整除 $f(x)$ 与 $g(x)$ 的最高幂（即 $r$ 是 $f(x)$ 或 $g(x)$ 中出现的最低次数项的次数）。设 $f_r,g_r$ 分别为 $f(x),g(x)$ 中 $x^r$ 的系数（按定义至少一个非零）。于是 $\ZZ f_r+\ZZ g_r=\ZZ d_r$，其中 $d_r\in\QQ$ 非零（参见第 2.4 节练习 14）。证明存在 $d(x)\in\QQ[x]$，它是 $f(x),g(x)$ 在 $\QQ[x]$ 中的最大公因子，并且其最低次数项为 $d_r x^r$。
+		\item 证明 $f(x)=d(x)q_1(x)$ 且 $g(x)=d(x)q_2(x)$，其中 $q_1(x),q_2(x)$ 都属于 $\QQ[x]$ 的子环 $R$。
+		\item 证明
+		\[
+		d(x)=a(x)f(x)+b(x)g(x)
+		\]
+		其中 $a(x),b(x)\in R$。\emph{提示：}在 Euclidean 整环 $\QQ[x]$ 中 $a(x),b(x)$ 的存在性是直接的；用第 9.2 节练习 11 说明它们可取在 $R$ 中。
+		\item 由 (a) 与 (b) 推出在 $\QQ[x]$ 中
+		\[
+		Rf(x)+Rg(x)=Rd(x),
+		\]
+		并用它证明 $R$ 是 Bezout 整环（参见第 8.2 节练习 7）。
+		\item 证明 (d)、前一题结果以及第 8.3 节练习 11 蕴含 $R$ 必含有非主理想（因而含有非有限生成理想）。事实上证明 $I=x\QQ[x]$ 是 $R$ 的一个非有限生成理想。
+	\end{enumerate}
+\end{enumerate}
+
+\section{不可约性判别法}
+
+若 $R$ 是 U.F.D.，则任意多变量多项式环仍是 U.F.D.。因此我们关心怎样判定 $R[x]$ 中的多项式是否不可约。一般地，判断高次数或多变量多项式是否分解并不容易。本节给出若干常用判别法。主要讨论一元多项式，系数环通常是 U.F.D.；通过 Gauss 引理，可转化到分式域上讨论。
+
+\noindent\textbf{命题 9.} 设 $F$ 是域，$p(x)\in F[x]$。则 $p(x)$ 有一次因子，当且仅当 $p(x)$ 在 $F$ 中有根，即存在 $a\in F$ 使 $p(a)=0$。
+
+\begin{proof}
+	若有一次因子，可取为 $x-a$，显然 $p(a)=0$。反之，若 $p(a)=0$，由 $F[x]$ 中除法算法
+	\[
+	p(x)=q(x)(x-a)+r,
+	\]
+	其中 $r$ 为常数。代入 $x=a$ 得 $r=0$，故 $x-a$ 整除 $p(x)$。
+\end{proof}
+
+\noindent\textbf{命题 10.} 域 $F$ 上二次或三次多项式可约，当且仅当它在 $F$ 中有根。
+
+\begin{proof}
+	次数为 $2$ 或 $3$ 的多项式若可约，必有一个一次因子。结论由命题 9 得到。
+\end{proof}
+
+\noindent\textbf{命题 11（有理根判别法）.} 设
+\[
+p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0\in\ZZ[x].
+\]
+若既约分数 $r/s\in\QQ$ 是 $p(x)$ 的根，则
+\[
+r\mid a_0,
+\qquad s\mid a_n.
+\]
+特别地，若 $p(x)$ 是首一整数系数多项式，且对所有整除常数项的整数 $d$ 都有 $p(d)\neq0$，则 $p(x)$ 没有有理根。
+
+\begin{proof}
+	由 $p(r/s)=0$，乘以 $s^n$ 得
+	\[
+	a_nr^n+a_{n-1}r^{n-1}s+\cdots+a_0s^n=0.
+	\]
+	移项可见 $s\mid a_nr^n$，因 $(r,s)=1$，所以 $s\mid a_n$。同理移项解出 $a_0s^n$ 可得 $r\mid a_0$。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item $x^3-3x-1$ 在 $\QQ[x]$ 中不可约。因为次数为 $3$，只需检验有理根；候选根只有 $\pm1$，代入均非零。
+	\item 若 $p$ 为素数，则 $x^2-p$ 与 $x^3-p$ 在 $\QQ[x]$ 中不可约。
+	\item $x^2+1$ 在 $\FF_2[x]$ 中可约，因为 $1$ 是根，且 $x^2+1=(x+1)^2$。
+	\item $x^2+x+1$ 在 $\FF_2[x]$ 中不可约，因为
+\[
+0^2+0+1=1,
+\qquad
+1^2+1+1=1.
+\]
+	\item 类似地，多项式 $x^3+x+1$ 在 $\FF_2[x]$ 中不可约。
+\end{enumerate}
+
+上述根判别只适合低次数；四次多项式可能分解为两个二次不可约因子的乘积而没有一次因子。另一类常用方法是把系数模某个理想化。
+
+\noindent\textbf{命题 12.} 设 $I$ 是整环 $R$ 的真理想，$p(x)\in R[x]$ 是非常数首一多项式。若 $p(x)$ 在 $(R/I)[x]$ 中的像不能分解为两个较低次数多项式的乘积，则 $p(x)$ 在 $R[x]$ 中不可约。
+
+\begin{proof}
+	若 $p$ 在 $R[x]$ 中可约，则由于 $p$ 是首一多项式，可写成两个首一的、次数较低的非常数多项式 $a(x)b(x)$ 的乘积。把这个等式的系数模 $I$ 化，便在 $(R/I)[x]$ 中给出 $p(x)$ 的像的一个分解。由于两个因子仍是首一的，它们在商环中的次数与原来相同，特别仍为正次数并且都低于 $p(x)$ 的次数。这与假设矛盾。
+\end{proof}
+
+该命题给出一种检验方法：找到一个真理想，使约化后的多项式不可约，则原多项式不可约。但反过来不成立；例如 $x^2+1$ 在 $\ZZ[x]$ 中不可约，却在模 $2$ 下可约。还有不可约多项式模每个素数都可约的例子。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item $x^2+x+1$ 与 $x^3+x+1$ 在 $\ZZ[x]$ 中不可约，因为它们模 $2$ 后在 $\FF_2[x]$ 中不可约。
+	\item $x^2+1$ 在 $\ZZ[x]$ 中不可约，因为模 $3$ 后无根；但它模 $2$ 可约。
+	\item 多变量中也可用此法，但要注意某些非单位在商环中会变成单位。例如 $xy+x+y+1=(x+1)(y+1)$，但模 $(x)$ 或模 $(y)$ 后可能“看起来”不可约。
+\end{enumerate}
+
+\noindent\textbf{命题 13（Eisenstein 判别法）.} 设 $P$ 是整环 $R$ 的素理想，令
+\[
+f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in R[x],\qquad n\geq1.
+\]
+若
+\[
+a_{n-1},\ldots,a_1,a_0\in P,
+\qquad a_0\notin P^2,
+\]
+则 $f(x)$ 在 $R[x]$ 中不可约。
+
+\begin{proof}
+	设 $f(x)=a(x)b(x)$ 是 $R[x]$ 中的非常数分解。因为 $f$ 是首一的，我们可以把 $a(x)$ 与 $b(x)$ 都取为首一多项式。将系数模 $P$ 化后，假设给出
+	\[
+	x^n=\overline{a}(x)\overline{b}(x)
+	\]
+	在 $(R/P)[x]$ 中成立。由于 $P$ 是素理想，$R/P$ 是整环，所以 $(R/P)[x]$ 中因式分解的次数相加，且 $x^n$ 的两个首一因子只能是幂 $x^r$ 与 $x^{n-r}$。特别地，$\overline{a}(x)$ 与 $\overline{b}(x)$ 的常数项都为 $0$。这就是说 $a(x),b(x)$ 的常数项都属于 $P$。于是 $f$ 的常数项 $a_0$ 是这两个常数项的乘积，因而属于 $P^2$，这与 $a_0\notin P^2$ 矛盾。
+\end{proof}
+
+\noindent\textbf{推论 14（$\ZZ[x]$ 中的 Eisenstein 判别法）.} 设 $p$ 是整数素数，
+\[
+f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in\ZZ[x].
+\]
+若 $p\mid a_i$ 对 $0\leq i\leq n-1$ 成立，但 $p^2\nmid a_0$，则 $f(x)$ 在 $\ZZ[x]$ 与 $\QQ[x]$ 中都不可约。
+
+\begin{proof}
+	这是命题 13 应用于素理想 $(p)$ 的情形，再结合 Gauss 引理。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item $x^4+10x+5$ 由素数 $5$ 的 Eisenstein 判别法不可约。
+	\item 若整数 $a$ 被素数 $p$ 整除但不被 $p^2$ 整除，则 $x^n-a$ 在 $\ZZ[x]$ 中不可约。特别地，$x^n-p$ 对所有 $n\geq1$ 不可约。
+	\item $x^4+1$ 不能直接用 Eisenstein 判别法，但
+	\[
+	(x+1)^4+1=x^4+4x^3+6x^2+4x+2
+	\]
+	对素数 $2$ 满足 Eisenstein 条件，故 $x^4+1$ 不可约。
+	\item 对素数 $p$，分圆多项式
+	\[
+	\Phi_p(x)=\frac{x^p-1}{x-1}=x^{p-1}+x^{p-2}+\cdots+x+1
+	\]
+	也可通过替换 $x\mapsto x+1$ 后用 Eisenstein 判别法证明在 $\ZZ[x]$ 中不可约。
+\end{enumerate}
+
+
+\paragraph{练习}
+\begin{enumerate}[label=\arabic*.]
+	\item 判断下列多项式在所给环中是否不可约。若可约，给出其不可约分解。记 $\FF_p$ 为有限域 $\ZZ/p\ZZ$，其中 $p$ 为素数。
+	\begin{enumerate}[label=(\alph*)]
+		\item $x^2+x+1$ 在 $\FF_2[x]$ 中。
+		\item $x^3+x+1$ 在 $\FF_3[x]$ 中。
+		\item $x^4+1$ 在 $\FF_5[x]$ 中。
+		\item $x^4+10x^2+1$ 在 $\ZZ[x]$ 中。
+	\end{enumerate}
+	
+	\item 证明下列多项式在 $\ZZ[x]$ 中不可约：
+	\begin{enumerate}[label=(\alph*)]
+		\item $x^4-4x^3+6$。
+		\item $x^6+30x^5-15x^3+6x-120$。
+		\item $x^4+4x^3+6x^2+2x+1$。\emph{提示：}把 $x-1$ 代入 $x$。
+		\item $\displaystyle { (x+2)^p-2^p\over x}$，其中 $p$ 是奇素数。
+	\end{enumerate}
+	
+	\item 对所有 $n\geq1$，证明多项式
+	\[
+	(x-1)(x-2)\cdots(x-n)-1
+	\]
+	在 $\ZZ[x]$ 上不可约。\emph{提示：}若该多项式分解，考察因子在 $x=1,2,\ldots,n$ 处的取值。
+	
+	\item 对所有 $n\geq1$ 且 $n\neq4$，证明多项式
+	\[
+	(x-1)(x-2)\cdots(x-n)+1
+	\]
+	在 $\ZZ[x]$ 上不可约。
+	
+	\item 找出 $\FF_2[x]$ 中次数不超过 $3$ 的所有首一不可约多项式；再在 $\FF_3[x]$ 中做同样的事。
+	
+	\item 构造下列各阶的域：
+	\[
+	\text{(a) }9,\quad \text{(b) }49,\quad \text{(c) }8,\quad \text{(d) }81.
+	\]
+	可以把它们写成 $F[x]/(f(x))$ 的形式，其中 $F$ 是某个域、$f$ 是某个多项式。\emph{提示：}使用第 9.2 节练习 2 与练习 3。
+	
+	\item 证明 $\RR[x]/(x^2+1)$ 是一个域，并且同构于复数域 $\CC$。
+	
+	\item 证明
+	\[
+	K_1=\FF_{11}[x]/(x^2+1),
+	\qquad K_2=\FF_{11}[y]/(y^2+2y+2)
+	\]
+	都是有 $121$ 个元素的域。证明把 $K_1$ 中元素 $p(\overline{x})$ 送到 $K_2$ 中元素 $p(\overline{y}+1)$ 的映射（其中 $p$ 为 $\FF_{11}$ 系数多项式）是良定义的，并给出从 $K_1$ 到 $K_2$ 的环同构（从而是域同构）。
+	
+	\item 证明多项式 $x^2-\sqrt2$ 在 $\ZZ[\sqrt2]$ 上不可约（可用 $\ZZ[\sqrt2]$ 是 U.F.D. 这一事实；参见第 8.1 节练习 9）。
+	
+	\item 证明多项式
+	\[
+	p(x)=x^4-4x^2+8x+2
+	\]
+	在二次域
+	\[
+	F=\QQ(\sqrt{-2})=\{a+b\sqrt{-2}\mid a,b\in\QQ\}
+	\]
+	上不可约。\emph{提示：}先在唯一分解整环 $\ZZ[\sqrt{-2}]$ 中使用命题 11 的方法（参见第 8.1 节练习 8），证明若 $a\in\ZZ[\sqrt{-2}]$ 是 $p(x)$ 的根，则 $a$ 是 $2$ 在 $\ZZ[\sqrt{-2}]$ 中的因子。推出 $a$ 必为 $\pm1,\pm\sqrt{-2}$ 或 $\pm2$，从而 $p(x)$ 在 $F$ 上没有一次因子。类似地证明 $p(x)$ 不能分解为两个 $F$ 系数二次多项式的乘积。
+	
+	\item 证明 $x^2+y^2-1$ 在 $\QQ[x,y]$ 中不可约。
+	
+	\item 证明
+	\[
+	x^{n-1}+x^{n-2}+\cdots+x+1
+	\]
+	在 $\ZZ[x]$ 上不可约，当且仅当 $n$ 是素数。
+	
+	\item 证明：对所有整数 $n\neq1,-3,-5$，多项式 $x^3+nx+2$ 在 $\ZZ[x]$ 上不可约。
+	
+	\item 把两个多项式 $x^8-1$ 与 $x^6-1$ 分别在下列环上分解为不可约因子乘积：
+	\[
+	\text{(a) }\ZZ,
+	\quad \text{(b) }\ZZ/2\ZZ,
+	\quad \text{(c) }\ZZ/3\ZZ.
+	\]
+	
+	\item 设 $F$ 是域。证明作为形式幂级数环 $F[[x]]$ 中的系数多项式，$X^n-x$ 在 $F[[x]][X]$ 中不可约。\emph{提示：}回忆 $F[[x]]$ 是 Euclidean 整环；参见第 7.2 节练习 5 与第 8.1 节例 4。
+	
+	\item 设 $F$ 是域，$f(x)$ 是 $F[x]$ 中次数为 $n$ 的多项式。多项式
+	\[
+	g(x)=x^n f(1/x)
+	\]
+	称为 $f(x)$ 的反多项式。
+	\begin{enumerate}[label=(\alph*)]
+		\item 用 $f$ 的系数描述 $g$ 的系数。
+		\item 证明 $f$ 不可约当且仅当 $g$ 不可约。
+	\end{enumerate}
+	
+	\item 证明 Eisenstein 判别法的以下变形：设 $P$ 是唯一分解整环 $R$ 的素理想，令
+	\[
+	f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in R[x],\qquad n\geq1.
+	\]
+	假设 $a_n\notin P$，$a_{n-1},\ldots,a_0\in P$，且 $a_0\notin P^2$。证明 $f(x)$ 在 $F[x]$ 中不可约，其中 $F$ 是 $R$ 的分式域。
+	
+	\item 证明 $6x^5+14x^3-21x+35$ 与 $18x^5-30x^2+120x+360$ 在 $\QQ[x]$ 中不可约。
+	
+	\item 设 $F$ 是域，
+	\[
+	f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0\in F[x].
+	\]
+	$f(x)$ 的导数定义为
+	\[
+	D_x(f(x))=n a_nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+a_1,
+	\]
+	其中 $na=a+\cdots+a$（$n$ 次）。注意 $D_x(f(x))$ 仍是 $F$ 系数多项式。若存在包含 $F$ 的某个域 $E$ 以及 $a\in E$，使 $(x-a)^2$ 在 $E[x]$ 中整除 $f(x)$，则称 $f(x)$ 有重根。我们将在第 13.5 节证明，非零非常数多项式 $f(x)$ 有重根，当且仅当 $f(x)$ 与其导数不互素（这可由 $F[x]$ 中的 Euclidean 算法检测）。用这一判别法判断下列多项式是否有重根：
+	\begin{enumerate}[label=(\alph*)]
+		\item $x^3-3x-2\in\QQ[x]$。
+		\item $x^3+3x+2\in\QQ[x]$。
+		\item $x^6-4x^4+6x^3+4x^2-12x+9\in\QQ[x]$。
+		\item 证明对任意素数 $p$ 与任意 $a\in\FF_p$，多项式 $x^p-a$ 都有重根。
+	\end{enumerate}
+	
+	\item 证明 $\ZZ/6\ZZ[x]$ 中的多项式 $f(x)=x$ 可分解为
+	\[
+	x=(3x+4)(4x+3),
+	\]
+	因而不是不可约多项式。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $f(x)$ 模 $\ZZ/6\ZZ$ 的两个非平凡理想 $(2)$ 与 $(3)$ 约化后都是不可约多项式，从而说明命题 12 中 $R$ 必须是整环这一条件是必要的。
+		\item 证明在 $\ZZ/6\ZZ[x]$ 中任何分解 $f(x)=g(x)h(x)$ 里，$g(x)$ 模 $(2)$ 的约化为 $1$ 或 $x$，而 $h(x)$ 模 $(2)$ 的约化相应为 $x$ 或 $1$；对模 $(3)$ 约化亦然。确定 $f(x)$ 在 $\ZZ/6\ZZ[x]$ 中的全部分解。\emph{提示：}用中国剩余定理。
+		\item 证明理想 $(3,x)$ 是 $\ZZ/6\ZZ[x]$ 中的主理想。
+		\item 在 $\ZZ/30\ZZ[x]$ 中证明
+		\[
+		f(x)=x=(10x+21)(15x+16)(6x+25).
+		\]
+		证明任意两个这些因子的乘积仍具有相同次数。证明 $f(x)$ 对 $\ZZ/30\ZZ$ 中任一素理想约化后都是不可约多项式。确定 $f(x)$ 在 $\ZZ/30\ZZ[x]$ 中的全部分解。\emph{提示：}考虑模 $(2),(3),(5)$ 的约化并用中国剩余定理。
+		\item 把 (d) 推广到 $\ZZ/n\ZZ[x]$，其中 $n$ 是 $k$ 个不同素数的乘积。
+	\end{enumerate}
+\end{enumerate}
+
+\section{域上的多项式环 II}
+
+设 $F$ 是域。本节证明关于一元多项式环 $F[x]$ 的若干进一步结果。
+
+\noindent\textbf{命题 15.} $F[x]$ 中的极大理想正是由不可约多项式 $f(x)$ 生成的理想 $(f(x))$。特别地，
+\[
+F[x]/(f(x))
+\]
+是域，当且仅当 $f(x)$ 不可约。
+
+\begin{proof}
+	这是第 8.2 节命题 7 对 P.I.D. $F[x]$ 的应用。
+\end{proof}
+
+\noindent\textbf{命题 16.} 设 $g(x)$ 是 $F[x]$ 中非常数多项式，并设
+\[
+g(x)=f_1(x)^{n_1}f_2(x)^{n_2}\cdots f_k(x)^{n_k}
+\]
+是其不可约分解，其中 $f_i(x)$ 两两不同。则有环同构
+\[
+F[x]/(g(x))
+\cong
+F[x]/(f_1^{n_1})\times F[x]/(f_2^{n_2})\times\cdots\times F[x]/(f_k^{n_k}).
+\]
+
+\begin{proof}
+	由中国剩余定理得到。因为不同不可约多项式 $f_i,f_j$ 在 Euclidean 整环 $F[x]$ 中互素，所以理想 $(f_i^{n_i})$ 与 $(f_j^{n_j})$ 互素。
+\end{proof}
+
+一个根 $a$ 对应一次因子 $x-a$。若 $f(x)$ 被 $(x-a)^m$ 整除但不被 $(x-a)^{m+1}$ 整除，则称 $a$ 是重数为 $m$ 的根。
+
+\noindent\textbf{命题 17.} 若多项式 $f(x)$ 在 $F$ 中有根 $a_1,a_2,\ldots,a_k$（可重复计算），则
+\[
+(x-a_1)(x-a_2)\cdots(x-a_k)
+\]
+整除 $f(x)$。特别地，域上一元 $n$ 次多项式在该域中至多有 $n$ 个根，即使按重数计算也是如此。
+
+\begin{proof}
+	第一部分由命题 9 归纳得到。由于一次因子不可约，第二部分由 $F[x]$ 的唯一分解性得到。
+\end{proof}
+
+\noindent\textbf{命题 18.} 域的乘法群的任一有限子群都是循环群。特别地，若 $F$ 是有限域，则 $F^\times$ 是循环群。
+
+\begin{proof}
+	用有限生成阿贝尔群基本定理。设有限子群同构于
+	\[
+	\ZZ/n_1\ZZ\times\ZZ/n_2\ZZ\times\cdots\times\ZZ/n_k\ZZ,
+	\qquad n_k\mid n_{k-1}\mid\cdots\mid n_1.
+	\]
+	每个循环因子中都有 $n_k$ 个元素满足 $x^{n_k}=1$。若 $k>1$，直积中满足 $x^{n_k}=1$ 的元素个数会超过 $n_k$，但域中多项式 $x^{n_k}-1$ 至多有 $n_k$ 个根，矛盾。因此 $k=1$，该群循环。
+\end{proof}
+
+\noindent\textbf{推论 19.} 若 $p$ 是素数，则 $(\ZZ/p\ZZ)^\times$ 是循环群。
+
+\begin{proof}
+	这是有限域 $\ZZ/p\ZZ$ 的非零元素乘法群。
+\end{proof}
+
+\noindent\textbf{推论 20.} 设 $n\geq2$，其素因子分解为
+\[
+n=p_1^{a_1}p_2^{a_2}\cdots p_r^{a_r}.
+\]
+则：
+\begin{enumerate}[label=(\arabic*)]
+	\item
+	\[
+	(\ZZ/n\ZZ)^\times\cong
+	(\ZZ/p_1^{a_1}\ZZ)^\times\times\cdots\times(\ZZ/p_r^{a_r}\ZZ)^\times.
+	\]
+	\item 对 $a\geq2$，$(\ZZ/2^a\ZZ)^\times$ 是一个 $2$ 阶循环群和一个 $2^{a-2}$ 阶循环群的直积。
+	\item 对奇素数 $p$，$(\ZZ/p^a\ZZ)^\times$ 是阶为 $p^{a-1}(p-1)$ 的循环群。
+\end{enumerate}
+
+\begin{remark}
+这些同构描述了 $n$ 阶循环群 $Z_n$ 的自同构群的群论结构，因为 $\operatorname{Aut}(Z_n)\cong(\ZZ/n\ZZ)^\times$（参见第 4.4 节命题 16）。特别地，对素数 $p$，$p$ 阶循环群的自同构群是 $p-1$ 阶循环群。
+\end{remark}
+
+\begin{proof}
+	这主要是汇集前面的结果。(1) 中的同构由中国剩余定理得到（见第 7.6 节推论 18）。(2) 中的同构直接来自第 2.3 节练习 22 与练习 23。
+
+	现在设 $p$ 为奇素数。群 $(\ZZ/p^a\ZZ)^\times$ 是阶为 $p^{a-1}(p-1)$ 的阿贝尔群。由第 2.3 节练习 21，这个群的 Sylow $p$-子群是循环的。模 $p$ 约化映射
+\[
+\varphi: \ZZ/p^a\ZZ\longrightarrow \ZZ/p\ZZ
+\]
+是环同态，它在单位群上给出满同态
+\[
+(\ZZ/p^a\ZZ)^\times\longrightarrow (\ZZ/p\ZZ)^\times.
+\]
+后一个群由推论 19 是 $p-1$ 阶循环群。此映射的核的阶为 $p^{a-1}$，因此对每个素数 $q\neq p$，$(\ZZ/p^a\ZZ)^\times$ 的 Sylow $q$-子群同构地映入循环群 $(\ZZ/p\ZZ)^\times$。于是 $(\ZZ/p^a\ZZ)^\times$ 的所有 Sylow 子群都是循环的，从而 (3) 成立，证明完毕。
+\end{proof}
+
+
+\paragraph{练习}
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $F$ 是域，$f(x)$ 是 $F[x]$ 中的非常数多项式。用 $f(x)$ 的因式分解描述 $F[x]/(f(x))$ 的 nilradical（参见第 7.3 节练习 29）。
+	
+	\item 对第 9.4 节练习 6 中构造出的每个域，给出其非零元素乘法群的一个生成元。
+	
+	\item 设 $p$ 是 $\ZZ$ 中的奇素数，$n$ 是正整数。证明 $x^n-p$ 在 $\ZZ[i]$ 上不可约。\emph{提示：}使用第 8 章命题 18 与 Eisenstein 判别法。
+	
+	\item 证明 $x^3+12x^2+18x+6$ 在 $\ZZ[i]$ 上不可约。\emph{提示：}使用第 8 章命题 18 与 Eisenstein 判别法。
+	
+	\item 令 $\varphi$ 表示 Euler $\varphi$-函数。证明恒等式
+	\[
+	\sum_{d\mid n}\varphi(d)=n,
+	\]
+	其中求和遍历 $n$ 的所有正因子。\emph{提示：}先观察当 $n=p^m$ 为素数幂时，求和会望远镜相消。写 $n=p^m n'$，其中 $p\nmid n'$。证明
+	\[
+	\sum_{d\mid n}\varphi(d)=
+	\left(\sum_{d''\mid p^m}\varphi(d'')\right)
+	\left(\sum_{d'\mid n'}\varphi(d')\right)
+	\]
+	可由右边展开并使用 $a,b$ 互素时 $\varphi(ab)=\varphi(a)\varphi(b)$ 得到。用归纳完成证明。也可令 $Z$ 为 $n$ 阶循环群，并证明由于 $Z$ 对每个 $d\mid n$ 有唯一的 $d$ 阶子群，$Z$ 中阶为 $d$ 的元素个数为 $\varphi(d)$；于是 $|Z|$ 是所有 $d\mid n$ 的 $\varphi(d)$ 之和。
+	
+	\item 设 $G$ 是域 $F$ 的乘法群 $F^\times$ 的一个有限子群，阶为 $n$。令 $\varphi$ 为 Euler $\varphi$-函数，并令 $\psi(d)$ 表示 $G$ 中阶为 $d$ 的元素个数。证明对 $n$ 的每个因子 $d$，都有 $\psi(d)=\varphi(d)$。特别地推出 $\psi(n)\geq1$，所以 $G$ 是循环群。\emph{提示：}注意对任意整数 $N\geq1$，多项式 $x^N-1$ 在 $F$ 中至多有 $N$ 个根。推出对任意 $N$ 有 $\sum_{d\mid N}\psi(d)\leq N$。由前一题 $\sum_{d\mid N}\varphi(d)=N$，用归纳证明每个 $d\mid n$ 都有 $\psi(d)\leq\varphi(d)$。再由
+	\[
+	\sum_{d\mid n}\psi(d)=n=\sum_{d\mid n}\varphi(d)
+	\]
+	推出每个 $d\mid n$ 都有 $\psi(d)=\varphi(d)$。
+	
+	\item 证明域的加法群与乘法群从不同构。\emph{提示：}分三种情形考虑：$F$ 有限；$-1\neq1$；以及 $-1=1$。
+\end{enumerate}
+
+\section{域上的多变量多项式与 Grobner 基}
+
+本节考虑多变量多项式，介绍一些基本计算工具并指出若干应用。本节结果在第 10 到第 14 章中不需要；更多应用将在第 15 章给出。
+
+我们在第 2 节证明了域 $F$ 上一元多项式环 $F[x]$ 是 Euclidean 整环；推论 8 又说明 $F[x_1,\ldots,x_n]$ 是 U.F.D.。不过由第 8.2 节推论 8 可知，除非 $n=1$，这个环不是 P.I.D.。下面第一个结果说明，这些多项式环中的理想虽然未必是主理想，却总是有限生成的。具有这种性质的一般环有一个专门名称。
+
+\noindent\textbf{定义.} 带单位元的交换环 $R$ 称为 Noether 环，如果 $R$ 的每个理想都是有限生成的。
+
+Noether 环将在第 15 章与第 16 章中更详细地研究。本节发展若干基本理论以及由此得到的算法，用来处理 $F[x_1,\ldots,x_n]$ 中的（有限生成）理想。
+
+正如第 1 节所见，一个 $n$ 元多项式环可看成一个一元多项式环，其系数环是 $n-1$ 元多项式环。循着这个归纳观点，正如我们在定理 7 与推论 8 中所做的那样，可以从下面更一般的结果推出 $F[x_1,x_2,\ldots,x_n]$ 是 Noether 环。
+
+\noindent\textbf{定理 21（Hilbert 基定理）.} 若 $R$ 是 Noether 环，则 $R[x]$ 也是 Noether 环。
+
+\begin{proof}
+	设 $I$ 是 $R[x]$ 的理想，令 $L$ 为 $I$ 中所有元素的首系数组成的集合。先证明 $L$ 是 $R$ 的理想。零多项式属于 $I$，所以 $0\in L$。若 $f=ax^d+\cdots$ 与 $g=bx^e+\cdots$ 是 $I$ 中次数分别为 $d,e$、首系数分别为 $a,b\in R$ 的多项式，则对任意 $r\in R$，$ra-b$ 要么为零，要么是多项式 $r x^e f-x^d g$ 的首系数；而这个多项式属于 $I$。因此 $ra-b\in L$，说明 $L$ 是 $R$ 的理想。由于 $R$ 是 Noether 环，$L$ 有有限生成元，设为 $a_1,a_2,\ldots,a_n\in R$。对每个 $i=1,\ldots,n$，取 $f_i\in I$，使其首系数为 $a_i$。设 $e_i=\deg f_i$，并令 $N=\max\{e_1,e_2,\ldots,e_n\}$。
+
+	对每个 $d\in\{0,1,\ldots,N-1\}$，令 $L_d$ 为 $I$ 中次数为 $d$ 的多项式的首系数再加上 $0$ 构成的集合。与 $L$ 的情形相同，每个 $L_d$ 也是 $R$ 的理想，故有限生成。对每个非零 $L_d$，取生成元 $b_{d,1},b_{d,2},\ldots,b_{d,n_d}\in R$，并取 $f_{d,i}\in I$ 为次数 $d$、首系数 $b_{d,i}$ 的多项式。
+
+	我们证明多项式 $f_1,\ldots,f_n$ 连同所有非零 $L_d$ 所对应的多项式 $f_{d,i}$ 生成 $I$，即
+\[
+I=(\{f_1,\ldots,f_n\}\cup\{f_{d,i}\mid 0\leq d<N,
+1\leq i\leq n_d\}).
+\]
+记右边理想为 $I'$。按构造 $I'\subseteq I$。若 $I'\neq I$，则可取 $f\in I-I'$ 为非零且次数最小的多项式。令 $d=\deg f$，$a$ 为 $f$ 的首系数。
+
+	若 $d\geq N$，因为 $a\in L$，可写成 $a=r_1a_1+\cdots+r_na_n$。于是
+\[
+g=r_1x^{d-e_1}f_1+\cdots+r_nx^{d-e_n}f_n
+\]
+属于 $I'$，并且与 $f$ 有相同次数 $d$ 与相同首系数 $a$。故 $f-g\in I$ 的次数小于 $f$。由 $f$ 的最小性，必有 $f-g\in I'$，从而 $f\in I'$，矛盾。
+
+	若 $d<N$，则 $a\in L_d$，可写成 $a=r_1b_{d,1}+\cdots+r_{n_d}b_{d,n_d}$。令 $g=r_1f_{d,1}+\cdots+r_{n_d}f_{d,n_d}$，则 $g\in I'$，并与 $f$ 有相同次数和首系数，于是同样得到矛盾。因此 $I=I'$ 有限生成。由于 $I$ 任意，$R[x]$ 是 Noether 环。
+\end{proof}
+
+\noindent\textbf{推论 22.} 若 $F$ 是域，则 $F[x_1,x_2,\ldots,x_n]$ 中每个理想都是有限生成的。
+
+\begin{proof}
+	域显然 Noether，多次应用 Hilbert 基定理即可。
+\end{proof}
+
+若 $I$ 由一个可能无限的多项式集合 $S$ 生成，则推论 22 说明 $I$ 有限生成；事实上只需要 $S$ 中有限多个多项式即可生成 $I$（参见练习 1）。
+
+正如 Hilbert 基定理的证明所显示的，多项式环 $R[x]$ 中一个理想的所有多项式首系数组成的集合是 $R$ 中一个很有用的理想，可用来理解原理想。这启发我们更一般地研究 $F[x_1,x_2,\ldots,x_n]$ 中的“首项”。为此需要先在单项式上指定一个全序；否则一般不能说一个多项式的哪一项是“首项”。在推论 22 的归纳证明中，我们隐含地选择了这种序：先把多项式看作关于 $x_1$ 的多项式，其系数在 $F[x_2,\ldots,x_n]$ 中；再把首系数看成关于 $x_2$ 的多项式，依此类推。这就是词典单项式序的一个例子。
+
+一个常用次序是词典序：先规定变量顺序，例如
+\[
+x_1>x_2>\cdots>x_n,
+\]
+并规定具有指数 $(a_1,a_2,\ldots,a_n)$ 的单项式项
+\[
+A x_1^{a_1}x_2^{a_2}\cdots x_n^{a_n}
+\]
+高于具有指数 $(b_1,b_2,\ldots,b_n)$ 的单项式项
+\[
+B x_1^{b_1}x_2^{b_2}\cdots x_n^{b_n},
+\]
+如果在两个 $n$ 元组首次出现差异的分量处有 $a_i>b_i$。这类似于字典中单词的排序方式。注意，单项式项的排序只在乘以单位（$F^\times$ 中的元素）意义下定义，并且两个单项式同时乘以同一个非零单项式不会改变其顺序。一般情形可形式化如下。
+
+\noindent\textbf{定义.} 一个单项式序是单项式集合上的良序 $\geq$，并满足：若 $m_1\geq m_2$，则对任意单项式 $m$ 有 $mm_1\geq mm_2$。等价地，可在单项式多次数集合 $\ZZ_{\geq0}^n$ 上给出满足 $\alpha\geq\beta\Rightarrow \alpha+\gamma\geq\beta+\gamma$ 的良序。
+
+容易证明，对任何单项式序，每个单项式 $m$ 都满足 $m\geq1$（参见练习 2）。利用 Hilbert 基定理还不难证明：若单项式上的任意全序满足每个单项式 $m\geq1$ 且 $m_1\geq m_2\Rightarrow mm_1\geq mm_2$，则它必是良序。本书的例子为简明起见主要使用直观的词典序；不过在实际计算中，其他单项式序常有重要优势，练习中还介绍了若干常用单项式序。
+
+固定单项式序后，可定义首项。
+
+\noindent\textbf{定义.} 固定 $F[x_1,\ldots,x_n]$ 上的单项式序。
+\begin{enumerate}[label=(\arabic*)]
+	\item 非零多项式 $f$ 的首项 $\operatorname{LT}(f)$ 是 $f$ 中按该序最大的单项式项；$0$ 的首项定义为 $0$。$f$ 的多次数 $\alpha(f)$ 定义为其首项的多次数。
+	\item 若 $I$ 是理想，$I$ 的首项理想记为 $\operatorname{LT}(I)$，定义为
+	\[
+	\operatorname{LT}(I)=(\operatorname{LT}(f)\mid f\in I).
+	\]
+\end{enumerate}
+
+首项依赖于单项式序。例如在 $F[x,y]$ 中，若 $x>y$，则 $\operatorname{LT}(2xy+y^3)=2xy$；若 $y>x$，则首项为 $y^3$。首项理想通常也依赖于选择的序。
+
+由单项式生成的理想称为单项式理想。它们较容易处理：多项式属于一个单项式理想，当且仅当每个单项式项都被某个生成单项式整除。
+
+若 $I=(f_1,\ldots,f_m)$，则
+\[
+(\operatorname{LT}(f_1),\ldots,\operatorname{LT}(f_m))\subseteq \operatorname{LT}(I),
+\]
+但包含一般可以是严格的。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 在 $F[x,y]$ 中取词典序 $x>y$。令
+\[
+f_1=x^3y-xy^2+1,
+\qquad f_2=x^2y^2-y^3-1,
+\qquad I=(f_1,f_2).
+\]
+则 $\operatorname{LT}(f_1)=x^3y$（多次数为 $(3,1)$），$\operatorname{LT}(f_2)=x^2y^2$（多次数为 $(2,2)$）。因此 $\operatorname{LT}(I)$ 包含 $x^3y$ 与 $x^2y^2$，所以
+\[
+(x^3y,x^2y^2)\subseteq\operatorname{LT}(I).
+\]
+又因为
+\[
+yf_1-xf_2=y(x^3y-xy^2+1)-x(x^2y^2-y^3-1)=x+y,
+\]
+故 $g=x+y\in I$，从而首项理想还包含 $\operatorname{LT}(g)=x$。这说明 $\operatorname{LT}(I)$ 严格大于 $(\operatorname{LT}(f_1),\operatorname{LT}(f_2))=(x^3y,x^2y^2)$，因为后者中每个元素总次数至少为 $4$。稍后会看到在此情形下 $\operatorname{LT}(I)=(x,y^4)$。
+	\item 对同一个理想 $I$，若使用词典序 $y>x$，则 $f_1,f_2$ 的首项分别为 $-xy^2$ 与 $-y^3$。稍后会看到此时 $\operatorname{LT}(I)=(x^4,y)$，这与使用 $x>y$ 时得到的首项理想不同，并且仍严格大于 $(\operatorname{LT}(f_1),\operatorname{LT}(f_2))$。
+	\item 取 $F[x,y]$ 上任意单项式序，设 $f=f(x,y)$ 是非零多项式。主理想 $I=(f)$ 中每个元素的首项都是 $f$ 的首项的倍数，所以在这种情形下
+\[
+\operatorname{LT}(I)=(\operatorname{LT}(f)).
+\]
+\end{enumerate}
+
+在一元情形中，首项用于除法算法，把一个多项式 $g$ 模另一个多项式 $f$ 化为唯一余式 $r$，且 $r=0$ 当且仅当 $g\in(f)$。当变量数至少为 $2$ 时，$F[x_1,\ldots,x_n]$ 不是 Euclidean 整环（因为不是 P.I.D.），情形更复杂。在上面第一个例子中，$g=x+y=yf_1-xf_2$ 属于 $I$，但 $f_1,f_2$ 都不整除 $g$；若只尝试用 $f_1,f_2$ 去“除” $g$，会得到非零余式 $g$ 本身，因而误以为 $g\notin I$。原因是 $yf_1$ 与 $xf_2$ 的首项发生了相消，而 $\operatorname{LT}(f_1)$ 与 $\operatorname{LT}(f_2)$ 本身不足以生成 $\operatorname{LT}(I)$。一个理想的生成集若其首项生成了理想中所有元素首项生成的理想，则有如下名称。
+
+\noindent\textbf{定义.} 理想 $I\subseteq F[x_1,\ldots,x_n]$ 的一个 Grobner 基，是 $I$ 的有限生成集合 $\{g_1,\ldots,g_m\}$，满足
+\[
+\operatorname{LT}(I)=(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m)).
+\]
+这里的“基”并非向量空间意义下的基，而是一个特殊的生成集。
+
+Grobner 基的重要性质是：任意多项式都可唯一写成 $I$ 中元素加一个“余式”，因此可以有效判定理想成员资格。
+
+\subsection*{一般多项式除法}
+固定单项式序，取非零多项式 $g_1,\ldots,g_m\in F[x_1,\ldots,x_n]$。给定 $f$，令商 $q_1,\ldots,q_m$ 和余式 $r$ 初始均为 $0$。反复考察当前被除式的首项：
+\begin{enumerate}[label=(\roman*)]
+	\item 若其首项可被某个 $\operatorname{LT}(g_i)$ 整除，设
+	\[
+	\operatorname{LT}(f)=a_i\operatorname{LT}(g_i),
+	\]
+	则把 $a_i$ 加到 $q_i$ 中，并把 $f$ 替换为 $f-a_i g_i$。
+	\item 若其首项不能被任何 $\operatorname{LT}(g_i)$ 整除，则把该首项加到余式 $r$，并从 $f$ 中删去该首项。
+\end{enumerate}
+由于单项式序是良序，该过程终止，得到
+\[
+f=q_1g_1+\cdots+q_mg_m+r,
+\]
+其中每个 $q_i g_i$ 的多次数都不超过 $f$ 的多次数，而余式 $r$ 的任何非零项都不被 $\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m)$ 中任何一个整除。一般地，商和余式依赖于除子的顺序。
+
+\paragraph{例}
+以下在 $F[x,y]$ 中固定词典序 $x>y$。
+\begin{enumerate}[label=(\arabic*)]
+	\item 设 $f=x^3y^3+3x^2y^4$，$g=xy^4$。$f$ 的首项 $x^3y^3$ 不被 $g$ 的首项整除，于是将 $x^3y^3$ 加入余式，新的被除式为 $3x^2y^4$。这时 $3x^2y^4$ 被 $xy^4$ 整除，商项为 $3x$，过程终止。得到商 $q=3x$、余式 $r=x^3y^3$，即
+\[
+x^3y^3+3x^2y^4=(3x)(xy^4)+x^3y^3.
+\]
+注意若像一元除法那样在第一步因首项不能整除就停止，则会留下整个 $f$ 作为“余式”，尽管 $f$ 的另一部分仍可被 $g$ 整除；这正是一般多项式除法中需要步骤 (ii) 的原因。
+	\item 设 $f=x^2+x-y^2+y$，$g_1=xy+1$，$g_2=x+y$。按顺序除以 $g_1,g_2$，第一次迭代中 $x^2$ 不被 $xy$ 整除，但被 $x$ 整除，于是 $q_2$ 中加入 $x$，被除式变为 $-xy+x-y^2+y$。第二次迭代中首项 $-xy$ 被 $xy$ 整除，$q_1=-1$，被除式变为 $x-y^2+y+1$。第三次迭代中首项 $x$ 被 $x$ 整除，$q_2=x+1$，被除式变为 $-y^2+1$。此后 $-y^2$ 与 $1$ 都不能被 $xy$ 或 $x$ 整除，故进入余式。结果为
+\[
+q_1=-1,
+\qquad q_2=x+1,
+\qquad r=-y^2+1,
+\]
+并且
+\[
+x^2+x-y^2+y=(-1)(xy+1)+(x+1)(x+y)+(-y^2+1).
+\]
+	\item 仍取 $f=x^2+x-y^2+y$，但交换除子次序，令 $g_1=x+y$、$g_2=xy+1$。容易计算得到不同的商和余式：
+\[
+q_1=x-y+1,
+\qquad q_2=0,
+\qquad r=2y,
+\]
+这说明一般多项式除法的余式通常依赖于除子的顺序。
+\end{enumerate}
+
+\noindent\textbf{定理 23.} 固定单项式序，设 $\{g_1,\ldots,g_m\}$ 是非零理想 $I\subseteq F[x_1,\ldots,x_n]$ 的 Grobner 基。则：
+\begin{enumerate}[label=(\arabic*)]
+	\item 每个多项式 $f$ 可唯一写成
+	\[
+	f=h+r,
+	\]
+	其中 $h\in I$，而余式 $r$ 的任何非零单项式项都不被任何 $\operatorname{LT}(g_i)$ 整除。
+	\item $h$ 与 $r$ 可由一般多项式除法计算，且与使用 $g_i$ 的顺序无关。
+	\item 余式 $r$ 给出 $f$ 在商环 $F[x_1,\ldots,x_n]/I$ 中陪集的唯一代表。特别地，
+	\[
+	f\in I \quad\Longleftrightarrow\quad r=0.
+	\]
+\end{enumerate}
+
+\begin{proof}
+	一般多项式除法总给出 $f=\sum q_i g_i+r$，令 $h=\sum q_i g_i\in I$。若另有 $f=h'+r'$ 满足同样条件，则
+	\[
+	r-r'=h'-h\in I.
+	\]
+	若 $r-r'\neq0$，其首项属于 $\operatorname{LT}(I)=(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m))$，因此应被某个 $\operatorname{LT}(g_i)$ 整除。但 $r,r'$ 的各项都不具有这种可整除性，矛盾。故 $r=r'$，从而 $h=h'$。其余结论立即得到。
+\end{proof}
+
+\noindent\textbf{命题 24.} 固定单项式序，设 $I$ 是 $F[x_1,\ldots,x_n]$ 中非零理想。
+\begin{enumerate}[label=(\arabic*)]
+	\item 若 $g_1,\ldots,g_m\in I$ 满足
+	\[
+	\operatorname{LT}(I)=(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m)),
+	\]
+	则 $\{g_1,\ldots,g_m\}$ 是 $I$ 的 Grobner 基。
+	\item $I$ 总有 Grobner 基。
+\end{enumerate}
+
+\begin{proof}
+	(1) 若 $f\in I$，用一般多项式除法除以 $g_i$ 得 $f=\sum q_i g_i+r$。若 $r\neq0$，则 $r\in I$，所以 $\operatorname{LT}(r)\in\operatorname{LT}(I)$，必被某个 $\operatorname{LT}(g_i)$ 整除，与余式性质矛盾。因此 $r=0$，$g_i$ 生成 $I$。
+	
+	(2) 首项理想 $\operatorname{LT}(I)$ 是单项式理想；由 Hilbert 基定理，它有限生成。选择有限多个 $h_1,\ldots,h_k\in I$，使这些生成元为 $\operatorname{LT}(h_i)$。由 (1) 得到 Grobner 基。
+\end{proof}
+
+为了判定给定生成集是否是 Grobner 基，定义 $S$-多项式。若 $f_1,f_2$ 是非零多项式，令 $M$ 为 $\operatorname{LT}(f_1)$ 与 $\operatorname{LT}(f_2)$ 的首一最小公倍单项式，则
+\[
+S(f_1,f_2)=\frac{M}{\operatorname{LT}(f_1)}f_1-
+\frac{M}{\operatorname{LT}(f_2)}f_2.
+\]
+它的作用是消去首项。
+
+\noindent\textbf{引理 25.} 若 $f_1,
+\ldots,f_m$ 在 $F[x_1,\ldots,x_n]$ 中有相同多次数 $\alpha$，并且常数线性组合
+\[
+h=a_1f_1+\cdots+a_mf_m
+\]
+的多次数严格小于 $\alpha$，则 $h$ 可写成相邻 $S$-多项式的常数线性组合。
+
+\begin{proof}
+	把 $f_i$ 写为 $f_i=c_i f_i'$，其中 $c_i\in F$，$f_i'$ 是多次数为 $\alpha$ 的首一多项式。于是
+\[
+\begin{aligned}
+h={}&\sum a_i c_i f_i' \\
+={}& a_1c_1(f_1'-f_2')+(a_1c_1+a_2c_2)(f_2'-f_3')+\cdots \\
+&{}+(a_1c_1+\cdots+a_{m-1}c_{m-1})(f_{m-1}'-f_m')
++(a_1c_1+\cdots+a_mc_m)f_m'.
+\end{aligned}
+\]
+注意 $f_{i-1}'-f_i'=S(f_{i-1},f_i)$。由于 $h$ 和每个 $f_{i-1}'-f_i'$ 的多次数都严格小于 $\alpha$，最后一项的系数必须为 $0$，即 $a_1c_1+\cdots+a_mc_m=0$。因此最后一项消失，上式给出所需的相邻 $S$-多项式的常数线性组合。
+\end{proof}
+
+\noindent\textbf{命题 26（Buchberger 判别法）.} 设 $R=F[x_1,\ldots,x_n]$ 并固定单项式序。若 $I=(g_1,\ldots,g_m)$ 是非零理想，则 $G=\{g_1,\ldots,g_m\}$ 是 $I$ 的 Grobner 基，当且仅当对所有 $1\leq i<j\leq m$，$S(g_i,g_j)$ 被 $G$ 做一般多项式除法所得余式为 $0$。
+
+\begin{proof}
+	若 $G$ 是 Grobner 基，则 $S(g_i,g_j)\in I$，由定理 23 余式为 $0$。
+	
+	反之设所有 $S$-多项式余式为 $0$。取任意 $f\in I$，在所有表示 $f=\sum h_i g_i$ 中，选取使各项 $h_i g_i$ 的最大多次数最小的一个。若 $f$ 的多次数小于该最大多次数，则最高多次数项必相消。由引理 25，这种相消由 $S$-多项式控制；而每个 $S$-多项式又可由 $G$ 表示且所有项多次数更小，矛盾于最小性。因此 $\operatorname{LT}(f)$ 必属于 $(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m))$。所以 $G$ 是 Grobner 基。
+\end{proof}
+
+\subsection*{Buchberger 算法}
+从生成集 $G=\{g_1,\ldots,g_m\}$ 出发，计算所有 $S(g_i,g_j)$ 对 $G$ 的余式。若全部为 $0$，则由 Buchberger 判别法 $G$ 是 Grobner 基。若某个余式 $r\neq0$，则把 $r$ 加入 $G$ 并重新计算。该过程在有限步后终止，得到 Grobner 基。
+
+若 Grobner 基中某个 $\operatorname{LT}(g_j)$ 被另一个 $\operatorname{LT}(g_i)$ 整除，则可删去 $g_j$，仍保持 Grobner 基。若每个首项首一且任一首项不被其他首项整除，称为极小 Grobner 基。极小 Grobner 基不唯一，但其元素个数和首项唯一（参见练习 15）。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 在 $F[x,y]$ 中取词典序 $x>y$，考虑本节开头的理想 $I=(f_1,f_2)$，其中 $f_1=x^3y-xy^2+1$，$f_2=x^2y^2-y^3-1$。计算
+\[
+S(f_1,f_2)=yf_1-xf_2=x+y,
+\]
+而它除以 $\{f_1,f_2\}$ 的余式就是自身，所以 $\{f_1,f_2\}$ 不是 Grobner 基。令 $f_3=x+y$，增广生成集为 $G'=\{f_1,f_2,f_3\}$。此时 $S(f_1,f_2)=0\bmod G'$，并且
+\[
+S(f_1,f_3)=f_1-x^2yf_3=-x^2y^2-xy^2+1=0\bmod G',
+\]
+\[
+S(f_2,f_3)=f_2-xyf_3=-xy^2-y^3-1=y^4-y^3-1\bmod G'.
+\]
+令 $f_4=y^4-y^3-1$，再增广为 $G''=\{f_1,f_2,f_3,f_4\}$。前面的零余式仍为零，且 $S(f_2,f_3)=0\bmod G''$；继续计算得
+\[
+S(f_1,f_4)=S(f_2,f_4)=S(f_3,f_4)=0\bmod G''.
+\]
+因此
+\[
+\{x^3y-xy^2+1,
+\ x^2y^2-y^3-1,
+\ x+y,
+\ y^4-y^3-1\}
+\]
+是 $I$ 的一个 Grobner 基。于是 $\operatorname{LT}(I)$ 由这些多项式的首项生成，故
+\[
+\operatorname{LT}(I)=(x^3y,x^2y^2,x,y^4)=(x,y^4),
+\]
+与前文所说一致。实际上 $x+y$ 与 $y^4-y^3-1$ 的首项已经生成 $\operatorname{LT}(I)$，由命题 24，
+\[
+I=(x+y,
+ y^4-y^3-1)
+\]
+给出关于此序的极小 Grobner 基。这比原来的描述简单得多。
+	\item 对同一个理想 $I$，若使用词典序 $y>x$，则 $S(f_1,f_2)$ 产生余式 $f_3=-x-y$，接着 $S(f_1,f_3)$ 产生余式 $f_4=-x^4-x^3+1$，随后所有余式均为零。得到 Grobner 基
+\[
+\{x^3y-xy^2+1,
+ x^2y^2-y^3-1,
+ -x-y,
+ -x^4-x^3+1\}.
+\]
+此时
+\[
+\operatorname{LT}(I)=(-xy^2,-y^3,-y,-x^4)=(y,x^4),
+\]
+且
+\[
+I=(x+y,
+ x^4+x^3-1)
+\]
+给出关于该序的另一个极小 Grobner 基。
+\end{enumerate}
+
+在上面第一个例子中，$\{x+y^4-y^3+y-1,\ y^4-y^3-1\}$ 也是 $I$ 的一个极小 Grobner 基（它只是 $\{f_3+f_4,f_4\}$），所以即使固定单项式序，极小 Grobner 基也不唯一。若加强首项整除条件，可得到重要的唯一性。
+
+\noindent\textbf{定义.} 固定单项式序。非零理想 $I$ 的 Grobner 基 $\{g_1,\ldots,g_m\}$ 称为约化 Grobner 基，如果：
+\begin{enumerate}[label=(\alph*)]
+	\item 每个 $\operatorname{LT}(g_i)$ 首一；
+	\item 对 $j\neq i$，$g_j$ 的任何一项都不被 $\operatorname{LT}(g_i)$ 整除。
+\end{enumerate}
+
+\noindent\textbf{定理 27.} 对固定的单项式序，$F[x_1,\ldots,x_n]$ 中每个非零理想都有唯一的约化 Grobner 基。
+
+\begin{proof}
+	存在性由极小 Grobner 基中逐个把每个生成元除以其余生成元而得。若 $G=\{g_i\}$ 与 $G'=\{g_i'\}$ 是两个约化 Grobner 基，则它们有相同首项集合。重排后可设 $\operatorname{LT}(g_i)=\operatorname{LT}(g_i')$。若 $g_i-g_i'\neq0$，其首项属于 $\operatorname{LT}(I)$，故被某个公共首项整除。但约化条件排除这种可能，矛盾。故 $g_i=g_i'$。
+\end{proof}
+
+\noindent\textbf{推论 28.} 两个理想 $I,J\subseteq F[x_1,\ldots,x_n]$ 相等，当且仅当在任一固定单项式序下，它们有相同的约化 Grobner 基。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 考虑 $F[x,y]$ 中理想 $I=(h_1,h_2,h_3)$，其中
+\[
+h_1=x^2+xy^5+y^4,
+\quad h_2=xy^6-xy^3+y^5-y^2,
+\quad h_3=xy^5-xy^2.
+\]
+在词典序 $x>y$ 下，计算得
+\[
+S(h_1,h_2)=S(h_1,h_3)=0\bmod\{h_1,h_2,h_3\},
+\]
+而
+\[
+S(h_2,h_3)=y^5-y^2\bmod\{h_1,h_2,h_3\}.
+\]
+令 $h_4=y^5-y^2$，则 $S(h_i,h_j)=0\bmod\{h_1,h_2,h_3,h_4\}$ 对所有 $1\leq i<j\leq4$ 成立。因此
+\[
+x^2+xy^5+y^4,
+\quad xy^6-xy^3+y^5-y^2,
+\quad xy^5-xy^2,
+\quad y^5-y^2
+\]
+是 $I$ 的 Grobner 基。其首项为 $x^2,xy^6,xy^5,y^5$；删去不必要的生成元得到极小 Grobner 基 $\{x^2+xy^5+y^4,
+ y^5-y^2\}$。再将第一个多项式除以第二个，得到余式 $x^2+xy^2+y^4$，所以 $I$ 的约化 Grobner 基为
+\[
+\{x^2+xy^2+y^4,
+ y^5-y^2\}.
+\]
+	\item 考虑 $J=(h_1,h_2,h_3)$，其中
+\[
+h_1=xy^3+y^3+1,
+\quad h_2=x^3y-x^3+1,
+\quad h_3=x+y.
+\]
+对同一词典序 $x>y$，有 $S(h_1,h_2)=0\bmod\{h_1,h_2,h_3\}$，而 $S(h_1,h_3)=y^4-y^3-1\bmod\{h_1,h_2,h_3\}$。令 $h_4=y^4-y^3-1$，则 $\{h_1,h_2,h_3,h_4\}$ 是 Grobner 基。由首项可化为极小 Grobner 基 $\{x+y,
+ y^4-y^3-1\}$，且已是约化 Grobner 基。它与命题 26 后例 1 中理想的约化 Grobner 基相同，因此
+\[
+(x^3y-xy^2+1,
+ x^2y^2-y^3-1)
+=(xy^3+y^3+1,
+ x^3y-x^3+1,
+ x+y),
+\]
+并且二者都等于理想 $(x+y,
+ y^4-y^3-1)$。
+\end{enumerate}
+
+\subsection*{Grobner 基与代数方程求解：消元}
+设 $S=\{f_1,\ldots,f_m\}$ 是 $n$ 个变量的多项式集合。要求解方程组
+\[
+f_1=0,
+\quad f_2=0,
+\ldots,
+\quad f_m=0,
+\]
+等价于研究它们生成的理想 $I=(f_1,\ldots,f_m)$。若 $g_1,\ldots,g_s$ 是同一理想 $I$ 的另一组生成元，则方程组 $g_1=\cdots=g_s=0$ 有相同解集。
+
+若 $I$ 中存在只含某些后面变量的非零多项式，就可以逐步求解。这称为消元。
+
+\noindent\textbf{定义.} 若 $I\subseteq F[x_1,
+\ldots,x_n]$ 是理想，则
+\[
+I_i=I\cap F[x_{i+1},\ldots,x_n]
+\]
+称为关于词典序 $x_1>\cdots>x_n$ 的第 $i$ 个消元理想。
+
+\noindent\textbf{命题 29（消元）.} 设 $G=\{g_1,\ldots,g_m\}$ 是非零理想 $I\subseteq F[x_1,\ldots,x_n]$ 关于词典序 $x_1>\cdots>x_n$ 的 Grobner 基。则
+\[
+G\cap F[x_{i+1},\ldots,x_n]
+\]
+是第 $i$ 个消元理想 $I_i=I\cap F[x_{i+1},\ldots,x_n]$ 的 Grobner 基。特别地，
+\[
+I\cap F[x_{i+1},\ldots,x_n]=0
+\]
+当且仅当 $G\cap F[x_{i+1},\ldots,x_n]=0$。
+
+\begin{proof}
+	记 $G_i=G\cap F[x_{i+1},\ldots,x_n]$。显然 $G_i\subseteq I_i$。由命题 24，只需证明 $G_i$ 的首项生成 $\operatorname{LT}(I_i)$。若 $f\in I_i$，则 $f\in I$，而 $G$ 是 $I$ 的 Grobner 基，所以 $\operatorname{LT}(f)$ 可由 $G$ 的首项整除。由于 $\operatorname{LT}(f)$ 只含变量 $x_{i+1},\ldots,x_n$，在词典序下对应的 $g_j$ 也只能含这些变量，故 $g_j\in G_i$。结论成立。
+\end{proof}
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+	\item 椭圆
+\[
+2x^2+2xy+y^2-2x-2y=0
+\]
+与圆
+\[
+x^2+y^2=1
+\]
+有两个交点。对理想
+\[
+I=(2x^2+2xy+y^2-2x-2y,
+x^2+y^2-1)\subseteq\RR[x,y]
+\]
+按词典序 $x>y$ 求 Grobner 基以消去 $x$，得到
+\[
+g_1=2x+y^2+5y^3-2,
+\qquad g_2=5y^4-4y^3.
+\]
+由 $g_2=0$ 得 $y=0$ 或 $y=4/5$；代入 $g_1=0$，得交点
+\[
+(1,0),
+\qquad (-3/5,4/5).
+\]
+若改用词典序 $y>x$ 以消去 $y$，得到 Grobner 基
+\[
+\{y^2+x^2-1,
+\ 2yx-2y+x^2-2x+1,
+\ 5x^3-7x^2-x+3\}.
+\]
+因为 $5x^3-7x^2-x+3=(x-1)^2(5x+3)$，可知 $x=1$ 或 $x=-3/5$，再得到相同解，不过计算较繁。
+	\item 上一个例子也可用初等方法求解。现在考虑 $\CC$ 上方程组
+\[
+x^3-2xy+y^3=0,
+\qquad
+x^5-2x^2y^2+y^5=0.
+\]
+对理想 $(x^3-2xy+y^3,
+ x^5-2x^2y^2+y^5)$ 按词典序 $x>y$ 计算 Grobner 基，可得
+\[
+g_1=x^3-2xy+y^3,
+\]
+\[
+g_2=200xy+193y^9+158y^8-45y^7-456y^6+50y^5-100y^4,
+\]
+\[
+g_3=y^{10}-y^8-2y^7+2y^6.
+\]
+任何原方程组的解都满足 $g_1=g_2=g_3=0$。由于
+\[
+g_3=y^6(y-1)^2(y^2+2y+2),
+\]
+有 $y=0,1$ 或 $y=-1\pm i$。分别代入 $g_1,g_2$，得到全部四个解
+\[
+(x,y)=(0,0),
+\quad (1,1),
+\quad (-1+i,-1-i),
+\quad (-1-i,-1+i).
+\]
+	\item 考虑 $\CC$ 上方程组
+\[
+x+y+z=1,
+\qquad x^2+y^2+z^2=2,
+\qquad x^3+y^3+z^3=3.
+\]
+关于词典序 $x>y>z$ 的约化 Grobner 基为
+\[
+\{x+y+z-1,
+\ y^2+yz-y+z^2-z-1/2,
+\ z^3-z^2-(1/2)z-1/6\}.
+\]
+因此 $z$ 是多项式 $t^3-t^2-(1/2)t-1/6$ 的根；由对称性，$x,y$ 也都是该多项式的根。对这个三次多项式的每个根，$y$ 有两个对应值，$x$ 随之唯一确定。所得六个解就是该三次多项式三个互异根的所有排列。
+\end{enumerate}
+
+这些例子显示，研究多项式方程组 $f_1=0,
+ f_2=0,\ldots,f_m=0$ 的解，与研究它们在 $F[x_1,\ldots,x_n]$ 中生成的理想 $I=(f_1,f_2,\ldots,f_m)$ 密切相关。这一基本联系是第 15 章将介绍的“代数几何”的出发点；那里还会给出 Grobner 基的进一步应用。
+
+\subsection*{理想交的计算}
+下面说明如何计算多项式环中理想的和、积与交这些基本集合论运算。若 $I=(f_1,\ldots,f_s)$，$J=(h_1,\ldots,h_l)$ 是 $F[x_1,\ldots,x_n]$ 中两个理想，则
+\[
+I+J=(f_1,\ldots,f_s,h_1,\ldots,h_l),
+\]
+而
+\[
+IJ=(f_ih_j\mid 1\leq i\leq s,
+1\leq j\leq l).
+\]
+下面的命题说明如何计算两个理想的交。
+
+\noindent\textbf{命题 30.} 若 $I,J$ 是 $F[x_1,\ldots,x_n]$ 中任意两个理想，则 $tI+(1-t)J$ 是 $F[t,x_1,\ldots,x_n]$ 中的理想，并且
+\[
+I\cap J=(tI+(1-t)J)\cap F[x_1,\ldots,x_n].
+\]
+特别地，关于词典序 $t>x_1>\cdots>x_n$，$I\cap J$ 是 $tI+(1-t)J$ 的第一个消元理想。
+
+\begin{proof}
+	显然 $tI$ 与 $(1-t)J$ 是 $F[t,x_1,\ldots,x_n]$ 中理想，因此其和也是理想。若 $f\in I\cap J$，则
+\[
+f=tf+(1-t)f
+\]
+说明 $f\in (tI+(1-t)J)\cap F[x_1,\ldots,x_n]$。反过来，设
+\[
+f=tf_1+(1-t)h_1\in F[x_1,\ldots,x_n],
+\qquad f_1\in I,
+\quad h_1\in J.
+\]
+则
+\[
+t(f_1-h_1)=f-h_1\in F[x_1,\ldots,x_n].
+\]
+因为右边不含 $t$，可得 $f_1-h_1=0$，于是 $f=f_1=h_1\in I\cap J$。由等式可知，关于序 $t>x_1>\cdots>x_n$，$I\cap J$ 正是 $tI+(1-t)J$ 的第一个消元理想。
+\end{proof}
+
+若 $I=(f_1,\ldots,f_s)$、$J=(h_1,\ldots,h_l)$，则
+\[
+tI+(1-t)J=(tf_1,\ldots,tf_s,(1-t)h_1,\ldots,(1-t)h_l).
+\]
+由命题 29，对该理想按词典序 $t>x_1>\cdots>x_n$ 计算 Grobner 基，其中不含 $t$ 的元素给出 $F[x_1,\ldots,x_n]$ 中 $I\cap J$ 的一个 Grobner 基。
+
+\paragraph{例}
+若 $I=(x,y)^2=(x^2,xy,y^2)$，$J=(x)$，在 $F[t,x,y]$ 中按 $t>x>y$ 计算 $tI+(1-t)J$ 的约化 Grobner 基，可得
+\[
+\{tx-x,\ ty^2,\ x^2,\ xy\}.
+\]
+去掉含 $t$ 的元素，得
+\[
+I\cap J=(x^2,xy).
+\]
+
+
+\paragraph{练习}
+\begin{enumerate}[label=\arabic*.]
+	\item 设 $I$ 是 $F[x_1,\ldots,x_n]$ 中由一个（可能无限的）多项式集合 $S$ 生成的理想。证明 $S$ 中存在有限个多项式就足以生成 $I$。\emph{提示：}由定理 21 写 $I=(f_1,\ldots,f_m)$，再把每个 $f_i\in I$ 用 $S$ 中的多项式表示。
+	
+	\item 设 $\geq$ 是任一单项式序。
+	\begin{enumerate}[label=(\alph*)]
+		\item 对任意非零多项式 $f,g$，证明 $\operatorname{LT}(fg)=\operatorname{LT}(f)\operatorname{LT}(g)$，且 $\alpha(fg)=\alpha(f)+\alpha(g)$。
+		\item 证明 $\alpha(f+g)\leq\max(\alpha(f),\alpha(g))$；若 $\alpha(f)\neq\alpha(g)$，则等号成立。
+		\item 证明对每个单项式 $m$，都有 $m\geq1$。
+		\item 证明若 $m_1$ 整除 $m_2$，则 $m_2\geq m_1$。推出一个多项式的首项不整除它的任一较低项。
+	\end{enumerate}
+	
+	\item 证明：若 $\geq$ 是非空集合上的全序或偏序，则下列条件等价：
+	\begin{enumerate}[label=(\roman*)]
+		\item 每个非空子集都含有最小元。
+		\item 不存在无限严格递降序列 $a_1>a_2>a_3>\cdots$（这称为递降链条件，或 D.C.C.）。
+	\end{enumerate}
+	推出一般多项式除法总在有限步后终止。
+	
+	\item 设 $\geq$ 是单项式序。对单项式 $m_1,m_2$ 定义 $m_1\geq_g m_2$，若 $\deg m_1>\deg m_2$，或 $\deg m_1=\deg m_2$ 且 $m_1\geq m_2$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\geq_g$ 也是单项式序。（称 $\geq_g$ 是 $\geq$ 的分次化。以次数为首要比较标准的序常称为分次序或次数序，因此本题给出构造分次序的方法。）
+		\item 词典序 $x_1>\cdots>x_n$ 的分次化称为分次词典单项式序。证明在分次词典序下 $x_1^2>x_2^2x_3>x_1x_2>x_1^2>x_2^2>x_1$（按原书给出的相应单项式顺序检验），并比较其与普通词典序下的顺序。
+	\end{enumerate}
+	
+	\item 反分次词典单项式序定义如下：先给变量 $\{x_1,x_2,\ldots,x_n\}$ 选定一个次序；对单项式 $m_1,m_2$，若 $\deg m_1>\deg m_2$，或 $\deg m_1=\deg m_2$ 且从 $x_n,x_{n-1},\ldots,x_1$ 的顺序看第一个使两者指数不同的变量在 $m_1$ 中的指数较小，则定义 $m_1\geq m_2$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明反分次词典序是单项式序，并满足 $x_1>x_2>\cdots>x_n$。
+		\item 证明在 $F[x_1,x_2]$ 中相对于 $\{x_1,x_2\}$ 的反分次词典序就是满足 $x_1>x_2$ 的分次词典序，但在 $F[x_1,x_2,x_3]$ 中的反分次词典序不是任何词典序的分次化。
+		\item 对相对于 $\{x_1,x_2,x_3\}$ 的反分次词典序，写出并验证原书给出的单项式链
+		\[
+		x_1x_2^2x_3>x_1^2x_3^2>x_1^2x_2>x_2x_3^2>x_1x_2>x_2^2>x_1x_3>x_3^2>x_1>x_2.
+		\]
+	\end{enumerate}
+	
+	\item 验证在词典序 $x>y>z$ 下，原书列出的单项式顺序
+	\[
+	x^3y>x^3z>x^2z^2>xyz>x^2y>xz^2>y^2z^2>y^2z
+	\]
+	成立；并分别验证对应的分次词典序与相对于 $\{x,y,z\}$ 的反分次词典序下原书列出的两个顺序。
+	
+	\item 对单项式
+	\[
+	xz^2,\\ x^2y^2z,
+	xy^2z,
+	x^3y,
+	x^3z^2,
+	x^2,
+	x^2yz^2,
+	x^2z^2
+	\]
+	分别按词典序 $x>y>z$、对应的分次词典序、以及相对于 $\{x,y,z\}$ 的反分次词典序进行排序。
+	
+	\item 证明 $F[x_1,\ldots,x_n]$ 上有 $n!$ 个不同的词典单项式序。类似地证明有 $n!$ 个不同的分次词典序和 $n!$ 个不同的反分次词典序。
+	
+	\item 可以证明 $F[x_1,\ldots,x_n]$ 上任一单项式序都可如下得到。对 $k\geq n$，取 Euclidean 空间 $\RR^n$ 中非零向量 $v_1,
+	\ldots,v_k$，两两正交：$v_i\cdot v_j=0$（$i\neq j$），并假设 $v_1$ 的所有坐标非负。定义单项式序为：$m_1>m_2$ 当且仅当对某个 $t\leq k$，有 $v_i\cdot\alpha(m_1)=v_i\cdot\alpha(m_2)$ 对 $i=1,2,\ldots,t-1$ 成立，而 $v_t\cdot\alpha(m_1)>v_t\cdot\alpha(m_2)$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 令 $k=n$，取 $v_i=(0,\ldots,0,1,0,\ldots,0)$，其中 $1$ 在第 $i$ 个位置。证明该序给出 $x_1>x_2>\cdots>x_n$ 的词典序。
+		\item 令 $k=n$，定义 $v_1=(1,1,\ldots,1)$，并令
+		\[
+		v_i=(1,1,\ldots,1,-n+i-1,0,\ldots,0),
+		\qquad 2\leq i\leq n,
+		\]
+		其中末尾有 $i-2$ 个零。证明该序给出相对于 $\{x_1,\ldots,x_n\}$ 的分次词典序。
+	\end{enumerate}
+	
+	\item 设 $I$ 是由单项式 $m_1,\ldots,m_k$ 生成的单项式理想。证明多项式 $f\in F[x_1,\ldots,x_n]$ 属于 $I$，当且仅当 $f$ 的每个单项式项都被某个 $m_i$ 整除。\emph{提示：}对 $a_1,
+	\ldots,a_k\in F[x_1,
+	\ldots,x_n]$ 展开 $a_1m_1+\cdots+a_km_k$，注意每个单项式项都被某个 $m_i$ 整除。证明 $x^2yz+3xy^2\in J=(xyz,y^2)\subseteq F[x,y,z]$，但它不属于 $I'=(xz^2,y^2)$。
+	
+	\item 固定 $R=F[x_1,\ldots,x_n]$ 上的单项式序，并设 $\{g_1,\ldots,g_m\}$ 是理想 $I$ 的 Grobner 基。证明 $h\in\operatorname{LT}(I)$ 当且仅当 $h$ 是若干单项式项的和，且每项都被某个 $\operatorname{LT}(g_i)$ 整除。\emph{提示：}使用前一题。
+	
+	\item 设 $I$ 是由单项式 $g_1,\ldots,g_m$ 生成的单项式理想。用前一题直接证明 $\{g_1,\ldots,g_m\}$ 是 $I$ 的 Grobner 基。
+	
+	\item 设 $I$ 是由单项式 $g_1,\ldots,g_m$ 生成的单项式理想。用 Buchberger 判别法证明 $\{g_1,\ldots,g_m\}$ 是 $I$ 的 Grobner 基。
+	
+	\item 设 $I$ 是 $R=F[x_1,\ldots,x_n]$ 中的单项式理想，且 $\{m_1,
+	\ldots,m_k\}$ 是生成 $I$ 的极小单项式集合，即每个 $m_i$ 是单项式且没有真子集生成 $I$。证明这些 $m_i$（$1\leq i\leq k$）唯一。\emph{提示：}使用练习 10。
+	
+	\item 固定 $R=F[x_1,
+	\ldots,x_n]$ 上的单项式序。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\{g_1,\ldots,g_m\}$ 是理想 $I$ 的极小 Grobner 基，当且仅当 $\{\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m)\}$ 是 $\operatorname{LT}(I)$ 的极小生成集。
+		\item 证明 $I$ 的极小 Grobner 基的首项唯一确定，且 $I$ 的任意两个极小 Grobner 基的元素个数相同。\emph{提示：}使用 (a) 与前一题。
+	\end{enumerate}
+	
+	\item 固定 $F[x_1,
+	\ldots,x_n]$ 上的单项式序，并设 $G=\{g_1,
+	\ldots,g_m\}$ 是非零理想 $I$ 的一组生成元。证明若 $S(g_i,g_j)$ 除以 $G$ 的余式不为零，则理想
+	\[
+	(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m),\operatorname{LT}(S(g_i,g_j)))
+	\]
+	严格大于理想 $(\operatorname{LT}(g_1),\ldots,\operatorname{LT}(g_m))$。由此推出命题 26 后描述的计算 Grobner 基的算法在有限步后终止。\emph{提示：}使用练习 1。
+	
+	\item 固定 $F[x,y]$ 上的词典序 $x>y$。用 Buchberger 判别法证明 $\{x^2y-y^2,\ x^3-xy\}$ 是理想 $I=(x^2y-y^2,x^3-xy)$ 的 Grobner 基。
+	
+	\item 对 $F[x,y]$ 中由 $x>y$ 定义的词典序，证明 $\{x-y^3,\ y^5-y^6\}$ 是理想 $I=(x-y^3,-x^2+xy^2)$ 的约化 Grobner 基。
+	
+	\item 固定 $F[x,y]$ 上的词典序 $x>y$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\{x^3-y,\ x^2y-y^2,\ xy^2-y^2,\ y^3-y^2\}$ 是理想 $I=(-x^3+y,x^2y-y^2)$ 的约化 Grobner 基。
+		\item 判断多项式 $f=x^6-x^5y$ 是否属于理想 $I$。
+	\end{enumerate}
+	
+	\item 固定 $F[x,y,z]$ 上的词典序 $x>y>z$。证明
+	\[
+	\{x^2+xy+z,\ xyz+z^2,\ xz^2,\ z^3\}
+	\]
+	是理想 $I=(x^2+xy+z,xyz+z^2)$ 的约化 Grobner 基；特别地，推出首项理想 $\operatorname{LT}(I)$ 需要四个生成元。
+	
+	\item 固定 $F[x,y]$ 上的词典序 $x>y$。用 Buchberger 判别法证明 $\{x^2y-y^2,x^3-xy\}$ 是理想 $I=(x^2y-y^2,x^3-xy)$ 的 Grobner 基。
+	
+	\item 设 $I=(x^2-y,x^2y-z)\subseteq F[x,y,z]$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明对于词典序 $x>y>z$，$\{x^2-y,y^2-z\}$ 是 $I$ 的约化 Grobner 基。
+		\item 证明对于词典序 $z>x>y$，$\{x^2-y,z-y^2\}$ 是 $I$ 的约化 Grobner 基（注意这与 (a) 中的多项式本质上相同）。
+		\item 证明对于词典序 $z>y>x$，$\{y-x^2,z-x^4\}$ 是 $I$ 的约化 Grobner 基。
+	\end{enumerate}
+	
+	\item 证明 $F[x,y]$ 中理想
+	\[
+	I=(x^2y+xy^2-2y,
+	x^2+xy-x+y^2-2y,
+	xy^2-x-y+y^3)
+	\]
+	与
+	\[
+	J=(x-y^2,xy-y,x^2-y)
+	\]
+	相等。
+	
+	\item 用约化 Grobner 基证明 $F[x,y,z]$ 中理想
+	\[
+	I=(x^3-yz,
+	yz+y)
+	\]
+	与
+	\[
+	J=(x^3z+x^3,
+	x^3+y)
+	\]
+	相等。
+	
+	\item 证明对理想
+	\[
+	I=(x^2+xy^2,
+	x^2-y^3,
+	y^3-y^2)
+	\]
+	按词典序 $x>y$ 的约化 Grobner 基为
+	\[
+	\{x^2-y^2,
+	y^3-y^2,
+	xy^2+y^2\}.
+	\]
+	
+	\item 证明理想 $I=(xy+y^2,x^2y+xy^2+x^2)$ 的约化 Grobner 基：对于词典序 $x>y$ 为
+	\[
+	\{x^2,xy+y^2,y^3\},
+	\]
+	而对于词典序 $y>x$ 为
+	\[
+	\{y^2+yx,x^2\}.
+	\]
+	
+	\item 对推论 28 后例子中的理想 $I$，按分次词典单项式序证明
+	\[
+	\{x^3-y^3,
+	x^2+xy^2+y^4,
+	x^2y+xy^3+y^2\}
+	\]
+	是它的约化 Grobner 基。（注意：虽然这给出 $I$ 的三个生成元，而非例中词典序下的两个，但次数更低。）
+	
+	\item 设
+	\[
+	I=(x^4-y^4+z^3-1,
+	x^3+y^2+z^2-1).
+	\]
+	证明：对词典序 $x>y>z$，$I$ 的约化 Grobner 基有五个元素（五个生成元中的最高次数为 $12$，最多单项式项数为 $35$）；对词典序 $y>z>x$，有两个元素（最高次数为 $6$，最多项数为 $8$）；而对于反分次词典单项式序，约化 Grobner 基为
+	\[
+	\{x^3+y^2+z^2-1,
+	xy^2+xz^2-x+y^4-z^3+1\}.
+	\]
+	
+	\item 在 $\CC$ 上求解方程组
+	\[
+	x^2-yz=3,
+	\qquad y^2-xz=4,
+	\qquad z^2-xy=5.
+	\]
+	
+	\item 对词典序 $x>y$，求理想
+	\[
+	I=(x^2+xy+y^2-1,
+	x^2+4y^2-4)
+	\]
+	的一个 Grobner 基，并用它求实平面 $\RR^2$ 中椭圆 $x^2+xy+y^2=1$ 与 $x^2+4y^2=4$ 的四个交点。
+	
+	\item 用 Grobner 基求复数域 $\CC$ 上方程组
+	\[
+	2x^3+2x^2y^2+3y^3=0,
+	\qquad
+	3x^5+2x^3y^3+2y^5=0
+	\]
+	的全部六个解。
+	
+	\item 用 Grobner 基证明 $F[x,y,z]$ 中
+	\[
+	(x,z)\cap(y^2,x-yz)=(xy,x-yz).
+	\]
+	
+	\item 用 Grobner 基计算 $F[x,y]$ 中两个理想
+	\[
+	(x^3y-xy^2+1,
+	x^2y^2-y^3-1)
+	\]
+	与
+	\[
+	(x^2-y^2,
+	x^3+y^3)
+	\]
+	的交。
+	
+	\item 以下四题处理环 $R$ 中两个理想 $I,J$ 的理想商。定义两个理想 $I,J$ 的理想商为
+	\[
+	(I:J)=\{r\in R\mid rJ\subseteq I\}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 设 $R$ 是整环，$0\neq f\in R$，$I$ 是 $R$ 的理想。证明：若 $\{g_1,
+		\ldots,g_s\}$ 生成理想 $I\cap(f)$，则 $\{g_1/f,
+		\ldots,g_s/f\}$ 生成理想商 $(I:(f))$。
+		\item 若 $I$ 是交换环 $R$ 的理想，且 $f_1,
+		\ldots,f_s\in R$，证明理想商
+		\[
+		(I:(f_1,
+		\ldots,f_s))
+		\]
+		等于理想
+		\[
+		\bigcap_{i=1}^s (I:(f_i)).
+		\]
+	\end{enumerate}
+	
+	\item 若
+	\[
+	I=(x^2y+z^3,
+	x+y^3-z,
+	2y^4z-yz^2-z^3)
+	\]
+	且
+	\[
+	J=(x^2y^5,
+	x^3z^4,
+	y^3z^7)
+	\]
+	为 $\QQ[x,y,z]$ 中理想，证明
+	\[
+	(I:J)=(z^2,
+	y+z,
+	x-z).
+	\]
+	\emph{提示：}使用前一题与命题 30。
+	
+	\item 设 $K$ 是 $R$ 中的理想，$I$ 是包含 $K$ 的理想，$J$ 是任一理想。若 $\overline I,\overline J$ 分别表示 $I,J$ 在商环 $R/K$ 中的像，证明
+	\[
+	(\overline I:\overline J)=\overline{(I:J)},
+	\]
+	其中右边为理想商 $(I:J)$ 在 $R/K$ 中的像。
+	
+	\item 令 $K=(y^5-z^4)\subseteq R=\QQ[y,z]$。对下列每一对理想 $I,J$，使用前两题和命题 30，在环 $R/K$ 中验证理想商 $(\overline I:\overline J)$：
+	\begin{enumerate}[label=(\roman*)]
+		\item $I=(y^3,y^5-z^4)$，$J=(z)$，则 $(\overline I:\overline J)=(\overline{y}^3,
+		\overline{z}^3)$。
+		\item $I=(y^3,z,y^5-z^4)$，$J=(y)$，则 $(\overline I:\overline J)=(\overline{y}^2,
+		\overline{z})$。
+		\item $I=(y,y^3,z,y^5-z^4)$，$J=(1)$，则 $(\overline I:\overline J)=(\overline y,
+		\overline z)$。
+	\end{enumerate}
+	
+	\item 练习 38--44 给出单项式理想的若干初等性质。由 Hilbert 基定理可知理想有限生成，但这些题不必假设有限生成；有限生成与无限生成时证明相同。这些练习可用于独立证明 Hilbert 基定理（练习 44）。以下 $M,N$ 为单项式理想，分别由单项式集合 $\{m_i\mid i\in I\}$ 与 $\{n_j\mid j\in J\}$ 生成。证明两个单项式理想的和与积仍是单项式理想，并证明
+	\[
+	M+N=(m_i,n_j\mid i\in I,
+	j\in J),
+	\qquad MN=(m_i n_j\mid i\in I,
+	j\in J).
+	\]
+	
+	\item 证明：若 $\{M_s\mid s\in S\}$ 是任意非空的单项式理想族，并且在包含关系下全序，则
+	\[
+	\bigcup_{s\in S} M_s
+	\]
+	是单项式理想。（特别地，任意递增单项式理想列的并仍是单项式理想；参见第 7.3 节练习 19。）
+	
+	\item 证明两个单项式理想的交仍是单项式理想，并证明
+	\[
+	M\cap N=(e_{ij}\mid i\in I,
+	j\in J),
+	\]
+	其中 $e_{ij}$ 是 $m_i$ 与 $n_j$ 的最小公倍单项式。\emph{提示：}使用练习 10。
+	
+	\item 证明：对任意单项式 $n$，理想商
+	\[
+	(M:(n))=(m_i/d_i\mid i\in I),
+	\]
+	其中 $d_i$ 是 $m_i$ 与 $n$ 的最大公因单项式（参见练习 34）。证明若 $N$ 有限生成，则两个单项式理想的理想商 $(M:N)$ 仍是单项式理想。
+	
+	\item 
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $M$ 是单项式素理想，当且仅当 $M=(S)$，其中 $S$ 是 $\{x_1,x_2,\ldots,x_n\}$ 的某个子集。（特别地，单项式素理想只有有限多个，且每个都是有限生成的。）
+		\item 证明 $(x_1,
+		\ldots,x_n)$ 是唯一的单项式极大理想。
+	\end{enumerate}
+	
+	\item （Dickson 引理——Hilbert 基定理的一个特殊情形）按以下方法证明 $F[x_1,
+	\ldots,x_n]$ 中每个单项式理想都是有限生成的。令
+	\[
+	\mathcal S=\{N\mid N\text{ 是一个非有限生成的单项式理想}\},
+	\]
+	并反设 $\mathcal S\neq\varnothing$。
+	\begin{enumerate}[label=(\alph*)]
+		\item 证明 $\mathcal S$ 含有一个极大元素 $M$。\emph{提示：}使用练习 39 与 Zorn 引理。
+		\item 证明存在单项式 $x,y\notin M$，使 $xy\in M$。\emph{提示：}使用练习 42(a)。
+		\item 对 (b) 中的 $x$，证明 $M$ 含有一个有限生成的单项式理想 $M_0$，使
+		\[
+		M_0+(x)=M+(x),
+		\qquad
+		M=M_0+(x)(M:(x)),
+		\]
+		其中 $(M:(x))$ 是练习 41 中定义的单项式理想，而 $(x)(M:(x))$ 是这两个理想的积。推出 $M$ 有限生成，矛盾，从而证明 $\mathcal S=\varnothing$。\emph{提示：}使用 $M$ 的极大性和前面练习。
+	\end{enumerate}
+	
+	\item 若 $I$ 是 $F[x_1,
+	\ldots,x_n]$ 中非零理想，用 Dickson 引理证明 $\operatorname{LT}(I)$ 有限生成。推出 $I$ 有 Grobner 基，并推出 Hilbert 基定理。参见命题 24。
+	
+	\item （图的 $n$-着色）一个大小为 $N$ 的有限图 $\mathcal G$ 由顶点 $i\in\{1,2,
+	\ldots,N\}$ 与若干边 $(i,j)$ 组成。一种 $n$-着色是把 $n$ 种颜色之一赋给每个顶点，使由边相连的顶点颜色不同。设 $F$ 是至少含 $n$ 个元素的域。为每个顶点 $i$ 引入变量 $x_i$，并选取 $F$ 中 $n$ 个不同元素组成集合 $S$ 代表 $n$ 种颜色。则 $\mathcal G$ 的 $n$-着色等价于为每个 $i=1,2,
+	\ldots,N$ 赋值 $x_i=a_i$，其中 $a_i\in S$，且若 $(i,j)$ 是边，则 $a_i\neq a_j$。令
+	\[
+	f(x)=\prod_{a\in S}(x-a)
+	\]
+	为 $F[x]$ 中以 $S$ 中元素为根的 $n$ 次多项式，则 $x_i=a_i\in S$ 等价于方程 $f(x_i)=0$。条件 $a_i\neq a_j$ 可用
+	\[
+	g(x_i,x_j)=0,
+	\qquad
+	g(x_i,x_j)={f(x_i)-f(x_j)\over x_i-x_j}
+	\]
+	表示，其中 $g\in F[x_i,x_j]$。因此求 $\mathcal G$ 的 $n$-着色等价于求解方程组
+	\[
+	f(x_i)=0 \quad (i=1,2,
+	\ldots,N),
+	\qquad
+	g(x_i,x_j)=0 \quad ((i,j)\text{ 为边}).
+	\]
+	（也可以用任意满足 $a_i\neq a_j\Rightarrow g(a_i,a_j)=0$ 的多项式 $g$。）由 Hilbert 零点定理（参见第 15.3 节推论 33）可知，该方程组有解，因而 $\mathcal G$ 有 $n$-着色，除非由这些多项式生成的 $F[x_1,
+	\ldots,x_N]$ 中理想不是真理想。这又等价于该理想关于任意单项式序的约化 Grobner 基仅为 $\{1\}$。而当 $n$-着色存在时，像命题 29 后例子那样解这个方程组可给出显式着色。
+	
+	可选的域 $F$ 与集合 $S$ 有很多。例如，若 $F$ 含有 $n$ 个不同的 $n$ 次单位根，可取 $f(x)=x^n-1$，并可取
+	\[
+	g(x_i,x_j)={x_i^n-x_j^n\over x_i-x_j}
+	=x_i^{n-1}+x_i^{n-2}x_j+\cdots+x_i x_j^{n-2}+x_j^{n-1};
+	\]
+	或者取 $F=\FF_p$ 中任意 $n$ 个元素的子集，其中 $p\geq n$ 为素数。特别地，当 $n=p$ 时，由 Fermat 小定理可取 $f(x)=x^p-x$，并取
+	\[
+	g(x_i,x_j)=(x_i-x_j)^{p-1}-1.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item 考虑有 8 个顶点、14 条边
+		\[
+		(1,3),(1,4),(1,5),(2,4),(2,7),(2,8),(3,4),(3,6),(3,8),(4,5),(5,6),(6,7),(6,8),(7,8)
+		\]
+		的图 $\mathcal G$ 的可能 3-着色。取 $F=\FF_3$，颜色为 $0,1,2\in\FF_3$，并假设顶点 1 颜色为 $0$。此时
+		\[
+		f(x)=x(x-1)(x-2)=x^3-x\in\FF_3[x],
+		\qquad g(x_i,x_j)=x_i^2+x_i x_j+x_j^2-1.
+		\]
+		若 $I$ 是由 $x_1$、$x_i^3-x_i$（$2\leq i\leq8$）以及所有边 $(i,j)$ 对应的 $g(x_i,x_j)$ 生成的理想，证明关于词典序 $x_1>x_2>\cdots>x_8$，$I$ 的约化 Grobner 基为
+		\[
+		\{x_1,
+		x_2,
+		x_3+x_8,
+		x_4+2x_8,
+		x_5+x_8,
+		x_6,
+		x_7+x_8,
+		x_8^2+2\}.
+		\]
+		推出 $\mathcal G$ 有两个不同的 3-着色，它们由顶点 8 的颜色决定（该颜色必须为 $\FF_3$ 中非零元素），并写出这些着色。再证明若向 $\mathcal G$ 加入边 $(3,7)$，则该图不能 3-着色。
+		\item 取 $F=\FF_5$，四种颜色为 $1,2,3,4\in\FF_5$，于是 $f(x)=x^4-1$，并可取
+		\[
+		g(x_i,x_j)=x_i^3+x_i^2x_j+x_i x_j^2+x_j^3.
+		\]
+		证明有 5 个顶点和 9 条边
+		\[
+		(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)
+		\]
+		的图（即去掉一条边的五顶点完全图）可以 4-着色，但不能 3-着色。
+		\item 用 Grobner 基证明：有 9 个顶点和 22 条边
+		\[
+		(1,4),(1,6),(1,7),(1,8),(2,3),(2,4),(2,6),(2,7),(3,5),(3,7),(3,9),(4,5),(4,6),(4,7),(4,9),
+		\]
+		\[
+		(5,6),(5,7),(5,8),(5,9),(6,7),(6,9),(7,8)
+		\]
+		的图 $\mathcal G$ 在颜色置换意义下恰有四种 4-着色（所以总共有 $96$ 种 4-着色）。证明若加入边 $(1,5)$，则 $\mathcal G$ 不能 4-着色。
+	\end{enumerate}
+\end{enumerate}

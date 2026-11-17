@@ -1,0 +1,216 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.5 中值定理
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{中值定理}
+
+本节主要整理几道利用积分中值定理与 Rolle 中值定理的题目.
+
+\begin{problem}
+ 设 $f(x)$ 在 $(0,1)$ 上可微，且满足
+	\[
+	f(1)-2\int_0^{\frac12}x f(x)\dd x=0.
+	\]
+	求证：在 $(0,1)$ 内至少有一点 $\xi$，使得
+	\[
+	f'(\xi)=-\frac{f(\xi)}{\xi}.
+	\]
+\end{problem}
+
+\begin{proof}
+	由积分中值定理，存在 $\eta\in\left(0,\dfrac12\right)$，使得
+	\[
+	\int_0^{\frac12}x f(x)\dd x=\frac12\eta f(\eta).
+	\]
+	因此
+	\[
+	f(1)=2\int_0^{\frac12}x f(x)\dd x=\eta f(\eta).
+	\]
+	令 $F(x)=x f(x)$，则
+	\[
+	F(1)=f(1)=\eta f(\eta)=F(\eta).
+	\]
+	于是对 $F(x)$ 在 $[\eta,1]$ 上应用 Rolle 中值定理，存在 $\xi\in(\eta,1)$，使得
+	\[
+	F'(\xi)=0.
+	\]
+	即
+	\[
+	f(\xi)+\xi f'(\xi)=0,
+	\]
+	所以
+	\[
+	f'(\xi)=-\frac{f(\xi)}{\xi}.
+	\]
+\end{proof}
+
+\begin{problem}
+设 $f(x)$ 在区间 $[0,1]$ 上连续，在 $(0,1)$ 上可导，满足
+	\[
+	f(1)=2\int_0^{\frac12}e^{1-x^2}f(x)\dd x.
+	\]
+	求证：存在一点 $\xi\in(0,1)$，使得
+	\[
+	f'(\xi)=2\xi f(\xi).
+	\]
+\end{problem}
+
+\begin{proof}
+	由题设两边同乘 $e^{-1}$ 得
+	\[
+	e^{-1}f(1)=2\int_0^{\frac12}e^{-x^2}f(x)\dd x.
+	\]
+	由积分中值定理，存在 $\eta\in\left(0,\dfrac12\right)$，使得
+	\[
+	2\int_0^{\frac12}e^{-x^2}f(x)\dd x=e^{-\eta^2}f(\eta).
+	\]
+	于是
+	\[
+	e^{-1}f(1)=e^{-\eta^2}f(\eta).
+	\]
+	令
+	\[
+	F(x)=e^{-x^2}f(x),
+	\]
+	则 $F(1)=F(\eta)$，由 Rolle 中值定理，存在 $\xi\in(\eta,1)$，使得
+	\[
+	F'(\xi)=0.
+	\]
+	又
+	\[
+	F'(x)=e^{-x^2}\left(f'(x)-2x f(x)\right),
+	\]
+	故
+	\[
+	f'(\xi)-2\xi f(\xi)=0,
+	\]
+	即
+	\[
+	f'(\xi)=2\xi f(\xi).
+	\]
+\end{proof}
+
+\begin{problem}
+设 $f(x)$ 在 $[0,1]$ 上连续，在 $(0,1)$ 内三次可微，并且满足条件：
+	\[
+	\int_0^{\frac14}f(t)\dd t=\frac14 f(0),
+	\qquad
+	\int_{\frac14}^{1}f(t)\dd t=\frac34 f(1).
+	\]
+	试证：若 $f(0)=f(1)$，则存在 $\xi\in(0,1)$，使得
+	\[
+	f'''(\xi)=0.
+	\]
+\end{problem}
+
+\begin{proof}
+	由积分中值定理，存在 $\xi_1\in\left(0,\dfrac14\right)$，使得
+	\[
+	\int_0^{\frac14}f(t)\dd t=\frac14 f(\xi_1).
+	\]
+	结合题设得
+	\[
+	f(\xi_1)=f(0).
+	\]
+	同理，存在 $\xi_2\in\left(\dfrac14,1\right)$，使得
+	\[
+	\int_{\frac14}^{1}f(t)\dd t=\frac34 f(\xi_2),
+	\]
+	从而
+	\[
+	f(\xi_2)=f(1).
+	\]
+	又 $f(0)=f(1)$，所以
+	\[
+	f(0)=f(\xi_1)=f(\xi_2)=f(1).
+	\]
+	于是分别在 $[0,\xi_1]$，$[\xi_1,\xi_2]$，$[\xi_2,1]$ 上应用 Rolle 中值定理，存在
+	\[
+	\eta_1\in(0,\xi_1),\qquad
+	\eta_2\in(\xi_1,\xi_2),\qquad
+	\eta_3\in(\xi_2,1),
+	\]
+	使得
+	\[
+	f'(\eta_1)=f'(\eta_2)=f'(\eta_3)=0.
+	\]
+	再对 $f'(x)$ 分别在 $[\eta_1,\eta_2]$ 与 $[\eta_2,\eta_3]$ 上应用 Rolle 中值定理，存在
+	\[
+	\delta_1\in(\eta_1,\eta_2),
+	\qquad
+	\delta_2\in(\eta_2,\eta_3),
+	\]
+	使得
+	\[
+	f''(\delta_1)=f''(\delta_2)=0.
+	\]
+	最后对 $f''(x)$ 在 $[\delta_1,\delta_2]$ 上应用 Rolle 中值定理，存在 $\xi\in(\delta_1,\delta_2)$，使得
+	\[
+	f'''(\xi)=0.
+	\]
+\end{proof}
+
+\begin{problem}
+	设函数 $f(x)$ 在 $[0,\pi]$ 上连续，且
+	\[
+	\int_0^\pi f(x)\dd x=0,
+	\qquad
+	\int_0^\pi f(x)\cos x\dd x=0.
+	\]
+	证明：在 $(0,\pi)$ 内至少存在两个不同的点 $\xi_1,\xi_2$，使得
+	\[
+	f(\xi_1)=f(\xi_2)=0.
+	\]
+\end{problem}
+
+\begin{proof}
+	令
+	\[
+	g(x)=\int_0^x f(t)\dd t,
+	\qquad
+	h(x)=\int_0^x g(t)\sin t\dd t.
+	\]
+	由题设知
+	\[
+	g(0)=g(\pi)=0,
+	\qquad
+	h(0)=0.
+	\]
+	又由分部积分，
+	\[
+	\begin{aligned}
+		h(\pi)
+		&=\int_0^\pi g(x)\sin x\dd x \\
+		&=\left[-g(x)\cos x\right]_0^\pi+
+		\int_0^\pi f(x)\cos x\dd x=0.
+	\end{aligned}
+	\]
+	于是 $h(0)=h(\pi)=0$，由 Rolle 中值定理，存在 $\eta\in(0,\pi)$，使得
+	\[
+	h'(\eta)=g(\eta)\sin\eta=0.
+	\]
+	由于 $\eta\in(0,\pi)$，故 $\sin\eta>0$，从而
+	\[
+	g(\eta)=0.
+	\]
+	因此
+	\[
+	g(0)=g(\eta)=g(\pi)=0.
+	\]
+	分别对 $g(x)$ 在 $[0,\eta]$ 与 $[\eta,\pi]$ 上应用 Rolle 中值定理，存在
+	\[
+	\xi_1\in(0,\eta),
+	\qquad
+	\xi_2\in(\eta,\pi),
+	\]
+	使得
+	\[
+	g'(\xi_1)=g'(\xi_2)=0.
+	\]
+	又 $g'(x)=f(x)$，所以
+	\[
+	f(\xi_1)=f(\xi_2)=0.
+	\]
+	显然 $\xi_1\neq\xi_2$.
+\end{proof}
+

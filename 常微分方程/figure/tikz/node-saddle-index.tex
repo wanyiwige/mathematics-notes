@@ -1,0 +1,35 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[shift={(0,0)},scale=1.25]
+\draw[gray,dashed] (0,0) circle(1);\fill (0,0) circle(1.5pt);
+\draw[->,GreenMain,thick] (1.00000,0.00000)--(1.32000,0.00000);
+\draw[->,GreenMain,thick] (0.86603,0.50000)--(1.14315,0.66000);
+\draw[->,GreenMain,thick] (0.50000,0.86603)--(0.66000,1.14315);
+\draw[->,GreenMain,thick] (0.00000,1.00000)--(0.00000,1.32000);
+\draw[->,GreenMain,thick] (-0.50000,0.86603)--(-0.66000,1.14315);
+\draw[->,GreenMain,thick] (-0.86603,0.50000)--(-1.14315,0.66000);
+\draw[->,GreenMain,thick] (-1.00000,0.00000)--(-1.32000,0.00000);
+\draw[->,GreenMain,thick] (-0.86603,-0.50000)--(-1.14315,-0.66000);
+\draw[->,GreenMain,thick] (-0.50000,-0.86603)--(-0.66000,-1.14315);
+\draw[->,GreenMain,thick] (-0.00000,-1.00000)--(-0.00000,-1.32000);
+\draw[->,GreenMain,thick] (0.50000,-0.86603)--(0.66000,-1.14315);
+\draw[->,GreenMain,thick] (0.86603,-0.50000)--(1.14315,-0.66000);
+\node at (0,-1.85){$v=(x,y),\quad\operatorname{ind}=+1$};
+\end{scope}
+\begin{scope}[shift={(6,0)},scale=1.25]
+\draw[gray,dashed] (0,0) circle(1);\fill (0,0) circle(1.5pt);
+\draw[->,GreenMain,thick] (1.00000,0.00000)--(1.32000,0.00000);
+\draw[->,GreenMain,thick] (0.86603,0.50000)--(1.14315,0.34000);
+\draw[->,GreenMain,thick] (0.50000,0.86603)--(0.66000,0.58890);
+\draw[->,GreenMain,thick] (0.00000,1.00000)--(0.00000,0.68000);
+\draw[->,GreenMain,thick] (-0.50000,0.86603)--(-0.66000,0.58890);
+\draw[->,GreenMain,thick] (-0.86603,0.50000)--(-1.14315,0.34000);
+\draw[->,GreenMain,thick] (-1.00000,0.00000)--(-1.32000,0.00000);
+\draw[->,GreenMain,thick] (-0.86603,-0.50000)--(-1.14315,-0.34000);
+\draw[->,GreenMain,thick] (-0.50000,-0.86603)--(-0.66000,-0.58890);
+\draw[->,GreenMain,thick] (-0.00000,-1.00000)--(-0.00000,-0.68000);
+\draw[->,GreenMain,thick] (0.50000,-0.86603)--(0.66000,-0.58890);
+\draw[->,GreenMain,thick] (0.86603,-0.50000)--(1.14315,-0.34000);
+\node at (0,-1.85){$v=(x,-y),\quad\operatorname{ind}=-1$};
+\end{scope}
+\end{tikzpicture}

@@ -1,0 +1,159 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第5章：级数理论
+% 节：5.3 任意项级数
+% 正文按原文件顺序保存；由 ../chapter5.tex 调用。
+\section{任意项级数}
+这节我们研究不规定 $x_n$ 正负的任意项级数。
+\begin{proposition}
+	（Cauchy 收敛准则）
+	级数 $\sum x_n$ 收敛，当且仅当对任意 $\varepsilon > 0$，存在正整数 $N$，使得对所有 $n > N$ 和所有正整数 $p \ge 1$，都有
+	\[
+	|x_{n+1} + x_{n+2} + \dots + x_{n+p}| < \varepsilon
+	\]
+\end{proposition}
+\begin{proof}
+	由数列的 Cauchy 收敛准则易得。
+\end{proof}
+
+类似地，我们有 Cauchy 不收敛准则。
+
+\begin{definition}
+	形如
+	\[
+	\sum_{n=1}^{\infty} (-1)^n a_n \quad (a_n > 0)
+	\]
+	的级数，称为交错级数。
+	在交错级数中，若数列 $\{a_n\}$ 单调递减且 $\lim\limits_{n \to \infty} a_n = 0$，则称为 Leibniz 级数。
+\end{definition}
+\begin{proposition}\label{Leibniz 级数必然收敛。}
+	Leibniz 级数必然收敛。
+\end{proposition}
+
+\begin{proof}
+	设 $\sum x_n$ 为 Leibniz 级数，即 $x_n = (-1)^n u_n$，其中 $u_n > 0$，且数列 $\{u_n\}$ 单调递减并趋于 $0$。
+	
+	对任意 $n \in \mathbb{N}$ 和任意正整数 $p \ge 1$，考虑
+	\[
+	\begin{aligned}
+		|x_{n+1} + x_{n+2} + \dots + x_{n+p}|
+		&= |(-1)^{n+1} u_{n+1} + (-1)^{n+2} u_{n+2} + \dots + (-1)^{n+p} u_{n+p}| \\
+		&= |u_{n+1} - u_{n+2} + u_{n+3} - \dots + (-1)^{p-1} u_{n+p}|
+	\end{aligned}
+	\]
+	
+	若 $p$ 为偶数，则
+	\[
+	\begin{aligned}
+		|x_{n+1} + \dots + x_{n+p}|
+		&= |(u_{n+1} - u_{n+2}) + (u_{n+3} - u_{n+4}) + \dots + (u_{n+p-1} - u_{n+p})| \\
+		&= (u_{n+1} - u_{n+2}) + (u_{n+3} - u_{n+4}) + \dots + (u_{n+p-1} - u_{n+p}) \\
+		&= u_{n+1} - (u_{n+2} - u_{n+3}) - \dots - (u_{n+p-2} - u_{n+p-1}) - u_{n+p} \\
+		&\le u_{n+1}
+	\end{aligned}
+	\]
+	
+	由于 $\lim\limits_{n \to \infty} u_n = 0$，对任意 $\varepsilon > 0$，存在正整数 $N$，当 $n > N$ 时，有 $0 < u_{n+1} < \varepsilon$，因此
+	\[
+	|x_{n+1} + \dots + x_{n+p}| \le u_{n+1} < \varepsilon
+	\]
+	
+	对 $p$ 为奇数的情况，同理可得
+	\[
+	|x_{n+1} + \dots + x_{n+p}| < u_{n+1} < \varepsilon
+	\]
+	
+	由 Cauchy 收敛准则可知，Leibniz 级数 $\sum x_n$ 收敛。
+	
+\end{proof}
+\begin{example}
+	级数
+	\[\sum_{n=1}^\infty\frac{(-1)^n}{n^p}\]
+	在$p>0$时收敛
+	
+	但
+	\[\sum_{n=1}^\infty\frac{1}{n^p}\]未必
+\end{example}
+在\ref{Leibniz 级数必然收敛。}的证明中，我们得到以下结论
+\begin{proposition}
+	（Leibniz 级数的余项估计）
+	设 $\sum x_n$ 为 Leibniz 级数，即 $x_n = (-1)^n u_n$，其中 $u_n > 0$，数列 $\{u_n\}$ 单调递减且趋于 $0$。
+	记余项
+	\[
+	r_n = \left| \sum_{k=1}^{\infty} (-1)^k u_k - S_n \right| = \left| \sum_{k=n+1}^{\infty} (-1)^k u_k \right|
+	\]
+	则有
+	\[
+	r_n \le u_{n+1}
+	\]
+	即截断误差小于截断后的第一项的绝对值。
+\end{proposition}
+\begin{lemma}
+	（Abel 引理）
+	对数列 $\{a_n\}$ 与 $\{b_n\}$，设 $B_k = \sum_{i=1}^k b_i$ 为 $\{b_n\}$ 的部分和。若满足：
+	\begin{enumerate}
+		\item 数列 $\{a_k\}$ 单调； 
+		\item 部分和数列 $\{B_k\}$ 有界，即存在常数 $M > 0$，使得对所有 $k$，有 $|B_k| \le M$。
+	\end{enumerate}
+
+	则
+	\[
+	\left| \sum_{k=1}^p a_k b_k \right| \le M \left( |a_1| + 2|a_p| \right)
+	\]
+\end{lemma}
+\begin{proof}
+	由 Abel 变换，
+	\[
+	\sum_{k=1}^p a_k b_k = a_p B_p + \sum_{k=1}^{p-1} (a_k - a_{k+1}) B_k
+	\]
+	因此
+	\[
+	\begin{aligned}
+		\left| \sum_{k=1}^p a_k b_k \right|
+		&= \left| a_p B_p + \sum_{k=1}^{p-1} (a_k - a_{k+1}) B_k \right| \\
+		&\le |a_p| |B_p| + |\sum_{k=1}^{p-1} a_k - a_{k+1}| |B_k| \\
+		&\le M |a_p| + M |\sum_{k=1}^{p-1} a_k - a_{k+1}|
+	\end{aligned}
+	\]
+	$|\sum\limits_{k=1}^{p-1} a_k - a_{k+1}| = |a_1 - a_p|$，故
+	\[
+	\left| \sum_{k=1}^p a_k b_k \right| \le M |a_p| + M |a_1 - a_p| \le M \left( |a_1| + 2|a_p| \right)
+	\]
+	
+\end{proof}
+\begin{proposition}
+	（级数的 Abel-Dirichlet 判别法）
+	对级数 $\sum a_n b_n$，满足以下条件之一时级数收敛：
+	
+	\begin{enumerate}
+		\item \textbf{Abel 判别法}：数列 $\{a_n\}$ 单调有界，级数 $\sum b_n$ 收敛。
+		\item \textbf{Dirichlet 判别法}：数列 $\{a_n\}$ 单调趋于 $0$，且部分和数列 $\{B_n\}$ 有界
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item \textbf{Abel 判别法}
+		
+		由 $\{a_n\}$ 有界，存在常数 $L > 0$，使得对所有 $n$，有 $|a_n| \le L$。
+		又由 $\sum b_n$ 收敛，根据 Cauchy 收敛准则，对任意 $\varepsilon > 0$，存在正整数 $N$，当 $n > N$ 且 $p \ge 1$ 时，有
+		\[
+		|b_{n+1} + b_{n+2} + \dots + b_{n+p}| < \varepsilon
+		\]
+		由 Abel 引理，
+		\[
+		|a_{n+1}b_{n+1} + \dots + a_{n+p}b_{n+p}| \le \varepsilon(|a_{n+1}| + 2|a_{n+p}|) \le \varepsilon(L + 2L) = 3L\varepsilon
+		\]
+		由 Cauchy 收敛准则，级数 $\sum a_n b_n$ 收敛。
+		
+		\item \textbf{Dirichlet 判别法}
+		
+		由 $\{B_n\}$ 有界，存在常数 $M > 0$，使得对所有 $n$，有 $|B_n| \le M$。
+		因此，任意部分和 $|\widetilde{B}_k| = |b_{n+1} + \dots + b_{n+p}| = |B_{n+p} - B_n| \le |B_{n+p}| + |B_n| \le 2M$。
+		又由 $a_n \to 0$，对任意 $\varepsilon > 0$，存在正整数 $N$，当 $n > N$ 时，$|a_n| < \varepsilon$。
+		再由 $\{a_n\}$ 单调及 Abel 引理，
+		\[
+		\left| \sum_{k=n+1}^{n+p} a_k b_k \right| \le 2M \big( |a_{n+1}| + 2|a_{n+p}| \big) < 2M(\varepsilon + 2\varepsilon) = 6M\varepsilon
+		\]
+		由 Cauchy 收敛准则，级数 $\sum a_n b_n$ 收敛。
+	\end{enumerate}
+	
+\end{proof}

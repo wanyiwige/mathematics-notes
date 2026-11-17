@@ -1,0 +1,342 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第4章：数列极限的应用与一些反例
+% 节：4.2 Stolz定理及其应用
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{Stolz定理及其应用}
+在进行极限的计算时,我们发现了$\dfrac{*}{\infty},\dfrac{0}{0}$的情况,我们称之为待定型，下面给出一种解决的方案——Stolz定理
+\begin{theorem}
+	设 $\{y_n\}$ 是严格单调递增的正无穷大量，且
+	
+	$$ \lim_{n \to \infty} \dfrac{x_n - x_{n-1}}{y_n - y_{n-1}} = a \quad (a \in \mathbb{R}^* ) $$
+	
+	则
+	
+	$$ \lim_{n \to \infty} \frac{x_n}{y_n} = a $$
+	
+\end{theorem}
+\begin{proof}
+	首先考虑 $a = 0$.由 $\lim\limits_{n \to \infty} \dfrac{x_n - x_{n-1}}{y_n - y_{n-1}} = 0$，对于 $\forall \varepsilon > 0, \exists N_1, \forall n > N_1$，
+	
+	$$ |x_n - x_{n-1}| < \varepsilon (y_n - y_{n-1} ) $$
+	
+	由于 $\{y_n\}$ 是严格单调递增的正无穷大量，显然，可以取 $y_{N_1} > 0$，于是
+	\begin{align*}
+		|x_n - x_{N_1}| & \leqslant |x_n - x_{n-1}| + \cdots + |x_{N_1+1} - x_{N_1}| \\
+		& < \varepsilon (y_n - y_{n-1}) + \cdots + \varepsilon (y_{N_1+1} - y_{N_1}) \\
+		& = \varepsilon (y_n - y_{N_1})
+	\end{align*}
+	
+	因此，
+	
+	$$ \left| \frac{x_n}{y_n} - \frac{x_{N_1}}{y_n} \right| \leqslant \varepsilon \left(1 - \frac{y_{N_1}}{y_n}\right) < \varepsilon $$
+	
+	对于固定的 $N_1$，再取 $N > N_1$，使得 $\forall n > N$，有 $\left| \dfrac{x_{N_1}}{y_n} \right| < \varepsilon$，从而
+	
+	$$ \left| \frac{x_n}{y_n} \right| <\varepsilon+ \left| \frac{x_{N_1}}{y_n} \right| <  2\varepsilon $$
+	
+	当 $a$ 是有限非零实数时，令 $x_n' = x_n - a y_n$，则有
+	
+	$$ \lim_{n \to \infty} \frac{x_n' - x_{n-1}'}{y_n - y_{n-1}} = \lim_{n \to \infty} \frac{x_n - x_{n-1} }{y_n - y_{n-1}} - a= 0 $$
+	
+	得到
+	
+	$$ \lim_{n \to \infty} \frac{x_n'}{y_n} = 0 $$
+	
+	从而
+	
+	$$ \lim_{n \to \infty} \frac{x_n}{y_n} = \lim_{n \to \infty} \frac{x_n'}{y_n} + a = a $$
+	
+	对于 $a = +\infty$ 的情况：$\exists N, \forall n > N$，
+	
+	$$ x_n - x_{n-1} > y_n - y_{n-1} $$
+	
+	这说明 $\{x_n\}$ 也严格单调递增，且从 $x_n - x_{n-1} > y_n - y_{n-1}$ 知
+	\[
+	x_n - x_N > y_n - y_N \quad (n > N).
+	\]
+	由于 $\{y_n\}$ 是正无穷大量，$y_n - y_N \to +\infty$，故 $x_n \to +\infty$.
+	又由 $x_n - x_{n-1} > y_n - y_{n-1} > 0$ 对 $n > N$ 成立，有
+	\[
+	\frac{y_n - y_{n-1}}{x_n - x_{n-1}} \to 0 \quad (n\to\infty).
+	\]
+	现对 $\left\{\dfrac{y_n}{x_n}\right\}$ 应用已证的 $a=0$ 情形（注意 $\{x_n\}$ 严格递增且趋于 $+\infty$）：
+	\[
+	\lim_{n \to +\infty} \frac{y_n}{x_n}
+	= \lim_{n \to +\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = 0.
+	\]
+	从而
+	\[
+	\lim_{n \to +\infty} \frac{x_n}{y_n} = +\infty.
+	\]
+	
+	对于 $a = -\infty$ 的情况，类似
+\end{proof}
+\begin{theorem}
+	设 $\{a_n\}$ 和 $\{b_n\}$ 都是无穷小量，且 $\{a_n\}$ 是严格单调递减，又有
+	
+	$$ \lim_{n \to \infty} \frac{b_{n+1} - b_n}{a_{n+1} - a_n} = l \quad (l \in\R^*) $$
+	
+	则有
+	
+	$$ \lim_{n \to \infty} \frac{b_n}{a_n} = l $$
+\end{theorem}
+\begin{proof}
+	记 $l \neq\pm \infty$，
+	
+	$\forall \varepsilon > 0, \exists N, \forall n > N$，有
+	
+	$$ \left| \frac{b_{n+1} - b_n}{a_{n+1} - a_n} - l \right| < \varepsilon $$
+	
+	由 $\{a_n\}$ 单调性，
+	
+	$$ (l - \varepsilon)( a_n-a_{n+1} ) <  b_n-b_{n+1}  < (l + \varepsilon)( a_n- a_{n+1}) $$
+	
+	任取 $m > n$，
+	$$\begin{aligned}
+		&(l - \varepsilon)( a_n-a_{n+1} ) <  b_n-b_{n+1}  < (l + \varepsilon)( a_n- a_{n+1})\\
+		&(l - \varepsilon)(a_{n+1} - a_{n+2}) < b_{n+1} - b_{n+2} < (l + \varepsilon)(a_{n+1} - a_{n+2})\\
+		&\vdots\\
+		&(l - \varepsilon)(a_{m-1} - a_{m}) < b_{m-1} - b_{m} < (l + \varepsilon)(a_{m-1} - a_{m})
+	\end{aligned}$$
+	
+	
+	累加得
+	
+	$$ (l - \varepsilon)(a_n - a_m) < b_n - b_m < (l + \varepsilon)(a_n - a_m) $$
+	
+	因此
+	
+	$$ \left| \frac{b_n - b_m}{a_n - a_m} - l \right| < \varepsilon $$
+	
+	当 $m \to +\infty$，$\lim\limits_{m \to \infty} a_m = \lim\limits_{m \to \infty} b_m = 0$，故 $\forall n> N$，
+	
+	$$ \left| \frac{b_n}{a_n} - l \right| < \varepsilon $$
+	
+	对于 $l = +\infty$ 的情况，$\forall G, \exists N, \forall n > N$ 都有
+	
+	$$ \frac{b_n - b_{n+1}}{a_n - a_{n+1}} > G $$
+	
+	即
+	
+	$$ b_n - b_{n+1} > G (a_n - a_{n+1}) $$
+	
+	任取 $m > n$，
+	$$\begin{aligned}
+		&b_{n+1} - b_{n+2} > G (a_{n+1} - a_{n+2})\\
+		&\vdots\\
+		&b_{m-1} - b_{m} > G (a_{m-1} - a_{m})
+	\end{aligned}$$
+	
+	
+	累加得
+	
+	$$ b_n - b_m > G (a_n - a_m) $$
+	
+	当 $m \to +\infty$，
+	
+	$$ \frac{b_n}{a_n} > G $$
+	
+	也即
+	
+	$$ \lim_{n \to \infty} \frac{b_n}{a_n} = +\infty $$
+	
+	对于 $l = -\infty$ 的情况类似
+\end{proof}
+
+\begin{example}
+	证明
+	$$ \lim_{n \to \infty} \dfrac{1^k + 2^k + \cdots + n^k}{n^{k+1}}= \dfrac{1}{k+1} $$
+	
+\end{example}
+\begin{proof}
+	设 $x_n = 1^k + \cdots + n^k$，$y_n = n^{k+1}$，且 $y_n $严格单调上升至正无穷，
+	
+	$$ \lim_{n \to \infty} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n \to \infty} \frac{n^k}{n^{k+1} - (n-1)^{k+1}} = \frac{1}{k+1} $$
+	
+	由 Stolz 定理，
+	
+	$$ \lim_{n \to \infty} \frac{x_n}{y_n} = \frac{1}{k+1} $$
+\end{proof}
+注意此处的逻辑顺序是先有$\lim\limits_{n \to \infty} \dfrac{x_n - x_{n-1}}{y_n - y_{n-1}}$,再有$\lim\limits_{n \to \infty}\dfrac{x_n}{y_n}$.
+\begin{corollary}
+	若 $\lim\limits_{n \to \infty} a_n = a$，则
+	
+	(1)
+	$$ \lim_{n \to \infty} \frac{a_1 + \cdots + a_n}{n} = a $$
+	
+	(2)若 $\lim\limits_{n \to \infty} (x_{n+1} - x_n) = a$，则
+	$$ \lim_{n \to \infty} \frac{x_n}{n} = a $$
+	
+	(3) 若$a>0$,则$$\lim\limits_{n\to\infty}\sqrt[n]{a_1\cdots a_1}=a$$
+	
+	(4) 若 $\lim\limits_{n \to \infty} \dfrac{x_{n+1}}{x_n} = a$，则
+	$$ \lim_{n \to \infty} \sqrt[n]{x_n} = a $$
+	\label{imcoofstolz}
+\end{corollary}
+\begin{proof}
+	(1) 
+	\[
+	\lim_{n \to \infty} a_n = \lim_{n \to \infty} \frac{(a_1 + \cdots + a_n) - (a_1 + \cdots + a_{n-1})}{n - (n-1)} = \lim_{n \to \infty} \frac{a_1 + \cdots + a_n}{n} = a
+	\]
+	
+	(2) \[
+	\lim_{n \to \infty} \frac{x_n}{n} = \lim_{n \to \infty} \left[ \frac{x_n - x_{n+1} + \cdots + x_2 - x_1}{n} + \frac{x_1}{n} \right] = \lim_{n \to \infty} (x_{n+1} - x_n) + \lim_{n \to \infty} \frac{x_1}{n} = a
+	\]
+	
+	(3)由基本不等式，
+	\[
+	\dfrac{n}{\dfrac{1}{a_1} + \cdots + \dfrac{1}{a_n}} \leqslant \sqrt[n]{a_1 \cdots a_n} \leqslant \dfrac{a_1 + \cdots + a_n}{n}
+	\]
+	由夹逼定理，
+	\[
+	\lim_{n \to \infty} \sqrt[n]{a_1 \cdots a_n} = a
+	\]
+	
+	
+	(4)\[
+	\lim_{n \to \infty} \sqrt[n]{x_1 \cdot \frac{x_2}{x_1} \cdot \frac{x_3}{x_2} \cdots \frac{x_n}{x_{n-1}}} = \lim_{n \to \infty} \frac{x_{n+1}}{x_n} = a
+	\]
+	
+\end{proof}
+
+
+\begin{example}
+	(1)
+	$$ \lim_{n \to \infty} \frac{1}{\sqrt[n]{n!}} = 0 $$
+	
+	(2)
+	$$ \lim_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = e $$
+	
+	(3) 若 $\lim\limits_{n \to \infty} (x_{n+2} - x_n) = a$，则
+	$$ \lim_{n \to \infty} \frac{x_n}{n} = \frac{a}{2} $$
+	
+	(4) $\lim\limits_{n \to \infty} x_{2n} = a$，$\lim\limits_{n \to \infty} x_{2n+1} = b$，证明
+	$$ \lim_{n \to \infty} \frac{x_1 + \cdots + x_n}{n} = \frac{a + b}{2} $$
+\end{example}
+\begin{proof}
+	(1) 设 $x_n = \dfrac{1}{n!}$，证明 $\dfrac{x_{n+1}}{x_n} = \dfrac{1}{n+1}$，由\ref{imcoofstolz}(3)，$\lim\limits_{n \to \infty} \dfrac{x_{n+1}}{x_n} = 0$，
+	
+	得
+	\[
+	\lim_{n \to \infty} \frac{1}{ \sqrt[n]{n!}} = \lim_{n \to \infty} \sqrt[n]{x_n} = 0
+	\]
+	
+	(2) 设 $x_n = \dfrac{n^n}{n!}$，证明 $\dfrac{x_{n+1}}{x_n} = \left(1 + \dfrac{1}{n}\right)^n$，由 $\lim\limits_{n \to \infty} \left(1 + \dfrac{1}{n}\right)^n = e$(由第4节)，
+	
+	\[
+	\lim_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = \lim_{n \to \infty}  \sqrt[n]{x_n} = e
+	\]
+	
+	(3) 对偶数项 $\left\{ \dfrac{x_{2n}}{2n} \right\}$，
+	由 $\lim\limits_{n \to \infty} (x_{2n+2} - x_{2n}) = a$，由 \ref{imcoofstolz}(4) 得 $\lim\limits_{n \to \infty} \dfrac{x_{2n}}{n} = a$，
+	也即 $\lim\limits_{n \to \infty} \dfrac{x_{2n}}{2n} = \dfrac{a}{2}$.
+	
+	对奇数项 $\left\{ \dfrac{x_{2n-1}}{2n-1} \right\}$，
+	由 $\lim\limits_{n \to \infty} (x_{2n+1} - x_{2n-1}) = a$，由 \ref{imcoofstolz}(4)得 $\lim\limits_{n \to \infty} \dfrac{x_{2n-1}}{n} = a$，
+	也即 $\lim\limits_{n \to \infty} \dfrac{x_{2n-1}}{2n-1} \cdot \dfrac{2n-1}{2n} = \dfrac{a}{2}$.
+	
+	由 \ref{oddandeven}，
+	\[
+	\lim_{n \to \infty} \frac{x_n}{n} = \frac{a}{2}
+	\]
+	(4) 对 $\left\{ \dfrac{x_1 + \cdots + x_n}{n} \right\}$ 的偶子列，
+	\[
+	\lim_{n \to \infty} \frac{x_1 + \cdots + x_{2n}}{2n} = \lim_{n \to \infty} \left( \frac{x_1 + x_3 + \cdots + x_{2n-1}}{2n} + \frac{x_2 + \cdots + x_{2n}}{2n} \right)
+	\]
+	\[
+	= \lim_{n \to \infty} \frac{x_{2n-1}}{2} + \lim_{n \to \infty} \frac{x_{2n}}{2} = \frac{a + b}{2}
+	\]
+	
+	对奇子列，
+	\[
+	\lim_{n \to \infty} \frac{x_1 + \cdots + x_{2n+1}}{2n+1} = \lim_{n \to \infty} \left( \frac{x_1 + x_3 + \cdots + x_{2n+1}}{n+1} \cdot \frac{n+1}{2n+1} + \frac{x_2 + \cdots + x_{2n}}{2n+1} \cdot \frac{n}{2n+1} \right)
+	\]
+	\[
+	= \lim_{n \to \infty} \frac{x_{2n+1}}{2} + \lim_{n \to \infty} \frac{x_{2n}}{2} = \frac{a + b}{2}
+	\]
+	
+	对(4) 我们做下列的推广，若
+	\[
+	\lim_{n \to \infty} x_{kn+i} = m_i \quad i = 0, 1, \ldots, k-1
+	\]
+	
+	则
+	\[
+	\lim_{n \to \infty} \frac{x_1 + \cdots + x_n}{n} = \frac{m_1 + \cdots + m_k}{k}
+	\]
+	
+\end{proof}
+\begin{example}
+	已知 $\lim\limits_{n \to \infty} a_n = a$，$\lim\limits_{n \to \infty} b_n = b$，证明
+	\[
+	\lim_{n \to \infty} \dfrac{a_1 b_n + \cdots + a_n b_1}{n} = ab
+	\]
+\end{example}
+\begin{proof}
+	考虑 $$\left| \dfrac{a_1 b_n + \cdots + a_n b_1}{n} - ab \right| = \left| \frac{(a_1 b_n - ab) + \cdots + (a_n b_1 - ab)}{n} \right|$$
+	设 $M$ 为 $|a_n|$ 的界，也即 $|a_n| \leqslant M$，
+	\[
+	|a_1 b_n - ab| = |a_1 b_n - a_1 b + a_1 b - ab| \leqslant |a_1||b_n - b| + |b||a_1 - a| \leqslant M |b_n - b| + b |a_1 - a|
+	\]
+	$$\begin{aligned}
+		\left| \frac{(a_1 b_n - ab) + \cdots + (a_n b_1 - ab)}{n} \right| &\leqslant \frac{M |b_n - b| + \cdots + M |b_n - b|}{n} + \frac{b |a_1 - a| + \cdots + b |a_n - a|}{n}\\&\to 0 + 0 = 0
+	\end{aligned}$$
+\end{proof}
+\begin{proposition} (Abel 变换)
+	对于数列 $\{a_n\}, \{b_i\}$，定义 $A_k = \sum\limits_{n=1}^k a_n$，则有：
+	
+	\[
+	\sum_{i=1}^n a_i b_i = b_n A_n + \sum_{i=1}^{n-1} A_i (b_i - b_{i+1})
+	\]
+	\label{Abeltra}
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\sum_{i=1}^n a_i b_i &= \sum_{i=1}^n (A_i - A_{i-1}) b_i \\
+		&= A_1 b_1 + (A_2 - A_1) b_2 + \cdots + (A_n - A_{n-1}) b_n \\
+		&= A_1 b_1 + A_2 (b_2 - b_3) + \cdots + A_n b_n - A_{n-1} b_n \\
+		&= b_n A_n + \sum_{i=1}^{n-1} A_i (b_i - b_{i+1})
+	\end{align*}
+	
+\end{proof}
+\begin{example}
+	
+	若 $A_n = \sum\limits_{k=1}^n a_k$ 收敛于 $A$，证明：
+	
+	(1)
+	\[
+	\lim_{n \to \infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{n} = 0
+	\]
+	
+	(2) 若 $a_n>0$，则
+	\[
+	\lim_{n \to \infty} \sqrt[n]{n!a_1 \cdots a_n} = 0
+	\]
+	
+	(3) 若 $\{p_n\}$ 严格递增且 趋近于$ +\infty$，则
+	\[
+	\lim_{n \to \infty} \frac{a_1 p_1 + \cdots + a_n p_n}{p_n} = 0
+	\]
+	
+\end{example}
+
+
+
+\begin{proof}
+	考虑(3)即可
+	
+	由\ref{Abeltra} Abel 变换，
+	\[
+	a_1 p_1 + \cdots + a_n p_n = p_n A_n + \sum_{k=1}^{n-1} A_k (p_k - p_{k+1})
+	\]
+	
+	因为 $A_n \to A$，且 $p_n \to +\infty$，所以
+	
+	$$\begin{aligned}
+		\lim_{n \to \infty} \frac{a_1 p_1 + \cdots + a_n p_n}{p_n}& = 	\lim_{n \to \infty}\left[A_n + \frac{1}{p_n} \sum_{k=1}^{n-1} A_k (p_k - p_{k+1})\right]\\&=\lim\limits_{n\to \infty}A_n+\lim\limits_{n\to \infty}\frac{A_{n-1}(p_{n-1}-p_{n})}{p_{n}-p_{n-1}}=A-A = 0
+	\end{aligned}$$
+	
+	
+	
+\end{proof}
+

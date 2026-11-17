@@ -1,0 +1,151 @@
+{
+  "chapters": [
+    {
+      "chapter": 1,
+      "lines": 1984,
+      "issues": [
+        12,
+        16,
+        7
+      ],
+      "blocks": 129,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第01章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 2,
+      "lines": 797,
+      "issues": [
+        2,
+        11,
+        2
+      ],
+      "blocks": 70,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第02章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 3,
+      "lines": 2028,
+      "issues": [
+        13,
+        14,
+        9
+      ],
+      "blocks": 166,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第03章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 4,
+      "lines": 2005,
+      "issues": [
+        12,
+        10,
+        9
+      ],
+      "blocks": 102,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第04章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 5,
+      "lines": 1516,
+      "issues": [
+        2,
+        13,
+        2
+      ],
+      "blocks": 75,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第05章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 6,
+      "lines": 1466,
+      "issues": [
+        8,
+        15,
+        4
+      ],
+      "blocks": 112,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第06章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 7,
+      "lines": 1435,
+      "issues": [
+        13,
+        10,
+        4
+      ],
+      "blocks": 68,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第07章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 8,
+      "lines": 2441,
+      "issues": [
+        16,
+        18,
+        7
+      ],
+      "blocks": 135,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第08章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 9,
+      "lines": 322,
+      "issues": [
+        5,
+        3,
+        5
+      ],
+      "blocks": 10,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第09章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 10,
+      "lines": 4251,
+      "issues": [
+        10,
+        20,
+        6
+      ],
+      "blocks": 200,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第10章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 11,
+      "lines": 820,
+      "issues": [
+        1,
+        6,
+        0
+      ],
+      "blocks": 36,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第11章_第一轮校验报告.md"
+    },
+    {
+      "chapter": 12,
+      "lines": 2778,
+      "issues": [
+        6,
+        4,
+        11
+      ],
+      "blocks": 106,
+      "report": "C:/Users/WANYIWIGE/Desktop/我的笔记/分析学笔记/第一部分校验报告/第12章_第一轮校验报告.md"
+    }
+  ],
+  "total_source_lines": 21843,
+  "total_math_blocks": 1209,
+  "issue_totals": {
+    "A": 100,
+    "B": 140,
+    "C": 66
+  },
+  "baseline_files": 280,
+  "unchanged_files": 278,
+  "changed_out_of_scope": [
+    "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\分析学笔记\\chapters\\part2\\chapter3.aux",
+    "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\分析学笔记\\chapters\\part2\\chapter3.tex"
+  ],
+  "source_locations_valid": true,
+  "protected_objects_unchanged": true
+}

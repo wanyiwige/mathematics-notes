@@ -1,0 +1,165 @@
+% main.tex
+% 数学物理方法笔记
+% 基于 吴崇试、高春媛《数学物理方法》（第三版，北京大学出版社）
+\documentclass{book}
+
+% 加载所有配置
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+\input{preamble/chapter.title}
+\input{preamble/part.title}
+\input{preamble/cover}
+\addbibresource{bibliography/references.bib}
+
+% ── 文档元信息与封面 ──
+\title{数学物理方法笔记}
+\author{Huginn Wong}
+\date{\today}
+\coverimage{figure/封面.png}
+
+\begin{document}
+
+\makecover
+	
+	\frontmatter
+	
+	\chapter*{前言}
+	\addcontentsline{toc}{chapter}{前言}
+
+	
+	\vspace{1cm}
+	\begin{flushright}
+		Huginn Wong\\
+		\today
+	\end{flushright}
+	
+	\tableofcontents
+	\newpage
+	
+	\mainmatter
+	\setcounter{page}{1}
+
+% ============================================================
+%  第一部分：复变函数
+% ============================================================
+\setpartimage{}
+\setpartintro{本部分从复数与复变函数的基本概念出发，逐步建立解析函数理论、复变积分、无穷级数、留数定理等核心内容。复变函数方法不仅是数学物理方法的基础工具，其本身蕴含的深刻数学结构也为后续学习提供了重要视角。}
+\part{复变函数}
+\setcounter{chapter}{0}
+
+%\setchapterimage{figure/ch01.jpg}
+%\setchapterintro{从复数的基本运算出发，引入复变函数、复数序列、无穷远点等基本概念，并简要介绍正十七边形的尺规作图问题，展示复数的几何威力。}
+%\include{chapters/part1/chapter1}
+
+%\setchapterimage{figure/ch02.jpg}
+%\setchapterintro{建立复变函数的极限、连续、可导与可微概念，引入解析函数的定义，讨论初等函数和多值函数，并简要介绍解析函数的保角性。}
+%\include{chapters/part1/chapter2}
+
+%\setchapterimage{figure/ch03.jpg}
+%\setchapterintro{引入复变积分的定义，重点证明 Cauchy 定理和 Cauchy 积分公式，建立解析函数高阶导数的 Cauchy 型积分表示，简要讨论 Poisson 公式。}
+%\include{chapters/part1/chapter3}
+
+%\setchapterimage{figure/ch04.jpg}
+%\setchapterintro{研究复数级数、函数级数和幂级数，讨论一致收敛性，并介绍含参量反常积分的解析性、发散级数与渐近级数。}
+%\include{chapters/part1/chapter4}
+
+%\setchapterimage{figure/ch05.jpg}
+%\setchapterintro{建立解析函数的 Taylor 展开与 Laurent 展开理论，讨论孤立奇点的分类、解析函数的零点孤立性和唯一性，引入解析延拓、Bernoulli 数和 Euler 数。}
+%\include{chapters/part1/chapter5}
+
+%\setchapterimage{figure/ch06.jpg}
+%\setchapterintro{建立留数定理并展示其广泛应用：计算有理三角函数的积分、无穷积分、含三角函数的无穷积分，处理积分路径上存在奇点的情形，以及涉及多值函数的复变积分。}
+%\include{chapters/part1/chapter6}
+
+%\setchapterimage{figure/ch07.jpg}
+%\setchapterintro{介绍 $\Gamma$ 函数的定义与基本性质（递推关系、互余宗量定理、倍乘公式等），引入 $\psi$ 函数和 $B$ 函数，简要讨论 $\Gamma$ 函数的普遍表达式和渐近展开。}
+%\include{chapters/part1/chapter7}
+
+%\setchapterimage{figure/ch08.jpg}
+%\setchapterintro{建立 Laplace 变换的定义与基本性质，讨论反演方法（包括普遍反演公式），并简要介绍利用 Laplace 变换计算级数和。}
+%\include{chapters/part1/chapter8}
+
+%\setchapterimage{figure/ch09.jpg}
+%\setchapterintro{研究二阶线性常微分方程在常点邻域和正则奇点邻域内的幂级数解法，以 Bessel 方程为例详细讨论，并简要介绍非正则奇点附近的解。}
+%\include{chapters/part1/chapter9}
+
+%\setchapterimage{figure/ch10.jpg}
+%\setchapterintro{引入 $\delta$ 函数的定义与基本性质，讨论利用 $\delta$ 函数计算无穷积分，建立常微分方程初值问题和边值问题的 Green 函数解法。}
+%\include{chapters/part1/chapter10}
+
+% ============================================================
+%  第二部分：数学物理方程
+% ============================================================
+%\setpartimage{}
+%\setpartintro{本部分系统讲解三类典型偏微分方程（波动方程、热传导方程、Laplace 方程）的定解问题及其求解方法，包括分离变量法、特殊函数、积分变换、Green 函数和变分法等，是数学物理方法的核心应用部分。}
+%\part{数学物理方程}
+
+%\setchapterimage{figure/ch11.jpg}
+%\setchapterintro{引入波动方程、热传导方程和稳定问题的数学描述，讨论三类定解条件（初始条件、边界条件、衔接条件），并介绍定解问题适定性的基本概念。}
+%\include{chapters/part2/chapter11}
+
+%\setchapterimage{figure/ch12.jpg}
+%\setchapterintro{讨论线性偏微分方程通解的结构，包括常系数线性齐次和非齐次偏微分方程的通解求法，以及波动方程的行波解、波的耗散与色散、热传导方程和 Laplace 方程的定性讨论。}
+%\include{chapters/part2/chapter12}
+
+%\setchapterimage{figure/ch13.jpg}
+%\setchapterintro{以两端固定弦的自由振动为引例，系统介绍分离变量法的基本思想和步骤，讨论矩形区域稳定问题、多于两个自变量的定解问题以及非齐次边界条件的齐次化技术。}
+%\include{chapters/part2/chapter13}
+
+%\setchapterimage{figure/ch14.jpg}
+%\setchapterintro{引入正交曲面坐标系的基本概念，推导 Laplace 算符在一般正交曲面坐标系中的表达式，讨论圆形区域问题以及 Helmholtz 方程在柱坐标系和球坐标系下的分离变量。}
+%\include{chapters/part2/chapter14}
+
+%\setchapterimage{figure/ch15.jpg}
+%\setchapterintro{系统研究 Legendre 方程与 Legendre 多项式，包括生成函数、递推关系、正交完备性等基本性质，引入连带 Legendre 函数和球面调和函数。}
+%\include{chapters/part2/chapter15}
+
+%\setchapterimage{figure/ch16.jpg}
+%\setchapterintro{引入 Bessel 函数和 Neumann 函数，讨论递推关系、渐近展开、生成函数和积分表示，建立 Bessel 方程的本征值问题，介绍虚宗量 Bessel 函数、半奇数阶 Bessel 函数和球 Bessel 函数。}
+%\include{chapters/part2/chapter16}
+
+%\setchapterimage{figure/ch17.jpg}
+%\setchapterintro{从内积空间和函数空间的视角出发，系统总结自伴算符的本征值问题和 Sturm-Liouville 型方程的本征值问题，进而以统一的框架重新审视分离变量法。}
+%\include{chapters/part2/chapter17}
+
+%\setchapterimage{figure/ch18.jpg}
+%\setchapterintro{讨论 Laplace 变换和 Fourier 变换在数学物理方程求解中的应用，包括半无界空间的情形，并简要介绍小波变换的基本概念。}
+%\include{chapters/part2/chapter18}
+
+%\setchapterimage{figure/ch19.jpg}
+%\setchapterintro{引入 Green 函数的基本概念，讨论稳定问题 Green 函数的一般性质，给出三维无界空间 Helmholtz 方程和圆内 Poisson 方程的 Green 函数，简要介绍波动方程和热传导方程的 Green 函数。}
+%\include{chapters/part2/chapter19}
+
+%\setchapterimage{figure/ch20.jpg}
+%\setchapterintro{引入泛函的基本概念，讨论泛函极值的必要条件（Euler-Lagrange 方程）、条件极值和变边值问题，介绍微分方程定解问题与本征值问题的变分形式以及 Rayleigh-Ritz 方法。}
+%\include{chapters/part2/chapter20}
+
+%\setchapterimage{figure/ch21.jpg}
+%\setchapterintro{对全书内容进行综合性回顾：讨论二阶线性偏微分方程的分类，评述各种解法的优缺点与适用范围，简要介绍非线性偏微分方程问题，并对数学物理方法的学习进行总结与展望。}
+%\include{chapters/part2/chapter21}
+	
+	\nocite{*}
+	
+	\begingroup
+	\setlength{\emergencystretch}{1em}
+	
+	\providecommand{\phantomsection}{}
+	\defbibheading{normalbib}[\bibname]{%
+		\clearpage
+		\phantomsection
+		\addcontentsline{toc}{chapter}{#1}%
+		{\noindent\huge\bfseries #1\par}%
+		\vspace{1.5em}%
+	}
+	
+	\printbibliography[
+	heading=normalbib,
+	title={参考文献}
+	]
+	
+	\endgroup
+	
+\end{document}

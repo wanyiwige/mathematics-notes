@@ -1,0 +1,724 @@
+% ============================================================
+%  chapter06.tex — 第六章 二维周期系统的调和解
+%  对应原书第六章前五节。
+% ============================================================
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{二维周期系统的调和解}
+
+\newcommand{\chSixFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{2.4cm}图~#1\\（图片占位）\vspace{2.4cm}}}
+  \end{center}%
+}
+
+% ============================================================
+%  §1  预备知识
+% ============================================================
+\section{预备知识}
+
+在非线性振动理论中经常出现如下形式的二阶微分方程
+\[
+  x''+f(t,x,x')x'+g(x)=p(t). \tag{1.1}
+\]
+这里 $x''$ 和 $x'$ 分别表示 $x$ 对 $t$ 的一阶和二阶导数。为了简单起见，以下假定
+$g(x)\in C(\mathbb R,\mathbb R)$，$f(t,x,x')\in C(\mathbb R^3,\mathbb R)$，且
+$p(t)\in C(\mathbb R,\mathbb R)$ 是一个 $A$ 周期函数，即 $p(t+A)=p(t)$，其中
+$A>0$。例如，$p(t)=E\cos\omega t$ 就是一个 $2\pi/\omega$ 周期函数。
+
+当 $p(t)\equiv0$ 时，式~(1.1) 为自治系统；$p(t)$ 不恒为零时，式~(1.1) 为非自治系统。
+本章的基本问题是研究方程~(1.1) 的周期解存在性。将它写成一阶方程组
+\[
+  x'=y,\qquad y'=-f(t,x,y)y-g(x)+p(t), \tag{1.3}
+\]
+或者更一般地写成
+\[
+  x'=f_1(t,x,y),\qquad y'=g_1(t,x,y), \tag{1.4}
+\]
+其中 $f_1,g_1$ 在 $\mathbb R^3$ 连续，且对 $(t,x,y)$ 的第一个变元以 $A$ 为周期：
+\[
+  f_1(t+A,x,y)=f_1(t,x,y),\qquad g_1(t+A,x,y)=g_1(t,x,y).
+\]
+
+对一切 $(x,y)\in\mathbb R^2$，若 $(x(t),y(t))$ 是~(1.4) 的一个 $A$ 周期解，
+则称 $(x(t),y(t))$ 为方程~(1.4) 的一个调和解。设 $A>0$ 为周期系统~(1.4) 的最小周期，
+若对 $t\in\mathbb R$ 有
+\[
+  (x(t),y(t))\ne(x(t+B),y(t+B)),\qquad 0<B<A,
+\]
+则称该解为~(1.4) 的调和解。另一方面，若解的最小周期为 $B>0$，则它也是方程
+~(1.3) 的一个 $B$ 周期解；由此得到的结论仍适用于系统~(1.4)。
+
+一般说来，方程~(1.1) 的调和解不一定是调和解。例如方程
+\[
+  x''-xy=0,\qquad y''+x=(x^2+y^2-1)\sin\sqrt2,
+\]
+是一个 $\sqrt2\pi$ 周期系统；它有一个非调和的 $2\pi$ 周期解
+\[
+  x=\sin t,\qquad y=\cos t.
+\]
+
+现在证明周期解存在性的一般准则。对方程~(1.3)，令初始点为 $(x_0,y_0)$，解记为
+$(x(t),y(t))$。若 $x(t),y(t)$ 在区间 $0\leq t\leq A$ 内存在且唯一，记
+\[
+  x(A)=u(x_0,y_0),\qquad y(A)=v(x_0,y_0). \tag{1.9}
+\]
+由解对初值的连续依赖性，$u,v$ 连续。定义映射
+\[
+  T:(x_0,y_0)\longmapsto\bigl(u(x_0,y_0),v(x_0,y_0)\bigr), \tag{1.10}
+\]
+称为方程~(1.4) 在区间 $[0,A]$ 上的 Poincar\'e 映射。若 $T$ 有不动点，
+即 $T(x_0,y_0)=(x_0,y_0)$，那么以 $(x_0,y_0)$ 为初值的解就是一个 $A$ 周期解。
+
+\begin{theorem}{Brouwer 不动点定理}{ch6-brouwer}
+设 $D\subset\mathbb R^n$ 为有界闭区域，$h:D\to D$ 连续，则 $h$ 至少有一个不动点。
+特别地，若 $D$ 为平面上的一个闭圆盘或凸的有界闭区域，则结论成立。
+\end{theorem}
+
+设 $D$ 是由光滑简单闭曲线围成的平面闭区域，且方程~(1.4) 的解从 $D$ 的边界出发时，
+在 $0\leq t\leq A$ 均存在并且不离开 $D$。此时 Poincar\'e 映射把 $D$ 映入自身，
+于是由 Brouwer 定理立即得到下列结论。
+
+\begin{theorem}{}{ch6-periodic-exist}
+若存在一个有界闭区域 $D$，使方程~(1.4) 的任一解从 $D$ 出发后，在时间区间
+$[0,A]$ 内始终留在 $D$，则方程~(1.4) 至少有一个 $A$ 周期解。
+\end{theorem}
+
+当 $D$ 为矩形时，一个常用的充分条件是：在每一条边界上，系统的向量场均指向矩形
+内部或与边界相切。该条件称为内指向条件。它把周期解的存在问题化为寻找一个不变的
+有界闭区域。
+
+% ============================================================
+%  §2  具有周期性强迫力的常系数线性系统
+% ============================================================
+\section{具有周期性强迫力的常系数线性系统}
+
+为了对周期解存在问题作初步说明，先讨论具有周期性强迫力的常系数线性微分方程
+\[
+  x''+cx'+kx=p(t), \tag{2.1}
+\]
+其中 $c\geq0$，$k>0$ 为常数，$p(t)\in C(\mathbb R,\mathbb R)$ 是 $A$ 周期函数。
+方程~(2.1) 同方程~(1.1) 一样，通常表示某些强迫振动的力学模型。齐次方程为
+\[
+  x''+cx'+kx=0. \tag{2.2}
+\]
+令 $\alpha(t),\beta(t)$ 为~(2.2) 的一组基本解组，取
+\[
+  \alpha(0)=1,\quad \alpha'(0)=0,\quad
+  \beta(0)=0,\quad \beta'(0)=1.
+\]
+则~(2.1) 的解可以写成
+\[
+  x(t)=\alpha(t)x_0+\beta(t)y_0+\int_0^tG(t,s)p(s)\,\mathrm ds, \tag{2.3}
+\]
+其中
+\[
+  G(t,s)=\alpha(t)\beta(s)-\beta(t)\alpha(s). \tag{2.4}
+\]
+为使此解满足周期边界条件
+\[
+  x(0)=x(A),\qquad x'(0)=x'(A), \tag{2.5}
+\]
+初值 $x_0,y_0$ 应满足相应的二元线性方程组。其系数行列式为
+\[
+  \Delta(A)=\begin{vmatrix}
+    \alpha(A)-1&\beta(A)\\
+    \alpha'(A)&\beta'(A)-1
+  \end{vmatrix}. \tag{2.7}
+\]
+
+\begin{theorem}{}{ch6-linear-periodic}
+设 $p(t)$ 是一个 $A$ 周期函数。若 $\Delta(A)\ne0$，则方程~(2.1) 有唯一的
+$A$ 周期解。
+\end{theorem}
+
+当 $c>0$ 时，齐次方程~(2.2) 的两个特征根实部均为负，故其任何非零解均不可能
+为 $A$ 周期函数，于是 $\Delta(A)\ne0$。因此在有阻尼的情形，任一连续 $A$ 周期
+强迫力都产生唯一的 $A$ 周期调和解；并且从任意初值出发的解均趋向该调和解。
+
+若 $c=0$，写 $k=\omega_0^2$，则对于
+\[
+  x''+\omega_0^2x=E\sin\omega t \tag{2.10}
+\]
+必须区别非共振与共振两种情形。若 $\omega\ne\omega_0$，则
+\[
+  x=a\cos\omega_0t+b\sin\omega_0t+
+    \frac{E}{\omega_0^2-\omega^2}\sin\omega t. \tag{2.11}
+\]
+因而系统有无穷多个周期解；若强迫频率和固有频率相同，则一个特解中出现
+$t\cos\omega t$ 或 $t\sin\omega t$ 项，所有解均不再是周期的。这就是共振现象。
+
+% ============================================================
+%  §3  拟线性系统
+% ============================================================
+\section{拟线性系统}
+
+在上一节中通过直接求解研究了线性系统~(2.1) 的调和解。本节讨论接近线性系统的
+拟线性方程
+\[
+  x''+\{c+\varepsilon f(x,x')\}x'+\{k+\varepsilon g(x)\}x=p(t),
+\]
+或写成
+\[
+  x''+cx'+kx=p(t)+\varepsilon F(t,x,x',\varepsilon), \tag{3.1}
+\]
+其中 $\varepsilon$ 是充分小的实数，$F$ 对各变元连续，并且以 $A$ 为周期：
+\[
+  F(t+A,x,y,\varepsilon)=F(t,x,y,\varepsilon).
+\]
+令 $y=x'$，则~(3.1) 等价于
+\[
+  x'=y,\qquad y'=-cx-ky+p(t)+\varepsilon F(t,x,y,\varepsilon). \tag{3.2}
+\]
+
+设 $(x_0(t),y_0(t))$ 是~(3.2) 在 $\varepsilon=0$ 时的一个 $A$ 周期解。若
+\[
+  \lim_{\varepsilon\to0}(x(t,\varepsilon),y(t,\varepsilon))
+  =(x_0(t),y_0(t)) \tag{3.5}
+\]
+在 $0\leq t\leq A$ 上一致成立，则称前者为从 $(x_0,y_0)$ 分岔出来的周期解。
+为了得到这个周期解，令解满足初值
+\[
+  x(0)=x_0,\qquad y(0)=y_0,
+\]
+并记其在 $t=A$ 时的值为 $u(x_0,y_0,\varepsilon)$ 与 $v(x_0,y_0,\varepsilon)$。
+周期条件可写为
+\[
+  \Phi(x_0,y_0,\varepsilon)=u(x_0,y_0,\varepsilon)-x_0=0,
+  \qquad
+  \Psi(x_0,y_0,\varepsilon)=v(x_0,y_0,\varepsilon)-y_0=0. \tag{3.7}
+\]
+
+\begin{theorem}{}{ch6-quasilinear}
+设 $F$ 对 $(x,y)$ 连续可微，且 $F_x,F_y$ 连续。若在 $\varepsilon=0$ 时方程
+~(3.2) 有 $A$ 周期解 $(x_0(t),y_0(t))$，并且
+\[
+  \left.\frac{\partial(\Phi,\Psi)}{\partial(x_0,y_0)}
+  \right|_{(x_0,y_0,0)}\ne0, \tag{3.9}
+\]
+则当 $|\varepsilon|$ 充分小时，方程~(3.2) 有唯一的 $A$ 周期解
+$(x(t,\varepsilon),y(t,\varepsilon))$，且它一致地趋于 $(x_0(t),y_0(t))$。
+\end{theorem}
+
+这个定理是隐函数定理在周期边界条件下的直接应用。条件~(3.9) 表示未扰动系统的
+周期解是非退化的；若该条件不成立，则通常须考察 $\varepsilon$ 的高阶项。
+
+\begin{example}{周期激励的拟线性系统}{ch6-quasilinear-example}
+考虑
+\[
+  x''+x=\varepsilon E_0\sin t+\varepsilon x'. \tag{3.10}
+\]
+当 $\varepsilon=0$ 时，$x=a\cos t+\beta\sin t$。对一周期的积分条件给出
+\[
+  \frac{\partial(\Phi,\Psi)}{\partial(x_0,y_0)}
+  =-\frac{3\pi}{4}
+  \begin{pmatrix}0&1\\1&0\end{pmatrix},
+\]
+故该行列式不为零。由定理可知，当 $\varepsilon$ 充分小时，方程有唯一的
+$2\pi$ 周期解，并且该解随 $\varepsilon\to0$ 连续地趋近未扰动的调和解。
+\end{example}
+
+对于一般系统，若 $F(t,x,y,\varepsilon)$ 对 $(x,y)$ 满足局部 Lipschitz 条件，
+则解对初值和参数连续依赖。由 Gronwall 不等式可估计
+\[
+  \sqrt{\{x(t)-\varphi(t)\}^2+\{y(t)-\varphi'(t)\}^2}
+  \leq C\varepsilon,\qquad 0\leq t\leq t_0, \tag{3.18}
+\]
+其中 $\varphi(t)$ 为未扰动周期解。这一估计给出了上述分岔周期解的一致收敛性。
+
+% ============================================================
+%  §4  平均方法
+% ============================================================
+\section{平均方法}
+
+平均方法是处理非线性微分方程的一种有用的近似方法。它的基本思想是：把较复杂的
+周期系统在一个周期内的效应以平均量表示，从而得到一个较简单的自治近似系统。考虑
+\[
+  \frac{\mathrm dx}{\mathrm dt}=\varepsilon f(t,x,y,\varepsilon),\qquad
+  \frac{\mathrm dy}{\mathrm dt}=\varepsilon g(t,x,y,\varepsilon), \tag{4.1}
+\]
+其中 $f,g$ 关于 $t,x,y,\varepsilon$ 连续，且对 $t$ 以 $A=A(\varepsilon)$ 为周期；
+假定 $A(\varepsilon)$ 在 $\varepsilon\to0$ 时有正的极限。定义平均函数
+\[
+  F(x,y)=\frac1A\int_0^A f(t,x,y,0)\,\mathrm dt,
+  \qquad
+  G(x,y)=\frac1A\int_0^A g(t,x,y,0)\,\mathrm dt. \tag{4.2}
+\]
+于是得到平均方程
+\[
+  \frac{\mathrm dx}{\mathrm dt}=\varepsilon F(x,y),\qquad
+  \frac{\mathrm dy}{\mathrm dt}=\varepsilon G(x,y). \tag{4.3}
+\]
+若 $F(\alpha,\beta)=G(\alpha,\beta)=0$，并且相应 Jacobian 行列式不为零，则
+$(\alpha,\beta)$ 是平均方程的一个非退化奇点。
+
+\begin{theorem}{}{ch6-averaging}
+设 $(\alpha,\beta)$ 是平均方程~(4.3) 的一个非退化奇点，即
+\[
+  F(\alpha,\beta)=G(\alpha,\beta)=0,\qquad
+  \left.\frac{\partial(F,G)}{\partial(x,y)}\right|_{(\alpha,\beta)}\ne0. \tag{4.4}
+\]
+则当 $|\varepsilon|$ 充分小时，系统~(4.1) 有一个 $A$ 周期解
+$(x(t,\varepsilon),y(t,\varepsilon))$，并且
+\[
+  \lim_{\varepsilon\to0}x(t,\varepsilon)=\alpha,\qquad
+  \lim_{\varepsilon\to0}y(t,\varepsilon)=\beta
+\]
+在 $0\leq t\leq A$ 上一致成立。
+\end{theorem}
+
+证明仍可归结为 Poincar\'e 映射。把~(4.1) 在 $[0,A]$ 上积分，周期条件可写成
+\[
+  \Phi(x_0,y_0,\varepsilon)=0,\qquad \Psi(x_0,y_0,\varepsilon)=0,
+\]
+并且
+\[
+  \Phi(x_0,y_0,0)=AF(x_0,y_0),\qquad
+  \Psi(x_0,y_0,0)=AG(x_0,y_0).
+\]
+因此由隐函数定理得到结论。
+
+作为应用，考虑 Duffing 方程
+\[
+  \frac{\mathrm d^2u}{\mathrm dt^2}+\varepsilon\frac{\mathrm du}{\mathrm dt}
+  +u+\varepsilon du^3=\varepsilon B\cos\omega t. \tag{4.10}
+\]
+令
+\[
+  u=r\cos(\omega t-\theta),\qquad
+  \frac{\mathrm du}{\mathrm dt}=-\omega r\sin(\omega t-\theta),
+\]
+则经直接计算并略去高阶小量，得到缓变系统
+\[
+  \begin{cases}
+    r'=\dfrac{\varepsilon}{2\omega}\left(\beta r-\dfrac34dr^3
+        -cr+B\cos\theta\right),\\[5pt]
+    \theta'=\dfrac{\varepsilon}{2\omega r}\left(\alpha r-\dfrac34dr^3
+        -cr+B\sin\theta\right),
+  \end{cases} \tag{4.12}
+\]
+其中参数记号同原方程。消去相位角后，振幅应满足
+\[
+  c^2r^2+\left(\beta-\frac34dr^2\right)^2r^2=B^2. \tag{4.14}
+\]
+这给出了周期解振幅与强迫频率、阻尼和强迫幅值之间的关系。
+
+\chSixFigurePlaceholder{6.1}
+
+当阻尼参数为正时，方程~(4.14) 的曲线对应有阻尼情形的振幅响应；无阻尼情形则可能
+出现多值的振幅分支。平均方程的相图进一步说明了稳定和不稳定调和解的分布。
+
+\chSixFigurePlaceholder{6.2}
+
+% ============================================================
+%  §5  Duffing 方程的小摄动
+% ============================================================
+\section{Duffing方程的小摄动}
+
+在上一节中，我们研究的振幅接近于线性振子固有频率的调和振动。本节进一步讨论
+Duffing 方程的小振动问题。考虑
+\[
+  \frac{\mathrm d^2x}{\mathrm dt^2}+g(x)=\varepsilon\cos\omega t,
+  \qquad \varepsilon>0, \tag{5.1}
+\]
+其中 $g(x)$ 是奇函数。把它写成一阶系统
+\[
+  x'=y,\qquad y'=-g(x)+\varepsilon\cos\omega t. \tag{5.2}
+\]
+为简便起见，设
+\[
+  g(x)=2a_2x+2a_4x^3+\cdots+(2n+2)a_{2n+2}x^{2n+1},
+\]
+其中 $a_2,a_4,\ldots,a_{2n+2}$ 都是正的。相应的无强迫方程
+\[
+  x''+g(x)=0 \tag{5.3}
+\]
+具有第一积分
+\[
+  \frac12y^2+G(x)=u,\qquad G(x)=a_2x^2+a_4x^4+\cdots+a_{2n+2}x^{2n+2}. \tag{5.5}
+\]
+由相平面分析可知，对每一个充分小的能量 $u>0$，无强迫系统有一条围绕原点的闭轨线
+$\Gamma_u$，其所对应的解为周期解。
+
+设 $r>0$ 为常数，令
+\[
+  x=\varphi(t,\xi),\qquad y=\varphi_t(t,\xi), \tag{5.6}
+\]
+表示无强迫系统满足 $x(0)=\xi$、$y(0)=0$ 的解。其最小周期 $r(\xi)>0$ 可写为
+\[
+  r(\xi)=4\int_0^\xi\frac{\mathrm dx}{\sqrt{2\{G(\xi)-G(x)\}}}. \tag{5.7}
+\]
+令 $x=\xi\sin\theta$，则
+\[
+  r(\xi)=\frac4{\sqrt2}\int_0^{\pi/2}
+  \frac{\mathrm d\theta}{\sqrt{H(\sin\theta;\xi)}},
+\]
+其中
+\[
+  H(\sin\theta;\xi)=a_2+a_4(1+\sin^2\theta)\xi^2+\cdots
+  +a_{2n+2}(1+\sin^2\theta+\cdots+\sin^{2n}\theta)\xi^{2n}.
+\]
+因而 $r(\xi)$ 随 $\xi$ 单调下降，且
+\[
+  \lim_{\xi\to0}r(\xi)=\frac{2\pi}{\sqrt{2a_2}}.
+\]
+
+\begin{theorem}{}{ch6-duffing-small}
+设 $r_0=2\pi/\sqrt{2a_2}<T_0$，并设存在 $\xi_0>0$ 使 $r(\xi_0)=T_0$。
+则当 $\varepsilon$ 充分小时，方程~(5.1) 有一个 $T_0$ 周期解。
+\end{theorem}
+
+为说明定理的证明，取无强迫周期解 $\varphi(t,\xi_0)$，并把强迫系统的解写作
+\[
+  x=\varphi(t,\xi,\varepsilon),\qquad
+  y=\psi(t,\xi,\varepsilon).
+\]
+在 $\varepsilon=0$ 时有
+\[
+  \varphi\left(\frac{r_0}{4},\xi_0,0\right)=0,\qquad
+  \psi\left(\frac{r_0}{4},\xi_0,0\right)=-\sqrt{2G(\xi_0)}. \tag{5.8}
+\]
+由周期解的对称性与解对参数的连续依赖性，可构造 Poincar\'e 映射
+\[
+  T(\xi,\varepsilon)=r\bigl(\xi,\varepsilon\bigr),
+\]
+并把周期条件化为一个连续方程。由于 $r(\xi)$ 严格单调，映射在适当小区间内满足
+内指向条件；由中值定理或 Brouwer 不动点定理，存在 $\xi^*$ 使
+\[
+  T(\xi^*,\varepsilon)=\xi^*.
+\]
+所对应的解满足
+\[
+  x(t+T_0,\xi^*,\varepsilon)=x(t,\xi^*,\varepsilon),\qquad
+  y(t+T_0,\xi^*,\varepsilon)=y(t,\xi^*,\varepsilon), \tag{5.15}
+\]
+即为方程~(5.1) 的小振幅调和解。
+
+\chSixFigurePlaceholder{6.3}
+
+% ============================================================
+%  §6  高频强迫振动的小振幅调和解
+% ============================================================
+\section{高频强迫振动的小振幅调和解}
+
+在第 4 节中我们从频率反应曲线研究了方程~(4.10) 当强迫频率 $\omega\to+\infty$ 时
+所对应的振幅趋于零的调和解。现在用不同的方法严格地证明上述结论。考虑拟线性方程
+\[
+  x''+cx'+kx=f(x,x')+E\sin\omega t, \tag{6.1}
+\]
+其中常数 $c>0$、$k>0$ 和 $E>0$；设函数 $f(x,y)$ 在 $x=y=0$ 的充分小邻域内连续，
+并且
+\[
+  f(0,0)=f_x(0,0)=f_y(0,0)=0. \tag{6.2}
+\]
+
+\begin{theorem}{}{ch6-high-frequency-small}
+当强迫频率 $\omega$ 充分大时，方程~(6.1) 有连续依赖于 $\omega$ 的调和解
+$x=x(t,\omega)$，而且
+\[
+  |x(t,\omega)|\leq\frac{M_0}{\omega^2},\qquad
+  |x'(t,\omega)|\leq\frac{M_0}{\omega}, \tag{6.3}
+\]
+其中 $M_0$ 与 $\omega$ 无关。
+\end{theorem}
+
+令
+\[
+  u=\omega t,\qquad v=\omega x,\qquad \varepsilon=\frac1\omega,
+\]
+则方程~(6.1) 可化为一个以 $2\pi$ 为周期的含小参数系统。将其写为
+\[
+  \frac{\mathrm du}{\mathrm ds}=\varepsilon v,\qquad
+  \frac{\mathrm dv}{\mathrm ds}=-\varepsilon ku-\varepsilon cv+\varepsilon F(\varepsilon,u,v)
+     +E\sin s, \tag{6.5}
+\]
+其中 $F$ 从 $f$ 诱导而来。为了研究周期解，取方程组
+\[
+  \frac{\mathrm du}{\mathrm ds}=u_1,\qquad
+  \frac{\mathrm dv}{\mathrm ds}=v_1, \tag{6.6}
+\]
+的解在 $s=0$ 与 $s=2\pi$ 的对应。由解对初值和参数的连续可微性，Poincar\'e 映射的
+两个分量在 $(0,0,0)$ 邻域内有展开式
+\[
+  u_1(2\pi,\varepsilon)=u_0-\frac{kc^2}{2}\varepsilon^2+\cdots,
+  \qquad
+  v_1(2\pi,\varepsilon)=v_0-\pi k\varepsilon+\cdots . \tag{6.10}
+\]
+其不动点方程的 Jacobian 在 $\varepsilon=0$ 附近非退化，故由隐函数定理存在唯一的
+小不动点。再还原变量即得到~(6.3)。
+
+% ============================================================
+%  §7  高频强迫振动的大振幅调和解
+% ============================================================
+\section{高频强迫振动的大振幅调和解}
+
+上一节讨论了高频强迫振动下的小振幅调和解。本节说明：在适当条件下，高频强迫振动
+还可有振幅不趋于零的大振幅调和解。考虑
+\[
+  x''+f(x)x'+g(x)=p(\omega t), \tag{7.1}
+\]
+其中 $p$ 是连续的 $2\pi$ 周期函数，并假设
+\[
+  g(x)=b_1x+b_2x^3+\cdots+b_{2m+1}x^{2m+1},\qquad b_{2m+1}>0, \tag{7.2}
+\]
+且 $f(x)$ 为多项式。令 $\varepsilon=1/\omega$ 并作适当伸缩，可把问题化为研究
+一个以 $2\pi$ 为周期的扰动系统。
+
+为得到较大的周期解，先考察无扰动系统的闭轨线。令其能量曲线为
+\[
+  \frac12y^2+G(x)=r,
+\]
+其中 $G'(x)=g(x)$。以 $\rho$ 表示闭轨线的参数，以 $\theta$ 表示其相位，建立
+Poincar\'e 映射。周期条件归结为
+\[
+  \Phi(\rho,\theta,\varepsilon)=0,\qquad
+  \Psi(\rho,\theta,\varepsilon)=0. \tag{7.5}
+\]
+在未扰动情形，这两个方程分别给出能量增量和相位增量的平均值。
+
+\begin{lemma}{}{ch6-large-lemma}
+设 $r>0$，令 $T(r)$ 为无扰动闭轨线的最小周期。则 $T(r)$ 对 $r$ 连续；在适当的
+能量区间内，Poincar\'e 映射关于 $\rho$ 的分量在内、外边界上取相反符号。
+\end{lemma}
+
+\chSixFigurePlaceholder{6.4}
+
+图~6.4 表示用两条相邻能量曲线围成的环域。由映射在其边界上的指向性及第 1 节的
+不动点定理，可得以下结论。
+
+\begin{theorem}{}{ch6-high-frequency-large}
+在上述假定下，当 $\omega$ 充分大时，方程~(7.1) 至少有一个大振幅调和解。该解在
+一个固定的有界环域内，而它的振幅不随 $\omega\to+\infty$ 而趋于零。
+\end{theorem}
+
+进一步地，若闭轨线的周期函数满足相应的单调性条件，Poincar\'e 映射在两个嵌套环域
+上均有不动点，从而可以得到两个不同的调和解。对偶周期的情形，利用
+\[
+  x(t+\pi)=-x(t),\qquad y(t+\pi)=-y(t)
+\]
+的对称性，可把 $2\pi$ 周期解的存在问题化为半周期映射的不动点问题。
+
+% ============================================================
+%  §8  耗散系统
+% ============================================================
+\section{耗散系统}
+
+设二阶微分方程
+\[
+  x''+f(x,x')x'+g(x)=p(t), \tag{8.1}
+\]
+或等价的一阶系统
+\[
+  x'=y,\qquad y'=-g(x)-f(x,y)y+p(t). \tag{8.2}
+\]
+其中函数 $f,g,p$ 连续，$p(t)$ 为 $2\pi$ 周期函数。若在相平面上存在一个有界的不变
+吸收区域，使所有充分大的初值轨线在有限时间后进入该区域，则称系统~(8.2) 为耗散的。
+
+为叙述一个判别条件，假定存在常数 $a,b,M>0$，使得当 $|x|\geq a$ 或 $|y|\geq b$ 时，
+\[
+  f(x,y)\geq M,\qquad g(x)x>0,
+\]
+并且 $g(x)$ 在正、负半轴上有相应的单调性。令
+\[
+  G(x)=\int_0^xg(s)\,\mathrm ds,
+  \qquad V(x,y)=\frac12y^2+G(x).
+\]
+沿系统~(8.2) 的解有
+\[
+  \frac{\mathrm dV}{\mathrm dt}=-f(x,y)y^2+p(t)y. \tag{8.3}
+\]
+在充分大的椭圆型曲线外部，右端为负，从而轨线穿过该曲线时指向内部。
+
+\begin{theorem}{}{ch6-dissipative-exist}
+若 $f,g,p$ 满足上述耗散条件，则方程~(8.1) 至少有一个 $2\pi$ 周期解。
+\end{theorem}
+
+证明中选取由 $V(x,y)=R$ 给出的充分大闭曲线 $\Gamma$。由~(8.3) 可知，系统的
+向量场在 $\Gamma$ 上内指向，故 $\Gamma$ 所围区域在一个周期的 Poincar\'e 映射下
+映入自身。由 Brouwer 定理，映射有不动点。
+
+\chSixFigurePlaceholder{6.5}
+
+图~6.5 给出了构造吸收区域时所用的几条辅助曲线。通过在曲线 $x=\pm a$、
+$y=\pm b$ 及能量曲线的不同弧段上比较斜率，可以得到一条由有限段组成的简单闭曲线；
+在每一段上向量场都指向其内部。由此不仅得到周期解存在性，而且证明任一解最终进入
+这个区域。
+
+\begin{theorem}{}{ch6-dissipative-compact}
+在耗散条件下，存在有界闭区域 $D$，使任一解在充分长的时间后均进入 $D$，且以后
+永不离开 $D$。因此系统的 Poincar\'e 映射在 $D$ 上有紧的不变集。
+\end{theorem}
+
+若进一步假设 $f,g$ 对变量满足局部 Lipschitz 条件，则该不变集中的解对初值连续依赖。
+对周期强迫的 van der Pol 方程
+\[
+  x''+\mu(x^2-1)x'+x=p(t),\qquad p(t+2\pi)=p(t),
+\]
+上述定理立即保证至少存在一个 $2\pi$ 周期解。
+
+% ============================================================
+%  §9  无阻尼的 Duffing 型方程
+% ============================================================
+\section{无阻尼的Duffing型方程}
+
+本节研究无阻尼 Duffing 型方程
+\[
+  x''+g(x)=p(t), \tag{9.1}
+\]
+其中 $g\in C^1(\mathbb R,\mathbb R)$，$p\in C(\mathbb R,\mathbb R)$ 且
+$p(t+2\pi)=p(t)$。由于方程中不含阻尼项，Brouwer 不动点定理所给出的周期解
+存在性一般不能直接应用；本节给出基于比较原理和 Poincar\'e--Birkhoff 扭转定理的
+结果。
+
+设 $g$ 满足 Loud 条件
+\[
+  n^2\leq g'(x)\leq(n+1)^2,\qquad n=0,1,2,\ldots . \tag{9.2}
+\]
+把方程~(9.1) 写为
+\[
+  x'=y,\qquad y'=-g(x)+p(t). \tag{9.3}
+\]
+令 $x(t,\xi,\eta)$、$y(t,\xi,\eta)$ 为满足
+\[
+  x(0)=\xi,\qquad y(0)=\eta \tag{9.4}
+\]
+的解。由 $g'(x)>0$ 及比较定理，在充分大的圆盘外，解的角变量单调变化。特别地，
+存在 $R>0$，使得由 $\xi^2+\eta^2=R^2$ 出发的轨线在一周期内的旋转数有严格界。
+
+\begin{lemma}{}{ch6-loud-comparison}
+若 $u$ 是 $u''+n^2u=0$ 与 $u''+(n+1)^2u=0$ 的比较解，则满足~(9.2) 的系统解的
+零点在这两类比较解的相邻零点之间。因而其在时间 $2\pi$ 内的旋转数被 $n$ 与 $n+1$
+所界定。
+\end{lemma}
+
+由此可在相平面上取两个足够大的同心圆 $C_1,C_2$，使 Poincar\'e 映射在它们之间的
+闭环域上满足相反的扭转条件。Poincar\'e--Birkhoff 扭转定理遂给出周期点。
+
+\begin{theorem}{}{ch6-loud-periodic}
+若 $g$ 满足 Loud 条件~(9.2)，则方程~(9.1) 至少有一个 $2\pi$ 周期解。
+\end{theorem}
+
+在边界情形，若 $g'(x)$ 可取端点 $n^2$ 或 $(n+1)^2$，则需要附加非退化条件。
+例如，若
+\[
+  \sup_{x\in\mathbb R}\frac{g(x)}x<n^2\quad\text{或}\quad
+  \inf_{x\in\mathbb R}\frac{g(x)}x>(n+1)^2,
+\]
+则相同的比较论证仍给出扭转。特别地，若 $g$ 是奇函数且满足相应增长条件，
+方程~(9.1) 还可具有由对称性产生的多个 $2\pi$ 周期解。
+
+% ============================================================
+%  习题和参考文献
+% ============================================================
+\section*{习题和参考文献}
+\subsection*{习题}
+
+\begin{enumerate}
+  \item 试证明定理 1.1 和定理 1.2。
+  \item 设方程~(1.1) 是 $A$ 周期的，$x=x(t)$ 是它的一个解。证明 $x=x(t)$ 为
+  $A$ 周期解当且仅当 $x(0)=x(A)$ 和 $x'(0)=x'(A)$。
+  \item 已知
+  \[
+    x=\left(\cos\frac t3\right)^3
+  \]
+  是方程
+  \[
+    x''+\frac13x=\frac13\sin\frac t3\sin\frac{2t}{3}
+  \]
+  的一个 $6\pi$ 周期解。试作它在相平面 $(x,x')$ 上的轨线图，并说明时间增加的方向、
+  解的存在性和唯一性。
+  \item 导出方程~(2.10) 和~(2.11) 有无穷多个调和解的充要条件。
+  \item 证明方程~(2.1) 存在调和解的充分条件为它有一个正向有界解。
+  \item 把第 2 节的理论推广到一般线性常微分方程组
+  \[
+    \frac{\mathrm dx}{\mathrm dt}=Ax+f(t),
+  \]
+  其中 $x$ 是 $n$ 维向量，$A$ 是 $n\times n$ 实常数矩阵，$f(t)$ 是 $2\pi$ 周期向量值函数。
+  \item 设方程~(3.10) 的 $2\pi$ 周期解为
+  \[
+    x(t,\varepsilon)=x_0(t)+\varepsilon x_1(t)+\varepsilon^2x_2(t)+\cdots,
+  \]
+  其中各 $x_j(t)$ 均为 $2\pi$ 周期函数。确定 $x_0(t)$ 和 $x_1(t)$，并写出一次近似解。
+  \item 试讨论方程
+  \[
+    x''+x=E\sin\omega t+\varepsilon x^3
+  \]
+  的调和解，其中 $E>0$、$\omega>0$ 为常数，$\varepsilon$ 是小参数。
+  \item 证明 $G(t,\xi)=v(t-\xi)$。
+  \item 作方程~(4.10) 当 $d_1=0$ 时的频率反应曲线图。
+  \item 作软弹簧阻尼振动的频率反应曲线图。
+  \item 在定理 4.1 中设 Jacobi 矩阵 $J_0$ 的特征根实部为负。试证调和解~(4.4)
+  具有类似于~(3.11) 的渐近性质。
+  \item 证明方程
+  \[
+    x''+x+x^3=\varepsilon\cos2t
+  \]
+  当 $\varepsilon$ 充分小时有 $\pi$ 周期解；并考察它的次调和解。
+  \item 如果把方程~(5.1) 的右端换成 $\varepsilon\sin\omega t$，证明定理 5.1 的结论
+  仍然成立。
+  \item 证明方程
+  \[
+    x''+x^3=\varepsilon\cos\omega t
+  \]
+  当 $\varepsilon$ 充分小时有 $2\pi/\omega$ 周期解。
+  \item 利用定理 6.1 的结果证明方程~(4.10) 当 $\omega\to+\infty$ 时有振幅趋于零的
+  调和解。
+  \item 设 $p(\tau)$ 是连续的 $2\pi$ 周期函数，且
+  \[
+    \int_0^{2\pi}p(\tau)\,\mathrm d\tau=0.
+  \]
+  试证方程
+  \[
+    x''+cx'+kx=f(x,x')+p(\omega t)
+  \]
+  当 $\omega\to+\infty$ 时有振幅趋于零的调和解（对 $c,k,f$ 的假设同定理 6.1）。
+  \item 证明硬弹簧无阻尼的高频强迫振动方程~(4.10) 至少有两个不同的大振幅调和解。
+  \item 证明定理 7.2（以及相应的引理）。
+  \item 证明
+  \[
+    x''+cx'+kx+\alpha x^3=E\sin t
+  \]
+  是一个耗散系统，其中常数 $c>0$、$k>0$，又常数 $\alpha\geq0$ 和 $E\geq0$。
+  \item 证明 van der Pol 方程
+  \[
+    x''+\mu(x^2-1)x'+x=p(t),\qquad p(t+2\pi)=p(t),
+  \]
+  至少有一个 $2\pi$ 周期解。
+  \item 试证明本章最后一节的引理 3。提示：作~(9.16) 的比较方程
+  \[
+    u''+n^2u=0,qquad u''+(n+1)^2u=0.
+  \]
+  \item 证明 Duffing 方程
+  \[
+    x''+x-\tan^{-1}x=4\cos t
+  \]
+  没有 $2\pi$ 周期解。提示：利用反证法。
+\end{enumerate}
+
+\subsection*{本章参考文献}
+\begin{enumerate}
+  \item Hale, J.~K., \textit{Ordinary Differential Equations}, 1969; 2nd ed.,
+  Huntington, Krieger, 1980（《常微分方程》，人民教育出版社，1980）.
+  \item S.~莱夫谢茨，\textit{微分方程几何理论}，上海科学技术出版社，1965。
+  \item Sansone, G. and Conti, R., \textit{Nonlinear Differential Equations},
+  Pergamon Press, 1964（G.~桑森、R.~康蒂，\textit{非线性微分方程}，科学出版社，1983）。
+  \item Ding Tong-ren（丁同仁）, Some fixed point theorems and periodically perturbed
+  non-dissipative systems, \textit{Chin. Ann. of Math.}, 2 (English Issue) (1981), 93--103.
+  \item Ding Tong-ren（丁同仁）, Existence of forced periodic solutions of high frequency
+  with small or large amplitude, \textit{Chin. Ann. of Math.}, 2 (English Issue) (1981), 93--103.
+  \item 丁同仁，在共振点的非线性振动，\textit{中国科学 A 辑}，1 (1982)，1--13。
+  \item 丁伟岳，Poincar\'e--Birkhoff 扭转定理的推广及其在微分方程中的应用，
+  \textit{数学学报}，25 (1981)，2。
+  \item 王铮，周期扰动的非保守系统的 $2\pi$ 周期解，\textit{数学学报}，26 (1983)，3，241--353。
+  \item Leach, D.~E., On Poincar\'e's perturbation theorem and a theorem of W.~S.~Loud,
+  \textit{J. Differential Equations}, 7 (1970), 34--53.
+  \item Ding Tong-ren（丁同仁）, An infinite class of periodic solutions of periodically
+  perturbed Duffing equations at resonance, \textit{Proc. A.M.S.}, 86 (1982), 1。
+  \item 丁同仁，在共振点的无界振动（待发表）。
+  \item Ding Weiyue（丁伟岳）, A generalization of the Poincar\'e--Birkhoff theorem,
+  \textit{Proc. A.M.S.}（待发表）。
+  \item 丁伟岳，一类 Duffing 方程的共振问题（待发表）。
+\end{enumerate}
+
+\endinput

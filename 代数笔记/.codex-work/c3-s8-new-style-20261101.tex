@@ -1,0 +1,153 @@
+\section{多项式函数}
+
+\begin{definition}
+设$F$为域。每个映射$f:F\to F$称为$F$上的一个函数，全体函数组成的集合记为$F^F$。对$f,g\in F^F$定义
+\[
+(f+g)(a)=f(a)+g(a),\qquad(fg)(a)=f(a)g(a)\quad(a\in F).
+\]
+对$c\in F$，常函数$f_c$定义为$f_c(a)=c$；自变量函数$s$定义为$s(a)=a$。
+\end{definition}
+\begin{proof}[验证]
+函数相等当且仅当在每一点的值都相等。因此逐点应用$F$中的运算律，即可得到函数的运算律。例如
+\begin{align*}
+((f+g)+h)(a)&=(f(a)+g(a))+h(a)\\
+&=f(a)+(g(a)+h(a))=(f+(g+h))(a),\\
+((fg)h)(a)&=(f(a)g(a))h(a)=f(a)(g(a)h(a))=(f(gh))(a),\\
+(f(g+h))(a)&=f(a)(g(a)+h(a))=(fg+fh)(a).
+\end{align*}
+加法与乘法也可交换。零函数$f_0$为零元，$f_1$为单位元，负元逐点取负，故$F^F$为交换幺环。
+
+由$f_c+f_d=f_{c+d}$、$f_cf_d=f_{cd}$，映射$c\mapsto f_c$是环同态。不同常数给出不同函数，所以它为单射。将$c$与$f_c$等同后，$F$成为$F^F$的常函数子域。
+\end{proof}
+
+\begin{definition}
+函数$s$在常函数子域$F$上生成的子环$F[s]$称为$F$上的\textbf{多项式函数环}。其元素形如
+\[
+a_0+a_1s+\cdots+a_ns^n,\qquad a_i\in F,
+\]
+称为多项式函数，在$c\in F$处的值为$a_0+a_1c+\cdots+a_nc^n$。
+\end{definition}
+
+取代入同态
+\[
+\sigma:F[x]\to F[s],\qquad f(x)\mapsto f(s),
+\]
+并令$I=\ker\sigma$。由上一节的同态定理，
+\[
+F[x]/I\cong F[s],\qquad I\cap F=(0).
+\]
+这里$f\in I$表示$f(s)$为零函数，即$f(a)=0$对每个$a\in F$成立。
+
+\begin{theorem}\label{p2:poly-functions-one}
+设$F$为域，$s\in F^F$为自变量函数，则：
+\begin{enumerate}
+\item 若$F$为无限域，则$I=(0)$，$F[s]\cong F[x]$，且$s$在$F$上超越。
+\item 若$F$为$q$元有限域，则
+\[
+I=(x^q-x),\qquad F[s]\cong F[x]/(x^q-x).
+\]
+此时$s$在$F$上代数，其极小多项式为$x^q-x$；而且$F^F=F[s]$，即每个函数都是多项式函数，并有唯一的次数小于$q$的多项式代表元。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 设$f\in I$，则$f(s)$是零函数，所以$f(a)=0$对每个$a\in F$成立。若$f\ne0$，其根的个数至多为$\deg f$，而$F$有无限多个元素，矛盾。故$f=0$，$I=(0)$，从而$F[s]\cong F[x]$，$s$在$F$上超越。
+
+\item 令
+\[
+g(x)=\prod_{a\in F}(x-a).
+\]
+它是首一$q$次多项式，恰有$F$的全部$q$个元素为根。由有限域的乘法群结论，每个$a\in F$均满足$a^q-a=0$。依次应用因式定理，$g(x)\mid x^q-x$；因两者同为首一$q$次多项式，故
+\[
+g(x)=x^q-x.
+\]
+这里依次取出各因子是可行的：若已取出$(x-a)$，对另一个根$b\ne a$，代入后$(b-a)$非零，故剩余因子仍以$b$为根。
+
+若$f\in I$，则$F$的全部元素都是$f$的根，按同样的因式分解过程，$g\mid f$。所以$I\subseteq(g)$。反过来，$g(s)$为零函数，故$(g)\subseteq I$。于是
+\[
+I=(g)=(x^q-x).
+\]
+由极小多项式的定义，$s$的极小多项式为$x^q-x$。
+
+由带余除法，每个模$I$的类都有唯一的代表元
+\[
+a_0+a_1x+\cdots+a_{q-1}x^{q-1},\qquad a_i\in F.
+\]
+这样的多项式共有$q^q$个，不同的代表元给出不同的函数，否则其差属于$I$且次数小于$q$，只能为零。因此$F[s]$有$q^q$个元素。$F^F$也有$q^q$个元素，且$F[s]\subseteq F^F$，所以$F[s]=F^F$。
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+设$S=F^n$，从$S$到$F$的全部函数按逐点运算构成函数环$F^S$。对$1\le i\le n$，定义自变量函数
+\[
+s_i(a_1,\ldots,a_n)=a_i.
+\]
+它们与常函数子域$F$生成的子环$F[s_1,\ldots,s_n]$称为\textbf{多元多项式函数环}。其元素形如
+\[
+f(s_1,\ldots,s_n)=\sum_{i_1,\ldots,i_n}a_{i_1\ldots i_n}s_1^{i_1}\cdots s_n^{i_n},
+\]
+在$(b_1,\ldots,b_n)$处的值为$\sum a_{i_1\ldots i_n}b_1^{i_1}\cdots b_n^{i_n}$。
+\end{definition}
+
+将包含映射$F\hookrightarrow F^S$扩充，令$x_i\mapsto s_i$，得到代入同态$\sigma$。记其核为$I$，则
+\[
+F[x_1,\ldots,x_n]/I\cong F[s_1,\ldots,s_n],\qquad I\cap F=(0).
+\]
+
+\begin{theorem}\label{p2:poly-functions-many}
+设$F$为域，$s_1,\ldots,s_n$为上述自变量函数，则：
+\begin{enumerate}
+\item 若$F$为无限域，则$I=(0)$，且
+\[
+F[s_1,\ldots,s_n]\cong F[x_1,\ldots,x_n].
+\]
+因此$s_1,\ldots,s_n$在$F$上代数无关。
+\item 若$F$为$q$元有限域，则
+\[
+I=(x_1^q-x_1,\ldots,x_n^q-x_n),
+\]
+且$F^{F^n}=F[s_1,\ldots,s_n]$。每个函数有唯一的多项式代表元，使每个变量的次数均小于$q$。
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 对变量个数$n$归纳。$n=1$即上一定理的第一条。设结论对$n-1$成立，并取$f\in I$。将$f$表示成
+\[
+f(x_1,\ldots,x_n)=\sum_{j=0}^m f_j(x_1,\ldots,x_{n-1})x_n^j.
+\]
+于是对每个$(a_1,\ldots,a_n)\in F^n$，
+\[
+\sum_{j=0}^m f_j(a_1,\ldots,a_{n-1})a_n^j=0.
+\]
+固定$a_1,\ldots,a_{n-1}$，使$a_n$取遍无限域$F$，所得一元多项式有无限多个根，故为零多项式。因此
+\[
+f_j(a_1,\ldots,a_{n-1})=0\qquad(0\le j\le m).
+\]
+这些等式对全部$(a_1,\ldots,a_{n-1})$成立。由归纳假设，各$f_j$均为零多项式，故$f=0$。所以$I=(0)$，得到所述同构及代数无关性。
+
+\item 记$I'=(x_1^q-x_1,\ldots,x_n^q-x_n)$。每个生成元在$F^n$上恒为零，所以$I'\subseteq I$。为证明反向包含，先对任意$f$构造分解
+\[
+f=\sum_{i=1}^n q_i(x_1,\ldots,x_n)(x_i^q-x_i)+r,
+\]
+使$r$对每个变量的次数均小于$q$。
+
+只须对单项式分别降次。若$e\ge q$，则
+\[
+x_i^e-x_i^{e-q+1}=x_i^{e-q}(x_i^q-x_i)\in I'.
+\]
+所以模$I'$可把指数$e$降低$q-1$。反复进行，便得到小于$q$的非负整数指数。逐一处理各变量，再对有限个单项式相加，即得到上述分解。
+
+再证：若$r$对每个变量的次数均小于$q$，且在$F^n$上恒为零，则$r=0$。对$n$归纳，$n=1$时由根数定理成立。对$n>1$，写成
+\[
+r=\sum_{j=0}^{q-1}r_j(x_1,\ldots,x_{n-1})x_n^j.
+\]
+固定前$n-1$个坐标后，右侧关于$x_n$的多项式次数小于$q$，却有$q$个根，只能为零。因此每个$r_j$在$F^{n-1}$上恒为零；它们对其余变量的次数仍小于$q$，由归纳假设，各$r_j=0$，故$r=0$。
+
+现在若$f\in I$，分解式中左侧和右侧第一项都给出零函数，所以$r$也给出零函数，故$r=0$。于是$f\in I'$，得到$I=I'$。两个降次后的代表元若表示同一函数，其差是同类的零函数，只能为零，所以代表元唯一。
+
+指数都小于$q$的单项式共有$q^n$个，各系数有$q$种选择，因此商环有$q^{q^n}$个元素。从含$q^n$个点的$F^n$到$F$的函数也有$q^{q^n}$个，所以
+\[
+F[s_1,\ldots,s_n]=F^{F^n}.
+\]
+\end{enumerate}
+\end{proof}

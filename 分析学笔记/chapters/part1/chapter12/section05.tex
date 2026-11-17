@@ -1,0 +1,587 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.5 Taylor级数展开
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{Taylor级数展开}
+
+这一节讨论一个函数何时可以展开成以 $x_0$ 为中心的幂级数.设在 $x_0$ 的某个邻域内有
+\[
+\left|x-x_0\right|<\rho,
+\]
+并且
+\[
+f(x)=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)^n+\cdots .\tag{*}
+\]
+
+$f(x)$能够展开成(*)形式的必要条件：
+\begin{enumerate}
+	\item $f\in C^\infty(x_0-\rho,x_0+\rho)$，且系数只能取
+	\[
+	a_n=\frac{f^{(n)}(x_0)}{n!};
+	\]
+	注意, $f\in C^\infty(x_0-\rho,x_0+\rho)$只是能展开成幂级数的必要条件,不能保证函数一定能展开成幂级数.
+	
+	由$a_n=\dfrac{f^{(n)}(x_0)}{n!}$我们成这一种展开为Taylor级数
+	\item 所得 Taylor 级数收敛;
+	\item 其和函数确为 $f(x)$.
+\end{enumerate}
+\begin{example}
+	设
+	\[
+	f(x)=
+	\begin{cases}
+		e^{-\frac{1}{x^2}},&x\neq0,\\[6pt]
+		0,&x=0.
+	\end{cases}
+	\]
+\end{example}
+
+\begin{solution}
+	当 $x\neq0$ 时,
+	\[
+	f'(x)=\frac{2}{x^3}e^{-\frac{1}{x^2}},
+	\]
+	\[
+	f''(x)=\left(\frac{4}{x^6}-\frac{6}{x^4}\right)e^{-\frac{1}{x^2}},
+	\]
+	\[
+	\cdots\cdots
+	\]
+	\[
+	f^{(n)}(x)=P_{3n}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}},
+	\]
+	\[
+	\cdots\cdots
+	\]
+	其中 $P_m(u)$ 是关于 $u$ 的 $m$ 次多项式.事实上,若
+	\[
+	f^{(n)}(x)=P_{3n}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}},
+	\]
+	则求导后仍可写为
+	\[
+	f^{(n+1)}(x)=P_{3n+3}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}},
+	\]
+	于是上式由归纳得到.
+	
+	由此可以依次得到
+	\[
+	\begin{aligned}
+		f'(0)
+		&=\lim_{x\to0}\frac{f(x)-f(0)}{x}
+		=\lim_{x\to0}\frac{1}{x}e^{-\frac{1}{x^2}}
+		=0,\\[6pt]
+		f''(0)
+		&=\lim_{x\to0}\frac{f'(x)-f'(0)}{x}
+		=\lim_{x\to0}\frac{2}{x^4}e^{-\frac{1}{x^2}}
+		=0,
+	\end{aligned}
+	\]
+	\[
+	\cdots\cdots
+	\]
+	并且一般地,
+	\[
+	\begin{aligned}
+		f^{(n)}(0)
+		&=\lim_{x\to0}\frac{f^{(n-1)}(x)-f^{(n-1)}(0)}{x}\\
+		&=\lim_{x\to0}P_{3n-2}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}}
+		=0.
+	\end{aligned}
+	\]
+	这里用到的是:任意多项式增长都被 $e^{\dfrac{1}{x^2}}$ 压过,故
+	\[
+	\lim_{x\to0}P\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}}=0.
+	\]
+	
+	因此 $f(x)$ 在 $x=0$ 的 Taylor 级数为
+	\[
+	0+0x+\frac{0}{2!}x^2+\frac{0}{3!}x^3+\cdots+\frac{0}{n!}x^n+\cdots,
+	\]
+	它在 $(-\infty,+\infty)$ 上收敛于和函数
+	\[
+	S(x)=0.
+	\]
+	显然,当 $x\neq0$ 时,
+	\[
+	S(x)\neq f(x).
+	\]
+	这说明,一个任意阶可导的函数的 Taylor 级数并非一定能收敛于函数本身.
+\end{solution}
+
+\begin{definition}
+	若一个函数在某邻域内等于其 Taylor 级数且满足上述的1,2,3条,则称其在该邻域内为解析函数,记为 $f\in C^\omega$.
+\end{definition}
+
+
+由上面的必要条件,若 $f$ 可以展开为幂级数,则其部分和函数必为
+\[
+S_n(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n.
+\]
+这称为 Taylor 展开式的不带余项形式.于是
+\[
+f(x)=S_n(x)+r_n(x),
+\]
+其中 $r_n(x)$ 称为余项.若在 $\left|x-x_0\right|<\rho$ 内有
+\[
+r_n(x)\to0,
+\]
+则 $f(x)$ 等于其 Taylor 级数.
+\begin{proposition}
+	(Taylor 公式的积分余项)
+	若 $f\in C^{n+1}(x_0-\rho,x_0+\rho)$,则
+	\[
+	f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+r_n(x),
+	\]
+	其中
+	\[
+	r_n(x)=\frac{1}{n!}\int_{x_0}^{x}f^{(n+1)}(t)(x-t)^n\dd t.
+	\]
+\end{proposition}
+
+\begin{proof}
+	令
+	\[
+	r_n(x)=f(x)-S_n(x).
+	\]
+	则
+	\[
+	r_n(x_0)=r_n'(x_0)=\cdots=r_n^{(n)}(x_0)=0,
+	\]
+	且
+	\[
+	r_n^{(n+1)}(x)=f^{(n+1)}(x).
+	\]
+	由微积分基本公式及分部积分,
+	\[
+	\begin{aligned}
+		r_n(x)
+		&=r_n(x_0)+\int_{x_0}^{x}r_n'(t)\dd t = \int_{x_0}^{x}r_n'(t)\dd t   =  \int_{x_0}^{x}r_n'(t)\dd (t-x)  \\
+		&=r'_n(x_0)(t-x)|_{x_0}^{x} -\int_{x_0}^{x}r_n''(t)(t-x)\dd t=\int_{x_0}^{x}r_n''(t)(x-t)\dd t                                  \\
+		&=\frac{1}{2!}\int_{x_0}^{x}r_n''(t)\dd (x-t)^2  =\frac{1}{2!}\int_{x_0}^{x}r_n^{(3)}(t)(x-t)^2\dd t                 \\
+		&=\cdots \\
+		&=\frac{1}{n!}\int_{x_0}^{x}r_n^{(n+1)}(t)(x-t)^n\dd t=\frac{1}{n!}\int_{x_0}^{x}f^{(n+1)}(t)(x-t)^n\dd t.
+	\end{aligned}
+	\]
+\end{proof}
+
+(Lagrange余项)
+	在上面的条件下,存在 $\xi$ 介于 $x_0$ 与 $x$ 之间,使得
+	\[
+	r_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}.
+	\]
+
+
+(Cauchy余项)
+	在上面的条件下,存在 $\xi$ 介于 $x_0$ 与 $x$ 之间,使得
+	\[
+	r_n(x)=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^n(x-x_0).
+	\]
+
+
+下面总结 Taylor 级数展开的常用方法.
+\begin{enumerate}
+	\item 直接计算
+	\[
+	a_n=\frac{f^{(n)}(x_0)}{n!}
+	\]
+	以及余项 $r_n(x)$,证明 $r_n(x)\to0$,再代入 Taylor 级数,最后判断收敛域.
+	\item 由已知展开式出发,通过代换、加减乘除等运算,可以得到新的 Taylor 展开式.
+	\item 若已知幂级数在相应区间内可以逐项积分,则可通过积分得到新的函数展开式.
+	\item 
+	若已知某一函数的 Taylor 级数,且可以逐项求导,则对其求导即可得到导函数的 Taylor 级数.
+\end{enumerate}
+\begin{example}
+	$$e^x = \sum_{n=0}^{\infty}\frac{x^n}{n!}$$
+\end{example}
+\begin{proof}
+	$ e^x$的Taylor公式
+	\[e^x=1+x+\frac{1}{2!}x^2+\cdots+\frac{1}{n!}x^n+r_n(x).x\in(-\infty,+\infty)\]
+	取$r_n(x)$的Lagrange余项
+	\[r_n(x)=\frac{e^\xi}{(n+1)!}x^{n+1},\xi\text{介于}x\text{与}0\text{之间}\]
+	由\ref{阶的比较}
+	\[|r_n(x)|\leqslant \frac{e^{|x|}}{(n+1)!}|x|^{n+1}\to0(n\to\infty)\]
+	对一切$x\in(-\infty,+\infty)$成立，从而$$e^x = \sum_{n=0}^{\infty}\frac{x^n}{n!}$$
+\end{proof}
+常见初等函数如 $\sin x,\cos x,\dfrac{1}{1-x},\dfrac{1}{1+x},\sqrt{1+x},\sqrt{1-x},\ln(1+x),\arctan x$ 等,可先由 Taylor 公式得到展开式,再证明其余项趋于 $0$.
+
+
+\begin{example}
+	由
+	\[
+	e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}
+	\]
+	作代换 $x\mapsto -x$,得
+	\[
+	e^{-x}=\sum_{n=0}^{\infty}\frac{(-x)^n}{n!}
+	=1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+\cdots .
+	\]
+	因此
+	\[
+	\frac{e^x+e^{-x}}{2}=\cosh x
+	=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots
+	=\sum_{n=0}^{\infty}\frac{x^{2n}}{(2n)!},x\in(-\infty,+\infty)
+	\]
+	同理
+	\[
+	\sinh x=\frac{e^x-e^{-x}}{2}
+	=\sum_{n=0}^{\infty}\frac{x^{2n+1}}{(2n+1)!}.x\in(-\infty,+\infty)
+	\]
+\end{example}
+
+\begin{example}
+	当 $|x|<1$ 时,
+	\[
+	\frac{1}{1-x}=1+x+x^2+\cdots+x^n+\cdots .
+	\]
+	令 $x\mapsto -x$,得
+	\[
+	\frac{1}{1+x}=1-x+x^2-x^3+\cdots+(-1)^n x^n+\cdots
+	=\sum_{n=0}^{\infty}(-1)^n x^n.
+	\]
+	令 $x\mapsto x^2$ 与 $x\mapsto -x^2$,分别有
+	\[
+	\frac{1}{1-x^2}=1+x^2+x^4+\cdots+x^{2n}+\cdots,
+	\]
+	\[
+	\frac{1}{1+x^2}=1-x^2+x^4-\cdots+(-1)^n x^{2n}+\cdots .
+	\]
+\end{example}
+
+
+\begin{example}
+	由
+	\[
+	\frac{1}{1+t}=\sum_{n=0}^{\infty}(-1)^n t^n,
+	\qquad |t|<1,
+	\]
+	逐项积分得
+	\[\ln(1+x)
+	=\int_{0}^{x}\frac{\dd t}{1+t}\=\int_{0}^{x}\sum_{n=0}^{\infty}(-1)^n t^n\dd t=\sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}           =x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots+(-1)^n\frac{x^{n+1}}{n+1}+\cdots .
+	\]
+	收敛域为$(-1,1]$
+\end{example}
+
+\begin{example}
+	由
+	\[
+	\frac{1}{1+t^2}=\sum_{n=0}^{\infty}(-1)^n t^{2n},
+	\qquad |t|<1,
+	\]
+	逐项积分得
+	\[
+	\begin{aligned}
+		\arctan x
+		&=\int_{0}^{x}\frac{\dd t}{1+t^2}                                      \\
+		&=\int_{0}^{x}\sum_{n=0}^{\infty}(-1)^n t^{2n}\dd t                    \\
+		&=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}                       \\
+		&=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots+(-1)^n\frac{x^{2n+1}}{2n+1}+\cdots .
+	\end{aligned}
+	\]
+	令 $x\to1^{-}$,得
+	\[
+	\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots,
+	\]
+	即
+	\[
+	\pi=4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}.
+	\]
+	若取前 $n+1$ 项,由 Leibniz 余项估计,
+	\[
+	|R_n|\leqslant\frac{4}{2n+3}.
+	\]
+	令 $x=\dfrac{\sqrt{3}}{3}$,由于 $\arctan\dfrac{\sqrt{3}}{3}=\dfrac{\pi}{6}$,有
+	\[
+	\frac{\pi}{6}
+	=\frac{\sqrt{3}}{3}-\frac{1}{3}\left(\frac{\sqrt{3}}{3}\right)^3
+	+\cdots+\frac{(-1)^n}{2n+1}\left(\frac{\sqrt{3}}{3}\right)^{2n+1}+\cdots .
+	\]
+	于是
+	\[
+	\pi=6\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}\left(\frac{\sqrt{3}}{3}\right)^{2n+1}.
+	\]
+	同样由 Leibniz 余项估计,若取前 $n+1$ 项,则
+	\[
+	|R_n|\leqslant \frac{6}{2n+3}\left(\frac{\sqrt{3}}{3}\right)^{2n+3}.
+	\]
+\end{example}
+
+
+\begin{example}
+	由
+	\[
+	\sin x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!},
+	\]
+	逐项求导可得
+	\[
+	\cos x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}.
+	\]
+\end{example}
+
+记录几个非零点处的展开.核心方法是把展开点平移到 $0$ 处.
+
+\begin{example}
+	对 $\sin x$ 在 $x=\dfrac{\pi}{2}$ 处展开.因为
+	\[
+	\sin x=\sin\left(x-\frac{\pi}{2}+\frac{\pi}{2}\right)=\cos\left(x-\frac{\pi}{2}\right),
+	\]
+	故
+	\[
+	\sin x=\sum_{n=0}^{\infty}(-1)^n\frac{\left(x-\frac{\pi}{2}\right)^{2n}}{(2n)!}.
+	\]
+\end{example}
+
+\begin{example}
+	在 $x=\dfrac{\pi}{4}$ 处,
+	\[
+	\begin{aligned}
+		\sin x
+		&=\sin\left(x-\frac{\pi}{4}+\frac{\pi}{4}\right)                      \\
+		&=\sin\left(x-\frac{\pi}{4}\right)\cos\frac{\pi}{4}
+		+\cos\left(x-\frac{\pi}{4}\right)\sin\frac{\pi}{4}                     \\
+		&=\frac{\sqrt{2}}{2}\sum_{n=0}^{\infty}(-1)^n\frac{\left(x-\frac{\pi}{4}\right)^{2n+1}}{(2n+1)!}
+		+\frac{\sqrt{2}}{2}\sum_{n=0}^{\infty}(-1)^n\frac{\left(x-\frac{\pi}{4}\right)^{2n}}{(2n)!}.
+	\end{aligned}
+	\]
+\end{example}
+设 $f(x)$ 的幂级数展开为
+\[
+f(x)=\sum_{n=0}^{\infty}a_nx^n,
+\]
+收敛半径为 $R_1$;$g(x)$ 的幂级数展开为
+\[
+g(x)=\sum_{n=0}^{\infty}b_nx^n,
+\]
+收敛半径为 $R_2$.则 $f(x)g(x)$ 的幂级数展开就是它们的 Cauchy 乘积:
+\[
+\begin{aligned}
+	f(x)g(x)
+	&=\left(\sum_{n=0}^{\infty}a_nx^n\right)
+	\left(\sum_{n=0}^{\infty}b_nx^n\right)        \\
+	&=\sum_{n=0}^{\infty}c_nx^n,
+\end{aligned}
+\]
+其中
+\[
+c_n=\sum_{k=0}^{n}a_kb_{n-k},
+\qquad |x|<\min\{R_1,R_2\}.
+\]
+
+当 $b_0\neq0$ 时,可以通过待定系数法求 $\dfrac{f(x)}{g(x)}$ 的幂级数展开.设
+\[
+\frac{f(x)}{g(x)}=\sum_{n=0}^{\infty}c_nx^n,
+\]
+则
+\[
+\left(\sum_{n=0}^{\infty}b_nx^n\right)
+\left(\sum_{n=0}^{\infty}c_nx^n\right)
+=\sum_{n=0}^{\infty}a_nx^n.
+\]
+分离 $x$ 的各次幂的系数,可依次得到
+\[
+\begin{alignedat}{5}
+	b_0c_0&=a_0
+	&\qquad&\Longrightarrow
+	&\qquad c_0&=\frac{a_0}{b_0},\\
+	b_0c_1+b_1c_0&=a_1
+	&\qquad&\Longrightarrow
+	&\qquad c_1&=\frac{a_1-b_1c_0}{b_0},\\
+	b_0c_2+b_1c_1+b_2c_0&=a_2
+	&\qquad&\Longrightarrow
+	&\qquad c_2&=\frac{a_2-b_1c_1-b_2c_0}{b_0},\\
+	&\cdots
+\end{alignedat}
+\]
+一直继续下去,可求得所有的 $c_n$.
+
+\begin{example}[例 10.4.4]
+	求 $e^x\sin x$ 在 $x=0$ 的幂级数展开,到 $x^5$.
+\end{example}
+
+\begin{solution}
+	由 $e^x$ 与 $\sin x$ 在 $x=0$ 处的展开式,有
+	\[
+	\begin{aligned}
+		e^x\sin x
+		&=\left(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots\right)
+		\left(x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots\right)\\
+		&=x+x^2+\frac{1}{3}x^3-\frac{1}{30}x^5+\cdots .
+	\end{aligned}
+	\]
+	其中 $x^4$ 项的系数为 $0$.上述幂级数展开对一切 $x\in(-\infty,+\infty)$ 都成立.
+\end{solution}
+
+\begin{example}
+	求 $\tan x$ 在 $x=0$ 的幂级数展开,到 $x^5$.
+\end{example}
+
+\begin{solution}
+	由于 $\tan x$ 是奇函数,我们可以令
+	\[
+	\tan x=\frac{\sin x}{\cos x}=c_1x+c_3x^3+c_5x^5+\cdots .
+	\]
+	于是
+	\[
+	\left(c_1x+c_3x^3+c_5x^5+\cdots\right)
+	\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots\right)
+	=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots .
+	\]
+	比较等式两端 $x,x^3$ 与 $x^5$ 的系数,可得
+	\[
+	\begin{cases}
+		c_1=1,\\[4pt]
+		c_3-\dfrac{c_1}{2!}=-\dfrac{1}{3!},\\[8pt]
+		c_5-\dfrac{c_3}{2!}+\dfrac{c_1}{4!}=\dfrac{1}{5!}.
+	\end{cases}
+	\]
+	因而
+	\[
+	c_1=1,
+	\qquad
+	c_3=\frac{1}{3},
+	\qquad
+	c_5=\frac{2}{15}.
+	\]
+	因此
+	\[
+	\tan x=x+\frac{1}{3}x^3+\frac{2}{15}x^5+\cdots .
+	\]
+\end{solution}
+
+\begin{example}
+	求 $\ln \dfrac{\sin x}{x}$ 在 $x=0$ 的幂级数展开,到 $x^4$,其中函数 $\dfrac{\sin x}{x}$ 应理解为
+	\[
+	f(x)=
+	\begin{cases}
+		\dfrac{\sin x}{x},&x\neq0,\\[6pt]
+		1,&x=0.
+	\end{cases}
+	\]
+\end{example}
+
+\begin{solution}
+	首先,利用 $\sin x$ 的幂级数展开,可以得到
+	\[
+	\frac{\sin x}{x}=1-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots .
+	\]
+	另外,我们有
+	\[
+	\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}-\cdots .
+	\]
+	将
+	\[
+	u=-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots
+	\]
+	代入上式,即得
+	\[
+	\begin{aligned}
+		\ln\frac{\sin x}{x}
+		&=\left(-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots\right)
+		-\frac{1}{2}\left(-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots\right)^2+\\
+		&\quad+\frac{1}{3}\left(-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots\right)^3-\cdots\\
+		&=-\frac{x^2}{6}+\left(\frac{1}{120}-\frac{1}{72}\right)x^4+\cdots\\
+		&=-\frac{x^2}{6}-\frac{x^4}{180}+\cdots .
+	\end{aligned}
+	\]
+	
+且
+	\[
+	\frac{\sin x}{x}=\prod_{n=1}^{\infty}\left(1-\frac{x^2}{n^2\pi^2}\right).
+	\]
+	两边取对数,再将 $\ln\left(1-\dfrac{x^2}{n^2\pi^2}\right)$ 展开成幂级数,有
+	\[
+	\begin{aligned}
+		\ln\frac{\sin x}{x}
+		&=\sum_{n=1}^{\infty}\ln\left(1-\frac{x^2}{n^2\pi^2}\right)\\
+		&=-\sum_{n=1}^{\infty}\left(\frac{x^2}{n^2\pi^2}+\frac{1}{2}\frac{x^4}{n^4\pi^4}+\cdots\right).
+	\end{aligned}
+	\]
+	比较它们的 $x^2$ 系数与 $x^4$ 系数应对应相等,于是得到
+	\[
+	\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6},
+	\qquad
+	\sum_{n=1}^{\infty}\frac{1}{n^4}=\frac{\pi^4}{90}.
+	\]
+	如果我们计算时更加细致,也就是将 $\ln\dfrac{\sin x}{x}$ 的幂级数展开计算到 $x^6,x^8,\cdots$,还可以获得
+	\[
+	\sum_{n=1}^{\infty}\frac{1}{n^6},
+	\quad
+	\sum_{n=1}^{\infty}\frac{1}{n^8},
+	\quad\cdots
+	\]
+	的精确值.
+\end{solution}
+最后我们给出一个常用Taylor级数的表
+
+在$x=0$的邻域内，有
+\begin{enumerate}
+	\item \[
+	e^x =\sum_{n = 0}^{\infty}\frac{x^n}{n!}= 1 + x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + \cdots + \frac{1}{n!}x^n +\cdots 
+	,x\in(-\infty,+\infty)\]
+	\[
+	\frac{e^x+e^{-x}}{2}=\cosh x
+	=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots
+	=\sum_{n=0}^{\infty}\frac{x^{2n}}{(2n)!},x\in(-\infty,+\infty)
+	\]
+	\[
+	\sinh x=\frac{e^x-e^{-x}}{2}
+	=\sum_{n=0}^{\infty}\frac{x^{2n+1}}{(2n+1)!}.x\in(-\infty,+\infty)
+	\]
+	\item \[
+	\sin x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!},x\in(-\infty,+\infty)
+	\]
+	\[
+	\cos x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}.x\in(-\infty,+\infty)
+	\]
+	\[
+	\tan x = x + \frac{1}{3}x^3 + \frac{2}{15}x^5 + \frac{17}{315}x^7 + \cdots
+	\]
+	\item 
+	若$ \alpha \notin \mathbb{Z}_+$, $\forall k \in \mathbb{R}$, $C_\alpha^k \neq 0$,
+	\[(1+x)^\alpha=\sum_{n=0}^{\infty}\binom{\alpha}{n} x^n, \quad \begin{cases}x \in(-1,1), & \text { 当 } \alpha \leqslant-1, \\ x \in(-1,1], & \text { 当 }-1<\alpha<0, \\ x \in[-1,1], & \text { 当 } \alpha>0 .\end{cases}\]	
+	其中\[\binom{\alpha}{n}=\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}\]
+	
+	当 $\alpha = -1$ 时，
+	\[
+	\frac{1}{1+x} =\sum_{x=0}^{\infty}(-1)^nx^n= 1 - x + x^2 - x^3 + x^4 - \cdots + (-1)^n x^n +\cdots
+	,x\in(-1,1)\]
+	
+	对于 $\alpha = \dfrac{1}{2}$，
+	\[\begin{aligned}
+		\sqrt{1+x} &=1 + \frac{1}{2}x+\sum_{k=2}^{\infty}\dfrac{(2k-3)!!}{(2k)!!}\\
+		&= 1 + \frac{1}{2}x - \frac{1}{2 \cdot 4}x^2 + \frac{1 \cdot 3}{2 \cdot 4 \cdot 6}x^3 - \cdots + (-1)^{n-1} \frac{(2n-3)!!}{(2n)!!}x^n + \cdots
+	\end{aligned}
+	\]
+	对于 $\alpha = -\dfrac{1}{2}$，
+	\[\begin{aligned}
+		\frac{1}{\sqrt{1+x}}&=\sum_{n=0}^{\infty}(-1)^n \frac{(2n-1)!!}{(2n)!!}\\&= 1 - \frac{1}{2}x + \frac{1 \cdot 3}{2 \cdot 4}x^2 - \frac{1 \cdot 3 \cdot 5}{2 \cdot 4 \cdot 6}x^3 + \cdots + (-1)^n \frac{(2n-1)!!}{(2n)!!}x^n +\cdots
+	\end{aligned}
+	\]
+	使用代换法
+	\[
+	\frac{1}{1-x} =\sum_{x=0}^{\infty}x^n 
+	\]
+	\[
+	\frac{1}{1+x^2} = \sum_{x=0}^{\infty}(-1)^nx^{2n}
+	\]
+	\[
+	\frac{1}{1-x^2} = \sum_{x=0}^{\infty}x^{2n}
+	\]
+	\item 
+	\[
+	\ln(1+x) = \sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}=x - \frac{1}{2}x^2 + \frac{1}{3}x^3 - \cdots + (-1)^{n-1} \frac{1}{n} x^n + \cdots,x\in(-1,1]
+	\]
+	\[
+	\ln(1-x) =\sum_{n=0}^{\infty}(-1)\frac{x^{n+1}}{n+1}= -x - \frac{1}{2}x^2 - \frac{1}{3}x^3 - \cdots - \frac{1}{n}x^n + \cdots
+	x\in[-1,1)\]
+	\[
+	\tan^{-1} x=\sum_{n=1}^{\infty}\frac{x^{2n+1}}{(2n+1)!} = x - \frac{1}{3}x^3 + \frac{1}{5}x^5 - \frac{1}{7}x^7 + \cdots + (-1)^n \frac{1}{2n+1} x^{2n+1} + \cdots,x\in[-1,1]
+	\]
+	\[\begin{aligned}
+		\sin^{-1} x&=x+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}\frac{x^{2n+1}}{2n+1}\\ &= x + \frac{1}{2} \cdot \frac{1}{3} x^3 + \frac{1 \cdot 3}{2 \cdot 4} \cdot \frac{1}{5} x^5 + \cdots + \frac{(2n-1)!!}{(2n)!!} \cdot \frac{1}{2n+1} x^{2n+1} + \cdots,x\in[-1,1]
+	\end{aligned}
+	\]
+	而
+	\[
+	\cos^{-1} x = \frac{\pi}{2} - \sin^{-1} x
+	\]
+\end{enumerate}

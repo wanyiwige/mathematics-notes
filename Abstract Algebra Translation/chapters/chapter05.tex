@@ -1,0 +1,1518 @@
+\chapter{直积、半直积与阿贝尔群}
+
+本章考察由较小的群构造较大群的两种较容易的方法，即直积与半直积。这使我们能够陈述有限生成阿贝尔群基本定理；特别地，该定理完全分类了所有有限阿贝尔群。
+
+\section{直积}
+
+我们从有限多个群以及可数多个群的直积的定义开始（任意多个群的直积将在练习中讨论）。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设群 $G_1,G_2,\ldots,G_n$ 的运算分别为 $*_1,*_2,\ldots,*_n$。它们的\emph{直积}
+  \[
+    G_1\times G_2\times\cdots\times G_n
+  \]
+  是所有 $n$ 元组 $(g_1,g_2,\ldots,g_n)$ 组成的集合，其中 $g_i\in G_i$，其运算按分量定义：
+  \[
+    (g_1,g_2,\ldots,g_n)*(h_1,h_2,\ldots,h_n)
+    =(g_1*_1h_1,g_2*_2h_2,\ldots,g_n*_nh_n).
+  \]
+
+  \item 类似地，群 $G_1,G_2,\ldots$ 的直积
+  \[
+    G_1\times G_2\times\cdots
+  \]
+  是所有序列 $(g_1,g_2,\ldots)$ 组成的集合，其中 $g_i\in G_i$，其运算也按分量定义：
+  \[
+    (g_1,g_2,\ldots)*(h_1,h_2,\ldots)=(g_1*_1h_1,g_2*_2h_2,\ldots).
+  \]
+\end{enumerate}
+
+虽然直积各因子中的运算可以不同，但照例，我们把所有抽象群都写成乘法形式。因此，例如上面 (1) 中的运算可简写为
+\[
+  (g_1,g_2,\ldots,g_n)(h_1,h_2,\ldots,h_n)=(g_1h_1,g_2h_2,\ldots,g_nh_n).
+\]
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $G_i=\RR$（运算为加法），$i=1,2,\ldots,n$。则 $\RR\times\RR\times\cdots\times\RR$（$n$ 个因子）就是熟悉的 Euclid $n$ 维空间 $\RR^n$，其通常的向量加法为
+  \[
+    (a_1,a_2,\ldots,a_n)+(b_1,b_2,\ldots,b_n)
+    =(a_1+b_1,a_2+b_2,\ldots,a_n+b_n).
+  \]
+
+  \item 为了说明构成直积的群（以及相应的运算）可以完全任意，令 $G_1=\ZZ$，$G_2=S_3$，$G_3=\GL_2(\RR)$，其群运算分别为加法、复合以及矩阵乘法。则 $G_1\times G_2\times G_3$ 中的运算由
+  \[
+    \left(n,\sigma,\begin{pmatrix}a&b\\ c&d\end{pmatrix}\right)
+    \left(m,\tau,\begin{pmatrix}p&q\\ r&s\end{pmatrix}\right)
+    =
+    \left(n+m,\sigma\circ\tau,
+    \begin{pmatrix}ap+br&aq+bs\\ cp+dr&cq+ds\end{pmatrix}\right)
+  \]
+  给出。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{命题 1.} 若 $G_1,\ldots,G_n$ 是群，则它们的直积是一个群，其阶为
+\[
+  |G_1||G_2|\cdots |G_n|,
+\]
+若某个 $G_i$ 是无限群，则直积也是无限群。
+
+\begin{proof}
+令 $G=G_1\times G_2\times\cdots\times G_n$。由于 $G$ 的运算按分量定义，而每个因子 $G_i$ 中都满足相同的群公理，所以验证 $G$ 的群公理是直接的。例如，结合律可如下验证。设
+\[
+  (a_1,a_2,\ldots,a_n),\quad (b_1,b_2,\ldots,b_n),\quad (c_1,c_2,\ldots,c_n)\in G.
+\]
+则
+\begin{align*}
+(a_1,\ldots,a_n)[(b_1,\ldots,b_n)(c_1,\ldots,c_n)]
+&=(a_1,\ldots,a_n)(b_1c_1,\ldots,b_nc_n)\\
+&=(a_1(b_1c_1),\ldots,a_n(b_nc_n))\\
+&=((a_1b_1)c_1,\ldots,(a_nb_n)c_n)\\
+&=[(a_1,\ldots,a_n)(b_1,\ldots,b_n)](c_1,\ldots,c_n),
+\end{align*}
+其中第三步使用了每个分量中的结合律。剩下的群公理验证类似：$G$ 的单位元是 $n$ 元组 $(1_1,1_2,\ldots,1_n)$，其中 $1_i$ 是 $G_i$ 的单位元；元素 $(g_1,g_2,\ldots,g_n)$ 的逆元是 $(g_1^{-1},g_2^{-1},\ldots,g_n^{-1})$，其中 $g_i^{-1}$ 是 $g_i$ 在 $G_i$ 中的逆元。$G$ 的阶的公式显然成立。
+\end{proof}
+
+若重新排列直积的因子，所得直积同构于原直积（参见练习 7）。
+
+下一个命题表明，直积 $G_1\times G_2\times\cdots\times G_n$ 含有每个 $G_i$ 的一个同构拷贝。可以把这些特定的拷贝看作直积的“坐标轴”；在 $\RR\times\RR$ 的情形中，它们正是 $x$ 轴和 $y$ 轴。不过要注意，不应把这些“坐标轴”看作直积中唯一的 $G_i$ 的拷贝。例如，在 $\RR\times\RR$ 中，过原点的任意直线都是一个同构于 $\RR$ 的子群（而 $\RR\times\RR$ 有无穷多对可作为坐标轴的直线，也就是任一坐标系旋转后的坐标轴）。命题的第二部分表明，存在投影到各个分量上的同态。
+
+\medskip
+\noindent\textbf{命题 2.} 设 $G_1,G_2,\ldots,G_n$ 是群，令 $G=G_1\times\cdots\times G_n$。
+\begin{enumerate}[label=(\arabic*)]
+  \item 对每个固定的 $i$，$G$ 中所有在第 $j$ 个位置（$j\neq i$）为 $G_j$ 的单位元、而在第 $i$ 个位置任取 $G_i$ 元素的元素构成 $G$ 的一个子群，并同构于 $G_i$：
+  \[
+    G_i\cong \{(1,1,\ldots,1,g_i,1,\ldots,1)\mid g_i\in G_i\},
+  \]
+  其中 $g_i$ 出现在第 $i$ 个位置。若把 $G_i$ 与这个子群等同起来，则 $G_i\normal G$ 且
+  \[
+    G/G_i\cong G_1\times\cdots\times G_{i-1}\times G_{i+1}\times\cdots\times G_n.
+  \]
+
+  \item 对每个固定的 $i$，定义
+  \[
+    \pi_i:G\to G_i,\qquad \pi_i((g_1,g_2,\ldots,g_n))=g_i.
+  \]
+  则 $\pi_i$ 是满同态，并且
+  \[
+    \ker\pi_i=\{(g_1,\ldots,g_{i-1},1,g_{i+1},\ldots,g_n)\mid g_j\in G_j,\ j\neq i\}
+  \]
+  同构于 $G_1\times\cdots\times G_{i-1}\times G_{i+1}\times\cdots\times G_n$。
+
+  \item 在 (1) 中的等同之下，若 $x\in G_i$ 且 $y\in G_j$，其中 $i\neq j$，则 $xy=yx$。
+\end{enumerate}
+
+\begin{proof}
+(1) 因为 $G$ 中的运算按分量定义，由子群判别法立即得到
+\[
+\{(1,1,\ldots,1,g_i,1,\ldots,1)\mid g_i\in G_i\}
+\]
+是 $G$ 的子群。此外，映射 $g_i\mapsto (1,1,\ldots,1,g_i,1,\ldots,1)$ 是 $G_i$ 到该子群的同构。以下把 $G_i$ 与它在 $G$ 中的这个同构拷贝等同。
+
+为证明 (1) 的其余部分，考虑映射
+\[
+  \varphi:G\to G_1\times\cdots\times G_{i-1}\times G_{i+1}\times\cdots\times G_n
+\]
+定义为
+\[
+  \varphi(g_1,g_2,\ldots,g_n)=(g_1,\ldots,g_{i-1},g_{i+1},\ldots,g_n),
+\]
+也就是删去第 $i$ 个分量。映射 $\varphi$ 是同态，因为
+\begin{align*}
+\varphi((g_1,
+\ldots,g_n)(h_1,\ldots,h_n))
+&=\varphi(g_1h_1,\ldots,g_nh_n)\\
+&=(g_1h_1,\ldots,g_{i-1}h_{i-1},g_{i+1}h_{i+1},\ldots,g_nh_n)\\
+&=(g_1,\ldots,g_{i-1},g_{i+1},\ldots,g_n)(h_1,\ldots,h_{i-1},h_{i+1},\ldots,h_n)\\
+&=\varphi(g_1,
+\ldots,g_n)\varphi(h_1,
+\ldots,h_n).
+\end{align*}
+由于每个位置上的元素可以任意选取，$\varphi$ 是满射。并且
+\[
+  \ker\varphi=\{(g_1,
+\ldots,g_n)
+\mid g_j=1\text{ 对所有 }j\neq i\}=G_i.
+\]
+这证明 $G_i$ 是 $G$ 的正规子群（特别地也再次证明了这个 $G_i$ 的拷贝是子群），而第一同构定理给出 (1) 的最后断言。
+
+(2) 中 $\pi_i$ 是满同态且核如上所述的论证与 (1) 很相似，细节留给读者。
+
+(3) 中，若
+\[
+  x=(1,
+\ldots,1,g_i,1,
+\ldots,1),
+  \qquad
+  y=(1,
+\ldots,1,g_j,1,
+\ldots,1),
+\]
+其中所示元素分别出现在第 $i,j$ 个位置，则（设 $i<j$，以便记号清楚）
+\[
+  xy=(1,
+\ldots,1,g_i,1,
+\ldots,1,g_j,1,
+\ldots,1)=yx.
+\]
+证明完毕。
+\end{proof}
+
+命题 2 的一个推广见练习 2。以后我们将继续把命题 (1) 中的“坐标轴”子群与它们的同构拷贝 $G_i$ 等同。第 $i$ 个这样的子群通常称为 $G$ 的第 $i$ 个\emph{分量}或第 $i$ 个\emph{因子}。例如，在 $\ZZ_n\times\ZZ_m$ 中计算时，可以令 $x$ 为第一因子的生成元，令 $y$ 为第二因子的生成元，并把 $\ZZ_n\times\ZZ_m$ 的元素写成 $x^ay^b$ 的形式。这相当于用 $x$ 和 $y$ 代替形式有序对 $(x,1)$ 与 $(1,y)$（因此 $x^ay^b$ 代替 $(x^a,y^b)$）。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 在命题 2 的记号下，由 (3) 可知若 $x_i\in G_i$，$1\leq i\leq n$，则对所有 $k\in\ZZ$，
+  \[
+    (x_1x_2\cdots x_n)^k=x_1^kx_2^k\cdots x_n^k.
+  \]
+  因而 $x_1x_2\cdots x_n$ 的阶是使得 $x_i^k=1$ 对所有 $i$ 成立的最小正整数 $k$。因此
+  \[
+    |x_1x_2\cdots x_n|=\operatorname{lcm}(|x_1|,|x_2|,\ldots,|x_n|),
+  \]
+  其中该阶为无限，当且仅当某个 $x_i$ 的阶为无限。
+
+  \item 令 $p$ 为素数，$n\in\ZZ^+$，考虑
+  \[
+    E_{p^n}=\underbrace{\ZZ_p\times\ZZ_p\times\cdots\times\ZZ_p}_{n\text{ 个因子}}.
+  \]
+  则 $E_{p^n}$ 是阶为 $p^n$ 的阿贝尔群，并且对所有 $x\in E_{p^n}$ 都有 $x^p=1$。这个群就是第 4.4 节中描述的阶为 $p^n$ 的初等阿贝尔群。
+
+  \item 设 $p$ 为素数。我们说明阶为 $p^2$ 的初等阿贝尔群恰有 $p+1$ 个阶为 $p$ 的子群（特别地，不止两个显然的子群）。令 $E=E_{p^2}$。由于 $E$ 的每个非单位元素都有阶 $p$，每个这样的元素都生成 $E$ 的一个阶为 $p$ 的循环子群。由 Lagrange 定理，不同的阶为 $p$ 的子群交平凡。因此，$E$ 的 $p^2-1$ 个非单位元素被分割为大小为 $p-1$ 的子集（每个这样的子集正是某个阶为 $p$ 的子群的非单位元素集合）。于是阶为 $p$ 的子群个数为
+  \[
+    \frac{p^2-1}{p-1}=p+1.
+  \]
+  当 $p=2$ 时，$E$ 是 Klein 四元群；我们已经看到它有 $3$ 个阶为 $2$ 的子群（也参见练习 10 和 11）。
+\end{enumerate}
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 证明直积的中心是中心的直积：
+  \[
+    Z(G_1\times G_2\times\cdots\times G_n)=Z(G_1)\times Z(G_2)\times\cdots\times Z(G_n).
+  \]
+  推出：群的直积是阿贝尔群当且仅当每个因子都是阿贝尔群。
+
+  \item 设 $G_1,G_2,\ldots,G_n$ 是群，令 $G=G_1\times\cdots\times G_n$。令 $I$ 是 $\{1,\ldots,n\}$ 的一个真非空子集，并令 $J=\{1,\ldots,n\}-I$。定义 $G_I$ 为 $G$ 中在所有 $j\in J$ 的位置上都是 $G_j$ 的单位元的元素集合。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G_I$ 同构于群 $G_i$（$i\in I$）的直积。
+    \item 证明 $G_I$ 是 $G$ 的正规子群，且 $G/G_I\cong G_J$。
+    \item 证明 $G\cong G_I\times G_J$。
+  \end{enumerate}
+
+  \item 在前一题记号下，令 $I,K$ 是 $\{1,2,\ldots,n\}$ 的任意两个不交非空子集，并令 $G_I,G_K$ 为上面定义的子群。证明对所有 $x\in G_I$ 与所有 $y\in G_K$，都有 $xy=yx$。
+
+  \item 设 $A,B$ 是有限群，$p$ 是素数。证明 $A\times B$ 的任意 Sylow $p$-子群都形如 $P\times Q$，其中 $P\in\Syl_p(A)$ 且 $Q\in\Syl_p(B)$。证明
+  \[
+    n_p(A\times B)=n_p(A)n_p(B).
+  \]
+  把这两个结果推广到有限多个有限群的直积。
+
+  \item 给出 $Q_8\times \ZZ_4$ 的一个非正规子群（注意每个因子的每个子群都是正规的）。
+
+  \item 证明 $Q_8\times E_{2^n}$ 的所有子群都是正规的。
+
+  \item 设 $G_1,G_2,
+\ldots,G_n$ 是群，令 $\pi\in S_n$。证明映射
+  \[
+    \varphi_\pi:G_1\times G_2\times\cdots\times G_n
+    \longrightarrow G_{\pi^{-1}(1)}\times G_{\pi^{-1}(2)}\times\cdots\times G_{\pi^{-1}(n)}
+  \]
+  定义为
+  \[
+    \varphi_\pi(g_1,g_2,\ldots,g_n)=(g_{\pi^{-1}(1)},g_{\pi^{-1}(2)},\ldots,g_{\pi^{-1}(n)})
+  \]
+  是同构（因此改变直积因子的顺序不改变同构类型）。
+
+  \item 设 $G_1=G_2=\cdots=G_n$，令 $G=G_1\times\cdots\times G_n$。在前题记号下，证明 $\varphi_\pi\in\Aut(G)$。并证明映射 $\pi\mapsto \varphi_\pi$ 是 $S_n$ 到 $\Aut(G)$ 的单同态。（特别地，$\varphi_{\pi_1}\circ\varphi_{\pi_2}=\varphi_{\pi_1\pi_2}$。在 $\varphi_\pi$ 的定义中需要 $\pi^{-1}$ 的原因正是在这里。根本原因是：若 $e_i$ 是第 $i$ 位为 $1$、其余为 $0$ 的 $n$ 元组，则 $S_n$ 按 $\pi\cdot e_i=e_{\pi(i)}$ 作用在 $\{e_1,
+\ldots,e_n\}$ 上，这是一个左群作用。若 $n$ 元组 $(g_1,
+\ldots,g_n)$ 表示为 $g_1e_1+\cdots+g_ne_n$，则这个左作用扩展为
+  \[
+    \pi\cdot(g_1e_1+
+\cdots+g_ne_n)=g_1e_{\pi(1)}+\cdots+g_ne_{\pi(n)}.
+  \]
+  右边 $e_{\pi(i)}$ 的系数是 $g_i$，所以 $e_i$ 的系数是 $g_{\pi^{-1}(i)}$，即得到上述公式。若在定义中使用 $\pi$ 而非 $\pi^{-1}$，映射 $\pi\mapsto\varphi_\pi$ 不一定是同态；它对应于右群作用。）
+
+  \item 令所有 $G_i$ 都为域 $F$，并用前一题证明：每行每列恰有一个 $1$ 的 $n\times n$ 矩阵集合是 $\GL_n(F)$ 的一个同构于 $S_n$ 的子群。这些矩阵称为置换矩阵，因为它们只是置换 $n$ 维向量空间 $F\times\cdots\times F$ 的标准基 $e_1,
+\ldots,e_n$。
+
+  \item 令 $p$ 为素数。设 $A$ 与 $B$ 是两个阶为 $p$ 的循环群，生成元分别为 $x$ 与 $y$。令 $E=A\times B$，于是 $E$ 是阶为 $p^2$ 的初等阿贝尔群 $E_{p^2}$。证明 $E$ 中不同的阶为 $p$ 的子群为
+  \[
+    \gen{x},\ \gen{xy},\ \gen{xy^2},\ldots,\gen{xy^{p-1}},\ \gen{y},
+  \]
+  共 $p+1$ 个。
+
+  \item 令 $p$ 为素数，$n\in\ZZ^+$。求初等阿贝尔群 $E_{p^n}$ 中阶为 $p$ 的子群个数公式。
+
+  \item 设 $A,B$ 是群。假设 $Z(A)$ 含有子群 $Z_1$，$Z(B)$ 含有子群 $Z_2$，且 $Z_1\cong Z_2$。设该同构由 $x_i\mapsto y_i$ 给出，$x_i\in Z_1$。$A$ 与 $B$ 的一个\emph{中心积}是商群
+  \[
+    (A\times B)/Z,
+    \qquad Z=\{(x_i,y_i^{-1})\mid x_i\in Z_1\},
+  \]
+  记为 $A*B$。它不是唯一的，因为它依赖于 $Z_1,Z_2$ 以及它们之间的同构。（可把 $A*B$ 看作把直积 $A\times B$ 中每个 $x_i\in Z_1$ 与对应的 $y_i\in Z_2$ 识别起来后得到的群。）
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $A$ 和 $B$ 在商群 $A*B$ 中的像分别同构于 $A$ 和 $B$，并且这两个像相交于一个同构于 $Z_1$ 的中心子群。求 $|A*B|$。
+    \item 令 $\ZZ_4=\gen{x}$。令 $D_8=\gen{r,s}$ 与 $Q_8=\gen{i,j}$ 由通常的生成元与关系给出。令 $\ZZ_4*D_8$ 为把 $x^2$ 与 $r^2$ 识别起来的中心积，令 $\ZZ_4*Q_8$ 为把 $x^2$ 与 $-1$ 识别起来的中心积。证明 $\ZZ_4*D_8\cong \ZZ_4*Q_8$。
+  \end{enumerate}
+
+  \item 给出前一题中构造的群 $\ZZ_4*D_8$ 与 $\ZZ_4*Q_8$ 的展示。
+
+  \item 令 $G=A_1\times A_2\times\cdots\times A_n$，且对每个 $i$，令 $B_i\normal A_i$。证明
+  \[
+    B_1\times B_2\times\cdots\times B_n\normal G
+  \]
+  且
+  \[
+    (A_1\times\cdots\times A_n)/(B_1\times\cdots\times B_n)
+    \cong (A_1/B_1)\times\cdots\times(A_n/B_n).
+  \]
+
+  \item 下面的练习描述任意多个群的直积。设 $I$ 是任意非空指标集，对每个 $i\in I$ 设 $(G_i,*_i)$ 是一个群。群 $G_i$（$i\in I$）的直积是集合
+  \[
+    G=\prod_{i\in I}G_i
+  \]
+  （即 $G_i$ 的笛卡尔积），并按如下方式定义二元运算：若 $\prod a_i$ 与 $\prod b_i$ 是 $G$ 的元素，则
+  \[
+    \left(\prod_{i\in I}a_i\right)\left(\prod_{i\in I}b_i\right)
+    =\prod_{i\in I}(a_i*_i b_i).
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明这个二元运算良定义且满足结合律。
+    \item 证明元素 $\prod 1_i$ 满足 $G$ 的单位元公理，其中 $1_i$ 是 $G_i$ 的单位元。
+    \item 证明元素 $\prod a_i^{-1}$ 是 $\prod a_i$ 的逆元，其中每个分量 $a_i^{-1}$ 在群 $G_i$ 中取逆。
+  \end{enumerate}
+  因而直积是一个群。（注意，当 $I=\{1,2,
+\ldots,n\}$ 时，这个直积定义与正文中的 $n$ 元组定义相同。）
+
+  \item 陈述并证明命题 2 对任意直积的推广。
+
+  \item 令 $I$ 是任意非空指标集，并令 $G_i$ 是群。群 $G_i$ 的\emph{限制直积}或\emph{直和}是直积中除有限多个分量外均为单位元的元素集合，也就是所有 $\prod a_i\in\prod_{i\in I}G_i$，其中除有限多个 $i\in I$ 外都有 $a_i=1_i$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明限制直积是直积的子群。
+    \item 证明限制直积是直积的正规子群。
+    \item 令 $I=\ZZ^+$，令 $p_i$ 为第 $i$ 个整数素数。若对所有 $i\in\ZZ^+$ 有 $G_i=\ZZ/p_i\ZZ$，证明 $G_i$ 的限制直积中的每个元素都有有限阶，但 $\prod_{i\in\ZZ^+}G_i$ 中有无限阶元素。证明在这个例子中，限制直积是直积的挠子群（参见第 2.1 节练习 6）。
+  \end{enumerate}
+
+  \item 对 (a) 到 (e) 的每一项，给出满足指定性质的群的例子：
+  \begin{enumerate}[label=(\alph*)]
+    \item 一个无限群，其中每个元素的阶为 $1$ 或 $2$；
+    \item 一个无限群，其中每个元素都有有限阶，但对每个正整数 $n$ 都有一个阶为 $n$ 的元素；
+    \item 一个既有无限阶元素又有阶为 $2$ 的元素的群；
+    \item 一个群 $G$，使得每个有限群都同构于 $G$ 的某个子群；
+    \item 一个非平凡群 $G$，使得 $G\cong G\times G$。
+  \end{enumerate}
+\end{enumerate}
+
+\section{有限生成阿贝尔群基本定理}
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 群 $G$ 称为\emph{有限生成的}，若存在 $G$ 的有限子集 $A$ 使得 $G=\gen{A}$。
+  \item 对每个 $r\in\ZZ$ 且 $r\geq 0$，令 $\ZZ^r=\ZZ\times\ZZ\times\cdots\times\ZZ$ 为 $r$ 个 $\ZZ$ 的直积，其中 $\ZZ^0=1$。群 $\ZZ^r$ 称为秩为 $r$ 的\emph{自由阿贝尔群}。
+\end{enumerate}
+
+注意，任意有限群 $G$ 当然是有限生成的，只需取 $A=G$ 作为生成集即可。此外，$\ZZ^r$ 由 $e_1,e_2,\ldots,e_r$ 有限生成，其中 $e_i$ 是第 $i$ 位为 $1$、其余为 $0$ 的 $r$ 元组。现在可以陈述（有限生成）阿贝尔群的基本分类定理。
+
+\medskip
+\noindent\textbf{定理 3（有限生成阿贝尔群基本定理）.} 设 $G$ 是有限生成阿贝尔群。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item 存在整数 $r,n_1,n_2,\ldots,n_s$ 使得
+  \[
+    G\cong \ZZ^r\times \ZZ_{n_1}\times\ZZ_{n_2}\times\cdots\times\ZZ_{n_s},
+  \]
+  并满足
+  \begin{enumerate}[label=(\alph*)]
+    \item $r\geq 0$ 且 $n_j\geq 2$ 对所有 $j$ 成立；
+    \item $n_{i+1}\mid n_i$，$1\leq i\leq s-1$。
+  \end{enumerate}
+
+  \item (1) 中的表达式是唯一的：若
+  \[
+    G\cong \ZZ^t\times \ZZ_{m_1}\times\ZZ_{m_2}\times\cdots\times\ZZ_{m_u},
+  \]
+  其中 $t,m_1,
+\ldots,m_u$ 也满足 (a) 与 (b)，则 $t=r$，$u=s$，并且对所有 $i$ 有 $m_i=n_i$。
+\end{enumerate}
+
+\begin{proof}
+我们将在第 12.1 节把这个定理作为一个更一般分类定理的推论推出。对有限群，我们会在第 6.1 节末尾给出另一个证明。
+\end{proof}
+
+\noindent\textbf{定义.} 定理 3 中的整数 $r$ 称为 $G$ 的\emph{自由秩}或 \emph{Betti 数}，整数 $n_1,n_2,\ldots,n_s$ 称为 $G$ 的\emph{不变因子}。定理 3(1) 中对 $G$ 的描述称为 $G$ 的\emph{不变因子分解}。
+
+定理 3 断言，阿贝尔群的自由秩以及（有序的）不变因子列表都是唯一确定的，因此两个有限生成阿贝尔群同构当且仅当它们有相同的自由秩与相同的不变因子列表。注意，有限生成阿贝尔群是有限群当且仅当它的自由秩为零。
+
+有限阿贝尔群的阶就是其不变因子的乘积（由命题 1）。若有限阿贝尔群 $G$ 的不变因子为 $n_1,n_2,
+\ldots,n_s$，其中 $n_{i+1}\mid n_i$，$1\leq i\leq s-1$，则称 $G$ 是\emph{类型} $(n_1,n_2,
+\ldots,n_s)$ 的群。
+
+定理 3 给出了一种有效方法，用来列出给定阶的所有有限阿贝尔群。也就是说，为了找出所有阶为 $n$ 的阿贝尔群（在同构意义下），必须找出所有有限整数序列 $n_1,n_2,
+\ldots,n_s$，使得
+\begin{enumerate}[label=(\arabic*)]
+  \item $n_j\geq 2$ 对所有 $j\in\{1,2,
+\ldots,s\}$ 成立；
+  \item $n_{i+1}\mid n_i$，$1\leq i\leq s-1$；
+  \item $n_1n_2\cdots n_s=n$。
+\end{enumerate}
+定理 3 说明，这类序列与阶为 $n$ 的有限阿贝尔群的同构类集合之间存在一一对应。
+
+在说明如何对具体的 $n$ 找出所有这类序列之前，先作一些一般性说明。首先注意 $n_1\geq n_2\geq\cdots\geq n_s$，所以 $n_1$ 是最大的不变因子。又由 (3)，每个 $n_i$ 都整除 $n$。若 $p$ 是 $n$ 的任一素因子，则由 (3) 可知 $p$ 必整除某个 $n_i$。于是由 (2)，$p$ 也整除所有 $j\leq i$ 的 $n_j$。因此
+\[
+  \text{每个 }n\text{ 的素因子都必须整除第一个不变因子 }n_1.
+\]
+特别地，若 $n$ 是若干互异素数之积（每个素数只出现一次），\footnote{这样的整数称为无平方因子的，因为它们不被任何大于 $1$ 的平方整除。}则 $n\mid n_1$，于是 $n=n_1$。这证明了：若 $n$ 是无平方因子的，则阶为 $n$ 的阿贝尔群只有一种可能的不变因子列表，即 $n_1=n$。
+
+\medskip
+\noindent\textbf{推论 4.} 若 $n$ 是互异素数之积，则在同构意义下，唯一的阶为 $n$ 的阿贝尔群是阶为 $n$ 的循环群 $\ZZ_n$。
+
+把 $n$ 分解为素数幂是确定阶为 $n$ 的阿贝尔群所有可能不变因子列表的第一步。
+
+\paragraph{例}
+设 $n=180=2^2\cdot 3^2\cdot 5$。如上所述，必须有 $2\cdot3\cdot5\mid n_1$，所以 $n_1$ 的可能值为
+\[
+  n_1=2^2\cdot3^2\cdot5,
+  \quad 2^2\cdot3\cdot5,
+  \quad 2\cdot3^2\cdot5,
+  \quad \text{或 }2\cdot3\cdot5.
+\]
+对每一种情况，都要找出所有可能的 $n_2$（满足 $n_2\mid n_1$ 且 $n_1n_2\mid n$）；再对每个得到的 $n_1,n_2$ 找出所有可能的 $n_3$，依此继续，直到得到所有满足 (1)--(3) 的列表。
+
+例如，若 $n_1=2\cdot3^2\cdot5$，则唯一既整除 $n_1$ 又使 $n_1n_2$ 整除 $n$ 的 $n_2$ 是 $n_2=2$。此时 $n_1n_2=n$，所以列表完整：$2\cdot3^2\cdot5,2$。对应的阿贝尔群是 $\ZZ_{90}\times\ZZ_2$。
+
+若 $n_1=2\cdot3\cdot5$，则 $n_2$ 的候选为 $2,3$ 或 $6$。若 $n_2=2$ 或 $3$，则因 $n_3\mid n_2$，必有 $n_3=n_2$（并且由 (3)，列表中还必须有第三项）。这导致矛盾，因为 $n_1n_2n_3$ 将分别被 $2^3$ 或 $3^3$ 整除，而 $n$ 不被这两个数整除。因此，第一项为 $2\cdot3\cdot5$ 的不变因子列表唯一为 $2\cdot3\cdot5,2\cdot3$，对应的阿贝尔群为 $\ZZ_{30}\times\ZZ_6$。
+
+类似地，阶为 $180$ 的所有允许的不变因子列表及相应的阿贝尔群如下：
+\[
+\begin{array}{c|c}
+\text{不变因子} & \text{阿贝尔群}\\ \hline
+2^2\cdot3^2\cdot5 & \ZZ_{180}\\
+2\cdot3^2\cdot5,
+\ 2 & \ZZ_{90}\times\ZZ_2\\
+2^2\cdot3\cdot5,
+\ 3 & \ZZ_{60}\times\ZZ_3\\
+2\cdot3\cdot5,
+\ 2\cdot3 & \ZZ_{30}\times\ZZ_6
+\end{array}
+\]
+
+上面的过程有些临时性，但它表明，确定给定阶 $n$ 的所有阿贝尔群的不变因子列表强烈依赖于 $n$ 的分解。下面的定理（我们将看到它在有限阿贝尔群情形中等价于基本定理）给出一种更系统且计算上快得多的方法来确定给定阶的所有有限阿贝尔群。更具体地说，若
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+\]
+是 $n$ 的素因子分解，则它说明阶为 $n$ 的阿贝尔群的所有允许不变因子列表，可以通过分别找出阶为 $p_i^{\alpha_i}$ 的群的允许列表来确定。对素数幂 $p^\alpha$，我们将看到，确定所有允许列表的问题等价于确定 $\alpha$ 的所有分拆（并且与 $p$ 无关）。
+
+\medskip
+\noindent\textbf{定理 5.} 设 $G$ 是阶为 $n>1$ 的阿贝尔群，并设 $n$ 分解为互异素数幂的唯一分解为
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}.
+\]
+则：
+\begin{enumerate}[label=(\arabic*)]
+  \item $G\cong A_1\times A_2\times\cdots\times A_k$，其中 $|A_i|=p_i^{\alpha_i}$；
+  \item 对每个 $A\in\{A_1,A_2,
+\ldots,A_k\}$，若 $|A|=p^\alpha$，则
+  \[
+    A\cong \ZZ_{p^{\beta_1}}\times\ZZ_{p^{\beta_2}}\times\cdots\times\ZZ_{p^{\beta_r}},
+  \]
+  其中 $\beta_1\geq\beta_2\geq\cdots\geq\beta_r\geq1$ 且 $\beta_1+\beta_2+\cdots+\beta_r=\alpha$；
+  \item (1) 与 (2) 中的分解唯一。也就是说，若 $G\cong B_1\times\cdots\times B_m$，且 $|B_i|=p_i^{\alpha_i}$，则 $B_i\cong A_i$，并且 $B_i$ 与 $A_i$ 有相同的不变因子。
+\end{enumerate}
+
+\noindent\textbf{定义.} 前一定理中出现的整数 $p^{\beta_j}$ 称为 $G$ 的\emph{初等因子}。定理 5(1) 与 5(2) 中对 $G$ 的描述称为 $G$ 的\emph{初等因子分解}。
+
+定理 (1) 中的子群 $A_i$ 是 $G$ 的 Sylow $p_i$-子群。因此 (1) 说明 $G$ 同构于其 Sylow 子群的直积（注意它们是正规子群，因为 $G$ 是阿贝尔群，所以也是唯一的）。第 (1) 部分常称为有限阿贝尔群的\emph{主分解定理}。\footnote{回忆：对阿贝尔群而言，Sylow $p$-子群有时称为 $p$-主分量。}同定理 3 一样，我们稍后会证明这个定理。
+
+注意，对素数 $p$，有 $p^\beta\mid p^\gamma$ 当且仅当 $\beta\leq\gamma$。此外，$p^{\beta_1}\cdots p^{\beta_r}=p^\alpha$ 当且仅当 $\beta_1+
+\cdots+
+\beta_r=\alpha$。因此，定理 5(2) 中 $A$ 的分解就是 $A$ 的不变因子分解，只是把整数 $p^{\beta_j}$ 的“整除”条件转化为了指数上的“加法”条件。现在可见，$G$ 的初等因子就是当 $p$ 遍历 $|G|$ 的所有素因子时，Sylow $p$-子群的不变因子。
+
+由定理 5，为了找出阶为 $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ 的所有阿贝尔群，必须对每个 $i$ 找出阶为 $p_i^{\alpha_i}$ 的群的所有可能不变因子列表。每个阿贝尔群的初等因子集合由从这 $k$ 个列表中各取一个不变因子集合而得到。阿贝尔群就是以这些初等因子为阶的循环群的直积；不同的初等因子列表给出非同构群。
+
+在素数幂阶 $p^\beta$ 的情形，不变因子的条件化为
+\begin{enumerate}[label=(\arabic*)]
+  \item $\beta_j\geq 1$ 对所有 $j$ 成立；
+  \item $\beta_i\geq\beta_{i+1}$ 对所有 $i$ 成立；
+  \item $\beta_1+
+\beta_2+
+\cdots+
+\beta_t=\beta$。
+\end{enumerate}
+因此，每个不变因子列表就是 $\beta$ 的一个按降序排列的分拆。特别地，阶为 $p^\beta$ 的非同构阿贝尔群个数等于 $\beta$ 的分拆数；这个数与素数 $p$ 无关。例如，阶为 $p^5$ 的阿贝尔群个数由 $5$ 的分拆列表得到：
+\[
+\begin{array}{c|c}
+\text{不变因子中的指数} & \text{阿贝尔群}\\ \hline
+5 & \ZZ_{p^5}\\
+4,1 & \ZZ_{p^4}\times\ZZ_p\\
+3,2 & \ZZ_{p^3}\times\ZZ_{p^2}\\
+3,1,1 & \ZZ_{p^3}\times\ZZ_p\times\ZZ_p\\
+2,2,1 & \ZZ_{p^2}\times\ZZ_{p^2}\times\ZZ_p\\
+2,1,1,1 & \ZZ_{p^2}\times\ZZ_p\times\ZZ_p\times\ZZ_p\\
+1,1,1,1,1 & \ZZ_p\times\ZZ_p\times\ZZ_p\times\ZZ_p\times\ZZ_p
+\end{array}
+\]
+所以阶为 $p^5$ 的非同构阿贝尔群恰有 $7$ 个，列表中第一个是循环群 $\ZZ_{p^5}$，最后一个是初等阿贝尔群 $E_{p^5}$。
+
+若 $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$，并且 $q_i$ 是 $\alpha_i$ 的分拆数，则阶为 $n$ 的（不同的、非同构的）阿贝尔群个数为 $q_1q_2\cdots q_k$。
+
+\paragraph{例}
+若 $n=1800=2^3\cdot3^2\cdot5^2$，可列出如下：
+\[
+\begin{array}{c|c|c}
+\text{阶 }p^\beta & \beta\text{ 的分拆} & \text{阿贝尔群}\\ \hline
+2^3 & 3;
+\ 2,1;
+\ 1,1,1 & \ZZ_8;
+\ \ZZ_4\times\ZZ_2;
+\ \ZZ_2\times\ZZ_2\times\ZZ_2\\
+3^2 & 2;
+\ 1,1 & \ZZ_9;
+\ \ZZ_3\times\ZZ_3\\
+5^2 & 2;
+\ 1,1 & \ZZ_{25};
+\ \ZZ_5\times\ZZ_5
+\end{array}
+\]
+通过从三行右列中各取一个阿贝尔群并取其直积，得到所有阶为 $1800$ 的阿贝尔群同构类型。以所有可能方式这样做，得到所有同构类型：
+\[
+\begin{array}{lll}
+\ZZ_8\times\ZZ_9\times\ZZ_{25} &
+\ZZ_8\times\ZZ_9\times\ZZ_5\times\ZZ_5 &
+\ZZ_8\times\ZZ_3\times\ZZ_3\times\ZZ_{25} \\
+\ZZ_8\times\ZZ_3\times\ZZ_3\times\ZZ_5\times\ZZ_5 &
+\ZZ_4\times\ZZ_2\times\ZZ_9\times\ZZ_{25} &
+\ZZ_4\times\ZZ_2\times\ZZ_9\times\ZZ_5\times\ZZ_5 \\
+\ZZ_4\times\ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_{25} &
+\ZZ_4\times\ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_5\times\ZZ_5 &
+\ZZ_2\times\ZZ_2\times\ZZ_2\times\ZZ_9\times\ZZ_{25} \\
+\ZZ_2\times\ZZ_2\times\ZZ_2\times\ZZ_9\times\ZZ_5\times\ZZ_5 &
+\ZZ_2\times\ZZ_2\times\ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_{25} &
+\ZZ_2\times\ZZ_2\times\ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_5\times\ZZ_5 .
+\end{array}
+\]
+由基本定理，这就是阶为 $1800$ 的所有阿贝尔群的完整列表；每个阶为 $1800$ 的阿贝尔群都同构于其中恰好一个群，并且列表中任两个群都不同构。
+
+我们强调，$G$ 的初等因子不是 $G$ 的不变因子（而是 $G$ 的某些子群的不变因子）。例如在上面列表第一种情形中，初等因子 $8,9,25$ 不满足不变因子列表的整除条件。
+
+接下来说明如何由有限阿贝尔群的不变因子列表得到初等因子列表，反过来也如何由初等因子列表得到不变因子列表。无论群作为循环群直积以何种形式给出，都可以确定这些不变量。需要如下命题。
+
+\medskip
+\noindent\textbf{命题 6.} 设 $m,n\in\ZZ^+$。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\ZZ_m\times\ZZ_n\cong\ZZ_{mn}$ 当且仅当 $(m,n)=1$。
+  \item 若 $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$，则
+  \[
+    \ZZ_n\cong \ZZ_{p_1^{\alpha_1}}\times\ZZ_{p_2^{\alpha_2}}\times\cdots\times\ZZ_{p_k^{\alpha_k}}.
+  \]
+\end{enumerate}
+
+\begin{proof}
+由于 (2) 可由 (1) 与对 $k$ 的归纳容易得到，我们集中证明 (1)。令 $\ZZ_m=\gen{x}$，$\ZZ_n=\gen{y}$，并令 $l=\operatorname{lcm}(m,n)$。注意 $l=mn$ 当且仅当 $(m,n)=1$。设 $x^ay^b$ 是 $\ZZ_m\times\ZZ_n$ 的一个典型元素。由第 1 节例 1，
+\[
+  (x^ay^b)^l=x^{la}y^{lb}=1^a1^b=1,
+\]
+因为 $m\mid l$ 且 $n\mid l$。若 $(m,n)\neq1$，则 $\ZZ_m\times\ZZ_n$ 的每个元素的阶至多为 $l$，严格小于 $mn$，所以它不可能同构于 $\ZZ_{mn}$。反之，若 $(m,n)=1$，则
+\[
+  |xy|=\operatorname{lcm}(|x|,|y|)=mn.
+\]
+由阶的考虑，$\ZZ_m\times\ZZ_n=\gen{xy}$ 是循环群。证明完毕。
+\end{proof}
+
+\paragraph{由不变因子得到初等因子}
+设 $G$ 是类型 $(n_1,n_2,
+\ldots,n_s)$ 的阿贝尔群，即
+\[
+  G\cong \ZZ_{n_1}\times\ZZ_{n_2}\times\cdots\times\ZZ_{n_s}.
+\]
+令
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}=n_1n_2\cdots n_s.
+\]
+把每个 $n_i$ 分解为
+\[
+  n_i=p_1^{\beta_{i1}}p_2^{\beta_{i2}}\cdots p_k^{\beta_{ik}},
+  \qquad \beta_{ij}\geq0.
+\]
+由上面的命题，
+\[
+  \ZZ_{n_i}\cong \ZZ_{p_1^{\beta_{i1}}}\times\ZZ_{p_2^{\beta_{i2}}}\times\cdots\times\ZZ_{p_k^{\beta_{ik}}}
+\]
+对每个 $i$ 成立。若 $\beta_{ij}=0$，则 $\ZZ_{p_j^{\beta_{ij}}}=1$，可从直积中删去而不改变同构类型。因此，$G$ 的初等因子正是所有整数
+\[
+  p_j^{\beta_{ij}},\qquad 1\leq j\leq k,
+\quad 1\leq i\leq s,
+\quad \beta_{ij}\neq0.
+\]
+
+例如，若 $|G|=2^3\cdot3^2\cdot5^2$ 且 $G$ 的类型为 $(30,30,2)$，则
+\[
+  G\cong \ZZ_{30}\times\ZZ_{30}\times\ZZ_2.
+\]
+由于 $\ZZ_{30}\cong \ZZ_2\times\ZZ_3\times\ZZ_5$，
+\[
+  G\cong \ZZ_2\times\ZZ_3\times\ZZ_5\times\ZZ_2\times\ZZ_3\times\ZZ_5\times\ZZ_2.
+\]
+因此 $G$ 的初等因子为 $2,3,5,2,3,5,2$，把同素数幂归在一起，可写为 $2,2,2,3,3,5,5$。特别地，$G$ 同构于上面阶 $1800$ 的列表中的最后一个群。
+
+若对每个 $j$ 把所有因子 $\ZZ_{p_j^{\beta_{ij}}}$ 收集在一起，所得直积就是 $G$ 的 Sylow $p_j$-子群 $A_j$。因此，上段中群的 Sylow $2$-子群同构于 $\ZZ_2\times\ZZ_2\times\ZZ_2$，即阶为 $8$ 的初等阿贝尔群。
+
+\paragraph{由任意循环分解得到初等因子}
+只要有限阿贝尔群 $G$ 被写成循环群的直积，即使循环分量的阶不是不变因子，上述过程也能得到 $G$ 的初等因子。例如，若 $G=\ZZ_6\times\ZZ_{15}$，列表 $6,15$ 既不是不变因子列表（整除条件失败），也不是初等因子列表（它们不是素数幂）。分解 $6=2\cdot3$ 与 $15=3\cdot5$，得到初等因子 $2,3,3,5$，并且
+\[
+  G\cong \ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_5.
+\]
+
+\paragraph{由初等因子得到不变因子}
+设 $G$ 是阶为 $n$ 的阿贝尔群，其中 $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$，并且已知 $G$ 的初等因子。按以下步骤得到 $G$ 的不变因子：
+\begin{enumerate}[label=(\arabic*)]
+  \item 首先把所有同一个素数的幂的初等因子放在一起。这样得到 $k$ 个整数列表（每个 $p_j$ 一个列表）。
+  \item 在每个列表中，将整数按非增顺序排列。
+  \item 在这 $k$ 个列表中，设最长的列表有 $t$ 个整数。通过在每个列表末尾添上适当数量的 $1$，使每个列表长度都等于 $t$。
+  \item 对每个 $i\in\{1,2,
+\ldots,t\}$，第 $i$ 个不变因子 $n_i$ 是各个列表中第 $i$ 个整数的乘积。
+\end{enumerate}
+这样排列列表的目的，是确保有整除条件 $n_{i+1}\mid n_i$。
+
+例如，设 $G$ 的初等因子为 $2,3,2,25,3,2$（所以 $|G|=2^3\cdot3^2\cdot5^2$）。分组并把每个列表补到长度 $3$，得到
+\[
+\begin{array}{c|c|c}
+ p=2 & p=3 & p=5\\ \hline
+ 2&3&25\\
+ 2&3&1\\
+ 2&1&1
+\end{array}
+\]
+所以 $G$ 的不变因子为 $2\cdot3\cdot25,
+\ 2\cdot3\cdot1,
+\ 2\cdot1\cdot1$，即
+\[
+  G\cong \ZZ_{150}\times\ZZ_6\times\ZZ_2.
+\]
+
+下面给出阶为 $1800$ 的阿贝尔群的不变因子分解；该列表中的第 $i$ 个群同构于前面按初等因子得到的第 $i$ 个群：
+\[
+\begin{array}{llll}
+\ZZ_{1800},& \ZZ_{360}\times\ZZ_5,& \ZZ_{600}\times\ZZ_3,& \ZZ_{120}\times\ZZ_{15},\\
+\ZZ_{900}\times\ZZ_2,& \ZZ_{180}\times\ZZ_{10},& \ZZ_{300}\times\ZZ_6,& \ZZ_{60}\times\ZZ_{30},\\
+\ZZ_{450}\times\ZZ_2\times\ZZ_2,& \ZZ_{90}\times\ZZ_{10}\times\ZZ_2,&
+\ZZ_{150}\times\ZZ_6\times\ZZ_2,& \ZZ_{30}\times\ZZ_{30}\times\ZZ_2.
+\end{array}
+\]
+
+利用基本定理 3 与 5 的唯一性断言，我们可用这些过程判断任意两个有限循环群直积是否同构。例如，若要判断 $\ZZ_6\times\ZZ_{15}\cong\ZZ_{10}\times\ZZ_9$ 是否成立，先看二者阶是否相同（均为 $90$），再比较初等因子：
+\[
+\begin{array}{l}
+\ZZ_6\times\ZZ_{15}\text{ 的初等因子为 }2,3,3,5,
+\text{ 且同构于 }\ZZ_2\times\ZZ_3\times\ZZ_3\times\ZZ_5,\\
+\ZZ_{10}\times\ZZ_9\text{ 的初等因子为 }2,5,9,
+\text{ 且同构于 }\ZZ_2\times\ZZ_5\times\ZZ_9.
+\end{array}
+\]
+初等因子列表不同，所以由定理 5，这两个群不同构。注意 $\ZZ_6\times\ZZ_{15}$ 没有阶为 $9$ 的元素，而 $\ZZ_{10}\times\ZZ_9$ 有这样的元素（参见练习 5）。
+
+上述过程（稍加展开）给出了一个证明：对有限阿贝尔群，定理 3 与定理 5 等价。细节留给读者。
+
+现在可以更好地理解分类定理的威力与局限。一方面，给定任意正整数 $n$，我们能显式描述所有阶为 $n$ 的阿贝尔群，这是一个重要成就。另一方面，判断一个具体群属于阶为 $n$ 的哪一个同构类型所需的信息可能相当多；若 $n$ 被较大的素数幂整除，这个信息量尤其大。
+
+本节以一些以后会用到的术语作结。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $G$ 是类型 $(n_1,n_2,
+\ldots,n_t)$ 的有限阿贝尔群，则整数 $t$ 称为 $G$ 的\emph{秩}（此处自由秩为 $0$，不会混淆）。
+  \item 若 $G$ 是任意群，$G$ 的\emph{指数}是满足 $x^n=1$ 对所有 $x\in G$ 成立的最小正整数 $n$；若不存在这样的正整数，则指数为 $\infty$。
+\end{enumerate}
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 对 (a)--(e) 的每一项，给出指定阶的非同构阿贝尔群个数，不必列出群：(a) 阶 $100$；(b) 阶 $576$；(c) 阶 $1155$；(d) 阶 $42875$；(e) 阶 $2704$。
+
+  \item 对 (a)--(e) 的每一项，给出指定阶的所有阿贝尔群的不变因子列表：(a) 阶 $270$；(b) 阶 $9801$；(c) 阶 $320$；(d) 阶 $105$；(e) 阶 $44100$。
+
+  \item 对 (a)--(e) 的每一项，给出指定阶的所有阿贝尔群的初等因子列表，并把每个列表与前一题中相应的不变因子列表配对：(a) 阶 $270$；(b) 阶 $9801$；(c) 阶 $320$；(d) 阶 $105$；(e) 阶 $44100$。
+
+  \item 对 (a)--(d) 的每一项，判断列出的阿贝尔群中哪些彼此同构（这里 $\{a_1,a_2,
+\ldots,a_k\}$ 表示阿贝尔群 $\ZZ_{a_1}\times\ZZ_{a_2}\times\cdots\times\ZZ_{a_k}$）。
+  \begin{enumerate}[label=(\alph*)]
+    \item $\{4,9\}$，$\{6,6\}$，$\{8,3\}$，$\{9,4\}$，$\{6,4\}$，$\{64\}$。
+    \item $\{2^2,2\cdot3^2\}$，$\{2^2\cdot3,2\cdot3\}$，$\{2^3\cdot3^2\}$，$\{2^2\cdot3^2,2\}$。
+    \item $\{5^2\cdot7^2,3^2\cdot5\cdot7\}$，$\{3^2\cdot5^2\cdot7,5\cdot7^2\}$，$\{3\cdot5^2,7^2,3\cdot5\cdot7\}$，$\{5^2\cdot7,3^2\cdot5,7^2\}$。
+    \item $\{2^2\cdot5\cdot7,2^3\cdot5^3,2\cdot5^2\}$，$\{2^3\cdot5^3\cdot7,2^3\cdot5^3\}$，$\{2^2\cdot2\cdot7,2^3,5^3,5^3\}$，$\{2\cdot5^3,2^2\cdot5^3,2^3,7\}$。
+  \end{enumerate}
+
+  \item 设 $G$ 是类型 $(n_1,n_2,
+\ldots,n_t)$ 的有限阿贝尔群。证明：$G$ 含有阶为 $m$ 的元素当且仅当 $m\mid n_1$。推出 $G$ 的指数为 $n_1$。
+
+  \item 证明任意有限群都有有限指数。给出一个有有限指数的无限群例子。指数为 $m$ 的有限群是否必含有阶为 $m$ 的元素？
+
+  \item 设 $p$ 为素数，$A=\gen{x_1}\times\gen{x_2}\times\cdots\times\gen{x_n}$ 是阿贝尔 $p$-群，其中 $|x_i|=p^{\alpha_i}>1$。定义 $p$ 次幂映射
+  \[
+    \varphi:A\to A,
+\qquad \varphi(x)=x^p.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\varphi$ 是同态。
+    \item 用给定生成元描述 $\varphi$ 的像与核。
+    \item 证明 $\ker\varphi$ 与 $A/\im\varphi$ 的秩都等于 $n$，并证明二者均同构于阶为 $p^n$ 的初等阿贝尔群 $E_{p^n}$。
+  \end{enumerate}
+
+  \item 设 $A$ 是有限阿贝尔群（乘法记法），$p$ 是素数。令
+  \[
+    A^p=\gen{a^p\mid a\in A},
+    \qquad A_p=\{x\in A\mid x^p=1\}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $A/A^p\cong A_p$。（提示：证明二者都是初等阿贝尔群且阶相同。）
+    \item 证明 $A$ 中阶为 $p$ 的子群个数等于 $A$ 中指数为 $p$ 的子群个数。（提示：化约到 $A$ 是初等阿贝尔 $p$-群的情形。）
+  \end{enumerate}
+
+  \item 令 $A=\ZZ_{60}\times\ZZ_{45}\times\ZZ_{12}\times\ZZ_{36}$。求 $A$ 中阶为 $2$ 的元素个数以及 $A$ 中指数为 $2$ 的子群个数。
+
+  \item 设 $n,k$ 是正整数，$A$ 是秩为 $n$ 的自由阿贝尔群（加法记法）。证明 $A/kA$ 同构于 $n$ 个 $\ZZ/k\ZZ$ 的直积，其中 $kA=\{ka\mid a\in A\}$。
+
+  \item 设 $G$ 是非平凡有限阿贝尔群，秩为 $t$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G$ 的秩等于其 Sylow 子群秩的最大值。
+    \item 证明 $G$ 可由 $t$ 个元素生成，但没有少于 $t$ 个元素的子集能生成 $G$。
+  \end{enumerate}
+
+  \item 设 $n,m$ 为正整数，$d=(n,m)$。令 $\ZZ_n=\gen{x}$，$\ZZ_m=\gen{y}$。令 $A$ 为 $\gen{x}$ 与 $\gen{y}$ 的中心积，在其中识别一个阶为 $d$ 的元素。它有展示
+  \[
+    \gen{x,y\mid x^n=y^m=1,
+\ xy=yx,
+\ x^{n/d}=y^{m/d}}.
+  \]
+  把 $A$ 描述为两个循环群的直积。
+
+  \item 设 $A=\gen{x_1}\times\cdots\times\gen{x_r}$ 是有限阿贝尔群，$|x_i|=n_i$。给出 $A$ 的展示。证明：若任意群 $G$ 含有两两可交换的元素 $g_1,
+\ldots,g_r$，且 $g_i^{n_i}=1$，则存在唯一同态 $A\to G$，把 $x_i$ 送到 $g_i$。
+
+  \item 对任意群 $G$，定义 $G$ 的\emph{对偶群} $\widehat G$ 为所有从 $G$ 到 $\CC$ 中单位根乘法群的同态组成的集合。按函数逐点乘法定义 $\widehat G$ 上的群运算：若 $\chi,\psi$ 是同态，则 $(\chi\psi)(g)=\chi(g)\psi(g)$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明这个运算使 $\widehat G$ 成为阿贝尔群。
+    \item 若 $G$ 是有限阿贝尔群，证明 $\widehat G\cong G$。（提示：把 $G$ 写成 $\gen{x_1}\times\cdots\times\gen{x_r}$；若 $n_i=|x_i|$，定义 $\chi_i$ 把 $x_i$ 送到 $e^{2\pi i/n_i}$，把 $x_j$（$j\neq i$）送到 $1$。）
+  \end{enumerate}
+  这个结果常表述为：有限阿贝尔群是自对偶的。它意味着有限阿贝尔群的子群格图上下翻转后相同。不过 $G$ 与其对偶之间没有自然同构（同构依赖于生成元的选择）；常说有限阿贝尔群非典范地同构于其对偶。
+
+  \item 令 $G=\gen{x}\times\gen{y}$，其中 $|x|=8$ 且 $|y|=4$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 找出所有 $a,b\in G$，使得 $G=\gen{a}\times\gen{b}$（把 $a,b$ 用 $x,y$ 表示）。
+    \item 令 $H=\gen{x^2y,y^2}\cong\ZZ_4\times\ZZ_2$。证明不存在 $a,b\in G$ 使得 $G=\gen{a}\times\gen{b}$ 且 $H=\gen{a^2}\times\gen{b^2}$。
+  \end{enumerate}
+
+  \item 证明没有有限生成阿贝尔群是可除群（参见第 2.4 节练习 19）。
+\end{enumerate}
+
+\section{小阶群表}
+
+此时，我们可以给出大多数小阶群的同构类型表。
+
+下页表中那些不熟悉的非阿贝尔群将在第 5 节关于半直积的内容中构造（那里也会解释相关记号）。这里先给出它们的生成元与关系，即展示。
+
+阶为 $12$ 的群 $\ZZ_3\rtimes\ZZ_4$ 可由生成元与关系
+\[
+  \gen{x,y\mid x^4=y^3=1,
+\ x^{-1}yx=y^{-1}}
+\]
+描述。也就是说，它有一个正规 Sylow $3$-子群 $\gen{y}$，并且共轭作用下由一个阶为 $4$ 的元素 $x$ 取逆（$x^2$ 中心化 $y$）。
+
+群 $(\ZZ_3\times\ZZ_3)\rtimes\ZZ_2$ 有生成元与关系
+\[
+  \gen{x,y,z\mid x^2=y^3=z^3=1,
+\ yz=zy,
+\ x^{-1}yx=y^{-1},
+\ x^{-1}zx=z^{-1}}.
+\]
+也就是说，它有一个同构于 $\ZZ_3\times\ZZ_3$ 的正规 Sylow $3$-子群 $\gen{y,z}$，该子群被一个阶为 $2$ 的元素 $x$ 通过共轭取逆。
+
+阶为 $20$ 的群 $\ZZ_5\rtimes\ZZ_4$ 有生成元与关系
+\[
+  \gen{x,y\mid x^4=y^5=1,
+\ x^{-1}yx=y^{-1}}.
+\]
+它有一个正规 Sylow $5$-子群 $\gen{y}$，并被阶为 $4$ 的元素 $x$ 通过共轭取逆（$x^2$ 中心化 $y$）。
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\hline
+\text{阶} & \text{同构类型数} & \text{阿贝尔群} & \text{非阿贝尔群}\\ \hline
+1&1&1&无\\
+2&1&$\ZZ_2$&无\\
+3&1&$\ZZ_3$&无\\
+4&2&$\ZZ_4,
+\ \ZZ_2\times\ZZ_2$&无\\
+5&1&$\ZZ_5$&无\\
+6&2&$\ZZ_6$&$D_6\cong S_3$\\
+7&1&$\ZZ_7$&无\\
+8&5&$\ZZ_8,
+\ \ZZ_4\times\ZZ_2,
+\ \ZZ_2\times\ZZ_2\times\ZZ_2$&$D_8,
+\ Q_8$\\
+9&2&$\ZZ_9,
+\ \ZZ_3\times\ZZ_3$&无\\
+10&2&$\ZZ_{10}$&$D_{10}$\\
+11&1&$\ZZ_{11}$&无\\
+12&5&$\ZZ_{12},
+\ \ZZ_6\times\ZZ_2$&$A_4,
+\ D_{12},
+\ \ZZ_3\rtimes\ZZ_4$\\
+13&1&$\ZZ_{13}$&无\\
+14&2&$\ZZ_{14}$&$D_{14}$\\
+15&1&$\ZZ_{15}$&无\\
+16&14&$\ZZ_{16},
+\ \ZZ_8\times\ZZ_2,
+\ \ZZ_4\times\ZZ_4,
+\ \ZZ_4\times\ZZ_2\times\ZZ_2,
+\ \ZZ_2^4$&未列出\\
+17&1&$\ZZ_{17}$&无\\
+18&5&$\ZZ_{18},
+\ \ZZ_6\times\ZZ_3$&$D_{18},
+\ S_3\times\ZZ_3,
+\ (\ZZ_3\times\ZZ_3)\rtimes\ZZ_2$\\
+19&1&$\ZZ_{19}$&无\\
+20&5&$\ZZ_{20},
+\ \ZZ_{10}\times\ZZ_2$&$D_{20},
+\ \ZZ_5\rtimes\ZZ_4,
+\ F_{20}$\\ \hline
+\end{tabular}
+\end{center}
+
+阶为 $20$ 的群 $F_{20}$ 有生成元与关系
+\[
+  \gen{x,y\mid x^4=y^5=1,
+\ xyx^{-1}=y^2}.
+\]
+也就是说，它有一个正规 Sylow $5$-子群 $\gen{y}$，该子群被一个阶为 $4$ 的元素 $x$ 通过共轭作用平方。可以验证，这个群出现在 $S_5$ 中 Sylow $5$-子群的正规化子中，例如
+\[
+  F_{20}=\gen{(2
+\ 3
+\ 5
+\ 4),(1
+\ 2
+\ 3
+\ 4
+\ 5)}.
+\]
+这个群称为阶为 $20$ 的 Frobenius 群。
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 证明 $D_{16}$、$\ZZ_2\times D_8$、$\ZZ_2\times Q_8$、$\ZZ_4*D_8$、$QD_{16}$ 与 $M$ 是两两不同构的阶为 $16$ 的非阿贝尔群（其中 $\ZZ_4*D_8$ 在第 1 节练习 12 中描述，而 $QD_{16}$ 与 $M$ 在第 2.5 节练习中描述）。
+\end{enumerate}
+
+\section{识别直积}
+
+到目前为止，我们已经看到直积既可用来由“较小”群构造“较大”群，也可用来把有限生成阿贝尔群分解成循环因子。甚至某些以其他形式给出的非阿贝尔群也可能分解成较小群的直积。本节的目的，是给出一个判别准则，用来识别一个群何时是其某些子群的直积，并用若干例子说明。
+
+在此之前，我们引入关于交换子的标准记号与初等结果。这些记号将简化叙述，并会在第 6 章讨论幂零群时再次使用。
+
+\noindent\textbf{定义.} 设 $G$ 是群，$x,y\in G$，且 $A,B$ 是 $G$ 的非空子集。
+\begin{enumerate}[label=(\arabic*)]
+  \item 定义
+  \[
+    [x,y]=x^{-1}y^{-1}xy,
+  \]
+  称为 $x$ 与 $y$ 的\emph{交换子}。
+  \item 定义
+  \[
+    [A,B]=\gen{[a,b]\mid a\in A,
+\ b\in B},
+  \]
+  即由来自 $A$ 与 $B$ 的元素的交换子生成的子群。
+  \item 定义
+  \[
+    G'=\gen{[x,y]\mid x,y\in G},
+  \]
+  称为 $G$ 的\emph{交换子子群}。
+\end{enumerate}
+
+交换子 $[x,y]$ 等于 $1$ 当且仅当 $x$ 与 $y$ 可交换，这解释了该术语。下面命题表明交换子如何衡量 $xy$ 与 $yx$ 在 $G$ 中的差别。
+
+\medskip
+\noindent\textbf{命题 7.} 设 $G$ 是群，$x,y\in G$，且 $H\leq G$。则：
+\begin{enumerate}[label=(\arabic*)]
+  \item $xy=yx[x,y]$；特别地，$xy=yx$ 当且仅当 $[x,y]=1$。
+  \item $H\normal G$ 当且仅当 $[H,G]\leq H$。
+  \item 对任意 $G$ 的自同构 $\alpha$，有 $\alpha([x,y])=[\alpha(x),\alpha(y)]$；因此 $G'\charac G$，且 $G/G'$ 是阿贝尔群。
+  \item $G/G'$ 是 $G$ 的最大阿贝尔商群：若 $H\normal G$ 且 $G/H$ 是阿贝尔群，则 $G'\leq H$；反之，若 $G'\leq H$，则 $H\normal G$ 且 $G/H$ 是阿贝尔群。
+  \item 若 $\varphi:G\to A$ 是任意到阿贝尔群 $A$ 的同态，则 $\varphi$ 通过 $G/G'$ 分解；也就是说 $G'\leq\ker\varphi$，并且存在唯一同态 $\bar\varphi:G/G'\to A$ 使得下图交换：
+  \[
+  \begin{array}{ccc}
+  G & \longrightarrow & G/G'\\
+  & \searrow_{\varphi} & \downarrow \bar\varphi\\
+  & & A
+  \end{array}
+  \]
+\end{enumerate}
+
+\begin{proof}
+(1) 由 $[x,y]$ 的定义立即得到。
+
+(2) 按定义，$H\normal G$ 当且仅当对所有 $g\in G$ 与 $h\in H$ 有 $g^{-1}hg\in H$。而对 $h\in H$，$g^{-1}hg\in H$ 当且仅当 $h^{-1}g^{-1}hg\in H$，也就是 $[h,g]\in H$。因此 $H\normal G$ 当且仅当 $[H,G]\leq H$。
+
+(3) 设 $\alpha\in\Aut(G)$。则
+\[
+  \alpha([x,y])=\alpha(x^{-1}y^{-1}xy)=\alpha(x)^{-1}\alpha(y)^{-1}\alpha(x)\alpha(y)=[\alpha(x),\alpha(y)].
+\]
+故 $\alpha$ 把交换子的集合双射到自身；由于交换子生成 $G'$，得 $\alpha(G')=G'$，即 $G'\charac G$。又若 $xG'$ 与 $yG'$ 是 $G/G'$ 的任意元素，则
+\[
+  (xG')(yG')=(xy)G'=(yx[x,y])G'=(yx)G'=(yG')(xG'),
+\]
+所以 $G/G'$ 是阿贝尔群。
+
+(4) 若 $H\normal G$ 且 $G/H$ 是阿贝尔群，则对任意 $x,y\in G$，有 $(xH)(yH)=(yH)(xH)$，于是
+\[
+  H=(xH)^{-1}(yH)^{-1}(xH)(yH)=x^{-1}y^{-1}xyH=[x,y]H.
+\]
+所以 $[x,y]\in H$ 对所有 $x,y$ 成立，从而 $G'\leq H$。
+
+反之，若 $G'\leq H$，则由 (3)，$G/G'$ 是阿贝尔群，因而 $G/G'$ 的每个子群都正规。特别地，$H/G'\normal G/G'$。由格同构定理 $H\normal G$，再由第三同构定理
+\[
+  G/H\cong (G/G')/(H/G'),
+\]
+故 $G/H$ 是阿贝尔群。
+
+(5) 这只是用同态语言重述 (4)。
+\end{proof}
+
+对 $G$ 取商 $G/G'$ 会把所有交换子压成单位元，使商群中的所有元素都可交换。正如 (4) 所示，强反命题也成立：$G/H$ 是阿贝尔群当且仅当 $G'\leq H$。
+
+下一节我们将给出一个阶为 $96$ 的群，它的交换子子群中有一个元素不能写成任何单个交换子 $[x,y]$。因此 $G'$ 不一定仅由所有单个交换子组成，而是由这些元素生成的群。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 群 $G$ 是阿贝尔群当且仅当 $G'=1$。
+
+  \item 有时无需显式计算交换子即可求出交换子子群。例如，若 $G=D_8$，由于 $Z(D_8)=\gen{r^2}\normal D_8$ 且 $D_8/Z(D_8)$ 是阿贝尔群（Klein 四元群），交换子子群 $D_8'$ 是 $Z(D_8)$ 的子群。又 $D_8$ 非阿贝尔，所以 $D_8'$ 非平凡，唯一可能是 $D_8'=Z(D_8)$。类似地，$Q_8'=Z(Q_8)=\gen{-1}$。更一般地，若 $G$ 是阶为 $p^3$ 的非阿贝尔群，其中 $p$ 是素数，则 $G'=Z(G)$ 且 $|G'|=p$（练习 7）。
+
+  \item 令
+  \[
+    D_{2n}=\gen{r,s\mid r^n=s^2=1,
+\ s^{-1}rs=r^{-1}}.
+  \]
+  由于 $[r,s]=r^{-2}$，有 $\gen{r^2}\leq D_{2n}'$。另一方面，$\gen{r^2}\normal D_{2n}$，且 $D_{2n}/\gen{r^2}$ 中 $r$ 与 $s$ 的像生成该商群，并且是可交换的阶不超过 $2$ 的元素，所以商群阿贝尔，从而 $D_{2n}'\leq\gen{r^2}$。因此 $D_{2n}'=\gen{r^2}$。若 $n$ 为奇数，则 $\gen{r^2}=\gen r$；若 $n$ 为偶数，则 $\gen{r^2}$ 在 $\gen r$ 中指数为 $2$。因此 $D_{2n}'$ 在 $D_{2n}$ 中的指数分别为 $2$ 或 $4$，取决于 $n$ 是奇数还是偶数。
+
+  \item 由于由 $g\in G$ 给出的共轭是 $G$ 的自同构，命题 (3) 给出 $[a^g,b^g]=[a,b]^g$。也就是说，交换子的共轭仍是交换子。例如，一旦在 $S_n$ 中把某个循环类型的一个元素写成交换子，同一循环类型的所有元素都是交换子。特别地，$S_5$ 中每个 $5$-循环都是交换子：把五边形顶点标为 $1,
+\ldots,5$，可视 $D_{10}\leq S_5$。由前例，阶为 $5$ 的元素是 $D_{10}$ 中的交换子，因而也是 $S_5$ 中的交换子。显式地，
+  \[
+    (1
+\ 4
+\ 2
+\ 5
+\ 3)=[(1
+\ 2
+\ 3
+\ 4
+\ 5),(2
+\ 5)(4
+\ 3)].
+  \]
+\end{enumerate}
+
+下面的结果其实可从命题 3.13 的证明中推出，但这里单独列出以便引用。
+
+\medskip
+\noindent\textbf{命题 8.} 设 $H,K$ 是群 $G$ 的子群。集合 $HK$ 中每个元素写成 $hk$（$h\in H,k\in K$）的不同方式数为 $|H\cap K|$。特别地，若 $H\cap K=1$，则 $HK$ 的每个元素都能唯一写成 $hk$，其中 $h\in H,k\in K$。
+
+\begin{proof}
+练习。
+\end{proof}
+
+本节的主要结果是如下识别定理。
+
+\medskip
+\noindent\textbf{定理 9.} 设 $G$ 是群，$H,K$ 是其子群，满足：
+\begin{enumerate}[label=(\arabic*)]
+  \item $H\normal G$ 且 $K\normal G$；
+  \item $H\cap K=1$。
+\end{enumerate}
+则
+\[
+  HK\cong H\times K.
+\]
+
+\begin{proof}
+由假设 (1)，$HK$ 是 $G$ 的子群（参见推论 3.15）。令 $h\in H$，$k\in K$。由于 $H\normal G$，有 $k^{-1}hk\in H$，所以 $h^{-1}(k^{-1}hk)\in H$。类似地，由 $K\normal G$，有 $(h^{-1}k^{-1}h)k\in K$。而
+\[
+  h^{-1}k^{-1}hk
+\]
+同时属于 $H$ 与 $K$，故由 $H\cap K=1$ 得 $h^{-1}k^{-1}hk=1$，即 $hk=kh$。所以 $H$ 的每个元素与 $K$ 的每个元素可交换。
+
+由前一命题，$HK$ 的每个元素可唯一写成 $hk$，其中 $h\in H,k\in K$。定义
+\[
+  \varphi:HK\to H\times K,
+\qquad hk\mapsto(h,k).
+\]
+这是良定义的。若 $h_1,h_2\in H$，$k_1,k_2\in K$，则 $h_2$ 与 $k_1$ 可交换，所以
+\[
+  (h_1k_1)(h_2k_2)=(h_1h_2)(k_1k_2).
+\]
+于是
+\[
+\varphi(h_1k_1h_2k_2)=(h_1h_2,k_1k_2)=(h_1,k_1)(h_2,k_2)=\varphi(h_1k_1)\varphi(h_2k_2),
+\]
+故 $\varphi$ 是同态。又因为每个元素的表示唯一，$\varphi$ 是双射，故为同构。
+\end{proof}
+
+\noindent\textbf{定义.} 若 $G$ 是群，$H,K$ 是 $G$ 的正规子群且 $H\cap K=1$，则称 $HK$ 是 $H$ 与 $K$ 的\emph{内直积}。需要强调时，我们称 $H\times K$ 为 $H$ 与 $K$ 的\emph{外直积}。
+
+由定理 9，内直积与外直积的区别只是记号上的：内直积的元素写成 $hk$，外直积的元素写成有序对 $(h,k)$。此前我们已经在这些形式之间切换过。例如，当 $\ZZ_n=\gen a$、$\ZZ_m=\gen b$ 时，我们写 $x=(a,1)$、$y=(1,b)$，于是 $\ZZ_n\times\ZZ_m$ 的每个元素可写成 $x^ry^s$。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $n$ 是正奇数，则 $D_{4n}\cong D_{2n}\times\ZZ_2$。令
+  \[
+    D_{4n}=\gen{r,s\mid r^{2n}=s^2=1,
+\ srs=r^{-1}}
+  \]
+  为通常的展示。取 $H=\gen{s,r^2}$，$K=\gen{r^n}$。几何上，若 $D_{4n}$ 是正 $2n$ 边形的对称群，则 $H$ 是由连接顶点 $2i$ 与 $2i+2$ 得到的内接正 $n$ 边形的对称群。令 $\rho=r^2$，则 $H$ 有 $D_{2n}$ 的通常展示。$H$ 在 $D_{4n}$ 中指数为 $2$，所以正规。又 $|r^n|=2$，并且 $r$ 显然中心化 $r^n$；由 $srs=r^{-1}$ 得 $sr^ns=r^{-n}=r^n$，故 $K\leq Z(D_{4n})$，从而 $K\normal D_{4n}$。最后，因为 $r^2$ 的阶为奇数，$r^n\notin H$，所以 $H\cap K=1$。定理 9 给出同构。
+
+  \item 令 $I$ 是 $\{1,2,
+\ldots,n\}$ 的子集，令 $G$ 是 $S_n$ 中 $I$ 的集合稳定子：
+  \[
+    G=\{\sigma\in S_n\mid \sigma(i)\in I\text{ 对所有 }i\in I\}.
+  \]
+  令 $J=\{1,2,
+\ldots,n\}-I$。设 $H$ 为 $I$ 的逐点稳定子，$K$ 为 $J$ 的逐点稳定子：
+  \[
+    H=\{\sigma\in G\mid \sigma(i)=i\text{ 对所有 }i\in I\},
+  \]
+  \[
+    K=\{\tau\in G\mid \tau(j)=j\text{ 对所有 }j\in J\}.
+  \]
+  容易看出 $H,K$ 都是 $G$ 的正规子群（事实上它们分别是 $G$ 在 $I$ 与 $J$ 上作用的核）。且 $H\cap K=1$。每个 $G$ 的元素稳定 $I$ 与 $J$，所以其循环分解中的每个循环只涉及 $I$ 的元素或只涉及 $J$ 的元素。因此每个元素都可写成 $\sigma_I\sigma_J$，其中 $\sigma_I\in H$、$\sigma_J\in K$。于是 $G=HK$，由定理 9，$G\cong H\times K$。若 $m=|I|$，则
+  \[
+    H\cong S_{n-m},
+\qquad K\cong S_m,
+\qquad G\cong S_m\times S_{n-m},
+  \]
+  其中约定 $S_0=1$。
+
+  \item 令 $\sigma\in S_n$，令
+  \[
+    I=\{i\in\{1,2,
+\ldots,n\}\mid \sigma(i)=i\}
+  \]
+  为被 $\sigma$ 逐点固定的集合。若 $C=C_{S_n}(\sigma)$，则由第 4.3 节练习 18，$C$ 稳定 $I$ 及其补集 $J$。由前例，$C$ 同构于 $H\times K$ 的某个子群，其中 $H$ 是固定 $I$ 逐点的置换子群，$K$ 是固定 $J$ 逐点的置换子群。注意 $\sigma\in H$。并且任意固定 $J$ 逐点的置换都与 $\sigma$ 可交换，因为二者移动的整数没有交集。因此 $C$ 包含整个 $K$，且
+  \[
+    C_{S_n}(\sigma)=C_H(\sigma)\times K\cong C_{S_{n-|I|}}(\sigma)\times S_{|I|}.
+  \]
+  特别地，若 $\sigma$ 是 $S_n$ 中的一个 $m$-循环，则
+  \[
+    C_{S_n}(\sigma)=\gen{\sigma}\times S_{n-m}.
+  \]
+  后者的阶为 $m(n-m)!$，这正是第 4.3 节中计算所得。
+\end{enumerate}
+
+\subsection*{练习}
+设 $G$ 是群。
+\begin{enumerate}[label=\arabic*.]
+  \item 证明若 $x,y\in G$，则 $[y,x]=[x,y]^{-1}$。推出对任意子集 $A,B\subseteq G$，有 $[A,B]=[B,A]$。
+  \item 证明 $G$ 的子群 $H$ 正规当且仅当 $[G,H]\leq H$。
+  \item 设 $a,b,c\in G$。证明
+  \[
+    [a,bc]=[a,c](c^{-1}[a,b]c),
+\qquad
+    [ab,c]=(b^{-1}[a,c]b)[b,c].
+  \]
+  \item 求 $S_4$ 与 $A_4$ 的交换子子群。
+  \item 证明对所有 $n\geq5$，$A_n$ 是 $S_n$ 的交换子子群。
+  \item 把 $A_5$ 中每种循环类型的一个代表元表示为 $S_5$ 中的交换子。
+  \item 证明若 $p$ 是素数且 $P$ 是阶为 $p^3$ 的非阿贝尔群，则 $P'=Z(P)$。
+  \item 假设 $x,y\in G$，且 $x,y$ 都与 $[x,y]$ 可交换。证明对所有 $n\in\ZZ^+$，
+  \[
+    (xy)^n=x^ny^n[y,x]^{n(n-1)/2}.
+  \]
+  \item 证明若 $p$ 是奇素数且 $P$ 是阶为 $p^3$ 的群，则 $p$ 次幂映射 $x\mapsto x^p$ 是从 $P$ 到 $Z(P)$ 的同态。若 $P$ 非循环，说明该同态的核的阶为 $p^2$ 或 $p^3$。在阶为 $8$ 的非阿贝尔群中，平方映射是否为同态？上述证明中哪里需要 $p$ 为奇数？
+  \item 证明有限阿贝尔群是其 Sylow 子群的直积。
+  \item 证明若 $G=HK$，其中 $H,K$ 是 $G$ 的特征子群且 $H\cap K=1$，则 $\Aut(G)\cong\Aut(H)\times\Aut(K)$。推出若 $G$ 是有限阶阿贝尔群，则 $\Aut(G)$ 同构于其 Sylow 子群自同构群的直积。
+  \item 用定理 4.17 描述有限循环群的自同构群。
+  \item 证明 $D_{8n}$ 不同构于 $D_{4n}\times\ZZ_2$。
+  \item 设 $F$ 是域，令
+  \[
+    G=\{(a_{ij})\in\GL_n(F)\mid a_{ij}=0\text{ 若 }i>j,
+\ a_{11}=a_{22}=\cdots=a_{nn}\}
+  \]
+  为所有对角元相同的可逆上三角矩阵组成的群。证明 $G\cong D\times U$，其中 $D$ 是所有非零标量矩阵组成的群，$U$ 是所有对角线上为 $1$ 的上三角矩阵组成的群。
+  \item 若 $A,B$ 是 $G$ 的正规子群，且 $G/A$ 与 $G/B$ 都是阿贝尔群，证明 $G/(A\cap B)$ 是阿贝尔群。
+  \item 证明若 $K\normal G$，则 $K'\normal G$。
+  \item 若 $K\normal G$ 且 $K$ 是循环群，证明 $G'\leq C_G(K)$。（回忆循环群的自同构群是阿贝尔群。）
+  \item 设 $K_1,
+\ldots,K_n$ 是非阿贝尔单群，令 $G=K_1\times\cdots\times K_n$。证明 $G$ 的每个正规子群都形如 $G_I$，其中 $I\subseteq\{1,2,
+\ldots,n\}$。
+  \item 群 $H$ 称为\emph{完美群}，若 $H'=H$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明每个非阿贝尔单群都是完美群。
+    \item 证明若 $H,K$ 是群 $G$ 的完美子群，则 $\gen{H,K}$ 也是完美群。推广到任意一族完美子群生成的子群。
+    \item 证明完美子群的任意共轭仍是完美子群。
+    \item 证明任意群 $G$ 有唯一的极大完美子群，且该子群正规。
+  \end{enumerate}
+  \item 令 $H(F)$ 为域 $F$ 上的 Heisenberg 群（参见第 1.4 节练习 11）。求 $X,Y\in H(F)$ 时交换子 $[X,Y]$ 的显式公式，并证明 $H(F)$ 的交换子子群等于其中心。
+\end{enumerate}
+
+\section{半直积}
+
+本节研究两个群 $H$ 与 $K$ 的\emph{半直积}。它推广了直积的概念：在直积中 $H$ 与 $K$ 都正规，而半直积中只要求其中一个因子正规。这个构造使我们在某些情况下能由群 $H$ 与 $K$ 构造一个“较大”的群 $G$，其中分别含有同构于 $H$ 与 $K$ 的子群。在这种情形中，子群 $H$ 将是 $G$ 的正规子群，而 $K$ 不一定正规。因此，即使 $H$ 与 $K$ 都是阿贝尔群，我们也能够构造非阿贝尔群。这个构造会大大扩充我们可用的群例子。与前一节一样，我们随后证明一个识别定理，使我们能把某些熟悉的群分解成较小的“因子”，并由此得到一些分类定理。
+
+作为动机，假设已有一个群 $G$，其中含有子群 $H,K$，满足
+\begin{enumerate}[label=(\alph*)]
+  \item $H\normal G$（但 $K$ 不一定正规）；
+  \item $H\cap K=1$。
+\end{enumerate}
+此时 $HK$ 仍是 $G$ 的子群（推论 3.15），并且由命题 8，$HK$ 的每个元素都唯一写成 $hk$，其中 $h\in H,k\in K$。因此 $HK$ 与有序对 $(h,k)$ 的集合之间有一个双射，$hk\mapsto(h,k)$。给定 $h_1k_1$ 与 $h_2k_2$，它们的乘积可写为
+\begin{align}
+(h_1k_1)(h_2k_2)
+&=h_1k_1h_2(k_1^{-1}k_1)k_2\notag\\
+&=h_1(k_1h_2k_1^{-1})k_1k_2\notag\\
+&=h_3k_3, \tag{5.1}
+\end{align}
+其中 $h_3=h_1(k_1h_2k_1^{-1})\in H$，$k_3=k_1k_2\in K$。这里使用了 $H\normal G$。
+
+半直积的基本思想是把这个构造反过来：从两个抽象群 $H$ 与 $K$ 出发，设法定义一个群，其中含有它们的同构拷贝，并使 (a) 与 (b) 成立。式 (5.1) 中，$k_3$ 只由 $K$ 中的乘法给出，而 $h_3$ 由 $H$ 中的 $h_1$ 与 $k_1h_2k_1^{-1}$ 的乘积给出。由于 $H\normal G$，群 $K$ 通过共轭作用在 $H$ 上：
+\[
+  k\cdot h=khk^{-1},
+\qquad h\in H,
+\ k\in K.
+\]
+于是 (5.1) 可写为
+\[
+  (h_1k_1)(h_2k_2)=(h_1(k_1\cdot h_2))(k_1k_2). \tag{5.2}
+\]
+$K$ 在 $H$ 上的共轭作用给出从 $K$ 到 $\Aut(H)$ 的同态 $\varphi$，所以 (5.2) 表明 $HK$ 中的乘法只依赖于 $H$ 中的乘法、$K$ 中的乘法以及同态 $\varphi$。
+
+现在，我们用这个解释来定义一个群：给定群 $H,K$ 以及同态 $\varphi:K\to\Aut(H)$。
+
+\medskip
+\noindent\textbf{定理 10.} 设 $H,K$ 是群，$\varphi:K\to\Aut(H)$ 是同态。用 $\cdot$ 表示由 $\varphi$ 确定的 $K$ 在 $H$ 上的左作用。令 $G$ 为所有有序对 $(h,k)$ 组成的集合，其中 $h\in H,k\in K$，并在 $G$ 上定义乘法
+\[
+  (h_1,k_1)(h_2,k_2)=(h_1(k_1\cdot h_2),k_1k_2).
+\]
+则：
+\begin{enumerate}[label=(\arabic*)]
+  \item 这个乘法使 $G$ 成为群，且 $|G|=|H||K|$。
+  \item 集合 $\{(h,1)\mid h\in H\}$ 与 $\{(1,k)\mid k\in K\}$ 是 $G$ 的子群，并且映射 $h\mapsto(h,1)$ 与 $k\mapsto(1,k)$ 分别是 $H$ 与 $K$ 到这些子群的同构。
+\end{enumerate}
+在把 $H,K$ 与 (2) 中的同构拷贝等同后，还有：
+\begin{enumerate}[label=(\arabic*),resume]
+  \item $H\normal G$；
+  \item $H\cap K=1$；
+  \item 对所有 $h\in H,k\in K$，有
+  \[
+    khk^{-1}=k\cdot h=\varphi(k)(h).
+  \]
+\end{enumerate}
+
+\begin{proof}
+利用 $\cdot$ 是 $K$ 在 $H$ 上的作用，可直接验证 $G$ 是群。例如，结合律如下：对所有 $(a,x),(b,y),(c,z)\in G$，
+\begin{align*}
+((a,x)(b,y))(c,z)
+&=(a(x\cdot b),xy)(c,z)\\
+&=(a(x\cdot b)((xy)\cdot c),xyz)\\
+&=(a(x\cdot b)(x\cdot(y\cdot c)),xyz)\\
+&=(a(x\cdot(b(y\cdot c))),xyz)\\
+&=(a,x)(b(y\cdot c),yz)\\
+&=(a,x)((b,y)(c,z)).
+\end{align*}
+单位元为 $(1,1)$，而
+\[
+  (h,k)^{-1}=(k^{-1}\cdot h^{-1},k^{-1}).
+\]
+$G$ 的阶显然为 $|H||K|$，证明了 (1)。
+
+令 $\bar H=\{(h,1)\mid h\in H\}$，$\bar K=\{(1,k)\mid k\in K\}$。若 $a,b\in H$，则
+\[
+  (a,1)(b,1)=(a(1\cdot b),1)=(ab,1),
+\]
+若 $x,y\in K$，则
+\[
+  (1,x)(1,y)=(1,xy).
+\]
+这说明 $\bar H,
+\bar K$ 是 $G$ 的子群，并且 (2) 中的映射是同构。
+
+显然 $H\cap K=1$。又
+\begin{align*}
+(1,k)(h,1)(1,k)^{-1}
+&=(1,k)(h,1)(1,k^{-1})\\
+&=(k\cdot h,k)(1,k^{-1})\\
+&=(k\cdot h,k\cdot1,kk^{-1})\\
+&=(k\cdot h,1),
+\end{align*}
+所以在上述等同下 $khk^{-1}=k\cdot h$，即 (5)。最后，$K$ 正规化 $H$，而 $H$ 当然正规化自身；因为 $G=HK$，得 $N_G(H)=G$，即 $H\normal G$。
+\end{proof}
+
+\noindent\textbf{定义.} 设 $H,K$ 是群，$\varphi:K\to\Aut(H)$ 是同态。定理 10 中描述的群称为 $H$ 与 $K$ 关于 $\varphi$ 的\emph{半直积}，记为
+\[
+  H\rtimes_\varphi K.
+\]
+在没有混淆时，简写为 $H\rtimes K$。
+
+这个记号提醒我们，$H$ 的拷贝是正规的“因子”，并且半直积构造在 $H$ 与 $K$ 中并不对称（与直积不同）。在给出例子之前，先说明半直积何时就是直积。
+
+\medskip
+\noindent\textbf{命题 11.} 设 $H,K$ 是群，$\varphi:K\to\Aut(H)$ 是同态。下列条件等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item $H\rtimes K$ 与 $H\times K$ 之间的恒等集合映射是群同态（因此是同构）；
+  \item $\varphi$ 是从 $K$ 到 $\Aut(H)$ 的平凡同态；
+  \item $K\normal H\rtimes K$。
+\end{enumerate}
+
+\begin{proof}
+(1)$\Rightarrow$(2)：在半直积中
+\[
+  (h_1,k_1)(h_2,k_2)=(h_1(k_1\cdot h_2),k_1k_2).
+\]
+若恒等集合映射是群同态，则同一乘积也应为 $(h_1h_2,k_1k_2)$。比较第一分量，得 $k_1\cdot h_2=h_2$ 对所有 $h_2\in H,k_1\in K$ 成立，即 $K$ 平凡作用在 $H$ 上。
+
+(2)$\Rightarrow$(3)：若 $\varphi$ 平凡，则 $K$ 平凡作用在 $H$ 上，故由定理 10(5)，$H$ 的元素与 $K$ 的元素可交换。于是 $H$ 正规化 $K$，而 $K$ 正规化自身；由于 $G=HK$，得到 $K\normal G$。
+
+(3)$\Rightarrow$(1)：若 $K\normal H\rtimes K$，则如定理 9 的证明，对所有 $h\in H,k\in K$，有 $[h,k]\in H\cap K=1$。所以 $hk=kh$，$K$ 在 $H$ 上的作用平凡。于是半直积中的乘法与直积中的乘法相同。
+\end{proof}
+
+
+\paragraph{例}
+以下所有例子中，$H,K$ 是群，$\varphi:K\to\Aut(H)$ 是同态，$K$ 在 $H$ 上的相应作用用点号表示。令 $G=H\rtimes K$，并且如定理 10 中那样，把 $H,K$ 视为 $G$ 的子群。我们将使用命题 4.16 与命题 4.17 来确定某些特定群 $H$ 的自同构群中的同态 $\varphi$。以下每个例子中，证明 $\varphi$ 是同态都很容易（因为 $K$ 通常是循环群），故细节略去。
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $H$ 为任意阿贝尔群（甚至可为无限阶），令 $K=\gen{x}\cong\ZZ_2$ 为阶为 $2$ 的群。定义 $\varphi:K\to\Aut(H)$，把 $x$ 送到 $H$ 上取逆的自同构；于是相应作用为
+  \[
+    x\cdot h=h^{-1},\qquad h\in H.
+  \]
+  则 $G$ 含有指数为 $2$ 的子群 $H$，并且
+  \[
+    xhx^{-1}=h^{-1},\qquad h\in H.
+  \]
+  特别有趣的是 $H$ 循环的情形：若 $H=\ZZ_n$，则 $G$ 可识别为 $D_{2n}$；若 $H=\ZZ$，则记 $G$ 为 $D_\infty$。
+
+  \item 可以用若干方式推广前例。一种方式是令 $H$ 为任意阿贝尔群，并令 $K=\gen{x}\cong\ZZ_{2n}$ 为阶为 $2n$ 的循环群。仍定义 $\varphi$ 把 $x$ 送到取逆自同构，因此 $x^2$ 在 $H$ 上作为恒等自同构。在 $G$ 中，
+  \[
+    xhx^{-1}=h^{-1},\qquad x^2hx^{-2}=h,
+  \]
+  对所有 $h\in H$ 成立。因此 $x^2\in Z(G)$。特别地，若 $H=\ZZ_3$ 且 $K=\ZZ_4$，则 $G$ 是一个阶为 $12$ 的非阿贝尔群，并且不同构于 $A_4$ 或 $D_{12}$（因为它的 Sylow $2$-子群 $K$ 是阶为 $4$ 的循环群）。
+
+  \item 继续前例，令 $H=\gen{h}\cong\ZZ_{2^n}$，令 $K=\gen{x}\cong\ZZ_4$，并在 $G$ 中令 $xhx^{-1}=h^{-1}$。如上，$x^2\in Z(G)$。由于 $x$ 取逆 $h$（即取逆 $H$），$x$ 也取逆 $H$ 中唯一的阶为 $2$ 的子群 $\gen z$，其中 $z=h^{2^{n-1}}$。于是
+  \[
+    xzx^{-1}=z^{-1}=z,
+  \]
+  所以 $x$ 中心化 $z$，从而 $z\in Z(G)$。于是 $x^2z\in Z(G)$，故 $\gen{x^2z}\normal G$。令
+  \[
+    \bar G=G/\gen{x^2z}.
+  \]
+  因为 $x^2$ 与 $z$ 是两个不同的、可交换的阶为 $2$ 的元素，$x^2z$ 的阶为 $2$，所以 $|\bar G|=|G|/2=2^{n+1}$。在取商形成 $\bar G$ 时，我们把 $x^2$ 与 $h^{2^{n-1}}$ 在商群中识别起来。特别地，当 $n=2$ 时，$x$ 与 $h$ 都有阶 $4$，$x$ 取逆 $h$，且 $h^2=x^2$，所以此时 $\bar G\cong Q_8$。一般地，可以检验 $\bar G$ 有唯一的阶为 $2$ 的子群（即 $\gen{x^2}$），并且它等于 $\bar G$ 的中心。群 $\bar G$ 称为阶为 $2^{n+1}$ 的\emph{广义四元数群}，记为 $Q_{2^{n+1}}$：
+  \[
+    Q_{2^{n+1}}=
+    \gen{h,x\mid h^{2^n}=x^4=1,
+    \ x^{-1}hx=h^{-1},
+    \ h^{2^{n-1}}=x^2}.
+  \]
+
+  \item 令 $H=\QQ$（加法群），令 $K=\gen{x}\cong\ZZ$。定义 $\varphi$ 把 $x$ 送到 $H$ 上“乘以 $2$”的映射，所以 $x$ 在 $h\in H$ 上的作用为 $x\cdot h=2h$。注意乘以 $2$ 是 $H$ 的自同构，因为它有双边逆，即乘以 $1/2$。在群 $G$ 中，$\ZZ\leq\QQ$，并且 $x\ZZ x^{-1}$ 是 $\ZZ$ 的真子群（即 $2\ZZ$）。因此 $x\notin N_G(\ZZ)$，尽管 $x\ZZ x^{-1}\leq\ZZ$（注意 $x^{-1}\ZZ x$ 不包含于 $\ZZ$）。这表明，在无限群中，要证明元素 $g$ 正规化子群 $A$，一般不能只证明 $A$ 被 $g$ 共轭后包含在 $A$ 中（这在有限群中是充分的）。
+
+  \item 对任意群 $H$，令 $K=\Aut(H)$，并令 $\varphi$ 为从 $K$ 到 $\Aut(H)$ 的恒等映射。半直积 $H\rtimes\Aut(H)$ 称为 $H$ 的\emph{全形群}，记为 $\Hol(H)$。下面描述一些全形群；这些同构的验证作为本章末尾的练习给出。
+  \begin{enumerate}[label=(\alph*)]
+    \item $\Hol(\ZZ_2\times\ZZ_2)\cong S_4$。
+    \item 若 $|G|=n$，$\pi:G\to S_n$ 是左正则表示（第 4.2 节），则
+    \[
+      N_{S_n}(\pi(G))\cong \Hol(G).
+    \]
+    特别地，由于 $\ZZ_n$ 的一个生成元的左正则表示是 $S_n$ 中的一个 $n$-循环，于是对任意 $n$-循环 $(1\ 2\ \cdots\ n)$，有
+    \[
+      N_{S_n}\bigl(\gen{(1\ 2\ \cdots\ n)}\bigr)
+      \cong \Hol(\ZZ_n)=\ZZ_n\rtimes\Aut(\ZZ_n).
+    \]
+    注意后一个群的阶为 $n\varphi(n)$。
+  \end{enumerate}
+
+  \item 令 $p,q$ 为素数，且 $p<q$，令 $H=\ZZ_q$，$K=\ZZ_p$。我们已经看到，若 $p$ 不整除 $q-1$，则每个阶为 $pq$ 的群都是循环群（见命题 4.16 后的例子）。这与如下事实一致：若 $p$ 不整除 $q-1$，则从 $\ZZ_p$ 到 $\Aut(\ZZ_q)$ 不存在非平凡同态（后者由命题 4.17 是阶为 $q-1$ 的循环群）。现在假设 $p\mid q-1$。由 Cauchy 定理，$\Aut(\ZZ_q)$ 含有一个阶为 $p$ 的子群（它唯一，因为 $\Aut(\ZZ_q)$ 是循环群）。因此存在从 $K$ 到 $\Aut(H)$ 的非平凡同态 $\varphi$。相应的群 $G=H\rtimes K$ 阶为 $pq$，且 $K$ 在 $G$ 中不正规（命题 11）。特别地，$G$ 是非阿贝尔群。我们马上将证明，在同构意义下，$G$ 是唯一的阶为 $pq$ 的非阿贝尔群。若 $p=2$，则 $G$ 必同构于 $D_{2q}$。
+
+  \item 令 $p$ 为奇素数。我们构造两个不同构的阶为 $p^3$ 的非阿贝尔群（稍后将证明任意阶为 $p^3$ 的非阿贝尔群都同构于这两个之一）。
+
+  首先令 $H=\ZZ_p\times\ZZ_p$，令 $K=\ZZ_p$。由命题 4.17，$\Aut(H)\cong\GL_2(\FF_p)$，并且
+  \[
+    |\GL_2(\FF_p)|=(p^2-1)(p^2-p).
+  \]
+  由于 $p$ 整除 $|\Aut(H)|$，由 Cauchy 定理，$H$ 有一个阶为 $p$ 的自同构。因此存在从 $K$ 到 $\Aut(H)$ 的非平凡同态 $\varphi$，所以相应的群 $H\rtimes K$ 是阶为 $p^3$ 的非阿贝尔群。更显式地，若 $H=\gen a\times\gen b$，且 $x$ 是 $K$ 的生成元，则令 $x$ 作用在 $a,b$ 上为
+  \[
+    x\cdot a=ab,
+    \qquad
+    x\cdot b=b,
+  \]
+  这定义了 $x$ 在整个 $H$ 上的作用。把 $H$ 看作二维 $\FF_p$-向量空间，以 $a,b$ 为基，则 $x$ 的作用（可用加法记号看作非奇异线性变换）具有矩阵
+  \[
+    \begin{pmatrix}1&0\\1&1\end{pmatrix}\in\GL_2(\FF_p).
+  \]
+  所得半直积有展示
+  \[
+    \gen{x,a,b\mid x^p=a^p=b^p=1,
+    \ ab=ba,
+    \ xax^{-1}=ab,
+    \ xbx^{-1}=b}.
+  \]
+  事实上，这个群由 $\{x,a\}$ 生成，并称为 $\ZZ/p\ZZ$ 上的 Heisenberg 群（参见练习 25）。
+
+  接着令 $H=\ZZ_{p^2}$，令 $K=\ZZ_p$。再次由命题 4.17，$\Aut(H)\cong\ZZ_{p(p-1)}$，所以 $H$ 有阶为 $p$ 的自同构。因此存在从 $K$ 到 $\Aut(H)$ 的非平凡同态 $\varphi$，从而群 $H\rtimes K$ 是阶为 $p^3$ 的非阿贝尔群。更显式地，若 $H=\gen y$，且 $x$ 是 $K$ 的生成元，则令 $x$ 作用在 $y$ 上为
+  \[
+    x\cdot y=y^{1+p}.
+  \]
+  所得半直积有展示
+  \[
+    \gen{x,y\mid x^p=y^{p^2}=1,
+    \ xyx^{-1}=y^{1+p}}.
+  \]
+  这两个群不同构：前者没有阶为 $p^2$ 的元素（参见练习 25），而后者显然有这样的元素，即 $y$。
+
+  \item 令 $H=Q_8\times(\ZZ_2\times\ZZ_2)=\gen{i,j}\times(\gen a\times\gen b)$，令 $K=\gen y\cong\ZZ_3$。由
+  \[
+    i\mapsto j\mapsto k=ij,
+    \qquad
+    a\mapsto b\mapsto ab
+  \]
+  定义的映射容易看出给出 $H$ 的一个阶为 $3$ 的自同构。令 $\varphi$ 为从 $K$ 到 $\Aut(H)$ 的同态，把 $y$ 送到这个自同构，并令 $G$ 为相应的半直积，使得 $y\in G$ 的作用为
+  \[
+    y\cdot i=j,
+    \quad
+    y\cdot j=k,
+    \quad
+    y\cdot a=b,
+    \quad
+    y\cdot b=ab.
+  \]
+  群 $G=H\rtimes K$ 是阶为 $96$ 的非阿贝尔群，并且元素 $i^2a\in G'$，但 $i^2a$ 不能写成任何单个交换子 $[x,y]$，其中 $x,y\in G$（检验后一断言是一个初等计算）。
+\end{enumerate}
+
+与直积情形一样，我们现在证明半直积的识别定理。
+
+\medskip
+\noindent\textbf{定理 12.} 设 $G$ 是群，$H,K$ 是其子群，满足
+\begin{enumerate}[label=(\arabic*)]
+  \item $H\normal G$；
+  \item $H\cap K=1$。
+\end{enumerate}
+令 $\varphi:K\to\Aut(H)$ 为把 $k\in K$ 送到 $H$ 上由 $k$ 左共轭给出的自同构的同态。则
+\[
+  HK\cong H\rtimes_\varphi K.
+\]
+特别地，若 $G=HK$ 且 $H,K$ 满足 (1)、(2)，则 $G$ 是 $H$ 与 $K$ 的半直积。
+
+\begin{proof}
+因为 $H\normal G$，$HK$ 是 $G$ 的子群。由命题 8，$HK$ 的每个元素唯一写成 $hk$，其中 $h\in H,k\in K$。因此映射 $hk\mapsto(h,k)$ 是从 $HK$ 到 $H\rtimes K$ 的集合双射。它是同态这一事实正是本节开头推导半直积定义时的计算。
+\end{proof}
+
+\noindent\textbf{定义.} 设 $H$ 是群 $G$ 的子群。若 $K$ 是 $G$ 的子群，且 $G=HK$、$H\cap K=1$，则称 $K$ 是 $H$ 在 $G$ 中的一个\emph{补子群}。
+
+用这个术语，识别半直积的准则就是：某个真正规子群必须存在一个补子群。并非每个群都是其两个真子群的半直积（例如单群），但我们已经看到，半直积的概念大大扩展了我们已知的群的列表。
+
+\paragraph{一些分类}
+现在我们应用定理 12 来分类若干阶 $n$ 的群。以下每个论证的基本思想是：
+\begin{enumerate}[label=(\alph*)]
+  \item 证明每个阶为 $n$ 的群都有真子群 $H,K$，满足定理 12 的假设并且 $G=HK$；
+  \item 找出 $H,K$ 的所有可能同构类型；
+  \item 对 (b) 中找到的每一对 $H,K$，找出所有可能的同态 $\varphi:K\to\Aut(H)$；
+  \item 对 (c) 中找到的每个三元组 $H,K,\varphi$，形成半直积 $H\rtimes K$（因此任意阶为 $n$ 的群 $G$ 都同构于这些显式构造的群之一），并在所有这些半直积中判定哪些彼此同构。这样就得到阶为 $n$ 的群的互不同构类型列表。
+\end{enumerate}
+为了启动这个过程，我们首先必须在任意阶为 $n$ 的群 $G$ 中找到满足上述条件的子群 $H,K$。当 $n$ “较小”时，通常可由 Sylow 定理做到这一点。为了证明 $H$ 的正规性，我们使用 Sylow 定理的共轭部分，或第 4 章中建立的其他正规性准则（例如推论 4.5）。在下面许多例子中，$|H|$ 与 $|K|$ 互素，因此 $H\cap K=1$ 由 Lagrange 定理得到。
+
+由于 $H,K$ 是 $G$ 的真子群，应当把 $H,K$ 的确定看作按归纳已经完成。在我们讨论的例子中，$H,K$ 的阶足够小，使得我们可由先前结果知道所有可能的同构类型。例如，在大多数情形中，$H,K$ 的阶是素数或素数平方。
+
+在我们的例子中，可能的同态 $\varphi:K\to\Aut(H)$ 相对较少，特别是在考虑某些对称性之后（例如当 $K$ 循环时，把 $K$ 的一个生成元换成另一个）。
+
+最后，在我们的例子中，这个过程得到的半直积数量很少，并且我们会发现它们大多两两不同构。一般来说，判定这些半直积之间的同构可能是更精细的问题，练习 4 就说明了这一点。
+
+我们强调，把给定阶 $n$ 的每个群都“分解”为某个半直积的这种方法，并不适用于任意 $n$。例如，$Q_8$ 不是半直积，因为它没有真子群有补子群（虽然我们看到过它是一个半直积的商群）。经验上，当群阶 $n$ 不被任何素数的高次幂整除时，这个过程通常效果很好。另一方面，在另一个极端，当 $a$ 很大时，阶为 $p^a$ 的群中只有很小比例是非平凡半直积（$p$ 为素数）。
+
+\paragraph{例：阶为 $pq$ 的群，其中 $p<q$ 为素数}
+令 $G$ 是阶为 $pq$ 的任意群，令 $P\in\Syl_p(G)$，$Q\in\Syl_q(G)$。在 Sylow 定理应用的例 1 中，我们已经证明 $G\cong Q\rtimes P$，其中 $\varphi:P\to\Aut(Q)$。由于 $P,Q$ 阶为素数，它们都是循环群。群 $\Aut(Q)$ 是阶为 $q-1$ 的循环群。若 $p$ 不整除 $q-1$，则从 $P$ 到 $\Aut(Q)$ 的唯一同态是平凡同态，因此这种情形下唯一的半直积是直积，即 $G$ 是循环群。
+
+现在考虑 $p\mid q-1$ 的情形，并令 $P=\gen y$。由于 $\Aut(Q)$ 是循环群，它含有唯一的阶为 $p$ 的子群，设为 $\gen\gamma$；任意同态 $\varphi:P\to\Aut(Q)$ 都必须把 $y$ 送到 $\gamma$ 的某个幂。因此有 $p$ 个同态 $\varphi_i:P\to\Aut(Q)$，由
+\[
+  \varphi_i(y)=\gamma^i,
+  \qquad 0\leq i\leq p-1
+\]
+给出。由于 $\varphi_0$ 是平凡同态，$Q\rtimes_{\varphi_0}P\cong Q\times P$，同前。每个 $i\neq0$ 的 $\varphi_i$ 都给出一个非阿贝尔的阶为 $pq$ 的群 $G_i$。容易检验这些群都同构，因为对每个 $i>0$，存在 $P$ 的某个生成元 $y_i$，使得 $\varphi_i(y_i)=\gamma$。因此，除了 $P$ 的（任意）生成元选择之外，这些半直积都相同（参见练习 6；也参见第 4.3 节练习 28）。
+
+\paragraph{例：阶为 $30$ 的群}
+由 Sylow 定理后的例子，每个阶为 $30$ 的群 $G$ 都含有一个阶为 $15$ 的子群 $H$。由前例，$H$ 是循环群，并且 $H$ 在 $G$ 中正规（指数为 $2$）。由 Sylow 定理，$G$ 中存在一个阶为 $2$ 的子群 $K$。于是 $G=HK$ 且 $H\cap K=1$，所以 $G\cong H\rtimes K$，其中 $\varphi:K\to\Aut(H)$。由命题 4.16，
+\[
+  \Aut(\ZZ_{15})\cong(\ZZ/15\ZZ)^\times\cong\ZZ_4\times\ZZ_2.
+\]
+后一个同构可以直接计算，也可以使用前一节练习 11：把 $H$ 写成
+\[
+  H=\gen a\times\gen b\cong\ZZ_5\times\ZZ_3,
+\]
+由于这两个子群在 $H$ 中都是特征子群，有
+\[
+  \Aut(H)\cong\Aut(\ZZ_5)\times\Aut(\ZZ_3).
+\]
+特别地，$\Aut(H)$ 恰有三个阶为 $2$ 的元素，它们在 $H=\gen a\times\gen b$ 上的作用如下：
+\[
+\begin{array}{ccc}
+ a\mapsto a, &\qquad& a\mapsto a^{-1}, \qquad a\mapsto a^{-1},\\
+ b\mapsto b^{-1}, && b\mapsto b, \qquad b\mapsto b^{-1}.
+\end{array}
+\]
+因此从 $K$ 到 $\Aut(H)$ 有三个非平凡同态，分别把 $K$ 的生成元送到这三个阶为 $2$ 的元素之一（照例，平凡同态给出直积 $H\times K\cong\ZZ_{30}$）。
+
+令 $K=\gen k$。若同态 $\varphi_1:K\to\Aut(H)$ 把 $k$ 送到上面第一个自同构（即 $k\cdot a=a$ 且 $k\cdot b=b^{-1}$），则 $G_1=H\rtimes_{\varphi_1}K$ 容易看出同构于 $\ZZ_5\times D_6$（注意在这个半直积中，$k$ 中心化 $H$ 中阶为 $5$ 的元素 $a$，所以分解为直积 $\gen a\times\gen{b,k}$）。
+
+若 $\varphi_2$ 把 $k$ 送到第二个自同构，则 $G_2=H\rtimes_{\varphi_2}K$ 容易看出同构于 $\ZZ_3\times D_{10}$（注意在这个半直积中，$k$ 中心化 $H$ 中阶为 $3$ 的元素 $b$，所以分解为直积 $\gen b\times\gen{a,k}$）。
+
+若 $\varphi_3$ 把 $k$ 送到第三个自同构，则 $G_3=H\rtimes_{\varphi_3}K$ 容易看出同构于 $D_{30}$。
+
+注意这些群两两不同构，因为它们中心的阶分别为 $30$（阿贝尔情形）、$5$（对 $G_1$）、$3$（对 $G_2$）与 $1$（对 $G_3$）。
+
+我们强调，虽然事后看来，这个过程没有给出任何不能只用直积构造出来的群，但这个论证证明了这是阶为 $30$ 的群的完整同构类型列表。
+
+\paragraph{例：阶为 $12$ 的群}
+令 $G$ 是阶为 $12$ 的群，令 $V\in\Syl_2(G)$，$T\in\Syl_3(G)$。由第 4.5 节关于阶为 $12$ 的群的讨论，我们知道 $V$ 或 $T$ 在 $G$ 中正规（为了说明方法，我们不使用第 4 章所得结果的全部力度，即不直接使用“要么 $T\normal G$，要么 $G\cong A_4$”）。由 Lagrange 定理，$V\cap T=1$。因此 $G$ 是一个半直积。注意 $V\cong\ZZ_4$ 或 $\ZZ_2\times\ZZ_2$，而 $T\cong\ZZ_3$。
+
+\emph{情形 1：$V\normal G$。}
+我们必须确定从 $T$ 到 $\Aut(V)$ 的所有可能同态。若 $V\cong\ZZ_4$，则 $\Aut(V)\cong\ZZ_2$，从 $T$ 到 $\Aut(V)$ 没有非平凡同态。因此具有正规循环 Sylow $2$-子群的阶为 $12$ 的唯一群是 $\ZZ_{12}$。
+
+于是设 $V\cong\ZZ_2\times\ZZ_2$。此时 $\Aut(V)\cong S_3$，并且 $\Aut(V)$ 有唯一的阶为 $3$ 的子群，设为 $\gen\gamma$。若 $T=\gen y$，则从 $T$ 到 $\Aut(V)$ 有三个可能同态：
+\[
+  \varphi_i:T\to\Aut(V),
+  \qquad
+  \varphi_i(y)=\gamma^i,
+  \qquad i=0,1,2.
+\]
+照例，$\varphi_0$ 是平凡同态，给出直积 $\ZZ_2\times\ZZ_2\times\ZZ_3$。同态 $\varphi_1$ 与 $\varphi_2$ 给出同构的半直积，因为二者只差 $T$ 的生成元选择（即 $\varphi_1(y)=\gamma$，而 $\varphi_2(y')=\gamma$，其中 $y'=y^2$ 也是 $T$ 的生成元；也参见练习 6）。这种情形中的唯一非阿贝尔群是 $A_4$。
+
+\emph{情形 2：$T\normal G$。}
+我们必须确定从 $V$ 到 $\Aut(T)$ 的所有可能同态。注意 $\Aut(T)=\gen A\cong\ZZ_2$，其中 $A$ 取逆 $T$。若 $V=\gen x\cong\ZZ_4$，则从 $V$ 到 $\Aut(T)$ 恰有两个同态：平凡同态以及把 $x$ 送到 $A$ 的同态。照例，平凡同态给出直积 $\ZZ_3\times\ZZ_4\cong\ZZ_{12}$。非平凡同态给出本节命题 11 后例 2 中讨论的半直积。
+
+最后，设 $V=\gen a\times\gen b\cong\ZZ_2\times\ZZ_2$。从 $V$ 到 $\Aut(T)$ 恰有三个非平凡同态，由指定其核为 $V$ 中三个阶为 $2$ 的子群之一来确定。例如，$\varphi_1(a)=A$ 且 $\varphi_1(b)=A$ 的核为 $\gen{ab}$；也就是说，在这个半直积中，$a,b$ 都通过取逆作用在 $T$ 上，而 $ab$ 中心化 $T$。若 $\varphi_2,\varphi_3$ 的核分别为 $\gen a$ 与 $\gen b$，则容易检验所得三个半直积都同构于 $S_3\times\ZZ_2$，其中 $\ZZ_2$ 直因子是 $\varphi_i$ 的核。例如，
+\[
+  T\rtimes_{\varphi_1}V=\gen{a,T}\times\gen{ab}.
+\]
+综上，阶为 $12$ 的群恰有 $5$ 个，其中 $3$ 个非阿贝尔。
+
+\paragraph{例：阶为 $p^3$ 的群，$p$ 为奇素数}
+令 $G$ 是阶为 $p^3$ 的群，$p$ 为奇素数，并假设 $G$ 非循环。由前一节练习 9，映射 $x\mapsto x^p$ 是从 $G$ 到 $Z(G)$ 的同态，其核的阶为 $p^2$ 或 $p^3$。在前一种情形中，$G$ 必含有阶为 $p^2$ 的元素；在后一种情形中，每个非单位元素的阶都是 $p$。
+
+\emph{情形 1：$G$ 有阶为 $p^2$ 的元素。}
+令 $x$ 是阶为 $p^2$ 的元素，并令 $H=\gen x$。注意由于 $H$ 的指数为 $p$，由推论 4.5，$H\normal G$。若 $E$ 是 $p$ 次幂映射的核，则在此情形中 $E\cong\ZZ_p\times\ZZ_p$，且 $E\cap H=\gen{x^p}$。令 $y$ 是 $E-H$ 中任意元素，并令 $K=\gen y$。由构造，$H\cap K=1$，所以
+\[
+  G\cong \ZZ_{p^2}\rtimes\ZZ_p,
+\]
+其中 $\varphi:K\to\Aut(H)$。若 $\varphi$ 是平凡同态，则 $G\cong\ZZ_{p^2}\times\ZZ_p$，因此只需考虑非平凡同态。由命题 4.17，$\Aut(H)\cong\ZZ_{p(p-1)}$ 是循环群，所以含有唯一的阶为 $p$ 的子群，显式地为 $\gen\gamma$，其中
+\[
+  \gamma(x)=x^{1+p}.
+\]
+照例，至多差循环群 $K$ 的生成元选择，只有一个非平凡同态 $\varphi:K\to\Aut(H)$，由 $\varphi(y)=\gamma$ 给出；因此在这种情形中，在同构意义下只有一个非阿贝尔群 $H\rtimes K$。这个群已在上面的例 7 中描述。
+
+\emph{情形 2：每个非单位元素的阶都是 $p$。}
+在此情形中，令 $H$ 为 $G$ 的任意阶为 $p^2$ 的子群（见第 4.3 节练习 29）。必有 $H\cong\ZZ_p\times\ZZ_p$。令 $K=\gen y$，其中 $y$ 是 $G-H$ 的任意元素。由于 $H$ 的指数为 $p$，$H\normal G$；又因为 $K$ 阶为 $p$ 但不包含于 $H$，$H\cap K=1$。于是
+\[
+  G\cong(\ZZ_p\times\ZZ_p)\rtimes\ZZ_p,
+\]
+其中 $\varphi:K\to\Aut(H)$。若 $\varphi$ 平凡，则 $G\cong\ZZ_p\times\ZZ_p\times\ZZ_p$（初等阿贝尔群），所以可假设 $\varphi$ 非平凡。由命题 4.17，
+\[
+  \Aut(H)\cong\GL_2(\FF_p),
+\]
+因此 $|\Aut(H)|=(p^2-1)(p^2-p)$。注意 $\Aut(H)$ 的 Sylow $p$-子群阶为 $p$，所以由 Sylow 定理，$\Aut(H)$ 中所有阶为 $p$ 的子群在 $\Aut(H)$ 中共轭。显式地（如上面例 7 所讨论的），$\Aut(H)$ 中每个阶为 $p$ 的子群都共轭于 $\gen\gamma$，其中若 $H=\gen a\times\gen b$，则自同构 $\gamma$ 定义为
+\[
+  \gamma(a)=ab,
+  \qquad
+  \gamma(b)=b.
+\]
+关于二维向量空间 $H$ 的 $\FF_p$-基 $a,b$，这个自同构具有矩阵
+\[
+  \begin{pmatrix}1&0\\1&1\end{pmatrix}\in\GL_2(\FF_p).
+\]
+因此（再次引用练习 6），在这种情形中只有一个半直积同构类型。
+
+最后，由于这两个非阿贝尔群的 $p$ 次幂映射的核具有不同阶，它们不同构。这个群的一个展示也在上面的例 7 中给出。
+
+\subsection*{练习}
+设 $H,K$ 是群，$\varphi:K\to\Aut(H)$ 是同态，并照例把 $H,K$ 视为 $G=H\rtimes_\varphi K$ 的子群。
+\begin{enumerate}[label=\arabic*.]
+  \item 证明 $C_K(H)=\ker\varphi$（回忆 $C_K(H)=C_G(H)\cap K$）。
+  \item 证明 $C_H(K)=N_H(K)$。
+  \item 在命题 11 后例 1 中，证明 $G-H$ 的每个元素都有阶 $2$。证明 $G$ 是阿贝尔群当且仅当 $h^2=1$ 对所有 $h\in H$ 成立。
+  \item 令 $p=2$，检验阶为 $p^3$ 的两个非阿贝尔群的构造在此情形中仍有效。证明所得两个群都同构于 $D_8$。
+  \item 令 $G=\Hol(\ZZ_2\times\ZZ_2)$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G=H\rtimes K$，其中 $H=\ZZ_2\times\ZZ_2$ 且 $K\cong S_3$。推出 $|G|=24$。
+    \item 证明 $G\cong S_4$。（提示：让 $G$ 作用在 $K$ 的左陪集上，得到到 $S_4$ 的同态；用练习 1 证明该表示忠实。）
+  \end{enumerate}
+  \item 假设 $K$ 是循环群，$H$ 是任意群，$\varphi_1,
+\varphi_2$ 是从 $K$ 到 $\Aut(H)$ 的同态，且 $\varphi_1(K)$ 与 $\varphi_2(K)$ 是 $\Aut(H)$ 中共轭子群。若 $K$ 无限，还假设 $\varphi_1,
+\varphi_2$ 单射。通过构造显式同构证明
+  \[
+    H\rtimes_{\varphi_1}K\cong H\rtimes_{\varphi_2}K.
+  \]
+
+  \item 本题描述阶为 $56$ 的十三个同构类型。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明阶为 $56$ 的阿贝尔群有三个。
+    \item 证明每个阶为 $56$ 的群都有正规 Sylow $2$-子群或正规 Sylow $7$-子群。
+    \item 构造下列具有正规 Sylow $7$-子群的阶为 $56$ 的非阿贝尔群，其中 Sylow $2$-子群 $S$ 如下：当 $S\cong\ZZ_2\times\ZZ_2\times\ZZ_2$ 时一个群；当 $S\cong\ZZ_4\times\ZZ_2$ 时两个不同构群；当 $S\cong\ZZ_8$ 时一个群；当 $S\cong Q_8$ 时两个不同构群；当 $S\cong D_8$ 时三个不同构群。
+    \item 设 $G$ 是阶为 $56$ 且 Sylow $7$-子群非正规的群。证明若 $S$ 是 $G$ 的 Sylow $2$-子群，则 $S\cong\ZZ_2\times\ZZ_2\times\ZZ_2$。
+    \item 证明存在唯一一个 Sylow $7$-子群非正规的阶为 $56$ 的群。（存在性可用 $|\GL_3(\FF_2)|=168$，唯一性用练习 6。）
+  \end{enumerate}
+
+  \item 构造一个阶为 $75$ 的非阿贝尔群。分类所有阶为 $75$ 的群（共有三个）。
+
+  \item 证明矩阵
+  \[
+    \begin{pmatrix}0&-1\\1&4\end{pmatrix}
+  \]
+  是 $\GL_2(\FF_{19})$ 中阶为 $5$ 的元素。利用这个矩阵构造一个阶为 $1805$ 的非阿贝尔群，并给出该群的展示。分类阶为 $1805$ 的群（共有三个同构类型）。
+
+  \item 本题分类阶为 $147$ 的群（共有六个同构类型）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明阶为 $147$ 的阿贝尔群有两个。
+    \item 证明每个阶为 $147$ 的群都有正规 Sylow $7$-子群。
+    \item 证明 Sylow $7$-子群为循环群的非阿贝尔群唯一。
+    \item 令
+    \[
+      t_1=\begin{pmatrix}2&0\\0&1\end{pmatrix},
+\qquad
+      t_2=\begin{pmatrix}1&0\\0&2\end{pmatrix}
+    \]
+    为 $\GL_2(\FF_7)$ 的元素。证明 $P=\gen{t_1,t_2}$ 是 $\GL_2(\FF_7)$ 的 Sylow $3$-子群，且 $P\cong\ZZ_3\times\ZZ_3$。推出 $\GL_2(\FF_7)$ 的每个阶为 $3$ 的子群都共轭于 $P$ 的某个子群。
+    \item 由第 1 节例 3，$P$ 有四个阶为 $3$ 的子群，分别为 $P_1=\gen{t_1}$、$P_2=\gen{t_2}$、$P_3=\gen{t_1t_2}$ 与 $P_4=\gen{t_1t_2^2}$。对 $i=1,2,3,4$，令 $G_i=(\ZZ_7\times\ZZ_7)\rtimes_{\varphi_i}\ZZ_3$，其中 $\varphi_i$ 是 $\ZZ_3$ 到 $\Aut(\ZZ_7\times\ZZ_7)$ 的子群 $P_i$ 上的同构。对每个 $i$，用生成元与关系描述 $G_i$。推出 $G_1\cong G_2$。
+    \item 证明 $G_1$ 不同构于 $G_3$ 或 $G_4$。（提示：$G_1$ 的中心阶为 $7$，而 $G_3,G_4$ 的中心平凡。）
+    \item 证明 $G_3\not\cong G_4$。（提示：$G_3$ 中每个阶为 $7$ 的子群都正规，而 $G_4$ 有不正规的阶为 $7$ 的子群。）
+    \item 证明上述六个非同构群就是所有阶为 $147$ 的群。
+  \end{enumerate}
+
+  \item 分类阶为 $28$ 的群（共有四个同构类型）。
+  \item 分类阶为 $20$ 的群（共有五个同构类型）。
+  \item 分类阶为 $4p$ 的群，其中 $p>3$ 为素数。（若 $p\equiv3\pmod4$ 有四个同构类型；若 $p\equiv1\pmod4$ 有五个同构类型。）
+  \item 本题分类阶为 $60$ 的群（共有十三个同构类型）。令 $G$ 是阶为 $60$ 的群，$P$ 是 Sylow $5$-子群，$Q$ 是 Sylow $3$-子群。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明若 $P$ 在 $G$ 中不正规，则 $G\cong A_5$。
+    \item 证明若 $P\normal G$ 但 $Q$ 不正规，则 $G\cong A_4\times\ZZ_5$。
+    \item 证明若 $P,Q$ 都正规，则 $G\cong\ZZ_{15}\rtimes T$，其中 $T\cong\ZZ_4$ 或 $\ZZ_2\times\ZZ_2$。说明此时当 $T$ 循环时有六个同构类型（其中一个阿贝尔），当 $T$ 是 Klein 四元群时有五个同构类型（其中一个阿贝尔）。
+  \end{enumerate}
+  \item 设 $p$ 是奇素数。证明 $\GL_2(\FF_p)$ 中每个阶为 $2$ 的元素都共轭于一个对角元为 $\pm1$ 的对角矩阵。分类阶为 $2p^2$ 的群。
+  \item 证明从 $\ZZ_2$ 到 $\Aut(\ZZ_8)$ 恰有 $4$ 个不同同态。证明由此得到的半直积分别是 $\ZZ_8\times\ZZ_2$、$D_{16}$、拟二面体群 $QD_{16}$ 与模群 $M$。
+  \item 证明对任意 $n\geq3$，从 $\ZZ_2$ 到 $\Aut(\ZZ_{2^n})$ 恰有 $4$ 个不同同态。证明所得半直积给出 $4$ 个阶为 $2^{n+1}$ 的非同构群。
+  \item 证明若 $H$ 是任意群，则存在群 $G$，其中 $H\normal G$，并且 $H$ 的每个自同构都可实现为 $G$ 的某个内自同构在 $H$ 上的限制。
+  \item 令 $H$ 是阶为 $n$ 的群，$K=\Aut(H)$，构造 $G=\Hol(H)=H\rtimes K$。令 $G$ 作用在 $K$ 的左陪集上，并令 $\pi:G\to S_n$ 为相应置换表示。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $H$ 的元素是 $K$ 在 $G$ 中左陪集的一组代表元，并且在此代表元选择下，$\pi$ 限制到 $H$ 是 $H$ 的正则表示。
+    \item 证明 $\pi(G)$ 是 $S_n$ 中 $\pi(H)$ 的正规化子。推出任意有限群 $H$ 的正则表示像在 $S_n$ 中的正规化子同构于 $\Hol(H)$。
+    \item 推出 $S_n$ 中由一个 $n$-循环生成的群的正规化子同构于 $\Hol(\ZZ_n)$，阶为 $n\varphi(n)$。
+  \end{enumerate}
+  \item 设 $p$ 是奇素数。证明若 $P$ 是非循环 $p$-群，则 $P$ 含有一个正规子群 $U\cong\ZZ_p\times\ZZ_p$。推出对奇素数 $p$，若一个 $p$-群只含有唯一的阶为 $p$ 的子群，则它是循环群。
+  \item 设 $p$ 是奇素数，$P$ 是 $p$-群。证明若 $P$ 的每个子群都正规，则 $P$ 是阿贝尔群。
+  \item 设 $F$ 是域，$n$ 是正整数，$G$ 是 $\GL_n(F)$ 中上三角矩阵群。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G$ 是半直积 $U\rtimes D$，其中 $U$ 是对角线上全为 $1$ 的上三角矩阵群，$D$ 是 $\GL_n(F)$ 中的对角矩阵群。
+    \item 当 $n=2$ 时，描述 $D$ 到 $\Aut(U)$ 的同态。
+  \end{enumerate}
+  \item 设 $K,L$ 是群，$n$ 是正整数，$\rho:K\to S_n$ 是同态，$H$ 是 $n$ 个 $L$ 的直积。第 1 节练习 8 构造了同态 $S_n\to\Aut(H)$，使 $S_n$ 置换 $H$ 的 $n$ 个因子。复合给出 $K\to\Aut(H)$ 的同态。$L$ 关于 $K$ 的\emph{花环积}是相应的半直积 $H\rtimes K$，记为 $L\wr K$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 若 $K,L$ 有限且 $\rho$ 是 $K$ 的左正则表示，用 $|K|,|L|$ 表示 $|L\wr K|$。
+    \item 令 $p$ 为素数，$K=L=\ZZ_p$，且 $\rho$ 为 $K$ 的左正则表示。证明 $\ZZ_p\wr\ZZ_p$ 是阶为 $p^{p+1}$ 的非阿贝尔群，并同构于 $S_{p^2}$ 的一个 Sylow $p$-子群。
+  \end{enumerate}
+  \item 设 $n>1$。证明如下分类：阶为 $n$ 的每个群都是阿贝尔群，当且仅当
+  \[
+    n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_r^{\alpha_r},
+  \]
+  其中 $p_1,
+\ldots,p_r$ 为互异素数，$\alpha_i=1$ 或 $2$，且对所有 $i,j$，$p_i\nmid p_j^{\alpha_j}-1$。
+  \item 令 $H(\FF_p)$ 为有限域 $\FF_p=\ZZ/p\ZZ$ 上的 Heisenberg 群。证明 $H(\FF_2)\cong D_8$，并且 $H(\FF_p)$ 的指数为 $p$，且同构于例 7 中的第一个非阿贝尔群。
+\end{enumerate}

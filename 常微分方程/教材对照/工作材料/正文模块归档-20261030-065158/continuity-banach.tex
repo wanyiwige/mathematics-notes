@@ -1,0 +1,98 @@
+\subsection*{Picard迭代的压缩映射解释}
+\phantomsection\label{sec:picard-contraction}
+上述 Picard 证明利用阶乘估计控制全部迭代。缩小时间区间后，同一积分算子还可看作完备度量空间上的压缩映射；这一观点将在局部逆和不变流形的构造中再次使用。
+
+\begin{definition}
+度量空间 $(M,d)$ 中，每个 Cauchy 序列都有极限时称 $M$ 完备。
+若映射 $A:M\to M$ 满足存在同一个常数 $0\leq\lambda<1$，使
+\[
+ d(Ax,Ay)\leq\lambda d(x,y)
+\]
+ 对所有 $x,y\in M$ 成立，则称它为压缩映射。
+满足 $Ax=x$ 的点称不动点。
+\end{definition}
+\begin{theorem}[压缩映射定理]\label{thm:arnold-banach}
+非空完备度量空间上的压缩映射有唯一不动点 $x_*$。
+任意初值的迭代 $x_{n+1}=Ax_n$ 收敛到它，并有
+\[
+ \begin{aligned}
+ d(x_n,x_*)&\leq\frac{\lambda^n}{1-\lambda}d(x_0,Ax_0),\\
+ d(x,x_*)&\leq\frac{d(x,Ax)}{1-\lambda}.
+\end{aligned}
+\]
+\end{theorem}
+\begin{proof}
+\textbf{第一步：构造 Cauchy 序列。}
+固定 $x_0\in M$，令 $x_{n+1}=Ax_n$，记 $d_0=d(x_1,x_0)$。
+反复应用压缩条件，得到
+$d(x_{j+1},x_j)\leq\lambda^jd_0$。
+对 $m>n$，三角不等式和几何级数给出
+\[
+ \begin{aligned}
+ d(x_m,x_n)&\leq\sum_{j=n}^{m-1}d(x_{j+1},x_j)\\
+ &\leq d_0\sum_{j=n}^{m-1}\lambda^j\\
+ &\leq\frac{\lambda^n}{1-\lambda}d_0.
+\end{aligned}
+\]
+右端不依赖 $m$，且随 $n\to\infty$ 趋于零，所以这是 Cauchy 序列。
+由完备性，存在 $x_*\in M$ 使 $x_n\to x_*$。
+
+\textbf{第二步：验证不动点并证明唯一性。}
+由压缩估计，$A$ 连续，故
+\[
+ Ax_*=\lim Ax_n=\lim x_{n+1}=x_*.
+\]
+若 $Ay_*=y_*$，则
+\[
+ d(x_*,y_*)\leq\lambda d(x_*,y_*).
+\]
+由于 $1-\lambda>0$，只能有 $d(x_*,y_*)=0$，即 $x_*=y_*$。
+
+\textbf{第三步：误差估计。}
+让第一步的不等式中 $m\to\infty$，便得到迭代误差界。
+对任意近似点 $x$，另由
+\[
+ \begin{aligned}
+ d(x,x_*)&\leq d(x,Ax)+d(Ax,Ax_*)\\
+ &\leq d(x,Ax)+\lambda d(x,x_*)
+\end{aligned}
+\]
+移项得到残差界 $d(x,x_*)\leq d(x,Ax)/(1-\lambda)$。
+\end{proof}
+只要求 $d(Ax,Ay)<d(x,y)$ 不够。例如
+$A(x)=\log(1+e^x)$ 在 $\R$ 上满足 $0<A'(x)<1$，却始终 $A(x)>x$ 而没有不动点。
+缺少的是统一小于 1 的常数。
+
+\begin{proposition}[Picard 算子]
+在矩形 $|t-t_0|\leq a,\ |x-x_0|\leq b$ 上，设 $|f|\leq M$，且 $f$ 关于 $x$
+的 Lipschitz 常数为 $L$。取 $h\leq a$，$Mh\leq b$、$Lh<1$。
+则
+\[
+ (Au)(t)=x_0+\int_{t_0}^tf(s,u(s))\,\dd s
+\]
+在连续函数的闭集 $\{u:\|u-x_0\|_\infty\leq b\}$ 上为压缩映射。
+\end{proposition}
+\begin{proof}
+令 $J=[t_0-h,t_0+h]$，在 $C(J,\R^n)$ 上取一致范数。
+连续函数列若依一致范数 Cauchy，便一致收敛到连续函数，故该空间完备。
+集合 $\mathcal M=\{u:\|u-x_0\|_\infty\leq b\}$ 是闭集，且包含常函数 $u=x_0$，
+因此是非空完备度量空间。
+
+若 $u\in\mathcal M$，则所有 $(t,u(t))$ 都在给定矩形内，所以积分有定义，且
+\[
+ |(Au)(t)-x_0|\leq\left|\int_{t_0}^t M\,ds\right|
+ \leq Mh\leq b.
+\]
+这证明 $A\mathcal M\subset\mathcal M$。
+对任意 $u,w\in\mathcal M$，Lipschitz 条件给出
+\[
+ |(Au)(t)-(Aw)(t)|\leq L|t-t_0|\|u-w\|_\infty.
+\]
+取上确界得 
+\[
+ \|Au-Aw\|_\infty\leq Lh\|u-w\|_\infty.
+\]
+由于 $Lh<1$，压缩映射定理适用。
+其不动点满足积分方程，右端连续，所以对时间可微，微分后满足原初值问题。
+反过来，每个处于此矩形内的解积分后也是不动点，唯一性随之成立。
+\end{proof}

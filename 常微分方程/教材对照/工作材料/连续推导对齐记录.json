@@ -1,0 +1,97 @@
+[
+  {
+    "file": "arnold-contraction.tex",
+    "before": "d(x_n,x_*)\\leq\\frac{\\lambda^n}{1-\\lambda}d(x_0,Ax_0),\n \\qquad d(x,x_*)\\leq\\frac{d(x,Ax)}{1-\\lambda}.",
+    "after": "\\begin{aligned}\n d(x_n,x_*)&\\leq\\frac{\\lambda^n}{1-\\lambda}d(x_0,Ax_0),\\\\\n d(x,x_*)&\\leq\\frac{d(x,Ax)}{1-\\lambda}.\n\\end{aligned}"
+  },
+  {
+    "file": "arnold-contraction.tex",
+    "before": "d(x_m,x_n)\\leq\\sum_{j=n}^{m-1}d(x_{j+1},x_j)\n \\leq d_0\\sum_{j=n}^{m-1}\\lambda^j\n \\leq\\frac{\\lambda^n}{1-\\lambda}d_0.",
+    "after": "\\begin{aligned}\n d(x_m,x_n)&\\leq\\sum_{j=n}^{m-1}d(x_{j+1},x_j)\\\\\n &\\leq d_0\\sum_{j=n}^{m-1}\\lambda^j\\\\\n &\\leq\\frac{\\lambda^n}{1-\\lambda}d_0.\n\\end{aligned}"
+  },
+  {
+    "file": "arnold-contraction.tex",
+    "before": "d(x,x_*)\\leq d(x,Ax)+d(Ax,Ax_*)\n \\leq d(x,Ax)+\\lambda d(x,x_*)",
+    "after": "\\begin{aligned}\n d(x,x_*)&\\leq d(x,Ax)+d(Ax,Ax_*)\\\\\n &\\leq d(x,Ax)+\\lambda d(x,x_*)\n\\end{aligned}"
+  },
+  {
+    "file": "arnold-linear-algebra.tex",
+    "before": "\\left(I+\\frac Am\\right)^m\n =\\sum_{k=0}^m c_{m,k}A^k,\\qquad\n c_{m,k}=\\frac1{k!}\\prod_{j=0}^{k-1}\\left(1-\\frac jm\\right).",
+    "after": "\\begin{aligned}\n \\left(I+\\frac Am\\right)^m&=\\sum_{k=0}^m c_{m,k}A^k,\\\\\n c_{m,k}&=\\frac1{k!}\\prod_{j=0}^{k-1}\\left(1-\\frac jm\\right).\n\\end{aligned}"
+  },
+  {
+    "file": "arnold-energy.tex",
+    "before": "\\frac{m_*}{2}|v(t)|^2\\leq\\frac12\\sum_i m_iv_i(t)^2\n =E_0-U(x(t))\\leq E_0+C.",
+    "after": "\\begin{aligned}\n \\frac{m_*}{2}|v(t)|^2&\\leq\\frac12\\sum_i m_iv_i(t)^2\\\\\n &=E_0-U(x(t))\\\\\n &\\leq E_0+C.\n\\end{aligned}"
+  },
+  {
+    "file": "arnold-energy.tex",
+    "before": "\\lim_{x\\downarrow a}\\frac{E-U(x)}{x-a}=-U'(a)>0,\n \\qquad\n \\lim_{x\\uparrow b}\\frac{E-U(x)}{b-x}=U'(b)>0.",
+    "after": "\\begin{aligned}\n \\lim_{x\\downarrow a}\\frac{E-U(x)}{x-a}&=-U'(a)>0,\\\\\n \\lim_{x\\uparrow b}\\frac{E-U(x)}{b-x}&=U'(b)>0.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter7.tex",
+    "before": "\\ddot x_\\lambda(t)=\\lambda c^{-2}F(x(t/c))\n=\\lambda^mF(x(t/c))=F(x_\\lambda(t)).",
+    "after": "\\begin{aligned}\n \\ddot x_\\lambda(t)&=\\lambda c^{-2}F(x(t/c))\\\\\n &=\\lambda^mF(x(t/c))\\\\\n &=F(x_\\lambda(t)).\n\\end{aligned}"
+  },
+  {
+    "file": "chapter8.tex",
+    "before": "w'=c(t)w+d(t),\\qquad\n d(t)=(Q(t)-q(t))\\sin^2\\alpha(t)\\geq0,",
+    "after": "\\begin{aligned}\n w'&=c(t)w+d(t),\\\\\n d(t)&=(Q(t)-q(t))\\sin^2\\alpha(t)\\geq0,\n\\end{aligned}"
+  },
+  {
+    "file": "chapter9.tex",
+    "before": "P_{t+T,s+T}=P_{t,s},\\qquad P_{nT,0}=M^n,\n \\qquad P_{nT+s,0}=P_{s,0}M^n\\quad(0\\leq s\\leq T).",
+    "after": "\\begin{aligned}\n P_{t+T,s+T}&=P_{t,s},\\\\\n P_{nT,0}&=M^n,\\\\\n P_{nT+s,0}&=P_{s,0}M^n\\qquad(0\\leq s\\leq T).\n\\end{aligned}"
+  },
+  {
+    "file": "chapter9.tex",
+    "before": "第一段的双曲矩阵为\n$\\left(\\begin{smallmatrix}\\cosh k\\tau&\\sinh k\\tau/k\\\\k\\sinh k\\tau&\\cosh k\\tau\\end{smallmatrix}\\right)$，\n第二段为 $R_\\Omega(\\tau)$。",
+    "after": "第一段的双曲矩阵为\n\\[\n \\begin{pmatrix}\n  \\cosh(k\\tau)&\\sinh(k\\tau)/k\\\\\n  k\\sinh(k\\tau)&\\cosh(k\\tau)\n \\end{pmatrix},\n\\]\n第二段为 $R_\\Omega(\\tau)$。"
+  },
+  {
+    "file": "chapter9.tex",
+    "before": "C(\\nu)=\\frac1{\\omega^2-\\nu^2+ik\\nu},\\qquad\n r(\\nu)=\\frac1{\\sqrt{(\\omega^2-\\nu^2)^2+k^2\\nu^2}}.",
+    "after": "\\begin{aligned}\n C(\\nu)&=\\frac1{\\omega^2-\\nu^2+ik\\nu},\\\\\n r(\\nu)&=\\frac1{\\sqrt{(\\omega^2-\\nu^2)^2+k^2\\nu^2}}.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter11.tex",
+    "before": "于是沿 $x'=F_p$ 的曲线，$p_i'=\\sum_j u_{x_ix_j}F_{p_j}\n=-F_{x_i}-p_iF_u$，而 $u'=Du\\,x'=p\\cdot F_p$。",
+    "after": "于是沿 $x'=F_p$ 的曲线，\n\\begin{align*}\n p_i'&=\\sum_j u_{x_ix_j}F_{p_j}\\\\\n &=-F_{x_i}-p_iF_u,\\\\\n u'&=Du\\,x'=p\\cdot F_p.\n\\end{align*}"
+  },
+  {
+    "file": "chapter11.tex",
+    "before": "代入得 $\\alpha(X_F)=pF_p-pF_p=0$，且\n\\[\n dF(X_F)=F_tF_p+F_xpF_p-F_p(F_t+pF_x)=0.\n\\]",
+    "after": "代入计算得\n\\begin{align*}\n \\alpha(X_F)&=pF_p-pF_p=0,\\\\\n dF(X_F)&=F_tF_p+F_xpF_p-F_p(F_t+pF_x)\\\\\n &=0.\n\\end{align*}"
+  },
+  {
+    "file": "chapter11.tex",
+    "before": "代入 $X$ 后得到 $\\sum_iF_{p_i}dp_i+\\sum_i(F_{x_i}+p_iF_u)dx_i\n=dF-F_u\\alpha$。",
+    "after": "代入 $X$ 后得到\n\\begin{align*}\n \\iota_Xd\\alpha\n &=\\sum_iF_{p_i}dp_i+\\sum_i(F_{x_i}+p_iF_u)dx_i\\\\\n &=dF-F_u\\alpha.\n\\end{align*}"
+  },
+  {
+    "file": "chapter13.tex",
+    "before": "\\displaystyle\\int_MF_1^*\\eta-\\displaystyle\\int_MF_0^*\\eta=\\displaystyle\\int_{[0,1]\\times M}dF^*\\eta=0.",
+    "after": "\\begin{aligned}\n \\int_MF_1^*\\eta-\\int_MF_0^*\\eta\n &=\\int_{[0,1]\\times M}dF^*\\eta\\\\\n &=0.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter14.tex",
+    "before": "\\frac{\\dd}{\\dd t}(r\\times\\dot r)=\\dot r\\times\\dot r+r\\times\\ddot r\n=r\\times a(|r|)r=0.",
+    "after": "\\begin{aligned}\n \\frac{\\dd}{\\dd t}(r\\times\\dot r)\n &=\\dot r\\times\\dot r+r\\times\\ddot r\\\\\n &=r\\times a(|r|)r\\\\\n &=0.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter14.tex",
+    "before": "\\displaystyle\\int_0^L|u-\\rho|\\,dx\\leq(\\displaystyle\\int\\rho)^{1/2}\\mathcal E^{1/2}=\\mathcal E^{1/2}.",
+    "after": "\\begin{aligned}\n \\int_0^L|u-\\rho|\\,dx\n &\\leq\\left(\\int\\rho\\right)^{1/2}\\mathcal E^{1/2}\\\\\n &=\\mathcal E^{1/2}.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter15.tex",
+    "before": "y'=Ax+R(x)-[AG(R(x))+R(x)]=Ay.",
+    "after": "\\begin{aligned}\n y'&=Ax+R(x)-[AG(R(x))+R(x)]\\\\\n &=A[x-G(R(x))]\\\\\n &=Ay.\n\\end{aligned}"
+  },
+  {
+    "file": "chapter15.tex",
+    "before": "\\|z-z_j\\|_\\infty\\leq\\frac{q^j}{1-q}\\|z_1-z_0\\|_\\infty\n \\leq\\frac{q^j C_GM}{1-q},",
+    "after": "\\begin{aligned}\n \\|z-z_j\\|_\\infty&\\leq\\frac{q^j}{1-q}\\|z_1-z_0\\|_\\infty\\\\\n &\\leq\\frac{q^j C_GM}{1-q},\n\\end{aligned}"
+  }
+]

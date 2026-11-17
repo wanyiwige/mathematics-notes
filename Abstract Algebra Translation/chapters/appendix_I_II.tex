@@ -1,0 +1,491 @@
+% ============================================
+%  appendices_I_II_faithful.tex — 附录 I 与附录 II
+%  根据 919-932.pdf 翻译整理，保持原文结构、证明与练习
+% ============================================
+
+\chapter*{附录 I\\笛卡尔积与 Zorn 引理}
+\addcontentsline{toc}{chapter}{附录 I：笛卡尔积与 Zorn 引理}
+
+本附录第 1 节包含任意集合族的笛卡尔积的定义。在正文中，我们主要关注有限多个（或偶尔可数多个）集合的积。我们说明一般定义在这些情形中如何与熟悉的笛卡尔积的“有序 $n$-元组”概念相一致。第 2 节包含对 Zorn 引理及相关主题的讨论。
+
+\section*{1. 笛卡尔积}
+\addcontentsline{toc}{section}{1. 笛卡尔积}
+
+若集合 $I$ 的元素被用来标记某个集合族，则称 $I$ 为一个\emph{指标集}。特别地，若 $A$ 与 $I$ 是集合，我们可以通过规定对所有 $i\in I$ 有 $A_i=A$ 来形成集合族 $\{A_i\mid i\in I\}$。因此任何集合都可以作为指标集；我们使用这个术语是为了强调其元素被用作指标。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $I$ 是指标集，并设 $\{A_i\mid i\in I\}$ 是一族集合。\emph{选择函数}是任意函数
+  \[
+    f:I\longrightarrow \bigcup_{i\in I}A_i
+  \]
+  使得对所有 $i\in I$，都有 $f(i)\in A_i$。
+
+  \item 设 $I$ 是指标集，并且对所有 $i\in I$，令 $A_i$ 为一个集合。集合族 $\{A_i\mid i\in I\}$ 的\emph{笛卡尔积}是从 $I$ 到 $\bigcup_{i\in I}A_i$ 的所有选择函数的集合，记为 $\prod_{i\in I}A_i$（其中若 $I$ 或任何一个集合 $A_i$ 为空，则笛卡尔积为空集）。这个笛卡尔积的元素写作 $\prod_{i\in I}a_i$，这里它表示满足对每个 $i\in I$ 都有 $f(i)=a_i$ 的选择函数 $f$。
+
+  \item 对每个 $j\in I$，集合 $A_j$ 称为笛卡尔积 $\prod_{i\in I}A_i$ 的第 $j$ 个\emph{分量}，而 $a_j$ 是元素 $\prod_{i\in I}a_i$ 的第 $j$ 个\emph{坐标}。
+
+  \item 对 $j\in I$，$\prod_{i\in I}A_i$ 到第 $j$ 个坐标 $A_j$ 上的\emph{投影映射}定义为
+  \[
+    \prod_{i\in I}a_i\longmapsto a_j.
+  \]
+\end{enumerate}
+
+笛卡尔积 $\prod_{i\in I}A_i$ 中的每一个选择函数 $f$ 都可以被看作一种从每个集合 $A_i$ 中“选择”一个元素 $f(i)$ 的方式。
+
+若 $I=\{1,2,\ldots,n\}$，其中 $n\in\ZZ^+$，且 $f$ 是从 $I$ 到 $A_1\cup\cdots\cup A_n$ 的选择函数，其中每个 $A_i$ 都非空，则我们可以把 $f$ 对应到唯一的有序 $n$-元组：
+\[
+  f\longmapsto (f(1),f(2),\ldots,f(n)).
+\]
+注意，由选择函数的定义，对所有 $i$ 都有 $f(i)\in A_i$，所以以上 $n$-元组在第 $i$ 个位置有一个 $A_i$ 中的元素。
+
+反过来，给定一个 $n$-元组 $(a_1,a_2,\ldots,a_n)$，其中对所有 $i\in I$ 有 $a_i\in A_i$，存在唯一的从 $I$ 到 $\bigcup_{i\in I}A_i$ 的选择函数 $f$ 与之相联系，即
+\[
+  f(i)=a_i,\qquad \text{对所有 } i\in I.
+\]
+显然，从 $n$-元组到选择函数的这个映射，是前一段所描述的映射的逆。因此，有序 $n$-元组与 $\prod_{i\in I}A_i$ 的元素之间存在一个双射。此后，当 $I=\{1,2,\ldots,n\}$ 时，我们将写
+\[
+  \prod_{i=1}^n A_i\quad\text{或}\quad A_1\times A_2\times\cdots\times A_n
+\]
+来表示笛卡尔积，并把其元素描述为有序 $n$-元组。
+
+若 $I=\ZZ^+$，我们类似地写 $\prod_{i=1}^{\infty}A_i$ 或 $A_1\times A_2\times\cdots$ 来表示这些 $A_i$ 的笛卡尔积。我们将把元素写成有序元组 $(a_1,a_2,\ldots)$，即第 $i$ 项属于 $A_i$ 的无限序列。
+
+注意，当 $I=\{1,2,\ldots,n\}$ 或 $I=\ZZ^+$ 时，我们使用了 $I$ 上的自然顺序来把笛卡尔积的元素排列成 $n$-元组。$I$ 的任何其他顺序（或有限、可数指标集上的任何顺序）都会给出同一个笛卡尔积的元素的另一种不同表示。
+
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item $A\times B=\{(a,b)\mid a\in A,\ b\in B\}$。
+
+  \item $\RR^n=\RR\times\RR\times\cdots\times\RR$（$n$ 个因子）是通常的实数项 $n$-元组的集合，即 Euclid $n$-空间。
+
+  \item 假设 $I=\ZZ^+$，且对所有 $i\in I$，$A_i$ 都是同一个集合 $A$。笛卡尔积 $\prod_{i\in\ZZ^+}A$ 是 $A$ 中元素的所有无限序列 $a_1,a_2,a_3,\ldots$ 的集合。特别地，若 $A=\RR$，则笛卡尔积 $\prod_{i\in\ZZ^+}\RR$ 是所有实数序列的集合。
+
+  \item 假设 $I$ 是任意指标集，且对所有 $i\in I$，$A_i$ 都是同一个集合 $A$。笛卡尔积 $\prod_{i\in I}A$ 正是从 $I$ 到 $A$ 的所有函数的集合，其中函数 $f:I\to A$ 对应于笛卡尔积中的元素 $\prod_{i\in I}f(i)$。这个笛卡尔积常常（特别是在拓扑学书中）记为 $A^I$。注意，对每个固定的 $j\in I$，到第 $j$ 个坐标的投影映射把函数 $f$ 送到 $f(j)$，即是在 $j$ 处取值。
+
+  \item 设 $R$ 是一个环，$x$ 是 $R$ 上的一个不定元。系数在 $R$ 中、关于 $x$ 的多项式环 $R[x]$ 的定义，可以用笛卡尔积来给出，而不必用更直观且熟悉的“形式和”来表述（在第 7 章和第 9 章中，我们以后一种形式引入它们，因为这是我们想象和使用它们的方式）。令 $I$ 为指标集 $\ZZ^+\cup\{0\}$，并令 $R[x]$ 为笛卡尔积 $\prod_{i=0}^{\infty}R$ 的子集，它由元素 $(a_0,a_1,a_2,\ldots)$ 组成，其中只有有限多个 $a_i$ 非零。若 $(a_0,a_1,a_2,\ldots,a_n,0,0,\ldots)$ 是这样的序列，我们用更熟悉的“形式和” $\sum_{i=0}^n a_ix^i$ 来表示它。定义这些序列的加法与乘法，使多项式加法和乘法的通常规则成立。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{命题 1.} 设 $I$ 是一个非空可数集合，并且对每个 $i\in I$，令 $A_i$ 为一个集合。笛卡尔积的基数等于这些集合基数的乘积：
+\[
+  \left|\prod_{i\in I}A_i\right|=\prod_{i\in I}\lvert A_i\rvert,
+\]
+其中若某个 $A_i$ 是无限集，或者若 $I$ 是无限集且无穷多个 $A_i$ 的基数 $\geq 2$，则等式两边都是无穷。特别地，
+\[
+  \lvert A_1\times A_2\times\cdots\times A_n\rvert
+  =\lvert A_1\rvert\times\lvert A_2\rvert\times\cdots\times\lvert A_n\rvert.
+\]
+
+\begin{proof}
+为了计算选择函数的个数，注意每个 $i\in I$ 都可以被映到 $A_i$ 的 $\lvert A_i\rvert$ 个元素中的任意一个，并且当 $i\neq j$ 时，选择函数在 $i$ 与 $j$ 处的取值可以完全独立地选择。因此，选择函数的个数就是这些 $A_i$ 的基数的乘积，如所断言。
+
+对于有限多个集合的笛卡尔积 $A_1\times A_2\times\cdots\times A_n$，这可以从 $n$-元组表示中容易地看出：$A_1\times A_2\times\cdots\times A_n$ 的元素是 $n$-元组 $(a_1,a_2,\ldots,a_n)$，而每个 $a_i$ 可以被选为 $A_i$ 的 $\lvert A_i\rvert$ 个元素中的任意一个。由于这些选择在 $i\neq j$ 时彼此独立，笛卡尔积中有 $\lvert A_1\rvert\cdot\lvert A_2\rvert\cdots\lvert A_n\rvert$ 个元素。
+\end{proof}
+
+\begin{center}
+\textbf{练习}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 设 $I$ 与 $J$ 是任意两个指标集，并令 $A$ 为任意集合。对任意函数 $\varphi:J\to I$，定义
+  \[
+    \varphi^*:\prod_{i\in I}A\longrightarrow\prod_{j\in J}A
+    \qquad\text{为}\qquad
+    \varphi^*(f)=f\circ\varphi
+  \]
+  对所有选择函数 $f\in\prod_{i\in I}A$ 成立。
+  \begin{enumerate}[label=(\alph*)]
+    \item 令 $I=\{1,2\}$，令 $J=\{1,2,3\}$，并令 $\varphi:J\to I$ 由 $\varphi(1)=2$、$\varphi(2)=2$、$\varphi(3)=1$ 定义。明确描述在这个 $\varphi^*$ 下，$A\times A\times A$ 中的一个 3-元组如何映到 $A\times A$ 中的一个有序对。
+    \item 令 $I=J=\{1,2,\ldots,n\}$，并假设 $\varphi$ 是 $I$ 的一个置换。用 $A\times A\times\cdots\times A$ 中的 $n$-元组描述函数 $\varphi^*$。
+  \end{enumerate}
+\end{enumerate}
+
+\section*{2. 偏序集与 Zorn 引理}
+\addcontentsline{toc}{section}{2. 偏序集与 Zorn 引理}
+
+在正文的少数地方，我们将会把 Zorn 引理作为一种“无限归纳”形式使用，在这些地方需要知道存在某个关于特定性质极大的集合。例如，Zorn 引理被用来证明每个向量空间都有一组基。在这种情形下，向量空间 $V$ 的基是 $V$ 的一个子集，它在由线性无关向量组成的集合中是极大的（这种极大性保证这些向量张成 $V$）。对于有限维空间，这可以通过归纳证明；然而，对于任意维数的空间，需要 Zorn 引理来建立这个结论。通过得到完全一般性成立的结果，理论在若干地方常常会变得稍微整洁一些，尽管正文中的主要结果并不需要使用它。
+
+正文中一个具体例子是：某个有助于简化事情的极大对象由 Zorn 引理构造出来，这就是一个域的代数闭包。域 $F$ 的代数闭包是 $F$ 的一个扩张，它在所有代数扩张的集合中是极大的。这样的域包含（在同构意义下）所有在 $F$ 上代数的元素，因此所有涉及这些代数元素的操作都可以在这一个较大的域中进行。在任何具体情形中，可以通过把所涉及的代数元素添加到基域 $F$ 中来避免使用代数闭包；然而，在复杂证明中，这会变得繁琐（而且常常会遮蔽问题本身）。对于本书例子中出现的具体域，可以避免使用 Zorn 引理来构造代数闭包（例如，任意复数子域或任意有限域的代数闭包的构造都不需要它）。
+
+Zorn 引理的第一次使用出现在第 7.4 节命题 11 的证明中。
+
+为了陈述 Zorn 引理，我们需要一些术语。
+
+\noindent\textbf{定义.} 非空集合 $A$ 上的\emph{偏序}是 $A$ 上的一个关系 $\leq$，满足
+\begin{enumerate}[label=(\arabic*)]
+  \item 对所有 $x\in A$，$x\leq x$（自反性），
+  \item 若 $x\leq y$ 且 $y\leq x$，则对所有 $x,y\in A$ 有 $x=y$（反对称性），
+  \item 若 $x\leq y$ 且 $y\leq z$，则对所有 $x,y,z\in A$ 有 $x\leq z$（传递性）。
+\end{enumerate}
+
+我们通常说 $A$ 在顺序 $\leq$ 下是一个偏序集，或说 $A$ 被 $\leq$ 偏序。
+
+\noindent\textbf{定义.} 设非空集合 $A$ 被 $\leq$ 偏序。
+\begin{enumerate}[label=(\arabic*)]
+  \item $A$ 的子集 $B$ 称为一条\emph{链}，如果对所有 $x,y\in B$，或者 $x\leq y$，或者 $y\leq x$。
+  \item $A$ 的子集 $B$ 的一个\emph{上界}是元素 $u\in A$，使得对所有 $b\in B$，都有 $b\leq u$。
+  \item $A$ 的一个\emph{极大元}是元素 $m\in A$，使得若对任意 $x\in A$ 有 $m\leq x$，则 $m=x$。
+\end{enumerate}
+
+在文献中，一条链也称为 tower，或称为全序的、线性序的，或简称有序的子集。
+
+下面的一些例子强调上界与极大元之间的区别。还要注意，如果 $m$ 是 $A$ 的极大元，并不一定有对所有 $x\in A$ 都满足 $x\leq m$（即 $m$ 不一定是最大元）。
+
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $A$ 是某个集合 $X$ 的幂集（即所有子集的集合），并令 $\leq$ 为集合包含关系：$\subseteq$。注意这只是偏序，因为 $X$ 的某些子集可能不可比较，例如单点集：若 $x\neq y$，则 $\{x\}\nsubseteq\{y\}$ 且 $\{y\}\nsubseteq\{x\}$。在这种情形中，链的一个例子是 $X$ 的一族子集，例如
+  \[
+    X_1\subseteq X_2\subseteq X_3\subseteq\cdots.
+  \]
+  $A$ 的任意子集 $B$ 都有一个上界 $b$，即
+  \[
+    b=\bigcup_{x\in B}x.
+  \]
+  这个偏序集 $A$ 有一个（唯一的）极大元，即 $X$。
+
+  在许多情形中，集合 $A$ 由某个集合 $X$ 的某些（但不一定是全部）子集组成（即 $A$ 是 $X$ 的幂集的一个子集），且 $A$ 上的顺序仍然是包含关系。上界和极大元的存在性取决于 $A$ 的性质。
+
+  \item 令 $A$ 为 $\ZZ^+$ 的所有真子集的集合，在 $\subseteq$ 下排序。在这种情形中，链不一定有极大元，例如链
+  \[
+    \{1\}\subseteq\{1,2\}\subseteq\{1,2,3\}\subseteq\cdots
+  \]
+  没有上界。集合 $A$ 确实有极大元：例如，对任意 $n\in\ZZ^+$，$\ZZ^+-\{n\}$ 是 $A$ 的一个极大元。
+
+  \item 令 $A=\RR$，带通常的 $\leq$ 关系。在这个例子中，$A$ 的每个子集都是一条链（包括 $A$ 本身）。$A$ 的一个子集有上界的概念，与 $\RR$ 的一个子集被某个实数从上方界定的通常概念相同（因此某些集合，如有限长度区间，有上界；而另一些集合，如正实数集合，没有上界）。集合 $A$ 没有极大元。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Zorn 引理.} 若 $A$ 是一个非空偏序集，且其中每条链都有一个上界，则 $A$ 有一个极大元。
+
+Zorn 引理独立于通常的（Zermelo--Fraenkel）集合论公理，是一个非平凡的结果；这里所谓独立，是指如果集合论公理是一致的，$^{1}$ 那么这些公理连同 Zorn 引理也是一致的；并且如果集合论公理是一致的，那么这些公理连同 Zorn 引理的否定也是一致的。Zorn 引理中使用“引理”一词是历史性的。
+
+为了完整性（并将 Zorn 引理与其他课程中出现的表述联系起来），我们列出 Zorn 引理的另外两个等价表述。
+
+\medskip
+\noindent\textbf{选择公理.} 任意非空集合族的非空集合的笛卡尔积非空。换言之，若 $I$ 是任意非空（指标）集合，并且对所有 $i\in I$，$A_i$ 是非空集合，则存在一个从 $I$ 到 $\bigcup_{i\in I}A_i$ 的选择函数。
+
+\noindent\textbf{定义.} 设 $A$ 是非空集合。$A$ 上的一个\emph{良序}是 $A$ 上的一个全序，使得 $A$ 的每个非空子集都有最小元，即对每个非空 $B\subseteq A$，存在某个 $s\in B$，使得对所有 $b\in B$ 有 $s\leq b$。
+
+\medskip
+\noindent\textbf{良序原理.} 每个非空集合 $A$ 都有一个良序。
+
+\medskip
+\noindent\textbf{定理 2.} 在通常的（Zermelo--Fraenkel）集合论公理下，下列命题等价：
+\begin{enumerate}[label=(\arabic*)]
+  \item Zorn 引理；
+  \item 选择公理；
+  \item 良序原理。
+\end{enumerate}
+
+\begin{proof}
+这由初等集合论推出。关于这些等价性以及其他若干等价性，可参见 Hewitt 与 Stromberg 的 \emph{Real and Abstract Analysis}，Springer-Verlag，1965，第 3 节。
+\end{proof}
+
+\noindent$^{1}$ 参见 P. J. Cohen 在 \emph{Proc. Nat. Acad. Sci.}，50(1963) 与 51(1964) 中的论文。\\
+$^{2}$ 这并不知道是真的！
+
+\begin{center}
+\textbf{练习}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 令 $A$ 为 $\RR$ 的所有有限子集的集合，按包含关系排序。讨论上界、极小元与极大元的存在性（或不存在性）（其中极小元的定义与极大元类似）。解释为什么这不是一个良序。
+
+  \item 令 $A$ 为 $\RR$ 的所有无限子集的集合，按包含关系排序。讨论上界、极小元与极大元的存在性（或不存在性）。解释为什么这不是一个良序。
+
+  \item 说明给定集合上的下列偏序不是良序：
+  \begin{enumerate}[label=(\alph*)]
+    \item $\RR$，带通常的关系 $\leq$。
+    \item $\RR^+$，带通常的关系 $\leq$。
+    \item $\RR^+\cup\{0\}$，带通常的关系 $\leq$。
+    \item $\ZZ$，带通常的关系 $\leq$。
+  \end{enumerate}
+
+  \item 说明 $\ZZ^+$ 在通常的关系 $\leq$ 下是良序的。
+\end{enumerate}
+
+\chapter*{附录 II\\范畴论}
+\addcontentsline{toc}{chapter}{附录 II：范畴论}
+
+范畴论为讨论大类数学对象的性质提供语言和数学基础，例如“所有集合”的类或“所有群”的类，同时避开 Russell 悖论等问题。在这个框架中，可以探讨各类对象研究中使用的概念和方法之间的共性：同态、同构等；还可以引入研究类与类之间关系的工具：函子、范畴等价等。于是可以给出“自然”变换和“自然”同构的精确定义，无论是在一个给定类内部，还是在两个类之间。（在正文中，我们把“自然”描述为“与坐标无关”。）一个类内部自然同构的典型例子，是第 11.3 节中任意有限维向量空间与其二重对偶之间的同构。事实上，S. Eilenberg 与 S. MacLane 在 1945 年引入范畴与函子的主要动机之一，就是要给诸如此类情形中的“自然”概念以精确含义。范畴论也在形式化新概念方面起了基础性作用，例如概形（参见第 15.5 节），它们是当代研究的主要领域（例如代数几何）的基本概念。这类工作的先驱包括 A. Grothendieck、K. Morita 及其他人。
+
+我们对范畴论的处理应被看作是对一些基本语言的介绍。由于我们没有讨论集合论的 Zermelo--Fraenkel 公理或类的 Godel--Bernays 公理，我们不涉及范畴论的基础。不过，为了与集合论公理保持一致，我们隐含地假设存在一个宇宙集合 $U$，它包含人们在“普通”数学中会遇到的所有集合、群、环等（因此“所有集合”的范畴隐含地意为“$U$ 中所有集合”的范畴）。关于进一步学习，可参阅集合论、逻辑或范畴论的书籍，例如 S. MacLane 的 \emph{Categories for the Working Mathematician}，Springer-Verlag，1971。
+
+我们组织本附录的方式是：在可能的地方，每个新概念的例子都按照这些术语和结构在正文中出现的顺序来使用。例如，第一个函子的例子涉及集合与群，第二个例子使用环，等等。这样，本附录可以在学习早期阅读；随着读者逐渐熟悉更多种类的数学结构，重新阅读这些例子也会得到更深入的理解。
+
+\section*{1. 范畴与函子}
+\addcontentsline{toc}{section}{1. 范畴与函子}
+
+我们从本附录的基本概念开始。
+
+\noindent\textbf{定义.} 一个\emph{范畴} $\mathcal C$ 由一类对象以及对象之间的态射集合组成。对每个有序对象对 $A,B$，有一个从 $A$ 到 $B$ 的态射集合 $\operatorname{Hom}_{\mathcal C}(A,B)$；对每个有序对象三元组 $A,B,C$，有一个态射的复合律，即映射
+\[
+  \operatorname{Hom}_{\mathcal C}(A,B)\times\operatorname{Hom}_{\mathcal C}(B,C)
+  \longrightarrow \operatorname{Hom}_{\mathcal C}(A,C),
+\]
+其中 $(f,g)\mapsto gf$，并且 $gf$ 称为 $g$ 与 $f$ 的复合。对象与态射满足以下公理：对对象 $A,B,C,D$，
+\begin{enumerate}[label=(\roman*)]
+  \item 若 $A\neq B$ 或 $C\neq D$，则 $\operatorname{Hom}_{\mathcal C}(A,B)$ 与 $\operatorname{Hom}_{\mathcal C}(C,D)$ 是不交集合；
+  \item 态射复合满足结合律，即对每个 $f\in\operatorname{Hom}_{\mathcal C}(A,B)$、$g\in\operatorname{Hom}_{\mathcal C}(B,C)$ 与 $h\in\operatorname{Hom}_{\mathcal C}(C,D)$，有
+  \[
+    h(gf)=(hg)f;
+  \]
+  \item 每个对象都有一个恒等态射，即对每个对象 $A$，存在态射 $1_A\in\operatorname{Hom}_{\mathcal C}(A,A)$，使得对每个 $f\in\operatorname{Hom}_{\mathcal C}(A,B)$ 有 $f1_A=f$，并且对每个 $g\in\operatorname{Hom}_{\mathcal C}(B,A)$ 有 $1_Ag=g$。
+\end{enumerate}
+
+态射也称为箭头。恒等态射对每个对象是唯一的，这一点作为练习可证（论证与群的恒等元唯一性的论证相同）。当范畴由上下文清楚给出时，我们将把 $\operatorname{Hom}_{\mathcal C}(A,B)$ 写作 $\operatorname{Hom}(A,B)$。
+
+我们在全文中使用的术语对所有范畴都是共同的：从 $A$ 到 $B$ 的态射记为 $f:A\to B$ 或 $A\xrightarrow{f}B$。对象 $A$ 是 $f$ 的\emph{定义域}，$B$ 是 $f$ 的\emph{陪域}。从 $A$ 到 $A$ 的态射称为 $A$ 的\emph{自同态}。态射 $f:A\to B$ 称为\emph{同构}，如果存在态射 $g:B\to A$，使得 $gf=1_A$ 且 $fg=1_B$。
+
+有子范畴 $\mathcal C$ 属于 $\mathcal D$ 的自然概念，也就是说，$\mathcal C$ 的每个对象也是 $\mathcal D$ 中的对象，并且对 $\mathcal C$ 中的对象 $A,B$，有包含关系
+\[
+  \operatorname{Hom}_{\mathcal C}(A,B)\subseteq \operatorname{Hom}_{\mathcal D}(A,B).
+\]
+
+\noindent\textbf{例.}
+
+在下面每个例子中，我们都把验证范畴公理的细节留作练习。
+\begin{enumerate}[label=(\arabic*)]
+  \item $\mathbf{Set}$ 是所有集合的范畴。对任意两个集合 $A$ 与 $B$，$\operatorname{Hom}(A,B)$ 是从 $A$ 到 $B$ 的所有函数的集合。态射复合就是熟悉的函数复合：$gf=g\circ f$。$\operatorname{Hom}(A,A)$ 中的恒等元是映射 $1_A(a)=a$，对所有 $a\in A$ 成立。这个范畴含有所有有限集合的范畴作为子范畴。
+
+  \item $\mathbf{Grp}$ 是所有群的范畴，其中态射是群同态。注意，群同态的复合仍然是群同态。$\mathbf{Grp}$ 的一个子范畴是 $\mathbf{Ab}$，即所有 Abel 群的范畴。类似地，$\mathbf{Ring}$ 是所有带 $1$ 的非零环的范畴，其中态射是把 $1$ 送到 $1$ 的环同态。所有带 $1$ 的交换环的范畴 $\mathbf{CRing}$ 是 $\mathbf{Ring}$ 的子范畴。
+
+  \item 对固定的环 $R$，范畴 $R\text{-}\mathbf{mod}$ 由所有左 $R$-模组成，态射为 $R$-模同态。
+
+  \item $\mathbf{Top}$ 是这样的范畴：对象为拓扑空间，态射为拓扑空间之间的连续映射（参见第 15.2 节）。注意，从一个空间到自身的恒等（集合）映射在每种拓扑下都是连续的，所以 $\operatorname{Hom}(A,A)$ 总有一个恒等元。
+
+  \item 令 $\varnothing$ 为\emph{空范畴}，它没有对象也没有态射。令 $1$ 表示只有一个对象 $A$ 和一个态射的范畴：$\operatorname{Hom}(A,A)=\{1_A\}$。令 $2$ 为有两个对象 $A_1$ 与 $A_2$，且只有一个非恒等态射的范畴：$\operatorname{Hom}(A_1,A_2)=\{f\}$ 且 $\operatorname{Hom}(A_2,A_1)=\varnothing$。注意，对象 $A_1$ 与 $A_2$ 以及态射 $f$ 是“原始”的，意思是 $A_1$ 与 $A_2$ 不被定义为集合，而 $f$ 只是从 $A_1$ 到 $A_2$ 的一个箭头（字面意义上的箭头）；它没有被定义为某个集合的元素上的集合映射。可以以这种方式继续，定义 $N$ 为有 $N$ 个对象 $A_1,A_2,\ldots,A_N$ 的范畴，唯一的非恒等态射是对每个 $j>i$ 从 $A_i$ 到 $A_j$ 的唯一箭头（因此箭头复合被唯一决定）。
+
+  \item 若 $G$ 是一个群，按如下方式形成范畴 $G$。唯一的对象是 $G$，并且 $\operatorname{Hom}(G,G)=G$；两个函数 $f$ 与 $g$ 的复合是群 $G$ 中的乘积 $gf$。注意，$\operatorname{Hom}(G,G)$ 有一个恒等态射：群 $G$ 的恒等元。
+\end{enumerate}
+
+\noindent\textbf{定义.} 设 $\mathcal C$ 与 $\mathcal D$ 是范畴。
+\begin{enumerate}[label=(\arabic*)]
+  \item 我们说 $\mathcal F$ 是从 $\mathcal C$ 到 $\mathcal D$ 的\emph{协变函子}，如果
+  \begin{enumerate}[label=(\alph*)]
+    \item 对 $\mathcal C$ 中每个对象 $A$，$\mathcal F A$ 是 $\mathcal D$ 中的一个对象；并且
+    \item 对每个 $f\in\operatorname{Hom}_{\mathcal C}(A,B)$，有 $\mathcal F(f)\in\operatorname{Hom}_{\mathcal D}(\mathcal F A,\mathcal F B)$，
+  \end{enumerate}
+  并满足以下公理：
+  \begin{enumerate}[label=(\roman*)]
+    \item 若 $gf$ 是 $\mathcal C$ 中态射的复合，则在 $\mathcal D$ 中有 $\mathcal F(gf)=\mathcal F(g)\mathcal F(f)$；
+    \item $\mathcal F(1_A)=1_{\mathcal F A}$。
+  \end{enumerate}
+
+  \item 我们说 $\mathcal F$ 是从 $\mathcal C$ 到 $\mathcal D$ 的\emph{反变函子}，如果 (1) 中的条件成立，但性质 (b) 与公理 (i) 分别替换为：
+  \begin{enumerate}
+    \item[(b')] 对每个 $f\in\operatorname{Hom}_{\mathcal C}(A,B)$，$\mathcal F(f)\in\operatorname{Hom}_{\mathcal D}(\mathcal F B,\mathcal F A)$；
+  \end{enumerate}
+  \begin{enumerate}
+    \item[(i')] 若 $gf$ 是 $\mathcal C$ 中态射的复合，则在 $\mathcal D$ 中有 $\mathcal F(gf)=\mathcal F(f)\mathcal F(g)$，
+  \end{enumerate}
+  即反变函子反转箭头。
+\end{enumerate}
+
+\noindent\textbf{例.}
+
+在每个例子中，验证函子公理的工作留作练习。更多函子的例子见本节末尾的练习。
+\begin{enumerate}[label=(\arabic*)]
+  \item 恒等函子 $I_{\mathcal C}$ 把任意范畴 $\mathcal C$ 映到自身，它把对象和态射都送到自身。更一般地，如果 $\mathcal C$ 是 $\mathcal D$ 的子范畴，则包含函子把 $\mathcal C$ 映入 $\mathcal D$，它把对象和态射都送到自身。
+
+  \item 设 $\mathcal F$ 是从 $\mathbf{Grp}$ 到 $\mathbf{Set}$ 的函子，它把任意群 $G$ 映到同一个集合 $G$，并把任意群同态 $\varphi$ 映到同一个集合映射 $\varphi$。这个函子称为\emph{遗忘函子}，因为它“移除”或“遗忘”群以及它们之间同态的结构。类似地，也有从 $\mathbf{Ab}$、$R\text{-}\mathbf{mod}$、$\mathbf{Top}$ 等范畴到 $\mathbf{Set}$ 的遗忘函子。
+
+  \item \emph{Abel 化函子}把 $\mathbf{Grp}$ 映到 $\mathbf{Ab}$，它把每个群 $G$ 送到 Abel 群 $G^{\mathrm{ab}}=G/G'$，其中 $G'$ 是 $G$ 的换位子群（参见第 5.4 节）。每个群同态 $\varphi:G\to H$ 被映到商群上的诱导同态：
+  \[
+    \overline\varphi:G^{\mathrm{ab}}\longrightarrow H^{\mathrm{ab}}
+    \qquad\text{由}\qquad
+    \overline\varphi(xG')=\varphi(x)H'
+  \]
+  给出。换位子群的定义保证 $\overline\varphi$ 良定义，并且函子公理成立。
+
+  \item 设 $R$ 是一个环，$D$ 是一个左 $R$-模。对每个左 $R$-模 $N$，集合 $\operatorname{Hom}_R(D,N)$ 是一个 Abel 群；若 $R$ 是交换环，则它也是一个 $R$-模（参见第 10.2 节命题 2）。若 $\varphi:N_1\to N_2$ 是一个 $R$-模同态，则对每个 $f\in\operatorname{Hom}_R(D,N_1)$，有 $\varphi\circ f\in\operatorname{Hom}_R(D,N_2)$。因此
+  \[
+    \varphi':\operatorname{Hom}_R(D,N_1)\longrightarrow\operatorname{Hom}_R(D,N_2),
+    \qquad \varphi'(f)=\varphi\circ f.
+  \]
+  这说明映射
+  \[
+    \operatorname{Hom}(D,\_):N\longrightarrow\operatorname{Hom}_R(D,N),
+    \qquad
+    \operatorname{Hom}(D,\_):\varphi\longrightarrow\varphi'
+  \]
+  是从 $R\text{-}\mathbf{Mod}$ 到 $\mathbf{Grp}$ 的协变函子。若 $R$ 是交换的，它把 $R\text{-}\mathbf{Mod}$ 映到自身。
+
+  \item 在前一个例子的记号下，我们观察到，若 $\varphi:N_1\to N_2$，则对每个 $g\in\operatorname{Hom}_R(N_2,D)$，有 $g\circ\varphi\in\operatorname{Hom}_R(N_1,D)$。因此
+  \[
+    \varphi':\operatorname{Hom}_R(N_2,D)\longrightarrow\operatorname{Hom}_R(N_1,D),
+    \qquad \varphi'(g)=g\circ\varphi.
+  \]
+  在这个情形中，映射
+  \[
+    \operatorname{Hom}(\_,D):N\longrightarrow\operatorname{Hom}_R(N,D),
+    \qquad
+    \operatorname{Hom}(\_,D):\varphi\longrightarrow\varphi'
+  \]
+  定义了一个反变函子。
+
+  \item 当 $D$ 是一个右 $R$-模时，映射 $D\otimes_R\_:N\mapsto D\otimes_R N$ 定义了从 $R\text{-}\mathbf{Mod}$ 到 $\mathbf{Ab}$ 的协变函子（若 $R$ 是交换的，则到 $R\text{-}\mathbf{Mod}$）。这里态射 $\varphi:N_1\to N_2$ 映到态射 $1\otimes\varphi$。
+
+  同样，当 $D$ 是一个左 $R$-模时，$\_\otimes_R D:N\mapsto N\otimes_R D$ 定义了从右 $R$-模范畴到 $\mathbf{Ab}$ 的协变函子（若 $R$ 是交换的，则到 $R\text{-}\mathbf{Mod}$），其中态射 $\varphi$ 映到态射 $\varphi\otimes1$。
+
+  \item 设 $K$ 是一个域，并令 $K\text{-}\mathbf{fdVec}$ 为所有有限维 $K$-向量空间的范畴，其中该范畴中的态射是 $K$-线性变换。我们定义从 $K\text{-}\mathbf{fdVec}$ 到自身的二重对偶函子 $\mathcal D^2$。回忆第 11.3 节，$V$ 的对偶空间 $V^*$ 定义为 $V^*=\operatorname{Hom}_K(V,K)$；$V$ 的二重对偶是 $V^{**}=\operatorname{Hom}_K(V^*,K)$。于是 $\mathcal D^2$ 在对象上定义为把向量空间 $V$ 映到其二重对偶 $V^{**}$。若 $\varphi:V\to W$ 是有限维空间的线性变换，则
+  \[
+    \mathcal D^2(\varphi):V^{**}\longrightarrow W^{**}
+    \qquad\text{由}\qquad
+    \mathcal D^2(\varphi)(E_v)=E_{\varphi(v)}
+  \]
+  定义，其中对每个 $v\in V$，$E_v$ 表示“在 $v$ 处求值”。由第 11.3 节定理 19，$E_v\in V^{**}$，并且 $V^{**}$ 的每个元素都可唯一地写成某个 $v\in V$ 的 $E_v$。由于 $\varphi(v)\in W$，有 $E_{\varphi(v)}\in W^{**}$，所以 $\mathcal D^2(\varphi)$ 是良定义的。
+\end{enumerate}
+
+从 $\mathcal C$ 到 $\mathcal D$ 的函子 $\mathcal F$ 称为\emph{忠实的}（或称为\emph{满的}），如果对 $\mathcal C$ 中每一对对象 $A$ 与 $B$，映射
+\[
+  \mathcal F:\operatorname{Hom}(A,B)\longrightarrow\operatorname{Hom}(\mathcal F A,\mathcal F B)
+\]
+是单射（或满射）。因此，例如，遗忘函子是忠实的但不是满的。
+
+\begin{center}
+\textbf{练习}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 设 $N$ 是一个群，并令 $\mathbf{Nor}\text{-}N$ 为所有含有 $N$ 作为正规子群的群的集合。对象 $A$ 与 $B$ 之间的态射是任意把 $N$ 映入 $N$ 的群同态。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\mathbf{Nor}\text{-}N$ 是一个范畴。
+    \item 说明投影同态 $G\mapsto G/N$ 如何用来定义从 $\mathbf{Nor}\text{-}N$ 到 $\mathbf{Grp}$ 的一个函子。
+  \end{enumerate}
+
+  \item 设 $H$ 是一个群。按如下方式在对象和态射上定义从 $\mathbf{Grp}$ 到自身的映射 $\mathcal H_{\times}$：
+  \[
+    \mathcal H_{\times}:G\longmapsto H\times G,
+  \]
+  并且若 $\varphi:G_1\to G_2$，则
+  \[
+    \mathcal H_{\times}(\varphi):H\times G_1\longrightarrow H\times G_2
+    \qquad\text{由}\qquad
+    (h,g)\longmapsto (h,\varphi(g))
+  \]
+  定义。证明 $\mathcal H_{\times}$ 是一个函子。
+
+  \item 说明把环映到其单位群的映射（即 $R\mapsto R^{\times}$）定义了一个从 $\mathbf{Ring}$ 到 $\mathbf{Grp}$ 的函子。用明确的例子说明这个函子既非忠实也非满。
+
+  \item 说明对每个 $n\geq1$，映射 $\mathcal{GL}_n:R\mapsto GL_n(R)$ 定义了一个从 $\mathbf{CRing}$ 到 $\mathbf{Grp}$ 的函子。［在态射上定义 $\mathcal{GL}_n$ 时，把每个环同态作用到矩阵的每个项上。］
+
+  \item 补全说明例 7 中所描述的二重对偶映射满足函子公理的细节。
+\end{enumerate}
+
+\section*{2. 自然变换与泛性质}
+\addcontentsline{toc}{section}{2. 自然变换与泛性质}
+
+如本附录导言中所提到的，范畴论产生的动机之一，是要给“自然”同构这一概念一个精确定义。我们现在给出这个定义，并看到正文中提到的一些自然映射如何是范畴论概念的实例。我们同样给出“泛箭头”和“泛对象”的范畴论定义，并从这个角度看正文中出现的一些泛性质。
+
+\noindent\textbf{定义.} 设 $\mathcal C$ 与 $\mathcal D$ 是范畴，并且 $\mathcal F,\mathcal G$ 是从 $\mathcal C$ 到 $\mathcal D$ 的协变函子。从 $\mathcal F$ 到 $\mathcal G$ 的一个\emph{自然变换}或\emph{函子态射}是一个映射 $\eta$，它给 $\mathcal C$ 中每个对象 $A$ 指派一个 $\operatorname{Hom}_{\mathcal D}(\mathcal F A,\mathcal G A)$ 中的态射 $\eta_A$，且具有如下性质：对 $\mathcal C$ 中每一对对象 $A$ 与 $B$，以及每个 $f\in\operatorname{Hom}_{\mathcal C}(A,B)$，都有
+\[
+  \mathcal G(f)\eta_A=\eta_B\mathcal F(f),
+\]
+即下图交换：
+\[
+\begin{array}{ccc}
+\mathcal F A & \xrightarrow{\eta_A} & \mathcal G A\\
+\mathcal F(f)\downarrow && \downarrow\mathcal G(f)\\
+\mathcal F B & \xrightarrow{\eta_B} & \mathcal G B.
+\end{array}
+\]
+若每个 $\eta_A$ 都是同构，则称 $\eta$ 为函子的\emph{自然同构}。
+
+考虑特例 $\mathcal C=\mathcal D$，并且 $\mathcal C$ 是 $\mathbf{Set}$ 的一个子范畴，而 $\mathcal F$ 是恒等函子。如果每当 $\mathcal G$ 把对象 $A$ 映到对象 $\mathcal G A$ 时，都存在一个从 $A$ 到 $\mathcal G A$ 的态射 $\eta_A$，并且每当存在从 $A$ 到 $B$ 的态射 $f$ 时，态射 $\mathcal G(f)$ 作为从 $\mathcal G A$ 到 $\mathcal G B$ 的映射与 $f$ 相容，则存在一个从恒等函子到 $\mathcal G$ 的自然变换 $\eta$。事实上，$\mathcal G(f)$ 在 $\mathcal G A$ 的子集 $\eta_A(A)$ 到 $\mathcal G B$ 的子集 $\eta_B(B)$ 上由 $f$ 唯一决定。若 $\eta$ 是一个自然同构，则 $\mathcal G$ 在每个态射上的值完全由 $\eta$ 决定，即
+\[
+  \mathcal G(f)=\eta_Bf\eta_A^{-1}.
+\]
+在这种情形下，函子 $\mathcal G$ 完全由 $\eta$ 指定。我们将看到，前一节中的一些函子例子正是这样产生的。
+
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 对任意范畴 $\mathcal C$ 与 $\mathcal D$，以及从 $\mathcal C$ 到 $\mathcal D$ 的任意函子 $\mathcal F$，恒等映射是从 $\mathcal F$ 到自身的自然同构：对 $\mathcal C$ 中每个对象 $A$，$\eta_A=1_{\mathcal F A}$。
+
+  \item 设 $R$ 是一个环，$\mathcal F$ 是从 $R\text{-}\mathbf{Mod}$ 到自身的任意函子。零映射是从 $\mathcal F$ 到自身的自然变换：对每个 $R$-模 $A$，$\eta_A=0_A$，其中 $0_A$ 是从 $A$ 到自身的零映射。这不是自然同构。
+
+  \item 设 $\mathcal F$ 是从 $\mathbf{Grp}$ 到自身的恒等函子，设 $\mathcal G$ 是 Abel 化函子（例 3），这里把它看作从 $\mathbf{Grp}$ 到自身的映射。对每个群 $G$，令 $\eta_G:G\to G/G'$ 为到商群的通常投影映射。于是 $\eta$ 是关于这两个函子的一个自然变换（但不是同构）。（我们称映射 $\eta_G$ 为自然投影映射。）
+
+  \item 令 $\mathcal G=\mathcal D^2$ 为从域 $K$ 上有限维向量空间范畴到自身的二重对偶函子（例 7）。则存在一个从恒等函子到 $\mathcal G$ 的自然同构 $\eta$，由
+  \[
+    \eta_V:V\longrightarrow V^{**}\qquad\text{为}\qquad \eta_V(v)=E_v
+  \]
+  给出，其中对每个 $v\in V$，$E_v$ 是“在 $v$ 处求值”。
+
+  \item 令 $\mathcal{GL}_n$ 为从 $\mathbf{CRing}$ 到 $\mathbf{Grp}$ 的函子，定义如下。每个对象（交换环）$R$ 被 $\mathcal{GL}_n$ 映到由 $R$ 中元素组成的 $n\times n$ 可逆矩阵群 $GL_n(R)$。对每个环同态 $f:R\to S$，令 $\mathcal{GL}_n(f)$ 为把 $f$ 作用到矩阵每个项上的矩阵映射。由于 $f$ 把 $1$ 送到 $1$，可知 $\mathcal{GL}_n(f)$ 把可逆矩阵送到可逆矩阵（参见第 1 节练习 4）。令 $\mathcal G$ 为从 $\mathbf{CRing}$ 到 $\mathbf{Grp}$ 的函子，它把每个环 $R$ 映到其单位群 $R^\times$，并把每个环同态 $f$ 映到其在单位群上的限制（仍记为 $f$）。行列式是从 $\mathcal{GL}_n$ 到 $\mathcal G$ 的自然变换，因为行列式对所有环都由同一个多项式定义，因此下图交换：
+  \[
+  \begin{array}{ccc}
+  GL_n(R) & \xrightarrow{\det} & R^\times\\
+  \mathcal{GL}_n(f)\downarrow && \downarrow f\\
+  GL_n(S) & \xrightarrow{\det} & S^\times.
+  \end{array}
+  \]
+\end{enumerate}
+
+设 $\mathcal C,\mathcal D$ 与 $\mathcal E$ 是范畴，令 $\mathcal F$ 为从 $\mathcal C$ 到 $\mathcal D$ 的函子，令 $\mathcal G$ 为从 $\mathcal D$ 到 $\mathcal E$ 的函子。函子复合 $\mathcal G\mathcal F$ 从 $\mathcal C$ 到 $\mathcal E$ 有显然的定义。当 $\mathcal E=\mathcal C$ 时，复合 $\mathcal G\mathcal F$ 把 $\mathcal C$ 映到自身，而 $\mathcal F\mathcal G$ 把 $\mathcal D$ 映到自身。我们说 $\mathcal C$ 与 $\mathcal D$ 是\emph{同构的}，如果存在某些 $\mathcal F$ 与 $\mathcal G$，使得 $\mathcal G\mathcal F$ 是恒等函子 $I_{\mathcal C}$，且 $\mathcal F\mathcal G=I_{\mathcal D}$。由第 10.1 节中的讨论，范畴 $\ZZ\text{-}\mathbf{Mod}$ 与 $\mathbf{Ab}$ 是同构的。第 10.1 节中的观察还推出，初等 Abel $p$-群的范畴与 $\FF_p$ 上向量空间的范畴是同构的。在实际中，我们倾向于把这样的同构范畴等同起来。下面关于范畴同构的推广，给出了两个范畴“相似”的更宽泛且更有用的概念。
+
+\noindent\textbf{定义.} 范畴 $\mathcal C$ 与 $\mathcal D$ 称为\emph{等价的}，如果存在从 $\mathcal C$ 到 $\mathcal D$ 的函子 $\mathcal F$ 和从 $\mathcal D$ 到 $\mathcal C$ 的函子 $\mathcal G$，使得函子 $\mathcal G\mathcal F$ 自然同构于 $I_{\mathcal C}$（$\mathcal C$ 的恒等函子），并且 $\mathcal F\mathcal G$ 自然同构于恒等函子 $I_{\mathcal D}$。
+
+范畴等价是自反的、对称的和传递的，这是一个练习。第 15.5 节中的仿射 $k$-代数例子给出了一个范畴等价（在该例中，需要修改自然变换定义中的箭头方向，以适应反变函子）。另一个例子（需要一些证明）是：对带 $1$ 的交换环 $R$，左模范畴 $R\text{-}\mathbf{Mod}$ 与 $M_{n\times n}(R)\text{-}\mathbf{Mod}$ 是等价的。
+
+最后，我们引入泛箭头与泛对象的概念。
+
+\noindent\textbf{定义.}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $\mathcal C$ 与 $\mathcal D$ 是范畴，$\mathcal F$ 是从 $\mathcal C$ 到 $\mathcal D$ 的函子，$X$ 是 $\mathcal D$ 中的对象。从 $X$ 到 $\mathcal F$ 的一个\emph{泛箭头}是一对 $(U(X),t)$，其中 $U(X)$ 是 $\mathcal C$ 中的一个对象，而 $t:X\to\mathcal F U(X)$ 是 $\mathcal D$ 中的一个态射，满足如下性质：对 $\mathcal C$ 中任意对象 $A$，若 $\varphi$ 是 $\mathcal D$ 中从 $X$ 到 $\mathcal F A$ 的任意态射，则存在唯一的 $\mathcal C$ 中的态射 $\Phi:U(X)\to A$，使得 $\mathcal F(\Phi)t=\varphi$，即下图交换：
+  \[
+  \begin{array}{ccc}
+     & X & \\
+     t\swarrow && \searrow\varphi\\
+     \mathcal F U(X) & \xrightarrow{\mathcal F(\Phi)} & \mathcal F A.
+  \end{array}
+  \]
+
+  \item 设 $\mathcal C$ 是一个范畴，$\mathcal F$ 是从 $\mathcal C$ 到所有集合的范畴 $\mathbf{Set}$ 的函子。函子 $\mathcal F$ 的一个\emph{泛元素}是一对 $(U,t)$，其中 $U$ 是 $\mathcal C$ 中的对象，而 $t$ 是集合 $\mathcal F U$ 的一个元素，满足如下性质：对 $\mathcal C$ 中任意对象 $A$ 和集合 $\mathcal F A$ 中任意元素 $g$，存在唯一的 $\mathcal C$ 中的态射 $\varphi:U\to A$，使得 $\mathcal F(\varphi)(t)=g$。
+\end{enumerate}
+
+\noindent\textbf{例.}
+\begin{enumerate}[label=(\arabic*)]
+  \item （泛箭头：自由对象）设 $R$ 是带 $1$ 的环。我们把如下陈述翻译成泛箭头的语言：若 $U(X)$ 是集合 $X$ 上的自由 $R$-模，则任意从 $X$ 到 $R$-模 $A$ 的集合映射都唯一地通过 $R$-线性延拓为一个从 $U(X)$ 到 $A$ 的 $R$-模同态（参见第 10.3 节定理 6）：令 $\mathcal F$ 为从 $R\text{-}\mathbf{Mod}$ 到 $\mathbf{Set}$ 的遗忘函子，于是 $\mathcal F$ 把 $R$-模 $A$ 映到集合 $A$，即作为集合 $A=\mathcal F A$。令 $X$ 为任意集合（即 $\mathbf{Set}$ 中的对象），令 $U(X)$ 为以 $X$ 为基的自由 $R$-模，并令 $t:X\to\mathcal F U(X)$ 为把每个 $b\in X$ 送到 $U(X)$ 中基元素 $b$ 的集合映射。那么自由 $R$-模的泛性质正是 $(U(X),t)$ 是从 $X$ 到遗忘函子 $\mathcal F$ 的泛箭头这一结果。
+
+  类似地，自由群、向量空间（即域上的自由模）、多项式代数（即自由 $R$-代数）等，都是泛箭头的实例。
+
+  \item （泛箭头：分式域）令 $\mathcal F$ 为从域的范畴到整环的范畴的遗忘函子，其中两个范畴中的态射都是单的环同态。对任意整环 $X$，令 $U(X)$ 为其分式域，并令 $t$ 为 $X$ 到 $U(X)$ 中的包含映射。那么 $(U(X),t)$ 是从 $X$ 到函子 $\mathcal F$ 的泛箭头（参见第 7.5 节定理 15(2)）。
+
+  \item （泛对象：张量积）这个例子涉及第 10.4 节中两个模的张量积的构造。令 $\mathcal C=R\text{-}\mathbf{Mod}$ 为交换环 $R$ 上 $R$-模的范畴，并令 $M$ 与 $N$ 是 $R$-模。对每个 $R$-模 $A$，令 $\operatorname{Bilin}(M,N;A)$ 表示从 $M\times N$ 到 $A$ 的所有 $R$-双线性函数的集合。在对象上定义从 $R\text{-}\mathbf{Mod}$ 到 $\mathbf{Set}$ 的函子
+  \[
+    \mathcal F:A\longrightarrow \operatorname{Bilin}(M,N;A),
+  \]
+  并且若 $\varphi:A\to B$ 是一个 $R$-模同态，则
+  \[
+    \mathcal F(\varphi)(h)=\varphi\circ h
+    \qquad\text{对每个 }h\in\operatorname{Bilin}(M,N;A).
+  \]
+  令 $U=M\otimes_R N$，并令 $t$ 为双线性函数
+  \[
+    t:M\times N\longrightarrow M\otimes_R M
+    \qquad\text{由}\qquad
+    t(m,n)=m\otimes n
+  \]
+  给出，于是 $t$ 是集合 $\operatorname{Bilin}(M,N;M\otimes_R N)=\mathcal F U$ 的一个元素。那么 $(M\otimes_R N,t)$ 是 $\mathcal F$ 的一个泛元素，因为对任意 $R$-模 $A$，以及任意双线性映射 $g:M\times N\to A$（即 $\mathcal F A$ 的任意元素），存在唯一的 $R$-模同态 $\varphi:M\otimes_R N\to A$，使得
+  \[
+    g=\varphi\circ t=\mathcal F(\varphi)(t).
+  \]
+\end{enumerate}
+
+\begin{center}
+\textbf{练习}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item 令 $\mathbf{Nor}\text{-}N$ 为第 1 节练习 1 中描述的范畴，并令 $\mathcal F$ 为从 $\mathbf{Nor}\text{-}N$ 到 $\mathbf{Grp}$ 的包含函子。描述一个从 $\mathbf{Nor}\text{-}N$ 到 $\mathbf{Grp}$ 的函子 $\mathcal G$，使得由 $\eta_G:G\to G/N$ 定义的变换 $\eta$ 是从 $\mathcal F$ 到 $\mathcal G$ 的自然变换。
+
+  \item 设 $H$ 与 $K$ 是群，且 $\mathcal H_{\times}$ 与 $\mathcal K_{\times}$ 是第 1 节练习 2 中描述的从 $\mathbf{Grp}$ 到自身的函子。令 $\varphi:H\to K$ 为群同态。
+  \begin{enumerate}[label=(\alph*)]
+    \item 说明映射 $\eta_A:H\times A\to K\times A$，由 $\eta_A(h,a)=(\varphi(h),a)$ 给出，确定了一个从 $\mathcal H_{\times}$ 到 $\mathcal K_{\times}$ 的自然变换 $\eta$。
+    \item 说明变换 $\eta$ 是自然同构，当且仅当 $\varphi$ 是群同构。
+  \end{enumerate}
+
+  \item 把第 5.4 节命题 7(5) 中所描述的换位子商群的泛性质，表述为某个函子 $\mathcal F$ 的泛箭头。
+\end{enumerate}

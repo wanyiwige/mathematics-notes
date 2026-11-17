@@ -1,0 +1,47 @@
+[
+  {
+    "file": "chapters\\chapter13.tex",
+    "inline_integrals": 10,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter14.tex",
+    "inline_integrals": 9,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter15.tex",
+    "inline_integrals": 2,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter3.tex",
+    "inline_integrals": 2,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter6.tex",
+    "inline_integrals": 3,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter7.tex",
+    "inline_integrals": 1,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter8.tex",
+    "inline_integrals": 1,
+    "inserted": 0
+  },
+  {
+    "file": "chapters\\chapter9.tex",
+    "inline_integrals": 3,
+    "inserted": 0
+  },
+  {
+    "file": "preamble\\cover.tex",
+    "inline_integrals": 2,
+    "inserted": 0
+  }
+]

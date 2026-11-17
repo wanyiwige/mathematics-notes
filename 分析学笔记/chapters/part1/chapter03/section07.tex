@@ -1,0 +1,266 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.7 数列的极限与其性质
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{数列的极限与其性质}
+\begin{definition}
+	称$\left\{x_n\right\}$ 收敛于 $a$ ，若满足
+	$$
+	\begin{gathered}
+		\forall \varepsilon>0, \exists N\in\Z_+,\text{使得} \forall n>N \text { 时, 有 } \\
+		\left|x_n-a\right|<\varepsilon
+	\end{gathered}
+	$$
+	记为
+	
+	$$
+	\lim _{n \rightarrow \infty} x_n=a
+	$$
+	或简记为
+	
+	$$
+	x_n \rightarrow a \quad(n \rightarrow+\infty)
+	$$
+	若不存在实数 $a$ ，使$\left\{x_n\right\}$ 收敛于 $a$ ，则称 $\left\{x_n\right\}$ 发散.
+	
+\end{definition}
+
+注意：这里$N$是一个$\varepsilon$的函数，用极限的定义证明一个数列收敛于某数，就是求这个函数的表达式.
+
+下面我们也给出一个数列不收敛于$a$的定义，这在证明中是常常能够用到的.
+\begin{definition}
+	若$\left\{x_n\right\}$不收敛于  $a$ , 则 
+	$$\exists \varepsilon_0>0, \forall N , \exists n>N  \text{使得}$$
+	$$
+	\left|x_n-a\right| \geqslant \varepsilon_0 
+	$$
+	
+\end{definition}
+\begin{definition}
+	若数列$\left\{x_n\right\}$满足
+	\[x_n\rightarrow0,(n\rightarrow\infty)\]
+	就称数列$\left\{x_n\right\}$为无穷小量.
+\end{definition}
+\begin{definition}
+	$ \forall G, \exists N(G), \forall n>N$
+	$$
+	\left|x_n\right|>G
+	$$
+	称 $\left\{x_n\right\}$ 是无穷大量 记为
+	$$
+	\lim _{n \rightarrow \infty} x_n=\infty
+	$$
+	
+\end{definition}
+\begin{example}
+	无穷大量分三种，
+	\begin{enumerate}
+		\item 正无穷大量,如$\left\{n\right\}$
+		\item	无无穷大量,如$\left\{-n\right\}$
+		\item 不定号无穷大量，如 $\left\{(-1)^nn\right\}$
+		
+	\end{enumerate}
+\end{example}
+注意：无穷大量与无穷小量是一个变量，一个过程，而不是一个具体的数.
+
+下面我们讲述数列极限的四条性质，我们在下一章中给出他们的应用.
+\begin{proposition}
+	对数列 $\left\{x_n\right\}$收敛 ，其只能收敛于唯一值.
+\end{proposition}
+
+\begin{proof}
+	如若不然，设 $\left\{x_n\right\}$ 收敛于 $a,  b,\textbf{且} a \neq b$ 不妨设 $b>a $
+	\begin{align*}
+		\forall \varepsilon>0 ,& n>N_1 \textbf{时} ,\left|x_n-a\right|<\varepsilon\\
+		&n>N_2 \textbf{时} ,\left|x_n-a\right|<\varepsilon
+	\end{align*}
+	
+	
+	
+	取 $N=\max \left(N_1, N_2\right)$
+	
+	那么$n>N$时
+	\begin{align*}
+		\left|x_n-a\right|<\varepsilon\\ \left|x_n-b\right|<\varepsilon
+	\end{align*}
+	
+	成立
+	
+	不妨取 $\varepsilon=\dfrac{b-a}{3}$
+	\begin{align*}
+		&-\dfrac{b-a}{3}<x_n-a<\dfrac{b-a}{3} \Rightarrow \dfrac{4 a-b}{3}<x_n<\dfrac{2 a+b}{3}\\
+		&-\dfrac{b-a}{3}<x_n-b<\dfrac{b-a}{3} \Rightarrow \dfrac{a+2 b}{3}<x_n<\dfrac{4 b-a}{3}
+	\end{align*}
+	
+	这样：$x_n<\dfrac{2 a+b}{3}<\dfrac{2 b+a}{3}<x_n$ 矛盾
+	
+	故 $\lim\limits _{n \rightarrow \infty} x_n=a=b$ ,极限值唯一.
+\end{proof}
+
+\begin{definition}
+	对$\left\{x_n\right\}$
+	
+	若 $\forall n \in \mathbb{Z}_{+}$，使得$x_n \leqslant M$ ，称 $M$ 为$\left\{x_n\right\}$的上界；
+	
+	若 $\forall n \in \mathbb{Z}_{+}$，使得$x_n \geqslant m$，称 $m$ 为$\left\{x_n\right\}$的下界.
+	
+	若$\left\{x_n\right\}$既有上界又有下界，则称之为有界数列.
+	
+	一个有界数列的等价定义：$\exists X>0$ 使得$\forall n \in \mathbb{Z_+}, \left|x_n\right| \leqslant X$
+\end{definition}
+\begin{proposition}
+	收敛数列必有界.
+\end{proposition}
+
+\begin{proof}
+	设数列 $\left\{x_n\right\}$ 收敛，极限为 $a$
+	
+	$$
+	\forall \varepsilon>0, \exists N , \forall n>N ,\left|x_n-a\right|<\varepsilon
+	$$
+	
+	
+	不妨取 $\varepsilon=10^{10}$ ，对应的 $N$ 为 $N_0$ ,那么$n>N_0$时有：
+	
+	$$
+	-10^{10}<x_n-a<10^{10} \Leftrightarrow a-10^{10}<x_n<a + 10^{10}
+	$$
+	
+	
+	取 
+	\begin{align*}
+		m=\min \left(x_1, \cdots, x_{N_0}, a-10^{10}\right)\\	
+		M=\max \left(x_1, \cdots, x_{N_0}, a+10^{10}\right)
+	\end{align*}
+	
+	$\forall n \in \mathbb{Z}_+ ,\textbf{有} m \leqslant x_n \leqslant M \quad$ 故 $\left\{x_n\right\}$ 有界
+\end{proof}
+\begin{proposition}\label{数列的保序性}
+	设数列 $\left\{a_n\right\},\left\{b_n\right\}$ 均收敛， $\lim\limits _{n \rightarrow \infty} a_n=a$ ， $\lim\limits _{n \rightarrow \infty} b_n=b$ 且 $a<b$ ，那么 $\exists N, \forall n>N$， 使得$a_n<b_n$
+	
+\end{proposition}
+
+\begin{proof}
+	\begin{align*}
+		\forall \varepsilon>0 ,&\exists N_1>0 , n>N_1 \textbf{时} ,\left|a_n-a\right|<\varepsilon\\
+		&\exists N_2>0 ,n>N_2 \textbf{时} ,\left|b_n-b\right|<\varepsilon
+	\end{align*}
+	取 $N=\max \left(N_1, N_2\right)$,$ n>N$ 时 上两式同时成立
+	
+	取 $\varepsilon=\dfrac{b-a}{2} $
+	
+	$n>N$ 时
+	\begin{align*}
+		\left|a_n-a\right|<\dfrac{b-a}{2} \Leftrightarrow \dfrac{3 a-b}{2}<a_n<\dfrac{a+b}{2}\\
+		|b_n-b|<\dfrac{b-a}{2} \Leftrightarrow \dfrac{a+b}{2}<b_n<\dfrac{3 b-a}{2}
+	\end{align*}
+	也就是说 $n>N$ 时 $ a_n<\dfrac{a+b}{2}<b_n$
+	
+\end{proof}
+\begin{corollary}
+	\begin{enumerate}
+		\item 若 $\lim\limits _{n \rightarrow \infty} y_n=b>0$ ，则存在正整数 $N$ ，当 $n>N$ 时，
+		
+		$$
+		y_n>\dfrac{b}{2}>0 ;
+		$$
+		\item 若 $\lim\limits_{n \rightarrow \infty} y_n=b<0$ ，则存在正整数 $N$ ，当 $n>N$ 时，
+		
+		$$
+		y_n<\dfrac{b}{2}<0 .
+		$$
+	\end{enumerate}
+	
+\end{corollary}
+\begin{proof}
+	\begin{enumerate}
+		\item 取上条定理中 $b_n=y_n \quad a_n=b / 2$ 得证
+		\item 取上条定理中 $b_n=n / 2 \quad a_n=y_n$ 得证.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	若对$\left\{x_n\right\}$,$\left\{y_n\right\}$,$\left\{z_n\right\}$,$\exists N_0 \in Z_{+},\forall n >N_0 $,有
+	$$
+	x_n \leqslant y_n \leqslant z_n
+	$$
+	且$\lim\limits_{n \rightarrow \infty} x_n=\lim\limits_{n \rightarrow \infty}z_n=a$,则$\lim\limits_{n \rightarrow \infty}y_n=a$
+\end{theorem}
+\begin{proof}
+	$\forall \varepsilon>0$ ，由 $\lim\limits_{n \rightarrow \infty} x_n=a$ ，可知 $\exists N_1, \forall n>N_1:\left|x_n-a\right|<\varepsilon$ ，从而有
+	
+	$$
+	a-\varepsilon<x_n ;
+	$$
+	
+	
+	由 $\lim\limits_{n \rightarrow \infty} z_n=a$ ，可知 $\exists N_2, \forall n>N_2:\left|z_n-a\right|<\varepsilon$ ，从而有
+	
+	$$
+	z_n<a+\varepsilon .
+	$$
+	
+	
+	取 $N=\max \left\{N_0, N_1, N_2\right\}, \forall n>N:$
+	
+	$$
+	a-\varepsilon<x_n \leqslant y_n \leqslant z_n<a+\varepsilon
+	$$
+	
+	
+	此即
+	
+	$$
+	\left|y_n-a\right|<\varepsilon,
+	$$
+	
+	
+	所以 $\lim\limits_{n \rightarrow \infty} y_n=a$ ．
+\end{proof}
+\begin{lemma}
+	对$\lim\limits_{n\rightarrow\infty} x_n=a$，
+	有 
+	\begin{align*}
+		&\forall \varepsilon>0 \quad \exists N \in \mathbb{Z}_{+} , \text{使得}\forall n>N \quad\left|x_n-a\right|<\varepsilon\\
+		\Leftrightarrow & \forall \varepsilon>0 \quad \exists N \in \mathbb{Z}_{+} ,\text{使得} \forall n>N \quad\left|x_n-a\right|<c \varepsilon
+	\end{align*}
+	
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		\Rightarrow &\forall\varepsilon>0,\ \exists N\in \mathbb{Z}_{+},\ \text{使得}\ \forall n>N,\ |x_n-a|<\varepsilon,\ \text{取}\ \varepsilon'=\dfrac{\varepsilon}{c}\\
+		&\forall\varepsilon'>0,\ \exists N\in \mathbb{Z}_{+},\ \text{使得}\ \forall n>N,\ |x_n-a|<c\varepsilon'
+	\end{align*}
+	\begin{align*}
+		\Leftarrow &\forall\varepsilon>0,\ \exists N\in \mathbb{Z}_{+},\ \text{使得}\ \forall n>N,\ |x_n-a|<\varepsilon,\ \text{取}\ \varepsilon'=c\varepsilon\\
+		&\forall\varepsilon'>0,\ \exists N\in \mathbb{Z}_{+},\ \text{使得}\ \forall n>N,\ |x_n-a|<c\varepsilon'
+	\end{align*}
+	
+	
+\end{proof}
+\begin{theorem}
+	设$\lim\limits_{n \rightarrow \infty}x_n=a$,$\lim\limits_{n \rightarrow \infty}y_n=b$,则
+	\begin{enumerate}
+		\item$\lim\limits_{n \rightarrow \infty}\left(\alpha x_n+\beta y_n\right)=\alpha a+\beta b$
+		\item$\lim\limits_{n \rightarrow \infty}\left(x_n y_n\right)=a b$
+		\item$\lim\limits_{n \rightarrow \infty}\left(\dfrac{x_n}{y_n}\right)=\dfrac{a}{b}(b \neq 0,y_n\neq0)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$\forall \varepsilon>0 $
+	\begin{align*}
+		&\exists N_1 ,\forall n>N_1 ,\left|x_n-a\right|<\varepsilon	\\
+		&\exists N_2 ,\forall n>N_2 ,\left|y_n-b\right|<\varepsilon
+	\end{align*}
+	
+	
+	$N_0=\max \left(N_1, N_2\right) , n>N_0$ 时上两式成立 
+	
+	由收敛数列必有界 $m \leqslant y_n \leqslant M$
+	\begin{enumerate}
+		\item$\left|\alpha x_n+\beta y_n-\alpha a-\beta b\right| \leqslant \alpha\left|x_n-a\right|+\beta\left|y_n-b\right|<(\alpha+\beta) \varepsilon$
+		\item
+		$\left|x_n y_n-a b\right|=\left|\left(x_n-a\right) y_n+a y_n-a b\right|=\left|(x_n-a)y_n+(y_n-b)a\right|\leqslant y_n\left|x_n-a\right|+a\left|y_n-b\right|<(M+a) \varepsilon$
+		\item$\left|\dfrac{x_n}{y_n}-\dfrac{a}{b}\right|=\left|\dfrac{b x_n-a y_n}{b y_n}\right| \leqslant\left|\dfrac{b\left(x_n-a\right)+a b-a y_n}{b m}\right|<\dfrac{1}{b m }\left(b\left|x_n-a\right|+a\left|y_n-b\right|\right)<\left|\dfrac{b+a}{b m}\right| \varepsilon$
+	\end{enumerate}
+\end{proof}

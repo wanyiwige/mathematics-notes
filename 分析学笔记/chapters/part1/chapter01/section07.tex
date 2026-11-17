@@ -1,0 +1,221 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.7 序公理，有理数的阿基米德性和稠密性，上下确界
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{序公理，有理数的阿基米德性和稠密性，上下确界}
+\begin{axiom}
+	在集$S$上定义一种关系，名为序,记作$<$有如下性质
+	
+	（i）若 $x, y \in S$ ，那么在
+	
+	$$
+	x<y \quad x=y \quad y<x
+	$$
+	
+	
+	三者中必备其一
+	
+	
+	（ii）$x, y, z \in S \quad x<y$ 且 $y<z \Rightarrow x<z$
+	
+	有时用 $x>y$ 代替 $y<x$
+	
+	\label{1.7.1}
+\end{axiom}
+\begin{definition}$\N$,$\Z$,$\Q$上序的定义
+	\begin{enumerate}
+		\item$\N$定义序：对 $n \in \mathbb{N}$ ，规定 $S(n)>n$ 如此就定义了 $\mathbb{N}$ 上的序关系
+		
+		$0$ 不是任何自然数的后继，故 $0=\min\N$ 
+		\item $\Z$定义序：$\Z:=\left\{[(a,b)]:a,b\in\N\right\}$
+		
+		若 $[(a, b)]>[(c, d)]$ 则 $a+d>b+c$
+		\item 	$\Q$定义序:$\left\{[(a,b)]:a,b\in\Z\text{且}b\ne0\right\}\quad(a, b):=\dfrac{a}{b}$
+		
+		若 $[(a, b)]>[(c, d)]$ 则 $a d > b c$
+	\end{enumerate}
+	
+	显然地，我们定义的序关系满足\ref{1.7.1}中的（i），（ii）
+	
+\end{definition}
+\begin{definition}
+	具有序关系 $<$ 的一个集合 $A$ 称为良序的，如果 $A$ 的任意非空子集有一个最小元.
+\end{definition}
+\begin{theorem}良序定理
+	
+	若 $A$ 是一个集合，则存在 $A$ 上的一个序关系，使 $A$ 成为一个良序集.
+\end{theorem}
+
+这个定理是1904年由 Zermelo 证明的，曾震动了数学界，并对其证明的正确性展开大量辩论.对于任意不可数集，没有一个将其良序化的构造性程序就引起了许多怀疑.在进一步分析这个证明时，我们发现只有一处可能有点问题，就是在构造的过程中包含着无穷多次选择，也就是说其做法包含了选择公理.
+
+一些数学家曾经拒绝把选择公理作为一个结果，多少年来每涉及一个新定理就要提出这个问题：它的证明是否涉及选择公理？因为一个定理的证明中如果使用了选择公理，便会被认为基础不稳固.一般说来，时下的数学家大都已经不再有这样的烦恼了.他们把选择公理作为集合论中的一个合适的假定，良序定理也就随之得以被承认.
+
+选择公理蕴涵良序定理的证明过于冗长（虽然不是特别困难），而且主要是逻辑学家的兴趣所在，我们略去其证明.我们承认良序定理，读者也可以将其视作另外的一个公理！
+
+\begin{axiom}选择公理
+	
+	给定由两两无交的非空集合构成的一个族 $\mathcal{A}$ ，存在一个集合 $C$ ，使得 $C$ 与 $\mathcal{A}$ 的每一个元素恰好有一个公共元，即对于每一个 $A \in \mathcal{A}$ ，集合 $C \cap A$ 包含着唯一的一个元素．
+\end{axiom}
+\begin{definition}
+	高斯取整$\left[a\right]$，是不大于 $a $的，最小的那个整数.
+	
+\end{definition}
+\begin{proposition}
+	$\Q$上的阿基米德性
+	
+	$x, y \in \mathbb{Q}$ 且 $x>0 \quad$ 那么 存在 $n \in \mathbb{Z}_{+} \quad$ 使
+	\[	n x>y\]\label{1.7.7}
+\end{proposition}
+
+\begin{proof}
+	取 $n=\left[|\dfrac{y}{x}|\right]+1$,得证.    	
+	
+\end{proof}
+\begin{definition}\label{有序域}
+	有序域是一个域 $\F$ ，又是合于下列两条件的有序集
+	
+	（i）当 $x, y, z \in F$ 且 $y<z$ 时，$x+y<x+z$ ；
+	
+	（ii）如果 $x, y \in F, x>0$ 且 $y>0$ ，那么 $x y>0$ ．
+	
+	如果 $x>0$ ，就说 $x$ 是正的；如果 $x<0$ ，就说 $x$ 是负的．
+	
+	例如，$\Q$ 是有序域．
+	
+\end{definition}
+
+一个满足\ref{1.7.1}和\ref{1.7.7}的域称为 Archimedean有序域.
+
+
+
+\begin{proposition}
+	在每个有序域中，下面几条叙述都正确：
+	
+	（a）如果 $x>0$ ，那么 $-x<0$ ；反过来也对.
+	
+	（b）如果 $x>0$ 而 $y<z$ ，那么 $x y<x z$ .
+	
+	（c）如果 $x<0$ 而 $y<z$ ，那么 $x y>x z$ .
+	
+	（d）如果 $x \neq 0$ ，那么 $x^2>0$ ．特别有 $1>0$ ．
+	
+	（e）如果 $0<x<y$ ，那么 $0<1 / y<1 / x$ ．
+\end{proposition}
+\begin{proof}
+	(a)如果 $x>0$ ，那么 $0=-x+x>-x+0=-x$ ，因此，$-x<0$ ．如果 $x<0$ ，那么 $0=-x+x<-x+0$ ；因此 $-x>0$ ．这就证明了（a）．
+	
+	（b）因为 $z>y$ ，就有 $z-y>y-y=0$ ，因此，$x(z-y)>0$ ，所以
+	
+	$$
+	x z=x(z-y)+x y>0+x y=x y .
+	$$
+	
+	（c）由（a）、（b）及命题\ref{1.6.4}的4
+	
+	$$
+	-[x(z-y)]=(-x)(z-y)>0
+	$$
+	
+	
+	因此 $x(z-y)<0$ ，而得 $x z<x y$ ．
+	
+	（d）如果 $x>0$ ，由\ref{有序域}的第（ii）部分就得出 $x^2>0$ .
+	
+	如果 $x<0$ ，那么 $-x>0$ ，因此 $(-x)^2>0$ ．但是根据命题 $1.6.4(\mathrm{~d}), x^2=(-x)^2$ 
+	
+	因为 $1= 1^2, 1>0$ 
+	
+	（e）如果 $y>0$ ，而 $v \leqslant 0$ ，那么 $y v \leqslant 0$ ．但 $y \cdot(1 / y)=1>0$ ．因此 $1 / y>0$ ．类似地可得 $1 / x>0$ ．如果把不等式 $x<y$ 两端乘以正量 $(1 / x)(1 / y)$ ，就得到 $1 / y<1 / x$ 
+\end{proof}
+
+
+
+
+\begin{theorem}有理数的稠密性
+	
+	$\forall a>b \in \mathbb{Q}, \exists p \in \mathbb{Q}$ s．t．$a>p>b$ 成立
+	
+\end{theorem}
+\begin{proof}
+	取 $p=\dfrac{a+b}{2}$ 由$\Q$对加法封闭 $p \in \mathbb{Q}$,$a>p>b$成立. 
+\end{proof}
+\begin{definition}
+	对一个已经定义了序关系集合 $S$
+	
+	若 $\exists \xi \in S$ s．t．$\forall x \in S$ 有 $x \leqslant \xi$ 称 $\xi$ 是 $S$ 的最大数，$\xi=\max S$
+	
+	若 $\exists \eta \in S$ s．t．$\forall x \in S$ 有 $\eta \leqslant x$ 称 $\eta$ 是 $S$ 的最小数 $\eta=\min S$
+\end{definition}
+\begin{definition}
+	对一个有序集 $S$
+	
+	若对某 $\alpha$ ，使 $\forall x \in S$ 都有 $\alpha \geqslant x$ 则称 $\alpha$ 是 $S$ 的上界
+	
+	若对某 $\beta$ ，使 $\forall x \in S$ 都有 $\beta \leqslant x$ 则称 $\beta$ 是 $S$ 的下界
+	
+\end{definition}
+\begin{definition}对一个有序集 $S$
+	
+	设 $\alpha$ 是 $S$ 的上界，若 $\alpha$ 满足下面的条件，则称 $\alpha$ 为 $S$ 的 上确界 记为 $\alpha=\sup S$ ：
+	
+	$$
+	\forall \varepsilon>0 \quad \exists x \in S \text { s.t. } x>\alpha-\varepsilon
+	$$
+	
+	
+	换言之，$\sup S$是 $S$ 的最小上界
+	
+	$\beta$ 是$S$ 的下界，若 $\beta$ 满足下面的条件，则称 $\beta$ 为 $S$ 的下确界 记为 $\beta=\inf S$ ：
+	
+	$$
+	\forall \varepsilon>0\quad \exists x \in S \text { s.t. } x<\beta+\varepsilon
+	$$
+	
+	
+	换言之$\inf S$是 $S$ 的最大下界
+\end{definition}
+\textbf{注意：}
+	最大值与上确界不相同，最大值必在集合内，上确界则不一定.
+
+\begin{definition}
+	有序集 $S$ ，如果具有性质：
+	
+	若 $E \subset S, E$ 不空，且 $E$ 上有界时， $\sup E$ 便在 $S$ 里．就说 $S$ 有最小上界性.
+	
+	类似的，我们定义出最大下界性.
+\end{definition}
+\begin{proposition}
+	设 $S$ 是具有最小上界性的有序集，$B \subset S, B$ 不空且 $B$ 下有界．令 $L$ 是 $B$ 的所有下界的集．那么
+	
+	$$
+	\alpha=\sup L
+	$$
+	
+	
+	在 $S$ 存在，并且 $\alpha=\inf B$ ．
+	特别地说就是 $\inf B$ 在 $S$ 存在
+\end{proposition}
+
+也就是说，具有最小上界性的集合一定具有最大下界性.
+\begin{proof}
+	因 $B$ 下有界，$L$ 不空．$L$ 刚好由这样一些 $y \in S$ 组成，它们对于每个 $x \in B$ ，满足不等式 $y \leqslant x$ ．可见每个 $x \in B$ 是 $L$ 的上界．于是 $L$ 上有界，因而我们对 $S$ 的假定意味着 $S$ 里有 $L$ 的上确界；把它叫做 $\alpha$ ．
+	
+	如果 $\gamma<\alpha$ ，那么 $\gamma$ 不是 $L$ 的上界，因此 $\gamma \notin B$ ．由此对于每个 $x \in B, \alpha \leqslant x$ .所以 $\alpha \in L$ .
+	
+	如果 $\alpha<\beta$ ，由于 $\alpha$ 是 $L$ 的上界，必然 $\beta \notin L$ ．
+	我们已证明了：$\alpha \in L$ ．而当 $\beta>\alpha$ 时，就有 $\beta \notin L$ ．换句话说，$\alpha$ 是 $B$ 的下界，但若 $\beta>a, \beta$ 就不是 $B$ 的下界．这就是说 $\alpha=\inf B$ ．
+\end{proof}
+\begin{definition}
+	确界原理是指在$S$中的一个子集，若他有上界，则必有上确界.这与$S$的最小上界性等价.
+\end{definition}
+
+\begin{definition}
+	设 $A$ 和 $B$ 是分别有序关系 $<_A$ 和 $<_B$$\footnote{表示在A，B上定义的序关系}$ 的两个集合．$A \times B$ 上的全序关系定义为：当 $a_1<_A a_2$ 或者当 $a_1=a_2$ 并且 $b_1<_B b_2$ 时，
+	
+	$$
+	a_1 \times b_1<a_2 \times b_2 .
+	$$
+	
+	
+	它称为 $A \times B$ 上的字典序关系．
+\end{definition}

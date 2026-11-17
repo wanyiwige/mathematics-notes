@@ -1,0 +1,45 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[shift={(0,0)},scale=3.3]
+
+ \fill[GreenPale,opacity=.25] (0,0) rectangle(1,1);
+ \draw[gray] (0,0) rectangle(1,1);
+ \draw[->,gray] (0,0)--(1.15,0) node[right]{$\theta_1$};
+ \draw[->,gray] (0,0)--(0,1.15) node[above]{$\theta_2$};
+ \node[below left] at (0,0){$0$};\node[below] at (1,0){$2\pi$};\node[left] at (0,1){$2\pi$};
+ \draw[GoldMain,->,thick] (.4,0)--(.6,0);\draw[GoldMain,->,thick] (.4,1)--(.6,1);
+ \draw[GoldMain,->,thick] (0,.4)--(0,.6);\draw[GoldMain,->,thick] (1,.4)--(1,.6);
+\draw[GreenMain,thick] (0.000000,0.000000)--(1.000000,0.500000);
+\draw[GreenMain,thick] (0.000000,0.500000)--(1.000000,1.000000);
+\node at (.5,-.27){$\omega_2/\omega_1=1/2$};
+\end{scope}
+\begin{scope}[shift={(6.5,0)},scale=3.3]
+
+ \fill[GreenPale,opacity=.25] (0,0) rectangle(1,1);
+ \draw[gray] (0,0) rectangle(1,1);
+ \draw[->,gray] (0,0)--(1.15,0) node[right]{$\theta_1$};
+ \draw[->,gray] (0,0)--(0,1.15) node[above]{$\theta_2$};
+ \node[below left] at (0,0){$0$};\node[below] at (1,0){$2\pi$};\node[left] at (0,1){$2\pi$};
+ \draw[GoldMain,->,thick] (.4,0)--(.6,0);\draw[GoldMain,->,thick] (.4,1)--(.6,1);
+ \draw[GoldMain,->,thick] (0,.4)--(0,.6);\draw[GoldMain,->,thick] (1,.4)--(1,.6);
+\draw[GreenMain,thick] (0.000000,0.000000)--(0.707107,1.000000);
+\draw[GreenMain,thick] (0.707107,0.000000)--(1.000000,0.414214);
+\draw[GreenMain,thick] (0.000000,0.414214)--(0.414214,1.000000);
+\draw[GreenMain,thick] (0.414214,0.000000)--(1.000000,0.828427);
+\draw[GreenMain,thick] (0.000000,0.828427)--(0.121320,1.000000);
+\draw[GreenMain,thick] (0.121320,0.000000)--(0.828427,1.000000);
+\draw[GreenMain,thick] (0.828427,0.000000)--(1.000000,0.242641);
+\draw[GreenMain,thick] (0.000000,0.242641)--(0.535534,1.000000);
+\draw[GreenMain,thick] (0.535534,0.000000)--(1.000000,0.656854);
+\draw[GreenMain,thick] (0.000000,0.656854)--(0.242641,1.000000);
+\draw[GreenMain,thick] (0.242641,0.000000)--(0.949747,1.000000);
+\draw[GreenMain,thick] (0.949747,0.000000)--(1.000000,0.071068);
+\draw[GreenMain,thick] (0.000000,0.071068)--(0.656854,1.000000);
+\draw[GreenMain,thick] (0.656854,0.000000)--(1.000000,0.485281);
+\draw[GreenMain,thick] (0.000000,0.485281)--(0.363961,1.000000);
+\draw[GreenMain,thick] (0.363961,0.000000)--(1.000000,0.899495);
+\draw[GreenMain,thick] (0.000000,0.899495)--(0.071068,1.000000);
+\draw[GreenMain,thick] (0.071068,0.000000)--(0.500000,0.606602);
+\node at (.5,-.27){$\omega_2/\omega_1=\sqrt2$};
+\end{scope}
+\end{tikzpicture}

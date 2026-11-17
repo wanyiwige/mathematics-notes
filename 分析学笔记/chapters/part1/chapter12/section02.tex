@@ -1,0 +1,432 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.2 一致收敛及其判别法
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{一致收敛及其判别法}
+上一节中，我们看到点态的收敛对于函数项序列以及函数项级数来说是不足够的，因此， 我们需要一种更强大的收敛，也即一致收敛
+
+\begin{definition}(函数项序列的一致收敛)
+	设 $S_n:D\to\mathbb{R}$, $S:D\to\mathbb{R}$. 若对任意 $\varepsilon>0$,存在只依赖于 $\varepsilon$ 而不依赖于 $x$ 的正整数 $N=N(\varepsilon)$,使得当 $n>N$ 时,对所有 $x\in D$ 都有
+	\[
+	|S_n(x)-S(x)|<\varepsilon,
+	\]
+	则称 $\{S_n\}$ 在 $D$ 上一致收敛于 $S$,记为
+	\[
+	S_n\rightrightarrows S\qquad (x\in D).
+	\]
+\end{definition}
+
+\begin{definition}(函数项级数的一致收敛)\label{函数项级数的一致收敛}
+	若函数项级数 $\sum\limits_{n=1}^{\infty}u_n(x)$ 的部分和函数列 $S_n(x)=\sum\limits_{k=1}^{n}u_k(x)$ 在 $D$ 上一致收敛于 $S(x)$,则称级数 $\sum\limits_{n=1}^{\infty}u_n(x)$ 在 $D$ 上一致收敛于 $S(x)$,记为
+	\[
+	\sum_{n=1}^{\infty}u_n(x)\rightrightarrows S(x)\qquad (x\in D).
+	\]
+\end{definition}
+
+一致收敛一定推出逐点收敛,但逐点收敛一般不能推出一致收敛. 关键区别在于:逐点收敛中 $N=N(\varepsilon,x)$ 可以随着 $x$ 改变,而一致收敛中必须有同一个 $N=N(\varepsilon)$ 同时控制所有 $x\in D$.
+
+类似的，我们可以给出不一致收敛的定义
+\begin{definition}
+	若
+	\[
+	\exists \varepsilon_0>0,\forall N(\eps)\in\mathbb N,(\text{与}x\in D\text{无关})
+	\]
+	$\exists n\ge N$ ， $\exists x\in D$ 使
+	\[
+	|S_n(x)-S(x)|\geqslant\varepsilon_0,
+	\]
+	则称 $S_n(x)$ 在 $D$ 上非一致收敛于 $S(x)$，记作
+	\[
+	S_n\not\rightrightarrows S\quad (x\in D).
+	\]
+\end{definition}
+还有一种特殊的一致收敛，成为内闭一致收敛
+\begin{definition}
+	若对任意给定的闭区间$[a,b]\subset D$,函数项序列\(\{S_n(x)\}\)在$[a,b]$上一致收敛于$S(x)$,则称\(\{S_n(x)\}\)在$D$上内部一致收敛于$S(x)$
+\end{definition}
+\begin{example}
+	设
+	\[
+	S_n(x)=\frac{x}{1+n^2x^2},
+	\qquad x\in\mathbb{R}.
+	\]
+	证明 $S_n\rightrightarrows0$ 于 $\mathbb{R}$.
+\end{example}
+由\ref{函数项级数的一致收敛},立即得
+\begin{corollary}
+	若函数项级数 $\sum\limits_{n=1}^{\infty}u_n(x)$在$D$上一致收敛，则函数项序列$\{u_n(x)\}$在$D$上一致收敛于0
+\end{corollary}
+\begin{solution}
+	对 $x=0$ 显然有 $S_n(0)=0$. 对 $x\neq0$,利用 $a^2+b^2\geq2ab$ 得
+	\[
+	1+n^2x^2\geq 2n|x|.
+	\]
+	因此
+	\[
+	\left|\frac{x}{1+n^2x^2}\right|
+	\leq \frac{|x|}{2n|x|}
+	=\frac1{2n}.
+	\]
+	于是$\forall \eps >0$,找一个$N(\eps)$,使$\forall n>N,x\in\R$
+	\[S_n(x)=|\frac{x}{1+n^2x^2}|<\frac{|x|}{2n|x|}=\frac{1}{2n}<\eps\]
+	取$N=[\dfrac{1}{2\eps}]+1$即可
+\end{solution}
+\begin{proposition}(用上确界刻画一致收敛)
+	对 $S_n,S:D\to\mathbb{R}$,且$S_n(x)\to S(x)(x\in D)$,记
+	\[
+	d(S_n,S)=\sup_{x\in D}|S_n(x)-S(x)|,
+	\]
+	允许上确界取值为 $+\infty$. 则
+	\[
+	S_n\rightrightarrows S\quad (x\in D)
+	\]
+	当且仅当
+	\[
+	\lim_{n\to\infty}d(S_n,S)=0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	必要性：若 $S_n\rightrightarrows S$,则对任意 $\varepsilon>0$,存在 $N$,使得 $n>N$ 时对所有 $x\in D$ 都有
+	\[
+	|S_n(x)-S(x)|<\varepsilon.
+	\]
+	因此
+	\[
+	d(S_n,S)=\sup_{x\in D}|S_n(x)-S(x)|\leq \varepsilon,
+	\]
+	从而 $d(S_n,S)\to0$.
+	
+	充分性：若 $d(S_n,S)\to0$,则对任意 $\varepsilon>0$,存在 $N$,使得 $n>N$ 时
+	\[
+	d(S_n,S)<\varepsilon.
+	\]
+	于是对所有 $x\in D$ 都有
+	\[
+	|S_n(x)-S(x)|\leq d(S_n,S)<\varepsilon,
+	\]
+	故 $S_n\rightrightarrows S$.
+\end{proof}
+
+\begin{proposition}(序列判别法)
+	设 $S_n(x)\to S(x)$, $x\in D$. 则 $S_n\rightrightarrows S$ 在 $D$ 上成立,当且仅当对任意点列 $\{x_n\}\subset D$,都有
+	\[
+	\lim_{n\to\infty}\bigl(S_n(x_n)-S(x_n)\bigr)=0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	必要性: 若 $S_n\rightrightarrows S(x\in D)$,则对任意 $\varepsilon>0$,存在 $N$,使得 $n>N$ 时对一切 $x\in D$ 都有
+	\[
+	|S_n(x)-S(x)|<\varepsilon.
+	\]
+	特别地,取 $x=x_n$,得
+	\[
+	|S_n(x_n)-S(x_n)|<\varepsilon,
+	\]
+	所以 $S_n(x_n)-S(x_n)\to0$.
+	
+	下面证明充分性. 若不然, $S_n$ 不一致收敛于 $S$. 则存在 $\varepsilon_0>0$,使得对任意 $N\in\mathbb{N}$,都存在 $n>N$ 与 $x\in D$,满足
+	\[
+	|S_n(x)-S(x)|\geq \varepsilon_0.
+	\]
+	令 $N_1=1$,取 $n_1>1$ 与 $x_{n_1}\in D$,使得
+	\[
+	|S_{n_1}(x_{n_1})-S(x_{n_1})|\geq \varepsilon_0.
+	\]
+	再令 $N_2=n_1$,取 $n_2>n_1$ 与 $x_{n_2}\in D$,使得
+	\[
+	|S_{n_2}(x_{n_2})-S(x_{n_2})|\geq \varepsilon_0.
+	\]
+	如此归纳,可得严格递增的指标列 $n_k$ 与点 $x_{n_k}\in D$,使得
+	\[
+	|S_{n_k}(x_{n_k})-S(x_{n_k})|\geq \varepsilon_0,
+	\qquad k=1,2,\cdots .
+	\]
+	在未被选中的指标上任取 $x_n\in D$,得到一列 $\{x_n\}\subset D$. 按假设应有
+	\[
+	S_n(x_n)-S(x_n)\to0,
+	\]
+	但其子列 $S_{n_k}(x_{n_k})-S(x_{n_k})$ 的绝对值始终不小于 $\varepsilon_0$,矛盾. 故 $S_n\rightrightarrows S$.
+\end{proof}
+\begin{example}
+	设
+	\[
+	S_n(x)=\left(1+\frac{x}{n}\right)^n,
+	\qquad x\in[0,+\infty).
+	\]
+	证明 $S_n(x)\to e^x$,且 $S_n$ 在每个 $[0,a]$ 上一致收敛于 $e^x$,但在 $[0,+\infty)$ 上不一致收敛.
+\end{example}
+
+
+\begin{solution}
+	对固定 $x\geq0$,由数列极限的基本结论知
+	\[
+	\left(1+\frac{x}{n}\right)^n\to e^x.
+	\]
+	下面证明在 $[0,a]$ 上一致收敛. 令
+	\[
+	\varphi_n(x)=e^{-x}\left(1+\frac{x}{n}\right)^n.
+	\]
+	则
+	\[
+	\varphi_n'(x)
+	=e^{-x}\left(1+\frac{x}{n}\right)^n\left(\frac1{1+x/n}-1\right)
+	\leq0,
+	\qquad x\geq0.
+	\]
+	故 $\varphi_n$ 在 $[0,a]$ 上单调递减,并且
+	\[
+	\varphi_n(0)=1,
+	\qquad
+	\varphi_n(a)=e^{-a}\left(1+\frac an\right)^n.
+	\]
+	于是对 $x\in[0,a]$,
+	\[
+	e^{-a}\left(1+\frac an\right)^n\leq e^{-x}\left(1+\frac xn\right)^n\leq1.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		0\leq e^x-\left(1+\frac xn\right)^n
+		&=e^x\left[1-e^{-x}\left(1+\frac xn\right)^n\right]\\
+		&\leq e^a\left[1-e^{-a}\left(1+\frac an\right)^n\right]\to0.
+	\end{aligned}
+	\]
+	于是
+	\[0\leqslant d(S_n,S)\leqslant e^a\left[1-e^{-a}\left(1+\frac an\right)^n\right]\to0 \]
+	所以$\lim\limits_{n\to\infty}d(S_n,S)=0$,故 $S_n\rightrightarrows e^x$ 于 $[0,a]$.
+	
+	但在 $[0,+\infty)$ 上不一致收敛. 取 $x_n=n$,则
+	\[
+	\left|S_n(x_n)-e^{x_n}\right|=|2^n-e^n|=e^n-2^n\to+\infty,
+	\]
+	不可能趋于 $0$. 由序列判别法可知 $S_n$ 在 $[0,+\infty)$ 上不一致收敛.
+\end{solution}
+\begin{theorem}(函数项序列一致收敛的 Cauchy 准则)
+	函数列 $\{S_n\}$ 在 $D$ 上一致收敛与$S$,当且仅当对任意 $\varepsilon>0$,存在 $N=N(\varepsilon)$,使得对任意 $n>N$以及$p>1$ 与任意 $x\in D$,都有
+	\[
+	|S_n(x)-S_{n+p}(x)|<\varepsilon.
+	\]
+\end{theorem}
+
+\begin{proof}
+	必要性：若 $S_n\rightrightarrows S$,则对任意 $\varepsilon>0$,存在 $N$,使得 $n>N$ 时对所有 $x\in D$ 都有
+	\[
+	|S_n(x)-S(x)|<\frac{\varepsilon}{2}.
+	\]
+	因此当 $n>N,p>1$ 时,
+	\[
+	|S_n(x)-S_{n+p}(x)|\leq |S_n(x)-S(x)|+|S_{n+p}(x)-S(x)|<\varepsilon.
+	\]
+	
+	充分性：若 Cauchy 条件成立,则对每个固定的 $x\in D$,数列 $\{S_n(x)\}$ 是 Cauchy 数列,故存在极限,记为
+	\[
+	S(x)=\lim_{n\to\infty}S_n(x).
+	\]
+	由 Cauchy 条件,给定 $\varepsilon>0$,存在 $N$,使得 $n>N,p>1$ 时对所有 $x\in D$ 都有
+	\[
+	|S_n(x)-S_{n+p}(x)|<\varepsilon.
+	\]
+	固定 $n>N$ 并令 $p\to\infty$,得到
+	\[
+	|S_n(x)-S(x)|\leq \varepsilon,
+	\qquad x\in D.
+	\]
+	这正是一致收敛.
+\end{proof}
+\begin{proposition}
+	(函数项级数一致收敛的 Cauchy 准则)
+	函数项级数 $\sum\limits_{n=1}^{\infty}u_n(x)$ 在 $D$ 上一致收敛,当且仅当对任意 $\varepsilon>0$,存在 $N=N(\varepsilon)$,使得当 $n>N$ 时,对任意 $p\in\mathbb{N}$ 与任意 $x\in D$,都有
+	\[
+	\left|u_{n+1}(x)+u_{n+2}(x)+\cdots+u_{n+p}(x)\right|<\varepsilon.
+	\]
+\end{proposition}
+
+\begin{proof}
+	令
+	\[
+	S_n(x)=\sum_{k=1}^{n}u_k(x).
+	\]
+	由函数列的 Cauchy 准则, $\sum u_n(x)$ 一致收敛当且仅当对任意 $\varepsilon>0$,存在 $N$,使得 $n>N,p>1$ 时
+	\[
+	|S_{n+p}(x)-S_n(x)|<\varepsilon,
+	\qquad x\in D.
+	\]
+	\[
+	S_{n+p}(x)-S_n(x)=\sum_{k=n+1}^{n+p}u_k(x),
+	\]
+	于是上述条件等价于
+	\[
+	\left|\sum_{k=n+1}^{n+p}u_k(x)\right|<\varepsilon,
+	\qquad n>N,\ p\in\mathbb{N},\ x\in D.
+	\]
+\end{proof}
+
+
+
+
+
+
+\begin{theorem}(Weierstrass $M$ 判别法)
+	设 $u_n:D\to\mathbb{R}$. 若存在非负数列 $\{a_n\}$,使得
+	\[
+	|u_n(x)|\leq a_n,
+	\qquad x\in D,
+	\]
+	并且数项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛,则函数项级数
+	\[
+	\sum_{n=1}^{\infty}u_n(x)
+	\]
+	在 $D$ 上一致收敛. 
+\end{theorem}
+
+\begin{proof}
+	由 $\sum a_n$ 收敛的 Cauchy 准则,对任意 $\varepsilon>0$,存在 $N$,使得当 $n>N$ 时,对任意 $p\in\mathbb{N}$ 有
+	\[
+	\sum_{k=n+1}^{n+p}a_k<\varepsilon.
+	\]
+	于是对任意 $x\in D$,
+	\[
+	\left|\sum_{k=n+1}^{n+p}u_k(x)\right|
+	\leq \sum_{k=n+1}^{n+p}|u_k(x)|
+	\leq \sum_{k=n+1}^{n+p}a_k<\varepsilon.
+	\]
+	由函数项级数的一致 Cauchy 准则, $\sum u_n(x)$ 在 $D$ 上一致收敛. 
+\end{proof}
+
+对函数项序列 $\{S_n\}$,不能直接使用 Weierstrass $M$ 判别法;若要使用,通常先写成以下形式
+\[
+S_n(x)=S_1(x)+\sum_{k=2}^{n}\bigl(S_k(x)-S_{k-1}(x)\bigr),
+\]
+然后考察 $\sum\limits_{k=2}^{\infty}\bigl(S_k(x)-S_{k-1}(x)\bigr)$ 是否满足 $M$ 判别法.
+
+\begin{problem}
+	设 $\alpha>1$. 证明函数项级数
+	\[
+	\sum_{n=1}^{\infty}x^{\alpha}e^{-nx}
+	\]
+	在 $[0,+\infty)$ 上一致收敛.
+\end{problem}
+
+\begin{solution}
+	记
+	\[
+	f_n(x)=x^{\alpha}e^{-nx},
+	\qquad x\geq0.
+	\]
+	则
+	\[
+	f_n'(x)=x^{\alpha-1}e^{-nx}(\alpha-nx).
+	\]
+	所以 $f_n$ 在 $x=\dfrac{\alpha}{n}$ 处取得最大值,且
+	\[
+	0\leq f_n(x)\leq f_n\left(\frac{\alpha}{n}\right)
+	=\left(\frac{\alpha}{n}\right)^{\alpha}e^{-\alpha}
+	=\frac{\alpha^{\alpha}e^{-\alpha}}{n^{\alpha}}.
+	\]
+	因为 $\alpha>1$,数项级数
+	\[
+	\sum_{n=1}^{\infty}\frac{\alpha^{\alpha}e^{-\alpha}}{n^{\alpha}}
+	\]
+	收敛. 由 Weierstrass $M$ 判别法,
+	\[
+	\sum_{n=1}^{\infty}x^{\alpha}e^{-nx}
+	\]
+	在 $[0,+\infty)$ 上一致收敛.
+\end{solution}
+\begin{proposition}
+	(Abel 判别法)
+	设 $a_n,b_n:D\to\mathbb R$. 若满足:
+	\begin{enumerate}
+		\item 对每个固定的 $x\in D$,数列 $\{a_n(x)\}$ 关于 $n$ 单调;
+		\item $\{a_n(x)\}$ 在 $D$ 上一致有界,即存在常数 $M>0$,使得
+		\[
+		|a_n(x)|\leq M,
+		\qquad n=1,2,\cdots,\ x\in D;
+		\]
+		\item 函数项级数 $\sum\limits_{n=1}^{\infty}b_n(x)$ 在 $D$ 上一致收敛,
+	\end{enumerate}
+	则函数项级数
+	\[
+	\sum_{n=1}^{\infty}a_n(x)b_n(x)
+	\]
+	在 $D$ 上一致收敛.
+\end{proposition}
+
+\begin{proof}
+	由函数项级数一致收敛的 Cauchy 准则,只需证明
+	\[
+	\sum_{n=1}^{\infty}a_n(x)b_n(x)
+	\]
+	满足一致 Cauchy 条件.
+	
+	任取 $\varepsilon>0$. 因为 $\sum\limits_{n=1}^{\infty}b_n(x)$ 在 $D$ 上一致收敛,由函数项级数一致收敛的 Cauchy 准则,存在 $N=N(\varepsilon)$,使得当 $n>N$ 时,对任意 $p\in\mathbb N$ 与任意 $x\in D$,都有
+	\[
+	\left|\sum_{k=n+1}^{n+p}b_k(x)\right|<\varepsilon.
+	\]
+
+	由 Abel 引理以及 $|a_m(x)|\leq M$ 得
+	\[
+	\left|\sum_{k=n+1}^{n+p}a_k(x)b_k(x)\right|\leqslant \eps (|a_{n+1}(x)|+ 2 |a_{n+p}(x)|)
+	\leqslant 3M\varepsilon <(3M + 1)\eps.
+	\]
+	因此 $\sum a_n(x)b_n(x)$ 满足一致 Cauchy 条件,从而在 $D$ 上一致收敛.
+\end{proof}
+\begin{proposition}
+	(Dirichlet 判别法)
+	设 $a_n,b_n:D\to\mathbb R$. 若满足:
+	\begin{enumerate}
+		\item 对每个固定的 $x\in D$,数列 $\{a_n(x)\}$ 关于 $n$ 单调;
+		\item $a_n(x)$ 在 $D$ 上一致收敛于 $0$,即
+		\[
+		a_n(x)\rightrightarrows 0
+		\qquad (x\in D);
+		\]
+		\item 函数项级数 $\sum\limits_{n=1}^{\infty}b_n(x)$ 的部分和函数列在 $D$ 上一致有界,即存在常数 $M>0$,使得
+		\[
+		\left|\sum_{k=1}^{n}b_k(x)\right|\leq M,
+		\qquad n=1,2,\cdots,\ x\in D,
+		\]
+	\end{enumerate}
+	则函数项级数
+	\[
+	\sum_{n=1}^{\infty}a_n(x)b_n(x)
+	\]
+	在 $D$ 上一致收敛.
+\end{proposition}
+
+\begin{proof}
+	 任取 $\varepsilon>0$. 因为 $a_n(x)\rightrightarrows0$ 于 $D$,故存在 $N=N(\varepsilon)$,使得当 $n>N$ 时,对任意 $x\in D$ 都有
+	\[
+	|a_n(x)|<\varepsilon.
+	\]
+	由部分和一致有界性,对任意 $1\leq m\leq p$,
+	\[
+	\left|\sum_{k=n+1}^{n+m}b_k(x)\right|
+	=
+	\left|\sum_{k=1}^{n+m}b_k(x)-\sum_{k=1}^{n}b_k(x)\right|
+	\leq 2M.
+	\]
+	由 Abel 引理可得
+	\[
+	\left|\sum_{k=n+1}^{n+p}a_k(x)b_k(x)\right|
+	\leq
+	2M\bigl(|a_{n+1}(x)|+2|a_{n+p}(x)|\bigr).
+	\]
+	由于 $n>N$ 且 $p\geq1$,有 $n+1>N$ 与 $n+p>N$,从而
+	\[
+	|a_{n+1}(x)|<\varepsilon,
+	\qquad
+	|a_{n+p}(x)|<\varepsilon.
+	\]
+	于是
+	\[
+	\left|\sum_{k=n+1}^{n+p}a_k(x)b_k(x)\right|
+	<6M\varepsilon.
+	\]
+	
+	因此 $\sum a_n(x)b_n(x)$ 满足一致 Cauchy 条件,从而在 $D$ 上一致收敛.
+\end{proof}
+
+

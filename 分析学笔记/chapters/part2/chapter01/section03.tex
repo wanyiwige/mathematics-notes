@@ -1,0 +1,95 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第1章：Euclid空间
+% 节：1.3 $\R^n$中的紧集
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{$\R^n$中的紧集}
+\begin{definition}
+设 $S\subset\R^n$.称集族 $\mathscr{F}=\{U_\alpha:\alpha\in\Lambda\}$($U_\alpha$ 均为开集)为 $S$ 的一个\textbf{开覆盖},若
+\[
+S\subset\bigcup_{\alpha\in\Lambda}U_\alpha.
+\]
+若此开覆盖中只有有限个($m$个)集就覆盖了 $S$,则称它为 $S$ 的一个\textbf{有限子覆盖}，记为$\mathscr{F}_m$.
+
+$S$ 称为\textbf{紧集},若 $S$ 的每一个开覆盖都有有限子覆盖.
+\end{definition}
+
+\begin{theorem}[Heine--Borel 定理]\label{Heine-Borel定理}
+设 $S$ 是 $\R^n$ 上的点集,则以下三个命题等价:
+\begin{enumerate}[label={(\arabic*)}]
+\item $S$ 是有界闭集;
+\item $S$ 是紧集;
+\item $S$ 的任一无限子集在 $S$ 中必有聚点.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1)\Rightarrow(3)$：设 $S$ 有界闭，$B\subset S$ 是任意无限子集。从 $B$ 中选取互不相同的点组成点列 $\{\vect b_k\}$。由 \ref{Bolzano-Weierstrass定理}，存在收敛子列 $\vect b_{k_j}\to\vect\xi$。由 $S$ 闭，知 $\vect\xi\in S$；由于各点互不相同，$\vect\xi$ 是 $B$ 的聚点。
+
+$(3)\Rightarrow(1)$: 设 $S$ 的任一无限子集都在 $S$ 中有聚点.
+
+若 $S$ 无界，则可以递归选取 $\vect x_k\in S$，使 $\|\vect x_{k+1}\|>\|\vect x_k\|+1$，并且 $\|\vect x_k\|>k$。该无限子集在每个有界球中只有有限个点，因而没有聚点，与 (3) 矛盾。故 $S$ 有界。
+
+若 $S$ 不闭，则存在 $\vect\xi\in S'\setminus S$。可以选取互不相同的点 $\vect x_k\in S$，使 $\vect x_k\to\vect\xi$。该无限子集唯一的聚点是 $\vect\xi$，但 $\vect\xi\notin S$，再次与 (3) 矛盾。故 $S$ 闭。
+
+$(1)\Rightarrow(2)$：设 $S$ 有界闭，$\{U_\alpha\}$ 是 $S$ 的一个开覆盖。反设该开覆盖没有有限子覆盖。取闭矩形 $R\supset S$，将其每条边二等分，得到 $2^n$ 个闭子矩形。其中至少有一个子矩形与 $S$ 的交集不能被有限个 $U_\alpha$ 覆盖，记为 $R^{(1)}$。不断重复这一过程，得到闭矩形套 $\{R^{(k)}\}$，满足 $R^{(k+1)}\subset R^{(k)}$、$\operatorname{diam}R^{(k)}=\operatorname{diam}R/2^k\to0$，且每个 $S\cap R^{(k)}$ 都不能被有限个 $U_\alpha$ 覆盖。
+
+由 \ref{Cantor闭矩形套定理},$\bigcap_{k=1}^\infty R^{(k)}=\{\xi\}$. 由 $S\cap R^{(k)}\neq\varnothing$ 对所有 $k$ 成立,取 $\vect x_k\in S\cap R^{(k)}$,则 $\vect x_k\to\xi$,再由 $S$ 闭得 $\xi\in S$. 设 $U_\alpha$ 覆盖 $\xi$. 因 $U_\alpha$ 是开集,存在 $\eps>0$ 使 $O(\xi,\eps)\subset U_\alpha$. 取 $k$ 充分大使 $\operatorname{diam} R^{(k)}<\eps$,则 $R^{(k)}\subset O(\xi,\eps)\subset U_\alpha$. 于是 $S\cap R^{(k)}\subset U_\alpha$ 单个 $U_\alpha$ 即可覆盖,与我们的反设矛盾. 故 $S$ 是紧集.
+
+$(2)\Rightarrow(1)$: 设 $S$ 紧.
+
+若 $S=\varnothing$，结论显然成立。以下设 $S\neq\varnothing$。开球族 $\{O(\vect x,1):\vect x\in S\}$ 覆盖 $S$，由紧性，存在有限子覆盖
+\[
+S\subset\bigcup_{i=1}^{m}O(\vect x_i,1).
+\]
+有限个有界开球的并集有界，因此 $S$ 有界。
+
+下面证明 $S$ 闭。若不然，存在 $S$ 的聚点 $\vect x_*\notin S$。令
+\[
+U_m=\left\{\vect x\in\R^n:|\vect x-\vect x_*|>\frac1m\right\},\qquad m\in\Z^+.
+\]
+各 $U_m$ 都是开集，且
+\[
+\bigcup_{m=1}^{\infty}U_m=\R^n\setminus\{\vect x_*\}\supset S.
+\]
+由紧性，存在有限子覆盖 $S\subset U_{m_1}\cup\cdots\cup U_{m_p}$。取 $M=\max\{m_1,\cdots,m_p\}$。由于 $U_m$ 随 $m$ 增大而递增，故 $S\subset U_M$，于是
+\[
+O\left(\vect x_*,\frac1M\right)\cap S=\varnothing.
+\]
+这与 $\vect x_*$ 是 $S$ 的聚点矛盾。因此 $S$ 是闭集。
+
+
+综上, (1)(2)(3) 三者等价. 证毕.
+\end{proof}
+
+利用紧集的定义与De ~Morgan 律，我们可以得到紧集的以下性质。
+\begin{definition}
+	设$S\subset \R^n$,称$\R^n$中的子集族$\{F_{\lambda}\}_{\lambda\in I}$关于$S$具有有限交性质，若对$I$的任意有限子集$J$.均有
+	\[S\cap(\bigcap_{\lambda\in J}F_{\lambda})\neq \varnothing\]
+\end{definition}
+那么，我们可以给出以下命题
+\begin{proposition}
+	对$S\subset \R^n$，$S$是紧集的充要条件是任何关于$S$具有有限交性质的闭集族$\{F_{\lambda}\}_{\lambda\in I}$必与$S$有非空交,也即
+	\[S\cap(\bigcap_{\lambda\in I}F_{\lambda})\neq \varnothing\]
+\end{proposition}
+\begin{proof}
+\textbf{充分性：} 设任意关于 $S$ 具有有限交性质的闭集族都与 $S$ 有非空交。任取 $S$ 的开覆盖 $\{O_\lambda\}_{\lambda\in I}$。若它没有有限子覆盖，则对任意有限子集 $J\subset I$，都有
+\[
+S\cap\bigcap_{\lambda\in J}O_\lambda^c
+=S\setminus\bigcup_{\lambda\in J}O_\lambda\neq\varnothing.
+\]
+因此闭集族 $\{O_\lambda^c\}_{\lambda\in I}$ 关于 $S$ 具有有限交性质。由假设，
+\[
+S\cap\bigcap_{\lambda\in I}O_\lambda^c\neq\varnothing,
+\]
+这与 $S\subset\bigcup_{\lambda\in I}O_\lambda$ 矛盾。故任意开覆盖都有有限子覆盖，即 $S$ 是紧集。
+
+\textbf{必要性：} 设 $S$ 是紧集，$\{F_\lambda\}_{\lambda\in I}$ 是关于 $S$ 具有有限交性质的闭集族。若
+\[
+S\cap\bigcap_{\lambda\in I}F_\lambda=\varnothing,
+\]
+则 $S\subset\bigcup_{\lambda\in I}F_\lambda^c$。由紧性，存在有限子集 $J\subset I$，使
+\[
+S\subset\bigcup_{\lambda\in J}F_\lambda^c,
+\]
+即 $S\cap\bigcap_{\lambda\in J}F_\lambda=\varnothing$，与有限交性质矛盾。故结论成立。
+\end{proof}

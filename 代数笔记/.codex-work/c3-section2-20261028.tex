@@ -1,0 +1,213 @@
+\section{环的直和}
+
+环的直和与群的直和相平行：先作加法群的直和，再逐分量定义乘法。本节讨论的环默认有单位元，即为幺环；讨论任意环的理想生成时会另行说明。对幺环中的元素，零次幂记为$a^0=1$。
+
+\begin{definition}
+设$R_1,\ldots,R_r$为有限多个环。在它们的加法群直和上定义
+\[
+(a_1,\ldots,a_r)(b_1,\ldots,b_r)=(a_1b_1,\ldots,a_rb_r).
+\]
+所得环称为$R_1,\ldots,R_r$的\textbf{直和}，记为$R=R_1\oplus\cdots\oplus R_r$或$R=\bigoplus_{i=1}^rR_i$。
+\end{definition}
+\begin{proof}[补充验证]
+加法已按分量定义，构成交换群。若$a=(a_i),b=(b_i),c=(c_i)$，则各个$R_i$中的结合律与分配律给出
+\begin{align*}
+(ab)c&=((a_ib_i)c_i)_i=(a_i(b_ic_i))_i=a(bc),\\
+a(b+c)&=(a_i(b_i+c_i))_i=(a_ib_i+a_ic_i)_i=ab+ac,\\
+(a+b)c&=((a_i+b_i)c_i)_i=(a_ic_i+b_ic_i)_i=ac+bc.
+\end{align*}
+零元为$(0_{R_1},\ldots,0_{R_r})$，单位元为$(1_{R_1},\ldots,1_{R_r})$。若每个$R_i$交换，则$ab=(a_ib_i)_i=(b_ia_i)_i=ba$，故直和也交换。
+\end{proof}
+
+\begin{proposition}
+在$R=R_1\oplus\cdots\oplus R_r$中，令
+\[
+R_i'=\{(0,\ldots,0,a_i,0,\ldots,0):a_i\in R_i\}.
+\]
+则各$R_i'$都是$R$的理想，$R_i'\cong R_i$，并满足
+\[
+R=R_1'+\cdots+R_r',\qquad
+R_i'\cap\Bigl(\sum_{j\ne i}R_j'\Bigr)=(0).
+\]
+每个元素都可唯一写为各$R_i'$中元素的和；$i\ne j$时$R_i'R_j'=(0)$。
+\end{proposition}
+\begin{proof}[补充证明]
+第$i$坐标的映射$a_i\mapsto(0,\ldots,a_i,\ldots,0)$保持加法、乘法，且为到$R_i'$的双射，故给出同构。对$y=(b_1,\ldots,b_r)\in R$及$x=(0,\ldots,a_i,\ldots,0)\in R_i'$，
+\[
+yx=(0,\ldots,b_ia_i,\ldots,0),\qquad
+xy=(0,\ldots,a_ib_i,\ldots,0),
+\]
+都属于$R_i'$，所以它是理想。
+
+每个$(a_1,\ldots,a_r)$是各个仅含一个非零坐标的元素之和；第$i$个分量唯一决定第$i$项，所以表示唯一。若一个元素同时属于$R_i'$和其他坐标子环的和，它的所有坐标都为0，故交为$(0)$。不同坐标中的元素相乘，各分量至少有一个因子为0，故乘积为0。
+\end{proof}
+
+直和中的这些理想具有独立的加法分解和相互为零的乘法。下面反过来从环内部的理想恢复这种结构。
+
+\begin{theorem}\label{p2:ring-internal-sum}
+设$R_1,\ldots,R_r$为环$R$的理想，并满足
+\[
+R=R_1+\cdots+R_r,\qquad
+R_i\cap(R_1+\cdots+\widehat{R_i}+\cdots+R_r)=(0).
+\]
+其中$\widehat{R_i}$表示在和中去掉$R_i$。则求和映射给出环同构
+\[
+R_1\oplus\cdots\oplus R_r\longrightarrow R,
+\qquad(a_1,\ldots,a_r)\longmapsto a_1+\cdots+a_r.
+\]
+此时称$R$为这些子环的\textbf{内直和}。
+\end{theorem}
+\begin{proof}[补充证明]
+由和等于$R$，每个元素都有这样的表示。若$\sum_i a_i=\sum_i b_i$，则对每个$i$，
+\[
+a_i-b_i=-\sum_{j\ne i}(a_j-b_j)
+\in R_i\cap\sum_{j\ne i}R_j=(0),
+\]
+故$a_i=b_i$，表示唯一。所以求和映射是加法群同构。
+
+若$i\ne j$，$a_i\in R_i,b_j\in R_j$，由理想的左右吸收性质，$a_ib_j$同时属于$R_i$和$R_j$。由于$R_i\cap R_j=(0)$，有$a_ib_j=0$。于是
+\[
+\Bigl(\sum_i a_i\Bigr)\Bigl(\sum_j b_j\Bigr)=\sum_i a_ib_i,
+\]
+正好与外直和的分量乘法一致。因此该加法群同构也保持乘法，是环同构。
+\end{proof}
+
+定理中的映射是求和映射。各$R_i$本身的单位元可以与$R$的单位元不同；这里的子环不要求包含母环同一个单位元。
+
+为了给出与内直和判别相对应的商环形式，先定义理想的积与互素性。
+
+\begin{definition}
+设$H,N$为$R$的理想。全部有限和
+\[
+\sum_{i=1}^m a_ib_i,\qquad a_i\in H,\ b_i\in N,
+\]
+组成的集合称为$H,N$的\textbf{积}，记为$HN$，其中允许取零和。若$H+N=R$，则称$H,N$\textbf{互素}。
+\end{definition}
+\begin{proposition}
+$HN$仍为$R$的理想，且对任意理想$K$，
+\[
+H(N+K)=HN+HK,\qquad(N+K)H=NH+KH.
+\]
+\end{proposition}
+\begin{proof}[补充证明]
+有限和相加仍为同类有限和，取负只须将每个$a_i$换成$-a_i$，所以$HN$是加法子群。对$r\in R$，
+\[
+r\sum_i a_ib_i=\sum_i(ra_i)b_i\in HN,
+\qquad\Bigl(\sum_i a_ib_i\Bigr)r=\sum_i a_i(b_ir)\in HN.
+\]
+所以$HN$为双边理想。
+
+对$h\in H,n\in N,k\in K$，$h(n+k)=hn+hk$，故$H(N+K)\subseteq HN+HK$。反过来，$N,K\subseteq N+K$说明$HN,HK\subseteq H(N+K)$，两者之和也包含于其中。第二式同样由$(n+k)h=nh+kh$及两个反向包含得到。
+\end{proof}
+
+\begin{lemma}\label{p2:ring-comaximal-product}
+设$H,N,K$为幺环$R$的理想。
+\begin{enumerate}
+\item 若$R$交换且$H+N=R$，则$HN=H\cap N$。
+\item 若$H+N=R$且$K+N=R$，则$HK+N=R$。
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\textbf{第一条：}任一乘积$hn$同时属于$H,N$，所以总有$HN\subseteq H\cap N$。由互素性，取$a\in H,b\in N$使$a+b=1$。若$c\in H\cap N$，则
+\[
+c=c(a+b)=ca+cb=ac+cb.
+\]
+其中$ac\in HN$，因为$a\in H,c\in N$；$cb\in HN$，因为$c\in H,b\in N$。所以$c\in HN$，得到反向包含。这里把$ca$写成$ac$使用了交换性。
+
+\textbf{第二条：}取$a\in H,b\in K,c,d\in N$使$a+c=1$、$b+d=1$。于是
+\[
+1=(a+c)(b+d)=ab+(ad+cb+cd)\in HK+N.
+\]
+一个含$1$的理想包含每个$x=x1$，所以$HK+N=R$。这一步不要求$R$交换。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-crt}
+设幺环$R$的理想$N_1,\ldots,N_r$两两互素，$\sigma_i:R\to R/N_i$为自然同态。则
+\[
+\sigma:R\longrightarrow\bigoplus_{i=1}^rR/N_i,
+\qquad x\longmapsto(\sigma_1(x),\ldots,\sigma_r(x))
+\]
+为满环同态，且$\ker\sigma=\bigcap_iN_i$。因此
+\[
+R/(N_1\cap\cdots\cap N_r)\cong R/N_1\oplus\cdots\oplus R/N_r.
+\]
+\end{theorem}
+\begin{proof}
+$r=1$时即自然同态的结论，以下设$r\geq2$。每个分量保持运算，所以$\sigma$为环同态。关键是证明它满射。
+
+记$M_i=N_1\cdots N_{i-1}N_{i+1}\cdots N_r$，各理想按原次序相乘。理想积的分配律给出
+\begin{align*}
+M_1+M_2&=(N_2+N_1)N_3\cdots N_r=N_3\cdots N_r,\\
+M_1+M_2+M_3&=(N_3+N_1N_2)N_4\cdots N_r=N_4\cdots N_r.
+\end{align*}
+第二个等式用到前一引理：$N_1,N_2$都与$N_3$互素，所以$N_1N_2$也与$N_3$互素。继续归纳，$N_1\cdots N_{k-1}$与$N_k$互素，故每加入$M_k$，就得到
+\[
+M_1+\cdots+M_k=N_{k+1}\cdots N_r.
+\]
+最后$k=r$时右侧按空乘积理解为理想$R$，所以$\sum_iM_i=R$。
+
+因此可取$e_i\in M_i$满足$e_1+\cdots+e_r=1$。当$j\ne i$时，$M_j\subseteq N_i$，故
+\[
+\sigma_i(e_j)=0\quad(j\ne i),\qquad\sigma_i(e_i)=1+N_i.
+\]
+任给直和中的元素$(x_1+N_1,\ldots,x_r+N_r)$，令$x=\sum_j e_jx_j$，则
+\begin{align*}
+\sigma_i(x)&=\sum_j\sigma_i(e_j)\sigma_i(x_j)\\
+&=\sigma_i(e_i)\sigma_i(x_i)=\sigma_i(x_i).
+\end{align*}
+所以$\sigma(x)$就是任给的元素，$\sigma$满射。
+
+最后，$\sigma(x)=0$当且仅当每个$\sigma_i(x)=0$，即$x\in N_i$对所有$i$成立。因此核为$\bigcap_iN_i$，再用环同态基本定理得到商环同构。
+\end{proof}
+
+\begin{definition}
+设$N\lhd R$。若$a-b\in N$，则称$a,b$\textbf{模$N$同余}，记为$a\equiv b\pmod N$。它等价于$a+N=b+N$。
+\end{definition}
+
+同余类就是商环的元素，所以同余保持加法和乘法。例如$ax\equiv b\pmod N$等价于商环中的等式$(a+N)(x+N)=b+N$。
+
+\begin{corollary}\label{p2:ring-crt-congruence}
+\textbf{中国剩余定理：}若$N_1,\ldots,N_r$两两互素，则对任给$b_1,\ldots,b_r\in R$，同余方程组
+\[
+x\equiv b_i\pmod{N_i}\qquad(1\leq i\leq r)
+\]
+有解，且任意两解模$N_1\cap\cdots\cap N_r$同余。
+若该交为$(0)$，则$R\cong\bigoplus_iR/N_i$。
+\end{corollary}
+\begin{proof}[补充证明]
+存在性是上一定理中$\sigma$的满射性。若$x,y$均为解，则$x-y\in N_i$对所有$i$成立，所以$x-y\in\bigcap_iN_i$；反之，在一个解上加上交中任意元素仍是解。因此解模该交唯一。交为零时，$\sigma$也单射，得到最后的同构。
+\end{proof}
+
+两种直和描述可以互相转化。若交为零且两两互素，令$R_i=\bigcap_{j\ne i}N_j$，在上述同构下，$R_i$恰对应只有第$i$个坐标可能非零的理想，故$R$是这些$R_i$的内直和。反过来，若$R$已是$R_1,\ldots,R_r$的内直和，令$N_i=\sum_{j\ne i}R_j$，则$N_i$两两互素、交为零，且$R/N_i\cong R_i$。这是同一分解的两种表达方式。
+
+\begin{example}
+在$\Z$中，设$n=\prod_{i=1}^r p_i^{e_i}$，各$p_i$为不同素数。由贝祖等式，理想$(p_i^{e_i})$两两互素。反复应用$HN=H\cap N$，得到它们的交为$(n)$，所以
+\[
+\Z/(n)\cong\bigoplus_{i=1}^r\Z/(p_i^{e_i}).
+\]
+\end{example}
+
+本节最后讨论任意环中的理想生成，此处不要求环有单位元。
+
+\begin{definition}
+对非空子集$S\subseteq R$，所有包含$S$的理想之交称为\textbf{由$S$生成的理想}，记为$(S)$。它是包含$S$的最小理想。若$S=\{a_1,\ldots,a_r\}$，简记为$(a_1,\ldots,a_r)$，称为\textbf{有限生成理想}；由一个元素生成的理想$(a)$称为\textbf{主理想}。
+\end{definition}
+
+\begin{proposition}
+任意环中，主理想$(a)$由全部形如
+\[
+na+xa+ay+\sum_{i=1}^m x_iay_i,
+\qquad n\in\Z,\quad x,y,x_i,y_i\in R
+\]
+的元素组成。若$R$交换，可化为$na+xa$；若又有单位元，则$(a)=Ra$。此外，
+\[
+(a_1,\ldots,a_r)=(a_1)+\cdots+(a_r).
+\]
+\end{proposition}
+\begin{proof}[补充证明]
+令$J$为所列元素组成的集合。它对加法、取负封闭，且取$n=1$、其余项为零知$a\in J$。左乘$r\in R$时，四类项分别成为$(nr)a$、$(rx)a$、$ray$及$(rx_i)ay_i$；右乘时分别成为$a(nr)$、$xar$、$a(yr)$及$x_i a(y_ir)$，仍为所列项的有限和。因此$J$是含$a$的理想。
+
+任一包含$a$的理想必须包含它的整数倍、左右乘积及这些项的有限和，故必包含$J$。所以$J=(a)$。交换时双侧项$xay$也可写为$(xy)a$，各项合并为$na+xa$；有单位元时$na=(n1)a$，再合并得到$Ra$。
+
+最后，右侧的理想和含全部$a_i$，故包含$(a_1,\ldots,a_r)$；任何含全部$a_i$的理想又必须包含各$(a_i)$，所以包含它们的和。两边相等。
+\end{proof}

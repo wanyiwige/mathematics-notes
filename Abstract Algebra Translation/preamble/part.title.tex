@@ -1,0 +1,194 @@
+% preamble/part.title.tex
+% ============================================
+% Part 扉页设计 —— 与封面统一的橙红 / 金黄 / 深绿 / 蓝线配色
+%
+% 接口：
+%   \setpartimage{<path>}
+%   \setpartintro{<text>}
+% ============================================
+
+% ---- 色彩定义：参考封面 ----
+\definecolor{pCoverRedDark}{RGB}{108, 31, 18}
+\definecolor{pCoverRed}{RGB}{150, 46, 20}
+\definecolor{pCoverOrange}{RGB}{209, 86, 24}
+\definecolor{pCoverAmber}{RGB}{247, 183, 43}
+\definecolor{pCoverAmberLight}{RGB}{255, 221, 98}
+\definecolor{pCoverGreen}{RGB}{0, 78, 43}
+\definecolor{pCoverBlue}{RGB}{0, 74, 178}
+\definecolor{pCoverInk}{RGB}{64, 24, 14}
+\definecolor{pCoverCream}{RGB}{255, 239, 196}
+
+% 保留旧名称，避免其他文件引用 BlueMain/BlueDark/GoldMain 时失效
+\colorlet{BlueMain}{pCoverBlue}
+\colorlet{BlueDark}{pCoverGreen}
+\colorlet{GoldMain}{pCoverAmber}
+
+\makeatletter
+
+% -------- 每 Part 图片接口 --------
+\gdef\partimage{}
+\newcommand{\setpartimage}[1]{\gdef\partimage{#1}}
+
+% -------- Part 简介接口 --------
+\gdef\partintro{}
+\newcommand{\setpartintro}[1]{\gdef\partintro{#1}}
+
+% -------- 版式参数 --------
+\newlength{\PartTopBandHeight}
+\setlength{\PartTopBandHeight}{2.15cm}
+
+\newlength{\PartTitleTop}
+\setlength{\PartTitleTop}{2.50cm}
+
+\newlength{\PartTitlePanelHeight}
+\setlength{\PartTitlePanelHeight}{5.35cm}
+
+\newlength{\PartIntroTop}
+\setlength{\PartIntroTop}{8.00cm}
+
+\newlength{\PartIntroHeight}
+\setlength{\PartIntroHeight}{19.55cm}
+\newlength{\PartIntroBHeight}
+\setlength{\PartIntroBHeight}{19.55cm}
+
+\newlength{\PartImageTop}
+\setlength{\PartImageTop}{29.35cm}
+
+\newlength{\PartSideMargin}
+\setlength{\PartSideMargin}{1.55cm}
+
+\newlength{\PartTextMargin}
+\setlength{\PartTextMargin}{2.05cm}
+
+% -------- 蓝色横线：呼应封面 --------
+\newcommand{\PartBlueRule}[2]{%
+    \draw[pCoverBlue,line width=#2]
+        ([xshift=\PartSideMargin,yshift=-#1]current page.north west) --
+        ([xshift=-\PartSideMargin,yshift=-#1]current page.north east);%
+}
+
+% -------- 左上 Part 编号 + 标题 --------
+\newcommand{\PartTitleBlock}[2]{%
+    \ifdefempty{#1}{%
+        \node[anchor=north west,text=pCoverGreen,font=\fontsize{26}{32}\bfseries,
+              text width=\dimexpr\paperwidth-4.1cm\relax,align=left]
+            at ([xshift=\PartTextMargin,yshift=-\PartTitleTop-0.65cm]current page.north west)
+            {#2};%
+    }{%
+        \node[anchor=north west,text=pCoverGreen,font=\fontsize{54}{60}\bfseries]
+            at ([xshift=\PartTextMargin,yshift=-\PartTitleTop-0.15cm]current page.north west)
+            {#1};%
+        \node[anchor=north west,text=pCoverInk!72,font=\Large\bfseries]
+            at ([xshift=\PartTextMargin,yshift=-\PartTitleTop-3.25cm]current page.north west)
+            {PART};%
+        \node[anchor=north west,text=pCoverGreen,font=\fontsize{26}{32}\bfseries,
+              text width=\dimexpr\paperwidth-4.1cm\relax,align=left]
+            at ([xshift=\PartTextMargin+2.95cm,yshift=-\PartTitleTop-0.55cm]current page.north west)
+            {#2};%
+    }%
+}
+
+% -------- Part 简介 block：改为横向大文本区，适合长简介 --------
+\newcommand{\PartIntroBlock}{%
+    \ifdefempty{\partintro}{}{%
+        \fill[pCoverCream!88]
+            ([xshift=\PartTextMargin,yshift=-\PartIntroTop]current page.north west)
+            rectangle
+            ([xshift=-\PartTextMargin,yshift=-\dimexpr\PartIntroTop+\PartIntroHeight\relax]current page.north east);%
+        \draw[pCoverBlue,line width=1.05pt]
+            ([xshift=\PartTextMargin,yshift=-\PartIntroTop]current page.north west) --
+            ([xshift=-\PartTextMargin,yshift=-\PartIntroTop]current page.north east);%
+        \draw[pCoverBlue,line width=1.05pt]
+            ([xshift=\PartTextMargin,yshift=-\dimexpr\PartIntroTop+\PartIntroHeight\relax]current page.north west) --
+            ([xshift=-\PartTextMargin,yshift=-\dimexpr\PartIntroTop+\PartIntroHeight\relax]current page.north east);%
+        \node[anchor=north west,text=pCoverGreen,font=\large\bfseries]
+            at ([xshift=\PartTextMargin+0.32cm,yshift=-\PartIntroTop-0.42cm]current page.north west)
+            {简介};%
+        \node[anchor=north west,inner sep=0pt,text=pCoverInk]
+            at ([xshift=\PartTextMargin+0.32cm,yshift=-\PartIntroTop-1.18cm]current page.north west)
+            {\parbox[t][\dimexpr\PartIntroHeight-1.55cm\relax][t]{\dimexpr\paperwidth-\PartTextMargin-\PartTextMargin-0.64cm\relax}{%
+                \setstretch{1.12}\fontsize{8.2}{10.8}\selectfont\partintro
+            }};%
+    }%
+}
+
+% -------- Part 扉页 --------
+\newcommand{\PartTitlePage}[2]{%
+    \thispagestyle{empty}%
+    \vspace*{-\baselineskip}%
+    \begin{tikzpicture}[remember picture,overlay]
+        % 全页底色：暖色，与封面统一但降低饱和度，保证正文可读
+        \shade[top color=pCoverAmberLight!72,bottom color=pCoverRed!28]
+            (current page.north west) rectangle (current page.south east);
+
+        % 顶部橙红横条
+        \shade[left color=pCoverRedDark,right color=pCoverOrange]
+            (current page.north west) rectangle
+            ([yshift=-\PartTopBandHeight]current page.north east);
+
+        % 左侧深红竖带
+        \shade[top color=pCoverRedDark,bottom color=pCoverRed]
+            (current page.north west) rectangle
+            ([xshift=0.72cm]current page.south west);
+
+        % 标题金黄面板
+        \shade[left color=pCoverAmberLight,right color=pCoverAmber]
+            ([xshift=\PartSideMargin,yshift=-\PartTitleTop]current page.north west)
+            rectangle
+            ([xshift=-\PartSideMargin,yshift=-\dimexpr\PartTitleTop+\PartTitlePanelHeight\relax]current page.north east);
+        \draw[pCoverBlue,line width=1.2pt]
+            ([xshift=\PartSideMargin,yshift=-\PartTitleTop]current page.north west) --
+            ([xshift=-\PartSideMargin,yshift=-\PartTitleTop]current page.north east);
+        \draw[pCoverBlue,line width=1.2pt]
+            ([xshift=\PartSideMargin,yshift=-\dimexpr\PartTitleTop+\PartTitlePanelHeight\relax]current page.north west) --
+            ([xshift=-\PartSideMargin,yshift=-\dimexpr\PartTitleTop+\PartTitlePanelHeight\relax]current page.north east);
+
+      
+        % 左上 Part 编号 + 标题
+        \PartTitleBlock{#1}{#2}
+
+        % 简介：横向大文本区，给长简介更多行宽与高度
+        \PartIntroBlock
+
+        
+    \end{tikzpicture}%
+    \clearpage%
+}
+
+% ============================================================
+%  重定义 \part
+% ============================================================
+\def\part{%
+  \@ifstar{\part@TP@star}{\part@TP}%
+}%
+\def\part@TP@star#1{%
+  \addcontentsline{toc}{part}{#1}%
+  \PartTitlePage{}{#1}%
+  \@endpart@TP
+}%
+\def\part@TP{%
+  \@ifnextchar[{\part@TP@opt}{\part@TP@noopt}%
+}%
+\def\part@TP@opt[#1]#2{%
+  \refstepcounter{part}%
+  \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+  \PartTitlePage{\thepart}{#2}%
+  \@endpart@TP
+}%
+\def\part@TP@noopt#1{%
+  \refstepcounter{part}%
+  \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+  \PartTitlePage{\thepart}{#1}%
+  \@endpart@TP
+}%
+\def\@endpart@TP{%
+  \if@twoside
+    \if@openright
+      \null
+      \thispagestyle{empty}%
+      \newpage
+    \fi
+  \fi
+}%
+
+\makeatother

@@ -1,0 +1,75 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.12 欧氏空间
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{欧氏空间}
+\begin{definition}
+	$\R^k$定义为k个$\R$的笛卡尔积.
+	
+	$\R^k=\left\{\boldsymbol{x}:\boldsymbol{x}=\left(x_1, x_2, \cdots, x_k\right),x_1,x_2,\cdots,x_k\in\R\right\}$
+	
+	称$\R^k$中的元素为向量，
+	
+	如果  $\boldsymbol{y}=\left(y_1, \cdots, y_k\right)$ 
+	,而$\alpha\in\R$令
+	
+	$$
+	\begin{aligned}
+		\boldsymbol{x}+\boldsymbol{y} & =\left(x_1+y_1, x_2+y_2, \cdots, x_k+y_k\right), \\
+		\alpha \boldsymbol{x} & =\left(\alpha x_1, \alpha x_2, \cdots, \alpha x_k\right)
+	\end{aligned}
+	$$
+	
+	
+	于是 $\boldsymbol{x}+\boldsymbol{y}\in \R^k, \alpha \boldsymbol{x} \in \R^k$ .这就规定了向量的加法及向量的数乘.显然的，这两种运算满足交换律，结合律和分配律.而使 $\R^k$ 成为实数域上的向量空间. $\R^k$ 的零元是一切坐标都是 0 的点 $\mathbf{0}$ ．
+\end{definition}
+\begin{definition}
+	$\boldsymbol{x}$ 与 $\boldsymbol{y}$ 的＂内积＂为
+	
+	$$
+	\boldsymbol{x} \cdot \boldsymbol{y}=\sum_{i=1}^k x_i y_i
+	$$
+	
+	
+	又定义 $\boldsymbol{x}$ 的范数为
+	
+	$$
+	|\boldsymbol{x}|=(\boldsymbol{x} \cdot \boldsymbol{x})^{1 / 2}=\left(\sum_{i=1}^k x_i^2\right)^{1 / 2} .
+	$$
+\end{definition}
+具有上述的内积和范数的 $\R^k$ 称为 $k$ 维欧氏空间．
+\begin{proposition}设 $\x, \y, \z \in \R^k, \lambda, \mu \in \R$
+	\begin{enumerate}
+		\item $\x\cdot\y=\y\cdot\x$
+		\item $(\lambda\x+\mu\y)\cdot\z=\lambda\x\cdot\z+\mu\y\cdot\z$
+		\item $(\x\cdot\y)^2\leqslant(\x\cdot\x)(\y\cdot\y)$
+		
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	1,2两条由内积的定义是显然的，3是\ref{Cauchy-Schawtz不等式}在实数下向量形式的表述，由\ref{Cauchy-Schawtz不等式}显然.
+\end{proof}
+\begin{proposition}设 $\x, \y, \z \in \R^k$ ，而 $\alpha$ 是实数．那么
+	\begin{enumerate}
+		\item$|\boldsymbol{x}| \geqslant 0$ 
+		\item$|\boldsymbol{x}|=0$ 当且仅当; $\boldsymbol{x}=\mathbf{0}$ ；
+		\item$|\alpha \boldsymbol{x}|=|\alpha||\boldsymbol{x}|$ ；
+		\item$|\boldsymbol{x} \cdot \boldsymbol{y}| \leqslant|\boldsymbol{x}|| \boldsymbol{y} \mid$
+		\item$|\boldsymbol{x}+\boldsymbol{y}| \leqslant|\boldsymbol{x}|+|\boldsymbol{y}|$
+		\item$|\x-\z| \leqslant|\x-\y|+|\y-\z|$ ．
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	1,2,3都显然成立．4是 Schwarz 不等式的直接结果,等价于1.12.3的第三条，由4
+	$$
+	\begin{aligned}
+		|x+y|^2 & =(x+y) \cdot(x+y) \\
+		& =x \cdot x+2 x \cdot y+y \cdot y \\
+		& \leqslant|x|^2+2|x| y\left|+|y|^2\right. \\
+		& =(|x|+|y|)^2
+	\end{aligned}
+	$$
+	在5中用 $\x-\y$ 代 $\x$ ，用 $\y-\z$ 代 $\y$ 就得到5．
+	
+	
+\end{proof}

@@ -1,0 +1,247 @@
+% !TEX root = ../../main.tex
+\setchapterimage{}
+\setchapterintro{从环同态和理想的对应出发，讨论环的直和、分式环与多项式环，并研究整环及域上多项式的性质。}
+\chapter{环}
+\label{p2:ch3}
+
+\section{环的同态定理}
+
+环的同态同时保持加法与乘法。它的核是理想，因此可以先用加法群的同态定理构造商群之间的对应，再验证这些对应保持乘法。本节不要求环交换，也不要求有单位元；理想均指双边理想。
+
+先说明交与和在子环、理想中分别具有哪些封闭性质。对非空子集，检验它是子环，可以验证任意两个元素之差及其乘积仍在其中；理想则还须验证左右乘以母环中任意元素后仍在其中。
+
+\begin{proposition}
+若$H,N$为环$R$的子环，则$H\cap N$为子环；
+
+若$N$为$R$的理想，则$H\cap N$为$H$的理想。
+
+更进一步，若$N,H$都是$R$的理想，那么$H\cap N$为$R$的理想。
+
+
+\end{proposition}
+\begin{proof}
+若$x,y\in H\cap N$，则$x-y,xy$同时属于$H$和$N$，故$H\cap N$为$R$的子环。
+
+若$N$为$R$的理想，则对$x\in H\cap N$、$h\in H$，有$hx,xh\in N$；又因$H$为子环，$hx,xh\in H$。因此
+\[
+hx,xh\in H\cap N,
+\]
+即$H\cap N$为$H$的理想。
+
+若$H,N$均为$R$的理想，则对任意$r\in R$和$x\in H\cap N$，$rx,xr$同时属于$H$与$N$，所以
+\[
+rx,xr\in H\cap N.
+\]
+故$H\cap N$为$R$的理想。
+
+
+\end{proof}
+
+\begin{definition}
+设$H,N$为环$R$的子环，定义它们的和为
+\[
+H+N=\{a+b:a\in H,\ b\in N\}.
+\]
+\end{definition}
+\begin{proposition}
+	$H+N $是$R$的加法子群。若$N$为$R$的理想，则$H+N$为$R$的子环；若$H,N$均为$R$的理想，则$H+N$也是理想。
+\end{proposition}
+\begin{proof}
+	由于$0=0+0\in H+N$，此集合非空。若$a_i\in H,b_i\in N$，则
+\[
+(a_1+b_1)-(a_2+b_2)=(a_1-a_2)+(b_1-b_2)\in H+N.
+\]
+因此$H+N$是加法子群。若$N$为理想，则
+	\begin{align*}
+		(a_1+b_1)(a_2+b_2)
+		&=a_1a_2+a_1b_2+b_1a_2+b_1b_2\in H+N.
+	\end{align*}
+	这里$a_1a_2\in H$，其余三项均在$N$中，所以乘积属于$H+N$，故它为子环。若$H$也为理想，则对$r\in R$有
+	\[
+	r(a+b)=ra+rb\in H+N,\qquad (a+b)r=ar+br\in H+N,
+	\]
+	所以$H+N$为理想。
+\end{proof}
+\begin{example}
+令$R=M_2(F)$，
+\[
+H=\left\{\begin{pmatrix}0&0\\a&0\end{pmatrix}:a\in F\right\},\qquad
+N=\left\{\begin{pmatrix}0&b\\0&0\end{pmatrix}:b\in F\right\}.
+\]
+$H,N$中的任意两个矩阵相乘均为零，且各自对减法封闭，所以都是子环。但取
+\[
+\begin{pmatrix}0&0\\1&0\end{pmatrix}\in H,\qquad
+\begin{pmatrix}0&1\\0&0\end{pmatrix}\in N,
+\]
+它们相乘得到
+\[
+\begin{pmatrix}0&0\\1&0\end{pmatrix}
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+=\begin{pmatrix}0&0\\0&1\end{pmatrix}\notin H+N.
+\]
+因为$H+N$中每个矩阵的对角线元素均为零，故$H+N$不是子环。这说明不能从两个子环直接推出其和仍为子环。
+\end{example}
+
+\begin{lemma}\label{p2:ring-image-preimage}
+设$\sigma:R\to R'$为环同态，$N=\ker\sigma$，$H$为$R$的子环，$H'$为$R'$的子环。则
+\begin{align*}
+\sigma^{-1}(\sigma(H))&=H+N,\\
+\sigma(\sigma^{-1}(H'))&=H'\cap\sigma(R).
+\end{align*}
+特别地，第一式等于$H$当且仅当$N\subseteq H$；若$\sigma$满射，则第二式等于$H'$。
+\end{lemma}
+\begin{proof}
+\textbf{第一式：}先证$\sigma^{-1}(\sigma(H))\subseteq H+N$。任取$x\in\sigma^{-1}(\sigma(H))$，则$\sigma(x)\in\sigma(H)$，所以存在$h\in H$使$\sigma(x)=\sigma(h)$。于是
+\[
+\sigma(x-h)=\sigma(x)-\sigma(h)=0,
+\]
+即$x-h\in N$。因此
+\[
+x=h+(x-h)\in H+N.
+\]
+
+再证$H+N\subseteq\sigma^{-1}(\sigma(H))$。任取$x\in H+N$，写作$x=h+n$，其中$h\in H$、$n\in N$。由于$\sigma(n)=0$，
+\[
+\sigma(x)=\sigma(h)+\sigma(n)=\sigma(h)\in\sigma(H),
+\]
+故$x\in\sigma^{-1}(\sigma(H))$。合并两个包含关系，得到第一式。此式不要求$\sigma$满射。
+
+因为$N$是理想，$H+N$为子环；任一同时包含$H$和$N$的子环都包含它们的和。因此$\sigma^{-1}(\sigma(H))$正是包含$H$和$\ker\sigma$的最小子环。又因$N\subseteq H+N$，
+\[
+\sigma^{-1}(\sigma(H))=H
+\quad\Longleftrightarrow\quad H+N=H
+\quad\Longleftrightarrow\quad N\subseteq H.
+\]
+
+\textbf{第二式：}任取$y\in\sigma(\sigma^{-1}(H'))$，则存在$x\in\sigma^{-1}(H')$使$y=\sigma(x)$。由反像的定义，$\sigma(x)\in H'$，故
+\[
+y\in H'\cap\sigma(R).
+\]
+反过来，若$y\in H'\cap\sigma(R)$，则存在$x\in R$使$y=\sigma(x)$；又因$y\in H'$，有$x\in\sigma^{-1}(H')$，所以
+\[
+y=\sigma(x)\in\sigma(\sigma^{-1}(H')).
+\]
+这就证明第二式。若$\sigma$满射，$\sigma(R)=R'$，于是
+\[
+\sigma(\sigma^{-1}(H'))=H'\cap R'=H'.
+\]
+\end{proof}
+
+\begin{theorem}\label{p2:ring-correspondence}
+\textbf{环的对应定理：}设$\sigma:R\to R'$为满环同态，$N=\ker\sigma$。映射$H\mapsto\sigma(H)$给出$R$中包含$N$的子环与$R'$的子环之间的一一对应；在此对应下，理想与理想对应。
+\end{theorem}
+\begin{proof}
+\textbf{$\sigma(H)$是子环：}由于$0\in H$，$0\in\sigma(H)$。任取$\sigma(a),\sigma(b)\in\sigma(H)$，有
+\[
+\sigma(a)-\sigma(b)=\sigma(a-b)\in\sigma(H),\qquad
+\sigma(a)\sigma(b)=\sigma(ab)\in\sigma(H).
+\]
+所以$\sigma(H)$为子环。
+
+\textbf{$H$是理想，则$\sigma(H)$是理想：}若$H$为理想，任取$r'\in R'$及$a'\in\sigma(H)$，由满射取$r\in R,a\in H$使$\sigma(r)=r'$、$\sigma(a)=a'$，于是
+\[
+r'a'=\sigma(ra)\in\sigma(H),\qquad a'r'=\sigma(ar)\in\sigma(H).
+\]
+故$\sigma(H)$为理想。
+
+\textbf{子环$H'\subseteq R'$的完全反像$\sigma^{-1}(H')$为子环：}若$x,y\in\sigma^{-1}(H')$，则$\sigma(x),\sigma(y)\in H'$，所以
+\[
+\sigma(x-y)=\sigma(x)-\sigma(y)\in H',\qquad
+\sigma(xy)=\sigma(x)\sigma(y)\in H'.
+\]
+因此$x-y,xy\in\sigma^{-1}(H')$。又$0\in H'$，故$\ker\sigma\subseteq\sigma^{-1}(H')$，特别地该反像非空，是包含$N$的子环。
+
+\textbf{理想$H'\subseteq R'$的完全反像$\sigma^{-1}(H')$为理想：}若$H'$为理想，任取$r\in R$、$a\in\sigma^{-1}(H')$，则
+\[
+\sigma(ra)=\sigma(r)\sigma(a)\in H',\qquad
+\sigma(ar)=\sigma(a)\sigma(r)\in H',
+\]
+故$\sigma^{-1}(H')$为理想。
+
+由引理\ref{p2:ring-image-preimage}，当$N\subseteq H$且$\sigma$满射时，
+\[
+\sigma^{-1}(\sigma(H))=H+N=H,\qquad
+\sigma(\sigma^{-1}(H'))=H'.
+\]
+因此$H\mapsto\sigma(H)$与$H'\mapsto\sigma^{-1}(H')$互逆，得到所述一一对应。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-third-iso}
+设$\sigma:R\to R'$为环的满同态，$N=\ker\sigma$，$H$为$R$的任一包含$N$的理想。则$\sigma$诱导出环同构
+\[
+\overline\sigma:R/H\longrightarrow R'/\sigma(H),
+\qquad
+\overline\sigma(x+H)=\sigma(x)+\sigma(H).
+\]
+特别地，若取$R'=R/N$，$\sigma(x)=x+N$，则$\sigma(H)=H/N$，从而
+\[
+R/H\cong(R/N)/(H/N).
+\]
+同构映射为
+\[
+x+H\longmapsto(x+N)+(H/N).
+\]
+\end{theorem}
+\begin{proof}
+记$H'=\sigma(H)$。由环的对应定理，$H'$为$R'$的理想。由加法群的同构定理，$\sigma$诱导出加法群同构
+\[
+\overline\sigma:R/H\longrightarrow R'/H',
+\qquad x+H\longmapsto\sigma(x)+H'.
+\]
+
+具体地，若$x+H=y+H$，则$x-y\in H$，故$\sigma(x)-\sigma(y)\in H'$，两者在$R'/H'$中的类相同，所以映射良好定义。它保持加法；由$\sigma$满射可知它满射。若$\overline\sigma(x+H)=H'$，则$\sigma(x)\in\sigma(H)$，于是
+\[
+x\in\sigma^{-1}(\sigma(H))=H+N=H.
+\]
+故核为零，确为加法群同构。这里用到了$N\subseteq H$，它正是单射性成立的条件。
+
+再验证$\overline\sigma$保持乘法。任取$x,y\in R$，有
+\begin{align*}
+\overline\sigma\bigl((x+H)(y+H)\bigr)
+&=\overline\sigma(xy+H)\\
+&=\sigma(xy)+H'\\
+&=\sigma(x)\sigma(y)+H'\\
+&=(\sigma(x)+H')(\sigma(y)+H')\\
+&=\overline\sigma(x+H)\,\overline\sigma(y+H).
+\end{align*}
+所以$\overline\sigma$是环同构。
+
+取自然同态$\sigma:R\to R/N$，$\sigma(x)=x+N$，此时$\sigma(H)=H/N$。代入上述同构，即得特别情形及其同构映射。
+\end{proof}
+
+\begin{theorem}\label{p2:ring-second-iso}
+若$H$为$R$的子环，$N$为$R$的理想，则
+\[
+H/(H\cap N)\cong(H+N)/N,\qquad
+h+(H\cap N)\longmapsto h+N.
+\]
+\end{theorem}
+\begin{proof}
+将自然同态$\pi:R\to R/N$限制在$H$上。此限制的核恰为$\{h\in H:h\in N\}=H\cap N$。其像是$\pi(H)$，应用环同态基本定理得
+\[
+H/(H\cap N)\cong\pi(H).
+\]
+另一方面，$H+N$为子环且包含$N$，并有$\pi(H+N)=\pi(H)$。将$\pi$限制在$H+N$上，其核为$N$，于是
+\[
+(H+N)/N\cong\pi(H).
+\]
+合并两个同构得到结论；所列映射的逆映射由$h+n+N\mapsto h+(H\cap N)$给出。
+\end{proof}
+
+\begin{example}
+设$m,n$为正整数，记$d=\gcd(m,n)$、$M=\operatorname{lcm}(m,n)$。在$\mathbb Z$中，
+\[
+(m)+(n)=(d),\qquad(m)\cap(n)=(M).
+\]
+第一式的理由是：和中的每个元素$am+bn$均被$d$整除；反过来，贝祖等式给出$d=um+vn$，所以每个$d$的倍数均在和中。第二式的理由是：同时属于两个理想，等价于同时被$m,n$整除，也就是被最小公倍数$M$整除。
+
+在第二同构定理中取$H=(n)$、$N=(m)$，得到
+\[
+(n)/(M)\cong(d)/(m).
+\]
+左侧加法群有$M/n$个元素，右侧有$m/d$个元素：分别可取$0,n,\ldots,(M/n-1)n$及$0,d,\ldots,(m/d-1)d$为代表元。因此
+\[
+\frac Mn=\frac md,\qquad dM=mn.
+\]
+这也从理想与商环的关系说明最大公因数、最小公倍数之间的等式。
+\end{example}

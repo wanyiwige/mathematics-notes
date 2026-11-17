@@ -1,0 +1,155 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.1 不定积分
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{不定积分}
+\begin{definition}
+	设 \( y = f(x) \) ,在某个区间上,\( F'(x) = f(x) \),则称 \( F(x) \) 是 \( f(x) \) 的一个原函数或反导数,\( y = F(x) + \text{const} \) 是 \( y = f(x) \) 的原函数
+	
+\end{definition}
+\begin{proposition}\label{原函数只差}
+	在某区间上,若 \( f(x) \) 的任意两个原函数之差为常数.也即,设 \( F_1(x) \)、\( F_2(x) \) 为 \( f(x) \) 的原函数,则
+	\[
+	F_1(x) - F_2(x) = C
+	\]
+	
+	
+	
+\end{proposition}
+\begin{proof}
+	\( F_1'(x) = F_2'(x) = f(x) \),在区间 \( I \) 上,令
+	\[
+	F(x) = F_1(x) - F_2(x)
+	\]
+	$
+	F'(x) \equiv 0, \forall x \in I, \text{由 Rolle 定理,} F(x) = \text{Const.}$
+\end{proof}
+\begin{definition}
+	在某区间上, \( f(x) \) 的不定积分定义为其所有原函数构成的集合,记作
+	\[
+	\int f(x) \dd x := \{ F(x) : F'(x) = f(x), \, x \in I \}
+	\]
+	
+	由\ref{原函数只差} 等价于
+	\[
+	\int f(x) \dd x = \{ F(x) + C : \text{任意} F'(x) = f(x) \}
+	\]
+	
+	为便于起见,记做
+	\[
+	\int f(x) \dd x = F(x) + C\]
+	
+\end{definition}
+微分算子$\dd$与不定积分算子$\int$是一对逆运算,也就是说
+$$\dd(\int f(x)\dd x)=f(x)\dd x\text{即}\dfrac{\dd}{\dd x}(\int f(x)\dd x)=f(x)$$
+与$$\int\dd F(x)=F(x)+C$$成立
+
+利用导数的性质,我们可以得到相应的积分的性质
+
+利用导数的线性性质,有
+\begin{proposition}
+	在某区间$I$上, \( f(x) \),\( g(x) \) 的原函数都存在,则 \(\forall \, k_1, k_2 \in \mathbb{R}\),函数 \(k_1 f(x) + k_2 g(x)\) 的原函数也存在,且有
+	\[
+	\int [k_1 f(x) + k_2 g(x)] \dd x = k_1 \int f(x) \dd x + k_2 \int g(x) \dd x
+	\]
+	
+\end{proposition}
+注：等式两边都是函数族.
+\begin{proof}
+	设 \( F(x) \) 和 \( G(x) \) 分别是 \( f(x) \) 和 \( g(x) \) 的原函数,应有
+	\[
+	(k_1 F(x) + k_2 G(x))' = k_1 f(x) + k_2 g(x)
+	\]
+	
+	那么
+	\[
+	\int (k_1 f(x) + k_2 g(x)) \dd x = k_1 F(x) + k_2 G(x) + C
+	\]
+	
+	且
+	\[\begin{aligned}
+		k_1 \int f(x) \dd x + k_2 \int g(x) \dd x &= k_1 (F(x) + C_1) + k_2 (G(x) + C_2)\\	&= k_1 F(x) + k_2 G(x) + (k_1 C_1 + k_2 C_2)
+	\end{aligned}\]
+	
+	
+	上两式揭示的积分族相同,故
+	\[
+	\int [k_1 f(x) + k_2 g(x)] \dd x = k_1 \int f(x) \dd x + k_2 \int g(x) \dd x\]
+\end{proof}
+根据导数的乘法公式我们得到不定积分的分部积分公式
+\begin{proposition}
+	在某区间上,若有两个可微函数 $u(x), v(x)$,则
+	\[
+	\int u(x) v'(x) \dd x = u(x) v(x) - \int v(x) u'(x) \dd x
+	\]
+	经常简写为$$\int u \dd v = uv - \int v \dd u$$
+	
+\end{proposition}
+\begin{proof}
+	对 $u, v$ 有
+	\[
+	\dd(uv) = u \dd v + v \dd u
+	\]
+	
+	两边积分,并移项得
+	\[
+	\int u \dd v = uv - \int v \dd u
+	\]
+	
+	因此
+	\[
+	\int u(x) v'(x) \dd x = u(x) v(x) - \int v(x) u'(x) \dd x
+	\]
+\end{proof}
+
+使用复合函数求导公式,我们得到第一类换元积分法.
+\begin{proposition}
+	对 $f(x)$,换元 $z = g(x)$,使 $f(x) = \tilde{f}(z )g'(x) = \tilde{f}(g(x)) \cdot g'(x)$.
+	
+	那么
+	\[
+	\int f(x) \dd x = \int \tilde{f}(g(x)) g'(x) \dd x = \int \tilde{f}(g(x)) \dd[g(x)] = \tilde{F}(g(x)) + C
+	\]
+	
+	其中,$\tilde{F}(x)$ 为 $\tilde{f}(x)$ 的一个原函数.
+\end{proposition}
+类似的,有第二类换元积分法
+\begin{proposition}
+	对 $f(x)$,换元 $x = \varphi(t)$,其中 $\varphi(t)$ 是严格单调且可导,即其逆函数 $\varphi^{-1}$ 存在且可导
+	\[\begin{aligned}
+		\int f(x) \dd x &= \int f(\varphi(t)) \dd\varphi(t) = \int f(\varphi(t)) \cdot \varphi'(t) \dd t\\
+		&= F(t) + C = F(\varphi^{-1}(x)) + C
+	\end{aligned}\]
+	
+\end{proposition}\newpage
+利用我们已经有的导数表,我们得到以下常用的积分公式
+\begin{proposition}
+	初等不定积分表：
+	\[\begin{aligned}
+		&(1)\int 0 \dd x = C\\
+		&(2) \int x^\alpha \dd x = \frac{x^{\alpha+1}}{\alpha+1} + C \quad (\alpha \neq -1)\\
+		&(3)\int \sin x \dd x = -\cos x + C\\
+		&(4)\int \cos x \dd x = \sin x + C\\
+		&(5)\int \sec^2 x \dd x = \tan x + C\\
+		&(6)\int \csc^2 x \dd x = -\cot x + C\\
+		&(7)\int \tan x \sec x \dd x = \sec x + C\\
+		&(8)\int \cot x \csc x \dd x = -\csc x + C\\
+		&(9)\int \frac{\dd x}{1-x^2} = \sin^{-1} x + C = -\cos^{-1} x + C\\
+		&(10)\int \frac{\dd x}{1+x^2} = \tan^{-1} x + C = -\cot^{-1} x + C\\
+		& (11) \int a^x \dd x = \frac{a^x}{\ln a} + C \quad (a > 0, a \neq 1)\\
+		&(12) \int e^x \dd x = e^x + C\\
+		&(13)\int \frac{1}{x} \dd x = \ln |x| + C\\
+		&(14)\int \frac{1}{x \ln a} \dd x = \log_a |x| + C\\
+		&(15)\int \sinh x \dd x = \cosh x + C\\
+		&(16)\int \cosh x \dd x = \sinh x + C\\
+		&(17)\int \text{sech}^2 x \dd x = \tanh x + C\\
+		&(18)\int \frac{\dd x}{\sqrt{1+x^2}} = \sinh^{-1} x + C\\
+		&(19)\int \frac{\dd x}{\sqrt{x^2-1}} = \cosh^{-1} x + C\\
+		&(20)\int \frac{\dd x}{1-x^2} = \tanh^{-1} x + C
+	\end{aligned}\]
+\end{proposition}
+此外还有一条相当好用的公式
+\begin{proposition}
+	\[\int\dfrac{f'(x)}{f(x)}\dd x=\ln|x|+C\]
+\end{proposition}
+这是第一类换元积分法的直接应用

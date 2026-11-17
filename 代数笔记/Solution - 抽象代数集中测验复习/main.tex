@@ -1,0 +1,72 @@
+% !TEX program = xelatex
+\documentclass[UTF8,a4paper,11pt,fontset=windows]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,enumitem,booktabs,longtable}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{抽象代数集中测验复习}\fancyhead[R]{往次作业详解}\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{0.35em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em}
+\renewcommand{\proofname}{证明}
+\theoremstyle{definition}
+\newtheorem{reviewtheorem}{定理}
+\newtheorem{reviewprop}[reviewtheorem]{命题}
+\newtheorem{reviewlemma}[reviewtheorem]{引理}
+\newtheorem{reviewdefinition}[reviewtheorem]{定义}
+\renewcommand{\thereviewtheorem}{K\arabic{reviewtheorem}}
+\newcommand{\toolref}[1]{\hyperref[tool:#1]{结论~\ref*{tool:#1}}}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}\newcommand{\F}{\mathbb F}
+\DeclareMathOperator{\GL}{GL}\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Aut}{Aut}\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\lcm}{lcm}\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sgn}{sgn}\DeclareMathOperator{\Ker}{Ker}
+\title{抽象代数集中测验复习资料\\\large 往次作业题目、考点与详细证明}
+\author{}\date{整理日期：2026年10月26日\quad 测验日期：2026年10月30日（周五）}
+\begin{document}
+\maketitle
+\section*{使用说明与范围核对}
+本资料按提供的四张作业截图确定范围，共54题：第零章9题、第一章19题、第二章22题、第三章4题。各章均保留教材习题号，不按本资料中的节号改编号。截图中的“调休补课作业39、43、44”归于其前文第一章；另列的第二章38、43、44归于第二章。
+
+题面以聂灵沼、丁石孙《代数学引论》第三版为准：第零章书页20--22、第一章54--58、第二章98--100、第三章131--132；扫描PDF页码均为书页加10。第一至第三章详解以现有笔记的原解为基础，保留其构造、证明方式和推理顺序，在原思路内补齐步骤；第零章沿用教材的定义、递归构造及相关定理证明方法。每题的“原文依据”说明实际对照的定义、定理或笔记解答。
+
+\textbf{关于补充证明：}上述习题页没有给出这些题目的完整证明。教材正文已有证明或构造的，依照其路线展开；正文省略证明的，沿原定义和已介绍的方法补全，并标为补充证明。以现有笔记原解为依据的，不冒称为教材原证。
+
+\textbf{题面订正：}第二章习题12已据教材恢复：第一个生成元为$(123)$；第二个生成元在奇数情形为$(12\cdots n)$，在偶数情形为$(23\cdots n)$。现有笔记中的另一组生成元并非教材原题，本资料已纠正；详解仍沿用共轭与逐步加入新点的原有思路。
+
+\begin{center}\small
+\begin{tabular}{p{1.6cm}p{11.6cm}}
+\toprule 章节 & 截图指定题号\\\midrule
+第零章 & 4--8、13、14、23、24\\
+第一章 & 1、2、4、6、7--10、12、18、21、22、29、30、32、34、39、43、44\\
+第二章 & 7、8、10--12、15、29--32、36、38--47、49\\
+第三章 & 1、2、3、8\\\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{复习顺序：}先独立写出每题的构造或第一步，再核对详细证明。第一章重点练习子群与理想判别、同态构造；第二章重点练习生成元、群作用、西罗计数与可解性；第三章重点练习非交换乘法次序、单侧逆与反例。没有依据把某题标为“必考”，各题均在已给出的作业范围内。
+
+\textbf{记号约定：}群的单位元记为$e$，环的单位元记为$1$；$|G|$为群的阶，$\ord(a)$为元素阶，$\langle S\rangle$为包含$S$的最小子群。$H\leq G$表示子群，$N\trianglelefteq G$表示正规子群，$[G:H]$为左陪集数。置换乘法右边先作用。一般环不预设有单位元；涉及$1$和单位时另作幺环假设。第一章涉及子环时不要求与母环共用单位元。
+
+\tableofcontents\clearpage
+\section*{证明工具与引用标识}
+\addcontentsline{toc}{section}{证明工具与引用标识}
+下列定理、命题和引理采用本复习册独立的K编号；K编号不冒充原笔记或教材编号。每条给出适用条件、完整结论和可回查的来源。各题“所用结论”列出实际依据，点击编号可跳转到对应表述。
+
+工具在这里集中列出以便查阅，不改变习题的证明先后关系。标为“本题所证”或“补充引理”的条目，证明仍须在相应习题中完成；不得将它们反过来当作该题已经成立的前提。环和群的基本定义沿用前面的记号约定及各章说明。
+\setcounter{secnumdepth}{0}
+\input{tools-arithmetic}
+\input{tools-group-basic}
+\input{tools-group-advanced}
+\input{tools-ring}
+\setcounter{secnumdepth}{2}
+\clearpage
+\input{chapter0}
+\clearpage\input{chapter1}
+\clearpage\input{chapter2}
+\clearpage\input{chapter3}
+\clearpage\input{quick-reference}
+\end{document}

@@ -1,0 +1,89 @@
+\subsection*{返回映射与保守振动的小扰动}
+\phantomsection\label{sec:perturbed-oscillation}
+Poincar\'e 映射已把闭轨化为不动点，下面的一周能量增量将直接给出该不动点方程。所用的稳定性判据是命题~\ref{prop:discrete-derivative-test}，返回时刻的构造使用第五章的可微依赖性与隐函数定理。考虑归一化的圆形振动及其扰动
+\[
+ \dot x=y+\varepsilon f(x,y,\varepsilon),\qquad
+ \dot y=-x+\varepsilon g(x,y,\varepsilon),
+\]
+假定 $f,g$ 足够光滑。未扰动能量为 $E=(x^2+y^2)/2$。
+\begin{definition}
+系统在没有外部周期强迫的条件下自行形成稳定的周期运动，称为自激振动。
+其振幅由系统而非初始振幅选择。这里通过横截面的返回映射研究它。
+\end{definition}
+\begin{theorem}[一周能量增量]
+固定 $A_0>0$，在其附近以 $A$ 为初始半径，从正 $x$ 轴作一周返回。
+设返回能量与初始能量之差为 $\Delta E(A,\varepsilon)$。则
+\[
+ \Delta E(A,\varepsilon)=\varepsilon M(A)+O(\varepsilon^2),\qquad
+ M(A)=\int_0^{2\pi}(xf+yg)(A\cos t,-A\sin t,0)\,\dd t.
+\]
+若 $M(A_0)=0$、$M'(A_0)\ne0$，则充分小非零 $\varepsilon$ 时存在邻近的唯一周期轨道。
+当 $\varepsilon M'(A_0)<0$ 时它横向渐近稳定，符号相反时不稳定。
+\end{theorem}
+\begin{proof}
+在半径 $A_0$ 附近取一个不含原点的小闭环带。未扰动解为
+$(A\cos t,-A\sin t)$，在 $t=2\pi$ 横截正 $x$ 轴，因为此时
+$\dot y=-A\ne0$。将横截条件写为 $y(t,A,\varepsilon)=0$，
+在 $(2\pi,A_0,0)$ 对 $t$ 的导数非零。解的光滑依赖和隐函数定理给出光滑返回时间
+$\tau(A,\varepsilon)$，且 $\tau(A,0)=2\pi$。
+在该闭环带中角速度保持为负，故这一交点确是转过一周后的首次返回。
+缩小参数邻域后，统一有
+\[
+ \tau(A,\varepsilon)=2\pi+O(\varepsilon),\qquad
+ (x(t),y(t))=(A\cos t,-A\sin t)+O(\varepsilon)
+\]
+于所需的有界时间段内成立。
+
+令 $B(x,y,\varepsilon)=xf(x,y,\varepsilon)+yg(x,y,\varepsilon)$。
+沿解直接求导，线性项抵消，得到 $\dot E=\varepsilon B$。因此
+\[
+ \Delta E=\varepsilon\int_0^{\tau(A,\varepsilon)}B(x(t),y(t),\varepsilon)\,dt.
+\]
+被积函数在紧环带上有界且具有有界的一阶导数。改变轨道和参数使积分改变
+$O(\varepsilon)$，将上限改为 $2\pi$ 又只改变 $O(\varepsilon)$；
+乘外面的 $\varepsilon$ 后即得 $\Delta E=\varepsilon M(A)+O(\varepsilon^2)$。
+同样估计可对 $A$ 求导，因而余项在 $C^1$ 意义下也成立。
+
+为在 $\varepsilon=0$ 使用隐函数定理，定义
+\[
+ D(A,\varepsilon)=\int_0^1\partial_\varepsilon
+ \Delta E(A,s\varepsilon)\,ds.
+\]
+微积分基本定理给出 $\Delta E=\varepsilon D$，且 $D(A,0)=M(A)$。
+因 $\partial_AD(A_0,0)=M'(A_0)\ne0$，方程 $D=0$ 有唯一邻近解 $A(\varepsilon)$。
+正 $x$ 轴上 $E=A^2/2$ 严格递增，故能量返回原值恰等价于返回同一点。
+存在唯一性随即保证这条解为周期解；局部唯一性指横截面交点邻近 $A_0$ 的闭轨。
+
+设半径返回映射为 $P_\varepsilon$。对
+$[P_\varepsilon(A)^2-A^2]/2=\varepsilon D(A,\varepsilon)$ 求导，
+再在 $P_\varepsilon(A)=A=A(\varepsilon)$ 处取值，得
+\[
+ P_\varepsilon'(A(\varepsilon))
+ =1+\frac{\varepsilon}{A(\varepsilon)}\partial_AD(A(\varepsilon),\varepsilon)
+ =1+\frac{\varepsilon M'(A_0)}{A_0}+O(\varepsilon^2).
+\]
+当 $\varepsilon M'(A_0)<0$ 且参数充分小时，该导数模小于 1，
+横截面上的不动点渐近稳定，周期内部由流的连续依赖控制，故闭轨横向渐近稳定。
+符号相反时导数大于 1，不动点及闭轨均横向不稳定。
+\end{proof}
+\begin{example}[Van der Pol 振动]
+对 $\ddot x=-x+\varepsilon\dot x(1-x^2)$，取 $f=0,g=y(1-x^2)$。
+于是
+\[
+ M(A)=\int_0^{2\pi}A^2\sin^2t(1-A^2\cos^2t)\,\dd t
+ =\pi A^2-\frac\pi4A^4.
+\]
+$M(2)=0$、$M'(2)=-4\pi$，所以 $\varepsilon>0$ 充分小时有振幅接近 2 的稳定极限环。
+这里的存在与唯一性是半径 2 附近的局部结论，不等于已经证明任意参数下的全局唯一性。
+\end{example}
+
+
+图~\ref{fig:ode-tikz-return-map} 示意横截面上的半径如何逐次趋近闭轨；这对应返回映射在不动点处的压缩。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+\input{figure/tikz/return-map}
+\captionof{figure}{返回映射的吸引不动点与吸引闭轨：模型 $\dot r=0.12r(1-r^2)$、$\dot\theta=-1$。}
+\label{fig:ode-tikz-return-map}
+\end{minipage}
+\end{center}

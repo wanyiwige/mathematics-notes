@@ -1,0 +1,806 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第11章：一些反常积分的问题
+% 节：11.1 一些习题
+% 正文按原文件顺序保存；由 ../chapter11.tex 调用。
+\section{一些习题}
+本节整理反常积分的一组常用性质与判敛题。
+
+\begin{proposition}（线性性）
+	若
+	\[
+	\int_a^{+\infty} f(x)\dd x,
+	\qquad
+	\int_a^{+\infty} g(x)\dd x
+	\]
+	均收敛，且 $k_1,k_2\in\R$，则
+	\[
+	\int_a^{+\infty}\bigl[k_1f(x)+k_2g(x)\bigr]\dd x
+	\]
+	也收敛，并且
+	\[
+	\int_a^{+\infty}\bigl[k_1f(x)+k_2g(x)\bigr]\dd x
+	=k_1\int_a^{+\infty} f(x)\dd x
+	+k_2\int_a^{+\infty} g(x)\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	记
+	\[
+	I=\int_a^{+\infty}f(x)\dd x,
+	\qquad
+	J=\int_a^{+\infty}g(x)\dd x.
+	\]
+	由反常积分收敛的定义，
+	\[
+	\lim_{A\to+\infty}\int_a^A f(x)\dd x=I,
+	\qquad
+	\lim_{A\to+\infty}\int_a^A g(x)\dd x=J.
+	\]
+	对任意 $A>a$，由常义积分的线性性，
+	\[
+	\begin{aligned}
+		\int_a^A\bigl[k_1f(x)+k_2g(x)\bigr]\dd x
+		&=k_1\int_a^A f(x)\dd x+k_2\int_a^A g(x)\dd x.
+	\end{aligned}
+	\]
+	令 $A\to+\infty$，由函数极限的线性性可得
+	\[
+	\lim_{A\to+\infty}\int_a^A\bigl[k_1f(x)+k_2g(x)\bigr]\dd x
+	=k_1I+k_2J.
+	\]
+	故结论成立。
+\end{proof}
+
+\begin{example}
+	证明
+	\[
+	\int_0^{+\infty}\frac{\ln x}{1+x^2}\dd x=0.
+	\]
+\end{example}
+
+\begin{solution}
+	先分解为
+	\[
+	\int_0^{+\infty}\frac{\ln x}{1+x^2}\dd x
+	=\int_0^1\frac{\ln x}{1+x^2}\dd x
+	+\int_1^{+\infty}\frac{\ln x}{1+x^2}\dd x.
+	\]
+	其中第一项在 $0$ 附近由 $|\ln x|$ 的可积性收敛；第二项在无穷远处由
+	\[
+	\frac{\ln x}{1+x^2}=O\left(\frac{\ln x}{x^2}\right)
+	\]
+	收敛。因此可以作变量代换 $x=1/t$：
+	\[
+	\begin{aligned}
+		\int_1^{+\infty}\frac{\ln x}{1+x^2}\dd x
+		&=\int_1^0\frac{\ln(1/t)}{1+1/t^2}\left(-\frac1{t^2}\right)\dd t  \\
+		&=\int_0^1\frac{-\ln t}{1+t^2}\dd t.
+	\end{aligned}
+	\]
+	于是
+	\[
+	\begin{aligned}
+		\int_0^{+\infty}\frac{\ln x}{1+x^2}\dd x
+		&=\int_0^1\frac{\ln x}{1+x^2}\dd x
+		+\int_0^1\frac{-\ln x}{1+x^2}\dd x=0.
+	\end{aligned}
+	\]
+\end{solution}
+
+\begin{example}
+	讨论
+	\[
+	\int_{-1}^{1}\frac1{x^3}\sin\frac1{x^2}\dd x
+	\]
+	的敛散性。
+\end{example}
+
+\begin{solution}
+	只需考虑 $x=0$ 附近。对 $0<\varepsilon<1$，有
+	\[
+	\int_{\varepsilon}^{1}\frac1{x^3}\sin\frac1{x^2}\dd x
+	=-\frac12\int_{\varepsilon}^{1}\sin\frac1{x^2}\dd\left(\frac1{x^2}\right)
+	=\frac12\left[\cos\frac1{x^2}\right]_{\varepsilon}^{1}
+	=\frac12\left(\cos 1-\cos\frac1{\varepsilon^2}\right).
+	\]
+	当 $\varepsilon\to0^+$ 时，$\cos(1/\varepsilon^2)$ 无极限，故
+	\[
+	\int_0^1\frac1{x^3}\sin\frac1{x^2}\dd x
+	\]
+	发散。原积分作为在 $0$ 有瑕点的反常积分也发散。
+\end{solution}
+
+\begin{proposition}（保序性）
+	若
+	\[
+	\int_a^{+\infty} f(x)\dd x,
+	\qquad
+	\int_a^{+\infty} g(x)\dd x
+	\]
+	均收敛，并且对任意 $x\in[a,+\infty)$ 有 $f(x)\geq g(x)$，则
+	\[
+	\int_a^{+\infty}f(x)\dd x\geq \int_a^{+\infty}g(x)\dd x.
+	\]
+\end{proposition}
+
+\begin{proof}
+	对任意 $A>a$，由常义积分的保序性，有
+	\[
+	\int_a^{A}f(x)\dd x\geq \int_a^{A}g(x)\dd x.
+	\]
+	令 $A\to+\infty$，由于两边反常积分均收敛，便得到
+	\[
+	\int_a^{+\infty}f(x)\dd x\geq \int_a^{+\infty}g(x)\dd x.
+	\]
+\end{proof}
+
+\begin{proposition}（区间可加性）
+	设 $c\in[a,+\infty)$。若 $\displaystyle\int_a^{+\infty}f(x)\dd x$ 收敛，则
+	\[
+	\int_c^{+\infty}f(x)\dd x
+	\]
+	也收敛，并且
+	\[
+	\int_a^{+\infty}f(x)\dd x
+	=\int_a^c f(x)\dd x+\int_c^{+\infty}f(x)\dd x.
+	\]
+	反之，若 $\displaystyle\int_c^{+\infty}f(x)\dd x$ 收敛，则 $\displaystyle\int_a^{+\infty}f(x)\dd x$ 收敛，且上式仍成立。
+\end{proposition}
+
+\begin{proof}
+	对任意 $A>c$，常义积分区间可加性给出
+	\[
+	\int_a^A f(x)\dd x=\int_a^c f(x)\dd x+\int_c^A f(x)\dd x.
+	\]
+	若左端在 $A\to+\infty$ 时有极限，则右端第二项也有极限；若右端第二项有极限，则左端也有极限。取极限即得等式。
+\end{proof}
+
+\begin{example}
+	反常积分的乘法可积性不成立。取
+	\[
+	f(x)=g(x)=\frac{\sin x}{\sqrt{x}},\qquad x\geq1.
+	\]
+	则
+	\[
+	\int_1^{+\infty}f(x)\dd x,
+	\qquad
+	\int_1^{+\infty}g(x)\dd x
+	\]
+	均收敛，但
+	\[
+	\int_1^{+\infty}f(x)g(x)\dd x
+	=\int_1^{+\infty}\frac{\sin^2x}{x}\dd x
+	\]
+	发散。
+\end{example}
+
+\begin{solution}
+	由 Dirichlet 判别法，$\displaystyle\int_1^{+\infty}\sin x\cdot x^{-1/2}\dd x$ 收敛，因为
+	\[
+	\int_1^A\sin x\dd x=\cos1-\cos A
+	\]
+	有界，且 $x^{-1/2}$ 单调趋于 $0$。
+	
+	另一方面，
+	\[
+	\sin^2x=\frac{1-\cos2x}{2},
+	\]
+	所以
+	\[
+	\int_1^A\frac{\sin^2x}{x}\dd x
+	=\frac12\int_1^A\frac{\dd x}{x}
+	-\frac12\int_1^A\frac{\cos2x}{x}\dd x.
+	\]
+	第二项由 Dirichlet 判别法收敛，而第一项 $\dfrac12\ln A$ 发散到 $+\infty$，故 $\displaystyle\int_1^{+\infty}\sin^2x/x\dd x$ 发散。
+\end{solution}
+
+\begin{proposition}（非负函数的 Cauchy 主值）
+	设 $f(x)\geq0$，且 $f$ 在任意有限闭区间上可积。则
+	\[
+	(cpv)\int_{-\infty}^{+\infty}f(x)\dd x
+	:=\lim_{A\to+\infty}\int_{-A}^{A}f(x)\dd x
+	\]
+	收敛当且仅当普通反常积分
+	\[
+	\int_{-\infty}^{+\infty}f(x)\dd x
+	:=\int_{-\infty}^{0}f(x)\dd x+\int_0^{+\infty}f(x)\dd x
+	\]
+	收敛。此时二者相等。
+\end{proposition}
+
+\begin{proof}
+	若普通反常积分收敛，则
+	\[
+	\int_{-A}^{A}f(x)\dd x
+	=\int_{-A}^{0}f(x)\dd x+\int_0^{A}f(x)\dd x
+	\]
+	两项分别有有限极限，因此主值收敛，且极限等于普通反常积分。
+	
+	反过来，设
+	\[
+	F(A)=\int_{-A}^{A}f(x)\dd x
+	\]
+	当 $A\to+\infty$ 收敛。由于 $f\geq0$，$F(A)$ 关于 $A$ 单调递增，且有界，故对任意 $0<A'<A$，
+	\[
+	0\leq \int_{A'}^{A}f(x)\dd x\leq F(A)-F(A'),
+	\]
+	\[
+	0\leq \int_{-A}^{-A'}f(x)\dd x\leq F(A)-F(A').
+	\]
+	由 $F(A)$ 收敛的 Cauchy 性，右端可任意小，于是
+	\[
+	\int_0^{+\infty}f(x)\dd x,
+	\qquad
+	\int_{-\infty}^{0}f(x)\dd x
+	\]
+	均收敛，故普通反常积分收敛。
+\end{proof}
+
+\begin{proposition}
+	设 $\displaystyle\int_a^{+\infty}f(x)\dd x$ 收敛，并且
+	\[
+	\lim_{x\to+\infty}f(x)=A.
+	\]
+	若此极限存在，则必有 $A=0$。
+\end{proposition}
+
+\begin{proof}
+	反证。若 $A>0$，取 $\eps=A/2$，则存在 $X\geq a$，使得 $x>X$ 时
+	\[
+	|f(x)-A|<\frac A2,
+	\]
+	从而 $f(x)>A/2$。于是对任意 $B>X$，
+	\[
+	\int_X^B f(x)\dd x\geq \frac A2(B-X)\to+\infty,
+	\]
+	这与 $\displaystyle\int_a^{+\infty}f(x)\dd x$ 收敛矛盾。若 $A<0$，则同理有
+	\[
+	\int_X^B f(x)\dd x\leq \frac A2(B-X)\to-\infty,
+	\]
+	也矛盾。因此 $A=0$。
+\end{proof}
+
+\textbf{非负函数反常积分的判敛练习}
+
+\begin{problem}
+	讨论下列非负函数反常积分的敛散性：
+	\[
+	\begin{array}{ll}
+		(1)&\displaystyle \int_1^{+\infty}\frac{\dd x}{\sqrt{x^3-e^{-x}+\ln x+1}},\\[8pt]
+		(2)&\displaystyle \int_1^{+\infty}\frac{\arctan x}{1+x^3}\dd x,\\[8pt]
+		(3)&\displaystyle \int_0^{+\infty}\frac{\dd x}{1+x|\sin x|},\\[8pt]
+		(4)&\displaystyle \int_1^{+\infty}\frac{x^p}{1+x^2}\dd x\qquad (p\in\R).
+	\end{array}
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 当 $x\to+\infty$ 时，
+	\[
+	x^3-e^{-x}+\ln x+1\sim x^3,
+	\]
+	故
+	\[
+	\frac1{\sqrt{x^3-e^{-x}+\ln x+1}}\sim \frac1{x^{3/2}}.
+	\]
+	因为 $\displaystyle\int_1^{+\infty}x^{-3/2}\dd x$ 收敛，所以原积分收敛。
+	
+	(2) 因为 $0\leq\arctan x\leq \pi/2$，所以
+	\[
+	0\leq \frac{\arctan x}{1+x^3}\leq \frac{\pi/2}{1+x^3}\leq \frac{\pi/2}{x^3}.
+	\]
+	由比较判别法，原积分收敛。
+	
+	(3) 因为 $|\sin x|\leq1$，所以
+	\[
+	1+x|\sin x|\leq 1+x,
+	\]
+	从而
+	\[
+	\frac1{1+x|\sin x|}\geq \frac1{1+x}.
+	\]
+	由于 $\displaystyle\int_1^{+\infty}\frac{\dd x}{1+x}$ 发散，故原积分发散。
+	
+	(4) 当 $x\to+\infty$ 时，
+	\[
+	\frac{x^p}{1+x^2}\sim x^{p-2}.
+	\]
+	故原积分与 $\displaystyle\int_1^{+\infty}x^{p-2}\dd x$ 同敛散。于是
+	\[
+	p-2<-1\iff p<1
+	\]
+	时收敛；当 $p\geq1$ 时发散。
+\end{solution}
+
+
+
+\begin{problem}
+	讨论下列反常积分的敛散性，包括绝对收敛、条件收敛和发散：
+	\[
+	\begin{array}{ll}
+		(1)&\displaystyle \int_2^{+\infty}\frac{\ln\ln x}{\ln x}\sin x\dd x,\\[8pt]
+		(2)&\displaystyle \int_1^{+\infty}\frac{\sin x}{x^p}\dd x\qquad(p\in\R),\\[8pt]
+		(3)&\displaystyle \int_1^{+\infty}\frac{\sin x\arctan x}{x^p}\dd x\qquad(p\in\R),\\[8pt]
+		(4)&\displaystyle \int_0^{+\infty}\sin(x^2)\dd x,\\[8pt]
+		(5)&\displaystyle \int_a^{+\infty}\frac{P_m(x)}{Q_n(x)}\sin x\dd x.
+	\end{array}
+	\]
+	其中 $P_m,Q_n$ 分别为 $m,n$ 次多项式，且 $Q_n$ 在 $[a,+\infty)$ 上无零点。
+\end{problem}
+
+\begin{solution}
+	(1) 令
+	\[
+	h(x)=\frac{\ln\ln x}{\ln x}\qquad (x>e).
+	\]
+	则 $h(x)\to0$，且在充分大的区间上单调递减。又
+	\[
+	\int_2^A\sin x\dd x=\cos2-\cos A
+	\]
+	有界，因此由 Dirichlet 判别法，
+	\[
+	\int_2^{+\infty}\frac{\ln\ln x}{\ln x}\sin x\dd x
+	\]
+	收敛。
+	
+	接着证明它不绝对收敛。由于 $0<h(x)$ 且 $h(x)$ 最终单调下降，
+	\[
+	\int_2^A h(x)|\sin x|\dd x
+	\geq \int_2^A h(x)\sin^2x\dd x.
+	\]
+	而
+	\[
+	\sin^2x=\frac{1-\cos2x}{2},
+	\]
+	故
+	\[
+	\int_2^A h(x)\sin^2x\dd x
+	=\frac12\int_2^A h(x)\dd x-\frac12\int_2^A h(x)\cos2x\dd x.
+	\]
+	第二项由 Dirichlet 判别法收敛，而 $h(x)$ 对充分大 $x$ 满足 $h(x)\geq 1/x$，故 $\displaystyle\int_2^{+\infty}h(x)\dd x$ 发散。于是原积分条件收敛。
+	
+	(2) 若 $p>1$，则
+	\[
+	\int_1^{+\infty}\left|\frac{\sin x}{x^p}\right|\dd x
+	\leq \int_1^{+\infty}\frac{\dd x}{x^p}<+\infty,
+	\]
+	故绝对收敛。若 $0<p\leq1$，则 $x^{-p}$ 单调趋于 $0$，由 Dirichlet 判别法知原积分收敛；但
+	\[
+	\int_1^{+\infty}\frac{|\sin x|}{x^p}\dd x
+	\]
+	发散，故条件收敛。若 $p\leq0$，则 $x^{-p}$ 不趋于 $0$，且在每个区间 $[2k\pi+\pi/6,2k\pi+5\pi/6]$ 上 $\sin x\geq1/2$，可由 Cauchy 不收敛原理推出积分发散。
+	
+	(3) 当 $x\to+\infty$ 时，$\arctan x\to\pi/2$。若 $p>1$，由比较判别法知绝对收敛。若 $0<p\leq1$，函数 $\arctan x/x^p$ 最终单调趋于 $0$，故由 Dirichlet 判别法知原积分收敛；又因 $\arctan x\geq c>0$ 对充分大的 $x$ 成立，绝对值积分与 $\displaystyle\int |\sin x|/x^p\dd x$ 同样发散，故条件收敛。若 $p\leq0$，被积函数不满足趋于 $0$ 的必要衰减，积分发散。
+	
+	(4) 令 $t=x^2$，则
+	\[
+	\int_1^{+\infty}\sin(x^2)\dd x
+	=\frac12\int_1^{+\infty}\frac{\sin t}{\sqrt t}\dd t.
+	\]
+	右端由 Dirichlet 判别法收敛。另一方面
+	\[
+	\int_1^{+\infty}|\sin(x^2)|\dd x
+	=\frac12\int_1^{+\infty}\frac{|\sin t|}{\sqrt t}\dd t
+	\]
+	发散，故原积分条件收敛。有限区间 $[0,1]$ 上无问题，因此整体条件收敛。
+	
+	(5) 当 $x\to+\infty$ 时，
+	\[
+	\frac{P_m(x)}{Q_n(x)}\sim Cx^{m-n}\qquad(C\neq0).
+	\]
+	若 $n-m>1$，则绝对值积分由 $p$-积分比较判别法收敛；若 $n-m=1$，则系数函数与 $C/x$ 同阶，由 Dirichlet 判别法原积分收敛，但绝对值积分发散，故条件收敛；若 $n-m<1$，则系数函数衰减不足，原积分发散。
+\end{solution}
+
+\textbf{有限端点瑕积分}
+
+\begin{problem}
+	讨论下列有限区间反常积分的敛散性：
+	\[
+	\begin{array}{ll}
+		(1)&\displaystyle \int_0^1\frac{\dd x}{\sqrt[3]{x^2(1-x)}},\\[8pt]
+		(2)&\displaystyle \int_0^1\frac{\ln x}{x^2-1}\dd x,\\[8pt]
+		(3)&\displaystyle \int_0^{\pi/2}\frac{\dd x}{\cos^2x\sin^2x},\\[8pt]
+		(4)&\displaystyle \int_0^{\pi/2}\frac{1-\cos x}{x^p}\dd x,\\[8pt]
+		(5)&\displaystyle \int_0^1 |\ln x|^p\dd x,\\[8pt]
+		(6)&\displaystyle \int_0^1x^{p-1}(1-x)^{q-1}\dd x,\\[8pt]
+		(7)&\displaystyle \int_0^1x^{p-1}(1-x)^{q-1}|\ln x|\dd x.
+	\end{array}
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 当 $x\to0^+$ 时，
+	\[
+	\frac1{\sqrt[3]{x^2(1-x)}}\sim x^{-2/3},
+	\]
+	当 $x\to1^-$ 时，
+	\[
+	\frac1{\sqrt[3]{x^2(1-x)}}\sim (1-x)^{-1/3}.
+	\]
+	两端幂指数均小于 $1$，故积分收敛。
+	
+	(2) 当 $x\to1^-$ 时，
+	\[
+	\lim_{x\to1^-}\frac{\ln x}{x^2-1}=\frac12.
+	\]
+	当 $x\to0^+$ 时，$x^2-1\to-1$，故被积函数与 $-\ln x$ 同阶，而 $\displaystyle\int_0^1|\ln x|\dd x$ 收敛。因此积分收敛。
+	
+	(3) 当 $x\to0^+$ 时，$\sin x\sim x$，$\cos x\to1$，故
+	\[
+	\frac1{\cos^2x\sin^2x}\sim \frac1{x^2}.
+	\]
+	$p=2\geq1$，故在 $0$ 端发散，原积分发散。
+	
+	(4) 当 $x\to0^+$ 时，
+	\[
+	1-\cos x\sim \frac{x^2}{2},
+	\]
+	所以
+	\[
+	\frac{1-\cos x}{x^p}\sim \frac12x^{2-p}.
+	\]
+	该函数在 $0$ 端可积当且仅当 $2-p>-1$，即 $p<3$。故当 $p<3$ 时收敛，当 $p\geq3$ 时发散。
+	
+	(5) 在 $0$ 端，令 $x=e^{-t}$，则 $t\to+\infty$，且
+	\[
+	\int_0^{1/2}|\ln x|^p\dd x
+	=\int_{\ln2}^{+\infty} t^p e^{-t}\dd t,
+	\]
+	总是收敛。在 $1$ 端，$|\ln x|\sim 1-x$，故
+	\[
+	|\ln x|^p\sim (1-x)^p.
+	\]
+	因此积分收敛当且仅当 $p>-1$。
+	
+	(6) 当 $x\to0^+$ 时，被积函数与 $x^{p-1}$ 同阶；当 $x\to1^-$ 时，被积函数与 $(1-x)^{q-1}$ 同阶。故积分收敛当且仅当
+	\[
+	p>0,
+	\qquad
+	q>0.
+	\]
+	
+	(7) 当 $x\to0^+$ 时，需要判断 $x^{p-1}|\ln x|$ 的可积性，它当且仅当 $p>0$ 时收敛；当 $x\to1^-$ 时，$|\ln x|\sim1-x$，故被积函数与
+	\[
+	(1-x)^q
+	\]
+	同阶，因此在 $1$ 端收敛当且仅当 $q>-1$。综上，积分收敛当且仅当
+	\[
+	p>0,
+	\qquad
+	q>-1.
+	\]
+\end{solution}
+
+\newpage
+
+\begin{problem}
+	讨论下列反常积分的敛散性：
+	\[
+	\begin{array}{ll}
+		(1)&\displaystyle \int_0^{1}\frac{x^{p-1}-x^{q-1}}{\ln x}\dd x\qquad(p,q\in\R),\\[8pt]
+		(2)&\displaystyle \int_0^{+\infty}\frac{\dd x}{\sqrt[3]{x(x-1)^2(x-2)}},\\[8pt]
+		(3)&\displaystyle \int_0^{+\infty}\frac{\ln(1+x)}{x^p}\dd x,\\[8pt]
+		(4)&\displaystyle \int_0^{+\infty}\frac{\arctan x}{x^p}\dd x,\\[8pt]
+		(5)&\displaystyle \int_0^{\pi/2}\frac{\sqrt{\tan x}}{x^p}\dd x,\\[8pt]
+		(6)&\displaystyle \int_0^{+\infty}x^{p-1}e^{-x}\dd x,\\[8pt]
+		(7)&\displaystyle \int_0^{+\infty}\frac{\dd x}{x^p+x^q},\\[8pt]
+		(8)&\displaystyle \int_2^{+\infty}\frac{\dd x}{x^p\ln^qx}.
+	\end{array}
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 若 $p=q$，则被积函数恒为 $0$，积分收敛。若 $p\neq q$，在 $x=1$ 附近，由 $x^r=1+r(x-1)+o(x-1)$ 与 $\ln x\sim x-1$，有
+	\[
+	\frac{x^{p-1}-x^{q-1}}{\ln x}\to p-q,
+	\]
+	故 $x=1$ 不是本质瑕点，只需考察 $0$ 端。令 $x=e^{-t}$，则 $t\to+\infty$，并且
+	\[
+	\int_0^{1/2}\frac{x^{p-1}-x^{q-1}}{\ln x}\dd x
+	=\int_{\ln2}^{+\infty}\frac{e^{-pt}-e^{-qt}}{t}\dd t.
+	\]
+	因此当 $p>0$ 且 $q>0$ 时，右端由指数衰减控制而收敛；若 $p\leq0$ 或 $q\leq0$，且 $p\neq q$，则其中至少有一项在无穷远处不衰减或增长，不能由另一项抵消，故发散。综上，该积分收敛当且仅当
+	\[
+	p=q,
+	\quad\text{或}\quad
+	p>0,\ q>0.
+	\]
+	
+	(2) 被积函数在 $0,1,2,+\infty$ 处可能出现问题。逐点比较：
+	\[
+	x\to0^+:\frac1{\sqrt[3]{x(x-1)^2(x-2)}}=O(x^{-1/3}),
+	\]
+	\[
+	x\to1:\frac1{\sqrt[3]{x(x-1)^2(x-2)}}=O(|x-1|^{-2/3}),
+	\]
+	\[
+	x\to2:\frac1{\sqrt[3]{x(x-1)^2(x-2)}}=O(|x-2|^{-1/3}),
+	\]
+	并且
+	\[
+	x\to+\infty:\frac1{\sqrt[3]{x(x-1)^2(x-2)}}=O(x^{-4/3}).
+	\]
+	所有相应幂指数均满足可积条件，故积分收敛。
+	
+	(3) 当 $x\to0^+$ 时，$\ln(1+x)\sim x$，故
+	\[
+	\frac{\ln(1+x)}{x^p}\sim x^{1-p},
+	\]
+	在 $0$ 端收敛当且仅当 $p<2$。当 $x\to+\infty$ 时，需考察 $\ln x/x^p$，它在无穷远处收敛当且仅当 $p>1$。故原积分收敛当且仅当
+	\[
+	1<p<2.
+	\]
+	
+	(4) 当 $x\to0^+$ 时，$\arctan x\sim x$，故 $p<2$ 是 $0$ 端收敛条件；当 $x\to+\infty$ 时，$\arctan x\to\pi/2$，故需要 $p>1$。因此收敛当且仅当
+	\[
+	1<p<2.
+	\]
+	
+	(5) 当 $x\to0^+$ 时，$\tan x\sim x$，所以
+	\[
+	\frac{\sqrt{\tan x}}{x^p}\sim x^{1/2-p},
+	\]
+	在 $0$ 端收敛当且仅当 $1/2-p>-1$，即 $p<3/2$。当 $x\to\pi/2^-$ 时，$\tan x\sim(\pi/2-x)^{-1}$，故
+	\[
+	\sqrt{\tan x}=O\bigl((\pi/2-x)^{-1/2}\bigr),
+	\]
+	该端总是可积。因此原积分收敛当且仅当
+	\[
+	p<\frac32.
+	\]
+	
+	(6) 当 $x\to0^+$ 时，$e^{-x}\to1$，故被积函数与 $x^{p-1}$ 同阶；在 $+\infty$ 端，由指数函数衰减可知总是收敛。因此积分收敛当且仅当
+	\[
+	p>0.
+	\]
+	
+	(7) 当 $x\to0^+$ 时，$x^p+x^q$ 由 $x^{\min\{p,q\}}$ 主导；当 $x\to+\infty$ 时，由 $x^{\max\{p,q\}}$ 主导。因此
+	\[
+	\frac1{x^p+x^q}
+	\]
+	在 $0$ 端收敛当且仅当 $\min\{p,q\}<1$，在 $+\infty$ 端收敛当且仅当 $\max\{p,q\}>1$。故原积分收敛当且仅当
+	\[
+	\min\{p,q\}<1<\max\{p,q\}.
+	\]
+	
+	(8) 令 $t=\ln x$，则 $\dd t=\dd x/x$，并且
+	\[
+	\int_2^{+\infty}\frac{\dd x}{x^p\ln^qx}
+	=\int_{\ln2}^{+\infty}\frac{e^{(1-p)t}}{t^q}\dd t.
+	\]
+	若 $p>1$，指数项衰减，积分收敛；若 $p<1$，指数项增长，积分发散；若 $p=1$，则化为
+	\[
+	\int_{\ln2}^{+\infty}\frac{\dd t}{t^q},
+	\]
+	故当且仅当 $q>1$ 时收敛。综上：
+	\[
+	\begin{cases}
+		\text{收敛},& p>1,\text{ 或 }p=1,q>1,\\
+		\text{发散},& p<1,\text{ 或 }p=1,q\leq1.
+	\end{cases}
+	\]
+\end{solution}
+
+
+
+\begin{problem}
+	证明反常积分
+	\[
+	\int_0^{+\infty}x\sin(x^4)\sin x\dd x
+	\]
+	收敛。
+\end{problem}
+
+\begin{solution}
+	只需证明无穷远处收敛。对 $A''>A'>0$，分部积分。注意
+	\[
+	x\sin(x^4)\dd x=-\frac1{4x^2}\dd(\cos x^4).
+	\]
+	于是
+	\[
+	\begin{aligned}
+		\int_{A'}^{A''}x\sin(x^4)\sin x\dd x
+		&=-\int_{A'}^{A''}\frac{\sin x}{4x^2}\dd(\cos x^4)\\
+		&=\left[-\frac{\sin x\cos x^4}{4x^2}\right]_{A'}^{A''}
+		+\int_{A'}^{A''}\cos x^4\left(\frac{\cos x}{4x^2}-\frac{\sin x}{2x^3}\right)\dd x.
+	\end{aligned}
+	\]
+	给定 $\eps>0$，取 $A'$ 足够大，则边界项绝对值小于 $\eps/2$，并且
+	\[
+	\int_{A'}^{+\infty}\left(\frac1{4x^2}+\frac1{2x^3}\right)\dd x<\frac\eps2.
+	\]
+	因此对任意 $A''>A'$，有
+	\[
+	\left|\int_{A'}^{A''}x\sin(x^4)\sin x\dd x\right|<\eps.
+	\]
+	由 Cauchy 收敛原理，原积分收敛。
+\end{solution}
+
+\begin{problem}
+	设 $\displaystyle\int_0^{+\infty}f(x)\dd x$ 绝对收敛，且
+	\[
+	\lim_{x\to+\infty}f(x)=0.
+	\]
+	证明
+	\[
+	\int_0^{+\infty}f^2(x)\dd x
+	\]
+	收敛。
+\end{problem}
+
+\begin{solution}
+	由 $f(x)\to0$，存在 $A>0$，使得当 $x>A$ 时
+	\[
+	|f(x)|<1.
+	\]
+	于是
+	\[
+	0\leq f^2(x)\leq |f(x)|\qquad(x>A).
+	\]
+	又因为 $\int_0^{+\infty}|f(x)|\dd x$ 收敛，所以由比较判别法，
+	\[
+	\int_A^{+\infty}f^2(x)\dd x
+	\]
+	收敛。有限区间 $[0,A]$ 上 $f^2$ 按题设默认可积，故整体收敛。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)\geq0$，且 $f$ 在 $[0,+\infty)$ 上单调递减。若
+	\[
+	\int_0^{+\infty}f(x)\dd x
+	\]
+	收敛，证明
+	\[
+	\lim_{x\to+\infty}x f(x)=0.
+	\]
+\end{problem}
+
+\begin{solution}
+	由 $f$ 单调递减且非负，对任意 $x>0$，在区间 $[x/2,x]$ 上有 $f(t)\geq f(x)$。故
+	\[
+	0\leq \frac{x}{2}f(x)\leq \int_{x/2}^{x}f(t)\dd t.
+	\]
+	由于 $\int_0^{+\infty}f(x)\dd x$ 收敛，右端作为尾积分趋于 $0$。于是
+	\[
+	\lim_{x\to+\infty}x f(x)=0.
+	\]
+\end{solution}
+
+\begin{problem}
+	设 $\displaystyle\int_a^{+\infty}f(x)\dd x$ 收敛，并且 $xf(x)$ 在 $[a,+\infty)$ 上非负、单调递减。证明
+	\[
+	\lim_{x\to+\infty}x\ln x\,f(x)=0.
+	\]
+\end{problem}
+
+\begin{solution}
+	对充分大的 $x$，考察区间 $[x,x^2]$。因 $tf(t)$ 单调递减且非负，任意 $t\in[x,x^2]$ 有
+	\[
+	tf(t)\geq x^2 f(x^2).
+	\]
+	另一方面，任意 $t\in[x,x^2]$ 也有
+	\[
+	tf(t)\leq x f(x).
+	\]
+	为了得到关于 $x f(x)$ 的估计，改在区间 $[\sqrt{x},x]$ 上使用单调性：对 $t\in[\sqrt{x},x]$，有
+	\[
+	tf(t)\geq x f(x),
+	\]
+	即
+	\[
+	f(t)\geq \frac{x f(x)}{t}.
+	\]
+	因此
+	\[
+	\int_{\sqrt{x}}^{x}f(t)\dd t
+	\geq x f(x)\int_{\sqrt{x}}^{x}\frac{\dd t}{t}
+	=\frac12 x\ln x\,f(x).
+	\]
+	由于 $\int_a^{+\infty}f(x)\dd x$ 收敛，尾积分
+	\[
+	\int_{\sqrt{x}}^{x}f(t)\dd t\to0.
+	\]
+	故
+	\[
+	0\leq \frac12x\ln x\,f(x)\leq \int_{\sqrt{x}}^{x}f(t)\dd t\to0,
+	\]
+	从而结论成立。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 单调下降，且
+	\[
+	\lim_{x\to+\infty}f(x)=0.
+	\]
+	若 $f'(x)$ 在 $[0,+\infty)$ 上连续，证明
+	\[
+	\int_0^{+\infty}f'(x)\sin^2x\dd x
+	\]
+	收敛。
+\end{problem}
+
+\begin{solution}
+	对有限区间 $[0,A]$ 分部积分：
+	\[
+	\begin{aligned}
+		\int_0^A f'(x)\sin^2x\dd x
+		&=\int_0^A \sin^2x\dd(f(x))\\
+		&=f(A)\sin^2A-f(0)\sin^20-\int_0^A f(x)\dd(\sin^2x)\\
+		&=f(A)\sin^2A-\int_0^A f(x)\sin2x\dd x.
+	\end{aligned}
+	\]
+	因 $f(A)\to0$，故边界项趋于 $0$。又
+	\[
+	\int_0^A\sin2x\dd x
+	\]
+	关于 $A$ 有界，而 $f(x)$ 单调趋于 $0$，由 Dirichlet 判别法，
+	\[
+	\int_0^{+\infty}f(x)\sin2x\dd x
+	\]
+	收敛。因此 $\int_0^{+\infty}f'(x)\sin^2x\dd x$ 收敛。
+\end{solution}
+
+\begin{problem}
+	证明反常积分
+	\[
+	\int_1^{+\infty}\frac{\sin x}{x^p+\sin x}\dd x
+	\]
+	满足如下敛散性：当 $p\leq\dfrac12$ 时发散；当 $\dfrac12<p\leq1$ 时条件收敛；当 $p>1$ 时绝对收敛。
+\end{problem}
+
+\begin{solution}
+	当 $p>1$ 时，对充分大的 $x$，有 $x^p+\sin x\geq \frac12x^p$，所以
+	\[
+	\left|\frac{\sin x}{x^p+\sin x}\right|\leq \frac2{x^p}.
+	\]
+	由比较判别法，积分绝对收敛。
+	
+	当 $0<p\leq1$ 时，利用恒等分解
+	\[
+	\frac{\sin x}{x^p+\sin x}
+	=\frac{\sin x}{x^p}-\frac{\sin^2x}{x^p(x^p+\sin x)}.
+	\]
+	第一项
+	\[
+	\int_1^{+\infty}\frac{\sin x}{x^p}\dd x
+	\]
+	在 $0<p\leq1$ 时由 Dirichlet 判别法收敛。第二项为非正的相反数，其绝对值的主要量级为
+	\[
+	\frac{\sin^2x}{x^{2p}}.
+	\]
+	若 $p\leq1/2$，则
+	\[
+	\int_1^{+\infty}\frac{\sin^2x}{x^{2p}}\dd x
+	\]
+	发散，因而原积分发散；若 $1/2<p\leq1$，则
+	\[
+	\int_1^{+\infty}\frac{\sin^2x}{x^{2p}}\dd x
+	\]
+	收敛，从而原积分收敛。
+	
+	最后判断绝对收敛性。当 $1/2<p\leq1$ 时，在区间
+	\[
+	I_n=\left[2n\pi+\frac\pi4,2n\pi+\frac{3\pi}4\right]
+	\]
+	上有 $\sin x\geq\sqrt2/2$，故对充分大的 $n$，
+	\[
+	\left|\frac{\sin x}{x^p+\sin x}\right|
+	\geq \frac{c}{x^p}
+	\]
+	其中 $c>0$ 为常数。于是绝对值积分下界控制着 $\sum n^{-p}$，当 $p\leq1$ 时发散。因此 $1/2<p\leq1$ 时为条件收敛。
+	
+	若 $p\leq0$，则在同样的区间上被积函数不满足足够衰减，甚至不能满足尾积分 Cauchy 条件，因此发散。综上得到题设结论。
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+

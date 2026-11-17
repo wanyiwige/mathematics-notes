@@ -1,0 +1,2648 @@
+
+\newcommand{\red}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.00,1.00,0.00}{#1}}
+\newcommand{\darkblue}[1]
+{\textcolor[rgb]{0.00,0.00,0.50}{#1}}
+\newcommand{\darkgreen}[1]
+{\textcolor[rgb]{0.00,0.37,0.00}{#1}}
+\newcommand{\darkred}[1]{\textcolor[rgb]{0.60,0.00,0.00}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.50,0.30,0.00}{#1}}
+\newcommand{\purple}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\bkt}[1]{\left\langle #1 \right\rangle}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}
+\newcommand{\z}{\boldsymbol{z}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\X}{\mathrm{X}}
+\newcommand{\Y}{\mathrm{Y}}
+\newcommand{\B}{\mathcal{B}}
+\chapter*{第二章　多元函数微分学}
+
+
+
+
+\section*{§1　偏导数,全微分}
+
+\subsection*{偏导数}
+
+以二元函数
+\[
+z=f(x,y)
+\]
+为例.
+
+
+
+\textbf{定义 2.1.1}
+
+对 $x$ 的偏导数定义为
+\[
+\frac{\partial z}{\partial x}\left(\text{或 }\frac{\partial f}{\partial x}\right)
+:=\lim_{\Delta x\to0}\frac{f(x+\Delta x,y)-f(x,y)}{\Delta x}.
+\]
+类似地，对 $y$ 的偏导数定义为
+\[
+\frac{\partial z}{\partial y}\left(\text{或 }\frac{\partial f}{\partial y}\right)
+:=\lim_{\Delta y\to0}\frac{f(x,y+\Delta y)-f(x,y)}{\Delta y}.
+\]
+若 $z=f(x,y)$ 在一点处对 $x,y$ 的偏导数 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$ 都存在，则称 $z=f(x,y)$ 在该点\textbf{可偏导}.
+
+
+
+
+偏导数存在并不意味着函数在该点连续.
+
+
+
+\textbf{例 2.1.2}
+
+令
+\[
+f(x,y)=
+\begin{cases}
+0,&(x,y)=(0,0),\\[4pt]
+\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0).
+\end{cases}
+\]
+在原点处，有
+\[
+\frac{\partial f}{\partial x}(0,0)=f_x(0,0)
+=\lim_{\Delta x\to0}\frac{f(\Delta x,0)-f(0,0)}{\Delta x}=0,
+\qquad
+\frac{\partial f}{\partial y}(0,0)=f_y(0,0)=0.
+\]
+$\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$ 在原点处存在，但是$f$ 在原点处不连续.
+
+
+
+\subsection*{方向导数}
+
+仍以二元函数 $z=f(x,y)$ 为例.
+
+
+
+\textbf{定义 2.1.3}
+
+沿平面 $\R^2$ 中某方向
+\[
+\vect v=(\cos\alpha,\sin\alpha)
+\]
+的方向导数定义为
+\[
+\frac{\partial f}{\partial\vect v}(x_0,y_0)
+=\lim_{t\to0}
+\frac{f(x_0+t\cos\alpha,y_0+t\sin\alpha)-f(x_0,y_0)}{t}.
+\]
+若上式极限存在，则称 $f$ 在 $(x_0,y_0)$ 处沿 $\vect v$ 方向的方向导数存在，并记为 $\dfrac{\partial f}{\partial\vect v}$.
+
+
+
+
+若 $\dfrac{\partial f}{\partial x}$ 存在，取 $\vect v=(1,0)$，则
+\[
+\frac{\partial f}{\partial\vect v}
+=\lim_{t\to0}\frac{f(x_0+t,y_0)-f(x_0,y_0)}{t}
+=\left.\frac{\partial f}{\partial x}\right|_{(x_0,y_0)}.
+\]
+而当 $\vect v=(-1,0)$ 时，
+\[
+\frac{\partial f}{\partial\vect v}=-\frac{\partial f}{\partial x}.
+\]
+
+
+	\textbf{注：}偏导数存在时，方向导数不一定存在.同样地，沿任意方向的方向导数均存在，也不一定推出可微.
+
+
+同样，若将 $\R^n$ 中的单位向量 $\vect v$（即满足 $|\vect v|=1$ 的向量）视为一个方向，就可类似定义 $n$ 元函数的方向导数.
+
+
+
+\textbf{定义 2.1.4}
+
+设 $D\subset\R^n$ 为开集，$\vect x^{\,0}=(x_1^0,x_2^0,\cdots,x_n^0)$ 为 $D$ 中一点，$\vect v=(v_1,v_2,\cdots,v_n)$ 为一方向.定义 $D$ 上的 $n$ 元函数
+	\[
+	u=f(x_1,x_2,\cdots,x_n)
+	\]
+	在点 $\vect x^{\,0}$ 沿方向 $\vect v$ 的方向导数为
+	\[
+	\frac{\partial f}{\partial\vect v}(x_1^0,x_2^0,\cdots,x_n^0)
+	=\lim_{t\to0}
+	\frac{f(x_1^0+tv_1,x_2^0+tv_2,\cdots,x_n^0+tv_n)-f(x_1^0,x_2^0,\cdots,x_n^0)}{t},
+	\]
+	如果等式右边的极限存在.
+
+
+
+
+\subsection*{全微分}
+
+
+
+\textbf{定义 2.1.5}
+
+对 $z=f(x,y)$，考虑全增量
+\[
+\Delta z=f(x+\Delta x,y+\Delta y)-f(x,y).
+\]
+若存在与 $\Delta x,\Delta y$ 无关的函数 $A(x,y)$、$B(x,y)$，使得
+\[
+\Delta z=A(x,y)\Delta x+B(x,y)\Delta y
++o\!\left(\sqrt{\Delta x^2+\Delta y^2}\right),
+\]
+则称 $f(x,y)$ 在该点\textbf{可微}，并称
+\[
+\dd z=A(x,y)\dd x+B(x,y)\dd y
+\]
+为 $f(x,y)$ 的\textbf{全微分}.
+
+
+
+
+如果 $f(x,y)$ 是可微的，则容易推出 $f(x,y)$ 是连续的.偏导数存在不一定推出连续，因此也不一定推出可微.
+
+
+
+\textbf{命题 2.1.6}
+
+若 $f(x,y)$ 在一点处可微，则 $f(x,y)$ 在该点可偏导，且
+\[
+\dd z=\frac{\partial f}{\partial x}\dd x+\frac{\partial f}{\partial y}\dd y.
+\]
+
+
+
+
+
+
+\textbf{证明}
+
+由可微的定义，
+\[
+f(x+\Delta x,y+\Delta y)-f(x,y)
+=A(x,y)\Delta x+B(x,y)\Delta y
++o\!\left(\sqrt{\Delta x^2+\Delta y^2}\right).
+\]
+令 $\Delta y=0$，则
+\[
+\frac{f(x+\Delta x,y)-f(x,y)}{\Delta x}
+=A(x,y)+\frac{o(|\Delta x|)}{\Delta x}.
+\]
+当 $\Delta x\to0$ 时，右端趋于 $A(x,y)$，故
+\[
+A(x,y)=\frac{\partial f}{\partial x}.
+\]
+同理，$B(x,y)=\dfrac{\partial f}{\partial y}$，从而结论成立.
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 2.1.7}
+
+若 $f$ 在 $(x_0,y_0)$ 处可微，则 $f$ 在该点沿任意方向
+	\[
+	\vect v=(\cos\alpha,\sin\alpha)
+	\]
+	的方向导数均存在，且
+	\[
+	\frac{\partial f}{\partial\vect v}(x_0,y_0)
+	=
+	\frac{\partial f}{\partial x}(x_0,y_0)\cos\alpha
+	+
+	\frac{\partial f}{\partial y}(x_0,y_0)\sin\alpha.
+	\]
+
+
+
+
+
+
+\textbf{证明}
+
+由 $f$ 在 $(x_0,y_0)$ 处可微，当 $t\to0$ 时，
+	\[
+	\begin{aligned}
+	&f(x_0+t\cos\alpha,y_0+t\sin\alpha)-f(x_0,y_0)\\
+	&\qquad=
+	\frac{\partial f}{\partial x}(x_0,y_0)t\cos\alpha
+	+
+	\frac{\partial f}{\partial y}(x_0,y_0)t\sin\alpha
+o(t).
+	\end{aligned}
+	\]
+	因此
+	\[
+	\begin{aligned}
+	\frac{\partial f}{\partial\vect v}(x_0,y_0)
+	&=
+	\lim_{t\to0}
+	\frac{f(x_0+t\cos\alpha,y_0+t\sin\alpha)-f(x_0,y_0)}{t}\\
+	&=
+	\frac{\partial f}{\partial x}(x_0,y_0)\cos\alpha
+	+
+	\frac{\partial f}{\partial y}(x_0,y_0)\sin\alpha.
+	\end{aligned}
+	\]
+
+
+$\square$
+
+
+
+总而言之，对于多元函数的偏导数、方向导数与可微性，有如下关系：
+\begin{enumerate}
+	\item 可偏导未必连续，可偏导也未必可微；
+	\item 沿任意方向的方向导数均存在时，各偏导数必然存在，但函数仍未必可微；
+	\item 可微必连续且必可偏导.若 $z=f(\vect x)$，其中
+	$\vect x=(x_1,\cdots,x_n)$，则
+	\[
+	\dd z
+	=
+	\frac{\partial f}{\partial x_1}\dd x_1
+	+\cdots+
+	\frac{\partial f}{\partial x_n}\dd x_n
+	=
+	\frac{\partial f}{\partial\vect x}\cdot\dd\vect x;
+	\]
+	\item 可微则沿任意方向的方向导数均存在.
+\end{enumerate}
+
+
+
+\textbf{定理 2.1.8}
+
+设 $D\subset\R^2$ 为开集，函数 $z=f(x,y)$ 在 $(x_0,y_0)$ 的某邻域内可偏导.若
+	\[
+	\frac{\partial f}{\partial x},\qquad
+	\frac{\partial f}{\partial y}
+	\]
+	在 $(x_0,y_0)$ 处连续，则 $f$ 在 $(x_0,y_0)$ 处可微.
+
+
+
+
+\textbf{注：}若 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$ 在 $D$ 上连续，则称 $f$ 在 $D$ 上连续可微，记作 $f\in C^1(D)$.上面的定理说明，一阶偏导数连续可以推出可微.
+
+
+
+\textbf{证明}
+
+记
+	\[
+	\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0).
+	\]
+	将其分解为
+	\[
+	\begin{aligned}
+	\Delta z
+	={}&f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0+\Delta y)\\
+	&+f(x_0,y_0+\Delta y)-f(x_0,y_0).
+	\end{aligned}
+	\]
+	分别对两个差值应用一元函数的微分中值定理，存在
+	$\theta_1,\theta_2\in(0,1)$，使得
+	\[
+	\Delta z
+	=
+	f_x(x_0+\theta_1\Delta x,y_0+\Delta y)\Delta x
+	+
+	f_y(x_0,y_0+\theta_2\Delta y)\Delta y.
+	\]
+	由 $f_x,f_y$ 在 $(x_0,y_0)$ 处连续，当
+	$\Delta x\to0,\Delta y\to0$ 时，可写成
+	\[
+	\begin{aligned}
+	f_x(x_0+\theta_1\Delta x,y_0+\Delta y)
+		&=f_x(x_0,y_0)+\rho(\Delta x,\Delta y),\\
+	f_y(x_0,y_0+\theta_2\Delta y)
+		&=f_y(x_0,y_0)+\eta(\Delta x,\Delta y),
+	\end{aligned}
+	\]
+	其中 $\rho(\Delta x,\Delta y)\to0$，$\eta(\Delta x,\Delta y)\to0$.代入得
+	\[
+	\Delta z
+	=
+	f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y
+	+\rho\Delta x+\eta\Delta y.
+	\]
+	又由 Cauchy--Schwarz 不等式，
+	\[
+	\left|
+	\frac{\rho\Delta x+\eta\Delta y}
+	{\sqrt{\Delta x^2+\Delta y^2}}
+	\right|
+	\leq
+	\sqrt{\rho^2+\eta^2}\longrightarrow0.
+	\]
+	故
+	\[
+	\dd z
+	=
+	\frac{\partial f}{\partial x}(x_0,y_0)\dd x
+	+
+	\frac{\partial f}{\partial y}(x_0,y_0)\dd y,
+	\]
+	即 $f$ 在 $(x_0,y_0)$ 处可微.
+
+
+$\square$
+
+
+
+\subsection*{梯度}
+
+设 $z=f(x,y)$ 在 $(x_0,y_0)$ 处可微，则它沿任意方向
+$\vect v=(\cos\alpha,\sin\alpha)$ 的方向导数均存在，并且
+\[
+\begin{aligned}
+\frac{\partial f}{\partial\vect v}
+&=
+\frac{\partial f}{\partial x}\cos\alpha
++
+\frac{\partial f}{\partial y}\sin\alpha\\
+&=
+\left(
+\frac{\partial f}{\partial x}\vect i
++
+\frac{\partial f}{\partial y}\vect j
+\right)
+\cdot
+\left(\cos\alpha\,\vect i+\sin\alpha\,\vect j\right).
+\end{aligned}
+\]
+由 Cauchy--Schwarz 不等式，
+\[
+\left|
+\frac{\partial f}{\partial\vect v}
+\right|
+\leq
+\left|
+\frac{\partial f}{\partial x}\vect i
++
+\frac{\partial f}{\partial y}\vect j
+\right|
+\left|\cos\alpha\,\vect i+\sin\alpha\,\vect j\right|
+=
+\sqrt{
+\left(\frac{\partial f}{\partial x}\right)^2
++
+\left(\frac{\partial f}{\partial y}\right)^2
+}.
+\]
+当 $\vect v$ 与
+$\dfrac{\partial f}{\partial x}\vect i+
+\dfrac{\partial f}{\partial y}\vect j$
+同向或反向时，$\left|\dfrac{\partial f}{\partial\vect v}\right|$ 取得最大值.
+
+
+
+\textbf{定义 2.1.9}
+
+称向量
+	\[
+	\operatorname{grad}f
+	=
+	\frac{\partial f}{\partial x}\vect i
+	+
+	\frac{\partial f}{\partial y}\vect j
+	\]
+	为函数 $f$ 的\textbf{梯度}，也记作 $\nabla f$.
+
+
+
+
+梯度给出了函数变化率最大的方向.具体而言：
+\begin{enumerate}
+	\item 当 $\operatorname{grad}f\ne\vect 0$ 时，$f$ 沿
+	$\operatorname{grad}f$ 的方向增长最快，沿
+	$-\operatorname{grad}f$ 的方向减小最快；当
+	$\operatorname{grad}f=\vect 0$ 时，各方向的方向导数均为零；
+	\item 当 $\operatorname{grad}f\ne\vect 0$ 时，梯度与函数的等值线正交；
+	\item $\operatorname{grad}f$ 也可记为 $\nabla f$.
+\end{enumerate}
+
+\subsection*{高阶偏导数}
+
+以二元函数 $z=f(x,y)$ 为例.若
+$\dfrac{\partial z}{\partial x}$、$\dfrac{\partial z}{\partial y}$
+仍然可偏导，则可进一步求二阶偏导数：
+\[
+\frac{\partial}{\partial x}
+\left(\frac{\partial z}{\partial x}\right)
+=
+\frac{\partial^2z}{\partial x^2}
+=f_{xx}(x,y),
+\qquad
+\frac{\partial}{\partial y}
+\left(\frac{\partial z}{\partial y}\right)
+=
+\frac{\partial^2z}{\partial y^2}
+=f_{yy}(x,y),
+\]
+\[
+\frac{\partial}{\partial x}
+\left(\frac{\partial z}{\partial y}\right)
+=
+\frac{\partial^2z}{\partial x\partial y}
+=f_{yx}(x,y),
+\qquad
+\frac{\partial}{\partial y}
+\left(\frac{\partial z}{\partial x}\right)
+=
+\frac{\partial^2z}{\partial y\partial x}
+=f_{xy}(x,y).
+\]
+其中 $f_{xx}$、$f_{yy}$ 称为\textbf{二阶偏导数}，
+$f_{xy}$、$f_{yx}$ 称为\textbf{二阶混合偏导数}.
+
+
+
+\textbf{例 2.1.10}
+
+混合偏导数的求导次序一般不能任意交换.令
+	\[
+	f(x,y)=
+	\begin{cases}
+	xy\dfrac{x^2-y^2}{x^2+y^2},&x^2+y^2\ne0,\\[6pt]
+	0,&x^2+y^2=0.
+	\end{cases}
+	\]
+	当 $x^2+y^2\ne0$ 时，
+	\[
+	\frac{\partial f}{\partial x}
+	=
+	y\frac{x^4+4x^2y^2-y^4}{(x^2+y^2)^2},
+	\qquad
+	\frac{\partial f}{\partial y}
+	=
+	x\frac{x^4-4x^2y^2-y^4}{(x^2+y^2)^2},
+	\]
+	而在原点处，两者均为零.因此
+	\[
+	f_{xy}(0,0)
+	=
+	\lim_{\Delta y\to0}
+	\frac{f_x(0,\Delta y)-f_x(0,0)}{\Delta y}
+	=-1,
+	\]
+	\[
+	f_{yx}(0,0)
+	=
+	\lim_{\Delta x\to0}
+	\frac{f_y(\Delta x,0)-f_y(0,0)}{\Delta x}
+	=1.
+	\]
+	故 $f_{xy}(0,0)\ne f_{yx}(0,0)$.
+
+
+
+
+
+
+\textbf{定理 2.1.11}
+
+设 $D\subset\R^2$ 为开集，函数 $f:D\to\R$ 的混合偏导数
+	$f_{xy}$ 与 $f_{yx}$ 在 $(x_0,y_0)$ 的某邻域内存在，并且二者在
+	$(x_0,y_0)$ 处连续，则
+	\[
+	f_{xy}(x_0,y_0)=f_{yx}(x_0,y_0).
+	\]
+
+
+
+
+
+
+\textbf{证明}
+
+对充分小的非零增量 $\Delta x,\Delta y$，记
+	\[
+	I(\Delta x,\Delta y)
+	=
+	\frac{
+	f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0)
+	-f(x_0,y_0+\Delta y)+f(x_0,y_0)}
+	{\Delta x\Delta y}.
+	\]
+	先将分子视为关于 $x$ 的差，再对 $y$ 应用微分中值定理，存在
+	$\xi$ 介于 $x_0$ 与 $x_0+\Delta x$ 之间、$\eta$ 介于
+	$y_0$ 与 $y_0+\Delta y$ 之间，使得
+	\[
+	I(\Delta x,\Delta y)=f_{xy}(\xi,\eta).
+	\]
+	交换两次应用中值定理的顺序，同样存在相应的
+	$\xi',\eta'$，使得
+	\[
+	I(\Delta x,\Delta y)=f_{yx}(\xi',\eta').
+	\]
+	当 $\Delta x\to0,\Delta y\to0$ 时，
+	$(\xi,\eta)\to(x_0,y_0)$ 且
+	$(\xi',\eta')\to(x_0,y_0)$.由 $f_{xy}$、$f_{yx}$
+	在 $(x_0,y_0)$ 处连续，
+	\[
+	\lim_{\substack{\Delta x\to0\\\Delta y\to0}}
+	I(\Delta x,\Delta y)
+	=f_{xy}(x_0,y_0)
+	=f_{yx}(x_0,y_0).
+	\]
+
+
+$\square$
+
+
+
+更一般地，高阶混合偏导数在连续的条件下，其求导次序可以任意交换.例如，若
+$f_{xyy}$、$f_{yxy}$、$f_{yyx}$ 均连续，则它们相等，可统一记作
+\[
+\frac{\partial^3f}{\partial x\partial y^2}.
+\]
+
+\subsection*{高阶微分}
+
+设 $D\subset\R^2$ 为开区域，函数 $f:D\to\R$ 连续可微.对于
+$z=f(x,y)$，其全微分为
+\[
+\dd z=\frac{\partial f}{\partial x}\dd x
++\frac{\partial f}{\partial y}\dd y.
+\]
+若 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$
+也连续可微，则称 $z=f(x,y)$ 二阶连续可微，记为$C^2$,并定义其二阶微分为
+\[
+\begin{aligned}
+\dd^2z
+&=\dd\left(
+\frac{\partial f}{\partial x}\dd x
++\frac{\partial f}{\partial y}\dd y
+\right)\\
+&=\dd\left(\frac{\partial f}{\partial x}\right)\dd x
++\frac{\partial f}{\partial x}\dd(\dd x)
++\dd\left(\frac{\partial f}{\partial y}\right)\dd y
++\frac{\partial f}{\partial y}\dd(\dd y)\\
+&=
+\left(
+\frac{\partial^2f}{\partial x^2}\dd x
++\frac{\partial^2f}{\partial y\partial x}\dd y
+\right)\dd x
++
+\left(
+\frac{\partial^2f}{\partial x\partial y}\dd x
++\frac{\partial^2f}{\partial y^2}\dd y
+\right)\dd y\\
+&=
+\left(
+\dd x\frac{\partial}{\partial x}
++\dd y\frac{\partial}{\partial y}
+\right)^2f.
+\end{aligned}
+\]
+
+进一步地，若 $f\in C^k(D)$，即 $f$ 的所有不高于 $k$ 阶的偏导数
+均连续，可以归纳的证明.
+\[
+\dd^kz
+=
+\left(
+\dd x\frac{\partial}{\partial x}
++\dd y\frac{\partial}{\partial y}
+\right)^kf.
+\]
+
+\subsection*{向量值函数}
+
+
+
+\textbf{定义 2.1.12}
+
+设
+	\[
+	\vect F(x_1,\cdots,x_n)
+	=
+	\begin{pmatrix}
+	f_1(x_1,\cdots,x_n)\\
+	f_2(x_1,\cdots,x_n)\\
+	\vdots\\
+	f_m(x_1,\cdots,x_n)
+	\end{pmatrix},
+	\qquad
+	\vect F:D\subset\R^n\to\R^m.
+	\]
+	称 $\vect F$ 为一个\textbf{向量值函数}，称
+	$f_1,\cdots,f_m$ 为 $\vect F$ 的分量函数.
+
+
+
+
+向量函数 $\vect F$ 连续，当且仅当它的每个分量函数
+$f_1,\cdots,f_m$ 都连续.对于 $i=1,\cdots,n$,考虑极限
+\[\frac{\partial \vect F}{\partial x_1}=\lim\limits_{\Delta x_1\to 0 }\frac{\vect F(x_1+\Delta x_1,\cdots,x_n)-\vect F(x_1,\cdots,x_n)}{\Delta x_1}\]
+若此极限存在且有限，就称$ \vect F$关于$x_1$可偏导.考虑$\vect F $是向量值函数.有
+
+\[
+\frac{\partial\vect F}{\partial x_i}
+=
+\begin{pmatrix}
+\dfrac{\partial f_1}{\partial x_i}\\[4pt]
+\dfrac{\partial f_2}{\partial x_i}\\
+\vdots\\
+\dfrac{\partial f_m}{\partial x_i}
+\end{pmatrix}.
+\]
+因此，$\dfrac{\partial\vect F}{\partial x_i}$ 存在，当且仅当所有分量
+函数关于 $x_i$ 的偏导数均存在.
+
+
+
+\textbf{定义 2.1.13}
+
+向量函数 $\vect F$ 的 \textbf{Jacobi 矩阵}定义为
+	\[
+	J_{\vect F}
+	=
+	\frac{D(f_1,\cdots,f_m)}
+	{D(x_1,\cdots,x_n)}
+	=
+	\begin{pmatrix}
+	\dfrac{\partial f_1}{\partial x_1}
+	&\dfrac{\partial f_1}{\partial x_2}
+	&\cdots
+	&\dfrac{\partial f_1}{\partial x_n}\\[5pt]
+	\dfrac{\partial f_2}{\partial x_1}
+	&\dfrac{\partial f_2}{\partial x_2}
+	&\cdots
+	&\dfrac{\partial f_2}{\partial x_n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	\dfrac{\partial f_m}{\partial x_1}
+	&\dfrac{\partial f_m}{\partial x_2}
+	&\cdots
+	&\dfrac{\partial f_m}{\partial x_n}
+	\end{pmatrix}_{m\times n}.
+	\]
+	当 $m=n$ 时，称
+	\[
+	\det J_{\vect F}
+	=
+	\frac{\partial(f_1,\cdots,f_n)}
+	{\partial(x_1,\cdots,x_n)}
+	\]
+	为 $f_1,\cdots,f_n$ 关于 $x_1,\cdots,x_n$ 的
+	\textbf{Jacobi 行列式}.
+
+
+
+
+\textbf{注：}
+\begin{enumerate}
+	\item 交换两个分量函数 $f_i,f_j$，相当于交换 Jacobi 矩阵的
+	第 $i,j$ 两行；
+	\item 交换两个自变量 $x_i,x_j$，相当于交换 Jacobi 矩阵的
+	第 $i,j$ 两列.
+\end{enumerate}
+
+
+
+\textbf{定义 2.1.14}
+
+设 $\vect x\in D$.若存在一个 $m\times n$ 矩阵 $A$，使得
+	\[
+	\vect F(\vect x+\Delta\vect x)-\vect F(\vect x)
+	=
+	A\Delta\vect x+o\bigl(\norm{\Delta\vect x}\bigr),
+	\]
+	则称 $\vect F$ 在 $\vect x$ 处\textbf{可微}.此时
+	\[
+	A
+	=
+	\frac{D(f_1,\cdots,f_m)}
+	{D(x_1,\cdots,x_n)}
+	=
+	J_{\vect F}.
+	\]
+
+
+
+
+与标量函数相同，向量函数可偏导不一定连续，也不一定可微；
+可微必连续，并且必可偏导.
+
+
+
+
+
+
+
+\section*{§2　复合函数的链式法则}
+
+\subsection*{二元函数复合函数求导法则}
+
+设
+\[
+f:D_f\subset\R^2\to\R,
+\qquad
+g:D_g\subset\R^2\to\R^2,
+\]
+且 $g(D_g)\subset D_f$.记
+\[
+g(u,v)=\bigl(x(u,v),y(u,v)\bigr).
+\]
+
+
+
+\textbf{定理 2.2.1}
+
+若 $g$ 在 $(u_0,v_0)$ 处可微，记
+	\[
+	x_0=x(u_0,v_0),\qquad y_0=y(u_0,v_0),
+	\]
+	并且 $f$ 在 $(x_0,y_0)$ 处可微，则复合函数
+	\[
+	z=f\circ g=f\bigl(x(u,v),y(u,v)\bigr)
+	\]
+	在 $(u_0,v_0)$ 处可微，且
+	\[
+	\frac{\partial z}{\partial u}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial u},
+	\qquad
+	\frac{\partial z}{\partial v}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial v},
+	\]
+	其中 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$
+	在 $(x_0,y_0)$ 处取值，而
+	$\dfrac{\partial x}{\partial u}$、$\dfrac{\partial y}{\partial u}$、
+	$\dfrac{\partial x}{\partial v}$、$\dfrac{\partial y}{\partial v}$
+	在 $(u_0,v_0)$ 处取值.
+
+
+
+
+上述链式法则可写成矩阵形式
+\[
+\begin{pmatrix}
+\dfrac{\partial z}{\partial u}\\[5pt]
+\dfrac{\partial z}{\partial v}
+\end{pmatrix}_{(u_0,v_0)}
+=
+\begin{pmatrix}
+\dfrac{\partial x}{\partial u}
+&\dfrac{\partial y}{\partial u}\\[5pt]
+\dfrac{\partial x}{\partial v}
+&\dfrac{\partial y}{\partial v}
+\end{pmatrix}_{(u_0,v_0)}
+\begin{pmatrix}
+\dfrac{\partial f}{\partial x}\\[5pt]
+\dfrac{\partial f}{\partial y}
+\end{pmatrix}_{(x_0,y_0)}.
+\]
+
+
+
+\textbf{证明}
+
+这里只证明关于 $u$ 的公式.记
+	\[
+	\begin{aligned}
+	\Delta x&=x(u_0+\Delta u,v_0)-x(u_0,v_0),\\
+	\Delta y&=y(u_0+\Delta u,v_0)-y(u_0,v_0).
+	\end{aligned}
+	\]
+	于是
+	\[
+	\begin{aligned}
+	\frac{\partial z}{\partial u}(u_0,v_0)
+	&=
+	\lim_{\Delta u\to0}
+	\frac{
+	f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}
+	{\Delta u}.
+	\end{aligned}
+	\]
+	由 $f$ 在 $(x_0,y_0)$ 处可微，
+	\[
+	f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)
+	=
+	f_x(x_0,y_0)\Delta x
+	+
+	f_y(x_0,y_0)\Delta y
+	+
+	o\left(\sqrt{\Delta x^2+\Delta y^2}\right).
+	\]
+	又因 $g$ 在 $(u_0,v_0)$ 处可微，
+	\[
+	\lim_{\Delta u\to0}\frac{\Delta x}{\Delta u}
+	=
+	\frac{\partial x}{\partial u}(u_0,v_0),
+	\qquad
+	\lim_{\Delta u\to0}\frac{\Delta y}{\Delta u}
+	=
+	\frac{\partial y}{\partial u}(u_0,v_0),
+	\]
+	并且
+	\[
+	\lim_{\Delta u\to0}
+	\frac{o\left(\sqrt{\Delta x^2+\Delta y^2}\right)}
+	{\Delta u}=0.
+	\]
+	故
+	\[
+	\frac{\partial z}{\partial u}
+	=
+	\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}.
+	\]
+	关于 $v$ 的公式同理.
+
+
+$\square$
+
+
+
+一般地，设
+\[
+f:D_f\subset\R^m\to\R,
+\qquad
+g:D_g\subset\R^n\to\R^m,
+\]
+并记
+\[
+g(x_1,\cdots,x_n)
+=
+\bigl(y_1(x_1,\cdots,x_n),\cdots,y_m(x_1,\cdots,x_n)\bigr),
+\qquad
+z=f\circ g.
+\]
+若 $f$ 与 $g$ 在相应点处可微，则对于 $i=1,\cdots,n$，
+\[
+\frac{\partial z}{\partial x_i}
+=
+\frac{\partial f}{\partial y_1}\frac{\partial y_1}{\partial x_i}
++
+\frac{\partial f}{\partial y_2}\frac{\partial y_2}{\partial x_i}
++\cdots+
+\frac{\partial f}{\partial y_m}\frac{\partial y_m}{\partial x_i}.
+\]
+写成矩阵形式即
+\[
+\begin{pmatrix}
+\dfrac{\partial z}{\partial x_1}
+&\cdots&
+\dfrac{\partial z}{\partial x_n}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\dfrac{\partial f}{\partial y_1}
+&\cdots&
+\dfrac{\partial f}{\partial y_m}
+\end{pmatrix}
+\frac{D(y_1,\cdots,y_m)}
+{D(x_1,\cdots,x_n)}.
+\]
+
+
+
+\textbf{定理 2.2.2（向量值复合函数的链式法则）}
+
+
+	设
+	\[
+	\vect f:D_f\subset\R^k\to\R^m,
+	\qquad
+	\vect g:D_g\subset\R^n\to\R^k
+	\]
+	分别为多元向量值函数，且分别在 $D_f$ 与 $D_g$ 上具有连续导数.
+	若 $\vect g(D_g)\subset D_f$，并记 $\vect u=\vect g(\vect x)$，
+	则复合向量值函数 $\vect f\circ\vect g$ 在 $D_g$ 上也具有连续导数，
+	并且
+	\[
+	(\vect f\circ\vect g)'(\vect x)
+	=
+	\vect f'(\vect u)\,\vect g'(\vect x)
+	=
+	\vect f'\bigl(\vect g(\vect x)\bigr)\,\vect g'(\vect x).
+	\]
+	其中 $\vect f'(\vect u)$、$\vect g'(\vect x)$ 和
+	$(\vect f\circ\vect g)'(\vect x)$ 分别表示相应函数的 Jacobi 矩阵.
+
+
+
+
+\subsection*{例子}
+
+
+
+\textbf{例 2.2.3}
+
+设
+	\[
+	z=\arctan(xy),\qquad y=e^x.
+	\]
+	求 $\left.\dfrac{\dd z}{\dd x}\right|_{x=0}$.
+
+	由复合函数的链式法则，
+	\[
+	\frac{\dd z}{\dd x}
+	=
+	\frac{\partial z}{\partial x}
+	+
+	\frac{\partial z}{\partial y}\frac{\dd y}{\dd x}
+	=
+	\frac{y}{1+x^2y^2}
+	+
+	\frac{x}{1+x^2y^2}e^x.
+	\]
+	当 $x=0$ 时，$y=1$，故
+	\[
+	\left.\frac{\dd z}{\dd x}\right|_{x=0}=1.
+	\]
+
+
+
+
+
+
+\textbf{例 2.2.4}
+
+设
+	\[
+	z=\frac{x^2}{y},\qquad x=2uv,\qquad y=2u+v.
+	\]
+	则
+	\[
+	\begin{aligned}
+	\frac{\partial z}{\partial u}
+	&=
+	\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}
+	+
+	\frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\\
+	&=
+	\frac{2x}{y}\cdot 2v-\frac{x^2}{y^2}\cdot 2\\
+	&=
+	\frac{4uv}{2u+v}\cdot 2v
+	-
+	\frac{8u^2v^2}{(2u+v)^2}.
+	\end{aligned}
+	\]
+
+
+
+
+
+
+\textbf{例 2.2.5}
+
+设
+	\[
+	w=f(x^2+y^2,xyz).
+	\]
+	令
+	\[
+	\xi=x^2+y^2,
+	\qquad
+	\eta=xyz,
+	\qquad
+	w=f(\xi,\eta).
+	\]
+	则
+	\[
+	\frac{\partial w}{\partial x}
+	=
+	\frac{\partial f}{\partial\xi}\frac{\partial\xi}{\partial x}
+	+
+	\frac{\partial f}{\partial\eta}\frac{\partial\eta}{\partial x}
+	=
+	2x\frac{\partial f}{\partial\xi}
+	+yz\frac{\partial f}{\partial\eta}.
+	\]
+	这里 $\dfrac{\partial f}{\partial\xi}$ 称为 $f$ 对第一变元求偏导，
+	$\dfrac{\partial f}{\partial\eta}$ 称为 $f$ 对第二变元求偏导.
+	在所需的二阶偏导数均存在时，进一步有
+	\[
+	\begin{aligned}
+	\frac{\partial^2w}{\partial z\partial x}
+	&=
+	\frac{\partial}{\partial z}
+	\left(
+	2x\frac{\partial f}{\partial\xi}
+	+yz\frac{\partial f}{\partial\eta}
+	\right)\\
+	&=
+	2x\left(
+	\frac{\partial^2f}{\partial\xi^2}\frac{\partial\xi}{\partial z}
+	+
+	\frac{\partial^2f}{\partial\eta\partial\xi}
+	\frac{\partial\eta}{\partial z}
+	\right)
+	+y\frac{\partial f}{\partial\eta}\\
+	&\qquad
+	+yz\left(
+	\frac{\partial^2f}{\partial\xi\partial\eta}
+	\frac{\partial\xi}{\partial z}
+	+
+	\frac{\partial^2f}{\partial\eta^2}
+	\frac{\partial\eta}{\partial z}
+	\right)\\
+	&=
+	2x^2y\frac{\partial^2f}{\partial\eta\partial\xi}
+	+y\frac{\partial f}{\partial\eta}
+	+xy^2z\frac{\partial^2f}{\partial\eta^2}.
+	\end{aligned}
+	\]
+
+
+
+
+\subsection*{一阶微分形式的不变性}
+
+回忆一元复合函数的情形.设
+\[
+y=f(x),\qquad x=\varphi(t).
+\]
+若把 $x$ 看作中间变量，对 $t$ 求微分，则
+\[
+\dd y=f'(x)\varphi'(t)\dd t=f'(x)\dd x;
+\]
+若直接把 $x$ 看作自变量，同样有
+\[
+\dd y=f'(x)\dd x.
+\]
+
+类似地，设
+\[
+z=f(x,y),
+\qquad
+x=x(u,v),
+\qquad
+y=y(u,v).
+\]
+当 $x,y$ 被看作自变量时，
+\[
+\dd z=\frac{\partial f}{\partial x}\dd x
++\frac{\partial f}{\partial y}\dd y.
+\]
+当 $x,y$ 被看作中间变量时，
+\[
+\begin{aligned}
+\dd z
+&=
+\frac{\partial z}{\partial u}\dd u
++
+\frac{\partial z}{\partial v}\dd v\\
+&=
+\left(
+\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}
++
+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}
+\right)\dd u
++
+\left(
+\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}
++
+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}
+\right)\dd v\\
+&=
+\frac{\partial f}{\partial x}
+\left(
+\frac{\partial x}{\partial u}\dd u
++
+\frac{\partial x}{\partial v}\dd v
+\right)
++
+\frac{\partial f}{\partial y}
+\left(
+\frac{\partial y}{\partial u}\dd u
++
+\frac{\partial y}{\partial v}\dd v
+\right)\\
+&=
+\frac{\partial f}{\partial x}\dd x
++
+\frac{\partial f}{\partial y}\dd y.
+\end{aligned}
+\]
+因此，无论 $x,y$ 是自变量还是中间变量，一阶全微分都具有相同的形式，
+这称为\textbf{一阶微分形式的不变性}.一般而言，二阶及更高阶微分形式不具有这种不变性.
+
+
+
+
+
+
+
+\section*{§3　中值定理与 Taylor 公式}
+
+\subsection*{中值定理}
+
+
+
+\textbf{定义 2.3.1}
+
+设 $D\subset\R^n$.若对任意两点 $\vect x,\vect y\in D$ 及任意
+	$\lambda\in[0,1]$，均有
+	\[
+	\lambda\vect x+(1-\lambda)\vect y\in D,
+	\]
+	则称 $D$ 为\textbf{凸集}.换言之，$D$ 中任意两点之间的线段都包含在 $D$ 中.
+
+
+
+
+
+
+\textbf{定理 2.3.2（Lagrange 中值定理）}
+
+
+	设 $D\subset\R^2$ 为凸开集，函数 $f:D\to\R$ 在 $D$ 上可微.
+	对任意 $(x_1,y_1),(x_2,y_2)\in D$，存在 $\theta\in(0,1)$，使得
+	\[
+	\begin{aligned}
+	&f(x_1,y_1)-f(x_2,y_2)\\
+	&\quad=
+	f_x\bigl(x_1+\theta(x_2-x_1),y_1+\theta(y_2-y_1)\bigr)(x_1-x_2)\\
+	&\qquad+
+	f_y\bigl(x_1+\theta(x_2-x_1),y_1+\theta(y_2-y_1)\bigr)(y_1-y_2).
+	\end{aligned}
+	\]
+
+
+
+
+
+
+\textbf{证明}
+
+令
+	\[
+	\varphi(t)
+	=
+	f\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr),
+	\qquad t\in[0,1].
+	\]
+	由于 $D$ 为凸集，$\varphi$ 在 $[0,1]$ 上有定义.由 $f$ 可微，
+	$\varphi$ 在 $[0,1]$ 上连续并在 $(0,1)$ 上可导，且
+	\[
+	\begin{aligned}
+	\varphi'(t)
+	={}&
+	f_x\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr)(x_2-x_1)\\
+	&+
+	f_y\bigl(x_1+t(x_2-x_1),y_1+t(y_2-y_1)\bigr)(y_2-y_1).
+	\end{aligned}
+	\]
+	对 $\varphi$ 应用一元函数的 Lagrange 中值定理，存在 $t_0\in(0,1)$，使得
+	\[
+	\varphi(1)-\varphi(0)=\varphi'(t_0).
+	\]
+	将上式整理，并令 $\theta=t_0$，即得所证公式.
+
+
+$\square$
+
+
+
+
+
+\textbf{命题 2.3.3}
+
+设 $D\subset\R^2$ 为区域，函数 $f\in C^1(D)$.若在 $D$ 上
+	\[
+	\frac{\partial f}{\partial x}=0,
+	\qquad
+	\frac{\partial f}{\partial y}=0,
+	\]
+	即 $\operatorname{grad}f=\vect 0$，则 $f$ 在 $D$ 上为常数.
+
+
+
+
+
+
+\textbf{证明}
+
+若 $D$ 为凸区域，则对任意 $P,Q\in D$，由 Lagrange 中值定理立即得到
+	\[
+	f(P)-f(Q)=0,
+	\]
+	故 $f(P)=f(Q)$.
+
+	一般地，区域 $D$ 是开连通集，因而是折线连通的.对任意 $P,Q\in D$，
+	存在完全包含在 $D$ 中的折线
+	\[
+	P=P_0,P_1,\ldots,P_m=Q.
+	\]
+	每条线段 $[P_{i-1},P_i]$ 都包含在 $D$ 中.
+	在各条线段上依次应用 Lagrange 中值定理，有
+	\[
+	f(P_{i-1})=f(P_i),
+	\qquad i=1,2,\ldots,m.
+	\]
+	于是
+	\[
+	f(P)=f(P_1)=\cdots=f(P_m)=f(Q).
+	\]
+	由于 $P,Q$ 任意，故 $f$ 在 $D$ 上为常数.
+
+
+$\square$
+
+
+
+
+
+\textbf{定理 2.3.4（多元函数的中值公式）}
+
+
+	设 $n$ 元函数 $f(x_1,x_2,\ldots,x_n)$ 在凸区域
+	$D\subset\R^n$ 上可微. 对于 $D$ 内任意两点
+	\[
+	(x_1^0,x_2^0,\ldots,x_n^0)
+	\quad\text{与}\quad
+	(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n),
+	\]
+	至少存在一个 $\theta\in(0,1)$, 使得
+	\[
+	\begin{aligned}
+	&f(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n)
+	-f(x_1^0,x_2^0,\ldots,x_n^0)\\
+	&\qquad=
+	\sum_{i=1}^n
+	f_{x_i}(x_1^0+\theta\Delta x_1,x_2^0+\theta\Delta x_2,
+	\ldots,x_n^0+\theta\Delta x_n)\Delta x_i.
+	\end{aligned}
+	\]
+	
+	使用向量与点积，可以将上述的定理表述为如下形式
+	设 $n$ 元函数 $f(\vect x)$ 在凸区域
+	$D\subset\R^n$ 上可微. 对于 $D$ 内任意两点
+	\[
+	\vect x
+	\quad\text{与}\quad
+	\vect x +\vect{\Delta x},
+	\]
+	
+	至少存在一个 $\theta\in(0,1)$, 使得
+	\[f(\vect x +\vect{\Delta x})
+		-f(\vect x )=\nabla f(\vect x +\theta \vect{\Delta x}) \cdot \vect {\Delta x}\]
+
+
+
+
+\subsection*{二元函数的 Taylor 公式}
+
+
+\textbf{命题 2.3.5}
+
+设 $z=f(x,y)$ 在 $(x_0,y_0)$ 的某邻域内具有直到 $k+1$ 阶的连续偏导数,
+且 $(x_0+\Delta x,y_0+\Delta y)$ 仍在该邻域内. 则
+\[
+\begin{aligned}
+	f(x_0+\Delta x,y_0+\Delta y)
+	={}&f(x_0,y_0)
+	+\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)f(x_0,y_0)\\
+	&+\cdots+
+	\frac{1}{k!}
+	\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)^k f(x_0,y_0)
+	+R_k,
+\end{aligned}
+\]
+其中
+\[
+R_k=
+\frac{1}{(k+1)!}
+\left(
+\Delta x\frac{\partial}{\partial x}
++\Delta y\frac{\partial}{\partial y}
+\right)^{k+1}
+f(x_0+\theta\Delta x,y_0+\theta\Delta y),
+\qquad
+\theta\in(0,1),
+\]
+称为 Lagrange 余项.   
+
+
+
+
+
+
+
+\textbf{证明}
+
+令
+	\[
+	\varphi(t)=f(x_0+t\Delta x,y_0+t\Delta y).
+	\]
+	于是
+	\[
+	\varphi(0)=f(x_0,y_0),
+	\qquad
+	\varphi(1)=f(x_0+\Delta x,y_0+\Delta y).
+	\]
+	由于对 $t\in[0,1]$, $\varphi(t)$ 有定义且具有 $k+1$ 阶导数,
+	对 $\varphi(t)$ 在 $t=0$ 处应用一元函数的 Taylor 公式,
+	\[
+	\varphi(1)
+	=
+	\varphi(0)+\varphi'(0)
+	+\frac{1}{2!}\varphi''(0)
+	+\cdots+
+	\frac{1}{k!}\varphi^{(k)}(0)
+	+\widetilde R_k,
+	\]
+	其中
+	\[
+	\widetilde R_k
+	=
+	\frac{1}{(k+1)!}\varphi^{(k+1)}(\theta),
+	\qquad
+	\theta\in(0,1).
+	\]
+	又
+	\[
+	\varphi^{(j)}(t)
+	=
+	\left(
+	\Delta x\frac{\partial}{\partial x}
+	+\Delta y\frac{\partial}{\partial y}
+	\right)^j
+	f(x_0+t\Delta x,y_0+t\Delta y),
+	\]
+	代入即得所述 Taylor 公式与 Lagrange 余项.
+
+
+$\square$
+
+
+
+若
+\[
+r=\sqrt{\Delta x^2+\Delta y^2}\to0,
+\]
+则还可将余项写成
+\[
+R_k=o(r^k)
+=o\left(\left(\sqrt{\Delta x^2+\Delta y^2}\right)^k\right),
+\]
+称为 Peano 余项.
+
+
+
+\textbf{定理 2.3.6（$n$ 元函数的 Taylor 公式）}
+
+
+	设 $n$ 元函数 $f(x_1,x_2,\ldots,x_n)$ 在点
+	$(x_1^0,x_2^0,\ldots,x_n^0)$ 附近具有 $k+1$ 阶的连续偏导数,
+	则在该点附近成立
+	\[
+	\begin{aligned}
+	&f(x_1^0+\Delta x_1,x_2^0+\Delta x_2,\ldots,x_n^0+\Delta x_n)\\
+	&\quad=
+	f(x_1^0,x_2^0,\ldots,x_n^0)
+	+\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)f(x_1^0,x_2^0,\ldots,x_n^0)\\
+	&\qquad+
+	\frac{1}{2!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^2 f(x_1^0,x_2^0,\ldots,x_n^0)
+	+\cdots\\
+	&\qquad+
+	\frac{1}{k!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^k f(x_1^0,x_2^0,\ldots,x_n^0)
+	+R_k,
+	\end{aligned}
+	\]
+	其中
+	\[
+	\begin{aligned}
+	R_k
+	={}&
+	\frac{1}{(k+1)!}
+	\left(
+	\sum_{i=1}^n\Delta x_i\frac{\partial}{\partial x_i}
+	\right)^{k+1}\\
+	&\quad\cdot
+	f(x_1^0+\theta\Delta x_1,x_2^0+\theta\Delta x_2,
+	\ldots,x_n^0+\theta\Delta x_n),
+	\qquad 0<\theta<1,
+	\end{aligned}
+	\]
+	为 Lagrange 余项.
+
+
+
+
+
+
+
+
+
+
+\section*{§4　隐函数}
+
+
+
+\textbf{定理 2.4.1（隐函数存在定理）}
+
+
+	设 $z=F(x,y)$ 满足下列条件:
+	\begin{enumerate}
+		\item $F(x_0,y_0)=0$;
+		\item $F(x,y)$ 在闭矩形
+		\[
+		D=\{(x,y):|x-x_0|\le a,\ |y-y_0|\le b\}
+		\]
+		上连续可微;
+		\item $F_y(x_0,y_0)\ne0$.
+	\end{enumerate}
+	则有:
+	\begin{enumerate}
+		\item[(i)] 在 $(x_0,y_0)$ 的某邻域内, 方程 $F(x,y)=0$
+		唯一确定一个隐函数
+		\[
+		y=f(x),\qquad x\in(x_0-\rho,x_0+\rho),\qquad \rho>0,
+		\]
+		且 $F(x,f(x))=0$, $f(x_0)=y_0$;
+		\item[(ii)] $y=f(x)$ 在 $(x_0-\rho,x_0+\rho)$ 上连续;
+		\item[(iii)] $y=f(x)$ 在该区间上可导, 且
+		\[
+		\frac{\dd y}{\dd x}
+		=
+		-\frac{F_x(x,y)}{F_y(x,y)}.
+		\]
+	\end{enumerate}
+
+
+
+
+
+
+\textbf{证明}
+
+由 $F_y(x_0,y_0)\ne0$, 不妨设
+	$F_y(x_0,y_0)>0$. 又因 $F_y(x,y)$ 在 $D$ 上连续,
+	存在以 $(x_0,y_0)$ 为中心的闭矩形邻域
+	\[
+	\overline D=
+	\{(x,y):|x-x_0|\le\alpha,\ |y-y_0|\le\beta\}
+	\subset D,
+	\qquad
+	0<\alpha<a,\quad 0<\beta<b,
+	\]
+	使得在 $\overline D$ 上恒有 $F_y(x,y)>0$.
+
+	先令 $x=x_0$, 在区间
+	$[y_0-\beta,y_0+\beta]$ 上考虑一元函数
+	\[
+	\varphi(y)=F(x_0,y).
+	\]
+	因为
+	\[
+	\varphi'(y)=F_y(x_0,y)>0,
+	\qquad
+	\varphi(y_0)=F(x_0,y_0)=0,
+	\]
+	所以
+	\[
+	F(x_0,y_0+\beta)>0,
+	\qquad
+	F(x_0,y_0-\beta)<0.
+	\]
+	在直线 $y=y_0+\beta$ 上, 函数
+	$F(x,y_0+\beta)$ 关于 $x$ 连续, 且在 $x=x_0$ 时为正,
+	故存在 $0<\rho_1<\alpha$, 使得
+	\[
+	F(x,y_0+\beta)>0,
+	\qquad
+	x\in[x_0-\rho_1,x_0+\rho_1].
+	\]
+	同理存在 $0<\rho_2<\alpha$, 使得
+	\[
+	F(x,y_0-\beta)<0,
+	\qquad
+	x\in[x_0-\rho_2,x_0+\rho_2].
+	\]
+	取
+	\[
+	\rho=\min\{\rho_1,\rho_2\}.
+	\]
+	于是对每个 $x\in(x_0-\rho,x_0+\rho)$,
+	函数 $F(x,y)$ 在 $[y_0-\beta,y_0+\beta]$ 上连续,
+	并在两端异号. 由介值定理, 至少存在一点
+	$y\in(y_0-\beta,y_0+\beta)$ 使 $F(x,y)=0$.
+	又因 $F_y(x,y)>0$, $F(x,y)$ 关于 $y$ 严格递增,
+	故该零点唯一. 由此唯一确定
+	\[
+	y=f(x),
+	\qquad
+	F(x,f(x))=0,
+	\qquad
+	f(x_0)=y_0.
+	\]
+
+	
+	下证 $\overline y=f(\overline x)$ 的连续性.
+	$\forall\,\varepsilon>0$，考虑 $\overline y$ 的 $\varepsilon$-邻域，
+	$\varepsilon$ 可取充分小，使得
+	$(\overline y-\varepsilon,\overline y+\varepsilon)\subset(y_0-\beta,y_0+\beta)$.
+	
+	由连续性，
+	
+	$F(\overline x,\overline y+\varepsilon)>0$，
+	$\exists\,\delta_1>0$，当
+	$x\in(\overline x-\delta_1,\overline x+\delta_1)$ 时，
+	$F(x,\overline y+\varepsilon)>0$.
+	
+	$F(\overline x,\overline y-\varepsilon)<0$，
+	$\exists\,\delta_2>0$，
+	$x\in(\overline x-\delta_2,\overline x+\delta_2)$ 时，
+	$F(x,\overline y-\varepsilon)<0$.
+	
+	$\delta=\min\{\delta_1,\delta_2\}$，
+	$x_*\in(\overline x-\delta,\overline x+\delta)$，
+	$F(x_*,\overline y+\varepsilon)>0$，
+	$F(x_*,\overline y-\varepsilon)<0$.
+	\[
+	\Rightarrow\quad
+	y_*=f(x_*)\in(\overline y-\varepsilon,\overline y+\varepsilon),
+	\qquad
+	(x_*,y_*)\text{ 是 }F(x_*,y)=0\text{ 的唯一解}
+	\quad\Rightarrow\quad
+	|f(x_*)-f(\overline x)|<\varepsilon.
+	\]
+	
+	综上，$\forall\,\varepsilon>0$，$\exists\,\delta>0$，
+	$\forall\,x\in(\overline x-\delta,\overline x+\delta)$，
+	$|f(x)-f(\overline x)|<\varepsilon$.
+
+	
+
+	最后证明 $f$ 的可导性. 仍令
+	$\overline y=f(\overline x)$, 并取
+	$\overline x+\Delta x\in(x_0-\rho,x_0+\rho)$. 记
+	\[
+	\Delta y=f(\overline x+\Delta x)-\overline y.
+	\]
+	由 $f$ 连续, 当 $\Delta x\to0$ 时有 $\Delta y\to0$.
+	利用二元函数的中值公式, 存在 $\theta\in(0,1)$, 使得
+	\[
+	\begin{aligned}
+	0
+	={}&F(\overline x+\Delta x,\overline y+\Delta y)-F(\overline x,\overline y)\\
+	={}&F_x(\overline x+\theta\Delta x,\overline y+\theta\Delta y)\Delta x\\
+	&+F_y(\overline x+\theta\Delta x,\overline y+\theta\Delta y)\Delta y.
+	\end{aligned}
+	\]
+	由于邻域内 $F_y>0$, 当 $\Delta x\ne0$ 时,
+	\[
+	\frac{\Delta y}{\Delta x}
+	=
+	-\frac{
+	F_x(\overline x+\theta\Delta x,\overline y+\theta\Delta y)}
+	{F_y(\overline x+\theta\Delta x,\overline y+\theta\Delta y)}.
+	\]
+	令 $\Delta x\to0$, 由 $F_x,F_y$ 连续, 得
+	\[
+	f'(\overline x)
+	=
+	-\frac{F_x(\overline x,\overline y)}{F_y(\overline x,\overline y)}.
+	\]
+	由于 $\overline x$ 任意, 结论成立.
+
+
+$\square$
+
+
+\subsection*{多元隐函数存在定理}
+
+
+\textbf{定理 2.4.2（多元隐函数存在定理）}
+
+
+	设 $n+1$ 元函数
+	\[
+	F(x_1,x_2,\ldots,x_n,y)
+	\]
+	满足下列条件:
+	\begin{enumerate}
+		\item
+		\[
+		F(x_1^0,x_2^0,\ldots,x_n^0,y^0)=0;
+		\]
+		\item 在闭长方体
+		\[
+		D=
+		\left\{
+		(x_1,x_2,\ldots,x_n,y):
+		|y-y^0|\le b,\ 
+		|x_i-x_i^0|\le a_i,\ i=1,2,\ldots,n
+		\right\}
+		\]
+		上, 函数 $F$ 连续, 且具有连续偏导数
+		$F_y,F_{x_i}\ (i=1,2,\ldots,n)$;
+		\item
+		\[
+		F_y(x_1^0,x_2^0,\ldots,x_n^0,y^0)\ne0.
+		\]
+	\end{enumerate}
+	则:
+	\begin{enumerate}
+		\item[(i)] 在点 $(x_1^0,x_2^0,\ldots,x_n^0,y^0)$ 附近,
+		方程
+		\[
+		F(x_1,x_2,\ldots,x_n,y)=0
+		\]
+		唯一确定隐函数
+		\[
+		y=f(x_1,x_2,\ldots,x_n),
+		\qquad
+		(x_1,x_2,\ldots,x_n)
+		\in O\bigl((x_1^0,x_2^0,\ldots,x_n^0),\rho\bigr),
+		\]
+		并且
+		\[
+		F\bigl(x_1,x_2,\ldots,x_n,
+		f(x_1,x_2,\ldots,x_n)\bigr)=0,
+		\qquad
+		f(x_1^0,x_2^0,\ldots,x_n^0)=y^0;
+		\]
+		\item[(ii)] 隐函数 $y=f(x_1,x_2,\ldots,x_n)$
+		在 $O\bigl((x_1^0,x_2^0,\ldots,x_n^0),\rho\bigr)$ 上连续;
+		\item[(iii)] 隐函数 $y=f(x_1,x_2,\ldots,x_n)$
+		在该邻域上具有连续偏导数, 且
+		\[
+		\frac{\partial y}{\partial x_i}
+		=
+		-\frac{F_{x_i}(x_1,x_2,\ldots,x_n,y)}
+		{F_y(x_1,x_2,\ldots,x_n,y)},
+		\qquad i=1,2,\ldots,n.
+		\]
+	\end{enumerate}
+
+
+
+
+对于 $F(\vect x,y)=0$, 可以对 $x_i$ 求导:
+\[
+\frac{\partial F}{\partial x_i}
++
+\frac{\partial F}{\partial y}
+\frac{\partial y}{\partial x_i}
+=0,
+\]
+由此即得上面的偏导数公式.
+
+
+
+\subsection*{多个方程确定的隐函数}
+我们对要研究的形式有一下的要求
+\begin{enumerate}
+	\item 方程有多个，比如$m$个。
+	\item 未知数有多个，也是$m$个，与方程的数量相同.
+\end{enumerate}
+我们以以下的简单形式为例
+\[
+\begin{cases}
+F(x,y,u,v)=0,\\
+G(x,y,u,v)=0.
+\end{cases}
+\]
+
+
+
+\textbf{定理 2.4.3}
+
+设 $F(x,y,u,v)$ 与 $G(x,y,u,v)$ 满足:
+	\begin{enumerate}
+		\item
+		\[
+		F(x_0,y_0,u_0,v_0)
+		=
+		G(x_0,y_0,u_0,v_0)
+		=0;
+		\]
+		\item 在
+		\[
+		D=
+		\left\{
+		(x,y,u,v):
+		|x-x_0|\le a,\ |y-y_0|\le b,\
+		|u-u_0|\le c,\ |v-v_0|\le d
+		\right\}
+		\]
+		上, $F,G$ 连续可微;
+		\item 在 $(x_0,y_0,u_0,v_0)$ 处
+		\[
+		\frac{\partial(F,G)}{\partial(u,v)}
+		=
+		\begin{vmatrix}
+		F_u&F_v\\
+		G_u&G_v
+		\end{vmatrix}
+		\ne0.
+		\]
+	\end{enumerate}
+	则在 $(x_0,y_0,u_0,v_0)$ 的某邻域内, 方程组唯一确定隐函数
+	\[
+	\begin{cases}
+	u=f(x,y),\\
+	v=g(x,y),
+	\end{cases}
+	\qquad
+	(x,y)\in O((x_0,y_0),\rho),
+	\qquad \rho>0.
+	\]
+	并且 $f(x,y),g(x,y)$ 连续可微.
+
+
+
+
+
+
+\textbf{证明}
+
+由
+	\[
+	\begin{vmatrix}
+	F_u&F_v\\
+	G_u&G_v
+	\end{vmatrix}
+	\ne0
+	\]
+	可知 $F_u,F_v,G_u,G_v$ 中至少有一个不为零.
+	不妨设
+	\[
+	F_u(x_0,y_0,u_0,v_0)\ne0.
+	\]
+	由前面的隐函数存在定理, 在
+	$(x_0,y_0,u_0,v_0)$ 的某邻域内,
+	方程 $F(x,y,u,v)=0$ 唯一确定一个 $u$ 关于 $x,y,v$ 的隐函数:
+	\[
+	u=\varphi(x,y,v).
+	\]
+	$\varphi$ 连续可微, 对 $v$ 求导有
+	\[
+	\frac{\partial F}{\partial v}
+	+
+	\frac{\partial F}{\partial u}
+	\frac{\partial\varphi}{\partial v}
+	=0,
+	\]
+	因而
+	\[
+	\frac{\partial\varphi}{\partial v}
+	=
+	-\frac{F_v}{F_u}.
+	\]
+
+	将 $u=\varphi(x,y,v)$ 代入 $G$, 令
+	\[
+	H(x,y,v)
+	=
+	G\bigl(x,y,\varphi(x,y,v),v\bigr).
+	\]
+	则
+	\[
+	\begin{aligned}
+	\frac{\partial H}{\partial v}
+	&=
+	\frac{\partial G}{\partial u}
+	\frac{\partial\varphi}{\partial v}
+	+\frac{\partial G}{\partial v}\\
+	&=
+	G_u\left(-\frac{F_v}{F_u}\right)+G_v\\
+	&=
+	\frac{F_uG_v-F_vG_u}{F_u}
+	\ne0.
+	\end{aligned}
+	\]
+	因此方程 $H(x,y,v)=0$ 又唯一确定 $v$ 关于 $x,y$ 的隐函数
+	\[
+	v=g(x,y).
+	\]
+	代回即得
+	\[
+	u=\varphi(x,y,g(x,y))=f(x,y).
+	\]
+	由于 $\varphi,g$ 连续可微, $f,g$ 也连续可微.
+
+	由
+	\[
+	\begin{cases}
+	F(x,y,u,v)=0,\\
+	G(x,y,u,v)=0
+	\end{cases}
+	\]
+	分别对 $x$ 求导,
+	\[
+	\begin{cases}
+	F_x+F_u\dfrac{\partial u}{\partial x}
+	+F_v\dfrac{\partial v}{\partial x}=0,\\[6pt]
+	G_x+G_u\dfrac{\partial u}{\partial x}
+	+G_v\dfrac{\partial v}{\partial x}=0.
+	\end{cases}
+	\]
+	写成矩阵形式,
+	\[
+	\begin{pmatrix}
+	F_u&F_v\\
+	G_u&G_v
+	\end{pmatrix}
+	\begin{pmatrix}
+	\dfrac{\partial u}{\partial x}\\[5pt]
+	\dfrac{\partial v}{\partial x}
+	\end{pmatrix}
+	=
+	-
+	\begin{pmatrix}
+	F_x\\
+	G_x
+	\end{pmatrix}.
+	\]
+	由于系数矩阵的行列式不为零, 上述方程组有唯一解,
+	\[
+	\begin{pmatrix}
+	\dfrac{\partial u}{\partial x}\\[5pt]
+	\dfrac{\partial v}{\partial x}
+	\end{pmatrix}
+	=
+	-
+	\begin{pmatrix}
+	F_u&F_v\\
+	G_u&G_v
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+	F_x\\
+	G_x
+	\end{pmatrix}.
+	\]
+	对 $y$ 同理. 合并可得
+	\[
+	\begin{pmatrix}
+	\dfrac{\partial u}{\partial x}&
+	\dfrac{\partial u}{\partial y}\\[6pt]
+	\dfrac{\partial v}{\partial x}&
+	\dfrac{\partial v}{\partial y}
+	\end{pmatrix}
+	=
+	-
+	\begin{pmatrix}
+	F_u&F_v\\
+	G_u&G_v
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+	F_x&F_y\\
+	G_x&G_y
+	\end{pmatrix}.
+	\]
+
+
+$\square$
+
+
+
+
+
+\textbf{定理 2.4.4（一般隐函数组存在定理）}
+
+
+	设 $m$ 个 $n+m$ 元函数
+	\[
+	F_i(x_1,x_2,\ldots,x_n,y_1,y_2,\ldots,y_m),
+	\qquad i=1,2,\ldots,m,
+	\]
+	满足以下条件:
+	\begin{enumerate}
+		\item
+		\[
+		F_i(x_1^0,x_2^0,\ldots,x_n^0,y_1^0,y_2^0,\ldots,y_m^0)
+		=0,
+		\qquad i=1,2,\ldots,m;
+		\]
+		\item 在闭长方体
+		\[
+		\begin{aligned}
+		D=\bigl\{&(x_1,x_2,\ldots,x_n,y_1,y_2,\ldots,y_m):\\
+		&|x_i-x_i^0|\le a_i,\ i=1,2,\ldots,n;\ 
+		|y_j-y_j^0|\le b_j,\ j=1,2,\ldots,m
+		\bigr\}
+		\end{aligned}
+		\]
+		上, 函数 $F_i\ (i=1,2,\ldots,m)$ 连续,
+		且具有连续偏导数;
+		\item 在
+		$(x_1^0,x_2^0,\ldots,x_n^0,y_1^0,y_2^0,\ldots,y_m^0)$
+		处, Jacobi 行列式
+		\[
+		\frac{\partial(F_1,F_2,\ldots,F_m)}
+		{\partial(y_1,y_2,\ldots,y_m)}
+		\ne0.
+		\]
+	\end{enumerate}
+	则:
+	\begin{enumerate}
+		\item[(i)] 在该点的某个邻域内, 方程组
+		\[
+		\begin{cases}
+		F_1(x_1,\ldots,x_n,y_1,\ldots,y_m)=0,\\
+		F_2(x_1,\ldots,x_n,y_1,\ldots,y_m)=0,\\
+		\qquad\vdots\\
+		F_m(x_1,\ldots,x_n,y_1,\ldots,y_m)=0
+		\end{cases}
+		\]
+		唯一确定向量值隐函数
+		\[
+		\begin{pmatrix}
+		y_1\\y_2\\ \vdots\\y_m
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+		f_1(x_1,x_2,\ldots,x_n)\\
+		f_2(x_1,x_2,\ldots,x_n)\\
+		\vdots\\
+		f_m(x_1,x_2,\ldots,x_n)
+		\end{pmatrix},
+		\qquad
+		(x_1,x_2,\ldots,x_n)
+		\in O\bigl((x_1^0,x_2^0,\ldots,x_n^0),\rho\bigr),
+		\]
+		满足原方程组, 并且
+		\[
+		y_i^0=f_i(x_1^0,x_2^0,\ldots,x_n^0),
+		\qquad i=1,2,\ldots,m;
+		\]
+		\item[(ii)] 该向量值隐函数在上述邻域上连续;
+		\item[(iii)] 该向量值隐函数在上述邻域上具有连续偏导数,
+\end{enumerate}
+
+
+
+导数有
+\[
+\begin{pmatrix}
+	\dfrac{\partial y_1}{\partial x_1}&
+	\dfrac{\partial y_1}{\partial x_2}&\cdots&
+	\dfrac{\partial y_1}{\partial x_n}\\
+	\dfrac{\partial y_2}{\partial x_1}&
+	\dfrac{\partial y_2}{\partial x_2}&\cdots&
+	\dfrac{\partial y_2}{\partial x_n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	\dfrac{\partial y_m}{\partial x_1}&
+	\dfrac{\partial y_m}{\partial x_2}&\cdots&
+	\dfrac{\partial y_m}{\partial x_n}
+\end{pmatrix}
+=
+-
+\begin{pmatrix}
+	\dfrac{\partial F_1}{\partial y_1}&
+	\dfrac{\partial F_1}{\partial y_2}&\cdots&
+	\dfrac{\partial F_1}{\partial y_m}\\
+	\dfrac{\partial F_2}{\partial y_1}&
+	\dfrac{\partial F_2}{\partial y_2}&\cdots&
+	\dfrac{\partial F_2}{\partial y_m}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	\dfrac{\partial F_m}{\partial y_1}&
+	\dfrac{\partial F_m}{\partial y_2}&\cdots&
+	\dfrac{\partial F_m}{\partial y_m}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+	\dfrac{\partial F_1}{\partial x_1}&
+	\dfrac{\partial F_1}{\partial x_2}&\cdots&
+	\dfrac{\partial F_1}{\partial x_n}\\
+	\dfrac{\partial F_2}{\partial x_1}&
+	\dfrac{\partial F_2}{\partial x_2}&\cdots&
+	\dfrac{\partial F_2}{\partial x_n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	\dfrac{\partial F_m}{\partial x_1}&
+	\dfrac{\partial F_m}{\partial x_2}&\cdots&
+	\dfrac{\partial F_m}{\partial x_n}
+\end{pmatrix}.
+\]
+\subsection*{多元函数的反函数}
+以$\R^2 \mapsto \R^2$为例：
+设 $D\subset\mathbb{R}^2$ 为开集, $f:D\to\mathbb{R}^2$ 为映射,
+\[
+f(u,v)=\bigl(x(u,v),y(u,v)\bigr),
+\qquad (u,v)\in D,
+\]
+其中 $x(u,v),y(u,v)$ 在 $D$ 内有连续偏导数. 若在
+$(u_0,v_0)\in D$ 处, 对应点为
+\[
+x_0=x(u_0,v_0),\qquad y_0=y(u_0,v_0),
+\]
+且
+\[
+\frac{\partial(x,y)}{\partial(u,v)}\bigg|_{(u_0,v_0)}
+=\begin{vmatrix}
+\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[4pt]
+\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}
+\end{vmatrix}_{(u_0,v_0)}\ne0,
+\]
+则在 $(u_0,v_0)$ 的某邻域内, 映射 $f$ 存在反函数
+\[
+u=u(x,y),\qquad v=v(x,y),
+\]
+且该反函数具有连续偏导数. 由复合函数求导法则,
+\[
+\begin{pmatrix}
+\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[5pt]
+\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}
+\end{pmatrix}
+\begin{pmatrix}
+\dfrac{\partial u}{\partial x}&\dfrac{\partial u}{\partial y}\\[5pt]
+\dfrac{\partial v}{\partial x}&\dfrac{\partial v}{\partial y}
+\end{pmatrix}
+=\begin{pmatrix}1&0\\0&1\end{pmatrix},
+\]
+从而
+\[
+\begin{pmatrix}
+\dfrac{\partial u}{\partial x}&\dfrac{\partial u}{\partial y}\\[5pt]
+\dfrac{\partial v}{\partial x}&\dfrac{\partial v}{\partial y}
+\end{pmatrix}
+=\begin{pmatrix}
+\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[5pt]
+\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}
+\end{pmatrix}^{-1},
+\qquad
+\frac{\partial(u,v)}{\partial(x,y)}
+=\left(\frac{\partial(x,y)}{\partial(u,v)}\right)^{-1}.
+\]
+
+
+
+
+
+
+
+\section*{§5　无条件极值}
+
+
+
+\textbf{定义 2.5.1}
+
+设 $D\subset\mathbb{R}^n$ 为开区域，$f(\vect x)$ 为定义在 $D$ 上的函数，
+$\vect x_0=(x_1^0,x_2^0,\ldots,x_n^0)\in D$。若存在 $\vect x_0$ 的邻域
+$O(\vect x_0,r)$，使得
+\[
+f(\vect x_0)\geqslant f(\vect x)\quad
+\bigl(\text{或 }f(\vect x_0)\leqslant f(\vect x)\bigr),
+\qquad \vect x\in O(\vect x_0,r),
+\]
+则称 $\vect x_0$ 为 $f$ 的\textbf{极大值点}（或\textbf{极小值点}）；相应地，称 $f(\vect x_0)$ 为
+相应的\textbf{极大值}（或\textbf{极小值}）；极大值点与极小值点统称为\textbf{极值点}，
+极大值与极小值统称为\textbf{极值}。
+
+
+
+类似于单变量函数中的Fermat引理,我们有以下的必要条件:
+
+
+
+
+\textbf{命题 2.5.2}
+
+若 $f(x_1,\ldots,x_n)$ 在
+$(x_1^0,\ldots,x_n^0)$ 处可导，则 $(x_1^0,\ldots,x_n^0)$ 为
+$f(x_1,\ldots,x_n)$ 的一个极值点的必要条件为
+\[
+\nabla f(\vect{x}^{\,0})=\vect{0}.
+\]
+
+
+
+我们称 $\nabla f(\vect{x}^{\,0})=\vect{0}$ 的点为驻点。
+
+\textbf{注：}\begin{enumerate}
+	\item 若 $f(x_1,\ldots,x_n)$ 在 $\vect{x}^{\,0}$ 处不可导，也可能有极值点。
+	\item 驻点未必是极值点。例如 $z=xy$，$\nabla f=(y,x)$，$(0,0)$ 为驻点，
+	但不是极值点。
+\end{enumerate}
+
+
+
+\textbf{证明}
+
+考虑
+\[
+\varphi(x_i)=f(x_1^0,\ldots,x_i,\ldots,x_n^0),
+\qquad i=1,\ldots,n.
+\]
+$\varphi(x_i)$ 可导。$x_i^0$ 对 $\varphi(x_i)$ 为极值点，因此
+\[
+\frac{\mathrm d\varphi}{\mathrm d x_i}(x_i^0)=0
+\quad\Longleftrightarrow\quad
+\frac{\partial f}{\partial x_i}(\vec{x}^{\,0})=0.
+\]
+故
+\[
+\frac{\partial f}{\partial x_i}(\vect{x}^{\,0})=0,
+\qquad i=1,\ldots,n.
+\]
+
+
+$\square$
+
+
+\newpage
+以 $z=f(x,y)$ 为例，设 $(x_0,y_0)$ 为 $f(x,y)$ 的一个驻点，
+而且 $z=f(x,y)$ 在 $(x_0,y_0)$ 的某邻域
+$D((x_0,y_0),\delta)$ 上二阶连续可导。在什么条件下，
+$(x_0,y_0)$ 为 $z=f(x,y)$ 的一个极值点？类似于单变量函数中的做法，我们可以使用Lagrange中值定理来处理这个问题
+
+取 $(x_0+\Delta x,y_0+\Delta y)\in D((x_0,y_0),\delta)$，则
+\[
+\begin{aligned}
+&f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)\\
+={}&\frac{\partial f}{\partial x}(x_0,y_0)\Delta x
++\frac{\partial f}{\partial y}(x_0,y_0)\Delta y\\
+&+\frac12\left(
+\frac{\partial^2 f}{\partial x^2}(x_0,y_0)\Delta x^2
++2\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0)
+\Delta x\Delta y
++\frac{\partial^2 f}{\partial y^2}(x_0,y_0)\Delta y^2
+\right)+h\\
+={}&\frac12\left(
+\frac{\partial^2 f}{\partial x^2}(x_0,y_0)\Delta x^2
++2\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0)
+\Delta x\Delta y
++\frac{\partial^2 f}{\partial y^2}(x_0,y_0)\Delta y^2
+\right)+h\\
+={}&\frac12\left(A\Delta x^2+2B\Delta x\Delta y+C\Delta y^2\right)+h\\
+={}&\frac12
+\begin{pmatrix}\Delta x&\Delta y\end{pmatrix}
+\begin{pmatrix}A&B\\B&C\end{pmatrix}
+\begin{pmatrix}\Delta x\\\Delta y\end{pmatrix}+h,
+\end{aligned}
+\]
+其中
+\[
+A=\frac{\partial^2 f}{\partial x^2}(x_0,y_0),
+\qquad
+B=\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0),
+\qquad
+C=\frac{\partial^2 f}{\partial y^2}(x_0,y_0).
+\]
+
+\begin{enumerate}
+\item 若 $\begin{pmatrix}A&B\\B&C\end{pmatrix}$ 正定，则当
+$|\Delta x|,|\Delta y|$ 充分小时，
+$f(x_0+\Delta x,y_0+\Delta y)>f(x_0,y_0)$，
+$(x_0,y_0)$ 是严格极小值点。这等价于
+\[
+A>0\quad\text{且}\quad H=AC-B^2>0.
+\]
+\item 若 $\begin{pmatrix}A&B\\B&C\end{pmatrix}$ 负定，即
+$H=AC-B^2>0$ 且 $A<0$，则 $(x_0,y_0)$ 是严格极大值点。
+\item 若 $H<0$，则不是极值点。
+\item 若 $H=0$，则不能确定。
+\end{enumerate}
+
+
+
+\textbf{定理 2.5.3}
+
+设 $n$ 元函数 $f(x)$ 在
+$x_0=(x_1^0,x_2^0,\ldots,x_n^0)$ 附近具有二阶连续偏导数，
+且 $x_0$ 为 $f(x)$ 的驻点。那么当二次型
+\[
+g(\xi)=\sum_{i,j=1}^{n}f_{x_i x_j}(x_0)\xi_i\xi_j
+\]
+正定时，$f(x_0)$ 为极小值；当 $g(\xi)$ 负定时，
+$f(x_0)$ 为极大值；当 $g(\xi)$ 不定时，$f(x_0)$ 不是极值。
+
+
+
+
+记 $a_{ij}=f_{x_i x_j}(x_0)$，并记
+\[
+A_k=
+\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1k}\\
+a_{21}&a_{22}&\cdots&a_{2k}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{k1}&a_{k2}&\cdots&a_{kk}
+\end{pmatrix}.
+\]
+它称为 $f$ 的 $k$ 阶 Hessian 矩阵。由代数学知识即可得到：
+
+
+
+\textbf{推论 2.5.4}
+
+若 $\det A_k>0\ (k=1,2,\ldots,n)$，则二次型 $g(\xi)$ 是正定的，
+此时 $f(x_0)$ 为极小值；若
+$(-1)^k\det A_k>0\ (k=1,2,\ldots,n)$，
+则二次型 $g(\xi)$ 是负定的，此时 $f(x_0)$ 为极大值。
+
+
+
+
+若 $g(\xi)$ 不定，则 $\vect x_0$ 不是极值点；若 $g(\xi)$ 半正定，
+则不能确定。
+
+\subsection*{最小二乘法}
+
+对一组数据
+\[
+(x_1,y_1),\ldots,(x_n,y_n)
+\]
+分布在 $y=ax+b$ 附近，使误差最小。令
+\[
+E=\sum_{k=1}^{n}|ax_k+b-y_k|^2,
+\qquad
+S(a,b)=\sum_{k=1}^{n}(ax_k+b-y_k)^2.
+\]
+若 $E(a,b)$ 取得最小值，则
+\[
+\begin{aligned}
+\frac{\partial S}{\partial a}
+&=\sum_{k=1}^{n}2x_k(ax_k+b-y_k)=0,\\
+\frac{\partial S}{\partial b}
+&=\sum_{k=1}^{n}2(ax_k+b-y_k)
+ =2a\sum_{k=1}^{n}x_k+2nb-2\sum_{k=1}^{n}y_k=0.
+\end{aligned}
+\]
+因而
+\[
+\begin{cases}
+a\displaystyle\sum_{k=1}^{n}x_k^2
+ +b\displaystyle\sum_{k=1}^{n}x_k
+ =\displaystyle\sum_{k=1}^{n}x_ky_k,\\[6pt]
+a\displaystyle\sum_{k=1}^{n}x_k+nb
+ =\displaystyle\sum_{k=1}^{n}y_k.
+\end{cases}
+\]
+解得
+\[
+\begin{aligned}
+a&=
+\frac{
+n\displaystyle\sum_{k=1}^{n}x_ky_k
+-\displaystyle\sum_{k=1}^{n}x_k\sum_{k=1}^{n}y_k
+}{
+n\displaystyle\sum_{k=1}^{n}x_k^2
+-\left(\displaystyle\sum_{k=1}^{n}x_k\right)^2
+},\\[8pt]
+b&=
+\frac{
+\displaystyle\sum_{k=1}^{n}x_k^2\sum_{k=1}^{n}y_k
+-\displaystyle\sum_{k=1}^{n}x_k\sum_{k=1}^{n}x_ky_k
+}{
+n\displaystyle\sum_{k=1}^{n}x_k^2
+-\left(\displaystyle\sum_{k=1}^{n}x_k\right)^2
+}.
+\end{aligned}
+\]
+
+有时候，$(x_k,y_k)$ 不一定分布在直线附近，但
+$(x_k,\ln y_k)$、$(x_k,e^{y_k})$、$(\ln x_k,y_k)$、
+$(e^{x_k},y_k)$ 大致分布在直线附近，
+就先把相应的变量变换再拟合。
+
+
+
+
+
+
+
+\section*{§6　条件极值}
+
+目标函数： $f(x_1,\ldots,x_n)$ 与若干约束条件。以三元函数为例，
+
+
+设目标函数为 $f(x,y,z)$，约束条件为
+\[
+F(x,y,z)=0,\qquad G(x,y,z)=0.
+\]
+设 $f,F,G$ 一阶连续可导，且 Jacobi 矩阵
+\[
+J=\frac{\partial(F,G)}{\partial(x,y,z)}
+=\begin{pmatrix}
+F_x&F_y&F_z\\
+G_x&G_y&G_z
+\end{pmatrix}
+\]
+满秩，即 $\operatorname{rank}J=2$。
+
+我们现在考虑一个必要性的条件.
+
+假设 $(x_0,y_0,z_0)$ 是一个条件极值点。不妨设在此点
+\[
+\begin{vmatrix}
+F_y&F_z\\
+G_y&G_z
+\end{vmatrix}_{(x_0,y_0,z_0)}\ne0.
+\]
+由隐函数定理，在 $(x_0,y_0,z_0)$ 的某邻域内，
+可由方程组
+\[
+\begin{cases}
+F(x,y,z)=0,\\
+G(x,y,z)=0
+\end{cases}
+\]
+解出其中两个未知数，即
+\[
+y=y(x),\qquad z=z(x).
+\]
+于是令
+\[
+\varphi(x)=f(x,y,z)=f(x,y(x),z(x)).
+\]
+因 $(x_0,y_0,z_0)$ 是条件极值点，$x_0$ 是
+$\varphi(x)$ 的一个极值点。由 Fermat 引理，
+\[
+\begin{aligned}
+0=\varphi'(x_0)
+&=\left.
+\left(
+\frac{\partial f}{\partial x}
++\frac{\partial f}{\partial y}\frac{\mathrm dy}{\mathrm dx}
++\frac{\partial f}{\partial z}\frac{\mathrm dz}{\mathrm dx}
+\right)\right|_{(x_0,y_0,z_0)}\\
+&=\left.
+\nabla f(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)\right|_{x=x_0}.
+\end{aligned}
+\]
+又由
+\[
+F(x,y(x),z(x))=0,\qquad G(x,y(x),z(x))=0
+\]
+可得
+\[
+\begin{aligned}
+\nabla F(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)_{x=x_0}&=0,\\
+\nabla G(x_0,y_0,z_0)\cdot
+\left(
+\vect i+\frac{\mathrm dy}{\mathrm dx}\vect j
++\frac{\mathrm dz}{\mathrm dx}\vect k
+\right)_{x=x_0}&=0.
+\end{aligned}
+\]
+因此 $\nabla f(x_0,y_0,z_0)$、$\nabla F(x_0,y_0,z_0)$、
+$\nabla G(x_0,y_0,z_0)$ 均与同一切向量垂直；
+又 $\operatorname{rank}J=2$，
+$\nabla F(x_0,y_0,z_0)$ 与 $\nabla G(x_0,y_0,z_0)$ 无关。
+从而存在 $\lambda,\mu$，使
+\[
+\nabla f=\lambda\nabla F+\mu\nabla G,
+\qquad
+\nabla(f-\lambda F-\mu G)=0.
+\]
+这就得到了 Lagrange 乘数法。
+
+
+
+\textbf{命题 2.6.1}
+
+构造 Lagrange 函数
+\[
+L(x,y,z,\lambda,\mu)
+=f(x,y,z)-\lambda F(x,y,z)-\mu G(x,y,z).
+\]
+在 $(x_0,y_0,z_0)$ 处有
+\[
+\begin{cases}
+\displaystyle\frac{\partial L}{\partial x}
+=\frac{\partial f}{\partial x}
+-\lambda\frac{\partial F}{\partial x}
+-\mu\frac{\partial G}{\partial x}=0,\\[6pt]
+\displaystyle\frac{\partial L}{\partial y}
+=\frac{\partial f}{\partial y}
+-\lambda\frac{\partial F}{\partial y}
+-\mu\frac{\partial G}{\partial y}=0,\\[6pt]
+\displaystyle\frac{\partial L}{\partial z}
+=\frac{\partial f}{\partial z}
+-\lambda\frac{\partial F}{\partial z}
+-\mu\frac{\partial G}{\partial z}=0,\\[6pt]
+F(x,y,z)=0,\\
+G(x,y,z)=0.
+\end{cases}
+\]
+从而求出 $(x_0,y_0,z_0)$ 以及 $\lambda_0,\mu_0$，
+再进一步验证它是否为极值点。
+
+
+
+
+条件极值的一般情况：$n$ 个自变量、$m$ 个约束条件，$m<n$。
+目标函数为 $f(x_1,\ldots,x_n)$，约束条件为
+\[
+\begin{cases}
+g_1(x_1,\ldots,x_n)=0,\\
+\qquad\vdots\\
+g_m(x_1,\ldots,x_n)=0.
+\end{cases}\tag{*}
+\]
+所有函数属于 $C^2$，且 Jacobi 矩阵
+\[
+J=
+\begin{pmatrix}
+\dfrac{\partial g_1}{\partial x_1}&\cdots&
+\dfrac{\partial g_1}{\partial x_n}\\
+\vdots&&\vdots\\
+\dfrac{\partial g_m}{\partial x_1}&\cdots&
+\dfrac{\partial g_m}{\partial x_n}
+\end{pmatrix}_{m\times n}
+\]
+满秩，即 $\operatorname{rank}J=m<n$。
+
+设前 $m$ 个变量由条件 $(*)$ 可以解出唯一解
+\[
+\begin{cases}
+x_1=h_1(x_{m+1},\ldots,x_n),\\
+\qquad\vdots\\
+x_m=h_m(x_{m+1},\ldots,x_n).
+\end{cases}
+\]
+代入
+\[
+\varphi(x_{m+1},\ldots,x_n)
+=f(h_1,\ldots,h_m,x_{m+1},\ldots,x_n).
+\]
+将复合函数求导，条件极值点处有
+\[
+\begin{aligned}
+0=\frac{\partial\varphi}{\partial x_{m+1}}
+&=\frac{\partial f}{\partial x_1}
+\frac{\partial h_1}{\partial x_{m+1}}
++\cdots+
+\frac{\partial f}{\partial x_m}
+\frac{\partial h_m}{\partial x_{m+1}}
++\frac{\partial f}{\partial x_{m+1}}\\
+&=\nabla f\cdot
+\underbrace{\left(
+\frac{\partial h_1}{\partial x_{m+1}},
+\ldots,
+\frac{\partial h_m}{\partial x_{m+1}},
+1,0,\ldots,0
+\right)}_{\vect\eta_1},
+\end{aligned}
+\]
+同理
+\[
+0=\frac{\partial\varphi}{\partial x_n}
+=\nabla f\cdot
+\underbrace{\left(
+\frac{\partial h_1}{\partial x_n},
+\ldots,
+\frac{\partial h_m}{\partial x_n},
+0,\ldots,1
+\right)}_{\vect\eta_{n-m}}.
+\]
+所以在条件极值点，
+$\nabla f$ 与 $\vect\eta_1,\ldots,\vect\eta_{n-m}$ 正交，即
+\[
+\nabla f\in
+\bigl(\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}\bigr)^\perp,
+\qquad
+\dim\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}=n-m.
+\]
+对
+\[
+g_1(h_1,\ldots,h_m,x_{m+1},\ldots,x_n)=0,\quad
+\ldots,\quad
+g_m(h_1,\ldots,h_m,x_{m+1},\ldots,x_n)=0
+\]
+求导，得到
+\[
+\nabla g_1,\ldots,\nabla g_m
+\in
+\bigl(\operatorname{span}\{\vect\eta_1,\ldots,\vect\eta_{n-m}\}\bigr)^\perp.
+\]
+又 $\operatorname{rank}J=m$，故
+$\nabla g_1,\ldots,\nabla g_m$ 无关，且
+$\nabla f$ 由它们线性表出：
+\[
+\nabla f=\lambda_1\nabla g_1+\cdots+\lambda_m\nabla g_m,
+\qquad
+\nabla(f-\lambda_1g_1-\cdots-\lambda_mg_m)=0.
+\]
+令
+\[
+L(x_1,\ldots,x_n,\lambda_1,\ldots,\lambda_m)
+=f-\lambda_1g_1-\cdots-\lambda_mg_m.
+\]
+于是必要条件为方程组
+\[
+\begin{cases}
+\displaystyle\frac{\partial L}{\partial x_1}
+=\frac{\partial f}{\partial x_1}
+-\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_1}=0,\\
+\qquad\vdots\\
+\displaystyle\frac{\partial L}{\partial x_n}
+=\frac{\partial f}{\partial x_n}
+-\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_n}=0,\\
+g_1=\cdots=g_m=0.
+\end{cases}\tag{*}
+\]
+
+
+
+\textbf{定理 2.6.2}
+
+设点 $x_0=(x_1^0,x_2^0,\ldots,x_n^0)$ 及 $m$ 个常数
+$\lambda_1,\lambda_2,\ldots,\lambda_m$ 满足方程组 $(*)$。
+若方阵
+\[
+\left(
+\frac{\partial^2L}{\partial x_i\partial x_j}
+(x_0,\lambda_1,\lambda_2,\ldots,\lambda_m)
+\right)_{n\times n}
+\]
+为正定（负定）矩阵，则 $x_0$ 为满足约束条件的条件极小（大）值点，
+因此 $f(x_0)$ 为满足约束条件的条件极小（大）值。
+
+
+
+
+
+
+\textbf{证明}
+
+固定方程组 $(*)$ 给出的乘子
+$\lambda_1,\ldots,\lambda_m$，记
+\[
+A=\left(
+\frac{\partial^2L}{\partial x_i\partial x_j}
+(x_0,\lambda_1,\ldots,\lambda_m)
+\right)_{n\times n}.
+\]
+由方程组 $(*)$ 可知
+$\nabla_xL(x_0,\lambda_1,\ldots,\lambda_m)=0$。
+对 $\vect h\to0$，在乘子固定的情况下使用二阶 Taylor 公式，
+\[
+\begin{aligned}
+&L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)\\
+&\qquad=
+\frac12\vect h^{\mathsf T}A\vect h
++o\!\left(\lVert\vect h\rVert^2\right).
+\end{aligned}
+\]
+
+若 $A$ 正定，则存在 $c>0$，使得
+$\vect h^{\mathsf T}A\vect h\ge c\lVert\vect h\rVert^2$。
+当非零的 $\vect h$ 充分小时，余项的绝对值小于
+$\dfrac c4\lVert\vect h\rVert^2$，故
+\[
+L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)>0.
+\]
+对满足约束条件的点 $x_0+\vect h$，有
+$g_k(x_0+\vect h)=g_k(x_0)=0$，因而
+\[
+f(x_0+\vect h)-f(x_0)
+=L(x_0+\vect h,\lambda_1,\ldots,\lambda_m)
+ -L(x_0,\lambda_1,\ldots,\lambda_m)>0.
+\]
+所以 $x_0$ 是严格的条件极小值点。
+若 $A$ 负定，对 $-L$ 作同样的论证，即得
+$f(x_0+\vect h)<f(x_0)$，故 $x_0$ 是严格的条件极大值点。
+
+
+$\square$
+
+

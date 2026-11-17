@@ -1,0 +1,160 @@
+% ============================================
+% cover.tex — Abstract Algebra 翻译稿封面
+% 参考原书第三版封面，用 TikZ 绘制。
+%
+% 用法：在 main.tex 的 \begin{document} 后调用
+%   \input{frontmatter/cover}
+%   \makecover
+%
+% 依赖：preamble 中需已加载 tikz 与 xcolor，并建议：
+%   \usepackage{tikz}
+%   \usetikzlibrary{calc}
+% ============================================
+
+% ── 封面信息：可在导言区或本文件中修改 ──
+\providecommand{\CoverTitleCN}{抽象代数}
+\providecommand{\CoverTitleEN}{Abstract Algebra}
+\providecommand{\CoverTitleENLineA}{A B S T R A C T}
+\providecommand{\CoverTitleENLineB}{A L G E B R A}
+\providecommand{\CoverEdition}{THIRD EDITION}
+\providecommand{\CoverAuthorA}{D A V I D\quad S.\quad D U M M I T}
+\providecommand{\CoverAuthorB}{R I C H A R D\quad M.\quad F O O T E}
+\providecommand{\CoverSubtitle}{Dummit \& Foote 中译本}
+\providecommand{\CoverTranslator}{译者：万一之}
+\providecommand{\CoverDate}{\today}
+\providecommand{\CoverNote}{仅供学习与交流使用}
+
+% 若未使用 ctex，给 \heiti 一个安全后备定义；在 ctex 中不会覆盖原定义。
+\providecommand{\heiti}{\bfseries}
+
+% ── 封面配色，均使用独立名称，避免与模板其他颜色冲突 ──
+\definecolor{CoverOuterTop}{HTML}{B94A22}
+\definecolor{CoverOuterBottom}{HTML}{7F2417}
+\definecolor{CoverPanelTop}{HTML}{FFC835}
+\definecolor{CoverPanelMid}{HTML}{E88920}
+\definecolor{CoverPanelBottom}{HTML}{A73518}
+\definecolor{CoverRuleBlue}{HTML}{0046A8}
+\definecolor{CoverRuleEdge}{HTML}{7B2B24}
+\definecolor{CoverTitleGreen}{HTML}{006B34}
+\definecolor{CoverDarkText}{HTML}{5B211D}
+\definecolor{CoverAuthorWhite}{HTML}{FFF5E9}
+
+\providecommand{\makecover}{}
+\renewcommand{\makecover}{%
+\begin{titlepage}
+  \thispagestyle{empty}%
+  \begingroup
+  \begin{tikzpicture}[remember picture, overlay]
+    % 整页深红棕背景
+    \shade[top color=CoverOuterTop, bottom color=CoverOuterBottom]
+      (current page.south west) rectangle (current page.north east);
+
+    % 中央橙色主面板
+    \coordinate (PanelNW) at ([xshift=1.45cm,yshift=-1.42cm]current page.north west);
+    \coordinate (PanelNE) at ([xshift=-1.45cm,yshift=-1.42cm]current page.north east);
+    \coordinate (PanelSW) at ([xshift=1.45cm,yshift=1.55cm]current page.south west);
+    \coordinate (PanelSE) at ([xshift=-1.45cm,yshift=1.55cm]current page.south east);
+
+    \shade[top color=CoverPanelTop, bottom color=CoverPanelBottom]
+      (PanelSW) rectangle (PanelNE);
+    \shade[top color=white, bottom color=CoverPanelMid, opacity=.16]
+      (PanelNW) rectangle ([yshift=-7.15cm]PanelNE);
+
+    % 轻微暗边，模拟原封面的印刷边界
+    \draw[CoverOuterBottom!55!black, line width=1.1pt, opacity=.35]
+      (PanelSW) rectangle (PanelNE);
+    \draw[CoverPanelTop!70!white, line width=.45pt, opacity=.42]
+      ([xshift=.08cm,yshift=-.08cm]PanelNW) rectangle ([xshift=-.08cm,yshift=.08cm]PanelSE);
+
+    % 左右与下方的暗红过渡，增加书封质感
+    \shade[left color=CoverOuterBottom, right color=CoverOuterBottom!0, opacity=.20]
+      (PanelSW) rectangle ([xshift=1.10cm]PanelNW);
+    \shade[right color=CoverOuterBottom, left color=CoverOuterBottom!0, opacity=.13]
+      ([xshift=-1.10cm]PanelSE) rectangle (PanelNE);
+    \shade[bottom color=CoverOuterBottom, top color=CoverOuterBottom!0, opacity=.18]
+      (PanelSW) rectangle ([yshift=2.60cm]PanelSE);
+
+    % 蓝色横线：仿原书封面的分隔线
+    \foreach \Y in {5.18,8.50,11.82,20.82,24.08}{
+      \draw[CoverRuleEdge, line width=4.6pt, opacity=.70]
+        ([xshift=1.62cm,yshift=-\Y cm]current page.north west) --
+        ([xshift=-1.62cm,yshift=-\Y cm]current page.north east);
+      \draw[CoverRuleBlue, line width=2.7pt]
+        ([xshift=1.62cm,yshift=-\Y cm]current page.north west) --
+        ([xshift=-1.62cm,yshift=-\Y cm]current page.north east);
+      \draw[CoverPanelTop!75!white, line width=.35pt, opacity=.55]
+        ([xshift=1.62cm,yshift=-\Y cm]current page.north west) --
+        ([xshift=-1.62cm,yshift=-\Y cm]current page.north east);
+    }
+
+    % 主标题阴影与文字
+    \node[anchor=west, inner sep=0pt, text=black, opacity=.12,
+      font=\sffamily\bfseries\fontsize{26}{31}\selectfont]
+      at ([xshift=2.22cm,yshift=-4.50cm]current page.north west)
+      {\CoverTitleENLineA};
+    \node[anchor=west, inner sep=0pt, text=CoverTitleGreen,
+      font=\sffamily\bfseries\fontsize{26}{31}\selectfont]
+      at ([xshift=2.15cm,yshift=-4.42cm]current page.north west)
+      {\CoverTitleENLineA};
+
+    \node[anchor=west, inner sep=0pt, text=black, opacity=.12,
+      font=\sffamily\bfseries\fontsize{26}{31}\selectfont]
+      at ([xshift=2.22cm,yshift=-7.80cm]current page.north west)
+      {\CoverTitleENLineB};
+    \node[anchor=west, inner sep=0pt, text=CoverTitleGreen,
+      font=\sffamily\bfseries\fontsize{26}{31}\selectfont]
+      at ([xshift=2.15cm,yshift=-7.72cm]current page.north west)
+      {\CoverTitleENLineB};
+
+    % 版本信息
+    \node[anchor=east, inner sep=0pt, text=CoverDarkText,
+      font=\sffamily\bfseries\fontsize{10.8}{13}\selectfont]
+      at ([xshift=-2.45cm,yshift=-12.36cm]current page.north east)
+      {\CoverEdition};
+
+    % 作者名
+    \node[anchor=east, inner sep=0pt, text=black, opacity=.18,
+      font=\sffamily\bfseries\fontsize{16.8}{21}\selectfont]
+      at ([xshift=-2.02cm,yshift=-21.36cm]current page.north east)
+      {\CoverAuthorA};
+    \node[anchor=east, inner sep=0pt, text=CoverAuthorWhite,
+      font=\sffamily\bfseries\fontsize{16.8}{21}\selectfont]
+      at ([xshift=-2.08cm,yshift=-21.28cm]current page.north east)
+      {\CoverAuthorA};
+
+    \node[anchor=east, inner sep=0pt, text=black, opacity=.18,
+      font=\sffamily\bfseries\fontsize{16.8}{21}\selectfont]
+      at ([xshift=-2.02cm,yshift=-24.62cm]current page.north east)
+      {\CoverAuthorB};
+    \node[anchor=east, inner sep=0pt, text=CoverAuthorWhite,
+      font=\sffamily\bfseries\fontsize{16.8}{21}\selectfont]
+      at ([xshift=-2.08cm,yshift=-24.54cm]current page.north east)
+      {\CoverAuthorB};
+
+    % 中文译本信息：保持低调，不破坏原封面构图
+    \node[anchor=west, inner sep=0pt, text=CoverAuthorWhite!88!CoverPanelTop,
+      font=\heiti\fontsize{13.5}{18}\selectfont]
+      at ([xshift=2.05cm,yshift=2.18cm]current page.south west)
+      {\CoverTitleCN\quad \CoverSubtitle};
+
+    \node[anchor=west, inner sep=0pt, text=CoverAuthorWhite!78!CoverPanelTop,
+      font=\heiti\fontsize{9.8}{13}\selectfont]
+      at ([xshift=2.05cm,yshift=1.55cm]current page.south west)
+      {\CoverTranslator};
+
+    \node[anchor=east, inner sep=0pt, text=CoverAuthorWhite!62!CoverPanelTop,
+      font=\sffamily\fontsize{8.8}{12}\selectfont]
+      at ([xshift=-2.05cm,yshift=1.55cm]current page.south east)
+      {\CoverDate};
+
+    % 底部注释
+    \node[anchor=south, inner sep=0pt, text=CoverAuthorWhite!45!CoverPanelTop,
+      font=\sffamily\fontsize{7.5}{10}\selectfont]
+      at ([yshift=0.42cm]current page.south)
+      {\CoverNote};
+  \end{tikzpicture}%
+  \null
+  \endgroup
+\end{titlepage}%
+\clearpage
+}

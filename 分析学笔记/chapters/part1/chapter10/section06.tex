@@ -1,0 +1,370 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.6 定积分的数值积分-算法与编程
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{定积分的数值积分-算法与编程}
+本节讨论若干常用的数值积分公式。基本思想是：在积分区间上先用多项式近似被积函数，再对这个多项式进行积分，从而得到原积分的近似值。
+
+\subsection*{Newton--Cotes 求积公式}
+
+将积分区间 $[a,b]$ 以步长
+\[
+h=\frac{b-a}{n}
+\]
+分成 $n$ 等份。
+
+取分点
+\[
+x_i=a+ih,\qquad i=0,1,2,\dots,n.
+\]
+
+以这些分点为节点，作 $f(x)$ 的 Lagrange 插值多项式
+\[
+f(x)\approx p_n(x)
+=\sum_{i=0}^{n}\left(\prod_{\substack{j=0\\j\ne i}}^{n}
+\frac{x-x_j}{x_i-x_j}\right)f(x_i).
+\]
+
+对等式两边在 $[a,b]$ 上积分，得到
+\[
+\int_a^b f(x)\dd x
+\approx \int_a^b p_n(x)\dd x
+=(b-a)\sum_{i=0}^{n} C_i^{(n)}f(x_i).
+\]
+
+其中
+\[
+\begin{aligned}
+	C_i^{(n)}
+	&=\frac1{b-a}\int_a^b
+	\prod_{\substack{j=0\\j\ne i}}^n\frac{x-x_j}{x_i-x_j}\dd x \\[4pt]
+	&=\frac{h}{b-a}\int_0^n
+	\prod_{\substack{j=0\\j\ne i}}^n\frac{t-j}{i-j}\dd t
+	\qquad (x=a+th) \\[4pt]
+	&=\frac1n\cdot \frac{(-1)^{n-i}}{i!(n-i)!}
+	\int_0^n\prod_{\substack{j=0\\j\ne i}}^n(t-j)\dd t.
+\end{aligned}
+\]
+
+这就是 $n$ 步 Newton--Cotes 求积公式。计算时需要 $n+1$ 个节点，相应的 $C_i^{(n)}$ 称为 Cotes 系数。它与积分区间和被积函数无关，只依赖于所取的节点个数，因此可以预先由多项式积分算出。
+
+\begin{example}
+	\textbf{梯形公式.}
+	当 $n=1$ 时，由 Cotes 系数的性质，得到
+	\[
+	C_0^{(1)}=C_1^{(1)}=\frac12.
+	\]因此
+	\[
+	\int_a^b f(x)\dd x
+	\approx \frac{b-a}{2}\bigl[f(a)+f(b)\bigr].
+	\]
+	这称为梯形公式。
+\end{example}
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def trapezoidal_rule(f, a: float, b: float) -> float:
+	return (b - a) / 2.0 * (f(a) + f(b))
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	f = lambdify(x, expr, modules="math")
+	result = trapezoidal_rule(f, a, b)
+	print(f"\n梯形公式近似值: {result:.10f}")
+\end{verbatim}
+\begin{example}
+	\textbf{Simpson 公式.}
+	当 $n=2$ 时，
+	\[
+	C_0^{(2)}=\frac14\int_0^2(t-1)(t-2)\dd t
+	=\frac16=C_2^{(2)},
+	\]
+	因此得到 Simpson 公式
+	\[
+	\int_a^b f(x)\dd x
+	\approx \frac{b-a}{6}
+	\left[f(a)+4f\left(\frac{a+b}{2}\right)+f(b)\right].
+	\]
+\end{example}
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def simpson_rule(f, a: float, b: float) -> float:
+	mid = (a + b) / 2.0
+	return (b - a) / 6.0 * (f(a) + 4.0 * f(mid) + f(b))
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	f = lambdify(x, expr, modules="math")
+	result = simpson_rule(f, a, b)
+	print(f"\nSimpson 公式近似值: {result:.10f}")
+\end{verbatim}
+
+\begin{example}
+	\textbf{Cotes 公式.}
+	当 $n=4$ 时，
+	\[
+	\begin{aligned}
+		C_0^{(4)}
+		&=\frac1{96}\int_0^4(t-1)(t-2)(t-3)(t-4)\dd t
+		=\frac7{90}=C_4^{(4)},\\[4pt]
+		C_1^{(4)}
+		&=-\frac1{24}\int_0^4t(t-2)(t-3)(t-4)\dd t
+		=\frac{32}{90}=C_3^{(4)},\\[4pt]
+		C_2^{(4)}
+		&=1-2\left(C_0^{(4)}+C_1^{(4)}\right)=\frac{12}{90}.
+	\end{aligned}
+	\]
+	于是得到 Cotes 公式
+	\[
+	\int_a^b f(x)\dd x
+	\approx \frac{b-a}{90}
+	\left\{7\bigl[f(x_0)+f(x_4)\bigr]
+	+32\bigl[f(x_1)+f(x_3)\bigr]+12f(x_2)\right\},
+	\]
+	其中
+	\[
+	x_i=\frac{(4-i)a+ib}{4},\qquad i=0,1,2,3,4.
+	\]
+	
+\end{example}
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def cotes_rule(f, a: float, b: float) -> float:
+	n = 4
+	x = [((n - i) * a + i * b) / n for i in range(n + 1)]
+	C = [7/90, 32/90, 12/90, 32/90, 7/90]
+	s = sum(C[i] * f(x[i]) for i in range(n + 1))
+	return (b - a) * s
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	f = lambdify(x, expr, modules="math")
+	result = cotes_rule(f, a, b)
+	print(f"\nCotes 公式近似值: {result:.10f}")
+\end{verbatim}
+
+
+\subsection*{复化公式}
+
+单一区间上的求积公式通常只利用少数节点。为了提高近似效果，可以先把 $[a,b]$ 划分为若干小区间，再在每个小区间上使用相同的求积公式，最后把各小区间的结果相加。这类公式称为复化求积公式。
+
+
+	\textbf{复化梯形公式.}
+	将 $[a,b]$ 以步长
+	\[
+	h=\frac{b-a}{m}
+	\]
+	作 $m$ 等分。
+
+记
+\[
+x_i=a+ih,\qquad i=0,1,2,\dots,m.
+\]
+
+在每一个小区间 $[x_{i-1},x_i]$ 上使用梯形公式，得到
+\[
+\begin{aligned}
+	\int_a^b f(x)\dd x
+	&=\sum_{i=1}^{m}\int_{x_{i-1}}^{x_i}f(x)\dd x \\[2pt]
+	&\approx \frac{h}{2}\sum_{i=1}^{m}
+	\bigl[f(x_{i-1})+f(x_i)\bigr].
+\end{aligned}
+\]
+
+记
+\[
+T_m^{(1)}
+=\frac{h}{2}\left[f(a)+f(b)+2\sum_{i=1}^{m-1}f(x_i)\right],
+\]
+则称 $T_m^{(1)}$ 为将区间 $m$ 等分的复化梯形公式。
+
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def composite_trapezoidal_rule(f, a: float, b: float, m: int) -> float:
+	h = (b - a) / m
+	s = f(a) + f(b)
+	for i in range(1, m):
+	s += 2.0 * f(a + i * h)
+	return (h / 2.0) * s
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	m = int(input("请输入等分数 m = "))
+	f = lambdify(x, expr, modules="math")
+	result = composite_trapezoidal_rule(f, a, b, m)
+	print(f"\n复化梯形公式近似值: {result:.10f}")
+	
+\end{verbatim}
+	\textbf{复化 Simpson 公式.}
+	记
+	\[
+	x_{i-\frac12}=\frac{x_{i-1}+x_i}{2}
+	\]
+	为区间 $[x_{i-1},x_i]$ 的中点。
+
+
+在每个小区间上使用 Simpson 公式，可以得到复化 Simpson 公式
+\[
+\begin{aligned}
+	T_m^{(2)}=S_m
+	&=\frac{h}{6}\sum_{i=1}^{m}
+	\left[f(x_{i-1})+4f\left(x_{i-\frac12}\right)+f(x_i)\right] \\[4pt]
+	&=\frac{h}{6}\left[f(a)+f(b)
+	+2\sum_{i=1}^{m-1}f(x_i)
+	+4\sum_{i=1}^{m}f\left(x_{i-\frac12}\right)\right].
+\end{aligned}
+\]
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def composite_simpson_rule(f, a: float, b: float, m: int) -> float:
+	h = (b - a) / m
+	s = f(a) + f(b)
+	for i in range(1, m):
+	s += 2.0 * f(a + i * h)
+	for i in range(1, m + 1):
+	s += 4.0 * f(a + (i - 0.5) * h)
+	return (h / 6.0) * s
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	m = int(input("请输入等分数 m = "))
+	f = lambdify(x, expr, modules="math")
+	result = composite_simpson_rule(f, a, b, m)
+	print(f"\n复化 Simpson 公式近似值: {result:.10f}")
+\end{verbatim}
+	\textbf{复化 Cotes 公式.}
+	在每个小区间 $[x_{i-1},x_i]$ 上使用四等分的 Cotes 公式。令
+	\[
+	y_{i,r}=x_{i-1}+\frac{r}{4}h,
+	\qquad r=0,1,2,3,4,
+	\]
+
+
+则复化 Cotes 公式可以写为
+\[
+\begin{aligned}
+	C_m
+	=\frac{h}{90}\sum_{i=1}^{m}
+	\bigl\{&7\bigl[f(y_{i,0})+f(y_{i,4})\bigr]
+	+32\bigl[f(y_{i,1})+f(y_{i,3})\bigr] \\
+	&+12f(y_{i,2})\bigr\}.
+\end{aligned}
+\]
+使用Python我们可以使用以下的代码进行计算
+\begin{verbatim}
+	import sympy
+	from sympy import symbols, sympify, lambdify
+	def composite_cotes_rule(f, a: float, b: float, m: int) -> float:
+	h = (b - a) / m
+	s = 0.0
+	for i in range(1, m + 1):
+	x0 = a + (i - 1) * h        # y_{i,0}
+	x1 = x0 + h / 4.0           # y_{i,1}
+	x2 = x0 + h / 2.0           # y_{i,2}
+	x3 = x0 + 3.0 * h / 4.0     # y_{i,3}
+	x4 = x0 + h                 # y_{i,4}
+	s += 7.0 * (f(x0) + f(x4)) + 32.0 * (f(x1) + f(x3)) + 12.0 * f(x2)
+	return (h / 90.0) * s
+	if __name__ == "__main__":
+	x = symbols('x')
+	expr_str = input("请输入函数表达式（例如：x**2 + sin(x)）：")
+	expr = sympify(expr_str)
+	a = float(input("请输入积分下限 a = "))
+	b = float(input("请输入积分上限 b = "))
+	m = int(input("请输入等分数 m = "))
+	f = lambdify(x, expr, modules="math")
+	result = composite_cotes_rule(f, a, b, m)
+	print(f"\n复化 Cotes 公式近似值: {result:.10f}")
+\end{verbatim}
+\subsection*{Romberg 方法}
+
+把上面的外推思想推广到一般的 $T_m^{(k)}$。记
+\[
+T_m^{(k+1)}
+=\frac{4^kT_{2m}^{(k)}-T_m^{(k)}}{4^k-1}.
+\]
+
+这就得到数值积分的 Romberg 方法。它的计算过程可以按如下图式进行：先取适当的初始值 $m$，再依次逐个计算。向下的箭头表示把区间再细化一半，向右的箭头表示外推。
+
+\providecommand{\rombergstep}[1]{\tikz[baseline=(char.base)]{\node[draw,circle,inner sep=0.5pt,font=\scriptsize] (char) {#1};}}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[>=Stealth, node distance=1.15cm and 2.05cm]
+		\node (a1) at (0,0) {$T_m^{(1)}$};
+		\node (a2) at (0,-1.25) {$T_{2m}^{(1)}$};
+		\node (a3) at (0,-2.50) {$T_{4m}^{(1)}$};
+		\node (a4) at (0,-3.75) {$T_{8m}^{(1)}$};
+		
+		\node (b1) at (2.35,-0.625) {$T_m^{(2)}$};
+		\node (b2) at (2.35,-1.875) {$T_{2m}^{(2)}$};
+		\node (b3) at (2.35,-3.125) {$T_{4m}^{(2)}$};
+		
+		\node (c1) at (4.70,-1.25) {$T_m^{(3)}$};
+		\node (c2) at (4.70,-2.50) {$T_{2m}^{(3)}$};
+		
+		\node (d1) at (7.05,-1.875) {$T_m^{(4)}$};
+		
+		\draw[->] (a1)--(a2);
+		\draw[->] (a2)--(a3);
+		\draw[->] (a3)--(a4);
+		
+		\draw[->] (a1)--(b1);
+		\draw[->] (a2)--(b1);
+		\draw[->] (a2)--(b2);
+		\draw[->] (a3)--(b2);
+		\draw[->] (a3)--(b3);
+		\draw[->] (a4)--(b3);
+		\draw[->] (b1)--(b2);
+		\draw[->] (b2)--(b3);
+		
+		\draw[->] (b1)--(c1);
+		\draw[->] (b2)--(c1);
+		\draw[->] (b2)--(c2);
+		\draw[->] (b3)--(c2);
+		\draw[->] (c1)--(c2);
+		
+		\draw[->] (c1)--(d1);
+		\draw[->] (c2)--(d1);
+		
+		\node at (-0.45,0.25) {\rombergstep{1}};
+		\node at (-0.45,-1.00) {\rombergstep{2}};
+		\node at (1.70,-0.40) {\rombergstep{3}};
+		\node at (-0.45,-2.25) {\rombergstep{4}};
+		\node at (1.70,-1.65) {\rombergstep{5}};
+		\node at (4.05,-1.02) {\rombergstep{6}};
+		\node at (-0.45,-3.50) {\rombergstep{7}};
+		\node at (1.70,-2.90) {\rombergstep{8}};
+		\node at (4.05,-2.27) {\rombergstep{9}};
+		\node at (6.40,-1.65) {\rombergstep{10}};
+		
+		\node at (0,-4.45) {$\vdots$};
+	\end{tikzpicture}
+	\caption{Romberg 方法的计算顺序示意图}
+\end{figure}
+
+在实际计算中，一般从 $m=1$、$k=1$ 开始逐步计算 $T_m^{(k)}$。若对某个 $k$ 有 $|T_m^{(k)}-T_{m/2}^{(k)}|$ 小于预先设定的精度要求，就可把相应结果作为积分的近似值；否则继续把小区间长度缩小二分之一，计算出新的数值并继续比较。这种根据预置精度要求、在计算过程中自动把区间划分到合适程度的算法，称为自适应算法。

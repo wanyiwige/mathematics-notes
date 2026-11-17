@@ -1,0 +1,3095 @@
+% !TEX root = 抽象代数前三章全部习题详解.tex
+
+
+\clearpage\section{第3章：环}
+
+
+本章收录原习题1--68题。涉及$1$、可逆元、素理想和极大理想时，以幺环为背景；交换性及非零条件在需要处说明。幂零元也称零幂元，$r(R)$为幂零根，$J(R)$为全部极大理想之交。第26--29题的若尔当同态统一采用第26题明确给出的三重乘积条件。新补的推导沿现有习题解答展开，不声称已经另行核对原教材书页。
+
+
+\subsection{习题1：由\texorpdfstring{$1-ab$}{1-ab}可逆推出\texorpdfstring{$1-ba$}{1-ba}可逆}
+
+\label{ex:3:1}
+
+\paragraph{题目}
+
+设环$R$中$1-ab$可逆，证明$1-ba$可逆。
+
+\paragraph{考点与思路}
+
+在非交换环中，不能将 $ab$ 与 $ba$ 直接互换。先记 $c=(1-ab)^{-1}$，再尝试把原来的逆元嵌入 $bca$，构造 $1-ba$ 的逆元。必须分别验证左右两个乘积。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringlaws}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第6行起。本题沿用期中复习册第三章已经展开的证明。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+由 $c=(1-ab)^{-1}$ 的定义，
+\[
+(1-ab)c=1,\qquad c(1-ab)=1.
+\]
+把两式分别展开，得到
+\[
+c-abc=1,\qquad c-cab=1.
+\]
+令 $d=1+bca$。先计算 $(1-ba)d$，使用结合律把含 $b$ 和 $a$ 的项提取出来：
+\begin{align*}
+(1-ba)(1+bca)
+  &=1+bca-ba-babca\\
+  &=1+b(c-1-abc)a\\
+  &=1.
+\end{align*}
+最后一步用了 $c-abc=1$。
+
+另一方向需要使用另一条逆元等式：
+\begin{align*}
+(1+bca)(1-ba)
+  &=1-ba+bca-bcaba\\
+  &=1+b(c-1-cab)a\\
+  &=1,
+\end{align*}
+其中最后一步用了 $c-cab=1$。因此 $d$ 是 $1-ba$ 的双侧逆元，且
+\[
+\boxed{(1-ba)^{-1}=1+b(1-ab)^{-1}a.}
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+记住逆元的构造次序是 $1+bca$。证明中没有交换任意两个因子，因此适用于非交换幺环。将 $a,b$ 对换也得到逆命题，故 $1-ab$ 可逆当且仅当 $1-ba$ 可逆。
+
+
+
+\subsection{习题2：右逆不唯一、零因子与非单位的等价性}
+
+\label{ex:3:2}
+
+\paragraph{题目}
+
+设幺环 $R$ 中的元素 $u$ 有右逆。证明下列三个条件等价：
+\begin{enumerate}
+  \item $u$ 有多于一个右逆；
+  \item $u$ 是零因子；
+  \item $u$ 不是单位。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+先固定一个右逆 $v$，即 $uv=1$。两个右逆相减后落入方程 $ut=0$ 的解集中；反过来，给 $v$ 加上这样的 $t$ 就能产生新的右逆。条件 $uv=1$ 还排除了非零元素在 $u$ 左侧乘出零的可能。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringlaws}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第18行起。本题沿用期中复习册第三章已经展开的证明。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+固定 $v\in R$ 满足 $uv=1$。若 $R$ 是只有一个元素的零环，则 $u$ 是单位，只有一个右逆且不是零因子，三个条件均不成立，等价性仍成立。以下设 $1\ne0$，于是 $u\ne0$。
+
+\begin{enumerate}\item 证明条件(1)与条件(2)等价。
+若另有 $w\ne v$ 满足 $uw=1$，则 $w-v\ne0$，且
+\[
+u(w-v)=uw-uv=1-1=0.
+\]
+因此 $u$ 是左零因子，特别是零因子。
+
+反过来，先注意到：对于任意 $x\in R$，若 $xu=0$，则
+\[
+x=x\cdot1=x(uv)=(xu)v=0.
+\]
+所以不存在非零 $x$ 使 $xu=0$。若 $u$ 是零因子，必有非零 $t$ 满足 $ut=0$。于是
+\[
+u(v+t)=uv+ut=1,
+\]
+而 $v+t\ne v$，故 $u$ 至少有两个右逆。
+
+\item 证明条件(1)与条件(3)等价。
+若 $u$ 是单位，任取右逆 $w$，由 $uw=1$ 得
+\[
+w=u^{-1}(uw)=u^{-1}.
+\]
+因而右逆唯一。所以右逆不唯一必推出 $u$ 不是单位。
+
+另一方面，设 $u$ 的右逆唯一。注意
+\[
+u(vu-1)=(uv)u-u=u-u=0.
+\]
+因此 $v+(vu-1)$ 也是右逆，因为
+\[
+u\bigl(v+vu-1\bigr)=uv+u(vu-1)=1.
+\]
+由右逆的唯一性，$v+vu-1=v$，在加法群中消去 $v$，得到 $vu=1$。结合 $uv=1$，可知 $u$ 是单位。
+
+取这条结论的逆否命题，$u$ 不是单位便推出其右逆不唯一。至此三个条件两两等价。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+这里的前提“已经有一个右逆”不可遗漏。一般幺环中“不是单位”未必是零因子，例如整数环中的 $2$。本题还证明：有右逆的非单位只能以 $ut=0$ 的形式成为零因子，不能有非零 $x$ 满足 $xu=0$。
+
+
+
+\subsection{习题3：右逆不唯一便有无穷多个右逆}
+
+\label{ex:3:3}
+
+\paragraph{题目}
+
+若$u$有多于一个右逆，证明它有无穷多个右逆。
+
+\paragraph{考点与思路}
+
+由 $uv=1$ 但 $vu\ne1$ 构造非零元素 $e=1-vu$。它满足 $ue=0$、$ev=0$，适合用来给已有的右逆 $v$ 添加不同的修正项。不能仅写 $v+ne$，因为正特征下这些元素可能重复。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringlaws}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第31行起。本题沿用期中复习册第三章已经展开的证明。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+取一个右逆 $v$，使 $uv=1$。由\exref{3}{2}，$u$ 不是单位。若 $vu=1$，则 $v$ 同时是左逆和右逆，$u$ 便是单位，矛盾。因此
+\[
+e=1-vu\ne0.
+\]
+由 $uv=1$，有
+\begin{align*}
+ue&=u(1-vu)=u-(uv)u=0,\\
+ev&=(1-vu)v=v-v(uv)=0.
+\end{align*}
+
+对每个整数 $k\ge0$，令
+\[
+x_k=v+eu^k,
+\]
+这里 $u^0=1$。因为 $ue=0$，
+\[
+ux_k=uv+(ue)u^k=1,
+\]
+所以每个 $x_k$ 都是 $u$ 的右逆。
+
+下面证明它们两两不同。先由 $uv=1$ 归纳得到，对每个整数 $m\ge0$，
+\[
+u^mv^m=1.
+\]
+归纳步骤为
+\[
+u^{m+1}v^{m+1}=u^m(uv)v^m=u^mv^m=1.
+\]
+于是当 $0\le i<j$ 时，
+\[
+u^iv^j=(u^iv^i)v^{j-i}=v^{j-i}.
+\]
+
+假设 $x_i=x_j$，其中 $i<j$。消去 $v$ 后，$eu^i=eu^j$。两边右乘 $v^j$，得到
+\[
+ev^{j-i}=e.
+\]
+但 $j-i\ge1$ 且 $ev=0$，所以
+\[
+ev^{j-i}=(ev)v^{j-i-1}=0,
+\]
+从而 $e=0$，与构造矛盾。因此 $x_0,x_1,x_2,\ldots$ 两两不同，$u$ 有无穷多个右逆。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+证明的核心是“构造右逆”和“证明构造出的元素互异”两个步骤。等式 $u^mv^m=1$ 来自逐对消去中间的 $uv$，绝不意味着 $u,v$ 可以交换。本题也说明有限幺环中，有右逆的元素必为单位。
+
+
+
+\subsection{习题4：幂零元全体是否为理想}
+
+\label{ex:3:4}
+
+\paragraph{题目}
+
+证明交换环中全部幂零元构成理想，并判断非交换环中的情形。
+
+\paragraph{考点与思路}
+
+交换情形按原解展开二项式，并分别检查减法和吸收性；非交换情形保留两个矩阵单位的反例。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringlaws}；\noteref{ideal}；\noteref{c3nil}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第42行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$N=\{a\in R:a^m=0\text{ 对某个 }m\ge1\}$。因为$0\in N$，它非空。
+任取$a,b\in N$，选$m,n\ge1$使$a^m=b^n=0$。因$R$交换，二项式展开的每一项形如$a^i(-b)^j$，其中$i+j=m+n-1$。若$i<m$且$j<n$，则$i+j\le m+n-2$，矛盾。因此每一项均含$a^m$或$b^n$，从而
+\[
+(a-b)^{m+n-1}=0.
+\]
+这说明$a-b\in N$。若环无幺元，两个端项分别直接理解为$a^{m+n-1}$和$(-b)^{m+n-1}$，无须使用零次幂。
+
+任取$r\in R$，交换性给出$(ra)^m=r^ma^m=0$，故$ra=ar\in N$。所以$N$是理想。
+
+在非交换环$M_2(\Z)$中，取$A=E_{12}$、$B=E_{21}$。有
+\[
+A^2=B^2=0,\qquad (A+B)^2=E.
+\]
+于是$(A+B)^{2k}=E\ne0$，$(A+B)^{2k+1}=A+B\ne0$，所以$A+B$不幂零。幂零元全体甚至不对加法封闭，因而一般不是理想。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+二项式展开中将同类乘积合并使用了交换性；不能把该证明直接移用于非交换环。
+
+
+
+\subsection{习题5：素特征的幂公式与一般环的特征}
+
+\label{ex:3:5}
+
+\paragraph{题目}
+
+设$F$的特征为素数$p$，证明$(a+b)^p=a^p+b^p$。并将特征的讨论推广到幺环及不必有幺元的环。
+
+\paragraph{考点与思路}
+
+先证明中间二项式系数被素数整除，再把特征解释为加法群的共同湮灭整数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ring}；\noteref{ringlaws}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第51行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+\begin{enumerate}
+\item 设$\operatorname{char}F=p$。对$1\le k\le p-1$，整数等式
+\[
+k\binom pk=p\binom{p-1}{k-1}
+\]
+及$p\nmid k$说明$p\mid\binom pk$。因此这些整数系数作用于$F$中的元素时均为零。$F$的乘法交换，故
+\[
+(a+b)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^kb^{p-k}+b^p=a^p+b^p.
+\]
+\item 对任意幺环$R$，若存在正整数$n$使$n1=0$，就以最小的这样的$n$为特征；不存在时特征为$0$。这里$n1$表示加法意义下的$n$倍。由$(n1)r=nr$，条件$n1=0$等价于$nR=0$。
+
+一般幺环的正特征未必为素数，例如$\Z/(6)$的特征为$6$。若非零幺环无零因子，设其正特征$n=st$，其中$1<s,t<n$，则
+\[
+(s1)(t1)=n1=0,
+\]
+而最小性说明$s1,t1$均非零，矛盾。因此此时$n$为素数。
+\item 对不要求有幺元的环，定义特征为使$nr=0$对所有$r\in R$成立的最小正整数$n$；若无此$n$则为$0$。这一定义只用加法，不需要元素$1$。不能一般改成“某个非零元素的阶”。
+
+若环交换且特征为素数$p$，第一项的二项式证明仍然适用；端项写为$a^p,b^p$即可。非交换环即使特征为$p$，也不能由此得到该公式，因为混合乘积不能按二项式系数合并。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+一般幺环的特征可以是合数；素数结论需要非零且无零因子的条件。
+
+
+
+\subsection{习题6：矩阵环的全部双边理想}
+
+\label{ex:3:6}
+
+\paragraph{题目}
+
+设$R$为幺环，$n\ge1$，$I\lhd R$。证明$M_n(I)\lhd M_n(R)$，且$M_n(R)$的每个双边理想均唯一地如此得到。原题未明写的幺元条件在此列出；无幺情形见证明末的反例。
+
+\paragraph{考点与思路}
+
+用矩阵单位取出一个分量并把它搬到任意位置，再重组整个矩阵。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第62行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里$R$为幺环，$n\ge1$，理想均为双边理想。若$I\lhd R$，则$M_n(I)$对减法封闭；对$A\in M_n(R)$、$B\in M_n(I)$，乘积$AB,BA$的每个分量都是含有$I$中一个因子的有限和，仍属于$I$。故$M_n(I)\lhd M_n(R)$。
+
+反过来，设$J\lhd M_n(R)$。令
+\[
+I=\{a\in R:aE_{11}\in J\}.
+\]
+零矩阵属于$J$，故$0\in I$。若$a,b\in I$、$r\in R$，则
+\begin{align*}
+(a-b)E_{11}&=aE_{11}-bE_{11}\in J,\\
+(ra)E_{11}&=(rE_{11})(aE_{11})\in J,\\
+(ar)E_{11}&=(aE_{11})(rE_{11})\in J.
+\end{align*}
+因此$I\lhd R$。
+
+对$A=(a_{ij})\in J$，矩阵单位给出
+\[
+E_{1i}AE_{j1}=a_{ij}E_{11}\in J,
+\]
+所以每个$a_{ij}\in I$，即$J\subseteq M_n(I)$。反之，对$a\in I$及任意$i,j$，
+\[
+E_{i1}(aE_{11})E_{1j}=aE_{ij}\in J.
+\]
+将这些矩阵相加，$M_n(I)$中的每个矩阵都属于$J$，故$J=M_n(I)$。由$a\in I\Longleftrightarrow aE_{11}\in J$，$I$也唯一。
+
+幺元假设保证所用矩阵单位属于$M_n(R)$。无幺环中不能直接断言此结论：取加法群为$\Z$、乘法恒为零的环$R$，则$M_2(R)$也是零乘法环，任一加法子群均为理想；子群$\Z E_{11}$并非任何$M_2(I)$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+要证明全部理想的分类，既要从任意理想恢复$I$，也要验证任意合适的$I$确实给出理想。
+
+
+
+\subsection{习题7：理想积的分配律}
+
+\label{ex:3:7}
+
+\paragraph{题目}
+
+若$I,H,N$为$R$的理想，证明$(H+N)I=HI+NI$及$I(H+N)=IH+IN$。
+
+\paragraph{考点与思路}
+
+按理想积的有限和定义，逐项展开，再分别证明反向包含。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3product}；\noteref{ringlaws}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第75行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+按定义，$HI$是全部有限和$\sum h_ji_j$组成的集合，其中$h_j\in H,i_j\in I$；其余理想积也按同样方式理解。
+
+任取$x\in(H+N)I$，写作$x=\sum_j(h_j+n_j)i_j$。分配律给出
+\[
+x=\sum_jh_ji_j+\sum_jn_ji_j\in HI+NI.
+\]
+反过来，因$H,N\subseteq H+N$，每个$h_ji_j$和$n_ki_k$都是$(H+N)I$的生成乘积；该集合对加法封闭，故$HI+NI\subseteq(H+N)I$。于是$(H+N)I=HI+NI$。
+
+对另一等式，任取$y=\sum_ji_j(h_j+n_j)\in I(H+N)$，则
+\[
+y=\sum_ji_jh_j+\sum_ji_jn_j\in IH+IN.
+\]
+而$H,N\subseteq H+N$分别给出$IH,IN\subseteq I(H+N)$，故$IH+IN\subseteq I(H+N)$。得到$I(H+N)=IH+IN$。两式均不要求乘法交换。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+理想积的元素是有限个乘积之和，不一定是单个乘积。
+
+
+
+\subsection{习题8：满同态下的元素性质与整环性质}
+
+\label{ex:3:8}
+
+\paragraph{题目}
+
+设 $\eta:R\twoheadrightarrow R'$ 为保幺满同态。判断下列命题是否成立，并证明或举反例：
+\begin{enumerate}
+  \item[(i)] 幂零元、幂等元的像仍是相应元素；
+  \item[(ii)] 零因子的像仍是零因子；
+  \item[(iii)] 若 $R$ 为整环，则 $R'$ 为整环；
+  \item[(iv)] 若 $R'$ 为整环，则 $R$ 为整环；
+  \item[(v)] 单位的像仍是单位；
+  \item[(vi)] 像为单位的元素必为单位。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+同态保留由加法、乘法和 $0,1$ 写出的等式，却未必保留“非零”“不存在非零零乘积”等条件。零因子的定义涉及非零元素，所以不能只把 $ab=0$ 两边取像就认定像仍为零因子。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringiso}；\noteref{ideal}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第82行起。本题沿用期中复习册第三章已经展开的证明。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+\begin{enumerate}[label=(\roman*)]\item 成立。
+若 $a$ 是幂零元，取正整数 $m$ 使 $a^m=0$。由同态保乘法，
+\[
+\eta(a)^m=\eta(a^m)=\eta(0)=0'.
+\]
+故 $\eta(a)$ 仍为幂零元。若 $e^2=e$，则
+\[
+\eta(e)^2=\eta(e^2)=\eta(e),
+\]
+故 $\eta(e)$ 仍为幂等元。两项结论都不要求满射或保幺。
+
+\item 不成立。
+考虑映射
+\[
+\eta:\Z/6\Z\longrightarrow\Z/3\Z,\qquad
+\overline{k}_{6}\longmapsto\overline{k}_{3}.
+\]
+若 $k\equiv\ell\pmod6$，则 $3\mid k-\ell$，所以像不依赖代表元，映射良定义。模运算保留加法和乘法，且 $\eta(\overline1_6)=\overline1_3$；每个 $\overline{k}_3$ 都是 $\overline{k}_6$ 的像，故这是保幺满同态。
+
+在源环中，$\overline4_6\ne0$、$\overline3_6\ne0$，且
+\[
+\overline4_6\,\overline3_6=\overline{12}_6=\overline0_6,
+\]
+所以 $\overline4_6$ 是零因子。它的像却是 $\overline1_3$。若 $\overline1_3 y=0$，则 $y=0$，故该像不是零因子。这一反例甚至将零因子映成了非零单位。
+
+\item 不成立。
+取自然映射
+\[
+\pi:\Z\twoheadrightarrow\Z/6\Z,\qquad k\longmapsto\overline{k}_6.
+\]
+该映射保加法、乘法和单位元，并且满射。源环 $\Z$ 是整环，但目标中
+\[
+\overline2_6\ne0,\qquad \overline3_6\ne0,\qquad
+\overline2_6\,\overline3_6=0,
+\]
+所以 $\Z/6\Z$ 不是整环。
+
+\item 不成立。
+取映射
+\[
+\rho:\Z/6\Z\twoheadrightarrow\Z/2\Z,\qquad
+\overline{k}_{6}\longmapsto\overline{k}_{2}.
+\]
+因为 $2\mid6$，同余模 $6$ 蕴含同余模 $2$，映射良定义；模运算说明它保加法、乘法及单位元，每个模 $2$ 的剩余类都有原像，所以满射。
+
+目标 $\Z/2\Z$ 只有两个元素，唯一非零元素是 $\overline1_2$，且 $\overline1_2\,\overline1_2=\overline1_2\ne0$，因此它是整环。源环却有上一项给出的非零零乘积，故不是整环。
+
+\item 成立。
+若 $u$ 是单位，令 $v=u^{-1}$，则 $uv=vu=1$。取像得
+\begin{align*}
+\eta(u)\eta(v)&=\eta(uv)=\eta(1)=1',\\
+\eta(v)\eta(u)&=\eta(vu)=\eta(1)=1'.
+\end{align*}
+因此 $\eta(u)$ 是单位，且
+\[
+\eta(u)^{-1}=\eta(u^{-1}).
+\]
+这一结论只需要保幺同态，不需要满射。
+
+\item 不成立。
+取自然保幺满同态
+\[
+\sigma:\Z\twoheadrightarrow\Z/5\Z,\qquad
+k\longmapsto\overline{k}_5.
+\]
+整数 $2$ 不是 $\Z$ 中的单位：若 $2m=1$，则偶数等于奇数，故没有整数解。它的像 $\overline2_5$ 却满足
+\[
+\overline2_5\,\overline3_5=\overline6_5=\overline1_5,
+\]
+因而是单位。这说明像可逆不保证原元素可逆。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+六项判断依次为：\textbf{对、错、错、错、对、错}。构造剩余类环之间的映射时，先检验模数之间的整除关系，确保“按原整数取剩余类”的规则良定义。证明零因子的反例时，须同时写明两个因子非零；证明单位的反例时，须给出像的实际逆元。
+
+
+
+\subsection{习题9：有理系数四元数构成子体}
+
+\label{ex:3:9}
+
+\paragraph{题目}
+
+证明有理系数四元数$H_0=\{a_0+a_1I+a_2J+a_3K:a_i\in\mathbb Q\}$是$H$的子体。
+
+\paragraph{考点与思路}
+
+沿用四元数乘法表检查封闭性，再用共轭除以平方和求逆。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{quaternion}；\noteref{c3conjugate}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第99行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+$H_0$含$0,1$，且对减法封闭。将两个有理系数四元数的乘积按$1,I,J,K$展开，由乘法表可知每个新系数都是原系数的整数系数和积，仍为有理数。因此$H_0$是$H$的含幺子环。
+
+任取$0\ne q=a_0+a_1I+a_2J+a_3K\in H_0$，定义$\bar q=a_0-a_1I-a_2J-a_3K$。不同虚基元的交叉项成对抵消，得到
+\[
+q\bar q=\bar q q=a_0^2+a_1^2+a_2^2+a_3^2=:s.
+\]
+至少一个$a_i$非零，且这些系数属于$\Q\subset\R$，所以$s>0$。特别地，$s$是非零有理数，故
+\[
+q^{-1}=s^{-1}\bar q\in H_0.
+\]
+左右乘$q$均得到$1$，所以每个非零元素都有逆，$H_0$是$H$的子体。这里“体”指除环；$IJ=K$、$JI=-K$说明它不是交换域。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+平方和非零的理由来自系数位于实数中；在任意域上不能直接使用正性。
+
+
+
+\subsection{习题10：实四元数体的中心}
+
+\label{ex:3:10}
+
+\paragraph{题目}
+
+确定四元数体$H$的中心。
+
+\paragraph{考点与思路}
+
+先令一般四元数分别与$I,J$交换，以系数唯一性逐次排除虚部。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{quaternion}；\noteref{c3conjugate}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第111行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+环的中心定义为$Z(H)=\{q\in H:qr=rq\text{ 对每个 }r\in H\}$。任取$q=a+bI+cJ+dK\in Z(H)$。由乘法表，
+\begin{align*}
+qI&=-b+aI+dJ-cK,\\
+Iq&=-b+aI-dJ+cK.
+\end{align*}
+由$qI=Iq$及$1,I,J,K$的实线性无关性，有$2d=2c=0$，故$c=d=0$。
+
+此时$q=a+bI$，又
+\[
+qJ=aJ+bK,\qquad Jq=aJ-bK.
+\]
+因$qJ=Jq$，得$2b=0$，故$b=0$。所以$Z(H)\subseteq\R1$。
+反过来，任一实标量$a1$与四元数的各基元交换，对分配律展开后的任意四元数也交换。因此
+\[
+Z(H)=\R1\cong\R.
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+必要性只需与两个特定元素交换；充分性仍须说明实标量与所有四元数交换。
+
+
+
+\subsection{习题11：与四元数基元不交换的元素}
+
+\label{ex:3:11}
+
+\paragraph{题目}
+
+求$H$中与$I$不交换的全部元素。
+
+\paragraph{考点与思路}
+
+计算交换差$I q-q I$，再用$J,K$的线性无关性判定何时非零。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{quaternion}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第118行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+写$q=a+bI+cJ+dK$，其中$a,b,c,d\in\R$。乘法表给出
+\begin{align*}
+Iq&=-b+aI-dJ+cK,\\
+qI&=-b+aI+dJ-cK,\\
+Iq-qI&=2cK-2dJ.
+\end{align*}
+由于$J,K$在实数上独立，$Iq-qI=0$当且仅当$c=d=0$。所以全部与$I$不交换的元素恰为
+\[
+\{a+bI+cJ+dK:a,b,c,d\in\R,\ (c,d)\ne(0,0)\}.
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+“不交换”要求交换差非零，而不是要求四个系数都非零。
+
+
+
+\subsection{习题12：共轭不变的四元数子体}
+
+\label{ex:3:12}
+
+\paragraph{题目}
+
+设$S$是$H$的子体，且对所有$0\ne d\in H$有$dSd^{-1}\subseteq S$。证明$S=H$或$S$包含于中心。
+
+\paragraph{考点与思路}
+
+保留原解中$x$与$x+1$的两个共轭，比较后迫使它们相等；再以$x+y$处理子体内部的元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{field}；\noteref{c3conjugate}；\exref{3}{10}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第129行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+若$S=H$则结论成立。以下设$S\ne H$，固定$x\in H\setminus S$。子体$S$含$0,1$，所以$x\ne0$且$x+1\ne0$。任取$s\in S$，题设保证
+\[
+a=xsx^{-1}\in S,\qquad b=(x+1)s(x+1)^{-1}\in S.
+\]
+右乘$x$及$x+1$分别得$xs=ax$及$xs+s=bx+b$。相减得
+\[
+(a-b)x=b-s.
+\]
+若$a\ne b$，则$a-b$在子体$S$中可逆，从左侧消去得$x=(a-b)^{-1}(b-s)\in S$，矛盾。故$a=b$，上述等式进而给出$b=s$，于是$xs=sx$。
+
+由于$x$在$H\setminus S$中可任取，子体外的每个元素都与$s$交换。对任意$y\in S$，固定一个$x\notin S$；若$x+y\in S$则$x=(x+y)-y\in S$，矛盾。因此$x+y\notin S$，它也与$s$交换。于是
+\[
+ys=(x+y)s-xs=s(x+y)-sx=sy.
+\]
+所以$s$与$S$内外的所有元素均交换，即$s\in Z(H)$。$s$任意，故$S\subseteq Z(H)=\R1$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+最后以$x+y$相减，才能从子体外的交换性推出子体内部的交换性。
+
+
+
+\subsection{习题13：互素理想与理想积的包含}
+
+\label{ex:3:13}
+
+\paragraph{题目}
+
+设$R$为幺环，$I,H,N\lhd R$。若$HN\subseteq I$且$I+H=R$，证明$N\subseteq I$。这里补明原解已经使用的幺元条件。
+
+\paragraph{考点与思路}
+
+由$I+H=R$把$1$分成两项，再乘以$N$中的任意元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\noteref{c3product}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第142行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里$R$为幺环。由$I+H=R$，可取$i\in I,h\in H$使$1=i+h$。任取$n\in N$，有
+\[
+n=1n=(i+h)n=in+hn.
+\]
+因$I$为理想，$in\in I$；又$h\in H,n\in N$，所以$hn\in HN\subseteq I$。故$n\in I$。$n$任意，得到$N\subseteq I$。
+
+此证明不需要交换性，但需要幺元。若允许无幺环，可在非零的零乘法环中取$I=0,H=N=R$，此时$HN=0\subseteq I$、$I+H=R$，却$N\nsubseteq I$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+用到$1=i+h$的题目须明确母环有幺元。
+
+
+
+\subsection{习题14：互素理想之积包含其交中的理想}
+
+\label{ex:3:14}
+
+\paragraph{题目}
+
+设$I,H,N$为交换幺环$R$的理想，$I\subseteq H,N$且$H+N=R$，证明$HN\supseteq I$。补明原解中使用的幺元条件。
+
+\paragraph{考点与思路}
+
+由$1=h+n$把$I$中的元素拆成两个属于$HN$的项。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3comaximal}；\noteref{c3product}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第153行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里$R$为交换幺环。由$H+N=R$，取$h\in H,n\in N$使$h+n=1$。任取$i\in I$。因$I\subseteq H\cap N$，有$i\in H$且$i\in N$，所以
+\[
+i=i(h+n)=ih+in=hi+in\in HN.
+\]
+其中$hi\in HN$使用$h\in H,i\in N$，$in\in HN$使用$i\in H,n\in N$。故$I\subseteq HN$。
+
+这里$\supseteq$允许相等：取$R=F\oplus F$、$I=0$、$H=F\oplus0$、$N=0\oplus F$，则$H+N=R$而$HN=0=I$。
+若删去幺元假设，非零零乘法环中取$I=H=N=R$就使结论失败。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+交换性在将$ih$改写为$hi$时使用；包含关系不能无条件加强为严格包含。
+
+
+
+\subsection{习题15：只有恒等反自同构的矩阵子环}
+
+\label{ex:3:15}
+
+\paragraph{题目}
+
+在$M_n(F)$（$n>1$）中找一个子环$R$，使$R$除恒等同构外没有其他反自同构。
+
+\paragraph{考点与思路}
+
+沿原解取素子域的标量矩阵环；先证明自同构必须固定幺元，再固定全部素域元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3anti}；\noteref{unit}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第164行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$F_0$为$F$的素子域，即$\operatorname{char}F=0$时的$\Q$，或特征为$p$时的$\F_p$，并取
+\[
+R=\{cE_n:c\in F_0\}\subseteq M_n(F).
+\]
+标量矩阵的加法、乘法对应于$F_0$的运算，故$R$是交换子环，单位元为$E_n$。
+
+设$\sigma:R\to R$为反自同构。因$R$交换，$\sigma(AB)=\sigma(B)\sigma(A)=\sigma(A)\sigma(B)$，故它也是自同构。即使不预设保幺，满射性也迫使$\sigma(E_n)=E_n$：对任意$B=\sigma(A)$，都有$\sigma(E_n)B=B\sigma(E_n)=B$，再利用单位元唯一性。
+
+加法性说明$\sigma$固定每个整数倍$mE_n$。正特征时这些就是全部$F_0$标量。零特征时，对非零整数$m$，由$\sigma$保乘法，$\sigma((mE_n)^{-1})=(mE_n)^{-1}$，继而固定每个有理数标量。因此两种情形都只有$\sigma=\mathrm{id}_R$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+题目只要求一个子环，素子域标量环已经满足要求；不必让子环等于整个矩阵环。
+
+
+
+\subsection{习题16：整数下三角矩阵环的全部理想}
+
+\label{ex:3:16}
+
+\paragraph{题目}
+
+求$R=\left\{\begin{pmatrix}a&0\\b&c\end{pmatrix}:a,b,c\in\mathbb Z\right\}$的全部理想。
+
+\paragraph{考点与思路}
+
+用对角矩阵单位分离三个位置，再用$E_{21}$比较对应的三个整数理想。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\noteref{cyclic}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第171行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$J\lhd R$。对$A=\left(\begin{smallmatrix}a&0\\b&c\end{smallmatrix}\right)\in J$，有
+\[
+E_{11}AE_{11}=aE_{11},\quad E_{22}AE_{11}=bE_{21},\quad E_{22}AE_{22}=cE_{22},
+\]
+这些矩阵都在$J$中。分别令$A_1,B_1,C_1$为满足$aE_{11}\in J,bE_{21}\in J,cE_{22}\in J$的整数集合。它们都是$\Z$的加法子群，故分别唯一地形如$m\Z,k\Z,n\Z$，其中$m,k,n\ge0$。
+
+分离公式和加法封闭性共同说明
+\[
+J=I_{m,k,n}:=\left\{\begin{pmatrix}a&0\\b&c\end{pmatrix}:a\in m\Z,\ b\in k\Z,\ c\in n\Z\right\}.
+\]
+又因$E_{21}(aE_{11})=aE_{21}$、$(cE_{22})E_{21}=cE_{21}$，必有
+\[
+m\Z\subseteq k\Z,\qquad n\Z\subseteq k\Z.
+\]
+
+反过来，取任意满足上述两包含关系的$m,k,n$。$I_{m,k,n}$对减法封闭。对$X=\left(\begin{smallmatrix}r&0\\s&t\end{smallmatrix}\right)\in R$和$A\in I_{m,k,n}$，
+\[
+XA=\begin{pmatrix}ra&0\\sa+tb&tc\end{pmatrix},\qquad
+AX=\begin{pmatrix}ar&0\\br+cs&ct\end{pmatrix}.
+\]
+两个对角分量分别仍在$m\Z,n\Z$中；左下分量中$a,c\in k\Z$，故所有项均在$k\Z$中。因此$XA,AX\in I_{m,k,n}$，它确为双边理想。
+
+所以全部理想恰是上述$I_{m,k,n}$。参数条件也可写为$k\mid m$、$k\mid n$，其中$0\mid m$仅当$m=0$；用集合包含写法可统一涵盖零参数。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+先取出各分量，才能排除不同位置的系数之间还存在额外耦合关系。
+
+
+
+\subsection{习题17：剩余类矩阵环的单位群阶数}
+
+\label{ex:3:17}
+
+\paragraph{题目}
+
+确定$M_2(\mathbb Z/(n))$的单位群的阶。
+
+\paragraph{考点与思路}
+
+保留中国剩余分解、模$p$约化、两列计数的路线，补齐可逆性提升的理由。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3crt}；\noteref{unit}；\exref{1}{44}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第184行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$n\ge2$，写$n=\prod_{i=1}^r p_i^{e_i}$。中国剩余定理按矩阵分量给出环同构
+\[
+M_2(\Z/(n))\cong\bigoplus\limits_{i=1}^r M_2(\Z/(p_i^{e_i})).
+\]
+分量逐一可逆当且仅当整个元组可逆，所以其单位群是各$\GL_2(\Z/(p_i^{e_i}))$的直积，阶数相乘。
+
+固定$p^e$。交换环上的二阶矩阵$A$可逆当且仅当$\det A$为单位：必要性由$\det A\det A^{-1}=1$得到；充分性由$A\operatorname{adj}A=\operatorname{adj}A\,A=(\det A)E$得到。整数剩余类$a\bmod p^e$为单位当且仅当$p\nmid a$，因为互素时贝祖等式给出逆；被$p$整除时不能与任何整数相乘得到$1$模$p^e$。
+
+因此$A$在模$p^e$下可逆，当且仅当其模$p$像可逆。每个模$p$的矩阵有$p^{4(e-1)}$个提升，四个分量均可独立选择；一个可逆模$p$矩阵的所有这些提升都可逆。于是
+\[
+|\GL_2(\Z/(p^e))|=p^{4(e-1)}|\GL_2(\F_p)|.
+\]
+在$\F_p^2$中，可逆矩阵的两列须为有序基。第一列可选任意非零向量，共$p^2-1$种；它张成的直线有$p$个向量，第二列须避开此直线，共$p^2-p$种。因此
+\[
+\boxed{|\GL_2(\Z/(n))|=\prod_{p^e\parallel n}p^{4(e-1)}(p^2-1)(p^2-p).}
+\]
+若$n=1$，环只有一个元素，且$0=1$；按单位的双侧逆定义，单位群为单元素群，阶为$1$，也与空乘积约定一致。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+约化后的矩阵可逆，才能保证它的每个提升可逆；理由是行列式为单位的判据。
+
+
+
+\subsection{习题18：有限无零因子交换环自动有幺且为域}
+
+\label{ex:3:18}
+
+\paragraph{题目}
+
+设$R\ne0$为交换环，不预设幺元，且无零因子、非零元素只有有限个。证明$R$是有限除环。原题应补明非零条件；事实上结论是有限域。
+
+\paragraph{考点与思路}
+
+不预设幺元，先由有限集上的乘法单射得到一个对所有元素有效的单位元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{zerodiv}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第199行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+补明$R\ne0$；否则零环满足原题的有限性和无非零零因子条件，却不是除环。固定$0\ne a\in R$。若$ax=ay$，则$a(x-y)=0$；无零因子性使$x=y$。故$L_a:x\mapsto ax$是有限集合$R$上的单射，因而满射。
+
+取$e\in R$使$ae=a$。任给$b\in R$，由满射性写$b=ac$。交换性和结合律给出
+\[
+eb=e(ac)=(ea)c=(ae)c=ac=b,\qquad be=eb=b.
+\]
+因此$e$是整个$R$的双侧单位元。由$a\ne0$、$ae=a$知$e\ne0$。
+
+再取任意$0\ne b\in R$，同样的消去论证说明$L_b$满射，故存在$c\in R$使$bc=e$。交换性给出$cb=e$。所以每个非零元都有双侧逆元，$R$是有限域，特别是有限除环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+构造$ae=a$后，还须证明$e$对任意$b$都是单位；$R\ne0$也不能遗漏。
+
+
+
+\subsection{习题19：理想关系不具传递性}
+
+\label{ex:3:19}
+
+\paragraph{题目}
+
+若$N\lhd R$而$I\lhd N$，问$I$是否必为$R$的理想？
+
+\paragraph{考点与思路}
+
+沿用严格上三角矩阵的反例，写明每个乘积落在哪里及哪一个乘积破坏吸收性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第206行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$F$为域，取
+\[
+R=\left\{\begin{pmatrix}0&a&b\\0&0&c\\0&0&0\end{pmatrix}:a,b,c\in F\right\},\quad
+N=FE_{12}+FE_{13},\quad I=FE_{12}.
+\]
+对$X=aE_{12}+bE_{13}+cE_{23}\in R$和$Y=uE_{12}+vE_{13}\in N$，矩阵单位乘法$E_{ij}E_{k\ell}=\delta_{jk}E_{i\ell}$给出
+\[
+XY=0,\qquad YX=ucE_{13}\in N.
+\]
+加法与取负的封闭性由线性表达式得到，所以$N\lhd R$。同时$N^2=0$，因此$I$对$N$的左右乘法均吸收为零，又是加法子群，故$I\lhd N$。
+
+但是$E_{12}\in I$、$E_{23}\in R$，而
+\[
+E_{12}E_{23}=E_{13}\notin I.
+\]
+所以$I$不是$R$的理想。此处$R$没有幺元，符合一般环不预设幺元的约定。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+验证$I\lhd N$只检查$N$中元素，验证$I\lhd R$则必须检查整个$R$中的元素。
+
+
+
+\subsection{习题20：非单位属于某个极大理想}
+
+\label{ex:3:20}
+
+\paragraph{题目}
+
+设$R$为交换环、$a$不可逆，证明有极大理想包含$a$。
+
+\paragraph{考点与思路}
+
+从真主理想$(a)$出发，以佐恩引理选极大元，并检查它在全部真理想中也极大。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\noteref{c3principal}；\noteref{c3maxexists}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第213行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里$R$为交换幺环，$a$为非单位。若$(a)=R$，则$1=ra$对某个$r\in R$成立；交换性使$r$为$a$的双侧逆，矛盾。因此$(a)\ne R$。
+
+令$\mathcal S=\{I\lhd R:(a)\subseteq I\ne R\}$，以包含关系赋序。它含$(a)$。设$\mathcal C\subseteq\mathcal S$为非空链，令$U=\bigcup_{I\in\mathcal C}I$。任取$x,y\in U$，可在链中找一个同时含二者的理想，故$x-y\in U$；对$r\in R$，$rx\in U$。所以$U$是包含$(a)$的理想。
+
+若$U=R$，则$1\in U$，从而链中某个$I$含$1$，使$I=R$，矛盾。因此$U\in\mathcal S$，是该链的上界。空链可取$(a)$为上界。由佐恩引理，$\mathcal S$有极大元$M$。
+
+若$M\subsetneq J\subsetneq R$且$J$为理想，则$J$也含$(a)$，故$J\in\mathcal S$，违背$M$的极大性。因此$M$为$R$的极大理想，并含$a$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+链的并仍是真理想，关键在于一旦并含$1$，某个链成员就已含$1$。
+
+
+
+\subsection{习题21：极大理想之交的单位刻画}
+
+\label{ex:3:21}
+
+\paragraph{题目}
+
+设$J(R)$为交换环$R$的全部极大理想之交。证明$a\in J(R)$当且仅当$1-ax$对所有$x\in R$均可逆。
+
+\paragraph{考点与思路}
+
+按原解分别把非单位送入极大理想，以及在商域中取$a$的逆。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\exref{3}{20}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第222行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$R$为交换幺环，记$J(R)=\bigcap_{M\text{ 极大}}M$。若$R$为零环，按空交为$R$的约定，$J(R)=R$；唯一元素也是单位，故等价性成立。以下设$R\ne0$。
+
+先设$a\in J(R)$。任取$x\in R$。若$1-ax$不是单位，由\exref{3}{20}，它属于某个极大理想$M$。又$a\in J(R)\subseteq M$，理想的吸收性说明$ax\in M$。于是
+\[
+1=(1-ax)+ax\in M,
+\]
+与$M$为真理想矛盾。因此$1-ax$为单位。
+
+反过来，设每个$1-ax$均可逆。如果$a\notin J(R)$，按交集的定义存在极大理想$M$使$a\notin M$。商环$R/M$是域，非零元素$a+M$有逆。取该逆的一个代表元$x\in R$，则
+\[
+(a+M)(x+M)=1+M,\qquad 1-ax\in M.
+\]
+但真理想不含单位：若单位$u\in M$，则$u^{-1}u=1\in M$。因此$1-ax$不可逆，与假设矛盾。故$a\in J(R)$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+对所有$x$的量词不能删去；反向证明要在商域中取逆并提升代表元。
+
+
+
+\subsection{习题22：强拟正则元全体与雅各布森根}
+
+\label{ex:3:22}
+
+\paragraph{题目}
+
+若$a$满足习题21的条件，称其为强拟正则元。证明全部强拟正则元构成$J(R)$。
+
+\paragraph{考点与思路}
+
+把强拟正则的定义逐元素代入上一题的等价性，再说明所得集合为理想。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\exref{3}{21}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第231行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+在交换幺环$R$中，称$a$为强拟正则元，是指对每个$x\in R$，$1-ax$都是单位。记全部这类元素的集合为$Q$。由\exref{3}{21}，对任意$a\in R$都有
+\[
+a\in Q\ \Longleftrightarrow\ (\forall x\in R)\ 1-ax\in R^\times
+\ \Longleftrightarrow\ a\in J(R).
+\]
+因此$Q=J(R)$。$J(R)$作为极大理想的交是理想：若$a,b$属于交，则$a-b$属于每个极大理想；对$r\in R$，$ra$也属于每个极大理想。所以强拟正则元全体也构成理想。零环按上一题的空交约定处理，结论相同。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+此题中“强拟正则”采用对每个乘子$x$均成立的定义。
+
+
+
+\subsection{习题23：有限交换环的素理想必极大}
+
+\label{ex:3:23}
+
+\paragraph{题目}
+
+证明有限交换环的每个素理想都是极大理想。
+
+\paragraph{考点与思路}
+
+把素理想的商环化为有限整环，再用有限整环为域。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\exref{3}{18}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第242行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$P$为有限交换幺环$R$的素理想。素理想为真理想，故$R/P\ne0$；素性给出
+\[
+(a+P)(b+P)=0+P\ \Longrightarrow\ ab\in P
+\ \Longrightarrow\ a\in P\text{ 或 }b\in P.
+\]
+所以$R/P$无零因子，是整环。它由有限集合$R$取商得到，因而仍有限。由\exref{3}{18}，$R/P$是域。根据极大理想与商域的等价判据，$P$极大。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+先确认商环非零，才能使用有限整环为域。
+
+
+
+\subsection{习题24：整数子群定理与循环群分类的等价性}
+
+\label{ex:3:24}
+
+\paragraph{题目}
+
+证明第二章第2节的定理4和定理5等价。
+
+\paragraph{考点与思路}
+
+按原解使用从整数群到循环群的指数同态，再用无限循环群返回整数子群。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{cyclic}；\noteref{firstiso}；\noteref{correspondence}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第249行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+本题所说的旧编号“第二章第2节定理4、5”，在现有源码中分别是整数子群命题（\path{chapters/Part 2/chapter2.tex}第210行起）及紧随的循环群分类定理（第228行起）。这里按内容比较，不把旧编号当成当前统一编号。
+
+设已知整数子群定理：$\Z$的每个加法子群唯一形如$m\Z$，$m\ge0$。取$G=\langle g\rangle$，定义满同态
+\[
+\varphi:\Z\longrightarrow G,\qquad k\longmapsto g^k.
+\]
+其核为$n\Z$。若$n=0$，$\varphi$单射，故$G\cong\Z$。若$n>0$，同态基本定理给出$G\cong\Z/n\Z$，故$|G|=n$。
+
+对任意子群$H\le G$，完全反像$\varphi^{-1}(H)$是$\Z$的子群，故为$m\Z$。满射性给出
+\[
+H=\varphi(m\Z)=\langle g^m\rangle.
+\]
+无限情形中，这已说明所有子群都为循环群。有限情形中，$n\Z=\ker\varphi\subseteq m\Z$，所以$m\mid n$且$m>0$。元素$e,g^m,\ldots,g^{(n/m-1)m}$恰为不同的全部元素：两项相等当且仅当$n\mid m(i-j)$，也就是$n/m\mid i-j$。因此$|H|=n/m$。给定$s\mid n$，只能取$m=n/s$，得到唯一的$s$阶子群$\langle g^{n/s}\rangle$。这证明循环群分类。
+
+反过来，假设循环群分类成立。$(\Z,+)=\langle1\rangle$是无限循环群，每个子群都是循环群，故为$\langle m\rangle=m\Z$。取$m\ge0$；零子群只对应$m=0$，非零子群中$m$为最小正元素，故参数唯一。又
+\[
+n\Z\supseteq m\Z\ \Longleftrightarrow\ m\in n\Z
+\ \Longleftrightarrow\ n\mid m.
+\]
+所以整数子群定理也得到证明。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+同态定理与子群对应是两种表述之间的共同前置工具；旧编号须按具体内容定位。
+
+
+
+\subsection{习题25：单位根群的满而非单自同态}
+
+\label{ex:3:25}
+
+\paragraph{题目}
+
+设$G$为复数域中全部单位根构成的乘法群。给出一个满而非单的自同态。
+
+\paragraph{考点与思路}
+
+保留平方映射，取平方根证明满射，用$1$和$-1$证明不单。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{hom}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第260行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+记$G=\{z\in\C:z^m=1\text{ 对某个 }m\ge1\}$，定义$\varphi:G\to G$为$\varphi(z)=z^2$。
+若$z^m=1$，则$(z^2)^m=1$，所以$\varphi$确实映入$G$。因复数乘法交换，
+\[
+\varphi(zw)=(zw)^2=z^2w^2=\varphi(z)\varphi(w),
+\]
+它是自同态。
+
+任取$w\in G$，取$m\ge1$使$w^m=1$。复数中存在$z$使$z^2=w$，于是$z^{2m}=w^m=1$，说明$z\in G$，且$\varphi(z)=w$。因此$\varphi$满射。
+但$1\ne-1$均在$G$中，且$\varphi(1)=\varphi(-1)=1$，所以$\varphi$不单射。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+取出的平方根还须属于单位根群，而不只是属于复数域。
+
+
+
+\subsection{习题26：若尔当同态的幂与极化恒等式}
+
+\label{ex:3:26}
+
+\paragraph{题目}
+
+设$R,R'$为幺环，$\eta:R\to R'$为加法映射，$\eta(1)=1'$，且$\eta(aba)=\eta(a)\eta(b)\eta(a)$。说明其若尔当同态含义，证明$\eta(a^k)=\eta(a)^k$（$k\ge0$），并证明$\eta(ab+ba)$和$\eta(abc+cba)$的极化恒等式。
+
+\paragraph{考点与思路}
+
+按原解先代入$1$得到平方公式，再按奇偶归纳幂公式，最后展开两个和式。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ringlaws}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第267行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+为使后续题目的含义明确，本组26--29题采用保幺加法映射且满足$\eta(aba)=\eta(a)\eta(b)\eta(a)$的若尔当同态约定。它必保平方；这里只保留平方的较弱定义在特征$2$时不能直接替代三重乘积条件。
+
+记$A=\eta(a)$。取$b=1$，由保幺性得
+\[
+\eta(a^2)=\eta(a)\eta(1)\eta(a)=A^2.
+\]
+又$\eta(a^0)=\eta(1)=1'$、$\eta(a)=A$。若$\eta(a^m)=A^m$，则用三重乘积公式得到
+\[
+\eta(a^{m+2})=\eta(aa^ma)=A\eta(a^m)A=A^{m+2}.
+\]
+分别以$m=0,1$为起点归纳，故对每个整数$k\ge0$，$\eta(a^k)=\eta(a)^k$。
+
+由$(a+b)^2=a^2+ab+ba+b^2$，加法性及保平方性给出
+\begin{align*}
+\eta(a^2)+\eta(ab+ba)+\eta(b^2)
+&=\eta((a+b)^2)\\
+&=(\eta(a)+\eta(b))^2.
+\end{align*}
+在加法群中消去两个平方项，得到
+\[
+\eta(ab+ba)=\eta(a)\eta(b)+\eta(b)\eta(a).
+\]
+最后展开$(a+c)b(a+c)=aba+abc+cba+cbc$，得
+\begin{align*}
+\eta(aba)+\eta(abc+cba)+\eta(cbc)
+&=(\eta(a)+\eta(c))\eta(b)(\eta(a)+\eta(c)).
+\end{align*}
+消去$\eta(aba)$及$\eta(cbc)$，得到
+\[
+\eta(abc+cba)=\eta(a)\eta(b)\eta(c)+\eta(c)\eta(b)\eta(a).
+\]
+两次展开只用加法消去，没有除以$2$，因而在特征$2$时也成立。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+三重乘积极化式来自三重乘积假设；不能只凭平方公式而在特征$2$中除以$2$。
+
+
+
+\subsection{习题27：若尔当同态对一对元素的二择一性质}
+
+\label{ex:3:27}
+
+\paragraph{题目}
+
+设$\eta:R\to R'$是到无零因子环的若尔当同态。证明对任意$a,b$，必有$\eta(ab)=\eta(a)\eta(b)$或$\eta(ab)=\eta(b)\eta(a)$。
+
+\paragraph{考点与思路}
+
+沿原解对三重乘积极化式代入$ab,b,a$，再按固定次序因式分解。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{zerodiv}；\exref{3}{26}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第285行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+沿用\exref{3}{26}的若尔当同态约定，记
+\[
+A=\eta(a),\quad B=\eta(b),\quad C=\eta(ab).
+\]
+在该题的极化式中令外侧变量为$ab,a$，中间变量为$b$，得到
+\[
+\eta(ab^2a+abab)=CBA+ABC.
+\]
+由三重乘积公式及平方公式，
+\[
+\eta(ab^2a)=A\eta(b^2)A=AB^2A,\qquad
+\eta(abab)=\eta((ab)^2)=C^2.
+\]
+加法性给出$C^2+AB^2A=CBA+ABC$。保持因子顺序展开，有
+\begin{align*}
+(C-AB)(C-BA)
+&=C^2-CBA-ABC+ABBA\\
+&=C^2-CBA-ABC+AB^2A=0.
+\end{align*}
+目标环无零因子，故$C-AB=0$或$C-BA=0$。即对这对$a,b$，
+\[
+\eta(ab)=\eta(a)\eta(b)\quad\text{或}\quad\eta(ab)=\eta(b)\eta(a).
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+本题的二择一暂时依赖于$a,b$；还未证明所有元素对都选择同一乘法方向。
+
+
+
+\subsection{习题28：逐对二择一推出全局同态或反同态}
+
+\label{ex:3:28}
+
+\paragraph{题目}
+
+设$\eta:R\to R'$是除环之间的加法映射，$\eta(1)=1'$，且对每对$a,b$都有$\eta(ab)=\eta(a)\eta(b)$或$\eta(b)\eta(a)$。证明$\eta$为同态或反同态。
+
+\paragraph{考点与思路}
+
+沿原解对第一个变量、第二个变量分别使用一次“两子群之并”论证。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{subgroup}；\noteref{c3anti}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第304行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+先证所用群论事实：若群$G=H\cup K$且$H,K$均为子群，则$H=G$或$K=G$。否则二者都真，且互不包含，可取$h\in H\setminus K$、$k\in K\setminus H$。若$hk\in H$则$k=h^{-1}(hk)\in H$；若$hk\in K$则$h=(hk)k^{-1}\in K$，两种都矛盾。因此$hk$不属于并集，违背$G=H\cup K$。
+
+固定$b\in R$，定义
+\begin{align*}
+H_b&=\{a:\eta(ab)=\eta(a)\eta(b)\},\\
+K_b&=\{a:\eta(ab)=\eta(b)\eta(a)\}.
+\end{align*}
+二者都含$0$。若$a,c\in H_b$，加法性与分配律给出
+\[
+\eta((a-c)b)=\eta(ab)-\eta(cb)
+=(\eta(a)-\eta(c))\eta(b)=\eta(a-c)\eta(b),
+\]
+所以$a-c\in H_b$。若$a,c\in K_b$，同样计算为
+\[
+\eta((a-c)b)=\eta(b)(\eta(a)-\eta(c))=\eta(b)\eta(a-c),
+\]
+故$K_b$也为加法子群。题设说明$R=H_b\cup K_b$，因而每个$b$都满足$H_b=R$或$K_b=R$。
+
+令$B_+=\{b:H_b=R\}$、$B_-=\{b:K_b=R\}$。二者含$0$。若$b,c\in B_+$，则对所有$a$，
+\[
+\eta(a(b-c))=\eta(ab)-\eta(ac)=\eta(a)(\eta(b)-\eta(c))=\eta(a)\eta(b-c),
+\]
+所以$b-c\in B_+$。若$b,c\in B_-$，则
+\[
+\eta(a(b-c))=\eta(b)\eta(a)-\eta(c)\eta(a)=\eta(b-c)\eta(a),
+\]
+故$b-c\in B_-$。于是$B_+,B_-$都是加法子群，且$R=B_+\cup B_-$。再次使用所证事实，$B_+=R$或$B_-=R$。
+
+第一种情形给出对所有$a,b$都有$\eta(ab)=\eta(a)\eta(b)$；第二种给出对所有$a,b$都有$\eta(ab)=\eta(b)\eta(a)$。结合既有加法性，$\eta$分别为同态或反同态。该证明实际不需要源、目标为除环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+使用两次子群并，才能消除方向分别依赖于两个变量的可能。
+
+
+
+\subsection{习题29：除环若尔当同态的乘法方向}
+
+\label{ex:3:29}
+
+\paragraph{题目}
+
+证明除环到无零因子环的若尔当同态必为同态或反同态。
+
+\paragraph{考点与思路}
+
+将上一题的逐对结论送入双重子群论证，并核对目标环无需为除环。
+
+\paragraph{所用结论与原文依据}
+
+\exref{3}{26}；\exref{3}{27}；\exref{3}{28}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第318行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+按\exref{3}{26}的约定，$\eta$保加法、幺元与三重乘积；目标环$R'$无零因子。因此\exref{3}{27}适用，对每对$a,b$，有
+\[
+\eta(ab)=\eta(a)\eta(b)\quad\text{或}\quad
+\eta(ab)=\eta(b)\eta(a).
+\]
+\exref{3}{28}的证明只用了加法性、分配律和上述逐对二择一性质，并未对目标元素取逆。故虽本题只假设$R'$无零因子，仍可应用该证明，得到对所有$a,b$统一成立的同一方向。于是$\eta$为同态或反同态。
+
+这里保留第26题的三重乘积假设是必要的定义区分。若把“若尔当同态”仅定义为保幺、加法且保平方，则在特征$2$时，本题结论一般不成立。取八元域$K$（可按\exref{3}{37}构造），定义
+\[
+T:K\longrightarrow\F_2,\qquad T(z)=z+z^2+z^4.
+\]
+因为$z^8=z$，有$T(z)^2=T(z)$，所以$T(z)$确在$\F_2$中。特征$2$的幂公式说明$T$保加法，且$T(1)=1$、$T(z^2)=T(z)^2$。它从八个元素映到两个元素，故不单射；而域之间的保幺同态必单射（非零核元素取逆会使$1$落入核），交换域的反同态也就是同态。因此$T$不是同态或反同态。
+
+它也不满足本组保留的三重乘积条件：取$0\ne a\in\ker T$，令$b=a^{-2}$，则$aba=1$，却$T(a)T(b)T(a)=0\ne T(1)$。这说明不能把本组的三重乘积定义无条件换成仅保平方的定义。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+不得只从每对元素各有一种方向就直接断言全局方向；统一方向的理由在上一题的两个子群论证中。
+
+
+
+\subsection{习题30：模素数幂环的零因子与素理想}
+
+\label{ex:3:30}
+
+\paragraph{题目}
+
+设$R=\mathbb Z/(p^n)$，其中$p$为素数、$n>1$。确定零因子、素理想及相应商域。
+
+\paragraph{考点与思路}
+
+先用互素判别单位，再从商环理想对应列出全部理想，逐一检验素性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3correspondence}；\noteref{c3prime}；\noteref{zerodiv}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第325行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+记$\bar a=a+(p^n)$。若$p\nmid a$，则$\gcd(a,p^n)=1$，存在整数$s,t$使$sa+tp^n=1$，故$\bar a$为单位。若$p\mid a$，则其模$p$像为零，不可能可逆；否则模$p$也会有逆。
+
+零因子要求非零。若$\bar a\ne0$且$p\mid a$，可写$a=p^su$，其中$1\le s<n$且$p\nmid u$，于是
+\[
+\bar a\,\overline{p^{n-s}}=0,\qquad \overline{p^{n-s}}\ne0.
+\]
+故非零的$p$倍数均为零因子。其余非零元素是单位，不可能消去非零元素。因此零因子集恰为
+\[
+(p)/(p^n)\setminus\{0+(p^n)\}.
+\]
+注意非单位集还含$0$，不能不加区别地与零因子集等同。
+
+由$\Z\to R$的理想对应，$R$的理想来自包含$(p^n)$的整数理想$(d)$，即$d\mid p^n$。所以全部理想为$(p^k)/(p^n)$，$0\le k\le n$。$k=0$时为整个环，不素；若$2\le k\le n$，则$\bar p\,\overline{p^{k-1}}\in(p^k)/(p^n)$，但两个因子都不在其中，所以不素。
+
+模$p$的满同态核为$P=(p)/(p^n)$，故
+\[
+R/P\cong\Z/(p)=\F_p.
+\]
+这是域，因而$P$是唯一素理想，也是唯一极大理想；相应商域为$\F_p$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+$0$是非单位却按本笔记约定不是零因子；列出素理想时须排除整个环。
+
+
+
+\subsection{习题31：模素数幂系数多项式的单位与零因子}
+
+\label{ex:3:31}
+
+\paragraph{题目}
+
+设$R=\mathbb Z/(p^n)$，确定$R[x]$的单位和零因子。
+
+\paragraph{考点与思路}
+
+保留模$p$与系数幂零的判别；为避免跨题缺口，在题内证明单位的必要条件，并展开原解的最低赋值系数论证。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3polyquot}；\noteref{c3degree}；\exref{3}{30}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第336行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$n\ge1$、$f=\sum_{i=0}^m a_ix^i\in(\Z/(p^n))[x]$。先求单位。若$fg=1$，比较常数项知$a_0$为单位。逐系数模$p$约化后，在整环$\F_p[x]$中有$\bar f\bar g=1$。次数可加，所以$\bar f$为非零常数；因此$p\nmid a_0$，而所有$i>0$的$a_i$均被$p$整除。
+
+反过来，若满足这些系数条件，$a_0$可逆，令$h=a_0^{-1}(f-a_0)$。$h$的每个系数被$p$整除，所以$h^n=0$。于是
+\[
+f^{-1}=a_0^{-1}\sum_{j=0}^{n-1}(-h)^j,
+\]
+左右相乘均由有限等比和得到$1$。故
+\[
+f\text{ 可逆}\ \Longleftrightarrow\ p\nmid a_0\text{ 且 }p\mid a_i\ (i>0).
+\]
+
+再求非零零因子。若$f\ne0$且全部系数均被$p$整除，则常数$\overline{p^{n-1}}\ne0$且$\overline{p^{n-1}}f=0$，故$f$为零因子（$n=1$时不存在这样的非零$f$）。
+
+反过来，设$f$有不被$p$整除的系数，取最小的这类下标$j$。对剩余类$r$，令$v(r)$为最大的$s\in\{0,\ldots,n\}$，使$r$被$p^s$整除，其中$v(0)=n$。任取非零$g=\sum b_kx^k$，令$s=\min_kv(b_k)<n$，再取达到该最小值的最小下标$k$。
+
+在$fg$的$x^{j+k}$项中，$a_jb_k$的赋值恰为$s$。其余乘积$a_ib_\ell$满足$i+\ell=j+k$。若$i<j$，则$v(a_i)\ge1$而$v(b_\ell)\ge s$；若$i>j$，则$\ell<k$，由$k$的选择有$v(b_\ell)\ge s+1$。故所有其他项都被$p^{s+1}$整除，$a_jb_k$却不被$p^{s+1}$整除。总和不能为零模$p^n$，因$s<n$。所以$fg\ne0$。
+
+因此非零零因子恰为全部系数被$p$整除的非零多项式。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+以最低次单位系数配合最小赋值的最低次系数，才能保证选中的乘积不会被其他项抵消。
+
+
+
+\subsection{习题32：直和环的理想分解及整数商环的根与单位群}
+
+\label{ex:3:32}
+
+\paragraph{题目}
+
+设$R=R_1\oplus\cdots\oplus R_r$，$N\lhd R$。证明$N=\bigoplus_i(N\cap R_i)$，并求$\mathbb Z/(n)$的最大幂零理想和单位群。
+
+\paragraph{考点与思路}
+
+用各分量的单位元投影理想，再按中国剩余分解逐个研究模素数幂因子。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3direct}；\noteref{c3crt}；\noteref{c3nil}；\exref{3}{30}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第345行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+\begin{enumerate}
+\item 设每个$R_i$为幺环，并将它等同于$R=\bigoplus\limits_{i=1}^rR_i$中仅第$i$分量非零的理想。令$e_i$为该分量的单位元，其他分量为零。对$x=(x_1,\ldots,x_r)\in N$，理想吸收性给出
+\[
+e_ix=(0,\ldots,x_i,\ldots,0)\in N\cap R_i,\qquad
+x=\sum_{i=1}^r e_ix.
+\]
+所以$N\subseteq\sum_i(N\cap R_i)$；反向包含来自每个交均含于$N$。不同坐标的表示唯一，因此
+\[
+N=\bigoplus\limits_{i=1}^r(N\cap R_i).
+\]
+若不要求各分量有幺元，取两个零乘法环$\Z$的直和，斜子群$\{(m,m):m\in\Z\}$就是反例。
+\item 设$n\ge2$，写$n=\prod_i p_i^{a_i}$，令$d=\prod_i p_i$。中国剩余定理给出$\Z/(n)\cong\bigoplus_i\Z/(p_i^{a_i})$。在第$i$个因子中，$p_i$的倍数取$a_i$次幂即为零；若不被$p_i$整除，则是单位，非零环中的单位不可能幂零。因此幂零元恰为每个分量中被$p_i$整除的元。整数$a$的剩余类满足此条件当且仅当$d\mid a$。
+
+故幂零元理想为$N=(d)/(n)$。它本身是幂零理想：取$A=\max_i a_i$，因$n\mid d^A$，有$N^A=0$。任何幂零理想的每个元素都幂零，故包含于$N$。因此$N$确为最大的幂零理想。
+\item 分量乘积为$1$等价于每个分量乘积为$1$，故
+\[
+(\Z/(n))^\times\cong\prod_i(\Z/(p_i^{a_i}))^\times.
+\]
+在模$p^a$环中，不是单位的元素恰为$p$的倍数，共$p^{a-1}$个，所以单位有$p^a-p^{a-1}$个。因此
+\[
+|(\Z/(n))^\times|=\prod_i(p_i^{a_i}-p_i^{a_i-1})
+=n\prod_{p\mid n}\left(1-\frac1p\right).
+\]
+以上直积分解给出单位群；并未无依据地把每个因子再断言为循环群。$n=1$时零环的最大幂零理想为零理想，单位群为单元素群。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+一般幂零元理想未必幂零；本题额外证明$N^A=0$，才得到最大幂零理想。
+
+
+
+\subsection{习题33：三次多项式在六元环中的六个根}
+
+\label{ex:3:33}
+
+\paragraph{题目}
+
+证明$x^3-x$在$\mathbb Z/(6)$中有六个根。
+
+\paragraph{考点与思路}
+
+沿用连续三个整数的整除性，并说明取代表元不影响代入值。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3roots}；\noteref{c3poly}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第364行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+对任意整数$a$，
+\[
+a^3-a=(a-1)a(a+1).
+\]
+三个连续整数中至少一个为偶数，且恰有一个被$3$整除，所以$2\mid a^3-a$且$3\mid a^3-a$。因$2,3$互素，$6\mid a^3-a$。
+
+因此对每个$\bar a\in\Z/(6)$，都有$\bar a^3-\bar a=0$；模$6$的代入只依赖于剩余类，因为自然同态保加法和乘法。于是全部六个元素$\bar0,\bar1,\ldots,\bar5$都是根，且环中没有其他元素，恰有六个根。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+次数限制根数的结论要求系数环为整环；$\Z/(6)$有零因子。
+
+
+
+\subsection{习题34：四元数中的二次方程有无穷多个根}
+
+\label{ex:3:34}
+
+\paragraph{题目}
+
+证明$x^2+1$在四元数体$H$中有无穷多个根。
+
+\paragraph{考点与思路}
+
+按原习题解展开纯虚四元数的平方，给出明确的无限族来证明互异性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{quaternion}；\noteref{c3qroots}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第371行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+取纯虚四元数$q=bI+cJ+dK$。由乘法表，$IJ+JI=IK+KI=JK+KJ=0$，所以
+\begin{align*}
+q^2&=b^2I^2+c^2J^2+d^2K^2
++bc(IJ+JI)+bd(IK+KI)+cd(JK+KJ)\\
+&=-(b^2+c^2+d^2).
+\end{align*}
+因此每个满足$b^2+c^2+d^2=1$的三元组都给出$x^2+1$的根。
+
+例如对每个$t\in[0,1]$，令
+\[
+q_t=\frac{1-t^2}{1+t^2}I-\frac{2t}{1+t^2}K.
+\]
+其系数平方和为$((1-t^2)^2+4t^2)/(1+t^2)^2=1$，故$q_t^2=-1$。若$0\le s<t\le1$，则
+\[
+\frac{1-s^2}{1+s^2}-\frac{1-t^2}{1+t^2}
+=\frac{2(t^2-s^2)}{(1+s^2)(1+t^2)}>0,
+\]
+所以$q_s\ne q_t$。因此有无穷多个根。这个族也等于$(1+tJ)I(1+tJ)^{-1}$，与原笔记的共轭构造一致。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+即使除环没有零因子，乘法不交换时也不能直接套用整环上的根数定理。
+
+
+
+\subsection{习题35：两个平方根之和的极小多项式}
+
+\label{ex:3:35}
+
+\paragraph{题目}
+
+设$u=\sqrt2+\sqrt3$，求其在$\mathbb Q$上的极小多项式。
+
+\paragraph{考点与思路}
+
+保留原解先求四次关系、再恢复两个平方根的路线；展开次数恰为四的理由。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3minimal}；\noteref{c3division}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第382行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$u=\sqrt2+\sqrt3$。有
+\[
+u^2=5+2\sqrt6,\qquad (u^2-5)^2=24,
+\]
+故$u^4-10u^2+1=0$。候选多项式为$f=x^4-10x^2+1$。
+
+先验证$\sqrt3\notin\Q(\sqrt2)$。若$\sqrt3=r+s\sqrt2$，$r,s\in\Q$，平方并利用$\sqrt2$无理，得
+\[
+3=r^2+2s^2,
+\qquad 2rs=0.
+\]
+若$s=0$，则$r^2=3$；若$r=0$，则$s^2=3/2$。二者均不可能为有理数的平方，因为有理数平方的任一素因子指数均为偶数，而$3$在这两个数中的指数均为奇数。于是$1,\sqrt2,\sqrt3,\sqrt6$在$\Q$上线性无关：若
+\[
+(a+b\sqrt2)+(c+d\sqrt2)\sqrt3=0,
+\]
+且$c+d\sqrt2\ne0$，可在域$\Q(\sqrt2)$中相除得到$\sqrt3\in\Q(\sqrt2)$，矛盾；故$c=d=0$，继而$a=b=0$。
+
+又$(\sqrt3+\sqrt2)(\sqrt3-\sqrt2)=1$，所以$u^{-1}=\sqrt3-\sqrt2$，从而
+\[
+\sqrt3=\frac{u+u^{-1}}2,\qquad
+\sqrt2=\frac{u-u^{-1}}2.
+\]
+由$f(u)=0$还可得$u^{-1}=10u-u^3\in\Q[u]$，故$\Q[u]$含上述四个线性无关元素。另一方面，$u^4=10u^2-1$使每个$u$的高次幂都化为$1,u,u^2,u^3$的有理线性组合。
+
+若存在次数$d<4$的非零多项式$g$使$g(u)=0$，用其非零首项系数相除后，可以将$u^d$及全部更高幂降为$1,u,\ldots,u^{d-1}$的线性组合。这会使$\Q[u]$的维数至多$d<4$，与含四个线性无关元素矛盾。因此$f$是次数最小的首一关系，即极小多项式。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+找到一个四次关系只证明极小次数不超过四，还必须排除低次关系。
+
+
+
+\subsection{习题36：三次代数关系下的乘法和求逆}
+
+\label{ex:3:36}
+
+\paragraph{题目}
+
+设$u$属于包含$\Q$的域，且$u^3-u+1=0$。将$(5u^2+3u-1)(2u^2-2u+6)$及$(3u^2-u+2)^{-1}$写成次数不超过$2$的多项式。补明原解中除以$7$所用的特征$0$条件。
+
+\paragraph{考点与思路}
+
+按原解将$u^3,u^4$化为低次幂，并逐项展开验证逆元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3poly}；\noteref{c3minimal}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第394行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里在特征为$0$的包含$\Q$的域中计算；这使$7$可逆。由$u^3-u+1=0$，得$u^3=u-1$、$u^4=u^2-u$。
+
+首先展开乘积：
+\begin{align*}
+(5u^2+3u-1)(2u^2-2u+6)
+&=10u^4-4u^3+22u^2+20u-6\\
+&=10(u^2-u)-4(u-1)+22u^2+20u-6\\
+&=32u^2+6u-2.
+\end{align*}
+对求逆，按原解取候选$(-2u^2-u+3)/7$。直接展开，
+\begin{align*}
+(3u^2-u+2)(-2u^2-u+3)
+&=-6u^4-u^3+6u^2-5u+6\\
+&=-6(u^2-u)-(u-1)+6u^2-5u+6\\
+&=7.
+\end{align*}
+这些因子都是$u$的有理系数多项式，彼此交换，所以反向乘积也为$7$。除以$7$得到
+\[
+(3u^2-u+2)^{-1}=\frac{-2u^2-u+3}{7}.
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+求逆的结果必须实际相乘核对；原式若在任意特征下讨论，特征$7$时不能使用这一除法。
+
+
+
+\subsection{习题37：八元域的商环构造}
+
+\label{ex:3:37}
+
+\paragraph{题目}
+
+证明$\mathbb F_2[x]/(x^3+x^2+1)$是八元域。
+
+\paragraph{考点与思路}
+
+先在两个元素上检验三次式无根，再以带余除法数出商环的全部代表元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3irred}；\noteref{c3division}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第409行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$h=x^3+x^2+1\in\F_2[x]$。有$h(0)=1$、$h(1)=1+1+1=1$，所以$h$在$\F_2$中无根。
+若域上的三次多项式可约，则可分成两个正次数因子，次数和为$3$，必有一个因子的次数为$1$；一次因子的根也是原多项式的根。因此三次多项式无根即不可约，$h$不可约。
+
+由不可约多项式的商环判据，$\F_2[x]/(h)$为域。用$h$作带余除法，每个剩余类有代表元$a+bx+cx^2$，$a,b,c\in\F_2$。若两个这样的代表元同余，其差是次数小于$3$的$h$的倍式，只能为零，所以表示唯一。三系数独立各取两值，因此恰有$2^3=8$个元素。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+无根等价于不可约仅适用于二次或三次式，不能推广到任意次数。
+
+
+
+\subsection{习题38：五元域上的全部首一不可约二次式}
+
+\label{ex:3:38}
+
+\paragraph{题目}
+
+列出$\mathbb F_5[x]$中全部首项系数为$1$的二次不可约多项式。
+
+\paragraph{考点与思路}
+
+保留判别式路线，以表格逐一列出$b$与两种非平方判别式对应的$c$。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3irred}；\noteref{c3roots}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第416行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+考虑$f=x^2+bx+c\in\F_5[x]$。域上的二次式可约当且仅当有根，而
+\[
+4f(x)=(2x+b)^2-(b^2-4c).
+\]
+因$2$可逆，映射$x\mapsto2x+b$为双射，所以$f$有根当且仅当$\Delta=b^2-4c$是平方（含$0$）。$\F_5$的平方为$0,1,4$，非平方恰为$2,3$。
+
+模$5$下$4=-1$，故$\Delta=b^2+c$，即$c=\Delta-b^2$。计算如下：
+\begin{center}\begin{tabular}{c|c|cc}
+$b$&$b^2$&$\Delta=2$时的$c$&$\Delta=3$时的$c$\\\hline
+0&0&2&3\\1&1&1&2\\2&4&3&4\\3&4&3&4\\4&1&1&2
+\end{tabular}\end{center}
+因此全部所求多项式为
+\begin{align*}
+&x^2+2,\quad x^2+3,\\
+&x^2+x+1,\quad x^2+x+2,\\
+&x^2+2x+3,\quad x^2+2x+4,\\
+&x^2+3x+3,\quad x^2+3x+4,\\
+&x^2+4x+1,\quad x^2+4x+2.
+\end{align*}
+表格遍历了全部五个$b$及全部非平方判别式，每对$b,c$唯一决定一个多项式，故无遗漏或重复。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+判别式为零也可约；必须取非平方$2,3$，而不是仅要求判别式非零。
+
+
+
+\subsection{习题39：二十五元域的构造}
+
+\label{ex:3:39}
+
+\paragraph{题目}
+
+构造一个有$25$个元素的域。
+
+\paragraph{考点与思路}
+
+直接使用上一题的不可约二次式，并给出商环中的运算和唯一表示。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3irred}；\noteref{c3division}；\exref{3}{38}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第427行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+由\exref{3}{38}，$x^2+2$在$\F_5[x]$中不可约。令
+\[
+F=\F_5[x]/(x^2+2),\qquad \alpha=x+(x^2+2).
+\]
+不可约判据保证$F$是域。带余除法说明每个元素唯一写为$a+b\alpha$，其中$a,b\in\F_5$，因此共有$5^2=25$个元素。
+
+其运算由$\alpha^2=-2=3$确定：
+\begin{align*}
+(a+b\alpha)+(c+d\alpha)&=(a+c)+(b+d)\alpha,\\
+(a+b\alpha)(c+d\alpha)&=(ac+3bd)+(ad+bc)\alpha.
+\end{align*}
+为核对非零元可逆，若$(a,b)\ne(0,0)$，则
+\[
+(a+b\alpha)(a-b\alpha)=a^2+2b^2\ne0.
+\]
+若$b\ne0$而右端为零，则$(a/b)^2=-2=3$，与$3$非平方矛盾；若$b=0$，则$a\ne0$也使右端非零。因此逆元为$(a-b\alpha)/(a^2+2b^2)$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+不能用$\Z/(25)$代替该域；后者有非零零因子$\bar5$。
+
+
+
+\subsection{习题40：整数多项式环中的一个极大理想}
+
+\label{ex:3:40}
+
+\paragraph{题目}
+
+证明$(3,x^3+2x^2+2x-1)$是$\mathbb Z[x]$的极大理想。
+
+\paragraph{考点与思路}
+
+保留模$3$化为三次不可约式的路线；把复合同态的核完整写出。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3irred}；\noteref{c3polyquot}；\noteref{c3prime}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第438行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+记$f=x^3+2x^2+2x-1\in\Z[x]$、$h=x^3-x^2-x-1\in\F_3[x]$。系数模$3$约化把$f$送为$h$。
+逐一代入$\F_3$中的元素，有
+\[
+h(0)=2,\qquad h(1)=1,\qquad h(2)=1.
+\]
+三次式无根则不可约，故$K=\F_3[x]/(h)$是域。
+
+考虑满同态$\psi:\Z[x]\to K$，先约化系数再取模$(h)$。若$g\in(3,f)$，则$\psi(g)=0$。反过来，若$\psi(g)=0$，则$\bar g=h\bar q$对某个$\bar q\in\F_3[x]$成立。选一个整数系数提升$q$，有$\overline{g-fq}=0$，故$g-fq$的每个系数均被$3$整除，写成$g=fq+3r$。因此
+\[
+\ker\psi=(3,f).
+\]
+由同态基本定理，$\Z[x]/(3,f)\cong K$是域，所以$(3,f)$为极大理想。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+商域同构要说明核恰为$(3,f)$，不能只证明两个生成元映为零。
+
+
+
+\subsection{习题41：模三约化诱导的商环同构}
+
+\label{ex:3:41}
+
+\paragraph{题目}
+
+令$I=(3,x^3+2x^2+2x-1)$。证明$\mathbb Z[x]/I\cong\mathbb F_3[x]/(x^3-x^2-x-1)$，并推出$I$极大。
+
+\paragraph{考点与思路}
+
+沿原解系数约化的核与像，明确诱导映射并使用上一题的核计算。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3polyquot}；\noteref{c3prime}；\exref{3}{40}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第449行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+记$I=(3,f)$，其中$f=x^3+2x^2+2x-1$，并记$h=x^3-x^2-x-1\in\F_3[x]$。定义
+\[
+\Phi:\Z[x]/I\longrightarrow\F_3[x]/(h),\qquad
+g+I\longmapsto\bar g+(h),
+\]
+其中$\bar g$表示逐系数模$3$约化。
+
+由\exref{3}{40}的完整核计算，$\bar g\in(h)$当且仅当$g\in I$。因此若$g-g'\in I$，则$\bar g-\bar g'\in(h)$，$\Phi$良定义；若$\Phi(g+I)=0$，则$g\in I$，故$\Phi$单射。任一$\F_3$系数多项式都有整数系数提升，所以$\Phi$满射。系数约化与取商均保加法、乘法，故$\Phi$是环同构。
+
+上一题已逐个检查$h$的三个可能根，证明它不可约。因此右侧为域，左侧也为域，故$I$极大。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+本题与上一题共享核计算和不可约性检验，但仍应明确写出所要求的同构映射。
+
+
+
+\subsection{习题42：多项式商环无零因子的判据}
+
+\label{ex:3:42}
+
+\paragraph{题目}
+
+设$F$为域且$\deg f>0$。证明$F[x]/(f)$无零因子当且仅当$f$不可约。
+
+\paragraph{考点与思路}
+
+保留不可约时商环为域、可约时产生两个非零零乘积的双向证明。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3irred}；\noteref{c3degree}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第456行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$\deg f=d>0$。若$f$不可约，则$(f)$为极大理想，故$F[x]/(f)$是域，特别地无零因子。此处$f$次数为正，保证$(f)\ne F[x]$，商环非零。
+
+反过来，设$f$可约。可写$f=gh$，其中$\deg g,\deg h>0$。在域上非零乘积次数可加，所以
+\[
+0<\deg g<d,\qquad 0<\deg h<d.
+\]
+若$g\in(f)$且$g\ne0$，则$g=qf$且$q\ne0$，使$\deg g=\deg q+d\ge d$，矛盾。因此$g+(f)\ne0$；同理$h+(f)\ne0$。但
+\[
+(g+(f))(h+(f))=f+(f)=0+(f),
+\]
+商环有非零零因子。因此商环无零因子时$f$必须不可约。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+两个因子在母环非零不够，还必须证明它们取模后仍非零。
+
+
+
+\subsection{习题43：幂零多项式的每个系数均幂零}
+
+\label{ex:3:43}
+
+\paragraph{题目}
+
+设$R$为交换环。若$f\in R[x]$幂零，证明$f$的每个系数均幂零。
+
+\paragraph{考点与思路}
+
+按原解先取最高系数，再模去其生成的幂零理想，以次数归纳处理其余系数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3polyquot}；\noteref{c3nil}；\noteref{c3nilideal}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第463行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+对$f$的次数归纳。若$f=0$，所有系数为零；若$f$为常数，结论就是假设本身。设$f=\sum_{i=0}^m a_ix^i$，$a_m\ne0$、$m\ge1$，且$f^N=0$。$f^N$的$x^{mN}$系数为$a_m^N$，故$a_m^N=0$。
+
+令$I=(a_m)$。因环交换，每个$I$中元素都为$ra_m$，任意$N$个这类元素相乘均为零，所以$I^N=0$。在商环$(R/I)[x]$中，$f$的像$\bar f$仍满足$\bar f^{\,N}=0$，而最高项已经消失。若$\bar f=0$，每个系数都属于$I$；否则其次数至多为$m-1$，由归纳假设，其每个系数均幂零。因此两种情形中，对每个$i<m$都存在$k_i\ge1$使
+\[
+a_i^{k_i}\in I.
+\]
+由于$I^N=0$，有$(a_i^{k_i})^N=a_i^{k_iN}=0$，故$a_i$幂零。连同$a_m$的幂零性，归纳完成。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+商环中幂零只给出$a_i^{k_i}\in I$，须利用$I^N=0$才能提升回母环的幂零性。
+
+
+
+\subsection{习题44：多项式零因子的常数湮灭元判据}
+
+\label{ex:3:44}
+
+\paragraph{题目}
+
+设$R$为交换幺环，$0\ne f\in R[x]$。证明$f$为零因子当且仅当存在$0\ne a\in R$使$af=0$。这里补明非零条件，以符合原笔记零因子的定义。
+
+\paragraph{考点与思路}
+
+沿原解取最低次的非零湮灭多项式，逐一消去$f$的最高系数，再取一个非零系数作常数湮灭元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{zerodiv}；\noteref{c3poly}；\noteref{ringlaws}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第470行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+本题要求$f\ne0$，因为本笔记的零因子按定义非零。充分性为：若$0\ne a\in R$且$af=0$，将$a$视为非零常数多项式，即得到$f$与非零元素的零乘积，故$f$为零因子。
+
+再证必要性。设$f=\sum_{i=0}^m a_ix^i\ne0$，$a_m\ne0$。因$f$为零因子，存在非零多项式$g$使$fg=0$。在全部这类$g$中选次数$d$最小者，写$g=\sum_{j=0}^d b_jx^j$，$b_d\ne0$。
+
+先由$fg=0$的$x^{m+d}$系数得$a_mb_d=0$。因此$a_mg$若非零，其次数小于$d$；而交换性给出$f(a_mg)=a_m(fg)=0$，与$d$最小矛盾。所以$a_mg=0$，从而$(f-a_mx^m)g=0$。
+
+现作向下归纳。若已知$a_{k+1}g=\cdots=a_mg=0$，则
+\[
+\left(\sum_{i=0}^k a_ix^i\right)g=0.
+\]
+比较$x^{k+d}$系数得$a_kb_d=0$，故$a_kg$若非零则次数小于$d$。同时$f(a_kg)=a_k(fg)=0$，仍违背最小性。因此$a_kg=0$。由归纳，对每个$i$都有$a_ig=0$。
+
+比较这些等式的$x^d$系数，得$a_ib_d=0$对全部$i$成立。取非零常数$a=b_d$，便有$af=0$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+原题若包括$f=0$，右侧在非零环中成立而左侧不成立，所以必须补明$f\ne0$。
+
+
+
+\subsection{习题45：常数项可逆且其余系数幂零的多项式可逆}
+
+\label{ex:3:45}
+
+\paragraph{题目}
+
+设$R$为交换环，$f=a_0x^n+a_1x^{n-1}+\cdots+a_n$。若$a_n$是单位而$a_0,\ldots,a_{n-1}$均幂零，证明$f$是$R[x]$的单位。
+
+\paragraph{考点与思路}
+
+沿原解除去可逆常数项，把剩余多项式证明为幂零，再用有限等比和给出逆。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{unit}；\noteref{c3nil}；\noteref{ringlaws}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第477行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$f=a_0x^n+\cdots+a_{n-1}x+a_n$，$a_n$为单位。令
+\[
+h=a_n^{-1}(f-a_n)=\sum_{i=0}^{n-1}(a_n^{-1}a_i)x^{n-i}.
+\]
+每个$a_i$幂零，取$m_i\ge1$使$a_i^{m_i}=0$。交换性给出$(a_n^{-1}a_i)^{m_i}=0$。若$n=0$，$f=a_n$已经是单位；以下设$n\ge1$，并令$N=1+\sum_{i=0}^{n-1}(m_i-1)$。
+
+将$h^N$按分配律展开。每项选取$N$个系数因子；若第$i$种系数均只出现至多$m_i-1$次，总数将小于$N$。所以每项至少含某个$(a_n^{-1}a_i)^{m_i}$，从而该项为零。因此$h^N=0$。
+
+令$S=\sum_{j=0}^{N-1}(-h)^j$。有限和相乘消去中间项，得到
+\[
+(1+h)S=S(1+h)=1-(-h)^N=1.
+\]
+由于$f=a_n(1+h)$，故
+\[
+\boxed{f^{-1}=a_n^{-1}\sum_{j=0}^{N-1}(-h)^j.}
+\]
+
+\end{proof}
+
+\paragraph{复习提示}
+
+有限多个幂零系数保证存在一个共同的展开次数；不能只说“每个系数幂零，所以和幂零”而不说明理由。
+
+
+
+\subsection{习题46：各系数幂零推出多项式幂零}
+
+\label{ex:3:46}
+
+\paragraph{题目}
+
+证明习题43的逆命题。
+
+\paragraph{考点与思路}
+
+沿原解给出统一指数，并明确展开中使用的抽屉计数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3nil}；\exref{3}{43}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第488行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$f=\sum_{i=0}^m a_ix^i$，并对每个$i$选$n_i\ge1$使$a_i^{n_i}=0$。令
+\[
+N=1+\sum_{i=0}^m(n_i-1).
+\]
+将$f^N$按分配律展开，每项都是$N$个$a_ix^i$的乘积。设第$i$类因子出现$k_i$次，则$\sum_i k_i=N$。若所有$k_i<n_i$，则$\sum_i k_i\le\sum_i(n_i-1)=N-1$，矛盾。因此至少有一个$i$满足$k_i\ge n_i$。
+
+环交换，故该项的系数可重排为$\prod_i a_i^{k_i}$，其中含某个为零的因子$a_i^{n_i}$。所以每项为零，$f^N=0$。连同\exref{3}{43}，得到$f$幂零当且仅当其每个系数幂零。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+指数$N$只需保证充分大，不必是$f$的最小幂零指数。
+
+
+
+\subsection{习题47：多元多项式环的幂零根}
+
+\label{ex:3:47}
+
+\paragraph{题目}
+
+设$R$为交换幺环，$R'=R[x_1,\ldots,x_n]$，$r(R)$为$R$的幂零根。证明$r(R')=r(R)[x_1,\ldots,x_n]$。补明本组题目沿用的交换性条件。
+
+\paragraph{考点与思路}
+
+按原解逐个添加变量，反复使用一元系数判据。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3nil}；\noteref{c3multi}；\exref{3}{43}；\exref{3}{46}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第495行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里$R$为交换幺环，$r(R)$表示幂零元全体，也等于全部素理想之交。由\exref{3}{43}与\exref{3}{46}，对$f\in R[x]$，有
+\[
+f\in r(R[x])\ \Longleftrightarrow\ f\text{的每个系数属于 }r(R).
+\]
+所以$r(R[x])=r(R)[x]$，右侧指所有系数均属于$r(R)$的多项式集合。
+
+对变量个数$n$归纳。$n=1$已证，$n=0$时也是恒等式。若对$n-1$成立，令$S=R[x_1,\ldots,x_{n-1}]$。它仍是交换幺环，故
+\begin{align*}
+r(R[x_1,\ldots,x_n])
+&=r(S[x_n])\\
+&=r(S)[x_n]\\
+&=\bigl(r(R)[x_1,\ldots,x_{n-1}]\bigr)[x_n]\\
+&=r(R)[x_1,\ldots,x_n].
+\end{align*}
+最后一步是把关于$x_n$的各个系数再次按前$n-1$个变量展开；最终每个标量系数都在$r(R)$中，反向也成立。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+右侧是系数属于幂零根的多项式理想，不是宣称整个理想有统一幂零指数。
+
+
+
+\subsection{习题48：有限环中右逆必为左逆}
+
+\label{ex:3:48}
+
+\paragraph{题目}
+
+证明有限环中右逆也是左逆，并判断无限环是否仍成立。
+
+\paragraph{考点与思路}
+
+保留有限集上乘法映射的证明，并把无限维空间上的移位算子逐个定义。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{unit}；\exref{3}{2}；\exref{3}{3}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第502行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设幺环$R$有限，且$uv=1$。对每个$y\in R$，有$u(vy)=y$，所以$L_u:x\mapsto ux$满射。有限集合上的满射必单射。又
+\[
+u(vu)=(uv)u=u=u1,
+\]
+单射性给出$vu=1$。因此右逆也是左逆。
+
+无限环中不成立。取域$F$上以$e_0,e_1,e_2,\ldots$为基的向量空间$V$（每个向量为有限线性组合），令$R=\operatorname{End}_F(V)$，乘法取映射复合。定义线性映射
+\[
+v(e_i)=e_{i+1}\ (i\ge0),\qquad u(e_0)=0,\quad u(e_{i+1})=e_i\ (i\ge0).
+\]
+给定基上的像唯一决定线性映射。对每个$i\ge0$，$(uv)(e_i)=e_i$，所以$uv=\mathrm{id}_V$。但$(vu)(e_0)=0\ne e_0$，故$vu\ne\mathrm{id}_V$。$R$是无限幺环，这给出所需反例。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+无限维向量空间用有限支撑的向量即可定义移位，不需要引入无限和。
+
+
+
+\subsection{习题49：多项式环中强拟正则元就是幂零元}
+
+\label{ex:3:49}
+
+\paragraph{题目}
+
+证明交换环$R$的多项式环$R[x]$中，强拟正则元恰为幂零元。
+
+\paragraph{考点与思路}
+
+保留原解从$1-xf$可逆得到系数幂零的路线；补证原解省略的“单位多项式正次数系数幂零”。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3nil}；\noteref{c3prime}；\noteref{c3degree}；\exref{3}{22}；\exref{3}{45}；\exref{3}{46}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第509行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+先证所需的一般事实：若$u=\sum a_ix^i$是交换幺环$R$上多项式环的单位，则每个$i>0$的$a_i$幂零。对任一素理想$P$，逐系数取模把$u$送为整环$(R/P)[x]$中的单位。整环上非零乘积次数可加，所以该单位只能是常数，因此$a_i\in P$对所有$i>0$成立。
+
+因$P$任意，这些系数属于全部素理想之交$r(R)$，即均幂零。若$R$为零环，系数全为零，此结论也成立。此外，单位的常数项必为$R$的单位，因为把逆元等式取常数项即可。连同\exref{3}{45}，这也补齐了多项式单位的双向系数判据。
+
+现设$f$在$R[x]$中强拟正则。定义要求对每个$g\in R[x]$，$1-fg$可逆，特别取$g=x$，则$1-xf$可逆。若$f=\sum a_ix^i$，则$1-xf$的$x^{i+1}$系数为$-a_i$，由刚证事实，每个$a_i$都幂零。根据\exref{3}{46}，$f$幂零。
+
+反过来，若$f^N=0$，对任意$g\in R[x]$，交换性给出$(fg)^N=f^Ng^N=0$。于是
+\[
+(1-fg)\sum_{j=0}^{N-1}(fg)^j
+=\sum_{j=0}^{N-1}(fg)^j(1-fg)=1-(fg)^N=1.
+\]
+所以$1-fg$对每个$g$均为单位，即$f$强拟正则。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+单位多项式的必要系数条件不能只引用第45题；第45题只证明了充分性，此处已补证必要性。
+
+
+
+\subsection{习题50：每个元素满足某个幂等关系时素理想极大}
+
+\label{ex:3:50}
+
+\paragraph{题目}
+
+设交换环$R$中每个$a$都有某个$n>1$使$a^n=a$。证明每个素理想均极大。
+
+\paragraph{考点与思路}
+
+在素理想商整环内使用幂关系，并以无零因子性获得逆元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第522行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$P$为$R$的素理想，$D=R/P$为非零整环。任取$0\ne\bar a\in D$，选代表元$a\in R$。题设给出某个$n>1$使$a^n=a$，故
+\[
+\bar a^n=\bar a,\qquad \bar a(\bar a^{n-1}-1)=0.
+\]
+因$\bar a\ne0$且$D$无零因子，得$\bar a^{n-1}=1$。于是$\bar a^{n-2}$是$\bar a$的逆元；当$n=2$时按零次幂为$1$理解。
+因此$D$每个非零元均可逆，是域，故$P$为极大理想。指数$n$允许随$a$变化，证明只对当前元素选取其对应的$n$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+不能在原环中直接消去$a$，因为原环可以有零因子；应先到素理想的商整环。
+
+
+
+\subsection{习题51：布尔环的特征、素商与有限生成理想}
+
+\label{ex:3:51}
+
+\paragraph{题目}
+
+设$R$为布尔环，即每个$a$满足$a^2=a$。证明$2a=0$、每个素理想极大且商域为$\mathbb F_2$、每个有限生成理想均为主理想。
+
+\paragraph{考点与思路}
+
+沿原解由$(a+a)^2$得到$2a=0$，再展开$(a+b)^2$得到交换性，最后合并两个理想生成元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\noteref{c3principal}；\noteref{ringlaws}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第529行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+\begin{enumerate}
+\item 对任意$a\in R$，布尔条件给出$a^2=a$及$(a+a)^2=a+a$。分配律展开后有$4a^2=2a$，即$4a=2a$，在加法群中相减得$2a=0$。特别地，$-a=a$。
+
+对$a+b$再用布尔条件，得$a^2+ab+ba+b^2=a+b$，故$ab+ba=0$。由$-ba=ba$，得到$ab=ba$，所以$R$交换。
+\item 在本组素理想题目的约定下，$R$有幺元。设$P$为素理想，则$D=R/P$是非零整环，且每个元素$z$仍满足$z^2=z$。由$z(z-1)=0$，每个$z$只能为$0$或$1$。二者因商环非零而不同，所以$D$恰有两个元素，其加法、乘法分别由$1+1=0$和$1\cdot1=1$确定。因此$D\cong\F_2$，且$P$极大。
+\item 任取$a,b\in R$，令$c=a+b+ab$。交换性、$a^2=a,b^2=b$及$2ab=0$给出
+\[
+ac=a^2+ab+a^2b=a,\qquad bc=ab+b^2+ab^2=b.
+\]
+所以$a,b\in(c)$，得到$(a,b)\subseteq(c)$。另一方面$c\in(a,b)$，故$(c)\subseteq(a,b)$，于是$(a,b)=(c)$。
+
+对生成元个数归纳：一个生成元的理想已是主理想；若$(a_1,\ldots,a_k)=(d)$，则$(a_1,\ldots,a_{k+1})=(d,a_{k+1})$可按上述公式再合并成一个生成元。零理想为$(0)$，所以全部有限生成理想均为主理想。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+先得到$2a=0$再推出交换性，不能在尚未证明交换时把$(a+b)^2$写成$a^2+2ab+b^2$。
+
+
+
+\subsection{习题52：唯一素理想、非单位幂零与根商域的等价性}
+
+\label{ex:3:52}
+
+\paragraph{题目}
+
+设$R\ne0$为交换幺环，$r(R)$为其幂零根。证明以下三项等价：(1) $R$只有一个素理想；(2) $R$的每个元素不是单位就是幂零元；(3) $R/r(R)$是域。这里补明非零条件。
+
+\paragraph{考点与思路}
+
+保留原解的三个条件循环推导，并在最后一步用商环的素理想对应补齐唯一性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3nil}；\noteref{c3prime}；\noteref{c3maxexists}；\exref{3}{20}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第540行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+这里须设$R\ne0$为交换幺环。将三条件分别记为(1)、(2)、(3)。若允许零环，(2)成立而(1)、(3)均不成立，等价性会失败。
+
+\begin{enumerate}
+\item[(1)$\Rightarrow$(2)] 设唯一素理想为$P$。由幂零根等于全部素理想之交，有$r(R)=P$。$R\ne0$保证至少有一个极大理想，而每个极大理想均为素理想，所以$P$本身是极大理想，且是唯一的极大理想。
+
+若$a\notin P$但不可逆，由\exref{3}{20}，$a$属于某个极大理想，只能是$P$，矛盾。因此$P$外的元素都是单位；$P=r(R)$内的元素都是幂零元。得到(2)。
+\item[(2)$\Rightarrow$(3)] 非零环的单位不可能幂零：若$a^m=0$且$a$可逆，乘以$a^{-m}$会得$1=0$。所以$r(R)$不含$1$，为真理想。取$R/r(R)$中任意非零类$a+r(R)$，则$a\notin r(R)$，不是幂零元。由(2)，$a$为单位，故$a^{-1}+r(R)$为该类的逆。于是$R/r(R)$为域。
+\item[(3)$\Rightarrow$(1)] 商环为域使$r(R)$为极大理想，特别也是素理想。对任意素理想$P$，由$r(R)$为全部素理想之交，有$r(R)\subseteq P$。因为$r(R)$极大且$P\ne R$，只能$P=r(R)$。因此素理想唯一。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+最后一步需要先由商域得到$r(R)$极大，而不能从“每个素理想包含根”直接推出相等。
+
+
+
+\subsection{习题53：只有有限多个理想的整环是域}
+
+\label{ex:3:53}
+
+\paragraph{题目}
+
+证明只有有限多个理想的整环是域。
+
+\paragraph{考点与思路}
+
+保留主理想幂链的路线，先从有限性推出相邻相等，再用整环消去。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3principal}；\noteref{zerodiv}；\noteref{field}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第549行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+任取$0\ne a\in R$。考虑下降链
+\[
+(a)\supseteq(a^2)\supseteq(a^3)\supseteq\cdots.
+\]
+因$R$只有有限多个理想，这些理想不能全部不同，所以存在$i<j$使$(a^i)=(a^j)$。下降关系给出
+\[
+(a^i)\supseteq(a^{i+1})\supseteq(a^j)=(a^i),
+\]
+故$(a^i)=(a^{i+1})$。于是$a^i\in(a^{i+1})$，在交换幺环中可写$a^i=ba^{i+1}$，即
+\[
+a^i(1-ba)=0.
+\]
+整环中$a\ne0$使$a^i\ne0$，故$1-ba=0$。交换性给出$ab=ba=1$。因此任一非零元$a$可逆，$R$为域。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+有限多个理想不直接意味着任选某一级就相邻相等，需要利用重复及链的包含关系。
+
+
+
+\subsection{习题54：理想集合有极小元的整环是域}
+
+\label{ex:3:54}
+
+\paragraph{题目}
+
+设整环$R$的任意非空理想集合按包含关系都有极小元。证明$R$是域。
+
+\paragraph{考点与思路}
+
+沿原解在指定的幂主理想集合中取极小元，再展开与上一题相同的消去。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3principal}；\exref{3}{53}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第556行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+固定$0\ne a\in R$。集合$\mathcal A=\{(a^m):m\ge1\}$非空，由题设存在其中一个极小元$(a^m)$。因$(a^{m+1})\in\mathcal A$且$(a^{m+1})\subseteq(a^m)$，极小性给出相等。
+
+因此有$b\in R$使$a^m=ba^{m+1}$，即$a^m(1-ba)=0$。$R$为整环且$a\ne0$，所以$a^m\ne0$，得到$ba=1$；交换性使$ab=1$。故每个非零元均可逆，$R$为域。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+“极小元”只须在这一个理想集合内使用，不需要把它当成全部非零理想中的最小理想。
+
+
+
+\subsection{习题55：华罗庚恒等式中的可逆性与因子次序}
+
+\label{ex:3:55}
+
+\paragraph{题目}
+
+设$a,b,ab-1$均为单位。证明$a-b^{-1}$和$(a-b^{-1})^{-1}-a^{-1}$均为单位，并验证华罗庚恒等式。
+
+\paragraph{考点与思路}
+
+严格保留原解的分解$c=(ab-1)b^{-1}$，以及$c^{-1}-a^{-1}$的三因子分解。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{unit}；\noteref{ringlaws}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第563行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$c=a-b^{-1}$。因$a,b,ab-1$均可逆，
+\[
+c=(ab-1)b^{-1}
+\]
+是两个单位之积，所以可逆；具体逆元为$bc_1$，其中$c_1=(ab-1)^{-1}$。
+
+接着保持顺序计算
+\begin{align*}
+c^{-1}(a-c)a^{-1}
+&=c^{-1}aa^{-1}-c^{-1}ca^{-1}\\
+&=c^{-1}-a^{-1}.
+\end{align*}
+由于$a-c=b^{-1}$，得到
+\[
+c^{-1}-a^{-1}=c^{-1}b^{-1}a^{-1}.
+\]
+右侧为三个单位的乘积，故也是单位。按反序取逆，
+\begin{align*}
+\bigl((a-b^{-1})^{-1}-a^{-1}\bigr)^{-1}
+&=(c^{-1}b^{-1}a^{-1})^{-1}\\
+&=abc\\
+&=ab(a-b^{-1})=aba-a.
+\end{align*}
+这就是所要求的华罗庚恒等式，亦可写为$aba=a+((a-b^{-1})^{-1}-a^{-1})^{-1}$。每次取逆的对象都已先证明可逆，计算没有交换因子。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+非交换环中取乘积的逆要颠倒顺序；$abc$不能改成任意其他排列。
+
+
+
+\subsection{习题56：共轭不变除子环的中心性}
+
+\label{ex:3:56}
+
+\paragraph{题目}
+
+设$D$为除环，$C$为其中心，$R$为子体且对每个$0\ne d\in D$有$dRd^{-1}\subseteq R$。证明$R=D$或$R\subseteq C$。
+
+\paragraph{考点与思路}
+
+将第12题的$x,x+1$比较法推广到任意除环，保留原解顺序。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{field}；\noteref{c3anti}；\exref{3}{12}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第577行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+记$C=Z(D)=\{z\in D:zd=dz\text{ 对每个 }d\in D\}$。若$R=D$，结论成立。以下设$R\ne D$，取$x\in D\setminus R$。除子环$R$含$0,1$，所以$x,x+1$都非零。
+
+任取$a\in R$，题设给出$b=xax^{-1}\in R$和$c=(x+1)a(x+1)^{-1}\in R$。有$xa=bx$及$xa+a=cx+c$，故
+\[
+(b-c)x=c-a.
+\]
+若$b\ne c$，$R$中存在$(b-c)^{-1}$，从而$x=(b-c)^{-1}(c-a)\in R$，矛盾。故$b=c$，进而$c=a$，于是$xa=ax$。该论证对每个$x\notin R$都成立。
+
+再取$y\in R$，固定一个$x\notin R$。因$x+y\notin R$，它也与$a$交换，所以
+\[
+ya=(x+y)a-xa=a(x+y)-ax=ay.
+\]
+因此$a$与$R$内外的每个元素都交换，即$a\in C$。$a$任意，得$R\subseteq C$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+除子环对非零元素的取逆封闭，是由$b-c\ne0$推出$x\in R$的关键。
+
+
+
+\subsection{习题57：实多项式函数环到实数的同态}
+
+\label{ex:3:57}
+
+\paragraph{题目}
+
+设$R$为实系数多项式函数环。证明每个$t\in\R$的代入映射$\eta_t(f)=f(t)$为到$\R$的满同态，且每个保幺同态$R\to\R$（因而每个满同态）均唯一为某个$\eta_t$。一般不保幺同态中的零映射需另列。
+
+\paragraph{考点与思路}
+
+沿原解先用正数为平方证明常数上的保序性，再用有理数稠密性固定所有实数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3functions1}；\noteref{c3poly}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第586行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+将自变量函数记为$s:\R\to\R$，$s(c)=c$。原笔记说明无限域上的不同多项式给出不同多项式函数，因此$R=\R[s]\cong\R[x]$。
+
+对$t\in\R$，映射$\eta_t(f)=f(t)$满足
+\[
+\eta_t(f+g)=f(t)+g(t),\quad
+\eta_t(fg)=f(t)g(t),\quad\eta_t(1)=1.
+\]
+每个实数$c$是常函数$c$的像，所以$\eta_t$满射。
+
+反过来，设$\eta:R\to\R$为保幺同态（特别地，任意满同态都保幺）。限制在常数域上，若$c\ne0$，由$\eta(c)\eta(c^{-1})=1$知$\eta(c)\ne0$。若$c>0$，写$c=d^2$且$d\ne0$，则$\eta(c)=\eta(d)^2>0$。因此对$c_1<c_2$，$\eta(c_2)-\eta(c_1)=\eta(c_2-c_1)>0$，故该限制严格保序。
+
+保幺和加法性使$\eta$固定所有整数，保逆使它固定所有有理数。任给$c\in\R$，若$\eta(c)>c$，由有理数稠密性选$c<r<\eta(c)$，$r\in\Q$；保序性却给出$\eta(c)<\eta(r)=r$，矛盾。若$\eta(c)<c$，选$\eta(c)<r<c$，则$\eta(r)<\eta(c)$也矛盾。故$\eta(c)=c$对所有常数成立。
+
+令$t=\eta(s)$，则对$f=\sum_i a_is^i$，
+\[
+\eta(f)=\sum_i\eta(a_i)\eta(s)^i=\sum_i a_it^i=f(t).
+\]
+所以$\eta=\eta_t$，且$t$由$s$的像唯一确定。若不要求保幺或满射，零同态也是环同态，并不属于上述代入映射；因此原题中“这样的同态”须作此区分。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+不能预设实数常数都被固定；须先由平方、保序和有理数稠密性证明。
+
+
+
+\subsection{习题58：无限域上非零多项式的非零点集}
+
+\label{ex:3:58}
+
+\paragraph{题目}
+
+设$F$为无限域。若$g\ne0$，且$f$在所有满足$g(c_1,\ldots,c_n)\ne0$的点上为零，证明$f=0$。
+
+\paragraph{考点与思路}
+
+保留原解先看乘积$fg$的路线，并展开无限域上多元零函数只能来自零多项式的归纳。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3functionsN}；\noteref{c3degree}；\noteref{c3roots}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第596行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$f,g\in F[x_1,\ldots,x_n]$，$g\ne0$。任取$a\in F^n$。若$g(a)\ne0$，题设给出$f(a)=0$；若$g(a)=0$，乘积值也为零。因此
+\[
+(fg)(a)=0\qquad(a\in F^n).
+\]
+下面沿原笔记按变量个数归纳，说明无限域上的多项式若处处取零值，则为零多项式。$n=1$时，非零多项式的根数至多为次数，不可能有无限多个根。
+
+设结论对$n-1$成立，写$h=\sum_{j=0}^m h_j(x_1,\ldots,x_{n-1})x_n^j$，并假设$h$处处为零。固定前$n-1$个坐标，得到关于$x_n$的一元多项式，在无限个点上为零，故各系数值$h_j(a_1,\ldots,a_{n-1})$全为零。因前$n-1$个坐标任意，由归纳假设各$h_j=0$，所以$h=0$。
+
+将该结论用于$h=fg$，得$fg=0$作为多项式恒等式。域上的多元多项式环是整环（逐次将一个变量加到整环上，非零首项系数的乘积保持非零）。因$g\ne0$，得到$f=0$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+“处处取零值”和“零多项式”的等价性依赖无限域，须先证明再用于乘积。
+
+
+
+\subsection{习题59：有限域上原点的指示多项式}
+
+\label{ex:3:59}
+
+\paragraph{题目}
+
+设$F$有$q$个元素。证明$g_0=\prod_{i=1}^n(1-x_i^{q-1})$在原点取值$1$，在其余点取值$0$。
+
+\paragraph{考点与思路}
+
+沿原解逐个因子判断，并交代$q-1$次幂公式来自有限乘法群。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{lagrange}；\noteref{c3finite}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第603行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+有限域$F$的非零元素构成$q-1$阶乘法群，所以由拉格朗日定理，对每个$a\ne0$都有$a^{q-1}=1$。又$q\ge2$，故$q-1>0$，$0^{q-1}=0$。
+
+在原点，$g_0$的每个因子$1-x_i^{q-1}$均取$1$，所以
+\[
+g_0(0,\ldots,0)=1.
+\]
+在任意非零点$(a_1,\ldots,a_n)$，至少有一个$a_i\ne0$，则其对应因子$1-a_i^{q-1}=0$，整个乘积为零。
+
+因此$g_0$恰在原点取$1$，在$F^n\setminus\{0\}$上取$0$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+这里$n\ge1$，且有限域至少两个元素，因而所有出现的$q-1$次幂均为正次幂。
+
+
+
+\subsection{习题60：只有原点为零点的多项式次数下界}
+
+\label{ex:3:60}
+
+\paragraph{题目}
+
+若$f$在原点为零而在其余点均非零，证明$g=1-f^{q-1}$与习题59的$g_0$取值相同，并推出$\deg f\geqslant n$。
+
+\paragraph{考点与思路}
+
+按原解先化为原点指示函数，再逐变量降次，并展开低于$q$次数代表的唯一性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3functionsN}；\noteref{c3finite}；\exref{3}{59}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第610行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+设$f\in F[x_1,\ldots,x_n]$，$f(0)=0$而$f(a)\ne0$对每个$a\ne0$成立。令$g=1-f^{q-1}$。由有限域非零元的$q-1$次幂为$1$，$g$在原点取$1$，其余点取$0$；故与\exref{3}{59}的$g_0$给出同一函数。
+
+对任意变量$x_i$及$e\ge q$，有
+\[
+x_i^e-x_i^{e-q+1}=x_i^{e-q}(x_i^q-x_i).
+\]
+右侧在$F^n$上恒为零，因此可在不改变函数的前提下把指数$e$降低$q-1$。逐个单项式、逐个变量反复降低，得到代表元$r$，使每个变量的次数均小于$q$。每次降低不增加单项式的总次数，合并同类项也不增加总次数，所以$\deg r\le\deg g$。
+
+还须说明这种代表唯一。若$r$对每个变量次数均小于$q$且处处为零，对变量个数归纳。一个变量时，次数小于$q$的非零多项式不能有$q$个根。多个变量时，写$r=\sum_{j=0}^{q-1}r_j(x_1,\ldots,x_{n-1})x_n^j$。固定前$n-1$个坐标后，用一元结论使每个$r_j$的值均为零，再用归纳假设得$r_j=0$。因此$r=0$，两个给出同一函数的低次数代表必相等。
+
+将$g$降次所得$r$与$g_0$比较，因$g_0$自身对每个变量的次数小于$q$，唯一性给出$r=g_0$。而$g_0$的单项式$x_1^{q-1}\cdots x_n^{q-1}$系数为$(-1)^n\ne0$，故$\deg g_0=n(q-1)$。于是
+\[
+n(q-1)=\deg r\le\deg g\le(q-1)\deg f.
+\]
+因$q-1>0$，得到$\deg f\ge n$。这里次数均为总次数。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+同一函数不保证多项式相等；只有逐变量次数小于$q$后，才能使用代表唯一性。
+
+
+
+\subsection{习题61：低于变量数次数的多项式还有非零零点}
+
+\label{ex:3:61}
+
+\paragraph{题目}
+
+设$F$是$q$元域，$\deg f<n$且$f(0)=0$。证明$f$还有一个非零零点。
+
+\paragraph{考点与思路}
+
+保留原解的有限域求和计数，补证幂和消失以及整数零点数与域元素的区别。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3finite}；\noteref{c3functionsN}；\exref{3}{59}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第617行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+若$f=0$，任取非零向量即为所求零点。以下设$f\ne0$，记$N$为$f$在$F^n$中的零点个数，$p=\operatorname{char}F$。在域$F$中求和，有
+\[
+N\cdot1_F=\sum_{a\in F^n}\bigl(1-f(a)^{q-1}\bigr),
+\]
+因为一个求和项在零点取$1$，非零点取$0$。
+
+先计算$S_k=\sum_{t\in F}t^k$，其中$k=0$时求和项按常数函数$1$理解，故$S_0=q\cdot1_F=0$。对$k>0$，取有限乘法群$F^\times$的生成元$\zeta$。若$q-1\nmid k$，则$\zeta^k\ne1$；乘以$\zeta$置换非零元素，给出$S_k=\zeta^k S_k$，故$S_k=0$。若$q-1\mid k$，则每个非零$t$都满足$t^k=1$，所以$S_k=(q-1)\cdot1_F=-1_F$。
+
+对单项式$x_1^{k_1}\cdots x_n^{k_n}$，逐坐标求和的分配律给出
+\[
+\sum_{a\in F^n}a_1^{k_1}\cdots a_n^{k_n}=\prod_{i=1}^n S_{k_i}.
+\]
+此乘积可能非零，必须每个$k_i$都是$q-1$的正倍数，特别是总次数至少为$n(q-1)$。但$f^{q-1}$的总次数为$(q-1)\deg f<n(q-1)$，所以其每个单项式在全体点上的和均为零。常数$1$的总和也是$q^n\cdot1_F=0$。故$N\cdot1_F=0$，即整数$N$被$p$整除。
+
+原点已经是零点，所以$N\ge1$。正整数$N$被$p$整除，故$N\ge p\ge2$，必有另一个不同于原点的零点。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+域中得到的等式是$N\cdot1_F=0$，不是整数$N=0$；它说明零点个数被特征整除。
+
+
+
+\subsection{习题62：形式幂级数的逆、整环性与商域表示}
+
+\label{ex:3:62}
+
+\paragraph{题目}
+
+设$R$为交换环、$f=\sum_{i\geqslant0}a_ix^i\in R[[x]]$。证明：(i) $f$可逆当且仅当$a_0$可逆；(ii) $R[[x]]$为整环当且仅当$R$为整环；(iii) 若$R$为整环且$F$为其商域，则$R[[x]]$商域的非零元均可写作$x^\nu(a_0+a_1x+\cdots)$，其中$\nu\in\mathbb Z$、$a_i\in F$、$a_0\ne0$。
+
+\paragraph{考点与思路}
+
+沿原解递推逆元系数，再以最低非零项检验整环性，最后直接展开任意两个幂级数之商。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3fraction}；\noteref{c3poly}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第628行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+先说明形式幂级数的运算。$R[[x]]$由全部序列$(a_0,a_1,\ldots)$组成，写成$\sum_{i\ge0}a_ix^i$；相等是逐系数相等，加法逐系数进行，乘法的$x^m$系数定义为$\sum_{i=0}^m a_ib_{m-i}$。每个系数仅用有限次运算，不涉及解析收敛。交换幺环$R$的运算律逐系数保证$R[[x]]$仍为交换幺环。
+
+\begin{enumerate}
+\item 若$fg=1$，比较常数项得$a_0b_0=1$，所以$a_0$可逆。反过来，若$a_0$为单位，递推定义
+\[
+b_0=a_0^{-1},\qquad
+b_m=-a_0^{-1}\sum_{i=1}^m a_i b_{m-i}\quad(m\ge1).
+\]
+当定义$b_m$时，右侧只涉及已定义的$b_0,\ldots,b_{m-1}$，故此序列存在且唯一。令$g=\sum b_mx^m$，则$fg$的常数项为$1$，其余第$m$项系数为
+\[
+a_0b_m+\sum_{i=1}^m a_i b_{m-i}=0.
+\]
+因此$fg=1$；交换性使$gf=1$，故$f$可逆。
+\item 若$R$为整环，设非零$f,g$的最低非零项分别为$a_rx^r,b_sx^s$。$fg$中低于$r+s$次的系数全零，第$r+s$次系数恰为$a_rb_s\ne0$，因此$fg\ne0$。常数$1$非零，所以$R[[x]]$为整环。
+
+反过来，常数嵌入$R\hookrightarrow R[[x]]$为单射，保加法、乘法和单位元。若$R[[x]]$是整环，则其常数子环非零且无零因子，故$R$为整环。
+\item 设$F$为$R$的商域，逐系数嵌入$R[[x]]\hookrightarrow F[[x]]$。任取非零分式$f/g$，其中$f,g\in R[[x]]\setminus\{0\}$。分离最低非零项，写成$f=x^r u$、$g=x^s v$，其中$u,v\in R[[x]]$的常数项非零。在$F[[x]]$中，这两个常数项都是单位，故由第一项，$u,v$均可逆。于是
+\[
+\frac fg=x^{r-s}uv^{-1}=x^\nu(a_0+a_1x+a_2x^2+\cdots),
+\]
+其中$\nu=r-s\in\Z$，$a_i\in F$，且$a_0=u(0)/v(0)\ne0$。
+
+这可在形式洛朗级数域$F((x))$中理解；它由仅有有限个负次幂项的级数组成。非零洛朗级数分离最低次幂后，其余因子常数项非零，可按第一项求逆，所以确实构成域。上述分式嵌入良定义且单射：$f/g=f'/g'$等价于$fg'=f'g$，而逐系数嵌入保此等式；其像为零只可能$f=0$。
+
+因此证明的是$R[[x]]$商域的每个非零元都有上述表示，并非任意$F$系数洛朗级数都必来自该商域。当$R=F$时，任一洛朗级数均可写为$x^{-m}h$，$h\in F[[x]]$，故$\operatorname{Frac}(F[[x]])=F((x))$。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+形式级数不需要收敛；一般$R$时只得到其商域嵌入$F((x))$，不能无条件宣称二者相等。
+
+
+
+\subsection{习题63：非单位构成唯一极大理想的条件}
+
+\label{ex:3:63}
+
+\paragraph{题目}
+
+设$R\ne0$为交换幺环，且每个非单位$a$都使$1+a$为单位。证明全部非单位构成唯一的极大理想，并判断这种环是否存在。补明非零条件。
+
+\paragraph{考点与思路}
+
+沿原解把假设的单位和归一化为$1$，用$1+a$的条件排除两个非单位之和为单位。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\exref{3}{30}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第645行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+补明$R\ne0$为交换幺环。令$M=R\setminus R^\times$，则$0\in M$而$1\notin M$。若$a\in M$、$r\in R$且$ra$是单位，设$(ra)c=1$，交换性给出$a(rc)=1$，使$a$为单位，矛盾。因此$ra\in M$。若$-a$可逆，则$a=(-1)(-a)$也可逆，故$-a\in M$。
+
+任取$a,b\in M$。若$a+b=u$为单位，则$au^{-1},bu^{-1}$均不是单位；否则再乘单位$u$会使$a$或$b$成为单位。于是$-au^{-1}$为非单位，题设给出
+\[
+1-au^{-1}=bu^{-1}\in R^\times,
+\]
+矛盾。因此$a+b\in M$。结合上述性质，$M$是理想，且因不含$1$而为真理想。
+
+任一真理想都不能含单位，所以均包含于$M$。若$M\subsetneq J\lhd R$，则$J$含一个不属于$M$的单位，故$J=R$。所以$M$极大；任一极大理想既含于$M$，就只能等于$M$，故唯一。
+
+这种环存在。例如$R=\Z/(p^n)$，$n\ge1$：非单位恰为$p$的倍数，若$p\mid a$，则$p\nmid1+a$，所以$1+\bar a$为单位。唯一极大理想是$(p)/(p^n)$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+归一化时仍须确认$au^{-1}$非单位；零环需要排除，否则非单位集为空而非理想。
+
+
+
+\subsection{习题64：单位加零构成子域及其外元素超越性}
+
+\label{ex:3:64}
+
+\paragraph{题目}
+
+设交换整环$R$中每个非零非单位$a$都使$1+a$仍非单位。证明全部单位加上$0$构成子域$F$，且$R\setminus F$中的元素都超越于$F$。
+
+\paragraph{考点与思路}
+
+沿原解用两个单位之和归一化制造矛盾，再把代数关系化为常数项非零的关系。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{field}；\noteref{c3algebraic}；\noteref{unit}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第652行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+令$F=R^\times\cup\{0\}$。整环要求$1\ne0$，故$F$含$0,1$。单位的积及逆仍为单位，单位的负元也是单位，所以$F$对乘法、取负和非零元取逆均封闭。
+
+只需检查加法。若一个加数为零，无需再证。设$u,v$均为单位，且$u+v\ne0$。反设$u+v$不是单位，令$a=-(u+v)u^{-1}$。乘以单位保持非单位性，且整环中乘单位保持非零，故$a$是非零非单位。题设要求$1+a$也不是单位，但
+\[
+1+a=1-(u+v)u^{-1}=-vu^{-1}
+\]
+是单位，矛盾。因此$u+v$不是零就是单位，$F$对加法封闭，是$R$的子域。
+
+任取$z\in R\setminus F$，则$z\ne0$且不是单位。若$z$在$F$上代数，存在非零多项式$\sum_{i=0}^m c_iX^i$使$\sum c_iz^i=0$。取最小的$c_k\ne0$，因$R$为整环且$z\ne0$，消去公共因子$z^k$，得到常数项非零的关系。重新编号可写为
+\[
+c_0+c_1z+\cdots+c_dz^d=0,\qquad c_0\ne0.
+\]
+此处$d\ge1$，否则非零常数为零。因$c_0$是$F$中的非零元，故在$R$中可逆，且
+\[
+z\bigl[-c_0^{-1}(c_1+c_2z+\cdots+c_dz^{d-1})\bigr]=1.
+\]
+交换性使括号内元素为$z$的双侧逆，矛盾。因此$z$在$F$上超越。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+若最初关系常数项为零，要利用$z\ne0$和整环消去，不能直接假定有非零常数项。
+
+
+
+\subsection{习题65：无限域上的乘法型加法恒等式无非常数多项式解}
+
+\label{ex:3:65}
+
+\paragraph{题目}
+
+设$F$为无限域。证明不存在非常数多项式$f\in F[x]$满足$f(x)f(y)=f(x+y)$。
+
+\paragraph{考点与思路}
+
+沿原解比较二元多项式的最高总次数；若题意是逐点等式，先用无限域保证它是恒等式。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3degree}；\noteref{c3functionsN}；\exref{3}{58}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第665行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+反设$f\in F[x]$非常数，次数为$d>0$，首项系数为$c\ne0$。若题目给的是对每个$x,y\in F$的等式，则多项式
+\[
+H(X,Y)=f(X)f(Y)-f(X+Y)
+\]
+在$F^2$上处处为零。因$F$无限，由原笔记的多元多项式函数定理（其归纳证明也在\exref{3}{58}展开），$H$为零多项式。若题目本来就指形式恒等式，这一步直接成立。
+
+但$f(X)f(Y)$的单项式$X^dY^d$系数为$c^2\ne0$，总次数为$2d$。另一方面，$f(X+Y)$的每项由$(X+Y)^j$、$j\le d$展开而来，总次数至多为$d$，所以其中$X^dY^d$的系数为零。因$2d>d$，两边系数不可能相等，矛盾。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+无限域条件用于把逐点函数等式提升为多项式恒等式；形式恒等式的次数比较本身不需要无限性。
+
+
+
+\subsection{习题66：全矩阵环的左理想都是主左理想}
+
+\label{ex:3:66}
+
+\paragraph{题目}
+
+设$F$为域，证明$M_n(F)$的每个左理想都是主理想。
+
+\paragraph{考点与思路}
+
+保留原解的行空间构造，证明任意出现过的行都能单独放进任何行位置，再以一组基组成生成矩阵。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\noteref{subring}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第672行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+左理想$L\subseteq M_n(F)$是加法子群，且对任意$X\in M_n(F),A\in L$有$XA\in L$。设$W$为$L$中所有矩阵的所有行向量组成的集合。下面先证它为$F^n$的子空间，而不预先假定这些行都来自同一个矩阵。
+
+若$w$为$A\in L$的第$i$行，则$E_{ki}A\in L$，其第$k$行为$w$、其他行为零。于是任意两个出现过的行$w,z$都能放到同一个指定行后相加；乘以标量矩阵$cE_n$还能把行变为$cw$。零矩阵给出零行，因此$W$为子空间。
+
+记$L_W$为每行都属于$W$的矩阵集合。按定义$L\subseteq L_W$。反过来，若$B\in L_W$，对其每行$w_k$，选一个$L$中矩阵使其某行等于$w_k$，再左乘矩阵单位把它搬到第$k$行、其余行置零。将这$n$个矩阵相加，得到$B\in L$。故$L=L_W$。
+
+取$W$的一组基$w_1,\ldots,w_r$，$0\le r\le n$，令$A$的前$r$行为这些基向量，其余行为零。因$A\in L_W=L$，有$M_n(F)A\subseteq L$。任给$B\in L$，每行$b_i$可写为$\sum_{j=1}^r c_{ij}w_j$。令$X$的前$r$列为这些$c_{ij}$，其余列为零，则$XA=B$。因此$L\subseteq M_n(F)A$，得到
+\[
+L=M_n(F)A.
+\]
+当$W=0$时取$A=0$，同样成立。故每个左理想都是主左理想。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+左乘矩阵形成原矩阵各行的线性组合，因此左理想对应行空间；不能在此换成列空间。
+
+
+
+\subsection{习题67：阿贝尔群的自同态环}
+
+\label{ex:3:67}
+
+\paragraph{题目}
+
+设$G$为阿贝尔群，证明$\operatorname{End}(G)$以逐点加法和映射复合构成含幺环。
+
+\paragraph{考点与思路}
+
+按原解逐项验证两种运算，特别写出依赖自同态加法性的分配律。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ring}；\noteref{hom}；\noteref{aut}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第679行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+将$G$的群运算写为加法。对$\eta,\xi\in\operatorname{End}(G)$定义
+\[
+(\eta+\xi)(a)=\eta(a)+\xi(a),\qquad
+(\eta\xi)(a)=\eta(\xi(a)).
+\]
+若$a,b\in G$，因$G$交换，
+\begin{align*}
+(\eta+\xi)(a+b)
+&=\eta(a)+\eta(b)+\xi(a)+\xi(b)\\
+&=(\eta(a)+\xi(a))+(\eta(b)+\xi(b)).
+\end{align*}
+所以$\eta+\xi$仍为自同态。又$(\eta\xi)(a+b)=\eta(\xi(a)+\xi(b))=\eta\xi(a)+\eta\xi(b)$，故乘法也封闭。
+
+逐点加法由$G$的交换加法继承结合律、交换律；零映射为零元，$(-\eta)(a)=-\eta(a)$为加法逆元，且$-\eta$仍为自同态。因此加法构成阿贝尔群。映射复合本来结合，恒等映射$\mathrm{id}_G$为双侧乘法单位。
+
+对任意$a\in G$，有
+\begin{align*}
+[\eta(\xi+\zeta)](a)
+&=\eta(\xi(a)+\zeta(a))=\eta\xi(a)+\eta\zeta(a),\\
+[(\eta+\xi)\zeta](a)
+&=\eta(\zeta(a))+\xi(\zeta(a))=\eta\zeta(a)+\xi\zeta(a).
+\end{align*}
+映射相等可逐点判断，故左右分配律成立，$\operatorname{End}(G)$为幺环。当$G=0$时，它是允许$0=1$的零环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+阿贝尔条件用于保证逐点和仍为群同态；乘法是复合，不是逐点相乘。
+
+
+
+\subsection{习题68：循环群、有理数群与初等阿贝尔群的自同态环}
+
+\label{ex:3:68}
+
+\paragraph{题目}
+
+分别求$\mathbb Z^+$、无限循环群、$\mathbb Q^+$及$n$个$p$阶循环群的直和的自同态环。
+
+\paragraph{考点与思路}
+
+依原解顺序，用生成元的像、$1$的像以及一组$p$元基的像确定全部自同态，并检查环运算。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{cyclic}；\noteref{hom}；\exref{3}{67}。原解位置：\path{chapters/Part 2/chapter3-exercises.tex}，第691行起。本题在现有习题解答的思路内补齐推导。
+
+% 原题和原解来源同上；新增中间推导为本册补写。
+
+\begin{proof}
+
+各环的乘法均按\exref{3}{67}取复合，右侧映射先作用。
+\begin{enumerate}
+\item 对整数加法群$\Z^+$，任一自同态$\eta$由$m=\eta(1)\in\Z$唯一决定，因为对所有$k\in\Z$，$\eta(k)=km$。反过来，$\eta_m(k)=mk$是自同态。于是$m\mapsto\eta_m$为双射，且
+\[
+\eta_m+\eta_n=\eta_{m+n},\qquad
+\eta_m\eta_n=\eta_{mn},\qquad \eta_1=\mathrm{id}.
+\]
+故$\operatorname{End}(\Z^+)\cong\Z$。
+\item 若$G=\langle g\rangle$为无限循环群，任一自同态由$\eta(g)=g^m$、$m\in\Z$决定，即$\eta_m(g^k)=g^{mk}$。因群交换，写成加法记号后，两个自同态相加对应指数相加，复合对应指数相乘。因此同样有$\operatorname{End}(G)\cong\Z$。这里“自同态相加”使用群运算；若用乘法记号，则$(\eta+\xi)(x)=\eta(x)\xi(x)$。
+\item 对有理数加法群$\Q^+$，设$r=\eta(1)\in\Q$。任给$q=m/n$，$m\in\Z,n>0$，加法性使
+\[
+n\eta(m/n)=\eta(m)=mr.
+\]
+在$\Q$中除以$n$，得到$\eta(q)=rq$，故由$r$唯一决定。反过来，每个乘法映射$\mu_r(q)=rq$都是加法自同态。它们满足$\mu_r+\mu_s=\mu_{r+s}$、$\mu_r\mu_s=\mu_{rs}$及$\mu_1=\mathrm{id}$。因此$\operatorname{End}(\Q^+)\cong\Q$。
+\item 设$G=\bigoplus\limits_{i=1}^n C_p$，各因子选一个生成元$e_i$，改用加法记号。每个元素唯一写成$\sum_i a_i e_i$，$a_i\in\F_p$。以$\bar m\,g=mg$定义标量乘法，因$pg=0$，不依赖整数代表元，所以$G$为$\F_p$上的$n$维向量空间。
+
+每个群自同态$T$满足$T(mg)=mT(g)$，因此自动为$\F_p$线性映射；每个线性映射反过来也是群自同态。写$T(e_j)=\sum_i t_{ij}e_i$，以列向量记录坐标，得到矩阵$A_T=(t_{ij})$。每个矩阵都唯一决定这样的线性映射，故$T\mapsto A_T$为双射。并且
+\[
+A_{T+S}=A_T+A_S,\qquad A_{TS}=A_TA_S,\qquad
+A_{\mathrm{id}}=E_n.
+\]
+因此$\operatorname{End}(G)\cong M_n(\F_p)$，且此处是通常矩阵乘法的同构。若$n=0$，两边均理解为零环。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+取列向量约定时，右侧映射先作用恰对应$A_{TS}=A_TA_S$；不要误写成反同构。
+
+

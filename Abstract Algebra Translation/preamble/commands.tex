@@ -1,0 +1,124 @@
+% ============================================
+%  commands.tex — 数学快捷命令 + 翻译辅助
+% ============================================
+
+% ── 基础符号 ──
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+% ── 分隔符 ──
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+\DeclarePairedDelimiter{\gen}{\langle}{\rangle}
+
+% ── 数集（黑板体）──
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+
+% ── 花体 ──
+\newcommand{\mcA}{\mathcal{A}}
+\newcommand{\mcB}{\mathcal{B}}
+\newcommand{\mcC}{\mathcal{C}}
+\newcommand{\mcD}{\mathcal{D}}
+\newcommand{\mcF}{\mathcal{F}}
+\newcommand{\mcG}{\mathcal{G}}
+\newcommand{\mcI}{\mathcal{I}}
+\newcommand{\mcL}{\mathcal{L}}
+\newcommand{\mcM}{\mathcal{M}}
+\newcommand{\mcN}{\mathcal{N}}
+\newcommand{\mcO}{\mathcal{O}}
+\newcommand{\mcP}{\mathcal{P}}
+\newcommand{\mcS}{\mathcal{S}}
+\newcommand{\mcT}{\mathcal{T}}
+\newcommand{\mcU}{\mathcal{U}}
+
+% ── 哥特体 ──
+\newcommand{\mfa}{\mathfrak{a}}
+\newcommand{\mfb}{\mathfrak{b}}
+\newcommand{\mfg}{\mathfrak{g}}
+\newcommand{\mfh}{\mathfrak{h}}
+\newcommand{\mfm}{\mathfrak{m}}
+\newcommand{\mfn}{\mathfrak{n}}
+\newcommand{\mfp}{\mathfrak{p}}
+\newcommand{\mfq}{\mathfrak{q}}
+\newcommand{\mfr}{\mathfrak{r}}
+\newcommand{\mfs}{\mathfrak{s}}
+
+% ── 群论 ──
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\charac}{char}
+
+% ── 环论与模论 ──
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\nilrad}{nil}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+
+% ── 域论 ──
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Nm}{Nm}
+
+% ── 常用 ──
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\newcommand{\divides}{\mid}
+\newcommand{\ndivides}{\nmid}
+\newcommand{\normal}{\trianglelefteq}
+\newcommand{\semidirect}{\rtimes}
+\newcommand{\dsum}{\bigoplus}
+\newcommand{\tensor}{\otimes}
+
+% ── 偏导数 ──
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+
+% ============================================
+%  翻译辅助命令
+% ============================================
+
+% 原文边注
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize\color{gray}\sffamily}
+\newcommand{\orig}[1]{\marginnote{\textsf{#1}}[0pt]}
+
+% 首次术语中英对照
+\newcommand{\tr}[2]{#2\marginnote{\scriptsize\textsf{#1}}[-2pt]}
+
+% 译者注
+\newcommand{\transnote}[1]{%
+  \par\smallskip
+  \noindent{\footnotesize\sffamily\color{gray}【译者注】#1}%
+  \par\smallskip
+}
+
+% 待确认
+\newcommand{\tocheck}[1]{\textcolor{red}{【待确认：#1】}}
+
+% 人名
+\newcommand{\person}[3]{#2（\textsf{#1}, #3）}

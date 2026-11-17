@@ -1,0 +1,45 @@
+{
+  "changes": [
+    "绪论保留建模、直积与球摆状态；捕捞阈值移至第6章稳定性定义之后。",
+    "Green响应接在第3章常数变易公式之后；保留原有线性存在唯一性依据。",
+    "准多项式与共振接在第4章算子解法之后；矩阵指数的演化应用与主振动仍放章末；稳定性论证移至Lyapunov直接法。",
+    "第5章压缩映射观点紧接Picard证明，Euler残差接在Peano构造后；局部逆与移动坐标保留章末。",
+    "第6章按流、稳定性、返回映射、Hamilton能量的顺序安置体积公式、捕捞、主振动稳定性、小扰动闭轨与能量层；不是统一移出章末。",
+    "新增章节仅交换流形章与特征线章，使切空间、子流形先于其在特征初值问题中的使用；其余章序保留并补出实质性衔接。"
+  ],
+  "new_modules": [
+    "continuity-harvest.tex",
+    "linear-quasipolynomials.tex",
+    "continuity-mode-stability.tex",
+    "continuity-banach.tex",
+    "continuity-euler.tex",
+    "qualitative-volume.tex",
+    "continuity-energy-extension.tex",
+    "qualitative-hamilton-volume.tex",
+    "qualitative-orbital-stability.tex",
+    "qualitative-return-perturbation.tex"
+  ],
+  "changed_sources": [
+    "arnold-contraction.tex",
+    "arnold-energy.tex",
+    "arnold-green.tex",
+    "arnold-linear-algebra.tex",
+    "arnold-models.tex",
+    "chapter1.tex",
+    "chapter10.tex",
+    "chapter11.tex",
+    "chapter12.tex",
+    "chapter13.tex",
+    "chapter14.tex",
+    "chapter15.tex",
+    "chapter3.tex",
+    "chapter4.tex",
+    "chapter5.tex",
+    "chapter6.tex",
+    "chapter7.tex",
+    "chapter8.tex",
+    "chapter9.tex"
+  ],
+  "retained_old_labels": 178,
+  "new_labels": 30
+}

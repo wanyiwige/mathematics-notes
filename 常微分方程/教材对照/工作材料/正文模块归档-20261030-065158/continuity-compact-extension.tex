@@ -1,0 +1,16 @@
+\begin{proposition}[有限维紧集延拓判据]\label{prop:compact-extension-vector}
+设 $G\subset\R\times\R^n$ 为开集，$f:G\to\R^n$ 连续，且关于 $x$ 局部满足 Lipschitz 条件。
+若解 $x(t)$ 定义在 $[t_0,\beta)$，$\beta<\infty$，并且其图像始终包含在某个紧集 $K\subset G$ 中，
+则该解能够越过 $\beta$ 延拓。左端点有相同结论。
+\end{proposition}
+\begin{proof}
+这正是前面延拓证明的有限维形式。连续性与紧性给出 $\sup_K|f|=M<\infty$，故
+\[
+ |x(t)-x(s)|\leq M|t-s|,\qquad t_0\leq s,t<\beta.
+\]
+因此 $t\uparrow\beta$ 时 $x(t)$ 满足 Cauchy 准则，在 $\R^n$ 中有极限 $x_*$。
+$K$ 为闭集，故 $(\beta,x_*)\in K\subset G$。
+令 $x(\beta)=x_*$，在积分方程中取极限，知延长的函数仍满足积分方程。
+再在 $(\beta,x_*)$ 应用有限维 Picard 定理，便可将解继续接到 $\beta$ 右侧。
+由唯一性两段解相容。反向时间给出左端结论。
+\end{proof}

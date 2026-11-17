@@ -1,0 +1,25 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=.8cm,y=1.15cm]
+ \draw[->,gray] (-.25,0)--(6.95,0) node[right]{$t$};
+ \draw[->,gray] (0,-1.4)--(0,1.5) node[above]{$x$};
+ \draw[GreenMain,thick,domain=0:6.2832,samples=100] plot (\x,{sin(\x r)});
+ \draw[GoldMain,thick,domain=0:6.2832,samples=100] plot (\x,{cos(\x r)});
+ \foreach \t/\lab in {0/0,1.5708/{\pi/2},3.1416/\pi,4.7124/{3\pi/2},6.2832/{2\pi}}{
+  \draw (\t,.05)--(\t,-.05);\node[below,font=\scriptsize] at (\t,-.1){$\lab$};
+ }
+ \foreach \t in {0,3.1416,6.2832}{\fill[GreenMain] (\t,0) circle(2pt);}
+ \foreach \t in {1.5708,4.7124}{\fill[GoldMain] (\t,0) circle(2pt);}
+ \node[GreenMain] at (2,1.45){$\sin t$};\node[GoldMain] at (4.4,1.45){$\cos t$};
+\end{scope}
+\begin{scope}[shift={(8,0)},scale=1.15]
+ \draw[->,gray] (-1.4,0)--(1.5,0) node[right]{$x$};
+ \draw[->,gray] (0,-1.4)--(0,1.5) node[above]{$y=x'$};
+ \draw[GreenMain,thick] (0,0) circle(1);
+ \draw[GreenMain,->,thick] (70:1) arc[start angle=70,end angle=25,radius=1];
+ \draw[GoldMain,->] (90:.48) arc[start angle=90,end angle=40,radius=.48];
+ \node[GoldMain] at (.28,.65){$\theta$};
+ \fill (0,1) circle(1.6pt) node[above left]{$\theta=0$};
+ \fill (0,-1) circle(1.6pt) node[below left]{$\theta=\pi$};
+\end{scope}
+\end{tikzpicture}

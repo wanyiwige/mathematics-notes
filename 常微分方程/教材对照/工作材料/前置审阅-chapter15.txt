@@ -1,0 +1,351 @@
+\setchapterimage{figure/Chapter15封面图.jpg}
+\setchapterintro{用压缩映射构造稳定流形，用反对称多粒子函数解释 Sturm 线性组合的零点，再说明隐式方程与快慢系统的折叠奇点。超出常微分方程基础的分析与分类前提会单独列明。}
+\chapter{不变流形与进阶专题}\label{chap:invariant-manifolds}
+
+第六章的线性近似给出稳定性判据，第~\ref{chap:linear-conjugacy}~章则分类双曲线性系统。下面用压缩映射构造非线性不变流形及局部共轭；后两节分别回到第~\ref{chap:sturm}~章的零点问题和第~\ref{chap:characteristics}~章的隐式方程几何。
+
+\section{双曲映射的稳定与不稳定流形}
+下面将轨道的递推关系写成序列空间中的压缩方程，再由不动点构造局部不变流形。
+\begin{definition}
+设局部微分同胚 $F(0)=0$。若 $DF(0)$ 无模为 1 的特征值，称零点双曲。
+局部稳定集是正次迭代一直留在指定小邻域并趋于零的点集；
+不稳定集对反向迭代作相同定义。
+\end{definition}
+\begin{theorem}[局部稳定流形]\label{thm:arnold-stable-manifold}
+设 $F\in C^r$，$r\geq1$，零点双曲。
+则在零点附近存在 $C^r$ 稳定与不稳定流形，分别与 $DF(0)$ 的稳定、不稳定子空间相切，
+维数等于这些子空间维数；它们局部不变。
+\end{theorem}
+\begin{proof}
+\paragraph{线性分解与截断。}
+在稳定、不稳定子空间中分别取坐标，写成
+\[
+ \begin{aligned}
+ F(u,v)&=(Su+f(u,v),Uv+g(u,v)),\\
+ f(0)&=g(0)=0,\qquad Df(0)=Dg(0)=0.
+\end{aligned}
+\]
+对 Jordan 块中的基向量作逐次缩放，可取等价范数，使
+$\|S\|,\|U^{-1}\|\leq a<1$。两个子空间的乘积使用最大范数。
+在半径 $r$ 的小球内，$Df,Dg$ 的范数随 $r\downarrow0$ 一致趋零。
+取在半径 $r$ 球内为 1、半径 $2r$ 球外为零的光滑截断函数 $\chi_r$。
+因 $|f(z)|,|g(z)|=o(|z|)$ 且 $|D\chi_r|=O(1/r)$，
+乘积求导中的 $D\chi_r f,D\chi_r g$ 也一致趋零。
+因此截断后的非线性项可具有任意小的全局 Lipschitz 常数 $L$。
+以下先研究截断方程，最后限制回原小球。
+
+\paragraph{将递推写成压缩方程。}
+选 $a<\sigma<1$，在序列空间中置
+\[
+ \|z\|_\sigma=\sup_{n\geq0}\sigma^{-n}\max(|u_n|,|v_n|).
+\]
+乘以权 $\sigma^{-n}$ 将它等距对应到有界序列空间，因此该空间完备。
+固定稳定坐标 $u_0=\xi$，定义算子 $\mathcal A_\xi$：
+\begin{align*}
+ (\mathcal A_\xi z)^s_n
+ &=S^n\xi+\sum_{j=0}^{n-1}S^{n-1-j}f(z_j),\\
+ (\mathcal A_\xi z)^u_n
+ &=-\sum_{j=n}^\infty U^{n-1-j}g(z_j).
+\end{align*}
+第一式是稳定递推的逐次代入。第二式由
+\[
+ v_n=U^{-1}v_{n+1}-U^{-1}g(z_n)
+\]
+ 向未来迭代，并令终点趋于无穷得到。
+若 $z$ 有界，则剩余项 $U^{n-N}v_N$ 因 $\|U^{-1}\|<1$ 而趋零。
+反过来，把第二个和式的 $n$ 与 $n+1$ 项相减，即恢复不稳定递推，
+故不动点确实给出一条轨道。
+
+设 $d=\|z-\widetilde z\|_\sigma$。逐项估计为
+\begin{align*}
+ \sigma^{-n}|(\mathcal A_\xi z-\mathcal A_\xi\widetilde z)^s_n|
+ &\leq Ld\sum_{j=0}^{n-1}a^{n-1-j}\sigma^{j-n}
+ \leq\frac{L}{\sigma-a}d,\\
+ \sigma^{-n}|(\mathcal A_\xi z-\mathcal A_\xi\widetilde z)^u_n|
+ &\leq Ld\sum_{j=n}^\infty a^{j+1-n}\sigma^{j-n}
+ =\frac{La}{1-a\sigma}d.
+\end{align*}
+而输入零序列时，右端为 $(S^n\xi,0)$，范数不超过 $|\xi|$。
+所以算子将该空间映到自身。取 $L$ 使两常数的最大值 $q<1$，
+Banach 定理给出唯一不动点 $z(\xi)$，且
+\[
+ \begin{aligned}
+ \|z(\xi)\|_\sigma&\leq\frac{|\xi|}{1-q},\\
+ \|z(\xi)-z(\eta)\|_\sigma&\leq\frac{|\xi-\eta|}{1-q}.
+\end{aligned}
+\]
+因此这些轨道以 $\sigma^n$ 速度趋零。定义 $h(\xi)=v_0(\xi)$。
+当 $|\xi|$ 足够小时，整条轨道均留在截断未改变方程的小球内。
+
+\paragraph{光滑性与相切性。}
+截断非线性项的各阶导数有界。将它逐项作用于加权序列，
+其一阶余项由 $Df,Dg$ 的一致连续性控制。
+第 $k$ 阶导数作用在 $k$ 个序列上时，逐项产生权 $\sigma^{kj}$；
+因 $\sigma^{kj}\leq\sigma^j$，上述两种几何级数估计仍适用。
+所以 $\mathcal A(\xi,z)$ 是 $C^r$ 映射，且 $\|D_z\mathcal A\|\leq q<1$。
+从而
+\[
+ (I-D_z\mathcal A)^{-1}=\sum_{j=0}^\infty(D_z\mathcal A)^j,
+ \qquad\|(I-D_z\mathcal A)^{-1}\|\leq(1-q)^{-1}.
+\]
+对不动点方程作差，并用刚得的 Lipschitz 估计控制其余项，得到
+\[
+ D_\xi z=(I-D_z\mathcal A)^{-1}D_\xi\mathcal A.
+\]
+余项除以 $|\Delta\xi|$ 趋零，故这是真正的 Fréchet 导数。
+右端连续，因而 $z$ 为 $C^1$；继续求导时，最高阶未知导数仍乘
+$I-D_z\mathcal A$，其余项只含已得到的低阶导数。由归纳得到 $C^r$。
+取零初值，唯一不动点为零序列。由于 $Df(0)=Dg(0)=0$，
+导数轨道恰为 $(S^n\xi,0)$，故 $h(0)=0,Dh(0)=0$。
+图像 $\xi\mapsto(\xi,h(\xi))$ 的微分含恒等的第一分量，
+是 $\dim E^s$ 维 $C^r$ 子流形，并与 $E^s$ 相切。
+
+\paragraph{刻画局部稳定集。}
+还需排除未被构造捕获的局部轨道。在不加权有界序列空间中，
+同一算子的压缩常数分别为 $L/(1-a)$ 和 $La/(1-a)$。
+进一步缩小 $L$，使它们也小于 1。任何始终留在小球的正向轨道都是有界序列，
+由前面的递推求和满足同一个不动点方程。
+有界不动点唯一，而已构造的加权不动点也是有界的，故两者相同。
+所以这类轨道自动趋零，其初点必在图像上。
+反之，图像上足够靠近零的点，其估计保证整条正向轨道留在小球并趋零。
+在选择的局部邻域内，这正是局部稳定集。
+将轨道序列左移一项仍是趋零轨道，故其下一点也在图像上，得到局部不变性。
+对局部逆映射 $F^{-1}$ 重复同一构造，得到不稳定流形。
+\end{proof}
+\begin{corollary}
+自治 $C^r$ 向量场的双曲平衡点有相应局部稳定与不稳定流形。
+\end{corollary}
+\begin{proof}
+取足够小的正时间 $\tau$，时间 $\tau$ 映射的导数为 $e^{\tau A}$。
+其特征值模是 $e^{\tau\operatorname{Re}\lambda}$，所以双曲。
+应用映射的稳定流形定理，再用 $[0,\tau]$ 内流的连续性控制两采样时刻之间的轨道。
+小时间流与采样映射可交换，故保持局部稳定集，图像也对连续流局部不变。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-stable-manifolds} 的曲线由局部换元 $(u,v)=(s+0.18r^2,r+0.18s^2)$ 得到，故两条不变曲线在原点的切线分别是稳定与不稳定子空间。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{局部稳定、不稳定流形及其线性模型；粗线箭头分别趋向和离开平衡点。}
+\label{fig:ode-tikz-stable-manifolds}
+\end{minipage}
+\end{center}
+
+\section{非线性双曲平衡点的局部共轭}
+线性分类描述了双曲线性系统的相流。本节通过构造互逆的连续变换，将这一描述推广到非线性平衡点附近。
+\begin{theorem}[局部双曲共轭]
+设 $x'=Ax+R(x)$，$R(0)=0,DR(0)=0$，$A$ 双曲，$R\in C^1$。
+原方程在零点附近与 $y'=Ay$ 局部拓扑共轭，并保持时间参数。
+\end{theorem}
+\begin{proof}
+\paragraph{双曲线性方程的有界逆。}
+记稳定、不稳定投影为 $P_s,P_u$。由广义特征空间分解和 Jordan 指数估计，
+存在 $K,c>0$，使
+\[
+ \|e^{tA}P_s\|\leq Ke^{-ct}\ (t\geq0),\qquad
+ \|e^{tA}P_u\|\leq Ke^{ct}\ (t\leq0).
+\]
+在有界连续函数的完备空间 $C_b(\R,\R^n)$ 中，定义
+\[
+ \begin{aligned}
+ (Gf)(t)={}&\int_{-\infty}^te^{A(t-s)}P_sf(s)\,ds\\
+ &-\int_t^\infty e^{A(t-s)}P_uf(s)\,ds.
+\end{aligned}
+\]
+两积分绝对收敛，分别不超过 $K\|f\|_\infty/c$，故
+$\|G\|\leq C_G:=2K/c$。在有限区间求导，再用指数尾项取极限，得
+\[
+ (Gf)'=A(Gf)+f.
+\]
+若两个有界特解存在，其差为 $e^{tA}v$；稳定分量若非零则负向无界，
+不稳定分量若非零则正向无界。因而差为零，$Gf$ 是唯一整轴有界特解。
+由积分换元还可知，$G$ 与任意时间平移可交换。
+
+\paragraph{从非线性轨道得到线性轨道。}
+用小球截断 $R$。因为 $R(0)=DR(0)=0$，截断后可同时做到
+$\|R\|_\infty\leq M$、$\operatorname{Lip}(R)=L$，并使 $q=C_GL<1$。
+该截断在一个零点邻域内不改变原方程。
+截断方程的向量场满足线性增长估计
+\[
+ |Ax+R(x)|\leq\|A\||x|+M;
+\]
+Gronwall 估计及有限端点延拓判据
+保证其解双向全局存在，记流为 $\varphi^t$。
+对初点 $x_0$ 的整条轨道 $x(t)$，函数 $R(x(t))$ 有界。
+置
+\[
+ y(t)=x(t)-G(R(x))(t).
+\]
+由 Green 算子的方程，
+\[
+ \begin{aligned}
+ y'&=Ax+R(x)-[AG(R(x))+R(x)]\\
+ &=A[x-G(R(x))]\\
+ &=Ay.
+\end{aligned}
+\]
+定义 $h(x_0)=y(0)$，时间平移可交换性于是给出
+\[
+ h(\varphi^tx_0)=e^{tA}h(x_0).
+\]
+此外 $|h(x_0)-x_0|\leq C_GM$。
+
+\paragraph{构造逆变换并验证互逆。}
+固定任意 $y_0$，令 $y(t)=e^{tA}y_0$。尽管 $y$ 本身可能无界，
+映射 $z\mapsto G(R(y+z))$ 仍将 $C_b$ 映入自身，因为 $R$ 全局有界。
+其 Lipschitz 常数不超过 $q<1$，故存在唯一有界不动点
+\[
+ z=G(R(y+z)),\qquad \|z\|_\infty\leq C_GM.
+\]
+于是 $z'=Az+R(y+z)$，所以 $x=y+z$ 解非线性方程。定义 $k(y_0)=x(0)$。
+对于这条轨道，$G(R(x))=z$，故 $h(k(y_0))=y_0$。
+反过来，对任意非线性轨道所定义的 $y=x-G(R(x))$，
+有界差 $z=x-y$ 满足同一不动点方程。唯一性说明逆构造恢复该 $x$，
+所以 $k(h(x_0))=x_0$。这证明 $h,k$ 是互逆双射，且 $h(0)=0$。
+
+\paragraph{连续性。}
+先证 $h$ 在任意 $x_0$ 连续。对 $G(R(\varphi^{\cdot}x_0))(0)$ 的积分，
+$|s|>B$ 的尾项不超过 $2KM e^{-cB}/c$，且与初点无关。
+先选大 $B$ 使尾项小，再用紧时间段 $[-B,B]$ 内的初值连续依赖，
+使有限部分的积分连续，便得 $h$ 连续。
+
+为证 $k$ 连续，从 $z_0=0$ 开始迭代
+\[
+ z_{j+1}=G(R(e^{\cdot A}y_0+z_j)).
+\]
+归纳地，每个 $z_j(t,y_0)$ 对 $(t,y_0)$ 连续：积分的远端仍由一致指数尾界控制，
+有限部分使用被积函数在紧集上的连续性。
+且压缩估计给出
+\[
+ \begin{aligned}
+ \|z-z_j\|_\infty&\leq\frac{q^j}{1-q}\|z_1-z_0\|_\infty\\
+ &\leq\frac{q^j C_GM}{1-q},
+\end{aligned}
+\]
+这一界不依赖 $y_0$。因此 $z_j(0,y_0)$ 一致趋于连续函数 $z(0,y_0)$，
+$k(y_0)=y_0+z(0,y_0)$ 连续。$h$ 因而是同胚。
+
+最后取截断恒为 1 的零点邻域，并将全局共轭限制于该邻域及其像。
+凡原轨道的一段始终留在此邻域，它与截断轨道相同，因而满足同一保时间共轭等式。
+这正是原方程与线性方程的局部拓扑共轭。
+\end{proof}
+
+\section{特征函数线性组合的零点：反对称方法}
+以下使用两个分析预备定理：
+\begin{enumerate}
+ \item 一维正则 Dirichlet 边值算子的特征函数是 $L^2$ 的完全正交系。
+ \item 有界连通区域的 Dirichlet Schrödinger 算子的最低特征函数可以取为内部严格正。
+\end{enumerate}
+前者由连续 Green 核的紧自伴谱定理得到；后者由 Rayleigh 商极小化、
+取绝对值不增加能量及强最大值原理得到。
+这里明确列出这些前提，因为它们不是有限维矩阵谱定理或 ODE 的零点比较本身。
+
+\begin{definition}
+交换任意两个变量都改变符号的函数称为反对称函数。
+由 $n$ 个单变量函数构成的 Slater 行列式是
+\[
+ \Psi(x_1,\ldots,x_n)=\det(\phi_i(x_j))_{i,j=1}^n.
+\]
+有序单纯形为 
+\[
+ \Delta=\{0<x_1<\cdots<x_n<l\}.
+\]
+\end{definition}
+\begin{theorem}
+设 $\phi_1,\ldots,\phi_n$ 为一维正则 Dirichlet 问题的前 $n$ 个实特征函数，
+按严格递增特征值排列。则它们的任意非零线性组合在 $(0,l)$ 至多有 $n-1$ 个不同零点。
+\end{theorem}
+\begin{proof}
+令一维算子为 $H=-D^2-q$，特征值为 $\lambda_i$。
+在立方体 $(0,l)^n$ 上，定义
+\[
+ H^{(n)}=\sum_{j=1}^n\bigl(-\partial_{x_j}^2-q(x_j)\bigr).
+\]
+对乘积基的特征值为各 $\lambda$ 的和。
+在反对称子空间中，重复指标的乘积反对称化为零；
+最小可能的和因此为 $\lambda_1+\cdots+\lambda_n$，其特征空间由 $\Psi$ 一维张成。
+
+反对称函数在 $x_i=x_j$ 上为零，且 Dirichlet 条件使它在外边界也为零。
+从 $\Delta$ 上的零边界函数按变量排列作带符号延拓，得到立方体的反对称函数；
+两边 Rayleigh 商相同，因为各排列单纯形的能量与范数都相等。
+因此 $\Psi|_\Delta$ 是单纯形上的最低特征函数。
+由前述最低特征函数的严格正性及一维性，它在 $\Delta$ 内没有零点。
+
+若非零组合 $f=\sum_{i=1}^nc_i\phi_i$ 在 $n$ 个不同内部点
+$x_1<\cdots<x_n$ 为零，则向量 $(c_i)$ 是矩阵 $(\phi_i(x_j))$ 的非零左核向量。
+于是 $\Psi(x_1,\ldots,x_n)=0$，与单纯形内部无零点矛盾。
+所以至多有 $n-1$ 个不同零点。
+\end{proof}
+反对称化把线性组合的零点问题转成有序单纯形上的正性问题。
+
+\section{折叠、对合与快慢系统}
+下面研究隐式方程的曲面投影，以及投影奇点与慢运动之间的关系。
+\begin{definition}
+微分同胚 $\iota$ 若满足 $\iota^2=\operatorname{id}$，称为对合。
+曲面投影若在某点局部等价于 $(s,r)\mapsto(s,r^2)$，称为折叠。
+交换两个同投影点的局部对合 $(s,r)\mapsto(s,-r)$ 称其分支交换对合。
+\end{definition}
+\begin{proposition}
+对隐式方程曲面 $E=\{F(t,x,p)=0\}$，若
+\[
+ F_p=0,\qquad F_{pp}\ne0,\qquad F_t+pF_x\ne0,
+\]
+则投影 $E\to(t,x)$ 在该点为折叠，接触迹方向场在那里非零并横截折叠点曲线。
+\end{proposition}
+\begin{proof}
+$F_t+pF_x\ne0$ 保证 $(F_t,F_x)\ne(0,0)$，所以 $E$ 光滑。
+选取一个可解的底变量，把曲面写成该底变量等于另一底变量与 $p$ 的函数。
+对 $p$ 的一阶导数为零、二阶导数非零。
+带参数的一维 Morse 引理（对二阶 Taylor 余项取光滑平方根）将它化为 $r^2$，故为折叠。
+前面得到的迹向量在此为 $-(F_t+pF_x)\partial_p$，非零；
+它作用于折叠条件 $F_p=0$ 得
+$-(F_t+pF_x)F_{pp}\ne0$，所以横截折叠曲线。
+\end{proof}
+带参数的一维 Morse 引理可具体这样验证：先由隐函数定理解出临界点 $p_0(s)$，
+再用 Taylor 积分公式写
+$h(s,p)-h(s,p_0(s))=(p-p_0(s))^2a(s,p)$，$a$ 光滑且同号。
+令 $r=(p-p_0(s))\sqrt{|a(s,p)|}$ 即给出所需坐标。
+
+\paragraph{Cibrario 与 Davydov 正规形。}
+Cibrario 正规形定理把一般位置的非例外折叠化为 $p^2=t$，其积分曲线投影为半三次抛物线。
+在接触平面与曲面切平面重合的例外折叠处，Davydov 正规形定理给出
+$ (p-kx)^2=y$，参数 $k$ 是相应分类中的模参数。
+这些是关于“整个投影曲线族在同一个底空间变换下”的分类，
+不只是把曲面本身化为折叠。这两个完整分类定理在本节中作为奇点理论的预备结论使用。
+
+\begin{proposition}[正规形的类型计算]
+对 $(p-kx)^2=y$、$p=dy/dx$，接触迹方向场可在曲面坐标 $(x,p)$ 中写为
+\[
+ \dot x=2(p-kx),\qquad \dot p=2k(p-kx)+p.
+\]
+其线性矩阵迹为 1，行列式为 $-2k$。
+因此 $k>0$ 为折叠鞍型，$-1/8<k<0$ 为折叠结点型，$k<-1/8$ 为折叠焦点型。
+边界参数为退化情形。
+\end{proposition}
+\begin{proof}
+对 $y=(p-kx)^2$ 微分，并用 $dy=p\,dx$，得到
+$2(p-kx)dp-[2k(p-kx)+p]dx=0$，所以给出上述迹场。
+矩阵为
+$\left(\begin{smallmatrix}-2k&2\\-2k^2&2k+1\end{smallmatrix}\right)$，
+特征方程 $\lambda^2-\lambda-2k=0$，判别式为 $1+8k$。
+按行列式符号及判别式分类，即得结论。
+\end{proof}
+
+\begin{definition}[快慢系统]
+在坐标 $(x,y,z)$ 中，$x,y$ 为慢变量、$z$ 为快变量的系统可写成
+$\dot x=f,\dot y=g,\varepsilon\dot z=h$。
+$\varepsilon=0$ 时的集合 $S=\{h=0\}$ 称临界慢曲面。
+其上的约化运动必须同时满足 $h=0$ 和沿运动 $dh/dt=0$。
+\end{definition}
+当 $h_z\ne0$，可解 $z=\zeta(x,y)$，得到通常慢方程。
+当 $h_z=0$，投影可能折叠；用
+$h_x\dot x+h_y\dot y+h_z\dot z=0$ 在慢曲面上消去变量，
+便得到与隐式方程接触迹类似的方向场。
+因此慢轨道投影可出现半三次抛物线，以及折叠焦点、结点和鞍点。
+折叠伞和燕尾是更高退化的曲面模型，分别可写
+$u^2=v^3w^2$ 及四次多项式
+$\lambda^4+u\lambda^2+v\lambda+w$ 的重根判别集合。
+这些模型的全分类与模参数理论属于奇点理论；上述计算给出了它们在慢运动方程中出现的机制。

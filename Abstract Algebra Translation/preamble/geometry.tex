@@ -1,0 +1,41 @@
+% ============================================
+%  geometry.tex — 页面布局与字体
+%  直接引自大笔记模板
+% ============================================
+
+% ── 页面尺寸 ──
+\geometry{
+  textheight=9in,
+  textwidth=5.5in,
+  top=1in,
+  headheight=12pt,
+  headsep=25pt,
+  footskip=30pt
+}
+
+% ── 字体 ──
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}[AutoFakeBold={3}]
+
+% 定理环境专用仿宋
+\setCJKfamilyfont{theoremCJK}{FangSong}[AutoFakeBold={2.5}]
+\newcommand{\theoremFont}{\CJKfamily{theoremCJK}}
+
+% 证明环境专用楷体
+\setCJKfamilyfont{proofCJK}{KaiTi}[AutoFakeBold={2.5}]
+\newcommand{\proofFont}{\CJKfamily{proofCJK}}
+
+% 封面专用黑体
+\setCJKfamilyfont{heiti}{SimHei}[AutoFakeBold={3}]
+\newcommand{\heiti}{\CJKfamily{heiti}}
+
+% ── 行距 ──
+\setstretch{1.2}
+
+% ── 容忍小幅溢出 ──
+\hfuzz=50pt
+
+% ── 页面底部允许自然高度，避免 Underfull vbox ──
+\raggedbottom
+\vbadness=9999

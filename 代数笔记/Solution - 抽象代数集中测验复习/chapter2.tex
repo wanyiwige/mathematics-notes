@@ -1,0 +1,646 @@
+% 根据现有 chapter2-exercises.tex 展开；本文件不声称与未复核的原书证明相同。
+\section{第二章：群论}
+
+\subsection*{记号与必备工具}
+本章置换的乘积按从右到左的顺序作用。$S_n$为$n$个点的对称群，$A_n$为其中偶置换组成的交错群。对换是交换两个点的置换；每个置换可分解为对换的乘积。每个偶置换可分解为3-轮换的乘积：将对换分解两两配对，相同对换相消，共用一个点的两个对换之积为3-轮换，不相交时可用
+\[
+(ab)(cd)=(acb)(acd)
+\]
+分解。故证明某子群等于$A_n$，可设法生成全部3-轮换。
+
+群的中心、子群的正规化子分别为
+\[
+Z(G)=\{z\in G:zg=gz\ (g\in G)\},\qquad
+N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+记$[x,y]=x^{-1}y^{-1}xy$为换位子，$G^{(1)}=\langle[x,y]:x,y\in G\rangle$为换位子群（导群），递归定义$G^{(0)}=G$、$G^{(r+1)}=(G^{(r)})^{(1)}$。存在$r$使$G^{(r)}=\{e\}$时，称$G$可解。群交换当且仅当它的导群平凡。
+
+若有限群阶为$p^am$，$p\nmid m$，则$p^a$阶子群称西罗$p$子群。西罗定理说明这样的子群存在，全部互相共轭，其个数$n_p$满足
+\[
+n_p\mid m,\qquad n_p\equiv1\pmod p,
+\]
+且$n_p=1$当且仅当该西罗子群正规。
+共轭作用给出子群$H$的共轭子群数为$[G:N_G(H)]$。
+
+自同构是群到自身的同构，全部自同构组成$\Aut(G)$。映射$c_g:x\mapsto gxg^{-1}$称内自同构，全部内自同构组成$\operatorname{Inn}(G)$。同态$g\mapsto c_g$的核为$Z(G)$，所以
+\[
+\operatorname{Inn}(G)\cong G/Z(G).
+\]
+中心平凡且每个自同构都是内自同构的群称为\textbf{完全群}。只有平凡正规子群和自身、且本身非平凡的群称为\textbf{单群}。
+
+以下各题保留现有笔记的题号；证明为在现有解答思路上展开的补充证明。
+
+\subsection{习题7：有理数加法群的有限生成子群}
+\paragraph{题目}证明$(\Q,+)$的任一有限生成子群都是循环群。
+\paragraph{考点与思路}把有限多个有理数通分，将生成子群转化为整数的线性组合，再用最大公因数和贝祖等式确定生成元。
+\textbf{原文依据：}现有笔记本题解答（通分与贝祖等式）。
+\paragraph{所用结论}\toolref{n-bezout}（整数线性组合）与\toolref{g-cyclic}（循环群与整数子群）。
+\begin{proof}[详细证明]
+设$H=\langle q_1,\ldots,q_t\rangle$，这里加法群中的生成意味着
+\[
+H=\left\{\sum_{i=1}^t k_iq_i:k_i\in\Z\right\}.
+\]
+若生成集为空或全部$q_i=0$，则$H=\{0\}=\langle0\rangle$，已经循环。以下设至少一个$q_i\ne0$。
+
+取所有$q_i$的正公分母$D$，写$q_i=m_i/D$，其中$m_i\in\Z$。令$d=\gcd(m_1,\ldots,m_t)>0$。因$d$整除每个$m_i$，对任意$k_i\in\Z$都有
+\[
+\sum_i k_iq_i=\frac{\sum_i k_im_i}{D}\in\frac dD\Z.
+\]
+因此$H\subseteq(d/D)\Z$。
+
+反过来，由贝祖等式，存在整数$u_1,\ldots,u_t$使$\sum_i u_im_i=d$。除以$D$得
+\[
+\frac dD=\sum_i u_iq_i\in H.
+\]
+由于$H$是加法子群，它包含$d/D$的全部整数倍，故$(d/D)\Z\subseteq H$。综上，
+\[
+H=\frac dD\Z=\left\langle\frac dD\right\rangle.
+\]
+\end{proof}
+\paragraph{复习提示}“每个有限生成子群循环”不表示$\Q$本身循环。若$\Q=\langle q\rangle$且$q\ne0$，则$q/2$不是$q$的整数倍，矛盾。旧记号$\Q^+$在此指有理数加法群。
+
+\subsection{习题8：有限阶生成元与交换性}
+\paragraph{题目}交换群$G$由有限多个有限阶元素生成，证明$G$有限。
+\paragraph{考点与思路}交换性允许集中同一生成元，有限阶允许把指数限制在有限范围内。
+\textbf{原文依据：}现有笔记本题解答（交换重排与指数取余）。
+\paragraph{所用结论}\toolref{g-laws}（交换重排与幂运算）及\toolref{g-cyclic}（有限阶的指数取余）。
+\begin{proof}[详细证明]
+设$G=\langle a_1,\ldots,a_t\rangle$，记$n_i=\operatorname{ord}(a_i)<\infty$。由生成的定义，任意$g\in G$是有限多个$a_i$和$a_i^{-1}$的乘积。由于$G$交换，可重排这些因子，将同类因子合并，得到
+\[
+g=a_1^{k_1}\cdots a_t^{k_t},\qquad k_i\in\Z.
+\]
+对每个指数作带余除法$k_i=q_in_i+r_i$，其中$0\le r_i<n_i$。由$a_i^{n_i}=e$，有$a_i^{k_i}=a_i^{r_i}$。故映射
+\[
+\prod_{i=1}^t\{0,1,\ldots,n_i-1\}\longrightarrow G,
+\qquad(r_1,\ldots,r_t)\longmapsto a_1^{r_1}\cdots a_t^{r_t}
+\]
+满射。定义域只有$\prod_i n_i$个元素，因而
+\[
+|G|\le\prod_{i=1}^t n_i<\infty.
+\]
+空生成集对应平凡群，也满足结论。
+\end{proof}
+\paragraph{复习提示}上述表达式未必唯一，所以一般只能写上界。去掉交换性后，有限阶生成元之间交替相乘可能产生无限多个元素。
+
+\subsection{习题10：两组对换生成对称群}
+\paragraph{题目}证明$S_n$由$(12),(13),\ldots,(1n)$生成，也由$(12),(23),\ldots,(n-1\ n)$生成。
+\paragraph{考点与思路}每个置换都是对换的乘积；因此只需把任意对换表示成指定生成元的乘积。
+\textbf{原文依据：}现有笔记本题解答，以及正文“每个置换是对换的积”的命题。
+\paragraph{所用结论}\toolref{a-permutation-generation}、\toolref{a-cycle-conjugation}。
+\begin{proof}[详细证明]
+先考虑第一组。涉及点1的对换已经在列表中；若$i,j\ne1$且$i\ne j$，利用共轭公式
+\[
+u(ab)u^{-1}=(u(a)\ u(b))
+\]
+取$u=(1i)$、$(ab)=(1j)$，得
+\[
+(ij)=(1i)(1j)(1i).
+\]
+故第一组生成全部对换，进而生成$S_n$。
+
+再考虑相邻对换。固定$i<j$。若$j=i+1$，$(ij)$已经是相邻对换。若$j>i+1$，令
+\[
+u=(i\ i+1)(i+1\ i+2)\cdots(j-2\ j-1).
+\]
+从右至左作用时，$j-1$逐步被送到$i$，而$j$不受影响，因此$u(j-1)=i$、$u(j)=j$。共轭公式给出
+\[
+(ij)=u(j-1\ j)u^{-1}.
+\]
+右边的$u$、$u^{-1}$和中间对换都由相邻对换组成。因此第二组也生成全部对换，从而生成$S_n$。
+\end{proof}
+\paragraph{复习提示}必须说明“生成任意对换”为什么足够；共轭公式还将用于习题11、12。
+
+\subsection{习题11：两个生成元生成对称群}
+\paragraph{题目}当$n\ge2$时，证明$S_n=\langle(12),(12\cdots n)\rangle$。
+\paragraph{考点与思路}用长轮换的幂把$(12)$共轭成所有相邻对换。
+\textbf{原文依据：}现有笔记本题解答，以及习题10的相邻对换生成结论。
+\paragraph{所用结论}\toolref{a-cycle-conjugation}、\toolref{a-permutation-generation}。
+\begin{proof}[详细证明]
+令$c=(12\cdots n)$，$K=\langle(12),c\rangle\le S_n$。对$1\le i<n$，有$c^{i-1}(1)=i$、$c^{i-1}(2)=i+1$，故
+\[
+c^{i-1}(12)c^{-(i-1)}=(i\ i+1)\in K.
+\]
+于是$K$包含习题10中生成$S_n$的全部相邻对换，从而$S_n\le K$。结合$K\le S_n$，即得$K=S_n$。$n=2$时两个指定生成元相同，仍生成$S_2$。
+\end{proof}
+\paragraph{复习提示}生成集可以有重复元素；关键是其生成子群是否包含一组已知生成元。
+
+\subsection{习题12：两个生成元生成交错群}
+\paragraph{题目}当$n>2$为奇数时，证明
+\[
+A_n=\langle(123),(12\cdots n)\rangle;
+\]
+当$n>2$为偶数时，证明
+\[
+A_n=\langle(123),(23\cdots n)\rangle.
+\]
+\textbf{原题订正：}按教材书页98（PDF第108页）核对，原笔记将两个生成元抄为偶数时$(12\cdots n)^2$、奇数时$(34\cdots n)$；本题已恢复教材中的生成元。下面仍沿用原笔记的“共轭构造3-轮换，再逐次附加新点”的证明思路。
+\paragraph{考点与思路}先由共轭取得一列3-轮换，再说明这些轮换涉及的点彼此连接时，为什么能生成全部偶置换。
+\textbf{原文依据：}题目按教材书页98核正；证明沿用现有笔记本题解答及其前置的关于一列3-轮换逐次加入新点的补充引理，以及正文“每个偶置换是3-轮换的积”的命题。教材该处只有题目，没有给出证明。
+\paragraph{所用结论}\toolref{a-cycle-conjugation}、\toolref{a-triple-attach}、\toolref{a-permutation-generation}；其中附加点引理的证明在本题先行展开。
+\begin{proof}[详细证明]
+先证明一个加入新点的结论。设$U$至少有三个点，某子群$K$已包含在$U$上作用、其余点固定的全部偶置换。
+
+若$K$还含$(abz)$，其中$a,b\in U$、$z\notin U$，则$K$包含任意$(uvz)$，其中$u,v\in U$且$u\ne v$。理由如下：当$|U|\ge4$时，先取把有序点对$(a,b)$送至$(u,v)$的置换；如果它是奇置换，在目标中除$u,v$以外的两个点上复合一个对换即可把它改成偶置换。对$(abz)$作共轭就得到$(uvz)$。当$|U|=3$时，$U$上的3-轮换循环移动点对，可得到三个有序点对；再对$(abz)$取逆，可交换前两个位置，得到其余三个有序点对。因此此时结论也成立。
+
+任何$U\cup\{z\}$上的3-轮换，要么只涉及$U$，要么涉及$z$和$U$中的两个点。以上已经把两类全部包含，所以$K$包含$U\cup\{z\}$上的全部偶置换。
+
+若新增的3-轮换只与$U$交一个点，写为$(cde)$，其中$c\in U$、$d,e\notin U$。按照现有笔记的附加点引理，选$u\in U\setminus\{c\}$，用$U$内把$c$送到$u$的偶置换共轭，得到$(ude)\in K$。这样的偶置换存在：在$U$中另取不同于$c,u$的一点，选适当方向的3-轮换即可。
+
+现在先把$\{c,d,e\}$当成已有点集：$(cde)$的幂已经给出该三点集上的全部偶置换，而$(ude)$含有其中的$d,e$两个点。由前面加入一个新点的结论，$K$包含$\{c,d,e,u\}$上的全部偶置换，特别包含$(cud)$与$(cue)$。
+
+回到原点集$U$，轮换$(cud)$中$c,u$是旧点，故先把$d$加入，得到$U\cup\{d\}$上的全部偶置换；再用$(cue)$把$e$加入，得到$U\cup\{d,e\}$上的全部偶置换。因此，\textbf{从一个3-轮换起，逐次加入与已有点集有交的3-轮换，就能生成最终点集上的全部偶置换}。
+
+\textbf{奇数$n$的情形。}令$c=(12\cdots n)$、$K=\langle(123),c\rangle$。轮换$c$长为奇数，符号为$(-1)^{n-1}=1$，故两个生成元均为偶置换，$K\le A_n$。对$j=0,1,\ldots,n-3$，共轭公式给出
+\[
+c^j(123)c^{-j}=(j+1\ j+2\ j+3)\in K.
+\]
+这些轮换依次为$(123),(234),\ldots,(n-2\ n-1\ n)$。从三点集$\{1,2,3\}$开始，下一轮换的前两个点已经出现，第三个点是新点，所以反复使用前面的附加一个新点结论，即得到全部$n$个点上的偶置换。因此$A_n\le K$，结合反向包含，得$K=A_n$。当$n=3$时，$c=(123)$，它本身已经生成$A_3$。
+
+\textbf{偶数$n$的情形。}此时$n\ge4$。令$d=(23\cdots n)$、$K=\langle(123),d\rangle$。轮换$d$长为奇数$n-1$，符号为$(-1)^{n-2}=1$，故$K\le A_n$。
+
+$d$固定1。对$j=0,1,\ldots,n-3$，有$d^j(2)=j+2$、$d^j(3)=j+3$，因此
+\[
+d^j(123)d^{-j}=(1\ j+2\ j+3)\in K.
+\]
+这些轮换依次为$(123),(134),(145),\ldots,(1\ n-1\ n)$。从$\{1,2,3\}$起，每次轮换中的1和另一个点属于已有点集，第三个点是新点。因此仍逐次用附加一个新点的结论，得到全部$n$个点上的偶置换，即$A_n\le K$。所以$K=A_n$。
+\end{proof}
+\paragraph{复习提示}只说明生成元都是偶置换，只能得到生成子群包含于$A_n$。还须证明它足够大；这里的关键是将共轭构造与加入新点的论证结合。
+
+\subsection{习题15：商群中子群的交}
+\paragraph{题目}设$N\trianglelefteq G$、$H_1,H_2\le G$，且$N\le H_1\cap H_2$。证明
+\[
+(H_1/N)\cap(H_2/N)\cong(H_1\cap H_2)/N.
+\]
+原书要求同构；现有笔记通过陪集逐项检验证明两者在$G/N$中实际相等，以下保留此原有方法，从而得到所求同构。
+\paragraph{考点与思路}在商群$G/N$中逐个陪集检验。包含$N$的条件保证一个代表元在子群内时，整个陪集都在其中。
+\textbf{原文依据：}现有笔记本题解答（逐个陪集检验）。
+\paragraph{所用结论}\toolref{a-quotient-membership}、\toolref{g-normal}。
+\begin{proof}[详细证明]
+因为$N\trianglelefteq G$且$N\le H_i$，$N$在每个$H_i$中也正规，各商群均有定义。对任意$g\in G$，证明
+\[
+gN\in H_i/N\iff g\in H_i.
+\]
+若$g\in H_i$，这是$H_i/N$的定义。反过来，若$gN=hN$，其中$h\in H_i$，则$h^{-1}g\in N\le H_i$，所以$g=h(h^{-1}g)\in H_i$。
+
+因此对任意$gN\in G/N$，有
+\begin{align*}
+gN\in(H_1/N)\cap(H_2/N)
+&\iff g\in H_1\text{ 且 }g\in H_2\\
+&\iff g\in H_1\cap H_2\\
+&\iff gN\in(H_1\cap H_2)/N.
+\end{align*}
+两边由同样的陪集组成，故相等。
+\end{proof}
+\paragraph{复习提示}结论是在$G/N$中的实际相等，比“同构”更强。不能遗漏$N\le H_i$，否则$H_i/N$甚至未必有定义。
+
+\subsection{习题29：大子集的乘积}
+\paragraph{题目}设$G$为有限群，$A,B\subseteq G$，且$|A|+|B|>|G|$。证明$AB=G$，其中$AB=\{ab:a\in A,b\in B\}$。
+\paragraph{考点与思路}要把任意$g$写成$ab$，等价于让$A$和$gB^{-1}$有交点。
+\textbf{原文依据：}现有笔记本题解答（集合交与计数）。
+\paragraph{所用结论}\toolref{g-laws}（取逆和左乘均为双射）、\toolref{n-binomial-count}（有限集合交非空判据）。
+\begin{proof}[详细证明]
+固定$g\in G$。取逆映射和左乘$g$的映射都是双射，所以$|gB^{-1}|=|B|$。若$A\cap gB^{-1}=\varnothing$，它们的并集作为$G$的子集应满足
+\[
+|A|+|B|=|A\cup gB^{-1}|\le|G|,
+\]
+与题设矛盾。故存在$a\in A\cap gB^{-1}$。
+
+由$a\in gB^{-1}$，可取$b\in B$使$a=gb^{-1}$，右乘$b$得$g=ab\in AB$。因为$g$任意，$G\subseteq AB$。又$A,B\subseteq G$且群运算封闭，$AB\subseteq G$，所以$AB=G$。
+\end{proof}
+\paragraph{复习提示}严格大于不能改成大于等于。例如在二阶群$\{e,a\}$中取$A=B=\{e\}$，有$|A|+|B|=|G|$，但$AB\ne G$。
+
+\subsection{习题30：真子群的共轭不能覆盖有限群}
+\paragraph{题目}设$G$为有限群，$H<G$为真子群。证明
+\[
+G\ne\bigcup_{g\in G}gHg^{-1}.
+\]
+\paragraph{考点与思路}共轭子群的数目至多为$[G:H]$；它们都包含单位元，因此并集的大小比直接相加至少少掉若干次重复。
+\textbf{原文依据：}现有笔记本题解答，以及群作用中的轨道与稳定子计数。
+\paragraph{所用结论}\toolref{a-orbit-stabilizer}、\toolref{g-cosets}（指数关系）、\toolref{n-binomial-count}（共享单位元的并集上界）。
+\begin{proof}[详细证明]
+记$|G|=n$、$|H|=h$、$m=[G:H]=n/h>1$。$G$通过共轭作用在$H$的共轭子群集合上。稳定$H$的元素正是$N_G(H)$，所以不同共轭子群的数目为
+\[
+r=[G:N_G(H)].
+\]
+对每个$h_0\in H$，有$h_0Hh_0^{-1}=H$，故$H\le N_G(H)$，由指数公式得到$r\le m$。
+
+把不同共轭子群列为$H_1,\ldots,H_r$。每个$H_i$有$h$个元素且含$e$，因此
+\begin{align*}
+\left|\bigcup_{g\in G}gHg^{-1}\right|
+&=1+\left|\bigcup_{i=1}^r(H_i\setminus\{e\})\right|\\
+&\le1+\sum_{i=1}^r|H_i\setminus\{e\}|\\
+&=1+r(h-1)\\
+&\le1+m(h-1)=n-m+1<n.
+\end{align*}
+并集元素数严格小于$|G|$，故不可能覆盖$G$。当$H=\{e\}$时，该估计仍成立。
+\end{proof}
+\paragraph{复习提示}必须按“不同共轭子群”计数，不能把每个$g$都当成给出一个新子群。有限性用于基数估计。
+
+\subsection{习题31：对称群四阶情形的西罗子群}
+\paragraph{题目}求$S_4$的全部西罗2子群与西罗3子群。
+\paragraph{考点与思路}8阶子群可由两两分块的稳定子构造；3阶子群由3-轮换生成，再用西罗数条件证明没有遗漏。
+\textbf{原文依据：}现有笔记本题解答（分块稳定子与3-轮换计数），西罗第三定理。
+\paragraph{所用结论}\toolref{a-orbit-stabilizer}（稳定子为子群）、\toolref{a-sylow-existence}、\toolref{a-sylow-count}、\toolref{g-lagrange}、\toolref{n-binomial-count}、\toolref{a-cycle-conjugation}（不相交轮换分解与置换的阶）。
+\begin{proof}[详细证明]
+因$|S_4|=24=2^3\cdot3$，西罗2子群的阶为8，西罗3子群的阶为3。
+
+\textbf{西罗2子群。}将四个点分成两个无序二元组，有三种分块
+\[
+\mathcal P_1=\{\{1,2\},\{3,4\}\},\quad
+\mathcal P_2=\{\{1,3\},\{2,4\}\},\quad
+\mathcal P_3=\{\{1,4\},\{2,3\}\}.
+\]
+令$P_i=\{\sigma\in S_4:\sigma(\mathcal P_i)=\mathcal P_i\}$，即保持分块、允许交换两块的置换。稳定子在复合及取逆下封闭，故$P_i$是子群。可选择是否交换两块，再分别选择每块内部的对应，共有$2\cdot2\cdot2=8$种选择，所以$|P_i|=8$，均为西罗2子群。
+
+三者彼此不同：$(12)\in P_1$而$(12)\notin P_2,P_3$；$(13)\in P_2$而$(13)\notin P_3$。又$n_2\mid3$，因此已有的三个子群正是全部。它们也可写为
+\[
+P_1=\langle(1324),(12)\rangle,\quad
+P_2=\langle(1234),(13)\rangle,\quad
+P_3=\langle(1243),(14)\rangle.
+\]
+以中间一组为例，$r=(1234)$、$s=(13)$满足$r^4=s^2=e$、$srs=r^{-1}$；八个$r^k,sr^k$互异，故它们生成整个$P_2$。其余两组按点的重新命名得到。因此三个子群都同构于正方形的8阶二面体群$D_4$。
+
+\textbf{西罗3子群。}$S_4$的3阶元素只能是3-轮换。先选三个移动点，再选两种轮换方向，共有$\binom43\cdot2=8$个。一个3阶循环群恰有两个非单位元，且不同3阶子群交仅含$e$，因此恰有四个：
+\[
+\langle(123)\rangle,\quad\langle(124)\rangle,\quad
+\langle(134)\rangle,\quad\langle(234)\rangle.
+\]
+\end{proof}
+\paragraph{复习提示}西罗子群的“阶”与“个数”分开计算；本题分别是阶8、个数3，以及阶3、个数4。
+
+\subsection{习题32：56阶与148阶群不单}
+\paragraph{题目}证明56阶群和148阶群都不是单群。
+\paragraph{考点与思路}148阶直接求出唯一37阶子群；56阶若7阶子群不唯一，就用元素计数迫使西罗2子群唯一。
+\textbf{原文依据：}现有笔记本题解答，西罗第三定理。
+\paragraph{所用结论}\toolref{a-sylow-existence}、\toolref{a-sylow-count}、\toolref{g-lagrange}、\toolref{n-binomial-count}。
+\begin{proof}[详细证明]
+\textbf{148阶。}设$|G|=148=4\cdot37$。西罗定理给出
+\[
+n_{37}\mid4,\qquad n_{37}\equiv1\pmod{37}.
+\]
+4的正因子只有1、2、4，只有1满足同余条件，所以$n_{37}=1$。唯一的37阶子群正规，且其阶既不为1也不为148，故$G$不单。
+
+\textbf{56阶。}设$|G|=56=8\cdot7$。由$n_7\mid8$、$n_7\equiv1\pmod7$，得$n_7=1$或8。若$n_7=1$，唯一7阶子群就是非平凡真正规子群。
+
+设$n_7=8$。不同7阶子群的交是各自的子群，阶整除7；若交非平凡，两者就相等。因此它们的非单位元互不重复，共有
+\[
+8(7-1)=48
+\]
+个7阶元素。全群除去这些元素后只剩8个元素，其中含$e$。
+
+任取西罗2子群$P$，它有8个元素。由拉格朗日定理，$P$中元素阶只能为1、2、4、8，不能为7。因此$P$包含于上述剩余的8元集合。两者大小相同，必相等。每个西罗2子群都只能是该集合，所以$n_2=1$，$P$正规。又$1<8<56$，故$G$不单。
+\end{proof}
+\paragraph{复习提示}不能在知道$n_7=8$后就断言不单；真正的正规子群是进一步计数得到的唯一西罗2子群。
+
+\subsection{习题36：一般线性群的西罗子群}
+\paragraph{题目}设$p$为素数、$n\ge1$，求$\GL_n(\F_p)$的一个西罗$p$子群，并确定其正规化子及西罗$p$子群的个数。
+\paragraph{考点与思路}先构造单位上三角群并计算其阶，再用有序基计数核对它恰好具有群阶中的全部$p$因子；通过公共不动向量逐层恢复标准子空间链，确定正规化子。
+\textbf{原文依据：}现有笔记本题解答（单位上三角群、可逆矩阵计数、公共不动空间），西罗共轭定理。
+\paragraph{所用结论}\toolref{g-basis-count}、\toolref{a-sylow-existence}、\toolref{a-sylow-conjugacy}、\toolref{a-sylow-count}、\toolref{a-orbit-stabilizer}；本题实际构造与正规化子计算汇总为\toolref{a-gl-sylow}，不是未经证明先套用此结论。
+\begin{proof}[详细证明]
+记$G=\GL_n(\F_p)$，按照现有笔记先取
+\[
+U=\{(a_{ij}):a_{ii}=1,\ a_{ij}=0\ (i>j)\}.
+\]
+两个这样的矩阵之积仍为上三角且对角线全1。若$u=I+T\in U$，则$T$严格上三角，故$T^n=0$，并且
+\[
+u^{-1}=I-T+T^2-\cdots+(-1)^{n-1}T^{n-1}\in U.
+\]
+因而$U$是子群。严格上三角位置有$n(n-1)/2$个，每个位置可独立取$p$个值，故$|U|=p^{n(n-1)/2}$。
+
+接着展开现有笔记所用的可逆矩阵计数公式。可逆矩阵的列组成有序基：第一列有$p^n-1$种选择；已选$k$个线性无关列时，它们张成的空间有$p^k$个向量，下一列有$p^n-p^k$种选择。因此
+\begin{align*}
+|G|&=\prod_{k=0}^{n-1}(p^n-p^k)\\
+&=p^{0+1+\cdots+(n-1)}\prod_{i=1}^n(p^i-1)\\
+&=p^{n(n-1)/2}\prod_{i=1}^n(p^i-1).
+\end{align*}
+每个$p^i-1$均不被$p$整除，所以$|G|$中最大的$p$幂因子是$p^{n(n-1)/2}$，恰好等于$|U|$，故$U$为西罗$p$子群。
+
+令$B$为全体可逆上三角矩阵组成的群。上三角矩阵之积及逆仍为上三角，对角线在乘法下逐项相乘。因此$bub^{-1}$的对角线全1，得到$B\le N_G(U)$。
+
+反过来，设$g\in N_G(U)$。当$n\ge2$时，以$e_i$表示第$i$个标准基向量，$E_{ij}$表示仅第$(i,j)$分量为1的矩阵。对$i<j$有$I+E_{ij}\in U$，且
+\[
+(I+E_{ij})v=v+v_je_i.
+\]
+若$v$被$U$的每个元素固定，取$i=1$、$j=2,\ldots,n$，就得$v_2=\cdots=v_n=0$。反过来$e_1$的所有倍数确实被全部$U$固定。因此公共不动空间为$L_1=\langle e_1\rangle$。
+
+正规化条件保证$g$保持这个空间：若$v\in L_1$、$u\in U$，则$g^{-1}ug\in U$，所以
+\[
+u(gv)=g(g^{-1}ug)v=gv.
+\]
+于是$g(L_1)=L_1$。在商空间$\F_p^n/L_1$上，$U$的像恰为关于基$e_2+L_1,\ldots,e_n+L_1$的单位上三角群，而$g$诱导的映射仍正规化这个像。重复上述公共不动空间论证，或对维数归纳，可得$g$保持整个链
+\[
+L_1\subset L_2\subset\cdots\subset L_n,
+\qquad L_i=\langle e_1,\ldots,e_i\rangle.
+\]
+这意味着第$i$列$g(e_i)$只能出现在前$i$个坐标位置，因此$g$上三角，即$g\in B$。所以$N_G(U)=B$。
+
+$B$的每个对角线分量有$p-1$种选择，严格上三角分量仍有$p^{n(n-1)/2}$种选择，故
+\[
+|B|=(p-1)^np^{n(n-1)/2}.
+\]
+由共轭作用和西罗共轭定理，全部西罗$p$子群数为
+\[
+n_p=[G:N_G(U)]
+=\frac{\prod_{i=1}^n(p^i-1)}{(p-1)^n}.
+\]
+当$n=1$时$U=\{1\}$、$B=G$，正规化子与计数公式仍成立。
+\end{proof}
+\paragraph{复习提示}构造了具有正确阶的子群才算证明存在一个西罗子群。求个数时应除以正规化子阶，而非直接除以西罗子群阶。
+
+\subsection{习题38：素数阶正规子群位于中心}
+\paragraph{题目}设$G$为有限$p$群，$N\trianglelefteq G$且$|N|=p$，证明$N\le Z(G)$。
+\paragraph{考点与思路}共轭给出从$p$群到$p-1$阶自同构群的同态，其像的阶只能为1。
+\textbf{原文依据：}现有笔记本题解答，以及正文循环群自同构群的命题。
+\paragraph{所用结论}\toolref{a-cycle-automorphisms}、\toolref{g-first-iso}、\toolref{g-lagrange}、\toolref{n-gcd}。
+\begin{proof}[详细证明]
+因$N$正规，每个$g\in G$都通过共轭给出$N$的自同构。定义
+\[
+\rho:G\longrightarrow\Aut(N),\qquad
+\rho(g)(x)=gxg^{-1}\quad(x\in N).
+\]
+共轭映射可逆且保持乘法；又$c_gc_h=c_{gh}$，故$\rho$为同态。
+
+$N$阶为素数，任一非单位元$a$均生成$N$。自同构由$a$的像唯一决定；像可以是$a,a^2,\ldots,a^{p-1}$中任意一个，每个选择都给出自同构。因此$|\Aut(N)|=p-1$。
+
+由第一同构定理及拉格朗日定理，$|\rho(G)|$既整除$|G|=p^r$，又整除$p-1$。这两个整数互素，所以$|\rho(G)|=1$。故$gxg^{-1}=x$对所有$g\in G,x\in N$成立，也就是$xg=gx$。因此$N\le Z(G)$。
+\end{proof}
+\paragraph{复习提示}正规性本身只保证共轭后仍在$N$；这里还利用阶数互素，才把“仍在$N$”加强为“每个元素都不变”。
+
+\subsection{习题39：中心商群循环推出交换}
+\paragraph{题目}若$G/Z(G)$是循环群，证明$G$为交换群。
+\paragraph{考点与思路}同一个陪集生成元的幂提供非中心部分，其余因子都可自由交换。
+\textbf{原文依据：}现有笔记本题解答（中心陪集表示与交换计算）。
+\paragraph{所用结论}\toolref{g-cosets}与\toolref{g-laws}；本题证明的结论汇总为\toolref{a-center-quotient}。
+\begin{proof}[详细证明]
+设$G/Z(G)=\langle aZ(G)\rangle$。任意$x\in G$的陪集都有形式$xZ(G)=a^mZ(G)$，其中$m\in\Z$，故$a^{-m}x\in Z(G)$。因此任意$x,y\in G$可写成
+\[
+x=a^mz,\qquad y=a^nw,
+\qquad z,w\in Z(G),\ m,n\in\Z.
+\]
+中心元与所有元素交换，故
+\begin{align*}
+xy&=a^mza^nw\\
+&=a^ma^nzw\\
+&=a^{m+n}zw\\
+&=a^{n+m}wz\\
+&=a^nwa^mz=yx.
+\end{align*}
+$x,y$任意，所以$G$交换。上述论证不要求$G$有限，也包括商群平凡的情况。
+\end{proof}
+\paragraph{复习提示}结论实际上进一步给出$Z(G)=G$，所以中心商群若循环，就只能是平凡群。
+
+\subsection{习题40：有限群嵌入交错群}
+\paragraph{题目}证明任意有限群都同构于某个交错群的子群。
+\paragraph{考点与思路}先用左乘作用嵌入对称群，再添两个点，用一个额外对换补偿奇偶性。
+\textbf{原文依据：}现有笔记本题解答（凯莱嵌入后添两点补偿奇偶性）。
+\paragraph{所用结论}\toolref{a-cayley}、\toolref{a-cycle-conjugation}（符号同态及不相交支集交换）、\toolref{g-first-iso}的核平凡单射判据。
+\begin{proof}[详细证明]
+设$|G|=m$。对每个$g\in G$，定义左乘置换$L_g:G\to G$、$x\mapsto gx$。$L_{g^{-1}}$为其逆，且$L_gL_h=L_{gh}$，所以$g\mapsto L_g$是到$m$点对称群的同态。若$L_g$为恒等映射，则$g=L_g(e)=e$，因此它单射。给$G$的元素编号后得到$G\hookrightarrow S_m$。
+
+把$S_m$中置换延拓到$m+2$个点，令其固定$m+1,m+2$。令$t=(m+1\ m+2)$。对$\sigma\in S_m$，设$\varepsilon(\sigma)\in\{0,1\}$表示奇偶性，偶时为0，奇时为1，定义
+\[
+\iota(\sigma)=\sigma t^{\varepsilon(\sigma)}.
+\]
+因为$t$是奇置换，$\iota(\sigma)$总是偶置换，即属于$A_{m+2}$。
+
+$t$只作用于最后两个点，因而与$S_m$中的元素交换。又奇偶性在复合下模2相加，所以
+\begin{align*}
+\iota(\sigma)\iota(\tau)
+&=\sigma t^{\varepsilon(\sigma)}\tau t^{\varepsilon(\tau)}\\
+&=\sigma\tau t^{\varepsilon(\sigma)+\varepsilon(\tau)}\\
+&=\sigma\tau t^{\varepsilon(\sigma\tau)}
+=\iota(\sigma\tau).
+\end{align*}
+若$\iota(\sigma)=e$，将其限制于前$m$个点，就有$\sigma=e$，故$\iota$单射。复合$G\hookrightarrow S_m\hookrightarrow A_{m+2}$即得所求。
+\end{proof}
+\paragraph{复习提示}不能直接说$S_m\le A_{m+2}$；必须指定这个保持乘法的嵌入。额外对换恰好抵消原置换的奇偶性。
+
+\subsection{习题41：与导群交平凡的正规子群}
+\paragraph{题目}若$N\trianglelefteq G$且$N\cap G^{(1)}=\{e\}$，证明$N\le Z(G)$。
+\paragraph{考点与思路}任取一个$N$中元素与任意群元的换位子，证明它同时落在$N$和导群中。
+\textbf{原文依据：}现有笔记本题解答（换位子同时属于正规子群与导群）。
+\paragraph{所用结论}\toolref{g-normal}、\toolref{g-subgroup}、\toolref{a-derived-functor}中的换位子群定义。
+\begin{proof}[详细证明]
+取$n\in N$、$g\in G$。正规性给出$g^{-1}ng\in N$；因为$n^{-1}\in N$且$N$对乘法封闭，
+\[
+[n,g]=n^{-1}g^{-1}ng=n^{-1}(g^{-1}ng)\in N.
+\]
+另一方面，$G^{(1)}$由全部换位子生成，故$[n,g]\in G^{(1)}$。于是$[n,g]\in N\cap G^{(1)}=\{e\}$，即
+\[
+n^{-1}g^{-1}ng=e.
+\]
+左乘$n$再左乘$g$得到$ng=gn$。因为$g$任意，$n\in Z(G)$；因为$n$任意，$N\le Z(G)$。
+\end{proof}
+\paragraph{复习提示}正规性用于证明换位子属于$N$，交平凡用于证明换位子等于$e$，两个条件分别承担不同步骤。
+
+\subsection{习题42：可解群的子群与商群}
+\paragraph{题目}证明可解群的子群与商群仍然可解。
+\paragraph{考点与思路}子群的导出列包含在原群的导出列中；满同态则把导出列逐项映满到像群的导出列。
+\textbf{原文依据：}现有笔记本题解答，以及正文“可解群的子群、同态像及扩张”命题的前两部分。
+\paragraph{所用结论}\toolref{a-derived-functor}；本题据此证明的可解性结论汇总为\toolref{a-solvable-closure}。
+\begin{proof}[详细证明]
+设$G^{(r)}=\{e\}$。
+
+\textbf{子群。}若$H\le G$，则$H$中任意两个元素的换位子也是$G$中的换位子，因此$H^{(1)}\le G^{(1)}$。逐次使用同样的理由，归纳得到$H^{(i)}\le G^{(i)}$对所有$i\ge0$成立。特别地，
+\[
+H^{(r)}\le G^{(r)}=\{e\},
+\]
+所以$H$可解。
+
+\textbf{商群。}设$N\trianglelefteq G$，令$\pi:G\twoheadrightarrow G/N$为自然满同态。任意同态都满足
+\[
+\pi([x,y])=[\pi(x),\pi(y)].
+\]
+这给出$\pi(G^{(1)})\le(G/N)^{(1)}$。反过来，商群任意两个元素都能取原像，故商群的每个换位子都是原群一个换位子的像；这些换位子生成商群导群，所以反向包含也成立。于是$\pi(G^{(1)})=(G/N)^{(1)}$。
+
+把此结论反复应用于$\pi$在各导群上的限制，得到
+\[
+(G/N)^{(i)}=\pi(G^{(i)}).
+\]
+取$i=r$，右边为$\{N\}$，故$G/N$可解。
+\end{proof}
+\paragraph{复习提示}子群情形一般是包含关系；商群情形因映射满而得到相等关系。不能把“导群元素”都误认为单个换位子，它们还包括换位子的有限乘积。
+
+\subsection{习题43：不同素数的平方乘积阶群可解}
+\paragraph{题目}设$p,q$为不同素数，$|G|=p^2q$，证明$G$可解。
+\paragraph{考点与思路}沿用现有笔记的顺序：由习题25得到正规西罗子群，由习题20判断它与商群均交换，最后应用可解群的扩张性质。下面将所依赖的两道习题及扩张性质一并展开。
+\textbf{原文依据：}现有笔记本题解答、习题25与20，以及正文“可解群的子群、同态像及扩张”命题的扩张部分。
+\paragraph{所用结论}\toolref{a-p-square-q-normal}、\toolref{a-p-square-abelian}、\toolref{a-solvable-extension}；前两项所需的\toolref{a-sylow-count}、\toolref{a-class-equation}、\toolref{a-center-quotient}也在本题展开。
+\begin{proof}[详细证明]
+\textbf{第一步：至少有一个西罗子群正规。}设$n_p,n_q$分别为西罗子群数。若$n_p=1$或$n_q=1$，已经得到结论。反设两者都大于1。由$n_p\mid q$，必有$n_p=q$；由$n_p\equiv1\pmod p$，得$q>p$。
+
+又$n_q\mid p^2$且$n_q>1$，所以$n_q=p$或$p^2$。因为$p<q$，整数$p$不可能模$q$余1，故$n_q=p^2$。于是
+\[
+q\mid p^2-1=(p-1)(p+1).
+\]
+$q$为素数，故整除其中一个因子。$q>p$排除$q\mid p-1$，所以$q\mid p+1$。由于$p<q\le p+1$，有$q=p+1$。相邻两个整数都是素数，只可能$p=2,q=3$。
+
+因此只剩$|G|=12$且$n_2=3,n_3=4$的情形。四个3阶子群互交仅含$e$，共含$4\cdot2=8$个3阶元素。其余元素只有四个，含$e$。每个西罗2子群有四个元素，且不能含3阶元素，所以必等于这四元集合，因而西罗2子群唯一，与$n_2=3$矛盾。第一步得证。
+
+\textbf{第二步：阶为$p^2$的群交换。}先回顾$p$群的类方程：非中心共轭类的大小是大于1的$p$幂，因此
+\[
+|P|=|Z(P)|+\sum\text{非中心共轭类大小}
+\]
+说明非平凡有限$p$群的中心阶被$p$整除，中心非平凡。若$|P|=p^2$，则$|Z(P)|=p$或$p^2$。若为$p$，商群$P/Z(P)$阶为$p$，故循环；由习题39，$P$交换，反而有$Z(P)=P$，与中心阶为$p$矛盾。所以必有$Z(P)=P$，$P$交换。
+
+\textbf{第三步：应用可解群的扩张性质。}取第一步给出的正规西罗子群$N$。若$|N|=p^2$，第二步说明$N$交换，而$G/N$为$q$阶循环群；若$|N|=q$，则$N$循环，而$G/N$阶为$p^2$，同样交换。因此两种情况下$N$与$G/N$均可解。
+
+现有笔记“可解群的子群、同态像及扩张”命题说明：正规子群与相应商群均可解时，原群可解。在这里使用该命题，即得$G$可解。为补全使用理由，按该命题的原证明，设$N^{(s)}=\{e\}$、$(G/N)^{(r)}=\{N\}$。对自然满同态$\pi:G\to G/N$，习题42的导群像公式给出
+\[
+\pi(G^{(r)})=(G/N)^{(r)}=\{N\},
+\]
+所以$G^{(r)}\le N$。再逐次取$s$次导群，得到
+\[
+G^{(r+s)}=\bigl(G^{(r)}\bigr)^{(s)}\le N^{(s)}=\{e\}.
+\]
+这正是扩张性质推出$G$可解的过程。本题中$N$和$G/N$均交换，可取$r=s=1$。
+\end{proof}
+\paragraph{复习提示}本题并未要求$p<q$；证明里只有在反设两个西罗子群都不正规时，才推出$q>p$。应特别记住12阶的计数补充。
+
+\subsection{习题44：有限素数幂阶群可解}
+\paragraph{题目}证明任意有限$p$群都是可解群。
+\paragraph{考点与思路}沿用现有笔记的中心商群归纳：类方程给出非平凡中心，商去中心后阶数下降；中心与中心商群均可解，再应用可解群的扩张性质。
+\textbf{原文依据：}现有笔记本题解答、类方程，以及正文“可解群的子群、同态像及扩张”命题的扩张部分。
+\paragraph{所用结论}\toolref{n-induction}、\toolref{a-class-equation}、\toolref{a-solvable-extension}。
+\begin{proof}[详细证明]
+对群阶归纳。平凡群交换，可解。设结论对阶小于$|G|$的$p$群成立，且$G$非平凡。
+
+由习题43中类方程的论证，$Z(G)\ne\{e\}$。若$Z(G)=G$，则$G$交换，$G^{(1)}=\{e\}$，结论成立。
+
+以下设$Z(G)$为真子群。因$|Z(G)|>1$，商群$G/Z(G)$仍是$p$群，且阶严格小于$|G|$。由归纳假设，$G/Z(G)$可解。另一方面，$Z(G)$交换，故也可解；中心又是$G$的正规子群。因此对$N=Z(G)$应用可解群的扩张性质，就得到$G$可解，归纳完成。
+
+这里的扩张性质正是习题43第三步按现有笔记命题所展开的结论：若$(G/Z(G))^{(r)}$平凡，则$G^{(r)}\le Z(G)$；由于$Z(G)^{(1)}=\{e\}$，再取一次导群即有$G^{(r+1)}=\{e\}$。这补明了原文“由正规子群与商群可解推出原群可解”的理由。
+\end{proof}
+\paragraph{复习提示}$p$群不一定交换，但中心一定非平凡。归纳所需的是商群阶数变小，不能仅说“商群仍是$p$群”就直接套结论。
+
+\subsection{习题45：两个可解商群与交核}
+\paragraph{题目}若$H,K\trianglelefteq G$且$G/H,G/K$均可解，证明$G/(H\cap K)$可解。
+\paragraph{考点与思路}将两种商映射合并成到直积的映射，其核正好是交。再证明两个可解群的直积可解。
+\textbf{原文依据：}现有笔记本题解答（到两个商群直积的同态、核与导出列），第一同构定理。
+\paragraph{所用结论}\toolref{g-first-iso}、\toolref{a-solvable-product}、\toolref{a-solvable-closure}；直积导群公式按\toolref{a-derived-functor}的定义在本题计算。
+\begin{proof}[详细证明]
+定义
+\[
+\varphi:G\longrightarrow(G/H)\times(G/K),
+\qquad g\longmapsto(gH,gK).
+\]
+两坐标都是同态，所以$\varphi$为同态。且
+\[
+g\in\ker\varphi\iff gH=H\text{ 且 }gK=K
+\iff g\in H\cap K.
+\]
+第一同构定理给出
+\[
+G/(H\cap K)\cong\varphi(G)\le(G/H)\times(G/K).
+\]
+
+为证明右边的直积可解，记$A=G/H$、$B=G/K$。逐分量计算有
+\[
+[(a,b),(a',b')]=([a,a'],[b,b']).
+\]
+故$(A\times B)^{(1)}\le A^{(1)}\times B^{(1)}$。反向，取第二坐标为$e$可得到$([a,a'],e)$；取第一坐标为$e$可得到$(e,[b,b'])$，这些元素的乘积生成$A^{(1)}\times B^{(1)}$。因此两边相等。归纳得
+\[
+(A\times B)^{(i)}=A^{(i)}\times B^{(i)}.
+\]
+若$A^{(r)}=\{e\}$、$B^{(s)}=\{e\}$，取$t=\max\{r,s\}$，得到$(A\times B)^{(t)}=\{(e,e)\}$，直积可解。由习题42，可解群的子群$\varphi(G)$可解，同构将此性质传给$G/(H\cap K)$。
+\end{proof}
+\paragraph{复习提示}$\varphi$未必满到整个直积，因此只写$G/(H\cap K)\cong\varphi(G)$，不能直接写成与整个直积同构。
+
+\subsection{习题46：内自同构恰有两个的条件不可能发生}
+\paragraph{题目}若群$G$只有两个内自同构，证明$G$交换。进一步说明这一前提实际上不可能发生。
+\paragraph{考点与思路}利用$\operatorname{Inn}(G)\cong G/Z(G)$，将自同构数目转化为中心商群的阶数。
+\textbf{原文依据：}现有笔记本题解答、内自同构群与中心商群同构的命题，以及习题39。
+\paragraph{所用结论}\toolref{a-inner-automorphisms}、\toolref{g-cyclic}、\toolref{g-lagrange}（素数阶群循环）、\toolref{a-center-quotient}。
+\begin{proof}[详细证明]
+假设$|\operatorname{Inn}(G)|=2$。由本章开始说明的同构，$G/Z(G)$是2阶群；2阶群必循环，故习题39推出$G$交换。
+
+然而，交换群中任意$g,x$都有$gxg^{-1}=x$，所以所有内自同构都是恒等映射，必有$|\operatorname{Inn}(G)|=1$。这与假设等于2矛盾。因此不存在内自同构恰有两个的群，而题目的条件命题成立。
+\end{proof}
+\paragraph{复习提示}“推出交换”后还可以继续检查前提：这里不是找到一类特殊交换群，而是证明前提本身不可能满足。
+
+\subsection{习题47：至少存在两个自同构}
+\paragraph{题目}设$G$为有限群，$|G|>2$。证明$|\Aut(G)|\ge2$；2阶群是非平凡有限群中的例外。
+\paragraph{考点与思路}按是否交换、是否有阶大于2的元素分类，分别构造非恒等内自同构、取逆映射、交换基向量的线性自同构。
+\textbf{原文依据：}现有笔记本题解答的三种分类构造。
+\paragraph{所用结论}\toolref{a-inner-automorphisms}、\toolref{g-laws}、\toolref{a-binary-basis-swap}。
+\begin{proof}[详细证明]
+恒等映射始终是自同构，因此只需再构造一个非恒等自同构。
+
+\textbf{第一种情况：$G$不交换。}存在$a\notin Z(G)$，因而有$x\in G$使$ax\ne xa$。内自同构$c_a:y\mapsto aya^{-1}$满足$c_a(x)\ne x$，所以不是恒等映射。
+
+\textbf{第二种情况：$G$交换，且有元素$a$的阶大于2。}取逆映射$f(x)=x^{-1}$满足
+\[
+f(xy)=y^{-1}x^{-1}=x^{-1}y^{-1}=f(x)f(y).
+\]
+又$f^2$为恒等映射，故$f$双射，是自同构。因为$a^2\ne e$，有$a^{-1}\ne a$，所以$f$非恒等。
+
+\textbf{第三种情况：$G$交换，且所有元素平方均为$e$。}将群运算记成加法，单位元记成0，则$x+x=0$对所有$x$成立。规定$\F_2$上的标量乘法为$0x=0$、$1x=x$。向量空间的分配律中唯一需要特别检查的是
+\[
+(1+1)x=0=x+x;
+\]
+其余标量组合均直接满足，因此$G$成为$\F_2$上的向量空间。
+
+因$G$有限，可从非零向量逐次加入不在已有张成空间中的向量，有限步后得到一组基$v_1,\ldots,v_d$。每个向量唯一写成$\sum_i\varepsilon_iv_i$，$\varepsilon_i\in\{0,1\}$，故$|G|=2^d$。由$|G|>2$得$d\ge2$。定义
+\[
+f\left(\varepsilon_1v_1+\varepsilon_2v_2+\sum_{i=3}^d\varepsilon_iv_i\right)
+=\varepsilon_1v_2+\varepsilon_2v_1+\sum_{i=3}^d\varepsilon_iv_i.
+\]
+基表示唯一，故$f$定义良好；它保持加法，且$f^2$为恒等映射，因此是群自同构。又$f(v_1)=v_2\ne v_1$，所以非恒等。
+
+三种情况覆盖所有群，均已构造第二个自同构。若$|G|=2$，唯一非单位元必须被自同构固定，单位元也被固定，因此只有恒等自同构，确为例外。
+\end{proof}
+\paragraph{复习提示}取逆在一般非交换群中不是同态；先分出交换情形才能使用。所有元素平方为单位元时，取逆映射又恰是恒等，需要另作构造。
+
+\subsection{习题49：两个小对称群是完全群}
+\paragraph{题目}证明$S_3$、$S_4$都是完全群，即中心平凡且全部自同构均为内自同构。
+\paragraph{考点与思路}先证明中心平凡以数出内自同构，再让任意自同构作用在一个小的、由群自身性质确定的集合上，给自同构总数一个同样的上界。
+\textbf{原文依据：}现有笔记本题解答、习题6的中心计算、习题31的四个西罗3子群，以及正文完全群的定义。
+\paragraph{所用结论}\toolref{a-inner-automorphisms}、\toolref{a-automorphism-invariants}、\toolref{a-cycle-conjugation}、\toolref{a-permutation-generation}；四个西罗3子群已在本册习题31求出。
+\begin{proof}[详细证明]
+\textbf{第一步：中心平凡。}事实上$n\ge3$时$Z(S_n)=\{e\}$。若$z\in Z(S_n)$，则对每个$i\ne j$，
+\[
+(z(i)\ z(j))=z(ij)z^{-1}=(ij),
+\]
+所以$z$保持每个二元子集$\{i,j\}$。固定$i$，取互不相同的$i,j,k$，则$z(i)$同时属于$\{i,j\}$与$\{i,k\}$，只能等于$i$。故$z=e$。
+
+因此$\operatorname{Inn}(S_3)\cong S_3$有6个元素，$\operatorname{Inn}(S_4)\cong S_4$有24个元素。只需证明各自的全部自同构数不超过这两个数。
+
+\textbf{第二步：$S_3$。}自同构保持元素阶，所以置换$S_3$中的三个2阶元素$(12),(13),(23)$。这给出同态
+\[
+\Aut(S_3)\longrightarrow\operatorname{Sym}\{(12),(13),(23)\}\cong S_3.
+\]
+若自同构固定这三个元素，因它们生成$S_3$，该自同构对任意生成元乘积也固定，故为恒等映射。因此此同态单射，$|\Aut(S_3)|\le6$。内自同构已经有6个，故全部自同构都是内自同构，$S_3$完全。
+
+\textbf{第三步：$S_4$。}由习题31，$S_4$有四个西罗3子群。记$Q_i$为固定点$i$、在其余三个点上作3-轮换的那个3阶子群。令
+\[
+H_i=\{\sigma\in S_4:\sigma(i)=i\}.
+\]
+我们先证明$N_{S_4}(Q_i)=H_i$。若$g$正规化$Q_i$，它把$Q_i$中非单位3-轮换共轭为同一子群中的非单位3-轮换。共轭将移动点集合映为移动点集合，因此$g$保持$\{1,2,3,4\}\setminus\{i\}$，从而$g(i)=i$。反过来，若$g$固定$i$，它共轭一个移动另外三个点的3-轮换后，仍是这三个点上的3-轮换，只能为原轮换或其逆，所以正规化$Q_i$。等式得证。
+
+自同构把西罗3子群互相置换，并满足
+\[
+\alpha(N_{S_4}(Q))=N_{S_4}(\alpha(Q)).
+\]
+故它们也把四个$H_i$互相置换，给出同态
+\[
+\Psi:\Aut(S_4)\longrightarrow\operatorname{Sym}\{H_1,H_2,H_3,H_4\}\cong S_4.
+\]
+四个$H_i$彼此不同：若$i\ne j$，取$k\ne i,j$，则$(jk)$固定$i$而不固定$j$，所以$H_i\ne H_j$。
+
+下面证明$\Psi$单射。设$\alpha\in\ker\Psi$，即$\alpha(H_i)=H_i$对每个$i$成立。任取$g\in S_4$，共轭点稳定子得到
+\[
+gH_ig^{-1}=H_{g(i)}.
+\]
+对该式应用$\alpha$，并利用它固定各个$H_i$，有
+\begin{align*}
+H_{\alpha(g)(i)}
+&=\alpha(g)H_i\alpha(g)^{-1}\\
+&=\alpha(gH_ig^{-1})\\
+&=\alpha(H_{g(i)})=H_{g(i)}.
+\end{align*}
+因四个$H_i$彼此不同，必有$\alpha(g)(i)=g(i)$对所有$i$成立。所以$\alpha(g)$与$g$是相同置换。$g$任意，故$\alpha$为恒等自同构，$\ker\Psi$平凡。
+
+于是$|\Aut(S_4)|\le|S_4|=24$。结合已有24个内自同构，得到$\Aut(S_4)=\operatorname{Inn}(S_4)$。再结合第一步的中心平凡，$S_4$也是完全群。
+\end{proof}
+\paragraph{复习提示}证明自同构作用的核平凡是本题关键。仅说“自同构置换四个西罗3子群”，还不能直接断言自同构至多24个；必须排除作用不忠实的可能。

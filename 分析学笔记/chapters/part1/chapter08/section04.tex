@@ -1,0 +1,352 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第8章：Riemann积分
+% 节：8.4 Riemann积分的性质
+% 正文按原文件顺序保存；由 ../chapter8.tex 调用。
+\section{Riemann积分的性质}
+\begin{proposition}（线性性）
+	若 \( f,g \in \mathcal{R}[a,b] \),则对任意 \( k_1,k_2 \in \mathbb{R} \),有 \( k_1f + k_2g \in \mathcal{R}[a,b] \),且
+	\[
+	\int_a^b (k_1f + k_2g)\dd x = k_1\int_a^b f\dd x + k_2\int_a^b g\dd x
+	\]
+\end{proposition}
+\begin{proof}
+	由 \( f \in \mathcal{R}[a,b] \),那么\( \forall \varepsilon>0 \),\( \exists \delta_1>0 \),对 \( [a,b] \) 上的任意划分 \( P \),只要 \( \lambda(P)<\delta_1 \),就有
+	\[
+	\sum_{k=1}^n \omega_k(f)\Delta x_k < \varepsilon \tag{1}
+	\]
+	同理,由 \( g \in \mathcal{R}[a,b] \),\( \exists \delta_2>0 \),对任意划分 \( P \),只要 \( \lambda(P)<\delta_2 \),有
+	\[
+	\sum_{k=1}^m \omega_k(g)\Delta x_k < \varepsilon \tag{2}
+	\]
+	
+	取 \( \delta = \min\{\delta_1,\delta_2\}>0 \),则对任意划分 \( P^* \),只要 \( \lambda(P^*)<\delta \),(1)、(2) 同时成立.
+	\[
+	\begin{aligned}
+		\sum_{i=1}^q \omega_i(k_1f + k_2g)\Delta x_i^*
+		&= \sum_{i=1}^q \sup_{x,y\in I_i} \left|k_1f(x)+k_2g(x)-k_1f(y)-k_2g(y)\right|\Delta x_i^* \\
+		&\leq \sum_{i=1}^q \left( |k_1|\sup_{x,y\in I_i}|f(x)-f(y)| + |k_2|\sup_{x,y\in I_i}|g(x)-g(y)| \right)\Delta x_i^* \\
+		&= \sum_{i=1}^q \left( |k_1|\omega_i(f) + |k_2|\omega_i(g) \right)\Delta x_i^* < (|k_1|+|k_2|)\varepsilon
+	\end{aligned}
+	\]
+	
+	下证
+	\[
+	\int_a^b (k_1f + k_2g)\dd x = k_1\int_a^b f\dd x + k_2\int_a^b g\dd x
+	\]
+	因 \( f,g,k_1f+k_2g \in \mathcal{R}[a,b] \),将 \( [a,b] \) \( n \) 等分：
+	\[
+	y_0=a,\ y_1=a+\frac{b-a}{n},\ \dots,\ y_n=b
+	\]
+	则
+	\[
+	\int_a^b f(x)\dd x = \lim_{n\to\infty}\sum_{k=1}^n f(y_{k-1})\frac{b-a}{n}
+	\]
+	\[
+	\int_a^b g(x)\dd x = \lim_{n\to\infty}\sum_{k=1}^n g(y_{k-1})\frac{b-a}{n}
+	\]
+	\[
+	\begin{aligned}
+		\int_a^b (k_1 f + k_2 g)  \dd x
+		&= \lim_{n \to \infty} \sum_{i=1}^n \left[ k_1 f(y_{k-1}) + k_2 g(y_{k-1}) \right] \frac{b-a}{n} \\[4pt]
+		&= k_1 \lim_{n \to \infty} \sum_{i=1}^n f(y_{k-1}) \frac{b-a}{n}
+		+ k_2 \lim_{n \to \infty} \sum_{i=1}^n g(y_{k-1}) \frac{b-a}{n} \\[4pt]
+		&= k_1 \int_a^b f(x) \dd x + k_2 \int_a^b g(x)  \dd x
+	\end{aligned}
+	\]
+\end{proof}
+\begin{corollary}
+	若 $f(x)$ 在 $[a,b]$ 上可积,而 $g(x)$ 只在有限个点上与 $f(x)$ 取值不相同,则 $g \in \mathcal{R}[a,b]$,且
+	\[
+	\int_a^b f(x)\dd x = \int_a^b g(x)\dd x
+	\]
+\end{corollary}
+\begin{proof}
+	对 $g(x)$ 有
+	\[
+	g(x) = g(x) - f(x) + f(x) = h(x) + f(x)
+	\]
+	其中 $h(x)$ 只在有限个点处不为 $0$,故 $h \in \mathcal{R}[a,b]$,且
+	\[
+	\int_a^b h(x)\dd x = 0
+	\]
+	因此 $g \in \mathcal{R}[a,b]$,且
+	\[
+	\int_a^b g(x)\dd x = \int_a^b f(x)\dd x
+	\]
+\end{proof}
+\begin{proposition}（乘法可积性）
+	若 \( f,g \in \mathcal{R}[a,b] \),则 \( fg \in \mathcal{R}[a,b] \).
+\end{proposition}
+\textbf{注：} 反之未必成立.
+例如 \( D(x)(1-D(x)) \equiv 0 \),但 \( D(x), 1-D(x) \notin \mathcal{R}[0,1] \)；
+又如 \( D(x)R(x) = R(x) \in \mathcal{R}[0,1] \),但 \( D(x) \notin \mathcal{R}[0,1] \).
+
+通常情况下
+\[
+\int_a^b fg \dd x \neq \int_a^b f \dd x \cdot \int_a^b g \dd x
+\]
+\begin{proof}
+	因 \( f,g \) 在 \( [a,b] \) 上有界,故 \( \exists M > 0 \),使得 \( |f(x)| \leq M, |g(x)| \leq M \).对任意 \( x,y \in [a,b] \),有
+	\[
+	\begin{aligned}
+		|f(x)g(x) - f(y)g(y)|
+		&= |f(x)g(x) - f(x)g(y) + f(x)g(y) - f(y)g(y)| \\
+		&\leq |f(x)| \cdot |g(x) - g(y)| + |g(y)| \cdot |f(x) - f(y)|
+	\end{aligned}
+	\]
+	因此对任意子区间,振幅满足
+	\[
+	\omega(fg) \leq M \left( \omega(f) + \omega(g) \right)
+	\]
+	由 \( f,g \in \mathcal{R}[a,b] \),对 \( \forall \varepsilon>0 \),\( \exists \delta>0 \),对任意划分 \( P \),只要 \( \lambda(P)<\delta \),就有
+	\[
+	\sum_{k=1}^n \omega_k(f) \Delta x_k < \varepsilon, \quad \sum_{k=1}^n \omega_k(g) \Delta x_k < \varepsilon
+	\]
+	
+	那么
+	\[
+	\sum_{k=1}^n \omega_k(fg) \Delta x_k \leq M \left( \sum_{k=1}^n \left[ \omega_k(f) + \omega_k(g) \right] \Delta x_k \right) < 2M\varepsilon
+	\]
+\end{proof}
+\begin{proposition}(复合函数可积性)
+	设 $f(x)$ 在 $[a, b]$ 上可积，$A \leqslant f(x) \leqslant B, g(u)$ 在 $[A, B]$ 上连续，则复合函数 $g(f(x))$ 在 $[a, b]$ 上可积．
+	
+\end{proposition}
+\begin{proof}
+	由于 $g(u)$ 在 $[A, B]$ 连续，所以可设 $|g(u)| \leqslant M$ ，且 $g(u)$ 一致连续，于是 $\forall \varepsilon>0, \exists \delta>0, \forall u^{\prime}, u^{\prime \prime} \in[A, B]$ ，只要 $\left|u^{\prime}-u^{\prime \prime}\right|<\delta$ ，就成立
+	$$
+	\left|g\left(u^{\prime}\right)-g\left(u^{\prime \prime}\right)\right|<\frac{\varepsilon}{2(b-a)} .
+	$$
+	
+	由于 $f(x)$ 在 $[a, b]$ 上可积，由Riemann可积的第三充要条件，对上述 $\varepsilon>0$ 与 $\delta>0$ ，存在划分 $P$ ，使得振幅 $\omega_i(f) \geqslant \delta$ 的小区间的长度之和小于 $\dfrac{\varepsilon}{4 M}$ ，于是
+	$$
+	\begin{aligned}
+		\sum_{i=1}^n \omega_i(g \circ f) \Delta x_i & =\sum_{\omega_i(f)<\delta} \omega_i(g \circ f) \Delta x_i+\sum_{\omega_i(f)\geqslant\delta} \omega_i(g \circ f) \Delta x_i \\
+		& <\frac{\varepsilon}{2(b-a)} \sum_{\omega_i(f)<\delta} \Delta x_i+2 M \sum_{\omega_i(f)\geqslant\delta} \Delta x_i \\
+		& <\frac{\varepsilon}{2(b-a)}(b-a)+2 M \cdot \frac{\varepsilon}{4 M}=\varepsilon
+	\end{aligned}
+	$$
+	
+	即复合函数 $g(f(x))$ 在 $[a, b]$ 上可积．
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{proposition}（保序性）
+	若 \( f,g \in \mathcal{R}[a,b] \),且对任意 \( x \in [a,b] \),有 \( f(x) \geq g(x) \),则
+	\[
+	\int_a^b f(x)\dd x \geq \int_a^b g(x)\dd x
+	\]
+	
+\end{proposition}
+\begin{proof}
+	\[
+	\int_a^b f(x)\dd x - \int_a^b g(x)\dd x = \int_a^b (f-g)\dd x
+	\]
+	令 \( h = f-g \),则 \( h(x) \geq 0 \),且 \( h \in \mathcal{R}[a,b] \),下证 \( \int_a^b h(x)\dd x \geq 0 \).
+	
+	将 \( [a,b] \) 作 \( n \) 等分,得划分 \( P \)：
+	\[
+	x_0 = a,\ x_1 = a+\frac{b-a}{n},\ \dots,\ x_n = b
+	\]
+	则
+	\[
+	\int_a^b h(x)\dd x = \lim_{n \to \infty} \sum_{k=1}^n h(x_{k-1}) \cdot \frac{b-a}{n} \geq 0
+	\]
+\end{proof}
+\begin{proposition}
+	若 \( f \in \mathcal{R}[a,b] \),则 \( |f| \in \mathcal{R}[a,b] \),且
+	\[
+	\left| \int_a^b f \dd x \right| \leq \int_a^b |f(x)| \dd x
+	\]
+\end{proposition}
+
+\begin{proof}
+	对任意 \( x,y \in [a,b] \),由绝对值不等式有
+	\[
+	\left| |f(x)| - |f(y)| \right| \leq |f(x) - f(y)|
+	\]
+	因此对任意子区间,振幅满足
+	\[
+	\omega(|f|) \leq \omega(f)
+	\]
+	
+	对任意 \( \varepsilon>0 \),由 \( f \in \mathcal{R}[a,b] \),存在 \( \delta>0 \),对任意划分 \( P \),只要 \( \lambda(P)<\delta \),就有
+	\[
+	\sum_{k=1}^n \omega_k(|f|) \Delta x_k \leq \sum_{k=1}^n \omega_k(f) \Delta x_k < \varepsilon
+	\]
+	故 \( |f| \in \mathcal{R}[a,b] \).
+	由
+	\[
+	-|f(x)| \leq f(x) \leq |f(x)|
+	\]
+	根据积分的保序性,可得
+	\[
+	-\int_a^b |f(x)| \dd x \leq \int_a^b f(x) \dd x \leq \int_a^b |f(x)| \dd x
+	\]
+	
+	因此
+	\[
+	\left| \int_a^b f(x) \dd x \right| \leq \int_a^b |f(x)| \dd x
+	\]
+\end{proof}
+\begin{proposition}（区间可加性）
+	函数 \( f(x) \in \mathcal{R}[a,b] \) 当且仅当对任意 \( c \in (a,b) \),有 \( f(x) \in \mathcal{R}[a,c] \cap \mathcal{R}[c,b] \),且
+	\[
+	\int_a^b f(x)\dd x = \int_a^c f(x)\dd x + \int_c^b f(x)\dd x \tag{1}
+	\]
+\end{proposition}
+\begin{proof}
+	充分性：
+	设 \( f \in \mathcal{R}[a,c] \cap \mathcal{R}[c,b] \).则对任意 \( \varepsilon>0 \),存在 \( [a,c] \) 上的划分
+	\[
+	P_1: a = x_0 < x_1 < \dots < x_m = c
+	\]
+	使得
+	\[
+	\sum_{k=1}^m \omega_k(f) \Delta x_k < \frac{\varepsilon}{2}
+	\]
+	同时存在 \( [c,b] \) 上的划分
+	\[
+	P_2: c = x_m < x_{m+1} < \dots < x_{m+n} = b
+	\]
+	使得
+	\[
+	\sum_{k=m+1}^{m+n} \omega_k(f) \Delta x_k < \frac{\varepsilon}{2}
+	\]
+	
+	将 \( P_1, P_2 \) 的分点合并,得到 \( [a,b] \) 上的划分 \( P \),则
+	\[
+	\sum_{k=1}^{m+n} \omega_k(f) \Delta x_k < \varepsilon
+	\]
+	由可积的充要条件,得 \( f \in \mathcal{R}[a,b] \).
+	
+	必要性：
+	设 \( f \in \mathcal{R}[a,b] \).对任意 \( \varepsilon>0 \),存在 \( [a,b] \) 上的划分
+	\[
+	P: x_0 = a < x_1 < \dots < x_n = b
+	\]
+	使得
+	\[
+	\sum_{k=1}^n \omega_k \Delta x_k < \varepsilon
+	\]
+	
+	对任意 \( c \in (a,b) \),我们仅证明 \( f \in \mathcal{R}[a,c] \)（\( f \in \mathcal{R}[c,b] \) 的证明完全类似）,分两种情况讨论：
+	\begin{enumerate}
+		\item  若 \( c \) 是划分 \( P \) 的一个分点 \( x_k \),则 \( [a,c] \) 上有划分
+		\[
+		a = x_0 < x_1 < \dots < x_k = c
+		\]
+		此时
+		\[
+		\sum_{i=1}^k \omega_i \Delta x_i \leq \sum_{i=1}^n \omega_i \Delta x_i < \varepsilon
+		\]
+		故 \( f \in \mathcal{R}[a,c] \).
+		\item 若 \( c \) 不是划分 \( P \) 的分点,则构造新划分 \( P' \),其分点包含 \( P \) 的所有分点与 \( c \)（即 \( P' \) 是 \( P \) 的加细）：
+		\[
+		P': a = x_0' < \dots < x_k' = c < \dots < x_{n+1}' = b
+		\]
+		则 \( [a,c] \) 上有划分 \( a = x_0' < \dots < x_k' = c \)
+		\[
+		\sum_{i=1}^k \omega_i' \Delta x_i' \leq \sum_{i=1}^{n+1} \omega_i' \Delta x_i' \leq \sum_{i=1}^n \omega_i \Delta x_i < \varepsilon
+		\]
+	\end{enumerate}
+	
+	下证等式 (1) 成立：
+	已知 \( f \in \mathcal{R}[a,b] \cap \mathcal{R}[a,c] \cap \mathcal{R}[c,b] \)
+	\[
+	\int_a^c f(x) \dd x = \lim_{n \to \infty} \sum_{k=0}^{n-1} f\left(a + \frac{c-a}{n}k\right) \frac{c-a}{n} \tag{2}
+	\]
+	\[
+	\int_c^b f(x) \dd x = \lim_{n \to \infty} \sum_{k=0}^{n-1} f\left(c + \frac{b-c}{n}k\right) \frac{b-c}{n} \tag{3}
+	\]
+	
+	将 \([a,c]\) 上的 \(n\) 等分划分与 \([c,b]\) 上的 \(n\) 等分划分合并,得到 \([a,b]\) 上的一个新划分.将(2),(3)两式相加,由极限的线性性质可得：
+	\[
+	\begin{aligned}
+		\int_a^c f(x) \dd x + \int_c^b f(x) \dd x
+		&= \lim_{n \to \infty} \left[ \sum_{k=0}^{n-1} f\left(a + \frac{c-a}{n}k\right) \frac{c-a}{n} + \sum_{k=0}^{n-1} f\left(c + \frac{b-c}{n}k\right) \frac{b-c}{n} \right] \\
+		&= \int_a^b f(x) \dd x
+	\end{aligned}
+	\]
+\end{proof}
+规定对区间 $[a,b]$,
+\[
+\int_a^b f(x)\dd x = -\int_b^a f(x)\dd x
+\]
+由此可得
+\[
+\int_a^a f(x)\dd x = -\int_a^a f(x)\dd x = 0
+\]
+
+考虑 $c$ 不在 $[a,b]$ 上的情形：
+\begin{corollary}
+	设 $f$ 在所考虑的区间上有定义且可积.
+	\begin{enumerate}
+		\item 当 $c>b$ 时,有
+		\[
+		\int_a^c f(x)\dd x = \int_a^b f(x)\dd x + \int_b^c f(x)\dd x
+		\]
+		等价于
+		\[
+		\int_a^b f(x)\dd x = \int_a^c f(x)\dd x - \int_b^c f(x)\dd x = \int_a^c f(x)\dd x + \int_c^b f(x)\dd x
+		\]
+		\item 当 $c < a$ 时,
+		\[
+		\int_c^b f(x)\dd x = \int_c^a f(x)\dd x + \int_a^b f(x)\dd x
+		\]
+		等价于
+		\[
+		\int_a^b f(x)\dd x = \int_c^b f(x)\dd x - \int_c^a f(x)\dd x = \int_c^b f(x)\dd x + \int_a^c f(x)\dd x
+		\]
+	\end{enumerate}
+\end{corollary}
+\begin{proposition}（第一积分中值定理）
+	设 \( f,g \in \mathcal{R}[a,b] \),且 \( g(x) \) 在 \( [a,b] \) 上不变号.记
+	\[
+	m = \inf_{x \in [a,b]} f(x), \quad M = \sup_{x \in [a,b]} f(x)
+	\]
+	则存在 \( \eta \in [m,M] \),使得
+	\[
+	\int_a^b f(x)g(x) \dd x   = \eta \int_a^b g(x) \dd x
+	\]
+\end{proposition}
+特别地,若 \( f \in C[a,b] \),\( m,M \) 为 \( f(x) \) 在 \( [a,b] \) 上的最小值与最大值,则存在 \( \xi \in [a,b] \),使得
+\[
+\int_a^b f(x)g(x) \dd x = f(\xi) \int_a^b g(x) \dd x
+\]
+
+进一步,取 \( g(x) \equiv 1 \),则存在 \( \xi \in [a,b] \),使得
+\[
+\int_a^b f(x) \dd x = f(\xi)(b-a)
+\] 
+\begin{proof}
+	对任意 \( x \in [a,b] \),有 \( g(x) \geq 0 \).由 \( m \leq f(x) \leq M \),可得
+	\[
+	mg(x) \leq f(x)g(x) \leq Mg(x)
+	\]
+	根据积分的保序性与线性性,对不等式两边积分得
+	\[
+	m\int_a^b g(x) \dd x \leq \int_a^b f(x)g(x) \dd x \leq M\int_a^b g(x) \dd x
+	\]
+	
+	即 $ \displaystyle\int_a^b f(x)g(x)\dd x$ 介于 \( m\displaystyle\int_a^b g(x)\dd x \) 与 \( M\displaystyle\int_a^b g(x)\dd x \) 之间,因此存在 \( \eta \in [m,M] \),使得
+	\[
+	\int_a^b f(x)g(x) \dd x = \eta \int_a^b g(x) \dd x 
+	\]
+	
+	
+\end{proof}

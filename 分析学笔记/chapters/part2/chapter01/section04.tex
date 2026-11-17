@@ -1,0 +1,355 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第1章：Euclid空间
+% 节：1.4 多元连续函数
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{多元连续函数}
+
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的点集, $D \to \R$ 的映射
+	\[
+	f: D \to \R, \quad \vect x \mapsto z
+	\]
+	称为 $n$ 元函数, 记为 $z = f(\vect x)$. 这时, $D$ 称为 $f$ 的定义域, $$f(D) = \{ z \in \R \mid z = f(\vect x),\, \vect x \in D \}$$ 称为 $f$ 的值域, $$\Gamma = \{ (\vect x, z) \in \R^{n+1} \mid z = f(\vect x),\, \vect x \in D \}$$ 称为 $f$ 的图像.
+\end{definition}
+利用邻域的概念，我们可以定义$n$ 元函数上的极限。
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的开集, $\vect x_0 = (x_1^0, x_2^0, \cdots, x_n^0) \in D$ 为一定点, $z = f(\vect x)$ 是定义在 $D \setminus \{ \vect x_0 \}$ 上的 $n$ 元函数, $A$ 是一个实数. 
+	
+	如果对于任意给定的 $\eps > 0$, 存在 $\delta > 0$, 使得当 $\vect x \in O(\vect x_0, \delta) \setminus \{ \vect x_0 \}$ 时, 成立
+	\[
+	|f(\vect x) - A| < \eps,
+	\]
+	则称当 $\vect x$ 趋于 $\vect x_0$ 时 $f$ 收敛, 并称 $A$ 为 $f$ 当 $\vect x$ 趋于 $\vect x_0$ 时的 ($n$ 重) 极限, 记为
+	\[
+	\lim_{\vect x \to \vect x_0} f(\vect x) = A,
+	\]
+	或 $f(\vect x) \to A\ (\vect x \to \vect x_0)$, 或 $$\lim\limits_{\substack{x_1 \to x_1^0\\ x_2 \to x_2^0\\ \vdots\\ x_n \to x_n^0}} f(x_1, x_2, \cdots, x_n) = A$$
+\end{definition}
+\textbf{注意：} 极限的定义也可以使用坐标条件
+\[
+|x_i-x_i^0|<\delta\quad(i=1,2,\cdots,n),\qquad \vect x\neq\vect x_0.
+\]
+这是因为
+\[
+\max_{1\leq i\leq n}|x_i-x_i^0|
+\leq|\vect x-\vect x_0|
+\leq\sqrt n\max_{1\leq i\leq n}|x_i-x_i^0|.
+\]
+两种条件所描述的邻域在适当缩放半径后可以互相包含，因而给出相同的极限定义。这里并不是说使用同一个 $\delta$ 时，开球与开矩形完全相同。
+
+\begin{example}
+	设 $f(x, y) = (x + y) \sin \dfrac{y}{x^2 + y^2}$, 证明 $\lim\limits_{(x, y) \to (0, 0)} f(x, y) = 0$.
+\end{example}
+
+\begin{proof}
+	由
+	\[
+	|f(x, y) - 0| = \left| (x + y) \sin \frac{y}{x^2 + y^2} \right| \le |x + y| \le |x| + |y|,
+	\]
+	所以, 对于任意给定的 $\eps > 0$, 只要取 $\delta = \dfrac{\eps}{2}$, 那么当 $|x - 0| < \delta$, $|y - 0| < \delta$, 且 $(x, y) \neq (0, 0)$ 时,
+	\[
+	|f(x, y) - 0| \le |x| + |y| < \delta + \delta = \frac{\eps}{2} + \frac{\eps}{2} = \eps.
+	\]
+	这说明了 $\lim\limits_{(x, y) \to (0, 0)} f(x, y) = 0$.
+\end{proof}
+
+\begin{example}
+	设 $$f(x, y) = \dfrac{xy}{x^2 + y^2}, (x, y) \neq (0, 0)$$
+
+	显然, 当点 $\vect x = (x, y)$ 沿 $x$ 轴和 $y$ 轴趋近于 $(0, 0)$ 时, $f(x, y)$ 的极限都是 $0$. 但它沿直线 $y = mx$ 趋近于 $(0, 0)$ 时,
+	\[
+	\lim_{\substack{x \to 0\\y = mx}} f(x, y) = \lim_{x \to 0} \frac{m x^2}{x^2 + m^2 x^2} = \frac{m}{1 + m^2},
+	\]
+	上式对于不同的 $m$ 有不同的极限值. 这说明 $f(x, y)$ 在点 $(0, 0)$ 处的极限不存在.
+\end{example}
+
+下例说明即使使 $\vect x$ 沿任意直线趋于 $\vect x_0$ 时, $f(\vect x)$ 的极限都存在且相等, 仍无法保证函数 $f$ 在 $\vect x_0$ 处有极限.
+
+\begin{example}
+	设 $f(x, y) = \dfrac{(y^2 - x)^2}{y^4 + x^2}$, $(x, y) \neq (0, 0)$.
+
+	当点 $\vect x = (x, y)$ 沿直线 $y = mx$ 趋近于 $(0, 0)$ 时, 成立
+	\[
+	\lim_{\substack{x \to 0\\y = mx}} f(x, y) = \lim_{x \to 0} \frac{(m^2 x^2 - x)^2}{m^4 x^4 + x^2} = 1;
+	\]
+当点 $\vect x=(x,y)$ 沿 $y$ 轴趋近于 $(0,0)$ 时，也有 $\lim\limits_{\substack{y\to0\\x=0}}f(x,y)=1$。因此，沿任意经过原点的直线趋近于 $(0,0)$ 时，函数的极限都存在且等于 $1$。
+
+	但 $f(x, y)$ 在点 $(0, 0)$ 处的极限不存在. 事实上 $f$ 在抛物线 $y^2 = x$ 上的值为 $0$, 因此当 $\vect x = (x, y)$ 沿这条抛物线趋近于 $(0, 0)$ 时, 它的极限为 $0$.
+\end{example}
+
+一元函数的极限性质, 如唯一性、局部有界性、局部保序性、局部夹逼性及极限的四则运算法则, 对$n $元函数依然成立, 这里不再细述. 
+
+\begin{definition}
+	设 $D$ 是 $\R^2$ 上的开集, $(x_0, y_0) \in D$ 为一定点, $z = f(x, y)$ 为定义在 $D \setminus \{ (x_0, y_0) \}$ 上的二元函数. 如果对于每个固定的 $y \neq y_0$, 极限 $\lim\limits_{x \to x_0} f(x, y)$ 存在, 并且极限
+	\[
+	\lim_{y \to y_0} \lim_{x \to x_0} f(x, y)
+	\]
+	存在, 那么称此极限值为函数 $f(x, y)$ 在点 $(x_0, y_0)$ 的先对 $x$ 后对 $y$ 的二次极限. 同理可定义先对 $y$ 后对 $x$ 的二次极限 $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x, y)$.
+\end{definition}
+类似的我们可以定义$n$次极限
+
+\begin{example}(二重极限存在, 但两个二次极限不存在)
+	设
+	\[
+	f(x, y) = \begin{cases}
+		(x^2 + y^2) \sin \dfrac{1}{x} \cos \dfrac{1}{y}, & x \neq 0 \text{ 且 } y \neq 0, \\
+		0, & x = 0 \text{ 或 } y = 0.
+	\end{cases}
+	\]
+	由于
+	\[
+	|f(x, y)| \le x^2 + y^2,
+	\]
+	所以 $\lim\limits_{(x, y) \to (0, 0)} f(x, y) = 0$. 但是在 $(0, 0)$ 点两个二次极限显然都不存在.
+\end{example}
+
+\begin{example}(二重极限存在, 两个二次极限中有一个不存在)
+	设
+	\[
+	f(x, y) = \begin{cases}
+		y \sin \dfrac{1}{x}, & x \neq 0 \text{ 且 } y \neq 0, \\
+		0, & x = 0 \text{ 或 } y = 0.
+	\end{cases}
+	\]
+	在 $(0, 0)$ 点显然有 $\lim\limits_{(x, y) \to (0, 0)} f(x, y) = 0$, 即二重极限存在, 且
+	\[
+	\lim_{x \to 0} \lim_{y \to 0} f(x, y) = \lim_{x\to 0} \lim_{y \to 0} y \sin \frac{1}{x} = 0,
+	\]
+	但先对 $x$ 后对 $y$ 的二次极限不存在.
+
+	此外一个二次极限存在不能保证另一个二次极限也存在; 即使两个二次极限都存在, 也不一定相等. 也就是说, 两个极限运算不一定可以交换次序 
+\end{example}
+
+\begin{proposition}
+	若二元函数 $f(x, y)$ 在 $(x_0, y_0)$ 点存在二重极限
+	\[
+	\lim\limits_{(x, y) \to (x_0, y_0)} f(x, y) = A,
+	\]
+	且当 $x \neq x_0$ 时存在极限
+	\[
+	\lim_{y \to y_0} f(x, y) = \varphi(x),
+	\]
+	那么 $f(x, y)$ 在 $(x_0, y_0)$ 点的先对 $y$ 后对 $x$ 的二次极限存在且与二重极限相等, 即
+	\[
+	\lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \varphi(x) = \lim\limits_{(x, y) \to (x_0, y_0)} f(x, y) = A.
+	\]
+\end{proposition}
+
+\begin{proof}
+	只要证明 $\lim\limits_{x \to x_0} \varphi(x) = A$ 即可.
+
+	对于任意给定的 $\eps > 0$, 由于 $\lim\limits_{(x, y) \to (x_0, y_0)} f(x, y) = A$, 所以存在 $\delta > 0$, 使得当 $0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta$ 时有
+	\[
+	|f(x, y) - A| < \frac{\eps}{2}.
+	\]
+	于是对于每个满足 $0 < |x - x_0| < \delta$ 的 $x$, 令 $y \to y_0$, 就得到
+	\[
+	|\varphi(x) - A| = \left| \lim_{y \to y_0} f(x, y) - A \right| \le \frac{\eps}{2} < \eps.
+	\]
+	这就是说, 对于任意给定的 $\eps > 0$, 存在 $\delta > 0$, 使得当 $0 < |x - x_0| < \delta$ 时,
+	\[
+	|\varphi(x) - A| < \eps.
+	\]
+\end{proof}
+
+同样可证：在二重极限存在的情况下，如果对每个充分接近 $y_0$ 且不等于 $y_0$ 的 $y$，内层极限 $\lim\limits_{x\to x_0}f(x,y)=\psi(y)$ 存在，那么
+\[
+\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)
+=\lim_{y\to y_0}\psi(y)=A.
+\]
+所以，若二重极限及两个二次极限都存在，则三者相等：
+\[
+\lim_{x\to x_0}\lim_{y\to y_0}f(x,y)
+=\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)
+=\lim_{(x,y)\to(x_0,y_0)}f(x,y).
+\]
+这意味着, 此时极限运算可以交换次序.
+
+
+
+类似的我们有在高维度上的累次极限公式。
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的开集, $z = f(\vect x)$ 是定义在 $D$ 上的函数, $\vect x_0 \in D$. 如果
+	\[
+	\lim_{\vect x \to \vect x_0} f(\vect x) = f(\vect x_0),
+	\]
+	则称函数 $f$ 在点 $\vect x_0$ 连续; 用 ``$\eps$-$\delta$'' 语言来说也就是: 如果对于任意给定的 $\eps > 0$, 存在 $\delta > 0$, 使得当 $\vect x \in O(\vect x_0, \delta)$ 时, 成立
+	\[
+	|f(\vect x) - f(\vect x_0)| < \eps,
+	\]
+	则称函数 $f$ 在点 $\vect x_0$ 连续.
+
+	如果函数 $f$ 在 $D$ 上每一点连续, 就称 $f$ 在 $D$ 上连续, 或称 $f$ 是 $D$ 上的连续函数.
+\end{definition}
+\begin{proposition}
+	设 $a,b,c,d\in\Z^+$. 则
+	\[
+	\lim_{\substack{x\to0^+\\y\to0^+}}
+	\frac{x^ay^b}{x^c+y^d}
+	\]
+	存在的充分必要条件是
+	\[
+	\frac{a}{c}+\frac{b}{d}>1,
+	\]
+	且在极限存在时其值为 $0$.
+	
+	进一步地,
+	\[
+	\lim_{\substack{x\to0\\y\to0}}
+	\frac{x^ay^b}{x^c+y^d}
+	\]
+	存在的充分必要条件是 $c,d$ 均为偶数, 且
+	\[
+	\frac{a}{c}+\frac{b}{d}>1.
+	\]
+	此时极限同样为 $0$.
+\end{proposition}
+
+\begin{proof}
+	先考虑 $x\to0^+$, $y\to0^+$ 的情形. 令
+	\[
+	u=x^c,\qquad v=y^d,\qquad
+	\alpha=\frac{a}{c},\qquad \beta=\frac{b}{d},
+	\]
+	则
+	\[
+	\frac{x^ay^b}{x^c+y^d}
+	=
+	\frac{u^\alpha v^\beta}{u+v}.
+	\]
+	再令
+	\[
+	r=u+v,\qquad \lambda=\frac{u}{u+v},
+	\]
+	于是 $u=r\lambda$, $v=r(1-\lambda)$, 从而
+	\[
+	\frac{u^\alpha v^\beta}{u+v}
+	=
+	r^{\alpha+\beta-1}\lambda^\alpha(1-\lambda)^\beta.
+	\]
+	当 $x\to0^+$, $y\to0^+$ 时, $r\to0^+$, 且
+	$0\leq\lambda^\alpha(1-\lambda)^\beta\leq1$. 因此, 若
+	$\alpha+\beta-1>0$, 则
+	\[
+	\frac{u^\alpha v^\beta}{u+v}\to0.
+	\]
+	
+	反之, 沿道路 $x=t^d$, $y=t^c$ 令 $t\to0^+$, 有
+	\[
+	\frac{x^ay^b}{x^c+y^d}
+	=
+	\frac{t^{ad+bc}}{2t^{cd}}
+	=
+	\frac12t^{ad+bc-cd}.
+	\]
+	若 $\dfrac{a}{c}+\dfrac{b}{d}=1$, 上式恒为 $\dfrac12$;
+	但沿道路 $x=t^{2d}$, $y=t^c$ 时函数值趋于 $0$. 若
+	$\dfrac{a}{c}+\dfrac{b}{d}<1$, 上式趋于无穷.
+	所以正象限内的极限存在当且仅当
+	$\dfrac{a}{c}+\dfrac{b}{d}>1$.
+	
+	再考虑双侧极限. 若 $c,d$ 均为偶数, 则
+	$x^c=|x|^c$, $y^d=|y|^d$, 并且
+	\[
+	\left|\frac{x^ay^b}{x^c+y^d}\right|
+	=
+	\frac{|x|^a|y|^b}{|x|^c+|y|^d}.
+	\]
+	由上面对正象限极限的讨论可知, 此时双侧极限存在当且仅当
+	$\dfrac{a}{c}+\dfrac{b}{d}>1$.
+	
+	最后说明奇指数的情形. 不妨设 $d$ 为奇数, 并记
+	$E=ad+bc-cd$. 取
+	\[
+	x=t^d,\qquad y=t^c(-1+t^N),\qquad t\to0^+.
+	\]
+	则
+	\[
+	x^c+y^d
+	=
+	t^{cd}\bigl[1-(1-t^N)^d\bigr]
+	\sim d\,t^{cd+N},
+	\]
+	因而
+	\[
+	\frac{x^ay^b}{x^c+y^d}
+	\sim\frac{(-1)^b}{d}\,t^{E-N}.
+	\]
+	当 $E>0$ 时取 $N=E$, 可得一个非零极限; 当 $E\leq0$
+	时取 $N=1$, 所得函数值无界. 这两种情形都与道路 $y=0$
+	上恒为 $0$ 的函数值不相容, 故双侧极限不存在. 若 $c$ 为奇数,
+	交换 $x,y$ 的地位即可得到相同结论.
+\end{proof}
+下面我们介绍\textbf{多元向量值函数}
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的点集, $D$ 到 $\R^m$ 的映射
+	\[
+	\vect f: D \to \R^m, \quad \vect x = (x_1, x_2, \cdots, x_n) \mapsto \vect z = (z_1, z_2, \cdots, z_m)
+	\]
+	称为 $n$ 元 $m$ 维向量值函数 (或多元向量函数), 记为 $\vect z = \vect f(\vect x)$. $D$ 称为 $\vect f$ 的定义域, $\vect f(D) = \{ \vect z \in \R^m \mid \vect z = \vect f(\vect x),\, \vect x \in D \}$ 称为 $\vect f$ 的值域.
+
+\end{definition}
+
+显然, 每个 $z_i\ (i = 1, 2, \cdots, m)$ 都是 $\vect x$ 的函数 $z_i = f_i(\vect x)$, 它称为 $\vect f$ 的第 $i$ 个坐标 (或分量) 函数. 于是 $\vect f$ 可以表示为分量形式
+\[
+\begin{cases}
+	z_1 = f_1(\vect x), \\
+	z_2 = f_2(\vect x), \\
+	\vdots \\
+	z_m = f_m(\vect x),
+\end{cases} \quad \vect x \in D.
+\]
+因此 $\vect f$ 又可表示为 $\vect f = (f_1, f_2, \cdots, f_m)$.
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的开集, $\vect x_0 \in D$ 为一定点; $\vect f: D \setminus \{ \vect x_0 \} \to \R^m$ 是映射 (向量值函数), $A$ 是一个 $m$ 维向量. 如果对于任意给定的 $\eps > 0$, 存在 $\delta > 0$, 使得当 $\vect x \in O(\vect x_0, \delta) \setminus \{ \vect x_0 \}$ 时, 成立
+	\[
+	|\vect f(\vect x) - A| < \eps \quad (\text{即 } \vect f(\vect x) \in O(A, \eps)),
+	\]
+	则称 $A$ 为当 $\vect x$ 趋于 $\vect x_0$ 时 $\vect f$ 的极限, 并称当 $\vect x$ 趋于 $\vect x_0$ 时 $\vect f$ 收敛, 记为
+	\[
+	\lim_{\vect x \to \vect x_0} \vect f(\vect x) = A, \quad \text{或} \quad \vect f(\vect x) \to A\ (\vect x \to \vect x_0).
+\]
+\end{definition}
+类似的有连续性
+\begin{definition}
+	设 $D$ 是 $\R^n$ 上的开集, $\vect x_0 \in D$ 为一定点; $\vect f: D \to \R^m$ 是映射 (向量值函数). 如果 $\vect f$ 满足
+	\[
+	\lim_{\vect x \to \vect x_0} \vect f(\vect x) = \vect f(\vect x_0),
+	\]
+	那么称 $\vect f$ 在 $\vect x_0$ 点连续. 用 ``$\eps$-$\delta$'' 语言来说也就是: 如果对于任意给定的 $\eps > 0$, 存在 $\delta > 0$, 使得当 $\vect x \in O(\vect x_0, \delta)$ 时, 成立
+	\[
+	|\vect f(\vect x) - \vect f(\vect x_0)| < \eps \quad (\text{即 } \vect f(\vect x) \in O(\vect f(\vect x_0), \eps)),
+	\]
+	则称 $\vect f$ 在 $\vect x_0$ 连续.
+
+	如果映射 $\vect f$ 在 $D$ 上每一点连续, 就称 $\vect f$ 在 $D$ 上连续. 这时称映射 $\vect f$ 是 $D$ 上的连续映射.
+\end{definition}
+
+\begin{proposition}
+	设 $D$ 是 $\R^n$ 上的开集, $\vect x_0 \in D$ 为一定点, 那么映射 $\vect f: D \to \R^m$ 在 $\vect x_0$ 点连续的充分必要条件为: 函数 $f_1, f_2, \cdots, f_m$ 在 $\vect x_0$ 点连续.
+
+
+\end{proposition}
+\begin{proof}
+	由不等式
+\[
+|f_i(\vect x) - f_i(\vect x_0)| \le |\vect f(\vect x) - \vect f(\vect x_0)| = \sqrt{\sum_{j=1}^m (f_j(\vect x) - f_j(\vect x_0))^2} \le \sum_{j=1}^m |f_j(\vect x) - f_j(\vect x_0)| \quad (i = 1, 2, \cdots, m)
+\]
+直接得到.
+\end{proof}
+\begin{definition}
+	设 $\Omega$ 是 $\R^n$ 上的开集, $D$ 是 $\R^k$ 上的开集; $\vect g: D \to \R^n$ 与 $\vect f: \Omega \to \R^m$ 为映射, 并且 $\vect g$ 的值域 $\vect g(D)$ 满足 $\vect g(D) \subset \Omega$, 则可以定义复合映射
+\[
+\vect f \circ \vect g: D \to \R^m, \quad \vect u \mapsto \vect f(\vect g(\vect u)).
+\]
+
+\end{definition}
+\begin{proposition}
+	如果 $\vect g$ 在 $D$ 上连续, $\vect f$ 在 $\Omega$ 上连续, 那么复合映射 $\vect f \circ \vect g$ 在 $D$ 上连续.
+\end{proposition}
+
+\begin{proof}
+	设 $\vect u_0 \in D$. 由 $\vect g$ 在 $\vect u_0$ 连续, $\vect u \to \vect u_0$ 时 $\vect g(\vect u) \to \vect g(\vect u_0) \in \Omega$. 由 $\vect f$ 在 $\vect g(\vect u_0)$ 处连续, 当 $\vect y \to \vect g(\vect u_0)$ 时 $\vect f(\vect y) \to \vect f(\vect g(\vect u_0))$. 因此 $$\lim\limits_{\vect u \to \vect u_0} \vect f(\vect g(\vect u)) = \vect f(\vect g(\vect u_0))$$ 即 $\vect f \circ \vect g$ 在 $\vect u_0$ 连续. 由 $\vect u_0$ 的任意性, $\vect f \circ \vect g$ 在 $D$ 上连续.
+\end{proof}
+
+

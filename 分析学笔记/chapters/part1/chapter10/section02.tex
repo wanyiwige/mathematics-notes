@@ -1,0 +1,342 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第10章：一些定积分的问题
+% 节：10.2 可积性相关
+% 正文按原文件顺序保存；由 ../chapter10.tex 调用。
+\section{可积性相关}
+\begin{proposition}
+	若 $f(x)$ 在 $[a,b]$ 上的不连续点可以用有限个总长度任意小的区间覆盖，则 $f(x)$ 在 $[a,b]$ 上可积。
+\end{proposition}
+
+\begin{solution}
+	设 $|f(x)|\leq M$。任取 $\varepsilon>0$。由题设，$f$ 的不连续点集 $D$ 可由有限个开区间 $I_1,\ldots,I_m$ 覆盖，且
+	\[
+	\sum_{k=1}^m |I_k|<\frac{\varepsilon}{4M}.
+	\]
+	记
+	\[
+	G=[a,b]\setminus\bigcup_{k=1}^m I_k.
+	\]
+	在 $G$ 上，$f$ 的每一点都是连续点。取分划$P$包含$a,b$与$\{I_m\}$所以的端点。由于 $G$ 是有限个闭区间的并，$f$ 在 $G$ 上一致连续。因此
+	\[
+	\omega_i(f)<\frac{\varepsilon}{2(b-a)},
+	\]
+	其中 $\omega_i(f)$ 为 $f$ 在G的小区间上的振幅。
+	\[
+	\sum_i\omega_i(f)\Delta x_i
+	\leq \frac{\varepsilon}{2(b-a)}(b-a)+2M\sum_{k=1}^m |I_k|<\varepsilon.
+	\]
+	由可积的第二充要条件，$f\in \mathcal{R}[a,b]$。
+\end{solution}
+
+
+\begin{example}
+	试说明下列函数在 $[0,1]$ 上可积：
+	\[
+	(1)\quad f(x)=\operatorname{sgn}\left(\sin\frac{\pi}{x}\right);
+	\]
+	\[
+	(2)\quad
+	f(x)=
+	\begin{cases}
+		\displaystyle \frac1x-\left[\frac1x\right],&x\ne0,\\[6pt]
+		0,&x=0.
+	\end{cases}
+	\]
+\end{example}
+
+
+\begin{solution}
+	两个函数的共同特点是：在 $[0,1]$ 上除点列
+	\[
+	\left\{\frac1n:n=1,2,\ldots\right\}
+	\]
+	以及聚点 $0$ 外，函数均连续。因此只需说明这些间断点可以由有限多个任意小的区间覆盖
+	
+	事实上，给定 $\varepsilon>0$，取 $N$ 充分大，使得
+	\[
+	\frac1N<\frac{\varepsilon}{4}.
+	\]
+	于是区间 $\left(-\dfrac{\varepsilon}{4},\dfrac{\varepsilon}{4}\right)$ 覆盖了聚点 $0$ 以及点列中除有限项外的所有点。剩下的有限个间断点
+	\[
+	1,\frac12,\ldots,\frac1N
+	\]
+	分别用长度小于 $\dfrac{\varepsilon}{2N}$ 的小区间覆盖。这样全部间断点可由有限个区间覆盖，且总长度小于
+	\[
+	\frac{\varepsilon}{2}+N\cdot\frac{\varepsilon}{2N}=\varepsilon.
+	\]
+	由于上述两个函数均有界，并且在这些区间外连续，故由上命题可知二者均在 $[0,1]$ 上可积。
+\end{solution}
+\begin{example}
+	设 $f$ 是 $[a,b]$ 上的有界函数，且 $f$ 的不连续点全体包含于一个收敛点列
+	\[
+	x_1,x_2,\ldots,
+	\qquad \lim_{n\to\infty}x_n=x\in[a,b].
+	\]
+	证明：$f\in R[a,b]$。
+\end{example}
+
+
+\begin{solution}
+	记 $M>0$ 使得 $|f(t)|\leq M$。任取 $\varepsilon>0$。由于 $x_n\to x$，存在 $N$，使得当 $n>N$ 时，
+	\[
+	|x_n-x|<\delta_0,
+	\]
+	其中 $\delta_0>0$ 可取到足够小，使得包含 $x$ 及所有尾项 $x_{N+1},x_{N+2},\ldots$ 的小区间总长度小于 $\varepsilon/(4M)$。
+	
+	对有限个点 $x_1,\ldots,x_N$，分别取互不相交的小区间覆盖，使其长度总和小于 $\varepsilon/(4M)$。于是全部不连续点可由有限个区间覆盖，且这些区间长度总和小于 $\varepsilon/(2M)$。
+	
+	故由上命题可知二者均在 $[a,b]$ 上可积。
+\end{solution}
+
+\begin{problem}
+	设 $f,g\in \mathcal{R}[a,b]$。证明
+	\[
+	\max\{f,g\},\qquad \min\{f,g\}
+	\]
+	也属于 $\mathcal{R}[a,b]$。
+\end{problem}
+
+\begin{solution}
+	利用恒等式
+	\[
+	\max\{f,g\}=\frac12\bigl(f+g+|f-g|\bigr),
+	\]
+	\[
+	\min\{f,g\}=\frac12\bigl(f+g-|f-g|\bigr),
+	\]
+	与线性性和绝对可积性 ，可知 $\max\{f,g\},\min\{f,g\}\in  \mathcal{R}[a,b]$。
+\end{solution}
+
+\begin{problem}
+	设 $f(x)$ 在 $[0,a]$ 上二次可导，且
+	\[
+	f(0)=f'(0)=f'(a)=0,
+	\qquad
+	f(a)=1,
+	\qquad
+	|f''(x)|\leq1\quad (x\in[0,a]).
+	\]
+	令
+	\[
+	g(x)=
+	\begin{cases}
+		x,&0\leq x\leq \dfrac a2,\\[4pt]
+		a-x,&\dfrac a2<x\leq a.
+	\end{cases}
+	\]
+	证明：
+	\[
+	(1)\quad f'(x)\leq g(x)\quad (x\in[0,a]);
+	\]
+	\[
+	(2)\quad \exists x_0\in[0,a],\quad f'(x_0)<g(x_0);
+	\]
+	\[
+	(3)\quad a>2.
+	\]
+\end{problem}
+
+\begin{solution}
+	(1) 当 $x\in[0,a/2]$ 时，由 Lagrange 中值定理，存在 $\xi\in(0,x)$，使得
+	\[
+	f'(x)=f'(x)-f'(0)=f''(\xi)x\leq x=g(x).
+	\]
+	当 $x\in[a/2,a]$ 时，存在 $\eta\in(x,a)$，使得
+	\[
+	f'(x)=f'(x)-f'(a)=-f''(\eta)(a-x)\leq |f''(\eta)|(a-x)\leq a-x=g(x).
+	\]
+	故对所有 $x\in[0,a]$，均有 $f'(x)\leq g(x)$。
+	
+	(2) 若结论不成立，则对每个 $x\in[0,a]$ 都有
+	\[
+	f'(x)=g(x).
+	\]
+	则 $f'$ 在 $a/2$ 处不可导，这与 $f$ 二次可导矛盾。
+	
+	(3) \[
+	1=f(a)-f(0)=\int_0^a f'(x)\dd x
+	<\int_0^a g(x)\dd x=\int_0^{a/2}x\dd x+\int_{a/2}^a(a-x)\dd x
+	=\frac{a^2}{4}.
+	\]
+	故
+	\[
+	1<\frac{a^2}{4},
+	\]
+	因为 $a>0$，所以 $a>2$。
+\end{solution}
+
+\begin{proposition}
+		若 $f(x)$ 在 $[a,b]$ 上可积，则 $f(x)$ 的连续点在 $[a,b]$ 上处处稠密。
+\end{proposition}
+这是一个重要的命题，他告诉我们可积性对连续性最低的需求
+\begin{solution}
+	问题归结为证明：对任意闭区间 $[\alpha,\beta]\subset[a,b]$，$f$ 在 $[\alpha,\beta]$ 内至少有一个连续点。
+	
+	由于 $f\in  \mathcal{R}[a,b]$，故 $f\in R[\alpha,\beta]$。对 $\varepsilon_1=1/2$，存在 $[\alpha,
+	\beta]$ 的一个分割 $T_1$，使得
+	\[
+	\sum \omega_i\Delta x_i<\frac12(\beta-\alpha).
+	\]
+	因此至少存在一个小区间，其上 $f$ 的振幅小于 $1/2$。否则所有小区间振幅均不小于 $1/2$，便有
+	\[
+	\sum \omega_i\Delta x_i\geq \frac12(\beta-\alpha),
+	\]
+	矛盾。适当缩小此小区间，得到闭区间 $[a_1,b_1]\subset(\alpha,\beta)$，并且
+	\[
+	b_1-a_1<\frac12(\beta-\alpha),
+	\qquad
+	\omega_f([a_1,b_1])<\frac12.
+	\]
+	
+	以 $[a_1,b_1]$ 代替 $[\alpha,\beta]$，类似地可取
+	\[
+	[a_2,b_2]\subset(a_1,b_1),
+	\qquad
+	b_2-a_2<\frac12(b_1-a_1),
+	\qquad
+	\omega_f([a_2,b_2])<\frac1{2^2}.
+	\]
+	如此继续，得到闭区间套
+	\[
+	[a_1,b_1]\supset[a_2,b_2]\supset\cdots\supset[a_n,b_n]\supset\cdots,
+	\]
+	且
+	\[
+	0<b_n-a_n<\frac1{2^n}(\beta-\alpha)\to0,
+	\qquad
+	\omega_f([a_n,b_n])<\frac1{2^n}.
+	\]
+	由闭区间套定理，存在唯一点 $\xi$ 属于所有 $[a_n,b_n]$。因为 $a_n<\xi<b_n$，任取 $\varepsilon>0$，取 $n$ 使得 $2^{-n}<\varepsilon$，并令
+	\[
+	\delta=\min\{\xi-a_n,b_n-\xi\}>0.
+	\]
+	当 $|x-\xi|<\delta$ 时，$x\in[a_n,b_n]$，从而
+	\[
+	|f(x)-f(\xi)|\leq \omega_f([a_n,b_n])<\varepsilon.
+	\]
+	故 $f$ 在 $\xi$ 处连续。于是 $f$ 的连续点在 $[a,b]$ 上处处稠密。
+\end{solution}
+\begin{example}\label{连续点位令}
+	证明：若 $f(x)\geq0$ 在 $[a,b]$ 上有定义并且可积，则等式
+	\[
+	\int_a^b f(x)\dd x=0
+	\]
+	成立的充要条件是：$f(x)$ 在连续点上恒为零。
+\end{example}
+\begin{solution}
+	必要性：若存在连续点 $x_0\in[a,b]$，使得 $f(x_0)>0$，则可取 $\delta>0$，使得在 $[a,b]\cap(x_0-\delta,x_0+\delta)$ 内有
+	\[
+	f(x)>\frac12 f(x_0)>0.
+	\]
+	于是
+	\[
+	\int_a^b f(x)\dd x\geq
+	\int_{[a,b]\cap(x_0-\delta,x_0+\delta)} f(x)\dd x>0,
+	\]
+	与积分为零矛盾。因此 $f$ 在连续点上必为零。
+	
+	充分性：设 $f$ 在其所有连续点上均为零。由于 $f\in  \mathcal{R}[a,b]$，由上命题 可知其连续点在任意小区间中都存在。取$\xi_i$为相应小区间上的连续点
+	\[\int_a^b f(x) = \sum f(\xi_i)\Delta_i = 0\]
+\end{solution}
+\begin{example}
+	设 $f(x)$ 在 $[a,b]$ 上可积。证明：对于 $[a,b]$ 上任一可积函数 $g(x)$，恒有
+	\[
+	\int_a^b f(x)g(x)\dd x=0,
+	\]
+	则函数 $f(x)$ 在连续点上恒为零。
+\end{example}
+\begin{solution}
+	由于 $f\in R[a,b]$，可取 $g=f$。则
+	\[
+	\int_a^b f^2(x)\dd x=0.
+	\]
+	又 $f^2\geq0$ 且 $f^2\in \mathcal{R}[a,b]$，由上例， 可知 $f^2$ 在其连续点上恒为零。
+	故 $f$ 在连续点上恒为零。
+\end{solution}
+\begin{example}
+	设在 $[-1,1]$ 上的连续函数 $f(x)$ 满足：对于 $[-1,1]$ 上的任意连续函数 $g(x)$，都有
+	\[
+	\int_{-1}^{1}f(x)g(x)\dd x=0.
+	\]
+	证明：$f(x)$ 是 $[-1,1]$ 上的奇函数。
+\end{example}
+
+\begin{solution}
+	令
+	\[
+	g(x)=f(x)+f(-x).
+	\]
+	由
+	\[
+	\int_{-1}^{1}f(x)g(x)\dd x=0.
+	\]
+	\[2\int_{-1}^{1}f(x)(f(x)+f(-x))\dd x=\int_{-1}^{1}f^2(x)+2f(-x)f(x)+ f^2(-x)\dd x = \int_{-1}^1 (f(x)+ f(-x))^2 \dd x\]
+	由\ref{连续点位令}
+	\[
+	f(x)+f(-x)=0\quad (x\in[-1,1]).
+	\]
+	因此 $f$ 为奇函数。
+\end{solution}
+
+
+\begin{problem}
+	设 $f(x)$ 在 $[a,b]$ 上可积，并且存在常数 $m>0$，使得
+	\[
+	|f(x)|\geq m\quad (x\in[a,b]).
+	\]
+	证明：$\dfrac1{f(x)}$ 在 $[a,b]$ 上也可积。
+\end{problem}
+
+\begin{solution}
+	任取 $[a,b]$ 的分割
+	\[
+	a=x_0<x_1<\cdots<x_n=b.
+	\]
+	记 $\omega_i(h)$ 为函数 $h$ 在 $[x_{i-1},x_i]$ 上的振幅。对任意 $x',x''\in[x_{i-1},x_i]$，由 $|f|\geq m$ 得
+	\[
+	\left|\frac1{f(x')}-\frac1{f(x'')}\right|
+	=\frac{|f(x')-f(x'')|}{|f(x')f(x'')|}
+	\leq \frac1{m^2}|f(x')-f(x'')|.
+	\]
+	取上确界可得
+	\[
+	\omega_i\left(\frac1f\right)\leq \frac1{m^2}\omega_i(f).
+	\]
+	由于 $f\in \mathcal{R}[a,b]$，对任意 $\varepsilon>0$，存在分割 $T$，使得
+	\[
+	\sum_{i=1}^n\omega_i(f)\Delta x_i<m^2\varepsilon.
+	\]
+	于是
+	\[
+	\sum_{i=1}^n\omega_i\left(\frac1f\right)\Delta x_i
+	\leq \frac1{m^2}
+	\sum_{i=1}^n\omega_i(f)\Delta x_i
+	<\varepsilon.
+	\]
+	$1/f\in \mathcal{R}[a,b]$。
+\end{solution}
+
+
+
+
+\begin{problem}
+	设 $f\in \mathcal{R}[a,b]$，试问 $[f(x)]$ 在 $[a,b]$ 上是否一定可积？这里 $[y]$ 表示不超过 $y$ 的最大整数。
+\end{problem}
+
+\begin{solution}
+	不一定。下面给出反例。
+	
+考虑Riemann 函数$R\in \mathcal{R}[0,1]$,令
+	\[
+	f(x)=1-R(x).
+	\]
+	则 $f\in \mathcal{R}[0,1]$。
+	\[
+	[f(x)]=
+	\begin{cases}
+		0,&x\in[0,1]\cap\mathbb{Q},\\
+		1,&x\in[0,1]\setminus\mathbb{Q},
+	\end{cases}
+	\]
+	这是 Dirichlet 函数， Riemann 不可积。因此 $[f(x)]$ 不一定可积。
+\end{solution}

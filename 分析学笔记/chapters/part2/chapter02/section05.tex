@@ -1,0 +1,202 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第2章：多元函数微分学
+% 节：2.5 无条件极值
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{无条件极值}
+
+\begin{definition}
+设 $D\subset\mathbb{R}^n$ 为开区域，$f(\vect x)$ 为定义在 $D$ 上的函数，
+$\vect x_0=(x_1^0,x_2^0,\ldots,x_n^0)\in D$。若存在 $\vect x_0$ 的邻域
+$O(\vect x_0,r)$，使得
+\[
+f(\vect x_0)\geqslant f(\vect x)\quad
+\bigl(\text{或 }f(\vect x_0)\leqslant f(\vect x)\bigr),
+\qquad \vect x\in O(\vect x_0,r),
+\]
+则称 $\vect x_0$ 为 $f$ 的\textbf{极大值点}（或\textbf{极小值点}）；相应地，称 $f(\vect x_0)$ 为
+相应的\textbf{极大值}（或\textbf{极小值}）；极大值点与极小值点统称为\textbf{极值点}，
+极大值与极小值统称为\textbf{极值}。
+\end{definition}
+类似于单变量函数中的Fermat引理,我们有以下的必要条件:
+
+
+\begin{proposition}
+	若 $f(x_1,\ldots,x_n)$ 在
+$(x_1^0,\ldots,x_n^0)$ 处可导，则 $(x_1^0,\ldots,x_n^0)$ 为
+$f(x_1,\ldots,x_n)$ 的一个极值点的必要条件为
+\[
+\nabla f(\vect{x}^{\,0})=\vect{0}.
+\]
+\end{proposition}
+我们称 $\nabla f(\vect{x}^{\,0})=\vect{0}$ 的点为驻点。
+
+\textbf{注：}\begin{enumerate}
+	\item 若 $f(x_1,\ldots,x_n)$ 在 $\vect{x}^{\,0}$ 处不可导，也可能有极值点。
+	\item 驻点未必是极值点。例如 $z=xy$，$\nabla f=(y,x)$，$(0,0)$ 为驻点，
+	但不是极值点。
+\end{enumerate}
+
+\begin{proof}
+考虑
+\[
+\varphi(x_i)=f(x_1^0,\ldots,x_i,\ldots,x_n^0),
+\qquad i=1,\ldots,n.
+\]
+$\varphi(x_i)$ 可导。$x_i^0$ 对 $\varphi(x_i)$ 为极值点，因此
+\[
+\frac{\mathrm d\varphi}{\mathrm d x_i}(x_i^0)=0
+\quad\Longleftrightarrow\quad
+\frac{\partial f}{\partial x_i}(\vec{x}^{\,0})=0.
+\]
+故
+\[
+\frac{\partial f}{\partial x_i}(\vect{x}^{\,0})=0,
+\qquad i=1,\ldots,n.
+\]
+\end{proof}
+\newpage
+以 $z=f(x,y)$ 为例，设 $(x_0,y_0)$ 为 $f(x,y)$ 的一个驻点，
+而且 $z=f(x,y)$ 在 $(x_0,y_0)$ 的某邻域
+$D((x_0,y_0),\delta)$ 上二阶连续可导。在什么条件下，
+$(x_0,y_0)$ 为 $z=f(x,y)$ 的一个极值点？类似于单变量函数中的做法，我们可以使用Lagrange中值定理来处理这个问题
+
+取 $(x_0+\Delta x,y_0+\Delta y)\in D((x_0,y_0),\delta)$，则
+\[
+\begin{aligned}
+&f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)\\
+={}&\frac{\partial f}{\partial x}(x_0,y_0)\Delta x
++\frac{\partial f}{\partial y}(x_0,y_0)\Delta y\\
+&+\frac12\left(
+\frac{\partial^2 f}{\partial x^2}(x_0,y_0)\Delta x^2
++2\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0)
+\Delta x\Delta y
++\frac{\partial^2 f}{\partial y^2}(x_0,y_0)\Delta y^2
+\right)+h\\
+={}&\frac12\left(
+\frac{\partial^2 f}{\partial x^2}(x_0,y_0)\Delta x^2
++2\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0)
+\Delta x\Delta y
++\frac{\partial^2 f}{\partial y^2}(x_0,y_0)\Delta y^2
+\right)+h\\
+={}&\frac12\left(A\Delta x^2+2B\Delta x\Delta y+C\Delta y^2\right)+h\\
+={}&\frac12
+\begin{pmatrix}\Delta x&\Delta y\end{pmatrix}
+\begin{pmatrix}A&B\\B&C\end{pmatrix}
+\begin{pmatrix}\Delta x\\\Delta y\end{pmatrix}+h,
+\end{aligned}
+\]
+其中
+\[
+A=\frac{\partial^2 f}{\partial x^2}(x_0,y_0),
+\qquad
+B=\frac{\partial^2 f}{\partial x\partial y}(x_0,y_0),
+\qquad
+C=\frac{\partial^2 f}{\partial y^2}(x_0,y_0).
+\]
+
+\begin{enumerate}
+\item 若 $\begin{pmatrix}A&B\\B&C\end{pmatrix}$ 正定，则当
+$|\Delta x|,|\Delta y|$ 充分小时，
+$f(x_0+\Delta x,y_0+\Delta y)>f(x_0,y_0)$，
+$(x_0,y_0)$ 是严格极小值点。这等价于
+\[
+A>0\quad\text{且}\quad H=AC-B^2>0.
+\]
+\item 若 $\begin{pmatrix}A&B\\B&C\end{pmatrix}$ 负定，即
+$H=AC-B^2>0$ 且 $A<0$，则 $(x_0,y_0)$ 是严格极大值点。
+\item 若 $H<0$，则不是极值点。
+\item 若 $H=0$，则不能确定。
+\end{enumerate}
+
+\begin{theorem}
+设 $n$ 元函数 $f(x)$ 在
+$x_0=(x_1^0,x_2^0,\ldots,x_n^0)$ 附近具有二阶连续偏导数，
+且 $x_0$ 为 $f(x)$ 的驻点。那么当二次型
+\[
+g(\xi)=\sum_{i,j=1}^{n}f_{x_i x_j}(x_0)\xi_i\xi_j
+\]
+正定时，$f(x_0)$ 为极小值；当 $g(\xi)$ 负定时，
+$f(x_0)$ 为极大值；当 $g(\xi)$ 不定时，$f(x_0)$ 不是极值。
+\end{theorem}
+
+记 $a_{ij}=f_{x_i x_j}(x_0)$，并记
+\[
+A_k=
+\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1k}\\
+a_{21}&a_{22}&\cdots&a_{2k}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{k1}&a_{k2}&\cdots&a_{kk}
+\end{pmatrix}.
+\]
+它称为 $f$ 的 $k$ 阶 Hessian 矩阵。由代数学知识即可得到：
+
+\begin{corollary}
+若 $\det A_k>0\ (k=1,2,\ldots,n)$，则二次型 $g(\xi)$ 是正定的，
+此时 $f(x_0)$ 为极小值；若
+$(-1)^k\det A_k>0\ (k=1,2,\ldots,n)$，
+则二次型 $g(\xi)$ 是负定的，此时 $f(x_0)$ 为极大值。
+\end{corollary}
+
+若 $g(\xi)$ 不定，则 $\vect x_0$ 不是极值点；若 $g(\xi)$ 半正定，
+则不能确定。
+
+\subsection*{最小二乘法}
+
+对一组数据
+\[
+(x_1,y_1),\ldots,(x_n,y_n)
+\]
+分布在 $y=ax+b$ 附近，使误差最小。令
+\[
+E=\sum_{k=1}^{n}|ax_k+b-y_k|^2,
+\qquad
+S(a,b)=\sum_{k=1}^{n}(ax_k+b-y_k)^2.
+\]
+若 $E(a,b)$ 取得最小值，则
+\[
+\begin{aligned}
+\frac{\partial S}{\partial a}
+&=\sum_{k=1}^{n}2x_k(ax_k+b-y_k)=0,\\
+\frac{\partial S}{\partial b}
+&=\sum_{k=1}^{n}2(ax_k+b-y_k)
+ =2a\sum_{k=1}^{n}x_k+2nb-2\sum_{k=1}^{n}y_k=0.
+\end{aligned}
+\]
+因而
+\[
+\begin{cases}
+a\displaystyle\sum_{k=1}^{n}x_k^2
+ +b\displaystyle\sum_{k=1}^{n}x_k
+ =\displaystyle\sum_{k=1}^{n}x_ky_k,\\[6pt]
+a\displaystyle\sum_{k=1}^{n}x_k+nb
+ =\displaystyle\sum_{k=1}^{n}y_k.
+\end{cases}
+\]
+解得
+\[
+\begin{aligned}
+a&=
+\frac{
+n\displaystyle\sum_{k=1}^{n}x_ky_k
+-\displaystyle\sum_{k=1}^{n}x_k\sum_{k=1}^{n}y_k
+}{
+n\displaystyle\sum_{k=1}^{n}x_k^2
+-\left(\displaystyle\sum_{k=1}^{n}x_k\right)^2
+},\\[8pt]
+b&=
+\frac{
+\displaystyle\sum_{k=1}^{n}x_k^2\sum_{k=1}^{n}y_k
+-\displaystyle\sum_{k=1}^{n}x_k\sum_{k=1}^{n}x_ky_k
+}{
+n\displaystyle\sum_{k=1}^{n}x_k^2
+-\left(\displaystyle\sum_{k=1}^{n}x_k\right)^2
+}.
+\end{aligned}
+\]
+
+有时候，$(x_k,y_k)$ 不一定分布在直线附近，但
+$(x_k,\ln y_k)$、$(x_k,e^{y_k})$、$(\ln x_k,y_k)$、
+$(e^{x_k},y_k)$ 大致分布在直线附近，
+就先把相应的变量变换再拟合。
+

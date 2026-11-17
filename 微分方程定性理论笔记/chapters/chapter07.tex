@@ -1,0 +1,383 @@
+% ============================================================
+%  chapter07.tex — 第七章 环面上的常微系统
+%  对应原书第七章前四节。
+% ============================================================
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{环面上的常微系统}
+
+\newcommand{\chSevenFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{2.4cm}图~#1\\（图片占位）\vspace{2.4cm}}}
+  \end{center}%
+}
+
+% ============================================================
+%  §1  引言
+% ============================================================
+\section{引言}
+
+本章讨论环面上的常微系统的经典结果，主要内容参考文献~[1]、[2]。设一阶方程组
+\[
+  \dfrac{\mathrm d\varphi}{\mathrm dt}=F(\varphi,\theta),\qquad
+  \dfrac{\mathrm d\theta}{\mathrm dt}=G(\varphi,\theta), \tag{1.1}
+\]
+其中函数 $F,G$ 在平面上连续，并且
+\[
+  F(\varphi+1,\theta)=F(\varphi,\theta)=F(\varphi,\theta+1),
+\]
+\[
+  G(\varphi+1,\theta)=G(\varphi,\theta)=G(\varphi,\theta+1).
+\]
+因此 $F,G$ 为周期函数，系统~(1.1) 在 $(-\infty,+\infty)$ 上有定义。
+
+若把 $(\varphi,\theta)$ 平面内单位正方形的对边粘合，那么便产生一个环面 $T^2$；
+系统~(1.1) 可以解释为环面 $T^2$ 上的一个常微系统。为便于直观起见，在三维 Euclid
+空间内可把 $T^2$ 写为
+\[
+  T^2:\quad \left(\sqrt{x^2+y^2}-a\right)^2+z^2=b^2,
+\]
+其中 $a>b>0$。它的点可由参数表示为
+\[
+  x=(a+b\cos2\pi\theta)\cos2\pi\varphi,\qquad
+  y=(a+b\cos2\pi\theta)\sin2\pi\varphi,
+\]
+\[
+  z=b\sin2\pi\theta,\qquad
+  0\leq\varphi<1,\quad 0\leq\theta<1,\quad 0<b<a. \tag{1.1a}
+\]
+
+\chSevenFigurePlaceholder{7.1}
+
+图~7.1 所表示的曲线在平面上看似不闭合，但在环面上两条对边相同，故对应于
+$T^2$ 上的一条连续曲线。我们把微分系统~(1.1) 规定在环面上，再在环面 $T^2$ 上
+作相平面的话，可以研究它的周期解和轨线的长期性态。
+
+下面常作一个重要假定：
+\[
+  F(\varphi,\theta)>0. \tag{1.2}
+\]
+此时 $\varphi$ 沿每一条轨线严格增加，可取 $\varphi$ 为自变量，把~(1.1) 化为
+\[
+  \dfrac{\mathrm d\theta}{\mathrm d\varphi}
+  =A(\varphi,\theta):=\dfrac{G(\varphi,\theta)}{F(\varphi,\theta)}. \tag{1.3}
+\]
+若 $\theta=\theta(\varphi;\varphi_0,\theta_0)$ 是~(1.3) 的解，则它在 $T^2$ 上的像
+就是系统~(1.1) 的一条轨线，方向为 $\varphi$ 增加的方向。
+
+\begin{example}{}{ch7-intro-example}
+设
+\[
+  \dfrac{\mathrm d\varphi}{\mathrm dt}=1,\qquad
+  \dfrac{\mathrm d\theta}{\mathrm dt}=\mu,
+\]
+其中 $\mu$ 为常数，则
+\[
+  \theta=\mu\varphi+\theta_0.
+\]
+若 $\mu=m/n$，其中 $m,n$ 互素且 $n>0$，则每一条轨线均为闭轨线；若 $\mu$ 为无理数，
+则每一条轨线在环面上稠密。
+\end{example}
+
+% ============================================================
+%  §2  旋转数
+% ============================================================
+\section{旋转数}
+
+设常微分方程
+\[
+  \dfrac{\mathrm d\theta}{\mathrm d\varphi}=A(\varphi,\theta) \tag{2.1}
+\]
+满足下列条件：
+\[
+  A(\varphi,\theta)\ \text{连续且有界},\qquad
+  A(\varphi+1,\theta)=A(\varphi,\theta)=A(\varphi,\theta+1),
+\]
+并设初值问题的解唯一。令
+\[
+  \theta=\psi(\varphi;\varphi_0,\theta_0)
+\]
+表示~(2.1) 满足初始条件 $\theta_0$ 的解。由于方程关于两个变量均以 $1$ 为周期，
+有
+\[
+  \psi(\varphi+1;\varphi_0+1,\theta_0)
+  =\psi(\varphi;\varphi_0,\theta_0),
+\]
+\[
+  \psi(\varphi;\varphi_0,\theta_0+1)
+  =\psi(\varphi;\varphi_0,\theta_0)+1. \tag{2.3}
+\]
+
+取截面 $\varphi=0$，并令
+\[
+  \Phi(\theta_0)=\psi(1;0,\theta_0). \tag{2.2}
+\]
+于是 $\Phi$ 是实直线上的严格单调连续映射，且
+\[
+  \Phi(\theta+1)=\Phi(\theta)+1.
+\]
+记 $\Phi^n$ 为它的 $n$ 次迭代，则 $\Phi^n(\theta_0)$ 对应于解在 $\varphi=n$ 时的
+$\theta$ 坐标。
+
+\begin{theorem}{}{ch7-rotation-number}
+对任意满足上述条件的方程~(2.1)，极限
+\[
+  \mu=\lim_{|n|\to\infty}\dfrac{\Phi^n(\theta_0)}{n} \tag{2.4}
+\]
+存在，且与初值 $\theta_0$ 无关。数 $\mu$ 称为方程~(2.1) 或映射 $\Phi$ 的
+\textbf{旋转数}。
+\end{theorem}
+
+证明的要点如下。由 $\Phi$ 的单调性，若 $m<\theta_0<m+1$，便有
+\[
+  \Phi^n(m)<\Phi^n(\theta_0)<\Phi^n(m+1).
+\]
+又由周期关系可将任意两个初值的迭代差控制在一个固定常数内。令
+$\theta_n=\Phi^n(\theta_0)$，则序列 $\theta_n-\theta_0$ 具有近似可加性；由上下逼近可得
+极限~(2.4) 存在。
+
+旋转数的有理性同周期点的存在密切相关。若存在整数 $m,n$，$n>0$，使
+\[
+  \Phi^n(\theta_0)=\theta_0+m,
+\]
+则相应轨线为闭轨线，且 $\mu=m/n$。反之，若 $\mu$ 是有理数，适当的迭代映射
+$\Phi^n-m$ 有不动点；故在本节假定下，方程有周期轨线。
+
+% ============================================================
+%  §3  极限点集
+% ============================================================
+\section{极限点集}
+
+类似于平面动力系统的极限点集，设 $S$ 是环面 $T^2$ 上的一条轨线，记
+\[
+  S^+=\{P(t):0\leq t<+\infty\},\qquad
+  S^-=\{P(t):-\infty<t\leq0\}.
+\]
+若 $P\in T^2$，$S_P^+$ 表示从点 $P$ 出发的正半轨线。定义
+\[
+  S'_P=\bigcap_{t\geq0}\overline{S_P(t,+\infty)}
+\]
+为 $P$ 的正极限点集；负极限点集定义相同。
+
+\begin{lemma}{}{ch7-limit-invariant}
+对任意 $P\in T^2$，集合 $S'_P$ 非空、闭且不变；若 $Q\in S'_P$，则从 $Q$ 出发的
+全轨线完全包含于 $S'_P$。
+\end{lemma}
+
+事实上，$T^2$ 为紧致空间，故正半轨线任取一点列总有收敛子列。若
+$P_i=P(t_i)\to Q$，$t_i\to+\infty$，则由解对初值的连续依赖性，对任意固定 $s$ 有
+\[
+  P(t_i+s)\longrightarrow Q(s),
+\]
+这就说明 $Q(s)\in S'_P$。
+
+为了描述可能出现的极限点集，设 $P_0,P_1,\ldots,P_m$ 是环面上一条横截线上的点，
+并且这些点在截面上按同一方向排列。设 $C$ 是由相邻轨线段所围成的带状区域。
+
+\begin{lemma}{}{ch7-limit-order}
+若 $P_i$ 的正半轨线两两不相交，且在横截线上的顺序保持，则这些轨线的极限点集相同
+或彼此不交。特别地，若其中一条轨线的正极限点集为整个环面，则所有相邻轨线也有
+同样的正极限点集。
+\end{lemma}
+
+\begin{theorem}{}{ch7-limit-classification}
+设 $S$ 是环面 $T^2$ 上方程~(2.1) 的一条轨线，且系统在 $T^2$ 上无奇点。则 $S$ 的
+正极限点集只有下列可能：\newline
+\noindent (i) 一条闭轨线；\newline
+\noindent (ii) 整个环面 $T^2$；\newline
+\noindent (iii) 一个由闭轨线围成的不变带状区域的边界。
+\end{theorem}
+
+这里，若 $S'_P$ 不含周期轨线，则由截面映射的单调性和紧致性可知，$S'_P$ 中任一点
+的轨线均在其中稠密；在通常的非奇异情形，便得到 $S'_P=T^2$。
+
+% ============================================================
+%  §4  各态经历
+% ============================================================
+\section{各态经历}
+
+当系统~(2.1) 是解析的情形，Poincar\'e 曾经猜想不会出现奇异的情形；A.~Denjoy 在
+1932 年证明了 Poincar\'e 的猜想。为叙述该结果，设
+\[
+  A(\varphi,\theta)\ \text{连续，且}\quad A(\varphi,\theta)>0,
+\]
+并且 $A$ 关于 $(\varphi,\theta)$ 具有足够的光滑性。令截面映射仍为
+\[
+  \Phi(\theta_0)=\psi(1;0,\theta_0).
+\]
+
+\begin{theorem}{Denjoy}{ch7-denjoy}
+设 $\Phi$ 是圆周上的保向同胚，且 $\Phi'$ 绝对连续，$\Phi''$ 可积。若 $\Phi$ 的
+旋转数为无理数，则 $\Phi$ 的每一条轨道在圆周上稠密。等价地，系统~(2.1) 的每一条
+轨线在环面 $T^2$ 上稠密。
+\end{theorem}
+
+定理说明，在上述光滑性条件下，环面系统具有各态经历性。为了证明它，取一点
+$P_0$ 及其迭代点
+\[
+  P_n=\Phi^n(P_0),\qquad n=0,\pm1,\pm2,\ldots . \tag{4.1}
+\]
+当旋转数无理时，这些点两两不同。若它们不稠密，则其闭包的补集中存在一个开区间；
+Denjoy 的论证通过考察该区间在 $\Phi$ 的所有迭代下的像，得到矛盾。
+
+令
+\[
+  \omega(\theta)=\dfrac{\partial\psi}{\partial\theta}(1;0,\theta)>0.
+\]
+在适当的正则性条件下，$\log\omega(\theta)$ 有有界变差，并且对相邻迭代点满足
+\[
+  \left|\log\dfrac{\mathrm d\Phi^n(\theta)}{\mathrm d\theta}\right|\leq V, \tag{4.2}
+\]
+其中 $V$ 为与 $n$ 无关的常数。这个有界畸变估计保证：若某一开区间的全部迭代像
+两两不交，则其长度总和不能同时满足旋转数为无理数所要求的逼近性质，故矛盾。
+
+\begin{theorem}{}{ch7-ergodic}
+设 $A(\varphi,\theta)$ 连续，并且其一阶偏导数连续。又设 $A(\varphi,\theta)>0$，且
+对应的旋转数为无理数。则方程~(2.1) 的每一条轨线在环面 $T^2$ 上稠密。
+\end{theorem}
+
+若 $\Phi$ 的光滑性不足，上述结论可以失效；第 5 节将给出奇异情况的例子，第 6 节
+介绍 Schweitzer 的反例。
+
+% ============================================================
+%  §5  奇异情况举例
+% ============================================================
+\section{奇异情况举例}
+
+在这一节中，我们举出奇异情形的例子。设圆周 $C$ 上给定一个 Cantor 集合 $F$，
+设它的补集是可数个两两不交的开区间
+\[
+  (a_\beta,b_\beta),\qquad \beta=1,2,\ldots .
+\]
+设 $\mu_k$ 为正整数，并把单位圆周上的点按所选定的序列编号。可选取一列点
+\[
+  0,\ \mu_1,\ -\mu_2,\ 2\mu_1-2\mu_2,\ldots,\ k\mu_1-k\mu_2,\ldots \tag{5.1}
+\]
+使所有这些点均在 $F$ 的同一稠密子集中。由此把各个区间 $(a_\beta,b_\beta)$ 之间的
+对应关系逐步规定出来。
+
+更具体地，在每个补区间上作一个严格递增的同胚，把右端点映到相应区间的右端点，
+左端点映到相应区间的左端点；在 Cantor 集合 $F$ 上把映射规定为平移。这样得到圆周
+上的保向同胚 $T_1$，它满足
+\[
+  T_1(\xi+1)=T_1(\xi)+1.
+\]
+其轨道可在 $F$ 的补区间之间游走，却不必在圆周上稠密。适当选取各区间上的函数，
+可使 $T_1$ 连续可微，且
+\[
+  0<\varepsilon<T_1'(\xi)<T_1'(\eta)<T_1(\xi)+1
+\]
+在相应的区间上成立。
+
+把 $T_1$ 看作截面 $\varphi=0$ 上的 Poincar\'e 映射。于是可在带状区域
+\[
+  0\leq\varphi\leq1
+\]
+上构造一个非奇异向量场 $(P,Q)$，使得
+\[
+  \frac{\mathrm d\varphi}{\mathrm dt}=1,\qquad
+  \frac{\mathrm d\theta}{\mathrm dt}=T_1(\theta)-\theta. \tag{5.2}
+\]
+在两条边界上按
+\[
+  (\varphi,\theta)\sim(\varphi+1,T_1(\theta))
+\]
+粘合，便得到环面上的常微系统。该系统的旋转数为无理数，但存在一个非空的闭不变集
+$F$，且从补区间出发的轨线永远不能穿入 $F$ 的内部。因此，若截面映射的光滑性不足，
+第 4 节的各态经历结论可以失效。
+
+% ============================================================
+%  §6  介绍 Schweitzer 之例
+% ============================================================
+\section{介绍Schweitzer之例}
+
+在 1950 年，Seifert 提出下面的问题：设 $\mathscr S^3$ 是三维 Euclid 空间内的一个
+光滑闭流形，在 $\mathscr S^3$ 上给定一个非奇异的 $C^r$ 向量场；它是否必有一条
+闭轨线？这个问题是 Poincar\'e--Bendixson 定理在高维空间中的一个推广问题。1974 年
+Schweitzer 发表了一个否定的例子。
+
+设 $N$ 是一个有边界的二维流形，在 $N\times D^1$ 上取坐标 $(X,Z)$，并设
+$X_0=(0,0)$。令
+\[
+  B=N\times D^1,
+\]
+其中 $D^1$ 为闭区间。先在 $N$ 上构造一个具有一个孤立奇点 $X_0$ 的平面向量场 $X$，
+使得 $X$ 在 $N\setminus\{X_0\}$ 上非零，并满足：
+\[
+  \text{从 }(n-1)\text{ 到 }n\text{ 的每一条轨线均穿过指定的横截面，}
+\]
+\[
+  \text{且在 }X_0\text{ 附近的轨线不闭合。} \tag{6.1}
+\]
+然后把 $X$ 延拓到 $N\times D^1$，并在靠近边界的区域将其同一个竖直向量场拼接。
+
+令
+\[
+  X_1=N\times I-(1-\varphi)X_0+\varphi Z,
+\]
+其中 $\varphi$ 是适当的光滑截断函数。通过选择 $\varphi$，可使 $X_1$ 在边界邻域内
+同标准竖直向量场相同，而在内部保留原有的非周期性态。
+
+下面说明 Schweitzer 例的拓扑构造。在 $\mathscr S^3$ 内可放置一个非奇异的
+$C^r$ 向量场 $Y$，使得在其附近存在一个实心环面 $E$。取
+\[
+  B=N\times D^1,
+\]
+并把 $B$ 沿两个横截面嵌入 $E$ 中。经过一个同胚变形，原来的一个实心环面被替换为
+两个相互套合的实心环面；在边界上向量场仍保持横截。
+
+\chSevenFigurePlaceholder{7.2}
+\chSevenFigurePlaceholder{7.3}
+
+在所得流形中，任何进入 $B$ 的轨线都按构造在有限时间后离开 $B$，但它不可能回到
+原来的截面而形成闭轨线；而不进入 $B$ 的轨线则由原向量场的性质也不能形成闭轨线。
+于是经粘合得到的 $\mathscr S^3$ 上的非奇异 $C^r$ 向量场没有闭轨线。
+
+\chSevenFigurePlaceholder{7.4}
+
+图~7.4 表示在圆柱形邻域内的局部坐标。取中心轴上的点列
+\[
+  P_0,P_1,P_2,\ldots
+\]
+作为横截面上的基点；向量场的流把相邻截面之间的轨线按预先给定的方式连接。由此，
+所有可能的回归轨线均被引入插入区，因而不能闭合。这就是 Schweitzer 反例的基本
+思想。
+
+% ============================================================
+%  习题和参考文献
+% ============================================================
+\section*{习题和参考文献}
+\subsection*{习题}
+
+\begin{enumerate}
+  \item 设映射 $\Phi$ 有周期。证明方程~(2.1) 的一条轨线满足相应的周期条件，当且仅当
+  它在截面映射 $\Phi$ 下为周期点。
+  \item 下面所有函数均为 $C^1$ 连续。设周期为 $1$，并且能证明以 $0$ 为初值的
+  \[
+    \frac{\mathrm d\theta}{\mathrm d\varphi}
+    =a\varphi+\sin2\pi\theta
+  \]
+  的旋转数存在。再讨论
+  \[
+    \frac{\mathrm d\theta}{\mathrm d\varphi}
+    =\varphi\sin2\pi\theta+\varepsilon g(\theta,\varphi)
+  \]
+  的旋转数。
+  \item 设 $\omega=\omega(\varphi,\theta)>0$，证明存在连续函数
+  $h(\varphi,\theta)$，使相应截面映射具有指定的无理旋转数；进一步在
+  $h$ 满足 Lipschitz 条件时，利用第 4 节的结果讨论环面 $T^2$ 上各态经历轨线的存在。
+\end{enumerate}
+
+\subsection*{本章参考文献}
+\begin{enumerate}
+  \item Coddington, E.~A. and Levinson, N., \textit{Theory of Ordinary Differential Equations},
+  McGraw--Hill, 1955.
+  \item Hale, J.~K., \textit{Ordinary Differential Equations}, Wiley--Interscience, 1969;
+  2nd edition, Krieger Publ. Co., 1980.
+  \item Schweitzer, P.~A., Counterexample to the Seifert conjecture and opening the closed
+  orbits of flows, \textit{Ann. of Math.}, 100 (1974), 386--388.
+  \item 史耐德--孔德，微分方程常微分解构造法，\textit{数学学报}，1977，136--148。
+\end{enumerate}
+
+\endinput

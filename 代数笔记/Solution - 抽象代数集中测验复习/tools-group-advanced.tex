@@ -1,0 +1,241 @@
+% 工具编号由主文件的 reviewtheorem/reviewprop/reviewlemma 共享计数器统一管理。
+\subsection{群论的作用、生成与可解性工具}
+以下条目完整列出第二章详解实际使用的结论。所标行号指原笔记源文件，不是教材定理编号；原习题解答中的补充结论也明确标出，不冒称为教材已证明的定理。各条采用本复习册统一的工具编号，题目中的引用可直接跳转至相应条目。
+
+\begin{reviewtheorem}[对换与3-轮换的生成结论]\label{tool:a-permutation-generation}
+设$n\ge2$。$S_n$中的每个置换都是有限个对换的乘积，并且
+\[
+S_n=\langle(12),(13),\ldots,(1n)\rangle
+=\langle(12),(23),\ldots,(n-1\ n)\rangle.
+\]
+设$n\ge3$。$A_n$中的每个偶置换都是有限个3-轮换的乘积，因此$A_n$由全部3-轮换生成。
+
+\textbf{原文出处：}原笔记第二章“单群与交错群的单性”中的引理，\path{chapters/Part 2/chapter2.tex} 第362--381行；两组指定对换的生成结论是原习题10及其补充证明，\path{chapters/Part 2/chapter2-exercises.tex} 第201--219行。证明展开见本册第二章习题10。
+\end{reviewtheorem}
+
+\begin{reviewprop}[轮换分解、置换的阶、共轭公式与奇偶性]\label{tool:a-cycle-conjugation}
+每个$\sigma\in S_n$都可写成支集两两不相交的轮换之积；在忽略轮换排列次序、每个轮换的循环起点以及省略的不动点后，该分解唯一。
+若非平凡轮换长度为$d_1,\ldots,d_s$，则
+\[
+\operatorname{ord}(\sigma)=\lcm(d_1,\ldots,d_s).
+\]
+恒等置换的阶为1。这个阶公式是分解定理的补充推论：不相交轮换分别作用于各自支集，所以对任意正整数$m$，$\sigma^m=e$当且仅当每个$d_i$都整除$m$，最小这样的正整数就是最小公倍数。
+
+设$\pi\in S_n$，$a_1,\ldots,a_r$为互不相同的点，$2\le r\le n$。则
+\[
+\pi(a_1\cdots a_r)\pi^{-1}
+=(\pi(a_1)\cdots\pi(a_r)).
+\]
+$r$-轮换的符号为$(-1)^{r-1}$。符号映射$\sgn:S_n\to\{1,-1\}$为群同态，其核为$A_n$；支集不相交的置换互相交换。特别地，奇数长度的轮换是偶置换。
+
+\textbf{原文出处：}不相交轮换分解定理及其证明见原笔记第一章第3节“群的例子”，\path{chapters/Part 2/chapter1.tex} 第222--234行；置换的阶为轮换长度最小公倍数是本条明确补出的推论，不标作原笔记独立阶公式定理。共轭公式见第二章“单群与交错群的单性”的轮换共轭命题，\path{chapters/Part 2/chapter2.tex} 第383--410行；轮换的对换分解见同文件第366--370行，奇偶性和不相交支集的使用见原习题12、40，\path{chapters/Part 2/chapter2-exercises.tex} 第258--276、844--857行。这里将上述已使用的置换规则合并列出。
+\end{reviewprop}
+
+\begin{reviewlemma}[逐次附加点的3-轮换引理（补充）]\label{tool:a-triple-attach}
+设$s\ge1$，$\tau_1,\ldots,\tau_s$是$S_n$中的3-轮换，$n\ge3$。记$U_j$为前$j$个轮换所涉及的全部点。若对每个$j\ge2$，$\tau_j$的三个点中至少有一点属于$U_{j-1}$，且$U_s=\{1,\ldots,n\}$，则
+\[
+\langle\tau_1,\ldots,\tau_s\rangle=A_n.
+\]
+其中使用的单步结论是：若一个子群已包含点集$U$（$|U|\ge3$）上的全部偶置换，并含$(abz)$，$a,b\in U$、$a\ne b$、$z\notin U$，则它包含$U\cup\{z\}$上的全部偶置换。这里“点集上的偶置换”均延拓为在其余点上恒等的置换。
+
+\textbf{原文出处：}原习题12之前的补充引理及证明，\path{chapters/Part 2/chapter2-exercises.tex} 第233--252行；不是教材习题页给出的定理。完整证明见本册第二章习题12，保留原笔记先处理一个新点、再由四点交错群处理两个新点的顺序。
+\end{reviewlemma}
+
+\begin{reviewprop}[商子群的代表元判据]\label{tool:a-quotient-membership}
+设$N\trianglelefteq G$、$H\le G$且$N\le H$。则$N\trianglelefteq H$，$H/N$是$G/N$的子群，并且对每个$g\in G$都有
+\[
+gN\in H/N\iff g\in H.
+\]
+因此若$N\le H_1\cap H_2$，则在$G/N$中有实际相等关系
+\[
+(H_1/N)\cap(H_2/N)=(H_1\cap H_2)/N.
+\]
+
+\textbf{原文出处：}原笔记第二章“群的同态定理”的子群对应定理，\path{chapters/Part 2/chapter2.tex} 第10--63行；代表元判据及交的应用见原习题15，\path{chapters/Part 2/chapter2-exercises.tex} 第331--346行。证明见本册第二章习题15。
+\end{reviewprop}
+
+\begin{reviewtheorem}[轨道、稳定子与共轭子群数]\label{tool:a-orbit-stabilizer}
+设群$G$作用于集合$X$，即$e\cdot x=x$、$(gh)\cdot x=g\cdot(h\cdot x)$。对$x\in X$定义轨道$G\cdot x=\{g\cdot x:g\in G\}$与稳定子$G_x=\{g\in G:g\cdot x=x\}$。$G_x$为子群，各轨道将$X$分为不交并，且
+\[
+\{gG_x:g\in G\}\longrightarrow G\cdot x,
+\qquad gG_x\longmapsto g\cdot x
+\]
+为双射。若$y=g\cdot x$，则$G_y=gG_xg^{-1}$；若$G$有限，则$|G\cdot x|=[G:G_x]$。
+
+特别地，对$H\le G$定义$N_G(H)=\{g:gHg^{-1}=H\}$，它为子群且包含$H$。当$G$有限时，不同共轭子群$gHg^{-1}$的个数为
+\[
+[G:N_G(H)]\le[G:H].
+\]
+
+\textbf{原文出处：}原笔记第二章“群在集合上的作用”的轨道--稳定子定理，\path{chapters/Part 2/chapter2.tex} 第886--930行；正规化子的定义及验证见第976--990行；共轭子群数的应用见原习题30，第611--627行。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[类方程与有限$p$群的中心]\label{tool:a-class-equation}
+设$G$为有限群，$Z(G)=\{z\in G:zg=gz\ (g\in G)\}$，并定义中心化子$C_G(x)=\{g\in G:gx=xg\}$。若$x_1,\ldots,x_t$分别代表全部非中心共轭类，则
+\[
+|G|=|Z(G)|+\sum_{i=1}^t[G:C_G(x_i)].
+\]
+若$p$为素数、$|G|=p^a$且$a\ge1$，则$p\mid|Z(G)|$，从而$Z(G)\ne\{e\}$。中心$Z(G)$总是$G$的正规交换子群。
+
+\textbf{原文出处：}原笔记第二章“群在集合上的作用”的类方程定理及证明，\path{chapters/Part 2/chapter2.tex} 第953--974行；中心的定义在第757--758行，中心作为正规交换子群用于原习题44，第904--916行。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[西罗第一定理：素数幂阶子群的存在]\label{tool:a-sylow-existence}
+设$G$为有限群、$p$为素数，$k\ge0$为整数，且$p^k\mid|G|$。则$G$存在一个阶为$p^k$的子群。特别地，若$|G|=p^am$、$p\nmid m$，则存在$p^a$阶子群，称为西罗$p$子群；阶为$p$的幂的群称为$p$群。
+
+\textbf{原文出处：}原笔记第二章“西罗定理”的第一定理及定义，\path{chapters/Part 2/chapter2.tex} 第1020--1046行。$k=0$时取平凡子群。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[西罗第二定理：包含与共轭]\label{tool:a-sylow-conjugacy}
+设$G$为有限群、$p$为素数，$P$是$G$的一个西罗$p$子群。对任意$p$子群$H\le G$，存在$g\in G$使
+\[
+H\le gPg^{-1}.
+\]
+因此每个$p$子群都包含于一个西罗$p$子群，且任意两个西罗$p$子群互相共轭。
+
+\textbf{原文出处：}原笔记第二章“西罗定理”的第二定理及证明，\path{chapters/Part 2/chapter2.tex} 第1049--1066行。
+\end{reviewtheorem}
+
+\begin{reviewtheorem}[西罗第三定理：个数与正规性]\label{tool:a-sylow-count}
+设$G$为有限群、$p$为素数，$|G|=p^am$、$p\nmid m$，$P$为一个西罗$p$子群，$n_p$为全部西罗$p$子群的个数。则
+\[
+n_p=[G:N_G(P)],\qquad n_p\mid m,\qquad n_p\equiv1\pmod p.
+\]
+并且$n_p=1$当且仅当$P\trianglelefteq G$。这些结论也允许$a=0$，此时唯一的西罗$p$子群为平凡群。
+
+\textbf{原文出处：}原笔记第二章“西罗定理”的第三定理及证明，\path{chapters/Part 2/chapter2.tex} 第1069--1096行。
+\end{reviewtheorem}
+
+\begin{reviewprop}[素数平方阶群交换（原习题结论）]\label{tool:a-p-square-abelian}
+设$p$为素数、$G$为有限群，$|G|=p^2$。则$G$交换，而且恰有两种可能的同构类型：循环群$C_{p^2}$与$C_p\times C_p$。其中$C_m$表示$m$阶循环群。
+
+\textbf{原文出处：}原习题20的题目及补充证明，\path{chapters/Part 2/chapter2-exercises.tex} 第422--441行。类方程与中心商群的交换性论证在本册第二章习题43第二步展开；本册使用此条时只需其交换性部分。
+\end{reviewprop}
+
+\begin{reviewprop}[$p^2q$阶群存在正规西罗子群（补充）]\label{tool:a-p-square-q-normal}
+设$p,q$为不同素数、$G$为有限群，$|G|=p^2q$。则$G$的西罗$p$子群或西罗$q$子群至少有一种是唯一的，因而$G$至少有一个非平凡真正规西罗子群。
+
+\textbf{原文出处：}原习题25的补充结论与证明，\path{chapters/Part 2/chapter2-exercises.tex} 第510--528行；不是正文另编号的定理。证明见本册第二章习题43第一步，包括$p=2,q=3$的12阶计数情况。
+\end{reviewprop}
+
+\begin{reviewprop}[换位子群、同态像与导出列]\label{tool:a-derived-functor}
+对任意群$G$，令$[x,y]=x^{-1}y^{-1}xy$，$G^{(1)}=\langle[x,y]:x,y\in G\rangle$，并递归定义$G^{(0)}=G$、$G^{(i+1)}=(G^{(i)})^{(1)}$。则$G^{(1)}\trianglelefteq G$，且$G$交换当且仅当$G^{(1)}=\{e\}$。
+
+若$H\le G$，则对每个$i\ge0$有$H^{(i)}\le G^{(i)}$。若$\varphi:G\to Q$为群同态，则
+\[
+\varphi([x,y])=[\varphi(x),\varphi(y)],\qquad
+\varphi(G^{(i)})=(\varphi(G))^{(i)}.
+\]
+特别地，当$\varphi$满射时，$\varphi(G^{(i)})=Q^{(i)}$。因此对$N\trianglelefteq G$，
+\[
+G/N\text{交换}\iff G^{(1)}\le N.
+\]
+
+\textbf{原文出处：}原笔记第二章“群的同态定理”的换位子群定义与交换商群判据，\path{chapters/Part 2/chapter2.tex} 第161--193行；“可解群”的导出列定义与子群、同态像证明分别在第523--539、695--719行。原习题42的补充证明在\path{chapters/Part 2/chapter2-exercises.tex} 第874--889行。
+\end{reviewprop}
+
+\begin{reviewprop}[可解群的子群与同态像]\label{tool:a-solvable-closure}
+称群$G$可解，是指存在整数$r\ge0$使$G^{(r)}=\{e\}$，导出列按\toolref{a-derived-functor}定义。若$G$可解，则任意子群$H\le G$和任意同态像$\varphi(G)$均可解。特别地，每个商群$G/N$（$N\trianglelefteq G$）可解。可解性在同构下保持；交换群均可解。
+
+\textbf{原文出处：}原笔记第二章“可解群”的定义及说明，\path{chapters/Part 2/chapter2.tex} 第523--539行，以及关于子群、同态像和扩张的命题及证明，第695--719行；本册第二章习题42保留原证明顺序。
+\end{reviewprop}
+
+\begin{reviewprop}[可解群的扩张性质]\label{tool:a-solvable-extension}
+设$G$为群，$N\trianglelefteq G$。若$N$与$G/N$均可解，则$G$可解。更具体地，若$N^{(s)}=\{e\}$、$(G/N)^{(r)}=\{N\}$，其中$r,s\ge0$，则
+\[
+G^{(r)}\le N,\qquad G^{(r+s)}=\{e\}.
+\]
+此结论不要求$G$有限。特别地，若$N$和$G/N$均交换，则$G^{(2)}=\{e\}$。
+
+\textbf{原文出处：}原笔记第二章“可解群”中关于子群、同态像和扩张的命题，\path{chapters/Part 2/chapter2.tex} 第695--724行；扩张部分证明见第716--724行。本册第二章习题43第三步按原方法展开，习题44再次应用。
+\end{reviewprop}
+
+\begin{reviewprop}[可解群的有限直积]\label{tool:a-solvable-product}
+设$A,B$为群，其直积按逐分量乘法定义。对所有$i\ge0$有
+\[
+(A\times B)^{(i)}=A^{(i)}\times B^{(i)}.
+\]
+因此若$A^{(r)}=\{e_A\}$、$B^{(s)}=\{e_B\}$，则$A\times B$的第$\max\{r,s\}$个导群平凡，$A\times B$可解。反复使用该结论，任意有限多个可解群的直积可解，其任意子群也可解。
+
+\textbf{原文出处：}原习题45补充证明中的直积导群计算，\path{chapters/Part 2/chapter2-exercises.tex} 第919--935行；直积的逐分量运算定义见原笔记第二章“群的直和”，\path{chapters/Part 2/chapter2.tex} 第1124--1133行。完整计算见本册第二章习题45。
+\end{reviewprop}
+
+\begin{reviewtheorem}[内自同构群与中心商群]\label{tool:a-inner-automorphisms}
+设$G$为群。对$g\in G$，令$c_g:G\to G$、$x\mapsto gxg^{-1}$，则$c_g$为自同构。全体内自同构组成群$\operatorname{Inn}(G)$。映射
+\[
+G\twoheadrightarrow\operatorname{Inn}(G),\qquad g\longmapsto c_g
+\]
+为满同态，其核为$Z(G)$，故$G/Z(G)\cong\operatorname{Inn}(G)$。此外，$\operatorname{Inn}(G)\trianglelefteq\Aut(G)$，且对每个$\alpha\in\Aut(G)$有
+\[
+\alpha c_g\alpha^{-1}=c_{\alpha(g)}.
+\]
+若$G$有限且$Z(G)=\{e\}$，则恰有$|G|$个内自同构。中心平凡且全部自同构均为内自同构的群称为完全群。
+
+\textbf{原文出处：}原笔记第二章“群的自同构群”的内自同构定理，\path{chapters/Part 2/chapter2.tex} 第757--791行；完全群的定义在第809--812行。
+\end{reviewtheorem}
+
+\begin{reviewprop}[自同构保持的元素与子群性质]\label{tool:a-automorphism-invariants}
+设$\alpha\in\Aut(G)$。则$\alpha(e)=e$，且每个元素$g$与$\alpha(g)$的阶相同（包括无限阶）。若$H\le G$，则$\alpha(H)\le G$，$\alpha$限制为$H$到$\alpha(H)$的同构；若$G$有限，则它把西罗$p$子群互相置换。并且
+\[
+\alpha(N_G(H))=N_G(\alpha(H)).
+\]
+若一个自同构固定某个生成集的每个元素，则它为恒等自同构。对由元素阶、子群阶等这些不变性质确定的有限集合或子群族，自同构给出其上的置换；这个置换作用是否单射仍须另证。
+
+\textbf{原文出处：}原习题49用元素阶、西罗子群及其正规化子构造自同构的作用，\path{chapters/Part 2/chapter2-exercises.tex} 第991--1018行；上述性质是该解答所用的同构定义直接推论，这里作为补充工具完整列出，不冒称为正文独立编号命题。定义和内自同构的共轭计算见原笔记第二章“群的自同构群”，\path{chapters/Part 2/chapter2.tex} 第729--731、784--791行。
+\end{reviewprop}
+
+\begin{reviewprop}[循环群的自同构]\label{tool:a-cycle-automorphisms}
+设$C_m=\langle a\rangle$为$m$阶循环群，$m\ge2$。每个自同构由$a$的像唯一决定，且$a$必须映为一个生成元。因此
+\[
+\Aut(C_m)=\{\alpha_k:\alpha_k(a^t)=a^{kt},\ \gcd(k,m)=1\},
+\qquad
+\Aut(C_m)\cong(\Z/m\Z)^\times.
+\]
+这里右边是模$m$的可逆剩余类乘法群。特别地，对素数$p$，有$|\Aut(C_p)|=p-1$。无限循环群的自同构只有恒等与取逆两种，平凡群只有恒等自同构。
+
+\textbf{原文出处：}原笔记第二章“群的自同构群”关于$\Aut(\Z)$与$\Aut(C_m)$的命题及证明，\path{chapters/Part 2/chapter2.tex} 第733--754行。
+\end{reviewprop}
+
+\begin{reviewlemma}[指数2交换群与基向量交换（补充线性代数工具）]\label{tool:a-binary-basis-swap}
+设$G$为有限交换群，且$x^2=e$对每个$x\in G$成立。把群运算改记为加法、$e$记为0，规定$0x=0$、$1x=x$，则$G$成为$\F_2$上的有限维向量空间。它存在一组基$v_1,\ldots,v_d$，每个元素唯一表示为$\sum_i\varepsilon_iv_i$，$\varepsilon_i\in\F_2$，因此$|G|=2^d$。
+
+若$|G|>2$，则$d\ge2$。把$v_1,v_2$交换而固定其余基向量，可唯一线性延拓为一个可逆线性映射；该映射也是$G$的一个非恒等群自同构。
+
+\textbf{原文出处：}原习题47第三种情况的补充证明，\path{chapters/Part 2/chapter2-exercises.tex} 第964--969行。向量空间结构、有限基与线性延拓的具体使用在本册第二章习题47中展开；这里是该题原方法所用的补充工具，并非本章教材另列的定理。
+\end{reviewlemma}
+
+\begin{reviewprop}[一般线性群中的单位上三角西罗子群（补充）]\label{tool:a-gl-sylow}
+设$p$为素数、$n\ge1$，$G=\GL_n(\F_p)$。令$U$为全体对角线全1的上三角矩阵，$B$为全体可逆上三角矩阵，则$U,B$均为$G$的子群，且
+\[
+|U|=p^{n(n-1)/2},\qquad
+|B|=(p-1)^np^{n(n-1)/2},\qquad
+N_G(U)=B.
+\]
+结合\toolref{g-basis-count}的可逆矩阵计数公式
+\[
+|G|=p^{n(n-1)/2}\prod_{i=1}^n(p^i-1),
+\]
+可知$U$是西罗$p$子群，所有西罗$p$子群均为$U$的共轭，个数为
+\[
+n_p=[G:B]=\frac{\prod_{i=1}^n(p^i-1)}{(p-1)^n}.
+\]
+$n=1$时$U=\{1\}$、$B=G$，上述结论仍成立。
+
+\textbf{原文出处：}原习题36及其补充解答，\path{chapters/Part 2/chapter2-exercises.tex} 第733--786行。正规化子的证明使用公共不动空间递归恢复标准子空间链，本册第二章习题36保留并展开该原方法；基础的$\GL_n$阶数见\toolref{g-basis-count}的来源。
+\end{reviewprop}
+
+\begin{reviewprop}[中心商群循环则原群交换]\label{tool:a-center-quotient}
+设$G$为任意群，不要求有限。若商群$G/Z(G)$循环，则$G$交换。具体地，若$G/Z(G)=\langle aZ(G)\rangle$，则每个元素都可写成$a^mz$，其中$m\in\Z$、$z\in Z(G)$，任意两个这样的元素互相交换。因此中心商群一旦循环，就只能为平凡群。
+
+\textbf{原文出处：}原习题39的补充证明，\path{chapters/Part 2/chapter2-exercises.tex} 第823--838行；在原习题20、37、46中也使用此结论。完整证明见本册第二章习题39。
+\end{reviewprop}
+
+\begin{reviewtheorem}[凯莱定理与有限群的正则嵌入]\label{tool:a-cayley}
+每个群$G$都同构于集合$G$上的一个置换群。具体地，对$g\in G$定义左乘置换$L_g(x)=gx$，则
+\[
+G\longrightarrow\operatorname{Sym}(G),\qquad g\longmapsto L_g
+\]
+为单射群同态。特别地，若$|G|=m<\infty$，给$G$的元素编号后得到$G\hookrightarrow S_m$。
+
+\textbf{原文出处：}原笔记第一章“群的同构”中的凯莱定理及左正则表示证明，\path{chapters/Part 2/chapter1.tex} 第406--469行；原笔记第二章“群在集合上的作用”的左平移作用见\path{chapters/Part 2/chapter2.tex} 第857行；本册第二章习题40展开该嵌入。
+\end{reviewtheorem}

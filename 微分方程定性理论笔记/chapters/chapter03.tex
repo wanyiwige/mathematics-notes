@@ -1,0 +1,1213 @@
+% ============================================================
+%  chapter03.tex — 第三章 平面奇点指数
+%  对应原书第三章。
+%  引入向量场旋转数与奇点指数的拓扑不变量，并给出指数计算的
+%  代数公式（Cauchy 指标、Bendixson 公式等）。
+% ============================================================
+
+\newcommand{\chThreeFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{2.7cm}图~#1\\（图片占位）\vspace{2.7cm}}}
+  \end{center}%
+}
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{平面奇点指数}
+
+% ============================================================
+%  §1  连续向量场的旋转数
+% ============================================================
+\section{连续向量场的旋转数}
+
+给定平面 $\mathbb{R}^2$ 上的连续向量场
+\[
+  A(x,y)=\bigl(X(x,y),Y(x,y)\bigr),\qquad (x,y)\in\mathbb{R}^2.
+\]
+设 $\mathscr{L}\subset\mathbb{R}^2$ 是一条有向的闭分段光滑曲线，且
+$A(x,y)$ 在 $\mathscr{L}$ 上非退化，即
+\[
+  X^2(x,y)+Y^2(x,y)\ne0,\qquad (x,y)\in\mathscr{L}.
+\]
+作单位化映射
+\[
+  T(x,y)=\dfrac{A(x,y)}{\lVert A(x,y)\rVert}
+  =\left(
+    \dfrac{X(x,y)}{\sqrt{X^2(x,y)+Y^2(x,y)}},
+    \dfrac{Y(x,y)}{\sqrt{X^2(x,y)+Y^2(x,y)}}
+  \right).
+\]
+它将 $\mathscr{L}$ 映入单位圆周。映射 $T$ 的度 $\mu(T,\mathscr{L})$
+称为向量场 $A$ 沿 $\mathscr{L}$ 的\emph{旋转数}，记为
+\[
+  \gamma(A,\mathscr{L})=\mu(T,\mathscr{L}). \tag{1.1}
+\]
+
+若 $A(x,y)$ 光滑，则
+\[
+  \gamma(A,\mathscr{L})
+  =\dfrac{1}{2\pi}\oint_{\mathscr{L}}
+  \mathrm{d}\arctan\dfrac{Y}{X}. \tag{1.2}
+\]
+
+设 $D\subset\mathbb{R}^2$ 是有界闭区域，其边界为
+\[
+  \partial D=\bigcup_{i=1}^n\partial D_i,
+\]
+并取 $\partial D_i$ 的正向，使区域在行进方向的左侧。定义
+\[
+  \gamma(A,\partial D)=\sum_{i=1}^n\gamma(A,\partial D_i).
+\]
+
+\chThreeFigurePlaceholder{3.1}
+\chThreeFigurePlaceholder{3.2}
+\chThreeFigurePlaceholder{3.3}
+
+\noindent\textbf{性质~1}\quad
+设 $D_1,D_2$ 是两个内部没有公共点的有界闭区域，且 $A$ 在
+$\partial D_1\cup\partial D_2$ 上非退化，则
+\[
+  \gamma(A,\partial(D_1\cup D_2))
+  =\gamma(A,\partial D_1)+\gamma(A,\partial D_2). \tag{1.3}
+\]
+
+\noindent\textbf{性质~2}\quad
+若 $A$ 在有界闭区域 $D$ 上连续且非退化，则
+\[
+  \gamma(A,\partial D)=0.
+\]
+事实上，当 $D$ 单连通时，上式由连续向量场的光滑逼近即得。一般地，
+设 $\partial D=\bigcup_{i=1}^n\partial D_i$，将 $D$ 分成
+$n-1$ 个单连通区域 $G_i$，如图~3.4 所示。由单连通情形和性质~1，
+便有
+\[
+  \gamma(A,\partial D)=\sum_{i=1}^{n-1}\gamma(A,\partial G_i)=0.
+\]
+
+\chThreeFigurePlaceholder{3.4}
+
+\begin{definition}{}{homotopy-vector-field}
+设 $D\subset\mathbb{R}^2$ 是有界闭区域，$A_0(x,y),A_1(x,y)$
+是 $\partial D$ 上的连续、非退化向量场。若存在依赖于参数
+$\lambda$ 的连续向量场，也可看成连续映射
+\[
+  A(x,y,\lambda):\partial D\times[0,1]\longrightarrow\mathbb{R}^2,
+\]
+且
+\[
+  A(x,y,0)=A_0(x,y),\qquad A(x,y,1)=A_1(x,y),
+\]
+并且当 $(x,y)\in\partial D$、$\lambda\in[0,1]$ 时
+$A(x,y,\lambda)$ 恒不为零，则称 $A(x,y,\lambda)$ 为从
+$A_0(x,y)$ 到 $A_1(x,y)$ 的连续形变；此时称 $A_0(x,y)$ 与
+$A_1(x,y)$ 同伦。
+\end{definition}
+
+\begin{theorem}{}{homotopy-transitivity}
+若 $A_0(x,y),A_1(x,y)$ 都与 $A_*(x,y)$ 同伦，则
+$A_0(x,y)$ 与 $A_1(x,y)$ 也同伦。
+\end{theorem}
+
+\begin{proof}
+设从 $A_i(x,y)$ 到 $A_*(x,y)$ 的连续、非退化形变分别为
+$\overline{A}_i(x,y,\lambda)$，$i=0,1$。令
+\[
+  A(x,y,\lambda)=
+  \begin{cases}
+    \overline{A}_0(x,y,2\lambda),&0\leq\lambda\leq\dfrac12,\\
+    \overline{A}_1(x,y,2-2\lambda),&\dfrac12<\lambda\leq1,
+  \end{cases}
+\]
+则 $A(x,y,\lambda)$ 即为从 $A_0(x,y)$ 到 $A_1(x,y)$ 的连续、
+非退化形变。
+\end{proof}
+
+\noindent\textbf{性质~3}\quad
+设 $D\subset\mathbb{R}^2$ 是有界闭区域，则 $\partial D$ 上的同伦
+向量场有相同的旋转数。事实上，$\gamma(A(x,y,\lambda),\partial D)$
+一方面为整数，另一方面关于 $\lambda$ 连续，故只能为常数。
+
+\begin{theorem}{}{same-rotation-nonopposite}
+设 $D\subset\mathbb{R}^2$ 是有界闭区域，在 $\partial D$ 上有两个
+非退化、连续向量场 $A_0(x,y)$ 和 $A_1(x,y)$。若对一切
+$(x,y)\in\partial D$，$A_0(x,y)$ 和 $A_1(x,y)$ 的方向恒不相反，即
+\[
+  \dfrac{A_0(x,y)}{\lVert A_0(x,y)\rVert}
+  \ne-\dfrac{A_1(x,y)}{\lVert A_1(x,y)\rVert},
+  \qquad (x,y)\in\partial D,
+\]
+则
+\[
+  \gamma(A_0,\partial D)=\gamma(A_1,\partial D). \tag{1.5}
+\]
+\end{theorem}
+
+\begin{proof}
+构造连续形变
+\[
+  A(x,y,\lambda)=(1-\lambda)A_0(x,y)+\lambda A_1(x,y),
+  \qquad (x,y)\in\partial D,\quad 0\leq\lambda\leq1.
+\]
+若它在某点退化，则
+\[
+  (1-\lambda_0)A_0(x_0,y_0)=-\lambda_0A_1(x_0,y_0),
+\]
+从而 $A_0(x_0,y_0)$ 和 $A_1(x_0,y_0)$ 的方向相反，矛盾。因此该形变
+非退化，结论由性质~3 得证。
+\end{proof}
+
+\begin{definition}{}{continuous-perturbation}
+设 $D\subset\mathbb{R}^2$ 是有界闭区域，设 $A_0(x,y)$ 是
+$\partial D$ 上的连续、非退化向量场。向量场
+$\Delta A_0(x,y)$ 称作 $A_0(x,y)$ 的连续微小扰动，若
+$\Delta A_0(x,y)$ 在 $\partial D$ 上连续，且
+\[
+  \lVert\Delta A_0(x,y)\rVert<\lVert A_0(x,y)\rVert,
+  \qquad (x,y)\in\partial D.
+\]
+\end{definition}
+
+\begin{theorem}{}{small-perturbation-rotation}
+设 $D\subset\mathbb{R}^2$ 是有界闭区域。若 $A_0(x,y)$ 是
+$\partial D$ 上的连续、非退化向量场，$\Delta A_0(x,y)$ 是
+$A_0(x,y)$ 的连续微小扰动，令
+\[
+  A_1(x,y)=A_0(x,y)+\Delta A_0(x,y),
+\]
+则 $A_1(x,y)$ 在 $\partial D$ 上也非退化，且
+\[
+  \gamma(A_0,\partial D)=\gamma(A_1,\partial D). \tag{1.6}
+\]
+\end{theorem}
+
+\begin{proof}
+构造从 $A_0(x,y)$ 到 $A_1(x,y)$ 的连续形变
+\[
+  A(x,y,\lambda)=A_0(x,y)+\lambda\Delta A_0(x,y),
+  \qquad (x,y)\in\partial D,\quad0\leq\lambda\leq1.
+\]
+由微小扰动的定义，
+\[
+  \lVert A(x,y,\lambda)\rVert
+  \geq\lVert A_0(x,y)\rVert-\lambda\lVert\Delta A_0(x,y)\rVert
+  >(1-\lambda)\lVert\Delta A_0(x,y)\rVert\geq0.
+\]
+故 $A_0(x,y)$ 与 $A_1(x,y)$ 同伦，由性质~3 即得式~(1.6)。
+\end{proof}
+
+% ============================================================
+%  §2  平面奇点指数
+% ============================================================
+\section{平面奇点指数}
+
+对于由连续向量场
+\[
+  A(x,y)=\bigl(X(x,y),Y(x,y)\bigr)
+\]
+所确定的平面微分方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=X(x,y),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=Y(x,y), \tag{2.1}
+\]
+如果 $M_0(x_0,y_0)$ 为方程~(2.1) 的孤立奇点
+\[
+  A(x_0,y_0)=0,
+\]
+则存在充分小的正数 $R$，使圆盘 $S_R=S(M_0,R)$ 内部无异于
+$M_0$ 的奇点。对任意 $0<r_1<r_2<R$，环域
+$S_{r_2}\setminus S_{r_1}$ 内无奇点，因而
+\[
+  \gamma(A,\partial S_{r_2})
+  =\gamma\bigl(A,\partial(S_{r_2}\setminus S_{r_1})\bigr)
+  +\gamma(A,\partial S_{r_1})
+  =\gamma(A,\partial S_{r_1}).
+\]
+可见，对任意 $0<r<R$，$\gamma(A,\partial S_r)$ 是不依赖于
+$r$ 的整数。
+
+\begin{definition}{}{index-of-singularity}
+考虑微分方程~(2.1)，设 $X(x,y),Y(x,y)\in C^0$，又设
+$M_0(x_0,y_0)$ 是其孤立奇点。对一切 $0<r<R$，
+$\gamma(A,\partial S_r)$ 是常数，称它为方程~(2.1) 的奇点
+$M_0(x_0,y_0)$ 的\emph{指数}，记作
+\[
+  J_{M_0}(A)\quad\text{或}\quad J_{M_0}(X,Y).
+\]
+当方程~(2.1) 只有唯一奇点时，简记为 $J(A)$ 或 $J(X,Y)$。
+\end{definition}
+
+连续向量场的奇点有下列几个性质。
+
+\noindent\textbf{性质~1}\quad
+若有界单连通或多连通区域 $D$ 的内部仅包含方程~(2.1) 的有限个奇点
+$M_1,M_2,\ldots,M_k$，且在 $\partial D$ 上无奇点，则
+\[
+  \gamma(A,\partial D)=\sum_{i=1}^kJ_{M_i}(A). \tag{2.2}
+\]
+
+\begin{proof}
+取 $r_i>0$ 充分小，使
+\[
+  S_{r_i}=S(M_i,r_i)\subset D,\qquad
+  S_{r_i}\cap S_{r_j}=\varnothing\quad(i\ne j).
+\]
+由第一节的性质~1、2，
+\[
+  \gamma(A,\partial D)
+  =\gamma\left(A,\partial\left(D\setminus\bigcup_{i=1}^kS_{r_i}\right)\right)
+   +\sum_{i=1}^k\gamma(A,\partial S_{r_i})
+  =\sum_{i=1}^kJ_{M_i}(A).
+\]
+\end{proof}
+
+\noindent\textbf{性质~2}\quad
+若方程~(2.1) 只有孤立奇点，则方程的任何闭轨线 $\mathscr L$ 所围成的
+区域 $D$ 内部所有奇点的指数和为 $1$。
+
+\noindent\textbf{性质~3}\quad
+方程~(2.1) 的闭轨线 $\mathscr L$ 所围成的区域 $D$ 内部一定包含奇点。
+
+\noindent\textbf{性质~4}\quad
+\[
+  J_{M_0}(aX,Y)=\operatorname{sgn}a\cdot J_{M_0}(X,Y),
+  \qquad a\ne0.
+\]
+
+\noindent\textbf{性质~5}\quad
+\[
+  J_{M_0}(X,Y)=-J_{M_0}(Y,X).
+\]
+
+\noindent\textbf{性质~6}\quad
+\[
+  J_{M_0}(X+Y,Y)=J_{M_0}(X,Y).
+\]
+
+为了说明性质~4、5、6 在计算奇点指数时的用处，下面应用公式~(1.2)
+及这些性质来求线性奇点的指数。虽然下面的例题~1--5 都是习题~4 的特例，
+仍将它们单独加以讨论。
+
+\begin{example}{}{index-node}
+方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=x,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=y
+\]
+的奇点 $O(0,0)$ 是临界结点，求它的指数。
+
+\begin{solution}
+由公式~(1.2)，取 $\mathscr L:x^2+y^2=1$，则
+\[
+  J(x,y)=\dfrac{1}{2\pi}\oint_{\mathscr L}
+  \mathrm{d}\tan^{-1}\dfrac{y}{x}
+  =\dfrac{1}{2\pi}\int_0^{2\pi}\mathrm{d}\theta=1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}{}{index-center}
+方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=-y,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=x
+\]
+的奇点 $O(0,0)$ 是中心，求它的指数。
+
+\begin{solution}
+由例~2.1 及奇点指数的性质~4、5，
+\[
+  J(-y,x)=-J(y,x)=J(x,y)=1.
+\]
+\end{solution}
+\end{example}
+
+\begin{example}{}{index-saddle-node}
+求方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=\lambda_1x,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=\lambda_2y,\qquad
+  \lambda_1\lambda_2\ne0
+\]
+的奇点 $O(0,0)$ 的指数。
+
+\begin{solution}
+由例~2.1 及性质~4、5，
+\[
+  J(\lambda_1x,\lambda_2y)
+  =\operatorname{sgn}(\lambda_1\lambda_2)J(x,y)
+  =\operatorname{sgn}(\lambda_1\lambda_2).
+\]
+当 $\lambda_1\lambda_2<0$ 时，$O(0,0)$ 为鞍点，指数为 $-1$；
+当 $\lambda_1\lambda_2>0$ 时，$O(0,0)$ 为结点，指数为 $+1$。
+\end{solution}
+\end{example}
+
+\begin{example}{}{index-focus}
+方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=\mu_1x-\mu_2y,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=\mu_2x+\mu_1y,\qquad
+  \mu_1\mu_2\ne0
+\]
+的奇点 $O(0,0)$ 是焦点，求它的指数。
+
+\begin{solution}
+由例~2.1 及性质~4、5、6，
+\begin{align*}
+  J(\mu_1x-\mu_2y,\mu_2x+\mu_1y)
+  &=\operatorname{sgn}(\mu_1\mu_2)
+    J(\mu_1^2x-\mu_1\mu_2y,\mu_2^2x+\mu_1\mu_2y)\\
+  &=J(y,-x)=J(x,y)=1.
+\end{align*}
+\end{solution}
+\end{example}
+
+\begin{example}{}{index-degenerate-node}
+方程
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=\lambda_1x,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=\xi x+\lambda_1y,\qquad
+  \xi\lambda_1\ne0
+\]
+的奇点 $O(0,0)$ 是退化结点，求它的指数。
+
+\begin{solution}
+由例~2.1 及性质~4、5、6，
+\[
+  J(\lambda_1x,\xi x+\lambda_1y)=J(y,-x)=J(x,y)=1.
+\]
+\end{solution}
+\end{example}
+
+如果 $X(x,y)$ 和 $Y(x,y)$ 是 $x,y$ 的解析函数，则称
+$A(x,y)$ 为解析向量场。对于由解析向量场所确定的方程组~(2.1) 的奇点
+$M_0$，可将 $X,Y$ 在 $M_0$ 上作 Taylor 展开：
+\[
+  X(x,y)=P_m(x-x_0,y-y_0)+\widetilde X(x-x_0,y-y_0),
+\]
+\[
+  Y(x,y)=Q_n(x-x_0,y-y_0)+\widetilde Y(x-x_0,y-y_0).
+\]
+这里 $m$ 次齐次多项式 $P_m$ 和 $n$ 次齐次多项式 $Q_n$ 分别是
+$X(x,y)$ 和 $Y(x,y)$ 的展开式中的最低次项之和；
+$\widetilde X,\widetilde Y$ 分别是所有次数高于 $m,n$ 的各项之和。此时
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=P_m(x,y),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=Q_n(x,y) \tag{2.3}
+\]
+称作方程组~(2.1) 在奇点 $M_0=(x_0,y_0)$ 上的主方程。方程~(2.3) 的
+奇点 $x=y=0$ 对应于方程组~(2.1) 的奇点 $M_0$。通常 $m=n$ 时称为
+齐次奇点；当 $m$ 和 $n$ 不都为 $1$ 时，方程组~(2.1) 的奇点 $M_0$
+称作高次奇点。
+
+\begin{theorem}{}{principal-system-index}
+设方程组~(2.1) 中 $X(x,y),Y(x,y)$ 在奇点 $M_0=(x_0,y_0)$ 上解析。
+若主方程~(2.3) 的奇点 $x=y=0$ 孤立，那么方程组~(2.1) 的奇点 $M_0$
+也孤立，并且
+\[
+  J_{M_0}(X,Y)=J(P_m,Q_n).
+\]
+\end{theorem}
+
+\begin{proof}
+构造从向量场
+\[
+  \bigl(P_m(x-x_0,y-y_0),Q_n(x-x_0,y-y_0)\bigr)
+\]
+到 $(X(x,y),Y(x,y))$ 的连续形变
+\[
+  A_\lambda(x,y)=\bigl(X_\lambda(x,y),Y_\lambda(x,y)\bigr),
+\]
+其中
+\[
+  X_\lambda=P_m(x-x_0,y-y_0)+\lambda\widetilde X(x-x_0,y-y_0),
+\]
+\[
+  Y_\lambda=Q_n(x-x_0,y-y_0)+\lambda\widetilde Y(x-x_0,y-y_0),
+  \qquad 0\leq\lambda\leq1.
+\]
+若结论不成立，则存在异于 $M_0$ 且以 $M_0$ 为极限的点列
+$(x_k,y_k)$ 和数列 $\lambda_k\in[0,1]$，使
+$A_{\lambda_k}(x_k,y_k)=0$。令
+\[
+  x_k-x_0=r_k\cos\theta_k,\qquad
+  y_k-y_0=r_k\sin\theta_k,
+\]
+则 $r_k\to0$。取收敛子列，令
+\[
+  (\cos\theta_k,\sin\theta_k)\to
+  (\cos\bar\theta,\sin\bar\theta),\qquad
+  \lambda_k\to\bar\lambda.
+\]
+将等式除以适当的 $r_k^m,r_k^n$ 后令 $k\to\infty$，得到
+\[
+  P_m(\cos\bar\theta,\sin\bar\theta)
+  =Q_n(\cos\bar\theta,\sin\bar\theta)=0.
+\]
+于是直线
+\[
+  \dfrac{x}{\cos\bar\theta}=\dfrac{y}{\sin\bar\theta}
+\]
+上的所有点都是主方程~(2.3) 的奇点，这与其原点为孤立奇点的假设矛盾。
+故对充分小的圆 $S(M_0,R)$，$A_\lambda$ 在其边界上恒非退化。由同伦不变性，
+即得
+\[
+  J_{M_0}(X,Y)=J(P_m,Q_n).
+\]
+\end{proof}
+
+% ============================================================
+%  §3  Cauchy指标
+% ============================================================
+\section{Cauchy指标}
+
+给定两个 $t$ 的实系数多项式
+\[
+  u(t)=\sum_{i=0}^k a_it^{k-i},\qquad
+  v(t)=\sum_{i=0}^l b_it^{l-i}. \tag{3.1}
+\]
+设分式函数 $v(t)/u(t)$ 的所有变号间断点为
+\[
+  t_1,t_2,\ldots,t_r,t'_1,t'_2,\ldots,t'_{r'},
+\]
+其中
+\[
+  \lim_{t\to t_i-0}\dfrac{v(t)}{u(t)}=-\infty,\qquad
+  \lim_{t\to t_i+0}\dfrac{v(t)}{u(t)}=+\infty
+  \quad(i=1,2,\ldots,r),
+\]
+\[
+  \lim_{t\to t'_i-0}\dfrac{v(t)}{u(t)}=+\infty,\qquad
+  \lim_{t\to t'_i+0}\dfrac{v(t)}{u(t)}=-\infty
+  \quad(i=1,2,\ldots,r').
+\]
+则称整数 $r-r'$ 为分式函数 $v(t)/u(t)$ 的 Cauchy 指标，表示为
+\[
+  N\bigl(u(t),v(t)\bigr)\quad\text{或}\quad N(u,v).
+\]
+
+\begin{example}{}{cauchy-index-example}
+设
+\[
+  v(t)=t^2,\qquad
+  u(t)=(t-2)^2(t-4)^3(t-5)(t-6),
+\]
+求 $N(u,v)$。
+
+\begin{solution}
+$v(t)/u(t)$ 的变号间断点为 $t=4,5,6$。在 $t=4,5,6$ 的左右极限
+依次为
+\[
+  -\infty,+\infty;\qquad +\infty,-\infty;\qquad -\infty,+\infty.
+\]
+故
+\[
+  N(u,v)=2-1=1.
+\]
+\end{solution}
+\end{example}
+
+下面证明 Cauchy 指标 $N(u,v)$ 的几个性质。
+
+\noindent\textbf{性质~1}\quad
+如果式~(3.1) 中 $a_0\ne0$，且 $u,v$ 无公共实根，那么
+$N(u,v)-k$ 为偶数，即 $N(u,v)$ 与整数 $k$ 奇偶性相同。
+
+事实上，此时 $u$ 是 $v/u$ 的变号间断点的单根（或奇重根），
+变号间断点的总个数 $r+r'$ 与 $N(u,v)=r-r'$ 奇偶性相同；而
+$u(t)$ 的单根（或奇重根）总个数与其次数 $k$ 奇偶性相同。
+
+\noindent\textbf{性质~2}\quad
+设式~(3.1) 中 $a_0b_0\ne0$，则
+\[
+  \dfrac{1}{\pi}\int_{-\infty}^{+\infty}
+  \mathrm{d}\tan^{-1}\dfrac{v(t)}{u(t)}
+  =
+  \begin{cases}
+    \operatorname{sgn}(a_0b_0)-N(u,v),&l-k\text{ 为正奇数},\\
+    -N(u,v),&l-k\text{ 不为正奇数}.
+  \end{cases} \tag{3.2}
+\]
+
+\begin{proof}
+设 $v(t)/u(t)$ 的所有间断点为 $\lambda_i$ $(i=1,2,\ldots,s)$，
+并记 $t\to\lambda_i-0$ 和 $t\to\lambda_i+0$ 时的符号分别为
+$\varepsilon_i^-$、$\varepsilon_i^+$；又以
+$\varepsilon^+,\varepsilon^-$ 分别表示 $t\to+\infty,t\to-\infty$
+时的符号。如图~3.5 所示，在相邻间断点之间，
+\[
+  \dfrac{1}{\pi}\int_{\lambda_i}^{\lambda_{i+1}}
+  \mathrm{d}\tan^{-1}\dfrac{v(t)}{u(t)}
+  =\dfrac12(\varepsilon_{i+1}^--\varepsilon_i^+),
+  \qquad i=1,2,\ldots,s-1. \tag{3.3}
+\]
+当 $l\leq k$ 时，两端有有限且相等的极限。若
+$\lim_{t\to\pm\infty}\tan^{-1}(v/u)=\theta$，则
+\[
+  \dfrac{1}{\pi}\left(
+    \int_{-\infty}^{\lambda_1}+\int_{\lambda_s}^{+\infty}
+  \right)\mathrm{d}\tan^{-1}\dfrac{v(t)}{u(t)}
+  =\dfrac12(\varepsilon_1^--\varepsilon_s^+). \tag{3.4}
+\]
+若 $l>k$，则相应的两段积分为
+\[
+  \dfrac{1}{\pi}\int_{-\infty}^{\lambda_1}
+  \mathrm{d}\tan^{-1}\dfrac{v(t)}{u(t)}
+  =\dfrac12(\varepsilon_1^--\varepsilon^-),
+\]
+\[
+  \dfrac{1}{\pi}\int_{\lambda_s}^{+\infty}
+  \mathrm{d}\tan^{-1}\dfrac{v(t)}{u(t)}
+  =\dfrac12(\varepsilon^+-\varepsilon_s^+). \tag{3.5}
+\]
+当 $l-k$ 为正偶数时 $\varepsilon^+=\varepsilon^-$；当 $l-k$
+为正奇数时，
+\[
+  \varepsilon^+=\operatorname{sgn}(a_0b_0),\qquad
+  \varepsilon^-=-\operatorname{sgn}(a_0b_0).
+\]
+将上述各式相加，并注意
+\[
+  N(u,v)=\dfrac12\sum_{i=1}^s(\varepsilon_i^--\varepsilon_i^+),
+\]
+即得式~(3.2)。
+\end{proof}
+
+\chThreeFigurePlaceholder{3.5}
+
+\noindent\textbf{性质~3}\quad
+设式~(3.1) 中 $a_0b_0\ne0$，则
+\[
+  N(u,v)+N(v,u)
+  =\operatorname{sgn}\bigl[(1-(-1)^{l-k})a_0b_0\bigr].
+\]
+
+\noindent\textbf{性质~4}\quad
+\[
+  \lvert N(u,v)\rvert\leq\min(k,l+1).
+\]
+事实上，$v(t)/u(t)$ 的变号间断点为 $u(t)$ 的根，其总个数不超过
+$u(t)$ 的最大次数 $k$，故 $|N(u,v)|\leq k$；再利用性质~3 即得结论。
+
+下面推导两个计算 Cauchy 指标的常用公式。
+
+\noindent\textbf{公式~1}\quad
+如果 $u,v$ 无公共实根，且 $u(t)$ 无实重根。令
+$\lambda_i$ $(i=1,2,\ldots,s)$ 是 $u(t)$ 的所有实根，那么
+\[
+  N(u,v)=\sum_{i=1}^s
+  \operatorname{sgn}\bigl(u'(\lambda_i)v(\lambda_i)\bigr).
+\]
+
+对于式~(3.1) 中给定的多项式 $u$ 与 $v$ 辗转相除（余式改变符号），即
+\[
+  v=w_0u-u_1,\qquad u=w_1u_1-u_2,
+\]
+\[
+  u_{i-1}=w_iu_i-u_{i+1}\quad(i=2,3,\ldots,r),\qquad
+  u_{r+1}=0.
+\]
+令多项式 $u_i$ 的首项为
+$\alpha_it^{m_i}$ $(\alpha_i\ne0,\ 1\leq i\leq r)$，则有
+
+\noindent\textbf{公式~2}\quad
+\[
+  N(u,v)=\sum_{i=1}^r
+  \dfrac{(-1)^{m_i}-1}{2}\operatorname{sgn}\alpha_i.
+\]
+
+\begin{proof}
+因为
+\[
+  \dfrac{v(t)}{u(t)}=w_0(t)-\dfrac{u_1(t)}{u(t)},
+\]
+故
+\[
+  N(u,v)=-N(u,u_1).
+\]
+又 $u$ 与 $u_1$ 的次数差为 $m_1$，首项系数比为 $\alpha_1$。由性质~3，
+\[
+  N(u,u_1)-N(u_1,u)
+  =\dfrac{(-1)^{m_1}-1}{2}\operatorname{sgn}\alpha_1.
+\]
+同理，
+\[
+  N(u_1,u)-N(u_2,u_1)
+  =\dfrac{(-1)^{m_2}-1}{2}\operatorname{sgn}\alpha_2,
+\]
+\[
+  N(u_i,u_{i-1})-N(u_{i+1},u_i)
+  =\dfrac{(-1)^{m_{i+1}}-1}{2}\operatorname{sgn}\alpha_{i+1}.
+\]
+又 $u_{r+1}=0$，故 $N(u_r,u_{r-1})=0$。将各式相加即得公式~2。
+\end{proof}
+
+\begin{example}{}{cauchy-index-euclidean}
+设
+\[
+  u(t)=t^3+t^2+t-1,\qquad v(t)=t^2+2t+3,
+\]
+求 $N(u,v)$ 及 $N(v,u)$，并验证性质~1、3、4。
+
+\begin{solution}
+辗转相除得
+\[
+  v=w_0u-u_1,\qquad w_0=0,
+\]
+\[
+  u=w_1u_1-u_2,\qquad w_1=-t+1,
+\]
+\[
+  u_1=w_2u_2,\qquad
+  w_2=\dfrac12t^2+t+\dfrac32.
+\]
+因此
+\[
+  N(u,v)
+  =\dfrac{(-1)^1-1}{2}\operatorname{sgn}(-1)
+   +\dfrac{(-1)^2-1}{2}\operatorname{sgn}\left(\dfrac12\right)
+  =1.
+\]
+同样可得
+\[
+  N(v,u)=0.
+\]
+\end{solution}
+\end{example}
+
+% ============================================================
+%  §4  齐次方程孤立奇点指数的有理计算
+% ============================================================
+\section{齐次方程孤立奇点指数的有理计算}
+
+对于型如式~(2.3) 的微分方程，其中
+$P_m,Q_n$ 分别为 $x,y$ 的 $m$ 次齐次多项式和 $n$ 次齐次多项式。
+当奇点 $x=y=0$ 孤立时，即 $P_m,Q_n$ 无公因子时，
+$P_m(1,0),Q_n(1,0)$ 不全为零。此时关于奇点指数有下列定理。
+
+\begin{theorem}{}{homogeneous-index}
+设 $x=y=0$ 为式~(2.3) 的孤立奇点，则
+\[
+J(P_m,Q_n)=
+\begin{cases}
+0, & m+n\text{ 为奇数};\\[4pt]
+N\bigl(P_m(t,1),Q_n(t,1)\bigr),
+& m+n\text{ 为偶数，且 }P_m(1,0)\ne0;\\[4pt]
+-N\bigl(Q_n(t,1),P_m(t,1)\bigr),
+& m+n\text{ 为偶数，且 }Q_n(1,0)\ne0.
+\end{cases}
+\]
+\end{theorem}
+
+\begin{proof}
+奇点的指数等于向量场 $(P_m,Q_n)$ 沿单位圆周旋转一周的旋转数，故
+\[
+\begin{aligned}
+J(P_m,Q_n)
+&=\dfrac{1}{2\pi}\int_{-\pi}^{\pi}
+\mathrm{d}\arctan\dfrac{Q_n(\cos\theta,\sin\theta)}
+{P_m(\cos\theta,\sin\theta)}\\
+&=\dfrac{1}{2\pi}\left(\int_{-\pi}^{0}+\int_{0}^{\pi}\right)
+\mathrm{d}\arctan\dfrac{Q_n(\cos\theta,\sin\theta)}
+{P_m(\cos\theta,\sin\theta)}.
+\end{aligned}
+\]
+
+当 $m+n$ 为奇数时，在第一个积分中令 $\tau=\theta+\pi$，便有
+\[
+\begin{aligned}
+J(P_m,Q_n)
+&=-\dfrac{1}{2\pi}\int_{0}^{\pi}
+\mathrm{d}\arctan\dfrac{Q_n(\cos\theta,\sin\theta)}
+{P_m(\cos\theta,\sin\theta)}\\
+&\quad+\dfrac{1}{2\pi}\int_{0}^{\pi}
+\mathrm{d}\arctan\dfrac{Q_n(\cos\theta,\sin\theta)}
+{P_m(\cos\theta,\sin\theta)}=0.
+\end{aligned}
+\]
+
+当 $m+n$ 为偶数时，
+\[
+J(P_m,Q_n)=\dfrac{1}{\pi}\int_{0}^{\pi}
+\mathrm{d}\arctan\dfrac{Q_n(\cos\theta,\sin\theta)}
+{P_m(\cos\theta,\sin\theta)}.
+\]
+令 $r=\dfrac{m-n}{2}$，并令 $t=\dfrac{\cos\theta}{\sin\theta}$，则
+\[
+\begin{aligned}
+J(P_m,Q_n)
+&=-\dfrac{1}{\pi}\int_{-\infty}^{+\infty}
+\mathrm{d}\arctan\left[
+\sin^{n-m}\theta\,
+\dfrac{Q_n\left(\dfrac{\cos\theta}{\sin\theta},1\right)}
+{P_m\left(\dfrac{\cos\theta}{\sin\theta},1\right)}
+\right]\\
+&=-\dfrac{1}{\pi}\int_{-\infty}^{+\infty}
+\mathrm{d}\arctan\left[
+(t^2+1)^r\dfrac{Q_n(t,1)}{P_m(t,1)}
+\right].
+\end{aligned}
+\]
+
+若 $P_m(1,0)\ne0$，则 $P_m(t,1)$ 的次数为 $m$，而
+$(t^2+1)^rQ_n(t,1)$ 的次数不超过 $2r+n=m$。由第3节的式
+~(3.2)，并注意到 $(t^2+1)^r$ 不改变符号，
+得
+\[
+J(P_m,Q_n)=N\bigl(P_m(t,1),Q_n(t,1)\bigr).
+\]
+若 $Q_n(1,0)\ne0$，由对称性以及
+$J(P_m,Q_n)=-J(Q_n,P_m)$，可得
+\[
+J(P_m,Q_n)=-N\bigl(Q_n(t,1),P_m(t,1)\bigr).\qedhere
+\]
+\end{proof}
+
+当式~(2.1) 在奇点 $M_0$ 的主方程~(2.3) 具有孤立原点时，利用定理
+\ref{thm:principal-system-index}和定理\ref{thm:homogeneous-index}，
+便可求得 $M_0$ 的指数。
+
+\begin{theorem}{}{index-bound}
+当 $m+n$ 为偶数且 $x=y=0$ 为式~(2.3) 的孤立奇点时，
+$J(P_m,Q_n)$ 与 $m$ 或 $n$ 同奇偶，并且
+\[
+\left|J(P_m,Q_n)\right|\leq\min\{m,n\}. \tag{4.1}
+\]
+\end{theorem}
+
+\begin{proof}
+若 $P_m(1,0)\ne0$，则 $P_m(t,1)$ 的次数为 $m$。由定理
+\ref{thm:homogeneous-index}及第3节 Cauchy 指标的性质，
+$J(P_m,Q_n)$ 与 $m$ 或 $n$ 同奇偶，并且
+\[
+\left|J(P_m,Q_n)\right|\leq\min\{m,n+1\}.
+\]
+又 $J(P_m,Q_n)$ 与 $n+1$ 奇偶性不同，故
+\[
+\left|J(P_m,Q_n)\right|\leq\min\{m,n\}.
+\]
+当 $Q_n(1,0)\ne0$ 时，同理可证。
+\end{proof}
+
+\begin{example}{}{homogeneous-index}
+求平面微分方程
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}
+=(x^2+xy+y^2)^k\displaystyle\prod_{i=1}^{s}(x-2iy)
+=P_{2k+s}(x,y),\\[6pt]
+\dfrac{\mathrm{d}y}{\mathrm{d}t}
+=\pm(x^2-xy+y^2)^l\displaystyle\prod_{i=1}^{s}
+\bigl[x-(2i-1)y\bigr]
+=Q_{2l+s}(x,y)
+\end{cases}
+\]
+的奇点 $x=y=0$ 的指数。
+\end{example}
+
+\begin{solution}
+由于 $P_{2k+s}(1,0)=1\ne0$，由定理
+\ref{thm:homogeneous-index}，
+\[
+J(P_{2k+s},Q_{2l+s})
+=N\bigl(P_{2k+s}(t,1),Q_{2l+s}(t,1)\bigr).
+\]
+其中
+\[
+\begin{aligned}
+P_{2k+s}(t,1)
+&=(t-2)(t-4)\cdots(t-2s)(t^2+t+1)^k,\\
+Q_{2l+s}(t,1)
+&=\pm(t-1)(t-3)\cdots\bigl(t-(2s-1)\bigr)(t^2-t+1)^l.
+\end{aligned}
+\]
+函数 $Q_{2l+s}(t,1)/P_{2k+s}(t,1)$ 的无穷间断点为
+$t=2,4,\ldots,2s$，并且
+\[
+\varepsilon_{2i}^{-}=(-1)^{1+2(s-i)},\qquad
+\varepsilon_{2i}^{+}=(-1)^{2(s-i)},\qquad i=1,\ldots,s.
+\]
+因此
+\[
+J(P_{2k+s},Q_{2l+s})
+=\dfrac{1}{2}\sum_{i=1}^{s}
+\left(\varepsilon_{2i}^{+}-\varepsilon_{2i}^{-}\right)=s.
+\]
+\end{solution}
+
+由此可见，对于任意给定的自然数 $m,n$，当 $m+n$ 为偶数时，任取与
+$m$ 或 $n$ 同奇偶且满足 $|J|\leq\min\{m,n\}$ 的整数 $J$，总可构造
+齐次多项式 $P_m,Q_n$，使式~(2.3) 的指数为 $J$。
+
+% ============================================================
+%  §5  临界奇点指数的有理计算
+% ============================================================
++\section{临界奇点指数的有理计算}
+
+如果方程组~(2.1) 在奇点 $M_0=(x_0,y_0)$ 上的主方程~(2.3) 不具有孤立奇点
+$x=y=0$，那么方程组~(2.1) 的奇点 $M_0$ 叫临界奇点。
+
+\begin{example}{}{critical-point-linear}
+给定微分方程组
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=ax+by+X_2(x,y),\\
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=cx+dy+Y_2(x,y),
+\end{cases} \tag{5.1}
+\]
+其中 $X_2,Y_2$ 包含二次以上的项。当 $ad-bc=0$ 时，式~(5.1) 在奇点
+$M_0=(0,0)$ 上的主方程不具有孤立奇点 $M_0$，这时奇点 $M_0=(0,0)$
+叫做式~(5.1) 的临界奇点。
+\end{example}
+
+\begin{example}{}{critical-point-example}
+给定微分方程
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=(x-1)(y-1),\\
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=(y-1)^2-(x-1)^4.
+\end{cases} \tag{5.2}
+\]
+式~(5.2) 的奇点 $M_0=(1,1)$ 上的主方程为
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=xy,\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2,
+\]
+不具有孤立奇点 $x=y=0$，这时奇点 $M_0=(1,1)$ 叫做式~(5.2) 的临界奇点。
+\end{example}
+
+对于临界奇点，定理~4.1 不再成立。如何计算临界奇点的指数，过去还没有人讨论过。
+下面也是高维新提供的关于临界奇点指数的有理计算方法。
+
+给定 $x,y$ 的 $i$ 次齐次多项式 $P_i(x,y)$ $(i=m,m+1,\ldots,N_1)$ 与
+$Q_i(x,y)$ $(i=n,n+1,\ldots,N_2)$。如果平面微分方程组
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=P(x,y)=\displaystyle\sum_{i=m}^{N_1}P_i(x,y),\\[4pt]
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=Q(x,y)=\displaystyle\sum_{i=n}^{N_2}Q_i(x,y)
+\end{cases} \tag{5.3}
+\]
+在圆周 $x^2+y^2=\rho^2$ $(\rho>0)$ 上无奇点，而在圆 $x^2+y^2<\rho^2$
+内的所有奇点都是孤立的，此时 $P(0,\rho)$ 与 $Q(0,\rho)$ 不全为零，
+不失一般性可假定 $P(0,\rho)\ne0$。
+
+\begin{theorem}{}{critical-index-rational}
+方程组~(5.3) 在圆 $x^2+y^2<\rho^2$ 内的所有奇点的指数和为
+\[
+-\dfrac12N\left[
+\sum_{i=m}^{N_1}\rho^i(t^2+1)^{N_1-i}P_i(2t,t^2-1),
+\sum_{i=n}^{N_2}\rho^i(t^2+1)^{N_2-i}Q_i(2t,t^2-1)
+\right].
+\]
+\end{theorem}
+
+\begin{proof}
+事实上，上述所有奇点的指数和为 $I$，它等于由式~(5.3) 所确定的向量场
+沿圆周 $x^2+y^2=\rho^2$ 的旋转数。在圆周上令
+\[
+x=\rho\sin\varphi,\qquad y=-\rho\cos\varphi,\qquad -\pi<\varphi<\pi,
+\]
+并作代换 $t=\tan\dfrac{\varphi}{2}$，于是
+\[
+\cos\varphi=\dfrac{1-t^2}{t^2+1},\qquad
+\sin\varphi=\dfrac{2t}{t^2+1}.
+\]
+由计算旋转数的公式~(1.2)，得
+\[
+\begin{aligned}
+I
+&=-\dfrac{1}{2\pi}\int_{-\infty}^{+\infty}
+\mathrm{d}\tan^{-1}
+\dfrac{
+Q\left(\dfrac{2t\rho}{t^2+1},\dfrac{t^2-1}{t^2+1}\rho\right)}
+{
+P\left(\dfrac{2t\rho}{t^2+1},\dfrac{t^2-1}{t^2+1}\rho\right)
+}\\
+&=-\dfrac{1}{2\pi}\int_{-\infty}^{+\infty}
+\mathrm{d}\tan^{-1}
+\dfrac{
+\sum_{i=n}^{N_2}\rho^i(t^2+1)^{N_2-i}Q_i(2t,t^2-1)}
+{
+\sum_{i=m}^{N_1}\rho^i(t^2+1)^{N_1-i}P_i(2t,t^2-1)}.
+\end{aligned}
+\]
+由于 $P(0,\rho)\ne0$，分母中不含 $t$ 而只含 $\rho$ 的项非零。将分子、
+分母同乘适当的 $(t^2+1)$ 的幂后，分母与分子的次数之差不为正数。
+由第3节性质~2 中公式~(3.2)，即得定理结论。
+\end{proof}
+
+\begin{theorem}{}{critical-index-homogeneous}
+如果方程
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=P_{N_1}(x,y),\\
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=Q_{N_2}(x,y)
+\end{cases} \tag{5.4}
+\]
+与方程~(5.3) 的所有奇点都孤立，那么式~(5.3) 在全平面上的所有奇点的
+指数和等于式~(5.4) 的唯一奇点 $x=y=0$ 的指数
+$J(P_{N_1}(x,y),Q_{N_2}(x,y))$。
+\end{theorem}
+
+\begin{proof}
+既然 $x=y=0$ 是式~(5.4) 的孤立奇点，式~(5.4) 不可能有其他奇点。
+若式~(5.4) 还有奇点 $(x_0,y_0)\ne(0,0)$，则对任何实数 $k$ 有
+\[
+P_{N_1}(kx_0,ky_0)^2+Q_{N_2}(kx_0,ky_0)^2=0,
+\]
+这样奇点 $x=y=0$ 就不是孤立的。故式~(5.4) 只有唯一奇点。
+
+式~(5.3) 在有界区域内只有有限个奇点，设为 $M_i$ $(i=1,2,\ldots,s)$。
+构造从 $(P_{N_1},Q_{N_2})$ 到
+$\left(\sum_{i=m}^{N_1}P_i,\sum_{i=n}^{N_2}Q_i\right)$ 的连续形变
+\[
+\left(
+P_{N_1}+\lambda\sum_{i=m}^{N_1-1}P_i,\quad
+Q_{N_2}+\lambda\sum_{i=n}^{N_2-1}Q_i
+\right),\qquad 0\leq\lambda\leq1.
+\]
+取充分大的 $k$，使式~(5.3) 的奇点都在圆 $x^2+y^2<k^2$ 内，并使得当
+$x^2+y^2=k^2$、$0\leq\lambda\leq1$ 时，上式两分量不同时为零。由同伦不变性，
+\[
+\gamma\bigl((P_{N_1},Q_{N_2}),x^2+y^2=k^2\bigr)
+=\gamma\bigl((P,Q),x^2+y^2=k^2\bigr).
+\]
+再由第2节性质~1，左端为 $J(P_{N_1},Q_{N_2})$，右端为
+$\sum_{i=1}^sJ_{M_i}(P,Q)$，定理得证。
+\end{proof}
+
+通常临界奇点的指数可借助定理~5.1 或定理~5.2 来计算。
+
+\begin{example}{}{critical-index-zero}
+求微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=xy=P(x,y),\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2+x^4=Q(x,y) \tag{5.5}
+\]
+的奇点 $M_0(0,0)$ 的指数。
+\end{example}
+
+\begin{solution}
+上方程在奇点 $M_0(0,0)$ 上的主方程为
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=xy,\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2.
+\]
+它的奇点 $x=y=0$ 不是孤立的，故 $M_0$ 是式~(5.5) 的临界奇点。这时
+计算 $M_0$ 的指数不能应用定理~2.1 或定理~4.1。
+
+由于式~(5.5) 只有孤立奇点 $M_0$，故可应用定理~5.1。因 $Q(0,1)\ne0$，
+\[
+\begin{aligned}
+J_{M_0}
+&=\dfrac12N\left(
+\sum_{i=2}^{4}(t^2+1)^{4-i}Q_i(2t,t^2-1),P_2(2t,t^2-1)
+\right)\\
+&=\dfrac12N(t^8+14t^4+1,2t^3-2t)=0.
+\end{aligned}
+\]
+请读者画出方程~(5.5) 在 $M_0(0,0)$ 附近的相图来验证结论 $J_{M_0}=0$。
+\end{solution}
+
+\begin{example}{}{critical-index-two}
+求微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=xy=P(x,y),\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2-x^4=Q(x,y) \tag{5.6}
+\]
+的奇点 $M_0(0,0)$ 的指数。
+\end{example}
+
+\begin{solution}
+$M_0$ 是式~(5.6) 的临界奇点，也是式~(5.6) 的孤立奇点，故可应用定理~5.1
+来计算 $M_0$ 的指数。因 $Q(0,1)\ne0$，由定理~5.1，
+\[
+\begin{aligned}
+J_{M_0}
+&=\dfrac12N\left(
+\sum_{i=2}^{4}(t^2+1)^{4-i}Q_i(2t,t^2-1),P_2(2t,t^2-1)
+\right)\\
+&=\dfrac12N\left((t^2+1)^2(t^2-1)^2-(2t)^4,2t(t^2-1)\right)\\
+&=\dfrac12N(t^8-18t^4+1,2t^3-2t)=2.
+\end{aligned}
+\]
+请读者以第二章第3节中图~2.20 来验证 $J_{M_0}=2$。
+\end{solution}
+
+% ============================================================
+%  §6  Bendixson公式
+% ============================================================
+\section{Bendixson公式}
+
+给定微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=X(x,y),\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=Y(x,y). \tag{6.1}
+\]
+设 $X(x,y),Y(x,y)$ 在原点 $O$ 的邻域中是 $x,y$ 的解析函数，原点 $O$
+是式~(6.1) 的孤立奇点，$h,c,p$ 分别是原点 $O$ 的充分小邻域中双曲扇形、
+椭圆扇形和抛物扇形的个数，又设奇点 $O$ 的指数是 $J$，则有
+Bendixson 公式：
+\[
+J=1+\dfrac{c-h}{2}. \tag{6.2}
+\]
+
+\begin{proof}
+证明 Bendixson 公式。
+
+1. 设 $\{O\}$ 是中心型奇点，即 $\{O\}$ 的任意小邻域内部都有闭轨。
+这时显然有 $J=1$，$c=h=0$，公式~(6.2) 自然成立。
+
+2. 设 $\{O\}$ 是结点或焦点，即 $\{O\}$ 的充分小邻域内的每条轨线当
+$t\to+\infty$（或 $-\infty$）时都进入奇点 $O$。对充分小 $\delta>0$，
+可作在 $\partial S_\delta(O)$ 上与式~(6.1) 同伦的向量场，使得
+$\partial S_\delta(O)$ 无切。于是其旋转数为 $1$，且 $c=h=0$。
+
+3. 设 $O$ 为非中心型和非结点、焦点型奇点。作 $S_\delta(O)$ 满足第二章
+第6节中的定理~6.1 和~6.3。于是由第二章第6节中的定理~6.2，
+$S_\delta(O)$ 中必有轨线进入奇点 $O$。由于 $O$ 不是结点和焦点，
+$S_\delta(O)$ 中至少有一个双曲扇形或椭圆扇形，又由于 $X(x,y),Y(x,y)$
+解析，它们的个数有限。取 $\delta$ 充分小，使 $\partial S_\delta(O)$
+与所有椭圆扇形相交。令 $L_1,L_2,\ldots,L_n$ 是不同扇形的边界，且逆时针
+方向排列。设 $L_r$ 与圆周 $\partial S_\delta(O)$ 的最后一个交点为 $P_r$。
+图~3.6 是 $h=2,c=2,p=2,n=6$ 时的示意图。
+\end{proof}
+
+\chThreeFigurePlaceholder{3.6}
+
+对抛物扇形 $\widehat{OP_kP_{k+1}}$，将圆弧
+$\widehat{P_kP_{k+1}}$ 叫做抛物弧段；对双曲扇形
+$\widehat{OP_iP_{i+1}}$，取轨线段 $\widehat{P'_iT_iP'_{i+1}}$
+叫做双曲弧段；对椭圆扇形 $\widehat{OP_jP_{j+1}}$，取轨线段
+$\widehat{P'_jT_jP'_{j+1}}$ 叫做椭圆弧段。将这些弧段与圆弧段顺次连接
+成一条光滑闭曲线 $l$，并在 $l$ 上把向量场连续形变为与相应弧段相切或法向一致
+的向量场 $A_1(x,y)$。由同伦不变性，$A_1$ 与原向量场在 $l$ 上有相同的旋转数。
+
+对双曲扇形，若两边与 $O$ 的连线夹角为 $\alpha_i$，则 $A_1$ 沿相应弧段的
+旋转角为 $\alpha_i-\pi$；对椭圆扇形，夹角为 $\beta_i$，旋转角为
+$\beta_i+\pi$；对抛物扇形，夹角为 $\gamma_k$，旋转角为 $\gamma_k$。
+又
+\[
+\sum_{i=1}^{h}\alpha_i+\sum_{j=1}^{c}\beta_j+
+\sum_{k=1}^{p}\gamma_k=2\pi. \tag{6.3}
+\]
+故
+\[
+\gamma(A_1,l)
+=\dfrac{1}{2\pi}\left[
+\sum_{i=1}^{h}(\alpha_i-\pi)+
+\sum_{j=1}^{c}(\beta_j+\pi)+
+\sum_{k=1}^{p}\gamma_k\right]
+=1+\dfrac{c-h}{2}.
+\]
+另一方面，向量场 $A_0(x,y)=(X(x,y),Y(x,y))$ 沿闭曲线 $l$ 的旋转数就是
+奇点 $O$ 的指数。因 $A_0$ 与 $A_1$ 在 $l$ 上同伦，
+\[
+J(A_0)=\gamma(A_0,l)=\gamma(A_1,l)
+=1+\dfrac{c-h}{2}.
+\]
+Bendixson 公式证毕。
+
+\noindent\textbf{附注}\quad
+Bendixson 公式对于连续向量场也是成立的。只是要将 $c$ 换成与边界
+$\partial S_\delta(O)$ 至少有两个公共点（不是切点）的椭圆扇形的个数，
+要将 $h$ 换成双曲扇形及双曲椭圆扇形个数的和。
+
+% ============================================================
+%  习题和参考文献
+% ============================================================
+\section*{习题和参考文献}
+\subsection*{习题}
+
+\begin{enumerate}
+\item 试证经坐标轴的移动和旋转，连续向量场的旋转数不变。
+\item 试证经反射变换 $(x,y)\mapsto(-x,y)$ 或 $(x,y)\mapsto(x,-y)$，
+连续向量场的旋转数相差一个符号。
+\item 设连续向量场 $A(x,y)=(X(x,y),Y(x,y))$ 在区域 $D$ 的边界
+$\partial D$ 上非退化，试证
+\[
+\gamma((X,Y),\partial D)=-\gamma((-X,Y),\partial D).
+\]
+\item 考虑微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=ax+by,\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=cx+dy.
+\]
+试证当行列式
+\[
+\left|\begin{matrix}a&b\\c&d\end{matrix}\right|\ne0
+\]
+时，有
+\[
+J(ax+by,cx+dy)
+=\operatorname{sgn}\left|\begin{matrix}a&b\\c&d\end{matrix}\right|J(x,y)
+=\operatorname{sgn}\left|\begin{matrix}a&b\\c&d\end{matrix}\right|.
+\]
+由此推得，当 $O(0,0)$ 是鞍点时，奇点指数为 $-1$；当 $O(0,0)$ 是结点、
+中心、焦点时，奇点指数为 $1$。
+\item 给定平面微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=ax+by+h(x,y),\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=cx+dy+g(x,y),
+\]
+其中 $ad\ne bc$，又 $h(x,y),g(x,y)$ 在 $x=y=0$ 附近有连续偏导数，并设
+\[
+\lim_{x^2+y^2\to0}\dfrac{h(x,y)}{\sqrt{x^2+y^2}}
+=\lim_{x^2+y^2\to0}\dfrac{g(x,y)}{\sqrt{x^2+y^2}}=0.
+\]
+证明此方程的奇点 $x=y=0$ 的指数为 $\operatorname{sgn}(ad-bc)$。由此推得，
+当
+\[
+\left|\begin{matrix}a&b\\c&d\end{matrix}\right|=ad-bc\ne0
+\]
+时，非线性方程的奇点指数等于相应的线性方程的奇点指数。
+\item $u(t)=t^4+3t^3+2t^2-2t+1$，$v(t)=t^2-t+1$，求 $N(u,v)$ 及
+$N(v,u)$，并验证 Cauchy 指标的性质~1、3、4。
+\item 叫多项式 $f(t)$ 为正定（或负定）的，如果存在正数 $\varepsilon>0$，
+使得 $f(t)\geq\varepsilon$（或 $f(t)\leq-\varepsilon$）。正定的或负定的多项式
+叫做定号多项式。试证若 $g_1(t),g_2(t)$ 为定号多项式，则
+\[
+N(g_1(t)u(t),g_2(t)v(t))
+=\begin{cases}
+N(u,v),&\text{当 }g_1,g_2\text{ 同为正定或负定时},\\
+-N(u,v),&\text{当 }g_1,g_2\text{ 一为正定另一为负定时}.
+\end{cases}
+\]
+\item 对于两个无公共间断点的分式函数来说，它们的 Cauchy 指标的和等于它们和的
+Cauchy 指标。
+\item 求平面微分方程
+\[
+\begin{cases}
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=x^3+x^2y-xy^2+y^3+x^4,\\
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=x^5+x^3y^2-x^2y^3+y^5+y^6
+\end{cases}
+\]
+的奇点 $O(0,0)$ 的指数。
+\item 求平面微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=xy-3x^3,\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2-6x^2y+x^4
+\]
+的奇点 $O(0,0)$ 的指数。
+\item 求平面微分方程
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=2x^3-y,\qquad
+\dfrac{\mathrm{d}y}{\mathrm{d}t}=y^2+x^s\quad(s\geq3)
+\]
+的奇点 $O(0,0)$ 的指数。
+\item 试证在结点附近可作包围结点的无切单闭光滑曲线。
+\item 对例题~5.3、5.4 和习题~10、11 验证 Bendixson 公式。
+\end{enumerate}
+
+\subsection*{参考文献}
+
+\begin{enumerate}
+\item 高维新，平面奇点的指数，微分方程论文集，北京大学数学力学系，1963 年，189--198。
+\item 李正元、钱敏，向量场的旋转度理论及其应用，北京大学出版社，1982。
+\item 刘品善，关于微分方程高次奇点的指数，北京大学学报，4(1957)，395--401。
+\item Коренцкий, П.\ Т., Общий метод вычисления индекса особой точки
+дифференциального уравнения, \textit{Научн. Зап. Одес. Политехн. Ин-та},
+23(1960), 56--62.
+\end{enumerate}
+
+\endinput

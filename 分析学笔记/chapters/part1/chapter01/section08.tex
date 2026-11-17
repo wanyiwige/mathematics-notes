@@ -1,0 +1,612 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.8 Dedekind分割，$\R$实数域的构造
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Dedekind分割，$\R$实数域的构造}
+\begin{definition}\label{defofded}
+	在 $\Q$ 上取两个集合 $A$,$B$ 使得$\Q=A \cup B$且$\forall a \in A, b \in B$ ，$a<b$ .称由 $A, B$ 集合构成的双元组 $A \mid B$ 为 $\Q$ 的一个 Dedekind分割（或简称分割），A称为分割的下组，B称为分割的上组.
+	
+\end{definition}
+从逻辑上讲，双元组$A|B$有 4 种情况
+
+（a）$A$有最大数，$B$无最小数.
+
+（b）$A$无最大数，$B$ 有最小数.
+
+（c）$A$无最大数，$B$ 无最小数.
+
+（d）$A$有最大数，$B$ 有最小数.
+
+我们将证明(d)是不可能的.
+\begin{proof}
+	假设$\max A=a, \min B=b \in \mathbb{Q}$ ，由 $\mathbb{Q}$ 的稠密性
+	
+	$\exists p \in \mathbb{Q}$ 使 $a<p<b \Rightarrow p \notin A$ 且 $p \notin B$ 与 $\Q=A \cup B$ 矛盾
+	
+	故$(d)$不成立
+	
+	
+\end{proof}
+我们对 $(a)$,  $(b)$,$(c)$ 进行举例
+
+\begin{example}
+	（a）取 $A=\left\{x:x\leqslant a\right\}\quad B=\mathbb{Q} \backslash A=\{x \mid x>a\} \quad x \in \mathbb{Q}$
+	
+	用区间表示法 $A=(-\infty, a] \quad B=(a,+\infty)$
+	
+	$\max A=a$ 
+	
+	$ \quad \forall x \in A \quad x \leqslant a$ 显然的 $\quad\max A=a$
+	
+	$\min B  $不存在 
+	
+	若 $\min B=b$ 取 $\dfrac{b-a}{2} \quad b-\dfrac{b-a}{2}=\dfrac{a+b}{2}>a$
+	
+	可以保证 $b-\dfrac{b-a}{2}<b \quad b-\dfrac{b-a}{2} \in B$ 矛盾，故 $B$ 无最小数
+	
+	（b）与 （a）同理
+	
+	$(c)$取 $A=\left\{x :x^2<2, x \in \mathbb{Q}\right\} \quad B=\mathbb{Q} \backslash A$
+	
+	先证 $\forall x \in \mathbb{Q}\quad x^2 \neq 2$
+	
+	证明 ：
+	
+	$x=\dfrac{m}{n}\quad m,n$ 是既约的.若 $\left(\dfrac{m}{n}\right)^2=2 \quad m^2=2 n^2 \quad m$ 是偶的 $m=2 k \quad 2 k^2=n^2\quad n$ 亦是偶的,矛盾.
+	
+	$\max A \text{ 不存在}$ 
+	若 $\max A$ 存在 $\max A=x \quad \exists n \in \mathbb{Z}_{+}$使 $\left(x+\dfrac{1}{n}\right)^2<2$
+	
+	$x^2+2 x \dfrac{1}{n}+\dfrac{1}{n^2}<2$ 取 $n>\dfrac{2x+1}{2-x^2}$ 这样 $x+\dfrac{1}{n} \in A$ 使 $x+\dfrac{1}{n}>\max A$矛盾 $ \quad \min B$ 同理
+\end{example}
+$\Q$上是有空隙的，这就是$\R$的构造动机.
+\begin{definition}
+	对 \ref{defofded}中的（a）我们说分割 $A | B$ 定义了 $\max A \in \mathbb{Q}$
+	
+	对 $(b)$，我们说分割 $A | B$ 定义了有理数 $\min B\in \Q$ .
+	
+	对（c）．$A|B$在$\Q$上无定义，我们就说 $A| B$ 定义了一个无理数.
+	
+	$\mathbb{R}$ 定义为所有有理数与无理数的集合.
+	
+\end{definition}
+
+我们对$\R$进行考量， $\mathbb{R}$ 是否可以写成 $\Q$上 所有满足 \ref{defofded}的所有分割构成的集合.显然不能，考虑 $A \mid B$ 与 $A^{\prime} \mid B^{\prime}$ 分别满足 $(a), (b)$ 且 $A$ 的最大数与 $B$ 的最小数相等，$A \mid B$ , $A^{\prime} \mid B^{\prime}$定义了同一个有理数却是不同的分割，故我们对 \ref{defofded} 的定义做出补充.
+\textbf{注：}
+	在以下的叙述中，$\alpha,\beta,\gamma\in\R$,$p,q,r,s,t\in\Q$,$A,B,C\text{表示集合}$
+
+
+\begin{definition}\label{1.8.5}
+	分划，定义为具有以下性质的集合$\alpha\in\Q$
+	
+	$(I)$ $\alpha$ 不空，$\alpha \neq Q$ .
+	
+	$(II)$如果 $p \in \alpha, q \in Q$ 且 $q<p$ ，那么 $q \in \alpha$ .
+	
+	$(III)$如果 $p \in \alpha$ ，那么必有某个 $r \in \alpha$ 使得 $p<r$ .
+\end{definition}
+注意，（III）是说 $\alpha$ 没有最大化；（II）暗含着两件可以直接运用的事实：
+
+如果 $p \in \alpha$ 而 $q \notin \alpha$ ，那么 $p<q$ .
+
+如果 $r \notin \alpha$ 而 $r<s$ ，那么 $s \notin \alpha$ ．
+\begin{construction}
+	我们称$\Q$上所有分划$\alpha$构成的集合为$\R$.
+\end{construction}
+
+
+现在$\R$上定义序关系.
+\begin{definition}
+	规定用＂$\alpha<\beta$＂表示：$\alpha$ 是 $\beta$ 的真子集．
+	
+	我们来验证这符合定义 \ref{1.7.1} 的要求.
+	
+	如果 $\alpha<\beta$ 且 $\beta<\gamma$ ，那么显然 $\alpha<\gamma$ ．（真子集的真子集还是真子集）．对于任何一对 $\alpha, \beta$ ，显然三种关系
+	
+	$$
+	\alpha<\beta, \quad \alpha=\beta, \quad \beta<\alpha
+	$$
+	
+	
+	之中最多有一种成立．为了证明至少有一种成立，假定前两种不成立．于是 $\alpha$ 不是 $\beta$ 的子集．由此存在一个 $p \in \alpha$ ，但 $p \notin \beta$ .如果 $q \in \beta$ ，那么（因为 $p \notin \beta$ ）$q<p$ ，因而由（II）$q \in \alpha$ ．如此就有 $\beta \subset \alpha$ ．因为 $\beta \neq \alpha$ ，所以可以断定 $\beta<\alpha$ ．
+	
+	于是，现在 $\R$ 是有序集了．
+\end{definition}
+
+\begin{theorem}
+	有序集 $\R$ 有最小上界性．
+\end{theorem}
+\begin{proof}
+	令 $A$ 是 $\R$ 的不空子集，且假定 $\beta \in \R$ 是 $A$ 的上界．规定 $\gamma$ 为所有 $\alpha \in A$的并．换言之，$p \in \gamma$ 当且仅当对某个 $\alpha \in A$ 有 $p \in \alpha$ ．今证 $\gamma \in \R$ ，且 $\gamma=\sup A$ ．
+	
+	因 $A$ 不空，存在 $\alpha_0 \in A$ ．这个 $\alpha_0$ 不空．因为 $\alpha_0 \subset \gamma, \gamma$ 也就不空．此外，$\gamma \subset \beta$ （因为每当 $\alpha \in A$ ，必然 $\alpha \subset \beta$ ）所以 $\gamma \neq \Q$ .于是 $\gamma$ 满足性质（I）．为了证明（II）和 （III），取 $p \in \gamma$ .于是有某个 $\alpha_1 \in A$ 使 $p \in \alpha_1$ .如果 $q<p$ ，那么 $q \in \alpha_1$ ，由此 $q \in \gamma$ ；这就证明了（II）．如果选得 $r \in \alpha_1$ 并且 $r>p$ ，就知道 $r \in \gamma$（因为 $\alpha_1 \subset \gamma$ ），所以 $\gamma$满足（III）.
+	
+	于是 $\gamma \in \R$ ．
+	显然只要 $\alpha \in A$ ，必然 $\alpha \leqslant \gamma$ ．
+	假定 $\delta<\gamma$ ，便有 $s \in \gamma$ 而 $s \notin \delta$ ．既然 $s \in \gamma$ ，便有某个 $\alpha \in A$ 使得 $s \in \alpha$ ．因此 $\delta<\alpha$ ，而且 $\delta$ 不是 $A$ 的上界.
+	
+	这就得到了所期望的结果：$\gamma=\sup A$ ．
+	
+	
+\end{proof}
+这样，$\R$满足确界原理.
+
+接下来定义$\R$上的运算.
+\begin{definition}
+	如果 $ \alpha \in \R \text { 且 } \beta \in \R $ ，规定  $\alpha+\beta $ 为由所有和$ r+s$  组成的集，这里 $r \in \alpha$ , $s \in \beta$ .
+	
+	规定 $0^*$ 为所有负有理数组成的集．显然 $0^*$ 是一个分划．我们用 $0^*$ 当作 $0$ ，而来证明加法公理在 $\R$ 中成立.
+	
+\end{definition}
+\begin{proof}
+	
+	
+	$(A1)$需要证明 $\alpha+\beta$ 是分划，显然 $\alpha+\beta$ 是 $\Q$ 的不空子集．取 $r^{\prime} \notin \alpha, s^{\prime} \notin \beta$ ，那么对所有 $r \in \alpha, s \in \beta$ 来说，$r^{\prime}+s^{\prime}>r+s$ .所以 $r^{\prime}+s^{\prime} \notin \alpha+\beta$ .因此 $\alpha+\beta$ 具备性质（I）．
+	
+	取 $p \in \alpha+\beta$ ，则 $p=r+s$ ，这里 $r \in \alpha, s \in \beta$ ．如果 $q<p$ ，那么 $q-s<r$ ，所以 $q-s \in \alpha$ ，而 $q=(q-s)+s \in \alpha+\beta$ ，所以（II）成立．选 $t \in \alpha$ 使 $t>r$ ．于是 $p<t+s$并且 $t+s \in \alpha+\beta$ ．所以（III）成立．
+	
+	
+	$(A2)$ $\alpha+\beta$ 是所有 $r+s$ 的集，其中 $r \in \alpha, s \in \beta$ ．据同一定义，$\beta+\alpha$ 是所有 $s+r$的集．因 $r+s=s+r$ 对所有 $r \in \Q$ 及 $s \in \Q$ 成立，所以 $\alpha+\beta=\beta+\alpha$ ．
+	
+	$(A3)$和上边一样，由 $\Q$ 内的结合律可以推得本条．
+	
+	$(A4)$如果 $r \in \alpha, s \in 0^*$ ，那么 $r+s<r$ ，因此 $r+s \in \alpha$ ．如此就有 $\alpha+0^* \subset \alpha$ ．
+	为了得到相反的包含式，取 $p \in \alpha$ 又取 $r \in \alpha$ ，使 $r>p$ ．就有 $p-r \in 0^*$ 而 $p=r+(p-r) \in \alpha+0^*$ .所以 $\alpha \subset \alpha+0^*$ .于是断定 $\alpha+0^*=\alpha$ .
+	
+	$(A5)$固定了 $\alpha \in R$ ．令 $\beta$ 是具有以下性质的所有 $p$ 的集：
+	存在 $r>0$ 使 $-p-r \notin \alpha$ ．
+	换句话说，有比 $-p$ 小一点的有理数不在 $\alpha$ 内．
+	今证 $\beta \in R$ 并且 $\alpha+\beta=0^{\circ}$ .
+	如果 $s \notin \alpha$ 而 $p=-s-1$ ，那么 $-p-1 \notin \alpha$ ，由此 $p \in \beta$ .所以 $\beta$ 不空.如果 $q \in \alpha$ ，那么 $-q \notin \beta$ ．所以 $\beta \neq \Q$ ．因此 $\beta$ 满足（I）．
+	
+	取 $p \in \beta$ 及 $r>0$ ，使 $-p-r \notin \alpha$ ．若 $q<p$ ，则 $-q-r>-p-r$ ，从而 $-q-r \notin \alpha$ .于是 $q \in \beta$ ，而（II）成立.令 $t=p+(r / 2)$ ，就有 $t>p$ 且 $-t-(r / 2)=-p-r \notin \alpha$ .所以 $t \in \beta$ ．因此 $\beta$ 满足（III）．
+	
+	已经证明了 $\beta \in R$ .
+	如果 $r \in \alpha$ 并且 $s \in \beta$ ，那么 $-s \notin \alpha$ ，因之 $r<-s, r+s<0$ .于是 $\alpha+\beta \subset 0^*$ .
+	为了证明反向包含式，取 $v \in 0^*$ ，令 $w=-v / 2$ .于是 $w>0$ ，必有整数 $n$ 使得 $n w \in \alpha$ 但 $(n+1) w \notin \alpha$ .（注意，这由于 $\Q$ 有阿基米德性！）命 $p=-(n+2) w$ ，则由 $-p-w \notin \alpha$ 有 $p \in \beta$ ，也就有
+	
+	$$
+	v=n w+p \in \alpha+\beta .
+	$$
+	
+	
+	于是 $0^* \subset \alpha+\beta$ ．
+	我们断定了 $\alpha+\beta=0^{*}$ .
+\end{proof}
+\begin{definition}
+	乘法比加法更麻烦一点，这因为负有理数的乘积是正有理数．因此，我们首先限于在 $\R^{+}$里来讨论，$\R^{+}$是所有 $\alpha \in\R$ 之合于 $\alpha>0^*$ 的集．
+	
+	如果 $\alpha \in R^{+}$且 $\beta \in R^{+}$，定义 $\alpha \beta$ 为所有 $p$ 组成的集，$p \leqslant r s$ ，而这里 $r \in \alpha$ ， $s \in \beta, r>0, s>0$ 是随意选定的.
+	
+	定义 $1^*$ 为所有 $q<1$ 组成的集．
+	于是在定义 \ref{1.6.1}中，把 $\F$ 换成 $\R^{+}$，再把 $1^*$ 当作 $1$ 用时，公理（M）及（D）都成立.
+	
+	证法与上一条中详细给出的十分相似，因此从略．
+	
+	令 $\alpha 0^*=0^* \alpha=0^*$ 且令
+	
+	$$
+	\alpha \beta= \begin{cases}(-\alpha)(-\beta) & \text { 如果 } \alpha<0^*, \quad \beta<0^*, \\ -[(-\alpha) \beta] & \text { 如果 } \alpha<0^*, \quad \beta>0^*, \\ -[\alpha \cdot(-\beta)] & \text { 如果 } \alpha>0^*, \quad \beta<0^* .\end{cases}
+	$$
+	
+	
+	就使乘法定义完全了.上式右端的乘积，是已定义了的.
+	既然证了公理$（M）$在 $\R^{+}$中成立，再证它们在 $\R$ 中成立就十分简单了，只要重复应用恒等式 $\gamma=-(-\gamma)$.
+	
+	分配律
+	
+	$$
+	\alpha(\beta+\gamma)=\alpha \beta+\alpha \gamma
+	$$
+	
+	
+	的证明要分情况．例如，设 $\alpha>0^*, \beta<0^*, \beta+\gamma>0^*$ ，那么 $\gamma=(\beta+\gamma)+(-\beta)$且（因已知分配律在 $\R^{+}$成立）
+	
+	$$
+	\alpha \gamma=\alpha(\beta+\gamma)+\alpha \cdot(-\beta),
+	$$
+	
+	
+	但 $\alpha \cdot(-\beta)=-(\alpha \beta)$ ．于是
+	
+	$$
+	\alpha \beta+\alpha \gamma=\alpha(\beta+\gamma)
+	$$
+	
+	
+	其他情形用类似的方法处理．
+\end{definition}
+
+如果 $\alpha, \beta, \gamma \in \R$ ，并且 $\beta<\gamma$ ，那么 $\alpha+\beta<\alpha+\gamma$ .
+
+实际上，从 $\R$ 中$+$的定义显然有 $\alpha+\beta \subset \alpha+\gamma$ ；倘若 $\alpha+\beta=\alpha+\gamma$ ，消去律便暗含有 $\beta=\gamma$ ．
+
+又随之有，$\alpha>0^*$ 当且仅当 $-\alpha<0^*$ ．
+
+如此，$\R$是一个具有最小上界性的有序域.
+\begin{proposition}
+	（a）如果 $x \in \R, y \in \R$ 且 $x>0$ ，那么，必定存在正整数 $n$ ，使得
+	
+	$$
+	n x>y .
+	$$
+	
+	注意，这里的$n$有无穷多个.
+	
+	（b）如果 $x \in \R, y \in \R$ 且 $x<y$ ，那么一定存在 $p \in \Q$ 合于
+	
+	$$
+	x<p<y .
+	$$
+	
+	也一定存在无穷多的$t\in \R\backslash\Q$合于
+	$$x<t<y$$
+	
+\end{proposition}
+
+\begin{proof}
+	（a）设 $\alpha=\left(A_\alpha, \mathbb{Q} \backslash A_\alpha\right)$ 是正分割，即 $\alpha>0^*$ .
+	
+	由序的定义， $0^* \subset \alpha$ ，所以存在某个有理数 $p \in \alpha$ 且 $p>0$
+	
+	取这个正有理数 $p \in \alpha, p>0$ .
+	
+	由有理数的阿基米德性（在 $\mathbb{Q}$ 中成立！），对任意有理数 $M$ ，$\forall x\in\beta,M>x$,存在正整数 $m$ 使得 $m p>M$ .
+	
+	现在给定任意实数 $\beta$ .
+	$\beta$ 是一个分割，即 $\beta \subset \mathbb{Q}$ .
+	取任意有理数 $M \in \mathbb{Q} \backslash \beta$
+	
+	存在正整数 $n$ 使得 $n p>M$ .
+	
+	对于 $\alpha>0^*, ~ n^* \alpha$ 定义为分割
+	
+	$\{r \in \mathbb{Q}:r<n a, a \in \alpha\}$ 
+	
+	$np\in n^*a,\textbf{且}np\in \Q$
+	
+	若 $q \in \beta$ ，则 $q<M<n p$ ，所以 $q \in n^* \alpha$ ，因此 $\beta \subset n^* \alpha$ .
+	
+	并且 $n p \in n^* \alpha$ 但 $n p \notin \beta$（因为 $n p>M$ 且 $M \notin \beta$ 推得所有大于等于 $M$ 的不在 $\beta$ 中）.
+	
+	所以 $\beta \subset n^* \alpha$ 且 $\beta \neq n^* \alpha$ ，即 $n^* \alpha>\beta$ .
+	
+	取$\cdots>n_2>n_1>n$,就有无穷多正整数$n$满足.
+	
+	（b）由 $x<y$ ，得 $y-x>0$ ；于是（a）提供正整数 $n$ 使得
+	
+	$$
+	n(y-x)>1
+	$$
+	
+	
+	再应用 $(\mathrm{a})$ ，可以得到正整数 $m_1$ 及 $m_2$ ，合于 $m_1>n x . m_2>-n x$ ．于是
+	
+	$$
+	-m_2<n x<m_1 \text {. }
+	$$
+	
+	
+	因此有正整数 $m\left(-m_2 \leqslant m \leqslant m_1\right)$ 使得
+	
+	$$
+	m-1 \leqslant n x<m
+	$$
+	
+	
+	将这些不等式联系起来就得到
+	
+	$$
+	n x<m \leqslant 1+n x<n y .
+	$$
+	
+	
+	因为 $n>0$ ，从而
+	
+	$$
+	x<\dfrac{m}{n}<y .
+	$$
+	
+	
+	这就证明了（b），而 $p=m / n$ ，再在$(a,p),(p,b)$
+	上找有理数不断重复，就可以找出无穷多的有理数.
+	
+	在 $(a, b)$ 中有 $p_1 \in \mathbb{Q} \quad a<p_1<b$
+	
+	$$
+	b-p_1>0 \quad \exists t \in \mathbb{N}^{+} \text {s.t. } \dfrac{1}{t}<b-P_1
+	$$
+	
+	$\sqrt{2}$ 是无理数存在 $\sqrt{2} / 2<1 \Rightarrow b-p_1>\dfrac{1}{t}>\dfrac{1}{t} \cdot \dfrac{\sqrt{2}}{2}$
+	
+	$$
+	\Rightarrow b>p_1+\dfrac{\sqrt{2}}{2 t}>p_1>a
+	$$
+	
+	
+	由有理数构成域的性质，$p_1+\dfrac{\sqrt{2}}{2 t}$ 不是有理数，不断重复这一过程， 在 $(a, b)$ 内可取出无穷多无理数.
+\end{proof}
+
+这样我们仅仅使用了有理数上的阿基米德性，和$\sqrt{2}$的存在，就说明了$\R$上的阿基米德性和有理数与无理数在$\R$上的稠密性，这是不依赖于确界原理等实数基本定理的，仅凭戴德金分割的 定义与有理数的性质就可以构造出来.
+\begin{theorem}
+	Dedekind基本定理
+	
+	
+	$\bar{A}|\bar{B}$ 为 $\mathbb{R}$ 上符合\ref{1.8.5} 的分割，在 $\mathbb{R} $ 上，只有一种可能：
+	
+	$\bar{A}$ 无最大值，$\bar{B}$有最小值
+	
+\end{theorem}
+\begin{proof}
+	令 $A=\bar{A} \cap Q, B=\bar{B} \cap \mathbb{Q}$
+	
+	$$
+	\begin{aligned}
+		& A \cap B=(\bar{A} \cap \mathbb{Q}) \cap(\bar{B} \cap \mathbb{Q})=\varnothing\\
+		& A \cup \bar{B}=(\bar{A} \cap \mathbb{Q}) \cup(\bar{B} \cap \mathbb{Q})=\mathbb{Q}
+	\end{aligned}
+	$$
+	
+	$A \subset \bar{A}, B \subset \bar{B} ,\quad \forall a \in A \subset \bar{A}, b \in B \subset \bar{B} \quad b>a$
+	
+	现证$A$中无最大数：
+	
+	假设 $m \in A \cap \mathbb{Q}$ 是 $A \cap \mathbb{Q}$ 的最大数.
+	那么 $m \in A$ ，且 $A$ 没有最大数，所以存在 $t \in A$ 使得 $t>m$ .
+	由于有理数在实数中稠密，存在有理数 $q$ 满足 $m<q<t$ .
+	因此 $q \in A \cap \mathbb{Q}$ .
+	
+	但 $q>m$ ，这与 $m$ 是 $A \cap \mathbb{Q}$ 的最大数矛盾.
+	
+	故 $A|B$ 是 $\Q$ 的一个分割
+	
+	对$A|B$有两种情况
+	\begin{enumerate}
+		\item $A$ 无最大数，$B$有最小数.
+		\item $A$无最大数，$B$无最小数
+		
+	\end{enumerate}
+	
+	
+	
+	
+	
+	对1断言$\bar{A}$无最大数，$\bar{B}$有最小数$b_0$.
+	
+	如若不然，假设$\bar{B}$无最小数
+	
+	$\quad \exists b \in \bar{B}$ 且 $b<b_0$ .
+	
+	因为$ b_0 \in  B \subset \bar{B}$,故$ \exists r \in \mathbb{Q}$ s．t．$b<r<b_0$
+	
+	因为$b \in \bar{B}$,所以 $b \notin \bar{A}$且$r \in \bar{B} \Rightarrow r \notin A \Rightarrow r \in B \quad$ 矛盾
+	
+	再假设 $\bar{A}$ 有最大数，设 a 为 $\bar{A}$ 的最大数 .
+	
+	$a \in \bar{A} \Rightarrow a \notin \bar{B} ,\quad b_0$ 为 $\bar{B}$ 的最小数 $b_0>a$.
+	
+	$\exists r \in \mathbb{Q}, a < r<b_0$ .因 $r<b_0 \quad r \notin \bar{B}, r \in \bar{A}$ 矛盾
+	
+	对（2）．$A|B$定义了一个无理数 $c \in \mathbb{R}=\bar{A} \cup \bar{B}$
+	
+	
+	
+	有一种情况
+	
+	$c \in \bar{B} \Rightarrow$ $\bar{A}$无最大，$\bar{B}$有最小 $c$.
+	
+	若 $\bar{B}$ 无最小数，$\exists b \in \bar{B}$ s．t．$b <c\Rightarrow \exists r \in \mathbb{Q}$ ，s．t．$b<r<c \quad r \in \bar{B}$
+	
+	且 $r \in \mathbb{Q} \Rightarrow r \in B$ 与 $B$ 中元素小于 $c$ 矛盾
+	
+	若$\bar{A}$ 有取大数记为 $a^{\prime},  a^{\prime} \in \bar{A} $ 
+	
+	$\exists r \in \mathbb{Q}$ 使得$a^{\prime}<r<c \quad r \notin \bar{A} \textbf{也} r \notin 6\bar{B} 
+	$矛盾.
+	
+	
+\end{proof}
+这样，我们就完成了 Dedekind基本定理的证明.
+
+可以看到的是，在Dedekind基本定理的证明中，我们使用了实数的稠密性，这由确界定理推出，也就说明确界原理是能够推出Dedekind基本定理的，在第二章中，我们将看到，这两条定理是实数基本定理的其中之二，现在我们可以试着证明由戴德金基本定理能够推出确界原理.
+\begin{proof}
+	设 $S$ 为有上界集合．若 $\exists \eta \in S, \exists \eta$ 为 $S$ 的上界，那么容易知道，$\eta=\sup S$ ．
+	
+	否则，记 $S$ 的上界集为 $B$ ，令 $A=\R \backslash B$ ．显然 $S \subseteq A$ ，且容易知道，$A| B$ 构成 $\R$ 的一个分划．由 Dedekind 准则和所定义的分化可知，$B$ 必有最小元 $c$ ．若 $\exists \varepsilon_0>0$ ，使得 $\forall x \in S$ 都有 $x \leqslant c-\varepsilon_0$ ，则 $c-\varepsilon_0 \in B$ ．因为 $c$ 是 $B$ 的最小元，所以 $c-\varepsilon_0 \geqslant c$ 矛盾．故 $\forall \varepsilon>0$ ， $\exists x \in S$ ，使得 $x>c-\varepsilon_0$ ，即 $c$ 为 $S$ 的上确界．
+\end{proof}
+\begin{proposition}
+	\label{1.8.13}
+	对于每个实数 $x>0$ 及每个整数 $n>0$ ，有一个且仅有一个实数 $y>0$ ，使得 $y^n=x$ .
+\end{proposition}
+
+
+此数 $y$ 记作 $\sqrt[n]{x}$ 或 $x^{\dfrac{1}{n}}$ .
+\begin{proof}
+	这样的 $y$ 最多有一个：这是显然的，因为由 $0<y_1<y_2$ 就有 $y_1^n<y_2^n$ ．
+	
+	设由满足 $t^n<x$ 的所有正实数 $t$ 组成集 $E$ ．
+	如果 $t=x /(1+x)$ ，那么 $0<t<1$ ．由此 $t^n<t<x$ ．所以 $t \in E$ 而 $E$ 不空．
+	如果 $t>1+x$ ，那么 $t^n \geqslant t > x$ ，因此 $t \notin E$ ．所以 $1+x$ 是 $E$ 的上界．
+	于是，$\R$的最小上界性保证
+	
+	$$
+	y=\sup E
+	$$
+	
+	
+	存在．为了证明 $y^n=x$ ，我们证明无论是 $y^n<x$ 或是 $y^n>x$ 都会导致矛盾．
+	
+	恒等式 $b^n-a^n=(b-a)\left(b^{n-1}+b^{n-2} a+\cdots+a^{n-1}\right)$ 当 $0<a<b$ 时，能产生不等式
+	
+	$$
+	b^n-a^n<(b-a) n b^{n-1}
+	$$
+	
+	
+	假如 $y^n<x$ ，选一个 $h$ ，要它满足 $0<h<1$ 和
+	
+	$$
+	h<\dfrac{x-y^n}{n(y+1)^{n-1}}
+	$$
+	
+	
+	置 $a=y, b=y+h$ ，就得
+	
+	$$
+	(y+h)^n-y^n<h n(y+h)^{n-1}<h n(y+1)^{n-1}<x-y^n
+	$$
+	
+	
+	于是 $(y+h)^n<x$ 而 $y+h \in E$ ．因 $y+h>y$ ，这与 $y$ 是 $E$ 的上界这事实矛盾．
+	假如 $y^n>x$ ，置
+	
+	$$
+	k=\dfrac{y^n-x}{n y^{n-1}}
+	$$
+	
+	
+	于是 $0<k<y$ ．如果 $t \geqslant y-k$ ，便可以推知
+	
+	$$
+	y^n-t^n \leqslant y^n-(y-k)^n<k n y^{n-1}=y^n-x
+	$$
+	
+	
+	所以 $t^n>x$ ．于是 $t \notin E$ ．因之 $y-k$ 是 $E$ 的上界．
+	但 $y-k<y$ ，这与 $y$ 是 $E$ 的最小上界的事实矛盾．
+	由此 $y^n=x$ .证明完毕.
+	
+\end{proof}
+\begin{corollary}
+	如果 $a, b$ 是正实数，而 $n$ 是正整数，那么
+	
+	$$
+	(a b)^{\dfrac{1}{n}}=a^{\dfrac{1}{n}} b^{\dfrac{1}{n}}
+	$$
+	
+	
+	
+\end{corollary}
+\begin{proof}
+	命 $\alpha=a^{1 / n}, \beta=b^{1 / n}$ ．由于乘法可以交换，所以
+	
+	$$
+	a b=\alpha^n \beta^n=(\alpha \beta)^n
+	$$
+	
+	
+	由\ref{1.8.13}所说的惟一性可以断定：$(a b)^{1 / n}=\alpha \beta=a^{1 / n} b^{1 / n}$ ．
+	
+	
+\end{proof}
+\begin{proposition}
+	我们指出实数和十进小数之间的关系
+	
+	设 $x>0$ 是实数，令 $n_0$ 是合于 $n_0 \leqslant x$ 的最大整数.（注意，$n_0$ 的存在性，依赖于 $\R$ 的阿基米德性.）在取定 $n_0, n_1, \cdots, n_{k-1}$ 之后，令 $n_k$ 是合于
+	
+	$$
+	n_0+\dfrac{n_1}{10}+\cdots+\dfrac{n_k}{10^k} \leqslant x .
+	$$
+	
+	
+	的最大整数．令 $E$ 是由数
+	$$
+	n_0+\dfrac{n_1}{10}+\cdots+\dfrac{n_k}{10^k} \quad(k=0,1,2, \cdots)
+	$$
+	组成的集，于是 $ x=\sup E .x $的十进小数展开式是 
+	$n_0 \cdot \overline{n_1 n_2 n_3 \cdots}$
+\end{proposition}
+\begin{proposition}
+	有理数是有限或循环小数,无理数是无限不循环小数
+\end{proposition}
+
+
+注：以下的证明中，使用了带余除法存在性的定理，证明移步至代数或数论的笔记中.
+\begin{proof}
+	$r \in \mathbb{Q}, q, p \in \mathbb{Z} $ 且 $(p, q)=1$ 现假定 $p, q$ 都大于 0 ，若小于 0 ，整体取负号就移入正号上的讨论.
+	
+	$$
+	\exists a_0, r_0 \in \mathbb{Z}\quad0 \leqslant r_0<q \text { s.t. } p=q \cdot a_0+r_0
+	$$
+	
+	
+	小数部分由 $r_0$ 开始. $a_0$ 是 $\dfrac{p}{q}$ 的整数部分
+	对 $n \geqslant 0$
+	
+	$$
+	10 r_n=q \cdot a_{n+1}+r_{n+1} \quad 0 \leqslant r_{n+1}<9
+	$$
+	
+	$a_{n+1}$ 是小数点后第 $n+1$ 位数字，$r_{n+1}$ 是新的余数.
+	
+	若某 $r_k=0$ 则 $10 r_k=0 \quad a_{k+1}=r_{k+1}=0 \rightarrow$ 小数点后终止 ，也就是有限小数
+	
+	若所有 $r_n \neq 0$ ，则 $r_n \in\{1,2, \cdots, q-1\}$ 只有 $q-1$ 种可能的非零余数
+	
+	第 $q$ 个余数 $r_q$ 之前一共 $q+1$ 个余数 $r_0, r_1, \cdots, r_q$ 由抽屉原理，
+	$q+1$ 个余数中必然存在 $i<j$ s．t．$r_i=r_j$
+	
+	设$i$是最小的这样一个指标，
+	
+	$$
+	\begin{gathered}
+		10 r_i=q a_{i+1}+r_{i+1} \\
+		10 r_j=qa_{j+1}+r_{j+1} \\
+		r_i=r_j\text{故} \quad 10 r_i=10 r_j \Leftrightarrow q\left(a_{i+1}-a_{j+1}\right)=r_{j+1}-r_{i+1}
+	\end{gathered}
+	$$
+	
+	由于 $0 \leqslant r_{i+1}, r_{j+1}<q \quad$ 有 $\left|r_{j+1}-r_{i+1}\right|<q$ ，而左边是 $q$ 的倍数，只能为0.
+	
+	故 $a_{i+1}=a_{j+1}, r_{i+1}=r_{j+1}$，
+	
+	如此 $a_{i+k}=a_{j+k}, r_i+R=r_j+R$ 对所有 $k \geqslant 0$ 成立，
+	
+	因此从$i$开始，小数部分呈现同期 $j-i$ 的循环.
+	
+	反向来说明有限小数.
+	
+	$$
+	x=a_0 .\overline{a_1 \cdot \cdots a_n}
+	$$
+	
+	
+	可以写成
+	
+	$$
+	\dfrac{10^na_0+10^{n-1}a_1+\cdots+a_n}{10^n}
+	$$
+	
+	无限循环小数
+	
+	$$
+	\begin{aligned}
+		& \quad y=a_{0}. a_1 \cdot a_n \dot{b}_1 \cdots \dot{b}_m \\
+		& y \cdot 10^{m+n}-y 10^n=\overline{a_0 a_1 \cdots a_n b_1 \cdots b_m}-\overline{a_0 \cdots a_n} \\
+		& y=\dfrac{\overline{a_0 \cdots a_n b_1 \cdots b_m}-\overline{a_0 \cdot a_n}}{10^{m+n}-10^n}
+	\end{aligned}
+	$$
+	对无理数，因无理数与有理数构成所有实数，有限或循环小数与无限不循环小数也构成所有实数，而有理数与有限或循环小数等同，故无理数是无限不循环小数.
+\end{proof}
+\begin{definition}广义实数系由实数域 $\R$ 及两个符号 $+\infty$ 与 $-\infty$ 组成．我们保留 $\R$ 中原来的顺序，并对任何 $x \in \R$ 规定
+	
+	$$
+	-\infty<x<+\infty
+	$$
+	
+\end{definition}
+显然，$+\infty$ 是广义实数系的每个子集的上界，且每个不空子集有最小上界．例如，如果 $E$ 是一个不空实数集，它在 $R$ 中不上有界，那么在广义实数系中 $\sup E=+\infty$ .
+
+对于下界可完全一样进行讨论.
+
+广义实数系不成域，但习惯上作如下的约定：
+\begin{itemize}
+	\item 如果 $x$ 是实数，那么
+	
+	$$
+	x+\infty=+\infty, x-\infty=-\infty \quad \dfrac{x}{+\infty}=\dfrac{x}{-\infty}=0
+	$$
+	\item 如果 $x>0$ ，那么 $x \cdot(+\infty)=+\infty, x \cdot(-\infty)=-\infty$ 
+	\item 如果 $x<0$ ，那么 $x \cdot(+\infty)=-\infty, x \cdot(-\infty)=+\infty$ .
+\end{itemize}
+在chapter2中，我们给出$+\infty,-\infty$的定义.

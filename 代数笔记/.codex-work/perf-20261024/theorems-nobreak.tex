@@ -1,0 +1,187 @@
+% ------------------------------------
+% theorem 样式
+% ------------------------------------
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+headpunct=,
+postheadspace=0.5em,
+bodyfont=\normalfont,
+headformat=\NAME
+]{mycolored}
+
+\declaretheorem[style=mycolored, name=, within=section]{theorem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{lemma}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{corollary}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{proposition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{definition}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{remark}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{example}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{construction}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{problem}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{axiom}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{prp}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{note}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{ill}
+\declaretheorem[style=mycolored, name=, sibling=theorem]{algo}
+
+% ------------------------------------
+% 修正编号：title 中使用计数器+1
+% ------------------------------------
+\newcommand{\NextTheoremNum}{\thesection.\number\numexpr\value{theorem}+1\relax}
+\newcommand{\NextLemmaNum}{\thesection.\number\numexpr\value{lemma}+1\relax}
+\newcommand{\NextCorNum}{\thesection.\number\numexpr\value{corollary}+1\relax}
+\newcommand{\NextPropNum}{\thesection.\number\numexpr\value{proposition}+1\relax}
+\newcommand{\NextDefNum}{\thesection.\number\numexpr\value{definition}+1\relax}
+\newcommand{\NextRemNum}{\thesection.\number\numexpr\value{remark}+1\relax}
+\newcommand{\NextExNum}{\thesection.\number\numexpr\value{example}+1\relax}
+\newcommand{\NextConNum}{\thesection.\number\numexpr\value{construction}+1\relax}
+\newcommand{\NextProblemNum}{\thesection.\number\numexpr\value{problem}+1\relax}
+\newcommand{\NextAxiomNum}{\thesection.\number\numexpr\value{axiom}+1\relax}
+\newcommand{\NextPrpNum}{\thesection.\number\numexpr\value{prp}+1\relax}
+\newcommand{\NextNoteNum}{\thesection.\number\numexpr\value{note}+1\relax}
+\newcommand{\NextIllNum}{\thesection.\number\numexpr\value{ill}+1\relax}
+\newcommand{\NextAlgoNum}{\thesection.\number\numexpr\value{algo}+1\relax}
+
+% ------------------------------------
+% 彩色 tcolorbox 定理环境
+% 内部白色：colback=white，只用边框颜色
+% 仅蓝 / 绿 / 橙三色
+% ------------------------------------
+% 蓝色系：定理、推论、命题、公理、空真原理
+\AtBeginEnvironment{theorem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定理 \NextTheoremNum]}
+	\AtEndEnvironment{theorem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{corollary}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=推论 \NextCorNum]}
+	\AtEndEnvironment{corollary}{\end{tcolorbox}}
+
+\AtBeginEnvironment{proposition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=命题 \NextPropNum]}
+	\AtEndEnvironment{proposition}{\end{tcolorbox}}
+
+\AtBeginEnvironment{axiom}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=LogicDarkBlue,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=公理 \NextAxiomNum]}
+	\AtEndEnvironment{axiom}{\end{tcolorbox}}
+
+
+\AtBeginEnvironment{lemma}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=LogicAccentBlue,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=引理 \NextLemmaNum]}
+	\AtEndEnvironment{lemma}{\end{tcolorbox}}
+
+% 橙色系：定义、注记、示例、构造、记号、说明
+\AtBeginEnvironment{definition}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=LogicDarkBlue,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=定义 \NextDefNum]}
+	\AtEndEnvironment{definition}{\end{tcolorbox}}
+
+\AtBeginEnvironment{remark}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=LogicDarkBlue,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=注记 \NextRemNum]}
+	\AtEndEnvironment{remark}{\end{tcolorbox}}
+
+\AtBeginEnvironment{example}{%
+	\par\theoremFont
+	\noindent\textbf{示例 \NextExNum.}\quad
+}
+\AtEndEnvironment{example}{\par}
+
+\AtBeginEnvironment{construction}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=构造 \NextConNum]}
+	\AtEndEnvironment{construction}{\end{tcolorbox}}
+
+\AtBeginEnvironment{note}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=记号 \NextNoteNum]}
+	\AtEndEnvironment{note}{\end{tcolorbox}}
+
+% 问题/题目环境：AccentBlue 区分于定理
+\AtBeginEnvironment{problem}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueAccent,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=问题 \NextProblemNum]}
+\AtEndEnvironment{problem}{\end{tcolorbox}}
+
+\AtBeginEnvironment{ill}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=BlueMain,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=说明 \NextIllNum]}
+	\AtEndEnvironment{ill}{\end{tcolorbox}}
+
+% 算法环境
+\AtBeginEnvironment{algo}{%
+	\theoremFont
+	\begin{tcolorbox}[enhanced,
+		colback=white,colframe=LogicAccentBlue,
+		arc=4pt,boxrule=0.6pt,leftrule=3pt,
+		title=算法 \NextAlgoNum]}
+	\AtEndEnvironment{algo}{\end{tcolorbox}}
+
+% ------------------------------------
+% Solution 环境：无色框，与 proof 相同，不编号
+% ------------------------------------
+\newenvironment{solution}{%
+	\par\proofFont
+	\noindent\textbf{解答:}\quad
+}{%
+	\hfill $\square$\par
+}
+
+% ------------------------------------
+% 证明环境：无色块 + 中文楷体
+% ------------------------------------
+\renewenvironment{proof}[1][证明]{%
+	\par\proofFont
+	\noindent\textbf{#1.}\quad
+}{%
+	\hfill $\square$\par
+}
+% 添加星号版本（无编号）
+\declaretheorem[numberwithin=chapter, name=定理, sibling=theorem]{theorem*}
+\declaretheorem[numberwithin=chapter, name=问题, sibling=problem]{problem*}
+\setstretch{1.2}
+
+
+% ------------------------------------
+% 其它设置
+% ------------------------------------
+\setstretch{1.2}
+\geometry{textheight=9in,textwidth=5.5in,top=1in}

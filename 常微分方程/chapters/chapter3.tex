@@ -1,0 +1,1485 @@
+\setchapterimage{figure/Chapter3封面图}
+\setchapterintro{}
+\chapter{线性方程}\label{chap:线性方程}
+
+考虑微分方程组
+\[
+	\dfrac{\dd \vect{x}}{\dd t}=\vect{f}(\vect{x}),
+\]
+其中 $\vect{x},\vect{f}\in\R^n$。若函数 $\vect{f}(\vect{x})$ 在
+$\vect{x}=\vect{x}_0$ 处具有 Taylor 展开
+\[
+	\vect{f}(\vect{x})
+	=\vect{f}(\vect{x}_0)
+	+A(\vect{x}-\vect{x}_0)
+	+\vect{R}(\vect{x}),
+\]
+其中 $\norm{\vect{R}(\vect{x})}$ 是
+$\norm{\vect{x}-\vect{x}_0}$ 的高阶无穷小，$A$ 为 $n\times n$ 阶矩阵，
+则在 $\vect{x}=\vect{x}_0$ 附近，可以用线性部分
+\[
+	\vect{f}(\vect{x}_0)+A(\vect{x}-\vect{x}_0)
+\]
+近似 $\vect{f}(\vect{x})$。因此，原方程组在 $\vect{x}_0$ 附近的解可由线性方程组
+\[
+	\dfrac{\dd \vect{x}}{\dd t}
+	=\vect{f}(\vect{x}_0)+A(\vect{x}-\vect{x}_0)
+\]
+的解来近似。从这个意义上说，研究线性微分方程及线性微分方程组，
+是进一步研究一般非线性微分方程及微分方程组的基础。
+
+\section{存在性与唯一性}\label{sec:线性方程组的存在性与唯一性}
+
+考虑含 $n$ 个未知函数的一阶线性微分方程组
+\[
+	\begin{cases}
+		\dfrac{\dd x_1}{\dd t}
+		=a_{11}(t)x_1+a_{12}(t)x_2+\cdots+a_{1n}(t)x_n+f_1(t),\\
+		\dfrac{\dd x_2}{\dd t}
+		=a_{21}(t)x_1+a_{22}(t)x_2+\cdots+a_{2n}(t)x_n+f_2(t),\\
+		\hspace{4.5cm}\vdots\\
+		\dfrac{\dd x_n}{\dd t}
+		=a_{n1}(t)x_1+a_{n2}(t)x_2+\cdots+a_{nn}(t)x_n+f_n(t).
+	\end{cases}
+\]
+其中已知函数 $a_{ij}(t)$、$f_i(t)$（$i,j=1,2,\ldots,n$）都是区间
+$[\alpha,\beta]$ 上的连续函数。令
+\[
+	A(t)=
+	\begin{pmatrix}
+		a_{11}(t) & \cdots & a_{1n}(t)\\
+		a_{21}(t) & \cdots & a_{2n}(t)\\
+		\vdots    & \ddots & \vdots\\
+		a_{n1}(t) & \cdots & a_{nn}(t)
+	\end{pmatrix},
+	\qquad
+	\vect{f}(t)=
+	\begin{pmatrix}
+		f_1(t)\\
+		f_2(t)\\
+		\vdots\\
+		f_n(t)
+	\end{pmatrix},
+	\qquad
+	\vect{x}=
+	\begin{pmatrix}
+		x_1\\
+		x_2\\
+		\vdots\\
+		x_n
+	\end{pmatrix}.
+\]
+\begin{definition}\label{def:齐次与非齐次线性方程组}
+	上述方程组可写成矩阵形式
+\[
+	\dfrac{\dd \vect{x}}{\dd t}
+	=A(t)\vect{x}+\vect{f}(t).
+\]
+当 $\vect{f}(t)\equiv\boldsymbol{0}$ 时，称该方程组为\textbf{齐次线性方程组}；
+否则称为\textbf{非齐次线性方程组}。
+
+\end{definition}
+\begin{theorem}\label{thm:线性方程组的存在唯一性}
+	设 $A(t)$ 是区间 $[\alpha,\beta]$ 上的 $n\times n$ 阶连续矩阵函数，
+	$\vect{f}(t)$ 是该区间上的 $n$ 维连续列向量函数。则对任意
+	$t_0\in[\alpha,\beta]$ 及任意常向量 $\vect{x}^{\,0}\in\R^n$，
+	初值问题
+	\[
+		\dfrac{\dd \vect{x}}{\dd t}
+		=A(t)\vect{x}+\vect{f}(t),
+		\qquad
+		\vect{x}(t_0)=\vect{x}^{\,0}
+	\]
+	在整个区间 $[\alpha,\beta]$ 上存在唯一解。
+\end{theorem}
+
+为证明这一定理，先介绍矩阵函数的一些基本性质。矩阵函数的加法、乘法
+与常数矩阵相同。若
+\[
+	A(t)=\bigl(a_{ij}(t)\bigr),
+\]
+且每个元素 $a_{ij}(t)$ 都是连续函数或可微函数，则分别称 $A(t)$ 为
+连续矩阵函数或可微矩阵函数。在可微的情形下，
+\[
+	\dfrac{\dd A(t)}{\dd t}
+	=\left(\dfrac{\dd a_{ij}(t)}{\dd t}\right).
+\]
+矩阵函数的导数满足
+\[
+	\dfrac{\dd}{\dd t}\bigl(A_1(t)+A_2(t)\bigr)
+	=\dfrac{\dd A_1(t)}{\dd t}
+	+\dfrac{\dd A_2(t)}{\dd t},
+\]
+\[
+	\dfrac{\dd}{\dd t}\bigl(A_1(t)A_2(t)\bigr)
+	=\dfrac{\dd A_1(t)}{\dd t}A_2(t)
+	+A_1(t)\dfrac{\dd A_2(t)}{\dd t}.
+\]
+
+若 $A(t)=\bigl(a_{ij}(t)\bigr)$ 的每个元素在 $[\alpha,\beta]$ 上可积，
+则称 $A(t)$ 在该区间上可积，并定义
+\[
+	\int_\alpha^\beta A(t)\,\dd t
+	=\left(\int_\alpha^\beta a_{ij}(t)\,\dd t\right).
+\]
+
+\begin{definition}\label{def:矩阵与向量的范数}
+	对 $n\times n$ 阶矩阵 $A=(a_{ij})$ 与 $n$ 维向量
+	$\vect{x}=(x_1,\ldots,x_n)^{\mathsf T}$，分别定义范数
+	\[
+		\norm{A}=\sum_{i,j=1}^{n}|a_{ij}|,
+		\qquad
+		\norm{\vect{x}}=\sum_{i=1}^{n}|x_i|.
+	\]
+\end{definition}
+
+对任意 $n\times n$ 阶矩阵 $A_1,A_2$、$n$ 维向量
+$\vect{x}_1,\vect{x}_2$ 及标量 $\gamma\in\R$（或 $\C$），有
+\[
+	\norm{A_1+A_2}\leqslant\norm{A_1}+\norm{A_2},
+	\qquad
+	\norm{\vect{x}_1+\vect{x}_2}
+	\leqslant\norm{\vect{x}_1}+\norm{\vect{x}_2},
+\]
+\[
+	\norm{\gamma A}=|\gamma|\norm{A},
+	\qquad
+	\norm{\gamma\vect{x}}=|\gamma|\norm{\vect{x}},
+\]
+\[
+	\norm{A_1A_2}\leqslant\norm{A_1}\norm{A_2},
+	\qquad
+	\norm{A\vect{x}}\leqslant\norm{A}\norm{\vect{x}},
+\]
+以及
+\[
+	\norm{\int_\alpha^\beta A(t)\,\dd t}
+	\leqslant
+	\int_\alpha^\beta\norm{A(t)}\,\dd t.
+\]
+
+\begin{definition}\label{def:矩阵函数序列的收敛}
+	设
+	\[
+		A_k(t)=\bigl(a_{ij}^{(k)}(t)\bigr)
+	\]
+	是 $n\times n$ 阶矩阵函数序列。若对所有 $i,j=1,2,\ldots,n$，
+	函数序列 $\{a_{ij}^{(k)}(t)\}$ 都在 $[\alpha,\beta]$ 上收敛或一致收敛，
+	则称 $\{A_k(t)\}$ 在该区间上收敛或一致收敛。
+
+	类似地，矩阵函数项级数
+	\[
+		\sum_{k=1}^{\infty}A_k(t)
+	\]
+	在 $[\alpha,\beta]$ 上收敛或一致收敛，是指对任意
+	$i,j=1,2,\ldots,n$，函数项级数
+	\[
+		\sum_{k=1}^{\infty}a_{ij}^{(k)}(t)
+	\]
+	在该区间上收敛或一致收敛。
+\end{definition}
+
+\begin{proof}[定理的证明]
+	\textbf{第一步：化为等价积分方程。}
+	初值问题等价于
+	\[
+		\vect{x}(t)
+		=\vect{x}^{\,0}
+		+\int_{t_0}^{t}
+		\bigl(A(\tau)\vect{x}(\tau)+\vect{f}(\tau)\bigr)\,\dd\tau.
+	\]
+	事实上，微分方程的解积分后满足上式；反之，上式右端连续可微，
+	对 $t$ 求导并令 $t=t_0$，即可恢复微分方程和初值条件。
+
+	\textbf{第二步：构造逐次逼近序列。}
+	令
+	\[
+		\vect{x}_0(t)\equiv\vect{x}^{\,0},
+	\]
+	并递归定义
+	\[
+		\vect{x}_k(t)
+		=\vect{x}^{\,0}
+		+\int_{t_0}^{t}
+		\bigl(A(\tau)\vect{x}_{k-1}(\tau)
+		+\vect{f}(\tau)\bigr)\,\dd\tau,
+		\qquad k=1,2,\ldots.
+	\]
+	由连续函数的积分性质可知，每个 $\vect{x}_k(t)$ 都在
+	$[\alpha,\beta]$ 上有定义且连续。
+
+	\textbf{第三步：证明逐次逼近序列一致收敛。}
+	由于 $A(t)$ 与 $\vect{f}(t)$ 在闭区间上连续，存在常数 $M>0$，使
+	\[
+		\norm{A(t)}\leqslant M,
+		\qquad
+		\norm{\vect{f}(t)}\leqslant M,
+		\qquad \alpha\leqslant t\leqslant\beta.
+	\]
+	由递推式归纳可得，对任意正整数 $j$，
+	\[
+		\norm{\vect{x}_j(t)-\vect{x}_{j-1}(t)}
+		\leqslant
+		\bigl(\norm{\vect{x}^{\,0}}+1\bigr)
+		\dfrac{M^j}{j!}|t-t_0|^j.
+	\]
+	证明时，$j=1$ 的情形直接由积分估计得到；若对 $j=m$ 成立，则
+	\[
+		\begin{aligned}
+		\norm{\vect{x}_{m+1}(t)-\vect{x}_m(t)}
+		&\leqslant
+		\left|
+		\int_{t_0}^{t}
+		\norm{A(\tau)}
+		\norm{\vect{x}_m(\tau)-\vect{x}_{m-1}(\tau)}
+		\,\dd\tau
+		\right|\\
+		&\leqslant
+		M\bigl(\norm{\vect{x}^{\,0}}+1\bigr)
+		\dfrac{M^m}{m!}
+		\left|
+		\int_{t_0}^{t}|\tau-t_0|^m\,\dd\tau
+		\right|\\
+		&=
+		\bigl(\norm{\vect{x}^{\,0}}+1\bigr)
+		\dfrac{M^{m+1}}{(m+1)!}|t-t_0|^{m+1}.
+		\end{aligned}
+	\]
+	又因为级数
+	\[
+		\sum_{j=1}^{\infty}\dfrac{M^j}{j!}|t-t_0|^j
+	\]
+	在 $[\alpha,\beta]$ 上一致收敛，所以
+	\[
+		\vect{x}_0(t)
+		+\sum_{j=1}^{\infty}
+		\bigl(\vect{x}_j(t)-\vect{x}_{j-1}(t)\bigr)
+	\]
+	一致收敛。它的前 $k$ 项之和正是 $\vect{x}_k(t)$，故
+	$\{\vect{x}_k(t)\}$ 一致收敛。
+
+	\textbf{第四步：验证极限函数是解。}
+	设
+	\[
+		\lim_{k\to\infty}\vect{x}_k(t)=\vect{x}(t).
+	\]
+	连续函数序列的一致极限仍连续。对递推式两端令 $k\to\infty$，
+	并利用一致收敛性将极限移入积分号内，得到
+	\[
+		\vect{x}(t)
+		=\vect{x}^{\,0}
+		+\int_{t_0}^{t}
+		\bigl(A(\tau)\vect{x}(\tau)+\vect{f}(\tau)\bigr)\,\dd\tau.
+	\]
+	因此 $\vect{x}(t)$ 满足等价积分方程，从而是原初值问题的解。
+
+	\textbf{第五步：证明解的唯一性。}
+	设 $\widetilde{\vect{x}}(t)$ 是同一区间上的另一个解，并令
+	\[
+		\vect{y}(t)=\vect{x}(t)-\widetilde{\vect{x}}(t).
+	\]
+	则
+	\[
+		\vect{y}(t)
+		=\int_{t_0}^{t}A(\tau)\vect{y}(\tau)\,\dd\tau.
+	\]
+	取 $L>0$ 使 $\norm{\vect{y}(t)}\leqslant L$。与前面的估计相同，
+	对任意正整数 $k$ 都有
+	\[
+		\norm{\vect{y}(t)}
+		\leqslant
+		\dfrac{LM^k}{k!}|t-t_0|^k,
+		\qquad \alpha\leqslant t\leqslant\beta.
+	\]
+	令 $k\to\infty$，右端趋于零，故
+	$\vect{y}(t)\equiv\boldsymbol{0}$，即
+	$\vect{x}(t)\equiv\widetilde{\vect{x}}(t)$。
+\end{proof}
+
+\section{齐次线性方程组的通解结构}\label{sec:齐次线性方程组的通解结构}
+
+本节讨论齐次线性微分方程组
+\[
+	\dfrac{\dd\vect{x}}{\dd t}=A(t)\vect{x},
+\]
+其中 $A(t)$ 是区间 $[\alpha,\beta]$ 上的 $n\times n$ 阶连续矩阵函数。
+
+\begin{theorem}\label{thm:齐次线性方程组的解空间}
+	如果 $\vect{x}_1(t)$ 和 $\vect{x}_2(t)$ 是上述齐次线性方程组的两个解，则
+	\[
+		\vect{x}(t)
+		=C_1\vect{x}_1(t)+C_2\vect{x}_2(t)
+	\]
+	也是该方程组的解，其中 $C_1,C_2$ 为任意常数。并且，方程组全部解的集合
+	$\mathcal{S}$ 是一个 $n$ 维线性空间。
+\end{theorem}
+
+\begin{proof}
+	由求导的线性性可直接验证任意两个解的线性组合仍是解。
+
+	任取 $\R^n$（或 $\C^n$）中的一组基
+	$\vect{x}_1^{\,0},\ldots,\vect{x}_n^{\,0}$，并固定
+	$t_0\in[\alpha,\beta]$。由定理~\ref{thm:线性方程组的存在唯一性}，对每个
+	$k=1,\ldots,n$，存在唯一解 $\vect{x}_k(t)$ 满足
+	\[
+		\vect{x}_k(t_0)=\vect{x}_k^{\,0}.
+	\]
+	若
+	\[
+		\sum_{k=1}^{n}C_k\vect{x}_k(t)\equiv\boldsymbol{0},
+	\]
+	在 $t=t_0$ 处取值得
+	\[
+		\sum_{k=1}^{n}C_k\vect{x}_k^{\,0}=\boldsymbol{0}.
+	\]
+	由于初始向量线性无关，必有 $C_1=\cdots=C_n=0$，故
+	$\vect{x}_1(t),\ldots,\vect{x}_n(t)$ 线性无关。
+
+	另一方面，任取方程组的解 $\vect{x}(t)$，可将其初值唯一地写成
+	\[
+		\vect{x}(t_0)
+		=\sum_{k=1}^{n}C_k\vect{x}_k^{\,0}.
+	\]
+	由叠加原理，$\sum\limits_{k=1}^{n}C_k\vect{x}_k(t)$ 也是方程组的解，
+	并与 $\vect{x}(t)$ 具有相同初值。再由唯一性，
+	\[
+		\vect{x}(t)
+		=\sum_{k=1}^{n}C_k\vect{x}_k(t).
+	\]
+	因此这 $n$ 个解构成 $\mathcal{S}$ 的一组基，故
+	$\dim\mathcal{S}=n$。
+\end{proof}
+
+上述证明说明：固定 $t_0$ 后，每个初始向量
+$\vect{x}^{\,0}\in\R^n$（或 $\C^n$）都唯一对应方程组的一个解。
+映射
+\[
+	\sigma:\vect{x}^{\,0}\longmapsto\vect{x}(t)
+\]
+给出了初始向量空间与解空间 $\mathcal{S}$ 之间的线性同构。
+
+\begin{definition}\label{def:基本解组}
+	齐次线性方程组的任意 $n$ 个线性无关解
+	\[
+		\bigl\{\vect{x}_k(t):k=1,2,\ldots,n\bigr\}
+	\]
+	称为该方程组的一个\textbf{基本解组}。
+\end{definition}
+
+基本解组一般不唯一。一旦得到一个基本解组，方程组的通解便可写成
+\[
+	\vect{x}(t)
+	=\sum_{k=1}^{n}C_k\vect{x}_k(t),
+\]
+其中 $C_1,\ldots,C_n$ 为任意常数。因此，求齐次线性方程组的通解，
+可归结为求它的 $n$ 个线性无关特解。
+
+设
+\[
+	\vect{x}_k(t)=
+	\begin{pmatrix}
+		x_{1k}(t)\\
+		x_{2k}(t)\\
+		\vdots\\
+		x_{nk}(t)
+	\end{pmatrix},
+	\qquad k=1,2,\ldots,n,
+\]
+是方程组的 $n$ 个解。
+
+\begin{definition}\label{def:解矩阵与Wronski行列式}
+	由这些解作为列向量构成的矩阵
+	\[
+		X(t)
+		=\bigl(\vect{x}_1(t),\vect{x}_2(t),\ldots,\vect{x}_n(t)\bigr)
+		=
+		\begin{pmatrix}
+			x_{11}(t) & x_{12}(t) & \cdots & x_{1n}(t)\\
+			x_{21}(t) & x_{22}(t) & \cdots & x_{2n}(t)\\
+			\vdots    & \vdots    & \ddots & \vdots\\
+			x_{n1}(t) & x_{n2}(t) & \cdots & x_{nn}(t)
+		\end{pmatrix}
+	\]
+	称为该方程组的一个\textbf{解矩阵}，其行列式
+	\[
+		W(t)=\det X(t)
+	\]
+	称为这组解的 \textbf{Wronski 行列式}。
+\end{definition}
+
+由线性代数可知，若一般的 $n$ 个向量函数线性相关，则其 Wronski
+行列式恒为零。对于齐次线性方程组的解，反命题也成立。
+
+\begin{lemma}\label{lem:行列式的导数}
+	设 $B(t)$ 是可微的 $n\times n$ 阶矩阵，其第 $k$ 行为
+	$\vect{r}_k(t)$。则
+	\[
+		\dfrac{\dd}{\dd t}\det B(t)
+		=
+		\sum_{k=1}^{n}
+		\det
+		\begin{pmatrix}
+			\vect{r}_1(t)\\
+			\vdots\\
+			\vect{r}_{k-1}(t)\\
+			\dfrac{\dd\vect{r}_k(t)}{\dd t}\\
+			\vect{r}_{k+1}(t)\\
+			\vdots\\
+			\vect{r}_n(t)
+		\end{pmatrix}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	将行列式写成 Leibniz 展开式并逐项求导；乘积求导所得的第 $k$ 组项，
+	正好组成把原行列式第 $k$ 行换成其导数后的行列式。
+\end{proof}
+
+\begin{theorem}\label{thm:Wronski判别与Liouville公式}
+	齐次线性方程组的解组
+	$\{\vect{x}_k(t):k=1,2,\ldots,n\}$ 线性无关的充分必要条件是：
+	其 Wronski 行列式在某点 $t_0\in[\alpha,\beta]$ 处不为零。
+	并且
+	\[
+		\det X(t)
+		=\det X(t_0)
+		\exp\left(
+		\int_{t_0}^{t}\operatorname{tr}A(\tau)\,\dd\tau
+		\right),
+	\]
+	其中
+	\[
+		\operatorname{tr}A(t)=\sum_{k=1}^{n}a_{kk}(t)
+	\]
+	是矩阵 $A(t)$ 的迹。上述等式称为\textbf{Liouville 公式}。
+\end{theorem}
+
+\begin{proof}
+	由于 $X'(t)=A(t)X(t)$，解矩阵的第 $k$ 行导数可写成
+	\[
+		\dfrac{\dd\vect{r}_k(t)}{\dd t}
+		=\sum_{j=1}^{n}a_{kj}(t)\vect{r}_j(t).
+	\]
+	由引理~\ref{lem:行列式的导数}及行列式对各行的线性性，将第 $k$ 行导数代入后，
+	当 $j\neq k$ 时行列式含有两个相同的行，因而等于零；仅
+	$j=k$ 的一项保留下来。因此
+	\[
+		\begin{aligned}
+		\dfrac{\dd}{\dd t}\det X(t)
+		&=\sum_{k=1}^{n}a_{kk}(t)\det X(t)\\
+		&=\operatorname{tr}A(t)\det X(t).
+		\end{aligned}
+	\]
+	解这个一阶线性方程便得到 Liouville 公式。
+
+	若 $\det X(t_0)\neq 0$，则
+	$\vect{x}_1(t_0),\ldots,\vect{x}_n(t_0)$ 线性无关，从而这些解线性无关。
+	反之，若 $\det X(t_0)=0$，则存在不全为零的常数
+	$C_1,\ldots,C_n$，使
+	\[
+		\sum_{k=1}^{n}C_k\vect{x}_k(t_0)=\boldsymbol{0}.
+	\]
+	该线性组合是齐次方程组满足零初值的解，由唯一性只能恒为零，
+	故这组解线性相关。充分必要性得证。
+\end{proof}
+
+由 Liouville 公式可知，齐次线性方程组的解矩阵行列式或者恒为零，
+或者在整个区间上处处不为零。这个结论只适用于由同一个齐次线性方程组的
+解构成的矩阵。一般向量函数没有这种性质，例如
+\[
+	\begin{pmatrix}
+		t\\
+		0
+	\end{pmatrix},
+	\qquad
+	\begin{pmatrix}
+		t^2\\
+		0
+	\end{pmatrix}
+\]
+作为向量函数是线性无关的，但它们的 Wronski 行列式恒等于零。
+
+\begin{definition}\label{def:基本解矩阵与标准解矩阵}
+	当解组 $\{\vect{x}_k(t):k=1,2,\ldots,n\}$ 是一个基本解组时，
+	相应的解矩阵 $X(t)$ 称为方程组的一个\textbf{基本解矩阵}。
+	特别地，若在某点 $t_0$ 有
+	\[
+		X(t_0)=I,
+	\]
+	则称 $X(t)$ 为以 $t_0$ 为基点的\textbf{标准解矩阵}。
+\end{definition}
+
+若 $X(t)$ 是一个基本解矩阵，则齐次方程组的任一解都可表示为
+\[
+	\vect{x}(t)=X(t)\vect{c},
+\]
+其中 $\vect{c}$ 为常向量；反之，对任意常向量 $\vect{c}$，
+$X(t)\vect{c}$ 都是方程组的解。
+
+若再给定初值条件
+\[
+	\vect{x}(t_0)=\vect{x}^{\,0},
+\]
+则
+\[
+	\vect{c}=X^{-1}(t_0)\vect{x}^{\,0},
+\]
+从而初值问题的解为
+\[
+	\vect{x}(t)=X(t,t_0)\vect{x}^{\,0},
+\]
+其中
+\[
+	X(t,t_0):=X(t)X^{-1}(t_0)
+\]
+是以 $t_0$ 为基点的标准解矩阵。
+
+\section{非齐次线性方程组的通解}\label{sec:非齐次线性方程组的通解}
+
+本节利用第~\ref{sec:齐次线性方程组的通解结构}节的结果，进一步讨论非齐次线性方程组
+\[
+	\dfrac{\dd\vect{x}}{\dd t}=A(t)\vect{x}+\vect{f}(t)
+\]
+的解的结构，其中 $A(t)$ 是区间 $[\alpha,\beta]$ 上的 $n\times n$ 阶连续矩阵函数，
+$\vect{f}(t)$ 是 $[\alpha,\beta]$ 上的 $n$ 维连续列向量函数。当
+$\vect{f}(t)\equiv\boldsymbol{0}$ 时，方程组化为
+\[
+	\dfrac{\dd\vect{x}}{\dd t}=A(t)\vect{x},
+\]
+称为与原方程组相应的齐次线性方程组。
+
+容易验证，若 $\vect{x}_1^{\,*}(t)$ 和 $\vect{x}_2^{\,*}(t)$ 是非齐次方程组的两个解，
+则 $\vect{x}_1^{\,*}(t)-\vect{x}_2^{\,*}(t)$ 是相应齐次方程组的解；反之，
+若 $\vect{x}^{\,*}(t)$ 和 $\vect{x}(t)$ 分别是非齐次方程组和相应齐次方程组的解，
+则 $\vect{x}^{\,*}(t)+\vect{x}(t)$ 仍是非齐次方程组的解。
+
+\begin{theorem}\label{thm:非齐次线性方程组的通解结构}
+	若 $\vect{x}^{\,*}(t)$ 是非齐次线性方程组的一个解，$X(t)$ 是相应齐次线性方程组的
+	基本解矩阵，则非齐次线性方程组的通解为
+	\[
+		\vect{x}(t)=X(t)\vect{c}+\vect{x}^{\,*}(t),
+	\]
+	其中 $\vect{c}$ 是任意 $n$ 维常向量。
+\end{theorem}
+
+\begin{proof}
+	若 $\vect{x}(t)$ 是非齐次方程组的任一解，则
+	$\vect{x}(t)-\vect{x}^{\,*}(t)$ 是相应齐次方程组的解，故存在常向量
+	$\vect{c}$，使得
+	\[
+		\vect{x}(t)-\vect{x}^{\,*}(t)=X(t)\vect{c}.
+	\]
+	反之，将 $X(t)\vect{c}+\vect{x}^{\,*}(t)$ 代入原方程组即可验证它是解。
+\end{proof}
+
+\begin{theorem}\label{thm:常数变易公式}
+	设 $X(t)$ 是相应齐次线性方程组在 $[\alpha,\beta]$ 上的基本解矩阵，
+	则非齐次线性方程组的通解为
+	\[
+		\vect{x}(t)
+		=X(t)\vect{c}
+		+X(t)\int_{t_0}^{t}X^{-1}(\tau)\vect{f}(\tau)\,\dd\tau,
+	\]
+	其中 $\vect{c}$ 为任意 $n$ 维常向量。满足初值条件
+	\[
+		\vect{x}(t_0)=\vect{x}^{\,0}
+	\]
+	的解为
+	\[
+		\vect{x}(t)
+		=X(t,t_0)\vect{x}^{\,0}
+		+\int_{t_0}^{t}X(t,\tau)\vect{f}(\tau)\,\dd\tau,
+	\]
+	其中 $t,t_0\in[\alpha,\beta]$，并且
+	\[
+		X(t,t_0)=X(t)X^{-1}(t_0).
+	\]
+\end{theorem}
+
+上述通解表达式与初值问题的解表达式统称为\textbf{常数变易公式}。
+
+\begin{proof}
+	相应齐次线性方程组的通解为 $X(t)\vect{c}$。将常向量 $\vect{c}$ 变易为
+	待定向量函数 $\vect{c}(t)$，设非齐次方程组有形如
+	\[
+		\vect{x}^{\,*}(t)=X(t)\vect{c}(t)
+	\]
+	的特解。代入非齐次方程组，得到
+	\[
+		\dfrac{\dd X(t)}{\dd t}\vect{c}(t)
+		+X(t)\dfrac{\dd\vect{c}(t)}{\dd t}
+		=A(t)X(t)\vect{c}(t)+\vect{f}(t).
+	\]
+	由于 $X(t)$ 是齐次方程组的解矩阵，故
+	\[
+		\dfrac{\dd X(t)}{\dd t}=A(t)X(t),
+	\]
+	从而
+	\[
+		X(t)\dfrac{\dd\vect{c}(t)}{\dd t}=\vect{f}(t).
+	\]
+	基本解矩阵 $X(t)$ 可逆，因此
+	\[
+		\dfrac{\dd\vect{c}(t)}{\dd t}=X^{-1}(t)\vect{f}(t).
+	\]
+	两端积分可得
+	\[
+		\vect{c}(t)
+		=\vect{c}^{\,0}
+		+\int_{t_0}^{t}X^{-1}(\tau)\vect{f}(\tau)\,\dd\tau,
+	\]
+	其中 $\vect{c}^{\,0}$ 为常向量。特别地，取 $\vect{c}^{\,0}=\boldsymbol{0}$，
+	便得到一个特解
+	\[
+		\vect{x}^{\,*}(t)
+		=X(t)\int_{t_0}^{t}X^{-1}(\tau)\vect{f}(\tau)\,\dd\tau.
+	\]
+	结合定理~\ref{thm:非齐次线性方程组的通解结构}，便得到定理中的通解表达式。
+
+	再由 $X(t,\tau)=X(t)X^{-1}(\tau)$，并令初值为
+	$\vect{x}(t_0)=\vect{x}^{\,0}$，即可得到定理中的初值解表达式。
+\end{proof}
+
+虽然定理~\ref{thm:Wronski判别与Liouville公式}已经给出了判别一个解矩阵是否为基本解矩阵的方法，但一般来说，
+求齐次线性微分方程组的基本解矩阵仍不是容易的事。对于常系数矩阵
+$A(t)=A$ 的情形，将在下一章讨论其基本解矩阵的求法。
+
+\subsection*{集中脉冲与影响函数}
+\phantomsection\label{sec:green-response}
+由定理~\ref{thm:常数变易公式}，非齐次方程的解可以表示为齐次方程的解与一个积分之和。对于标量方程 $y'=a(t)y+f(t)$，这个积分表示非齐次项对解的影响。下面先考察非齐次项集中在一个时刻附近的情形。
+
+
+\begin{definition}[光滑函数、支撑与测试函数]\label{def:support-test}
+在开集 $U\subset\R^n$ 上，$C^r(U)$ 表示所有总阶数不超过 $r$ 的偏导数都存在且连续的函数；
+$C^\infty(U)$ 表示任意阶偏导数都存在且连续的函数，亦称光滑函数。
+函数 $f$ 的支撑（也称支集）定义为相对于 $U$ 的闭包
+\[
+ \operatorname{supp}f=\overline{\{x\in U:f(x)\ne0\}}^{\,U}.
+\]
+若这个闭集是 $U$ 中的紧集，称 $f$ 有紧支撑。
+光滑紧支撑函数称为测试函数，全体记为 $C_c^\infty(U)$。
+在有限维空间内，本书的光滑向量函数指各分量均光滑。
+\end{definition}
+\begin{example}[光滑凸起与截断]\label{ex:smooth-cutoff}
+令
+\[
+ b(s)=\begin{cases}e^{-1/s},&s>0,\\0,&s\leq0,\end{cases}
+ \qquad \chi(x)=\frac{b(4-|x|^2)}{b(4-|x|^2)+b(|x|^2-1)}.
+\]
+每阶右导数都是 $e^{-1/s}$ 乘以 $s^{-1}$ 的多项式，在 $s\downarrow0$ 时趋于零，
+所以 $b$ 光滑。分母处处为正，故 $\chi$ 光滑，且 $0\leq\chi\leq1$，
+在 $|x|\leq1$ 时为 1，在 $|x|\geq2$ 时为零。$\chi(x/r)$ 称尺度为 $r$ 的截断函数。
+此外，$b(1-|x|^2)$ 是非负、非零且紧支撑的光滑函数；除以其正积分即可使积分为 1。
+\end{example}
+\begin{definition}[单位集中质量的记号]
+对连续函数 $f$，记 $\langle\delta_\xi,f\rangle=f(\xi)$。
+这表示对函数取值的线性规则，不表示一个通常的函数 $\delta_\xi(s)$。
+光滑函数序列 $h_N$ 趋向 $\delta_\xi$，在这里是指
+\[
+ \int h_N(s)\psi(s)\,ds\longrightarrow\psi(\xi)
+ \quad\text{对每个 }\psi\in C_c^\infty(\R)\text{ 成立}.
+\]
+下面将证明上述极限对在给定点附近连续的函数也成立。
+\end{definition}
+
+\begin{definition}[$\delta$ 型序列]
+设 $h_N\geq0$ 为光滑函数，$\displaystyle\int_\R h_N(s)\,\dd s=1$，
+且存在 $\varepsilon_N\downarrow0$，使 $h_N$ 在 $[-\varepsilon_N,\varepsilon_N]$ 外为零。
+称 $(h_N)$ 为一个 $\delta$ 型序列。记号 $\delta$ 表示其对测试函数积分的极限，
+不是一个处处有限的通常函数。
+\end{definition}
+\begin{lemma}
+若 $f$ 在 $\xi$ 附近连续，则
+\[
+ \lim_{N\to\infty}\int_\R h_N(s-\xi)f(s)\,\dd s=f(\xi).
+\]
+\end{lemma}
+\begin{proof}
+因为脉冲非负且积分为 1，先把常数 $f(\xi)$ 写成
+$f(\xi)\displaystyle\int h_N(s-\xi)\,ds$。于是
+\begin{align*}
+ \left|\int h_N(s-\xi)f(s)\,ds-f(\xi)\right|
+ &=\left|\int h_N(s-\xi)(f(s)-f(\xi))\,ds\right|\\
+ &\leq\sup_{|s-\xi|\leq\varepsilon_N}|f(s)-f(\xi)|
+       \int h_N(s-\xi)\,ds\\
+ &=\sup_{|s-\xi|\leq\varepsilon_N}|f(s)-f(\xi)|.
+\end{align*}
+由支集条件，被积函数在 $\xi$ 的小邻域外恒为零。
+给定任意 $\eta>0$，连续性给出 $\delta>0$，使 $|s-\xi|<\delta$ 时
+$|f(s)-f(\xi)|<\eta$。充分大的 $N$ 满足 $\varepsilon_N<\delta$，
+所以上述差小于 $\eta$，极限成立。
+\end{proof}
+
+\begin{definition}[推迟影响函数]
+对 $y'=a(t)y+f(t)$，给定零初值 $y(t_0)=0$。
+在 $\xi>t_0$ 加入单位集中脉冲所产生的极限响应，称为在 $\xi$ 施加扰动的
+\textbf{影响函数}，亦称推迟 Green 函数，记作 $G(t,\xi)$。
+“推迟”表示扰动发生之前响应为零。
+\end{definition}
+\begin{theorem}
+设 $a$ 连续，则在 $t\ne\xi$ 时
+\[
+ G(t,\xi)=
+ \begin{cases}
+ 0,&t<\xi,\\
+ \exp\displaystyle\int_\xi^t a(s)\,\dd s,&t>\xi.
+ \end{cases}
+\]
+在 $t=\xi$ 处的右极限与左极限之差为 1。对连续 $f$ 和 $t\geq t_0$，
+\[
+ y(t)=\int_{t_0}^tG(t,\xi)f(\xi)\,\dd\xi
+\]
+是零初值问题的唯一解。
+\end{theorem}
+\begin{proof}
+把 $f(t)$ 换成 $h_N(t-\xi)$。由本章已证的常数变易公式，响应为
+\[
+ y_N(t)=\int_{t_0}^t
+ \exp\left(\int_s^t a(u)\,\dd u\right)h_N(s-\xi)\,\dd s.
+\]
+固定 $t<\xi$ 时，充分大的 $N$ 使积分区间与脉冲支集不相交，因此极限为零。
+固定 $t>\xi$ 时，脉冲支集最终包含在积分区间内部，前一引理给出所述指数函数。
+由 $a$ 连续，指数在 $t\downarrow\xi$ 时趋于 1，所以跳跃为 1。
+
+最后的积分公式由常数变易公式直接得到。也可对该积分关于 $t$ 求导：对积分上限求导得 $f(t)$，
+对被积函数求导后积分得 $a(t)y(t)$。在 $t=t_0$ 时积分为零，故满足初值条件。唯一性由
+定理~\ref{thm:线性方程组的存在唯一性} 保证。
+\end{proof}
+\begin{remark}
+边界点 $t=\xi$ 处的单点赋值不影响上式积分。
+如果脉冲恰好位于初值时刻，应另外约定左右侧初值，不能把脉冲跨越的跳跃忽略。
+对于向量方程，将指数函数换成矩阵 $X(t)X(s)^{-1}$，即可用同样的方法证明。
+\end{remark}
+
+图~\ref{fig:ode-tikz-pulse-green} 将光滑脉冲的集中过程与极限响应分开表示；空心点不指定 $t=\xi$ 处的单点取值。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.1cm,y=1cm]
+ \draw[->,gray] (0,0)--(4,0) node[right]{$t$};
+ \draw[->,gray] (.2,0)--(.2,3.2) node[above]{$h_N(t-\xi)$};
+ \draw[gray,dashed] (2,0)--(2,3);
+\draw[GreenMain,thick,domain=1.00100:2.99900,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/1.0)^2))/(1.0*1.20690032)});
+\draw[GoldMain,thick,domain=1.50050:2.49950,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/0.5)^2))/(0.5*1.20690032)});
+\draw[GreenDark,thick,domain=1.70030:2.29970,samples=90] plot (\x,{exp(1-1/(1-((\x-2)/0.3)^2))/(0.3*1.20690032)});
+
+ \node[below] at (2,0){$\xi$};\node at (2,-.6){支集缩小，面积保持为 1};
+\end{scope}
+\begin{scope}[shift={(6.5,0)},x=1.1cm,y=1.8cm]
+ \draw[->,gray] (0,0)--(4.4,0) node[right]{$t$};
+ \draw[->,gray] (0,0)--(0,1.7) node[above]{$G(t,\xi)$};
+ \draw[GreenMain,thick] (0,0)--(1,0);
+ \draw[GreenMain,thick,domain=1:4,samples=65] plot (\x,{exp(-.7*(\x-1))});
+ \draw[GoldMain,dashed] (1,0)--(1,1);
+ \draw[fill=white,GreenMain] (1,0) circle(1.8pt);\draw[fill=white,GreenMain] (1,1) circle(1.8pt);
+ \node[below] at (1,0){$\xi$};\node[left] at (0,1){$1$};
+ \node at (2,-.34){$a(t)=-0.7$};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{左：单位面积光滑集中脉冲。右：$a=-0.7$ 时推迟影响函数在扰动时刻产生单位跳跃。}
+\label{fig:ode-tikz-pulse-green}
+\end{minipage}
+\end{center}
+
+\section{高阶线性方程}\label{sec:高阶线性方程}
+
+$n$ 阶线性微分方程的一般形式为
+\[
+	\dfrac{\dd^n x}{\dd t^n}
+	+a_1(t)\dfrac{\dd^{n-1}x}{\dd t^{n-1}}
+	+\cdots+a_n(t)x=f(t),
+\]
+其中系数 $a_1(t),a_2(t),\ldots,a_n(t)$ 都在区间
+$[\alpha,\beta]$ 上连续。当 $f(t)\equiv 0$ 时，
+上述方程化为相应的齐次线性微分方程
+\[
+	\dfrac{\dd^n x}{\dd t^n}
+	+a_1(t)\dfrac{\dd^{n-1}x}{\dd t^{n-1}}
+	+\cdots+a_n(t)x=0.
+\]
+
+令
+\[
+	x_1=x,
+	\qquad
+	x_2=\dfrac{\dd x}{\dd t},
+	\qquad\ldots\qquad
+	x_n=\dfrac{\dd^{n-1}x}{\dd t^{n-1}},
+\]
+则原 $n$ 阶非齐次方程可化为一阶线性微分方程组
+\[
+	\dfrac{\dd\vect{x}}{\dd t}
+	=A(t)\vect{x}+\vect{f}(t),
+\]
+其中
+\[
+	A(t)=
+	\begin{pmatrix}
+		0       & 1          & 0          & \cdots & 0\\
+		0       & 0          & 1          & \cdots & 0\\
+		\vdots  & \vdots     & \vdots     & \ddots & \vdots\\
+		0       & 0          & 0          & \cdots & 1\\
+		-a_n(t) & -a_{n-1}(t)& -a_{n-2}(t)& \cdots & -a_1(t)
+	\end{pmatrix},
+\]
+\[
+	\vect{f}(t)=
+	\begin{pmatrix}
+		0\\
+		0\\
+		\vdots\\
+		0\\
+		f(t)
+	\end{pmatrix},
+	\qquad
+	\vect{x}=
+	\begin{pmatrix}
+		x_1\\
+		x_2\\
+		\vdots\\
+		x_{n-1}\\
+		x_n
+	\end{pmatrix}.
+\]
+
+当 $f(t)\equiv 0$ 时，上述一阶方程组成为齐次线性微分方程组
+\[
+	\dfrac{\dd\vect{x}}{\dd t}=A(t)\vect{x}.
+\]
+显然，由原 $n$ 阶非齐次方程的任一解 $x=\phi(t)$，
+可得到上述一阶方程组的一个解
+\[
+	\begin{pmatrix}
+		\phi(t)\\
+		\phi'(t)\\
+		\vdots\\
+		\phi^{(n-1)}(t)
+	\end{pmatrix}.
+\]
+反之，上述一阶方程组任一解的第一个分量就是原 $n$ 阶非齐次方程的解。
+特别地，满足初值条件
+\[
+	x(t_0)=x_0,
+	\qquad
+	x'(t_0)=x_0^{1},
+	\qquad\ldots\qquad
+	x^{(n-1)}(t_0)=x_0^{n-1}
+\]
+的解，由定理~\ref{thm:线性方程组的存在唯一性}知，在区间
+$[\alpha,\beta]$ 上存在并且唯一。
+
+\begin{definition}\label{def:高阶线性方程的Wronski行列式}
+	设 $x_1(t),x_2(t),\ldots,x_n(t)$ 是上述 $n$ 阶齐次方程的 $n$ 个解，称
+	\[
+		W(t)=
+		\begin{vmatrix}
+			x_1(t) & x_2(t) & \cdots & x_n(t)\\
+			x_1'(t) & x_2'(t) & \cdots & x_n'(t)\\
+			\vdots & \vdots & \ddots & \vdots\\
+			x_1^{(n-1)}(t) & x_2^{(n-1)}(t) & \cdots & x_n^{(n-1)}(t)
+		\end{vmatrix}
+	\]
+	为解组 $\{x_k(t):k=1,2,\ldots,n\}$ 的 \textbf{Wronski 行列式}。
+\end{definition}
+
+\begin{definition}\label{def:高阶齐次线性方程的基本解组}
+	上述 $n$ 阶齐次方程的任意 $n$ 个线性无关解的全体，
+	称为该方程的一个\textbf{基本解组}。
+\end{definition}
+
+利用上述高阶方程与一阶方程组的对应关系，可以把前几节的结果直接推广到
+高阶线性方程。
+
+\begin{theorem}\label{thm:高阶齐次线性方程的通解}
+	上述 $n$ 阶齐次线性微分方程在区间
+	$[\alpha,\beta]$ 上存在 $n$ 个线性无关的解
+	$x_1(t),x_2(t),\ldots,x_n(t)$，并且其通解为
+	\[
+		x(t)=\sum_{k=1}^{n}C_kx_k(t),
+	\]
+	其中 $C_1,C_2,\ldots,C_n$ 是任意常数。
+\end{theorem}
+
+\begin{proof}
+	该 $n$ 阶齐次方程与相应的一阶齐次线性方程组等价。
+	由定理~\ref{thm:齐次线性方程组的解空间}，该方程组的解空间为
+	$n$ 维。取其一个基本解矩阵，各列的第一个分量便给出高阶方程的
+	$n$ 个线性无关解，方程组的通解公式随即给出上述结论。
+\end{proof}
+
+\begin{theorem}\label{thm:高阶齐次线性方程的Wronski判别}
+	上述 $n$ 阶齐次方程的解组
+	$\{x_k(t):k=1,2,\ldots,n\}$ 线性无关的充分必要条件是：
+	它的 Wronski 行列式 $W(t)$ 在区间 $[\alpha,\beta]$ 上恒不为零；
+	这又等价于 $W(t)$ 在区间内某点 $t_0$ 处不为零。并且
+	\[
+		W(t)=W(t_0)
+		\exp\left(-\int_{t_0}^{t}a_1(\tau)\,\dd\tau\right).
+	\]
+\end{theorem}
+
+\begin{proof}
+	上述 Wronski 行列式正是相应一阶方程组解矩阵的行列式。
+	由定理~\ref{thm:Wronski判别与Liouville公式}，线性无关性等价于该行列式
+	在某点不为零。又因伴随矩阵 $A(t)$ 的迹为 $-a_1(t)$，将其代入
+	定理~\ref{thm:Wronski判别与Liouville公式}中的 Liouville 公式，
+	便得到上述等式。
+\end{proof}
+
+如果预先知道上述 $n$ 阶齐次方程的一个非平凡解
+$x=\phi(t)$，并且 $\phi(t)\neq 0$，还可以通过变量替换
+\[
+	x=\phi(t)y
+\]
+把原方程降低一阶。事实上，由 Leibniz 公式
+\[
+	\dfrac{\dd^k}{\dd t^k}\bigl(\phi(t)y(t)\bigr)
+	=\sum_{j=0}^{k}\binom{k}{j}
+	\phi^{(k-j)}(t)y^{(j)}(t),
+\]
+将代换式及其各阶导数代入该齐次方程，可得
+\[
+	\phi(t)\dfrac{\dd^ny}{\dd t^n}
+	+b_1(t)\dfrac{\dd^{n-1}y}{\dd t^{n-1}}
+	+\cdots
+	+b_{n-1}(t)\dfrac{\dd y}{\dd t}
+	+b_n(t)y=0.
+\]
+该方程必有解 $y(t)\equiv 1$，因为 $x=\phi(t)$ 是原齐次方程的解，
+故 $b_n(t)\equiv 0$。令
+\[
+	v=\dfrac{\dd y}{\dd t},
+\]
+原方程便化为关于 $v$ 的 $n-1$ 阶齐次线性微分方程
+\[
+	\phi(t)\dfrac{\dd^{n-1}v}{\dd t^{n-1}}
+	+b_1(t)\dfrac{\dd^{n-2}v}{\dd t^{n-2}}
+	+\cdots+b_{n-1}(t)v=0.
+\]
+
+下面把非齐次线性方程组的常数变易公式应用到上述 $n$ 阶非齐次方程。
+
+\begin{theorem}\label{thm:高阶非齐次线性方程的常数变易公式}
+	设 $\{x_k(t):k=1,2,\ldots,n\}$ 是上述 $n$ 阶齐次方程在
+	$[\alpha,\beta]$ 上的一个基本解组，则原 $n$ 阶非齐次方程的通解为
+	\[
+		x(t)=\sum_{k=1}^{n}C_kx_k(t)+x^{*}(t),
+	\]
+	其中 $C_1,C_2,\ldots,C_n$ 为任意常数，而
+	\[
+		x^{*}(t)
+		=\sum_{k=1}^{n}\int_{t_0}^{t}
+		\dfrac{x_k(t)W_k(\tau)}{W(\tau)}f(\tau)\,\dd\tau
+	\]
+	是原 $n$ 阶非齐次方程的一个特解。这里 $W(t)$ 是基本解组的
+	Wronski 行列式，$W_k(t)$ 是 $W(t)$ 中第 $n$ 行第 $k$ 列元素的代数余子式。
+\end{theorem}
+
+\begin{proof}
+	由基本解组构成相应一阶齐次方程组的基本解矩阵
+	\[
+		X(t)=
+		\begin{pmatrix}
+			x_1(t) & x_2(t) & \cdots & x_n(t)\\
+			x_1'(t) & x_2'(t) & \cdots & x_n'(t)\\
+			\vdots & \vdots & \ddots & \vdots\\
+			x_1^{(n-1)}(t) & x_2^{(n-1)}(t) & \cdots & x_n^{(n-1)}(t)
+		\end{pmatrix}.
+	\]
+	根据定理~\ref{thm:常数变易公式}，相应一阶非齐次方程组有特解
+	\[
+		\vect{x}^{\,*}(t)
+		=X(t)\int_{t_0}^{t}X^{-1}(\tau)\vect{f}(\tau)\,\dd\tau.
+	\]
+	由于 $\vect{f}(\tau)$ 只有第 $n$ 个分量不为零，而逆矩阵的元素满足
+	\[
+		\bigl(X^{-1}(\tau)\bigr)_{kn}
+		=\dfrac{W_k(\tau)}{W(\tau)},
+	\]
+	取上述向量特解的第一个分量，即得到定理所给的高阶方程特解。再结合
+	定理~\ref{thm:非齐次线性方程组的通解结构}即可得到通解。
+\end{proof}
+
+
+\section{复值解和级数解法}\label{sec:复值解和级数解法}
+
+我们首先介绍复值函数的基本概念。设 $z(t)$ 是定义在区间
+$[\alpha,\beta]$ 上的复值函数，记
+\[
+	z(t)=x(t)+\mathrm{i}y(t),
+\]
+其中 $x(t)$ 和 $y(t)$ 是实值函数。复值函数的连续性和可微性均按实部与虚部分别定义；
+若 $x(t)$ 和 $y(t)$ 在 $[\alpha,\beta]$ 上可微，则
+\[
+	\dfrac{\dd z}{\dd t}
+	=\dfrac{\dd x}{\dd t}
+	+\mathrm{i}\dfrac{\dd y}{\dd t}.
+\]
+
+由定义立即得到复值函数的求导法则：
+\[
+	\dfrac{\dd}{\dd t}\bigl(z_1(t)+z_2(t)\bigr)
+	=\dfrac{\dd z_1}{\dd t}+\dfrac{\dd z_2}{\dd t},
+\]
+\[
+	\dfrac{\dd}{\dd t}\bigl(Cz(t)\bigr)
+	=C\dfrac{\dd z}{\dd t},
+\]
+\[
+	\dfrac{\dd}{\dd t}\bigl(z_1(t)z_2(t)\bigr)
+	=\dfrac{\dd z_1}{\dd t}z_2(t)
+	+z_1(t)\dfrac{\dd z_2}{\dd t},
+\]
+\[
+	\dfrac{\dd}{\dd t}\left(\dfrac{z_1(t)}{z_2(t)}\right)
+	=\dfrac{\dfrac{\dd z_1}{\dd t}z_2(t)
+	-z_1(t)\dfrac{\dd z_2}{\dd t}}{z_2^2(t)},
+	\qquad z_2(t)\neq 0,
+\]
+其中 $C$ 为任意复常数。
+
+复数的指数形式在后面的讨论中十分重要。对任意复数
+$\lambda=a+\mathrm{i}b$，定义
+\[
+	\mathrm{e}^{\lambda}
+	=\mathrm{e}^{a+\mathrm{i}b}
+	=\mathrm{e}^{a}\bigl(\cos b+\mathrm{i}\sin b\bigr).
+\]
+这里 $\mathrm{e}^{a}$ 取通常的实数值。由定义容易验证
+\[
+	\mathrm{e}^{\lambda_1}\mathrm{e}^{\lambda_2}
+	=\mathrm{e}^{\lambda_1+\lambda_2}.
+\]
+若 $t$ 为实变量，则根据上述定义有
+\[
+	\mathrm{e}^{\lambda t}
+	=\mathrm{e}^{at}\cos(bt)
+	+\mathrm{i}\mathrm{e}^{at}\sin(bt),
+\]
+从而
+\[
+	\dfrac{\dd}{\dd t}\bigl(\mathrm{e}^{\lambda t}\bigr)
+	=\lambda\mathrm{e}^{\lambda t}.
+\]
+
+类似地，可以定义 $n\times n$ 阶复值矩阵函数
+\[
+	A(t)=A_R(t)+\mathrm{i}A_I(t),
+\]
+其中 $A_R(t)$ 和 $A_I(t)$ 是实矩阵函数。复值矩阵函数的连续性、
+可微性与可积性均由其实部和虚部分别定义。例如
+\[
+	\dfrac{\dd A(t)}{\dd t}
+	=\dfrac{\dd A_R(t)}{\dd t}
+	+\mathrm{i}\dfrac{\dd A_I(t)}{\dd t},
+\]
+以及
+\[
+	\int_{\alpha}^{\beta}A(t)\,\dd t
+	=\int_{\alpha}^{\beta}A_R(t)\,\dd t
+	+\mathrm{i}\int_{\alpha}^{\beta}A_I(t)\,\dd t.
+\]
+复值向量函数也作同样定义。特别地，复值向量函数
+$\vect{z}(t)=\vect{x}(t)+\mathrm{i}\vect{y}(t)$ 与其共轭函数
+$\overline{\vect{z}}(t)=\vect{x}(t)-\mathrm{i}\vect{y}(t)$ 在
+$[\alpha,\beta]$ 上线性无关，当且仅当实向量函数
+$\vect{x}(t),\vect{y}(t)$ 在该区间上线性无关。
+
+考虑复值线性方程组
+\[
+	\dfrac{\dd\vect{z}}{\dd t}
+	=A(t)\vect{z}+\vect{f}(t).
+\]
+
+\begin{proposition}\label{thm:复值线性方程组的实化}
+	设 $A(t)=A_R(t)+\mathrm{i}A_I(t)$ 是 $[\alpha,\beta]$ 上的
+	$n\times n$ 阶复值连续矩阵，
+	$\vect{f}(t)=\vect{f}_R(t)+\mathrm{i}\vect{f}_I(t)$ 是该区间上的
+	$n$ 维复值连续列向量。复值向量函数
+	$\vect{z}(t)=\vect{x}(t)+\mathrm{i}\vect{y}(t)$ 是上述复值线性方程组
+	的解，当且仅当实向量函数
+	$\vect{x}(t),\vect{y}(t)$ 满足实方程组
+	\[
+		\dfrac{\dd}{\dd t}
+		\begin{pmatrix}
+			\vect{x}\\
+			\vect{y}
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			A_R(t) & -A_I(t)\\
+			A_I(t) & A_R(t)
+		\end{pmatrix}
+		\begin{pmatrix}
+			\vect{x}\\
+			\vect{y}
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			\vect{f}_R(t)\\
+			\vect{f}_I(t)
+		\end{pmatrix}.
+	\]
+\end{proposition}
+
+\begin{proof}
+	将 $A=A_R+\mathrm{i}A_I$、$\vect{z}=\vect{x}+\mathrm{i}\vect{y}$
+	和 $\vect{f}=\vect{f}_R+\mathrm{i}\vect{f}_I$ 代入该复值线性方程组，
+	比较实部与虚部即得。
+\end{proof}
+
+根据定理~\ref{thm:复值线性方程组的实化}，前面关于实线性方程组的结论
+都可以推广到实自变量的复值解。对实系数齐次线性方程组还有下面的结论。
+
+\begin{proposition}\label{thm:实系数齐次方程组的复值解}
+	设 $A(t)$ 为实值连续矩阵，则复值向量函数
+	$\vect{z}(t)=\vect{x}(t)+\mathrm{i}\vect{y}(t)$ 是方程组
+
+	\[ 	\dfrac{\dd\vect{z}}{\dd t}=A(t)\vect{z}
+ \]
+	的解，当且仅当其实部 $\vect{x}(t)$ 和虚部 $\vect{y}(t)$ 都是
+	方程组的实值解。
+\end{proposition}
+
+\begin{proof}
+	这是定理~\ref{thm:复值线性方程组的实化}在
+	$A_I(t)\equiv 0$、$\vect{f}(t)\equiv\vect{0}$ 时的直接推论。
+\end{proof}
+
+对于实系数齐次高阶线性微分方程，利用其与一阶线性方程组的对应关系，
+可得到完全类似的结论：复值解的实部和虚部仍分别是原方程的实值解。
+
+\begin{definition}\label{def:实解析函数}
+	实变量函数 $x(t)$ 称为在点 $t=t_0$ 处\textbf{解析}，如果存在
+	$\rho>0$，使得当 $|t-t_0|<\rho$ 时，$x(t)$ 可以展开为收敛幂级数
+	\[
+		x(t)=\sum_{j=0}^{\infty}c_j(t-t_0)^j,
+	\]
+	其中 $c_j$ 为常数。
+\end{definition}
+
+为保证由形式计算得到的幂级数确实收敛，需要下面的 Cauchy 定理。
+
+\begin{theorem}[Cauchy 定理]\label{thm:Cauchy解析解定理}
+	设函数 $f(t,x)$ 在矩形区域
+	\[
+		R=\bigl\{(t,x)\in\R^2:
+		|t-t_0|<\alpha,\ |x-x_0|<\beta\bigr\}
+	\]
+	上可以展开为关于 $t-t_0$ 和 $x-x_0$ 的收敛幂级数
+	\[
+		f(t,x)=\sum_{k,l=0}^{\infty}
+		\gamma_{kl}(t-t_0)^k(x-x_0)^l.
+	\]
+	则初值问题
+	\[
+		\dfrac{\dd x}{\dd t}=f(t,x),
+		\qquad x(t_0)=x_0
+	\]
+	在 $t_0$ 附近存在唯一的解析解。
+\end{theorem}
+
+\begin{proof}
+	先设上述初值问题有形式幂级数解
+	\[
+		x(t)=x_0+\sum_{j=1}^{\infty}c_j(t-t_0)^j.
+	\]
+	将其代入方程并比较同次幂系数，可得
+	\[
+		c_1=\gamma_{00},
+		\qquad
+		c_2=\dfrac{1}{2!}
+		\bigl(\gamma_{10}+\gamma_{01}\gamma_{00}\bigr),
+	\]
+	一般地，
+	\[
+		c_n=\dfrac{1}{n!}x^{(n)}(t_0)
+		=P_n\bigl(\gamma_{00},\gamma_{01},\gamma_{10},
+		\ldots,\gamma_{n-1,0}\bigr),
+		\qquad n=1,2,\ldots,
+	\]
+	其中 $P_n$ 是具有正系数的多项式。因此所有 $c_n$ 均由递推关系
+	唯一确定，只需证明上述形式幂级数收敛。
+
+	任取 $0<\alpha_1<\alpha$、$0<\beta_1<\beta$。由 $f(t,x)$ 的展开级数
+	绝对收敛，存在常数 $M>0$，使得
+	\[
+		|\gamma_{kl}|\alpha_1^k\beta_1^l\leq M,
+		\qquad k,l=0,1,\ldots.
+	\]
+	于是可以构造优级数
+	\[
+		F(t,x)=\sum_{k,l=0}^{\infty}
+		\dfrac{M}{\alpha_1^k\beta_1^l}
+		(t-t_0)^k(x-x_0)^l,
+	\]
+	它在相应的小矩形内收敛，并且
+	\[
+		F(t,x)=
+		\dfrac{M}
+		{\left(1-\dfrac{t-t_0}{\alpha_1}\right)
+		 \left(1-\dfrac{x-x_0}{\beta_1}\right)}.
+	\]
+	考虑方程
+	\[
+		\dfrac{\dd x}{\dd t}=F(t,x),
+		\qquad x(t_0)=x_0
+	\]
+	可由分离变量法求得
+	\[
+		x(t)=x_0+\beta_1-\beta_1
+		\sqrt{1+\dfrac{2\alpha_1M}{\beta_1}
+		\ln\left(1-\dfrac{t-t_0}{\alpha_1}\right)}.
+	\]
+	该函数在 $t_0$ 附近解析。设其幂级数系数为 $\widetilde c_n$，
+	则 $\widetilde c_n\geq 0$；由 $P_n$ 的正系数性以及上述系数估计可得
+	$|c_n|\leq\widetilde c_n$。故原形式幂级数由收敛级数控制，从而在
+	$t_0$ 附近收敛。系数的唯一性同时给出解析解的唯一性。
+\end{proof}
+
+上述结论可以推广到有限维一阶方程组。
+
+\begin{corollary}\label{prop:Cauchy定理的有限维推广}
+	设
+	\[
+		\vect{x}=(x_1,\ldots,x_n)^{\mathsf T},
+		\qquad
+		\vect{f}=(f_1,\ldots,f_n)^{\mathsf T}.
+	\]
+	若每个分量 $f_i(t,\vect{x})$ 都在
+	$(t_0,\vect{x}^{,0})$ 的某个邻域内解析，则初值问题
+	\[
+		\dfrac{\dd\vect{x}}{\dd t}=\vect{f}(t,\vect{x}),
+		\qquad
+		\vect{x}(t_0)=\vect{x}^{,0}
+	\]
+	在 $t_0$ 附近存在唯一的解析解。
+\end{corollary}
+
+\begin{proof}
+	令 $z=t-t_0$、$\vect{u}=\vect{x}-\vect{x}^{,0}$，则初值问题化为
+	\[
+		\dfrac{\dd\vect{u}}{\dd z}
+		=\vect{f}(t_0+z,\vect{x}^{,0}+\vect{u}),
+		\qquad \vect{u}(0)=\vect{0}.
+	\]
+	采用多重指标记号
+	$\mu=(\mu_1,\ldots,\mu_n)\in\N^n$、
+	$|\mu|=\mu_1+\cdots+\mu_n$、
+	$\vect{u}^{\mu}=u_1^{\mu_1}\cdots u_n^{\mu_n}$，可写成
+	\[
+		f_i(t_0+z,\vect{x}^{,0}+\vect{u})
+		=\sum_{k=0}^{\infty}\sum_{\mu\in\N^n}
+		\gamma_{i,k,\mu}z^k\vect{u}^{\mu}.
+	\]
+	设形式幂级数
+	\[
+		u_i(z)=\sum_{m=1}^{\infty}c_{i,m}z^m,
+		\qquad i=1,\ldots,n.
+	\]
+	代入方程组并比较同次幂系数，即可依次唯一确定所有 $c_{i,m}$。
+
+	由各分量级数的绝对收敛性，可取 $a,b,M>0$，使得
+	\[
+		|\gamma_{i,k,\mu}|
+		\leq\dfrac{M}{a^k b^{|\mu|}}.
+	\]
+	考虑正项优级数
+	\[
+		\Phi(z,w)
+		=\sum_{k=0}^{\infty}\sum_{\mu\in\N^n}
+		\dfrac{M}{a^k b^{|\mu|}}z^kw^{|\mu|}
+		=\dfrac{M}{\left(1-\dfrac{z}{a}\right)
+		\left(1-\dfrac{w}{b}\right)^n}.
+	\]
+	相应标量初值问题
+	\[
+		\dfrac{\dd w}{\dd z}=\Phi(z,w),
+		\qquad w(0)=0
+	\]
+	有解
+	\[
+		w(z)=b\left[
+		1-\left(
+		1+\dfrac{(n+1)Ma}{b}\ln\left(1-\dfrac{z}{a}\right)
+		\right)^{\!\dfrac{1}{n+1}}
+		\right],
+	\]
+	它在 $z=0$ 附近解析。若
+	$w(z)=\sum_{m=1}^{\infty}d_mz^m$，则 $d_m\geq0$。
+	由递推关系逐项比较可得 $|c_{i,m}|\leq d_m$，故每个
+	$u_i(z)$ 均在 $z=0$ 附近绝对收敛。其和逐项求导并代回方程组，
+	便得到所需解析解；系数递推的唯一性给出解析解的唯一性。
+\end{proof}
+
+考虑二阶齐次线性微分方程
+\[
+	\dfrac{\dd^2x}{\dd t^2}
+	+a(t)\dfrac{\dd x}{\dd t}+b(t)x=0.
+\]
+
+\begin{proposition}\label{thm:二阶解析系数方程的幂级数解}
+	若上述二阶方程的系数 $a(t),b(t)$
+	在区间 $|t-t_0|<\rho$ 内均可展开为关于 $t-t_0$ 的收敛幂级数，
+	则该方程在此区间内存在收敛的幂级数解
+	\[
+		x(t)=\sum_{j=0}^{\infty}c_j(t-t_0)^j.
+	\]
+	其中 $c_0,c_1$ 为任意常数，它们可由 $t_0$ 处的初值确定；
+	$c_2,c_3,\ldots$ 则由 $c_0,c_1$ 出发，通过递推公式依次确定。
+\end{proposition}
+
+\begin{proof}
+	令 $y=\dfrac{\dd x}{\dd t}$，则原二阶方程等价于一阶方程组
+	\[
+		\begin{cases}
+			\dfrac{\dd x}{\dd t}=y,\\[6pt]
+			\dfrac{\dd y}{\dd t}=-b(t)x-a(t)y.
+		\end{cases}
+	\]
+	其右端关于 $t,x,y$ 解析。由命题
+	\ref{prop:Cauchy定理的有限维推广}，任意初值
+	$x(t_0)=c_0$、$x'(t_0)=c_1$ 都唯一确定一个解析解。
+	把 $a(t),b(t)$ 及所设幂级数代入原方程并比较同次幂，
+	即可依次确定其余系数。对每个
+	$r<\rho$ 应用同一结论并利用解的唯一性作解析延拓，便知该级数在
+	$|t-t_0|<\rho$ 内收敛。
+\end{proof}
+
+为了计算上述二阶方程的幂级数解，先将
+\[
+	a(t)=\sum_{j=0}^{\infty}a_j(t-t_0)^j,
+	\qquad
+	b(t)=\sum_{j=0}^{\infty}b_j(t-t_0)^j
+\]
+代入方程，再比较 $t-t_0$ 的同次幂系数，即可得到关于 $c_j$ 的递推关系。
+
+\begin{example}\label{ex:Legendre方程的幂级数解}
+	在 $t=0$ 附近求解 Legendre 方程
+	\[
+		(1-t^2)\dfrac{\dd^2x}{\dd t^2}
+		-2t\dfrac{\dd x}{\dd t}+L(L+1)x=0.
+	\]
+
+	\begin{solution}
+		设
+		\[
+			x(t)=\sum_{j=0}^{\infty}c_jt^j.
+		\]
+		代入方程得到
+		\[
+			(1-t^2)\sum_{j=2}^{\infty}j(j-1)c_jt^{j-2}
+			-2t\sum_{j=1}^{\infty}jc_jt^{j-1}
+			+L(L+1)\sum_{j=0}^{\infty}c_jt^j=0.
+		\]
+		合并同类项得
+		\[
+			\sum_{j=0}^{\infty}
+			\Bigl\{(j+2)(j+1)c_{j+2}
+			+(L+j+1)(L-j)c_j\Bigr\}t^j=0,
+		\]
+		故
+		\[
+			(j+2)(j+1)c_{j+2}
+			+(L+j+1)(L-j)c_j=0,
+			\qquad j=0,1,\ldots.
+		\]
+		于是
+		\[
+		\begin{aligned}
+			c_{2j}
+			&=(-1)^j
+			\dfrac{(L-2j+2)\cdots(L-2)L\cdot(L+1)(L+3)\cdots(L+2j-1)}{(2j)!}c_0\\
+			c_{2j+1}
+			&=(-1)^j
+			\dfrac{(L-2j+1)\cdots(L-3)(L-1)\cdot(L+2)(L+4)\cdots(L+2j)}{(2j+1)!}c_1
+		\end{aligned}
+		\]
+		其中 $j=1,2,\ldots$。
+		分别取 $(c_0,c_1)=(1,0)$ 与 $(0,1)$，得到两个解
+		$x_1(t),x_2(t)$。它们满足
+		\[
+			W(x_1,x_2)(0)=1,
+		\]
+		因而构成 Legendre 方程的基本解组。由此即得到该方程的通解。
+	\end{solution}
+\end{example}
+
+如果系数 $a(t),b(t)$ 在 $t=t_0$ 处不解析，例如分母中出现
+$t-t_0$ 的幂，可以尝试寻找形如
+\[
+	x(t)=(t-t_0)^{\nu}\sum_{j=0}^{\infty}c_j(t-t_0)^j
+\]
+的形式级数解，其中 $\nu$ 和 $c_j$ 均为待定常数。这就是幂级数法的推广。
+
+\begin{example}\label{ex:Bessel方程的幂级数解}
+	在 $t=0$ 附近用幂级数法求解 Bessel 方程
+	\[
+		t^2\dfrac{\dd^2x}{\dd t^2}
+		+t\dfrac{\dd x}{\dd t}
+		+(t^2-n^2)x=0,
+	\]
+	其中常数 $n\geq0$。
+
+	\begin{solution}
+		将 Bessel 方程除以 $t^2$，写成
+		$x''+a(t)x'+b(t)x=0$ 的形式时，
+		$a(t)=\dfrac{1}{t}$、$b(t)=1-\dfrac{n^2}{t^2}$，
+		它们在 $t=0$ 处均不解析。设
+		\[
+			x(t)=t^{\nu}\sum_{j=0}^{\infty}c_jt^j,
+			\qquad c_0\neq0.
+		\]
+		代入 Bessel 方程并合并同类项，得到
+		\[
+			\sum_{j=0}^{\infty}
+			\bigl((\nu+j)^2-n^2\bigr)c_jt^{\nu+j}
+			+\sum_{j=0}^{\infty}c_jt^{\nu+j+2}=0.
+		\]
+		比较各次幂系数可得
+		\[
+		\begin{aligned}
+			&\nu^2-n^2=0,\\
+			&c_1\bigl((\nu+1)^2-n^2\bigr)=0,\\
+			&c_j\bigl((\nu+j)^2-n^2\bigr)+c_{j-2}=0,
+			\qquad j=2,3,\ldots.
+		\end{aligned}
+		\]
+		因此 $\nu=n$ 或 $\nu=-n$。当 $\nu=n$ 时，
+		\[
+			c_{2j+1}=0,
+			\qquad j=0,1,\ldots,
+		\]
+		且
+		\[
+			c_{2j}
+			=\dfrac{(-1)^j}
+			{2^{2j}(n+1)(n+2)\cdots(n+j)j!}\,c_0,
+			\qquad j=1,2,\ldots.
+		\]
+		由此得到一个含任意常数 $c_0$ 的解。取
+		\[
+			c_0=\dfrac{1}{2^n\Gamma(n+1)},
+		\]
+		所得函数称为 $n$ 阶 Bessel 函数。
+
+		这里 Gamma 函数在 $s>0$ 时定义为
+		\[
+			\Gamma(s)=\int_{0}^{+\infty}x^{s-1}\mathrm{e}^{-x}\,\dd x,
+		\]
+		当 $s<0$ 且 $s$ 不是整数时，由递推公式
+		\[
+			\Gamma(s)=\dfrac{1}{s}\Gamma(s+1)
+		\]
+		定义。
+
+		若 $\nu=-n$，并且 $2n$ 不是整数，则可以类似地得到另一解。
+		当取
+		\[
+			c_0=\dfrac{1}{2^{-n}\Gamma(-n+1)}
+		\]
+		时，所得函数称为 $-n$ 阶 Bessel 函数。
+	\end{solution}
+\end{example}

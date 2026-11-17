@@ -1,0 +1,83 @@
+8
+Contents
+4.Systems of Equations
+109
+5. Remarks on Terminology .
+112
+S9.ThePhase Curves of anAutonomousSystem
+116
+1.Autonomous Systems...
+117
+2. Translation over Time.
+117
+3.Closed Phase Curves
+119
+10.TheDerivative in theDirection of aVectorFieldand
+First Integrals.
+121
+1. The Derivative in the Direction of a Vector .
+121
+2.The Derivative in the Direction of a Vector Field.
+122
+3. Properties of the Directional Derivative.
+123
+4.The Lie Algebra of Vector Fields..
+124
+5. First Integrals.
+125
+6. Local First Integrals
+126
+7. Time-Dependent First Integrals.
+127
+ 11. First-order Linear and Quasi-linear Partial Differential
+Equations ...
+129
+1. The Homogeneous Linear Equation .....
+129
+2.The Cauchy Problem.
+130
+3. The Inhomogeneous Linear Equation....
+131
+4. The Quasi-linear Equation.
+132
+5. The Characteristics of a Quasi-linear Equation..
+133
+6.Integration of a Quasi-linear Equation.
+135
+7. The First-order Nonlinear Partial Differential Equation ..
+136
+§12.The Conservative System with one.Degree of Freedom..
+138
+1. Definitions .
+138
+2. The Law of Conservation of Energy .
+139
+3. The Level Lines of the Energy ....
+140
+4. The Level Lines of the Energy Near a Singular Point .
+142
+5. Extension of the Solutions of Newton's Equation..
+144
+6. Noncritical Level Lines of the Energy ..
+145
+7. Proof of the Theorem of Sect. 6..
+146
+8. Critical Level Lines...
+147
+9.An Example...
+148
+10.Small Perturbations of a Conservative System.
+149
+Chapter 3. Linear Systems .
+152
+§ 13.Linear Problems..
+152
+1. Example: Linearization.
+152
+2. Example: One-parameter Groups of Linear Transformations of
+Rn..
+153
+3. The Linear Equation ..
+154
+§14.The Exponential Function
+155

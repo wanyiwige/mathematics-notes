@@ -1,0 +1,204 @@
+﻿% preamble/cover.tex
+% 简化版封面 —— Dummit 抽象代数读书笔记
+% 蓝金配色，保留九层 TikZ 设计骨架
+
+\makeatletter
+\providecommand{\@coverimage}{}
+\newcommand{\coverimage}[1]{\renewcommand{\@coverimage}{#1}}
+
+\newcommand{\makecover}{%
+\begin{titlepage}
+\thispagestyle{empty}
+
+% ============================================================
+%  第一层：左侧深蓝色竖条 + 装饰
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[RedDark!95]
+    (current page.south west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  \shade[top color=RedDark!90, bottom color=RedDark!95]
+    ([xshift=0cm,yshift=-4cm]current page.north west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  \shade[bottom color=RedDark!90, top color=RedDark!95]
+    ([xshift=0cm,yshift=4cm]current page.south west) rectangle
+    ([xshift=2.8cm]current page.south west);
+  \draw[RedAccent!50,line width=1pt]
+    ([xshift=2.8cm]current page.south west) --
+    ([xshift=2.8cm]current page.north west);
+  \draw[RedLight!25,line width=0.4pt]
+    ([xshift=0.4cm]current page.south west) --
+    ([xshift=0.4cm]current page.north west);
+  \foreach \y/\r/\o in {
+    0.08/1.1/0.07, 0.22/0.7/0.11, 0.40/1.4/0.06,
+    0.55/0.55/0.10, 0.68/0.9/0.08, 0.82/0.6/0.11, 0.93/0.75/0.09
+  } {
+    \fill[white, opacity=\o]
+      ([xshift=1.4cm, yshift=-\y\paperheight]current page.north west)
+      circle (\r cm);
+  }
+  \draw[white, line width=0.3pt, opacity=0.18]
+    ([xshift=0.5cm]current page.north west) --
+    ([xshift=0.5cm]current page.south west);
+  \draw[white, line width=0.3pt, opacity=0.18]
+    ([xshift=2.1cm]current page.north west) --
+    ([xshift=2.1cm]current page.south west);
+\end{tikzpicture}
+
+% ============================================================
+%  第二层：顶部/底部装饰金线
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[GoldMain!50,line width=0.6pt]
+    ([xshift=3.0cm,yshift=-1.6cm]current page.north west) --
+    ([xshift=-2.0cm,yshift=-1.6cm]current page.north east);
+  \foreach \x in {3.5,7,10.5,14} {
+    \fill[GoldMain!60]
+      ([xshift=\x cm,yshift=-1.45cm]current page.north west)
+      circle (1.5pt);
+  }
+  \draw[GoldMain!40,line width=0.5pt]
+    ([xshift=3.0cm,yshift=2.2cm]current page.south west) --
+    ([xshift=-1.5cm,yshift=2.2cm]current page.south east);
+  \foreach \x in {4,8,12} {
+    \fill[GoldMain!45]
+      ([xshift=\x cm,yshift=2.35cm]current page.south west)
+      circle (1.2pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第三层：右上角装饰几何图形
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[GoldMain!30,line width=0.7pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (22pt);
+  \draw[RedAccent!30,line width=0.5pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (14pt);
+  \fill[GoldMain!50]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (2.5pt);
+  \foreach \ang in {0,90,180,270} {
+    \draw[GoldMain!25,line width=0.4pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:28pt);
+  }
+  \foreach \ang in {45,135,225,315} {
+    \draw[RedAccent!20,line width=0.3pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:26pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第四层：左下角装饰曲线
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[GoldMain!15,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=3.0cm]current page.south west)
+    to[out=30,in=210] ++(3.0,2.0);
+  \draw[RedAccent!15,line width=0.5pt,smooth]
+    ([xshift=3.3cm,yshift=3.0cm]current page.south west)
+    to[out=35,in=205] ++(3.2,2.2);
+  \draw[RedMain!12,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=4.0cm]current page.south west)
+    to[out=-15,in=195] ++(2.5,-1.5);
+\end{tikzpicture}
+
+% ============================================================
+%  第五层：公式背景区
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \shade[top color=GoldPale!40, bottom color=GoldPale!25]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+  \draw[GoldMain!30,line width=0.4pt]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+  
+  % 代数学经典公式
+  \node[anchor=west,RedMain!70] at ([xshift=3.7cm,yshift=-3.5cm]current page.north west)
+    {$\displaystyle G/\Ker\phi\;\cong\;\Im\phi$};
+  \node[anchor=west,RedAccent!65] at ([xshift=3.8cm,yshift=-4.8cm]current page.north west)
+    {$\displaystyle |G|=|H|\cdot[G:H]$};
+  \node[anchor=west,GoldMain!75] at ([xshift=3.9cm,yshift=-6.1cm]current page.north west)
+    {$\displaystyle \Aut(\Z/n\Z)\cong(\Z/n\Z)^{\times}$};
+  \node[anchor=west,RedMain!55] at ([xshift=4.0cm,yshift=-7.4cm]current page.north west)
+    {$\displaystyle \Gal(E/F)\cong G$};
+  \node[anchor=west,RedAccent!50] at ([xshift=3.7cm,yshift=-8.7cm]current page.north west)
+    {$\displaystyle R/I\ \text{域}\ \Longleftrightarrow\ I\ \text{极大理想}$};
+  
+  \foreach \y/\c in {-3.5/RedMain!35, -4.8/RedAccent!30, -6.1/GoldMain!35, -7.4/RedMain!30, -8.7/RedAccent!25} {
+    \fill[\c]
+      ([xshift=-2.0cm,yshift=\y cm]current page.north west)
+      circle (1.8pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第六层：标题区
+% ============================================================
+\vspace*{2cm}
+
+\hspace*{3.3cm}
+\begin{minipage}{0.7\textwidth}
+  {\large\bfseries\color{RedAccent} Dummit \& Foote 抽象代数\quad 读书笔记\par}
+  
+  \vspace{0.3cm}
+  \begin{tikzpicture}
+    \draw[GoldMain!60,line width=1.2pt] (0,0) -- (2.0,0);
+    \fill[GoldMain!70] (2.3,0) circle (2pt);
+    \fill[GoldMain!50] (2.8,0) circle (1.2pt);
+    \fill[GoldMain!30] (3.2,0) circle (0.8pt);
+  \end{tikzpicture}
+  
+  \vspace{0.8cm}
+  {\Huge\bfseries\color{RedDark} \@title\par}
+  
+  \vspace{0.6cm}
+  {\Large\color{RedMain!70} \@author\par}
+  
+  \vspace{0.4cm}
+  \begin{tikzpicture}
+    \draw[GoldMain!40,line width=0.7pt] (0,0) -- (3.5,0);
+    \fill[GoldMain!45] (0,0) circle (1.5pt);
+    \fill[GoldMain!45] (3.5,0) circle (1.5pt);
+  \end{tikzpicture}
+  
+  \vspace{0.8cm}
+  {\large\color{GoldMain!85} 译注：万一之\par}
+  \vspace{0.5cm}
+  {\normalsize\color{RedDark!60} 原书：\textit{Abstract Algebra}, 3rd ed.\par}
+
+\end{minipage}
+
+% ============================================================
+%  第七层：底部图片
+% ============================================================
+\ifdefempty{\@coverimage}{}{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=south west,inner sep=0pt,outer sep=0pt]
+		at ([xshift=3.3cm,yshift=3.05cm]current page.south west)
+		{
+			\includegraphics[
+			width=\dimexpr\paperwidth-4.8cm\relax
+			]{\@coverimage}
+		};
+	\end{tikzpicture}
+}
+
+% ============================================================
+%  第八层：散落装饰点
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[GoldMain!20] ([xshift=-3.0cm,yshift=-9.5cm]current page.north west) circle (1.0pt);
+  \fill[RedAccent!20] ([xshift=-3.8cm,yshift=-9.8cm]current page.north west) circle (0.7pt);
+  \fill[RedMain!15] ([xshift=-4.0cm,yshift=3.5cm]current page.south west) circle (1.2pt);
+  \fill[GoldMain!15] ([xshift=-5.5cm,yshift=4.0cm]current page.south west) circle (0.9pt);
+\end{tikzpicture}
+
+\end{titlepage}
+}
+\makeatother

@@ -1,0 +1,449 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第4章：$\R$上的Fourier变换
+% 节：4.3 Fourier 反演与 Plancherel 公式
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{Fourier 反演与 Plancherel 公式}
+
+\begin{proposition}\label{prop:fourier-pairing}
+	(乘法公式)若 $f,g\in\mathcal S(\R)$，则
+	\[
+	\int_{-\infty}^{\infty}f(x)\widehat g(x)\dd x
+	=
+	\int_{-\infty}^{\infty}\widehat f(y)g(y)\dd y.
+	\]
+\end{proposition}
+
+\begin{proof}
+	先说明交换二重积分次序的合理性。设 $F$ 是 $\R^2$ 上的连续函数，并且存在 $A>0$，使得
+	\[
+	\abs{F(x,y)}\leq \frac{A}{(1+x^2)(1+y^2)}.
+	\]
+	则 $F$ 在 $\R^2$ 上绝对可积。若记
+	\[
+	F_1(x)=\int_{-\infty}^{\infty}F(x,y)\dd y,
+	\qquad
+	F_2(y)=\int_{-\infty}^{\infty}F(x,y)\dd x,
+	\]
+	则由 Fubini 定理，
+	\[
+	\int_{-\infty}^{\infty}F_1(x)\dd x
+	=
+	\int_{-\infty}^{\infty}F_2(y)\dd y.
+	\]
+	
+	现在取
+	\[
+	F(x,y)=f(x)g(y)e^{-2\pi ixy}.
+	\]
+	由于 $f,g\in\mathcal S(\R)$，上述下降条件成立，并且
+	\[
+	F_1(x)=f(x)\widehat g(x),
+	\qquad
+	F_2(y)=\widehat f(y)g(y).
+	\]
+	代入前式即得结论。
+\end{proof}
+
+\begin{theorem}[Fourier 反演]\label{thm:fourier-inversion-schwartz}
+	(Fourier反演公式)若 $f\in\mathcal S(\R)$，则
+	\[
+	f(x)=\int_{-\infty}^{\infty}\widehat f(\xi)e^{2\pi ix\xi}\dd\xi.
+	\]
+\end{theorem}
+
+\begin{proof}
+	先证明 $x=0$ 的情形，即
+	\[
+	f(0)=\int_{-\infty}^{\infty}\widehat f(\xi)\dd\xi.
+	\]
+	令
+	\[
+	G_\delta(x)=e^{-\pi\delta x^2},
+	\qquad
+	K_\delta(x)=\delta^{-1/2}e^{-\pi x^2/\delta},
+	\qquad \delta>0.
+	\]
+	由 Gaussian 函数的 Fourier 变换公式，
+	\[
+	\widehat{G_\delta}(\xi)=K_\delta(\xi).
+	\]
+	于是由命题 \ref{prop:fourier-pairing}，
+	\[
+	\int_{-\infty}^{\infty}f(x)K_\delta(x)\dd x
+	=
+	\int_{-\infty}^{\infty}\widehat f(\xi)G_\delta(\xi)\dd\xi.
+	\]
+	当 $\delta\to0^+$ 时，$G_\delta(\xi)\to1$，且 $0<G_\delta(\xi)\leq1$。由于 $\widehat f\in\mathcal S(\R)$，由控制收敛定理，
+	\[
+	\int_{-\infty}^{\infty}\widehat f(\xi)G_\delta(\xi)\dd\xi
+	\longrightarrow
+	\int_{-\infty}^{\infty}\widehat f(\xi)\dd\xi.
+	\]
+	
+	另一方面，$\displaystyle\int_{-\infty}^{\infty}K_\delta(x)\dd x=1$。给定 $\eps>0$，由 $f$ 在 $0$ 处连续，可取 $\eta>0$，使得当 $\abs{x}\leq\eta$ 时，
+	\[
+	\abs{f(x)-f(0)}<\frac{\eps}{2}.
+	\]
+	记 $M=2\norm{f}_\infty$，则
+	\[
+	\begin{aligned}
+		\abs{\int_{-\infty}^{\infty}f(x)K_\delta(x)\dd x-f(0)}
+		\leq{}&
+		\int_{\abs{x}\leq\eta}\abs{f(x)-f(0)}K_\delta(x)\dd x\\
+		&+
+		\int_{\abs{x}>\eta}\abs{f(x)-f(0)}K_\delta(x)\dd x\\
+		\leq{}&\frac{\eps}{2}
+		+2M\int_{\abs{x}>\eta}K_\delta(x)\dd x.
+	\end{aligned}
+	\]
+	由 Gaussian 好核的性质，后一项在 $\delta\to0^+$ 时趋于 $0$，故
+	\[
+	\int_{-\infty}^{\infty}f(x)K_\delta(x)\dd x\longrightarrow f(0).
+	\]
+	因此
+	\[
+	f(0)=\int_{-\infty}^{\infty}\widehat f(\xi)\dd\xi.
+	\]
+	
+	对任意 $x\in\R$，令 $F(y)=f(y+x)$。则
+	\[
+	F(0)=f(x),
+	\qquad
+	\widehat F(\xi)=e^{2\pi ix\xi}\widehat f(\xi).
+	\]
+	将已经证明的 $x=0$ 情形应用于 $F$，便得到
+	\[
+	f(x)=F(0)=\int_{-\infty}^{\infty}\widehat F(\xi)\dd\xi=\int_{-\infty}^{\infty}\widehat f(\xi)e^{2\pi ix\xi}\dd\xi.
+	\]
+\end{proof}
+
+可以定义两个映射
+\[
+\mathcal F:\mathcal S(\R)\longrightarrow\mathcal S(\R),
+\qquad
+\mathcal F^*:\mathcal S(\R)\longrightarrow\mathcal S(\R),
+\]
+其中
+\[
+\mathcal F(f)(\xi)
+=\int_{-\infty}^{\infty}f(x)e^{-2\pi ix\xi}\dd x,
+\qquad
+\mathcal F^*(g)(x)
+=\int_{-\infty}^{\infty}g(\xi)e^{2\pi ix\xi}\dd\xi.
+\]
+Fourier 反演公式表明
+\[
+\mathcal F^*\circ\mathcal F=I.
+\]
+此外，由
+\[
+\mathcal F(f)(y)=\mathcal F^*(f)(-y)
+\]
+可得
+\[
+\mathcal F\circ\mathcal F^*=I.
+\]
+因此有如下结论。
+
+\begin{proposition}\label{prop:fourier-bijection-schwartz}
+	Fourier 变换是 Schwartz 空间 $\mathcal S(\R)$ 上的双射，其逆映射为 $\mathcal F^*$。
+\end{proposition}
+\begin{lemma}
+	在$\mathcal{S}(\R)$上\[\mathcal{F}^4=I\]$I$是$\mathcal{S}(\R)$上的恒等算子。
+\end{lemma}
+\begin{proof}
+	由傅里叶反演公式，
+	$$
+	f(x)=\int_{\mathbb{R}} \hat{f}(\xi) e^{2 \pi i x \xi} d \xi
+	$$
+	将其中的 $x$ 换成 $-x$ ，得到
+	$$
+	f(-x)=\int_{\mathbb{R}} \hat{f}(\xi) e^{-2 \pi i x \xi} d \xi
+	$$
+	但右边恰好是 $\widehat{\hat{f}}(x)$ ，所以
+	$$
+	\mathcal{F}^2 f(x)=f(-x)
+	$$
+	再次作用一次 $\mathcal{F}^2$ ，便有
+	$$
+	\mathcal{F}^4 f(x)=\mathcal{F}^2\left(\mathcal{F}^2 f\right)(x)=f(-(-x))=f(x) .
+	$$
+	因此
+	$$
+	\mathcal{F}^4=I
+	$$
+\end{proof}
+运用上面的引理，我们可以得到$\mathcal{F}$的特征值
+\begin{proposition}
+	若对某个$f\in \mathcal{S}(\R)$,$\exists \lambda\in\C$使$\mathcal{F}(f)=\lambda f$,则\[\lambda\in\{1,-1,i,-i\}\]
+\end{proposition}
+\begin{proof}
+	假设 $f \not \equiv 0$ ，并且
+	$$
+	\hat{f}=\lambda f
+	$$
+	其中 $\lambda \in \mathbb{C}$ 。连续作用四次傅里叶变换：
+	$$
+	\mathcal{F}^4 f=\mathcal{F}^3(\lambda f)=\lambda^4 f
+	$$
+	另一方面， $\mathcal{F}^4=I$ ，所以
+	$$
+	\lambda^4 f=f .
+	$$
+	因为 $f \not \equiv 0$ ，必有$\lambda^4=1 $于是
+	$$
+	\lambda \in\{1,-1, i,-i\} .
+	$$
+\end{proof}
+那么我们就可以试着构造$\mathcal{F}$的特征函数族。
+任取 $g \in \mathcal{S}(\mathbb{R})$ ，并取
+$$
+\lambda \in\{1,-1, i,-i\} .
+$$
+定义
+$$
+f_\lambda=g+\lambda^{-1} \mathcal{F} g+\lambda^{-2} \mathcal{F}^2 g+\lambda^{-3} \mathcal{F}^3 g .
+$$
+那么
+$$
+\begin{aligned}
+	\mathcal{F} f_\lambda & =\mathcal{F} g+\lambda^{-1} \mathcal{F}^2 g+\lambda^{-2} \mathcal{F}^3 g+\lambda^{-3} \mathcal{F}^4 g \\
+	& =\mathcal{F} g+\lambda^{-1} \mathcal{F}^2 g+\lambda^{-2} \mathcal{F}^3 g+\lambda^{-3} g .
+\end{aligned}
+$$
+因为 $\lambda^4=1$ ，所以 $\lambda^{-3}=\lambda$ 。因此
+$$
+\begin{aligned}
+	\mathcal{F} f_\lambda & =\lambda g+\mathcal{F} g+\lambda^{-1} \mathcal{F}^2 g+\lambda^{-2} \mathcal{F}^3 g \\
+	& =\lambda\left(g+\lambda^{-1} \mathcal{F} g+\lambda^{-2} \mathcal{F}^2 g+\lambda^{-3} \mathcal{F}^3 g\right) \\
+	& =\lambda f_\lambda
+\end{aligned}
+$$
+所以，只要 $f_\lambda \not \equiv 0$ ，它就是特征值为 $\lambda$ 的傅里叶变换特征函数。
+特别地，
+$$
+\begin{aligned}
+	f_1 & =g+\mathcal{F} g+\mathcal{F}^2 g+\mathcal{F}^3 g \\
+	f_{-1} & =g-\mathcal{F} g+\mathcal{F}^2 g-\mathcal{F}^3 g \\
+	f_i & =g-i \mathcal{F} g-\mathcal{F}^2 g+i \mathcal{F}^3 g \\
+	f_{-i} & =g+i \mathcal{F} g-\mathcal{F}^2 g-i \mathcal{F}^3 g
+\end{aligned}
+$$
+它们分别满足
+$$
+\mathcal{F} f_1=f_1, \quad \mathcal{F} f_{-1}=-f_{-1}, \quad \mathcal{F} f_i=i f_i, \quad \mathcal{F} f_{-i}=-i f_{-i} .
+$$
+下面我们介绍一些卷积的重要性质。
+\begin{proposition}\label{prop:convolution-schwartz}
+	若 $f,g\in\mathcal S(\R)$，则：
+	\begin{enumerate}[label=(\roman*)]
+		\item $f*g\in\mathcal S(\R)$；
+		\item $f*g=g*f$；
+		\item
+		\[
+		\widehat{f*g}(\xi)=\widehat f(\xi)\widehat g(\xi).
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	(i) 对任意非负整数 $l$，断言存在常数 $A_l>0$，使得对任意 $y\in\R$，
+	\[
+	\sup_{x\in\R}\abs{x}^l\abs{g(x-y)}
+	\leq A_l(1+\abs{y})^l.
+	\]
+	事实上，若 $\abs{x}\leq2\abs{y}$，则
+	\[
+	\abs{x}^l\abs{g(x-y)}
+	\leq2^l\abs{y}^l\norm{g}_\infty;
+	\]
+	若 $\abs{x}>2\abs{y}$，则 $\abs{x-y}\geq\abs{x}/2$，从而
+	\[
+	\abs{x}^l\abs{g(x-y)}
+	\leq2^l\abs{x-y}^l\abs{g(x-y)}.
+	\]
+	断言得证。于是
+	\[
+	\begin{aligned}
+		\sup_{x\in\R}\abs{x}^l\abs{(f*g)(x)}
+		&\leq\int_{-\infty}^{\infty}\abs{f(y)}
+		\sup_{x\in\R}\abs{x}^l\abs{g(x-y)}\dd y\\
+		&\leq A_l\int_{-\infty}^{\infty}
+		\abs{f(y)}(1+\abs{y})^l\dd y<\infty.
+	\end{aligned}
+	\]
+	此外，对任意非负整数 $k$，可在积分号下求导得到
+	\[
+	\left(\frac{\dd}{\dd x}\right)^k(f*g)(x)
+	=(f*g^{(k)})(x).
+	\]
+	将上述估计应用于 $g^{(k)}$，便有 $f*g\in\mathcal S(\R)$。
+	
+	(ii) 作变量替换 $u=x-y$，有
+	\[
+	\begin{aligned}
+		(f*g)(x)
+		&=\int_{-\infty}^{\infty}f(y)g(x-y)\dd y\\
+		&=\int_{-\infty}^{\infty}g(u)f(x-u)\dd u
+		=(g*f)(x).
+	\end{aligned}
+	\]
+	
+	(iii) 由于
+	\[
+	\int_{\R^2}\abs{f(y)g(x-y)}\dd x\dd y
+	=\norm{f}_1\norm{g}_1<\infty,
+	\]
+	可以交换积分次序。因此
+	\[
+	\begin{aligned}
+		\widehat{f*g}(\xi)
+		&=\int_{-\infty}^{\infty}(f*g)(x)e^{-2\pi ix\xi}\dd x\\
+		&=\int_{-\infty}^{\infty}f(y)
+		\left(\int_{-\infty}^{\infty}g(x-y)e^{-2\pi ix\xi}\dd x\right)\dd y\\
+		&=\int_{-\infty}^{\infty}f(y)e^{-2\pi iy\xi}\widehat g(\xi)\dd y\\
+		&=\widehat f(\xi)\widehat g(\xi).
+	\end{aligned}
+	\]
+\end{proof}
+
+Schwartz 空间可以赋予 Hermitian 内积
+\[
+(f,g)=\int_{-\infty}^{\infty}f(x)\overline{g(x)}\dd x,
+\]
+相应的范数为
+\[
+\norm{f}
+=\left(\int_{-\infty}^{\infty}\abs{f(x)}^2\dd x\right)^{1/2}.
+\]
+本节的另一个主要定理指出，$\mathcal S(\R)$ 上的 Fourier 变换保持范数。
+\newpage
+\begin{theorem}[Plancherel]\label{thm:plancherel-schwartz}(Plancherel公式)
+	若 $f\in\mathcal S(\R)$，则
+	\[
+	\norm{\widehat f}=\norm{f}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	定义
+	\[
+	f^{\flat}(x)=\overline{f(-x)}.
+	\]
+	容易验证
+	\[
+	\widehat{f^{\flat}}(\xi)=\overline{\widehat f(\xi)}.
+	\]
+	令 $h=f*f^{\flat}$。由命题 \ref{prop:convolution-schwartz}，
+	\[
+	\widehat h(\xi)
+	=\widehat f(\xi)\widehat{f^{\flat}}(\xi)
+	=\abs{\widehat f(\xi)}^2,
+	\]
+	而
+	\[
+	h(0)=\int_{-\infty}^{\infty}\abs{f(x)}^2\dd x.
+	\]
+	将 Fourier 反演公式在 $0$ 点应用于 $h$，得到
+	\[
+	\int_{-\infty}^{\infty}\abs{\widehat f(\xi)}^2\dd\xi
+	=\int_{-\infty}^{\infty}\widehat h(\xi)\dd\xi
+	=h(0)
+	=\int_{-\infty}^{\infty}\abs{f(x)}^2\dd x.
+	\]
+	因此 $\norm{\widehat f}=\norm{f}$。
+\end{proof}
+
+我们可以把所研究的空间扩大到 $\mathcal M(\R)$，但 $\mathcal M(\R)$ 本身并不关于 Fourier 变换封闭。为此定义
+\[
+\mathcal X(\R)
+=\left\{f\in\mathcal M(\R):\widehat f\in\mathcal M(\R)\right\}
+=\mathcal M(\R)\cap\mathcal F^{-1}\bigl(\mathcal M(\R)\bigr).
+\]
+
+\begin{proposition}\label{prop:convolution-X}
+	若 $f,g\in\mathcal X(\R)$，则
+	\[
+	f*g\in\mathcal X(\R).
+	\]
+\end{proposition}
+
+\begin{proof}
+	先证明 $f*g\in\mathcal M(\R)$。设
+	\[
+	\abs{f(x)}\leq\frac{A}{1+x^2},
+	\qquad
+	\abs{g(x)}\leq\frac{B}{1+x^2}.
+	\]
+	卷积积分绝对收敛，并可写成
+	\[
+	(f*g)(x)
+	=\int_{\abs{y}\leq\abs{x}/2}f(x-y)g(y)\dd y
+	+\int_{\abs{y}>\abs{x}/2}f(x-y)g(y)\dd y
+	=:I_1(x)+I_2(x).
+	\]
+	当 $\abs{y}\leq\abs{x}/2$ 时，$\abs{x-y}\geq\abs{x}/2$，故
+	\[
+	1+\abs{x-y}^2\geq\frac{1+x^2}{4}.
+	\]
+	因此
+	\[
+	\abs{I_1(x)}
+	\leq\frac{4A}{1+x^2}\norm{g}_1.
+	\]
+	当 $\abs{y}>\abs{x}/2$ 时，同理有
+	\[
+	1+y^2\geq\frac{1+x^2}{4},
+	\]
+	从而
+	\[
+	\abs{I_2(x)}
+	\leq\frac{4B}{1+x^2}\norm{f}_1.
+	\]
+	取
+	\[
+	C=4A\norm{g}_1+4B\norm{f}_1,
+	\]
+	便有
+	\[
+	\abs{(f*g)(x)}\leq\frac{C}{1+x^2}.
+	\]
+	
+	再证连续性。若 $x_n\to x$，则对每个固定的 $y$，
+	\[
+	f(x_n-y)g(y)\longrightarrow f(x-y)g(y),
+	\]
+	且
+	\[
+	\abs{f(x_n-y)-f(x-y)}\abs{g(y)}
+	\leq2\norm{f}_\infty\abs{g(y)}.
+	\]
+	由控制收敛定理，
+	\[
+	\abs{(f*g)(x_n)-(f*g)(x)}
+	\leq\int_{-\infty}^{\infty}
+	\abs{f(x_n-y)-f(x-y)}\abs{g(y)}\dd y
+	\longrightarrow0.
+	\]
+	故 $f*g\in\mathcal M(\R)$。
+	
+	最后，由绝对收敛与 Fubini 定理，仍有
+	\[
+	\widehat{f*g}=\widehat f\,\widehat g.
+	\]
+	因为 $\widehat f,\widehat g\in\mathcal M(\R)$，所以它们的乘积也属于 $\mathcal M(\R)$。因此 $f*g\in\mathcal X(\R)$。
+\end{proof}
+
+从而
+\[
+\mathcal S(\R)\subset\mathcal X(\R)\subset\mathcal M(\R).
+\]
+在这些空间上可以规定自然范数
+\[
+\norm{f}_{\mathcal M}
+=\sup_{x\in\R}(1+x^2)\abs{f(x)},
+\qquad
+\norm{f}_{\mathcal X}
+=\norm{f}_{\mathcal M}+\norm{\widehat f}_{\mathcal M}.
+\]
+$\mathcal X(\R)$ 是一个比 Schwartz 空间更大的、关于 Fourier 变换封闭的空间。同样的 Gaussian 逼近论证表明，在 $\mathcal X(\R)$ 上 Fourier 反演公式与 Plancherel 公式仍然成立。

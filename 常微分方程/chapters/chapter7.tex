@@ -1,0 +1,542 @@
+\setchapterimage{figure/Chapter7封面图.jpg}
+\setchapterintro{本章研究坐标变换对微分方程的影响。利用解对初值的可微依赖性，证明向量场的局部直化定理，并讨论对称性、首次积分和周期轨道。}
+\chapter{向量场的几何、直化与首次积分}
+\label{chap:arnold-geometry}
+
+第六章已由唯一性建立流的群性质。本章用第五章的可微依赖性和定理~\ref{thm:local-inverse} 研究换坐标后的向量场；先限于 Euclidean 开集上的局部问题，随后再推广到流形。
+
+\section{微分同胚与向量场的变换}
+\begin{definition}
+开集 $U\subset\R^n$ 上的 $C^r$ 向量场是映射 $v:U\to\R^n$；
+应将 $v(x)$ 看作附着在 $x$ 的向量。$C^r$ 微分同胚是双射
+$g:U\to V$，其自身与逆映射都属于 $C^r$，这里 $r\geq1$。
+方向场则在每点指定一条一维线性方向，而不指定该方向上的速度大小。
+\end{definition}
+\begin{definition}[微分、拉回与推前]
+若曲线 $\gamma(0)=x$、$\gamma'(0)=e$，定义
+$g_{*x}e=(g\circ\gamma)'(0)=Dg(x)e$。
+函数 $f:V\to\R$ 的拉回为 $g^*f=f\circ g$。
+当 $g$ 是微分同胚时，向量场 $v$ 的推前 $g_*v$ 由
+\[
+ (g_*v)(g(x))=Dg(x)v(x)
+\]
+定义。
+\end{definition}
+链式法则说明切向量的像与选择哪条速度为 $e$ 的曲线无关。
+一般映射可把两个不同的点映到同一点，却给出不同的向量像，所以不能总定义向量场的推前。
+
+\begin{theorem}[换元与相流]
+若 $w=g_*v$，则 $x(t)$ 解 $\dot x=v(x)$ 当且仅当 $g(x(t))$ 解
+$\dot y=w(y)$。相流因而满足
+\[
+ \psi^t=g\circ\varphi^t\circ g^{-1}
+\]
+（在两边均有定义的区域内）。
+\end{theorem}
+\begin{proof}
+先证正向结论。若 $x(t)$ 满足 $x'=v(x)$，令 $y(t)=g(x(t))$。
+由链式法则及推前的定义，逐步得到
+\begin{align*}
+ y'(t)&=Dg(x(t))x'(t)\\
+ &=Dg(x(t))v(x(t))\\
+ &=(g_*v)(g(x(t)))=w(y(t)).
+\end{align*}
+因而 $y$ 是新方程的解。
+反过来，若 $y$ 为新方程的解，令 $x=g^{-1}(y)$。
+把 $w(g(x))=Dg(x)v(x)$ 左乘 $Dg^{-1}(g(x))$，利用逆函数链式法则，
+得到 $x'=v(x)$，所以对应关系是双向的。
+
+固定初值 $y_0=g(x_0)$。曲线 $g(\varphi^t(x_0))$ 在 $t=0$ 等于 $y_0$，
+又已经证明它满足新方程，因此唯一性使它等于 $\psi^t(y_0)$。
+将 $x_0=g^{-1}(y_0)$ 代回，即得相流的共轭公式。
+所有等式只在所涉曲线均存在且留在换元定义域内的时刻使用。
+\end{proof}
+若只要求曲线切向方向相同，$v$ 与 $a(x)v$ 在 $a>0$ 时有同向轨道，
+但其时间参数不同。将向量场除以一个严格为正的函数，就是这种时间变换。
+若 $a$ 变为零，可能产生新的平衡点，不能再声称轨道结构相同。
+
+
+\begin{definition}[光滑单参数变换群与生成场]\label{def:smooth-one-parameter}
+开集上的一族变换 $g^s$，若 $(s,x)\mapsto g^s(x)$ 光滑，$g^0=\operatorname{id}$，且
+$g^{s+t}=g^s\circ g^t$，称光滑单参数群；只在两边均有定义的小参数范围要求等式时，称局部单参数群。
+其生成向量场为 $a(x)=\left.\partial_sg^s(x)\right|_{s=0}$。
+对群等式求导可得 $\partial_sg^s(x)=a(g^s(x))$，所以它正是生成场的相流。
+\end{definition}
+
+\begin{definition}[向量场的对称]
+保持向量场 $v$ 的微分同胚，即 $g_*v=v$，称为向量场的对称；
+只保持相应方向场时称为方向场的对称。
+\end{definition}
+\begin{proposition}
+向量场的对称等价于它与局部相流可交换。
+光滑相流的速度场满足
+$v(x)=\left.\frac{\dd}{\dd t}\varphi^t(x)\right|_{t=0}$。
+\end{proposition}
+\begin{proof}
+设 $g_*v=v$。换元定理说明 $g(\varphi^t(x))$ 是从 $g(x)$ 出发的解，
+唯一性给出 $g\varphi^t(x)=\varphi^t g(x)$。
+反过来，假定两映射可交换，对时间在零点求导，得到
+$Dg(x)v(x)=v(g(x))$，这正是 $g_*v=v$。
+
+最后，从相流的群性质出发，
+\[
+ \frac{\varphi^{t+h}(x)-\varphi^t(x)}h
+ =\frac{\varphi^h(\varphi^t(x))-\varphi^t(x)}h.
+\]
+令 $h\to0$，右端为 $v(\varphi^t(x))$。
+因此，由零时刻导数定义的向量场满足相流在任意时刻的微分方程。
+\end{proof}
+
+\section{直化定理与横截面}
+前文已经建立解的 $C^r$ 依赖性；现在以这些解本身作为新坐标。
+在本章的 Euclidean 情形，光滑超曲面可局部写成秩为 $n-1$ 的参数化 $\sigma(z)$；其切空间就是 $D\sigma(z)$ 的像。
+
+\begin{definition}
+通过 $x_0$ 的超曲面 $\Sigma$ 若其切空间不包含 $v(x_0)$，称在该点与向量场横截。
+把向量场变为固定非零常向量场的局部微分同胚称为直化。
+把方向场变为平行直线方向场称为方向场的直化。
+\end{definition}
+\begin{theorem}[向量场直化]\label{thm:arnold-flowbox}
+若 $v\in C^r$，$r\geq1$，且 $v(x_0)\ne0$，则存在 $C^r$ 局部坐标
+$(s,z_2,\ldots,z_n)$，使方程为
+\[
+ \dot s=1,\qquad \dot z_2=\cdots=\dot z_n=0.
+\]
+\end{theorem}
+\begin{proof}
+\textbf{第一步：选取横截面并用解构造坐标。}
+因 $v(x_0)\ne0$，可选 $n-1$ 个向量 $e_2,\ldots,e_n$，
+使 $v(x_0),e_2,\ldots,e_n$ 为一组基。
+令 $\sigma(z)=x_0+\sum_{j=2}^nz_je_j$，它参数化一个横截仿射超平面。
+由解的局部存在及对初值的 $C^r$ 依赖，
+\[
+ F(s,z)=\varphi^s(\sigma(z))
+\]
+在 $(0,0)$ 的某个共同邻域上有定义，且属于 $C^r$。
+
+\textbf{第二步：证明这确实是坐标变换。}
+在 $(0,0)$ 处，对时间求导给出 $F_s=v(x_0)$。
+由于 $F(0,z)=\sigma(z)$，对横截面坐标求导给出 $F_{z_j}=e_j$。
+于是
+\[
+ DF(0,0)=(v(x_0),e_2,\ldots,e_n)
+\]
+是可逆矩阵。逆函数定理保证：缩小到一个邻域后，$F$ 为到其像的 $C^r$ 微分同胚。
+因此 $(s,z)=F^{-1}(x)$ 可以作为所求的局部坐标。
+
+\textbf{第三步：计算新坐标中的运动。}
+群性质与唯一性使
+\[
+ \varphi^t(F(s,z))=\varphi^t\varphi^s(\sigma(z))
+ =F(s+t,z).
+\]
+这意味着从 $F(s,z)$ 出发运动 $t$ 时间，横截面标号 $z$ 不变，时间坐标由 $s$ 变为 $s+t$。
+对 $t=0$ 求导，得到 $\dot s=1,\dot z=0$。
+由解对初值的依赖性，所得坐标变换属于 $C^r$。
+\end{proof}
+\begin{corollary}[方向场直化]
+每个光滑方向场在任一点附近可直化。非自治方程
+$\dot x=f(t,x)$ 的扩展方向场可在局部坐标 $(t,y)$ 中化为 $\dot y=0$。
+\end{corollary}
+\begin{proof}
+在给定点附近，选取一个固定坐标方向，使给定直线方向对该坐标的投影不为零。
+把方向向量的这个分量归一化为 1，便得到一支光滑、处处非零的局部向量场。
+向量场直化后，其方向就是同一条固定直线，因此原方向场也被直化。
+
+对非自治方程，可保持原来的时间坐标，直接使用
+$F(t,\xi)=(t,\varphi(t;t_0,\xi))$。
+初值恒等式 $\varphi(t_0;t_0,\xi)=\xi$ 说明其对 $\xi$ 的微分为 $I$；
+微分方程说明其对 $t$ 的微分为 $f(t_0,x_0)$。因此
+\[
+ DF(t_0,x_0)=\begin{pmatrix}1&0\\f(t_0,x_0)&I\end{pmatrix},
+ \qquad \det DF(t_0,x_0)=1.
+\]
+逆函数定理给出局部坐标变换。
+固定 $\xi$ 后，$F(t,\xi)$ 正是该初值的积分曲线，所以在逆坐标中
+$\xi$ 沿每条解恒定，即 $\dot y=0$。
+\end{proof}
+这里的结论是局部的。平面上的旋转场有闭轨，不可能整体变为恒定向量场，
+因为微分同胚不能把圆映为直线。平面方向场的结论也不能无条件推广到二维平面场：
+在三维空间中，$dz+y\,dx=0$ 指定的平面场没有与之处处相切的曲面。
+若有这样的曲面，其投影到 $(x,y)$ 平面局部可逆，可写 $z=f(x,y)$，
+则 $f_x=-y,f_y=0$，混合偏导矛盾。
+
+\begin{proposition}[解映射的复合关系]
+设 $P_{t,s}(x)=\varphi(t;s,x)$。在共同定义域内，
+\[
+ P_{t,s}P_{s,r}=P_{t,r},\qquad P_{s,t}=P_{t,s}^{-1}.
+\]
+它们是局部 $C^r$ 微分同胚；非自治时一般不能写成只依赖 $t-s$ 的一个单参数群。
+\end{proposition}
+\begin{proof}
+固定 $r,s$ 和初值 $x$，比较两条关于终止时间 $t$ 的曲线。
+第一条是 $P_{t,r}(x)$；第二条从时刻 $s$ 的状态 $P_{s,r}(x)$ 再出发，
+即 $P_{t,s}(P_{s,r}(x))$。
+它们满足相同方程，并在 $t=s$ 取相同值，因此在共同存在区间上由唯一性重合。
+故解映射满足上述复合关系。
+
+再令 $r=t$，使用 $P_{t,t}=\operatorname{id}$，得到
+$P_{t,s}P_{s,t}=\operatorname{id}$；交换 $s,t$ 又得另一复合为恒等。
+所以二者互逆。解对初值的 $C^r$ 依赖保证正向、反向映射都为 $C^r$，
+从而它们是局部微分同胚。
+例如 $x'=t$ 直接积分得 $P_{t,s}(x)=x+(t^2-s^2)/2$。
+当时间差 $t-s$ 相同而初始时刻不同时，解的位移可能不同，故非自治方程的解映射一般还与初始时刻有关。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-flowbox} 用 $F(s,z)=(s,z+s^2/5)$ 示意直化坐标：曲线的弯曲来自坐标，而运动时间仍由 $s$ 表示。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.05cm,y=.9cm]
+ \draw[->,gray] (-2.1,-1.3)--(2.2,-1.3) node[right]{$x_1$};
+ \draw[->,gray] (-2.1,-1.3)--(-2.1,2.1) node[above]{$x_2$};
+ \draw[GoldMain,thick] (0,-1.2)--(0,1.8) node[above]{$\Sigma$};
+ \foreach \z in {-.7,0,.7}{
+  \draw[GreenMain,thick,domain=-1.8:1.8,samples=45] plot (\x,{\z+\x*\x/5});
+  \draw[GreenMain,->,thick] (.55,{\z+.55*.55/5})--(.85,{\z+.85*.85/5});
+  \fill[GoldMain] (0,\z) circle(1.6pt);
+ }
+ \node at (0,-1.9){原坐标};
+\end{scope}
+\draw[->,thick] (2.6,.45)--(4.1,.45) node[midway,above]{$F^{-1}$};
+\begin{scope}[shift={(6.5,0)},x=1.05cm,y=.9cm]
+ \draw[->,gray] (-1.8,-1.3)--(2,-1.3) node[right]{$s$};
+ \draw[->,gray] (-1.8,-1.3)--(-1.8,2.1) node[above]{$z$};
+ \draw[GoldMain,thick] (0,-1.2)--(0,1.8) node[above]{$s=0$};
+ \foreach \z in {-.7,0,.7}{
+  \draw[GreenMain,thick,->] (-1.5,\z)--(1.65,\z);
+  \fill[GoldMain] (0,\z) circle(1.6pt);
+ }
+ \node at (.1,-1.9){$\dot s=1,\quad\dot z=0$};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{流盒坐标将弯曲的积分曲线化为平行直线；横截面上的标号保持不变。}
+\label{fig:ode-tikz-flowbox}
+\end{minipage}
+\end{center}
+
+\section{对称群与齐次性}
+已知对称群能帮助选择坐标，而不只是对已知解作变换。
+\begin{theorem}
+设平面方向场有一个已知的光滑单参数对称群，且其生成向量场 $a$ 在 $x_0$ 不为零。
+那么在 $x_0$ 附近可把积分曲线问题化为一次积分。
+\end{theorem}
+\begin{proof}
+先对对称群的非零生成场 $a$ 使用直化定理。
+在相应局部坐标 $(u,z)$ 中，对称群为 $(u,z)\mapsto(u+s,z)$。
+一个点的方向随此平移被映到另一个点的方向，因此对固定 $z$，方向不依赖 $u$。
+
+如果给定方向在该点的 $u$ 分量不为零，缩小邻域后该分量仍不为零，
+于是可把方向场写成斜率方程 $dz/du=b(z)$。
+在 $b(z)\ne0$ 的区间内，积分为
+\[
+ u-\int^z\frac{d\zeta}{b(\zeta)}=C.
+\]
+每个 $b(z_0)=0$ 还给出直线 $z=z_0$，需要单独保留。
+
+如果 $u$ 分量在原点为零，则 $z$ 分量必非零，缩小邻域后可写成
+$du/dz=c(z)$。此时直接得到 $u=\displaystyle\int^zc(\zeta)\,d\zeta+C$。
+两种坐标表达覆盖了所有非零方向，因此证明了一次积分的结论，
+同时避免在斜率的分母为零处作非法除法。
+\end{proof}
+高维情形，在 $a=\partial_u$ 的坐标中消去对称方向，将方向场投影到
+其余 $n-1$ 个变量。投影非零处先解降维方程，再沿已知轨道求 $u$；
+投影为零的轨道单独处理。
+
+\begin{definition}[加权伸缩]
+给变量 $x_i$ 指定实权重 $\alpha_i$，令
+$g^s(x_i)=(e^{\alpha_i s}x_i)$。
+若 $f(g^sx)=e^{rs}f(x)$，称 $f$ 为加权次数 $r$ 的拟齐次函数。
+平面微分方程若其方向场在 $g^s$ 下不变，称为相应的拟齐次方程。
+\end{definition}
+\begin{proposition}[Euler 关系及方程的权重]
+在伸缩不变区域上，$C^1$ 函数 $f$ 拟齐次等价于
+\[
+ \sum_i\alpha_ix_i\frac{\partial f}{\partial x_i}=rf.
+\]
+方程 $dy/dx=F(x,y)$ 在权重 $(\alpha,\beta)$ 的伸缩下不变，等价于
+$F$ 的权重为 $\beta-\alpha$。
+\end{proposition}
+\begin{proof}
+对拟齐次恒等式关于 $s$ 在零点求导得到 Euler 关系。
+反过来，令 $h(s)=f(g^sx)$，链式法则和 Euler 关系给出 $h'=rh$，
+所以 $h(s)=e^{rs}h(0)$。
+伸缩将 $dy/dx$ 乘以 $e^{(\beta-\alpha)s}$，
+因此方向场不变恰要求 $F(g^s(x,y))=e^{(\beta-\alpha)s}F(x,y)$。
+\end{proof}
+若 $\alpha\ne0$ 且 $x>0$，可取
+$u=(\log x)/\alpha$、$z=yx^{-\beta/\alpha}$。
+伸缩仅平移 $u$，所以方程化为可分离或直接可积分形式。
+普通齐次方程取 $\alpha=\beta=1$，其 $z=y/x$ 换元正是前面求解齐次方程的方法。
+多项式 $\sum c_{pq}x^py^q$ 拟齐次，当且仅当所有非零单项式满足
+$\alpha p+\beta q=r$；指数点 $(p,q)$ 位于一条直线，这称为这里的 Newton 图。
+
+\begin{definition}[平面的实吹起]
+射影直线 $\mathbb{RP}^1$ 是平面中过原点的直线所成的集合，也就是将 $\R^2\setminus\{0\}$ 中非零实数倍向量视为同一点所得的商空间，取定义~\ref{def:quotient-circle} 的商拓扑。
+集合
+\[
+ E=\{((x,y),\ell)\in\R^2\times\mathbb{RP}^1:(x,y)\in\ell\}
+\]
+以及投影 $\pi:E\to\R^2$，称为原点的实吹起及其压回映射。
+\end{definition}
+\begin{proposition}
+$E$ 是光滑曲面，有坐标图 $(x,v)$、$(u,y)$，其中 $y=xv$、$x=uy$。
+在重叠处 $u=1/v$、$y=xv$；$\pi^{-1}(0)=\mathbb{RP}^1$。
+原点外 $\pi$ 是微分同胚。
+\end{proposition}
+\begin{proof}
+在非竖直直线的区域，以斜率 $v$ 标记直线，入射条件唯一写成 $y=xv$。
+在非水平直线区域以 $u$ 标记方向，写成 $x=uy$。
+二者的过渡关系如上，是重叠区域上的光滑可逆映射；它们覆盖所有方向。
+非零点唯一决定其方向，所以原点外投影有光滑逆。
+\end{proof}
+
+\begin{definition}[吹起中的纤维与严格变换]
+映射 $\pi$ 在点 $a$ 上的纤维就是原像 $\pi^{-1}(a)$。
+对含原点的曲线 $C$，它的严格变换是 $\pi^{-1}(C\setminus\{0\})$ 在 $E$ 中的闭包；
+其中 $E$ 的局部开集和光滑性由上面两套坐标及其光滑过渡关系确定。
+光滑曲面的一般定义见第~\ref{chap:manifolds}~章。
+\end{definition}
+
+对半三次抛物线 $y^2=x^3$，代入 $y=xv$ 并去掉原点外不为零的因子 $x^2$，
+其严格变换为 $x=v^2,y=v^3$。它在 $(x,v)$ 图中的切向量 $(2v,1)$ 从不为零，
+因此，严格变换后的曲线在原尖点所对应的位置也是光滑的。
+
+
+图~\ref{fig:ode-tikz-blowup-cusp} 对比压回前后的曲线；右图的虚线 $x=0$ 是这一坐标图中的例外纤维。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.5cm,y=1.1cm]
+ \draw[->,gray] (-.35,0)--(2,0) node[right]{$x$};
+ \draw[->,gray] (0,-1.9)--(0,1.9) node[above]{$y$};
+ \draw[GreenMain,thick,domain=-1.18:1.18,samples=90] plot ({\x*\x},{\x*\x*\x});
+ \fill (0,0) circle(1.5pt) node[below left]{$0$};
+ \node at (1,-2.35){$y^2=x^3$};
+\end{scope}
+\draw[<-,thick] (3.6,0)--(5,0) node[midway,above]{$\pi$};
+\begin{scope}[shift={(6,0)},x=1.5cm,y=1.1cm]
+ \draw[->,gray] (-.35,0)--(2,0) node[right]{$x$};
+ \draw[->,GoldMain,dashed] (0,-1.9)--(0,1.9) node[above]{$v$};
+ \draw[GreenMain,thick,domain=-1.35:1.35,samples=70] plot ({\x*\x},\x);
+ \draw[->,GreenMain,thick] (0,-.18)--(0,.22);
+ \node[GoldMain,anchor=east] at (-.08,1.2){$x=0$};
+ \fill (0,0) circle(1.5pt);
+ \node at (1,-2.35){$x=v^2,\quad y=v^3$};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{半三次抛物线的实吹起：严格变换在 $(x,v)$ 图中成为光滑曲线。}
+\label{fig:ode-tikz-blowup-cusp}
+\end{minipage}
+\end{center}
+
+\section{相似性与时间尺度}
+\begin{proposition}
+若力场满足 $F(\lambda x)=\lambda^mF(x)$（$\lambda>0$），且 $x(t)$ 解
+$\ddot x=F(x)$，则
+\[
+ x_\lambda(t)=\lambda x\bigl(t/\lambda^{(1-m)/2}\bigr)
+\]
+也是解。相似周期轨道的周期按 $T_\lambda=\lambda^{(1-m)/2}T$ 缩放。
+\end{proposition}
+\begin{proof}
+令 $c=\lambda^{(1-m)/2}$，两次求导得
+\[
+ \begin{aligned}
+ \ddot x_\lambda(t)&=\lambda c^{-2}F(x(t/c))\\
+ &=\lambda^mF(x(t/c))\\
+ &=F(x_\lambda(t)).
+\end{aligned}
+\]
+若原轨道周期为 $T$，新轨道在 $cT$ 后回到相同状态，故周期相应缩放。
+\end{proof}
+万有引力的力场次数是 $m=-2$，所以相似轨道 $T^2$ 与线性尺度的三次方成比例。
+线性回复力取 $m=1$，周期与振幅无关；$F(x)=-x^3$ 取 $m=3$，周期与振幅成反比。
+对于 $k$ 阶导数，加权伸缩 $x\mapsto e^{\alpha s}x$、$y\mapsto e^{\beta s}y$
+给出权重 $\beta-k\alpha$，由链式法则反复计算即可得到。
+
+\section{沿向量场求导与 Lie 括号}
+
+
+\noindent
+在坐标 $x_1,\ldots,x_n$ 中，$\partial_{x_i}$ 表示第 $i$ 个标准坐标方向的向量场，
+所以 $v=\sum_i v_i\partial_{x_i}$；它作用于函数时就是方向导数。
+两个线性算子 $A,B$ 的交换子记为 $[A,B]=AB-BA$。
+\medskip
+\begin{definition}
+对 $C^1$ 函数 $f$，定义
+\[
+ L_vf(x)=\left.\frac{\dd}{\dd t}f(\varphi^t(x))\right|_{t=0}
+ =\sum_i v_i(x)\partial_i f(x).
+\]
+对于两个 $C^1$ 向量场定义
+$[a,b]=Db\,a-Da\,b$，称为 Lie 括号。
+\end{definition}
+\begin{proposition}
+$L_v$ 对函数是线性的，满足 Leibniz 法则，且
+\[
+ L_aL_b-L_bL_a=L_{[a,b]}.
+\]
+括号对常数线性组合双线性、反对称；对足够光滑向量场满足 Jacobi 恒等式。
+\end{proposition}
+\begin{proof}
+对常数 $c_1,c_2$，偏导的线性性给出
+\[
+ L_v(c_1f+c_2g)=c_1L_vf+c_2L_vg;
+\]
+乘积求导给出 
+\[
+ L_v(fg)=fL_vg+gL_vf.
+\]
+
+设 $f$ 至少二次连续可微。逐项展开为
+\begin{align*}
+ L_aL_bf&=\sum_{i,j}a_i(\partial_i b_j)\partial_jf
+              +\sum_{i,j}a_ib_j\partial_i\partial_jf,\\
+ L_bL_af&=\sum_{i,j}b_i(\partial_i a_j)\partial_jf
+              +\sum_{i,j}b_ia_j\partial_i\partial_jf.
+\end{align*}
+交换第二个二阶和中的指标 $i,j$，再用混合偏导相等，两二阶和相消。
+余下的一阶系数正是 $Db\,a-Da\,b$，所以得到交换子公式。
+
+双线性和反对称性可直接从这个分量表达式检查。
+为证明 Jacobi 恒等式，按算子复合的结合律展开
+$[A,[B,C]]+[B,[C,A]]+[C,[A,B]]$：
+每个三重乘积都出现两次且符号相反，因此和为零。
+取 $A=L_a,B=L_b,C=L_c$ 并使用刚证的公式，得到某个向量场的微分算子为零。
+而 $L_vx_j=v_j$，说明 $L_v=0$ 必推出 $v=0$。
+所以对应向量场的 Jacobi 和也为零。
+\end{proof}
+具有这种双线性、反对称且满足 Jacobi 恒等式的运算的向量空间称为 Lie 代数。
+矩阵运算 $[A,B]=AB-BA$ 是另一例；三维向量叉积也是一例。
+这里对 $a,b\in\R^3$，叉积的具体定义为
+\[
+ a\times b=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1).
+\]
+
+\begin{theorem}
+两个光滑向量场的局部相流可交换，当且仅当 $[a,b]=0$。
+\end{theorem}
+\begin{proof}
+记 $a$ 的流为 $g^t$，固定初始点 $x$，设
+$w(t)=Dg^t(x)b(x)-b(g^t(x))$。
+变分方程为 $\frac d{dt}Dg^t(x)=Da(g^t(x))Dg^t(x)$。
+因此逐项求导并插入 $Dg^t(x)b(x)=w(t)+b(g^t(x))$，得到
+\begin{align*}
+ w'(t)&=Da(g^t(x))Dg^t(x)b(x)-Db(g^t(x))a(g^t(x))\\
+ &=Da(g^t(x))w(t)-[a,b](g^t(x)).
+\end{align*}
+初值为 $w(0)=0$。
+若 $[a,b]=0$，这是齐次线性方程的零初值问题，故 $w\equiv0$。
+这恰说明 $g^t_*b=b$。于是 $g^t$ 是 $b$ 的对称，前面的对称性命题给出两相流可交换。
+
+反过来，若 $g^t$ 与 $b$ 的流可交换，对 $b$ 的流参数在零点求导，
+便得到 $Dg^t(x)b(x)=b(g^t(x))$，即 $w(t)=0$。
+再对 $t$ 在零点求导，上式微分方程给出 $[a,b](x)=0$。
+由于 $x$ 任意，括号处处为零。
+\end{proof}
+
+\section{首次积分的局部与整体}
+\begin{definition}
+$C^1$ 函数 $f$ 若满足 $L_vf=0$，称为 $\dot x=v(x)$ 的首次积分。
+函数 $f_1,\ldots,f_k$ 在一点附近函数独立，是指映射
+$x\mapsto(f_1(x),\ldots,f_k(x))$ 的微分在该点秩为 $k$。
+\end{definition}
+\begin{proposition}
+首次积分等价于沿每条解保持常值，亦等价于每条轨道落在它的某一个等值集中。
+首次积分的和、积及光滑复合仍为首次积分。
+\end{proposition}
+\begin{proof}
+沿解求导得 $(f(x(t)))'=L_vf(x(t))$，零导数与区间上常值等价。
+等值集表述是同一事实。其余结论分别由线性、Leibniz 法则及链式法则得到。
+\end{proof}
+\begin{theorem}[局部首次积分]
+在 $n$ 维向量场的每个非奇点附近，存在 $n-1$ 个函数独立的首次积分，
+任一首次积分都是它们的函数。
+\end{theorem}
+\begin{proof}
+由直化定理，在给定非奇点附近取坐标 $(s,z_2,\ldots,z_n)$，
+并把坐标域缩为一个长方体 $J\times B$，其中 $0\in J$。
+在这些坐标里向量场为 $\partial_s$，所以每个 $z_j$ 的沿场导数为零。
+它们因而给出 $n-1$ 个首次积分。
+这些函数在坐标域内的微分是后 $n-1$ 个标准行向量，秩为 $n-1$；
+复合回原坐标时右乘可逆 Jacobian，秩不变，故函数独立。
+
+现在任取首次积分 $f$，将其写成新坐标中的 $\widetilde f(s,z)$。
+首次积分条件为 $\partial_s\widetilde f=0$。
+对固定 $z$，整个 $J$ 是连通区间，故由微积分基本定理
+\[
+ \widetilde f(s,z)-\widetilde f(0,z)
+ =\int_0^s\partial_s\widetilde f(\tau,z)\,d\tau=0.
+\]
+定义 $F(z)=\widetilde f(0,z)$，便有 $f=F(z_2,\ldots,z_n)$。
+选取长方体保证了固定 $z$ 时可以从 $0$ 沿整段走到 $s$；
+若坐标截面不连通，就不能直接作这一积分。
+\end{proof}
+整体结论通常失败。例如 $\dot x=x$ 在整个 $\R^n$ 上的连续首次积分只能是常数：
+沿解有 $f(x)=f(e^{-t}x)$，令 $t\to+\infty$ 即得 $f(x)=f(0)$。
+这不与非奇点附近的局部首次积分矛盾。
+
+\begin{definition}
+$f(t,x)$ 若沿非自治方程的积分曲线保持常值，称为含时首次积分；其方程为
+$\partial_tf+D_xf\,v=0$。
+\end{definition}
+\begin{theorem}
+$n$ 维非自治方程在扩展相空间的每点附近有 $n$ 个函数独立的含时首次积分，
+其余含时首次积分由它们表示。若所有初值的解均可双向延拓到整条时间轴，
+则可在整个扩展空间取它们为固定时刻 $t_0$ 的初值坐标。
+\end{theorem}
+\begin{proof}
+扩展向量场 $(1,v)$ 永不为零，维数为 $n+1$，故局部结论由前一定理得到。
+全局情形定义 $I(t,x)=P_{t_0,t}(x)$。
+由解映射的复合关系得
+$I(t,P_{t,s}x)=P_{t_0,s}x$，故各分量沿解不变。
+固定 $t$ 时 $I(t,\cdot)$ 是微分同胚，所以分量微分独立。
+任意首次积分满足
+$f(t,x)=f(t_0,I(t,x))$，这给出整体表示。
+\end{proof}
+
+\section{周期的集合与轨道}
+
+\begin{definition}[拓扑群与闭子群]
+拓扑群是运算及取逆都连续的群；$\R$ 取通常拓扑和加法就是一例。
+子群作为拓扑子集是闭集时，称闭子群。
+
+\end{definition}
+
+\begin{lemma}
+$\R$ 的闭子群恰为 $\{0\}$、$T\Z$（$T>0$）及 $\R$。
+\end{lemma}
+\begin{proof}
+记闭子群为 $H$。若 $H$ 没有正元素，则由取负封闭性也没有负元素，故 $H=\{0\}$。
+否则令 $T=\inf(H\cap(0,\infty))\geq0$。
+
+若 $T>0$，由下确界定义有一列 $h_j\in H$ 趋于 $T$，闭性使 $T\in H$。
+任取 $h\in H$，写 $h=kT+r$，$k\in\Z,0\leq r<T$。
+因为 $H$ 对加减封闭，$r=h-kT\in H$；若 $r>0$ 将违背 $T$ 为正元素下界，
+所以 $r=0$。于是 $H\subset T\Z$，反向包含由 $T\in H$ 得到。
+
+若 $T=0$，对任意 $\eta>0$ 可取 $0<h\in H$ 且 $h<\eta$。
+对任意实数 $x$，选整数 $k$ 使 $|x-kh|\leq h$，便在 $x$ 的 $\eta$ 邻域找到 $H$ 中一点。
+因此 $H$ 稠密；再由闭性，$H=\R$。
+三种可能全部覆盖。
+\end{proof}
+\begin{theorem}
+自治方程的最大解若两次到达同一点，则它是常值解或具有最小正周期的周期解。
+非常值周期轨道可以用圆上的角坐标光滑且一一地参数化，局部逆也光滑。
+\end{theorem}
+\begin{proof}
+若 $x(a)=x(b)$，$b>a$，唯一性允许把 $[a,b]$ 上的解周期接续到整条时间轴。
+它的所有周期构成加法子群，由连续性为闭集。
+该群含 $b-a>0$；若为 $\R$，解恒定，否则为 $T\Z$。
+于是以 $t\bmod T$ 参数化轨道得到圆到相空间的单射。
+非常值解上向量场不为零，否则唯一性迫使它恒定；因此参数化的导数处处非零。
+紧圆到 Euclidean 空间的连续单射是到其像的同胚。
+又因参数导数非零，至少一个分量导数非零，用这个分量及一维逆函数定理可在局部恢复参数，
+所以逆参数也光滑。
+\end{proof}

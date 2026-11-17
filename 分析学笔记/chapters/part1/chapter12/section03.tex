@@ -1,0 +1,666 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第12章：函数项序列与函数项级数
+% 节：12.3 极限函数与和函数的性质
+% 正文按原文件顺序保存；由 ../chapter12.tex 调用。
+\section{极限函数与和函数的性质}
+
+在前面我们已经看到，逐点收敛一般不能保证极限函数保留连续性、可积性或可导性。
+本节说明：若把逐点收敛加强为一致收敛，则在适当条件下可以交换极限与连续、积分、求导等运算。
+\begin{proposition}
+	设函数列 $\{S_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $S(x)$，并且
+	\[
+	S_n(x)\in C[a,b],\qquad n=1,2,\dots .
+	\]
+	则
+	\[
+	S(x)\in C[a,b].
+	\]
+\end{proposition}
+\begin{proof}
+	任取 $x_0\in (a,b)$，下面证明 $S(x)$ 在 $x=x_0$ 处连续。
+	
+	由于
+	\[
+	S_n(x)\rightrightarrows S(x)\qquad (x\in [a,b]),
+	\]
+	所以对任意 $\varepsilon>0$，存在 $N\in \mathbb{N}$，使得当 $n>N$ 时，对任意 $x\in [a,b]$，都有
+	\[
+	\left|S_n(x)-S(x)\right|<\varepsilon .
+	\]
+	特别地，取 $n=N+1,x = x_0$，
+	\[
+	\left|S_{N+1}(x_0)-S(x_0)\right|<\varepsilon .
+	\]
+
+
+	又因为
+	\[
+	S_{N+1}(x)\in C[a,b],
+	\]
+	所以 $S_{N+1}(x)$ 在 $x=x_0$ 处连续。因此对上述 $\varepsilon>0$，存在 $\delta>0$，使得当
+	\[
+	|h|<\delta,\qquad x_0+h\in [a,b]
+	\]
+	时，有
+	\[
+	\left|S_{N+1}(x_0+h)-S_{N+1}(x_0)\right|<\varepsilon .
+	\]
+	
+	于是当 $|h|<\delta$ 且 $x_0+h\in [a,b]$ 时，
+	\[
+	\begin{aligned}
+		\left|S(x_0+h)-S(x_0)\right|
+		&\leq
+		\left|S(x_0+h)-S_{N+1}(x_0+h)\right| +
+		\left|S_{N+1}(x_0+h)-S_{N+1}(x_0)\right|  +
+		\left|S_{N+1}(x_0)-S(x_0)\right|  \\
+		&<\varepsilon+\varepsilon+\varepsilon&=3\varepsilon .
+	\end{aligned}
+	\]
+	由于 $\varepsilon>0$ 任意，故 $S(x)$ 在 $x=x_0$ 处连续。
+	
+	端点 $x_0=a$ 或 $x_0=b$ 的情形只需改为单侧连续，证明完全类似。
+	
+	因此
+	\[
+	S(x)\in C[a,b].
+	\]
+\end{proof}
+也就是说，对函数列 $\{S_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $S(x)$
+	\[
+\lim_{x\to x_0}\left(\lim_{n\to\infty}S_n(x)\right)
+=
+\lim_{n\to\infty}\left(\lim_{x\to x_0}S_n(x)\right).
+\]
+
+对于函数项级数 ,我们有类似的结果
+函数项级数
+\[
+\sum_{n=1}^{\infty}u_n(x)
+\]
+在 $[a,b]$ 上一致收敛，且
+\[
+u_n(x)\in C[a,b],\qquad n=1,2,\dots .
+\]
+则其和函数
+\[
+S(x)=\sum_{n=1}^{\infty}u_n(x)
+\]
+在 $[a,b]$ 上连续，并且对任意 $x_0\in [a,b]$，有
+\[
+\lim_{x\to x_0}\sum_{n=1}^{\infty}u_n(x)
+=
+\sum_{n=1}^{\infty}\lim_{x\to x_0}u_n(x).
+\]
+
+\begin{proposition}\label{逐项可积}
+	设函数列 $\{S_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $S(x)$，并且
+	\[
+	S_n(x)\in C[a,b],\qquad n=1,2,\dots .
+	\]
+	则
+	\[
+	S(x)\in \mathcal{R}[a,b],
+	\]
+	并且
+	\[
+	\lim_{n\to\infty}\int_a^b S_n(x)\dd x 
+	=
+	\int_a^b \lim_{n\to\infty}S_n(x)\dd x 
+	=
+	\int_a^b S(x)\dd x .
+	\]
+	
+\end{proposition}
+	
+
+\begin{proof}
+	因为
+	\[
+	S_n(x)\rightrightarrows S(x)\qquad (x\in [a,b]),
+	\]
+	且
+	\[
+	S_n(x)\in C[a,b],
+	\]
+	所以由一致收敛连续性定理可知
+	\[
+	S(x)\in C[a,b].
+	\]
+	又因为闭区间上的连续函数必 Riemann 可积，所以
+	\[
+	S(x)\in R[a,b].
+	\]
+	
+	下面证明积分与极限可以交换。
+	
+	任取 $\varepsilon>0$。由于 $S_n(x)$ 在 $[a,b]$ 上一致收敛于 $S(x)$，所以存在 $N=N(\varepsilon)\in\mathbb N$，使得当 $n>N$ 时，对任意 $x\in [a,b]$，都有
+	\[
+	|S_n(x)-S(x)|<\varepsilon .
+	\]
+	于是当 $n>N$ 时，
+	\[
+	\begin{aligned}
+		\left|
+		\int_a^b S_n(x)\dd x-\int_a^b S(x)\dd x
+		\right|
+		&=
+		\left|
+		\int_a^b \bigl(S_n(x)-S(x)\bigr)\dd x
+		\right|&\leq
+		\int_a^b |S_n(x)-S(x)|\dd x \\
+		&<
+		\int_a^b \varepsilon\dd x &=
+		(b-a)\varepsilon .
+	\end{aligned}
+	\]
+	由于 $\varepsilon>0$ 任意，故
+	\[
+	\lim_{n\to\infty}\int_a^b S_n(x)\dd x
+	=
+	\int_a^b S(x)\dd x .
+	\]
+	又因为
+	\[
+	S(x)=\lim_{n\to\infty}S_n(x),
+	\]
+	所以
+	\[
+	\lim_{n\to\infty}\int_a^b S_n(x)\dd x
+	=
+	\int_a^b \lim_{n\to\infty}S_n(x)\dd x .
+	\]
+
+\end{proof}
+
+类似的，对于函数项级数 我们有
+
+设函数项级数
+\[
+\sum_{n=1}^{\infty}u_n(x)
+\]
+在 $[a,b]$ 上一致收敛，且
+\[
+u_n(x)\in C[a,b],\qquad n=1,2,\dots .
+\]
+那么
+	\[
+\sum_{n=1}^{\infty}\int_a^b u_n(x)\dd x
+=
+\int_a^b \sum_{n=1}^{\infty}u_n(x)\dd x .
+\]
+
+需要说明的是，逐项积分可能会扩大收敛域，下举一例
+
+
+
+
+
+\begin{example}
+	考虑
+	\[
+	1-x+x^2-x^3+\cdots
+	=
+	\sum_{n=0}^{\infty}(-1)^n x^n .
+	\]
+	当
+	\[
+	|x|<1
+	\]
+	时，由几何级数求和公式可得
+	\[
+	\sum_{n=0}^{\infty}(-1)^n x^n
+	=
+	\frac{1}{1+x}.
+	\]
+	
+	对任意固定的 $a\in(0,1)$，级数
+	\[
+	\sum_{n=0}^{\infty}(-1)^n x^n
+	\]
+	在闭区间 $[-a,a]$ 上一致收敛于
+	\[
+	\frac{1}{1+x}.
+	\]
+\end{example}
+
+\begin{proof}
+	任取 $a\in(0,1)$。当 $x\in[-a,a]$ 时，有
+	\[
+	|x|\leq a<1.
+	\]
+	于是
+	\[
+	|(-1)^n x^n|=|x|^n\leq a^n.
+	\]
+	而数项级数
+	\[
+	\sum_{n=0}^{\infty}a^n
+	\]
+	收敛。因此由 Weierstrass 判别法可知，函数项级数
+	\[
+	\sum_{n=0}^{\infty}(-1)^n x^n
+	\]
+	在 $[-a,a]$ 上一致收敛。
+	
+	又当 $|x|<1$ 时，
+	\[
+	\sum_{n=0}^{\infty}(-1)^n x^n
+	=
+	\frac{1}{1-(-x)}
+	=
+	\frac{1}{1+x}.
+	\]
+	特别地，对任意 $x\in[-a,a]$，都有
+	\[
+	\sum_{n=0}^{\infty}(-1)^n x^n
+	=
+	\frac{1}{1+x}.
+	\]
+	故该级数在 $[-a,a]$ 上一致收敛于 $\dfrac{1}{1+x}$。
+\end{proof}
+
+
+
+因为对任意 $a\in(0,1)$，级数
+\[
+\sum_{n=0}^{\infty}(-1)^n x^n
+\]
+在 $[-a,a]$ 上一致收敛，且每一项
+\[
+(-1)^n x^n\in C[-a,a],
+\]
+所以可以在 $[-a,a]$ 上逐项积分。
+
+任取
+\[
+x\in(-1,1).
+\]
+则存在 $a\in(0,1)$，使得
+\[
+x\in[-a,a].
+\]
+例如可以取
+\[
+|x|<a<1.
+\]
+于是对该 $x$，在区间 $[0,x]$ 上可以逐项积分。若 $x<0$，则积分区间 $[x,0]\subset[-a,a]$，同样成立。
+
+因此
+\[
+\int_0^x \frac{1}{1+t}\dd t
+=
+\int_0^x \sum_{n=0}^{\infty}(-1)^n t^n\dd t .
+\]
+由一致收敛下逐项积分定理，有
+\[
+\int_0^x \sum_{n=0}^{\infty}(-1)^n t^n\dd t
+=
+\sum_{n=0}^{\infty}\int_0^x (-1)^n t^n\dd t .
+\]
+于是
+\[
+\begin{aligned}
+	\int_0^x \frac{1}{1+t}\dd t
+	&=
+	\sum_{n=0}^{\infty}\int_0^x (-1)^n t^n\dd t =
+	\sum_{n=0}^{\infty}(-1)^n\int_0^x t^n\dd t  \\
+	&=
+	\sum_{n=0}^{\infty}(-1)^n
+	\left.\frac{t^{n+1}}{n+1}\right|_0^x  =
+	\sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}.
+\end{aligned}
+\]
+另一方面，
+\[
+\int_0^x \frac{1}{1+t}\dd t
+=
+\ln(1+x)-\ln 1
+=
+\ln(1+x).
+\]
+因此，当 $x\in(-1,1)$ 时，
+\[
+\boxed{
+	\ln(1+x)
+	=
+	\sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}
+}.
+\]
+
+也即
+\[
+\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots,
+\qquad -1<x<1.
+\]
+
+但是，对
+	\[\sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}\]
+容易发现$x=1$时收敛，其收敛域为$(-1,1]$,逐项积分后收敛域扩大 了
+
+
+另外，对于\ref{逐项可积},条件中的\[S_n(x)\in C[a,b]\]可以扩大为\[S_n(x)\in \mathcal{R}[a,b]\]
+\begin{proposition}
+		设函数列 $\{S_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $S(x)$，并且
+	\[
+	S_n(x)\in \mathcal{R}[a,b],\qquad n=1,2,\dots .
+	\]
+	则
+	\[
+	S(x)\in \mathcal{R}[a,b],
+	\]
+	并且
+	\[
+	\lim_{n\to\infty}\int_a^b S_n(x)\dd x 
+	=
+	\int_a^b \lim_{n\to\infty}S_n(x)\dd x 
+	=
+	\int_a^b S(x)\dd x .
+	\]
+\end{proposition}
+
+\begin{proof}
+	由于 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛于 $S(x)$，根据一致收敛定义，对于给定的 $\eps > 0$，存在正整数 $N$，使得当 $n > N$ 时，对于一切 $x \in [a, b]$ 都有：
+	\[ |S_n(x) - S(x)| < \frac{\eps}{3(b-a)} \]
+	
+	固定一个 $n > N$。设 $\omega_i(S)$ 和 $\omega_i(S_n)$ 分别为函数 $S$ 和 $S_n$ 在子区间 $[x_{i-1}, x_i]$ 上的振幅。对于该区间内任意两点 $x', x'' \in [x_{i-1}, x_i]$，有：
+	\[ |S(x') - S(x'')| \le |S(x') - S_n(x')| + |S_n(x') - S_n(x'')| + |S_n(x'') - S(x'')| \]
+	根据一致收敛的估计性质，上式可放缩为：
+	\[ |S(x') - S(x'')| < \frac{\eps}{3(b-a)} + \omega_i(S_n) + \frac{\eps}{3(b-a)} \]
+	由此推得：$\omega_i(S) \le \omega_i(S_n) + \dfrac{2\eps}{3(b-a)}$。
+	
+	由于 $S_n(x) \in \mathcal{R}[a, b]$，对于上述 $\eps$，存在一个划分 $P$，使得其振幅和满足 $\sum\limits_{i=1}^n \omega_i(S_n) \Delta x_i < \dfrac{\eps}{3}$。计算 $S$ 在该划分下的振幅和：
+	\begin{align*}
+		\sum_{i=1}^n \omega_i(S) \Delta x_i &\le \sum_{i=1}^n \left( \omega_i(S_n) + \frac{2\eps}{3(b-a)} \right) \Delta x_i \\
+		&= \sum_{i=1}^n \omega_i(S_n) \Delta x_i + \frac{2\eps}{3(b-a)} \sum_{i=1}^n \Delta x_i \\
+		&< \frac{\eps}{3} + \frac{2\eps}{3(b-a)} \cdot (b-a) = \eps
+	\end{align*}
+	根据 Riemann 可积的充要条件，极限函数 $S(x) \in \mathcal{R}[a, b]$。
+	
+	\[
+\lim_{n\to\infty}\int_a^b S_n(x)\dd x
+=
+\int_a^b \lim_{n\to\infty}S_n(x)\dd x .
+\]的证明与\ref{逐项可积}相同
+\end{proof}
+
+
+类似的，对于函数项级数 我们有
+
+设函数项级数
+\[
+\sum_{n=1}^{\infty}u_n(x)
+\]
+在 $[a,b]$ 上一致收敛，且
+\[
+u_n(x)\in \mathcal{R}[a,b],\qquad n=1,2,\dots .
+\]
+那么
+\[
+\sum_{n=1}^{\infty}\int_a^b u_n(x)\dd x
+=
+\int_a^b \sum_{n=1}^{\infty}u_n(x)\dd x .
+\]
+\begin{proposition}
+	设函数列 $\{S_n(x)\}$ 在 $[a,b]$ 上满足：
+	
+	\begin{enumerate}
+		\item $S_n(x)$ 在 $[a,b]$ 上连续可导；
+		\item $S_n(x)$ 在 $[a,b]$ 上点态收敛于 $S(x)$，即
+		\[
+		S_n(x)\to S(x),\qquad x\in [a,b];
+		\]
+		\item 导函数列 $\{S_n'(x)\}$ 在 $[a,b]$ 上一致收敛于 $\sigma(x)$，即
+		\[
+		S_n'(x)\rightrightarrows \sigma(x),\qquad x\in [a,b].
+		\]
+	\end{enumerate}
+	
+	则 $S(x)$ 在 $[a,b]$ 上可导，且
+	\[
+	S'(x)=\lim_{n\to\infty}S_n'(x)=\sigma(x).
+	\]
+	也就是说，
+	\[
+	\frac{\dd}{\dd x}\lim_{n\to\infty}S_n(x)
+	=
+	\lim_{n\to\infty}\frac{\dd}{\dd x}S_n(x).
+	\]
+\end{proposition}
+
+\begin{proof}
+	因为 $S_n'(x)$ 在 $[a,b]$ 上一致收敛于 $\sigma(x)$，所以由一致收敛函数列的逐项积分定理可知，对任意 $x\in[a,b]$，有
+	\[
+	\int_a^x \sigma(t)\dd t
+	=
+	\lim_{n\to\infty}\int_a^x S_n'(t)\dd t .
+	\]
+	又由于 $S_n(x)$ 在 $[a,b]$ 上可导，所以由 Newton--Leibniz 公式，
+	\[
+	\int_a^x S_n'(t)\dd t
+	=
+	S_n(x)-S_n(a).
+	\]
+	因此
+	\[
+	\begin{aligned}
+		\int_a^x \sigma(t)\dd t
+		&=
+		\lim_{n\to\infty}\int_a^x S_n'(t)\dd t \\
+		&=
+		\lim_{n\to\infty}\bigl(S_n(x)-S_n(a)\bigr).
+	\end{aligned}
+	\]
+	由于 $S_n(x)\to S(x)$，且 $S_n(a)\to S(a)$，故
+	\[
+	\lim_{n\to\infty}\bigl(S_n(x)-S_n(a)\bigr)
+	=
+	S(x)-S(a).
+	\]
+	于是得到
+	\[
+	\int_a^x \sigma(t)\dd t
+	=
+	S(x)-S(a).
+	\]
+	即
+	\[
+	S(x)=S(a)+\int_a^x \sigma(t)\dd t.
+	\]
+	
+	又因为 $S_n'(x)$ 在 $[a,b]$ 上一致收敛，且每个 $S_n'(x)$ 至少为可积函数；在通常的连续可导情形下，$\sigma(x)$ 为连续函数，故由积分上限函数求导定理可得
+	\[
+	\frac{\dd}{\dd x}\int_a^x \sigma(t)\dd t=\sigma(x).
+	\]
+	因此
+	\[
+	S'(x)=\sigma(x).
+	\]
+	而
+	\[
+	\sigma(x)=\lim_{n\to\infty}S_n'(x),
+	\]
+	所以
+	\[
+	S'(x)=\lim_{n\to\infty}S_n'(x).
+	\]
+	即
+	\[
+	\frac{\dd}{\dd x}\lim_{n\to\infty}S_n(x)
+		=
+		\lim_{n\to\infty}\frac{\dd}{\dd x}S_n(x)
+	.
+	\]
+\end{proof}
+\begin{proposition}
+	设函数项级数
+	\[
+	\sum_{n=1}^{\infty}u_n(x)
+	\]
+	满足：
+	
+	\begin{enumerate}
+		\item $u_n(x)$ 在 $[a,b]$ 上有连续的导函数
+		\item 函数项级数
+		\[
+		\sum_{n=1}^{\infty}u_n(x)
+		\]
+		在 $[a,b]$ 上点态收敛于 $S(x)$；
+		\item 导函数项级数
+		\[
+		\sum_{n=1}^{\infty}u_n'(x)
+		\]
+		在 $[a,b]$ 上一致收敛于 $\sigma(x)$。
+	\end{enumerate}
+	
+	则
+	\[
+	S(x)=\sum_{n=1}^{\infty}u_n(x)
+	\]
+	在 $[a,b]$ 上可导，且
+	\[
+	S'(x)=\sigma(x).
+	\]
+	也即
+	\[
+	\frac{\dd}{\dd x}\sum_{n=1}^{\infty}u_n(x)
+	=
+	\sum_{n=1}^{\infty}\frac{\dd }{\dd x}u_n(x).
+	\]
+\end{proposition}
+
+\begin{proposition}(Dini 定理)
+	设函数序列 $\{S_n(x)\}$ 在闭区间 $[a,b]$ 上点态收敛于 $S(x)$。如果满足：
+	
+	\begin{enumerate}
+		\item 对每个 $n=1,2,\dots$，$S_n(x)$ 在 $[a,b]$ 上连续；
+		\item $S(x)$ 在 $[a,b]$ 上连续；
+		\item $\{S_n(x)\}$ 关于 $n$ 单调，即对任意固定的 $x\in[a,b]$，
+		$\{S_n(x)\}$ 是单调数列，
+	\end{enumerate}
+	则
+	\[
+	S_n(x)\rightrightarrows S(x),\qquad x\in[a,b].
+	\]
+	即 $\{S_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $S(x)$。
+\end{proposition}
+
+\begin{proof}
+	用反证法。
+	
+	假设 $\{S_n(x)\}$ 在 $[a,b]$ 上不一致收敛于 $S(x)$，则存在
+	\[
+	\varepsilon_0>0,
+	\]
+	使得对任意 $N>0$，都存在 $n>N$ 和 $x\in[a,b]$，满足
+	\[
+	|S_n(x)-S(x)|\geq \varepsilon_0.
+	\]
+	
+	于是依次取：
+	
+	当 $N=1$ 时，存在 $n_1>1$，存在 $x_1\in[a,b]$，使得
+	\[
+	|S_{n_1}(x_1)-S(x_1)|\geq \varepsilon_0.
+	\]
+	
+	当 $N=n_1$ 时，存在 $n_2>n_1$，存在 $x_2\in[a,b]$，使得
+	\[
+	|S_{n_2}(x_2)-S(x_2)|\geq \varepsilon_0.
+	\]
+	
+	依此类推，当 $N=n_{k-1}$ 时，存在 $n_k>n_{k-1}$，存在 $x_k\in[a,b]$，使得
+	\[
+	|S_{n_k}(x_k)-S(x_k)|\geq \varepsilon_0.
+	\]
+	
+	因此得到严格递增的正整数列$\{n_k\}$以及点列$ x_k\in[a,b]$,
+	并且对任意 $k\in\mathbb N^+$，都有
+	\[
+	|S_{n_k}(x_k)-S(x_k)|\geq \varepsilon_0.
+	\]
+	
+	由于 $[a,b]$ 是闭区间，由 Weierstrass 定理可知，数列 $\{x_k\}$ 必有收敛子列。为叙述方便，仍记该子列为 $\{x_k\}$，并设$x_k\to \xi\in[a,b]\qquad (k\to\infty). $
+
+	由点态收敛条件，
+	\[
+	\lim_{n\to\infty}S_n(\xi)=S(\xi).
+	\]
+	于是对上述 $\varepsilon_0>0$，存在正整数 $N$，使得
+	\[
+	|S_N(\xi)-S(\xi)|<\frac{\varepsilon_0}{2}.
+	\]
+	
+	又因为 $S_N(x)$ 与 $S(x)$ 都在 $[a,b]$ 上连续，所以$S_N(x)-S(x) $在 $x=\xi$ 处连续。由于
+	$x_k\to \xi $
+	,	故存在正整数 $K$，使得当 $k>K$ 时，
+	\[
+	|S_N(x_k)-S(x_k)|<\varepsilon_0.
+	\]
+	
+	下面利用条件 $(3)$，即 $\{S_n(x)\}$ 关于 $n$ 的单调性。
+	
+	对任意固定的 $x\in[a,b]$，由于 $S_n(x)\to S(x)$，并且 $\{S_n(x)\}$ 关于 $n$ 单调，所以 $S(x)$ 是该单调数列的极限。因此对于任意 $n\geq N$，有
+	\[
+	|S_n(x)-S(x)|
+	\leq
+	|S_N(x)-S(x)|.
+	\]
+	于是当 $n>N$ 且 $k>K$ 时，
+	\[
+	|S_n(x_k)-S(x_k)|
+	\leq
+	|S_N(x_k)-S(x_k)|
+	<
+	\varepsilon_0.
+	\]
+	
+	由于$ n_k\to\infty,$
+	所以当 $k$ 充分大时，可以同时满足$ k>K, n_k>N$
+	于是对充分大的 $k$，有
+	\[
+	|S_{n_k}(x_k)-S(x_k)|<\varepsilon_0.
+	\]
+	这与前面得到的
+	\[
+	|S_{n_k}(x_k)-S(x_k)|\geq \varepsilon_0,
+	\qquad k\in\mathbb N^+,
+	\]
+	矛盾。
+	
+	因此假设不成立，故
+	\[
+	S_n(x)\rightrightarrows S(x),\qquad x\in[a,b].
+	\]
+\end{proof}
+对函数项级数有类似的 Dini 定理
+\begin{proposition}
+	设函数项级数
+	\[
+	\sum_{n=1}^{\infty}u_n(x)
+	\]
+	在闭区间 $[a,b]$ 上点态收敛于 $S(x)$。如果满足：
+	
+	\begin{enumerate}
+		\item 对每个 $n=1,2,\dots$，
+		\[
+		u_n(x)\in C[a,b];
+		\]
+		\item 和函数 $S(x)$ 在 $[a,b]$ 上连续；
+		\item 对任意固定的 $x\in[a,b]$，级数
+		\[
+		\sum_{n=1}^{\infty}u_n(x)
+		\]
+		是正项级数或负项级数，
+	\end{enumerate}
+	则
+	\[
+	\sum_{n=1}^{\infty}u_n(x)
+	\]
+	在 $[a,b]$ 上一致收敛于 $S(x)$。
+\end{proposition}
+
+
+

@@ -1,0 +1,3389 @@
+% ============================================================
+%  chapter04.tex --- 第四章 极限环
+%  对应原书第四章；图均暂以方框占位。
+% ============================================================
+
+\newcommand{\chFourFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{2.7cm}图~#1\\（图片占位）\vspace{2.7cm}}}
+  \end{center}%
+}
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{极限环}
+
+\section{极限环的存在性}
+
+% 原书第197页
+关于极限环理论，国内很多同志做了大量的工作，特别在平面二次系统极限环的
+存在性、唯一性、个数和相对位置等方面，秦元勋、蒲富全\cite{79} 利用
+Bautin 的结果（第三章\cite{17}）对二次系统提供了在奇点附近构造出具有
+三个极限环的具体例子的方法。最近史松龄\cite{4} 和陈兰荪、王明淑\cite{5}
+举出了平面二次系统至少存在四个极限环的例子，破除了平面二次系统极限环个数
+的上界是 $3$ 的传统猜测，对 $n=2$ 时的 Hilbert 第十六问题是一个大的推进。
+这方面前期的工作已收集在叶彦谦的专著（第一章文献\cite{3}）中，在秦元勋
+的著作（第一章文献\cite{2}）中也有总结，本章限于篇幅，着重介绍 Lienard 型
+方程极限环的存在性、唯一性和个数等问题。只在第 6 节中介绍一点关于平面二次
+系统极限环的唯一性和个数等问题。关于二次系统极限环的相对位置问题，除
+\cite{4,5} 以外，还可参考叶彦谦的工作\cite{76,77} 和董金柱的工作\cite{6,7}，
+这些结果在上述两本专著中已有介绍，在本书中就不再作介绍了。
+
+关于极限环随系统中参数变化而变化的情形，本书只对一种特殊的平面向量场，
+叫做旋转向量场，介绍有关结果。
+
+\subsection*{\S 1.\quad 极限环的存在性}
+
+给定微分方程
+\[
+  \ddot{x}+f(x,\dot{x})\dot{x}+g(x)=0, \tag{1.1}
+\]
+在实际问题中，$g(x)$ 代表弹性力，$f(x,\dot{x})\dot{x}$ 代表阻尼力，
+式~(1.1) 等价于下列方程组：
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=v,\qquad
+  \dfrac{\mathrm{d}v}{\mathrm{d}t}=-g(x)-f(x,v)v. \tag{1.2}
+\]
+当 $g(x)=kx$，$f(x,\dot{x})=c$ 时，式~(1.2) 变成常系数线性方程组，
+它可能有闭轨线，但没有极限环，即没有孤立闭轨线。
+
+\noindent\textbf{（一）关于方程 $\ddot{x}+g(x)=0$}
+
+% 原书第198页
+给定微分方程
+\[
+  \ddot{x}+g(x)=0. \tag{1.3}
+\]
+令 $v=\dfrac{\mathrm{d}x}{\mathrm{d}t}$，则有
+\[
+  \ddot{x}=\dfrac{\mathrm{d}v}{\mathrm{d}t}
+  =\dfrac{\mathrm{d}v}{\mathrm{d}x}\dfrac{\mathrm{d}x}{\mathrm{d}t}
+  =v\dfrac{\mathrm{d}v}{\mathrm{d}x},
+\]
+和
+\[
+  v\dfrac{\mathrm{d}v}{\mathrm{d}x}+g(x)=0, \tag{1.4}
+\]
+从而
+\[
+  \dfrac{v^2}{2}+G(x)=C, \tag{1.5}
+\]
+其中
+\[
+  G(x)=\int_0^xg(x)\,\mathrm{d}x.
+\]
+亦即式~(1.5) 是式~(1.3) 的一个第一积分。
+
+由于式~(1.3) 中无阻尼项，它在运动过程中不消耗能量，通常叫做保守系统。
+在式~(1.5) 中，各项乘以 $m$，则 $\dfrac{mv^2}{2}$ 代表动能，$mG(x)$
+代表势能，等式~(1.5) 也说明运动的能量守恒。
+
+式~(1.3) 在相平面 $(x,v)$ 上的轨线可以通过简单的作图法得到（图 4.1）。
+$(x_i,0)$ 是方程~(1.4) 的奇点的充要条件是 $g(x_i)=0$。$G(x)$ 的极小点
+$x_2,x_4$ 对应于相平面上的中心点 $(x_2,0),(x_4,0)$；$G(x)$ 的极大点
+$x_3,x_5$ 对应于相平面上的鞍点 $(x_3,0),(x_5,0)$；$G(x)$ 的拐点 $x_1$
+对应相平面上的非初等奇点 $(x_1,0)$。
+
+这类方程可能有周期解，但是没有极限环。有人研究这样的问题：当
+$g(x)\ne kx$ 时，一般来说，中心附近不同周期解的周期是不同的。当 $g(x)$
+满足什么条件时，在中心的一个适当小邻域里，不同周期解的周期相同。
+
+\chFourFigurePlaceholder{4.1}
+
+\noindent\textbf{（二）关于 Lienard 型方程
+$\ddot{x}+f(x)\dot{x}+g(x)=0$}
+
+% 原书第199页
+首先介绍 Lienard 作图法。当 $f(x,\dot{x})=f(x)$ 时，方程~(1.1) 还等价于
+下列方程组：
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-F(x),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-g(x), \tag{1.6}
+\]
+其中
+\[
+  F(x)=\int_0^xf(x)\,\mathrm{d}x.
+\]
+当 $g(x)=x$ 时，用简单作图法可以画出相平面 $(x,y)$ 上任一点
+$P(x,y)$ 的由式~(1.6) 确定的方向场 $(y-F(x),-g(x))$ 的方向。其作法如下：
+过 $P$ 作 $PR\parallel y$ 轴，交曲线 $y=F(x)$ 于点 $R(x,F(x))$，过 $R$
+作 $RQ\parallel x$ 轴，交 $y$ 轴于点 $Q(0,F(x))$，连接 $P,Q$，过 $P$ 作
+直线 $PQ$ 的垂直线 $PN$，如图 4.2 所示，这个垂直线就是过 $P$ 点的方向场的
+方向，这是因为
+\[
+  \tan\varphi=\dfrac{y-F(x)}{x},\qquad
+  \tan\theta=-\dfrac{x}{y-F(x)}.
+\]
+箭头根据式~(1.6) 来判定。这种作图法虽然简单，但很有用，可以用来作环域的
+境界线。
+
+\chFourFigurePlaceholder{4.2}
+
+% 原书第200页
+1926 年 Van der Pol 在研究二极管等幅振荡时，研究了方程
+\[
+  \ddot{x}+\mu(x^2-1)\dot{x}+x=0,
+\]
+其中 $\mu$ 是正常数，他用图解法证明了相平面上孤立闭轨线的存在性；
+1928 年 A.~A.~Andronov 将 Van der Pol 的工作与 H.~Poincar\'e 的极限环理论
+联系起来，进行了一系列工作。因而上述方程对极限环理论的发展起了很大的
+推动作用，后来这个方程就命名为 Van der Pol 方程。
+
+\noindent\textbf{定理 1.1}\quad 给定 Van der Pol 方程
+\[
+  \ddot{x}+(x^2-1)\dot{x}+x=0, \tag{1.7}
+\]
+或它的等价方程组
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-x,\qquad
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-\left(\dfrac{x^3}{3}-x\right), \tag{1.8}
+\]
+则在相平面 $(x,y)$ 上式~(1.8) 存在极限环。
+
+\begin{proof}
+我们将用 Lienard 作图法来作 Poincar\'e--Bendixson 环域的外境界线 $L_2$。
+先作内境界 $L_1$。令
+\[
+  \lambda(x,y)=\dfrac{x^2}{2}+\dfrac{y^2}{2}.
+\]
+% 原书第201页
+使有
+\[
+\begin{aligned}
+  \left.\dfrac{\mathrm{d}\lambda}{\mathrm{d}t}\right|_{(1.8)}
+  &=x\dot{x}+y\dot{y}\\
+  &=x\left[y-\left(\dfrac{x^3}{3}-x\right)\right]-yx\\
+  &=x^2\left(1-\dfrac{x^2}{3}\right)>0,\qquad 0<|x|<1.
+\end{aligned}
+\]
+故可取充分小 $C_1>0$，使式~(1.8) 的轨线除了在点
+$(0,C_1),(0,-C_1)$ 上与 $L_1$ 相切，当 $t$ 增加时只能从
+\[
+  L_1:\quad \dfrac{x^2}{2}+\dfrac{y^2}{2}=C_1^2
+\]
+的内部走到 $L_1$ 的外部。$L_1$ 可作为内境界线。
+
+$L_2$ 的作法见下图。
+
+\chFourFigurePlaceholder{4.3}
+
+% 原书第202页
+\[
+  L_2=\widehat{AB}\cup\overline{BC}\cup\widehat{CD}
+  \cup\overline{DE}\cup\widehat{EF}\cup\widehat{FA},
+\]
+其中 $\widehat{AB}$ 和 $\widehat{CD}$ 是以 $O,(0,-\dfrac23)$ 为中心的圆弧，
+它们的半径分别为 $x_1+\dfrac43$ 和 $x_1$（$x_1>0$）；而
+$P_1(1,-\dfrac23)$ 是曲线 $y=\dfrac{x^3}{3}-x$ 的极小值点；直线 $BC$ 的
+方程是 $x=x_1$；$\widehat{DE},\widehat{EF},\widehat{FA}$ 分别与
+$\widehat{AB},\widehat{BC},\widehat{CD}$ 关于原点对称。因当 $x_1$ 充分大时，
+\[
+  y_A=-x_1+\dfrac23<\dfrac{x_1^3}{3}-x_1,
+\]
+又 $y_B<y_A$，于是 $B$ 点落在曲线 $y=\dfrac{x^3}{3}-x$ 的下方，由 Lienard
+作图法易知式~(1.8) 的轨线当 $t$ 增加时只能从 $L_2$ 的外部走到 $L_2$ 的
+内部。$L_2$ 可作为外境界线。在 $L_1$ 与 $L_2$ 所围成的环域内无奇点，由
+环域定理，在其间存在方程组~(1.8) 的极限环。\qedhere
+\end{proof}
+
+\iffalse
+由不等式 (5.17) 可继续完成定理 5.1 的证明。事实上，若 $|x|\leqslant\alpha_2$ 之内存在唯一极限环 $L_1$，它是不稳定的，则最靠近 $L_1$ 的外侧极限环必为内侧稳定；借助严格旋转向量场的扰动，比较发散量积分即排除更多闭轨线。若 $|x|\leqslant\alpha_2$ 内无极限环，则由奇点 $O$ 的稳定性及同样的比较，至多出现两个极限环。综合上述情形，按重次计算，方程组 (5.2) 的极限环如存在，其个数恰为二。
+
+令
+\[
+m_1=\max_{0\leqslant x\leqslant\beta_1}F(x),\qquad
+m_2=\max_{\beta_1\leqslant x\leqslant\alpha_2}|F(x)|.
+\]
+用 Lienard 作图法估算出，当 $m_2>m_1$ 并且
+\[
+\alpha_2<\dfrac{(m_2-m_1)(m_2+3m_1)}{4m_1}
+\]
+时，方程组 (5.2) 确实有两个极限环。
+
+\begin{proposition}{ }{ch4-proposition-5-1}
+若 $f(x)\in C^0(-d,d)$，$f(-x)=f(x)$；$f(x)$ 只有两个正零点 $\alpha_2>\alpha_1>0$，即 $f(\alpha_2)=f(\alpha_1)=0$；当 $x\geqslant\alpha_2$ 时 $f(x)$ 单调，则方程组 (5.2) 至多有两个极限环。
+\end{proposition}
+
+Г. С. Петров在[43]中要求 $f(x)\in C^1(-d,d)$，当 $x\geqslant\alpha_2$ 时 $\bigl(f(x)/x\bigr)'\geqslant0$。这些要求可以减弱；而条件 $f(0)>0$、$f'(\alpha_2)\ne0$ 是多余的。事实上由定理 5.1 的条件可推得 $f(0)\geqslant0$；[43]中还要求 $f(x)$ 只有两个正零点，由定理 5.1 看，$f(x)$ 可以有无穷多个正零点在区间 $(0,\beta_1)$ 上。
+
+\begin{theorem}{ }{ch4-theorem-5-2}
+考虑方程 (5.1) 或其等价方程组 (5.7)。假设除满足定理 5.1 中的条件 (1) 和 (2) 外，另还满足条件：
+\begin{enumerate}
+  \item $g(x)$ 在 $(-d,d)$ 上满足 Lipschitz 条件；$xg(x)>0$，$x\ne0$；$g(-x)=-g(x)$；$G(-\infty)=G(\infty)=\infty$，其中 $G(x)=\int_0^xg(x)\,dx$；
+  \item 当 $x$ 增加、$x\in[\alpha_2,d]$ 时，$\dfrac{f(x)\sqrt{2G(x)}\operatorname{sgn}x}{g(x)}$ 不下降。
+\end{enumerate}
+则方程组 (5.7) 至多有两个极限环（若存在，则或者是两个单重环，或者是一个二重环）。
+\end{theorem}
+
+作变换
+\[
+u=\sqrt{2G(x)}\operatorname{sgn}x,
+\]
+方程组 (5.7) 化为
+\[
+\dfrac{dy}{dt}=-u,\qquad \dfrac{du}{dt}=y-F(x(u)).
+\]
+其中 $x=x(u)$ 是 $u=\sqrt{2G(x)}\operatorname{sgn}x$ 的反函数。因 $g(-x)=-g(x)$，有
+\[
+F(x(-u))=F(-x(u))=-F(x(u)),\qquad F'_u=\dfrac{f(x(u))u}{g(x(u))},
+\]
+问题遂化为定理 5.1 的情形。
+
+推论：若将定理 5.2 中的条件 (4) 换成当 $x$ 增加、$x\in[\alpha_2,d]$ 时 $f(x)/g(x)$ 不下降，则定理 5.2 自然成立。
+
+下面我们用 \S4 中 G. F. Duff 和 N. Levinson 的方法来构造例子，用以说明定理 5.1 中的条件 (2) 和 (3) 为了保极限环的唯一性一般来说是不能无条件去掉的。
+
+考虑微分方程
+\begin{equation}
+\ddot{x}+\varepsilon f(x)\dot{x}+x=0,\tag{5.24}
+\end{equation}
+或其等价方程组
+\begin{equation}
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-x-\varepsilon f(x)v,\tag{5.25}
+\end{equation}
+其中 $\varepsilon$ 是小参数，令 $F(x)=\int_0^xf(x)\,dx$。
+
+\begin{example}{ }{ch4-example-5-1}
+设方程组 (5.25) 中的
+\[
+f(x)=\dfrac17x^8-\dfrac3{10}x^6+\dfrac{307}{1600}x^4-\dfrac{579}{16000}x^2+\dfrac{11}{16000}.
+\]
+令 $I_{2k}=\int_0^{2\pi}\cos^{2k}\theta\sin^2\theta\,d\theta$，则
+\[
+I_0=\pi,\quad I_2=\dfrac14\pi,\quad I_4=\dfrac18\pi,\quad I_6=\dfrac5{64}\pi,\quad I_8=\dfrac7{128}\pi.
+\]
+于是
+\[
+\overline F(\rho)=\int_0^{2\pi}\rho f(\rho\cos\theta)\sin^2\theta\,d\theta
+=\dfrac\pi{128}\rho\left(\rho^2-\dfrac1{10}\right)\left(\rho^2-\dfrac8{10}\right)(\rho^2-1)\left(\rho^2-\dfrac{11}{10}\right).
+\]
+故当 $\varepsilon$ 充分小时，方程组 (5.25) 至少有四条闭轨线，分别落在圆 $\rho=\sqrt{1/10}$、$\sqrt{8/10}$、$1$、$\sqrt{11/10}$ 的近旁。
+\end{example}
+
+\fi
+
+关于式~(1.8) 的极限环的唯一性留待第 4 节中讨论。
+
+在上述定理的证明中，内外境界线都是简单的代数曲线设成的。也可用其他曲线，
+例如用
+\[
+  \lambda(x,y)=\dfrac12y^2+G(x)=C>0
+\]
+来作境界线，其中 $G(x)=\int_0^xg(x)\,\mathrm{d}x$，见黄克成的工作\cite{9}。
+有时也用轨线弧来作境界线的一部分。为此就要知道方程组~(1.6) 的轨线的一些
+几何性质。这些性质我们在下面用引理的形式给出。
+
+\noindent\textbf{引理 1.1}\quad 设方程组~(1.6) 的右侧函数满足
+\begin{enumerate}
+  \item $f(x),g(x)\in C^0(|x|<+\infty)$；
+  \item $xg(x)>0$，$x\ne0$，
+\end{enumerate}
+则方程组~(1.6) 在整个相平面 $(x,y)$ 上关于初值问题有解的存在唯一性。
+
+\begin{proof}
+作 Filippov 变换。当 $x>0$ 时，令
+\[
+  z=z_1(x)=\int_0^xg(\xi)\,\mathrm{d}\xi\quad(z>0),
+\]
+其反函数为 $x=x_1(z)$，又
+\[
+  \int_0^xf(\xi)\,\mathrm{d}\xi=F(x)=F(x_1(z))=F_1(z).
+\]
+当 $x<0$ 时，令
+\[
+  z=z_2(x)=\int_0^xg(\xi)\,\mathrm{d}\xi\quad(z>0),
+\]
+其反函数为 $x=x_2(z)$，又
+\[
+  \int_0^xf(\xi)\,\mathrm{d}\xi=F(x)=F(x_2(z))=F_2(z).
+\]
+% 原书第203页
+方程组~(1.6) 当 $x$ 大于 $0$ 和小于 $0$ 时，分别等价于下列两个方程：
+\[
+  \dfrac{\mathrm{d}z}{\mathrm{d}y}=F_i(z)-y,\qquad z>0,\quad i=1,2. \tag{1.9}
+\]
+当 $x\ne0$ 时，式~(1.9) 的右侧对 $z$ 连续可微，即
+\[
+  \dfrac{\mathrm{d}F_i(z)}{\mathrm{d}z}
+  =\dfrac{\mathrm{d}F_i(x)}{\mathrm{d}x}\dfrac{\mathrm{d}x}{\mathrm{d}z}
+  =\dfrac{f(x)}{g(x)}
+\]
+连续。在 $y$ 轴上，除原点外，方程
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}x}=-\dfrac{g(x)}{y-F(x)}
+\]
+的右侧对 $y$ 连续可微。故在整个相平面 $(x,y)$ 上式~(1.6) 的解存在唯一。
+\end{proof}
+
+\noindent\textbf{引理 1.2}\quad 设方程组~(1.6) 的右侧函数满足
+\begin{enumerate}
+  \item $f(x),F(x)\in C^0(|x|<+\infty)$；
+  \item $xg(x)>0$，$x\ne0$，
+\end{enumerate}
+则式~(1.6) 的过任何点 $C(x,F(x))$（$x\ne0$）的正半轨和负半轨必分别与
+$y$ 轴相交，或趋于原点 $O$。
+
+\begin{proof}
+我们只证明在区域 $G:x>0,y<F(x)$ 上正半轨 $L_C^+$ 必与 $y$ 负半轴相交。
+用反证法，假设不然，因在区域 $G$ 上，当 $t$ 增加时，式~(1.6) 的解
+$x(t),y(t)$ 都单调下降。设 $L_C^+$ 有界，$L_C^+$ 必有唯一的极限点 $D$，且
+$D$ 必为奇点。由反证法的假设，$D\ne O$，而区域 $G$ 内无其他奇点，得矛盾。
+设 $L_C^+$ 无界，于是 $L_C^+$ 必有垂直渐近线 $x-a\geq0$。但因当
+$x\to a,\ |y|\to+\infty$ 时，
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}x}=-\dfrac{g(x)}{y-F(x)}
+\]
+趋于零，又得矛盾。这就证明了在区域 $G$ 上 $L_C^+$ 必与 $y$ 负半轴相交。
+同理可证 $L_C^-$ 必在区域 $x>0,y>F(x)$ 上与 $y$ 正半轴相交。$x<0$ 时的
+证明也是类似的。引理证毕。
+\end{proof}
+
+% 原书第204页
+\noindent\textbf{引理 1.3}\quad 设方程组~(1.6) 的右侧函数满足
+\begin{enumerate}
+  \item $f(x),g(x)\in C^0(|x|<+\infty)$；
+  \item $xg(x)>0$，$x\ne0$；
+  \item 或者
+  \[
+    \lim_{x\to+\infty}F(x)=+\infty,\qquad
+    \lim_{x\to-\infty}F(x)=-\infty, \tag{1.10}
+  \]
+  或者
+  \[
+    \int_0^{\pm\infty}g(\xi)\,\mathrm{d}\xi
+    =G(\pm\infty)=+\infty, \tag{1.11}
+  \]
+  \[
+    F(x)>k_1\quad(x>0),\qquad F(x)<k_2\quad(x<0). \tag{1.12}
+  \]
+\end{enumerate}
+则从任何点 $P(0,y_P)$（$y_P\ne0$）出发的式~(1.6) 的正半轨线 $L_P^+$
+必与 $y=F(x)$ 相交。
+
+\begin{proof}
+只证明 $y_P>0$ 的情形。由条件 (2) 知，沿着 $L_P^+$，$y$ 单调下降。若条件
+(3) 中式~(1.10) 成立，因为
+\[
+  y_P<\lim_{x\to+\infty}F(x)，
+\]
+自然 $L_P^+$ 必与 $y=F(x)$ 相交。若条件 (3) 中式~(1.11)、(1.12) 成立，
+且 $y_P>k_1$，我们用反证法来证明定理结论也成立。设 $L_P^+$ 永远不与
+$y=F(x)$ 相交，即永远停留在曲线 $y=F(x)$ 之上。于是沿着 $L_P^+$ 恒有
+\[
+  0<y-F(x)<y_P-F(x)<y_P-k_1,
+\]
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}x}
+  =-\dfrac{g(x)}{y-F(x)}<-\dfrac{g(x)}{y_P-k_1}.
+\]
+从而
+\[
+\begin{aligned}
+  k_1-y_P&<y-y_P
+  <\int_0^x\left[-\dfrac{g(x)}{y_P-k_1}\right]\,\mathrm{d}x\\
+  &=-\dfrac{1}{y_P-k_1}G(x)\longrightarrow-\infty,
+  \qquad x\longrightarrow+\infty,
+\end{aligned}
+\]
+得矛盾。这就证明了 $L_P^+$ 必与 $y=F(x)$ 相交。$y_P<0$ 时的证明类似。
+\end{proof}
+
+% 原书第205页
+下面我们证明 A.~B.~Драгилёв 存在性定理。由于有了前面的几个引理，我们将
+原来的证明简化了。另外为了增加直观性，还对证明作了一点更动。
+
+\noindent\textbf{定理 1.2（A.~B.~Драгилёв\cite{10}）}\quad 给定微分方程
+\[
+  \ddot{x}+f(x)\dot{x}+g(x)=0, \tag{1.13}
+\]
+或其等价方程组
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-g(x),\qquad
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-F(x). \tag{1.14}
+\]
+若
+\begin{enumerate}
+  \item 当 $|x|<A$ 时 $F(x)$ 和 $g(x)$ 满足 Lipschitz 条件，其中 $A$ 充分大；
+  \item $xg(x)>0$，当 $x\ne0$ 时，
+  \[
+    G(x)=\int_0^xg(x)\,\mathrm{d}x,\qquad G(\pm\infty)=+\infty,
+  \]
+  \item
+  \[
+    F(x)<0\quad\text{当 }0<x<x_1\text{ 时；}\qquad
+    F(x)>0\quad\text{当 }x_2<x<0\text{ 时；}
+  \]
+  \item 存在 $M>\max(x_1,|x_2|)$，$k_2<k_1$，使得
+  \[
+    F(x)\geq k_1\quad\text{当 }x>M\text{ 时；}\qquad
+    F(x)\leq k_2\quad\text{当 }x<-M\text{ 时，}
+  \]
+\end{enumerate}
+则式~(1.14) 至少有一条闭轨线。
+
+\begin{proof}
+由条件 (1)，在 $|x|<A$ 中式~(1.14) 的初值问题的解存在唯一。不妨设
+$k_1>0$；如果 $k_2<k_1\leq0$，可作变换 $x'=-x,y'=-y$，方程组~(1.14)
+的类型不变，条件 (1)--(3) 仍满足，而对应于 $k_1,k_2$ 的分别是
+$-k_2>-k_1\geq0$。
+
+\noindent 1.~先作 $L_1$。
+
+令
+\[
+  \lambda(x,y)=\dfrac{y^2}{2}+G(x)，
+\]
+则 $\lambda(x,y)=C>0$ 为 $(x,y)$ 平面上围绕式~(1.14) 的唯一奇点 $O$ 的
+闭曲线族。又
+\[
+\begin{aligned}
+  \left.\dfrac{\mathrm{d}\lambda}{\mathrm{d}t}\right|_{(1.14)}
+  &=-y g(x)+g(x)[y-F(x)]\\
+  &=-g(x)F(x)\geq0,\qquad |x|\ll1.
+\end{aligned}
+\]
+故存在充分小的 $C_1>0$，沿着闭曲线
+\[
+  L_1:\ \lambda(x,y)=C_1,\qquad
+  \left.\dfrac{\mathrm{d}\lambda}{\mathrm{d}t}\right|_{(1.14)}\geq0,
+\]
+$L_1$ 可作为内境界线。
+
+\noindent 2.~再作 $L_2$。
+
+设当 $|x|\leq M$ 时，$|F(x)|<\varepsilon$，于是当 $d$ 充分大时便有
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-F(x)>a=d-\varepsilon>0,
+  \qquad |x|\leq M,\quad y>d;
+\]
+\[
+  0\leq-g(x)=\dfrac{\mathrm{d}y}{\mathrm{d}t}<b,
+  \qquad -M<x<0;
+\]
+\[
+  -b<-g(x)=\dfrac{\mathrm{d}y}{\mathrm{d}t}<0,
+  \qquad 0<x<M.
+\]
+
+% 原书第207页，图4.4
+\chFourFigurePlaceholder{4.4}
+
+故
+\[
+  0<\dfrac{\mathrm{d}y}{\mathrm{d}x}<\dfrac{b}{a},
+  \qquad -M<x<0,\quad y>d;
+\]
+\[
+  -\dfrac{b}{a}<\dfrac{\mathrm{d}y}{\mathrm{d}x}<0,
+  \qquad 0<x<M,\quad y>d.
+\]
+在 $x=-M$ 上取点 $U$，使 $y_U>2d$。只要 $d$ 充分大，$\dfrac ba$ 可任意小，
+故 $f(U,I^+)$ 必与 $y$ 正半轴相交于 $P$，与 $x=M$ 相交于 $Q$，且沿着轨线弧
+$\widehat{UPQ}$，$y$ 的值 $y_{UPQ}>d$，又 $|y_Q-y_U|$ 可任意小。由引理 1.3，
+再向正向延续，$f(U,I^+)$ 必与 $y=F(x)$ 相交，设交点为 $R$。由引理 1.2，再
+向正向延续，$f(U,I^+)$ 必再次与直线 $x=M$ 相交，设交点为 $S$。
+
+再在 $x=M$ 上取点 $T$，使 $y_T<\min(-2d,y_S)$，与上面同样的讨论，可证只要
+$d$ 充分大，$f(T,I^+)$ 必交 $y$ 负半轴于 $V$，交 $x=-M$ 于 $W$，且沿着轨线弧
+$\widehat{TVW}$，$y$ 的值 $y_{TVW}<-d$，又 $|y_T-y_W|$ 可任意小。由引理 1.3，
+再向正向延续，$f(T,I^+)$ 将与 $y=F(x)$ 相交于 $Z$，将与 $x=-M$ 相交于 $H$，
+$y_H>0$。
+
+令 $\widehat{UPQRS}$ 和 $\widehat{TVWZH}$ 分别代表过点 $U,P,Q,R,S$ 和点
+$T,V,W,Z,H$ 的轨线弧。如果 $y_H\leq y_U$，令
+\[
+  L_2=\widehat{UPQRS}\cup\overline{ST}\cup\widehat{TVWZH}
+  \cup\overline{HU},
+\]
+因在 $\overline{ST}$ 上 $\dfrac{\mathrm{d}x}{\mathrm{d}t}<0$；在
+$\overline{HU}$ 上 $\dfrac{\mathrm{d}x}{\mathrm{d}t}>0$，故单闭曲线 $L_2$ 便可
+作为环域的外境界线。到此定理得证。
+
+如果 $y_H>y_U$，再将轨线向正向延续，$f(T,I^+)$ 将与 $y$ 正半轴相交于 $P'$，
+与 $x=M$ 相交于 $Q'$，与 $y=F(x)$ 相交于 $R'$，与 $x=M$ 再次相交于 $S'$。
+我们要证：当 $d$ 充分大时，必有 $y_{S'}>y_T$。
+
+令
+\[
+  \lambda(x,y)=\dfrac12(y-k_2)^2+G(x).
+\]
+下面我们考察 $\lambda(x,y)$ 沿着轨线弧 $\widehat{TVWHQ'S'}$ 的改变量。
+\[
+\begin{aligned}
+  \bar\lambda_{Q'}-\bar\lambda_{S'}
+  &=\int_{y_{S'}}^{y_{Q'}}[F(x)-k_2],\mathrm{d}y
+  >(k_1-k_2)(y_{Q'}-y_{S'})>0,\\
+  \bar\lambda_W-\bar\lambda_H
+  &=\int_{y_W}^{y_H}[k_2-F(x)],\mathrm{d}y\geq0.
+\end{aligned}
+\]
+又
+\[
+  \left.\dfrac{\mathrm{d}\lambda}{\mathrm{d}x}\right|_{(1.14)}
+  =\dfrac{g(x)[k_2-F(x)]}{y-F(x)}.
+\]
+在 $|x|\leq M$ 内，当 $d$ 充分大时，
+$\left|\dfrac{\mathrm{d}\lambda}{\mathrm{d}x}\right|$ 可任意小，故当 $d$ 充分大时，
+$|\bar\lambda_T-\bar\lambda_W|$ 和 $|\bar\lambda_H-\bar\lambda_{Q'}|$ 可任意小，
+故有
+\[
+  \bar\lambda_T-\bar\lambda_{S'}>
+  \dfrac12(k_1-k_2)(y_{Q'}-y_{S'})>0.
+\]
+这就证明了，当 $d$ 充分大时，$y_{S'}>y_T$。令
+\[
+  L_2=\widehat{TVWZHP'Q'R'S'}\cup\overline{S'T},
+\]
+$L_2$ 可作为环域的外境界线。定理证毕。
+\end{proof}
+
+Драгилёв 定理的本质是：首先在定理的条件下，引理 1.2 和引理 1.3 的条件
+成立，故方程组~(1.14) 的正半轨线都绕原点 $O$ 盘旋；其次，由条件 (1)，在
+带域 $|x|\leq M$ 上，在长方形 $K:|x|=M,|y|=d$ 之外，其中 $d$ 充分大，所有
+轨线弧都几乎与 $x$ 轴平行，沿着这些轨线弧，$\lambda(x,y)$ 的改变量可任意小；
+再则，由条件 (4)，在带域 $|x|\leq M$ 之外，沿着轨线弧 $\widehat{WH}$ 和
+$\widehat{Q'S'}$，$\lambda(x,y)$ 下降，且
+\[
+  \bar\lambda_{Q'}-\bar\lambda_{S'}+\bar\lambda_W-\bar\lambda_H>\xi>0,
+\]
+即有正的下界。于是当 $d$ 充分大时，在长方形 $K$ 之外从 $x=M$（或
+$x=-M$）出发的轨线如绕 $K$ 一周又回到 $x=M$（或 $x=-M$），则沿着这段轨线弧，
+$\lambda(x,y)$ 的值下降。于是就可用它来作外境界线的一部分。这里关键的一步是
+由条件 (4) 来推证不等式~(1.15)。但为了证明 $\lambda(x,y)$ 下降，条件 (4)
+可以减弱。黄启昌首先减弱了条件 (4)，对 Драгилёв 定理作了推广\cite{11}。丁大正又
+作了一点改进\cite{12}，将条件 (4) 改成条件 $(4)^*$。
+
+\noindent\textbf{附注 1}\quad 在定理 1.2 中若将条件 (4) 换成下列条件 $(4)^*$，则
+定理仍真。
+
+\[
+\begin{gathered}
+  (4)^*\quad\text{存在常数 }M>\max(x_1,|x_2|)，\ \text{当 }x\geq M\text{ 时，}
+  F(x)\geq k；\quad\text{当 }x\leq-M\text{ 时，}\ F(x)\leq k，\\
+  \limsup_{x\to+\infty}F(x)>k
+  \quad\text{或}\quad
+  \liminf_{x\to-\infty}F(x)<k。
+\end{gathered}
+\]
+显然定理的前半部分证明都能通过。将后半部分证明作如下变动。
+
+如果 $y_H>y_U$，又设
+\[
+  \limsup_{x\to+\infty}F(x)>k
+\]
+成立。这就是说存在 $x_n\to+\infty$，$F(x_n)\geq k+\eta$，其中 $\eta>0$。
+如图 4.4 所示，取点 $B(x_n,F(x_n))$，使 $x_n>x_R$，负半轨 $f(B,I^-)$
+必与 $x=M$ 相交，设交点为 $A$；正半轨 $f(B,I^+)$ 必与直线 $y=k$ 相交，
+设交点为 $\bar B$；正半轨 $f(\bar B,I^+)$ 还将与 $x=M$ 和 $x=-M$ 相交，
+设交点分别为 $C$ 和 $D$，$y_C,y_D<0$。再向正向延续，$f(\bar B,I^+)$ 还将与
+$x=-M$ 和 $x=M$ 相交，设交点分别为 $E$ 和 $F$，$y_E,y_F>0$。
+
+如图 4.4 所示，如果 $y_C\geq y_T$，则显然 $y_F<y_A$。如果 $y_C<y_T$，便有
+$|y_C|,|y_D|,y_E,y_F>d$。下面我们沿着轨线弧 $\widehat{ABC}$、
+$\widehat{DE}$ 来计算 $\lambda(x,y)$ 的改变量。这时
+\[
+  \lambda(x,y)=\dfrac12(y-k)^2+G(x).
+\]
+因为 $x_n>x_B$，故 $G(x_n)>G(x_B)$，于是便有
+\[
+\begin{aligned}
+  \lambda(B)&=\dfrac12[F(x_n)-k]^2+G(x_n)\\
+  &>\dfrac12\eta^2+G(x_B)
+   =\dfrac12\eta^2+\lambda(\bar B).
+\end{aligned}
+\]
+又因
+\[
+  \left.\dfrac{\mathrm{d}\lambda}{\mathrm{d}t}\right|_{(1.14)}
+  =g(x)[k-F(x)]\leq0,\qquad |x|>M,
+\]
+故
+\[
+  \lambda(A)\geq\lambda(B),\qquad
+  \lambda(\bar B)\geq\lambda(C),\qquad
+  \lambda(D)\geq\lambda(E).
+\]
+而当 $d$ 充分大时，$|\lambda(C)-\lambda(D)|$ 和
+$|\lambda(F)-\lambda(E)|$ 可任意小。故有
+\[
+  \lambda(A)>\lambda(F),
+\]
+即
+\[
+  y_F<y_A.
+\]
+这就是说，只要 $d$ 充分大，不论 $y_C\geq y_T$ 或 $y_C<y_T$，都将有
+$y_F<y_A$。因在 $\overline{AF}$ 上 $\dfrac{\mathrm{d}x}{\mathrm{d}t}>0$，于是便可用轨线弧
+$\widehat{AB\bar BCDEF}$ 和线段 $\overline{FA}$ 所围成的单闭曲线来作外境界线。
+当
+\[
+  \liminf_{x\to-\infty}F(x)<k
+\]
+成立时，证明完全类同。
+
+\noindent\textbf{附注 2}\quad 为了保证解的存在唯一性，由引理 1.1，定理 1.2 中的
+条件 (1) 还可以减弱。
+
+\noindent\textbf{定理 1.3（A.~Ф.~Филиппов\cite{8}）}\quad 给定微分方程~(1.13)，
+或其等价方程组~(1.14)。若
+\begin{enumerate}
+  \item $f(x),F(x),g(x)$ 连续，$xg(x)>0$，$x\ne0$，
+  \[
+    \int_0^{\pm\infty}g(x)\,\mathrm{d}x=+\infty;
+  \]
+  \item 如同引理 1.1，作 Филиппов 变换，方程组~(1.14) 等价于
+  \[
+    \dfrac{\mathrm{d}z}{\mathrm{d}y}=F_1(z)-y,\quad z>0, \tag{1.16}
+  \]
+  \[
+    \dfrac{\mathrm{d}z}{\mathrm{d}y}=F_2(z)-y,\quad z>0； \tag{1.17}
+  \]
+  存在 $\delta>0$，当 $0<z<\delta$ 时，
+  \[
+    F_2(z)\geq(\not\equiv)F_1(z),\qquad
+    F_1(z)<a\sqrt z,\qquad F_2(z)>-a\sqrt z,
+  \]
+  其中正数 $a<\sqrt8$；
+  \item 存在 $z_0>\delta$，有
+  \[
+    \int_0^{z_0}[F_1(z)-F_2(z)]\,\mathrm{d}z>0；
+  \]
+  当 $z>z_0$ 时，有
+  \[
+    F_1(z)\geq F_2(z),\qquad
+    F_1(z)>-a\sqrt z,\qquad F_2(z)<a\sqrt z,
+  \]
+  其中正数 $a<\sqrt8$，
+\end{enumerate}
+则方程组~(1.14) 在 $(x,y)$ 平面上至少有一条闭轨线。
+
+由引理 1.1，知方程组~(1.14) 在整个相平面 $(x,y)$ 上除原点外有解的
+存在唯一性。为证定理我们先证几个引理。
+
+\noindent\textbf{引理 1.4}\quad 考虑方程
+\[
+  \dfrac{\mathrm{d}z}{\mathrm{d}y}=F(z)-y. \tag{1.18}
+\]
+若 $F(z)$ 连续，$F(0)=0$，且当 $0<z<\delta$ 时，
+\[
+  F(z)<a\sqrt z\quad(F(z)>-a\sqrt z)，
+\]
+其中 $a<\sqrt8$，则通过点 $B(F(z),z)$ 的式~(1.18) 的解曲线必交 $y$ 轴于
+点 $A$ 和 $C$，且 $y_A\geq0,y_C<0$（$y_A>0,y_C\leq0$），其中 $z>0$ 是任意的。
+
+\begin{proof}
+只证明括号外的情形。由引理 1.2 知，通过 $B$ 的解曲线必与 $y$ 正、负半轴
+分别相交于点 $A$ 和 $C$，且 $y_A\geq0,y_C\leq0$。我们只要证明，在引理的
+假设下，有 $y_C<0$。
+
+考虑辅助方程
+\[
+  \dfrac{\mathrm{d}z}{\mathrm{d}y}=a\sqrt z-y. \tag{1.19}
+\]
+令 $z=u^2$，式~(1.19) 变为
+\[
+  \dfrac{\mathrm{d}u}{\mathrm{d}t}=au-y,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=2u, \tag{1.20}
+\]
+它的特征方程为
+\[
+  \begin{vmatrix}a-\lambda&-1\\2&-\lambda\end{vmatrix}
+  =\lambda^2-a\lambda+2=0，
+\]
+特征根为
+\[
+  \lambda_1,\lambda_2=\dfrac{a\pm\sqrt{a^2-8}}2。
+\]
+因正数 $a<\sqrt8$，$\lambda_1,\lambda_2$ 为复根，故奇点 $O$ 是式~(1.20) 的
+焦点，故式~(1.20) 的从 $B$ 出发的解曲线必与 $y$ 正、负半轴分别相交于
+$A'$ 和 $C'$，$y_{A'}>0,y_{C'}<0$。自然方程~(1.19) 也有这样的性质。现在比较
+式~(1.18) 与式~(1.19) 的方向场。
+
+如 $z_B>\delta$，方程~(1.18) 的过点 $B$ 的解曲线必交直线 $z=\delta$ 于点
+$B'$，$y_{B'}<F(\delta)$。因当 $0\leq z\leq\delta$ 时，$F(z)<a\sqrt z$，故有
+\[
+  \left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.18)}
+  <\left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.19)},
+  \qquad0\leq z\leq\delta.
+\]
+由比较定理，$y_C\leq y_{C'}<0$。引理括号内的部分可同样证明。
+\end{proof}
+
+注意，当 $a\geq\sqrt8$ 时，式~(1.20) 的特征根 $\lambda_1$ 和 $\lambda_2$
+是同号实数，这时奇点 $O$ 是式~(1.20) 的结点，每条轨线都进入奇点 $O$，因而
+$y_{C'}=0$。如图 4.6 所示，这时可能发生 $0=y_C\leq y_{C'}$。为简单起见，图中
+不考虑变换 $z=u^2$ 引起的变化。
+
+\chFourFigurePlaceholder{4.5}
+\chFourFigurePlaceholder{4.6}
+
+由此可见，为了保证 $y_C<0$，从一定意义上讲，引理的条件是最佳的。
+
+\noindent\textbf{引理 1.5}\quad 考虑方程~(1.18)。设 $F(z)$ 连续，$F(0)=0$，且当
+$z>z_0$ 时，$F(z)<a\sqrt z$（$F(z)>-a\sqrt z$），其中 $a<\sqrt8$，则从任何点
+$K(y_K,0)$，$y_K<0$（$y_M,0$，$y_M>0$）出发的解曲线 $f(K,I^+)$
+（$f(M,I^-)$），必交 $y$ 轴于 $R$，$y_R\geq0$（$N$，$y_N\leq0$）。
+
+\begin{proof}
+只证括号外的情形。如果 $f(K,I^+)$ 不与 $z=z_0$ 相交，则它必与
+$y=F(z)$ 相交，还将与 $y$ 正半轴相交于 $R$，且 $y_R\geq0$。
+
+如果 $f(K,I^+)$ 与 $z=z_0$ 相交于 $P$，则方程~(1.19) 的过点 $P$ 的解曲线
+$f(P,I)|_{(1.19)}$ 必与 $z=z_0$ 再次相交于 $P'$，并且 $P'$ 落在
+$y=F(z)$ 之上，这是因为当 $(z,y)$ 落在 $y=F(z)$ 之下时，
+\[
+  \left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.19)}>0.
+\]
+又当 $z>z_0$ 时，
+\[
+  \left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.19)}
+  >\left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.18)}.
+\]
+故 $f(P,I)|_{(1.19)}$ 必落在弧 $\widehat{PP'}$ 的左边，不可能再与
+$\widehat{PP'}$ 相交，故 $f(P,I)|_{(1.19)}$ 必与 $z=z_0$ 相交于 $Q$，且
+$y_Q>F(z_0)$。而当 $y>F(z)$ 时，
+\[
+  \left.\dfrac{\mathrm{d}z}{\mathrm{d}y}\right|_{(1.18)}<0,
+\]
+故 $f(P,I)|_{(1.18)}$ 还将与 $y$ 正半轴相交于点 $R$，$y_R\geq0$。引理证毕。
+\end{proof}
+
+请读者注意，引理 1.5 的条件比引理 1.3 的条件 (1.12) 弱。那么引理 1.5 的
+条件是否还可进一步减弱呢？把它作为思考题，留给读者。
+
+\chFourFigurePlaceholder{4.7}
+
+\noindent\textbf{定理的证明}
+
+\noindent 1.~作内境界线 $L_1$。
+
+由定理的条件 (2)，对于方程~(1.16) 和~(1.17) 而言，引理 1.4 中括号外和内的
+条件分别成立。取 $0<z<\delta$，$B(F_1(z),z)$，$E(F_2(z),z)$。由引理 1.4，
+解曲线 $f(B,I)|_{(1.16)}$ 和 $f(E,I)|_{(1.17)}$ 都分别与 $y$ 轴相交于
+$A,C$ 和 $F,D$，且有 $y_A\geq0,y_C<0;y_F>0,y_D\leq0$。考虑方程
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}z}=\dfrac1{F_1(z)-y}, \tag{1.21}
+\]
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}z}=\dfrac1{F_2(z)-y}. \tag{1.22}
+\]
+由条件 (2) 知，当 $0\leq z\leq\delta$ 时，
+$F_2(z)-y\geq F_1(z)-y$，且 $F_2(z)-y\not\equiv F_1(z)-y$，故在
+$\widehat{EF}$ 上有
+\[
+  0>\left.\dfrac{\mathrm{d}y}{\mathrm{d}z}\right|_{(1.21)}
+  \geq\left.\dfrac{\mathrm{d}y}{\mathrm{d}z}\right|_{(1.22)}.
+\]
+因而 $\widehat{BA}$ 整个落在 $\widehat{EF}$ 之下，$y_A<y_F$。同样可证
+$y_C<y_D$。将 $(z,y)$ 半平面上的图形回到 $(x,y)$ 平面。
+
+\chFourFigurePlaceholder{4.8}
+
+如上图所示，令
+\[
+  L_1=\widehat{E'FG}\cup\overline{GB'}\cup\widehat{B'CH}
+  \cup\overline{HE'}.
+\]
+由于在 $\overline{GB'}$ 上，$\dfrac{\mathrm{d}x}{\mathrm{d}t}>0$，在
+$\overline{HE'}$ 上，$\dfrac{\mathrm{d}x}{\mathrm{d}t}<0$，$L_1$ 可作为内境界线。
+
+\noindent 2.~作外境界线 $L_2$。
+
+由定理的条件 (3)，对于方程~(1.16) 和~(1.17) 而言，引理 1.5 成立。方程
+式~(1.17) 满足引理 1.5 括号外的情形。方程~(1.16) 满足括号内的情形。
+
+取点 $K(y_K,0)$，$y_K<0$，$f(K,I)|_{(1.17)}$ 与 $y$ 轴相交于 $R$，
+$y_R\geq0$。因方程~(1.17) 还满足引理 1.4 括号内的情形，故 $y_R>0$。令
+$y_K\to-\infty$。下面分情况讨论。
+
+对于 $y_M<+\infty$ 的情况，由引理 1.4、1.5，$f(M,I)|_{(1.16)}$ 交 $y$ 轴于
+$N$，且 $y_N<0$。再由引理 1.4、1.5，$f(N,I)|_{(1.17)}$ 交 $y$ 轴于 $P$，且
+$y_P>0$。显然 $y_P<y_M$。回到 $(x,y)$ 平面，如图 4.9 所示，令
+\[
+  L_2=\widehat{MNP}\cup\overline{PM}.
+\]
+因在 $\overline{PM}$ 上 $\dfrac{\mathrm{d}x}{\mathrm{d}t}>0$，外境界线 $L_2$
+作成。
+
+\chFourFigurePlaceholder{4.9}
+
+对于 $y_M=+\infty$ 的情况，先证一个引理。
+
+设 $y_1(z),y_2(z)$ 分别是方程~(1.16) 和~(1.17) 的解，且满足初始条件：
+$y_1(0)=y_2(0)=y_0$。在定理 1.2 中已讨论过，对于任何固定的 $z_0>0$ 和
+任意小的 $\varepsilon>0$，存在充分大的 $d>0$，使得当 $|y_0|>d$ 时，
+\[
+  |y_i(z_1)-y_i(z_2)|<\varepsilon,
+  \qquad0\leq z_1,z_2\leq z_0,\quad i=1,2. \tag{1.23}
+\]
+于是当 $|y_0|\to+\infty$ 时，便有
+\[
+  \dfrac{y_0^2}{[F_1(z)-y_1(z)][F_2(z)-y_2(z)]}\longrightarrow1,
+  \qquad0\leq z\leq z_0.
+\]
+
+\noindent\textbf{引理 1.6}\quad 设 $y_1(z)$ 和 $y_2(z)$ 分别是方程~(1.16) 和
+~(1.17) 的解，且满足初始条件 $y_1(0)=y_2(0)=y_0$，则存在 $d>0$，使得当
+$|y_0|>d$ 时，有 $y_1(z_0)<y_2(z_0)$。
+
+\begin{proof}
+由 $y_1(0)=y_2(0)$，从方程~(1.21)、(1.22) 立刻得出等式
+\[
+\begin{aligned}
+y_0^2[y_2(z_0)-y_1(z_0)]
+={}&\int_0^{z_0}[y_2(z)-y_1(z)]
+\dfrac{y_0^2\,\mathrm{d}z}
+{[F_1(z)-y_1(z)][F_2(z)-y_2(z)]}\\
+&+\int_0^{z_0}[F_1(z)-F_2(z)]\,\mathrm{d}z\\
+&+\int_0^{z_0}[F_1(z)-F_2(z)]
+\left[\dfrac{y_0^2}{[F_1(z)-y_1(z)][F_2(z)-y_2(z)]}-1\right]\mathrm{d}z\\
+={}&I_1+I_2+I_3.
+\end{aligned}
+\]
+当 $|y_0|\to+\infty$ 时，$I_1\to0$；因当 $0\leq z\leq z_0$ 时
+$F_1(z)-F_2(z)$ 有界，故 $I_3\to0$；由定理中的条件 (3)，$I_2>0$。故当
+$|y_0|$ 充分大时，必有 $y_2(z_0)>y_1(z_0)$。
+\end{proof}
+
+现在讨论当 $y_M=+\infty$ 时如何作外境界线 $L_2$。取点
+$K(y_0,0)$，$y_0<0$，$f(K,I)|_{(1.17)}$ 交 $y$ 轴于 $R(y_1,0)$，$y_1>0$。
+设 $y_1(z)$ 和 $\bar y_1(z)$，$y_2(z)$ 和 $\bar y_2(z)$ 分别是方程~(1.16) 和
+~(1.17) 的解，满足 $y_1(0)=y_2(0)=y_0$，$\bar y_1(0)=\bar y_2(0)=y_1$。
+由引理 1.6，当 $|y_0|$ 充分大时，有 $y_1(z_0)<y_2(z_0)$，
+$\bar y_1(z_0)<\bar y_2(z_0)$。如图 4.10 所示，
+$S(y_1(z_0),z_0)$ 落在 $D(y_2(z_0),z_0)$ 的下面，
+$V(\bar y_1(z_0),z_0)$ 落在 $U(\bar y_2(z_0),z_0)$ 的下面。
+
+由定理中条件 (3)，当 $z>z_0$ 时，$F_2(z)\leq F_1(z)$。比较方程
+~(1.16)、(1.17) 的方向场，便知方程~(1.16) 的轨线段 $\widehat{SQ}$ 将整个落在
+方程~(1.17) 的轨线段 $\widehat{DU}$ 的左侧，不与 $\widehat{DU}$ 相交。回到
+$(x,y)$ 平面，
+
+\chFourFigurePlaceholder{4.10}
+
+令
+\[
+  L_2=\widehat{V'KU'D'RS'Q'}\cup\overline{Q'V'}，
+\]
+因在 $\overline{Q'V'}$ 上，$\dfrac{\mathrm{d}x}{\mathrm{d}t}<0$，外境界 $L_2$ 作成。
+至此，环域的内外境界线 $L_1,L_2$ 作成，定理证毕。
+
+关于 Lienard 方程的极限环的存在性问题，迄今为止 Филиппов 的结果是较好的，
+他总结了以往的成果，他的条件几乎是最少的。定理 1.3 中的条件 (1) 一般来说
+是需要的，它是为了保证系统有唯一的奇点 $O$；从力学背景看，弹性恢复力也应
+与 $x$ 异号。为了产生极限环，在他以前的一些定理都要求当 $|x|<\delta$ 时，
+阻尼项 $f(x)<0$，当 $|x|>\eta>\delta$ 时，$f(x)>a>0$。由于阻尼项变号时吸收
+能量而释放能量，在这过程中产生了周期振荡。Филиппов 的定理不要求 $f(x)$
+变号，也不要求当 $|x|<\delta$ 时 $xF(x)<0$，当 $|x|>\eta>\delta$ 时
+$xF(x)>b>0$，而只要求当 $0\leq z\leq\delta$ 时 $F_1(z)<F_2(z)$，存在
+$z_0>\delta$，
+\[
+  \int_0^{z_0}[F_1(z)-F_2(z)]\,\mathrm{d}z>0，
+\]
+而当 $z>z_0$ 时 $F_1(z)>F_2(z)$，以保证在原点的充分小邻域内系统吸收能量，
+而在充分大的区域外，系统的轨线绕原点盘旋一周后释放能量。另外为了保证在
+$(x,y)$ 平面上轨线都绕原点盘旋，他所加的条件在当时也是最少的（请比较
+引理 1.3 和引理 1.5）。
+
+用 Филиппов 定理的思想，不断改变 $F_1(z)-F_2(z)$ 的符号，不难在相平面上
+构造存在至少 $n$ 个极限环的例子。
+
+在 Филиппов 以后，这方面的工作又有了一些推进。例如定理 1.3 和黄启昌等的
+工作\cite{11}，以及定理 1.2 的附注，它们是互不包含的，因在后两者并不要求
+\[
+  \int_0^{+\infty}[F_1(z)-F_2(z)]\,\mathrm{d}z>0，
+\]
+而这个条件在定理 1.3 的证明中为了构造外境界线是必不可少的。
+
+在 Филиппов 定理的证明中，当
+\[
+  \lim_{y_K\to-\infty}y_R=y_M<+\infty
+\]
+时，不需要比较 $F_1(z)$ 与 $F_2(z)$，外境界线的作法便十分容易了。这时
+方程~(1.17) 的过点 $M$ 的解曲线 $f(M,I)$ 必不与 $y=F_2(z)$ 相交，否则
+$f(M,I)$ 还将与 $y$ 负半轴相交，这将导出矛盾。回到 $(x,y)$ 平面上，方程组
+~(1.14) 的过 $M$ 点的负半轨线 $f(M,I^-)|_{(1.14)}$ 将不与曲线 $y=F(x)$ 相交，
+再加上 $f(M,I^+)|_{(1.14)}$ 绕原点盘旋，外境界线作成。同理，如果在 $y$ 负半轴
+上有点 $N$，$f(N,I^-)|_{(1.14)}$ 不与 $y=F(x)$ 相交，再加上 $f(N,I^+)$ 绕原点
+盘旋，外境界线也作成。这是构造外境界线的又一种方法。在这方面可参考伍卓群
+\cite{13}、E.~И.~Железнов\cite{14}、余树祥\cite{15,16} 等的工作。这里的关键是
+要判定，什么情形下方程组~(1.14) 才存在从 $y$ 轴出发的不与 $y=F(x)$ 相交的
+负半轨。下面的引理将给出存在这样的负半轨的充分条件。
+
+\noindent\textbf{引理 1.7}\quad 考虑微分方程
+\[
+  \dfrac{\mathrm{d}z}{\mathrm{d}y}=kz-y,\qquad k>0. \tag{1.24}
+\]
+从点 $N(0,-\dfrac1k)$ 出发的解曲线 $f(N,I)$，当 $z>0$ 时，将不与直线
+$y=kz$ 相交；而从点 $\bar N(0,y_0)$（$-\dfrac1k<y_0<0$）出发的解曲线
+$f(\bar N,I)$，当 $z>0$ 时，将与直线 $y=kz$ 相交。
+
+\begin{proof}
+初值问题
+\[
+  \begin{cases}
+    \dfrac{\mathrm{d}z}{\mathrm{d}y}=kz-y,\quad k>0,\\
+    z(y_0)=0
+  \end{cases}
+\]
+的解为
+\[
+  z=\left(\dfrac1ky+\dfrac1{k^2}\right)
+  -\left(\dfrac1ky_0+\dfrac1{k^2}\right)e^{k(y-y_0)}.
+\]
+当 $y_0=-\dfrac1k$ 时，
+\[
+  z=\dfrac1ky+\dfrac1{k^2}，
+\]
+它不与直线 $y=kz$ 相交。当 $-\dfrac1k<y_0<0$ 时，由解的表达式知，当
+$z>0$ 时，它必将与 $y=kz$ 相交。引理证毕。
+\end{proof}
+
+在引理 1.7 的基础上再附加条件使 $f(N,I^+)$ 绕原点盘旋，外境界线便作成。
+下面是余树祥的定理\cite{16}，我们对原证明做了一点改动。
+
+\noindent\textbf{定理 1.4}\quad 考虑微分方程~(1.13)，或其等价方程组~(1.14)。
+若它满足
+\begin{enumerate}
+  \item $xg(x)>0$，$x\ne0$；$G(-\infty)=+\infty$；
+  \[
+    xF(x)<0，\qquad0<|x|<\delta；
+  \]
+  \item 存在正数 $C$ 及 $M$，使
+  \[
+    CG(x)-F(x)\leq M，\qquad0<x<+\infty；
+  \]
+  \item 存在正数 $x_0$ 及 $k$，当 $x<-x_0$ 时，
+  \[
+    \dfrac{f(x)}{g(x)}\leq k，\qquad
+    M+\dfrac1C+F(-x_0)\leq\dfrac1k；
+  \]
+  \item
+  \[
+    \lim_{x\to+\infty}F(x)=+\infty，
+  \]
+\end{enumerate}
+则方程组~(1.14) 存在闭轨线。
+
+\begin{proof}
+内境界线的作法同定理 1.2。方程组~(1.14) 等价于方程~(1.16)、(1.17)。
+由引理 1.8，方程~(1.16) 的过点
+\[
+  N\left(0,-\left(M+\dfrac1C\right)\right)
+\]
+的解曲线不与 $F_1(z)$ 相交。回到 $(x,y)$ 平面上，方程组~(1.14) 的过点
+$N$ 的负半轨线不与曲线 $y=F(x)$ 相交。
+
+下面证明方程~(1.17) 的过点 $N$ 的解曲线同 $F_2(z)$ 相交，并且同 $y$ 正半轴
+相交。令
+\[
+  z_0=G(-x_0),\qquad \bar M=kz_0-F(-x_0).
+\]
+由条件 (3) 知，当 $z>z_0$ 时，
+\[
+  F_2'(z)=\dfrac{f(x(z))}{g(x(z))}\leq k,
+\]
+从而
+\[
+  F_2(z)\leq kz-\bar M. \tag{1.26}
+\]
+将方程~(1.17) 的解曲线同方程
+\[
+  \dfrac{\mathrm{d}z}{\mathrm{d}y}=kz-\bar M-y
+\]
+的解曲线比较，再由条件
+\[
+  M+\dfrac1C+F(-x_0)\leq\dfrac1k,
+\]
+以及引理 1.7 可知，方程~(1.17) 的过点 $N$ 的解曲线必同 $F_2(z)$ 相交，并且
+同 $y$ 正半轴相交于一点 $E$。回到 $(x,y)$ 平面，方程组~(1.14) 的相应轨线段
+同曲线弧 $NA'EF$ 及线段 $FN$ 一起构成外境界线。由庞加莱--本迪克松定理，
+方程组~(1.14) 存在闭轨线。
+\end{proof}
+
+\chFourFigurePlaceholder{4.11}
+
+在定理 1.4 中，条件
+\[
+  \dfrac{f(x)}{g(x)}\leq k
+\]
+可以减弱为
+\[
+  F_2(z)\leq k(z-z_0).
+\]
+为了保证方程组~(1.14) 的正半轨线绕原点盘旋，通常还附加
+\[
+  xg(x)>0,quad
+  \lim_{x\to+\infty}F(x)=+\infty,quad
+  \lim_{x\to-\infty}F(x)=-\infty,
+\]
+以及
+\[
+  \int_0^{+\infty}g(x)\,\mathrm{d}x=G(+\infty)=+\infty,qquad
+  \int_0^{-\infty}g(x)\,\mathrm{d}x=G(-\infty)=+\infty.
+\]
+
+最近周毓荣\cite{17} 在以上四式至少有两个不成立的条件下给出了一些闭轨线存在的
+充分条件。丁大正取消了上述四条限制，得到了一组判定方程组~(1.14) 闭轨线存在的
+充分条件\cite{12}；下面引用其中的一个定理。这个定理对文献~\cite{15} 中的相应
+结果作了一点改进。
+
+\noindent\textbf{引理 1.9}\quad 设 $g(x),F(x)\in C^0$，且当 $x\ne0$、
+$a<x<b$ 时 $xg(x)>0$，其中 $-\infty\leq a<0<b\leq+\infty$。方程组~(1.14)
+的过点 $D(\bar x,F(\bar x))$ 的轨线同 $y$ 轴交于 $A,B$ 两点，$y_A\geq0\geq y_B$。
+则
+\[
+  y_A-y_B\geq\sqrt{8G(\bar x)},\qquad
+  G(x)=\int_0^xg(\xi)\,\mathrm{d}\xi.
+\]
+
+\begin{proof}
+只证 $0<\bar x<b$ 的情形。设该轨线在曲线 $y=F(x)$ 上方、下方的两段分别为
+$L_1,L_2$，其方程为 $y_1(x),y_2(x)$，$0\leq x\leq\bar x$。令
+\[
+  Y_i(x)=(-1)^i[F(x)-y_i(x)],\qquad i=1,2.
+\]
+由方程~(1.14) 得
+\[
+  \dfrac{\mathrm{d}(Y_1+Y_2)}{\mathrm{d}x}
+  =-\left(\dfrac1{Y_1}+\dfrac1{Y_2}\right)g(x)
+  \leq-\dfrac{4g(x)}{Y_1+Y_2}.
+\]
+积分并注意 $Y_1(\bar x)+Y_2(\bar x)=0$，即得
+\[
+  [Y_1(0)+Y_2(0)]^2\geq8G(\bar x).
+\]
+而 $Y_1(0)+Y_2(0)=y_A-y_B$，故结论成立。当 $g(x)=x,F(x)=0$ 时，轨线为圆，
+上式取等号。\qedhere
+\end{proof}
+
+\noindent\textbf{定理 1.5}\quad 考虑方程~(1.13)，或等价方程组~(1.14)。设
+\begin{enumerate}
+  \item $g,f\in C^0$，当 $a<x<b$ 且 $x\ne0$ 时 $xg(x)>0$，其中
+  $-\infty\leq a<0<b\leq+\infty$；当 $0<|x|<\delta\ll1$ 时
+  \[
+    xF(x)<0;
+  \]
+  \item 存在正数 $C,M$，使当 $0<x<b$ 时
+  \[
+    C+F(x)\geq0,qquad
+    \int_0^b\dfrac{g(x)\,\mathrm{d}x}{C+F(x)}\leq M;
+  \]
+  \item 令 $y_0=C+M$。若
+  \[
+    \inf_{a<x<0}F(x)>-y_0,
+  \]
+  且
+  \[
+    \sup_{a<x<0}\left\{
+      \dfrac{\displaystyle\int_0^xg(\xi)\,\mathrm{d}\xi}{y_0+F(x)}
+      -[y_0+F(x)]
+    \right\}>0;
+  \]
+  \item 令
+  \[
+    \sup_{a<x<0}F(x)=A\leq+\infty,qquad
+    G(a)\leq+\infty,qquad y_1=A+\sqrt{2G(a)}.
+  \]
+  若
+  \[
+    G(b)\geq\dfrac{(y_0+y_1)^2}{8},\qquad
+    \sup_{0<x<b}F(x)\geq y_1,
+  \]
+\end{enumerate}
+则方程组~(1.14) 存在闭轨线。
+
+\begin{proof}
+1. 记 $f(N,I^-)$ 在曲线 $y=F(x)$ 之下的部分为 $y(x)$。假设
+$f(N,I^-)$ 在 $0<x<b$ 内与曲线 $y=F(x)$ 相交，则 $F(x)>-C$，必有
+$y(\bar x)=-C$，其中 $0<\bar x<b$，且当 $0\leq x<\bar x$ 时
+$y(x)<-C$。于是
+\[
+  y(\bar x)=-y_0+\int_0^{\bar x}\dfrac{g(x)\,\mathrm{d}x}{F(x)-y(x)}
+  <-y_0+\int_0^{\bar x}\dfrac{g(x)\,\mathrm{d}x}{C+F(x)}
+  \leq-y_0+\int_0^b\dfrac{g(x)\,\mathrm{d}x}{C+F(x)}
+  \leq-y_0+M=-C,
+\]
+这与假设相矛盾。
+
+2. 证明 $f(N,I^+)$ 在 $a<x<0$ 内必与曲线 $y=F(x)$ 相交。当
+\[
+  \inf_{a<x<0}F(x)\leq-y_0
+\]
+时，由于在区域 $y<F(x),x<0$ 上沿轨线 $f(N,I^+)$，$y$ 值单调递增，结论显然
+成立。当
+\[
+  \inf_{a<x<0}F(x)>-y_0
+\]
+时，如果 $f(N,I^+)$ 在 $a<x<0$ 内不与 $y=F(x)$ 相交，则当 $a<x<0$ 时
+$y(x)-F(x)<0$，于是
+\[
+\begin{aligned}
+  0&>y(x)-F(x)\\
+   &=-y_0-F(x)-\int_0^x\dfrac{g(\xi)\,\mathrm{d}\xi}{y(\xi)-F(\xi)}\\
+   &\geq\int_0^x\dfrac{g(\xi)\,\mathrm{d}\xi}{y_0+F(\xi)}-[y_0+F(x)],
+   \qquad a<x<0.
+\end{aligned}
+\]
+这便与条件 (3) 相矛盾。因此 $f(N,I^+)$ 必与曲线 $y=F(x)$ 相交于
+$(x_1,F(x_1))$，其中 $a<x_1<0$。
+
+3. 证明 $f(N,I^+)$ 与 $y$ 正半轴相交于点 $N_2(0,y_2)$，其中
+\[
+  y_2<y_1=A+\sqrt{2G(a)}.
+\]
+由条件 (1) 知 $y_2>0$。当 $y_1=+\infty$ 时，$y_2<y_1$ 显然成立。当
+$y_1<+\infty$ 时，也必有 $A<+\infty$。在区域 $a<x<0,A<y<+\infty$ 内，有
+\[
+  -\dfrac{g(x)}{y-A}\geq-\dfrac{g(x)}{y-F(x)}. \tag{1.27}
+\]
+考虑方程
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}x}=-\dfrac{g(x)}{y-A}. \tag{1.28}
+\]
+它的过点 $E(x_1,A)$ 的解曲线必交 $y$ 正半轴于 $E(0,\bar y_2)$，其中
+\[
+  0<\bar y_2=A+\sqrt{2G(x_1)}<y_1.
+\]
+比较方程组~(1.14) 与方程~(1.28)，由不等式~(1.27) 及 $F(x_1)\leq A$，易见
+$y_2\leq\bar y_2<y_1$。
+
+4. 证明 $f(N,I^+)$ 在 $0<x<b$ 内再与曲线 $y=F(x)$ 交于点
+$(x_2,F(x_2))$，并再交 $y$ 负半轴于点 $N_3(0,y_3)$。当条件 (4)(b) 成立时，
+结论显然。当条件 (4)(a) 成立时，因为 $0<y_2<y_1$，故必存在 $0<\bar x<b$，
+使得
+\[
+  G(\bar x)>\dfrac{(y_0+y_2)^2}{8}.
+\]
+过点 $D(\bar x,F(\bar x))$ 的轨线 $f(D,I)|_{(1.14)}$ 必交 $y$ 正、负半轴，
+分别于点 $\bar N_2(0,\bar y_2)$ 和 $\bar N_3(0,\bar y_3)$。由条件 (1)
+\[
+  -y_0<\bar y_3<0<\bar y_2,
+\]
+由引理 1.9 有
+\[
+  \bar y_2-\bar y_3\geq\sqrt{8G(\bar x)}>y_0+y_2,
+\]
+即
+\[
+  \bar y_2-y_2>y_0+\bar y_3>0.
+\]
+上式说明点 $N_2$ 落在点 $\bar N_2$ 的下方，故 $f(N,I^+)$ 必与曲线 $y=F(x)$
+相交，并再次与 $y$ 负半轴相交于点 $N_3(0,y_3)$，其中
+\[
+  -y_0<y_3<\bar y_3<0.
+\]
+令
+\[
+  L_2=\widehat{N_0N_2N_3}\cup\overline{N_3N_0}.
+\]
+由于在 $\overline{N_3N_0}$ 上 $\dfrac{\mathrm{d}x}{\mathrm{d}t}<0$，外境界线
+$L_2$ 作成。内境界线 $L_1$ 的作法与定理 1.2 相同，定理证毕。\qedhere
+\end{proof}
+
+定理 1.2--1.4 的条件都加在整个相平面上，定理 1.5 的条件可以只加在有界区域上。
+因而定理 1.5 不但去掉了当 $x\to+\infty$ 或 $x\to-\infty$ 时 $F(x)$ 的上下极限无界
+和 $G(\pm\infty)=+\infty$ 的限制，而且得到了关于极限环存在区域的估计。定理 1.5
+的条件还可以用其它条件代替，可参看文献~\cite{12}。
+
+比较以上各定理，关于构造内境界线，定理 1.3 所加的条件是最少的。关于构造外境界线，
+定理 1.2 的附注、定理 1.3、定理 1.4 和定理 1.5 所加的条件是互相独立的。这些都首先
+要求相平面上的正半轨线绕原点盘旋，并使轨线弧的始点和终点都落在 $y$ 轴或平行于
+$y$ 轴的直线上。定理 1.2 及其附注中是用计算广义状态函数
+\[
+  \pi(x,y)=\dfrac12(y-k)^2+G(x)
+\]
+沿着绕原点一周的轨线弧的改变量来确定始点和终点的几何位置；定理 1.3 是用比较
+特征函数 $y=F(x)$ 在 $x>0$ 与 $x<0$ 两半平面上的大小来确定绕原点一周的轨线弧的
+始点和终点的几何位置；定理 1.4 和定理 1.5 都是用证明 $y$ 负半轴上存在点
+$N(0,-y_0)$，使 $f(N,I^-)$ 不与特征曲线 $y=F(x)$ 相交，再加上 $f(N,I^+)$ 绕原点
+盘旋来确定绕原点一周的轨线弧的始点和终点的几何位置。这是讨论极限环存在性常用的
+几种方法。
+
+陈秀东对 Lienard 方程引入了特征区间的概念\cite{18}，使现有的各种存在性定理的本质
+显得更加清楚。关于方程
+\[
+  \ddot x+f(x,\dot x)\dot x+g(x)=0
+\]
+或其等价方程组
+\[
+  \begin{cases}
+    \dfrac{\mathrm{d}x}{\mathrm{d}t}=y,\\
+    \dfrac{\mathrm{d}y}{\mathrm{d}t}=-g(x)-f(x,y)y
+  \end{cases}
+\]
+的极限环的存在性问题，还有一些很好的工作，例如 N.~Levinson 和 O.~K.~Smith\cite{19}
+和 А.~В.~Драгилёв\cite{20} 的工作；由于证明的思想是类似的，就不再细讲了。
+
+下面是关于判别极限环不存在的几个定理。
+
+给定微分方程组
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=X(x,y),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=Y(x,y), \tag{1.29}
+\]
+其中 $X(x,y),Y(x,y)$ 在 $R^2$ 上定义。
+
+\noindent\textbf{定理 1.6}\quad （Poincaré 的切性曲线法）设 $F(x,y)=C$ 为一曲线族，
+$F(x,y)\in C^1(G)$，并且
+\[
+  \left.\dfrac{\mathrm{d}F}{\mathrm{d}t}\right|_{(1.29)}
+  =\dfrac{\partial F}{\partial x}\dfrac{\mathrm{d}x}{\mathrm{d}t}
+  +\dfrac{\partial F}{\partial y}\dfrac{\mathrm{d}y}{\mathrm{d}t}
+  =X\dfrac{\partial F}{\partial x}+Y\dfrac{\partial F}{\partial y}
+\]
+在 $G$ 上保持常号（即 $\geq0$ 或 $\leq0$），设有
+\[
+  X\dfrac{\partial F}{\partial x}+Y\dfrac{\partial F}{\partial y}=0
+\]
+不包含~(1.29) 的整条轨线，则方程~(1.29) 在 $G$ 中不存在闭轨线。
+
+\begin{proof}
+用反证法。假设方程~(1.29) 有闭轨线 $\Gamma\subset G$。对函数
+$X\dfrac{\partial F}{\partial x}+Y\dfrac{\partial F}{\partial y}$ 按 $t$ 增加的方向沿着
+$\Gamma$ 一周求积，得
+\[
+  \oint_\Gamma\left(X\dfrac{\partial F}{\partial x}
+  +Y\dfrac{\partial F}{\partial y}\right)\,\mathrm{d}t
+  =\oint_\Gamma\dfrac{\mathrm{d}F}{\mathrm{d}t}\,\mathrm{d}t.
+\]
+由函数 $F(x,y)$ 的单值性，上式右端为零；但左端不为零，矛盾。
+\end{proof}
+
+本定理的思想在定性理论中是常用的；在前面几个定理的证明中也已用过，即对一曲线族
+沿着给定的微分方程组求导，用导数的符号来刻划轨线的走向。
+
+\noindent\textbf{定理 1.7}\quad （Bendixson--Dulac）设在单连通区域 $G$ 中方程~(1.29)
+右端的函数 $X(x,y),Y(x,y)\in C^1(G)$，且存在 $B(x,y)\in C^1(G)$，使得
+\[
+  \dfrac{\partial(BX)}{\partial x}+\dfrac{\partial(BY)}{\partial y}
+\]
+保持常号，且不在任何子区域中恒为零，则~(1.29) 在 $G$ 中不存在闭轨线。
+
+\begin{proof}
+用反证法。假设~(1.29) 有闭轨线 $\Gamma\subset G$，设 $D$ 是由 $\Gamma$ 所包围的
+区域。由 Green 公式，
+\[
+  \oint_\Gamma BX\,\mathrm{d}y-BY\,\mathrm{d}x
+  =\iint_D\left(\dfrac{\partial(BX)}{\partial x}
+  +\dfrac{\partial(BY)}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y. \tag{1.30}
+\]
+因沿 $\Gamma$ 恒有 $X\,\mathrm{d}y-Y\,\mathrm{d}x=0$，故等式~(1.30) 左侧为零；但
+右侧不为零，矛盾。
+\end{proof}
+
+当 $B(x,y)=1$ 时这个定理有很明确的物理含义。如果~(1.29) 代表不可压缩平面流体的
+速度场，而发散量
+\[
+  \operatorname{div}(X,Y)=\dfrac{\partial X}{\partial x}
+  +\dfrac{\partial Y}{\partial y}
+\]
+在任一点 $P\in G$ 的正或负号代表在 $P$ 的一个充分小的邻域 $S(P)$ 上沿着边界
+$\partial S(P)$ 流体是流出或流入。因等式~(1.30) 的另一形式是
+\[
+  \iint_D\left(\dfrac{\partial X}{\partial x}
+  +\dfrac{\partial Y}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y
+  =\oint_\Gamma[X\cos(n,X)+Y\cos(n,Y)]\,\mathrm{d}s,
+\]
+其中 $n$ 代表在 $\Gamma$ 上任一点的外法线方向，等式右侧代表流体经过 $\Gamma$ 的流量。
+如果 $\Gamma$ 是闭轨线，则经过 $\Gamma$ 流体的流量显然为零；这样在 $\Gamma$ 所包围的
+区域内，$\operatorname{div}(X,Y)$ 应该变号，即必须在有的地方流入，在有的地方流出。
+换句话说，如果 $\operatorname{div}(X,Y)$ 在区域 $G$ 上保持常号，且不在任何子区域中
+恒为零，则 $G$ 中必无闭轨。
+
+对于 Lienard 型方程的等价方程组~(1.14) 而言，
+\[
+  \operatorname{div}(X,Y)=-f(x).
+\]
+故若 $f(x)$ 在带域 $|x|\leq a$ 上定号（即 $\geq0$ 或 $\leq0$），则~(1.14) 没有闭轨线
+整条落在带域 $|x|\leq a$ 上。因而在定理 1.1--1.5 中，为了保证极限环的存在，对
+$f(x)$ 变号的要求是自然的。
+
+\noindent\textbf{推论 1}\quad 如果曲线
+\[
+  \operatorname{div}(X,Y)=\dfrac{\partial X}{\partial x}
+  +\dfrac{\partial Y}{\partial y}=0
+\]
+不通过~(1.29) 的某一奇点，则这个奇点不可能是中心。
+
+\noindent\textbf{定理 1.8}\quad （В.~Ф.~Ткачёв 与 Вг.~Ф.~Ткачёв\cite{21}）若在单连通区域
+$G$ 中存在 $B(x,y),F(x,y)\in C^1(G)$，并使得
+\[
+  \dfrac{\partial(BX)}{\partial x}+\dfrac{\partial(BY)}{\partial y}
+  +B\left[X\dfrac{\partial F}{\partial x}+Y\dfrac{\partial F}{\partial y}\right]
+\]
+在 $G$ 中保持常号，且不在任何子区域中恒为零，则方程~(1.29) 在 $G$ 中不存在闭轨线。
+
+\begin{proof}
+令
+\[
+  H(x,y)=B(x,y)e^{F(x,y)},
+\]
+则
+\[
+\begin{aligned}
+  \dfrac{\partial(HX)}{\partial x}+\dfrac{\partial(HY)}{\partial y}
+  =e^{F(x,y)}\bigg[&\dfrac{\partial(BX)}{\partial x}
+  +\dfrac{\partial(BY)}{\partial y}\\
+  &+BX\dfrac{\partial F}{\partial x}
+  +BY\dfrac{\partial F}{\partial y}\bigg].
+\end{aligned}
+\]
+然后在定理 1.7 的证明中分别以 $HX$ 和 $HY$ 代替 $BX$ 和 $BY$ 即可。
+\end{proof}
+
+当 $F(x,y)\equiv0$ 时就是定理 1.7。
+
+\noindent\textbf{定理 1.9}\quad （陈翘炎\cite{22}，В.~Ф.~Ткачёв 与 Вг.~Ф.~Ткачёв\cite{20}）若
+在单连通区域 $G$ 上存在函数 $M(x,y),N(x,y)\in C^1(G)$，使得在区域 $G$ 上，
+$MX+NY$ 和
+\[
+  \dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}
+\]
+都保持常号，于是有下列结论：
+\begin{enumerate}
+  \item 若 $\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}$ 在 $G$ 的任何
+  子区域上不恒为 $0$，$MX+NY$ 与 $\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}$
+  同号（异号），则方程组~(1.29) 在 $G$ 内不存在正（负）定向的闭轨线；又若在 $G$ 上
+  $MX+NY\equiv0$，则~(1.29) 在 $G$ 内不存在闭轨线。
+  \item 若在 $G$ 上 $\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}\equiv0$，且使
+  $MX+NY=0$ 的点集的闭分支不是~(1.29) 的轨线，则~(1.29) 在 $G$ 内不存在闭轨线。
+\end{enumerate}
+
+\begin{proof}
+设 $\Gamma$ 是~(1.29) 的闭轨线，$x=x(t),y=y(t)$ 是 $\Gamma$ 的参数方程，周期为
+$T>0$。记 $D$ 为 $\Gamma$ 所包围的区域，记
+\[
+  \delta(\Gamma)=\begin{cases}
+    1,&\text{当 $\Gamma$ 为正定向时，}\\
+    -1,&\text{当 $\Gamma$ 为负定向时。}
+  \end{cases}
+\]
+由 Green 公式，
+\[
+\begin{aligned}
+  \iint_D\left(\dfrac{\partial N}{\partial x}
+  -\dfrac{\partial M}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y
+  &=\oint_\Gamma M\,\mathrm{d}x+N\,\mathrm{d}y\\
+  &=\delta(\Gamma)\int_0^T[M(x(t),y(t))X(x(t),y(t))\\
+  &\qquad+N(x(t),y(t))Y(x(t),y(t))],\mathrm{d}t.
+\end{aligned}
+\]
+由 (i) 中的条件，等式~(1.31) 的左侧定号，且不为 $0$。如 (1.31) 右侧的积分号下
+函数 $MX+NY\equiv0$，便导出矛盾；如 $MX+NY\ne0$，且 $MX+NY$ 与
+$\dfrac{\partial M}{\partial y}-\dfrac{\partial N}{\partial x}$ 同号（异号），则只有当
+$\delta(\Gamma)=-1$（$=1$）时才不出现矛盾，故~(1.29) 不存在正（负）定向的闭轨线。
+结论 (ii) 是显然的。
+\end{proof}
+
+取 $M=BY,N=-BX$，便得定理 1.7；取
+$M=\dfrac{\partial F}{\partial x},N=\dfrac{\partial F}{\partial y}$，其中
+$F\in C^2(G)$，便得定理 1.6。
+
+方程组~(1.29) 的由若干个奇点及两端进人奇点的轨线所构成的单闭曲线叫作方程组
+~(1.29) 的奇异闭轨线。
+
+\noindent\textbf{附注}\quad 在定理 1.7、1.8、1.9 中将闭轨线换成奇异闭轨线，在定理
+1.6 中将闭轨线换成带一个奇点的奇异闭轨线，定理的结论仍真。也就是说，定理
+1.6、1.7、1.8、1.9 也给出了不存在奇异闭轨线的充分条件。至于证明，定理 1.6 的可
+不加修改；定理 1.7、1.8、1.9 的只要略加修改就行了。现以定理 1.7 为例来证明它对
+奇异闭轨线也真。
+
+也用反证法。设存在奇异闭轨线 $\Gamma$，不妨设 $\Gamma$ 上只有一个奇点 $P$，$D$ 为
+由 $\Gamma$ 所围成的区域。
+
+\chFourFigurePlaceholder{4.13}
+
+如上图所示，取 $P_1,P_2\in\Gamma$，以光滑弧段 $\gamma$ 联接 $P_1$ 和 $P_2$，且在
+$P_1$ 和 $P_2$ 处 $\gamma$ 与 $\Gamma$ 相切。令
+\[
+  \Gamma'=\widehat{P_1P_2}\cup\gamma,
+\]
+$D'$ 是由 $\Gamma'$ 所围成的区域。由 Green 公式，有
+\[
+\begin{aligned}
+  \iint_{D'}\left(\dfrac{\partial(BX)}{\partial x}
+  +\dfrac{\partial(BY)}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y
+  &=\oint_{\Gamma'}BX\,\mathrm{d}y-BY\,\mathrm{d}x\\
+  &=\iint_{D'}\left(\dfrac{\partial(BX)}{\partial x}
+  +\dfrac{\partial(BY)}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y.
+\end{aligned}
+\]
+因在点 $P$ 上 $X=Y=0$，由连续性当 $P_1,P_2$ 与 $P$ 充分接近时，上式左侧可任意小；
+但上式右侧将与异于零的数
+\[
+  \iint_D\left(\dfrac{\partial(BX)}{\partial x}
+  +\dfrac{\partial(BY)}{\partial y}\right)\,\mathrm{d}x\mathrm{d}y
+\]
+任意接近，得矛盾。定理 1.7 对奇异闭轨线便得证。
+
+\iffalse
+
+给定微分方程
+\[
+  \ddot{x}+f(x,\dot{x})\dot{x}+g(x)=0. \tag{1.1}
+\]
+它等价于方程组
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y,\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-g(x)-f(x,y)y. \tag{1.2}
+\]
+当 $f(x,\dot{x})=0$ 时，方程有第一积分
+\[
+  \dfrac{y^2}{2}+G(x)=C,\qquad G(x)=\int_0^xg(s)\,\mathrm{d}s. \tag{1.3}
+\]
+因此可能有闭轨线，却没有孤立闭轨线。讨论极限环的存在性，关键在于作出一个
+不含奇点的环域，使系统在其两条边界上分别指向环域的内、外；由
+Poincar\'e--Bendixson 环域定理，环域中存在闭轨线。
+
+\chFourFigurePlaceholder{4.1}
+
+对 Lienard 型方程
+\[
+  \ddot{x}+f(x)\dot{x}+g(x)=0,
+\]
+令
+\[
+  F(x)=\int_0^xf(s)\,\mathrm{d}s,
+\]
+则其平面形式为
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=y-F(x),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=-g(x). \tag{1.4}
+\]
+这就是 Lienard 作图法的基本系统。
+
+\chFourFigurePlaceholder{4.2}
+
+1926 年 Van der Pol 在研究二极管等幅振荡时得到
+\[
+  \ddot{x}+\mu(x^2-1)\dot{x}+x=0,\qquad \mu>0. \tag{1.5}
+\]
+它是极限环存在性的基本例子。
+
+\begin{theorem}{}{lienard-existence}
+设 $f(x)$ 为偶函数，$g(x)$ 为奇函数，且 $g(x)>0$（$x>0$）。设
+$F(x)=\int_0^xf(s)\,\mathrm{d}s$ 除原点外恰有一个正零点 $a$，并且
+$F(x)<0$（$0<x<a$），$F(x)>0$ 且在 $x>a$ 时单调不减。则系统~(1.4)
+至少有一个围绕原点的极限环。
+\end{theorem}
+
+\begin{proof}
+利用曲线 $y=F(x)$ 与坐标轴作出闭的陷域；边界上向量场方向由系统~(1.4)
+直接判定。陷域中除原点外无奇点，故由环域定理存在闭轨线。
+\end{proof}
+
+\fi
+
+\section{后继函数和极限环的重次及稳定性}
+
+\subsection*{\S 2. 后继函数和极限环的重次及稳定性}
+
+给定微分方程组
+\[
+  \dfrac{\mathrm{d}x}{\mathrm{d}t}=X(x,y),\qquad
+  \dfrac{\mathrm{d}y}{\mathrm{d}t}=Y(x,y). \tag{2.1}
+\]
+设 $X(x,y),Y(x,y)\in C^0(G\subseteq R^2)$，且满足保证~(2.1) 的解唯一性的条件，
+其中 $G$ 是开区域。
+
+设 $L\subset G$ 是~(2.1) 的闭轨线。任取点 $P\in L$，过 $P$ 作光滑无切弧段或无切线段，
+譬如可取过 $P$ 点的外法线 $PN$。任取 $P_0\in PN$，由于闭轨线邻近的轨线或者也是闭轨线，
+或者是绕 $L$ 盘旋的轨线，故当距离 $\rho(P,P_0)=n_0$ 充分小时，轨线 $f(P_0,I^+)$
+必将再次与 $PN$ 相交于点 $P_1$。设 $P_1$ 是继 $P_0$ 之后的第一个交点，令
+$n=\rho(P_1,P)$。这样就定义了 $P_1$ 与 $P_0$ 之间的一一对应关系，即定义了函数
+\[
+  n=g(n_0).
+\]
+
+\chFourFigurePlaceholder{4.14}
+
+自然也可能发生 $g(n_0)=n_0$ 的情形，这时相应的 $f(P_0,I)$ 便是闭轨线。当
+$g(n_0)\ne n_0$ 时，因按时间次序点 $P_1$ 在点 $P_0$ 之后，故称点 $P_1$ 为点 $P_0$
+的后继点，点 $P_0$ 为点 $P_1$ 的先行点，而称 $n=g(n_0)$ 为后继函数。特别 $P$ 的后继点
+就是 $P$ 自己，故有 $g(0)=0$。
+
+如果在外法线 $PN$ 上，对充分小的实数 $\delta>0$，当 $0<n_0<\delta$ 时，恒有
+\[
+  g(n_0)>n_0\quad(<n_0),
+\]
+则 $L$ 就是外不稳定（稳定）极限环。如果不论 $\delta>0$ 多么小，总存在
+$n_0,n'_0\in(0,\delta)$，使得
+\[
+  g(n_0)=n_0,\qquad g(n'_0)\ne n'_0,
+\]
+则 $L$ 就是外侧复型极限环。如果存在实数 $\delta>0$，对一切 $0\leq n_0\leq\delta$，
+恒有
+\[
+  g(n_0)=n_0,
+\]
+则 $L$ 的外侧是周期环域。在内法线方向也有类似的情形。由此可见，后继函数对研究闭轨线
+邻域中轨线的性态是十分重要的。但只有知道了后继函数 $g(n_0)$ 时才能对它进行研究。下面
+引进曲线坐标，以便将 $g(n_0)$ 与~(2.1) 右侧的已知函数联系起来。
+
+设 $L$ 为负定向的（即当 $t$ 增加时，朝顺时针方向盘旋），其方程为
+\[
+  x=\varphi(s),\qquad y=\psi(s),
+\]
+其中参数 $s$ 是从某固定点算起的 $L$ 的弧长，顺时针方向为正。当 $X(x,y),Y(x,y)$ 充分
+光滑时，存在适当小的 $\xi>0$，使对任何点 $P_0\in S(L,\xi)\setminus L$，存在唯一的点
+$P\in L$，$P_0$ 落在过 $P$ 的法线上。设 $s$ 是 $P$ 点到 $L$ 上固定点的弧长，
+$n=\rho(P,P_0)$，便可建立 $P_0$ 点的直角坐标 $(x,y)$ 与它的曲线坐标 $(s,n)$ 之间的
+对应关系如下：
+\[
+  x=\varphi(s)-n\psi'(s),\qquad
+  y=\psi(s)+n\varphi'(s),
+\]
+其中
+\[
+  \varphi'(s)=\dfrac{\mathrm{d}x}{\mathrm{d}s}
+  =\dfrac{X_0}{\sqrt{X_0^2+Y_0^2}},\qquad
+  \psi'(s)=\dfrac{\mathrm{d}y}{\mathrm{d}s}
+  =\dfrac{Y_0}{\sqrt{X_0^2+Y_0^2}},
+\]
+而
+\[
+  X_0=X(\varphi(s),\psi(s)),\qquad Y_0=Y(\varphi(s),\psi(s)).
+\]
+代入原方程得
+\[
+  \dfrac{\mathrm{d}y}{\mathrm{d}x}
+  =\dfrac{\psi'(s)+\dfrac{\mathrm{d}n}{\mathrm{d}s}\varphi'(s)+n\varphi''(s)}
+  {\varphi'(s)-\dfrac{\mathrm{d}n}{\mathrm{d}s}\psi'(s)-n\psi''(s)}
+  =\dfrac{Y(\varphi(s)-n\psi'(s),\psi(s)+n\varphi'(s))}
+  {X(\varphi(s)-n\psi'(s),\psi(s)+n\varphi'(s))}.
+\]
+由此可解出
+\[
+  \dfrac{\mathrm{d}n}{\mathrm{d}s}
+  =\dfrac{Y\varphi'-X\psi'-n(X\varphi''+Y\psi'')}{X\varphi'+Y\psi'}
+  =F(s,n). \tag{2.2}
+\]
+其中
+\[
+\begin{aligned}
+  \varphi''(s)&=-\dfrac{Y_0}{(X_0^2+Y_0^2)^2}
+  [X_0^2Y_{x_0}+X_0Y_0(Y_{y_0}-X_{x_0})-Y_0^2X_{y_0}],\\
+  \psi''(s)&=\dfrac{X_0}{(X_0^2+Y_0^2)^2}
+  [X_0^2Y_{x_0}+X_0Y_0(Y_{y_0}-X_{x_0})-Y_0^2X_{y_0}],
+\end{aligned}
+\]
+而
+\[
+  X_{x_0}=\left.\dfrac{\partial X}{\partial x}\right|_{n=0},\quad
+  X_{y_0}=\left.\dfrac{\partial X}{\partial y}\right|_{n=0},\quad
+  Y_{x_0}=\left.\dfrac{\partial Y}{\partial x}\right|_{n=0},\quad
+  Y_{y_0}=\left.\dfrac{\partial Y}{\partial y}\right|_{n=0}.
+\]
+由~(2.2) 知后继函数
+\[
+  g(n_0)=n(l,n_0)=n_0+\int_0^lF(s,n(s,n_0))\,\mathrm{d}s, \tag{2.4}
+\]
+其中 $l$ 为 $L$ 的总弧长；且当 $X(x,y),Y(x,y)\in C^r$ 时，有
+$g(n_0)\in C^r(|n_0|<\xi)$，其中 $\xi$ 为充分小正数。特别有下列定理。
+
+\noindent\textbf{定理 2.1}\quad 设 $X(x,y),Y(x,y)\in C^\infty(G\subseteq R^2)$，且~(2.1)
+是解析向量场，则~(2.1) 不可能有复型极限环。
+
+\begin{proof}
+由于 $X^2(\varphi(s),\psi(s))+Y^2(\varphi(s),\psi(s))\ne0$，故当 $\xi>0$ 充分小时，
+在 $S(L,\xi)$ 中~(2.2) 右侧分式中的分母恒不为零，故当 $\xi>0$ 充分小时，
+$g(n_0)\in C^\infty(|n_0|<\xi)$。故若有
+\[
+  g(n_k)-n_k=0,\qquad n_k\to0,
+\]
+则当 $|n|<\xi'<\xi$ 时，便有 $g(n)\equiv n$。定理证毕。
+\end{proof}
+
+\noindent\textbf{推论}\quad 在定理的假设下，~(2.1) 的奇点不可能是中心、焦点；即对解析向量场来说，
+奇点不可能是中心焦点。
+
+令
+\[
+  h(n_0)=g(n_0)-n_0=\int_0^lF(s,n(s,n_0))\,\mathrm{d}s.
+\]
+有时也称 $h(n_0)$ 为后继函数。显然 $h(0)=0$。由微分学理论下列事实是明显的：若
+\[
+  h(0)=h'(0)=\cdots=h^{(k-1)}(0)=0,\qquad h^{(k)}(0)<0\quad(>0),
+\]
+其中 $k$ 是奇数，则 $L$ 为稳定（不稳定）极限环；若
+\[
+  h(0)=h'(0)=\cdots=h^{(k-1)}(0)=0,\qquad h^{(k)}(0)\ne0,
+\]
+其中 $k$ 是偶数，则 $L$ 为半稳定极限环。
+
+\noindent\textbf{定义 2.1}\quad 当 $n_0=0$ 是 $h(n_0)=0$ 的单根时，称 $L$ 为单重极限环；
+当 $n_0=0$ 是 $h(n_0)=0$ 的 $k(\geq2)$ 重根时，称 $L$ 为 $k$ 重环，或多重环。
+
+由于 $n=n(s,n_0)$ 为闭轨线的充要条件是后继函数 $h(n_0)=0$，而由~(2.2) 显见后继函数
+连续依赖于方程组~(2.1) 右侧函数中可能出现的参数。因此当方程组~(2.1) 右侧函数中的参数
+作微小变动时，单重极限环（对应于后继函数的单重根）比较稳定，也就是说，它不会增加也不会
+消失，也不会改变原来的稳定性；而多重极限环（对应于后继函数的多重根）很不稳定，当方程组
+~(2.1) 的参数有微小的变动时，就会使极限环消失或分解成几个极限环。故单重极限环是结构
+稳定的，多重极限环是结构不稳定的。
+
+那么究竟如何利用后继函数来判别极限环的重数和稳定性呢？由于~(2.2) 的右侧函数 $F(s,n)$
+比较复杂，且依赖于未知函数 $\varphi(s)$ 和 $\psi(s)$，因而不易进行研究，为此先求出~(2.2)
+的一次近似方程。由~(2.2)、(2.3) 知
+\[
+  F(s,0)=0,
+\]
+\[
+  F_n'(s,0)=\dfrac{X_0^2Y_{y_0}-X_0Y_0(X_{y_0}+Y_{x_0})+Y_0^2X_{x_0}}
+  {(X_0^2+Y_0^2)^{3/2}}=H(s). \tag{2.5}
+\]
+于是方程~(2.2) 可写成
+\[
+  \dfrac{\mathrm{d}n}{\mathrm{d}s}=H(s)n+o(n). \tag{2.6}
+\]
+其一次近似方程为
+\[
+  \dfrac{\mathrm{d}n}{\mathrm{d}s}=H(s)n. \tag{2.7}
+\]
+设 $T$ 为 $L$ 的时间周期，于是沿 $L$ 求积，便有
+\[
+\begin{aligned}
+  \int_0^lH(s)\,\mathrm{d}s
+  &=\int_0^T\left[X_{x_0}+Y_{y_0}
+  -\dfrac{X_0^2X_{x_0}+X_0Y_0(X_{y_0}+Y_{x_0})+Y_0^2Y_{y_0}}
+  {X_0^2+Y_0^2}\right],\mathrm{d}t\\
+  &=\int_0^T(X_{x_0}+Y_{y_0})\,\mathrm{d}t
+  -\dfrac12\oint_L\dfrac{\mathrm{d}(X_0^2+Y_0^2)}{X_0^2+Y_0^2}\\
+  &=\int_0^T\operatorname{div}(X,Y)\,\mathrm{d}t.
+\end{aligned}
+\]
+
+\noindent\textbf{定理 2.2}\quad 若沿着 $L$ 有
+\[
+  \int_0^T\operatorname{div}(X,Y)\,\mathrm{d}t<0\quad(>0), \tag{2.9}
+\]
+则 $L$ 为稳定（不稳定）极限环。
+
+\begin{proof}
+由~(2.6) 和~(2.8) 知，沿 $L$ 邻近的轨线求积分，有
+\[
+  \int_0^l\dfrac{\mathrm{d}n}{n}
+  =\int_0^lH(s)\,\mathrm{d}s+\int_0^l\dfrac{o(n)}{n}\,\mathrm{d}s.
+\]
+故
+\[
+  h(n_0)=n(l,n_0)-n_0
+  =n_0\left[\exp\left\{\int_0^lH(s)\,\mathrm{d}s
+  +\int_0^l\dfrac{o(n)}{n}\,\mathrm{d}s\right\}-1\right],
+\]
+从而
+\[
+  h'(0)=\lim_{n_0\to0}\dfrac{h(n_0)-h(0)}{n_0}
+  =e^{\int_0^T\operatorname{div}(X,Y)\,\mathrm{d}t}-1.
+\]
+定理得证。\qedhere
+\end{proof}
+
+显见 $\int_0^T\operatorname{div}(X,Y)\,\mathrm{d}t\ne0$ 是 $L$ 为单重环的充分条件。但
+条件~(2.9) 是判定极限环稳定性的充分条件，而不是必要条件。我们有下列推论。
+
+\noindent\textbf{推论 1}\quad $L$ 是方程组~(2.1) 的半稳定极限环或复型极限环，或 $L$
+包含在周期环域中，其必要条件是
+\[
+  \int_0^T\operatorname{div}(X,Y)\,\mathrm{d}t=0. \tag{2.10}
+\]
+
+\iffalse
+
+设 $L$ 是一条闭轨线，取横截线 $l$，以 $s$ 为其局部坐标。邻近轨线从 $l$
+出发首次回到 $l$ 所确定的映射记为 $P(s)$，称为\emph{后继映射}；
+\[
+  d(s)=P(s)-s \tag{2.1}
+\]
+称为后继函数。闭轨线对应于后继函数的零点。若
+\[
+  d(0)=d'(0)=\cdots=d^{(m-1)}(0)=0,\qquad d^{(m)}(0)\ne0,
+\]
+则称该闭轨线为 $m$ 重极限环。
+
+\begin{theorem}{}{characteristic-multiplier}
+设 $L$ 是系统 $\dot{x}=X(x,y),\ \dot{y}=Y(x,y)$ 的周期轨线，周期为 $T$，
+则其特征乘子为
+\[
+  P'(0)=\exp\left\{\int_0^T
+  \left(\dfrac{\partial X}{\partial x}+\dfrac{\partial Y}{\partial y}\right)\,\mathrm{d}t\right\}.
+  \tag{2.2}
+\]
+\end{theorem}
+
+当 $P'(0)<1$ 时极限环稳定；当 $P'(0)>1$ 时不稳定。若 $P'(0)=1$，
+则需考察后继函数的高阶导数。偶重极限环两侧稳定性相同，奇重极限环两侧稳定性相反。
+
+\fi
+
+\section{旋转向量场}
+
+给定含参数 $\alpha$ 的微分方程组
+\[
+  \dfrac{dx}{dt}=X(x,y,\alpha),\qquad
+  \dfrac{dy}{dt}=Y(x,y,\alpha). \tag{3.1}
+\]
+在第一章中研究过式~(3.1) 的解对参数 $\alpha$ 的依赖性。但是，这种研究仅限于任意有限的时间区间，而没有涉及当参数变动时方程组整体相图的变化。在参数值变化时，整体相图的变化是十分复杂的。例如，在某一参数值时，初值问题的解虽然是唯一的，但在另一参数值时，解却可能不是唯一的；在某一参数值时有闭轨线，而在另一参数值时闭轨线可能消失。因此，要研究方程组整体相图随参数的变化，必须作进一步的限制。
+
+本节主要讨论极限环随参数 $\alpha$ 而变化的情形。由于对于一般的含参数平面向量场而言，其变化是十分复杂的，因而这里仅限于讨论一种特殊的含参数 $\alpha$ 的平面向量场，即旋转向量场。讨论平面旋转向量场中极限环随参数而变化的情形，即当参数变动时极限环的产生、消失等现象。这时，这种变化表现得很有规律。
+
+这方面已有比较完整的结果。Duff 于1953年首先系统地讨论了这一问题，随后 Seifert、Perko 以及陈翘炎等人又作了进一步的研究。在本节中假设向量场 $(X(x,y,\alpha),Y(x,y,\alpha))$ 只有孤立奇点，且
+\[
+ X,Y,\dfrac{\partial X}{\partial\alpha},\dfrac{\partial Y}{\partial\alpha}
+ \in C^0(G\times I),
+\]
+其中 $I$ 是 $0\leq\alpha\leq T$ 或 $-\infty<\alpha<+\infty$，$G\subset\mathbb{R}^2$。另外，式~(3.1) 还满足保证初值问题解唯一性的条件。
+
+\begin{definition}{}{}
+（G.~F.~Duff）若当 $\alpha$ 在 $[0,T]$ 中变动时，向量场
+$(X(x,y,\alpha),Y(x,y,\alpha))$ 的奇点不变，而在一切常点处恒有
+\[
+ \begin{vmatrix}
+ X&Y\\[2pt]
+ \dfrac{\partial X}{\partial\alpha}&\dfrac{\partial Y}{\partial\alpha}
+ \end{vmatrix}>0, \tag{3.2}
+\]
+且有
+\[
+ X(x,y,\alpha+T)=-X(x,y,\alpha),\qquad
+ Y(x,y,\alpha+T)=-Y(x,y,\alpha), \tag{3.3}
+\]
+则称向量场 $(X(x,y,\alpha),Y(x,y,\alpha))$ 构成一个旋转向量场的完全族。
+\end{definition}
+
+记向量 $(X,Y)$ 与 $x$ 轴的夹角为 $\theta(x,y,\alpha)$，便有
+\[
+ \dfrac{\partial\theta}{\partial\alpha}
+ =\dfrac{\partial}{\partial\alpha}\arctan\dfrac{Y}{X}
+ =\dfrac{1}{X^2+Y^2}
+ \begin{vmatrix}
+ X&Y\\[2pt] X_\alpha&Y_\alpha
+ \end{vmatrix}. \tag{3.4}
+\]
+由条件~(3.2) 知，在一切常点 $P(x,y)$ 处，当 $\alpha$ 增加时，向量以 $P$ 为顶点按逆时针方向旋转。由~(3.3) 可知，当 $\alpha$ 从 $\alpha$ 增至 $\alpha+T$ 时，向量恰好转过半周；从 $\alpha$ 增至 $\alpha+2T$ 时，向量恰好转过一周，且其长度不变。这就是 Duff 所说的旋转向量场完全族的几何意义。
+
+定义~3.1 的限制过强。为抓住旋转向量场的本质，可以作如下推广。
+
+\begin{definition}{}{}
+（陈翘炎）若当参数 $\alpha$ 在 $[0,T]$ 中变动时，向量场
+$(X(x,y,\alpha),Y(x,y,\alpha))$ 的奇点不变，并且在一切常点处有：
+
+\begin{enumerate}
+\item $\dfrac{\partial\theta}{\partial\alpha}\geq0$，且沿任一闭曲线，
+$\dfrac{\partial\theta}{\partial\alpha}$ 不恒等于零；
+\item 对任意 $\alpha_1<\alpha_2$，有
+\[
+ 0\leq\int_{\alpha_1}^{\alpha_2}
+ \dfrac{\partial\theta}{\partial\alpha}\,d\alpha\leq\pi,
+\]
+\end{enumerate}
+则称 $(X(x,y,\alpha),Y(x,y,\alpha))$ 构成一个广义旋转向量场。
+\end{definition}
+
+\begin{definition}{}{}
+若当参数 $\alpha$ 在 $(a,b)$ 中变动时，向量场
+$(X(x,y,\alpha),Y(x,y,\alpha))$ 的奇点不变，并且对任意固定的点 $(x,y)$ 及任意 $\alpha_1<\alpha_2$ 有
+\[
+ \begin{vmatrix}
+ X(x,y,\alpha_2)&Y(x,y,\alpha_2)\\
+ X(x,y,\alpha_1)&Y(x,y,\alpha_1)
+ \end{vmatrix}\geq0\quad(\leq0), \tag{3.5}
+\]
+而此行列式不在方程组~(3.1)$_{\alpha_i}$ 的任何闭轨线上恒等于零
+$(i=1,2)$，则称此向量场为广义旋转向量场。
+\end{definition}
+
+定义~3.2 中的条件和式~(3.5) 的关系可由读者验证。广义旋转向量场允许有逗留点。若对一常点 $(x_0,y_0)$ 及 $\alpha_0$，存在 $\delta(x_0,y_0,\alpha_0)>0$，使式~(3.5) 中的等号对 $\alpha\in[\alpha_0-\delta,\alpha_0+\delta]$ 恒成立，则称 $(x_0,y_0)$ 为 $\alpha_0$ 的逗留点；否则称为 $\alpha_0$ 的旋转点。
+
+\begin{example}{}{}
+设微分方程组
+\[
+ \dfrac{dx}{dt}=X(x,y),\qquad \dfrac{dy}{dt}=Y(x,y), \tag{3.6}
+\]
+其中 $X,Y\in C^0$，且初值问题的解唯一。令
+\[
+ \dfrac{dx}{dt}=X\cos\alpha-Y\sin\alpha,\qquad
+ \dfrac{dy}{dt}=X\sin\alpha+Y\cos\alpha. \tag{3.7}
+\]
+则式~(3.7) 满足~(3.2)、(3.3)，故构成一个旋转向量场的完全族。它保持原向量的长度不变，而使其方向转过 $\alpha$，称为均匀旋转向量场。
+\end{example}
+
+\begin{example}{}{}
+\[
+ \dfrac{dx}{dt}=-\alpha y,\qquad
+ \dfrac{dy}{dt}=\alpha x-\alpha y f(\alpha x), \tag{3.8}
+\]
+其中 $0<\alpha<+\infty$，且 $f(x)$ 随 $|x|$ 的增大而增大。容易由式~(3.5) 验证，式~(3.8) 构成广义旋转向量场，但它不是旋转向量场的完全族。
+\end{example}
+
+下面对广义旋转向量场证明关于极限环的几个主要定理。自然，它们对于旋转向量场的完全族也成立。先证两个引理。
+
+\begin{lemma}{}{}
+设 $L_0$ 是光滑的简单闭曲线，其参数方程为
+$x=\phi(t)$，$y=\psi(t)$，又设 $L_0$ 为正定向（当 $t$ 增加时，它按逆时针方向盘旋）。若在 $L_0$ 上恒有
+\[
+ H(t)=
+ \begin{vmatrix}
+ \phi'(t)&\psi'(t)\\
+ X(\phi(t),\psi(t))&Y(\phi(t),\psi(t))
+ \end{vmatrix}\geq0\quad(\leq0), \tag{3.9}
+\]
+则方程组
+\[
+ \dfrac{dx}{dt}=X(x,y),\qquad \dfrac{dy}{dt}=Y(x,y) \tag{3.10}
+\]
+的轨线当 $t$ 增加时不可能由 $L_0$ 所围成的区域 $G$ 的内部（外部）走到 $G$ 的外部（内部）。
+\end{lemma}
+
+\begin{proof}
+只证括号外的情形。令 $L_0$ 上每一点的切向量与过该点的场向量的夹角为 $\theta(t)$，则
+\[
+ \sin\theta(t)=
+ \dfrac{H(t)}{\sqrt{\phi'(t)^2+\psi'(t)^2}\sqrt{X^2(\phi(t),\psi(t))+Y^2(\phi(t),\psi(t))}}. \tag{3.11}
+\]
+由~(3.9) 知 $0\leq\theta(t)\leq\pi$。若在某点有 $0<\theta(t)<\pi$，结论显然成立；在切触点处由解对初值的连续依赖性亦不可能发生相反的穿越情形。引理得证。
+\end{proof}
+
+\begin{lemma}{}{}
+对于方程组
+\[
+ \dfrac{dx}{dt}=X_i(x,y),\qquad\dfrac{dy}{dt}=Y_i(x,y),\qquad i=1,2, \tag{3.12}
+\]
+若 $X_i,Y_i\in C^0(G\subset\mathbb{R}^2)$，且满足解的唯一性条件，又若
+\[
+ \begin{vmatrix}
+ X_1(x,y)&Y_1(x,y)\\X_2(x,y)&Y_2(x,y)
+ \end{vmatrix} \tag{3.13}
+\]
+保持常号，则式~(3.12)$_1$ 和式~(3.12)$_2$ 的闭轨线或重合或互不相交。
+\end{lemma}
+
+\begin{theorem}{不相交定理}{}
+设 $(X(x,y,\alpha),Y(x,y,\alpha))$ 构成广义旋转向量场，则对应不同 $\alpha_1$ 和 $\alpha_2$，方程组~(3.1)$_{\alpha_1}$ 的闭轨线和方程组~(3.1)$_{\alpha_2}$ 的闭轨线互不相交。
+\end{theorem}
+
+\begin{proof}
+因 $\alpha_1\ne\alpha_2$，由定义和引理~3.2，两个系统的闭轨线或重合或互不相交；但行列式
+\[
+ \begin{vmatrix}
+ X(x,y,\alpha_1)&Y(x,y,\alpha_1)\\
+ X(x,y,\alpha_2)&Y(x,y,\alpha_2)
+ \end{vmatrix} \tag{3.15}
+\]
+不可能在两系统的同一条闭轨线上恒为零，故它们不可能重合。
+\end{proof}
+
+\begin{theorem}{}{}
+设 $(X(x,y,\alpha),Y(x,y,\alpha))$ 构成广义旋转向量场，并满足式~(3.5) 括号外的条件。若当 $\alpha=\alpha_0$ 时方程组~(3.1)$_{\alpha_0}$ 存在外稳定环 $L_{\alpha_0}$，则对任意足够小的 $\varepsilon>0$，存在 $\alpha_1<\alpha_0$，使得对任意 $\alpha\in(\alpha_1,\alpha_0)$，在 $L_{\alpha_0}$ 的外 $\varepsilon$ 邻域中至少存在方程组~(3.1)$_\alpha$ 的一个外稳定环和一个内稳定环；又当 $\alpha>\alpha_0$ 时，$L_{\alpha_0}$ 的外 $\varepsilon$ 邻域中无方程组~(3.1)$_\alpha$ 的闭轨线。
+\end{theorem}
+
+对内稳定环可写出与上述定理相并行的定理。于是，在广义旋转向量场中，稳定或不稳定极限环的变动是比较有规律的：当参数单调变动时，极限环并不消失，而是扩大或缩小。半稳定环在适当方向的参数变化下至少分解为一个稳定环和一个不稳定环；在相反方向的变化下则消失。
+
+\begin{example}{}{}
+给定微分方程组
+\begin{equation}
+ \begin{aligned}
+ \dfrac{dx}{dt}&=-y+x\tan\left[(r-r_0)^{2n+1}\left(\sin\dfrac{1}{r-r_0}+2\right)\right]=X(x,y),\\
+ \dfrac{dy}{dt}&=x+y\tan\left[(r-r_0)^{2n+1}\left(\sin\dfrac{1}{r-r_0}+2\right)\right]=Y(x,y).
+ \end{aligned}\tag{3.16}
+\end{equation}
+其中 $r_0>0$，$r=\sqrt{x^2+y^2}$，$n$ 为正整数。易知 $r=r_0$ 是式~(3.16) 的不稳定极限环。它作均匀旋转向量场的完全族后，在任意小的邻域内可以出现多条闭轨线，说明多重环在参数变化时可以分解为多个极限环。
+\end{example}
+
+\begin{theorem}{}{}
+设 $(X(x,y,\alpha),Y(x,y,\alpha))$ 构成旋转向量场，又方程组~(3.1)$_{\alpha_0}$ 存在单稳定环 $L_{\alpha_0}$，则当参数 $\alpha$ 单调变化时，方程组~(3.1) 的单重环既不分解也不消失，且单调地扩大或缩小。
+\end{theorem}
+
+\iffalse
+考虑含参数系统
+\[
+  \dot{x}=P(x,y,\lambda),\qquad \dot{y}=Q(x,y,\lambda). \tag{3.1}
+\]
+若参数 $\lambda$ 增大时系统在每一点的向量都按同一方向旋转，则称其为旋转
+向量场。判别量
+\[
+  P\dfrac{\partial Q}{\partial\lambda}
+  -Q\dfrac{\partial P}{\partial\lambda} \tag{3.2}
+\]
+恒为正（负）时，向量场随参数严格逆时针（顺时针）旋转。
+
+\begin{theorem}{}{rotation-field-cycle}
+在严格旋转向量场中，极限环随参数连续移动；不同参数所对应的同一族极限环
+不能相交。除非经过多重极限环，极限环的个数和稳定性不改变。
+\end{theorem}
+
+\chFourFigurePlaceholder{4.3}
+
+\fi
+
+\section{极限环的唯一性}
+
+关于极限环的唯一性问题，只有对 Lienard 型方程的结果还多一些，还有些可行的判定方法。特别是七十年代以来苏联学者得到了一些新的结果。近年来国内也出现很好的工作，如曾宪武等的唯一性定理；但对一般的平面系统至今还缺少办法，这个领域还有待于人们去开发。在这一节里我们着重介绍 Lienard 型方程极限环的唯一性定理，并且根据年代逐个地介绍有代表性的工作，后面的结果已经包括了前面的有些结果。
+
+\begin{theorem}{N.~Levinson, O.~K.~Smith}{}
+给定微分方程
+\[
+ \ddot{x}+f(x)\dot{x}+g(x)=0, \tag{4.1}
+\]
+或其等价方程组
+\[
+ \left\{
+ \begin{aligned}
+ \dfrac{dy}{dt}&=g(x),\\
+ \dfrac{dx}{dt}&=-y-F(x),
+ \end{aligned}\right. \tag{4.2}
+\]
+其中 $F(x)=\int_0^x f(x)\,dx$。若满足：
+
+\begin{enumerate}
+\item $g(x)$ 为奇函数；当 $x\ne0$ 时，$xg(x)>0$；
+\item $F(x)$ 为奇函数；并且存在 $x_0>0$，当 $0<x<x_0$ 时，$F(x)<0$；当 $x\geq x_0$ 时，$F(x)\geq0$，且单调递增；
+\item $\displaystyle\int_0^{+\infty}f(x)\,dx=\int_0^{+\infty}g(x)\,dx=+\infty$；
+\item $f(x)$ 和 $g(x)$ 在任何有界区间上满足 Lipschitz 条件，
+\end{enumerate}
+则方程组~(4.2) 有唯一的极限环，且为稳定的。
+\end{theorem}
+
+这个定理可由下面的定理推出，故证明省略。
+
+\begin{theorem}{G.~Sansone}{}
+给定微分方程
+\[
+ \ddot{x}+f(x)\dot{x}+x=0, \tag{4.3}
+\]
+或其等价方程组
+\[
+ \left\{
+ \begin{aligned}
+ \dfrac{dy}{dt}&=-x,\\
+ \dfrac{dx}{dt}&=y-F(x),
+ \end{aligned}\right. \tag{4.4}
+\]
+其中 $F(x)=\int_0^x f(x)\,dx$。若满足：
+
+\begin{enumerate}
+\item $f(x)\in C^0(-\infty,+\infty)$；当 $\delta_{-1}<0<\delta_1$，$\delta_{-1}<x<\delta_1$ 时，$f(x)<0$；当 $x>\delta_1$ 以及 $x<\delta_{-1}$ 时，$f(x)>0$；
+\item 存在 $\Delta>0$，$F(\Delta)=F(-\Delta)=0$；
+\item $F(+\infty)=+infty$，或 $F(-\infty)=-\infty$，
+\end{enumerate}
+则方程组~(4.4) 有唯一的极限环，且为稳定的。
+\end{theorem}
+
+\begin{proof}
+存在性可由定理~1.2 推得。现证唯一性。令
+\[
+ \lambda(x,y)=\dfrac{x^2}{2}+\dfrac{y^2}{2}。
+\]
+当 $0<|x|<\Delta$ 时，
+\[
+ \left.\dfrac{d\lambda}{dt}\right|_{(4.4)}=-x\dot{x}+y\dot{y}=-xF(x)>0。
+\]
+所以极限环不可能整个落在区域 $|x|\leq\Delta$ 中，极限环必定包围点 $(\Delta,0)$ 和 $(-\Delta,0)$。假设存在两个极限环 $L_1\subset L_2$，则有
+\[
+ 0=\oint_{L_i}d\lambda=\oint_{L_i}F(x)\,dy. \tag{4.5}
+\]
+下面证明
+\[
+ \oint_{L_2}F(x)\,dy<\oint_{L_1}F(x)\,dy. \tag{4.6}
+\]
+\chFourFigurePlaceholder{4.20}
+在两条闭轨线的相应弧段上，将 $y$ 分别表示为 $y_1(x)$、$y_2(x)$，并将 $x$ 分别表示为 $x_1(y)$、$x_2(y)$。由 $F$ 的单调递增性以及 $xF(x)>0$，逐段比较得
+\[
+ \oint_{L_1}F(x)\,dy>\oint_{L_2}F(x)\,dy,
+\]
+这与式~(4.5) 矛盾。因此方程~(4.4) 只能有唯一的极限环，从而它显然是稳定的。
+\end{proof}
+
+在定理 4.1 中，记
+\[
+G(x)=\int_0^xg(x)\,dx,\qquad
+u(x)=\sqrt{2G(x)}\operatorname{sgn}x,
+\]
+则方程组~(4.2) 可化为
+\[
+\dfrac{du}{dy}=
+\dfrac{du}{dx}\dfrac{dx}{dy}
+=\dfrac{g(x)}{u}\dfrac{-y-F(x)}{g(x)}
+=\dfrac{-y-F(x(u))}{u}. \tag{4.12}
+\]
+其中 $x=x(u)$ 是 $u=\sqrt{2G(x)}\operatorname{sgn}x$ 的反函数。在定理 4.1 的假设下，
+$y=F(x(u))$ 是 $u$ 的奇函数，因而上面关于唯一性的证明对定理 4.1 而言也都能通过。
+
+定理 4.2 的证明的本质是：沿着闭轨一周对任一单值可微函数的全微分求积，其值为 $0$。这样如果我们能找到这样的单值可微函数，使沿着给定方程的两条包围原点的闭轨线求积的其值不相等，这就导出矛盾。从而证明了闭轨不能多于一个。
+
+\begin{theorem}{G.~Sansone}{ }
+给定微分方程~(4.3)，或其等价方程组
+\[
+\left\{
+\begin{aligned}
+\dfrac{dx}{dt}&=v, &\dfrac{dv}{dt}&=-x-f(x)v.
+\end{aligned}\right. \tag{4.13}
+\]
+如果它满足下列条件：
+\begin{enumerate}
+\item $f(x)\in C^0(-\infty,+\infty)$；$f(x)<0,\ |x|<\delta$；$f(x)>0,\ |x|>\delta>0$；
+\item $F(+\infty)=+\infty$，或 $F(-\infty)=-\infty$，
+\end{enumerate}
+则~(4.13) 有唯一的极限环，且是稳定的。
+\end{theorem}
+
+\begin{proof}
+存在性可由定理 1.2 推得，现证明唯一性。令
+\[
+\lambda(x,v)=\dfrac{x^2}{2}+\dfrac{v^2}{2}.
+\]
+则沿方程组~(4.13)
+\[
+\left.\dfrac{d\lambda}{dt}\right|_{(4.13)}=x\dot{x}+v\dot{v}=-f(x)v^2>0,\qquad |x|<\delta.
+\]
+故极限环 $L$ 必定包含点 $(\delta,0)$ 和 $(-\delta,0)$，并且整个落在圆
+$x^2+v^2\leq\delta^2$ 之外。下面证明，~(4.13) 所定义的方向场的发散量 $-f(x)$ 沿任何闭轨线 $L$ 的积分为负，即
+\[
+\oint_L-f(x)\,dt<0. \tag{4.14}
+\]
+于是由定理 2.2，$L$ 必为稳定极限环；但两个稳定极限环不能一个包围一个且相邻并存，这就证明了唯一性。
+
+下面证明不等式~(4.14)。
+\[
+0=\oint_L\dfrac{d(x^2+v^2)}{x^2+v^2-\delta^2}
+=\oint_L\dfrac{-2vf(x)\,dx}{x^2+v^2-\delta^2}. \tag{4.15}
+\]
+\chFourFigurePlaceholder{4.21}
+在弧 $\overset{\frown}{BCD}$ 和 $\overset{\frown}{EFA}$ 上，有 $x^2>\delta^2$ 和 $f(x)>0$，故
+\[
+\dfrac{v^2f(x)}{x^2+v^2-\delta^2}
+=\dfrac{v^2}{v^2+(x^2-\delta^2)}f(x)<f(x). \tag{4.16}
+\]
+在弧 $\overset{\frown}{AB}$ 和 $\overset{\frown}{DE}$ 上，有 $x^2<\delta^2$，$x^2+v^2>\delta^2$ 和 $f(x)<0$，故
+\[
+\dfrac{v^2f(x)}{x^2+v^2-\delta^2}
+=\dfrac{v^2}{v^2-(\delta^2-x^2)}f(x)<f(x). \tag{4.17}
+\]
+由~(4.15)--(4.17)，便有
+\[
+\oint_Lf(x)\,dt>
+\oint_L\dfrac{v^2f(x)}{x^2+v^2-\delta^2}\,dt
+=0.
+\]
+不等式~(4.14) 得证。
+\end{proof}
+
+定理 4.3 的证明的本质是：沿着给定方程组~(4.13) 的任一闭轨线，对~(4.13) 所定义的向量场的发散量求积，如果其值具有相同的符号，闭轨线便都具有相同的稳定性；但具有相同稳定性的两条闭轨线不能一个包围一个而相邻并存，这就说明闭轨线不能多于一个。
+
+\begin{definition}{}{ }
+$(x,v)$ 平面上的曲线 $L$ 叫做是星形的，如果从原点 $O(0,0)$ 出发的每条半射线至多能与 $L$ 相交于一点。
+\end{definition}
+
+\begin{theorem}{J.~L.~Massera}{ }
+给定方程~(4.3)，或其等价方程组~(4.13)，如果它满足下列条件：
+\begin{enumerate}
+\item $f(x)\in C^0(-\infty,+\infty)$；
+\item $f(x)<0,\ \delta_{-1}<x<\delta_1$；
+\[
+f(x)>0,\quad x>\delta_1>0,\quad x<\delta_{-1}<0;
+\]
+\item 当 $|x|$ 增加时 $f(x)$ 不下降，
+\end{enumerate}
+则~(4.13) 有唯一的极限环，而且它是稳定的。
+\end{theorem}
+
+\begin{proof}
+存在性可由定理 1.2 推得。现证明唯一性。先证~(4.13) 的任何闭轨线 $L$ 都是星形的。
+令 $x=\rho\cos\theta$，$v=\rho\sin\theta$，则~(4.13) 化为
+\[
+\left\{
+\begin{aligned}
+\dfrac{d\rho}{dt}&=-\rho f(\rho\cos\theta)\sin^2\theta,\\
+\dfrac{d\theta}{dt}&=-1-\cos\theta\sin\theta f(\rho\cos\theta).
+\end{aligned}\right.
+\]
+如图 4.22 所示，如果 $L$ 不是星形的，则必存在半射线 $\theta=\theta_0$，它与 $L$ 相交三点
+$A_1,A_2,A_3$，而且 $\left.d\theta/dt\right|_{\theta=\theta_0}$ 在点 $A_1,A_2,A_3$ 上要两次改变符号，即当 $\rho$ 增加时要两次变号；由 $f(x)$ 的单调性，这不可能。这就证明了~(4.13) 的闭轨线都是星形的。
+\chFourFigurePlaceholder{4.22}
+
+对 $L$ 作相似变换：
+\[
+L(x,v)\longrightarrow L_k(kx,kv),\qquad L_k\subset L\ (k<1),\quad L_k\supset L\ (k>1).
+\]
+令 $L_1=L$，以 $T(x,v)$ 表示由方程~(4.13) 所定义的在 $(x,v)$ 点的方向量与 $x$ 轴夹角的正切，以 $\overline{T}(x,v)$ 表示闭曲线族 $L_k$ 在 $(x,v)$ 点的切向量与 $x$ 轴夹角的正切。当 $k>1$ 时，在点 $A_k(kx,kv)$ 上，
+\[
+T(A_k)=-\dfrac{kx}{kv}-f(kx)<-\dfrac{x}{v}-f(x)=\overline{T}(A_k),
+\]
+当 $k<1$ 时，
+\[
+T(A_k)=-\dfrac{kx}{kv}-f(kx)>-\dfrac{x}{v}-f(x)=\overline{T}(A_k).
+\]
+于是如图所示，对任何点 $p\ne\{0\}$，都有 $\omega_p=L$。这就证明了~(4.13) 只有唯一闭轨，且是稳定的。
+\chFourFigurePlaceholder{4.23}
+\end{proof}
+
+于是 $L$ 与 $L_k$ 相交不能从内走向外（从外走向内），因而 $L$ 之外无其他闭轨线。$L_k$ 也即轨形系。
+
+\begin{theorem}{}{ }
+给定方程~(4.1)，或其等价方程组~(4.2)。如果它满足下列条件：
+\begin{enumerate}
+\item $xg(x)>0,\ x\ne0$；$G(x)=\displaystyle\int_0^xg(x)\,dx$，$G(\pm\infty)=+\infty$；$g(x)$ 连续且在任何有界区间上满足 Lipschitz 条件；
+\item $f(x)$ 连续，且当 $|u|$ 增加时 $\dfrac{F(x(u))}{u}$ 不下降，其中
+\[
+F(x)=\int_0^xf(x)\,dx,qquad x=x(u)
+\]
+是 $u=u(x)=\sqrt{2G(x)}\operatorname{sgn}x$ 的反函数，
+\end{enumerate}
+则~(4.2) 至多有一个极限环。
+\end{theorem}
+
+\begin{proof}
+作变换
+\[
+u=\sqrt{2G(x)}\operatorname{sgn}x,
+\]
+方程~(4.2) 化为方程~(4.12)，这就化为定理 4.4 的情形。这里的
+$F(x(u))/u$ 相当于定理 4.4 中的 $f(x)$，以下的证明完全类似。
+\end{proof}
+
+定理 4.5 蕴含定理 4.4。因为当 $g(x)=x$ 时，由当 $|x|$ 增加时 $f(x)$ 不下降，马上推出当 $|x|$ 增加时 $F(x)/x$ 不下降。
+
+另外，R.~Conti 曾经证明方程组~(4.2) 有唯一极限环，除了上述条件外，还要求
+\[
+\left|\dfrac{F(x(u))}{u}\right|<2.
+\]
+现在我们知道这个条件显然是多余的。G.~F.~Duff 和 N.~Levinson 举出了反例，说明上述条件不能保证唯一性。
+
+下面是 G.~F.~Duff 和 N.~Levinson 的反例。考虑方程
+\[
+\ddot{x}+\varepsilon f(x)\dot{x}+x=0,
+\]
+或其等价方程组
+\[
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-x-\varepsilon f(x)v. \tag{4.18}
+\]
+其中 $\varepsilon$ 是小参数，$f(x)$ 是待定多项式。令 $x=r\cos\theta$，$v=r\sin\theta$，当 $\varepsilon$ 充分小时，~(4.18) 可化为
+\[
+\dfrac{dr}{d\theta}=
+\dfrac{-\varepsilon r f(r\cos\theta)\sin^2\theta}
+{1+\varepsilon f(r\cos\theta)\sin\theta\cos\theta}. \tag{4.19}
+\]
+~(4.19) 的周期解必为~(4.18) 的闭轨线。当 $r$ 有界和 $|\varepsilon|$ 充分小时，~(4.19) 的右侧是 $\varepsilon,r$ 和 $\theta$ 的解析函数，故解也是 $\varepsilon$ 的解析函数，可把它写成
+\[
+r=H(\theta,\rho,\varepsilon),\qquad H(0,\rho,\varepsilon)=\rho,
+\]
+\[
+r=H_0(\theta,\rho)+\varepsilon H_1(\theta,\rho)+\varepsilon^2H_2(\theta,\rho,\varepsilon).
+\]
+代入~(4.19)，得
+\[
+\dfrac{dH_0}{d\theta}+\varepsilon\dfrac{dH_1}{d\theta}
++\varepsilon^2\dfrac{dH_2}{d\theta}
+=\dfrac{-\varepsilon(H_0+\varepsilon H_1+\varepsilon^2H_2)
+ f(\cdots)\sin^2\theta}
+{1+\varepsilon f[(H_0+\varepsilon H_1+\varepsilon^2H_2)\cos\theta]\cos\theta\sin\theta}.
+\]
+比较等式两边 $\varepsilon$ 同次幂的系数，得
+\[
+\dfrac{dH_0}{d\theta}=0,\qquad
+\dfrac{dH_1}{d\theta}=-H_0f(H_0\cos\theta)\sin^2\theta.
+\]
+由初始条件知 $H_0(\theta,\rho)=\rho$，从而
+\[
+H_1(2\pi,\rho)=-\int_0^{2\pi}\rho f(\rho\cos\theta)\sin^2\theta\,d\theta=-\overline{F}(\rho),
+\]
+\[
+H(2\pi,\rho,\varepsilon)-\rho
+=-\varepsilon\overline{F}(\rho)+\varepsilon^2H_2(2\pi,\rho,\varepsilon). \tag{4.20}
+\]
+设 $\rho_0>0$ 是 $\overline{F}(\rho)=0$ 的正根，并且 $\overline{F}(\rho)$ 在 $\rho=\rho_0$ 附近变号，则当 $\varepsilon$ 适当小时，$\overline{F}(\rho)+\varepsilon H_2(2\pi,\rho,\varepsilon)$ 在 $\rho=\rho_0$ 附近也变号，因而
+\[
+H(2\pi,\rho,\varepsilon)-\rho=0
+\]
+至少有一个根，它对应于~(4.20) 的周期解。
+
+令
+\[
+f(x)=A_6x^6-A_4x^4+A_2x^2-A_0+Cx,\qquad A_i>0,
+\]
+\[
+I_{2k}=\int_0^{2\pi}\cos^{2k}\theta\sin^2\theta\,d\theta>0,
+\]
+则
+\[
+\overline{F}(\rho)=\int_0^{2\pi}\rho f(\rho\cos\theta)\sin^2\theta\,d\theta
+=I_6A_6\rho^7-I_4A_4\rho^5+I_2A_2\rho^3-I_0A_0\rho.
+\]
+取 $I_6A_6=1$，$I_4A_4=14$，$I_2A_2=49$，$I_0A_0=36$，得
+\[
+\overline{F}(\rho)=\rho(\rho^2-1)(\rho^2-4)(\rho^2-9).
+\]
+$\rho=1,2,3$ 是 $\overline{F}(\rho)=0$ 的三个正根，而且 $\overline{F}(\rho)$ 在它们附近变号。故当 $|\varepsilon|$ 充分小时，~(4.19) 至少有三个周期解。另一方面，可以取常数 $C$ 充分大，使得
+\[
+f'(x)=6A_6x^5-4A_4x^3+2A_2x+C=0
+\]
+只有一个实根。这样的 $f(x)$ 显然满足 H.~Serbin 的所有条件，但相应的方程~(4.18) 的周期解不唯一。并且用上述方法不难构造这样的例子：对任何给定整数 $n$，造成函数 $f(x)$ 满足 H.~Serbin 条件，而方程组~(4.18) 至少有 $n$ 个周期解。
+
+可见只要求 $f(x)$ 有两个零点，并不能保证极限环的唯一性。上面构造的函数 $f(x)$ 不单只有两个零点，而且 $f'(x)$ 只有一个零点；设为 $x=x_0$，$f(x)$ 在 $x>x_0$ 和 $x<x_0$ 时都是单调的，即便这样，也不能保证极限环的唯一性。可见 J.~L.~Massera 定理中 $f(x)$ 的极小点在 $x=0$ 处，这个条件是不能任意去掉的。
+
+如果 $f(x)$ 只有两个零点 $x_1,x_2$，$x_1<0$，$x_2>0$，还要附加什么条件才能保证 Lienard 型方程极限环的唯一性呢？为了回答这个问题，张芷芬证明了下列定理。
+
+\begin{theorem}{}{ }
+给定微分方程
+\[
+\ddot{x}+f(x)\dot{x}+x=0, \tag{4.21}
+\]
+或其等价方程组
+\[
+\dfrac{dy}{dt}=-x,\qquad \dfrac{dx}{dt}=y-F(x), \tag{4.22}
+\]
+其中 $F(x)=\displaystyle\int_0^xf(x)\,dx$。如果它满足条件：
+\[
+f(x)\in C^0(-\infty,+\infty),\quad f(0)\ne0;
+\]
+当 $x$ 增加时 $f(x)/x$ 不下降，$x\in(-\infty,0),(0,+\infty)$，则~(4.22) 至多有一个极限环；如果它存在，则是稳定的。
+\end{theorem}
+
+\begin{proof}
+因为当 $x$ 增加时 $f(x)/x$ 不下降，$x\in(-\infty,0),(0,+\infty)$，故 $f(0)\leq0$；再由假设 $f(0)\ne0$ 推出 $f(0)<0$。令
+\[
+\lambda(x,y)=\dfrac{x^2}{2}+\dfrac{y^2}{2},
+\]
+则
+\[
+\left.\dfrac{d\lambda}{dt}\right|_{(4.22)}=-xF(x)>0,\qquad 0<|x|\ll1.
+\]
+故~(4.22) 的唯一奇点 $O(0,0)$ 是不稳定的。因此~(4.22) 如有闭轨线，必有最靠近奇点 $O$ 的；设为 $L_1$，则 $L_1$ 必为内侧稳定极限环。由定理 2.2，必有
+\[
+\oint_{L_1}f(x_1(t))\,dt\geq0,
+\]
+其中 $x=x_1(t),y=y_1(t)$ 是闭轨线 $L_1$ 的参数方程，周期为 $2T_1$。假设~(4.22) 还有闭轨线 $L_2\supset L_1$，$x=x_2(t)$，$y=y_2(t)$ 是 $L_2$ 的参数方程，周期为 $2T_2$。要证
+\[
+\int_0^{2T_2}f(x_2(t))\,dt>
+\int_0^{2T_1}f(x_1(t))\,dt. \tag{4.23}
+\]
+这样，如果 $L_1$ 为稳定的，$L_1$ 之外无闭轨线；如 $L_1$ 为半稳定，则 $L_1$ 之外的轨线将向外运动，亦无闭轨线。
+
+然后再来证第二种情况不可能。
+\chFourFigurePlaceholder{4.24}
+
+构造新的函数 $f_1(x)=f(x)+ax$。设 $Q_1,P_1$ 分别是极限环 $L_1$ 上 $x$ 坐标最小和最大的点，这两点必落在 $y=F(x)$ 上，故
+\[
+a=-\dfrac{f(x_{Q_1})}{x_{Q_1}},
+\]
+则新函数 $f_1(x)$ 满足：
+\begin{enumerate}
+\item $f_1(0)=f(0)<0$；
+\item 当 $x$ 增加时，$f_1(x)/x=f(x)/x+a$ 不下降，$x\in(-\infty,0),(0,+\infty)$；
+\item $f_1(x_{Q_1})=f_1(x_M)=0$；$f_1(x)\geq0,\ x<x_M$。
+\end{enumerate}
+$f_1(x)$ 必与 $x$ 正半轴相交于点 $N$，而且 $x_N\leq x_{P_1}$；否则，$L_1$ 就整个落在 $f_1(x)\leq0$ 的区域中，那样显然有
+\[
+\int_0^{2T_1}f(x_1(t))\,dt<0,
+\]
+这不可能。又因为沿着周期解有
+\[
+\int_0^{2T_i}x_i(t)\,dt=\int_0^{2T_i}-dy=0,\qquad i=1,2,
+\]
+故
+\[
+\int_0^{2T_i}f_1(x_i(t))\,dt
+=\int_0^{2T_i}f(x_i(t))\,dt.
+\]
+因而为了证明~(4.23)，只要证明
+\[
+\int_0^{2T_2}f_1(x_2(t))\,dt>
+\int_0^{2T_1}f_1(x_1(t))\,dt. \tag{4.24}
+\]
+下面我们就来证明不等式~(4.24)。在弧 $\overset{\frown}{Q_1A_1}$ 和 $\overset{\frown}{F_2A_2}$ 上，$dx/dt=y-F(x)>0$，故可以从 $x=x_i(t)$ 中解出反函数 $t=t_i(x)$，在 $L_i$ 的该段轨线上，解可分别表示成 $y=y_i(t_i(x))=\bar y_i(x)$，$i=1,2$。于是
+\[
+\begin{aligned}
+&\int_{\overset{\frown}{F_2A_2}}f_1(x_2(t))\,dt-
+\int_{\overset{\frown}{Q_1A_1}}f_1(x_1(t_1))\,dt\\
+={}&\int_{x_M}^{x_N}\dfrac{f_1(x)}{\bar y_2(x)-F(x)}\,dx-
+\int_{x_M}^{x_N}\dfrac{f_1(x)}{\bar y_1(x)-F(x)}\,dx\\
+={}&\int_{x_M}^{x_N}
+\dfrac{-f_1(x)(\bar y_2(x)-\bar y_1(x))\,dx}
+{(\bar y_1(x)-F(x))(\bar y_2(x)-F(x))}>0.
+\end{aligned}
+\]
+同样可证
+\[
+\int_{\overset{\frown}{D_2E_2}}f_1(x_2(t))\,dt-
+\int_{\overset{\frown}{C_1Q_1}}f_1(x_1(t))\,dt>0. \tag{4.26}
+\]
+在弧 $\overset{\frown}{B_2P_2C_2}$ 和 $\overset{\frown}{A_1P_1C_1}$ 上，解可分别表示成 $x=\bar x_2(y)$ 和 $x=\bar x_1(y)$，且 $\bar x_2(y)>\bar x_1(y)>0$，故有
+\[
+\begin{aligned}
+&\int_{\overset{\frown}{B_2P_2C_2}}f_1(x_2(t))\,dt-
+\int_{\overset{\frown}{A_1P_1C_1}}f_1(x_1(t))\,dt\\
+={}&\int_{y_{A_1}}^{y_{C_1}}
+\left[\dfrac{f_1(\bar x_2(y))}{\bar x_2(y)}-
+\dfrac{f_1(\bar x_1(y))}{\bar x_1(y)}\right]dy\geq0.
+\end{aligned}
+\]
+此外，
+\[
+\int_{\overset{\frown}{E_2Q_2F_2}\cup\overset{\frown}{A_2B_1}\cup\overset{\frown}{C_2D_2}}
+f_1(x_2(t))\,dt\geq0. \tag{4.28}
+\]
+由~(4.25)--(4.28)，不等式~(4.24) 得证。下面再证 $L_1$ 不可能是半稳定环。
+
+设直线 $x=x_1>0$ 与 $L_1$ 相交。构造新的函数
+\[
+\overline{F}(x)=F(x)-ar(x),\qquad
+r(x)=\begin{cases}
+0,&x\geq x_1,\\
+(x-x_1)^2,&x<x_1<0,
+\end{cases}
+\]
+其中 $0\leq a\ll1$。显然 $f(x)-\overline{F}(x)$ 满足定理的条件，而 $(y-\overline{F}(x),-x)$ 对参数 $a$ 构成广义旋转向量场；它满足 \S3 定义 3.3 括号内的条件。考虑方程组
+\[
+\dfrac{dx}{dt}=y-\overline{F}(x),\qquad \dfrac{dy}{dt}=-x. \tag{4.29}
+\]
+当 $a=0$ 时方程组~(4.29) 就是方程组~(4.22)。由 \S3 定理 3.4，当 $0<a\ll1$ 时，~(4.22) 的半稳定环 $L_1$ 分解成~(4.29) 的至少两个环 $\overline L_2\supset\overline L_1$，且 $\overline L_1$ 为内侧稳定，$\overline L_2$ 为外侧稳定。由 \S2 定理 2.2，便有
+\[
+\oint_{\overline L_1}\overline f(x)\,dt\geq0,\qquad
+\oint_{\overline L_2}\overline f(x)\,dt\leq0.
+\]
+而由于方程组~(4.29) 也满足定理的条件，根据本定理前半部分的证明，应有
+\[
+\oint_{\overline L_2}\overline f(x)\,dt>
+\oint_{\overline L_1}\overline f(x)\,dt,
+\]
+因此得出矛盾。定理得证。
+\end{proof}
+
+\begin{theorem}{}{ }
+给定微分方程~(4.1)，或其等价方程组~(4.2)。如果它满足下列条件：
+\begin{enumerate}
+\item $xg(x)>0,\ x\ne0$；$G(-\infty)=G(+\infty)=+\infty$，其中 $G(x)=\displaystyle\int_0^xg(x)\,dx$；$g(x)$ 连续且满足 Lipschitz 条件；
+\item $f(x)$ 连续；当 $x$ 增加时 $f(x)/g(x)$ 不下降，$x\in(-\infty,0),(0,+\infty)$；$f(x)/g(x)\ne0$ 在 $x=0$ 的邻域内，
+\end{enumerate}
+则~(4.2) 至多有一个极限环；如果它存在，则是稳定的。
+\end{theorem}
+
+作变换 $u=\sqrt{2G(x)}\operatorname{sgn}x$，则~(4.2) 可化为与之等价的方程组
+\[
+\left\{
+\begin{aligned}
+\dfrac{dy}{dt}&=u,\\
+\dfrac{du}{dt}&=-y-F(x(u)).
+\end{aligned}\right.
+\]
+其中 $x=x(u)$ 是 $u=\sqrt{2G(x)}\operatorname{sgn}x$ 的反函数。因
+\[
+\dfrac{F'_u}{u}=\dfrac{f(x)}{g(x)},
+\]
+问题就化为定理 4.6 的情形。
+
+\textbf{附注 1.}\quad 在文献 [33] 中还证明了以下定理。考虑微分方程组
+\[
+\dfrac{dy}{dt}=g(x),\qquad \dfrac{dx}{dt}=-\phi(y)-F(x).
+\]
+如果除了满足定理 4.7 中的条件外，对 $\phi(y)$ 而言满足条件：$y\phi(y)>0$，$y\ne0$；$\phi(\pm\infty)=\infty$；$\phi(y)$ 连续单调且满足 Lipschitz 条件；函数 $\phi(y)$ 在 $y=0$ 有左、右导数 $\phi'_-(0)$ 和 $\phi'_+(0)$，且 $\phi'_+(0)\phi'_-(0)\ne0$，当 $f(0)=0$，这样上述系统至多有一个极限环，如果它存在，则是稳定的。
+
+\textbf{附注 2.}\quad 定理 4.6 的证明的本质是：估算沿着包围同一奇点的两条闭轨线的发散量的积分，证明它们的值是严格单调的。考虑到奇点的稳定性，这就证得闭轨线的总数不超过 2；如为 2，最里面一条必为半稳定，然后对原方程作适当扰动来排除这种可能。另对发散量加上一个单值可微函数的全微分，使得上述积分的估算成为可能。
+
+\textbf{附注 3.}\quad 当 $f(0)\leq0$，$f''(x)>0$ 时，定理 4.6 的条件显然满足，即 H.~Serbin 的定理中要加上条件 $f''(x)>0$ 才能保证极限环的唯一性。由定理 4.6，方程
+\[
+\ddot{x}+(x^2+\alpha x+\beta)\dot{x}+x=0
+\]
+当 $\beta<0$ 时在相平面上存在唯一的极限环；这个方程虽简单，但用以前的定理却不能判别其唯一性。
+
+如果存在 $x_2<0<x_1$，使得当 $x_2<x<x_1$ 时 $xF(x)<0$，当 $x>x_1$ 及 $x<x_2$ 时 $xF(x)\geq0$，并且 $x_1<|x_2|$（或 $x_1>|x_2|$），则只要当 $x$ 增加时 $f(x)/x$ 不下降，$x\in(-\infty,0),(x_1,+\infty)$（或 $x\in(-\infty,x_2),(0,+\infty)$），而当 $x\in(0,x_1)$（或 $x\in(x_2,0)$）时，只要求 $f(x)/x\leq f(x_1)/x_1$（或 $f(x)/x\geq f(x_2)/x_2$），这时定理 4.6 仍然成立。相应的对定理 4.7 的条件也可作类似减弱。
+
+如果定理 4.6 和 4.7 中的 $f(x),g(x)$ 连续可微，则用 Чepкас 的办法，证明可以简化。以定理 4.6 为例，已经知道 $f_1(x)$ 有两个零点 $x_M,x_N$，$x_M<0<x_N$，并且所有极限环都包围点 $(x_M,0)$ 和 $(x_N,0)$。用直线 $x=x_M,x=x_N$ 将 $L_1,L_2$ 所包围的环域分成四部分 $G_1,G_2,G_3,G_4$，如图所示。由 Green 公式
+\chFourFigurePlaceholder{4.25}
+\[
+\begin{aligned}
+&\oint_{L_2}f_1(x_2(t))\,dt-\oint_{L_1}f_1(x_1(t))\,dt\\
+={}&\iint_{G_1\cup G_3}\dfrac{-f_1(x)}{[-y(x)-F(x)]^2}\,dx,dy
++\iint_{G_2\cup G_4}\dfrac{\partial}{\partial x}\left(\dfrac{f_1(x)}x\right)dx,dy>0.
+\end{aligned}
+\]
+要注意的是，这时我们将~(4.21) 的等价方程组写成
+\[
+\dfrac{dy}{dt}=x,\qquad \dfrac{dx}{dt}=-y-F(x).
+\]
+上面提到 Л.~А.~Чepкас 的有关唯一性定理，其本质就在于：代替计算发散量 $\partial X/\partial x+\partial Y/\partial y$ 的积分，而计算
+\[
+\dfrac{\partial X}{\partial x}+\dfrac{\partial Y}{\partial y}+\dfrac{dM}{dt}
+\]
+的积分。问题在于如何能够选择适当的 $M(x,y)$，使问题简化，这也并非轻而易举的事。
+
+\begin{theorem}{Bendixson--Dulac}{ }
+给定微分方程组
+\[
+\dfrac{dx}{dt}=X(x,y),\qquad \dfrac{dy}{dt}=Y(x,y). \tag{4.30}
+\]
+其中 $X,Y\in C^1(D)$，$D$ 是环域，$D$ 中无奇点。若存在函数 $B(x,y),M(x,y)\in C^1(D)$，$B(x,y)>0$，且在环域 $D$ 上有
+\[
+\dfrac{\partial M}{\partial x}XB+\dfrac{\partial M}{\partial y}YB
++\dfrac{\partial}{\partial x}(XB)+\dfrac{\partial}{\partial y}(YB)\leq0, \tag{4.31}
+\]
+而等号不能在整条轨线上成立，则在 $D$ 上至多有一个极限环。如果它存在，则是稳定的。
+\end{theorem}
+
+\begin{proof}
+改变时间参数，将方程组~(4.30) 变成
+\[
+\dfrac{dx}{d\tau}=X(x,y)B(x,y),\qquad
+\dfrac{dy}{d\tau}=Y(x,y)B(x,y). \tag{4.32}
+\]
+计算~(4.32) 的发散量沿闭轨线 $L_i$ 一周的积分：
+\[
+\begin{aligned}
+\int_0^{T_i}\left(\dfrac{\partial(XB)}{\partial x}+\dfrac{\partial(YB)}{\partial y}\right)d\tau
+&=\int_0^{T_i}\left(\dfrac{\partial(XB)}{\partial x}+\dfrac{\partial(YB)}{\partial y}+\dfrac{dM}{d\tau}\right)d\tau\\
+&=\int_0^{T_i}\left(\dfrac{\partial(XB)}{\partial x}+\dfrac{\partial(YB)}{\partial y}+\dfrac{\partial M}{\partial x}XB+\dfrac{\partial M}{\partial y}YB\right)d\tau\leq0.
+\end{aligned}
+\]
+其中 $T_i$ 是~(4.32) 的闭轨线 $L_i$ 的时间周期。由定理 2.2，$L_i$ 是稳定的。因 $D$ 内无奇点，两个稳定极限环不可能相邻并存，故至多有一个极限环；如果它存在，则是稳定的。
+\end{proof}
+
+在定理 4.6 的证明中，我们构造函数 $f_1(x)=f(x)+ax$，然后计算 $\oint_Lf_1(x)\,dt$，相当于在定理 4.8 中取 $B(x,y)=1,M(x,y)=-ay$。但如何选择适当的 $B(x,y),M(x,y)$，使积分的估算可行，并非轻而易举的事。
+
+\begin{theorem}{}{ }
+考虑微分方程组
+\[
+\dfrac{dy}{dt}=g(x),\qquad \dfrac{dx}{dt}=-\phi(y)-F(x), \tag{4.33}
+\]
+其中 $F(x)=\displaystyle\int_0^xf(x)\,dx$。如果对 $x\in(a,b)$，$-\infty\leq a<0<b\leq+\infty$，$-\infty<y<+\infty$，它满足下列条件：
+\begin{enumerate}
+\item 当 $x\ne0$ 时，$xg(x)>0$；当 $y\ne0$ 时，$y\phi(y)>0$；
+\item $f(x),g(x),\phi(y)$ 连续可微；$\phi(y)$ 单调递增；$f(0)<0$（或 $f(0)>0$）；
+\item 存在常数 $\alpha,\beta$，使 $f_1(x)=f(x)+g(x)[\alpha+\beta F(x)]$ 有简单零点 $x_1<0$ 与 $x_2>0$，而且在区间 $(x_1,x_2)$ 上 $f_1(x)\leq0$（或 $f_1(x)\geq0$）；
+\item 在区间 $[x_1,x_2]$ 之外，函数 $f_1(x)/g(x)$ 不减（或不增）；
+\item 所有闭轨线包围 $x$ 轴上的区间 $[x_1,x_2]$，
+\end{enumerate}
+则系统~(4.33) 最多有一个极限环；如果它存在，则是稳定的（不稳定的）。其证明的思想和步骤与定理 4.6 完全一样。
+\end{theorem}
+
+\iffalse
+极限环唯一性通常由横截线上后继函数的单调性，或由某个积分量沿周期轨道的符号
+来判定。对 Lienard 系统~(1.4)，若 $F$、$g$ 满足相应的奇偶性和单调性条件，
+则围绕原点的闭轨线至多一条。
+
+\begin{theorem}{}{lienard-uniqueness}
+在定理~\ref{thm:lienard-existence}的条件下，若 $F(x)$ 在 $x>a$ 时严格
+单调，则系统~(1.4) 至多有一条围绕原点的极限环。
+\end{theorem}
+
+\begin{proof}
+假设存在两条不同的闭轨线。比较二者在曲线 $y=F(x)$ 两侧的弧段，并对相应的
+线积分作差；由 $F$ 的严格单调性，该差具有确定符号，和周期轨线上的积分恒等式矛盾。
+\end{proof}
+
+\chFourFigurePlaceholder{4.4}
+
+\fi
+
+\section{极限环的唯二性}
+
+% 原书第300页
+关于极限环个数的唯二性方面的工作比起唯一性来就更少了，而且主要也只是关于 Lienard 方程的。Г. С. Петров首先证明了一个关于 Lienard 方程极限环个数的唯二性定理，由此推得，当特征函数 $F(x)$ 是 $5$ 次奇次多项式时 Lienard 方程最多有两个极限环的结论。文献[46]推广了他的定理。周毓荣也得到了新的结果[47]。国内还有些同志得到了些关于极限环个数的唯 $n$ 性方面的结果，当 $n=2$ 时就是唯二性问题，其中有些内容将在 \S7 里介绍。在这一节里我们将先介绍几个估算发散量积分的引理，然后着重介绍文献[46]中的结果；再介绍文献[49]中的几个例子，用以揭示影响极限环个数的因素。
+
+在研究极限环个数问题时，主要的途径之一是计算闭轨的发散量积分。下面介绍计算发散量积分的几个常用引理。
+
+给定 Lienard 方程
+\begin{equation}
+\ddot{x}+f(x)\dot{x}+g(x)=0,\tag{5.1}
+\end{equation}
+或其另一形式的等价方程组
+\begin{equation}
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-g(x)-f(x)v.\tag{5.2}
+\end{equation}
+假设 $f(x),g(x)\in C^0$，且满足初值问题解的唯一性的条件。如前一样，记
+\[
+F(x)=\int_0^x f(x)\,dx.
+\]
+
+\begin{lemma}{ }{ch4-lemma-5-1}
+假设对于方程组 (5.2)，在所考虑的区间内存在常数 $\alpha,\xi$ 和 $\beta$（$0\leqslant\alpha<\xi<\beta$），使满足条件：
+\[
+F(\alpha)=F(\beta),\qquad (\xi-x)F'(x)=(\xi-x)f(x)\geqslant0\ (\leqslant0),\quad x\in[\alpha,\beta],
+\]
+则沿着方程组 (5.2) 的任意位于带形域 $\alpha\leqslant x\leqslant\beta$ 的轨线弧 $l$，恒有
+\begin{equation}
+\int_l\operatorname{div}(5.2)\,dt=-\int_lf(x)\,dt\geqslant0\quad(\leqslant0).
+\tag{5.3}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+只证括号外的情形，括号内的证明类似。先记 $l:v=v(x)>0$，$x\in[\alpha,\beta]$。令 $z=F(x)$，则由条件存在反函数
+\[
+x=x_1(z)\in[\alpha,\xi],\qquad x=x_2(z)\in[\xi,\beta],
+\]
+且 $\alpha=x_1(z_\alpha)$，$\beta=x_2(z_\beta)$，$z_\alpha=z_\beta$，$\xi=x_i(z_\xi)$，$i=1,2$。于是
+\[
+-\int_l\operatorname{div}(5.2)\,dt
+=\int_lf(x)\,dt
+=\int_\alpha^\beta\dfrac{f(x)}{v(x)}\,dx
+=\int_{z_\alpha}^{z_\xi}\left\{\dfrac1{v[x_1(z)]}-\dfrac1{v[x_2(z)]}\right\}\,dz<0.
+\]
+这是因为由 (5.2) 易见
+\[
+v[x_2(z)]-v[x_1(z)]=\int_{x_1(z)}^{x_2(z)}\dfrac{-g(x)}{v(x)}\,dx<0.
+\]
+再记 $l:v=\widetilde v(x)<0$，$x\in[\alpha,\beta]$。因为 $\widetilde v[x_1(z)]<\widetilde v[x_2(z)]<0$，同理可得
+\[
+-\int_l\operatorname{div}(5.2)\,dt
+=\int_{z_\alpha}^{z_\xi}\left\{\dfrac1{\widetilde v[x_2(z)]}-\dfrac1{\widetilde v[x_1(z)]}\right\}\,dz<0.
+\]
+从而不等式 (5.3) 得证。
+\end{proof}
+
+\begin{lemma}{ }{ch4-lemma-5-2}
+假设方程组 (5.2) 满足引理 5.1 中的条件，则沿着方程组 (5.2) 的任意位于带形域 $\alpha\leqslant x\leqslant\beta$ 的轨线弧 $l_i$，$i=1,2$，对发散量求积分，恒有
+\begin{equation}
+\int_{l_1}-f(x)\,dt>\int_{l_2}-f(x)\,dt,\tag{5.4}
+\end{equation}
+其中
+\[
+l_i:v=v_i(x),\quad v_2(x)>v_1(x)>0,
+\]
+或者
+\[
+l_i:v=\widetilde v_i(x),\quad \widetilde v_2(x)<\widetilde v_1(x)<0,\quad x\in[\alpha,\beta].\tag{5.5--5.6}
+\]
+\end{lemma}
+
+\begin{proof}
+只证括号外的情形。由方程组 (5.2) 有
+\[
+\dfrac{d(v_2-v_1)}{dx}=-\dfrac{g(x)}{v_1(x)v_2(x)}(v_2-v_1)>0,\qquad x>0,
+\]
+从而由与引理 5.1 相同的变量代换，即得结论；括号内的情形同理可证。
+\end{proof}
+
+考虑 (5.1) 的另一形式的等价方程组
+\begin{equation}
+\dfrac{dx}{dt}=y-F(x),\qquad \dfrac{dy}{dt}=-g(x).\tag{5.7}
+\end{equation}
+下面是丁敬红的两个引理。
+
+\begin{lemma}{ }{ch4-lemma-5-3}
+假设方程组 (5.7) 的轨线弧 $l:y=y(x)$ 在 $[\alpha,\beta]$ 上有定义，则在 $l$ 上的发散量积分为
+\begin{equation}
+\int_l-f(x)\,dt=\operatorname{sgn}(y(\alpha)-F(\alpha))\left[\ln\left|\dfrac{F(\beta)-y(\alpha)}{F(\alpha)-y(\alpha)}\right|+\int_\alpha^\beta\dfrac{(F(\beta)-F(x))g(x)\,dx}{(F(\beta)-y(x))(F(x)-y(x))^2}\right].\tag{5.8}
+\end{equation}
+\end{lemma}
+
+\begin{lemma}{ }{ch4-lemma-5-4}
+设方程组 (5.7) 有轨线弧 $l_i:y_i(x)$，$i=1,2$，$x\in[\alpha,\beta]$，$\alpha\geqslant0$，且满足条件：
+\[
+y_2(x)-F(x)>y_1(x)-F(x)>0
+\]
+或
+\[
+y_2(x)-F(x)<y_1(x)-F(x)<0,\qquad x\in[\alpha,\beta],
+\]
+以及当 $x\in[\alpha,\beta]$ 时 $F(\beta)-F(x)\leqslant0$（$\geqslant0$），但非 $0$。则
+\begin{equation}
+\int_{l_2}f(x)\,dt-\int_{l_1}f(x)\,dt>0\quad(<0).\tag{5.9}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+只证括号外的情形。由引理 5.3 得
+\[
+\operatorname{sgn}(y(\alpha)-F(\alpha))\left\{\int_{l_2}f(x)\,dt-\int_{l_1}f(x)\,dt\right\}
+\]
+等于由两条轨线代入 (5.8) 所得对数项与积分项之差。由 $y_2(x)-F(x)>y_1(x)-F(x)>0$ 以及 $F(\alpha)>F(\beta)$，可直接验证该差为正，故得 (5.9)。另一情形同理。
+\end{proof}
+
+引理 5.1 和引理 5.2 分别是引理 5.3 的推论和引理 5.4 在 $F(\alpha)=F(\beta)$ 时的特例，但由于引理 5.1 和引理 5.2 较为直观，在此一并介绍给读者。引理 4.1 就是引理 5.3 的推论，只是形式略有不同，在曹克斌的工作[50]中已有过与引理 5.3 类似的思想。
+
+引理 4.5 对方程组 (5.7) 可叙述成如下形式。考虑方程组 (5.7)，若它满足条件：
+\[
+\dfrac{F(x)f(x)}{g(x)}\text{ 不减},\qquad x\in[\alpha,\beta],\tag{5.15}
+\]
+\[
+f(x)\geqslant0\quad(\leqslant0),\qquad x\in[\alpha,\beta],
+\]
+则沿着方程组 (5.7) 的任意过点 $(0,\beta_i^*)$ 并和直线 $x=\alpha$ 两次相交的轨线弧 $l_i$，$i=1,2$，其中 $\alpha<\beta_1^*<\beta_2^*\leqslant\beta$，恒有
+\begin{equation}
+\int_{l_1}f(x)\,dt<(>)\int_{l_2}f(x)\,dt.\tag{5.16}
+\end{equation}
+当 $g(x)=x$ 时，从 $f(x)$ 不减，$x\in[\alpha,\beta]$，可推出 $F(x)f(x)/x$ 不减，因而这时引理 4.5 自然成立。
+
+上述诸引理虽限于右半平面而论，但并不失一般性。事实上，只需作变换
+\[
+T:\mathbb R^2\longrightarrow\mathbb R^2,\qquad T(x,v)=(-x,-v),
+\]
+即可在左半平面上得相应的结论。
+
+引理 5.1、5.2、5.3、5.4 及引理 4.5 是估算发散量积分常用的公式。
+
+\begin{theorem}{ }{ch4-theorem-5-1}
+考虑微分方程 (5.1)，或其等价方程组 (5.2)，其中 $g(x)=x$。假设它满足下列条件：
+\begin{enumerate}
+  \item $f(x)\in C^0(-d,d)$，对足够大的 $d>0$，$F(-x)=-F(x)$，其中 $F(x)=\int_0^x f(x)\,dx$；
+  \item 存在 $0<\beta_1<\beta_2<d$，$F(\beta_1)=F(\beta_2)=0$；当 $0<x<\beta_1$ 时 $F(x)\geqslant0$；在 $x=0$ 的任何邻域内 $F(x)\ne0$；当 $\beta_1<x<\beta_2$ 时 $F(x)\leqslant0$；存在 $\beta_1<\alpha_2<\beta_2$，$f(\alpha_2)=0$，当 $\beta_1<x<\alpha_2$ 时 $f(x)\leqslant0$；
+  \item 当 $x$ 增加且 $x\in[\alpha_2,d]$ 时，$f(x)$ 不下降。
+\end{enumerate}
+则方程组 (5.2) 按重次计算至多有两个极限环（即若存在，或者是两个单重环，或者是一个二重环）。
+\end{theorem}
+
+\begin{proof}
+考虑 (5.1) 的等价方程组 (5.7)。由 \S1 的引理 1.1，在 $(x,y)$ 平面上，在区域 $|x|\leqslant d$ 中，方程组 (5.7) 的初值问题的解存在唯一。由定理 4.1，在区域 $|x|\leqslant\alpha_2$ 中，方程组 (5.7) 至多有一个极限环；如存在，它是不稳定的。因而在 $(x,y)$ 平面上，在区域 $|x|\leqslant d$ 中方程组 (5.2) 的初值问题的解也存在唯一。在区域 $|x|\leqslant\alpha_2$ 中方程组 (5.2) 也至多有一个极限环；如存在，它是不稳定的。
+
+下面要证，假设方程组 (5.2) 有两个极限环 $\overline L\subset L$，都与直线 $x=\pm\alpha_2$ 相交，必有
+\begin{equation}
+\oint_{\overline L}-f(x)\,dt>\oint_L-f(x)\,dt.\tag{5.17}
+\end{equation}
+由对称性，为此只需证图 4.25 所示的右半平面上的积分比较；图中曲线与字母的意义均如原图。
+
+\chFourFigurePlaceholder{4.25}
+
+由 $f(x)\leqslant0$，当 $\beta_1\leqslant x\leqslant\alpha_2$，故
+\[
+\int_{\overset{\frown}{B_2C_2}}f(x)\,dt-\int_{\overset{\frown}{B_1C_1}}f(x)\,dt
+=\int_{\beta_1}^{\alpha_2}\left[\dfrac{f(x)}{v_2(x)}-\dfrac{f(x)}{v_1(x)}\right]dx\geqslant0.
+\tag{5.19}
+\]
+同理可证余下各弧段的比较，结合引理 4.5 即得
+\[
+\int_{\overset{\frown}{D_2E_2}}f(x)\,dt\geqslant\int_{\overset{\frown}{D_1E_1}}f(x)\,dt,\quad
+\int_{\overset{\frown}{C_2D_2}}f(x)\,dt>\int_{\overset{\frown}{C_1D_1}}f(x)\,dt,
+\]
+\[
+\int_{\overset{\frown}{A_2B_2}}f(x)\,dt>\int_{\overset{\frown}{A_1B_1}}f(x)\,dt,\quad
+\int_{\overset{\frown}{E_2F_2}}f(x)\,dt>\int_{\overset{\frown}{E_1F_1}}f(x)\,dt.
+\]
+由不等式 (5.19)--(5.23) 即得 (5.18)，从而得到 (5.17)。
+\end{proof}
+
+% 原书第308--311页
+为完成定理 5.1 的证明，分两种情形讨论。若在 $|x|\leqslant\alpha_2$ 内存在唯一极限环 $L_1$，它是不稳定的。最靠近 $L_1$ 的外侧极限环 $L_2\supset L_1$ 必是内侧稳定，但 $L_2$ 不可能是外侧不稳定；否则可考虑方程组
+\[
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-x-f_1(x)v,\tag{5.2}_a
+\]
+其中 $f_1(x)=f(x)+ar(x)$，当 $|x|<\alpha_2$ 时 $r(x)=0$，当 $|x|\geqslant\alpha_2$ 时 $r(x)=(|x|-\alpha_2)^2$，而 $0<a\ll1$。方程组 $(5.2)_a$ 构成广义旋转向量场；$a=0$ 时即为 (5.2)。当 $0<a\ll1$ 时，$L_2$ 分解成至少两个极限环，其中内环至少单侧稳定，外环至少单侧不稳定。由定理 2.2 应有
+\[
+\oint_{L_2^{(1)}}f_1(x)\,dt\geqslant0,\qquad
+\oint_{L_2^{(2)}}f_1(x)\,dt\leqslant0.
+\]
+而方程组 $(5.2)_a$ 仍满足定理 5.1 的条件，这将与不等式 (5.17) 矛盾。因此 $L_2$ 只能是双侧稳定。再由 (5.17)，$L_2$ 之外无极限环。
+
+若在 $|x|\leqslant\alpha_2$ 内无极限环，奇点 $O$ 是稳定的。这时最靠近 $O$ 的极限环 $L_1$ 必是内侧不稳定；由 (5.17)，$L_1$ 外侧不是不稳定就是稳定（不可能是复环）。若 $L_1$ 外侧不稳定，可证其外还存在一个稳定极限环；若 $L_1$ 外侧稳定，其外不可能再有极限环。假设尚有 $L_2\supset L_1$，取最靠近 $L_1$ 的此环，则 $L_2$ 为内侧不稳定，由稳定性判据应有
+\[
+\oint_{L_2}f(x)\,dt\leqslant0.
+\]
+但不等式 (5.17) 给出
+\[
+\oint_{L_2}f(x)\,dt>\oint_{L_1}f(x)\,dt=0,
+\]
+矛盾。故每个极限环的个数按其重次计算，方程组 (5.2) 的极限环如存在，则其个数恰好是二，定理证毕。
+
+令
+\[
+m_1=\max_{0\leqslant x\leqslant\beta_1}F(x),\qquad
+m_2=\max_{\beta_1\leqslant x\leqslant\alpha_2}|F(x)|.
+\]
+用 Lienard 作图法可估算出：当 $m_2>m_1$ 且
+\[
+\alpha_2<\dfrac{(m_2-m_1)(m_2+3m_1)}{4m_1},
+\]
+方程组 (5.2) 确实有两个极限环。
+
+\begin{proposition}{ }{ch4-proposition-5-1}
+若 $f(x)\in C^0(-d,d)$，$f(-x)=f(x)$；$f(x)$ 只有两个正零点 $\alpha_2>\alpha_1>0$，即 $f(\alpha_2)=f(\alpha_1)=0$；当 $x\geqslant\alpha_2$ 时 $f(x)$ 单调，则方程组 (5.2) 至多有两个极限环。
+\end{proposition}
+
+Г. С. Петров在[43]中要求 $f(x)\in C^1(-d,d)$，当 $x\geqslant\alpha_2$ 时 $\left(\dfrac{f(x)}x\right)'\geqslant0$。这些要求可减弱；[43]中的 $f(0)>0$ 和 $f'(\alpha_2)\ne0$ 是多余的。事实上由定理 5.1 的条件可推得 $f(0)\geqslant0$；并且 $f(x)$ 可以有无穷多个正零点在区间 $(0,\beta_1)$ 上。
+
+\begin{theorem}{ }{ch4-theorem-5-2}
+考虑方程 (5.1) 或其等价方程组 (5.7)。假设除满足定理 5.1 中的条件 (1) 和 (2) 外，另还满足：
+\begin{enumerate}
+  \item $g(x)$ 在 $(-d,d)$ 上满足 Lipschitz 条件；$xg(x)>0$，$x\ne0$；$g(-x)=-g(x)$；$G(-\infty)=G(\infty)=\infty$，其中 $G(x)=\int_0^xg(x)\,dx$；
+  \item 当 $x$ 增加、$x\in[\alpha_2,d]$ 时，$\dfrac{f(x)\sqrt{2G(x)}\operatorname{sgn}x}{g(x)}$ 不下降。
+\end{enumerate}
+则方程组 (5.7) 至多有两个极限环（若存在，则或者是两个单重环，或者是一个二重环）。
+\end{theorem}
+
+\begin{proof}
+作变换 $u=\sqrt{2G(x)}\operatorname{sgn}x$，方程组 (5.7) 化为
+\[
+\dfrac{dy}{dt}=-u,\qquad \dfrac{du}{dt}=y-F(x(u)),
+\]
+其中 $x=x(u)$ 是 $u=\sqrt{2G(x)}\operatorname{sgn}x$ 的反函数。由 $g(-x)=-g(x)$，有
+\[
+F(x(-u))=F(-x(u))=-F(x(u)),\qquad
+F'_u=\dfrac{f(x(u))u}{g(x(u))}.
+\]
+故问题化为定理 5.1 的情形。
+\end{proof}
+
+推论：若将定理 5.2 中的条件 (4) 换成当 $x$ 增加、$x\in[\alpha_2,d]$ 时 $f(x)/g(x)$ 不下降，则定理 5.2 自然成立。
+
+下面用 \S4 中 G.~F.~Duff 和 N.~Levinson 的方法构造例子，以说明定理 5.1 中的条件 (2)、(3) 为保极限环的唯一性，一般不能无条件去掉。考虑
+\begin{equation}
+\ddot{x}+\varepsilon f(x)\dot{x}+x=0,\tag{5.24}
+\end{equation}
+或其等价方程组
+\begin{equation}
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-x-\varepsilon f(x)v,\tag{5.25}
+\end{equation}
+其中 $\varepsilon$ 是小参数，$F(x)=\int_0^xf(x)\,dx$。
+
+\begin{example}{ }{ch4-example-5-1}
+设方程组 (5.25) 中
+\[
+f(x)=\dfrac17x^8-\dfrac3{10}x^6+\dfrac{307}{1600}x^4-\dfrac{579}{16000}x^2+\dfrac{11}{16000}.
+\]
+令 $I_{2k}=\int_0^{2\pi}\cos^{2k}\theta\sin^2\theta\,d\theta$，则
+\[
+I_0=\pi,\quad I_2=\dfrac14\pi,\quad I_4=\dfrac18\pi,\quad I_6=\dfrac5{64}\pi,\quad I_8=\dfrac7{128}\pi.
+\]
+从而
+\[
+\overline F(\rho)=\int_0^{2\pi}\rho f(\rho\cos\theta)\sin^2\theta\,d\theta
+=\dfrac\pi{128}\rho\left(\rho^2-\dfrac1{10}\right)\left(\rho^2-\dfrac8{10}\right)(\rho^2-1)\left(\rho^2-\dfrac{11}{10}\right).
+\]
+故当 $\varepsilon$ 充分小时，方程组 (5.25) 至少有四条闭轨线，分别落在圆 $\rho=\sqrt{1/10}$、$\sqrt{8/10}$、$1$、$\sqrt{11/10}$ 的近旁。
+\end{example}
+
+\chFourFigurePlaceholder{4.30}
+
+\begin{example}{ }{ch4-example-5-2}
+设方程组 (5.25) 中
+\[
+f(x)=\dfrac17x^8-\dfrac35x^6+\dfrac{1199}{1600}x^4-\dfrac{249}{800}x^2+\dfrac{297}{12800}.
+\]
+直接计算得
+\[
+\overline F(\rho)=\dfrac\pi{128}\rho
+\left(\rho^2-\dfrac9{10}\right)(\rho^2-1)
+\left(\rho^2-\dfrac{11}{10}\right)(\rho^2-3).
+\]
+故当 $\varepsilon$ 充分小时，(5.25) 至少有四条闭轨线，分别在
+\[
+\rho=\sqrt{\dfrac9{10}},\quad 1,\quad
+\sqrt{\dfrac{11}{10}},\quad\sqrt3
+\]
+的近旁。另一方面，
+\[
+F(x)=\dfrac1{63}x^9-\dfrac3{35}x^7+\dfrac{1199}{8000}x^5
+-\dfrac{83}{800}x^3+\dfrac{297}{12800}x.
+\]
+由 Sturm 定理可知 $F(x)$ 在正半轴上只有两个零点。因此，即使 $F(x)$ 是奇函数，若去掉定理 5.1 中关于 $\beta_1<x<\alpha_2$ 以及 $x>\alpha_2$ 的单调性条件，也不能保证极限环个数至多为二。
+\end{example}
+
+\chFourFigurePlaceholder{4.31}
+
+\begin{example}{ }{ch4-example-5-3}
+令
+\[
+f(x)=\dfrac15x^6-\dfrac38x^4+\dfrac{299}{1600}x^2+\dfrac{99}{6400}.
+\]
+则
+\[
+\overline F(\rho)=\dfrac\pi{64}\rho(\rho^2-1)
+\left(\rho^2-\dfrac9{10}\right)
+\left(\rho^2-\dfrac{11}{10}\right).
+\]
+所以当 $\varepsilon$ 充分小时，方程组 (5.25) 至少有三条闭轨线，分别在
+\[
+\rho=1,\qquad\rho=\sqrt{\dfrac9{10}},\qquad
+\rho=\sqrt{\dfrac{11}{10}}
+\]
+的近旁。又
+\[
+F(a)=\dfrac a5\left(\dfrac17a^6-\dfrac38a^4+
+\dfrac{299}{960}a^2+\dfrac{99}{1280}\right).
+\]
+令 $b=a^2$，对括号内的三次多项式应用 Sturm 定理，知 $F(a)$ 在正半轴上仅有一个零点。这表明闭轨线的个数可以多于 $F(x)$ 的正零点个数。
+\end{example}
+
+\begin{example}{ }{ch4-example-5-4}
+设
+\[
+f(x)=7x^6-15x^4+\dfrac{299}{100}x^2-\dfrac{99}{100}.
+\]
+则
+\[
+F(x)=x^7-3x^5+\dfrac{299}{100}x^3-\dfrac{99}{100}x
+=x(x^2-1)\left(x^2-\dfrac9{10}\right)
+\left(x^2-\dfrac{11}{10}\right).
+\]
+且
+\[
+\overline F(\rho)=\dfrac{35\pi\rho}{64}
+\left\{\rho^6-\dfrac{24}{7}\rho^4
++\dfrac{12\cdot299}{5^3\cdot7}\rho^2
+-\dfrac{16\cdot99}{5^3\cdot7}\right\}.
+\]
+由 Sturm 定理，\(\overline F(\rho)\) 在 \(\rho>0\) 时只有一个零点；
+但由 \(F(x)\) 的零点分布仍可得到相应的闭轨存在结论。
+\end{example}
+
+\begin{example}{ }{ch4-example-5-5}
+在例 3 的函数上加上一次项，令
+\[
+f_1(x)=f(x)+Ax
+=\dfrac15x^6-\dfrac38x^4+\dfrac{299}{1600}x^2
++\dfrac{99}{6400}+Ax,
+\]
+其中 $A>0$ 充分大。此时
+\[
+F_1(x)=F(x)+\dfrac A2x^2,\qquad
+\overline F_1(\rho)=\overline F(\rho)
+=\dfrac\pi{64}\rho(\rho^2-1)
+\left(\rho^2-\dfrac9{10}\right)
+\left(\rho^2-\dfrac{11}{10}\right).
+\]
+故 (5.25) 仍至少有三条闭轨线。可是 $f_1'(x)=f'(x)+A$ 只变号一次，并且在足够大的有界区间内 $f_1'(x)>0$。可见当 $F_1(-x)\ne-F_1(x)$ 时，即使附加 $f'(x)$ 只变号一次，也不能保证极限环的唯一性。
+\end{example}
+
+\chFourFigurePlaceholder{4.33}
+
+上述例子说明，Lienard 型方程极限环个数并不只由 $f(x)$ 或 $F(x)$ 的零点、变号次数决定；函数的对称性、曲线 $F(x)$ 的形状以及每次变号后能量积累的大小都起作用。特别地，在 $f$ 不是偶函数时，$F(x)$ 与 $F(-x)$ 在右半轴上的相对位置同样影响闭轨的数目。
+
+\chFourFigurePlaceholder{4.34}
+
+\iffalse
+极限环的唯二性，是指证明系统至多有两条极限环，或在给定条件下恰有两条极限环。
+此时后继函数可有两个零点；参数变化时，常出现二重极限环分裂为两条单重极限环的情形。
+
+\begin{theorem}{}{two-limit-cycles}
+若横截线上的后继函数在所考察区间内至多有两个零点，且其导数的符号变化不超过
+两次，则相应环域内的极限环至多有两条。
+\end{theorem}
+
+\chFourFigurePlaceholder{4.5}
+
+\fi
+
+\section{二次系统极限环的个数}
+
+\iffalse
+二次系统的一般形式为
+\[
+  \dot{x}=P_2(x,y),\qquad \dot{y}=Q_2(x,y), \tag{6.1}
+\]
+其中 $P_2,Q_2$ 为不高于二次的多项式。Hilbert 第十六问题的一部分正是问：
+二次系统的极限环个数是否有统一上界。通过仿射变换、时间变换和参数规范化，
+可将若干二次系统化为便于研究的标准形式。
+
+\begin{theorem}{}{quadratic-cycle-bound-method}
+若二次系统的参数族构成严格旋转向量场，且其有限平面和无穷远处的奇点结构在
+参数区间内不改变，则极限环个数只能在出现多重极限环时改变。
+\end{theorem}
+
+\chFourFigurePlaceholder{4.6}
+\fi
+
+设二次系统为
+\begin{equation}
+\dfrac{dx}{dt}=X(x,y),\qquad \dfrac{dy}{dt}=Y(x,y),\tag{6.1}
+\end{equation}
+其中 \(X,Y\) 是实的二次多项式。二次系统的极限环个数是否有统一上界，至今仍是一个没有解决的问题。研究二次系统极限环个数通常有两种途径：其一是从中心或细焦点出发作扰动；其二是经适当变换将系统化为 Liénard 型系统，再利用前节的唯一性定理。
+
+\begin{theorem}{}{ch4-thm-6-1}
+记 \(N(2)\) 为二次系统极限环个数的最小上界，则
+\[
+N(2)\geqslant4.
+\]
+\end{theorem}
+
+1979 年施松龄以及陈尔科、王明峰分别构造了具有四个极限环的二次系统。例如
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=-y-10x^2+5xy+y^2,\\
+\dfrac{dy}{dt}=x+x^2-25xy.
+\end{cases}\tag{6.2}
+\end{equation}
+作扰动
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=\lambda x-y-10x^2+(5+\delta)xy+y^2,\\
+\dfrac{dy}{dt}=x+x^2+(-25+8\varepsilon-9\delta)xy.
+\end{cases}\tag{6.3}
+\end{equation}
+当
+\[
+0<-\lambda\ll-\varepsilon\ll-\delta\ll1
+\]
+时，原点附近有三个极限环，另一奇点附近至少有一个极限环，分布为 \((1,3)\)。
+
+另一例为
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=-y-3x^2+xy+y^2,\\
+\dfrac{dy}{dt}=x\left(1+\dfrac29x-3y\right).
+\end{cases}\tag{6.4}
+\end{equation}
+其扰动系统
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=-y-\delta_2x-3x^2+(1-\delta_1)xy+y^2,\\
+\dfrac{dy}{dt}=x\left(1+\dfrac29x-3y\right)
+\end{cases}\tag{6.5}
+\end{equation}
+在 \(0<\delta_2\ll\delta_1\ll1\) 时也有分布 \((1,3)\) 的四个极限环。
+
+\begin{theorem}{}{ch4-thm-6-2}
+考虑系统
+\[
+\begin{cases}
+\dfrac{dx}{dt}=-y+lx^2+\dfrac{(b+2l)a}{l+n}xy+ny^2,\\
+\dfrac{dy}{dt}=x+ax^2+bxy.
+\end{cases}
+\]
+若它在无穷远处只有一个奇点，且
+\[
+3n(l+2n)\leqslant n(n+b)<0,\qquad a\ne0,
+\]
+则可取适当的 \(\varepsilon,\delta,\lambda\)，使
+\[
+0<-\lambda\ll-\delta\ll-\varepsilon\ll1
+\]
+时，所得扰动系统有四个极限环，分布为 \((1,3)\)。
+\end{theorem}
+
+下面给出若干可用 Liénard 方法估计的情形。
+\begin{theorem}{}{ch4-thm-6-3}
+二次系统
+\[
+\dfrac{dx}{dt}=-y+\delta x+lx^2+mxy+ny^2,\qquad
+\dfrac{dy}{dt}=x
+\]
+至多有一个极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-6-4}
+系统
+\[
+\dfrac{dx}{dt}=-y+\delta x+lx^2+mxy+ny^2,\qquad
+\dfrac{dy}{dt}=x(1+by)
+\]
+在 \(a=0\) 的第三类情形中至多有一个极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-6-5}
+原点对称的二次系统至多有两个极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-6-6}
+系统
+\[
+\dfrac{dx}{dt}=-y+lx^2+5axy,\qquad
+\dfrac{dy}{dt}=x+ax^2+3lxy
+\]
+的原点是三阶细焦点时，原点外不存在极限环。
+\end{theorem}
+
+\begin{lemma}{}{ch4-lem-6-1}
+当 \(\delta=0\) 时，系统
+\[
+\dfrac{dx}{dt}=-y+lx^2+mxy+ny^2,\qquad \dfrac{dy}{dt}=x
+\]
+在 \(m(l+n)=0\) 时为中心；在 \(m(l+n)\ne0\) 时没有闭轨线。
+\end{lemma}
+
+对第三个定理，令 \(l=0\) 或 \(n=0\) 可直接将系统化为 Liénard 系统，分别得到至多一条闭轨线的结论。一般情形经过参数的分类以及
+\[
+\dfrac{dx}{dt}=v,\qquad
+\dfrac{dv}{dt}=v^2(1-nv)e^{-2lv}
+\]
+型的变换后，满足本章定理 4.7 的条件，因而仍至多有一条闭轨线。
+
+二次系统经过仿射变换可写成
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=a+a_{20}x^2+a_{11}xy+a_{02}y^2,\\
+\dfrac{dy}{dt}=b+b_{20}x^2+b_{11}xy+b_{02}y^2.
+\end{cases}\tag{6.6}
+\end{equation}
+当 \(a^2+b^2=0\) 时，右端齐次，因而无闭轨线；当 \(a^2+b^2\ne0\) 时，可将一对对称奇点移至 \((\pm1,0)\)，并化为
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=1-x^2+\alpha xy,\\
+\dfrac{dy}{dt}=l-lx^2+mxy+ny^2.
+\end{cases}\tag{6.7}
+\end{equation}
+该系统关于 \(x\) 轴对称，其闭轨线数在全平面中不超过二。
+
+最后考虑具有二阶细焦点的系统
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=-y+lx^2+mxy,\\
+\dfrac{dy}{dt}=x(1+ax),
+\end{cases}\qquad a\ne0.\tag{6.8}
+\end{equation}
+当 \(l=0\) 时原点为中心；当 \(l\ne0\) 时，经相似变换以及 \(\Phi\) 变换可化为 Liénard 系统。比较相应两曲线的交点，应用定理 4.11，得到原点外至多有一条闭轨线。
+
+更一般地，若
+\begin{equation}
+\begin{cases}
+\dfrac{dx}{dt}=-y+ax^2+bxy,\\
+\dfrac{dy}{dt}=x+\delta y+lx^2+mxy+ny^2,
+\end{cases}\tag{6.9}
+\end{equation}
+则适当取
+\[
+\eta=A(x)\dot{x}+B(x),\qquad A'(x)=nA(x),\quad B'(x)=f(x)A(x),
+\]
+并作时间变换，可将其写成
+\[
+\dfrac{d\eta}{d\tau}=-A^2(x)g(x),\qquad
+\dfrac{dx}{d\tau}=\eta-B(x),
+\]
+即为 Liénard 系统。这一变换给出了前述二次系统唯一性结论的共同证明方法。
+
+\section{极限环的唯 $n$ 性}
+
+关于极限环的唯 $n$ 性问题，通常包括下列四个方面：给出极限环个数上界的下界；构造恰有或至少有 $n$ 个极限环的方程；给出至少有 $n$ 个极限环的充分条件；以及给出恰有 $n$ 个极限环的充分条件。
+
+设
+\[
+\dfrac{dx}{dt}=P_n(x,y),\qquad \dfrac{dy}{dt}=Q_n(x,y),
+\]
+其中 $P_n,Q_n$ 是次数不超过 $n$ 的多项式。对于这种系统，极限环数的统一上界问题就是 Hilbert 第十六问题的一部分。
+
+\begin{theorem}{Diliberto}{ch4-thm-7-1}
+次数为 $n$ 的多项式系统中，强稳定或强不稳定极限环的总数小于
+\[
+\dfrac12(n-2)(n-3)+1.
+\]
+若这些极限环围绕同一个奇点，则其总数小于
+\[
+\left[\dfrac{n-1}{2}\right].
+\]
+\end{theorem}
+
+这里强稳定（强不稳定）是指极限环的特征指数严格小于（大于）零。证明中对各极限环内部的散度积分应用代数曲线的交点估计，得到上述不等式。
+
+\chFourFigurePlaceholder{4.36}
+
+\begin{example}{ }{ch4-example-7-1}
+考虑
+\[
+\begin{cases}
+\dfrac{dx}{dt}=y-x\displaystyle\prod_{i=1}^{k}(x^2+y^2-i^2),\\
+\dfrac{dy}{dt}=-x-y\displaystyle\prod_{i=1}^{k}(x^2+y^2-i^2).
+\end{cases}
+\]
+在极坐标下
+\[
+\dfrac{d\rho}{d\theta}=-\rho\prod_{i=1}^{k}(\rho^2-i^2).
+\]
+故 $\rho=i$，$i=1,\ldots,k$，给出 $k$ 个强极限环。系统次数为 $2k+1$，因而这一例子达到围绕同一奇点的上界。
+\end{example}
+
+现考虑 Liénard 系统
+\[
+\begin{cases}
+\dfrac{dx}{dt}=y-F(x),\\
+\dfrac{dy}{dt}=-g(x),
+\end{cases}\qquad F(0)=0,\quad xg(x)>0\ (x\ne0).
+\]
+以下定理给出一系列比较闭轨线的准则。
+
+\begin{theorem}{}{ch4-thm-7-2}
+设 $F,g$ 连续，$xg(x)>0$。若存在 $a>0$，使 $F(0)=F(a)=0$，在 $0<x<a$ 有 $F(x)<0$，且 $F(x)$ 在 $x>a$ 单调增加并趋于 $+\infty$，则穿过直线 $x=a$ 的闭轨线至多一条。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-3}
+在定理 \ref{thm:ch4-thm-7-2} 的条件中，若单调性取反并相应改变 $F$ 的符号，则穿过所给竖直线的闭轨线仍至多一条。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-4}
+若 $F$ 在相继零点之间交替变号，并且每一段上满足定理 \ref{thm:ch4-thm-7-2} 型的单调比较条件，则各相邻零点确定的环域中至多各有一条极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-5}
+若 $F(x)$ 的正零点为 $a_1<a_2<\cdots<a_n$，且由这些零点给出的能量差在相邻区间中交替变号，则系统至少有 $n$ 条极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-6}
+若定理 \ref{thm:ch4-thm-7-5} 中的比较严格，且每个相应环域中的闭轨线至多一条，则系统恰有 $n$ 条极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-7}
+在上述 Liénard 系统中，若 $F$ 是奇函数，并且在正半轴上满足逐段单调的变号条件，则所有围绕原点的极限环都可按这些变号区间逐一计数。
+\end{theorem}
+
+\begin{example}{ }{ch4-example-7-2}
+方程组
+\[
+\dfrac{dx}{dt}=y+x^2\sin x,\qquad \dfrac{dy}{dt}=-x
+\]
+在条带
+\[
+|x|\leqslant n\pi+\dfrac\pi2
+\]
+内恰有 $n$ 个极限环。
+\end{example}
+
+\begin{example}{ }{ch4-example-7-3}
+对
+\[
+\dfrac{dx}{dt}=y-F(x),\qquad \dfrac{dy}{dt}=-x,
+\]
+若 $F$ 为奇函数，且在正半轴上有依次排列的临界点和零点，使每段的函数值满足交替的比较不等式，则可构造出恰有 $n$ 个极限环的系统。
+\end{example}
+
+\chFourFigurePlaceholder{4.37}
+\chFourFigurePlaceholder{4.38}
+
+进一步考虑广义 Liénard 系统
+\[
+\begin{cases}
+\dfrac{dx}{dt}=\varphi(y)-F(x),\\
+\dfrac{dy}{dt}=-g(x).
+\end{cases}\tag{7.6}
+\]
+令
+\[
+u=\sqrt{2G(x)}\operatorname{sgn}x,\qquad
+G(x)=\int_0^x g(s)\,ds,
+\]
+可将其化为具有相同闭轨线数目的等价系统。当 $\varphi(y)=y$ 时即为通常的 Liénard 系统。
+
+\begin{definition}{ }{ch4-def-7-1}
+设两条闭曲线在相同横截线上的交点按同一方向交替包含。若这一包含关系重复 $n$ 次，称这两条曲线为 $n$ 重互相包含。
+\end{definition}
+
+\chFourFigurePlaceholder{4.39}
+
+\begin{lemma}{}{ch4-lem-7-1}
+设 $F_1,F_2$ 对应于两个广义 Liénard 系统。若它们在正半轴上的图形有一次严格交叉，则相应解曲线在共同横截线上的交点次序也严格改变。
+\end{lemma}
+
+\begin{theorem}{}{ch4-thm-7-8}
+在系统 (7.6) 的基本条件下，若 $F$ 在正半轴上的相继零点间交替满足所需的单调与面积比较条件，则系统至少有 $n$ 条闭轨线。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-9}
+若两个等价系统的函数 $F_1,F_2$ 是 $n$ 重互相包含的，则它们之间的带状区域内至少有 $n$ 条闭轨线。
+\end{theorem}
+
+\chFourFigurePlaceholder{4.40}
+
+\subsection*{具周期阻尼的一类 Liénard 方程}
+
+考虑
+\[
+x''+f(x)x'+x=0,
+\]
+或等价的
+\[
+\dfrac{dx}{dt}=v,\qquad \dfrac{dv}{dt}=-x-f(x)v.
+\]
+
+\begin{theorem}{}{ch4-thm-7-10}
+设 $f\in C^0$，存在 $l>0$，使 $f(x)\leqslant0$ 于 $[0,l]$，并且在内点不恒为零；又
+\[
+f(2l\pm x)=-f(x).
+\]
+若 $f$ 在 $[0,l]$ 单调不减，则在条带
+\[
+|x|\leqslant2(n+1)l
+\]
+内恰有 $n$ 条极限环；它们的稳定性依次交替。若只保留前述周期与符号条件，则至少有 $n$ 条极限环。
+\end{theorem}
+
+\chFourFigurePlaceholder{4.41}
+
+该定理可应用于
+\[
+x''+\mu\sin x\,x'+x=0.
+\]
+当 $\mu\ne0$ 时，它在 $|x|\leqslant(n+1)\pi$ 内恰有 $n$ 个极限环。
+
+\begin{theorem}{}{ch4-thm-7-11}
+在定理 \ref{thm:ch4-thm-7-9} 的条件下，若 $g(x)=x$，$\varphi(y)=y$，$F$ 为奇函数，且正半轴上相继子区间满足相反的严格单调条件，则系统恰有 $n$ 个极限环。
+\end{theorem}
+
+\begin{theorem}{}{ch4-thm-7-12}
+设 $g(x)=x$，$\varphi(y)=y$，$F$ 为奇函数，令 $f=F'$。若 $f$ 在正半轴上只有单零点 $\alpha_1,\ldots,\alpha_n$，并在由这些零点确定的区间上满足相应的单调条件，则系统至多有 $n$ 个极限环。与定理 \ref{thm:ch4-thm-7-8} 及定理 \ref{thm:ch4-thm-7-9} 合用，即得唯 $n$ 性结论。
+\end{theorem}
+
+最后，若
+\[
+F(x)=h(x)\sin x,qquad h(-x)=h(x),
+\]
+且 $h$ 满足原书给出的符号、单调性以及
+\[
+\delta(x)=h^2(x)-h(x)h''(x)+2(h'(x))^2>0\qquad(x>0),
+\]
+则系统在 $|x|\leqslant(n+1)\pi$ 内恰有 $n$ 个极限环。函数
+\[
+\mu|x|^\alpha\sin x,\qquad e^{\alpha|x|}\sin x,
+\qquad \ln(1+|x|)\sin x
+\]
+均给出这类例子。
+
+\section*{习题和参考文献}
+
+\subsection*{习题}
+\begin{enumerate}
+\item 设 $F_1,F_2\in C^0(x\geqslant0)\cap C^1(x>0)$。在原书所给的 $F_2\geqslant F_1$ 及初值解比较条件下，证明相应系统不存在闭轨线。
+\item 对方程 $x''+f(x)x'+x=0$，其中
+\[
+F(x)=\begin{cases}2x,&x\geqslant0,\\-\dfrac52x,&-1\leqslant x\leqslant0,\\\dfrac52,&x\leqslant-1,\end{cases}
+\]
+讨论相图的全局结构，并与第 1 节定理 1.3 比较。
+\item 设 $-a\sqrt{x}<F_1(x)\leqslant F_2(x)<a\sqrt{x}$，证明原书所述中心结论，并说明去掉任一严格不等式后结论可不成立。
+\item 证明习题 2 中存在 $x_p<0$，使相应负半轨的极限性质如原书所述。
+\item 设平面曲线 $F(x)=F(u)$、$G(x)=G(u)$ 在 $u<0,x>0$ 内不相交，证明相应系统无闭轨线。
+\item 在 $0<x<\Delta$ 与 $x>\Delta$ 上分别有 $F_1<F_2$ 与 $F_1>F_2$。证明原书所述两条积分曲线与 $x=\Delta$ 的交性及唯一交点性。
+\item 证明 Brusselator 方程
+\[
+\dfrac{dx}{dt}=A-(1+B)x+x^2y,\qquad \dfrac{dy}{dt}=Bx-x^2y
+\]
+在 $A>0,B>0,B>1+A^2$ 时第一象限内有稳定极限环。
+\item 证明 $x''+\rho(x^2-2)x'+x=0$ 在 $0<\rho<1$ 时有稳定极限环，并讨论 $\rho\geqslant1$ 的情形。
+\item 对第 1 节方程 $f(x)=4x^3-1$、$g(x)=x\ (x\geqslant0)$、$g(x)=\alpha x^3\ (x<0)$，按原书提示证明存在极限环。
+\item 对原书给出的分段函数 $F(x)$ 与 $g(x)=3x^2\operatorname{sgn}x$，利用第 1 节定理 1.5 证明极限环存在。
+\item 证明第 1 节引理 1.9 的结论。
+\item 证明第 2 节等式 (2.5) 中 $H(s)$ 为正交轨线在 $P(s)$ 处的曲率。
+\item 证明若闭轨线一侧恒有 $\operatorname{div}(X,Y)=0$，则该侧任意小邻域中恒有异于该闭轨线的闭轨线。
+\item 讨论参数连续可微时第 3 节定理 3.2 与定理 3.3 是否等价。
+\item 证明第 3 节定理 3.6 中区域 $D$ 的内、外边界分别为曲线连通的。
+\item 对满足原书 Lipschitz 条件及齐次比较条件的系统，证明至多有一条闭轨线，且若存在必为星形。
+\item 证明广义旋转向量场的系统不存在闭轨线。
+\item 证明在广义旋转向量场中孤立奇点的指数不变。
+\item 证明
+\[
+\dfrac{dx}{dt}=x(a+bx+cy),\qquad \dfrac{dy}{dt}=y(e+fx+gy)
+\]
+在 $ga(f-b)+be(c-g)\ne0$ 时无闭轨。
+\item 证明
+\[
+\dfrac{dx}{dt}=-y+mxy+ny^2,\qquad \dfrac{dy}{dt}=x(1+ax),\quad a\ne0,
+\]
+在 $mn\ne0$ 时无闭轨线。
+\item 证明
+\[
+\dfrac{dx}{dt}=-y+lx^2+ny^2,\qquad \dfrac{dy}{dt}=x(1+ax+by),\quad b\ne0,
+\]
+在 $a(b+2l)\ne0$ 时无闭轨线。
+\item 证明
+\[
+\dfrac{dx}{dt}=y,\qquad \dfrac{dy}{dt}=-ax-by+cx^2+dy^2,\quad b\ne0,
+\]
+无闭轨线。
+\item 证明当
+\[
+f(x)=\dfrac{64}{5\pi}x^6-\dfrac{112}{\pi}x^4+\dfrac{196}{\pi}x^2-\dfrac{36}{\pi},
+\]
+且 $0<\varepsilon\ll1$ 时，方程组 (4.18) 恰有三个极限环。
+\item 证明习题 8 中的方程在 $0<\rho<1$ 时有唯一极限环。
+\item 将习题 7 的方程化为 Liénard 方程，并证明其极限环的唯一性。
+\item 对 Liénard 系统，证明当 $xg(x)>0$ 且 $f(x)/g(x)$ 为常数时，原点为中心。
+\item 说明第 4 节定理 4.6 中 $f(0)<0$ 可按原书方式减弱。
+\item 用第 5 节引理 5.3 的推论减弱第 4 节定理 4.2 的条件，并简化其证明。
+\item 用 $2n+1$ 次多项式实现例 7.2，使其结论仍成立。
+\item 用 Sturm 定理举两个例子，使
+\[
+\dfrac{dx}{dt}=v,\qquad\dfrac{dv}{dt}=-x-\varepsilon f(x)v
+\]
+的闭轨线个数分别大于和小于 $F(x)=\int_0^x f(s)\,ds$ 的正零点个数。
+\item 对原书给出的二次系统，作 $x=1-e^{-\bar x}$ 的变换，证明围绕原点的极限环唯一。
+\item 将原书所给二次系统作 $x=1-e^{-\bar x}$、$y=\bar y$ 的变换，化为 Liénard 方程。
+\item 证明当 $-1<n<0$、$\delta<0$、$l>0$ 且原书所列不等式成立时，相应系统至多有一个围绕原点的极限环。
+\item 利用第 4 节定理 4.7 证明原书给出的含参数 Liénard 系统的两个唯一性结论。
+\item 将
+\[
+\dfrac{dx}{dt}=-y+\delta x+lx^2-xy,\qquad \dfrac{dy}{dt}=x(1+ax+by)
+\]
+化为 Liénard 系统。
+\item 证明
+\[
+\dfrac{dx}{dt}=-y+\delta x-\dfrac12x^2+xy,\qquad
+\dfrac{dy}{dt}=x-\dfrac12x^2,
+\]
+其中 $0<\delta<\dfrac12$，在全平面恰有两个极限环，分布为 $(1,1)$。
+\end{enumerate}
+
+\subsection*{本章参考文献}
+\begin{enumerate}
+\item Hilbert, D., \emph{Mathematische Probleme}, Archiv der Math. u. Phys., 1 (1901), 213--237.
+\item Dulac, H., \emph{Sur les cycles limites}, Bull. Soc. Math. de France, 51 (1923), 45--188.
+\item Diliberto, S. P., \emph{On systems of ordinary differential equations, contribution to the theory of nonlinear oscillations}, I (1950), 1--38.
+\item 史松龄，二次系统 $(E_2)$ 出现至少四个极限环的例子，中国科学，11 (1979)，1051--1056。
+\item 陈兰荪、王明淑，二次系统极限环的相对位置与个数，数学学报，22 (1979)，751--758。
+\item 董金柱，方程组二次系统的奇点指数分布与其极限环线的位置，数学学报，8 (1958)，258--268。
+\item 菲利普波夫，二阶方程周期解存在的充分条件，Mat. Sb., 30 (1952)，171--180。
+\item 黄克诚，微分方程 $\dot x=h(y)-F(x),\ \dot y=-g(x)$ 的极限环存在性，数学学报，23 (1980)，483--490。
+\item Levinson, N. and Smith, O. K., \emph{A General Equation for Relaxation Oscillations}, Duke Math. J., 9 (1942), 382--403.
+\item 黄启昌、史希福，关于 Liénard 方程存在极限环的条件，科学通报，27 (1982)，645--646。
+\item 丁大正，Liénard 方程极限环的存在性，应用数学学报，7 (1984)，166--174。
+\item 周毓荣，非线性振动方程极限环的存在性，应用数学学报，3 (1980)，50--56。
+\item Chen Xiudong, \emph{Properties of characteristic functions and existence of limit cycles of Liénard's equation}, Chin. Ann. of Math., 4B (1983), 207--215.
+\item Sansone, G., \emph{Sopra l'equazione di A. Liénard delle oscillazioni}, Ann. Mat. Pura Appl., 28 (1949), 153--181.
+\item Massera, J. L., \emph{Sur un Théorème de Sansone sur l'equation de Liénard}, Boll. Unione Mat. Ital., Ser. 3, 9 (1954), 367--369.
+\item Conti, R., \emph{Soluzioni periodiche dell' equazione di Liénard generalizzata}, Boll. Unione Mat. Ital., Ser. 3, 7 (1952), 111--118.
+\item Serbin, H., \emph{Periodic motions of a non-linear dynamic system}, Quart. Appl. Math., 8 (1950), 296--303.
+\item Duff, G. F. D. and Levinson, N., \emph{On the non-uniqueness of periodic solutions for an asymmetric Liénard equation}, Quart. Appl. Math., 10 (1952), 86--88.
+\item De Castro, A., \emph{Un teorema di confronto per l'equazione differenziale delle oscillazioni di rilassamento}, Boll. Unione Mat. Ital., Ser. 3, 9 (1954), 280--282.
+\item 张芷芬，关于 Liénard 方程极限环的唯一性问题，数学学报，24 (1981)，710--716。
+\item 张芷芬、何启敏，关于 Liénard 方程至多存在 $n$ 个极限环的一个充分条件，数学学报，25 (1982)，585--594。
+\item 丁列红，Liénard 方程在有限区间上极限环的存在唯 $n$ 性定理，中国科学，A 辑，9 (1982)，792--800。
+\item 张芷芬、史希福，关于 Liénard 方程极限环个数问题的几个例子，东北师大学报（自然科学），1 (1981)，1--10。
+\item 曾宪武，Liénard 方程极限环的存在唯一性定理，数学学报，21 (1978)，263--269。
+\item 杨恩认，关于 Liénard 方程存在有限个极限环的条件之探讨，东北师大学报（自然科学），3 (1980)，21--31。
+\item 秦元勋、史松龄、蔡燧林，关于平面二次系统的极限环，中国科学，8 (1981)，929--938。
+\item 杨信安、叶彦谦，方程 $\dot x=-y+\delta x+lx^2+xy+ny^2,\ \dot y=x$ 的极限环的唯一性，福州大学学报，2 (1978)，122--127。
+\item 陈兰荪、叶彦谦，二次系统极限环的唯一性，数学学报，18 (1975)，219--222。
+\item 秦元勋，具有二阶细焦点的二次系统，数学年刊，2 (1981)，475--478。
+\item 史松龄，关于平面二次系统的极限环，中国科学，8 (1980)，734--739。
+\item Wang Minghui and Lin Yingju, 一类二次微分系统的极限环不存在性，数学年刊，3 (1982)，721--724。
+\item Perko, L. M., \emph{Rotated vector fields and the global behavior of limit cycles for a class of quadratic systems in the plane}, J. Diff. Equa., 18 (1975), 63--86.
+\item Chen Xiudong，Liénard 方程至少存在 $n$ 个极限环的充分条件和构造方法，科学通报，6 (1982)，381--382。
+\item 周毓荣，微分方程 $\dot x=\varphi(y)-F(x),\ \dot y=-g(x)$ 的极限环存在唯一性和唯二性，数学年刊，3 (1982)，89--102。
+\item Comstock, C., \emph{On the Limit Cycles of $\ddot y+\eta F(\dot y)+y=0$}, J. Diff. Equa., 7--8 (1970), 173--179.
+\item Neuman, D. A. and Sabbagh, L. D., \emph{Periodic Solutions of Liénard systems}, J. Math. Anal. Appl., 62 (1978), 148--156.
+\item 吴美光，非线性方程极限环的存在性，全国第二次微分方程会议资料，1980。
+\item 张芷芬，关于一类非线性方程存在多个极限环的条件，北京大学学报（自然科学版），1 (1982)，34--43。
+\item 张芷芬，关于方程 $x''+\mu\sin x\,x'+x=0$ 在 $|x|\leqslant(n+1)\pi$ 上恰好存在 $n$ 个极限环的定理，中国科学，10 (1980)，941--948。
+\item 黄克诚，Liénard 方程的极限环，华东水利学院学报，1 (1979)，116--123。
+\item 叶彦谦，科学纪录新辑，1 (1957)，359--361；南京大学学报，1 (1958)，7--17。
+\item 秦元勋、诸富全，在平衡点附近出现三个极限环的例子，数学学报，9 (1959)，213--226。
+\item 秦元勋、曾宪武，生物化学中的布鲁塞尔振子方程的定性研究，科学通报，25 (1980)，337--339。
+\item 井竹君、陈兰荪，二次自催化反应系统的极限环，应用数学学报，6 (1983)，183--190。
+\item 李梁彬，一类 Liénard 方程的极限环及其对机械振动的应用，东北师范大学学报，1981 年第 2 期。
+\item 周毓荣、张辅炎、曾宪武，生化反应中一类非线性方程的定性分析，应用数学学报，5 (1982)，234--240。
+\item 马进路、刘来福、徐汝梅，Nicholson 模型及其同源微分方程的稳定性分析，生态学报，1 (1981)，54--65。
+\item 李承治，平面二次系统二阶细焦点外围极限环的不存在性，待发表。
+\item 张芷芬，关于 Liénard 方程极限环个数的唯 $n$ 性问题，数学年刊，5A (1984)，467--472。
+\item 曾宪武，Liénard 方程极限环的存在唯一性定理，数学学报，21 (1978)，263--269。
+\item 杨恩认，关于 Liénard 方程存在有限个极限环的条件之探讨，东北师大学报（自然科学），3 (1980)，21--31。
+\item 叶彦谦，常微分方程定性论中几个研究课题，新疆大学学报，1 (1980)，1--32。
+\item 秦元勋、史松龄、蔡燧林，关于平面二次系统的极限环，中国科学，8 (1981)，929--938。
+\item 史松龄，关于平面二次系统的极限环，中国科学，8 (1980)，734--739。
+\item 杨信安、叶彦谦，方程 $\dot x=-y+\delta x+lx^2+xy+ny^2,\ \dot y=x$ 的极限环的唯一性，福州大学学报，2 (1978)，122--127。
+\item 陈兰荪、叶彦谦，方程组 $\dot x=-y+\delta x+lx^2+xy+ny^2,\ \dot y=x$ 的极限环的唯一性，数学学报，18 (1975)，219--222。
+\item 秦光俊，微分方程组二次系统至多存在两个极限环，科学通报，24 (1981)，1479--1480。
+\item 王明淑、林应举，一类二次微分系统的极限环不存在性，数学年刊，3 (1982)，721--724。
+\item 蔡燧林，具有二阶细焦点的二次系统，数学年刊，2 (1981)，475--478。
+\item 刘钧，关于平面二次系统中的变换研究及其应用，武汉钢铁学院学报，4 (1979)，10--15。
+\item Cherkas, L. A., \emph{On cycles of the equation $y'=Q_2(x,y)/P_2(x,y)$}, Differentsial'nye Uravneniya, 9 (1973), 1432--1437.
+\item Cherkas, L. A., \emph{On limit cycles of a quadratic differential equation}, Differentsial'nye Uravneniya, 10 (1974), 947--949.
+\item Lins, A., de Melo, W. and Pugh, C. C., \emph{On Liénard's Equation}, Lecture Notes in Math., 597 (1976), 335--357.
+\item 秦光俊，$2n+1$ 次奇多项式 Liénard 系统至多存在一个或两个极限环的条件，东北师大学报（自然科学版），2 (1982)，21--24。
+\item Volokov, M., \emph{Sufficient conditions for the existence of exactly $n$ limit cycles of the system $\dot x=y,\ \dot y=F(y)-x$}, Mat. Sb., 44 (1958), 235--244.
+\item 陈秀东，Liénard 方程至少存在 $n$ 个极限环的充分条件和构造方法，科学通报，6 (1982)，381--382。
+\item 黄启昌、杨恩认，关于具有交变阻尼的 Liénard 方程存在多个极限环的条件，东北师大学报，1 (1981)，11--19。
+\item Comstock, C., \emph{On the Limit Cycles of $\ddot y+\eta F(\dot y)+y=0$}, J. Differential Equations, 7--8 (1970), 173--179.
+\item Neuman, D. A. and Sabbagh, L. D., \emph{Periodic Solutions of Liénard Systems}, J. Math. Anal. Appl., 62 (1978), 148--156.
+\item 吴美光，非线性方程极限环的存在性，全国第二次微分方程会议资料，1980。
+\item Rychkov, G. S., \emph{Some criteria for existence and nonexistence of limit cycles of a second-order dynamic system}, Sibirsk. Mat. Zhurnal, 7 (1966), 1425--1431.
+\item 张芷芬，关于一类非线性方程存在多个极限环的条件，北京大学学报（自然科学版），1 (1982)，34--43。
+\item 张芷芬，关于方程 $x''+\mu\sin x\,x'+x=0$ 在 $|x|\leqslant(n+1)\pi$ 上恰好存在 $n$ 个极限环的定理，中国科学，10 (1980)，941--948。
+\item 黄克诚，Liénard 方程的极限环，华东水利学院学报，1 (1979)，116--123。
+\item 周毓荣，微分方程 $\dot x=\varphi(y)-F(x),\ \dot y=-g(x)$ 的极限环的存在唯一性和唯二性，数学年刊，3 (1982)，89--102。
+\item 叶彦谦，科学纪录新辑，1 (1957)，359--361。
+\item 叶彦谦，南京大学学报，1 (1958)，7--17。
+\item 秦元勋、诸富全，在平衡点附近 $\dot x=P,\ \dot y=Q$ 出现三个极限环的例子（$P,Q$ 为二次多项式），数学学报，9 (1959)，213--226。
+\item 秦元勋、曾宪武，生物化学中的布鲁塞尔振子方程的定性研究，科学通报，25 (1980)，337--339。
+\item 井竹君、陈兰荪，二次自催化反应系统的极限环，应用数学学报，6 (1983)，183--190。
+\item 井竹君，人体组织发炎数学模型的定性分析（尚未发表）。
+\item 李梁彬，一类 Liénard 方程的极限环及其对机械振动的应用，东北师范大学学报，1981 年第 2 期。
+\item 周建莹、张辅炎、曾宪武，生化反应中一类非线性方程的定性分析，应用数学学报，5 (1982)，234--240。
+\item 马进路、刘来福、徐汝梅，Nicholson 模型及其同源微分方程的稳定性分析，生态学报，1 (1981)，54--65。
+\item 李承治，平面二次系统二阶细焦点外围极限环的不存在性，待发表。
+\item 张芷芬，关于 Liénard 方程极限环个数的唯 $n$ 性问题，数学年刊，5A (1984)，467--472。
+\end{enumerate}
+
+\endinput

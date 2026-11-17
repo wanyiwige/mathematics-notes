@@ -1,0 +1,155 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第7章：Dirichlet定理
+% 节：7.1 预备知识
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{预备知识}
+
+\begin{theorem}\label{thm:infinitely-many-primes}
+	存在无穷多个素数。
+\end{theorem}
+
+\begin{proof}
+	反设所有素数只有
+	\[
+	p_1,p_2,\ldots,p_n.
+	\]
+	令
+	\[
+	N=p_1p_2\cdots p_n+1.
+	\]
+	则任意 $p_j$ 都不能整除 $N$。另一方面，$N>1$ 必有素因子，
+	而这个素因子不在上述素数表中，矛盾。
+\end{proof}
+
+任意大于 $2$ 的素数都是奇数，因而必为 $4k+1$ 型或
+$4k+3$ 型。Euclid 的方法还可以证明其中一类素数的无穷性。
+
+\begin{proposition}\label{prop:infinitely-many-primes-3-mod-4}
+	形如 $4k+3$ 的素数有无穷多个。
+\end{proposition}
+
+\begin{proof}
+	反设这类素数只有有限多个，记为
+	\[
+	p_0=3,p_1,p_2,\ldots,p_n.
+	\]
+	令
+	\[
+	N=4p_1p_2\cdots p_n+3.
+	\]
+	显然 $N\equiv3\pmod 4$。若 $N$ 的所有素因子都为 $4k+1$ 型，
+	则 $N\equiv1\pmod 4$，矛盾。因此 $N$ 有一个形如 $4k+3$
+	的素因子 $q$。
+
+	对 $1\leq j\leq n$，有 $N\equiv3\pmod{p_j}$，故
+	$p_j\nmid N$；又因为 $p_1\cdots p_n$ 不被 $3$ 整除，
+	所以 $3\nmid N$。于是 $q$ 不在上述素数表中，矛盾。
+\end{proof}
+
+注意，这一构造不能直接用于 $4k+1$ 型素数，因为两个
+$4k+3$ 型整数的乘积可能为 $4k+1$ 型。
+
+\begin{definition}\label{def:riemann-zeta-real}
+	对 $s>1$，定义 Riemann zeta 函数
+	\[
+	\zeta(s)=\sum_{n=1}^{\infty}\frac1{n^s}.
+	\]
+\end{definition}
+
+取 $f(x)=x^{-s}$。由积分比较，
+\[
+\begin{aligned}
+\sum_{n=1}^{\infty}\frac1{n^s}
+&\leq 1+\sum_{n=2}^{\infty}\int_{n-1}^{n}\frac{\dd x}{x^s}\\
+&=1+\int_1^{\infty}\frac{\dd x}{x^s}
+=1+\frac1{s-1}.
+\end{aligned}
+\]
+特别地，对任意 $s_0>1$，上述级数在 $[s_0,\infty)$ 上一致收敛，
+所以 $\zeta$ 在 $(1,\infty)$ 上连续。
+
+\begin{theorem}[Euler 乘积公式]\label{thm:euler-product-zeta-real}
+	对 $s>1$，有
+	\[
+	\zeta(s)=\prod_p\frac1{1-p^{-s}},
+	\]
+	其中乘积取遍所有素数 $p$。
+\end{theorem}
+
+\begin{proof}
+	固定正整数 $M>N$。由算术基本定理，每个不超过 $N$ 的正整数
+	都可唯一分解为不超过 $N$ 的素数之积，且各素因子的指数小于
+	$M$，因此
+	\[
+	\sum_{n=1}^{N}\frac1{n^s}
+	\leq
+	\prod_{p\leq N}
+	\left(1+\frac1{p^s}+\cdots+\frac1{p^{Ms}}\right)
+	\leq
+	\prod_{p\leq N}\frac1{1-p^{-s}}.
+	\]
+	令 $N\to\infty$，得到
+	\[
+	\zeta(s)\leq\prod_p\frac1{1-p^{-s}}.
+	\]
+
+	反过来，展开有限乘积，并再次利用素因子分解的唯一性，有
+	\[
+	\prod_{p\leq N}
+	\left(1+\frac1{p^s}+\cdots+\frac1{p^{Ms}}\right)
+	\leq\sum_{n=1}^{\infty}\frac1{n^s}=\zeta(s).
+	\]
+	先令 $M\to\infty$，再令 $N\to\infty$，便有
+	\[
+	\prod_p\frac1{1-p^{-s}}\leq\zeta(s).
+	\]
+	两式合并即得结论。
+\end{proof}
+
+\begin{proposition}\label{prop:sum-reciprocals-primes-diverges}
+	取遍所有素数 $p$，则
+	\[
+	\sum_p\frac1p=\infty.
+	\]
+\end{proposition}
+
+\begin{proof}
+	对 Euler 乘积取对数，得到
+	\[
+	-\sum_p\log\left(1-\frac1{p^s}\right)=\log\zeta(s),
+	\qquad s>1.
+	\]
+	由
+	\[
+	\log(1+x)=x+O\bigl(\abs{x}^2\bigr),
+	\qquad \abs{x}\leq\frac12,
+	\]
+	可得
+	\[
+	\log\zeta(s)
+	=\sum_p\frac1{p^s}
+	+O\left(\sum_p\frac1{p^{2s}}\right)
+	=\sum_p\frac1{p^s}+O(1).
+	\]
+	这里误差项在 $s>1$ 时一致有界，因为
+	\[
+	\sum_p\frac1{p^{2s}}
+	\leq\sum_{n=1}^{\infty}\frac1{n^2}<\infty.
+	\]
+
+	另一方面，对任意正整数 $M$，
+	\[
+	\liminf_{s\to1^+}\zeta(s)
+	\geq\lim_{s\to1^+}\sum_{n=1}^{M}\frac1{n^s}
+	=\sum_{n=1}^{M}\frac1n.
+	\]
+	令 $M\to\infty$，可知 $\zeta(s)\to\infty$，从而
+	\[
+	\sum_p\frac1{p^s}\longrightarrow\infty
+	\qquad(s\to1^+).
+	\]
+	若 $\sum\limits_p p^{-1}$ 收敛，则由 $p^{-s}\leq p^{-1}$ 可知左边
+	在所有 $s>1$ 时一致有界，矛盾。因此
+	$\sum\limits_p p^{-1}$ 发散。
+\end{proof}
+

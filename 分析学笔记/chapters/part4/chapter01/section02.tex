@@ -1,0 +1,226 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第1章：Fourier级数的基本性质
+% 节：1.2 Fourier级数的唯一性
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Fourier级数的唯一性}
+\begin{theorem}\label{Fourier级数的唯一性}
+	假设 $f$ 是在圆周上可积的函数,且对所有 $n\in\Z$,有
+	\[
+	\widehat f(n)=0.
+	\]
+	若 $f$ 在点 $\theta_0$ 连续,则有
+	\[
+	f(\theta_0)=0.
+	\]
+\end{theorem}
+
+\begin{proof}
+	先假设 $f$ 是实值的。由于问题是周期的,并且可以通过平移把连续点移到原点,所以只需证明 $\theta_0=0$ 的情形。使用反证法,若 $f(0)\neq0$,不是一般性的可设$f(0)>0.$
+
+	核心的思路是构造一个在零点取最大值的三角多项式列 $\{p_k\}$,使得当 $k\to\infty$ 时
+	\[
+	\int_{-\pi}^{\pi}p_k(\theta)f(\theta)\dd\theta\to\infty.
+	\]
+	但是根据 Fourier 系数全为零的假设,这些积分又都等于零,由此得到矛盾。
+	
+	由于 $f$ 在 $0$ 处连续,故可以选择 $0<\delta\leq \pi/2$,使得当 $|\theta|<\delta$ 时,
+	\[
+	f(\theta)>\frac{f(0)}2.
+	\]
+	令
+	\[
+	p(\theta)=\eps+\cos\theta,
+	\]
+	其中选择 $\eps>0$ 足够小,使当 $\delta\leq |\theta|\leq\pi$ 时,有
+	\[
+	|p(\theta)|<1-\frac\eps2.
+	\]
+	然后选择一个正数 $\eta$,且 $\eta<\delta$,使得对 $|\theta|<\eta$,有
+	\[
+	p(\theta)>1+\frac\eps2.
+	\]
+	最后令
+	\[
+	p_k(\theta)=\bigl[p(\theta)\bigr]^k.
+	\]
+	由$f\in \mathcal{R}(I)$,从而$f $有界,存在 $B>0$,使得对任意的 $\theta$,有 $|f(\theta)|\leq B$。每个 $p_k$ 都是三角多项式。由于对任意 $n$,有 $\widehat f(n)=0$,于是对任意 $k$,有
+	\[
+	\int_{-\pi}^{\pi}f(\theta)p_k(\theta)\dd\theta=0.
+	\]
+	另一方面,有估计
+	\[
+	\left|\int_{\delta\leq |\theta|\leq\pi}f(\theta)p_k(\theta)\dd\theta\right|
+	\leq 2\pi B\left(1-\frac\eps2\right)^k.
+	\]
+	同时,选取 $\delta$ 使得当 $|\theta|<\delta$ 时,$p(\theta)$ 和 $f(\theta)$ 是非负的,于是
+	\[
+	\int_{\eta\leq |\theta|<\delta}f(\theta)p_k(\theta)\dd\theta\geq0.
+	\]
+	最后,在 $|\theta|<\eta$ 上,
+	\[
+	\begin{aligned}
+		\int_{|\theta|<\eta}f(\theta)p_k(\theta)\dd\theta
+		&\geq 2\eta\cdot \frac{f(0)}2\left(1+\frac\eps2\right)^k.
+	\end{aligned}
+	\]
+	因此,当 $k\to\infty$ 时,
+	\[
+	\int_{-\pi}^{\pi}p_k(\theta)f(\theta)\dd\theta\to\infty,
+	\]
+	这与该积分恒等于零矛盾。所以实值情形下 $f(0)=0$。
+	\begin{center}
+		\begin{tikzpicture}[scale=1.0,>=Stealth]
+			\draw[->] (-3.4,0) -- (3.4,0);
+			\draw[->] (0,-0.2) -- (0,3.3);
+			\draw[domain=-3.14:3.14,samples=200,smooth] plot (\x,{0.9+0.45*cos(\x r)});
+			\draw[domain=-3.14:3.14,samples=300,smooth] plot (\x,{1.25*(0.1+cos(\x r))^3});
+			\draw[domain=-1.2:1.2,samples=300,smooth] plot (\x,{2.45*(0.1+cos(\x r))^6});
+			\node at (2.5,1.05) {$p$};
+			\node at (0.95,1.9) {$p_3$};
+			\node at (0.35,2.95) {$p_{6}$};
+		\end{tikzpicture}
+	\end{center}
+	
+	一般地,令
+	\[
+	f(\theta)=u(\theta)+iv(\theta),
+	\]
+	其中 $u$ 和 $v$ 是实值函数。若定义 $\overline f(\theta)=\overline{f(\theta)}$,那么有
+	\[
+	u(\theta)=\frac{f(\theta)+\overline f(\theta)}2,
+	\qquad
+	v(\theta)=\frac{f(\theta)-\overline f(\theta)}{2i}.
+	\]
+	又因为$\widehat{\overline f}(n)=\overline{\widehat f(-n)},$
+
+	所以 $u$ 和 $v$ 的 Fourier 系数也全为零。由实值情形可得,在 $f$ 的连续点有
+	\[
+	u(\theta_0)=0,
+	\qquad
+	v(\theta_0)=0.
+	\]
+	因此 $f(\theta_0)=0$。
+	
+\end{proof}
+
+根据上面的命题不难得到以下的命题
+\begin{corollary}
+	如果 $f$ 在圆周上连续且对所有 $n\in\Z$,有$\widehat f(n)=0,$则$f=0.$
+	
+\end{corollary}
+\begin{corollary}
+	如果 $f,g$ 在圆周上连续且对所有 $n\in\Z$,有$\widehat f(n)=\widehat g(n),$则$f=g.$
+	
+\end{corollary}
+这也就是所谓的Fourier级数的唯一性
+
+\begin{corollary}
+	假设 $f$ 是在圆周上的连续函数且 $f$ 的 Fourier 系数绝对收敛,即
+	\[
+	\sum_{n=-\infty}^{\infty}|\widehat f(n)|<\infty.
+	\]
+	那么,$f$ 的 Fourier 级数一致收敛于 $f$,即
+	\[
+	\lim_{N\to\infty}S_N(f)(\theta)=f(\theta),
+	\]
+	且上述收敛关于 $\theta$ 是一致的。
+\end{corollary}
+
+\begin{proof}
+由
+	\[
+	\sum_{n=-\infty}^{\infty}|\widehat f(n)|<\infty
+	\]
+	可知,$f$ 的 Fourier 系数的部分和绝对且一致收敛。事实上,由 Weierstrass $M$ 判别法,级数
+	\[
+	\sum_{n=-\infty}^{\infty}|\widehat f(n)e^{in\theta}| =\sum_{n=-\infty}^{\infty}|\widehat f(n)|<\infty
+	\]
+	在圆周上一致收敛。于是可以定义
+	\[
+	g(\theta)=\sum_{n=-\infty}^{\infty}\widehat f(n)e^{in\theta}
+	=\lim_{N\to\infty}\sum_{n=-N}^{N}\widehat f(n)e^{in\theta}.
+	\]
+	由一致收敛和每一项的连续性可知,$g$ 在圆周上连续。
+	
+	进一步,由一致收敛可以交换无穷求和与积分,所以 $g$ 的 Fourier 系数恰好是 $\widehat f(n)$。具体地,
+	\[
+	\begin{aligned}
+		\widehat g(n)
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}g(\theta)e^{-in\theta}\dd\theta                         \\
+		&=\frac1{2\pi}\int_{-\pi}^{\pi}\sum_{m=-\infty}^{\infty}
+		\widehat f(m)e^{im\theta}e^{-in\theta}\dd\theta                                             \\
+		&=\frac1{2\pi}\sum_{m=-\infty}^{\infty}\widehat f(m)
+		\int_{-\pi}^{\pi}e^{i(m-n)\theta}\dd\theta                                                   \\
+		&=\widehat f(n).
+	\end{aligned}
+	\]
+	因此 $f-g$ 的所有 Fourier 系数均为零。由上一推论,$f-g=0$,于是 $f=g$。也就是说,$f$ 的 Fourier 级数一致收敛于 $f$。
+\end{proof}
+
+\begin{corollary}\label{f(n)=O(1/n2)}
+	假设 $f$ 是定义在圆周上的二次连续可微函数。当 $|n|\to\infty$ 时,有
+	\[
+	\widehat f(n)=O\left(\frac1{|n|^2}\right).
+	\]
+	则 $f$ 的 Fourier 级数绝对收敛且一致收敛于 $f$。
+\end{corollary}
+
+\begin{proof}
+	当 $n\neq0$ 时,计算 Fourier 系数需要使用两次分部积分。取周期区间 $[0,2\pi]$,有
+	\[
+	\begin{aligned}
+		2\pi\widehat f(n)
+		&=\int_0^{2\pi}f(\theta)e^{-in\theta}\dd\theta                                      \\
+		&=\left[f(\theta)\cdot \left(-\frac{e^{-in\theta}}{in}\right)\right]_0^{2\pi}
+		+\frac1{in}\int_0^{2\pi}f'(\theta)e^{-in\theta}\dd\theta                              \\
+		&=\frac1{in}\int_0^{2\pi}f'(\theta)e^{-in\theta}\dd\theta                              \\
+		&=\frac1{in}\left[f'(\theta)\cdot\left(-\frac{e^{-in\theta}}{in}\right)\right]_0^{2\pi}
+		+\frac1{(in)^2}\int_0^{2\pi}f''(\theta)e^{-in\theta}\dd\theta                          \\
+		&=-\frac1{n^2}\int_0^{2\pi}f''(\theta)e^{-in\theta}\dd\theta.
+	\end{aligned}
+	\]
+	由于 $f$ 和 $f'$ 是周期的,所以括号中的边界项均为零。因此
+	\[
+	2\pi |n|^2|\widehat f(n)|
+	\leq \int_0^{2\pi}|f''(\theta)|\dd\theta
+	\leq C,
+	\]
+	其中 $C$ 是与 $n$ 无关的常数。因为 $\sum 1/n^2$ 收敛,所以
+	\[
+	\sum_{n=-\infty}^{\infty}|\widehat f(n)|<\infty.
+	\]
+	由上一推论,$f$ 的 Fourier 级数绝对收敛且一致收敛于 $f$。
+\end{proof}
+进一步的,我们提高$f$的光滑性,得
+\begin{corollary}\label{f(n)=O(1/n^k)}
+	假设 $f\in C^k(\mathbb T)$,其中 $k\geq 1$。则当 $|n|\to\infty$ 时,
+	\[
+	\widehat f(n)=O\left(\frac1{|n|^k}\right).
+	\]
+	特别地,当 $k\geq 2$ 时,$f$ 的 Fourier 级数绝对收敛且一致收敛于 $f$。
+\end{corollary}
+
+我们还建立了以下重要等式：
+\[
+\widehat{f'}(n)=in\widehat f(n),
+\qquad \forall n\in\Z.
+\]
+如果 $n\neq0$,这已经包含在上面的分部积分计算中；当 $n=0$ 时,
+\[
+\widehat{f'}(0)
+=\frac1{2\pi}\int_0^{2\pi}f'(\theta)\dd\theta
+=\frac{f(2\pi)-f(0)}{2\pi}=0=i0\widehat f(0),
+\]
+其中使用了 $f$ 的周期性。因此,如果 $f$ 是可微的且
+\[
+f\sim\sum a_ne^{in\theta},
+\]
+那么
+\[
+f'\sim\sum a_n in e^{in\theta}.
+\]
+同样,若 $f$ 是二次连续可微的,那么
+\[
+f''\sim\sum a_n(in)^2e^{in\theta}.
+\]
+在 $f$ 上附加更好的光滑性表现为 Fourier 系数衰减更迅速。

@@ -1,0 +1,42 @@
+% preamble/colors.tex
+% ============================================
+% 配色方案：蓝色 & 金色 学术风格
+% 主色：深蓝（LogicBlue）—— 定理、命题、章节彩带
+% 辅色：暖金（Gold）—— 装饰线、点缀
+% ============================================
+
+% ---- 蓝色系（主结构色）----
+\definecolor{LogicBlue}{RGB}{0, 102, 204}
+\definecolor{LogicLightBlue}{RGB}{102, 204, 255}
+\definecolor{LogicDarkBlue}{RGB}{0, 51, 153}
+
+\colorlet{BlueMain}{LogicBlue}        % 主蓝色 —— 封面侧边条、章节彩带
+\colorlet{BlueDark}{LogicDarkBlue}   % 深蓝色 —— 标题、强调
+\colorlet{BlueLight}{LogicLightBlue} % 浅蓝色 —— 次强调
+
+% ---- 暖金色系（装饰点缀用）----
+\definecolor{GoldDark}{RGB}{140, 100, 35}      % 暗金
+\definecolor{GoldMain}{RGB}{178, 132, 55}      % 主金 —— 章节扉页装饰条、分割线
+\definecolor{GoldLight}{RGB}{210, 172, 100}    % 浅金
+\definecolor{GoldPale}{RGB}{242, 230, 205}     % 淡金背景
+
+% ---- 兼容旧名称（各 preamble 文件内部桥接，无须修改引用处）----
+\colorlet{GreenMain}{BlueMain}
+\colorlet{OrangeMain}{BlueMain}       % chapter.title.tex 中的彩带
+
+% ---- 旧几何色名桥接（消除 geometry.tex 残留依赖）----
+\colorlet{mainblue}{BlueMain}
+\colorlet{mediumblue}{BlueDark}
+\colorlet{lightblue}{BlueLight}
+\colorlet{grayblue}{BlueMain!50}
+\colorlet{brightblue}{GoldMain}
+\colorlet{paleblue}{BlueMain!5}
+
+% ---- 代码块样式 ----
+\lstset{
+	backgroundcolor=\color{BlueMain!4},
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{BlueMain},
+	commentstyle=\color{BlueMain!40},
+	escapeinside={(*@}{@*)},
+}

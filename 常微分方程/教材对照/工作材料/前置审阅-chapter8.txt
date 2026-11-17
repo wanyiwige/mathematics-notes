@@ -1,0 +1,228 @@
+\setchapterimage{figure/Chapter8封面图.jpg}
+\setchapterintro{二阶线性方程不仅能讨论解空间，还能比较不同解的零点。本章用相平面角度把零点问题转为一个标量比较问题，再进入两点边值问题。}
+\chapter{Sturm 零点理论与边值问题}\label{chap:sturm}
+
+第三章已由 Wronski 行列式说明两个解是否独立，第五章又给出解对参数的可微依赖性。现在将这两个结果用于二阶方程：先数零点，再通过参数改变研究边值问题。相位角沿用第六章相平面分析的几何思想。
+
+\section{零点与相位角}
+设 $q$ 在区间 $I$ 连续，考虑
+\[
+ x''+q(t)x=0,\qquad y=x'.
+\]
+除恒零解外，状态 $(x(t),y(t))$ 从不等于零，否则由线性唯一性解恒为零。
+在时间区间上可连续选择角度 $\theta$，使
+$x=\rho\sin\theta,y=\rho\cos\theta$，$\rho>0$。
+\begin{proposition}\label{prop:arnold-angle}
+\[
+ \theta'=\frac{y^2+q(t)x^2}{x^2+y^2}
+ =\cos^2\theta+q(t)\sin^2\theta.
+\]
+非零解的零点均为单零点且在 $I$ 内无聚点；经过零点时 $\theta$ 以速度 1 穿过某个 $k\pi$。
+两个相邻零点之间角度增加恰好 $\pi$。
+\end{proposition}
+\begin{proof}
+在 $y\ne0$ 的小区间，$\tan\theta=x/y$，所以
+\[
+ \sec^2\theta\,\theta'
+ =\frac{x'y-xy'}{y^2}=\frac{y^2+q(t)x^2}{y^2}.
+\]
+利用 $\sec^2\theta=(x^2+y^2)/y^2$，得到所需公式。
+在 $y=0$ 处可改用 $\cot\theta=y/x$，因为此时 $x\ne0$，得到同样公式。
+所以公式在整条非零状态轨道上成立。
+
+若 $x(t_0)=0$，初值唯一性禁止 $y(t_0)=0$，故 $x'(t_0)\ne0$，这是单零点。
+公式在这里给出 $\theta'(t_0)=1$，所以经过零点时角度总沿增大方向穿过 $k\pi$。
+若零点列 $t_j$ 在区间内部聚到 $t_*$，连续性给出 $x(t_*)=0$；
+在相邻零点间用 Rolle 定理并取极限，又得 $x'(t_*)=0$，与非零解的唯一性矛盾。
+
+设 $a<b$ 为相邻零点，取 $\theta(a)=k\pi$。
+在 $a$ 后角度大于 $k\pi$，且中间不能再取任何整数倍 $\pi$，否则会多出零点。
+到 $b$ 前角度必须从下方趋近下一个整数倍，因为在 $b$ 的穿越方向也为增大。
+因此 $\theta(b)=(k+1)\pi$，总角增正好为 $\pi$。
+这不要求角度在两个零点之间处处单调。
+\end{proof}
+零点交错的结论需要区分线性相关和线性无关两种情形：
+相关解的零点相同，严格交错只对线性无关的解成立。
+
+\begin{theorem}[Sturm 分离定理]
+若 $x_1,x_2$ 为线性无关的非零解，则 $x_1$ 的任意两个相邻零点之间
+恰有 $x_2$ 的一个零点。
+\end{theorem}
+\begin{proof}
+记 $W=x_1x_2'-x_1'x_2$。由 Liouville 公式，$W$ 为常数；
+线性无关性又保证 $W\ne0$。
+因此两个状态向量在任意同一时刻都不共线，
+对应连续角度之差永远不是 $\pi$ 的整数倍。
+
+设 $t_1<t_2$ 是 $x_1$ 的相邻零点。改变解的符号和角度分支后，可令
+$\theta_1(t_1)=0,\theta_1(t_2)=\pi$，并令 $0<\theta_2(t_1)<\pi$。
+角度之差连续且不能经过 $0$ 或 $\pi$，所以在整个 $[t_1,t_2]$ 上
+$0<\theta_2-\theta_1<\pi$。
+特别地，$\theta_2(t_1)<\pi$ 而 $\theta_2(t_2)>\pi$。
+介值定理给出 $s\in(t_1,t_2)$ 使 $\theta_2(s)=\pi$，即 $x_2(s)=0$。
+
+再证唯一性。如果 $x_2$ 在该开区间有至少两个零点，
+由零点在内部无聚点，可选其中相邻的两个。
+对调两解，刚证的存在性就会迫使 $x_1$ 在这两个点之间有零点，
+与 $t_1,t_2$ 相邻矛盾。
+\end{proof}
+
+
+图~\ref{fig:ode-tikz-sturm-separation} 取 $x_1=\sin t,x_2=\cos t$；右图使用本章的相位约定 $(x,y)=\rho(\sin\theta,\cos\theta)$。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+[TikZ图形代码略]
+\captionof{figure}{同一方程的独立解零点交错；右图中每经过一个零点，相位穿过一个 $k\pi$。}
+\label{fig:ode-tikz-sturm-separation}
+\end{minipage}
+\end{center}
+
+\section{比较定理与零点间距}
+\begin{theorem}[Sturm 比较]
+设 $Q,q$ 连续，$Q\geq q$。若 $x$ 解 $x''+qx=0$ 并以 $a<b$ 为相邻零点，
+则每个非零解 $z$（$z''+Qz=0$）在 $[a,b]$ 至少有一个零点。
+若 $Q>q$ 在 $[a,b]$ 上处处成立，则零点可取在 $(a,b)$。
+\end{theorem}
+\begin{proof}
+将第一解的相位取为 $\alpha(a)=0,\alpha(b)=\pi$。
+若第二解在某端点为零，闭区间版本已经成立。
+否则改变其符号并选相位分支，使 $0<\beta(a)<\pi$。
+设 $f_q(t,s)=\cos^2s+q(t)\sin^2s$，则
+$\alpha'=f_q(t,\alpha),\beta'=f_Q(t,\beta)$。
+
+令 $w=\beta-\alpha$，把差分精确写成
+\[
+ \begin{aligned}
+ w'&=c(t)w+d(t),\\
+ d(t)&=(Q(t)-q(t))\sin^2\alpha(t)\geq0,
+\end{aligned}
+\]
+其中
+\[
+ c(t)=\displaystyle\int_0^1\partial_s f_Q(t,\alpha(t)+\tau w(t))\,d\tau
+\]
+为连续函数。常数变易给出
+\[
+ w(t)=e^{\int_a^tc}\left[w(a)+\int_a^te^{-\int_a^sc}d(s)\,ds\right].
+\]
+当 $w(a)>0$，方括号严格为正，因此 $\beta(b)>\pi$。
+又 $\beta(a)<\pi$，故在开区间内取到 $\pi$，得到零点。
+这证明非端点情形，因而也证明闭区间结论。
+
+现在假设 $Q>q$。若第二解在左端点为零，取 $\beta(a)=0$，则 $w(a)=0$。
+$\alpha$ 在 $a$ 后立即进入 $(0,\pi)$，因此 $d$ 在一个右邻域严格为正；
+上式于是给出 $w(t)>0$ 对所有 $t>a$ 成立，特别是 $\beta(b)>\pi$。
+所以除了左端零点以外，内部还有一次经过 $\pi$。
+如果第二解仅在右端点为零，可从 $b$ 反向时间重复这一论证，
+或把 $t$ 换成 $a+b-t$ 后应用左端情形，同样得到内部零点。
+因此严格比较时零点可取在开区间。
+\end{proof}
+\begin{corollary}
+若 $q\geq\omega^2>0$，则 $I$ 内相邻零点距离不超过 $\pi/\omega$；
+当 $I$ 包含一条右半轴时，非零解还有任意大的零点。
+若 $q\leq\Omega^2$，$\Omega>0$，则相邻零点距离不小于 $\pi/\Omega$。
+若 $q\leq0$，每个非零解至多有一个零点。
+\end{corollary}
+\begin{proof}
+常系数比较方程的零点间距分别是 $\pi/\omega$ 和 $\pi/\Omega$。
+若存在超过相应界限的无零点区间，可在其内部放入比较解的两个相邻零点，
+与比较定理矛盾。当 $I$ 包含右半轴时，把比较区间移到任意远处，
+也得第一种情形的无限多个零点。
+最后，若 $x$ 在 $a<b$ 为零，乘方程以 $x$ 并积分得
+\[
+ \int_a^b(x')^2\,\dd t=\int_a^bq(t)x(t)^2\,\dd t\leq0.
+\]
+所以 $x'=0$，由端点值知 $x=0$，与非零解矛盾。
+\end{proof}
+一般方程 $x''+p(t)x'+q(t)x=0$ 在 $p\in C^1$ 时，令
+\[
+ x=e^{-\frac12\displaystyle\int p}u,
+\]
+得到
+$u''+(q-p'/2-p^2/4)u=0$。乘子从不为零，因此保持零点。
+
+\section{Sturm--Liouville 问题}
+\begin{definition}
+给定连续实函数 $q$ 和 $l>0$，寻找
+\[
+ x''+(q(t)+\lambda)x=0,\qquad x(0)=x(l)=0
+\]
+的非零解，称为这里的 Sturm--Liouville 两点边值问题。
+这样的 $\lambda$ 称特征值，相应非零解称特征函数。
+\end{definition}
+\begin{theorem}
+特征值可以严格递增地排列为 $\lambda_1<\lambda_2<\cdots\to\infty$，
+每个特征空间一维。第 $k$ 个特征函数在 $(0,l)$ 恰有 $k-1$ 个零点。
+若 $m\leq q\leq M$，则
+\[
+ (k\pi/l)^2-M\leq\lambda_k\leq(k\pi/l)^2-m,
+ \qquad \lambda_k/k^2\to(\pi/l)^2.
+\]
+\end{theorem}
+\begin{proof}
+\textbf{第一步：把边值问题化为一个相位方程。}
+令 $x(t,\lambda)$ 解初值问题
+\[
+ x(0,\lambda)=0,\qquad x'(0,\lambda)=1.
+\]
+任何非零解若在左端为零，其左端导数必不为零，
+除以该导数后便与 $x(t,\lambda)$ 具有相同初值，因此由唯一性重合。
+所以每个特征空间一维，特征值条件正是 $x(l,\lambda)=0$。
+取 $\theta(0,\lambda)=0$，这个条件等价于 $\theta(l,\lambda)=k\pi$，$k\geq1$。
+
+\textbf{第二步：证明末端相位对参数严格增加。}
+参数可微依赖定理给出 $w=\partial_\lambda x$，并由对方程求导得到
+$w''+(q+\lambda)w=-x$、$w(0)=w'(0)=0$。
+逐项计算为
+\[
+ (x'w-xw')'=x''w-xw''=x^2.
+\]
+零初值使 
+\[
+ x'w-xw'=\displaystyle\int_0^t x(s,\lambda)^2ds.
+\]
+又由相位角的微分公式，
+\[
+ \partial_\lambda\theta(l,\lambda)
+ =\frac{x'(l,\lambda)w(l,\lambda)-x(l,\lambda)w'(l,\lambda)}
+ {x(l,\lambda)^2+x'(l,\lambda)^2}>0.
+\]
+分母不为零，分子积分严格为正，因为 $x'(0,\lambda)=1$。
+
+\textbf{第三步：确定相位的取值范围并编号。}
+当 $\lambda\leq-\max q$ 时，$q+\lambda\leq0$。
+解从零以正速度出发；在保持正值的阶段有 $x''=-(q+\lambda)x\geq0$，
+所以导数不能降到零，解不可能再次为零。
+因此末端相位位于 $(0,\pi)$。
+另一方面，给定任意正整数 $N$，可取 $\lambda$ 足够大，使
+$q+\lambda\geq\omega^2$ 且 $N\pi/\omega<l$。
+比较定理使 $x$ 在 $[0,l]$ 有至少 $N$ 次零点穿越，故末端相位趋于无穷。
+连续性与严格单调性说明每个水平 $k\pi$ 恰穿过一次，给出严格递增的 $\lambda_k$。
+相邻零点角增为 $\pi$，故第 $k$ 个特征函数恰有 $k-1$ 个内部零点。
+若 $\lambda_k$ 有有限聚点，末端相位在该紧参数区间有界，
+但其值 $k\pi$ 无界，矛盾，所以 $\lambda_k\to\infty$。
+
+\textbf{第四步：比较常系数方程以估计特征值。}
+记 $\mu_k=(k\pi/l)^2$。
+在 $\lambda=\mu_k-M$ 时有 $q+\lambda\leq\mu_k$，
+由同初始角的标量比较，末端相位不超过常系数方程的 $k\pi$。
+在 $\lambda=\mu_k-m$ 时有反向不等式，末端相位不小于 $k\pi$。
+由末端相位严格随 $\lambda$ 增加，得到
+$\mu_k-M\leq\lambda_k\leq\mu_k-m$。
+两边除以 $k^2$ 后，常数误差趋于零，夹逼得到所述渐近式。
+\end{proof}
+\begin{proposition}
+不同特征值的实特征函数在 $L^2(0,l)$ 中正交。
+\end{proposition}
+\begin{proof}
+分别把两方程乘以另一个解后相减积分，得到
+\[
+ (\lambda_i-\lambda_j)\int_0^lx_i x_j\,\dd t
+ =[x_i x_j'-x_i'x_j]_0^l=0.
+\]
+端点条件使边界项消失，而特征值不同，所以积分为零。
+\end{proof}
+自伴形式 $(p x')'+(q+\lambda w)x=0$（$p,w>0$）宜取相平面坐标 $(x,px')$；
+同样的 Wronskian 与相位比较可以使用，权函数内积相应成为 $\displaystyle\int wx_i x_j$。

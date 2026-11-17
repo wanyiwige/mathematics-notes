@@ -1,0 +1,46 @@
+{
+  "chapter1": {
+    "original_proofs": 0,
+    "preserved_verbatim_except_whitespace": 0,
+    "revised_proofs": []
+  },
+  "chapter2": {
+    "original_proofs": 4,
+    "preserved_verbatim_except_whitespace": 4,
+    "revised_proofs": []
+  },
+  "chapter3": {
+    "original_proofs": 14,
+    "preserved_verbatim_except_whitespace": 14,
+    "revised_proofs": []
+  },
+  "chapter4": {
+    "original_proofs": 9,
+    "preserved_verbatim_except_whitespace": 9,
+    "revised_proofs": []
+  },
+  "chapter5": {
+    "original_proofs": 23,
+    "preserved_verbatim_except_whitespace": 21,
+    "revised_proofs": [
+      {
+        "original_proof_ordinal": 21,
+        "opening": "仍采用逐次逼近法，但与定理 \\ref{thm:连续依赖性定理} 的证明稍有不同。 第一步，先把 Lipschitz 常数一致化。积分曲线段 \\[ \\Gamma=\\left\\{ (t,\\vect{x})"
+      },
+      {
+        "original_proof_ordinal": 22,
+        "opening": "关于这个问题我们介绍两个证明方法： \\textbf{法一：}第一步，初值问题等价于积分方程 \\[ \\vect{x}(t)=\\int_0^t \\vect{f}\\bigl(\\tau,\\vect{x}(\\t"
+      }
+    ]
+  },
+  "chapter6": {
+    "original_proofs": 10,
+    "preserved_verbatim_except_whitespace": 9,
+    "revised_proofs": [
+      {
+        "original_proof_ordinal": 10,
+        "opening": "设 $x_0$ 为 $G(x)$ 的严格极大值点，则 \\[ G'(x_0)=g(x_0)=0, \\qquad G''(x_0)=g'(x_0)<0. \\] 在 $(x_0,0)$ 处，系统右端函数的 "
+      }
+    ]
+  }
+}

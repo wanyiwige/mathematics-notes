@@ -1,0 +1,650 @@
+% !TEX program = xelatex
+% 主文件；第一、二、三章习题分别通过 input 加载。
+\documentclass[UTF8,a4paper,11pt,fontset=windows]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,enumitem,booktabs,longtable,array}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{xurl,fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{抽象代数前三章习题详解}\fancyhead[R]{题目、思路与证明}\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{0.35em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em}
+\renewcommand{\proofname}{证明}
+\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}\newcommand{\F}{\mathbb F}
+\DeclareMathOperator{\GL}{GL}\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Aut}{Aut}\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\lcm}{lcm}\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sgn}{sgn}\DeclareMathOperator{\Ker}{Ker}
+\newcommand{\noteref}[1]{\hyperref[note:#1]{\csname notename@#1\endcsname}}
+\newcommand{\proofref}[2]{\hyperref[note:#1]{#2}}
+\newcommand{\exref}[2]{\hyperref[ex:#1:#2]{第#1章习题#2}}
+\newcommand{\registerref}[2]{\expandafter\gdef\csname notename@#1\endcsname{#2}}
+
+\registerref{group}{原笔记第1章第2节，定义 1.2.1（群的定义）}
+
+\registerref{glaws}{原笔记第1章第2节，命题 1.2.3（单位元、逆元与反序取逆）}
+
+\registerref{cancel}{原笔记第1章第2节，命题 1.2.4（方程、消去律）}
+
+\registerref{powers}{原笔记第1章第2节，命题 1.2.5（整数指数法则）}
+
+\registerref{abelianpowers}{原笔记第1章第2节，命题 1.2.7（交换元素的乘积幂）}
+
+\registerref{dihedral}{原笔记第1章第3节，定义 1.3.2（二面体群及其阶数与乘法关系）}
+
+\registerref{cycles}{原笔记第1章第3节，定义 1.3.7（轮换与对换）}
+
+\registerref{cycledecomp}{原笔记第1章第3节，定理 1.3.9（不相交轮换分解）}
+
+\registerref{subgroup}{原笔记第1章第4节，定理 1.4.3（子群判别法）}
+
+\registerref{cosets}{原笔记第1章第4节，命题 1.4.8（陪集相等的判据与陪集划分）}
+
+\registerref{lagrange}{原笔记第1章第4节，定理 1.4.10（拉格朗日定理）}
+
+\registerref{order}{原笔记第1章第4节，命题 1.4.12（元素的阶与幂的判据）}
+
+\registerref{iso}{原笔记第1章第5节，定义 1.5.1（群同构及同构不变量）}
+
+\registerref{cayley}{原笔记第1章第5节，定理 1.5.3（凯莱定理及左正则表示）}
+
+\registerref{sign}{原笔记第1章第4节，命题 1.4.6（符号同态与交错群的阶）}
+
+\registerref{hom}{原笔记第1章第6节，定义 1.6.1（群同态、像与核）}
+
+\registerref{normal}{原笔记第1章第6节，命题 1.6.5（正规子群的等价判据）}
+
+\registerref{setproduct}{原笔记第1章第7节，命题 1.7.2（集合乘积及取逆公式）}
+
+\registerref{quotient}{原笔记第1章第7节，定义 1.7.4（商群及自然同态）}
+
+\registerref{firstiso}{原笔记第1章第7节，定理 1.7.7（群同态基本定理）}
+
+\registerref{ring}{原笔记第1章第8节，定义 1.8.1（环的定义）}
+
+\registerref{ringlaws}{原笔记第1章第8节，命题 1.8.2（环中零元、负元和分配律的运算）}
+
+\registerref{subring}{原笔记第1章第8节，定理 1.8.5（子环判别法）}
+
+\registerref{ringiso}{原笔记第1章第8节，定义 1.8.7（环同构及其性质）}
+
+\registerref{unit}{原笔记第1章第9节，定义 1.9.1（幺环、单位及双侧逆元）}
+
+\registerref{zerodiv}{原笔记第1章第9节，定义 1.9.3（左右零因子、无零因子的消去律）}
+
+\registerref{field}{原笔记第1章第9节，定义 1.9.6（域与体）}
+
+\registerref{quaternion}{原笔记第1章第9节，命题 1.9.9（四元数体的矩阵模型）}
+
+\registerref{ideal}{原笔记第1章第10节，定义 1.10.3（理想的定义）}
+
+\registerref{idealunit}{原笔记第1章第10节，命题 1.10.5（含有单位的理想）}
+
+\registerref{correspondence}{原笔记第2章第1节，定理 2.1.1（子群对应定理）}
+
+\registerref{secondiso}{原笔记第2章第1节，定理 2.1.3（群的第二同构定理）}
+
+\registerref{generated}{原笔记第2章第1节（生成子群与有限生成群）}
+
+\registerref{derived}{原笔记第2章第1节，定义 2.1.6（换位子与换位子群）}
+
+\registerref{abelianization}{原笔记第2章第1节，定理 2.1.7（交换同态像与换位子群）}
+
+\registerref{cyclic}{原笔记第2章第2节，定理 2.2.2（循环群及其子群分类）}
+
+\registerref{powerorder}{原笔记第2章第2节，命题 2.2.3（幂的阶的公式）}
+
+\registerref{coprime}{原笔记第2章第2节，引理 2.2.4（互素阶交换元素乘积的阶）}
+
+\registerref{simple}{原笔记第2章第3节，定义 2.3.1（单群的定义）}
+
+\registerref{threecycles}{原笔记第2章第3节，引理 2.3.3（对换与3-轮换的生成结论）}
+
+\registerref{conjugation}{原笔记第2章第3节，命题 2.3.4（轮换的共轭公式）}
+
+\registerref{an}{原笔记第2章第3节，定理 2.3.6（交错群的单性）}
+
+\registerref{derivedseries}{原笔记第2章第4节，定义 2.4.1（导出列）}
+
+\registerref{solvabledef}{原笔记第2章第4节，定义 2.4.2（可解群的定义）}
+
+\registerref{solvable}{原笔记第2章第4节，命题 2.4.8（可解群的子群、像与扩张）}
+
+\registerref{aut}{原笔记第2章第5节，定义 2.5.1（自同构与自同构群）}
+
+\registerref{cyclicaut}{原笔记第2章第5节，命题 2.5.3（循环群的自同构）}
+
+\registerref{inner}{原笔记第2章第5节，定理 2.5.6（内自同构群与中心商群）}
+
+\registerref{center}{原笔记第2章第5节，定义 2.5.5（群的中心）}
+
+\registerref{autcenterless}{原笔记第2章第5节，定理 2.5.8（无中心群的自同构定理）}
+
+\registerref{complete}{原笔记第2章第5节，定义 2.5.9（完全群）}
+
+\registerref{characteristic}{原笔记第2章第5节，定义 2.5.10（特征子群及其性质）}
+
+\registerref{action}{原笔记第2章第6节，定义 2.6.1（群作用及对应的置换表示）}
+
+\registerref{orbit}{原笔记第2章第6节，定理 2.6.11（轨道稳定子定理）}
+
+\registerref{pcenter}{原笔记第2章第6节，推论 2.6.16（有限$p$群的中心非平凡）}
+
+\registerref{centerizer}{原笔记第2章第6节，定义 2.6.17（元素的中心化子）}
+
+\registerref{classeq}{原笔记第2章第6节，定理 2.6.18（类方程）}
+
+\registerref{normalizer}{原笔记第2章第6节，定义 2.6.20（子群的正规化子）}
+
+\registerref{sylow1}{原笔记第2章第7节，定理 2.7.2（西罗第一定理）}
+
+\registerref{sylowdef}{原笔记第2章第7节，定义 2.7.3（西罗子群的定义）}
+
+\registerref{sylow2}{原笔记第2章第7节，定理 2.7.4（西罗第二定理）}
+
+\registerref{sylow3}{原笔记第2章第7节，定理 2.7.7（西罗第三定理）}
+
+\registerref{internal}{原笔记第2章第8节，定理 2.8.3（内直和分解定理）}
+
+\registerref{free}{原笔记第2章第11节，定理 2.11.7（自由群的泛性质与生成关系）}
+
+
+\registerref{c3correspondence}{原笔记第3章“环的同态定理”节（环的对应定理，现为源码注释）}
+\registerref{c3isomorphism}{原笔记第3章“环的同态定理”节（第三同构定理及其证明，现为源码注释）}
+\registerref{c3direct}{原笔记第3章“环的直和”节（直和定义、分量理想与内直和，现为源码注释）}
+\registerref{c3internal}{原笔记第3章“环的直和”节（环的内直和判别定理及其证明，现为源码注释）}
+\registerref{c3product}{原笔记第3章“环的直和”节（理想积的定义与分配律，现为源码注释）}
+\registerref{c3comaximal}{原笔记第3章“环的直和”节（互素理想的积等于交，现为源码注释）}
+\registerref{c3crt}{原笔记第3章“环的直和”节（中国剩余定理及证明，现为源码注释）}
+\registerref{c3principal}{原笔记第3章“环的直和”节（生成理想与主理想的定义及表达式，现为源码注释）}
+\registerref{c3anti}{原笔记第3章“环的反同构”节（反同构、反同态与反自同构定义，现为源码注释）}
+\registerref{c3conjugate}{原笔记第3章“环的反同构”节（四元数共轭与乘法表，现为源码注释）}
+\registerref{c3prime}{原笔记第3章“素理想和极大理想”节（素理想、极大理想及商环判据，现为源码注释）}
+\registerref{c3maxexists}{原笔记第3章“素理想和极大理想”节（极大理想存在性与佐恩引理构造，现为源码注释）}
+\registerref{c3nil}{原笔记第3章“素理想和极大理想”节（幂零元等于全部素理想之交，现为源码注释）}
+\registerref{c3fraction}{原笔记第3章“商域和分式环”节（商域的存在与分式表示，当前正文）}
+\registerref{c3poly}{原笔记第3章“交换环上的多项式环”节（多项式环的定义、系数唯一性和代入，当前正文）}
+\registerref{c3multi}{原笔记第3章“交换环上的多项式环”节（多元多项式环的定义，当前正文）}
+\registerref{c3algebraic}{原笔记第3章“交换环上的多项式环”节（代数关系与代数无关的定义，当前正文）}
+\registerref{c3polyquot}{原笔记第3章“交换环上的多项式环”节（系数取商诱导的多项式商环同构，当前正文）}
+\registerref{c3degree}{原笔记第3章“整环上的一元多项式环”节（次数法则、整环性与单位，现为源码注释）}
+\registerref{c3division}{原笔记第3章“整环上的一元多项式环”节（带余除法与因式定理，现为源码注释）}
+\registerref{c3roots}{原笔记第3章“整环上的一元多项式环”节（非零多项式的根数上界，现为源码注释）}
+\registerref{c3qroots}{原笔记第3章“整环上的一元多项式环”节（四元数二次方程的共轭根构造，现为源码注释）}
+\registerref{c3finite}{原笔记第3章“整环上的一元多项式环”节（有限乘法子群循环、有限域非零元的幂，现为源码注释）}
+\registerref{c3minimal}{原笔记第3章“整环上的一元多项式环”节（极小多项式定义与商环刻画，现为源码注释）}
+\registerref{c3irred}{原笔记第3章“整环上的一元多项式环”节（不可约定义与极大理想、商域的等价性，现为源码注释）}
+\registerref{c3nilideal}{原笔记第3章“整环上的一元多项式环”节（幂零理想定义，现为源码注释）}
+\registerref{c3functions1}{原笔记第3章“多项式函数”节（一元多项式函数与形式多项式的对应，现为源码注释）}
+\registerref{c3functionsN}{原笔记第3章“多项式函数”节（无限域的多元零函数判据及有限域低次数代表的唯一性，现为源码注释）}
+
+\title{抽象代数前三章习题详解\\\large 第一章1--45题\quad 第二章1--57题\quad 第三章1--68题}
+\author{}\date{}
+\begin{document}\maketitle
+本册收录现有代数笔记抽象代数第一章45题、第二章57题、第三章68题，共170题，保留原题号。原来合写的第一章24--26题分别列出。第三章题面直接按原教材逐页核对；涉及原题的条件辨析、约定问题及可核实的错误，放在解答中说明，不改写题面。证明引用原笔记，在与原题一致的路线中补齐理由。前两章沿用已经整理的102题；第三章的68题题面直接按原教材书页131--136逐页核对，解答按原题重写。
+
+各题按题目、考点与思路、所用结论、证明、复习提示组织。普通证明标题统一为“证明”。题中引用的原笔记定义、定理、命题和证明，以原笔记第一、二章各自的章号、节号和现有统一计数器编号定位；点击引用可跳至文末原笔记定位表，表中列出源文件和源码行号。原笔记正文不在本册重排，也不另建K编号的定理目录。
+
+这里的第一、二、三章均指抽象代数部分，与线性代数部分的章号无关。编号以本次读取的原章节源码顺序为准，不采用当前只启用第三章的主PDF中的临时章号。源码行号仅供本次版本定位，后续手动增删会使其移动。
+
+\paragraph{记号与约定}
+群的单位元记为$e$，元素阶记为$\ord(a)$；$H\leq G$表示子群，$N\trianglelefteq G$表示正规子群，$[G:H]$表示左陪集个数。置换乘积从右至左作用。$D_n$为$2n$阶二面体群。$C_m$表示$m$阶循环群，$V_4$表示克莱因四元群。有关定义的正式位置分别见\noteref{group}、\noteref{cosets}、\noteref{order}、\noteref{normal}、\noteref{dihedral}、\noteref{cyclic}。
+
+环不预设有乘法单位元，一般环同态不预设保幺；子环也不要求与母环共用单位元。域指交换的除环，体指不要求交换的除环。零因子必须非零：若$ab=0$且$a,b\ne0$，称$a$为左零因子、$b$为右零因子，沿用\noteref{zerodiv}的左右约定。$E$为单位矩阵，$E_{ij}$为仅第$(i,j)$个位置为1的矩阵单位。
+
+\paragraph{补充工具的归属}
+整数带余除法、贝祖等式、有限集计数、数学归纳法，以及线性代数与闭区间紧致性，是原解已经使用的前置工具，不冒充抽象代数正文中另有编号的定理。具体使用时交代条件与计算；不能从原笔记中找到的独立陈述，不赋予原笔记编号。第一章44题逐列计数和第二章47题的有限基构造均在题内展开。第二章12题中沿原笔记补出的附加点引理也在该题内证明。
+
+第三章引用按具名小节和源码行号定位：其中原笔记已注释的小节明确标为“现为源码注释”，不为其编造当前PDF定理编号。已有前两章的引用及题目内容沿用原文件。
+
+\tableofcontents\clearpage
+
+\input{chapter1}
+
+\input{chapter2}
+
+\input{chapter3}
+
+\clearpage\section*{原笔记引用定位}\addcontentsline{toc}{section}{原笔记引用定位}
+下表只记录原笔记条目的位置，不重抄定理和定义。原笔记未启用前两章时，可直接按源文件行号回查。正文引用链接指向本表；每项均保留原章节的实际编号或节内位置。
+\small\begin{longtable}{p{6.3cm}p{8.0cm}}
+\toprule 原笔记条目 & 原文位置与内容范围\\\midrule\endhead
+
+\phantomsection\label{note:group}原笔记第1章第2节，定义 1.2.1 & 群的定义；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第51行起。\\
+
+\phantomsection\label{note:glaws}原笔记第1章第2节，命题 1.2.3 & 单位元、逆元与反序取逆；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第77行起。\\
+
+\phantomsection\label{note:cancel}原笔记第1章第2节，命题 1.2.4 & 方程、消去律；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第90行起。\\
+
+\phantomsection\label{note:powers}原笔记第1章第2节，命题 1.2.5 & 整数指数法则；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第109行起。\\
+
+\phantomsection\label{note:abelianpowers}原笔记第1章第2节，命题 1.2.7 & 交换元素的乘积幂；第1章“群的定义和简单性质”。\newline\path{chapters/Part 2/chapter1.tex}，第134行起。\\
+
+\phantomsection\label{note:dihedral}原笔记第1章第3节，定义 1.3.2 & 二面体群及其阶数与乘法关系；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第163行起。\\
+
+\phantomsection\label{note:cycles}原笔记第1章第3节，定义 1.3.7 & 轮换与对换；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第208行起。\\
+
+\phantomsection\label{note:cycledecomp}原笔记第1章第3节，定理 1.3.9 & 不相交轮换分解；第1章“群的例子”。\newline\path{chapters/Part 2/chapter1.tex}，第222行起。\\
+
+\phantomsection\label{note:subgroup}原笔记第1章第4节，定理 1.4.3 & 子群判别法；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第260行起。\\
+
+\phantomsection\label{note:cosets}原笔记第1章第4节，命题 1.4.8 & 陪集相等的判据与陪集划分；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第315行起。\\
+
+\phantomsection\label{note:lagrange}原笔记第1章第4节，定理 1.4.10 & 拉格朗日定理；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第342行起。\\
+
+\phantomsection\label{note:order}原笔记第1章第4节，命题 1.4.12 & 元素的阶与幂的判据；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第357行起。\\
+
+\phantomsection\label{note:iso}原笔记第1章第5节，定义 1.5.1 & 群同构及同构不变量；第1章“群的同构”。\newline\path{chapters/Part 2/chapter1.tex}，第387行起。\\
+
+\phantomsection\label{note:cayley}原笔记第1章第5节，定理 1.5.3 & 凯莱定理及左正则表示；第1章“群的同构”。\newline\path{chapters/Part 2/chapter1.tex}，第406行起。\\
+
+\phantomsection\label{note:sign}原笔记第1章第4节，命题 1.4.6 & 符号同态与交错群的阶；第1章“子群、陪集”。\newline\path{chapters/Part 2/chapter1.tex}，第293行起。\\
+
+\phantomsection\label{note:hom}原笔记第1章第6节，定义 1.6.1 & 群同态、像与核；第1章“同态、正规子群”。\newline\path{chapters/Part 2/chapter1.tex}，第481行起。\\
+
+\phantomsection\label{note:normal}原笔记第1章第6节，命题 1.6.5 & 正规子群的等价判据；第1章“同态、正规子群”。\newline\path{chapters/Part 2/chapter1.tex}，第577行起。\\
+
+\phantomsection\label{note:setproduct}原笔记第1章第7节，命题 1.7.2 & 集合乘积及取逆公式；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第615行起。\\
+
+\phantomsection\label{note:quotient}原笔记第1章第7节，定义 1.7.4 & 商群及自然同态；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第680行起。\\
+
+\phantomsection\label{note:firstiso}原笔记第1章第7节，定理 1.7.7 & 群同态基本定理；第1章“商群”。\newline\path{chapters/Part 2/chapter1.tex}，第730行起。\\
+
+\phantomsection\label{note:ring}原笔记第1章第8节，定义 1.8.1 & 环的定义；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第780行起。\\
+
+\phantomsection\label{note:ringlaws}原笔记第1章第8节，命题 1.8.2 & 环中零元、负元和分配律的运算；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第790行起。\\
+
+\phantomsection\label{note:subring}原笔记第1章第8节，定理 1.8.5 & 子环判别法；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第889行起。\\
+
+\phantomsection\label{note:ringiso}原笔记第1章第8节，定义 1.8.7 & 环同构及其性质；第1章“环、子环”。\newline\path{chapters/Part 2/chapter1.tex}，第922行起。\\
+
+\phantomsection\label{note:unit}原笔记第1章第9节，定义 1.9.1 & 幺环、单位及双侧逆元；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第953行起。\\
+
+\phantomsection\label{note:zerodiv}原笔记第1章第9节，定义 1.9.3 & 左右零因子、无零因子的消去律；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第987行起。\\
+
+\phantomsection\label{note:field}原笔记第1章第9节，定义 1.9.6 & 域与体；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第1033行起。\\
+
+\phantomsection\label{note:quaternion}原笔记第1章第9节，命题 1.9.9 & 四元数体的矩阵模型；第1章“各种特殊类型的环”。\newline\path{chapters/Part 2/chapter1.tex}，第1091行起。\\
+
+\phantomsection\label{note:ideal}原笔记第1章第10节，定义 1.10.3 & 理想的定义；第1章“环的同态、理想”。\newline\path{chapters/Part 2/chapter1.tex}，第1200行起。\\
+
+\phantomsection\label{note:idealunit}原笔记第1章第10节，命题 1.10.5 & 含有单位的理想；第1章“环的同态、理想”。\newline\path{chapters/Part 2/chapter1.tex}，第1234行起。\\
+
+\phantomsection\label{note:correspondence}原笔记第2章第1节，定理 2.1.1 & 子群对应定理；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第18行起。\\
+
+\phantomsection\label{note:secondiso}原笔记第2章第1节，定理 2.1.3 & 群的第二同构定理；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第111行起。\\
+
+\phantomsection\label{note:generated}原笔记第2章第1节 & 生成子群与有限生成群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第142行起。\\
+
+\phantomsection\label{note:derived}原笔记第2章第1节，定义 2.1.6 & 换位子与换位子群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第172行起。\\
+
+\phantomsection\label{note:abelianization}原笔记第2章第1节，定理 2.1.7 & 交换同态像与换位子群；第2章“群的同态定理”。\newline\path{chapters/Part 2/chapter2.tex}，第176行起。\\
+
+\phantomsection\label{note:cyclic}原笔记第2章第2节，定理 2.2.2 & 循环群及其子群分类；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第228行起。\\
+
+\phantomsection\label{note:powerorder}原笔记第2章第2节，命题 2.2.3 & 幂的阶的公式；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第254行起。\\
+
+\phantomsection\label{note:coprime}原笔记第2章第2节，引理 2.2.4 & 互素阶交换元素乘积的阶；第2章“循环群”。\newline\path{chapters/Part 2/chapter2.tex}，第276行起。\\
+
+\phantomsection\label{note:simple}原笔记第2章第3节，定义 2.3.1 & 单群的定义；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第331行起。\\
+
+\phantomsection\label{note:threecycles}原笔记第2章第3节，引理 2.3.3 & 对换与3-轮换的生成结论；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第347行起。\\
+
+\phantomsection\label{note:conjugation}原笔记第2章第3节，命题 2.3.4 & 轮换的共轭公式；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第366行起。\\
+
+\phantomsection\label{note:an}原笔记第2章第3节，定理 2.3.6 & 交错群的单性；第2章“单群与交错群的单性”。\newline\path{chapters/Part 2/chapter2.tex}，第398行起。\\
+
+\phantomsection\label{note:derivedseries}原笔记第2章第4节，定义 2.4.1 & 导出列；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第503行起。\\
+
+\phantomsection\label{note:solvabledef}原笔记第2章第4节，定义 2.4.2 & 可解群的定义；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第521行起。\\
+
+\phantomsection\label{note:solvable}原笔记第2章第4节，命题 2.4.8 & 可解群的子群、像与扩张；第2章“可解群”。\newline\path{chapters/Part 2/chapter2.tex}，第681行起。\\
+
+\phantomsection\label{note:aut}原笔记第2章第5节，定义 2.5.1 & 自同构与自同构群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第717行起。\\
+
+\phantomsection\label{note:cyclicaut}原笔记第2章第5节，命题 2.5.3 & 循环群的自同构；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第740行起。\\
+
+\phantomsection\label{note:inner}原笔记第2章第5节，定理 2.5.6 & 内自同构群与中心商群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第819行起。\\
+
+\phantomsection\label{note:center}原笔记第2章第5节，定义 2.5.5 & 群的中心；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第807行起。\\
+
+\phantomsection\label{note:autcenterless}原笔记第2章第5节，定理 2.5.8 & 无中心群的自同构定理；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第854行起。\\
+
+\phantomsection\label{note:complete}原笔记第2章第5节，定义 2.5.9 & 完全群；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第884行起。\\
+
+\phantomsection\label{note:characteristic}原笔记第2章第5节，定义 2.5.10 & 特征子群及其性质；第2章“群的自同构群”。\newline\path{chapters/Part 2/chapter2.tex}，第890行起。\\
+
+\phantomsection\label{note:action}原笔记第2章第6节，定义 2.6.1 & 群作用及对应的置换表示；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第923行起。\\
+
+\phantomsection\label{note:orbit}原笔记第2章第6节，定理 2.6.11 & 轨道稳定子定理；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1060行起。\\
+
+\phantomsection\label{note:pcenter}原笔记第2章第6节，推论 2.6.16 & 有限$p$群的中心非平凡；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1140行起。\\
+
+\phantomsection\label{note:centerizer}原笔记第2章第6节，定义 2.6.17 & 元素的中心化子；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1161行起。\\
+
+\phantomsection\label{note:classeq}原笔记第2章第6节，定理 2.6.18 & 类方程；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1165行起。\\
+
+\phantomsection\label{note:normalizer}原笔记第2章第6节，定义 2.6.20 & 子群的正规化子；第2章“群在集合上的作用”。\newline\path{chapters/Part 2/chapter2.tex}，第1207行起。\\
+
+\phantomsection\label{note:sylow1}原笔记第2章第7节，定理 2.7.2 & 西罗第一定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1259行起。\\
+
+\phantomsection\label{note:sylowdef}原笔记第2章第7节，定义 2.7.3 & 西罗子群的定义；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1286行起。\\
+
+\phantomsection\label{note:sylow2}原笔记第2章第7节，定理 2.7.4 & 西罗第二定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1290行起。\\
+
+\phantomsection\label{note:sylow3}原笔记第2章第7节，定理 2.7.7 & 西罗第三定理；第2章“西罗定理”。\newline\path{chapters/Part 2/chapter2.tex}，第1341行起。\\
+
+\phantomsection\label{note:internal}原笔记第2章第8节，定理 2.8.3 & 内直和分解定理；第2章“群的直和”。\newline\path{chapters/Part 2/chapter2.tex}，第1542行起。\\
+
+\phantomsection\label{note:free}原笔记第2章第11节，定理 2.11.7 & 自由群的泛性质与生成关系；第2章“自由幺半群与自由群”。\newline\path{chapters/Part 2/chapter2.tex}，第1958行起。\\
+
+\phantomsection\label{note:c3correspondence}原笔记第3章“环的同态定理”节 & 环的对应定理；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第130行起。\\
+\phantomsection\label{note:c3isomorphism}原笔记第3章“环的同态定理”节 & 第三同构定理及其证明；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第169行起。\\
+\phantomsection\label{note:c3direct}原笔记第3章“环的直和”节 & 直和定义、分量理想与内直和；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第254行起。\\
+\phantomsection\label{note:c3internal}原笔记第3章“环的直和”节 & 环的内直和判别定理及其证明；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第296行起。\\
+\phantomsection\label{note:c3product}原笔记第3章“环的直和”节 & 理想积的定义与分配律；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第332行起。\\
+\phantomsection\label{note:c3comaximal}原笔记第3章“环的直和”节 & 互素理想的积等于交；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第356行起。\\
+\phantomsection\label{note:c3crt}原笔记第3章“环的直和”节 & 中国剩余定理及证明；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第379行起。\\
+\phantomsection\label{note:c3principal}原笔记第3章“环的直和”节 & 生成理想与主理想的定义及表达式；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第442行起。\\
+\phantomsection\label{note:c3anti}原笔记第3章“环的反同构”节 & 反同构、反同态与反自同构定义；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第469行起。\\
+\phantomsection\label{note:c3conjugate}原笔记第3章“环的反同构”节 & 四元数共轭与乘法表；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第498行起。\\
+\phantomsection\label{note:c3prime}原笔记第3章“素理想和极大理想”节 & 素理想、极大理想及商环判据；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第564行起。\\
+\phantomsection\label{note:c3maxexists}原笔记第3章“素理想和极大理想”节 & 极大理想存在性与佐恩引理构造；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第708行起。\\
+\phantomsection\label{note:c3nil}原笔记第3章“素理想和极大理想”节 & 幂零元等于全部素理想之交；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第717行起。\\
+\phantomsection\label{note:c3fraction}原笔记第3章“商域和分式环”节 & 商域的存在与分式表示；当前正文。\newline\path{chapters/Part 2/chapter3.tex}，第758行起。\\
+\phantomsection\label{note:c3poly}原笔记第3章“交换环上的多项式环”节 & 多项式环的定义、系数唯一性和代入；当前正文。\newline\path{chapters/Part 2/chapter3.tex}，第1149行起。\\
+\phantomsection\label{note:c3multi}原笔记第3章“交换环上的多项式环”节 & 多元多项式环的定义；当前正文。\newline\path{chapters/Part 2/chapter3.tex}，第1296行起。\\
+\phantomsection\label{note:c3algebraic}原笔记第3章“交换环上的多项式环”节 & 代数关系与代数无关的定义；当前正文。\newline\path{chapters/Part 2/chapter3.tex}，第1340行起。\\
+\phantomsection\label{note:c3polyquot}原笔记第3章“交换环上的多项式环”节 & 系数取商诱导的多项式商环同构；当前正文。\newline\path{chapters/Part 2/chapter3.tex}，第1366行起。\\
+\phantomsection\label{note:c3degree}原笔记第3章“整环上的一元多项式环”节 & 次数法则、整环性与单位；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1392行起。\\
+\phantomsection\label{note:c3division}原笔记第3章“整环上的一元多项式环”节 & 带余除法与因式定理；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1429行起。\\
+\phantomsection\label{note:c3roots}原笔记第3章“整环上的一元多项式环”节 & 非零多项式的根数上界；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1473行起。\\
+\phantomsection\label{note:c3qroots}原笔记第3章“整环上的一元多项式环”节 & 四元数二次方程的共轭根构造；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1490行起。\\
+\phantomsection\label{note:c3finite}原笔记第3章“整环上的一元多项式环”节 & 有限乘法子群循环、有限域非零元的幂；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1517行起。\\
+\phantomsection\label{note:c3minimal}原笔记第3章“整环上的一元多项式环”节 & 极小多项式定义与商环刻画；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1569行起。\\
+\phantomsection\label{note:c3irred}原笔记第3章“整环上的一元多项式环”节 & 不可约定义与极大理想、商域的等价性；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1587行起。\\
+\phantomsection\label{note:c3nilideal}原笔记第3章“整环上的一元多项式环”节 & 幂零理想定义；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1699行起。\\
+\phantomsection\label{note:c3functions1}原笔记第3章“多项式函数”节 & 一元多项式函数与形式多项式的对应；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1746行起。\\
+\phantomsection\label{note:c3functionsN}原笔记第3章“多项式函数”节 & 无限域的多元零函数判据及有限域低次数代表的唯一性；现为源码注释，按源码回查。\newline\path{chapters/Part 2/chapter3.tex}，第1802行起。\\
+\bottomrule\end{longtable}\normalsize
+
+\clearpage\section*{题号与证明入口}\addcontentsline{toc}{section}{题号与证明入口}
+\small\begin{longtable}{cp{13.5cm}}
+\toprule 章 & 题号及主题（点击跳转）\\\midrule\endhead
+
+1 & \hyperref[ex:1:1]{1：平方公式判别交换群}\\
+
+1 & \hyperref[ex:1:2]{2：每个元素的平方为单位元}\\
+
+1 & \hyperref[ex:1:3]{3：有限消去半群是群}\\
+
+1 & \hyperref[ex:1:4]{4：可解方程的结合系统}\\
+
+1 & \hyperref[ex:1:5]{5：非交换平方公式的反例}\\
+
+1 & \hyperref[ex:1:6]{6：任意偶数阶的非交换例子}\\
+
+1 & \hyperref[ex:1:7]{7：反复共轭}\\
+
+1 & \hyperref[ex:1:8]{8：取逆映射的同态性}\\
+
+1 & \hyperref[ex:1:9]{9：由子集定义等价关系}\\
+
+1 & \hyperref[ex:1:10]{10：$n\Z\cong\Z$}\\
+
+1 & \hyperref[ex:1:11]{11：克莱因四元群}\\
+
+1 & \hyperref[ex:1:12]{12：指数2的子群正规}\\
+
+1 & \hyperref[ex:1:13]{13：偶数阶群有2阶元素}\\
+
+1 & \hyperref[ex:1:14]{14：二面体群的矩阵实现}\\
+
+1 & \hyperref[ex:1:15]{15：连续三个指数的乘积公式}\\
+
+1 & \hyperref[ex:1:16]{16：有限阶元素的积可以无限阶}\\
+
+1 & \hyperref[ex:1:17]{17：交换群的有限阶元素成子群}\\
+
+1 & \hyperref[ex:1:18]{18：只有有限多个子群的群必有限}\\
+
+1 & \hyperref[ex:1:19]{19：$D_n$的全部正规子群}\\
+
+1 & \hyperref[ex:1:20]{20：子群乘积的判别}\\
+
+1 & \hyperref[ex:1:21]{21：有限子群乘积的计数}\\
+
+1 & \hyperref[ex:1:22]{22：正规子群的乘积}\\
+
+1 & \hyperref[ex:1:23]{23：中心化子与正规化子}\\
+
+1 & \hyperref[ex:1:24]{24：2阶群}\\
+
+1 & \hyperref[ex:1:25]{25：4阶群的分类}\\
+
+1 & \hyperref[ex:1:26]{26：素数阶群}\\
+
+1 & \hyperref[ex:1:27]{27：整数对上的环}\\
+
+1 & \hyperref[ex:1:28]{28：交换整数加法与乘法的角色}\\
+
+1 & \hyperref[ex:1:29]{29：改变坐标得到同构环}\\
+
+1 & \hyperref[ex:1:30]{30：子环与母环的单位元和交换性}\\
+
+1 & \hyperref[ex:1:31]{31：单侧单位元}\\
+
+1 & \hyperref[ex:1:32]{32：域没有非平凡双边理想}\\
+
+1 & \hyperref[ex:1:33]{33：$Ra$何时是理想}\\
+
+1 & \hyperref[ex:1:34]{34：理想的根}\\
+
+1 & \hyperref[ex:1:35]{35：交换幺环仅有平凡理想时为域}\\
+
+1 & \hyperref[ex:1:36]{36：全矩阵环是单环}\\
+
+1 & \hyperref[ex:1:37]{37：$aba=0$判别零因子}\\
+
+1 & \hyperref[ex:1:38]{38：$1-a$的有限几何级数逆}\\
+
+1 & \hyperref[ex:1:39]{39：交换环的幂零元构成理想}\\
+
+1 & \hyperref[ex:1:40]{40：有限幺环的单侧逆也是双侧逆}\\
+
+1 & \hyperref[ex:1:41]{41：单侧逆不成双侧逆时有无穷多个右逆}\\
+
+1 & \hyperref[ex:1:42]{42：唯一的广义逆推出体}\\
+
+1 & \hyperref[ex:1:43]{43：连续函数环}\\
+
+1 & \hyperref[ex:1:44]{44：有限域上的矩阵计数}\\
+
+1 & \hyperref[ex:1:45]{45：华罗庚恒等式}\\
+
+2 & \hyperref[ex:2:1]{1：阶互素时落入正规子群}\\
+
+2 & \hyperref[ex:2:2]{2：互素阶的分解}\\
+
+2 & \hyperref[ex:2:3]{3：互素指数的开方}\\
+
+2 & \hyperref[ex:2:4]{4：$ab$与$ba$同阶}\\
+
+2 & \hyperref[ex:2:5]{5：给定阶元素的奇偶性}\\
+
+2 & \hyperref[ex:2:6]{6：对称群的中心}\\
+
+2 & \hyperref[ex:2:7]{7：有理数加法群的有限生成子群}\\
+
+2 & \hyperref[ex:2:8]{8：有限阶生成元与交换性推出有限性}\\
+
+2 & \hyperref[ex:2:9]{9：由幂集合刻画循环群}\\
+
+2 & \hyperref[ex:2:10]{10：两组对换生成$S_n$}\\
+
+2 & \hyperref[ex:2:11]{11：两个生成元生成$S_n$}\\
+
+2 & \hyperref[ex:2:12]{12：两个生成元生成$A_n$}\\
+
+2 & \hyperref[ex:2:13]{13：长轮换的中心化子}\\
+
+2 & \hyperref[ex:2:14]{14：$S_5$的共轭类及正规子群}\\
+
+2 & \hyperref[ex:2:15]{15：商群中子群的交}\\
+
+2 & \hyperref[ex:2:16]{16：交子群的陪集}\\
+
+2 & \hyperref[ex:2:17]{17：有限指数子群的交}\\
+
+2 & \hyperref[ex:2:18]{18：有限指数给出正规子群或忠实表示}\\
+
+2 & \hyperref[ex:2:19]{19：最小素因子指数的子群正规}\\
+
+2 & \hyperref[ex:2:20]{20：$p^2$阶群的分类}\\
+
+2 & \hyperref[ex:2:21]{21：非交换6阶群}\\
+
+2 & \hyperref[ex:2:22]{22：15阶群}\\
+
+2 & \hyperref[ex:2:23]{23：10阶群}\\
+
+2 & \hyperref[ex:2:24]{24：不同素数乘积阶的群不单}\\
+
+2 & \hyperref[ex:2:25]{25：$p^2q$阶群有正规西罗子群}\\
+
+2 & \hyperref[ex:2:26]{26：两个非交换的有限例子}\\
+
+2 & \hyperref[ex:2:27]{27：双陪集计数}\\
+
+2 & \hyperref[ex:2:28]{28：西罗2子群只有2阶时的指数2子群}\\
+
+2 & \hyperref[ex:2:29]{29：大子集的乘积}\\
+
+2 & \hyperref[ex:2:30]{30：真子群的共轭不能覆盖有限群}\\
+
+2 & \hyperref[ex:2:31]{31：$S_4$的西罗2子群及西罗3子群}\\
+
+2 & \hyperref[ex:2:32]{32：56阶与148阶群不单}\\
+
+2 & \hyperref[ex:2:33]{33：弗拉蒂尼论证}\\
+
+2 & \hyperref[ex:2:34]{34：正规子群与商群的西罗子群}\\
+
+2 & \hyperref[ex:2:35]{35：子群的西罗子群可由共轭后相交得到}\\
+
+2 & \hyperref[ex:2:36]{36：$\GL_n(\F_p)$的西罗$p$子群}\\
+
+2 & \hyperref[ex:2:37]{37：非交换$p^3$阶群的换位子群}\\
+
+2 & \hyperref[ex:2:38]{38：$p$群中的$p$阶正规子群在中心内}\\
+
+2 & \hyperref[ex:2:39]{39：中心商群循环则原群交换}\\
+
+2 & \hyperref[ex:2:40]{40：有限群嵌入某个交错群}\\
+
+2 & \hyperref[ex:2:41]{41：正规子群与换位子群交平凡时在中心内}\\
+
+2 & \hyperref[ex:2:42]{42：可解群的子群与商群仍可解}\\
+
+2 & \hyperref[ex:2:43]{43：$p^2q$阶群可解}\\
+
+2 & \hyperref[ex:2:44]{44：有限$p$群可解}\\
+
+2 & \hyperref[ex:2:45]{45：两个可解商群给出交核的可解商群}\\
+
+2 & \hyperref[ex:2:46]{46：只有两个内自同构时原群交换}\\
+
+2 & \hyperref[ex:2:47]{47：非平凡有限群至少有两个自同构，除了2阶群}\\
+
+2 & \hyperref[ex:2:48]{48：克莱因四元群的自同构群}\\
+
+2 & \hyperref[ex:2:49]{49：$S_3,S_4$为完全群}\\
+
+2 & \hyperref[ex:2:50]{50：非交换单群的自同构群完全}\\
+
+2 & \hyperref[ex:2:51]{51：不存在换位子群为$S_4$的更大群}\\
+
+2 & \hyperref[ex:2:52]{52：3-轮换为$A_n$中的换位子}\\
+
+2 & \hyperref[ex:2:53]{53：$S_4$的两个生成元及关系}\\
+
+2 & \hyperref[ex:2:54]{54：$A_4$的两个生成元及关系}\\
+
+2 & \hyperref[ex:2:55]{55：四元数群的关系与条件}\\
+
+2 & \hyperref[ex:2:56]{56：60以下的群及60阶单群}\\
+
+2 & \hyperref[ex:2:57]{57：有限指数子群仍有限生成}\\
+
+3 & \hyperref[ex:3:1]{1：由\texorpdfstring{$1-ab$}{1-ab}可逆推出\texorpdfstring{$1-ba$}{1-ba}可逆}\\
+3 & \hyperref[ex:3:2]{2：右逆不唯一、左零因子与非单位的等价性}\\
+3 & \hyperref[ex:3:3]{3：右逆不唯一便有无穷多个右逆}\\
+3 & \hyperref[ex:3:4]{4：幂零元全体是否为理想}\\
+3 & \hyperref[ex:3:5]{5：素特征的幂公式与幺环的特征}\\
+3 & \hyperref[ex:3:6]{6：矩阵环的全部双边理想}\\
+3 & \hyperref[ex:3:7]{7：理想积的分配律}\\
+3 & \hyperref[ex:3:8]{8：满同态下的元素性质与整环性质}\\
+3 & \hyperref[ex:3:9]{9：有理系数四元数构成子体}\\
+3 & \hyperref[ex:3:10]{10：实四元数体的中心}\\
+3 & \hyperref[ex:3:11]{11：与四元数基元乘法交换的元素}\\
+3 & \hyperref[ex:3:12]{12：共轭不变的四元数子体}\\
+3 & \hyperref[ex:3:13]{13：互素理想与理想积的包含}\\
+3 & \hyperref[ex:3:14]{14：互素理想之积包含其交中的理想}\\
+3 & \hyperref[ex:3:15]{15：只有恒等反自同构的矩阵子环}\\
+3 & \hyperref[ex:3:16]{16：整数下三角矩阵环的全部理想}\\
+3 & \hyperref[ex:3:17]{17：剩余类矩阵环的单位群阶数}\\
+3 & \hyperref[ex:3:18]{18：零因子非空且有限时环必有限}\\
+3 & \hyperref[ex:3:19]{19：理想关系不具传递性}\\
+3 & \hyperref[ex:3:20]{20：非单位属于某个极大理想}\\
+3 & \hyperref[ex:3:21]{21：雅各布森根元素的可逆性性质}\\
+3 & \hyperref[ex:3:22]{22：强拟正则元属于雅各布森根}\\
+3 & \hyperref[ex:3:23]{23：有限交换环的素理想必极大}\\
+3 & \hyperref[ex:3:24]{24：环的内直和定理与商环直和定理的等价性}\\
+3 & \hyperref[ex:3:25]{25：单位根群的满而非单自同态}\\
+3 & \hyperref[ex:3:26]{26：若尔当同态的三项性质}\\
+3 & \hyperref[ex:3:27]{27：若尔当同态对一对元素的二择一性质}\\
+3 & \hyperref[ex:3:28]{28：逐对二择一推出全局同态或反同态}\\
+3 & \hyperref[ex:3:29]{29：环的若尔当同态是同态或反同态}\\
+3 & \hyperref[ex:3:30]{30：模素数幂环的单位、幂零元与唯一素理想}\\
+3 & \hyperref[ex:3:31]{31：模素数幂系数多项式的单位、零因子与幂零元}\\
+3 & \hyperref[ex:3:32]{32：直和环的理想分解及整数商环的根与单位群}\\
+3 & \hyperref[ex:3:33]{33：三次多项式在六元环中的六个根}\\
+3 & \hyperref[ex:3:34]{34：四元数中的二次方程有无穷多个根}\\
+3 & \hyperref[ex:3:35]{35：两个平方根之和的极小多项式}\\
+3 & \hyperref[ex:3:36]{36：三次代数关系下的乘法和求逆}\\
+3 & \hyperref[ex:3:37]{37：八元域的商环构造}\\
+3 & \hyperref[ex:3:38]{38：五元域上的全部首一不可约二次式}\\
+3 & \hyperref[ex:3:39]{39：二十五元域的构造}\\
+3 & \hyperref[ex:3:40]{40：一个非主理想}\\
+3 & \hyperref[ex:3:41]{41：系数约化诱导的商环同构与极大性}\\
+3 & \hyperref[ex:3:42]{42：商环无非零幂零元与无重因式}\\
+3 & \hyperref[ex:3:43]{43：幂零多项式的每个系数均幂零}\\
+3 & \hyperref[ex:3:44]{44：多项式零因子的常数湮灭元判据}\\
+3 & \hyperref[ex:3:45]{45：常数项可逆且其余系数幂零的多项式可逆}\\
+3 & \hyperref[ex:3:46]{46：各系数幂零推出多项式幂零}\\
+3 & \hyperref[ex:3:47]{47：多元多项式环的幂零根}\\
+3 & \hyperref[ex:3:48]{48：有限环中右逆必为左逆}\\
+3 & \hyperref[ex:3:49]{49：多项式环的强拟正则元都是幂零元}\\
+3 & \hyperref[ex:3:50]{50：每个元素满足某个幂等关系时素理想极大}\\
+3 & \hyperref[ex:3:51]{51：布尔环的特征、素商与有限生成理想}\\
+3 & \hyperref[ex:3:52]{52：唯一素理想、非单位幂零与根商域的等价性}\\
+3 & \hyperref[ex:3:53]{53：只有有限多个理想的整环是域}\\
+3 & \hyperref[ex:3:54]{54：理想集合有极小元的整环是域}\\
+3 & \hyperref[ex:3:55]{55：华罗庚恒等式中的可逆性与因子次序}\\
+3 & \hyperref[ex:3:56]{56：共轭不变除子环的中心性}\\
+3 & \hyperref[ex:3:57]{57：实多项式函数环到实数域的同态}\\
+3 & \hyperref[ex:3:58]{58：无限域上非零多项式的非零点集}\\
+3 & \hyperref[ex:3:59]{59：有限域上原点的指示多项式}\\
+3 & \hyperref[ex:3:60]{60：原点指示函数代表多项式的次数下界}\\
+3 & \hyperref[ex:3:61]{61：低于变量数次数的多项式还有非零零点}\\
+3 & \hyperref[ex:3:62]{62：形式幂级数的逆、整环性与商域表示}\\
+3 & \hyperref[ex:3:63]{63：非单位构成唯一极大理想的条件}\\
+3 & \hyperref[ex:3:64]{64：单位加零构成子域及其外元素超越性}\\
+3 & \hyperref[ex:3:65]{65：原题的常数反例与非常数情形}\\
+3 & \hyperref[ex:3:66]{66：全矩阵环的左理想都是主左理想}\\
+3 & \hyperref[ex:3:67]{67：阿贝尔群的自同态环}\\
+3 & \hyperref[ex:3:68]{68：整数群、有限循环群、有理数群与初等p群的自同态环}\\
+\bottomrule\end{longtable}\end{document}

@@ -1,0 +1,20 @@
+% 平移后的圆域与极坐标参数矩形。
+\begin{tikzpicture}[>=Stealth,font=\small]
+  \begin{scope}
+    \draw[->] (0,0) -- (3.1,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,2.8) node[above] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[line width=.65pt] (1.55,1.6) circle[radius=.7];
+    \fill (1.55,1.6) circle[radius=.025];
+    \node[below,font=\scriptsize] at (1.55,1.45) {$(x_0,y_0)$};
+  \end{scope}
+  \draw[->] (3.5,1.3) -- (4.3,1.3);
+  \begin{scope}[xshift=5cm]
+    \draw[->] (0,0) -- (2.9,0) node[right] {$r$};
+    \draw[->] (0,0) -- (0,2.8) node[above] {$\theta$};
+    \node[below left] at (0,0) {$O$};
+    \draw[line width=.65pt] (0,0) rectangle (1.85,2.15);
+    \node[left] at (0,2.15) {$2\pi$};
+    \node[below] at (1.85,0) {$a$};
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,298 @@
+% ============================================================
+%  cover.tex — 代数学笔记封面（九层设计）
+%  参考 Charlie's LaTeX Template 封面架构
+%  配色：BlueMain/BlueDark/BlueAccent 蓝系 + Gold 暖金
+%  用法：\coverimage{figure/封面.png} → \makecover
+% ============================================================
+
+% ── 封面图片命令 ──
+\makeatletter
+\providecommand{\@coverimage}{}
+\newcommand{\coverimage}[1]{\renewcommand{\@coverimage}{#1}}
+
+\newcommand{\makecover}{%
+\begin{titlepage}
+\thispagestyle{empty}
+
+% ============================================================
+%  第一层：左侧深蓝色竖条 + 渐变纹理 + 装饰圆点 + 细线
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 主体竖条
+  \fill[BlueDark!95]
+    (current page.south west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  % 顶部向下的渐变淡出
+  \shade[top color=BlueDark!90, bottom color=BlueDark!95]
+    ([xshift=0cm,yshift=-4cm]current page.north west) rectangle
+    ([xshift=2.8cm]current page.north west);
+  % 底部向上的渐变淡出
+  \shade[bottom color=BlueDark!90, top color=BlueDark!95]
+    ([xshift=0cm,yshift=4cm]current page.south west) rectangle
+    ([xshift=2.8cm]current page.south west);
+  % 竖条右边界线
+  \draw[BlueAccent!50,line width=1pt]
+    ([xshift=2.8cm]current page.south west) --
+    ([xshift=2.8cm]current page.north west);
+  % 左侧装饰细线（距左边缘 0.4cm）
+  \draw[BlueLight!25,line width=0.4pt]
+    ([xshift=0.4cm]current page.south west) --
+    ([xshift=0.4cm]current page.north west);
+
+  % 蓝色区域内的装饰圆
+  \foreach \y/\r/\o in {
+    0.08/1.1/0.07, 0.22/0.7/0.11, 0.40/1.4/0.06,
+    0.55/0.55/0.10, 0.68/0.9/0.08, 0.82/0.6/0.11, 0.93/0.75/0.09
+  } {
+    \fill[white, opacity=\o]
+      ([xshift=1.4cm, yshift=-\y\paperheight]current page.north west)
+      circle (\r cm);
+  }
+
+  % 两条细竖线装饰
+  \draw[white, line width=0.3pt, opacity=0.18]
+    ([xshift=0.5cm]current page.north west) --
+    ([xshift=0.5cm]current page.south west);
+  \draw[white, line width=0.3pt, opacity=0.18]
+    ([xshift=2.1cm]current page.north west) --
+    ([xshift=2.1cm]current page.south west);
+\end{tikzpicture}
+
+% ============================================================
+%  第二层：顶部/底部装饰金线带 + 等距标记圆点
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 顶部横贯金线
+  \draw[GoldMain!50,line width=0.6pt]
+    ([xshift=3.0cm,yshift=-1.6cm]current page.north west) --
+    ([xshift=-2.0cm,yshift=-1.6cm]current page.north east);
+  % 金线上方小标记点
+  \foreach \x in {3.5,7,10.5,14} {
+    \fill[GoldMain!60]
+      ([xshift=\x cm,yshift=-1.45cm]current page.north west)
+      circle (1.5pt);
+  }
+  % 底部横贯金线
+  \draw[GoldMain!40,line width=0.5pt]
+    ([xshift=3.0cm,yshift=2.2cm]current page.south west) --
+    ([xshift=-1.5cm,yshift=2.2cm]current page.south east);
+  % 底部金线标记
+  \foreach \x in {4,8,12} {
+    \fill[GoldMain!45]
+      ([xshift=\x cm,yshift=2.35cm]current page.south west)
+      circle (1.2pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第三层：右上角装饰几何图形组（同心圆环 + 放射线）
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 大圆环（空心）
+  \draw[GoldMain!30,line width=0.7pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (22pt);
+  % 小圆环（同心）
+  \draw[BlueAccent!30,line width=0.5pt]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (14pt);
+  % 中心实心点
+  \fill[GoldMain!50]
+    ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+    circle (2.5pt);
+  % 正交放射线
+  \foreach \ang in {0,90,180,270} {
+    \draw[GoldMain!25,line width=0.4pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:28pt);
+  }
+  % 对角放射线
+  \foreach \ang in {45,135,225,315} {
+    \draw[BlueAccent!20,line width=0.3pt]
+      ([xshift=-2.5cm,yshift=-2.5cm]current page.north east)
+      -- ++(\ang:26pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第四层：左下角装饰 —— 数学曲线簇（正弦型 + 多项式型）
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 波动曲线簇
+  \draw[GoldMain!15,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=3.0cm]current page.south west)
+    to[out=30,in=210] ++(3.0,2.0);
+  \draw[BlueAccent!15,line width=0.5pt,smooth]
+    ([xshift=3.3cm,yshift=3.0cm]current page.south west)
+    to[out=35,in=205] ++(3.2,2.2);
+  \draw[GoldMain!12,line width=0.5pt,smooth]
+    ([xshift=3.7cm,yshift=2.8cm]current page.south west)
+    to[out=25,in=215] ++(2.8,1.8);
+  % 多项式型曲线（代数学风格）
+  \draw[BlueMain!12,line width=0.5pt,smooth]
+    ([xshift=3.5cm,yshift=4.0cm]current page.south west)
+    to[out=-15,in=195] ++(2.5,-1.5);
+  \draw[GoldMain!10,line width=0.4pt,smooth]
+    ([xshift=3.7cm,yshift=4.2cm]current page.south west)
+    to[out=-20,in=190] ++(2.3,-1.3);
+  \draw[BlueAccent!10,line width=0.4pt,smooth]
+    ([xshift=3.9cm,yshift=3.8cm]current page.south west)
+    to[out=-10,in=200] ++(2.6,-1.0);
+  % 流方向小箭头
+  \draw[GoldMain!25,-{Stealth[length=3pt,width=3pt]}]
+    ([xshift=5.0cm,yshift=4.2cm]current page.south west)
+    -- ++(0.8,0.5);
+  \draw[BlueAccent!20,-{Stealth[length=3pt,width=3pt]}]
+    ([xshift=5.2cm,yshift=3.5cm]current page.south west)
+    -- ++(0.7,-0.5);
+\end{tikzpicture}
+
+% ============================================================
+%  第五层：公式背景区 —— 淡金色矩形 + 代数学经典公式
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 主背景矩形（含极淡渐变）
+  \shade[top color=GoldPale!40, bottom color=GoldPale!25]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+  % 矩形的细金边框
+  \draw[GoldMain!30,line width=0.4pt]
+    ([xshift=3.3cm,yshift=-3cm]current page.north west) rectangle
+    ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
+  % 公式间递进连接箭头
+  \draw[GoldMain!35,line width=0.4pt,-{Stealth[length=3.5pt,width=3.5pt]}]
+    ([xshift=5.0cm,yshift=-4.3cm]current page.north west) --
+    ([xshift=5.0cm,yshift=-4.8cm]current page.north west);
+  \draw[GoldMain!35,line width=0.4pt,-{Stealth[length=3.5pt,width=3.5pt]}]
+    ([xshift=5.2cm,yshift=-5.3cm]current page.north west) --
+    ([xshift=5.2cm,yshift=-5.8cm]current page.north west);
+
+  % 六条代数学经典公式
+  \node[anchor=west,BlueMain!70] at ([xshift=3.7cm,yshift=-3.5cm]current page.north west)
+    {$\displaystyle \dim(\Ker T)+\dim(\Im T)=\dim V$};
+
+  \node[anchor=west,BlueAccent!65] at ([xshift=3.8cm,yshift=-4.5cm]current page.north west)
+    {$\displaystyle \det(AB)=\det A\cdot\det B$};
+
+  \node[anchor=west,GoldMain!75] at ([xshift=3.9cm,yshift=-5.5cm]current page.north west)
+    {$\displaystyle G/\Ker\phi\;\cong\;\Im\phi$};
+
+  \node[anchor=west,BlueMain!55] at ([xshift=3.7cm,yshift=-6.5cm]current page.north west)
+    {$\displaystyle \forall g\in G,\ \exists\,g^{-1}\in G:\ g\cdot g^{-1}=e$};
+
+  \node[anchor=west,BlueAccent!50] at ([xshift=3.8cm,yshift=-7.5cm]current page.north west)
+    {$\displaystyle \chi_{A}(\lambda)=\det(\lambda I-A)$};
+
+  \node[anchor=west,GoldMain!55] at ([xshift=4.0cm,yshift=-8.5cm]current page.north west)
+    {$\displaystyle \mathbb{C}\cong\mathbb{R}[x]/(x^{2}+1)$};
+
+  % 公式编号装饰（右侧小圆点）
+  \foreach \y/\c in {-3.5/BlueMain!35, -4.5/BlueAccent!30, -5.5/GoldMain!35, -6.5/BlueMain!30, -7.5/BlueAccent!25, -8.5/GoldMain!30} {
+    \fill[\c]
+      ([xshift=-2.0cm,yshift=\y cm]current page.north west)
+      circle (1.8pt);
+  }
+\end{tikzpicture}
+
+% ============================================================
+%  第六层：标题区 —— 装饰分隔线 + 标题文字
+% ============================================================
+\vspace*{2cm}
+
+\hspace*{3.3cm}
+\begin{minipage}{0.7\textwidth}
+  % ── 系列标识 ──
+  {\large\bfseries\color{BlueAccent} Huginn Notes in Mathematics\par}
+
+  \vspace{0.3cm}
+  % ── 装饰短金线（带渐小圆点尾饰）──
+  \begin{tikzpicture}
+    \draw[GoldMain!60,line width=1.2pt] (0,0) -- (2.0,0);
+    \fill[GoldMain!70] (2.3,0) circle (2pt);
+    \fill[GoldMain!50] (2.8,0) circle (1.2pt);
+    \fill[GoldMain!30] (3.2,0) circle (0.8pt);
+  \end{tikzpicture}
+
+  \vspace{0.8cm}
+
+  % ── 主标题 ──
+  {\Huge\bfseries\color{BlueDark} \@title\par}
+
+  \vspace{0.6cm}
+  % ── 英文副标题 ──
+  {\Large\color{BlueMain!70} \@author\par}
+
+  \vspace{0.4cm}
+  % ── 第二道装饰金线（两端圆点）──
+  \begin{tikzpicture}
+    \draw[GoldMain!40,line width=0.7pt] (0,0) -- (3.5,0);
+    \fill[GoldMain!45] (0,0) circle (1.5pt);
+    \fill[GoldMain!45] (3.5,0) circle (1.5pt);
+  \end{tikzpicture}
+
+  \vspace{0.8cm}
+  % ── Fraktur 铭文 ──
+  {\large\color{GoldMain!85} $\mathfrak{For}\quad\mathfrak{the}\quad\mathfrak{Worthy}$\par}
+
+  \vspace{1.0cm}
+
+
+\end{minipage}
+
+% ============================================================
+%  第七层：右下角「出版社」小 logo（仿 Springer 风格）
+% ============================================================
+\begin{tikzpicture}[remember picture, overlay]
+  \begin{scope}[shift={([xshift=-5.5cm, yshift=1.5cm]current page.south east)}]
+    % 小房子
+    \draw[BlueMain, line width=0.8pt] (0,0) rectangle (0.9,0.72);
+    \draw[BlueMain, line width=0.8pt] (0,0.72) -- (0.45,1.08) -- (0.9,0.72);
+    \draw[GoldMain, line width=0.5pt] (0.45,0.72) -- (0.45,1.08);
+    \draw[BlueMain, line width=0.4pt] (0.23,0) -- (0.23,0.72);
+    \draw[BlueMain, line width=0.4pt] (0.67,0) -- (0.67,0.72);
+    % 屋顶金点
+    \fill[GoldMain] (0.45,1.08) circle (1.5pt);
+    \node[anchor=west, BlueMain, font=\footnotesize] at (1.1,0.32)
+      {Produced by Huginn};
+  \end{scope}
+\end{tikzpicture}
+
+% ============================================================
+%  第八层：底部主封面图片 —— 与金色框左右对齐，位于小房子上方
+% ============================================================
+\ifdefempty{\@coverimage}{}{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[
+		anchor=south west,
+		inner sep=0pt,
+		outer sep=0pt
+		] at ([xshift=3.3cm,yshift=3.05cm]current page.south west)
+		{
+			\includegraphics[
+			width=\dimexpr\paperwidth-4.8cm\relax
+			]{\@coverimage}
+		};
+	\end{tikzpicture}
+}
+
+% ============================================================
+%  第九层：散落装饰点（页面随机分布的数学点缀）
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  % 右中区域散点
+  \fill[GoldMain!20] ([xshift=-3.0cm,yshift=-9.5cm]current page.north west) circle (1.0pt);
+  \fill[BlueAccent!20] ([xshift=-3.8cm,yshift=-9.8cm]current page.north west) circle (0.7pt);
+  \fill[GoldMain!18] ([xshift=-2.5cm,yshift=-10.2cm]current page.north west) circle (0.8pt);
+  % 右下方散点
+  \fill[BlueMain!15] ([xshift=-4.0cm,yshift=3.5cm]current page.south west) circle (1.2pt);
+  \fill[GoldMain!15] ([xshift=-5.5cm,yshift=4.0cm]current page.south west) circle (0.9pt);
+  \fill[BlueAccent!12] ([xshift=-4.8cm,yshift=3.0cm]current page.south west) circle (0.6pt);
+  % 标题区附近轻微装饰
+  \fill[GoldMain!22] ([xshift=14.5cm,yshift=-6.0cm]current page.north west) circle (1.0pt);
+  \fill[BlueAccent!18] ([xshift=14.0cm,yshift=-5.5cm]current page.north west) circle (0.6pt);
+  \fill[GoldMain!18] ([xshift=15.0cm,yshift=-5.8cm]current page.north west) circle (0.8pt);
+\end{tikzpicture}
+
+\end{titlepage}
+}
+\makeatother

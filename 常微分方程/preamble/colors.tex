@@ -1,0 +1,73 @@
+% preamble/colors.tex
+% ============================================
+% 配色方案：墨绿 + 暗金 (Forest Green & Dark Gold)
+% 主色：墨绿 (Green)  —— 章节彩带、定理框架
+% 强调：暗金 (Gold)    —— 定义、装饰线、点缀
+% 辅助：淡绿 / 淡金    —— 辅助盒子、背景
+% ============================================
+
+% ---- 墨绿系（主结构色）----
+% 沉静的森林绿，用于封面侧边栏、Part/Chapter 彩带、定理/命题
+\definecolor{GreenDark}{RGB}{20, 55, 40}
+\definecolor{GreenMain}{RGB}{30, 80, 60}
+\definecolor{GreenMed}{RGB}{60, 110, 85}
+\definecolor{GreenLight}{RGB}{120, 160, 135}
+\definecolor{GreenPale}{RGB}{218, 235, 225}
+
+% ---- 暗金系（强调色）----
+% 温润的金棕色，用于定义/公理框、装饰线、圆点、封面点缀
+\definecolor{GoldDark}{RGB}{140, 110, 35}
+\definecolor{GoldMain}{RGB}{175, 145, 60}
+\definecolor{GoldMed}{RGB}{205, 178, 100}
+\definecolor{GoldLight}{RGB}{225, 208, 155}
+\definecolor{GoldPale}{RGB}{245, 238, 218}
+
+% ---- 兼容别名：供内部 preamble 文件使用 ----
+% 结构色（通用别名）
+\colorlet{BlueMain}{GreenMain}
+\colorlet{BlueDark}{GreenDark}
+\colorlet{BlueLight}{GreenLight}
+\colorlet{BlueMed}{GreenMed}
+\colorlet{BluePale}{GreenPale}
+
+% 强调色别名
+\colorlet{VerdeMain}{GoldMain}
+\colorlet{VerdeDark}{GoldDark}
+\colorlet{VerdeLight}{GoldLight}
+\colorlet{VerdePale}{GoldPale}
+\colorlet{VerdeMed}{GoldMed}
+
+% 青绿色系（示例框专用，取淡金色系）
+\colorlet{TealMain}{GoldMain!85!white}
+\colorlet{TealDark}{GoldDark}
+\colorlet{TealLight}{GoldLight}
+\colorlet{TealPale}{GoldPale!90!white}
+
+% ---- 通用兼容名 ----
+\colorlet{GreenMainAlias}{GreenMain}
+\colorlet{OrangeMain}{GreenMain!85}
+\colorlet{SlateMain}{GreenMain}
+\colorlet{SlateMed}{GreenMed}
+\colorlet{SlateDark}{GreenDark}
+\colorlet{SlateLight}{GreenLight}
+
+\colorlet{mainblue}{GreenMain}
+\colorlet{mediumblue}{GreenDark}
+\colorlet{lightblue}{GreenLight}
+\colorlet{grayblue}{GreenMain!50}
+\colorlet{brightblue}{GoldMain}
+\colorlet{paleblue}{GreenMain!5}
+
+% ---- 定义专用（Logic 系，向后兼容）----
+\colorlet{LogicBlue}{GreenMain}
+\colorlet{LogicDarkBlue}{GreenDark}
+\colorlet{LogicLightBlue}{GreenLight}
+
+% ---- 代码块样式 ----
+\lstset{
+	backgroundcolor=\color{GreenMain!4},
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{GreenMain},
+	commentstyle=\color{GreenMain!40},
+	escapeinside={(*@}{@*)},
+}

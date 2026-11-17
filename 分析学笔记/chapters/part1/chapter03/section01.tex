@@ -1,0 +1,75 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.1 拓扑空间与开闭集
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{拓扑空间与开闭集}
+\begin{definition}\label{defoftosp}
+	令$X$是一个集合.$X$的拓扑$\mathcal{T}$是由$X$的一些子集所构成的族，且$\mathcal{T}$满足
+	\begin{enumerate}
+		\item $X\in \mathcal{T}$且$\varnothing\in\mathcal{T}$
+		\item $\mathcal{T}$ 中集合的任意并仍属于 $\mathcal{T}$
+		\item $\mathcal{T}$中集合的有限交仍属于$\mathcal{T}$
+	\end{enumerate}
+	称偶对$\left(\mathrm{X}, \mathcal{T}\right)$ 是一个拓扑空间.
+\end{definition}
+\begin{definition}
+	$\left(\mathrm{X}, \mathcal{T}\right)$ 是一个拓扑空间,那么$\mathcal{T}$中的元素在$\mathrm{X}$中称做开的，换言之$\mathcal{T}$中的元素称为$\mathrm{X}$中的开集.
+	
+	闭集定义为开集关于$\X$的补集.
+	
+	在$\left(\mathrm{X}, \mathcal{T}\right)$ 中存在即是开集又是闭集的集，称为闭开集.
+\end{definition}
+\begin{proposition}
+	对拓扑空间$\left(\mathrm{X}, \mathcal{T}\right)$
+	
+	（1）$\mathrm{X}$ ，$\varnothing$ 是团开的
+	
+	（2）开集的任意并仍是开集
+	
+	（3）开集的有限交仍是开集
+	
+	（4）闭集的任意交仍是闭集
+	
+	（5）闭集的有限并仍是闭集
+\end{proposition}
+\begin{proof}
+	$(1),(2),(3)$由开集的定义是显然的，对$(4),(5)$使用De Morgan定理,设$S_{\alpha}\in\mathcal{T}$,那么$S_{\alpha}^C$是闭集，则
+	$$\bigcap_\alpha S_\alpha^C=\left(\bigcup_\alpha^n S_\alpha\right)^C \text {, 而 }\bigcup_\alpha^n S_\alpha  \in \mathcal{T}$$
+	$$	\bigcup_{i=1}^n S_i^C=\left(\bigcap_{i=1}^n S_i\right)^C \text {, 而 } \bigcap_{i=1}^n S_i \in \mathcal{T}$$
+\end{proof}
+\begin{example}
+	\begin{enumerate}
+		\item		$\mathrm{X}=  \{a, b, c, d, e, f\}$,令
+		$$\mathcal{T}_1=\{\mathrm{X}, \phi,\{a\},\{c, d\},\{a, c, d\},\{b, c, d, e, f\}]$$
+		显然地，$\mathcal{T}_1$是$\mathrm{X}$上的一个拓扑：其中
+		\begin{itemize}
+			\item $\{a\}$是闭开的
+			\item$\{b,c\}$既不是闭的，也不是开的是开的，而不是闭的
+			\item$\{c,d\}$
+			\item$\{a, b, e, f\}$ 是闭的，而不是开的
+		\end{itemize}
+		\item 离散拓扑$\T$,对集合$\mathrm{X}$,$\T$定义为$\mathrm{X}$所有子集构成的族.显然的，$\mathrm{X}$的任意子集都是闭开的.
+		\item 平凡拓扑$\T_0$,定义为
+		\[\T_0:=\{\mathrm{X},\varnothing\}\]
+	\end{enumerate}
+\end{example}
+\begin{theorem}
+	$f:X\rightarrow Y$,是一个从$X$到$Y$的$1-1$映射，且是满射，令$\left(\mathrm{X}, \mathcal{T}\right)$是一个拓扑空间，设$\T_1=\{f(S):S\in\T\}$,则$\T_1$是$\mathrm{Y}$上的一个拓扑
+\end{theorem}
+\begin{proof}
+	（1）
+	
+	由 $\mathrm{X} \in \T,  \Y=f(\mathrm{X} )$ 得 $\Y\in \T_1$
+	
+	由 $\varnothing \in \T,  \varnothing=f(\varnothing)$ 得 $\varnothing \in \T_1$
+	
+	（2）$A_\alpha \in \T$ ，则 $f\left(A_\alpha\right) \in \T_1$ ，那么考虑
+	
+	$$
+	\bigcup_\alpha f\left(A_\alpha\right)=f\left(\bigcup_\alpha A_\alpha\right) \in \mathcal{T}_1
+	$$
+	
+	(3)$A_n \in \T$则$f\left(A_n\right) \in \T_1$考虑
+	
+	$$\bigcap_{k=1}^n f\left(A_k\right)=f\left(\bigcap_{k=1}^n A_k\right) \in \T_1$$
+\end{proof}

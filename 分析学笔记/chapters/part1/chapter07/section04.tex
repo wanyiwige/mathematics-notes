@@ -1,0 +1,150 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.4 高阶导数
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{高阶导数}
+\begin{definition}
+	
+	设 $y=f(x)$ 可导，若 $f(x)$ 的导数 $f^{\prime}(x)\left(\dfrac{\mathrm{d} y}{\mathrm{d} x}\right)$ 仍可导，则 $f^{\prime}(x)$的导数 被称为 $f(x)$ 的二阶导数，记为
+	
+	$$
+	f^{\prime \prime}(x) \text { 或 } \frac{\mathrm{d}^2 y}{\mathrm{d} x^2}
+	$$
+	
+	
+	类似地，我们给出 $n$ 阶导数的定义
+	
+	$$
+	f^{(3)}(x), f^{(4)}(x), f^{(n)}(x)\left(\text { 或 } \frac{\mathrm{d}^3 y}{\mathrm{d} x^3}, \cdots, \frac{\mathrm{d}^n y}{\mathrm{d} x^n}\right)
+	$$
+	若$f(x)$在$(a,b)$上$n$阶可导，则记为$f\in D^n(a,b)\text{或}C^n(a,b)$.若$f(x)$在$(a,b)$上任意阶可导,则称$f(x)$在$(a,b)$上光滑,记为$f\in D^\infty(a,b)\text{或}\Omega(a,b)$
+	
+	规定 $0$ 阶导数为 $f$ 本身，分数阶导数在变分法的研究中呈现，近年的一个热门方向是分数阶微分方程.
+	
+\end{definition}
+这里不得不说的是 $\dfrac{\mathrm{d}^2 y}{\mathrm{d} x^2}$ ,高阶微分这样子写的必要性，我们就以二阶为例.
+
+$$
+\begin{aligned}
+	&y=f(x) \text { 可导 } &\Leftrightarrow \mathrm{d} y & =f^{\prime}(x) \mathrm{d} x \\
+	&&\mathrm{d}(\mathrm{d} y) & =\mathrm{d}\left(f^{\prime}(x) \mathrm{d} x\right) \\
+	&&& \left.=\mathrm{d} f^{\prime}(x)\right) \mathrm{d} x+f^{\prime}(x) \mathrm{d}(\mathrm{d} x) \\
+	&&& =f^{\prime \prime}(x) \mathrm{d} x \cdot \mathrm{d} x+f^{\prime}(x) \mathrm{d}(\mathrm{d}x)\\
+	&\mathrm{d}(\mathrm{d}x)\text{中的} \mathrm{d}x \text{视作常量,那么} \mathrm{d}(\mathrm{d} x)=0 \text{,故}&&\\
+	&&&=f^{\prime \prime}(x) \dd x \cdot \dd x\left(\dd x \cdot \dd x \text { 记为 } \dd x^2\right)\\
+	&(\mathrm{d}(\mathrm{d}y)\text{记为}\mathrm{d}^2y)&\dd^2y&=f^{\prime\prime}\dd x^2
+\end{aligned}
+$$
+我们还要分辨$\mathrm{d}x^2,\mathrm{d}^2x,\mathrm{d}(x^2)$三者
+
+$$\mathrm{d}x^2:=\mathrm{d}x\cdot\mathrm{d}x,\mathrm{d}^2x=\mathrm{d}(\mathrm{d}x),\mathrm{d}(x^2)=2x\mathrm{d}x$$
+截然不同.
+
+以此类推
+$$\begin{aligned}
+	&\mathrm{d}(\mathrm{d}^2y)=\mathrm{d}(f^{\prime\prime}\mathrm{d}x^2)\Rightarrow&\mathrm{d}^3y=f^{(3)}(x)\mathrm{d}x^3\\
+	&&\vdots\\
+	&&\mathrm{d}^ny=f^{(n)}(x)\mathrm{d}x^n
+\end{aligned}$$
+注意,高阶微分不具有形式不变性，以 2 阶微分为例.
+
+$$
+\begin{aligned}
+	& y=f(u), u=g(x) \neq x \\
+	& \text { 对 } u, \text { 有 } \dd^2 y=f^{\prime \prime}(u) \dd u^2 \\
+	& \text { 对 } x, d^2 y=[f(g(x))]^{\prime \prime} \dd x^2 \\
+	& =\left[f^{\prime}(g(x)) g^{\prime}(x)\right]^{\prime} \dd x^2 \\
+	& =\left[f^{\prime \prime}(g(x)) g^{\prime}(x) g^{\prime}(x)+f^{\prime}(g(x)) g^{\prime \prime}(x)\right] \dd x^2 \\
+	& =f^{\prime \prime}(u)\left(g^{\prime}(x) \dd x\right)^2+f^{\prime}(g(x)) g^{\prime \prime}(x) \dd x^2 \\
+	& =f^{\prime \prime}(u) \dd u^2+f^{\prime}(g(x)) g^{\prime \prime}(x) \dd x^2 \neq f^{\prime \prime}(u) \dd u^2
+\end{aligned}
+$$
+由\ref{calofder},有
+\begin{proposition}
+	$f(x), g(x) \in D^n, \forall c_1, c_2,\text{有} c_1 f(x)+c_2 g(x) \in D^n$ ，且
+	
+	$$
+	\left[c_1 f(x)+c_2 g(x)\right]^{(n)}=c_1 f^{(n)}(x)+c_2 g^{(n)}(x)
+	$$
+	
+	
+	更一般地，若 $f_1, \cdots, f_m \in D^n, \forall c_1, \cdots, c_m$
+	
+	$$
+	\left[\sum_{i=1}^m c_i f_i\right] ^{(n)}=\sum_{i=1}^m c_i f_i^{(n)}
+	$$
+\end{proposition}
+\begin{proposition}
+	\textbf{Leibniz公式}
+	
+	设 $f(x)$ 和 $g(x)$ 都是 $n$ 阶可导函数，则它们的积函数也 $n$ 阶可导，且成立公式
+	
+	$$
+	[f(x) \cdot g(x)]^{(n)}=\sum_{k=0}^n \mathrm{C}_n^k f^{(n-k)}(x) g^{(k)}(x)
+	$$
+\end{proposition}
+\begin{proof}
+	用数学归纳法．
+	当 $n=1$ 时，上式为
+	$$
+	[f(x) \cdot g(x)]^{\prime}=\mathrm{C}_1^0 f^{\prime}(x) g(x)+\mathrm{C}_1^1 f(x) g^{\prime}(x)=f^{\prime}(x) g(x)+f(x) g^{\prime}(x) .
+	$$
+	设当 $n=m$ 时 Leibniz 公式成立，即有
+	$$
+	[f(x) \cdot g(x)]^{(m)}=\sum_{k=0}^m \mathrm{C}_m^k f^{(m-k)}(x) g^{(k)}(x),
+	$$
+	则当 $n=m+1$ 时，利用归纳法假设
+	$$
+	\begin{aligned}
+		& {[f(x) \cdot g(x)]^{(m+1)}=\left\{[f(x) \cdot g(x)]^{(m)}\right\}^{\prime} } \\
+		= & \sum_{k=0}^m C_m^k\left[f^{(m-k)}(x) \cdot g^{(k)}(x)\right]^{\prime} \\
+		= & \sum_{k=0}^m C_m^k\left\{\left[f^{(m-k)}(x)\right]^{\prime} g^{(k)}(x)+f^{(m-k)}(x)\left[g^{(k)}(x)\right]^{\prime}\right\} \\
+		= & \sum_{k=0}^m C_m^k f^{(m-k+1)}(x) g^{(k)}(x)+\sum_{k=0}^m C_m^k f^{(m-k)}(x) g^{(k+1)}(x) .
+	\end{aligned}
+	$$
+	将右边的第一项改写成
+	$$
+	\sum_{k=0}^m \mathrm{C}_m^k f^{(m+1-k)}(x) g^{(k)}(x)=f^{(m+1)}(x) g^{(0)}(x)+\sum_{k=1}^m \mathrm{C}_m^k f^{(m+1-k)}(x) g^{(k)}(x)
+	$$
+	而将右边的第二项改写成
+	$$
+	\begin{aligned}
+		& \sum_{j=0}^m \mathrm{C}_m^j f^{(m-j)}(x) g^{(j+1)}(x)=\sum_{k=1}^{m+1} \mathrm{C}_m^{k-1} f^{(m+1-k)}(x) g^{(k)}(x) \quad(\text { 令 } k=j+1) \\
+		= & \sum_{k=1}^m \mathrm{C}_m^{k-1} f^{(m+1-k)}(x) g^{(k)}(x)+f^{(0)}(x) g^{(m+1)}(x) .
+	\end{aligned}$$
+	两式合并后利用组合恒等式
+	$$
+	\mathrm{C}_m^{k-1}+\mathrm{C}_m^k=\mathrm{C}_{m+1}^k \quad \text { 和 } \quad \mathrm{C}_{m+1}^0=\mathrm{C}_{m+1}^{m+1}=1 \text {, }
+	$$
+	便有$$
+	[f(x) \cdot g(x)]^{(m+1)}=\sum_{k=0}^{m+1} \mathrm{C}_{m+1}^k f^{(m+1-k)}(x) g^{(k)}(x),
+	$$
+	即公式对 $n=m+1$ 也成立．
+	所以，定理结论对任意正整数成立．
+\end{proof}
+\begin{proposition}
+	$$\left\{\begin{array}{l}
+		x=\varphi(t), \quad \alpha \leqslant t \leqslant \beta . \\
+		y=\psi(t),
+	\end{array}\right.$$
+	则
+	$$\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\frac{\psi^{\prime \prime}(t) \varphi^{\prime}(t)-\psi^{\prime}(t) \varphi^{\prime \prime}(t)}{\left[\varphi^{\prime}(t)\right]^3}$$
+\end{proposition}
+\begin{proof}
+	由\ref{derof}
+	
+	$$\left\{\begin{array}{l}
+		\dfrac{\mathrm{d} y}{\mathrm{d} x}=\dfrac{ \psi^{\prime}(t)}{\varphi^{\prime}(t)}, \\
+		x=\varphi(t),
+	\end{array}\right.$$
+	那么
+	$$\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\dfrac{\left[\dfrac{\mathrm{d} y}{\mathrm{d} x}\right]^{\prime}}{\varphi^{\prime}(t)}=\frac{\psi^{\prime \prime}(t) \varphi^{\prime}(t)-\psi^{\prime}(t) \varphi^{\prime \prime}(t)}{\left[\varphi^{\prime}(t)\right]^3}$$
+\end{proof}
+
+还有一个关于复合函数n阶求导的不大常用的公式，这里仅仅列在这里
+\begin{proposition}(Fa\`a~di~Bruno~公式)
+	\[(f\circ g)^{(n)}(x)=\sum_{m=1}^{n}\sum_{(k_1\cdots k_n)\in\Gamma_m}\frac{n!}{k_1!\cdots k_n!}f^{(m)}(g(x))(\frac{g^{(1)}(x)}{1!})^{k_1}\cdots (\frac{g^{(n)}(x)}{n!})^{k_n}\]
+	其中$\Gamma_m$的定义如下
+	\[\Gamma_m ={(k_1,\cdots,k_n)|k_1,\cdots,k_n\in \Z_{\geqslant 0},k_1 +\cdots+k_n=m,k_1 +2k_2\cdots+nk_n=n}\]
+\end{proposition}
+\newpage

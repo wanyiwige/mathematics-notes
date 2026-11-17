@@ -1,0 +1,404 @@
+\setchapterimage{figure/Chapter12封面图.jpg}
+\setchapterintro{首次积分把沿流不变的函数与一阶偏微分方程联系起来。本章依次研究线性、拟线性和一般非线性方程，并利用接触平面场研究隐式常微分方程。}
+\chapter{特征线、偏微分方程与接触结构}\label{chap:characteristics}
+
+第二章用全微分与首次积分求解平面方程，第~\ref{chap:arnold-geometry}~章给出非奇点附近的独立首次积分，而第~\ref{chap:manifolds}~章已定义切空间与子流形。本章据此研究向量场与初始曲面的横截性，并把隐式方程中的关系 $dy=p\,dx$ 表示为接触条件。
+
+\section{线性方程的特征线与 Cauchy 问题}
+\begin{definition}
+在 $U\subset\R^n$ 上，一阶齐次线性方程为
+\[
+ L_a u=\sum_i a_i(x)\partial_i u=0.
+\]
+向量场 $a$ 的积分曲线称其特征线。
+给定超曲面 $\Sigma$ 及函数 $g:\Sigma\to\R$，要求 $u|_\Sigma=g$，称为 Cauchy 问题。
+若 $a(x_0)\notin T_{x_0}\Sigma$，称 $x_0$ 是非特征点。
+\end{definition}
+\begin{theorem}
+在非特征点附近，$L_au=0,u|_\Sigma=g$ 存在唯一的局部光滑解。
+它在每条特征线上保持初始值。
+\end{theorem}
+\begin{proof}
+取 $\Sigma$ 的局部参数 $z$，以 $a$ 的流定义
+\[
+ F(s,z)=\varphi^s(\sigma(z)).
+\]
+横截性使 $DF(0,z_0)$ 可逆，故它是本章所需的流盒坐标。
+在这些坐标中方程化为 $\partial_su=0$，初值在 $s=0$ 上。
+因此唯一解为 
+\[
+ u(F(s,z))=g(\sigma(z)).
+\]
+这也直接证明了存在性、唯一性与光滑性。
+\end{proof}
+整体 Cauchy 问题未必可解：同一特征线若两次穿过初始超曲面，
+在两个交点指定不同值便相互矛盾。
+即使都在一个区域内，局部首次积分的表达式也不能不加检查地当成整体解。
+例如 $xu_x-yu_y=0$ 的特征线保持 $xy$ 不变，但同一个 $xy$ 的不同连通分支
+可以分别给定不同的光滑初始数据。
+
+\begin{theorem}[非齐次特征线积分]
+对 $L_au=b(x)$，在相同非特征假设下，唯一局部解满足
+\[
+ u(F(s,z))=g(\sigma(z))+\int_0^sb(F(\tau,z))\,\dd\tau.
+\]
+\end{theorem}
+\begin{proof}
+沿 $a$ 的轨道，链式法则给出 
+\[
+ \frac{\dd}{\dd s}u(F(s,z))=b(F(s,z)).
+\]
+对 $s$ 积分并使用初值即得表达式，反向求导则验证它满足方程。
+\end{proof}
+
+\section{拟线性方程与积分曲面}
+\begin{definition}
+一阶拟线性方程为
+\[
+ \sum_{i=1}^n a_i(x,u)\partial_i u=b(x,u).
+\]
+在 $(x,u)$ 空间中定义特征向量场 $A=(a,b)$，其积分曲线称特征线。
+方向场若在曲面每点都属于其切空间，则该曲面称积分曲面。
+\end{definition}
+\begin{proposition}
+函数 $u$ 解拟线性方程，当且仅当其图像为 $A$ 的积分曲面。
+一个光滑曲面为积分曲面，当且仅当从其上出发的特征线局部仍留在曲面内。
+\end{proposition}
+\begin{proof}
+图像的切向量具有形式 $(h,Du\,h)$，所以 $(a,b)$ 与图像相切恰好等价于
+$Du\,a=b$。
+若向量场相切，把它限制在曲面上，在曲面坐标中求解 ODE；
+所得曲线也是环境空间中的解，由唯一性与环境解重合。
+反过来，若曲线始终在曲面内，其初速度必属于切空间。
+这里所有说法均在共同存在区间内使用。
+\end{proof}
+
+\begin{theorem}[拟线性 Cauchy 问题]
+设在初始图像 $\{(\sigma(z),g(\sigma(z)))\}$ 上，
+$a(x_0,g(x_0))\notin T_{x_0}\Sigma$。
+则其附近存在唯一局部解，特征方程为
+\[
+ \dot x_i=a_i(x,u),\qquad \dot u=b(x,u).
+\]
+\end{theorem}
+\begin{proof}
+从初始图像发出特征线，得到 $(x(s,z),U(s,z))$。
+在初始点，$x_s=a$ 与 $x_{z_j}=\sigma_{z_j}$ 线性无关，所以 $(s,z)\mapsto x$ 局部可逆。
+由此特征线扫出的曲面是某个函数 $u(x)$ 的图像。
+它由特征线组成，故由前一命题满足方程。
+任何另一解图像也必须包含这些同初值特征线，唯一性使两者局部重合。
+\end{proof}
+
+\begin{example}[无相互作用介质与光滑解失效]
+粒子作匀速运动，若初始速度是 $g(\xi)$，则
+\[
+ x=\xi+t g(\xi),\qquad u=g(\xi),\qquad u_t+uu_x=0.
+\]
+当 $1+tg'(\xi)\ne0$ 时可反解 $\xi$；且
+\[
+ u_x=g'(\xi)/(1+tg'(\xi)).
+\]
+若某处 $g'<0$，正时间可能出现梯度爆破。
+取 $g(\xi)=-\arctan\xi$，首次退化发生在 $t=1,\xi=0$；
+取 $g(\xi)=\arctan\xi$ 时，正时间内上述分母始终非零，故不发生这种交叉。
+特征线相交后的多值表达式不再是原来的单值光滑解；以下只在投影局部可逆的区域内研究经典解。
+\end{example}
+若粒子受力 $F(x)$，则特征系统改为 $x'=u,u'=F(x)$，对应 PDE
+$u_t+uu_x=F(x)$。
+例如 $F=-x$、初值 $u(0,x)=0$，相流是旋转，解为
+$u(t,x)=-x\tan t$，在 $|t|<\pi/2$ 成立。代入可得
+\[
+ u_t+uu_x=-x\sec^2t+x\tan^2t=-x.
+\]
+
+
+图~\ref{fig:ode-tikz-burgers-characteristics} 用线性初值展示投影退化：$x=\xi(1-t)$，在 $t=1$ 无法由 $x$ 唯一反解初始标号。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=2.5cm]
+ \draw[->,gray] (-2.25,0)--(2.3,0) node[right]{$x$};
+ \draw[->,gray] (0,-.1)--(0,1.6) node[above]{$t$};
+ \draw[GoldMain,dashed] (-2,1)--(2,1) node[right]{$t=1$};
+ \foreach \xi in {-2,-1,-.5,.5,1,2}{
+  \draw[GreenMain,thick] (\xi,0)--(0,1);
+  \draw[GreenMain,dashed] (0,1)--({-.45*\xi},1.45);
+  \draw[GreenMain,->,thick] ({.6*\xi},.4)--({.45*\xi},.55);
+ }
+ \fill[GoldMain] (0,1) circle(2pt);
+ \node[fill=white,inner sep=2pt,anchor=east] at (-.25,1.45){投影退化};
+ \node[below] at (-2,0){$\xi=-2$};\node[below] at (2,0){$\xi=2$};
+\end{tikzpicture}
+\captionof{figure}{初始速度 $g(\xi)=-\xi$ 的特征线在 $(t,x)=(1,0)$ 汇合；虚线表示交叉后的形式延长。}
+\label{fig:ode-tikz-burgers-characteristics}
+\end{minipage}
+\end{center}
+
+
+\subsection*{微分形式的坐标定义}
+\begin{definition}[余向量与微分形式]\label{def:forms-coordinate}
+记切空间的对偶空间为 $T_x^*M$，其中的元素称余向量。
+在坐标 $z_1,\ldots,z_N$ 中，$dz_i(v)=v_i$，所以 $df=\sum_i(\partial_i f)dz_i$。
+$k$ 形式是每点一个交替的 $k$ 重线性函数，且系数光滑；
+“交替”指交换两个向量位置会变号。其局部表达为
+\[
+ \omega=\sum_{i_1<\cdots<i_k}a_{i_1\cdots i_k}(z)
+ dz_{i_1}\wedge\cdots\wedge dz_{i_k}.
+\]
+这里的楔积规定
+\[
+ (dz_{i_1}\wedge\cdots\wedge dz_{i_k})(v_1,\ldots,v_k)
+ =\det\bigl((v_b)_{i_a}\bigr)_{a,b=1}^k.
+\]
+通过线性展开定义一般楔积；相邻两个 $dz_i$ 交换变号，重复指标的乘积为零。
+$0$ 形式就是函数。$1$ 形式 $\alpha$ 的核为
+$\ker\alpha_x=\{v:\alpha_x(v)=0\}$。
+\end{definition}
+\begin{definition}[拉回、外微分与收缩]\label{def:exterior-pullback}
+光滑映射 $h:M\to N$ 对形式的拉回定义为
+\[
+ (h^*\omega)_x(v_1,\ldots,v_k)
+ =\omega_{h(x)}(Dh_xv_1,\ldots,Dh_xv_k).
+\]
+对 $\omega=\sum_Ia_I dz_I$，定义外微分
+$d\omega=\sum_{I,j}(\partial_j a_I)dz_j\wedge dz_I$。
+收缩定义为 $(\iota_X\omega)(v_2,\ldots,v_k)=\omega(X,v_2,\ldots,v_k)$。
+\end{definition}
+\begin{proposition}
+上述定义在换坐标后相容，并满足
+\[
+ d^2=0,\qquad d(h^*\omega)=h^*(d\omega),\qquad
+ d(\alpha\wedge\beta)=d\alpha\wedge\beta+(-1)^k\alpha\wedge d\beta
+\]
+（$\alpha$ 为 $k$ 形式）。
+\end{proposition}
+\begin{proof}
+坐标变换时 $dh_i=\sum_j\partial_jh_i\,dz_j$，将其代入楔积，得到子式行列式形式的换元规则，
+也就是拉回的定义。再次求外微分时，混合二阶偏导对指标对称，而楔积对指标反对称，
+因此二阶项成对抵消，给出 $d^2=0$ 和 $d(h^*\omega)=h^*d\omega$。
+最后一式由系数的乘积求导得到；将新产生的微分移过 $k$ 个前置因子，就出现 $(-1)^k$。
+这些恒等式还说明外微分的坐标定义彼此一致。
+\end{proof}
+\begin{definition}[闭形式与恰当形式]\label{def:closed-exact-form}
+$d\omega=0$ 时称 $\omega$ 闭；存在 $\beta$ 使 $\omega=d\beta$ 时称恰当。
+由 $d^2=0$，恰当形式总是闭的。
+在凸开集上，闭 $1$ 形式 $\alpha=\sum a_i dx_i$ 有势函数：平移使 $0$ 在域内后取
+\[
+ H(x)=\int_0^1\sum_i a_i(tx)x_i\,dt.
+\]
+对 $x_j$ 求导，使用 $\partial_ja_i=\partial_i a_j$，被积函数变为 $\partial_t[ta_j(tx)]$，
+所以 $\partial_jH=a_j(x)$。这一结论将用于平面首次积分的构造。
+\end{definition}
+
+\section{隐式常微分方程的 1-jet 几何}
+下面在包含自变量、函数值及一阶导数的空间中研究隐式方程。
+\begin{definition}
+两个函数在同一点 $t$ 的函数值及一阶导数相同时，规定它们在 $t$ 有相同的 1-jet。
+其等价类因而由 $(t,x,p)$ 表示，其中 $x=x(t)$、$p=x'(t)$。
+空间 $J^1=\{(t,x,p)\}$ 上，1-形式 $\alpha=\dd x-p\,\dd t$ 的核是二维接触平面。
+隐式方程 $F(t,x,p)=0$ 定义曲面 $E$；一条解曲线提升为
+$(t,x(t),x'(t))$，其切向量同时在 $TE$ 与 $\ker\alpha$ 内。
+\end{definition}
+\begin{proposition}
+在光滑曲面 $E$ 上，若 $TE\ne\ker\alpha$，两平面相交成一维方向场。
+可用切向量
+\[
+ X_F=F_p(\partial_t+p\partial_x)-(F_t+pF_x)\partial_p
+\]
+表示它。$F_p\ne0$ 的点称投影正则点，此处方程局部可写 $p=v(t,x)$。
+\end{proposition}
+\begin{proof}
+代入计算得
+\begin{align*}
+ \alpha(X_F)&=pF_p-pF_p=0,\\
+ dF(X_F)&=F_tF_p+F_xpF_p-F_p(F_t+pF_x)\\
+ &=0.
+\end{align*}
+若 $X_F=0$，则 $F_p=F_t+pF_x=0$，这恰是光滑曲面切平面与接触平面重合的情形。
+其余点的交线由非零 $X_F$ 张成。
+$F_p\ne0$ 时隐函数定理把曲面写成 $p=v(t,x)$，投影局部微分同胚；
+交线投影为 $dx/dt=v(t,x)$。
+\end{proof}
+当 $F_p=0$ 时投影非正则，但只要两平面不相同，曲面上方向场仍有定义。
+非正则点的投影形成判别曲线；接触平面恰等于切平面的点则需另作奇点分析。
+例如 $p^2=t$，以 $(p,x)$ 为曲面坐标，接触式成为
+$\dd x=2p^2\,\dd p$，所以
+\[
+ t=p^2,\qquad x=C+\frac23p^3.
+\]
+投影在 $p=0$ 形成半三次尖点；两侧分别是 $x'=\sqrt t$ 和 $x'=-\sqrt t$ 的解。
+因此，一个隐式微分方程可能包含若干不同的显式方程分支。
+
+
+图~\ref{fig:ode-tikz-jet-cusp} 取积分常数 $C=0$，用同一参数 $p$ 将斜率分支与半三次尖点对应起来。
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\centering
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small]
+\begin{scope}[x=1.55cm,y=1.15cm]
+ \draw[->,gray] (-.2,0)--(2.1,0) node[right]{$t$};
+ \draw[->,gray] (0,-1.55)--(0,1.6) node[above]{$p$};
+ \draw[GreenMain,thick,domain=0:1.3,samples=55] plot ({\x*\x},\x);
+ \draw[GoldMain,thick,domain=-1.3:0,samples=55] plot ({\x*\x},\x);
+ \node[GreenMain] at (1,1.5){$p=\sqrt t$};\node[GoldMain] at (1,-1.5){$p=-\sqrt t$};
+\end{scope}
+\draw[->,thick] (3.8,0)--(5,0) node[midway,above]{$\pi$};
+\begin{scope}[shift={(6,0)},x=1.55cm,y=1.15cm]
+ \draw[->,gray] (-.2,0)--(2.1,0) node[right]{$t$};
+ \draw[->,gray] (0,-1.7)--(0,1.8) node[above]{$x$};
+ \draw[GreenMain,thick,domain=0:1.3,samples=55] plot ({\x*\x},{2*\x*\x*\x/3});
+ \draw[GoldMain,thick,domain=-1.3:0,samples=55] plot ({\x*\x},{2*\x*\x*\x/3});
+ \fill (0,0) circle(1.6pt);
+ \node at (1,-2.05){$x^2=4t^3/9$};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{隐式方程 $p^2=t$ 的两支与积分曲线投影：$t=p^2$、$x=2p^3/3$。}
+\label{fig:ode-tikz-jet-cusp}
+\end{minipage}
+\end{center}
+
+\section{一般非线性方程的特征系统}
+设未知函数 $u=u(x_1,\ldots,x_n)$。
+\begin{definition}
+在一点函数值及全部一阶偏导数相同的函数视为具有相同 1-jet。
+这些等价类组成的空间有坐标 $(x,p,u)$，$p_i=\partial_i u$，维数为 $2n+1$。
+函数的 1-图是 $(x,Du(x),u(x))$ 的像。
+接触形式为 $\alpha=\dd u-\sum_i p_i\,\dd x_i$。
+在 $2n+1$ 维空间上，若 $1$ 形式满足 $\alpha\wedge(d\alpha)^n\ne0$，
+则其核称接触结构。这里 $(d\alpha)^n$ 指 $n$ 次楔积；
+对所给 $\alpha$ 展开后得到非零常数倍的
+$du\wedge dx_1\wedge dp_1\wedge\cdots\wedge dx_n\wedge dp_n$，故确实满足条件。
+保持接触平面场的微分同胚称接触变换；等价地，其拉回满足 $h^*\alpha=a\alpha$，其中 $a$ 处处非零。
+\end{definition}
+\begin{theorem}[非线性特征方程]
+设 $F(x,p,u)=0$ 且 $F_p\ne0$。其特征系统为
+\[
+ \begin{aligned}
+ \dot x_i&=F_{p_i},\\
+ \dot p_i&=-F_{x_i}-p_iF_u,\\
+ \dot u&=\sum_i p_iF_{p_i}.
+\end{aligned}
+\]
+特征线留在 $F=0$ 上，且每个 $C^2$ 解的 1-图局部由特征线组成。
+\end{theorem}
+\begin{proof}
+对 $F$ 沿所给向量场 $X$ 求导，各项两两相消，得 $XF=0$，
+因此初值在能量超曲面上的解留在其中。
+若 $u$ 是 PDE 解，对恒等式 $F(x,Du(x),u(x))=0$ 关于 $x_i$ 求导，得
+\[
+ F_{x_i}+\sum_jF_{p_j}u_{x_ix_j}+F_u u_{x_i}=0.
+\]
+于是沿 $x'=F_p$ 的曲线，
+\begin{align*}
+ p_i'&=\sum_j u_{x_ix_j}F_{p_j}\\
+ &=-F_{x_i}-p_iF_u,\\
+ u'&=Du\,x'=p\cdot F_p.
+\end{align*}
+故 1-图上的曲线满足特征方程，并由唯一性与对应特征线重合。
+\end{proof}
+为研究特征方程的解对接触形式的影响，先给出相应的微分运算。
+依照定义~\ref{def:forms-coordinate}--\ref{def:exterior-pullback}，对 $1$ 形式 $\alpha=\sum_j a_j(z)\,dz_j$ 有
+\[
+ d\alpha=\sum_{i,j}(\partial_i a_j)\,dz_i\wedge dz_j,
+\]
+其中楔积和收缩均按前面的具体规则计算。定义
+\[
+ \mathcal L_X\alpha=d(\alpha(X))+\iota_Xd\alpha.
+\]
+它等于沿 $X$ 的流拉回该形式后对时间求导的结果，这可在坐标中逐项用链式法则验证。
+具体地，两种计算都给出第 $j$ 个系数
+\[
+ (\mathcal L_X\alpha)_j
+ =\sum_iX_i\partial_i a_j+\sum_i a_i\partial_jX_i.
+\]
+前一项来自系数沿轨道变化，后一项来自流的微分作用于被代入的切向量，因而两种定义一致。
+
+\begin{theorem}[非特征初始数据的局部构造]
+设在初始超曲面 $\Sigma$ 给定 $u=g$，且能选择初始 $p$ 满足
+$p|_{T\Sigma}=dg$、$F(x,p,g)=0$，同时 $F_p$ 横截于 $\Sigma$。
+则其附近由特征线生成唯一局部解。
+\end{theorem}
+\begin{proof}
+先用光滑底空间坐标把初始超曲面写成 $\Sigma=\{x_n=0\}$。
+记其参数为 $z=(x_1,\ldots,x_{n-1})$，初值为 $g(z)$。
+条件 $p|_{T\Sigma}=dg$ 确定 $p_i=g_{z_i}$（$i<n$）。
+横截条件为 $F_{p_n}\ne0$，因此在已经选择的初始 $p_n$ 分支附近，
+方程 $F(z,0,D_zg,p_n,g)=0$ 由隐函数定理唯一解出光滑 $p_n(z)$。
+这里的唯一性均针对这一初始 jet 分支。
+
+从初始 jet 参数化 $j(z)$ 出发，记特征流为 $\Phi^s$，并写
+\[
+ J(s,z)=\Phi^s(j(z))=(x(s,z),p(s,z),U(s,z)).
+\]
+在 $s=0$，$x_{z_i}$ 是初始超曲面的切向基，而 $x_s=F_p$ 横截该超曲面，
+故 $(s,z)\mapsto x(s,z)$ 的 Jacobi 矩阵可逆。缩小邻域后，可将扫出的曲面
+写成 $x\mapsto(x,p(x),U(x))$。还须证明 $p=DU$，这一步不由投影可逆自动得到。
+
+首先 $\alpha(X)=0$，初始曲面上也有 $j^*\alpha=0$。
+对 $\alpha=dU-\sum_ip_i\,dx_i$，坐标计算给出
+\[
+ \mathcal L_X\alpha=dF-F_u\alpha.
+\]
+由前一定理 $F(J(s,z))=0$，故 $J^*dF=0$。
+设 $a_i(s,z)=\alpha(J_{z_i}(s,z))$，对 $s$ 求导便得
+\[
+ \partial_sa_i=-F_u(J(s,z))a_i,\qquad a_i(0,z)=0.
+\]
+这一齐次标量方程只有零解，所以 $\alpha$ 在所有 $J_{z_i}$ 上为零；
+在 $J_s=X$ 上也为零。这些向量张成扫出曲面的切空间，因此 $J^*\alpha=0$。
+改用 $x$ 参数后即为 $dU=\sum_ip_i\,dx_i$，也就是 $p=DU$。
+再代入沿流保持的 $F=0$，得到所求 PDE 解及初始条件。
+
+若另一局部解具有相同初值和所选初始 jet 分支，则其 1-图包含 $j(z)$。
+前一定理说明该图由特征线组成，ODE 唯一性使其包含同样的 $J(s,z)$。
+投影局部可逆，所以两个解在共同邻域相同，局部唯一性得证。
+\end{proof}
+上式的 Lie 导数可不依赖一般张量理论来检查：
+$\alpha(X)=0$，且 $d\alpha=\sum_i dx_i\wedge dp_i$；
+代入 $X$ 后得到
+\begin{align*}
+ \iota_Xd\alpha
+ &=\sum_iF_{p_i}dp_i+\sum_i(F_{x_i}+p_iF_u)dx_i\\
+ &=dF-F_u\alpha.
+\end{align*}
+接触平面上的 $d\alpha$ 决定超曲面 $F=0$ 的特征方向，
+因此保持接触平面场的变换也保持特征方向。
+将 $F$ 乘以非零函数 $h$ 时，在 $F=0$ 上 $X_{hF}=hX_F$，仅改变参数而不改变特征曲线。
+
+\section{Hamilton--Jacobi 方程与距离函数}
+\begin{definition}
+未知函数值 $u$ 不显含的一阶方程 $H(x,Du)=0$，称为 Hamilton--Jacobi 方程。
+其特征系统中 $F_u=0$，所以 $(x,p)$ 满足
+$x'=H_p,p'=-H_x$，这正是已有 Hamilton 方程的形式。
+\end{definition}
+
+\begin{definition}[法空间与管状坐标]
+对 Euclidean 空间中的子流形 $M$，法空间为切空间的正交补 $(T_qM)^\perp$。
+一组光滑选取的正交单位法向量称局部单位法向标架。
+由 Schmidt 正交化可在足够小的邻域内选取这样的标架；由于各次除法的分母不为零，所得向量随参数光滑变化。
+将小法向量 $v\perp T_qM$ 送到 $q+v$，若在所考察区域为一一的光滑坐标变换，称这些坐标为管状坐标。
+下面的距离结论在局部闭嵌入片附近讨论，并将邻域缩小到最近点唯一的范围。对于非闭子流形，一般不能取处处相同的邻域半径。
+\end{definition}
+
+\begin{proposition}
+在光滑嵌入子流形的充分小管状邻域内，距离函数 $r$ 在子流形外光滑，满足
+$|\nabla r|^2=1$。
+\end{proposition}
+\begin{proof}
+局部参数化子流形为 $q(z)$，取光滑单位法向标架 $n_j(z)$。
+映射 $\Psi(z,s)=q(z)+\sum_j s_jn_j(z)$ 在 $s=0$ 处微分可逆，
+其列分别张成切空间与法空间，故在小邻域中是微分同胚。
+缩小邻域后最近点唯一：距离平方关于 $z$ 的 Hessian 在 $s=0$ 是
+$2Dq^TDq$，正定，因连续性在小邻域仍正定；远离该参数点的子流形部分由嵌入性排除。
+因此 $r^2=\sum_j s_j^2$。
+
+最近点条件使 $x-q(z)$ 正交于切空间。对 $r^2=|x-q(z(x))|^2$ 求微分，
+含 $dq$ 的项因正交性消失，得到
+\[
+ \nabla(r^2)=2(x-q(z(x))).
+\]
+子流形外除以 $2r$，得 $\nabla r=(x-q)/r$，其长度为 1。
+子流形上距离函数通常不可微，故必须排除该集合。
+\end{proof}

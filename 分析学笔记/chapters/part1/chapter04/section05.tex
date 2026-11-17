@@ -1,0 +1,155 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第4章：数列极限的应用与一些反例
+% 节：4.5 关于数列极限的四条实数完备性定理的应用与反例
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{关于数列极限的四条实数完备性定理的应用与反例}
+\begin{example}
+	设 $S$ 是非空上有界的数集，$\sup S = a \notin S$.证明：在数集 $S$ 中可以取出严格单调递增的数列 $\{x_n\}$，使得 $\lim\limits_{n \to \infty} x_n = a$.
+	
+	
+\end{example}
+\begin{proof}
+	$a = \sup S \notin S~$.$~\forall \varepsilon > 0, \exists x \in S$，使得 $a - \varepsilon < x < a$.
+	
+	取 $\varepsilon_1 = 1$， $\exists x_1 \in S$，使得 $a - \varepsilon_1 < x_1 < a$.
+	
+	对 $\varepsilon_2 = \min \left\{\dfrac{1}{2}, a - x_1\right\} > 0$， $\exists x_2 \in S$，使得 $a - \varepsilon_2 < x_2 < a$，且
+	\[
+	x_1 = a - (a - x_1) < a - \varepsilon_2 < x_2
+	\]
+	$\cdots\cdots$
+	
+	对 $\varepsilon_n = \min \left\{\dfrac{1}{n}, a - x_{n-1}\right\} > 0$， $\exists x_n \in S$，使得 $a - \varepsilon_n < x_n < a$，且
+	\[
+	x_{n-1} = a - (a - x_{n-1}) < a - \eps_n < x_n
+	\]
+	
+	取出严格单调递增的子列 $\{x_n\}$，$\lim\limits_{n \to \infty} x_n = a$.
+\end{proof}
+\begin{example}
+	类似于闭区间套，指出开区间套的定义，若对 $\left\{(a_n, b_n)\right\}$ 成立：
+	
+	(1) $(a_{n+1}, b_{n+1}) \subset (a_n, b_n), n=1,2,3,\ldots$
+	
+	(2) $\lim\limits_{n \to \infty} (b_n - a_n) = 0$
+	
+	证明：是否存在 $\xi \in \bigcap\limits_{n=1}^\infty (a_n, b_n)$，且 $\xi = \lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n$.若不存在，举出反例，并给出一个修改后的定义使上两点成立.
+	
+	
+\end{example}
+\begin{proof}
+	不存在，考虑 $\left\{(0,\dfrac{1}{n})\right\}$，有
+	\[
+	\bigcap_{n=1}^\infty \left(0, \frac{1}{n}\right) = \varnothing
+	\]
+	
+	修改 (1) $a_1 < a_2 < \cdots < a_n < \cdots < b_n < \cdots < b_2 < b_1$，
+	
+	设 $\xi = \lim\limits_{n \to \infty} a_n$，
+	
+	\[
+	\lim_{n \to \infty} b_n = \lim_{n \to \infty} a_n + (b_n - a_n) = \xi
+	\]
+	
+	因此，$\xi \in \bigcap\limits_{n=1}^\infty (a_n, b_n)$.
+\end{proof}
+\begin{proposition}
+	设 $\{x_n\}$ 是单调数列，$\lim\limits_{n \to \infty} x_n = a$的充要条件是，$\exists \{x_{n}\}$ 的子列 $\{x_{n_k}\}$ 满足 $\lim\limits_{k \to \infty} x_{n_k} = a$.
+\end{proposition}
+\begin{proof}
+	$\Rightarrow$ 显然
+	
+	$\Leftarrow$设$\{x_n\}$单调递增且已知$\lim\limits_{k \to \infty} x_{n_k} = a$
+	
+	则$\forall \varepsilon > 0, \exists K, \forall k > K$，使得 $-\varepsilon < x_{n_k} - a \leqslant 0$.取 $N = n_{K + 1}$，$\forall n > N$，
+	$\exists m > k + 1$，使得 $n_{K+1} < n < n_m$，于是
+	\[
+	-\varepsilon < x_{n_{k+1}} - a \leqslant x_n - a \leqslant x_{n_m} - a < 0
+	\]
+	因此 $\lim\limits_{n \to \infty} x_n = a$.
+\end{proof}
+\begin{proposition}
+	若有界数列 $\{x_n\}$ 不收敛，则必存在两个子列 $\{x_{n_k}^{(1)}\}$、$\{x_{n_k}^{(2)}\}$ 收敛于不同的极限，即 $\lim\limits_{k \to \infty} x_{n_k}^{(1)} = a$，$\lim\limits_{k \to \infty} x_{n_k}^{(2)} = b$，且 $a \neq b$.
+	
+	
+\end{proposition}
+\begin{proof}
+	由于 $\{x_n\}$ 不收敛，所以 $\exists \varepsilon_0 > 0, \forall N, \exists m>n > N$，成立 $|x_m - x_n| \geqslant \varepsilon_0$.
+	
+	取 $N_1 = 1, \exists m_1> n_1 > N_1$，成立 $|x_{m_1} - x_{n_1}| \geqslant \varepsilon$，
+	
+	取 $N_2 = m_1, \exists m_2>n_2 > N_2$，成立 $|x_{m_2} - x_{n_2}| \geqslant \varepsilon$，
+	
+	$\cdots$
+	
+	取 $N_k = m_{k-1}, \exists m_k>n_k > N_k$，成立 $|x_{m_k} - x_{n_k}| \geqslant \varepsilon$.
+	
+	于是得到 $\{x_n\}$ 的两个子列$\{x_{n_k}\}$ 与 $\{x_{m_k}\}$，它们都是有界数列.由Bolzano-Weierstrass定理，$\{x_{n_k}\}$ 与 $\{x_{m_k}\}$ 有收敛子列 $\{x_{n_{k}^{\prime}}\}$、$\{x_{m_{k}^{\prime}}\}$.设$x_{n_{k}^{\prime}}=x_{n_k}^{(1)},x_{m_{k}^{\prime}}=x_{n_k}^{(2)}$
+	
+	设$\lim\limits_{k \to \infty} x_{n_k}^{(1)} = a$，$\lim\limits_{k \to \infty} x_{n_k}^{(2)} = b$
+	
+	满足$\exists \varepsilon_0 > 0, \exists K>0, \forall k > K$，有
+	\[
+	|x_{n_{k}}^{(1)} - x_{n_{k}}^{(2)}| \geqslant \varepsilon_0,
+	\]
+	取极限得到 $|b - a| \geqslant \varepsilon_0 > 0$，即 $b \neq a$.
+	
+	两子列收敛于不同极限
+\end{proof}
+\begin{proposition}
+	若数列 $\{x_n\}$ 无界且不是无穷大量，则必存在 $\{x_n\}$ 的收敛子列和是无穷大量的子列
+	
+	无界且不是无穷大量的数列存在，如\[x_n=\begin{cases}
+		n\quad n\text{是完全平方数} \\
+		0\quad \text{其他} 
+	\end{cases}\]
+\end{proposition}
+\begin{proof}
+	因为 $\{x_n\}$ 不是无穷大量，所以 $\exists M > 0$，使得无穷多项 $\{x_n\}$ 小于 $M$.在小于 $M$ 的部分中可以取出一个子列，这子列有界，根据Bolzano-Weierstrass定理，它又存在一个收敛的子列.
+	
+	又由$\{x_n\}$ 无界：$\forall G$ ，$\exists\textbf{无穷多} x_n$ 使得 $x_{n} > G$.
+	
+	取 $G_1 = 1$，$\exists n_1$ 使得 $x_{n_1} > G_1$，
+	
+	取 $G_2 = 2$，$\exists n_2 > n_1$，使得 $x_{n_2} > G_2$，
+	
+	$\cdots$
+	
+	取 $G_k = k$，$\exists n_k > n_{k-1}$，使得 $x_{n_k} > G_k$，
+	
+	$\cdots$
+	
+	因此，$\{x_{n_k}\}$ 是一个无穷大的子列.
+\end{proof}
+\begin{example}
+	设 $x_n = 1 + \dfrac{1}{2} + \cdots + \dfrac{1}{n}$，证 $\{x_n\}$ 不是Cauchy序列
+	
+	
+	
+\end{example}
+\begin{proof}
+	$\forall n \in \mathbb{Z}_+$，有
+	\[
+	x_{2n} - x_n = \frac{1}{n+1} + \cdots + \frac{1}{2n} > n \cdot \frac{1}{2n} = \frac{1}{2}
+	\]
+	
+	取 $\varepsilon_0 = \dfrac{1}{2}$，无论 $N$ 多么大，总存在 $2n> n>N$，使得
+	\[
+	|x_{2n} - x_n| > \varepsilon_0
+	\]
+	
+	因此 $\{x_n\}$ 不是Cauchy序列.
+	
+\end{proof}
+\begin{example}
+	证明 $x_n = 1+\dfrac{1}{2^2}\cdots+\dfrac{1}{n^2}$ 是Cauchy序列.
+	
+\end{example}
+\begin{proof}
+	考虑 $\forall \varepsilon > 0$，$m > n$，
+	$$|x_m - x_n| = \left| \sum_{k=n+1}^m  \frac{1}{k^2} \right| < \left|\sum_{k=n+1}^m  \frac{1}{k(k-1)} \right|=\left|\sum_{k=n+1}^m  \frac{1}{k-1}-\frac{1}{k} \right|=\frac{1}{n}-\frac{1}{m} < \varepsilon$$
+	
+	
+	取 $N = \left\lfloor \dfrac{1}{\varepsilon} \right\rfloor + 100$ 即可.
+	
+\end{proof}

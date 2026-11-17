@@ -1,0 +1,328 @@
+\section{商域和分式环}
+
+本节讨论交换幺环。从整数构造有理数的方法可以推广到整环：在包含$R$的域中，使$R$的每个非零元素都有逆元，并要求所得域的元素都能写成$R$中两个元素的商。
+
+\begin{definition}
+设$R$为整环。若域$F$满足下列条件，则称$F$为$R$的\textbf{商域}：
+\begin{enumerate}
+\item $R$是$F$的子环；
+\item $F$的每个元素都可写成$a/b=ab^{-1}$，其中$a,b\in R$且$b\ne0$。
+\end{enumerate}
+\end{definition}
+
+域的子环没有非零的零因子。因此，一个有零因子的交换环不能嵌入一个域，整环条件是构造商域所必需的。
+
+\begin{theorem}\label{p2:fraction-field}
+每个整环$R$都有商域。
+\end{theorem}
+\begin{proof}
+设$R^*=R\setminus\{0\}$，在$T=R\times R^*$上定义关系
+\[
+(a,b)\sim(c,d)\quad\Longleftrightarrow\quad ad=bc.
+\]
+此关系是自反的、对称的。若$(a,b)\sim(c,d)$且$(c,d)\sim(e,f)$，则$ad=bc$、$cf=de$，从而
+\[
+adf=bcf=bde.
+\]
+因为$d\ne0$且$R$为整环，消去$d$得到$af=be$，即$(a,b)\sim(e,f)$。所以这是等价关系。
+
+作商集$F=T/{\sim}$，将$(a,b)$的类记为$a/b$。于是
+\[
+\frac ab=\frac cd\quad\Longleftrightarrow\quad ad=bc.
+\]
+在$F$上定义
+\[
+\frac ab+\frac cd=\frac{ad+bc}{bd},\qquad
+\frac ab\frac cd=\frac{ac}{bd}.
+\]
+由于$bd\ne0$，右边仍是$F$的元素。先验证定义与代表元无关。若$ab'=a'b$、$cd'=c'd$，则
+\begin{align*}
+(ad+bc)b'd'
+&=(ab')dd'+bb'(cd')\\
+&=(a'b)dd'+bb'(c'd)\\
+&=(a'd'+b'c')bd,\\
+acb'd'&=(ab')(cd')=(a'b)(c'd)=a'c'bd.
+\end{align*}
+所以换取代表元不改变和与积。
+
+% 原文将结合律、交换律和分配律的验证留给读者，以下补全。
+对$u=a/b$、$v=c/d$、$w=e/f$，运算公式给出
+\begin{align*}
+(u+v)+w&=\frac{adf+bcf+bde}{bdf}=u+(v+w),\\
+(uv)w&=\frac{ace}{bdf}=u(vw),\\
+u(v+w)&=\frac{a(cf+de)}{bdf}=uv+uw.
+\end{align*}
+最后一式的右边通分后与中间的分数相等。两种交换律由$R$中的交换律得到。对任意$b\ne0$，$0/b$是同一个零元；$b/b$是同一个单位元。简记为$0_F,1_F$，则
+\[
+-\frac ab=\frac{-a}{b},\qquad
+\frac ab=0_F\Longleftrightarrow a=0.
+\]
+特别地，$0_F\ne1_F$。若$a/b\ne0_F$，则$a\ne0$，并且
+\[
+\left(\frac ab\right)^{-1}=\frac ba.
+\]
+因此$F$是域。
+
+其次，$F$含有子环
+\[
+R'=\left\{\frac a1:a\in R\right\}.
+\]
+映射$a\mapsto a/1$保持加法和乘法，而且$a/1=c/1$当且仅当$a=c$，故它给出$R\cong R'$。将$a$与$a/1$等同后，$R$可看作$F$的子环，且
+\[
+\frac ab=\frac{a/1}{b/1}.
+\]
+所以$F$为$R$的商域。
+\end{proof}
+
+\begin{theorem}\label{p2:fraction-field-extension}
+设$R$为整环，$F$为$R$的商域。$R$到域$F'$的任一单同态$\eta$都可以唯一地扩充为单同态$\eta':F\to F'$，并且
+\[
+\eta'\left(\frac ab\right)=\eta(a)\eta(b)^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+先证明存在性。在$T=\{(a,b):a,b\in R,\ b\ne0\}$上定义
+\[
+\xi(a,b)=\eta(a)\eta(b)^{-1}.
+\]
+因为$\eta$为单射，$b\ne0$时$\eta(b)\ne0$，所以逆元存在。又有
+\begin{align*}
+(a,b)\sim(c,d)
+&\Longleftrightarrow ad=bc\\
+&\Longleftrightarrow \eta(a)\eta(d)=\eta(b)\eta(c)\\
+&\Longleftrightarrow \xi(a,b)=\xi(c,d).
+\end{align*}
+其中第二个等价关系的反向使用$\eta$的单射性。因此$\xi$在每个等价类上取值相同，并且不同类的取值不同，给出单射
+\[
+\eta':F\to F',\qquad \eta'(a/b)=\xi(a,b).
+\]
+由分数运算公式，
+\begin{align*}
+\eta'\left(\frac ab+\frac cd\right)
+&=\frac{\eta(a)\eta(d)+\eta(b)\eta(c)}{\eta(b)\eta(d)}\\
+&=\eta'(a/b)+\eta'(c/d),\\
+\eta'\left(\frac ab\frac cd\right)
+&=\frac{\eta(a)\eta(c)}{\eta(b)\eta(d)}
+=\eta'(a/b)\eta'(c/d).
+\end{align*}
+由单射性，$\eta(1)\ne0$；又$\eta(1)^2=\eta(1)$，在域$F'$中消去$\eta(1)$可得$\eta(1)=1_{F'}$。于是$\eta'(a/1)=\eta(a)$，$\eta'$确为$\eta$的扩充。
+
+再证明唯一性。若$\eta''$也是$\eta$在$F$上的扩充，任取$x=a/b\in F$，有$xb=a$。分别作用$\eta'$与$\eta''$，得到
+\[
+\eta'(x)\eta(b)=\eta(a),\qquad
+\eta''(x)\eta(b)=\eta(a).
+\]
+由于$\eta(b)\ne0$，消去它便得$\eta'(x)=\eta''(x)$。故扩充唯一。
+\end{proof}
+
+\begin{corollary}
+整环$R$的商域在保持$R$的元素不动的同构意义下唯一。
+\end{corollary}
+\begin{proof}
+若$F,F'$都是$R$的商域，把包含映射$R\hookrightarrow F'$扩充为单同态$\eta':F\to F'$。任意$x'\in F'$可写成$a/b$，而$F$中的$a/b$在$\eta'$下恰映为$x'$，所以$\eta'$满射，是保持$R$不动的同构。
+\end{proof}
+
+\begin{definition}
+交换幺环$R$的非空子集$S$若对乘法封闭，即$s_1,s_2\in S$蕴含$s_1s_2\in S$，则称$S$为\textbf{乘性子集}，也称乘法子集。这里不要求$1\in S$。
+\end{definition}
+
+由$S$确定集合
+\[
+N=\{a\in R:\text{存在 }s\in S\text{ 使 }as=0\}.
+\]
+若要求$S$中的元素在新环中均可逆，则$as=0$必迫使$a$的像为零，因此构造分式环时需要考虑这个$N$。
+
+\begin{lemma}
+\begin{enumerate}
+\item $N$为$R$的理想。
+\item 若$0\in S$，则$N=R$；若$0\notin S$，则$N\cap S=\varnothing$。
+\item 对$u\in S$，$uz\in N$当且仅当$z\in N$。
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item $0\in N$。若$a_1s_1=a_2s_2=0$，其中$s_1,s_2\in S$，则
+\[
+(a_1-a_2)s_1s_2=0.
+\]
+因$s_1s_2\in S$，有$a_1-a_2\in N$。对$x\in R$，$(xa_1)s_1=x(a_1s_1)=0$，故$xa_1\in N$。由交换性，右乘也有同样的吸收性质，所以$N$为理想。
+\item 若$0\in S$，每个$a\in R$均满足$a0=0$，所以$N=R$。若$0\notin S$而有$a\in N\cap S$，取$s\in S$使$as=0$，则由乘法封闭性得$0=as\in S$，矛盾。
+\item 若$uz\in N$，取$t\in S$使$tuz=0$。因为$tu\in S$，所以$z\in N$。反向由$N$为理想直接得到。
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+设$R$为交换幺环，$S$为乘性子集，$N$为上述理想。如果交换幺环$R'$满足下列条件，则称$R'$为$R$关于$S$的\textbf{分式环}：
+\begin{enumerate}
+\item 存在环同态$\sigma:R\to R'$，使$\sigma(1)=1_{R'}$，而且对每个$s\in S$，$\sigma(s)$在$R'$中可逆；
+\item $\ker\sigma=N$；
+\item $R'$的每个元素都可写成$\sigma(a)/\sigma(s)$，其中$a\in R$、$s\in S$。
+\end{enumerate}
+\end{definition}
+
+若$0\in S$，则$N=R$，这样的分式环只能是零环。以下构造假定$0\notin S$。
+
+\begin{theorem}\label{p2:localization-existence}
+设$R$为交换幺环，$S$为不含零的乘性子集，则$R$关于$S$的分式环存在，记作$S^{-1}R$。
+\end{theorem}
+\begin{proof}
+作$T=R\times S$，定义
+\[
+(a,s)\sim(a',s')\quad\Longleftrightarrow\quad as'-a's\in N.
+\]
+自反性和对称性由$N$为加法子群得到。若$(a_1,s_1)\sim(a_2,s_2)$、$(a_2,s_2)\sim(a_3,s_3)$，则
+\begin{align*}
+s_2(a_1s_3-a_3s_1)
+&=s_3(a_1s_2-a_2s_1)+s_1(a_2s_3-a_3s_2)\in N.
+\end{align*}
+按$N$的定义，存在$t\in S$使$ts_2(a_1s_3-a_3s_1)=0$。因$ts_2\in S$，故$a_1s_3-a_3s_1\in N$，传递性成立。
+
+将商集$T/{\sim}$记为$S^{-1}R$，将$(a,s)$的类记为$a/s$。定义
+\[
+\frac as+\frac bt=\frac{at+bs}{st},\qquad
+\frac as\frac bt=\frac{ab}{st}.
+\]
+% 原文省略代表元无关性及环公理的验证，以下在原构造内补全。
+若$as'-a's\in N$、$bt'-b't\in N$，则
+\begin{align*}
+(at+bs)s't'-(a't'+b's')st
+&=tt'(as'-a's)+ss'(bt'-b't)\in N,\\
+abs't'-a'b'st
+&=bt'(as'-a's)+a's(bt'-b't)\in N.
+\end{align*}
+所以两种运算都与代表元无关。对$\alpha=a/s$、$\beta=b/t$、$\gamma=c/u$，直接计算得
+\begin{align*}
+(\alpha+\beta)+\gamma&=\frac{atu+bsu+cst}{stu}=\alpha+(\beta+\gamma),\\
+(\alpha\beta)\gamma&=\frac{abc}{stu}=\alpha(\beta\gamma),\\
+\alpha(\beta+\gamma)&=\frac{a(bu+ct)}{stu}=\alpha\beta+\alpha\gamma.
+\end{align*}
+交换律由$R$的交换律得到。任取$s\in S$，零元、负元和单位元分别为
+\[
+0_{S^{-1}R}=\frac0s,\qquad -\frac as=\frac{-a}{s},\qquad
+1_{S^{-1}R}=\frac ss.
+\]
+不同$s$给出同样的零元和单位元。例如$at/(st)=a/s$，因而$s/s$乘任一分数均不改变该分数。又$s\notin N$，故$0_{S^{-1}R}\ne1_{S^{-1}R}$。因此$S^{-1}R$为交换幺环。
+
+现在定义$\sigma:R\to S^{-1}R$。任取$s\in S$，令
+\[
+\sigma(a)=\frac{as}{s}.
+\]
+由于$ass'-as's=0$，右边不依赖$s$的选择。按运算公式，
+\begin{align*}
+\sigma(a)+\sigma(b)&=\frac{(a+b)s^2}{s^2}=\sigma(a+b),\\
+\sigma(a)\sigma(b)&=\frac{abs^2}{s^2}=\sigma(ab),\\
+\sigma(1)&=1_{S^{-1}R}.
+\end{align*}
+对$s\in S$，取$s'\in S$，则
+\[
+\sigma(s)=\frac{ss'}{s'},\qquad
+\sigma(s)^{-1}=\frac{s'}{ss'}.
+\]
+两者相乘为$ss'^2/(ss'^2)=1_{S^{-1}R}$，所以定义中的第一条成立。
+
+再求核。由分数相等的条件及前一引理，
+\begin{align*}
+\sigma(a)=0_{S^{-1}R}
+&\Longleftrightarrow \frac{as}{s}=\frac0{s'}\\
+&\Longleftrightarrow ass'\in N\\
+&\Longleftrightarrow a\in N.
+\end{align*}
+所以$\ker\sigma=N$。最后，对任意$a/s\in S^{-1}R$，
+\[
+\frac as=\frac{as'}{ss'}
+=\frac{as'}{s'}\frac{s'}{ss'}
+=\frac{\sigma(a)}{\sigma(s)}.
+\]
+这证明了分式环定义中的全部条件。
+\end{proof}
+
+当$R$为整环且$S=R^*=R\setminus\{0\}$时，$N=(0)$，上述分式环就是$R$的商域。
+
+\begin{proposition}
+对自然同态$\sigma:R\to S^{-1}R$，有：
+\begin{enumerate}
+\item $\sigma$为单射，当且仅当$N=(0)$，也当且仅当$S$不含$R$的零因子；
+\item $\sigma$在$S$上的限制为单射，当且仅当$S$中的乘法满足消去律，即
+\[
+s(s_1-s_2)=0,\quad s,s_1,s_2\in S
+\quad\Longrightarrow\quad s_1=s_2.
+\]
+\end{enumerate}
+\end{proposition}
+% 原文仅陈述这两个条件，以下补写证明。
+\begin{proof}
+\begin{enumerate}
+\item 因$\ker\sigma=N$，$\sigma$单射等价于$N=(0)$。按$N$的定义，此条件就是说$s\in S$且$as=0$时只能$a=0$，也就是$S$不含零因子。
+\item 对$s_1,s_2\in S$，
+\[
+\sigma(s_1)=\sigma(s_2)
+\Longleftrightarrow s_1-s_2\in N
+\Longleftrightarrow \text{存在 }s\in S\text{ 使 }s(s_1-s_2)=0.
+\]
+故限制映射单射恰好等价于所述消去律。
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{p2:localization-universal}
+设$R,R'$为交换幺环，$S$为$R$的不含零的乘性子集。若环同态$\eta:R\to R'$满足$\eta(1)=1_{R'}$，并且对每个$s\in S$，$\eta(s)$在$R'$中可逆，则唯一存在环同态
+\[
+\xi:S^{-1}R\to R',\qquad \xi(a/s)=\eta(a)\eta(s)^{-1},
+\]
+使$\eta=\xi\sigma$，其中$\sigma:R\to S^{-1}R$为自然同态。
+\end{theorem}
+% 原文未给出证明，按分数表示补全。
+\begin{proof}
+若$a\in N$，取$t\in S$使$at=0$，则$\eta(a)\eta(t)=0$。因$\eta(t)$可逆，$\eta(a)=0$。因此$N\subseteq\ker\eta$。
+
+若$a/s=a'/s'$，则$as'-a's\in N$，从而
+\[
+\eta(a)\eta(s')=\eta(a')\eta(s).
+\]
+乘以$\eta(s)^{-1}\eta(s')^{-1}$，得到$\eta(a)\eta(s)^{-1}=\eta(a')\eta(s')^{-1}$，所以公式给出良好定义的映射$\xi$。再由
+\begin{align*}
+\xi\left(\frac as+\frac bt\right)
+&=\bigl(\eta(a)\eta(t)+\eta(b)\eta(s)\bigr)
+  \bigl(\eta(s)\eta(t)\bigr)^{-1}\\
+&=\xi(a/s)+\xi(b/t),\\
+\xi\left(\frac as\frac bt\right)
+&=\eta(a)\eta(b)\bigl(\eta(s)\eta(t)\bigr)^{-1}\\
+&=\xi(a/s)\xi(b/t)
+\end{align*}
+可知它为环同态，且$\xi(1)=1_{R'}$。对$a\in R$，
+\[
+\xi(\sigma(a))=\xi(at/t)=\eta(at)\eta(t)^{-1}=\eta(a),
+\]
+故$\eta=\xi\sigma$。
+
+若$\xi'$也满足此式，则对任意$a/s$，由$a/s=\sigma(a)\sigma(s)^{-1}$，
+\[
+\xi'(a/s)=\eta(a)\eta(s)^{-1}=\xi(a/s).
+\]
+因此$\xi$唯一。
+\end{proof}
+
+\begin{corollary}
+交换幺环$R$关于乘性子集$S$的分式环在与自然同态相容的同构意义下唯一。
+\end{corollary}
+\begin{proof}
+对两个分式环分别应用上一定理，得到两个方向的同态。它们的复合同样使$R$的自然同态保持不变，由唯一性，复合必为恒等映射，故两个同态互逆。
+\end{proof}
+
+\begin{example}
+设$p$为素数，令$S=\Z\setminus(p)$，即所有与$p$互素的整数。$S$对乘法封闭，且不含$0$。因$\Z$为整环，$N=(0)$，可将$\Z$与它在$S^{-1}\Z$中的像等同，此时
+\[
+S^{-1}\Z=\left\{\frac ab\in\Q:p\nmid b\right\}.
+\]
+每个非零元素都可写成$x=(r/s)p^t$，其中$t\ge0$、$p\nmid r$、$p\nmid s$。$x$可逆当且仅当$t=0$：此时$x^{-1}=s/r$仍在环中；若$t>0$，则$x^{-1}=s/(rp^t)$约分后的分母仍被$p$整除，不在环中。
+
+设$H$为非零理想，从$H$的非零元素中取$p$的指数最小的一个$x=(r/s)p^m$。因为$r/s$可逆，$p^m\in H$，所以$(p^m)\subseteq H$。而$H$中其余非零元素的指数均至少为$m$，都在$(p^m)$中，故
+\[
+H=(p^m).
+\]
+因此非零真理想恰为$(p^m)$，$m\ge1$。其中$P=(p)$是唯一的极大理想，且
+\[
+(S^{-1}\Z)/P\cong\Z/(p),\qquad
+P=\{xp:x\in S^{-1}\Z\}.
+\]
+上述商环同构由$a/b\mapsto\overline a\,\overline b^{-1}$给出，其核恰为$(p)$，所以$P$也是素理想。对$m\ge2$，$p\cdot p^{m-1}\in(p^m)$，但两个因子均不在$(p^m)$，故其余非零真理想不是素理想。于是$P$是唯一的非零素理想，零理想仍是素理想，因为$S^{-1}\Z$为整环。
+\end{example}

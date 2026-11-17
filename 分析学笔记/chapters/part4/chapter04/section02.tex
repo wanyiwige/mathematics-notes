@@ -1,0 +1,297 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第4章：$\R$上的Fourier变换
+% 节：4.2 Schwartz 空间
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{Schwartz 空间}
+
+\begin{definition}
+\(\R\) 上的 \textbf{Schwartz 空间}由满足下列条件的函数 \(f\) 组成：\(f\) 无穷可导，并且对于任意非负整数 \(k,l\)，都有
+\[
+\sup_{x\in\R}\abs{x}^{k}\abs{f^{(l)}(x)}<\infty.
+\]
+这意味着 \(f\) 及其各阶导数都在无穷远处速降。记这一空间为
+\[
+\mathcal S=\mathcal S(\R).
+\]
+在通常的函数加法与数乘下，\(\mathcal S(\R)\) 是 \(\C\) 上的向量空间。
+\end{definition}
+
+由定义可知，若 \(f\in\mathcal S(\R)\)，则
+\[
+f'(x)=\frac{\dd f}{\dd x}(x)\in\mathcal S(\R),
+\qquad
+xf(x)\in\mathcal S(\R).
+\]
+更一般地，Schwartz 空间关于求导以及与多项式相乘都是封闭的。
+
+\begin{definition}
+若 \(f\in\mathcal S(\R)\)，则其 Fourier 变换定义为
+\[
+\widehat f(\xi)
+=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\dd x.
+\]
+以下用记号
+\[
+f(x)\longmapsto\widehat f(\xi)
+\]
+表示 \(\widehat f\) 是 \(f\) 的 Fourier 变换。
+\end{definition}
+
+\begin{proposition}\label{prop:fourier-basic-properties-schwartz}
+若 \(f\in\mathcal S(\R)\)，则 Fourier 变换满足下列性质：
+\begin{enumerate}[label=(\roman*)]
+\item 对任意 \(h\in\R\)，
+\[
+f(x+h)\longmapsto e^{2\pi i h\xi}\widehat f(\xi).
+\]
+
+\item 对任意 \(h\in\R\)，
+\[
+f(x)e^{-2\pi i xh}\longmapsto\widehat f(\xi+h).
+\]
+
+\item 若 \(\delta>0\)，则
+\[
+f(\delta x)\longmapsto\delta^{-1}\widehat f(\delta^{-1}\xi).
+\]
+
+\item
+\[
+f'(x)\longmapsto2\pi i\xi\widehat f(\xi).
+\]
+
+\item
+\[
+-2\pi ixf(x)\longmapsto\frac{\dd}{\dd\xi}\widehat f(\xi).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+性质 (i)--(iii) 分别由变量替换、定义以及伸缩性直接得到。
+
+对 (iv)，在 \([-N,N]\) 上分部积分可得
+\[
+\int_{-N}^{N}f'(x)e^{-2\pi i x\xi}\dd x
+=\left[f(x)e^{-2\pi i x\xi}\right]_{-N}^{N}
++2\pi i\xi\int_{-N}^{N}f(x)e^{-2\pi i x\xi}\dd x.
+\]
+由于 \(f\) 速降，令 \(N\to\infty\) 即得结论。
+
+最后，由
+\[
+\frac{\widehat f(\xi+h)-\widehat f(\xi)}{h}
+=\int_{-\infty}^{\infty}
+ f(x)e^{-2\pi i x\xi}
+ \frac{e^{-2\pi i xh}-1}{h}\dd x
+\]
+以及
+\[
+\abs{\frac{e^{-2\pi i xh}-1}{h}}\leq2\pi\abs{x},
+\]
+而 \(xf(x)\) 可积，故由控制收敛定理可将极限移入积分号，得到
+\[
+\frac{\dd}{\dd\xi}\widehat f(\xi)
+=\int_{-\infty}^{\infty}(-2\pi ix)f(x)e^{-2\pi i x\xi}\dd x.
+\]
+这就证明了 (v)。
+\end{proof}
+
+\begin{theorem}\label{thm:fourier-preserves-schwartz}
+若 \(f\in\mathcal S(\R)\)，则
+\[
+\widehat f\in\mathcal S(\R).
+\]
+\end{theorem}
+
+\begin{proof}
+对任意非负整数 \(k,l\)，由命题 \ref{prop:fourier-basic-properties-schwartz} 可知
+\[
+\xi^k\left(\frac{\dd}{\dd\xi}\right)^l\widehat f(\xi)
+\]
+是函数
+\[
+\frac{1}{(2\pi i)^k}
+\left(\frac{\dd}{\dd x}\right)^k
+\left[(-2\pi ix)^l f(x)\right]
+\]
+的 Fourier 变换。括号中的函数属于 \(\mathcal S(\R)\)，故其 Fourier 变换有界。因此
+\[
+\sup_{\xi\in\R}
+\abs{\xi}^{k}
+\abs{\widehat f^{(l)}(\xi)}<\infty,
+\]
+从而 \(\widehat f\in\mathcal S(\R)\)。
+\end{proof}
+
+下一节将通过仔细研究 Gaussian 函数 \(e^{-ax^2}\) 来证明 Fourier 变换的反演公式，因此我们提前给出他的一些性质。
+容易看出，当 \(a>0\) 时，函数 \(e^{-ax^2}\) 属于 \(\mathcal S(\R)\)。
+
+\begin{proposition}\label{prop:gaussian-normalization}
+取 \(a=\pi\)，则有标准化公式
+\[
+\int_{-\infty}^{\infty}e^{-\pi x^2}\dd x=1.
+\]
+\end{proposition}
+
+\begin{proof}
+记
+\[
+I=\int_{-\infty}^{\infty}e^{-\pi x^2}\dd x>0.
+\]
+由极坐标变换，
+\[
+\begin{aligned}
+I^2
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  e^{-\pi(x^2+y^2)}\dd x\dd y\\
+&=\int_0^{2\pi}\int_0^{\infty}e^{-\pi r^2}r\dd r\dd\theta
+ =\int_0^{\infty}2\pi r e^{-\pi r^2}\dd r\\
+&=\left[-e^{-\pi r^2}\right]_{0}^{\infty}=1.
+\end{aligned}
+\]
+因此 \(I=1\)。
+\end{proof}
+
+\begin{proposition}\label{thm:gaussian-fourier-transform}
+若$f(x)=e^{-\pi x^2},$则
+\[
+\widehat f(\xi)=f(\xi)=e^{-\pi\xi^2}.
+\]
+\end{proposition}
+
+\begin{proof}
+令
+\[
+F(\xi)=\widehat f(\xi)
+=\int_{-\infty}^{\infty}e^{-\pi x^2}e^{-2\pi i x\xi}\dd x.
+\]
+由命题 \ref{prop:gaussian-normalization}，\(F(0)=1\)。又因
+\[
+f'(x)=-2\pi xf(x),
+\]
+结合命题 \ref{prop:fourier-basic-properties-schwartz} 的 (iv)、(v)，有
+\[
+F'(\xi)
+=i\int_{-\infty}^{\infty}f'(x)e^{-2\pi i x\xi}\dd x
+=i(2\pi i\xi)F(\xi)
+=-2\pi\xi F(\xi).
+\]
+于是
+\[
+\frac{\dd}{\dd\xi}\left(F(\xi)e^{\pi\xi^2}\right)=0.
+\]
+由 \(F(0)=1\) 可知
+\[
+F(\xi)e^{\pi\xi^2}=1,
+\]
+故 \(F(\xi)=e^{-\pi\xi^2}=\widehat f(\xi)\)。
+\end{proof}
+
+\begin{corollary}\label{cor:scaled-gaussian-fourier-transform}
+若 \(\delta>0\)，且
+\[
+K_\delta(x)=\delta^{-1/2}e^{-\pi x^2/\delta},
+\]
+则
+\[
+\widehat{K_\delta}(\xi)=e^{-\pi\delta\xi^2}.
+\]
+\end{corollary}
+
+\begin{proof}
+将 \(K_\delta\) 写成
+\[
+K_\delta(x)=\delta^{-1/2}f(\delta^{-1/2}x),
+\qquad f(x)=e^{-\pi x^2},
+\]
+再应用 \ref{prop:fourier-basic-properties-schwartz} 的 (iii) 与 \ref{thm:gaussian-fourier-transform} 即得。
+\end{proof}
+
+\begin{theorem}\label{thm:gaussian-good-kernel}
+当 \(\delta\to0^+\) 时，函数族 \(\{K_\delta\}_{\delta>0}\) 是一族好核。也就是说，对于
+\[
+K_\delta(x)=\delta^{-1/2}e^{-\pi x^2/\delta},
+\]
+有：
+\begin{enumerate}[label=(\roman*)]
+\item
+\[
+\int_{-\infty}^{\infty}K_\delta(x)\dd x=1;
+\]
+
+\item 存在与 \(\delta\) 无关的常数 \(M\)，使得
+\[
+\int_{-\infty}^{\infty}\abs{K_\delta(x)}\dd x\leq M;
+\]
+
+\item 对任意 \(\eta>0\)，当 \(\delta\to0^+\) 时，
+\[
+\int_{\abs{x}>\eta}\abs{K_\delta(x)}\dd x\longrightarrow0.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+在 (i) 中令 \(x=\delta^{1/2}y\)，由命题 \ref{prop:gaussian-normalization} 得
+\[
+\int_{-\infty}^{\infty}K_\delta(x)\dd x
+=\int_{-\infty}^{\infty}e^{-\pi y^2}\dd y=1.
+\]
+由于 \(K_\delta\geq0\)，故 (ii) 可取 \(M=1\)。最后，同样作变量替换可得
+\[
+\int_{\abs{x}>\eta}\abs{K_\delta(x)}\dd x
+=\int_{\abs{y}>\eta/\delta^{1/2}}e^{-\pi y^2}\dd y
+\longrightarrow0,
+\]
+这就证明了 (iii)。
+\end{proof}
+
+\begin{definition}
+对 \(f,g\in\mathcal S(\R)\)，定义它们的\textbf{卷积}为
+\[
+(f*g)(x)
+=\int_{-\infty}^{\infty}f(x-t)g(t)\dd t.
+\]
+由于 \(f,g\) 都是速降函数，上述积分绝对收敛，因而定义良好。
+\end{definition}
+
+\begin{proposition}\label{prop:gaussian-approximate-identity}
+若 \(f\in\mathcal S(\R)\)，则当 \(\delta\to0^+\) 时，关于 \(x\in\R\) 一致地有
+\[
+(f*K_\delta)(x)\longrightarrow f(x).
+\]
+\end{proposition}
+
+\begin{proof}
+首先，断言\(f\) 在 \(\R\) 上一致连续。事实上，给定 \(\eps>0\)，可取 \(R>0\)，使得 \(\abs{x}>R\) 时 \(\abs{f(x)}<\eps/4\)；而 \(f\) 在紧区间 \([-R-1,R+1]\) 上一致连续。两者结合可知，存在 \(\eta>0\)，使得当 \(\abs{x-y}<\eta\) 时，
+\[
+\abs{f(x)-f(y)}<\eps.
+\]
+
+由定理 \ref{thm:gaussian-good-kernel} 的 (i)，
+\[
+(f*K_\delta)(x)-f(x)
+=\int_{-\infty}^{\infty}K_\delta(t)
+\bigl(f(x-t)-f(x)\bigr)\dd t.
+\]
+于是
+\[
+\begin{aligned}
+\abs{(f*K_\delta)(x)-f(x)}
+\leq{}&\int_{\abs{t}>\eta}K_\delta(t)
+\abs{f(x-t)-f(x)}\dd t\\
+&+\int_{\abs{t}\leq\eta}K_\delta(t)
+\abs{f(x-t)-f(x)}\dd t.
+\end{aligned}
+\]
+记 \(B=\sup_{x\in\R}\abs{f(x)}\)。第一项不超过
+\[
+2B\int_{\abs{t}>\eta}K_\delta(t)\dd t,
+\]
+由好核的性质 (iii)，当 \(\delta\to0^+\) 时它一致趋于 \(0\)；第二项不超过
+\[
+\eps\int_{-\infty}^{\infty}K_\delta(t)\dd t=\eps.
+\]
+因此 \((f*K_\delta)(x)\to f(x)\) 关于 \(x\) 一致成立。
+\end{proof}

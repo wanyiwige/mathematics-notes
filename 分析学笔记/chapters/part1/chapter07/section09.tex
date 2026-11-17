@@ -1,0 +1,150 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第7章：微分法
+% 节：7.9 一些应用
+% 正文按原文件顺序保存；由 ../chapter7.tex 调用。
+\section{一些应用}
+\begin{definition}
+	函数 $f(x)$ 在无穷区间有定义，若 $f(x)$ 的斜近线为 $y = ax + b$，则满足
+	\[
+	\lim_{x \to +\infty} \left[ f(x) - (ax + b) \right] = 0
+	\]
+	
+	易知
+	\[
+	\lim_{x \to +\infty} \frac{f(x)}{x} = a, \quad \lim_{x \to +\infty} \left[ f(x) - ax \right] = b
+	\]
+	
+	水平渐近线是斜渐近线 $a=0$ 时的退化形式
+	
+	垂直渐近线是 $x=a$.满足
+	\[
+	\lim_{x \to a} f(x) = +\infty, -\infty \text{ 或 } \infty
+	\]
+	
+	此处可 $x \to a$，$x \to a^+$，$x \to a^-$.
+\end{definition}
+另外一种应用是
+
+\textbf{极值点的判定}
+	
+	函数 $f(x)$ 在区间 $(a, b)$ 上有定义，有以下两种情况：
+	
+	1. $f(x)$ 在 $x_0$ 处不可导：用极值点定义判别.
+	
+	2. $f(x)$ 在 $x_0$ 处可导，且 $f'(x_0) = 0$，进一步判别：
+	
+	若存在 $\delta > 0$，使得 $f(x)$ 在区间 $(x_0 - \delta, x_0 + \delta)$ 内有定义（否则使用极值点的定义）：
+	
+	(1) 二阶导数不存在：
+	
+	(i) $\forall x \in (x_0 - \delta, x_0), f'(x)\geqslant0$ 且 $\forall x \in (x_0, x_0 + \delta), f'(x)\leqslant0$ 时，$x_0$ 是极大值点
+	
+	(ii) $\forall x \in (x_0 - \delta, x_0), f'(x)\leqslant0$ 且 $\forall x \in (x_0, x_0 + \delta), f'(x)\geqslant0$ 时，$x_0$ 是极小值点
+	
+	(iii) $(x_0 - \delta,x_0),(x_0, x_0 + \delta)$ 上$f'(x)$同号，则不存在极值点
+	
+	(2) 二阶导数存在：
+	
+	在 $(x_0 - \delta, x_0 + \delta)$ 内，
+	\[ f(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{1}{2!} f''(x_0)(x-x_0)^2 \]
+	
+	\[ f(x) - f(x_0) = \frac{1}{2!} f''(x_0)(x-x_0)^2 \]
+	
+	当 $f''(x_0) > 0$ 时，$x_0$ 为严格极小值点，
+	
+	当 $f''(x_0) < 0$ 时，$x_0$ 为严格极大值点.
+
+\subsection*{绘制图像的一般步骤}
+
+导数为我们提供了系统绘制函数图像的工具。借助一阶导数和二阶导数，我们可以确定函数的单调区间、极值点、凹凸性、拐点，并结合渐近线等信息，勾勒出函数的大致图像。
+
+
+
+绘制函数 $y=f(x)$ 图像的步骤如下：
+
+\begin{enumerate}
+	\item \textbf{确定定义域}：找出 $f(x)$ 的自然定义域，并关注间断点。
+	\item \textbf{奇偶性与周期性}：判断 $f(x)$ 是否具有奇偶性或周期性，可简化后续分析。
+	\item \textbf{一阶导数 $f'(x)$}：求出 $f'(x)$ 及其零点（驻点）和不存在点，利用 $f'(x)$ 的符号划分单调区间，并用第一或第二充分条件判定极值。
+	\item \textbf{二阶导数 $f''(x)$}：求出 $f''(x)$ 及其零点和不存在点，确定凹凸区间与拐点。
+	\item \textbf{渐近线}：计算水平渐近线、垂直渐近线和斜渐近线。
+	\item \textbf{关键点与辅助点}：计算驻点、拐点、与坐标轴的交点等关键位置的函数值，必要时补充若干辅助点。
+	\item \textbf{描点连线}：在坐标系中标出所有关键点，结合单调性、凹凸性和渐近线，平滑地连接成函数图像。
+\end{enumerate}
+
+
+
+\begin{example}
+	绘制函数 $f(x)=\dfrac{x^3}{x^2-1}$ 的图像。
+\end{example}
+
+\begin{proof}[解]
+	\textbf{1. 定义域}：分母 $x^2-1\neq0$，故定义域为 $(-\infty,-1)\cup(-1,1)\cup(1,+\infty)$。
+
+	\textbf{2. 奇偶性}：
+	\[
+	f(-x)=\frac{(-x)^3}{(-x)^2-1}=-\frac{x^3}{x^2-1}=-f(x)
+	\]
+	$f(x)$ 为奇函数，图像关于原点对称。
+
+	\textbf{3. 一阶导数}：
+	\[
+	f'(x)=\frac{3x^2(x^2-1)-x^3\cdot 2x}{(x^2-1)^2}=\frac{x^2(x^2-3)}{(x^2-1)^2}
+	\]
+	令 $f'(x)=0$，得 $x=0$，$x=\pm\sqrt{3}$。
+
+	单调性分析：
+
+	\begin{center}
+		\begin{tabular}{c|ccccccccc}
+			$x$ & $(-\infty,-\sqrt{3})$ & $-\sqrt{3}$ & $(-\sqrt{3},-1)$ & $(-1,0)$ & $0$ & $(0,1)$ & $(1,\sqrt{3})$ & $\sqrt{3}$ & $(\sqrt{3},+\infty)$ \\
+			\hline
+			$f'(x)$ & $+$ & $0$ & $-$ & $-$ & $0$ & $-$ & $-$ & $0$ & $+$ \\
+			$f(x)$ & $\nearrow$ & 极大 & $\searrow$ & $\searrow$ & 拐点 & $\searrow$ & $\searrow$ & 极小 & $\nearrow$
+		\end{tabular}
+	\end{center}
+
+	极大值 $f(-\sqrt{3})=-\dfrac{3\sqrt{3}}{2}$，极小值 $f(\sqrt{3})=\dfrac{3\sqrt{3}}{2}$。
+
+	\textbf{4. 二阶导数}：
+	\[
+	f''(x)=\frac{2x(x^2+3)}{(x^2-1)^3}
+	\]
+	令 $f''(x)=0$，得 $x=0$。
+
+	凹凸性分析：
+
+	\begin{center}
+		\begin{tabular}{c|ccccc}
+			$x$ & $(-\infty,-1)$ & $(-1,0)$ & $0$ & $(0,1)$ & $(1,+\infty)$ \\
+			\hline
+			$f''(x)$ & $-$ & $+$ & $0$ & $-$ & $+$ \\
+			$f(x)$ & 上凸 & 下凸 & 拐点 & 上凸 & 下凸
+		\end{tabular}
+	\end{center}
+
+	拐点 $(0,0)$。
+
+	\textbf{5. 渐近线}：
+	\[
+	\lim_{x\to\pm 1^{\mp}}f(x)=\infty,\quad \lim_{x\to\pm 1^{\pm}}f(x)=\mp\infty
+	\]
+	$x=-1$ 和 $x=1$ 为垂直渐近线。
+
+	\[
+	a=\lim_{x\to\infty}\frac{f(x)}{x}=\lim_{x\to\infty}\frac{x^2}{x^2-1}=1
+	\]
+	\[
+	b=\lim_{x\to\infty}[f(x)-ax]=\lim_{x\to\infty}\frac{x}{x^2-1}=0
+	\]
+	$y=x$ 为斜渐近线（当 $x\to+\infty$ 和 $x\to-\infty$ 时均成立）。
+
+	\textbf{6. 辅助点}：
+	\[
+	f(0)=0,\quad f\left(\pm\frac{1}{2}\right)=\mp\frac{1}{6},\quad f(\pm 2)=\pm\frac{8}{3}
+	\]
+
+	\textbf{7. 绘制图像}：综合以上信息，先画出三条渐近线 $x=-1$、$x=1$ 和 $y=x$，再标出极值点与拐点，最后按照单调性和凹凸性平滑连接即可。
+\end{proof}
+
+上述例子展示了利用导数绘制函数图像的一般流程。在更复杂的情形中，若函数含有指数、对数或三角函数，仍需遵循相同的分析框架，逐项确定定义域、单调性、凹凸性和渐近线，最后综合成图。

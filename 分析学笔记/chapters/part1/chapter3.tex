@@ -1,0 +1,54 @@
+% ===== 第一部分：单变量分析学 / 第3章：实数的八大基本定理 =====
+% !TEX root = ../../main.tex
+\setchapterimage{figure/chapter3封面图.png}
+\setchapterintro{除了上一章已经讨论过的确界原理与Dedekind定理以外，这一章的讨论重点是剩余的实数基本定理，这一章分为两个部分，基础拓扑与数列，拓扑学部分的一些结论可以迁移到将来的多元函数部分中。这一章的一个问题就是前后的割裂，即使有八大定理的互证作为连接的桥梁，其练习还是有些牵强，我想这也就是为什么一般来说数分中的拓扑学会只涉及直线上与空间中的拓扑。本章的拓扑学部分参考Sydney的Topology without Tears}
+\chapter{实数的八大基本定理}
+本章我们来考量实数的八大基本定理.
+
+\textbf{定理}：以下8条叙述等价.
+
+\begin{enumerate}
+	\item (确界原理)非空有上（下）界数集，必有上（下）确界
+	\item （Dedekind 准则）设序对 $(A, A^{\prime})$ 为 $\R$ 的一个分划，则$A$无最大元， $A^{\prime}$ 有最小元．
+	\item （单调有界原理）任何单调有界数列必有极限．
+	\item （Cantor 区间套定理）若 $\left\{\left[a_n, b_n\right]\right\}$ 是一个区间套，则存在唯一一点 $\xi$ ，使得 $\xi \in\left[a_n, b_n\right], n=1,2, \ldots$ ．
+	\item （Bolzano-Weierstrass定理）有界无穷数列必有收敛子列．
+	\item （Cauchy 收敛准则）数列 $\left\{a_n\right\}$ 收敛 $\Leftrightarrow$ 对任给的正数 $\varepsilon$ ，总存在某一个自然数 $N$ ，使得 $\forall m, n>N$ 时，都有 $\left|a_m-a_n\right|<\varepsilon$ ．
+	
+	\item （Heine－Borel 有限覆盖定理）设 $[a, b]$ 是一个闭区间，$H$ 为 $[a, b]$ 上的一个开覆盖，则在 $H$ 中存在有限个开区间，它构成 $[a, b]$ 上的一个覆盖．
+	\item （Weierstrass 聚点原理）直线上的有界无限点集至少有一个聚点．
+\end{enumerate}
+
+我们先从基础的点集拓扑开始，之后在来讲收敛理论，
+
+
+\begin{center}
+	\includegraphics[width=0.6\linewidth]{figure/C2/1}
+\end{center}
+\newpage
+% 第1节：拓扑空间与开闭集
+\input{chapters/part1/chapter03/section01}%
+% 第2节：Euclidean拓扑与拓扑基
+\input{chapters/part1/chapter03/section02}%
+% 第3节：极限点，邻域与连通性
+\input{chapters/part1/chapter03/section03}%
+% 第4节：同胚关系与同胚映射
+\input{chapters/part1/chapter03/section04}%
+% 第5节：度量空间
+\input{chapters/part1/chapter03/section05}%
+% 第6节：紧集，Cantor集与Heine-Borel定理
+\input{chapters/part1/chapter03/section06}%
+% 第7节：数列的极限与其性质
+\input{chapters/part1/chapter03/section07}%
+% 第8节：单调有界定理
+\input{chapters/part1/chapter03/section08}%
+% 第9节：Cantor闭区间套定理
+\input{chapters/part1/chapter03/section09}%
+% 第10节：数列的子列与Bolzano-Weierstrass致密性定理
+\input{chapters/part1/chapter03/section10}%
+% 第11节：聚点定理
+\input{chapters/part1/chapter03/section11}%
+% 第12节：Cauchy数列与Cauchy收敛原理
+\input{chapters/part1/chapter03/section12}%
+% 第13节：实数8大定理互证例举
+\input{chapters/part1/chapter03/section13}%

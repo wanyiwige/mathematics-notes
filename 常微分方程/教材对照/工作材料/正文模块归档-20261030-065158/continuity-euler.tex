@@ -1,0 +1,19 @@
+\subsection*{唯一性条件下的Euler折线}
+Peano 定理利用紧性从 Euler 折线中抽取收敛子列。若另有 Lipschitz 条件，则第~\ref{sec:picard-contraction}~节的残差估计还能控制整个近似序列。
+必要时缩小共同存在区间，仍记其半长为 $h$，并使 $Lh<1$。在该区间的连续函数闭集上，令
+\[
+ (Au)(t)=x_0+\int_{t_0}^tf(s,u(s))\,ds.
+\]
+记真解为 $x$，则 $Ax=x$，且对任一留在该闭集内的近似曲线 $u$，
+\[
+ \|u-x\|_\infty\leq\|u-Au\|_\infty/(1-Lh).
+\]
+在 Peano 定理的证明中已经得到 Euler 折线 $u_n$ 满足
+\[
+ u_n=Au_n+\sigma_n,\qquad\|\sigma_n\|_\infty\longrightarrow0.
+\]
+代入残差估计，便有
+\[
+ \|u_n-x\|_\infty\leq\frac{\|\sigma_n\|_\infty}{1-Lh}\longrightarrow0.
+\]
+因此在这个共同小区间上，整个 Euler 折线序列均一致收敛到解，而不只是某个子序列。

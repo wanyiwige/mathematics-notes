@@ -1,0 +1,102 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第1章：Euclid空间
+% 节：1.2 Euclid空间上的基本定理
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Euclid空间上的基本定理}
+
+为方便陈述,先引入集合直径的概念.
+
+\begin{definition}
+设 $S$ 是 $\R^n$ 上的非空点集.定义 $S$ 的\textbf{直径}为
+\[
+\operatorname{diam} S=\sup_{\substack{\vect x,\vect y\in S\\\vect x\neq\vect y}}|\vect x-\vect y|,
+\]
+即 $S$ 中任意两点距离的上确界(若 $S$ 中只有一点,约定 $\operatorname{diam} S=0$).
+\end{definition}
+
+\begin{theorem}\label{Cantor闭矩形套定理}(Cantor 闭矩形套定理)
+设 $\{\Delta_k\}_{k=1}^\infty$ 是 $\R^n$ 中的一列闭矩形
+\[
+\Delta_k=[a_1^{(k)},b_1^{(k)}]\times[a_2^{(k)},b_2^{(k)}]\times\cdots\times[a_n^{(k)},b_n^{(k)}],
+\]
+满足
+\begin{enumerate}[label={(\arabic*)}]
+\item $\Delta_{k+1}\subset\Delta_k$ ($k=1,2,\cdots$);
+\item $\lim\limits_{k\to\infty}\operatorname{diam}\Delta_k=0$.
+\end{enumerate}
+则 $\bigcap\limits_{k=1}^\infty\Delta_k$ 恰含一个点.
+\end{theorem}
+
+\begin{proof}
+在每个坐标方向上,$\{[a_i^{(k)},b_i^{(k)}]\}_{k=1}^\infty$ 都是 $\R$ 中的闭区间套,且长度 $b_i^{(k)}-a_i^{(k)}\leq\operatorname{diam}\Delta_k\to0$. 由 $\R$ 上的闭区间套定理,存在唯一 $\xi_i\in\bigcap\limits_{k=1}^\infty[a_i^{(k)},b_i^{(k)}]$. 令 $\xi=(\xi_1,\xi_2,\cdots,\xi_n)$,则 $\xi\in\bigcap\limits_{k=1}^\infty\Delta_k$. 由 $\vect{\xi}$的每个分量唯一可知该点唯一.
+\end{proof}
+
+\begin{theorem}\label{Cantor闭集套定理}(Cantor 闭集套定理)
+设 $\{S_k\}_{k=1}^\infty$ 是 $\R^n$ 中的一列非空闭集,满足
+\begin{enumerate}[label={(\arabic*)}]
+\item $S_{k+1}\subset S_k$ ($k=1,2,\cdots$);
+\item $\lim\limits_{k\to\infty}\operatorname{diam} S_k=0$.
+\end{enumerate}
+则 $\bigcap\limits_{k=1}^\infty S_k$ 恰含一个点.
+\end{theorem}
+
+\begin{proof}
+由于 $\operatorname{diam}S_k\to0$，可以选取正整数 $k_0$，使 $S_{k_0}$ 有界。对每个 $k\geq k_0$，任取 $\vect x_k\in S_k$，则这些点都属于 $S_{k_0}$，因而构成有界点列。
+
+取闭矩形 $\Delta_0\supset S_{k_0}$。将 $\Delta_0$ 的每条边二等分，得到 $2^n$ 个闭子矩形，其中至少有一个包含点列的无穷多项，记为 $\Delta_1$。继续对 $\Delta_1$ 作同样的划分，得到 $\Delta_2$；如此下去，得到闭矩形套 $\{\Delta_m\}$，满足
+\[
+\Delta_{m+1}\subset\Delta_m,\qquad
+\operatorname{diam}\Delta_m=\frac{\operatorname{diam}\Delta_0}{2^m}\to0.
+\]
+由 \ref{Cantor闭矩形套定理}，存在唯一的点 $\vect\xi\in\bigcap_{m=1}^{\infty}\Delta_m$。
+
+下面证明 $\vect\xi\in\bigcap_{k=1}^{\infty}S_k$。固定 $k$，对每个 $m$，可以选取 $j_m\geq\max\{k,k_0\}$，使 $\vect x_{j_m}\in\Delta_m$。由套集关系，$\vect x_{j_m}\in S_{j_m}\subset S_k$；又因为 $\vect\xi,\vect x_{j_m}\in\Delta_m$，所以
+\[
+|\vect x_{j_m}-\vect\xi|\leq\operatorname{diam}\Delta_m\to0.
+\]
+由 $S_k$ 为闭集，得到 $\vect\xi\in S_k$。由于 $k$ 任意，故 $\vect\xi$ 属于所有 $S_k$ 的交集。
+
+若 $\vect\xi,\vect\eta\in\bigcap_{k=1}^{\infty}S_k$，则
+\[
+|\vect\xi-\vect\eta|\leq\operatorname{diam}S_k\to0,
+\]
+从而 $\vect\xi=\vect\eta$，唯一性得证。
+\end{proof}
+
+\begin{theorem}\label{Bolzano-Weierstrass定理}(Bolzano--Weierstrass 定理 )
+$\R^n$ 中任何有界无穷集合必有聚点.等价地,$\R^n$ 中任何有界点列必有收敛子列.
+\end{theorem}
+
+\begin{proof}
+设 $\{\vect x_k\}_{k=1}^\infty$ 是 $\R^n$ 中的有界点列,记 $\vect x_k=(x_1^k,x_2^k,\cdots,x_n^k)$. 由有界性,存在正数 $M$ 使 $\|\vect x_k\|\leq M$,从而每个分量 $\{x_i^k\}$ 都是 $\R$ 中的有界序列.
+
+先对第一坐标应用 $\R$ 上的 Bolzano–Weierstrass 定理，抽取一个使第一坐标收敛的子列。再从这个子列中抽取使第二坐标收敛的子列；此时第一坐标仍然收敛。
+
+依次对 $n$ 个坐标作有限次抽取，最终得到子列 $\{\vect x_{k_j}\}_{j\geq1}$，使每个坐标都收敛。设
+\[
+x_i^{k_j}\to\xi_i,\qquad i=1,2,\cdots,n.
+\]
+由 \ref{极限与坐标收敛的等价}，得到
+\[
+\vect x_{k_j}\to\vect\xi=(\xi_1,\xi_2,\cdots,\xi_n).
+\]
+对于有界无穷集合，从中选取互不相同的点构成点列，再应用上述结论，其收敛子列的极限就是该集合的聚点。
+\end{proof}
+
+\begin{theorem}($\R^n$ 上的 Cauchy 收敛原理)\label{Cauchy收敛原理}
+$\R^n$ 中的点列 $\{\vect x_k\}$ 收敛的充分必要条件是 $\{\vect x_k\}$ 为 Cauchy 列,即对任意 $\eps>0$,存在 $N$,当 $m,n>N$ 时 $|\vect x_m-\vect x_n|<\eps$.
+\end{theorem}
+
+\begin{proof}
+\textbf{必要性:} 设 $\vect x_k\to\xi$. 对任意 $\eps>0$,存在 $N$,当 $m,n>N$ 时 $|\vect x_m-\xi|<\eps/2$ 且 $|\vect x_n-\xi|<\eps/2$. 由三角不等式,
+\[
+|\vect x_m-\vect x_n|\leq|\vect x_m-\xi|+|\vect x_n-\xi|<\eps.
+\]
+故 $\{\vect x_k\}$ 为 Cauchy 列.
+
+\textbf{充分性:} 设 $\{\vect x_k\}$ 为 Cauchy 列,记 $\vect x_k=(x_1^k,x_2^k,\cdots,x_n^k)$. 对每个分量 $i=1,\cdots,n$,当 $m,n>N$ 时
+\[
+|x_i^m-x_i^n|\leq|\vect x_m-\vect x_n|<\eps,
+\]
+故 $\{x_i^k\}$ 是 Cauchy 列. 由 $\R$ 上的 Cauchy 收敛原理,$\{x_i^k\}$ 收敛于某 $\xi_i$. 由 \ref{极限与坐标收敛的等价},$\vect x_k\to\xi=(\xi_1,\cdots,\xi_n)$. 证毕.
+\end{proof}

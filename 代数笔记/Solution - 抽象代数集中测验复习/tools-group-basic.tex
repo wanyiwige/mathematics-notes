@@ -1,0 +1,154 @@
+% !TEX root = main.tex
+\subsection{群与环的基础工具}
+本节完整陈述第一章详解及后续部分所用的基础结论。出处指实际核对的现有笔记；行号是对应源文件的定位，不是原书定理编号。为独立阅读而合并、展开的陈述标明其补充性质。
+
+\begin{reviewprop}[群的消去律、逆元与共轭]\label{tool:g-laws}
+设$G$为群，单位元为$e$。单位元和每个元素的逆元均唯一，且对任意$a,b,c\in G$，
+\[
+(a^{-1})^{-1}=a,\quad (ab)^{-1}=b^{-1}a^{-1},\quad
+ab=ac\Rightarrow b=c,\quad ba=ca\Rightarrow b=c.
+\]
+方程$ax=b$、$ya=b$各有唯一解，分别为$x=a^{-1}b$、$y=ba^{-1}$。
+整数幂满足$a^ma^n=a^{m+n}$、$(a^m)^n=a^{mn}$；若$ab=ba$，则$(ab)^m=a^mb^m$对所有整数$m$成立。
+固定$c\in G$，共轭映射$x\mapsto c^{-1}xc$是群的自同构；特别地，
+\[
+c^{-1}(xy)c=(c^{-1}xc)(c^{-1}yc),\qquad
+c^{-1}x^mc=(c^{-1}xc)^m.
+\]
+\textbf{出处：}现有笔记抽象代数第一章第2节“群的定义和简单性质”，单位元与逆元性质、方程唯一解命题、整数指数法则（\path{chapter1.tex:77,90,109}）；共轭保幂的具体应用见本章习题7（\path{chapter1-exercises.tex:59}），此处将该计算完整陈述为共轭保运算结论。
+\end{reviewprop}
+
+\begin{reviewtheorem}[子群判别法]\label{tool:g-subgroup}
+设$G$为群，$H\subseteq G$非空。以下条件等价：$H$在原运算下为群$G$的子群；对任意$x,y\in H$均有$xy^{-1}\in H$；$H$含$e$且对乘积与取逆封闭。
+\textbf{出处：}现有笔记抽象代数第一章第4节“子群、陪集”的子群判别法（\path{chapter1.tex:261}）。
+\end{reviewtheorem}
+
+\begin{reviewlemma}[有限满射的等纤维计数]\label{tool:g-fiber-count}
+设$X,Y$为有限集合，$f:X\to Y$满射。若存在正整数$d$使每个$y\in Y$的原像集合$f^{-1}(\{y\})$都恰有$d$个元素，则
+\[
+|X|=d|Y|.
+\]
+更一般地，$|X|=\sum_{y\in Y}|f^{-1}(\{y\})|$，因为这些原像集合两两不交且其并为$X$。两个有限集合的笛卡尔积满足$|A\times B|=|A||B|$。
+\textbf{出处：}现有笔记抽象代数第一章习题21的原像计数（\path{chapter1-exercises.tex:209}）实际使用的有限集合计数原理；本条是对该步骤的补充一般陈述，不标作代数正文已有的独立引理。
+\end{reviewlemma}
+
+\begin{reviewprop}[陪集的划分及左右指数]\label{tool:g-cosets}
+设$H\leq G$。左陪集$aH=\{ah:h\in H\}$满足
+\[
+aH=bH\iff a^{-1}b\in H;
+\]
+右陪集$Ha$满足$Ha=Hb\iff ab^{-1}\in H$。任意两个左陪集相等或不交，右陪集亦然。全部不同左陪集将$G$划分，全部不同右陪集亦将$G$划分；每个陪集与$H$等势。
+映射$aH\mapsto Ha^{-1}$给出左陪集集合与右陪集集合的双射，故左右陪集数相同，记为$[G:H]$，即子群指数。这些结论不要求$G$有限。
+\textbf{出处：}现有笔记抽象代数第一章第4节“子群、陪集”之“陪集及其计数”（\path{chapter1.tex:309,321,332}）。
+\end{reviewprop}
+
+\begin{reviewtheorem}[拉格朗日定理与元素的阶]\label{tool:g-lagrange}
+若$G$为有限群、$H\leq G$，则$|G|=[G:H]|H|$，所以$|H|$整除$|G|$。若$a\in G$的阶为$d$，则$d$整除$|G|$，且$a^{|G|}=e$。
+一般群中若$a$的阶为有限正整数$d$，则$a^m=e$当且仅当$d\mid m$，并且$a^i=a^j$当且仅当$d\mid(i-j)$。
+特别地，素数$p$阶群中任意非单位元的阶都为$p$，所以群为循环群。
+\textbf{出处：}现有笔记抽象代数第一章第4节“子群、陪集”的拉格朗日定理、元素阶命题及推论（\path{chapter1.tex:343,359,374}）；素数阶的推论见习题26（\path{chapter1-exercises.tex:263}附近的习题24--26合并解答）。
+\end{reviewtheorem}
+
+\begin{reviewprop}[循环子群与无限阶元素]\label{tool:g-cyclic}
+对群$G$中的$a$，$\langle a\rangle=\{a^m:m\in\Z\}$是包含$a$的最小子群，且
+\[
+G=\bigcup_{a\in G}\langle a\rangle.
+\]
+若$a$无限阶，则$a^i=a^j$蕴含$i=j$，映射$m\mapsto a^m$给出$\Z\cong\langle a\rangle$；各子群$\langle a^m\rangle$（正整数$m$）两两不同。更完整地，无限循环群的任一子群为平凡子群或$\langle a^d\rangle$，其中$d$为唯一正整数；有限阶为$d$的元素则生成恰有$d$个元素的子群。
+\textbf{出处：}现有笔记抽象代数第一章第4节的循环子群定义与元素阶命题（\path{chapter1.tex:353,359}）；无限阶产生无限多个子群及全群为循环子群之并见习题18（\path{chapter1-exercises.tex:171}）。无限循环群子群的完整形式是在同一指数思路下补充的陈述，可由子群内最小正指数与整数带余除法得到，未冒称该处原文逐字列出。
+\end{reviewprop}
+
+\begin{reviewprop}[正规子群判别及正规子群的乘积]\label{tool:g-normal}
+设$H\leq G$。以下条件等价：对任意$g\in G$均有$gH=Hg$；对任意$g$均有$gHg^{-1}=H$；对任意$g$均有$gHg^{-1}\subseteq H$。满足这些条件时称$H$正规，记为$H\trianglelefteq G$。
+若$M,N\trianglelefteq G$，则$MN=NM$且$MN\trianglelefteq G$；若$N\trianglelefteq G$且$N\leq H\leq G$，则$N\trianglelefteq H$。
+\textbf{出处：}现有笔记抽象代数第一章第6节“同态、正规子群”的正规性等价条件（\path{chapter1.tex:578}）；正规子群乘积见习题22（\path{chapter1-exercises.tex:222}）。将共轭条件限制至$H$得到最后一句，是同一条件的直接应用。
+\end{reviewprop}
+
+\begin{reviewtheorem}[群同态基本定理]\label{tool:g-first-iso}
+若$\varphi:G\to G'$为群同态，则$\ker\varphi=\{g:\varphi(g)=e'\}$为正规子群，$\varphi(G)\leq G'$，并有良定义的群同构
+\[
+G/\ker\varphi\longrightarrow\varphi(G),\qquad
+g\ker\varphi\longmapsto\varphi(g).
+\]
+若$\varphi$满射，则$G/\ker\varphi\cong G'$。同态为单射当且仅当其核为$\{e\}$；双射同态就是群同构。
+\textbf{出处：}现有笔记抽象代数第一章第6节“同态、正规子群”的核与像性质，以及第7节“商群”的群同态基本定理（\path{chapter1.tex:487,525,578,731}）。
+\end{reviewtheorem}
+
+\begin{reviewprop}[子环与理想的判别、单位的作用]\label{tool:g-ring-criteria}
+设$R$为环，这里不预设交换或有单位元。非空$S\subseteq R$是子环，当且仅当$a,b\in S$蕴含$a-b\in S$、$ab\in S$。子环若有单位元，不要求它与母环的单位元相同。
+非空$I\subseteq R$是双边理想，当且仅当对$a,b\in I$有$a-b\in I$，并且对$r\in R,a\in I$有$ra,ar\in I$。理想对整数倍与有限和封闭，也对左右乘以任意环元封闭。
+若$R$有单位元且$1\in I$，或$I$包含$R$的某个单位，则$I=R$。体中任意非零元素可逆，所以体的双边理想只有零理想和全体；域是乘法交换的体。
+\textbf{出处：}现有笔记抽象代数第一章第8节“环、子环”的子环判别法（\path{chapter1.tex:888}），第9节“各种特殊类型的环”的体与域，第10节“环的同态、理想”的理想定义与含单位的理想命题（\path{chapter1.tex:1201,1235}）；体无非平凡理想见习题32（\path{chapter1-exercises.tex:332}）。
+\end{reviewprop}
+
+\begin{reviewprop}[由双射运输环运算]\label{tool:g-transport}
+设$R$为环、$X$为集合，$f:X\to R$为双射。在$X$上定义
+\[
+x\oplus y=f^{-1}(f(x)+f(y)),\qquad
+x\odot y=f^{-1}(f(x)f(y)).
+\]
+则$X$成为环，$f$是环同构；其零元是$f^{-1}(0)$，$x$的加法逆元是$f^{-1}(-f(x))$。若$R$有单位元，则$X$的单位元是$f^{-1}(1)$；若$R$交换，则$X$也交换。
+等价地，若已定义$X$上的运算，验证双射$f$保两种运算即可把这些环公理从$R$运输到$X$。
+\textbf{出处：}现有笔记抽象代数第一章习题29的$f(a)=1-a$构造（\path{chapter1-exercises.tex:290}），并结合第8节“环、子环”的环同构讨论（\path{chapter1.tex:930}起）。本条为原构造的完整一般化陈述，不标作原文独立定理。
+\end{reviewprop}
+
+\begin{reviewlemma}[交换环二项式展开与理想中的幂]\label{tool:g-binomial}
+设$R$为交换环、$I\lhd R$，$r^n\in I$、$s^m\in I$，其中$n,m$为正整数。则
+\[
+(r\pm s)^{n+m-1}\in I,\qquad
+(tr)^n=t^nr^n\in I\quad(t\in R).
+\]
+所用的二项式展开为
+\[
+(r+s)^N=\sum_{k=0}^{N}\binom Nk r^ks^{N-k}.
+\]
+若$R$无单位元，端项分别理解为$s^N,r^N$，不在环内使用零次幂。中间项的整数系数理解为加法整数倍。对$N=n+m-1$，每一项至少含$n$个$r$或$m$个$s$，故由吸收性落在$I$。特别地，若$r^n=s^m=0$，则$(r\pm s)^{n+m-1}=0$。
+\textbf{出处：}现有笔记抽象代数第一章习题34“理想的根”和习题39“交换环的幂零元构成理想”（\path{chapter1-exercises.tex:350,396}）；这是将原解实际使用的二项式步骤抽出陈述。
+\end{reviewlemma}
+
+\begin{reviewlemma}[同一元素的有限几何级数]\label{tool:g-geometric}
+设$R$为幺环，$a\in R$，$n\geq1$。不要求$R$交换，仍有
+\[
+(1-a)(1+a+\cdots+a^{n-1})
+=(1+a+\cdots+a^{n-1})(1-a)=1-a^n.
+\]
+若$a^n=0$，则$1-a$为单位，其双边逆元为$1+a+\cdots+a^{n-1}$。
+\textbf{出处：}现有笔记抽象代数第一章习题38“$1-a$的有限几何级数逆”（\path{chapter1-exercises.tex:388}）。本条供后续环论习题复用。
+\end{reviewlemma}
+
+\begin{reviewprop}[有限域中的线性无关列与有序基计数]\label{tool:g-basis-count}
+设$F$为有$q$个元素的有限域，$n\geq1$。$F^n$有$q^n$个向量；若$v_1,\ldots,v_k$线性无关，则其张成子空间恰有$q^k$个向量，因为每个向量的$k$个系数唯一。
+矩阵可逆当且仅当其列向量构成$F^n$的一组有序基。选定前$k$个线性无关列后，下一列有$q^n-q^k$种选择。因此
+\[
+|M_n(F)|=q^{n^2},\qquad
+|\GL_n(F)|=\prod_{k=0}^{n-1}(q^n-q^k).
+\]
+\textbf{出处：}现有笔记抽象代数第一章习题44的逐列计数（\path{chapter1-exercises.tex:454}）。原题取$q=p$为素数，本条将同一证明适用的任意有限域条件完整写明；列满秩等价于可逆是此解所用的线性代数工具。
+\end{reviewprop}
+
+\begin{reviewprop}[连续函数环所用的分析工具（补充）]\label{tool:g-analysis}
+\textbf{紧致性：}闭区间$[0,1]$的任意相对开覆盖都有有限子覆盖。
+\textbf{连续性：}有限个实值连续函数的和、积以及平方仍连续；若连续函数$g$在$[0,1]$上处处非零，则$1/g$连续。
+\textbf{非零邻域：}若$g(t)\ne0$，则存在$\delta>0$，使$g(x)\ne0$对所有$x\in(t-\delta,t+\delta)\cap[0,1]$成立。
+\textbf{局部非零函数：}任意非空相对开区间$J\subseteq[0,1]$内，可取$c\in(0,1)$、$\varepsilon>0$使$[c-\varepsilon,c+\varepsilon]\subseteq J$。连续函数
+\[
+g(x)=\max\{0,1-|x-c|/\varepsilon\}
+\]
+满足$g(c)=1$且在该小闭区间外为零。
+\textbf{出处：}分析工具补充，系现有笔记抽象代数第一章习题43证明实际使用的紧致性、连续倒数、非零邻域与三角形函数（\path{chapter1-exercises.tex:440}）。不标作代数正文原定理，也不声称这些分析定理在代数笔记中已有完整证明。
+\end{reviewprop}
+
+\begin{reviewprop}[正多边形的几何二面体群]\label{tool:g-dihedral}
+设$n\geq3$。正$n$边形的全部平面对称变换在复合下成群，称$D_n$。令$T$为绕中心旋转$2\pi/n$，$S$为关于一条对称轴的反射，则
+\[
+D_n=\{T^k,ST^k:0\leq k<n\},\quad |D_n|=2n,\quad
+\operatorname{ord}(T)=n,\quad S^2=e,\quad STS=T^{-1}.
+\]
+该群不交换：否则$ST=TS$导致$T^2=e$，与$n\geq3$矛盾。此处$D_n$采用阶为$2n$的记号约定。
+\textbf{出处：}现有笔记抽象代数第一章第3节“群的例子”之“图形的对称群与二面体群”，对称群命题、二面体群定义及其后的阶数命题（\path{chapter1.tex:154,164,170}）。
+\end{reviewprop}
+
+\begin{reviewtheorem}[由方程可解性判定群]\label{tool:g-group-construction}
+设非空集合$G$上有结合的二元运算。如果对每一对$a,b\in G$，方程$ax=b$和$ya=b$在$G$中均有解，则$G$是群。条件不要求$G$有限，也不要求预先假设解唯一；单位元与逆元须由上述可解性构造，不能在构造前使用群的消去律。
+\textbf{出处：}现有笔记抽象代数第一章习题4“可解方程的结合系统”（\path{chapter1-exercises.tex:34}）；本条是该习题结论的编号陈述，其构造性证明保留在详解中。
+\end{reviewtheorem}

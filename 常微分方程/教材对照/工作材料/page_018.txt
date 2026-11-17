@@ -1,0 +1,39 @@
+14
+Chapter 1. Basic Concepts
+The motions studied in impact theory do not possess the property of
+differentiability.
+Thus the motion of a system in classical mechanics can be described using
+ordinary differential equations,while quantum mechanics,the theory of heat
+transfer,uid mechanics,elasticity theory,optics,acoustics,and impact theory
+require other methods.
+We now give two more examples of deterministic finite-dimensional and
+differentiable processes: the process of radioactive decay and the process of
+multiplication of bacteria in the presence of a sufficient quantity of nutrients.
+In both cases the phase space is one-dimensional: the state of the process is
+determined by the quantity of the substance orbacteria.Inboth cases the
+process is described by an ordinary differential equation.
+We remark that the form of the differential equation of the process,and
+also the very fact of determinacy, finite-dimensionality, and differentiability of
+a given process can be established only by experiment, and consequently only
+with limited accuracy.In what follows we shall not emphasize this circum-
+stance every time, and we shall talk about real processes as if they coincided
+exactly with our idealized mathematical modcls.
+2. Phase Spaces
+A precise formulation of the general principles discussed above requires rather
+abstract concepts: phase space and phase fow.To become familiar with these
+concepts,let us consider an example whcrc thc mcrc introduction of the phase
+space makes it possible to solve a difficult problem.
+Problem 1. (N. N. Konstantinov). Two nonintersecting roads lead from city
+A to city B (Fig.1). It is known that two cars traveling from A to B over
+different roads and joined by a cord of a certain length less than 2l were able
+to travel from A to B without breaking the cord. Is it possible for two circular
+wagons of radius I whose centers move over these roads toward each other to
+pass without touching?
+Cars
+Wagons
+Fig.1. The initial position of the wag-
+Fig.2.The phase space of a pair of
+ons
+vehicles
+Solution. Consider the square (Fig. 2)
+M= {c1,2 : 0 ≤xi≤1}.

@@ -1,0 +1,701 @@
+% !TEX root = ../../main.tex
+% 第三章习题；由 chapter3.tex 按需输入。
+
+\subsection*{环、理想与四元数（习题1--20）}
+
+\begin{problem}
+\textbf{习题1：}设环$R$中$1-ab$可逆，证明$1-ba$可逆。
+\end{problem}
+\begin{proof}[补充证明]
+令$c=(1-ab)^{-1}$。由$c(1-ab)=(1-ab)c=1$，直接计算得到
+\begin{align*}
+(1-ba)(1+bca)&=1+b(c-1-abc)a=1,\\
+(1+bca)(1-ba)&=1+b(c-1-cab)a=1.
+\end{align*}
+因此$(1-ba)^{-1}=1+b(1-ab)^{-1}a$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题2：}若$u$有右逆，证明以下条件等价：$u$有多于一个右逆；$u$是零因子；$u$不是单位。
+\end{problem}
+\begin{proof}[补充证明]
+取$uv=1$。若$uw=1$且$w\ne v$，则$u(w-v)=0$，所以$u$是左零因子。若$u$是零因子，由$uv=1$可知$xu=0$蕴含$x=xuv=0$；于是存在非零$t$使$ut=0$，而$u(v+t)=1$，故右逆不唯一。
+
+若$u$是单位，则右逆必为其唯一的逆。反之，若右逆$v$唯一，则
+\[
+u(vu-1)=0,
+\]
+故$u(v+vu-1)=1$。唯一性给出$vu=1$，从而$u$是单位。
+\end{proof}
+
+\begin{problem}
+\textbf{习题3：}若$u$有多于一个右逆，证明它有无穷多个右逆。
+\end{problem}
+\begin{proof}[补充证明]
+取$uv=1$。由于右逆不唯一，习题2说明$u$不是单位，故$e=1-vu\ne0$。又有$ue=0$和$ev=0$。对每个$k\geqslant0$，
+\[
+u(v+eu^k)=1.
+\]
+若$i<j$且$eu^i=eu^j$，右乘$v^j$，则左边为$ev^{j-i}=0$，右边为$e$，矛盾。因此这些右逆两两不同。
+\end{proof}
+
+\begin{problem}
+\textbf{习题4：}证明交换环中全部幂零元构成理想，并判断非交换环中的情形。
+\end{problem}
+\begin{proof}[补充证明]
+若$a^m=b^n=0$且$ab=ba$，则二项式展开中$(a+b)^{m+n-1}$的每一项均为零。任取$r\in R$，有$(ra)^m=r^ma^m=0$。故幂零元集对加法、取负和乘以环元封闭。
+
+非交换情形不成立。例如在$M_2(\mathbb Z)$中，$E_{12}$和$E_{21}$均幂零，而$E_{12}+E_{21}$的平方为$1$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题5：}设$F$的特征为素数$p$，证明$(a+b)^p=a^p+b^p$。并将特征的讨论推广到幺环及不必有幺元的环。
+\end{problem}
+\begin{proof}[补充证明]
+由于$F$交换，二项式公式和$p\mid\binom pk$（$0<k<p$）给出
+\[
+(a+b)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^kb^{p-k}+b^p=a^p+b^p.
+\]
+幺环的特征是其加法群中$1$的阶，因而为$0$或某个正整数；若幺环是整环，正特征必须为素数。不带幺元的环以加法群的指数定义特征，即最小的使$nR=0$的正整数；若不存在则特征为$0$。交换且特征为$p$时，上述恒等式同样成立。
+\end{proof}
+
+\begin{problem}
+\textbf{习题6：}设$I\lhd R$。证明$M_n(I)\lhd M_n(R)$，且$M_n(R)$的每个理想均如此得到。
+\end{problem}
+\begin{proof}[补充证明]
+矩阵乘法按行列展开，$I$为双边理想立即给出$M_n(I)$为理想。
+
+反过来，设$J\lhd M_n(R)$，令$I$为$J$中矩阵的全部分量所组成的集合。用矩阵单位可将$A=(a_{ij})\in J$的任一分量取出：
+\[
+E_{ki}AE_{j\ell}=a_{ij}E_{k\ell}\in J.
+\]
+于是$I$对加法及左右乘以$R$中元素封闭，且$aE_{ij}\in J$对所有$a\in I$成立。因此$J=M_n(I)$。对角元取出也说明$I$唯一。
+\end{proof}
+
+\begin{problem}
+\textbf{习题7：}若$I,H,N$为$R$的理想，证明$(H+N)I=HI+NI$及$I(H+N)=IH+IN$。
+\end{problem}
+\begin{proof}[补充证明]
+理想的积由有限个乘积之和构成。对每个$h\in H$、$n\in N$、$i\in I$，分配律给出$(h+n)i=hi+ni$，因此$(H+N)I\subseteq HI+NI$。反向包含由$H,N\subseteq H+N$得到。右侧等式同理。
+\end{proof}
+
+\begin{problem}
+\textbf{习题8：}设$\eta:R\twoheadrightarrow R'$为保幺满同态。判断并证明或举反例：(i) 幂零元、幂等元的像仍是相应元素；(ii) 零因子的像仍是零因子；(iii) $R$为整环则$R'$为整环；(iv) $R'$为整环则$R$为整环；(v) 单位的像仍是单位；(vi) 像为单位的元素必为单位。
+\end{problem}
+\begin{proof}[补充证明]
+(i) 对。若$a^m=0$，则$\eta(a)^m=0$；若$e^2=e$，则$\eta(e)^2=\eta(e)$。
+
+(ii) 错。$\mathbb Z/6\mathbb Z\twoheadrightarrow\mathbb Z/3\mathbb Z$将零因子$4$送到非零单位$1$。
+
+(iii) 错。$\mathbb Z\twoheadrightarrow\mathbb Z/6\mathbb Z$的源是整环，目标不是。
+
+(iv) 错。$\mathbb Z/6\mathbb Z\twoheadrightarrow\mathbb Z/2\mathbb Z$的目标是域，源不是整环。
+
+(v) 对。若$uv=vu=1$，则$\eta(u)\eta(v)=\eta(v)\eta(u)=1'$。
+
+(vi) 错。$\mathbb Z\twoheadrightarrow\mathbb Z/5\mathbb Z$将非单位$2$送到单位。
+\end{proof}
+
+\begin{problem}
+\textbf{习题9：}证明有理系数四元数$H_0=\{a_0+a_1I+a_2J+a_3K:a_i\in\mathbb Q\}$是$H$的子体。
+\end{problem}
+\begin{proof}[补充证明]
+四元数的乘法表表明$H_0$对加法、乘法及取负封闭，且含$1$。若$0\ne q\in H_0$，则
+\[
+q^{-1}=\frac{\bar q}{q\bar q}
+=\frac{a_0-a_1I-a_2J-a_3K}{a_0^2+a_1^2+a_2^2+a_3^2}\in H_0.
+\]
+分母是非零有理数，故$H_0$是子体。
+\end{proof}
+
+\begin{problem}
+\textbf{习题10：}确定四元数体$H$的中心。
+\end{problem}
+\begin{proof}[补充证明]
+设$q=a+bI+cJ+dK$与$I,J$都交换。比较$qI=Iq$的$J,K$系数，得$c=d=0$；再比较$qJ=Jq$，得$b=0$。故$q=a\in\mathbb R$。实数与所有四元数交换，因此中心为$\mathbb R$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题11：}求$H$中与$I$不交换的全部元素。
+\end{problem}
+\begin{proof}[补充证明]
+对$q=a+bI+cJ+dK$，由$I J=K$、$J I=-K$、$I K=-J$、$K I=J$，
+\[
+Iq-qI=2cK-2dJ.
+\]
+所以所求为$\{a+bI+cJ+dK:c,d\text{不同时为零}\}$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题12：}设$S$是$H$的子体，且对所有$0\ne d\in H$有$dSd^{-1}\subseteq S$。证明$S=H$或$S$包含于中心。
+\end{problem}
+\begin{proof}[补充证明]
+设$S\ne H$，取$x\in H\setminus S$及任意$s\in S$。由于$x,x+1$都非零，记
+\[
+a=xsx^{-1}\in S,\qquad b=(x+1)s(x+1)^{-1}\in S.
+\]
+由$xs=ax$及$xs+s=bx+b$得到$(a-b)x=b-s$。若$a\ne b$，则$x=(a-b)^{-1}(b-s)\in S$，矛盾。因此$a=b$，继而$s=b=a$，即$x$与$s$交换。
+
+所以$S$外的每个元素都与$S$中的每个元素交换。对$y\in S$，$x+y\notin S$，于是$x+y$也与$s$交换；相减可知$y$与$s$交换。故$S$中的元素与$H$的每个元素交换，即$S$包含于中心。
+\end{proof}
+
+\begin{problem}
+\textbf{习题13：}设$I,H,N\lhd R$，若$HN\subseteq I$且$I+H=R$，证明$N\subseteq I$。
+\end{problem}
+\begin{proof}[补充证明]
+取$1=i+h$，其中$i\in I$、$h\in H$。任取$n\in N$，则
+\[
+n=(i+h)n=in+hn\in I.
+\]
+故$N\subseteq I$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题14：}设$I,H,N$为交换环$R$的理想，$I\subseteq H,N$且$H+N=R$，证明$HN\supseteq I$。
+\end{problem}
+\begin{proof}[补充证明]
+取$1=h+n$，其中$h\in H$、$n\in N$。对每个$i\in I$，由于$I\subseteq H\cap N$，有
+\[
+i=ih+in\in HN.
+\]
+故$HN\supseteq I$。这里的包含可以是相等，例如$R=F\times F$、$I=0$、$H=F\times0$、$N=0\times F$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题15：}在$M_n(F)$（$n>1$）中找一个子环$R$，使$R$除恒等同构外没有其他反自同构。
+\end{problem}
+\begin{proof}[补充解答]
+取$F$的素子域$F_0$，令$R=F_0\,1_n$。任一保幺自同构必须固定$1_n$，故固定由$1_n$生成的素子域；因$R$交换，反自同构与自同构相同。因此$R$仅有恒等反自同构。
+\end{proof}
+
+\begin{problem}
+\textbf{习题16：}求$R=\left\{\begin{pmatrix}a&0\\b&c\end{pmatrix}:a,b,c\in\mathbb Z\right\}$的全部理想。
+\end{problem}
+\begin{proof}[补充解答]
+全部理想恰为
+\[
+I_{m,k,n}=\left\{\begin{pmatrix}a&0\\b&c\end{pmatrix}:a\in m\mathbb Z,\ b\in k\mathbb Z,\ c\in n\mathbb Z\right\},
+\]
+其中$m,k,n\geqslant0$，并满足$m\mathbb Z,n\mathbb Z\subseteq k\mathbb Z$（即$k\mid m,n$，将$0$的整除意义理解为集合包含）。
+
+事实上，用$E_{11},E_{22}$从理想中的矩阵左右相乘，可分别取出三个分量，故理想必为上述形式。再用$E_{21}$左右相乘，得到两个对角分量的取值都须属于左下角分量的取值集。反之，这两个包含关系保证上述集合对任意矩阵的左右乘法封闭。
+\end{proof}
+
+\begin{problem}
+\textbf{习题17：}确定$M_2(\mathbb Z/(n))$的单位群的阶。
+\end{problem}
+\begin{proof}[补充解答]
+由中国剩余定理，把$n=\prod p_i^{e_i}$分解，则
+\[
+\operatorname{GL}_2(\mathbb Z/(n))\cong\prod_i\operatorname{GL}_2(\mathbb Z/(p_i^{e_i})).
+\]
+模$p$约化到$\operatorname{GL}_2(\mathbb F_p)$，每个矩阵有$p^{4(e-1)}$个提升，而矩阵可逆当且仅当其模$p$像可逆。第一列有$p^2-1$种非零选择，第二列有$p^2-p$种不在第一列张成直线中的选择。故所求阶为
+\[
+\prod_{p^e\parallel n}p^{4(e-1)}(p^2-1)(p^2-p).
+\]
+当$n=1$时，该群只有一个元素。
+\end{proof}
+
+\begin{problem}
+\textbf{习题18：}设交换环$R$不含零因子且仅有有限个非零元，证明$R$是有限除环。
+\end{problem}
+\begin{proof}[补充证明]
+取$0\ne a\in R$。乘以$a$是有限集合$R$上的单射，因而满射；存在$e\in R$使$ae=a$。任取$b\in R$，由满射性写$b=ac$，于是$eb=eac=ac=b$。因此$e$是$R$的单位元。又对任意$0\ne b$，乘以$b$同样满射，存在$c$使$bc=e$。故$R$是有限域，特别是有限除环。
+\end{proof}
+
+\begin{problem}
+\textbf{习题19：}若$N\lhd R$而$I\lhd N$，问$I$是否必为$R$的理想？
+\end{problem}
+\begin{proof}[补充解答]
+未必。令$R$为$F$上所有严格上三角$3\times3$矩阵，$N=F E_{12}+F E_{13}$。直接由矩阵单位的乘法可知$N\lhd R$，且$N^2=0$，故$I=F E_{12}\lhd N$；但$E_{12}E_{23}=E_{13}\notin I$，所以$I$不是$R$的理想。
+\end{proof}
+
+\begin{problem}
+\textbf{习题20：}设$R$为交换环、$a$不可逆，证明有极大理想包含$a$。
+\end{problem}
+\begin{proof}[补充证明]
+由$a$不可逆，$(a)\ne R$。考虑所有包含$(a)$的真理想，按包含关系排序。任一全序子集的并仍是真理想：若它含$1$，则某个成员已含$1$，矛盾。由佐恩引理，有极大元$M$。它是$R$的极大理想，并含$a$。
+\end{proof}
+
+\subsection*{根、同态与素理想（习题21--32）}
+
+\begin{problem}
+\textbf{习题21：}设$J(R)$为交换环$R$的全部极大理想之交。证明$a\in J(R)$当且仅当$1-ax$对所有$x\in R$均可逆。
+\end{problem}
+\begin{proof}[补充证明]
+若$a\in J(R)$而$1-ax$不是单位，则它属于某个极大理想$M$。因$a\in M$，便有$1=(1-ax)+ax\in M$，矛盾。
+
+反之，若$a\notin J(R)$，取极大理想$M$使$a\notin M$。在域$R/M$中，$a+M$非零，故存在$x\in R$使$ax+M=1+M$。于是$1-ax\in M$，不是单位，矛盾。
+\end{proof}
+
+\begin{problem}
+\textbf{习题22：}若$a$满足习题21的条件，称其为强拟正则元。证明全部强拟正则元构成$J(R)$。
+\end{problem}
+\begin{proof}[补充证明]
+由习题21，对每个$a\in R$，
+\[
+a\text{强拟正则}\quad\Longleftrightarrow\quad a\in\bigcap_{M\text{极大}}M=J(R).
+\]
+故两集合相同。
+\end{proof}
+
+\begin{problem}
+\textbf{习题23：}证明有限交换环的每个素理想都是极大理想。
+\end{problem}
+\begin{proof}[补充证明]
+若$P$为素理想，则$R/P$是有限整环。由习题18，它是域，所以$P$是极大理想。
+\end{proof}
+
+\begin{problem}
+\textbf{习题24：}证明第二章第2节的定理4和定理5等价。
+\end{problem}
+\begin{proof}[补充证明]
+定理4说$\mathbb Z$的每个子群都是$m\mathbb Z$；定理5说无限循环群与$\mathbb Z$同构，并由此描述全部循环群的子群。
+
+由定理4，若$G=\langle g\rangle$，满同态$\varphi:\mathbb Z\to G$，$k\mapsto g^k$，把$G$的任一子群$H$的原像写成$m\mathbb Z$。于是$H=\langle g^m\rangle$；当$G$无限时$\ker\varphi=0$，故$G\cong\mathbb Z$。若$G$的阶为$n$，则$\ker\varphi=n\mathbb Z\subseteq m\mathbb Z$，所以$m\mid n$，且$|H|=n/m$。反过来，$n$的每个正因子$m$都给出唯一的子群$\langle g^m\rangle$。这给出定理5。
+
+反过来，把定理5应用于无限循环群$(\mathbb Z,+)=\langle1\rangle$，其任一子群由某个整数$m$生成，即为$m\mathbb Z$。取$m\geqslant0$并用子群的包含关系，即得定理4。
+\end{proof}
+
+\begin{problem}
+\textbf{习题25：}设$G$为复数域中全部单位根构成的乘法群。给出一个满而非单的自同态。
+\end{problem}
+\begin{proof}[补充解答]
+取$\varphi(z)=z^2$。若$z^m=1$，则$\varphi(z)^m=1$，故$\varphi$是自同态。对任意$m$次单位根$w$，取它的一个平方根$z$，则$z^{2m}=1$，所以$z\in G$且$\varphi(z)=w$。但$\varphi(1)=\varphi(-1)=1$，它并非单射。
+\end{proof}
+
+\begin{problem}
+\textbf{习题26：}设$\eta:R\to R'$满足加法同态、$\eta(1)=1'$及$\eta(aba)=\eta(a)\eta(b)\eta(a)$。证明$\eta$为若尔当同态，并推出幂与极化恒等式。
+\end{problem}
+\begin{proof}[补充证明]
+在给定恒等式中取$b=1$，即得$\eta(a^2)=\eta(a)^2$。加法性与保幺性均已给出，因此$\eta$为若尔当同态。取三重乘积中的两个外侧变量都为$a$、中间变量为$a^m$，得到
+\[
+\eta(a^{m+2})=\eta(a)\eta(a^m)\eta(a).
+\]
+以$k=0,1$为起点分别对偶数和奇数归纳，得$\eta(a^k)=\eta(a)^k$。将$a$换成$a+b$并减去平方项，得
+\[
+\eta(ab+ba)=\eta(a)\eta(b)+\eta(b)\eta(a).
+\]
+对$abc+cba$，把$a+c$代入三重乘积恒等式并减去$a$、$c$各自的项，得到
+\[
+\eta(abc+cba)=\eta(a)\eta(b)\eta(c)+\eta(c)\eta(b)\eta(a).
+\]
+\end{proof}
+
+\begin{problem}
+\textbf{习题27：}设$\eta:R\to R'$是到无零因子环的若尔当同态。证明对任意$a,b$，必有$\eta(ab)=\eta(a)\eta(b)$或$\eta(ab)=\eta(b)\eta(a)$。
+\end{problem}
+\begin{proof}[补充证明]
+记$A=\eta(a)$、$B=\eta(b)$、$C=\eta(ab)$。在习题26的三重乘积极化式中，依次取外侧两个变量为$ab,a$，中间变量为$b$，得到
+\[
+\eta(ab^2a+abab)=CBA+ABC.
+\]
+另一方面，$\eta(ab^2a)=AB^2A$，且$\eta(abab)=\eta((ab)^2)=C^2$。故
+\[
+C^2+AB^2A=CBA+ABC.
+\]
+移项并因式分解，
+\[
+(C-AB)(C-BA)=0.
+\]
+由于$R'$无零因子，$C=AB$或$C=BA$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题28：}设$\eta:R\to R'$是除环之间的加法映射，$\eta(1)=1'$，且对每对$a,b$都有$\eta(ab)=\eta(a)\eta(b)$或$\eta(b)\eta(a)$。证明$\eta$为同态或反同态。
+\end{problem}
+\begin{proof}[补充证明]
+固定$b\in R$，记
+\begin{align*}
+H_b&=\{a\in R:\eta(ab)=\eta(a)\eta(b)\},\\
+K_b&=\{a\in R:\eta(ab)=\eta(b)\eta(a)\}.
+\end{align*}
+由$\eta$的加法性，$H_b,K_b$均为$R$加法群的子群。题设说明$R=H_b\cup K_b$。一个群不能是两个真子群的并，故对每个$b$，要么$H_b=R$，要么$K_b=R$。
+
+再令$B_+=\{b:H_b=R\}$、$B_-=\{b:K_b=R\}$。它们也是$R$加法群的子群，且$R=B_+\cup B_-$。同理，$B_+=R$或$B_-=R$。前者说明$\eta$是同态，后者说明它是反同态。
+\end{proof}
+
+\begin{problem}
+\textbf{习题29：}证明除环到无零因子环的若尔当同态必为同态或反同态。
+\end{problem}
+\begin{proof}[补充证明]
+由习题27，对每一对$a,b$，$\eta(ab)$等于$\eta(a)\eta(b)$或$\eta(b)\eta(a)$。习题28的两个加法子群论证只用到$\eta$的加法性和这逐对的二择一性质，不要求目标环为除环。因此它也适用于此处，并给出$\eta$为同态或反同态。
+\end{proof}
+
+\begin{problem}
+\textbf{习题30：}设$R=\mathbb Z/(p^n)$，其中$p$为素数、$n>1$。确定零因子、素理想及相应商域。
+\end{problem}
+\begin{proof}[补充解答]
+整数$a$在$R$中可逆当且仅当$p\nmid a$。若$p\mid a$，则$a$乘以某个非零的$p$幂即为$0$，故非单位恰为零因子。理想由$p^n$的因子对应，唯一的素理想为$P=(p)/(p^n)$。约化模$p$给出
+\[
+R/P\cong\mathbb Z/(p),
+\]
+它是域。
+\end{proof}
+
+\begin{problem}
+\textbf{习题31：}设$R=\mathbb Z/(p^n)$，确定$R[x]$的单位和零因子。
+\end{problem}
+\begin{proof}[补充解答]
+写$f=a_0+a_1x+\cdots+a_mx^m$。由习题43和45，$f$可逆当且仅当$a_0$不被$p$整除、$a_i$（$i>0$）均被$p$整除。
+
+若非零$f$的所有系数都被$p$整除，则$p^{n-1}f=0$，故$f$是零因子。反之，设$a_j$是$f$的最低次单位系数。任取非零$g=\sum b_kx^k$，令$s$为$b_k$的最小$p$进赋值，并取具有此赋值的最低次系数$b_k$。在$fg$的$x^{j+k}$项中，$a_jb_k$的赋值恰为$s$；其余乘积或使用次数小于$j$的$f$系数，或使用次数小于$k$的$g$系数，赋值都大于$s$。该项因而非零，$fg\ne0$。所以非零零因子恰为全部系数均被$p$整除的多项式。
+\end{proof}
+
+\begin{problem}
+\textbf{习题32：}设$R=R_1\oplus\cdots\oplus R_r$，$N\lhd R$。证明$N=\bigoplus_i(N\cap R_i)$，并求$\mathbb Z/(n)$的最大幂零理想和单位群。
+\end{problem}
+\begin{proof}[补充证明]
+设$e_i$是第$i$个直和因子的单位元。任取$x\in N$，
+\[
+x=\sum_i e_ix,
+\]
+其中$e_ix\in N\cap R_i$，且分解唯一。因此得到所述直和。
+
+若$n=\prod_i p_i^{a_i}$，中国剩余定理给出$\mathbb Z/(n)\cong\prod_i\mathbb Z/(p_i^{a_i})$。每一因子的幂零元恰为$p_i$的倍数，故最大幂零理想为$(\prod_i p_i)/(n)$；单位群为
+\[
+(\mathbb Z/(n))^\times\cong\prod_i(\mathbb Z/(p_i^{a_i}))^\times,
+\qquad |(\mathbb Z/(n))^\times|=n\prod_{p\mid n}\left(1-\frac1p\right).
+\]
+\end{proof}
+
+\subsection*{多项式与有限域（习题33--51）}
+
+\begin{problem}
+\textbf{习题33：}证明$x^3-x$在$\mathbb Z/(6)$中有六个根。
+\end{problem}
+\begin{proof}[补充证明]
+对任意整数$a$，三个连续整数$a-1,a,a+1$的乘积同时被$2$和$3$整除。因此$6\mid a^3-a$。$\mathbb Z/(6)$的全部六个元素都是根。
+\end{proof}
+
+\begin{problem}
+\textbf{习题34：}证明$x^2+1$在四元数体$H$中有无穷多个根。
+\end{problem}
+\begin{proof}[补充证明]
+若$q=bI+cJ+dK$且$b^2+c^2+d^2=1$，四元数乘法关系使交叉项成对抵消，故
+\[
+q^2=-(b^2+c^2+d^2)=-1.
+\]
+单位球面上的三元组有无穷多个，因此根有无穷多个。
+\end{proof}
+
+\begin{problem}
+\textbf{习题35：}设$u=\sqrt2+\sqrt3$，求其在$\mathbb Q$上的极小多项式。
+\end{problem}
+\begin{proof}[补充解答]
+由$u^2=5+2\sqrt6$，得
+\[
+(u^2-5)^2=24,
+\qquad u^4-10u^2+1=0.
+\]
+又$u^{-1}=\sqrt3-\sqrt2$，故$\sqrt3=(u+u^{-1})/2$、$\sqrt2=(u-u^{-1})/2$均属于$\mathbb Q(u)$。于是$\mathbb Q(u)=\mathbb Q(\sqrt2,\sqrt3)$，其次数为$4$。故极小多项式为$x^4-10x^2+1$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题36：}设$u^3-u+1=0$。将$(5u^2+3u-1)(2u^2-2u+6)$及$(3u^2-u+2)^{-1}$写成次数不超过$2$的多项式。
+\end{problem}
+\begin{proof}[补充解答]
+用$u^3=u-1$、$u^4=u^2-u$逐项约去高次幂，得到
+\[
+(5u^2+3u-1)(2u^2-2u+6)=32u^2+6u-2.
+\]
+再直接相乘并约去高次幂，可验证
+\[
+(3u^2-u+2)(-2u^2-u+3)=7.
+\]
+因此$(3u^2-u+2)^{-1}=(-2u^2-u+3)/7$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题37：}证明$\mathbb F_2[x]/(x^3+x^2+1)$是八元域。
+\end{problem}
+\begin{proof}[补充证明]
+三次多项式在域上不可约当且仅当它没有根。代入$0,1$分别得到$1,1$，所以$x^3+x^2+1$不可约。商环是域，每个剩余类唯一写作$a+bx+cx^2$，其中$a,b,c\in\mathbb F_2$，故有$2^3=8$个元素。
+\end{proof}
+
+\begin{problem}
+\textbf{习题38：}列出$\mathbb F_5[x]$中全部首项系数为$1$的二次不可约多项式。
+\end{problem}
+\begin{proof}[补充解答]
+$x^2+bx+c$不可约当且仅当判别式$b^2-4c$不是$\mathbb F_5$中的平方，即等于$2$或$3$。逐一代入$b=0,1,2,3,4$，得到
+\begin{align*}
+&x^2+2,\ x^2+3,\ x^2+x+1,\ x^2+x+2,\ x^2+2x+3,\\
+&x^2+2x+4,\ x^2+3x+3,\ x^2+3x+4,\ x^2+4x+1,\ x^2+4x+2.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+\textbf{习题39：}构造一个有$25$个元素的域。
+\end{problem}
+\begin{proof}[补充解答]
+习题38表明$x^2+2$在$\mathbb F_5[x]$中不可约。故
+\[
+F=\mathbb F_5[x]/(x^2+2)
+\]
+是域，其元素唯一写作$a+b\bar x$（$a,b\in\mathbb F_5$），共有$5^2=25$个。
+\end{proof}
+
+\begin{problem}
+\textbf{习题40：}证明$(3,x^3+2x^2+2x-1)$是$\mathbb Z[x]$的极大理想。
+\end{problem}
+\begin{proof}[补充证明]
+模$3$约化后，多项式成为$h=x^3-x^2-x-1\in\mathbb F_3[x]$。代入$0,1,2$分别得$2,1,1$，所以三次多项式$h$无根，因而不可约。于是
+\[
+\mathbb Z[x]/(3,x^3+2x^2+2x-1)\cong\mathbb F_3[x]/(h)
+\]
+是域，故该理想极大。
+\end{proof}
+
+\begin{problem}
+\textbf{习题41：}令$I=(3,x^3+2x^2+2x-1)$。证明$\mathbb Z[x]/I\cong\mathbb F_3[x]/(x^3-x^2-x-1)$，并推出$I$极大。
+\end{problem}
+\begin{proof}[补充证明]
+系数模$3$的满同态$\rho:\mathbb Z[x]\to\mathbb F_3[x]$以$(3)$为核，并把$x^3+2x^2+2x-1$送到$x^3-x^2-x-1$。同态定理给出所述同构。由习题40中该三次式的不可约性，右侧是域，故$I$极大。
+\end{proof}
+
+\begin{problem}
+\textbf{习题42：}设$F$为域且$\deg f>0$。证明$F[x]/(f)$无零因子当且仅当$f$不可约。
+\end{problem}
+\begin{proof}[补充证明]
+若$f$不可约，则$(f)$为极大理想，商环为域。反之，若$f=gh$且$0<\deg g,\deg h<\deg f$，则$\bar g,\bar h$在商环中均非零，但$\bar g\bar h=0$，矛盾。
+\end{proof}
+
+\begin{problem}
+\textbf{习题43：}设$R$为交换环。若$f\in R[x]$幂零，证明$f$的每个系数均幂零。
+\end{problem}
+\begin{proof}[补充证明]
+写$f=a_0+a_1x+\cdots+a_mx^m$，设$f^N=0$。最高项系数为$a_m^N$，故$a_m$幂零。模去幂零理想$(a_m)$后，$f$的次数下降，且仍幂零。对次数归纳，所有$a_i$在$R/(a_m)$中幂零；于是某个$a_i^k\in(a_m)$，而$(a_m)$为幂零理想，故$a_i$也幂零。
+\end{proof}
+
+\begin{problem}
+\textbf{习题44：}设$R$为交换环。证明$f\in R[x]$为零因子当且仅当存在$0\ne a\in R$使$af=0$。
+\end{problem}
+\begin{proof}[补充证明]
+充分性直接成立。若$fg=0$且$g\ne0$，在所有被$f$消去的非零多项式中选次数最低者$g$。设$f=a_0+\cdots+a_mx^m$。因$fg=0$，最高次项系数给出$a_m$乘以$g$的最高次系数为零，故$\deg(a_mg)<\deg g$。同时$f(a_mg)=a_m(fg)=0$，由$g$的最小性得$a_mg=0$。于是$(f-a_mx^m)g=0$。依次降次，得到$a_ig=0$对每个$i$成立。取$g$的任一非零系数$a$，便有$af=0$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题45：}设$R$为交换环，$f=a_0x^n+a_1x^{n-1}+\cdots+a_n$。若$a_n$是单位而$a_0,\ldots,a_{n-1}$均幂零，证明$f$是$R[x]$的单位。
+\end{problem}
+\begin{proof}[补充证明]
+令$h=a_n^{-1}(f-a_n)$。它只有有限个非零系数，且每个系数都幂零；在足够高的幂$h^N$的任一项中，必有某个系数出现到其幂零次数，故$h^N=0$。于是
+\[
+f^{-1}=a_n^{-1}(1+h)^{-1}
+=a_n^{-1}\sum_{j=0}^{N-1}(-h)^j.
+\]
+\end{proof}
+
+\begin{problem}
+\textbf{习题46：}证明习题43的逆命题。
+\end{problem}
+\begin{proof}[补充证明]
+若$f=\sum_{i=0}^m a_ix^i$且$a_i^{n_i}=0$，取$N=1+\sum_{i=0}^m(n_i-1)$。$f^N$的每一项都含$N$个系数因子；由抽屉原理，其中某个$a_i$至少出现$n_i$次，所以该项为零。故$f^N=0$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题47：}设$R'=R[x_1,\ldots,x_n]$，$r(R)$为$R$的幂零根。证明$r(R')=r(R)[x_1,\ldots,x_n]$。
+\end{problem}
+\begin{proof}[补充证明]
+对变量个数归纳。习题43和46说明一元多项式幂零当且仅当各系数幂零，即$r(R[x])=r(R)[x]$。将$R[x_1,\ldots,x_{n-1}]$代替$R$，重复这一等式，便得结论。
+\end{proof}
+
+\begin{problem}
+\textbf{习题48：}证明有限环中右逆也是左逆，并判断无限环是否仍成立。
+\end{problem}
+\begin{proof}[补充证明]
+若$uv=1$且$R$有限，映射$x\mapsto ux$有右逆映射$x\mapsto vx$，故是满射，因有限而单射。由$u(vu-1)=0$得$vu=1$。无限环不成立：在可数维向量空间的自同态环中，左移算子$u$与右移算子$v$满足$uv=1$而$vu\ne1$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题49：}证明交换环$R$的多项式环$R[x]$中，强拟正则元恰为幂零元。
+\end{problem}
+\begin{proof}[补充证明]
+若$f$强拟正则，则$1-xf$是$R[x]$的单位。多项式单位的正次数系数均幂零，故$f$的各系数均幂零。由习题46，$f$幂零。
+
+反之，若$f^N=0$，则对任意$g\in R[x]$，$(fg)^N=0$，且
+\[
+(1-fg)^{-1}=\sum_{j=0}^{N-1}(fg)^j.
+\]
+由习题21的刻画，$f$强拟正则。
+\end{proof}
+
+\begin{problem}
+\textbf{习题50：}设交换环$R$中每个$a$都有某个$n>1$使$a^n=a$。证明每个素理想均极大。
+\end{problem}
+\begin{proof}[补充证明]
+若$P$为素理想，$R/P$是整环，且其中每个元素仍满足某个$\bar a^n=\bar a$。对$\bar a\ne0$，消去$\bar a$得$\bar a^{n-1}=1$，故$\bar a$可逆。于是$R/P$为域，$P$极大。
+\end{proof}
+
+\begin{problem}
+\textbf{习题51：}设$R$为布尔环，即每个$a$满足$a^2=a$。证明$2a=0$、每个素理想极大且商域为$\mathbb F_2$、每个有限生成理想均为主理想。
+\end{problem}
+\begin{proof}[补充证明]
+由$(a+a)^2=a+a$及$a^2=a$，展开并约去$2a$，得$2a=0$。又$(a+b)^2=a+b$给出$ab=ba$，故$R$交换。若$P$素，则$R/P$是布尔整环；每个非零元由$a^2=a$得$a=1$，所以$R/P\cong\mathbb F_2$，$P$极大。
+
+对$a,b\in R$，记$c=a+b+ab$。因$ac=a$、$bc=b$，有$(a,b)\subseteq(c)$；又$c\in(a,b)$，故$(a,b)=(c)$。对生成元个数归纳，任一有限生成理想均为主理想。
+\end{proof}
+
+\subsection*{幂零根、有限域与形式幂级数（习题52--68）}
+
+\begin{problem}
+\textbf{习题52：}设$r(R)$为交换环$R$的幂零根。证明以下三项等价：$R$只有一个素理想；$R$的每个元素不是单位就是幂零元；$R/r(R)$是域。
+\end{problem}
+\begin{proof}[补充证明]
+幂零根是全部素理想之交。若素理想只有$P$，则$r(R)=P$；任一极大理想均为素理想，故$P$是唯一极大理想。$P$外元素均为单位，$P$内元素均幂零。
+
+若每个非单位均幂零，则$r(R)$恰为非单位集，商环中每个非零元都可逆，故$R/r(R)$是域。若商环是域，则$r(R)$极大；任一素理想都含它，只能等于它，故素理想唯一。
+\end{proof}
+
+\begin{problem}
+\textbf{习题53：}证明只有有限多个理想的整环是域。
+\end{problem}
+\begin{proof}[补充证明]
+对$0\ne a\in R$，链$(a)\supseteq(a^2)\supseteq\cdots$必有相邻两项相等。于是$a^m=a^{m+1}b$，在整环中消去$a^m$得$1=ab$。所以每个非零元可逆。
+\end{proof}
+
+\begin{problem}
+\textbf{习题54：}设整环$R$的任意非空理想集合按包含关系都有极小元。证明$R$是域。
+\end{problem}
+\begin{proof}[补充证明]
+对$0\ne a\in R$，在$\{(a^m):m\geqslant1\}$中取极小元$(a^m)$。由$(a^{m+1})\subseteq(a^m)$及极小性，二者相等。按习题53消去，$a$可逆。
+\end{proof}
+
+\begin{problem}
+\textbf{习题55：}设$a,b,ab-1$均为单位。证明$a-b^{-1}$和$(a-b^{-1})^{-1}-a^{-1}$均为单位，并验证华罗庚恒等式。
+\end{problem}
+\begin{proof}[补充证明]
+令$c=a-b^{-1}=(ab-1)b^{-1}$，故$c$可逆。又
+\[
+c^{-1}-a^{-1}=c^{-1}(a-c)a^{-1}=c^{-1}b^{-1}a^{-1}
+\]
+是单位。取逆并代入$c$，得到
+\[
+\bigl((a-b^{-1})^{-1}-a^{-1}\bigr)^{-1}=abc=aba-a.
+\]
+\end{proof}
+
+\begin{problem}
+\textbf{习题56：}设$D$为除环，$C$为其中心，$R$为子体且对每个$0\ne d\in D$有$dRd^{-1}\subseteq R$。证明$R=D$或$R\subseteq C$。
+\end{problem}
+\begin{proof}[补充证明]
+若$R\ne D$，取$x\in D\setminus R$及$a\in R$。记$b=xax^{-1}$、$c=(x+1)a(x+1)^{-1}$，二者均在$R$。比较$xa=bx$与$xa+a=cx+c$，得$(b-c)x=c-a$。若$b\ne c$，则$x=(b-c)^{-1}(c-a)\in R$，矛盾。故$b=c=a$，即$x$与$a$交换。
+
+任取$y\in R$，$x+y\notin R$，故$x+y$也与$a$交换，从而$y$与$a$交换。于是$a$与$D$的每个元素交换，即$a\in C$。故$R\subseteq C$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题57：}设$R$为实系数多项式函数环。证明每个$t\in\mathbb R$的代入映射$\eta_t(f)=f(t)$为到$\mathbb R$的同态，且每个这样的同态均为某个$\eta_t$。
+\end{problem}
+\begin{proof}[补充证明]
+代入保持$1$、加法及乘法。设$\eta:R\to\mathbb R$为保幺同态。对实常数$c>0$，写$c=d^2$，则$\eta(c)=\eta(d)^2\geqslant0$；故$\eta$在常数域上保序。它固定有理数，由有理数的稠密性，$\eta(c)=c$对每个实数$c$成立。令$t=\eta(x)$，则
+\[
+\eta\left(\sum_i a_ix^i\right)=\sum_i a_it^i.
+\]
+\end{proof}
+
+\begin{problem}
+\textbf{习题58：}设$F$为无限域。若$g\ne0$，且$f$在所有满足$g(c_1,\ldots,c_n)\ne0$的点上为零，证明$f=0$。
+\end{problem}
+\begin{proof}[补充证明]
+在$g$非零的点上$fg=0$，在$g$为零的点上亦然。故$fg$在$F^n$上恒为零。无限域上的多项式若处处为零，则为零多项式；由多项式环无零因子且$g\ne0$，得$f=0$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题59：}设$F$有$q$个元素。证明$g_0=\prod_{i=1}^n(1-x_i^{q-1})$在原点取值$1$，在其余点取值$0$。
+\end{problem}
+\begin{proof}[补充证明]
+在原点，各因子均为$1$。若$a=(a_1,\ldots,a_n)\ne0$，某个$a_i\ne0$；由有限域乘法群的阶为$q-1$，$a_i^{q-1}=1$，相应因子为$0$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题60：}若$f$在原点为零而在其余点均非零，证明$g=1-f^{q-1}$与习题59的$g_0$取值相同，并推出$\deg f\geqslant n$。
+\end{problem}
+\begin{proof}[补充证明]
+由$z^{q-1}=1$对每个$z\in F^\times$成立，$g$在原点为$1$，在其余点为$0$。将多项式逐变量模$x_i^q-x_i$约化，不增加总次数，可得到各变量次数小于$q$的唯一函数代表。$g_0$就是此代表，且其单项式$x_1^{q-1}\cdots x_n^{q-1}$系数为$(-1)^n\ne0$。因此$\deg g\geqslant n(q-1)$；又$\deg g\leqslant(q-1)\deg f$，故$\deg f\geqslant n$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题61：}设$F$是$q$元域，$\deg f<n$且$f(0)=0$。证明$f$还有一个非零零点。
+\end{problem}
+\begin{proof}[补充证明]
+记$N$为$f$在$F^n$中的零点数。在$F$中计算
+\[
+N=\sum_{a\in F^n}\bigl(1-f(a)^{q-1}\bigr).
+\]
+对$k\geqslant0$，$\sum_{t\in F}t^k$只有在$k$为$q-1$的正倍数时才可能非零；当$k=0$时该和为$q=0$。故一个单项式对全体点求和后可能非零，要求每个变量的指数至少为$q-1$，总次数至少$n(q-1)$。但$\deg f^{q-1}<n(q-1)$，故$N=0$在$F$中，即整数$N$被特征$p$整除。原点已是零点，故$N\geqslant p\geqslant2$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题62：}设$R$为交换环、$f=\sum_{i\geqslant0}a_ix^i\in R[[x]]$。证明：(i) $f$可逆当且仅当$a_0$可逆；(ii) $R[[x]]$为整环当且仅当$R$为整环；(iii) 若$R$为整环且$F$为其商域，则$R[[x]]$商域的非零元均可写作$x^\nu(a_0+a_1x+\cdots)$，其中$\nu\in\mathbb Z$、$a_i\in F$、$a_0\ne0$。
+\end{problem}
+\begin{proof}[补充证明]
+设$f=\sum_{i\geqslant0}a_ix^i$。若$fg=1$，常数项给出$a_0b_0=1$。反之，若$a_0$可逆，递归取
+\[
+b_0=a_0^{-1},\qquad b_m=-a_0^{-1}\sum_{i=1}^m a_i b_{m-i}\quad(m\geqslant1),
+\]
+则$g=\sum b_ix^i$满足$fg=1$。
+
+若$R$为整环，非零幂级数的最低非零项相乘仍非零，故$R[[x]]$为整环；反向由常数嵌入可知。设$F$为$R$的商域，$R[[x]]$的商域自然嵌入$F((x))$。因此其中每个非零元均可写作
+\[
+x^\nu(a_0+a_1x+a_2x^2+\cdots),\qquad \nu\in\mathbb Z,\ a_i\in F,\ a_0\ne0.
+\]
+当$R=F$本身是域时，$F[[x]]$的商域恰为$F((x))$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题63：}若交换环$R$中每个非单位$a$都使$1+a$为单位，证明全部非单位构成唯一的极大理想，并判断这种环是否存在。
+\end{problem}
+\begin{proof}[补充证明]
+记非单位集为$M$。若$a\in M$、$r\in R$而$ra$为单位，则$a$也为单位，矛盾；故$ra\in M$。若$a,b\in M$而$a+b=u$为单位，则$a/u,b/u$仍非单位。由题设，$1-a/u=b/u$应为单位，矛盾。因此$M$对加法及取负封闭，是理想。它包含所有真理想，因而是唯一极大理想。例如$\mathbb Z/(p^n)$满足该性质。
+\end{proof}
+
+\begin{problem}
+\textbf{习题64：}设交换整环$R$中每个非零非单位$a$都使$1+a$仍非单位。证明全部单位加上$0$构成子域$F$，且$R\setminus F$中的元素都超越于$F$。
+\end{problem}
+\begin{proof}[补充证明]
+记$F=R^\times\cup\{0\}$。若单位$u,v$之和非零且非单位，令$a=-(u+v)u^{-1}$，则$a$非零且非单位；但$1+a=-vu^{-1}$为单位，矛盾。所以$F$对加法封闭；其余域运算显然封闭。
+
+若$z\in R\setminus F$在$F$上代数，取常数项非零的非零关系$c_0+c_1z+\cdots+c_mz^m=0$；若原关系常数项为零，可在整环中消去适当的$z$幂。于是
+\[
+z(c_1+\cdots+c_mz^{m-1})=-c_0\in F^\times,
+\]
+说明$z$可逆，矛盾。
+\end{proof}
+
+\begin{problem}
+\textbf{习题65：}设$F$为无限域。证明不存在非常数多项式$f\in F[x]$满足$f(x)f(y)=f(x+y)$。
+\end{problem}
+\begin{proof}[补充证明]
+设$\deg f=d>0$、首项系数为$c\ne0$。等式左边含非零项$c^2x^dy^d$，总次数为$2d$；右边总次数为$d$，矛盾。
+\end{proof}
+
+\begin{problem}
+\textbf{习题66：}设$F$为域，证明$M_n(F)$的每个左理想都是主理想。
+\end{problem}
+\begin{proof}[补充证明]
+设$L$为左理想，把$L$中各矩阵的行向量组成的子空间记为$W\subseteq F^n$。左乘矩阵单位可把任一行放入任意指定的行，其余行置零；故$L$恰是所有行向量均属于$W$的矩阵。取矩阵$A$，使其非零行构成$W$的一组基，则$L=M_n(F)A$。
+\end{proof}
+
+\begin{problem}
+\textbf{习题67：}设$G$为阿贝尔群，证明$\operatorname{End}(G)$以逐点加法和映射复合构成含幺环。
+\end{problem}
+\begin{proof}[补充证明]
+若$\eta,\xi$为自同态，则
+\[
+(\eta+\xi)(a+b)=\eta(a)+\eta(b)+\xi(a)+\xi(b)
+=(\eta+\xi)(a)+(\eta+\xi)(b),
+\]
+重排使用$G$交换。零映射、逐点负映射给出加法零元与逆元；加法结合且交换。复合结合，恒等映射为乘法单位。自同态的加法性给出复合对逐点加法的左右分配律。
+\end{proof}
+
+\begin{problem}
+\textbf{习题68：}分别求$\mathbb Z^+$、无限循环群、$\mathbb Q^+$及$n$个$p$阶循环群的直和的自同态环。
+\end{problem}
+\begin{proof}[补充解答]
+$\mathbb Z^+$及任一无限循环群的自同态由生成元的像唯一决定；该像是生成元的整数倍，故自同态环均同构于$\mathbb Z$。
+
+$\mathbb Q^+$的自同态$\eta$由$\eta(1)=r\in\mathbb Q$唯一决定，因为$n\eta(m/n)=m\eta(1)$。故$\eta(q)=rq$，自同态环同构于$\mathbb Q$。
+
+$n$个$p$阶循环群的直和是$\mathbb F_p$上的$n$维向量空间，自同态恰为线性变换，所以其自同态环同构于$M_n(\mathbb F_p)$。
+\end{proof}
+

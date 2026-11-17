@@ -1,0 +1,185 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第6章：函数的极限与连续性
+% 节：6.7 一致连续性
+% 正文按原文件顺序保存；由 ../chapter6.tex 调用。
+\section{一致连续性}
+\begin{definition}
+	函数 \( f(x) \) 在 \(X\) 上有定义，若 \(\forall \varepsilon > 0, \exists \delta = \delta(\varepsilon) > 0\)，使得 \(\forall x_1, x_2 \in X\)，
+	且 \(|x_1 - x_2| < \delta\)，则 \(|f(x_1) - f(x_2)| < \varepsilon\)，称函数 \(f\) 在 \(X\) 上一致连续.	
+\end{definition}
+\begin{definition}
+	函数 \( f(x) \) 在 \(X\) 上非一致连续，则 \(\exists \varepsilon_0 > 0, \forall \delta > 0\)，使得 \(\exists x_1, y_1 \in X\)，
+	尽管 \(|x_1 - y_1| < \delta\)，但 \(|f(x_1) - f(y_1)| \geqslant \varepsilon_0\).
+\end{definition}
+\begin{proposition}
+	函数 \( f(x) \) 在 \(X\) 上有定义，则 \( f(x) \) 在 \(X\) 上一致连续的充要条件是：
+	\(\forall \{x_n\}, \{y_n\} \subset X, \lim\limits_{n \to \infty} (x_n - y_n) = 0\)，就有
+	\[ \lim_{n \to \infty} (f(x_n) - f(y_n)) = 0 \]
+	
+	
+\end{proposition}
+\begin{proof}
+	必要性：\( f(x) \) 在 \(X\) 上一致连续，\(\forall \varepsilon > 0, \exists \delta > 0, \) 使得 \(\forall x_0, y_0 \in X\)，
+	且 \(|x_0 - y_0| < \delta\)，有 \(|f(x_0) - f(y_0)| < \varepsilon\).
+	
+	对上述\(\delta > 0\)，由 \(\lim\limits_{n \to \infty} (x_n - y_n) = 0\)，\(\exists N, \forall n > N, |x_n - y_n| < \delta\)，
+	那么 \(|f(x_n) - f(y_n)| < \varepsilon\).
+	
+	因此，\[\lim_{n \to \infty} (f(x_n) - f(y_n)) = 0\]
+	充分性：若不然，\(f(x)\) 在 \(X\) 上非一致连续：
+	
+	\(\exists \varepsilon_0 > 0, \forall \delta > 0, \exists x_1, x_2 \in X, \) 使得 \(|x_1 - x_2| < \delta\)，但 \(|f(x_1) - f(x_2)| \geqslant \varepsilon_0\).
+	
+	取 \(\delta_n = \dfrac{1}{n} (n = 1, 2, \dots)\)，于是有 \(x_n, y_n \in X\)，满足
+	\[ |x_n - y_n| < \frac{1}{n}, \quad |f(x_n) - f(y_n)| \geqslant \varepsilon_0 \]
+	
+	显然，\(\lim\limits_{n \to \infty} (x_n - y_n) = 0\)，但 \(\lim\limits_{n \to \infty} (f(x_n) - f(y_n)) \neq 0\)，矛盾.
+	
+\end{proof}
+\begin{example}
+	证明
+	
+	(1) \( y = \sin x \), \( x \in (-\infty, +\infty) \) 一致连续
+	
+	(2) \( y = x^2 \), \( x \in (-\infty, +\infty) \) 非一致连续
+	
+	(3) \( y = x^2 \), \( x \in [a, b] \) 一致连续
+\end{example}
+\begin{proof}
+	(1) \( f(x) = \sin x \), \( x \in (-\infty, +\infty) \)
+	
+	\(\forall \varepsilon > 0\), 考虑 \(|f(x_1) - f(x_2)|=|\sin x_1-\sin x_2| \leqslant 2 \left|\sin \dfrac{x_1 - x_2}{2}\right| \leqslant |x_1 - x_2|\)
+	
+	不妨设 \(|x_1 - x_2| < 1\), 取 \(\delta = \min\{1, \varepsilon\}\)
+	
+	则 \(|\sin x_1 - \sin x_2| < \varepsilon\)
+	
+	(2) 取 \(x_n = n + \dfrac{1}{n}\), \(y_n = n - \dfrac{1}{n}\), 显然 \(x_n - y_n \to 0\)
+	
+	但 \(|f(x_n) - f(y_n)| = 4 = \varepsilon_0 \neq 0\)
+	
+	(3) 对于 \( f(x) = x^2 \), \( x \in [a, b] \)：
+	\[
+	|f(x_1) - f(x_2)| = |x_1 + x_2| \cdot |x_1 - x_2| \leqslant 2 \max\{|a|, |b|\} \cdot |x_1 - x_2|
+	\]
+	取
+	\[
+	\delta = \frac{\varepsilon}{2 \max\{|a|, |b|\}}
+	\]
+	则 \(\forall |x_1 - x_2| < \delta\)，都有
+	\[
+	|f(x_1) - f(x_2)| \leqslant \varepsilon
+	\]
+	因此，\( f(x) = x^2 \) 在闭区间 \([a, b]\) 上一致连续.
+	
+\end{proof}
+\begin{proposition}
+	若函数 \( f(x) \) 在 \(X\) 上一致连续，那么 \( f(x) \) 在 $X$ 上连续.
+\end{proposition}
+\begin{proof}
+	\(\forall x_0 \in X\), 由定义，\(\forall \varepsilon > 0, \exists \delta (\eps)> 0, \forall x \in X, \) 只要 \(|x - x_0| < \delta\)，就有$$|f(x) - f(x_0)| < \varepsilon$$ 
+\end{proof}
+\begin{theorem}
+	（Cantor 一致连续定理）
+	设函数 \( f(x) \) 在 \([a, b]\) 上连续，则 \( f(x) \) 在 \([a, b]\) 上一致连续.
+\end{theorem}
+
+\begin{proof}
+	若不然，设 \( f(x) \) 在 \([a, b]\) 上非一致连续
+	
+	\(\exists \varepsilon_0 > 0, \forall n \in \mathbb{N}^+\)，存在 \(\{x_n\},\{y_n\} \subset [a, b]\)，
+	使得 \(|x_n - y_n| \to 0\) (\(n \to +\infty\)) 但 \(|f(x_n) - f(y_n)| \geqslant \varepsilon_0\).
+	
+	由于 \(\{x_n\}\) 有界，由 Bolzano-Weierstrass 定理，\(\exists \{x_{n_k}\}_{k=1}^{\infty}\) 收敛于 \([a, b]\) 中的某点 \(\xi \in [a, b]\)，即 \(x_{n_k} \to \xi\) (\(k \to +\infty\)).
+	
+	对应的，取 \(\{y_n\}\) 的子列 \(\{y_{n_k}\}\)，由于 \(x_n - y_n \to 0\) 则有 \(x_{n_k} - y_{n_k} \to 0\)，因此 \(y_{n_k} \to \xi\) (\(k \to +\infty\)).
+	
+	由函数的连续性，令\(k \to +\infty\)，
+	\[
+	\lim_{k \to +\infty} |f(x_{n_k}) - f(y_{n_k})| \geqslant \varepsilon_0 \implies |f(\xi) - f(\xi)| \geqslant \varepsilon_0
+	\]
+	
+	矛盾.
+\end{proof}
+\begin{corollary}
+	函数 \( f(x) \) 在 \((a, b)\) 上连续，则 \( f(x) \) 在 \((a, b)\) 上一致连续，当且仅当极限值 \( f(a+) \) 与 \( f(b-) \) 均存在且有限
+	
+\end{corollary}
+注意此处$a,b$均为实数，当某一端为无穷大时，则未必成立
+\begin{proof}
+	充分性：构造辅助函数
+	\[
+	\widetilde{f}(x) = \begin{cases}
+		f(a+) & x = a \\
+		f(x) & x \in (a, b) \\
+		f(b-) & x = b
+	\end{cases}
+	\]
+	
+	显然，\(\widetilde{f}(x)\) 在 \([a, b]\) 上连续，根据闭区间上连续函数的性质，\(\hat{f}(x)\) 在 \([a, b]\) 上一致连续.
+	
+	因此，\(f(x)\) 在 \((a, b)\) 上一致连续.
+	
+	必要性：\( f(x) \) 在 \((a, b)\) 上一致连续.
+	
+	\(\forall \varepsilon > 0, \exists \delta = \delta(\varepsilon) > 0, \forall x_1, x_2 \in (a, b), |x_1 - x_2| < \delta\)，有 \(|f(x_1) - f(x_2)| < \varepsilon\).
+	
+	取 \(\{x_n\} \subset (a, b)\)，且 \(\lim\limits_{n \to \infty} x_n = a\)，那么 \(\{x_n\}\) 是 Cauchy 列，对于上述 \(\delta > 0\)，
+	\(\exists N, \forall n, m > N: |x_n - x_m| < \delta\)，从而
+	\[
+	|f(x_n) - f(x_m)| < \varepsilon
+	\]
+	
+	因此 \(\{f(x_n)\}\) 也是 Cauchy 列，那么 \(\lim\limits_{x \to a+} f(x) = f(a+)\) 存在，同理 \(f(b-)\) 存在.
+	
+\end{proof}
+\begin{corollary}
+	函数 \( f(x) \) 在 \([a, +\infty)\) 上连续且 \(\lim\limits_{x \to +\infty} f(x) = A \in \mathbb{R}\)，则 \( f(x) \) 在 \([a, +\infty)\) 上一致连续.
+	
+\end{corollary}
+\begin{proof}
+	由 \(\lim\limits_{x \to +\infty} f(x) = A\)
+	
+	\(\forall \varepsilon > 0, \exists X > a, \forall x', x'' > X\)，取 \(|x' - x''| < \delta\)，
+	有 
+	$$|f(x') - A| < \dfrac{\varepsilon}{2},|f(x'') - A| < \dfrac{\varepsilon}{2}\Leftrightarrow|f(x') - f(x'')| < \varepsilon$$
+	
+	由于 \(f(x)\) 在 \([a, X+ 1]\) 上连续，故一致连续.
+	
+	综上，\(f(x)\) 在 \([a, +\infty)\) 上一致连续.
+\end{proof}
+\begin{corollary}
+	$f(x)$在$(-\infty,+\infty)$上连续，且$f(-\infty),f(+\infty)$存在且有限，则在$(-\infty,+\infty)$上一致连续
+\end{corollary}
+
+
+
+%读完谢惠民的相应部分再写
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

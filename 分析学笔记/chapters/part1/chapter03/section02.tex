@@ -1,0 +1,254 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第3章：实数的八大基本定理
+% 节：3.2 Euclidean拓扑与拓扑基
+% 正文按原文件顺序保存；由 ../chapter3.tex 调用。
+\section{Euclidean拓扑与拓扑基}
+\begin{definition}[$\R$上的Euclidean拓扑]\label{defofeuto}
+	$\R$上的一个子集$S$在$\R$上的Euclidean拓扑里被称为是开的，若其有以下性质:
+	$$\forall x\in S,\exists a,b\in\R~\textbf{且}~a<b,~\text{使得}~x\in\left(a,b\right)\subset S$$
+\end{definition}
+注意：在此之后，我们说拓扑空间$\R$,默认为Euclidean拓扑
+\begin{proposition}
+	\ref{defofeuto}中定义的Euclidean拓扑是一个拓扑
+\end{proposition}
+
+\begin{proof}
+	（i）$\forall x \in \mathbb{R}$ ，取 $a=x-1, b=x+1,  x \in\left(x-1,  x+1\right)\subset \mathbb{R}$ ，故 $\mathbb{R} \in \T$
+	由空真原理，$\varnothing \in \T$
+	
+	（ii）令 $A_\alpha \in \T$ ，下证 $\bigcup_\alpha A_\alpha \in \T$ ，也即 $\bigcup_\alpha A_\alpha$ 具备\ref{defofeuto}中的性质
+	
+	取 $x \in \bigcup_\alpha A_\alpha$ ，那么 $\exists k$ ，使得$x \in A_k$ ，$\exists a, b \in \mathbb{R}$ 且 $a<b$ ，使得
+	
+	$$
+	(a, b) \subset A_k \subset \bigcup_\alpha A_\alpha
+	$$
+	
+	
+	得证
+	
+	(iii）考虑 $A_1 \cap A_2$ 的情况，有限交 可以由归纳法得.
+	
+	取 $A_1, A_2 \in \T$ ，令 $y \in A_1 \cap A_2$ ，则 $y \in A_1, \exists a, b \in \mathbb{R}$ 且 $a<b$ ，使得
+	
+	$$
+	y \in(a, b) \subset A_1
+	$$
+	
+	
+	同理 $y \in A_2, \exists c, d \in \mathbb{R}$ ，且 $c<d$ ，s．t．
+	$$y \in(c, d) \subset A_2$$
+	取 $e=\max \{a, c\}, \quad f=\min \{b, d\}$ ．那么
+	
+	$$
+	y \in(e, f) \subset A_1 \cap A_2
+	$$
+	
+	
+	得证
+\end{proof}
+\begin{proposition}
+	对拓扑空间$\R$，我们有以下陈述
+	
+	（1）开区间$\left(r,s\right)$是开集
+	
+	（2）区间 $(r,+\infty),(-\infty, r)$ 是开集
+	
+	（3）闭区间 $[c, d]$ 不是开集而是闭集
+	
+	（4）单元集 $\{a\}$ 是闭集
+	
+	（5）$\Z$是闭集
+	
+	（6）$\Q$不是闭集也不是开集
+\end{proposition}
+\begin{proof}
+	（1）$\forall x \in(r, s)$ ，取 $a=r, b=s$ ，那么 $x \in(a, b) \subset(r, s)$
+	
+	(2)$\forall x \in(r,+\infty)$ ，取
+	
+	$$
+	x \in(r, x+1) \subset(r,+\infty)
+	$$
+	
+	$\forall y \in(-\infty, r)$ ，取
+	
+	$$
+	y \in(y-1, r) \subset(-\infty, r)
+	$$
+	
+	
+	(3)对 $x=c \in[c, d]$ ，假设 $\exists a, b \in \mathbb{R}$ ，使得$c \in(a, b) \subset[c, d]$ ，那么 $a<c<b$ 且 $a<\dfrac{a+c}{2}<c<b$,
+	因此 $ \dfrac{a+c}{2} \in(a, b)$ 而 $\dfrac{a+c}{2} \notin[c, d]$ ，矛盾，因此 $[c, d]$ 不是开集.
+	
+	取 $(-\infty, c) \cup(d,+\infty)$ 为开集，其余集 $[c, d]$ 为闭集
+	
+	
+	(4)考虑$S=\left(-\infty,a\right)\bigcup\left(a,+\infty\right)$为开集，则$S^C=\{a\}$为闭集.
+	
+	(5)$\Z^C=\bigcup\limits_{n\in\Z}(n,n+1)$是开集，则$\Z$为闭集
+	
+	(6)若$\Q$为开集，$\left(\forall x\in\Q\right)\left(a,b\in\R\right),$使得$x\in\left(a,b\right)\subset\Q$,$\exists q\in\R\setminus\Q$,同上，$\R\setminus\Q$也不是开集，故$\Q$不是闭集.
+\end{proof}
+\begin{theorem}
+	$\R$的子集$S$是开的，当且仅当$S$是某些开集的并.
+\end{theorem}
+\begin{proof}
+	必要性：$S$ 是开的，$\forall x \in S, \exists I_x=(a, b)$ 使得$x \in I_x \subset S$ 下证
+	$$S=\bigcup_{x \in S} I_x$$
+	
+	（i）$S \subset \bigcup_{x \in S}I_x$
+	
+	令 $y \in S$ ．则 $y \in I_y \subset \bigcup_{x \in S} I_x$ ，那么 $S \subset \bigcup_{x \in S} I_x$
+	
+	（ii）$\bigcup_{x \in S }I_x \subset S$
+	
+	令 $z \in \bigcup_{x \in S} I_x$ ，$\exists t \in S$ ，使得$z \in I_t$ ．而 $I_t \subset S$ ．故 $z \in S$ ，则 $\bigcup_{x \in S} I_x\subset S$
+	
+	综上
+	
+	$$
+	S=\bigcup_{x \in S} I_x
+	$$
+	
+	
+	充分性 :$S=U_{j \in J}\left(a_j, b_j\right)$ ，而$\left(a_j, b_j \right)$开，那么 $S$ 开
+\end{proof}
+\begin{definition}
+	$\left(\X,\T\right)$是一个拓扑空间，由 $\X$ 中的开集组成的族 $\mathcal{B}$被称为是 $\T$ 的基，若 $\X$ 中的任意开集是 $\mathcal{B}$ 中元素的并.
+\end{definition}
+例：$\R$上的Euclidean拓扑的标准基定义为
+
+$$
+\B=\{(a, b): a, b \in \mathbb{R}, a<b\}
+$$
+也就是$\B$是所有开区间的族.
+
+离散空间$\left(\X,\T\right)$的基可以定义为
+
+$$
+\B=\{\{x\}: x \in \X\}
+$$
+
+显然易见的，$\T$ 本身是它自己的一个基.若$\B$是 $\T$ 的一个基，$\B_1$ 是一个组，满足 $\B \subset \B_1 \subset \T$ ，那么 $\B_1$ 也是 $\T$ 的一个基.
+
+\begin{proposition}
+	\label{eq_of_2def_tpbas}
+	令$\X$是一个非空集，且令$\B$是$\X$中某些子集所构成一个族那么 $\B$ 是 $\X$ 的拓扑 $\T$ 的基当且仅当 $\B$ 有如下的性质：
+	
+	（a）$\X=\bigcup\limits_{B \in \B }B$
+	
+	（b）$\forall B_1, B_2 \in \B, B_1 \cap B_2$ 是 $\B$ 中元素的并
+\end{proposition}
+
+
+\begin{proof}
+	必要性：已知 $\B$ 是$\X$的拓扑 $\T$ 的一个基，那么 $\T$ 满足\ref{defoftosp}中的（i）（ii） （iii）．$\X \in \T$ ，$\X$是开集，根据 $\B$ 的定义$(a)$ ， $(b)$ 得证.
+	
+	充分性：已知$\B$满足性质（a），（b），使$\T$是由$\B$中元素的并形成的 $\X$ 的所有子集（称$\T$为由$\B$生成的拓扑）
+	
+	$$
+	T=\left\{U \subset \X: U=\bigcup_{B \in \B} B\right\}
+	$$
+	
+	
+	下证 $\T$ 是一个拓扑，满足 \ref{defoftosp} 中的（i）（ii）（iii）．
+	
+	（i）由（a），$\X \in \T$ ，
+	而 $\varnothing$ 是 $\B$ 中元素的空并，故$\varnothing \in \mathcal{T}$
+	
+	（ii）考虑 $T_\alpha \in \T$ ，而每一个 $T_\alpha$ 都为$\B$中元素的并，$\T_\alpha$ 的任意并也为 $\B$ 中元素的并，$\bigcup_\alpha T_\alpha \in \T$
+	
+	（iii）考虑 $C, D \in \T$ ，则
+	
+	$$
+	C=\bigcup_{k \in K} B_k, D=\bigcup_{j \in J} B_j, K,J \text { 为任意指标集 }
+	$$
+	
+	
+	那么
+	
+	$$
+	C \cap D=\left(\bigcup_{k \in K} B_k\right) \cap\left(\bigcup_{j \in J} B_j\right)=\bigcup_{\substack{k \in K \\ j \in J}}\left(B_k \cap B_j\right)
+	$$
+	
+	
+	由（b），$C \cap D \in \T$
+	
+	由归纳法，有限交属于$\T$.
+\end{proof}
+$\mathbb{R}$ 上闭区间 $[a, b]$ 的 Euclidean 拓扑.
+$$\T=\left\{(c, d): a<c<d<b\right\} \cup\left\{[a, e): a<e<b\right\} \cup\left\{(f, b]: a<f<b\right\}$$
+
+
+$\mathbb{R}^* $ 的 Euclidean 拓扑,其中 $\mathbb{R}^*=[-\infty,+\infty]$
+$$\T=\{(a, b):-\infty<a<b<+\infty\}\cup\{[-\infty, c):-\infty<c<-\infty\}\cup\{(d,+\infty]:-\infty<d<+\infty\}$$
+
+$\mathbb{R}^n$ 上的 Euclidean 拓扑的基定义为
+
+$$
+\B=\left\{\left(x_1, \cdots, x_n\right) \in \mathbb{R}^n: a_i<x_i<b_i, i=1,2, \cdots, n\right\}
+$$
+\begin{proposition}
+	\label{th:tp_subset}
+	对拓扑空间$(\X,\T)$，$\X$的子集构成的族 $\B$ 是 $\T$ 的一个基当且仅当 任对开集 $U$ 中的任何点 $x$ ，存在 $ B \in \B$ 使 得 $x \in B \subset U$ .
+\end{proposition}
+
+\begin{proof}
+	必要性：已知 $\B$ 是 $\T$ 的一个基，且 $x \in U \in \T$ .由于$U$是一个开集
+	
+	$$
+	U=\bigcup_\alpha B_\alpha, B_\alpha \in \B
+	$$
+	
+	$x \in U$ 则 $\exists j$ ，使得$x \in B_j \subset U$
+	
+	充分性：已知 $\forall$ 开集 $U$ 中任意点 $x$ ，存在 $B_x \in \B$ 使得 $x \in B_x \subset U$ ，断言
+	
+	$$
+	U=\bigcup_{x \in U} B_x
+	$$
+	
+	
+	也即任何开集可以写成 $\B$ 中元素的并.
+	
+	（i）$U \subset \bigcup_{x \in U} B_x$
+	
+	$y \in U$ ，$\exists B_y \in B$ 使得$y \in B_y$ ，而 $B_y \subset \bigcup_{x \in U} B_x$ ，故 $y \in U_{x \in U} B_x$ ，即 $U \subset \bigcup_{x\in U} B_x$
+	
+	（ii）$\bigcup_{x \in U} B_x \subset U$
+	
+	$z \in \bigcup_{x \in U} B_x$ ，$\exists t \in U$ ，使得$z \in B_t \subset U$ ，故 $z \in U$ ，即 $\bigcup_{x \in U} B_x \subset U$
+	
+	综上
+	
+	$$
+	U=\bigcup_{x \in U} B_x
+	$$
+\end{proof}
+上面$U=\bigcup_{x \in U} B_x$的证明在以后尝尝用到，我们省略.
+\begin{corollary}\label{2.2.8}
+	对$(\X,\T)$,$\B$是其拓扑基，那么$\X$的子集$V$是开的当且仅当$(\forall x\in V)(\exists B\in\B),\text{使得}x\in B\subset U$
+\end{corollary}
+\begin{proof}
+	必要性由(\ref{th:tp_subset})得证
+	
+	充分性:$(\forall x\in V)(\exists B_x\in \B)\text{使得}x\in B\subset V$,那么$V=\bigcup_{x\in V}B_x\in\T$.故$V$是开集
+\end{proof}
+\begin{corollary}
+	$\B_1$ 和 $\B_2$ 分别是 $\T_1$ 和 $\T_2$ 的基，那么 $\T_1=\T_2$ 当且仅当
+	
+	（i）$\forall B \in \B_1, \forall x \in B, \exists B^{\prime} \in \B_2$ ，使得$x \in B^{\prime} \subset B$
+	
+	（ii）$\forall B \in \B_2, \forall x \in B, \exists B^{\prime} \in \B_1$ ，使得$x \in B^{\prime} \subset B$
+	
+\end{corollary}
+\begin{proof}
+	必要性：$\T_1=\T_2$ ，由 \ref{2.2.8}（i）（ii）易得
+	
+	充分性：$\B_1, \B_2$ 满足（i）（ii），由\ref{2.2.8}
+	（i）说明 $B \in \B_1$ 在 $\left(\X, \T_2\right)$ 上是开的，$\B_1 \subset \T_2$ .因为 $\T_1$ 中的每一个元素都是 $\T_2$ 中元素的并，得 $\T_1 \subset \T_2$ .同理，由（ii）$\T_2 \subset \T_1$
+	
+	综上 $\T_1=\T_2$
+\end{proof}
+

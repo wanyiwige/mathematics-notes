@@ -1,0 +1,183 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第2章：一元实函数与基本初等函数——你所应当知晓的
+% 节：2.3 常用不等式
+% 正文按原文件顺序保存；由 ../chapter2.tex 调用。
+\section{常用不等式}
+
+本节收集一元实分析中若干基本的不等式，它们将在后续章节中多次出现。
+
+\begin{proposition}(Bernoulli 不等式)
+	设 $x \geqslant -1$，$x \in \R$。
+	\begin{enumerate}
+		\item 若 $n \in \N$，则 $(1+x)^n \geqslant 1 + nx$；
+		\item 若 $n$ 为偶数，则上式对任意实数 $x$ 成立。
+	\end{enumerate}
+	等号成立当且仅当 $n = 0,1$ 或 $x = 0$。
+\end{proposition}
+
+\begin{proof}
+	对 $n$ 用数学归纳法。$n=0$ 时 $(1+x)^0 = 1 = 1+0\cdot x$；$n=1$ 时 $(1+x)^1 = 1+x$，等号均成立。
+	
+	假设 $n=k$ 时 $(1+x)^k \geqslant 1+kx$ 成立。则
+	\[
+	\begin{aligned}
+	(1+x)^{k+1} &= (1+x)^k(1+x) \geqslant (1+kx)(1+x) \\
+	&= 1 + (k+1)x + kx^2 \geqslant 1 + (k+1)x,
+	\end{aligned}
+	\]
+	其中第一步用到 $1+x \geqslant 0$（因 $x \geqslant -1$）。等号成立当且仅当 $k=0$ 或 $x=0$，即 $n=0,1$ 或 $x=0$。
+\end{proof}
+
+
+
+\begin{proposition}(AM--GM) 不等式
+	设 $a_1, a_2, \dots, a_n \geqslant 0$（$n \geqslant 2$），则
+	\[
+	\frac{a_1 + a_2 + \cdots + a_n}{n} \geqslant \sqrt[n]{a_1 a_2 \cdots a_n},
+	\]
+	等号成立当且仅当 $a_1 = a_2 = \cdots = a_n$。
+\end{proposition}
+
+以下给出两种证明。
+
+\medskip
+\noindent\textbf{证法一（数学归纳法）.}
+
+\begin{proof}
+	$n=2$ 时，由 $(\sqrt{a_1} - \sqrt{a_2})^2 \geqslant 0$ 得 $a_1 + a_2 \geqslant 2\sqrt{a_1a_2}$，成立。
+	
+	假设 $n=k$ 时成立。对 $n=k+1$，令
+	\[
+	A_k = \frac{a_1 + \cdots + a_k}{k}, \quad A_{k+1} = \frac{a_1 + \cdots + a_{k+1}}{k+1}.
+	\]
+	则 $a_1 + \cdots + a_k = kA_k$。由归纳假设，
+	\[
+	A_k \geqslant \sqrt[k]{a_1 \cdots a_k}.
+	\]
+	现在
+	\[
+	\begin{aligned}
+	A_{k+1} &= \frac{kA_k + a_{k+1}}{k+1}
+	= \frac{k}{k+1}A_k + \frac{1}{k+1}a_{k+1}.
+	\end{aligned}
+	\]
+	如果 $a_{k+1} \geqslant A_k$，则 $A_{k+1} \geqslant A_k$；否则 $A_{k+1} < A_k$。用 $n=2$ 时的 AM--GM 于 $A_k$ 和 $a_{k+1}$：
+	\[
+	\frac{kA_k + a_{k+1}}{k+1} = \frac{k}{k+1}A_k + \frac{1}{k+1}a_{k+1}
+	\geqslant A_k^{\frac{k}{k+1}} a_{k+1}^{\frac{1}{k+1}}.
+	\]
+	再结合 $A_k \geqslant \sqrt[k]{a_1\cdots a_k}$，有
+	\[
+	A_k^{\frac{k}{k+1}} a_{k+1}^{\frac{1}{k+1}}
+	\geqslant (a_1\cdots a_k)^{\frac{1}{k+1}} a_{k+1}^{\frac{1}{k+1}}
+	= (a_1\cdots a_k a_{k+1})^{\frac{1}{k+1}}.
+	\]
+	故 $A_{k+1} \geqslant \sqrt[k+1]{a_1\cdots a_{k+1}}$。等号条件由各步等号取法推得。
+\end{proof}
+
+\medskip
+\noindent\textbf{证法二（向前--向后归纳法，Cauchy 方法）.}
+
+\begin{proof}
+	\textbf{第一步（向前）：} 先证 $n=2$ 成立，再由 $n=2^k$ 推出 $n=2^{k+1}$。
+	
+	$n=2$ 平凡。假设 $n=2^k$ 时成立。对 $2^{k+1}=2\cdot 2^k$ 个数 $a_1,\dots,a_{2^{k+1}}$：
+	\[
+	\frac{a_1+\cdots+a_{2^{k+1}}}{2^{k+1}}
+	= \frac{1}{2}\left(\frac{a_1+\cdots+a_{2^k}}{2^k} + \frac{a_{2^k+1}+\cdots+a_{2^{k+1}}}{2^k}\right).
+	\]
+	由 $n=2$ 情形，上式
+	\[
+	\geqslant \sqrt{\frac{a_1+\cdots+a_{2^k}}{2^k} \cdot \frac{a_{2^k+1}+\cdots+a_{2^{k+1}}}{2^k}}.
+	\]
+	再由归纳假设，上式
+	\[
+	\geqslant \sqrt{\sqrt[2^k]{a_1\cdots a_{2^k}} \cdot \sqrt[2^k]{a_{2^k+1}\cdots a_{2^{k+1}}}}
+	= \sqrt[2^{k+1}]{a_1\cdots a_{2^{k+1}}}.
+	\]
+	于是 AM--GM 对一切 $n=2^k$（$k \in \N$）成立。
+	
+	\textbf{第二步（向后）：} 假设不等式对 $n+1$ 成立，证对 $n$ 也成立。
+	
+	对任意 $n$ 个正数 $a_1,\dots,a_n$，令 $a_{n+1} = \frac{a_1+\cdots+a_n}{n}$。对 $n+1$ 个数用 AM--GM：
+	\[
+	\frac{a_1+\cdots+a_n + a_{n+1}}{n+1}
+	\geqslant \sqrt[n+1]{a_1\cdots a_n \cdot a_{n+1}}.
+	\]
+	左边 $= \frac{n a_{n+1} + a_{n+1}}{n+1} = a_{n+1}$，故
+	\[
+	a_{n+1} \geqslant \sqrt[n+1]{a_1\cdots a_n \cdot a_{n+1}}.
+	\]
+	两边取 $n+1$ 次方，得 $a_{n+1}^{n+1} \geqslant a_1\cdots a_n \cdot a_{n+1}$，即 $a_{n+1}^n \geqslant a_1\cdots a_n$，从而
+	\[
+	\frac{a_1+\cdots+a_n}{n} = a_{n+1} \geqslant \sqrt[n]{a_1\cdots a_n}.
+	\]
+	向后步骤完成。由于对任意 $n$，可取 $m$ 使 $n \leqslant 2^m$，向前步骤给出 $2^m$ 时成立，向后步骤逐步降回到 $n$ 时成立。
+	
+	等号成立当且仅当所有 $a_i$ 相等，由各步等号条件追踪可得。
+\end{proof}
+
+
+
+\begin{proposition}[GM--HM 不等式]
+	设 $a_1, a_2, \dots, a_n > 0$，则
+	\[
+	\sqrt[n]{a_1 a_2 \cdots a_n} \geqslant \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}},
+	\]
+	即几何平均不小于调和平均。等号成立当且仅当 $a_1 = a_2 = \cdots = a_n$。
+\end{proposition}
+
+\begin{proof}
+	对正数 $\dfrac{1}{a_1}, \dfrac{1}{a_2}, \dots, \dfrac{1}{a_n}$ 应用 AM--GM 不等式：
+	\[
+	\frac{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}}{n}
+	\geqslant \sqrt[n]{\frac{1}{a_1} \cdot \frac{1}{a_2} \cdots \frac{1}{a_n}}
+	= \frac{1}{\sqrt[n]{a_1 a_2 \cdots a_n}}.
+	\]
+	两边取倒数即得 GM--HM 不等式。等号条件继承 AM--GM 的等号条件。
+\end{proof}
+
+\noindent 结合 AM--GM 和 GM--HM，得经典的均值不等式链：
+\[
+\frac{n}{\sum \frac{1}{a_i}} \;\leqslant\; \sqrt[n]{a_1\cdots a_n} \;\leqslant\; \frac{\sum a_i}{n},
+\]
+即调和平均 $\leqslant$ 几何平均 $\leqslant$ 算术平均。
+
+
+\begin{proposition}(Cauchy--Schwarz 不等式)
+	设 $a_1,\dots,a_n, b_1,\dots,b_n \in \R$，则
+	\[
+	\left(\sum_{i=1}^{n} a_i b_i\right)^2 \leqslant \left(\sum_{i=1}^{n} a_i^2\right)\left(\sum_{i=1}^{n} b_i^2\right).
+	\]
+	等号成立当且仅当存在常数 $\lambda \in \R$，使得 $a_i = \lambda b_i$（$i=1,\dots,n$）或所有 $b_i = 0$。
+\end{proposition}
+
+\begin{proof}[证法一（二次型判别法）]
+	考虑关于 $t \in \R$ 的二次函数
+	\[
+	f(t) = \sum_{i=1}^{n} (a_i t + b_i)^2 = \left(\sum_{i=1}^{n} a_i^2\right) t^2 + 2\left(\sum_{i=1}^{n} a_i b_i\right) t + \left(\sum_{i=1}^{n} b_i^2\right).
+	\]
+	由于 $f(t)$ 为平方和，$f(t) \geqslant 0$ 对所有 $t \in \R$ 成立。故其判别式 $\Delta \leqslant 0$：
+	\[
+	\Delta = 4\left(\sum_{i=1}^{n} a_i b_i\right)^2 - 4\left(\sum_{i=1}^{n} a_i^2\right)\left(\sum_{i=1}^{n} b_i^2\right) \leqslant 0,
+	\]
+	整理即得 Cauchy 不等式。等号成立当且仅当 $f(t)=0$ 有重根，即存在 $t_0$ 使 $a_i t_0 + b_i = 0$ 对所有 $i$ 成立，也就是 $a_i$ 与 $b_i$ 成比例。
+\end{proof}
+
+\begin{proof}[证法二（Lagrange 恒等式法）]
+	直接验证以下代数恒等式：
+	\[
+	\left(\sum_{i=1}^{n} a_i^2\right)\left(\sum_{i=1}^{n} b_i^2\right) - \left(\sum_{i=1}^{n} a_i b_i\right)^2
+	= \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n} (a_i b_j - a_j b_i)^2.
+	\]
+	右边非负，故左边非负，即得 Cauchy 不等式。等号成立当且仅当对所有 $i,j$ 有 $a_i b_j = a_j b_i$，即 $(a_1,\dots,a_n)$ 与 $(b_1,\dots,b_n)$ 成比例。
+\end{proof}
+
+\textbf{注：}
+利用 Cauchy 不等式可导出许多有用的推论，例如：
+	\[
+	(a_1+\cdots+a_n)\left(\frac{1}{a_1}+\cdots+\frac{1}{a_n}\right) \geqslant n^2 \quad (a_i > 0).
+	\]
+	只需在 Cauchy 不等式中取 $b_i = 1/a_i$ 即可。
+
+

@@ -1,0 +1,794 @@
+% ============================================
+%  chapter19.tex — 第19章：特征标理论的例子与应用
+%  根据 894-918.pdf 翻译整理，保持原文结构、证明与练习
+% ============================================
+
+\providecommand{\Ind}{\operatorname{Ind}}
+\chapter{特征标理论的例子与应用}
+
+\section{小阶群的特征标}
+
+有限群的特征标表是按如下方式排成的特征标值的表：在最上面一行列出 $r$ 个共轭类的代表元，在第一列列出不可约特征标。表中第 $\chi_i$ 行、第 $g_j$ 列的项为 $\chi_i(g_j)$。有限群的特征标表在行和列的置换意义下唯一。通常把主特征标放在第一行，把恒等元放在第一列，并按次数递增的顺序列出特征标。在我们的例子中，我们将在每个类的下面列出该共轭类的大小，于是整张表将有 $r+2$ 行和 $r+1$ 列（虽然严格地说，特征标表是特征标值组成的 $r\times r$ 矩阵）。这样可以方便地用第一正交关系检查“行的正交性”：若这些类由 $g_1,\ldots,g_r$ 代表，大小分别为 $d_1,\ldots,d_r$，则
+\[
+  (\chi_i,\chi_j)=\frac{1}{|G|}\sum_{k=1}^r d_k\chi_i(g_k)\overline{\chi_j(g_k)}.
+\]
+第二正交关系说，特征标表任意两个不同列的 Hermite 内积为零（即它给出了“列的正交性”）。
+
+许多特征标表可见 Conway、Curtis、Norton、Parker 与 Wilson 的 \emph{Atlas of Finite Groups}，Clarendon Press, 1985。这些表包括 Monster 单群 $M$ 的特征标表。群 $M$ 有 $194$ 个不可约特征标。$M$ 的一个非主不可约特征标的最小次数为 $196883$，最大次数约为 $2\times 10^{26}$。尽管如此，仍然可以计算这些特征标在 $M$ 的所有共轭类上的取值。
+
+作为特征标表的第一个例子，令 $G=\langle x\rangle$ 为 $2$ 阶循环群。于是 $G$ 有 $2$ 个共轭类和两个不可约特征标：
+\[
+\begin{array}{c|cc}
+\text{类：} & 1 & x\\
+\text{大小：} & 1 & 1\\\hline
+\chi_1 & 1 & 1\\
+\chi_2 & 1 & -1
+\end{array}
+\]
+\[
+\text{表 }Z_2\text{ 的特征标表}
+\]
+这个 Abel 群的特征标与表示相同，而任意 Abel 群的不可约表示已在第 18.2 节末尾的例 1 中描述。
+
+类似地，若 $G=\langle x\rangle$ 是 $3$ 阶循环群，且 $\zeta$ 是一个固定的本原三次单位根（于是 $\zeta^2=\overline{\zeta}$），则 $G$ 的特征标表如下：
+\[
+\begin{array}{c|ccc}
+\text{类：} & 1 & x & x^2\\
+\text{大小：} & 1 & 1 & 1\\\hline
+\chi_1 & 1 & 1 & 1\\
+\chi_2 & 1 & \zeta & \zeta^2\\
+\chi_3 & 1 & \zeta^2 & \zeta
+\end{array}
+\]
+\[
+\text{表 }Z_3\text{ 的特征标表}
+\]
+
+接着我们构造 $S_3$ 的特征标表。回忆第 18.2 节例 2，$S_3$ 有 $3$ 个不可约特征标，其值已在该例和第 18.3 节末尾的例 1 中描述。
+\[
+\begin{array}{c|ccc}
+\text{类：} & 1 & (1\ 2) & (1\ 2\ 3)\\
+\text{大小：} & 1 & 3 & 2\\\hline
+\chi_1 & 1 & 1 & 1\\
+\chi_2 & 1 & -1 & 1\\
+\chi_3 & 2 & 0 & -1
+\end{array}
+\]
+\[
+\text{表 }S_3\text{ 的特征标表}
+\]
+
+接下来考虑 $D_8$，采用第 18.3 节例 3 的记号。由推论 11，$D_8$ 有四个次数为 $1$ 的特征标。此外，在例 3 中我们构造了一个不可约的次数 $2$ 表示。由于这些表示次数平方和为 $8$，这便列出了全部不可约表示（或者，由于有 $5$ 个共轭类，也知道有 $5$ 个不可约表示）。若用上横线表示到交换子商群（它是 Klein 四元群）的像，则 $\bar r=\bar r^2$。次数 $1$ 的表示（也就是它们的特征标）通过把生成元 $s$ 与 $r$ 送到 $\pm1$ 来计算（而乘积类被映到相应取值的乘积）。次数 $2$ 的不可约表示的矩阵已在第 18.3 节例 3 中算出，这个表示的特征标可直接从这些矩阵读出。因此 $D_8$ 的特征标表如下：
+\[
+\begin{array}{c|ccccc}
+\text{类：} & 1 & r^2 & s & r & sr\\
+\text{大小：} & 1 & 1 & 2 & 2 & 2\\\hline
+\chi_1 & 1 & 1 & 1 & 1 & 1\\
+\chi_2 & 1 & 1 & -1 & 1 & -1\\
+\chi_3 & 1 & 1 & 1 & -1 & -1\\
+\chi_4 & 1 & 1 & -1 & -1 & 1\\
+\chi_5 & 2 & -2 & 0 & 0 & 0
+\end{array}
+\]
+\[
+\text{表 }D_8\text{ 的特征标表}
+\]
+
+现在计算 $8$ 阶四元数群的特征标表。我们使用通常的表示
+\[
+  Q_8=\langle i,j\mid i^4=1,\, i^2=j^2,\, i^{-1}ji=j^{-1}\rangle,
+\]
+并令 $k=ij$ 且 $i^2=-1$。$Q_8$ 的共轭类由 $1,-1,i,j,k$ 代表，大小分别为 $1,1,2,2,2$。由于 $Q_8$ 的交换子商群是 Klein 四元群，所以有四个次数为 $1$ 的特征标。剩下的一个不可约特征标必须次数为 $2$，以使次数平方和为 $8$。设 $\chi_5$ 是 $Q_8$ 的次数 $2$ 不可约特征标。可以检查第 18.1 节第二组例子中例 7 显式描述的表示 $\varphi:Q_8\to\GL_2(\CC)$ 实现 $\chi_5$；但我们说明如何仅借助正交关系得到 $\chi_5$ 的值，而不需要知道这些显式矩阵。若 $\varphi$ 是次数 $2$ 的不可约表示，则由 Schur 引理（参见第 18.1 节练习 18），$\varphi(-1)$ 是一个 $2\times2$ 标量矩阵；又由于 $-1$ 在 $Q_8$ 中有阶 $2$，所以它是 $\pm$ 单位矩阵。因此 $\chi_5(-1)=\pm2$。令 $\chi_5(i)=a$，$\chi_5(j)=b$，$\chi_5(k)=c$。正交关系给出
+\[
+  1=(\chi_5,\chi_5)=\frac18\bigl(2^2+(\pm2)^2+2a\bar a+2b\bar b+2c\bar c\bigr).
+\]
+由于 $a\bar a,b\bar b,c\bar c$ 都是非负实数，它们必全为零。此外，因为 $\chi_5$ 与主特征标正交，得到
+\[
+  0=(\chi_1,\chi_5)=\frac18(2+(\pm2)+0+0+0),
+\]
+故 $\chi_5(-1)=-2$。$Q_8$ 的完整特征标表如下：
+\[
+\begin{array}{c|ccccc}
+\text{类：} & 1 & -1 & i & j & k\\
+\text{大小：} & 1 & 1 & 2 & 2 & 2\\\hline
+\chi_1 & 1 & 1 & 1 & 1 & 1\\
+\chi_2 & 1 & 1 & -1 & 1 & -1\\
+\chi_3 & 1 & 1 & 1 & -1 & -1\\
+\chi_4 & 1 & 1 & -1 & -1 & 1\\
+\chi_5 & 2 & -2 & 0 & 0 & 0
+\end{array}
+\]
+\[
+\text{表 }Q_8\text{ 的特征标表}
+\]
+注意 $D_8$ 与 $Q_8$ 有相同的特征标表，因此
+\[
+  \text{非同构的群可能有相同的特征标表。}
+\]
+还要注意，$Q_8$ 的次数 $2$ 表示的值也可通过对特征标表的每一列应用第二正交关系而容易算出。我们把这个检验留作练习。还要注意，尽管 $D_8$ 与 $Q_8$ 的次数 $2$ 不可约特征标有相同的（实数）值，$D_8$ 的次数 $2$ 表示可由实矩阵实现，而可以证明 $Q_8$ 在 $\RR$ 上没有忠实的二维表示（参见第 18.1 节练习 10）。
+
+作为下一个例子，我们构造 $S_4$ 的特征标表。$S_4$ 的共轭类由 $1,(1\ 2),(1\ 2\ 3),(1\ 2\ 3\ 4),(1\ 2)(3\ 4)$ 代表，大小分别为 $1,6,8,6,3$。由于 $S_4'=A_4$，有两个次数为 $1$ 的特征标：主特征标和取值为置换符号的特征标。
+
+为了得到次数 $2$ 的不可约特征标，令 $V$ 为由 $(1\ 2)(3\ 4)$ 与 $(1\ 3)(2\ 4)$ 生成的 $4$ 阶正规子群。$S_4/V\cong S_3$ 的任意表示 $\varphi$，与自然投影 $S_4\to S_4/V$ 复合，给出 $S_4$ 的一个表示；若前者不可约，则后者也不可约。令 $\varphi$ 为该投影与 $S_3$ 的不可约二维表示的复合，并令 $\chi_3$ 为其特征标。$1$ 和 $(1\ 2)(3\ 4)$ 的类映到 $S_3$ 商中的恒等元，$(1\ 2)$ 和 $(1\ 2\ 3\ 4)$ 映到对换，$(1\ 2\ 3)$ 映到 $3$-循环。因此 $\chi_3$ 的值可直接从 $S_3$ 表中次数 $2$ 特征标的值读出。
+
+由于 $S_4$ 有 $5$ 个不可约特征标，而次数平方和为 $24$，剩余的两个不可约特征标都必须次数为 $3$。在第 18.3 节例 2 中已计算出其中一个，称为 $\chi_4$。回忆
+\[
+  \chi_4(\sigma)=(\sigma\text{ 的不动点个数})-1.
+\]
+剩余的不可约特征标 $\chi_5$ 是 $\chi_4\chi_2$。可利用第 18.3 节命题 17 或练习 13 看出这个乘积确实是一个特征标。第一正交关系验证它不可约。
+\[
+\begin{array}{c|ccccc}
+\text{类：} & 1 & (1\ 2) & (1\ 2\ 3) & (1\ 2\ 3\ 4) & (1\ 2)(3\ 4)\\
+\text{大小：} & 1 & 6 & 8 & 6 & 3\\\hline
+\chi_1 & 1 & 1 & 1 & 1 & 1\\
+\chi_2 & 1 & -1 & 1 & -1 & 1\\
+\chi_3 & 2 & 0 & -1 & 0 & 2\\
+\chi_4 & 3 & 1 & 0 & -1 & -1\\
+\chi_5 & 3 & -1 & 0 & 1 & -1
+\end{array}
+\]
+\[
+\text{表 }S_4\text{ 的特征标表}
+\]
+
+由 $S_4$ 的特征标表可以很容易地计算 $A_4$ 的特征标表。注意 $A_4$ 有 $4$ 个共轭类。此外，$|A_4:A_4'|=3$，所以 $A_4$ 有三个次数为 $1$ 的特征标，每个次数 $1$ 表示的核都含有 $V=A_4'$。剩下的不可约特征标必须次数为 $3$。直接在 $A_4$ 中应用正交关系，可以检验 $S_4$ 的特征标 $\chi_4$ 限制到 $A_4$（等于 $\chi_5|_{A_4}$）是不可约的。这个不可约性检验确实是必要的，因为一个群的不可约表示限制到子群时未必仍然不可约（例如，$S_3$ 的不可约次数 $2$ 表示限制到任意真子群时必变为可约，因为这些真子群都是 Abel 群）。$A_4$ 的特征标表如下：
+\[
+\begin{array}{c|cccc}
+\text{类：} & 1 & (1\ 2)(3\ 4) & (1\ 2\ 3) & (1\ 3\ 2)\\
+\text{大小：} & 1 & 3 & 4 & 4\\\hline
+\chi_1 & 1 & 1 & 1 & 1\\
+\chi_2 & 1 & 1 & \zeta & \zeta^2\\
+\chi_3 & 1 & 1 & \zeta^2 & \zeta\\
+\chi_4 & 3 & -1 & 0 & 0
+\end{array}
+\]
+\[
+\text{表 }A_4\text{ 的特征标表}
+\]
+其中 $\zeta$ 是 $\CC$ 中的一个本原三次单位根。
+
+作为最后一个例子，我们构造如下 $S_5$ 的特征标表：
+{\scriptsize
+\[
+\begin{array}{c|ccccccc}
+\text{类：} & 1 & (1\ 2) & (1\ 2\ 3) & (1\ 2\ 3\ 4) & (1\ 2\ 3\ 4\ 5) & (1\ 2)(3\ 4) & (1\ 2)(3\ 4\ 5)\\
+\text{大小：} & 1 & 10 & 20 & 30 & 24 & 15 & 20\\\hline
+\chi_1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+\chi_2 & 1 & -1 & 1 & -1 & 1 & 1 & -1\\
+\chi_3 & 4 & 2 & 1 & 0 & -1 & 0 & -1\\
+\chi_4 & 4 & -2 & 1 & 0 & -1 & 0 & 1\\
+\chi_5 & 5 & -1 & -1 & 1 & 0 & 1 & -1\\
+\chi_6 & 5 & 1 & -1 & -1 & 0 & 1 & 1\\
+\chi_7 & 6 & 0 & 0 & 0 & 1 & -2 & 0
+\end{array}
+\]
+\[
+\text{表 }S_5\text{ 的特征标表}
+\]
+}
+共轭类及其大小已在第 4.3 节中计算。由于 $|S_5:S_5'|=2$，有两个次数为 $1$ 的特征标：主特征标和“符号”特征标。
+
+$S_5$ 在 $5$ 个点上的自然置换给出一个次数为 $5$ 的置换特征标。与 $S_4$ 和 $S_3$ 的情形一样，正交关系表明它的范数平方为 $2$，且包含主特征标。因此 $\chi_3$ 是置换特征标减去主特征标（并且像较小的对称群一样，$\chi_3(\sigma)$ 等于 $\sigma$ 的不动点个数减 $1$）。按与 $S_4$ 中相同的论证，得到 $\chi_4=\chi_3\chi_2$ 也是一个不可约特征标。
+
+为了得到 $\chi_5$，回忆 $S_5$ 有六个 Sylow $5$-子群。它在这些 Sylow $5$-子群上按共轭作用给出一个忠实的次数 $6$ 置换表示。若 $\psi$ 是相关线性表示的特征标，则由于 $\sigma\in S_5$ 固定一个 Sylow $5$-子群当且仅当它正规化该子群，我们有
+\[
+  \psi(\sigma)=\sigma\text{ 所正规化的 Sylow }5\text{-子群的个数。}
+\]
+$S_5$ 中 Sylow $5$-子群 $\langle(1\ 2\ 3\ 4\ 5)\rangle$ 的正规化子是
+\[
+  \langle (1\ 2\ 3\ 4\ 5),(2\ 3\ 5\ 4)\rangle,
+\]
+而 Sylow $5$-子群的所有正规化子都在 $S_5$ 中共轭于这个群。这个正规化子只含有恒等元、$5$-循环、$4$-循环以及两个不交对换的乘积。没有其他循环型正规化任何 Sylow $5$-子群，因此在任何其他类上，$\psi$ 为零。为了计算 $\psi$ 在剩余三个非恒等类上的值，注意（在 $S_6$ 中观察）任意一个在 $6$ 个点上的忠实作用都有如下事实：$5$ 阶元必须是一个 $5$-循环（因此固定 $1$ 个点）；固定一个点的 $4$ 阶元必须是一个 $4$-循环（因此固定 $2$ 个点）；作为 $4$ 阶元平方的 $2$ 阶元也恰好固定 $2$ 个点。这给出了 $\psi$ 的所有取值。现在直接计算表明
+\[
+  \|\psi\|^2=2\qquad\text{且}\qquad (\chi_1,\psi)=1.
+\]
+因此 $\chi_5=\psi-\chi_1$ 是次数 $5$ 的不可约特征标。由与 $\chi_4$ 相同的理论，得到 $\chi_6=\chi_5\chi_2$ 是另一个不可约特征标。
+
+由于有 $7$ 个共轭类，还有一个剩余的不可约特征标，其次数为 $6$。它的值可从正则特征标 $\rho$ 的分解中立即得到（参见第 18.2 节例 3 和第 18.3 节例 4）：
+\[
+  \chi_7=\frac{\rho-\chi_1-\chi_2-4\chi_3-4\chi_4-5\chi_5-5\chi_6}{6}.
+\]
+由正交关系直接计算可检验 $\chi_7$ 不可约。注意，$\chi_7$ 的值是在没有显式给出具有这个特征标的表示的情况下计算出来的。
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 计算 $Z_2\times Z_2$、$Z_2\times Z_3$ 和 $Z_2\times Z_2\times Z_2$ 的特征标表。说明为什么 $Z_2\times Z_3$ 的表中含有本原 $6$ 次单位根。
+  \item 计算 $D_{16}$ 的不可约特征标的次数。
+  \item 计算 $A_5$ 的不可约特征标的次数。推出 $S_5$ 的次数 $6$ 不可约特征标在限制到 $A_5$ 时不是不可约的。［$A_5$ 的共轭类已在第 4.3 节中求出。］
+  \item 利用本节中的特征标表，对 (a) 到 (d) 的每一部分，用第一正交关系把指定的置换特征标（参见第 18.3 节例 3）写成不可约特征标之和：
+  \begin{enumerate}[label=(\alph*)]
+    \item $S_3$ 的子群 $A_3$ 的置换特征标；
+    \item $S_4$ 的子群 $\langle(1\ 2\ 3\ 4)\rangle$ 的置换特征标；
+    \item $S_4$ 的子群 $V_4$ 的置换特征标；
+    \item $S_5$ 的子群 $\langle(1\ 2\ 3),(1\ 2),(4\ 5)\rangle$ 的置换特征标（这个子群是 $S_5$ 的一个 Sylow $3$-子群的正规化子）。
+  \end{enumerate}
+  \item 假设对一个群的任意特征标 $\psi$，$\psi^2$ 也总是特征标（其中 $\psi^2(g)=(\psi(g))^2$）——这是第 18.3 节命题 17 的一个特殊情形。利用本节中的特征标表，对 (a) 到 (e) 的每一部分，写出指定特征标 $\chi$ 的平方 $\chi^2$ 的值，并用第一正交关系把 $\chi^2$ 写成不可约特征标之和：
+  \begin{enumerate}[label=(\alph*)]
+    \item $\chi=\chi_3$，$S_3$ 表中的次数 $2$ 特征标；
+    \item $\chi=\chi_5$，$Q_8$ 表中的次数 $2$ 特征标；
+    \item $\chi=\chi_5$，$S_4$ 表中的最后一个特征标；
+    \item $\chi=\chi_4$，$S_5$ 表中的第二个次数 $4$ 特征标；
+    \item $\chi=\chi_7$，$S_5$ 表中的最后一个特征标。
+  \end{enumerate}
+  \item 计算 $A_5$ 的特征标表。
+  \item 证明 $S_6$ 有一个次数 $5$ 的不可约特征标。
+  \item 计算 $D_{10}$ 的特征标表。（这个表含有非实项。）
+  \item 计算 $D_{12}$ 的特征标表。
+  \item 计算 $S_3\times S_3$ 的特征标表。
+  \item 计算 $Z_3\times S_3$ 的特征标表。
+  \item 计算 $Z_2\times S_4$ 的特征标表。
+  \item 计算 $S_3\times S_4$ 的特征标表。
+  \item 设 $n$ 是整数且 $n\geq3$。证明 $D_{2n}$ 的每个不可约特征标次数为 $1$ 或 $2$，并求出每种次数的不可约特征标数。［$D_{2n}$ 的共轭类已在第 4.3 节练习 31 和 32 中求出，它的交换子子群已在第 5.4 节中计算。］
+  \item 证明特征标表是可逆矩阵。［使用正交关系。］
+  \item 对 $A_5$ 和 $D_{10}$ 的每一个，描述哪些不可约特征标是代数共轭的（参见第 18.3 节的练习）。
+  \item 设 $p$ 是任意素数，$P$ 是一个 $p^3$ 阶非 Abel 群（在同构意义下 $P$ 有两种选择；当 $p$ 为奇素数时，这些群已在第 5.5 节分类 $p^3$ 阶群时构造）。本练习确定 $P$ 的特征标表，并说明两个同构类型具有相同的特征标表（该论证包括本节已经处理的 $p=2$ 情形）。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $P$ 有 $p^2$ 个次数 $1$ 特征标。
+    \item 证明 $P$ 有 $p-1$ 个次数 $p$ 不可约特征标，并且这些特征标与 $p^2$ 个次数 $1$ 特征标一起给出 $P$ 的全部不可约特征标。［使用第 18.2 节定理 10(3) 和定理 12。］
+    \item 推出（不论同构类型如何）群 $P$ 有 $p^2+p-1$ 个共轭类，其中 $p$ 个大小为 $1$（即中心类），而 $p^2-1$ 个各自大小为 $p$。还推出大小为 $p$ 的类正是 $P$ 中心的非恒等陪集（即若 $x\in P-Z(P)$，则 $x$ 的共轭类是陪集 $xZ(P)$ 中的 $p$ 个元素）。
+    \item 证明若 $\chi$ 是次数 $p$ 的不可约特征标，则实现 $\chi$ 的表示是忠实的。
+    \item 固定 $P$ 的中心的一个生成元 $z$，并令 $\varepsilon$ 是 $\CC$ 中一个固定的本原 $p$ 次单位根。证明若 $\chi$ 是次数 $p$ 的不可约特征标，则 $\chi(z)=p\varepsilon^i$，其中某个 $i\in\{1,2,\ldots,p-1\}$。进一步证明对所有 $x\in P-Z(P)$ 都有 $\chi(x)=0$。（于是注意，次数 $p$ 特征标全都是代数共轭的。）［使用与构造 $Q_8$ 的特征标表时相同的推理。］
+    \item 证明对每个 $i\in\{1,2,\ldots,p-1\}$，存在唯一的次数 $p$ 不可约特征标 $\chi_i$ 满足 $\chi_i(z)=p\varepsilon^i$。推出 $P$ 的特征标表被唯一决定，并描述它。［回忆第 6.1 节：不论同构类型如何，都有 $P'=Z(P)$ 且 $P/P'\cong Z_p\times Z_p$。由此可以写出次数 $1$ 的特征标。第 (e) 部分描述了次数 $p$ 特征标。］
+  \end{enumerate}
+\end{enumerate}
+
+\section{Burnside 定理与 Hall 定理}
+
+在本节中，我们给出特征标理论的一个“理论性”应用：Burnside 的 $p^a q^b$ 定理。我们还证明 Philip Hall 对有限可解群的刻画，其证明是群论证明，但在归纳的第一步依赖 Burnside 定理。
+
+\subsection*{Burnside 定理}
+
+下面的结果由 Burnside 于 1904 年证明。虽然关于它的纯群论证明近来已经被发现（见 B. Huppert 与 N. Blackburn 的 \emph{Finite Groups III}, Springer-Verlag, 1982, 定理 2.8），但这里给出的 Burnside 原始证明，在具备当前表示论知识之后，非常易懂、优美且相当简短。
+
+\noindent\textbf{定理 1.} \textbf{(Burnside)} 对素数 $p$ 与 $q$，每个 $p^a q^b$ 阶群都是可解的。
+
+在开始证明 Burnside 定理本身之前，我们先建立一些一般性的结果。这些预备命题的一个简单推论是：任意有限群的不可约特征标的次数整除群的阶。直接导向 Burnside 定理证明的具体结果出现在引理 6 和引理 7 中。很容易推出，Burnside 定理的一个最小阶反例必是非 Abel 单群，而正是这两个特征标论引理通过证明正规子群的存在而给出矛盾。
+
+我们首先回忆第 15.3 节中代数整数的定义。
+
+\noindent\textbf{定义.} 元素 $\alpha\in\CC$ 称为一个\emph{代数整数}，如果它是某个系数在 $\ZZ$ 中的首一多项式的根。
+
+证明 Burnside 定理所需的基本结果是：
+
+\noindent\textbf{命题 2.} 设 $\alpha\in\CC$。
+\begin{enumerate}[label=(\arabic*)]
+  \item 下列条件等价：
+  \begin{enumerate}[label=(\roman*)]
+    \item $\alpha$ 是代数整数；
+    \item $\alpha$ 在 $\QQ$ 上代数，且 $\alpha$ 在 $\QQ$ 上的极小多项式有整数系数；
+    \item $\ZZ[\alpha]$ 是一个有限生成 $\ZZ$-模（其中 $\ZZ[\alpha]$ 是 $\CC$ 中由 $\ZZ$ 和 $\alpha$ 生成的子环，即所有 $\alpha$ 的非负幂的 $\ZZ$-线性组合所成的环）。
+  \end{enumerate}
+  \item $\CC$ 中的代数整数构成一个环，而 $\QQ$ 中的代数整数就是 $\ZZ$ 的元素。
+\end{enumerate}
+
+\noindent\textbf{证明.} 这些已在第 15.3 节中建立。（第 15.3 节中关于整扩张和代数整数性质的部分可以独立于第 15 章其余部分阅读。）
+
+\noindent\textbf{推论 3.} 对有限群 $G$ 的每个特征标 $\psi$，对所有 $x\in G$，$\psi(x)$ 都是代数整数。
+
+\noindent\textbf{证明.} 由第 18.3 节命题 14，$\psi(x)$ 是若干单位根之和。每个单位根都是代数整数，所以结果立即由命题 2(2) 得到。
+
+在开始主证明之前，我们还需要一些特征标论的预备引理。对任意有限群 $G$ 采用如下记号：$\chi_1,\ldots,\chi_r$ 是 $G$ 的不同不可约（复）特征标，$\mathcal K_1,\ldots,\mathcal K_r$ 是 $G$ 的共轭类，$\varphi_i$ 是特征标为 $\chi_i$ 的不可约矩阵表示。
+
+\noindent\textbf{命题 4.} 对每个 $i$，在 $\{\mathcal K_1,\ldots,\mathcal K_r\}$ 上定义复值函数 $\omega_i$ 为
+\[
+  \omega_i(\mathcal K_j)=\frac{|\mathcal K_j|\chi_i(g)}{\chi_i(1)},
+\]
+其中 $g$ 是 $\mathcal K_j$ 的任意元素。则对所有 $i,j$，$\omega_i(\mathcal K_j)$ 都是代数整数。
+
+\noindent\textbf{证明.} 我们首先证明，若 $I$ 是单位矩阵，则
+\[
+  \sum_{g\in\mathcal K_j}\varphi_i(g)=\omega_i(\mathcal K_j)I. \tag{19.1}
+\]
+为此，令 $X$ 为 (1) 左端。如第 18.2 节中所见，每个 $x\in G$ 通过共轭作用置换 $\mathcal K_j$ 的元素，因此 $X$ 与所有 $\varphi_i(g)$ 交换。由 Schur 引理（第 18.1 节练习 18），$X$ 是一个标量矩阵：
+\[
+  X=\alpha I\qquad\text{对某个 }\alpha\in\CC.
+\]
+只需证明 $\alpha=\omega_i(\mathcal K_j)$。但
+\[
+  \operatorname{tr}X=\sum_{g\in\mathcal K_j}\chi_i(g)=|\mathcal K_j|\chi_i(g).
+\]
+因此 $\alpha\chi_i(1)=\operatorname{tr}X=|\mathcal K_j|\chi_i(g)$，这正是建立 (1) 所需的等式。
+
+现在固定 $g\in\mathcal K_s$，定义 $a_{ijs}$ 为有序对 $g_i,g_j$ 的个数，其中 $g_i\in\mathcal K_i$，$g_j\in\mathcal K_j$ 且 $g_i g_j=g$。注意 $a_{ijs}$ 是整数。它与 $g\in\mathcal K_s$ 的选择无关，因为若 $x^{-1}gx$ 是 $g$ 的共轭元，则每个乘积为 $g$ 的有序对 $g_i,g_j$ 对应到乘积为 $x^{-1}gx$ 的有序对 $x^{-1}g_i x,x^{-1}g_jx$（反之亦然）。
+
+接着我们证明对所有 $i,j,t\in\{1,\ldots,r\}$，
+\[
+  \omega_t(\mathcal K_i)\omega_t(\mathcal K_j)=\sum_{s=1}^r a_{ijs}\omega_t(\mathcal K_s). \tag{19.2}
+\]
+为此注意，由 (1)，(2) 左端是下列等式左端标量矩阵的对角项：
+\[
+\begin{aligned}
+  \left(\sum_{g\in\mathcal K_i}\varphi_t(g)\right)
+  \left(\sum_{h\in\mathcal K_j}\varphi_t(h)\right)
+  &=\sum_{g\in\mathcal K_i}\sum_{h\in\mathcal K_j}\varphi_t(gh)\\
+  &=\sum_{s=1}^r\sum_{g\in\mathcal K_s} a_{ijs}\varphi_t(g)\\
+  &=\sum_{s=1}^r a_{ijs}\sum_{g\in\mathcal K_s}\varphi_t(g)\\
+  &=\sum_{s=1}^r a_{ijs}\omega_t(\mathcal K_s)I.
+\end{aligned}
+\]
+比较这些标量矩阵的项得到 (2)。
+
+现在 (2) 蕴含：对每个 $t\in\{1,
+\ldots,r\}$，由 $\ZZ$ 和 $\omega_t(\mathcal K_1),\ldots,\omega_t(\mathcal K_r)$ 生成的 $\CC$ 的子环是一个有限生成 $\ZZ$-模（作为 $\ZZ$-模由 $1,\omega_t(\mathcal K_1),\ldots,\omega_t(\mathcal K_r)$ 生成）。由于 $\ZZ$ 是主理想整环，子模 $\ZZ[\omega_t(\mathcal K_i)]$ 也是有限生成 $\ZZ$-模，因此由命题 2，$\omega_t(\mathcal K_i)$ 是代数整数。证明完毕。
+
+\noindent\textbf{推论 5.} 有限群 $G$ 的每个复不可约表示的次数都整除 $G$ 的阶，即对 $i=1,2,\ldots,r$，有 $\chi_i(1)\mid |G|$。
+
+\noindent\textbf{证明.} 在命题 4 的记号下，取 $g_j\in\mathcal K_j$，则
+\[
+\begin{aligned}
+  \frac{|G|}{\chi_i(1)}
+  &=\frac{|G|}{\chi_i(1)}(\chi_i,\chi_i)\\
+  &=\sum_{j=1}^r\frac{|\mathcal K_j|\chi_i(g_j)\overline{\chi_i(g_j)}}{\chi_i(1)}\\
+  &=\sum_{j=1}^r \omega_i(\mathcal K_j)\overline{\chi_i(g_j)}.
+\end{aligned}
+\]
+右端是代数整数，左端是有理数，因而是整数。这证明了推论。
+
+下面两个引理直接导向 Burnside 定理。
+
+\noindent\textbf{引理 6.} 若群 $G$ 有一个共轭类 $\mathcal K$ 和一个不可约矩阵表示 $\varphi$，其特征标为 $\chi$，满足 $(|\mathcal K|,\chi(1))=1$，则对 $g\in\mathcal K$，要么 $\chi(g)=0$，要么 $\varphi(g)$ 是标量矩阵。
+
+\noindent\textbf{证明.} 由假设，存在 $s,t\in\ZZ$ 使得 $s|\mathcal K|+t\chi(1)=1$。因此
+\[
+  s|\mathcal K|\chi(g)+t\chi(1)\chi(g)=\chi(g).
+\]
+两边同除以 $\chi(1)$，并注意由推论 3 与命题 4，$\chi(g)$ 和 $|\mathcal K|\chi(g)/\chi(1)$ 都是代数整数，因此 $\chi(g)/\chi(1)$ 也是代数整数。令
+\[
+  a_1=\frac{\chi(g)}{\chi(1)},
+\]
+令 $a_1,a_2,\ldots,a_n$ 为它在 $\QQ$ 上的所有代数共轭（即 $a_1$ 在 $\QQ$ 上极小多项式的根）。由于 $a_1$ 是 $\chi(1)$ 个单位根之和除以整数 $\chi(1)$，每个 $a_i$ 也都是 $\chi(1)$ 个单位根之和除以 $\chi(1)$。因此对所有 $i$，$a_i$ 的复绝对值都不超过 $1$。现在 $b=\prod_{i=1}^n a_i\in\QQ$，且 $b$ 是代数整数（$\pm b$ 是 $a_1$ 的不可约多项式的常数项），故 $b\in\ZZ$。但
+\[
+  |b|=\prod_{i=1}^n |a_i|\leq 1,
+\]
+所以 $b=0,\pm1$。由于所有 $a_i$ 彼此共轭，$b=0\Longleftrightarrow a_1=0\Longleftrightarrow \chi(g)=0$。又 $b=\pm1\Longleftrightarrow |a_i|=1$ 对所有 $i$ 成立。因此，要么 $\chi(g)=0$，要么 $|\chi(g)|=\chi(1)$。前一种情形引理已证，故假设 $|\chi(g)|=\chi(1)$。
+
+取一个与 $\varphi$ 等价的矩阵表示 $\varphi_1$，使 $\varphi_1(g)$ 为对角矩阵：
+\[
+  \varphi_1(g)=\begin{pmatrix}
+  \varepsilon_1&&0\\
+  &\ddots&\\
+  0&&\varepsilon_n
+  \end{pmatrix}.
+\]
+于是 $\chi(g)=\varepsilon_1+\cdots+\varepsilon_n$。由三角不等式，若某些 $\varepsilon_i\neq\varepsilon_j$，则 $|\varepsilon_1+\cdots+\varepsilon_n|<n=\chi(1)$。这与当前情形不符，所以必须有 $\varphi_1(g)=\varepsilon I$（其中 $\varepsilon=\varepsilon_i$ 对所有 $i$）。由于标量矩阵只相似于自身，$\varphi(g)=\varepsilon I$。证明完毕。
+
+\noindent\textbf{引理 7.} 若 $G$ 的某个非恒等共轭类 $\mathcal K$ 的大小 $|\mathcal K|$ 是某个素数的幂，则 $G$ 不是非 Abel 单群。
+
+\noindent\textbf{证明.} 反设 $G$ 是非 Abel 单群，并令 $|\mathcal K|=p^c$。取 $g\in\mathcal K$。若 $c=0$，则 $g\in Z(G)$，这与非 Abel 单群中心平凡矛盾。如前，令 $\chi_1,\ldots,\chi_r$ 为 $G$ 的所有不可约特征标，其中 $\chi_1$ 为主特征标，令 $\rho$ 为 $G$ 的正则特征标。把 $\rho$ 分解为不可约特征标，得到
+\[
+  0=\rho(g)=1+\sum_{i=2}^r \chi_i(1)\chi_i(g). \tag{19.3}
+\]
+若对每个满足 $\chi_j(g)\neq0$ 的 $j>1$ 都有 $p\mid\chi_j(1)$，则写 $\chi_j(1)=pd_j$。此时 (3) 变为
+\[
+  0=1+p\sum_j d_j\chi_j(g).
+\]
+于是 $\sum_j d_j\chi_j(g)=-1/p$ 是代数整数，矛盾。这证明存在某个 $j$，使得 $p\nmid\chi_j(1)$ 且 $\chi_j(g)\neq0$。若 $\varphi$ 是特征标为 $\chi_j$ 的表示，则 $\varphi$ 是忠实的（因为假设 $G$ 是单群）；并且由引理 6，$\varphi(g)$ 是标量矩阵。由于 $\varphi(g)$ 与所有矩阵交换，$\varphi(g)\in Z(\varphi(G))$。这迫使 $g\in Z(G)$，与 $G$ 是非 Abel 单群矛盾。引理证明完毕。
+
+现在证明 Burnside 定理。令 $G$ 是某些素数 $p,q$ 的 $p^a q^b$ 阶群。若 $p=q$ 或者任一指数为 $0$，则 $G$ 是幂零的，因而可解。因此可假设并非如此。按归纳法，令 $G$ 是一个最小阶反例。若 $G$ 有真非平凡正规子群 $N$，则由归纳假设，$N$ 和 $G/N$ 都可解，因此 $G$ 也可解（参见第 3.4 节或命题 6.10）。故可假设 $G$ 是非 Abel 单群。令 $P\in\Syl_p(G)$。由第 4 章定理 8，存在 $g\in Z(P)$ 且 $g\neq1$。由于 $P\leq C_G(g)$，$g$ 的共轭类大小（等于 $|G:C_G(g)|$）与 $p$ 互素，即是 $q$ 的幂。这违反引理 7，从而完成 Burnside 定理的证明。
+
+\subsection*{Philip Hall 定理}
+
+回忆，有限群的一个子群称为 Hall 子群，如果它的阶与指数互素。对群 $G$ 的任意子群 $H$，若子群 $K$ 满足 $G=HK$ 且 $H\cap K=1$，则称 $K$ 是 $H$ 在 $G$ 中的一个补子群。
+
+\noindent\textbf{定理 8.} \textbf{(P. Hall)} 设 $G$ 的阶为 $p_1^{a_1}p_2^{a_2}\cdots p_t^{a_t}$，其中 $p_1,\ldots,p_t$ 是不同素数。若对每个 $i\in\{1,\ldots,t\}$，都存在 $G$ 的子群 $H_i$ 使 $|G:H_i|=p_i^{a_i}$，则 $G$ 可解。
+
+Hall 定理也可表述为：若对每个 $i\in\{1,\ldots,t\}$，$G$ 的一个 Sylow $p_i$-子群有补子群，则 $G$ 可解。Hall 定理的逆命题也成立——这正是第 6.1 节练习 33。
+
+我们首先需要一些初等引理。
+
+\noindent\textbf{引理 9.} 若 $G$ 是阶大于 $1$ 的可解群，则存在 $P\normal G$，其中 $P$ 是某个素数 $p$ 的非平凡 $p$-群。
+
+\noindent\textbf{证明.} 这是第 6.1 节末尾关于可解群极小正规子群练习的特殊情形。也可直接看出：令 $P$ 为 $G$ 的导列中最后一个非平凡项 $G^{(n-1)}$ 的非平凡 Sylow 子群（其中 $G$ 的可解长度为 $n$）。此时 $G^{(n-1)}$ 是 Abel 群，所以 $P$ 是 $G^{(n-1)}$ 的特征子群，因而正规于 $G$。
+
+\noindent\textbf{引理 10.} 设 $G$ 的阶为 $p_1^{a_1}p_2^{a_2}\cdots p_t^{a_t}$，其中 $p_1,\ldots,p_t$ 是不同素数。设 $G$ 有子群 $H,K$，使得对每个 $i\in\{1,\ldots,t\}$，或者 $p_i^{a_i}$ 整除 $|H|$，或者 $p_i^{a_i}$ 整除 $|K|$。则 $G=HK$ 且 $|H\cap K|=(|H|,|K|)$。
+
+\noindent\textbf{证明.} 固定某个 $i\in\{1,\ldots,t\}$，先设 $p_i^{a_i}$ 整除 $H$ 的阶。由于 $HK$ 是若干右陪集 $H$ 的不交并，而每个这样的右陪集大小都等于 $|H|$，可知 $p_i^{a_i}$ 整除 $|HK|$。类似地，若 $p_i^{a_i}$ 整除 $|K|$，由于 $HK$ 是若干左陪集 $K$ 的不交并，同样有 $p_i^{a_i}$ 整除 $|HK|$。因此 $|G|\mid |HK|$，从而 $G=HK$。由于
+\[
+  |HK|=\frac{|H||K|}{|H\cap K|},
+\]
+得到 $|H\cap K|=(|H|,|K|)$。
+
+现在开始证明 Hall 定理，对 $|G|$ 归纳。注意，若 $t=1$，则对任意群假设都平凡满足（$H_1=1$）；若 $t=2$，则由 Sylow 定理，对任意群假设也满足（$H_1$ 是 $G$ 的 Sylow $p_2$-子群，$H_2$ 是 $G$ 的 Sylow $p_1$-子群）。若 $t=1$，则 $G$ 幂零，从而可解；若 $t=2$，则由 Burnside 定理，$G$ 可解。因此假设 $t\geq3$。
+
+固定 $i$。由前一引理，对所有 $j\in\{1,\ldots,t\}-\{i\}$，
+\[
+  |H_i:H_i\cap H_j|=p_j^{a_j}.
+\]
+因此 $H_i$ 的每个 Sylow $p_j$-子群在 $H_i$ 中都有补子群 $H_j\cap H_i$。由归纳假设，$H_i$ 可解。
+
+由引理 9，可选择 $P\normal H_1$，其中 $|P|=p_i^b>1$，对某个 $i>1$。由于 $t\geq3$，存在指标 $j\in\{1,\ldots,t\}-\{1,i\}$。由引理 10，
+\[
+  |H_1\cap H_j|=p_2^{a_2}\cdots p_{j-1}^{a_{j-1}}p_{j+1}^{a_{j+1}}\cdots p_t^{a_t}.
+\]
+因此 $H_1\cap H_j$ 含有 $H_1$ 的一个 Sylow $p_i$-子群。由于 $P$ 是 $H_1$ 的正规 $p_i$-子群，$P$ 包含在 $H_1$ 的每个 Sylow $p_i$-子群中，所以 $P\leq H_1\cap H_j$。由引理 10，$G=H_1H_j$，故每个 $g\in G$ 可写为 $g=h_1h_j$，其中 $h_1\in H_1$，$h_j\in H_j$。于是
+\[
+  gH_jg^{-1}=h_1h_jH_j(h_1h_j)^{-1}=h_1H_jh_1^{-1},
+\]
+从而
+\[
+  \bigcap_{g\in G}gH_jg^{-1}=\bigcap_{h_1\in H_1}h_1H_jh_1^{-1}.
+\]
+现在 $P\leq H_j$，且对所有 $h_1\in H_1$ 都有 $h_1Ph_1^{-1}=P$。因此
+\[
+  1\neq P\leq \bigcap_{h_1\in H_1}h_1H_jh_1^{-1}.
+\]
+于是 $N=\bigcap_{g\in G}gH_jg^{-1}$ 是 $G$ 的一个非平凡真正规子群。由此 $N$ 和 $G/N$ 都满足定理的假设（参见第 3.3 节中的练习）。由归纳假设，$N$ 与 $G/N$ 都可解，所以 $G$ 可解。这完成 Hall 定理的证明。
+
+\subsection*{练习}
+\begin{enumerate}[label=\arabic*.]
+  \item 证明对所有 $n$，对称群 $S_n$ 的每个特征标都是整数值的（即对所有 $g\in S_n$ 以及 $S_n$ 的所有特征标 $\psi$，都有 $\psi(g)\in\ZZ$）。［见第 18.3 节练习 22。］
+  \item 设 $G$ 是有限群，且每个极大子群的指数或者是素数，或者是素数的平方。证明 $G$ 可解。（单群 $\GL_3(\FF_2)$ 具有如下性质：每个极大子群的指数或者是 $7$，或者是 $8$，即或者是素数，或者是素数的三次幂——参见第 6.2 节。）［令 $p$ 为整除 $|G|$ 的最大素数，令 $P$ 为 $G$ 的 Sylow $p$-子群。若 $P\normal G$，对 $G/P$ 应用归纳。否则令 $M$ 为包含 $N_G(P)$ 的极大子群。使用第 4.5 节练习 51 证明 $p=3$，并推出 $|G|=2^a3^b$。］
+  \item 假设 $G$ 是一个拥有 Abel 子群 $H$ 的有限群，且 $H$ 的指数是某个素数的幂。证明 $G$ 可解。
+  \item 把前一练习中的“Abel”替换为“幂零”，重复该练习。
+  \item 使用 Philip Hall 定理证明中的思想，在所有 Sylow 子群都是 Abel 群的特殊情形下证明 Burnside 的 $p^a q^b$ 定理（不使用特征标理论）。
+\end{enumerate}
+
+\section{诱导特征标理论导论}
+
+设 $G$ 是有限群，$H$ 是 $G$ 的子群，$\varphi$ 是子群 $H$ 在任意域 $F$ 上的表示。在本节中，我们说明如何由其子群的表示 $\varphi$ 得到 $G$ 的一个表示，称为\emph{诱导表示}。我们还确定这个诱导表示的特征标，即\emph{诱导特征标}，如何用 $\varphi$ 的特征标表示，并通过在具体群中计算若干诱导特征标来说明这个公式。最后，我们应用诱导特征标理论证明不存在 $3^3\cdot7\cdot13\cdot409$ 阶单群；在第 6.2 节末尾关于单群存在性问题的讨论中曾提到这个群阶。诱导表示和诱导特征标理论标志着更高级表示论的开端。本节旨在作为导论，而不是全面处理；我们列入的结果也是为这一目的而选择的。
+
+首先注意，子群 $H$ 的表示 $\varphi$ 不一定能延拓为 $G$ 的一个表示 $\Phi$，并满足 $\Phi|_H=\varphi$。例如，$A_3\normal S_3$，而 $A_3$ 有一个忠实的次数 $1$ 表示（参见第 1 节）。由于 $S_3$ 的每个次数 $1$ 表示都以 $A_3=S_3'$ 为核的一部分，所以 $A_3$ 的这个表示不能延拓为 $S_3$ 的表示。作为另一个不能延拓到整个群的子群表示的例子，取 $G$ 为任意单群，令 $\varphi$ 为 $H$ 的某个表示，使得 $\ker\varphi$ 是 $H$ 的一个真非平凡正规子群。如果 $\varphi$ 延拓为 $G$ 的表示 $\Phi$，则 $\Phi$ 的核将是 $G$ 的一个真非平凡子群，这与 $G$ 是单群矛盾。我们将看到，诱导特征标的方法由子群 $H$ 的给定表示 $\varphi$ 产生 $G$ 的一个表示 $\Phi$，但一般 $\Phi|_H\neq\varphi$（事实上，除非 $H=G$，否则 $\Phi$ 的次数将大于 $\varphi$ 的次数）。
+
+我们在第 10.4 节推论 9 后的例 5 中看到，由于 $FH$ 是 $FG$ 的子环，环 $FG$ 是一个 $(FG,FH)$-双模；因此对任意左 $FH$-模 $V$，Abel 群 $FG\otimes_{FH}V$ 是左 $FG$-模（称为 $V$ 从 $FH$ 到 $FG$ 的标量扩张）。在有限群表示论中，这个扩张有一个专门名称。
+
+\noindent\textbf{定义.} 设 $H$ 是有限群 $G$ 的子群，$V$ 是一个实现 $H$ 的表示 $\varphi$ 的 $FH$-模。$FG$-模 $FG\otimes_{FH}V$ 称为 $V$ 的\emph{诱导模}，它所实现的 $G$ 的表示称为 $\varphi$ 的\emph{诱导表示}。若 $\psi$ 是 $\varphi$ 的特征标，则诱导表示的特征标称为\emph{诱导特征标}，记作 $\Ind_H^G(\psi)$。
+
+\noindent\textbf{定理 11.} 设 $H$ 是有限群 $G$ 的子群，$g_1,\ldots,g_m$ 是 $G$ 中 $H$ 的不同左陪集的代表。设 $V$ 是实现 $H$ 的次数 $n$ 矩阵表示 $\varphi$ 的 $FH$-模。$FG$-模
+\[
+  W=FG\otimes_{FH}V
+\]
+在 $F$ 上维数为 $nm$，且 $W$ 有一组基，使它实现如下对每个 $g\in G$ 定义的矩阵表示 $\Phi$：
+\[
+\Phi(g)=
+\begin{pmatrix}
+\varphi(g_1^{-1}gg_1)&\cdots&\varphi(g_1^{-1}gg_m)\\
+\vdots&&\vdots\\
+\varphi(g_m^{-1}gg_1)&\cdots&\varphi(g_m^{-1}gg_m)
+\end{pmatrix},
+\]
+其中每个 $\varphi(g_i^{-1}gg_j)$ 是出现在 $\Phi(g)$ 的第 $i,j$ 个块位置的 $n\times n$ 块；当 $g_i^{-1}gg_j\notin H$ 时，规定 $\varphi(g_i^{-1}gg_j)$ 为零块。
+
+\noindent\textbf{证明.} 首先注意，$FG$ 是一个自由右 $FH$-模：
+\[
+  FG=g_1FH\oplus g_2FH\oplus\cdots\oplus g_mFH.
+\]
+由于张量积与直和交换（第 10.4 节定理 17），作为 Abel 群有
+\[
+  W=FG\otimes_{FH}V\cong (g_1\otimes V)\oplus(g_2\otimes V)\oplus\cdots\oplus(g_m\otimes V).
+\]
+由于 $F$ 位于 $FG$ 的中心中，这也是 $F$-向量空间同构。因此，若 $v_1,v_2,\ldots,v_n$ 是 $V$ 的一个实现矩阵表示 $\varphi$ 的基，则
+\[
+  \{g_i\otimes v_j\mid 1\leq i\leq m,
+  1\leq j\leq n\}
+\]
+是 $W$ 的一个基。这说明 $W$ 的维数为 $mn$。把基按每组 $n$ 个元素排序为
+\[
+  g_1\otimes v_1,\ldots,g_1\otimes v_n,
+  g_2\otimes v_1,
+  \ldots,g_2\otimes v_n,
+  \ldots,
+  g_m\otimes v_1,\
+  \ldots,g_m\otimes v_n.
+\]
+我们计算每个 $g$ 作用在 $W$ 上相对于这个基的矩阵表示 $\Phi(g)$。固定 $j$ 与 $g$，并令 $gg_j=g_i h$，其中 $i$ 是某个指标，$h\in H$。于是对每个 $k$，
+\[
+\begin{aligned}
+  g(g_j\otimes v_k)
+  &=(gg_j)\otimes v_k\\
+  &=g_i h\otimes v_k\\
+  &=g_i\otimes hv_k\\
+  &=\sum_{\ell=1}^n a_{\ell k}(h)(g_i\otimes v_\ell),
+\end{aligned}
+\]
+其中 $a_{\ell k}$ 是 $h$ 相对于基 $\{v_1,\ldots,v_n\}$ 作用在 $V$ 上的矩阵的 $\ell,k$ 项。换言之，$g$ 在 $W$ 上的作用把第 $j$ 块的 $n$ 个基向量送到第 $i$ 块的基向量，并在该块上具有矩阵 $\varphi(h)$。由于 $h=g_i^{-1}gg_j$，这就描述了定理中的块矩阵 $\Phi(g)$，证毕。
+
+\noindent\textbf{推论 12.} 在定理 11 的记号下：
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $\psi$ 是 $V$ 实现的特征标，则诱导特征标由
+  \[
+    \Ind_H^G(\psi)(g)=\sum_{i=1}^m \psi(g_i^{-1}gg_i)
+  \]
+  给出，其中当 $g_i^{-1}gg_i\notin H$ 时，规定 $\psi(g_i^{-1}gg_i)=0$；
+  \item 若 $g$ 在 $G$ 中不与 $H$ 的任何元素共轭，则 $\Ind_H^G(\psi)(g)=0$。特别地，若 $H$ 是 $G$ 的正规子群，则 $\Ind_H^G(\psi)$ 在 $G-H$ 的所有元素上为零。
+\end{enumerate}
+
+\noindent\textbf{注记.} 由于 $H$ 的特征标 $\psi$ 在 $H$ 的共轭类上为常数，对所有 $h\in H$ 都有 $\psi(g)=\psi(h^{-1}gh)$。当 $h$ 遍历 $H$ 的所有元素时，$xh$ 遍历陪集 $xH$ 的所有元素。因此诱导特征标的公式也可写为
+\[
+  \Ind_H^G(\psi)(g)=\frac1{|H|}\sum_{x\in G}\psi(x^{-1}gx),
+\]
+其中每个固定陪集中的元素给出相同的特征标值 $|H|$ 次（这解释了因子 $1/|H|$），并且当 $x^{-1}gx\notin H$ 时仍规定 $\psi(x^{-1}gx)=0$。
+
+\noindent\textbf{证明.} 由上面计算出的 $g$ 的矩阵，$\Phi(g)$ 对角线上各块 $\varphi(g_i^{-1}gg_i)$ 除了 $g_i^{-1}gg_i\in H$ 时以外都是零。因此块矩阵 $\Phi(g)$ 的迹是所有满足 $g_i^{-1}gg_i\in H$ 的矩阵 $\varphi(g_i^{-1}gg_i)$ 的迹之和。由于 $\varphi(g_i^{-1}gg_i)$ 的迹是 $\psi(g_i^{-1}gg_i)$，第 (1) 部分成立。
+
+若对所有陪集代表 $g_i$ 都有 $g_i^{-1}gg_i\notin H$，则 $\Ind_H^G(\psi)(g)$ 的和中每一项都是零。特别地，若 $g$ 不在正规子群 $H$ 中，则 $g$ 的任意共轭元也不在 $H$ 中，所以 $\Ind_H^G(\psi)$ 在 $g$ 上为零。
+
+\paragraph{例}
+\begin{enumerate}[label=(\arabic*)]
+  \item 令
+  \[
+    G=D_{12}=\langle r,s\mid r^6=s^2=1,\,rs=sr^{-1}\rangle
+  \]
+  为 $12$ 阶二面体群，令 $H=\{1,s,r^3,sr^3\}$，于是 $H$ 同构于 Klein 四元群，且 $|G:H|=3$。按定理 11 的记号，我们展示 $H$ 的某个具体表示 $\varphi$ 的诱导表示中 $r$ 与 $s$ 的矩阵。设 $H$ 在 $\QQ$ 上二维向量空间上的表示相对于某个基 $v_1,v_2$ 为
+  \[
+    \varphi(s)=\begin{pmatrix}-1&0\\0&1\end{pmatrix}=A,
+    \qquad
+    \varphi(r^3)=\begin{pmatrix}1&0\\0&-1\end{pmatrix}=B,
+    \qquad
+    \varphi(sr^3)=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=C.
+  \]
+  因此 $n=2$，$m=3$，诱导表示 $\Phi$ 次数为 $nm=6$。取 $g_1=1,g_2=r,g_3=r^2$ 为 $G$ 中 $H$ 的左陪集代表，于是 $g_k=r^{k-1}$。则
+  \[
+    g_i^{-1}rg_j=r^{-(i-1)+1+(j-1)}=r^{j-i+1},
+    \qquad
+    g_i^{-1}sg_j=sr^{(i-1)+(j-1)}=sr^{i+j-2}.
+  \]
+  因此诱导表示的 $6\times6$ 矩阵为
+  \[
+    \Phi(r)=\begin{pmatrix}
+    0&0&B\\ I&0&0\\0&I&0
+    \end{pmatrix},
+    \qquad
+    \Phi(s)=\begin{pmatrix}
+    A&0&0\\0&0&C\\0&C&0
+    \end{pmatrix},
+  \]
+  其中 $2\times2$ 矩阵 $A,B,C$ 如上，$I$ 是 $2\times2$ 单位矩阵，$0$ 表示 $2\times2$ 零矩阵。
+
+  \item 若 $H$ 是 $G$ 的任意子群，$\psi_1$ 是 $H$ 的主特征标，则 $\Ind_H^G(\psi_1)(g)$ 对每个满足 $g_i^{-1}gg_i\in H$ 的陪集代表 $g_i$ 计数 $1$。由于 $g_i^{-1}gg_i\in H$ 当且仅当 $g$ 在左乘作用下固定左陪集 $g_iH$，$\Ind_H^G(\psi_1)(g)$ 是 $g$ 在 $G$ 关于 $H$ 左陪集的置换表示中固定的点数。因此由第 18.3 节例 3 可知：若 $\psi_1$ 是 $H$ 的主特征标，则 $\Ind_H^G(\psi_1)$ 是 $G$ 在 $H$ 的左陪集上的置换特征标。在特殊情形 $H=1$ 中，这意味着若 $\chi_1$ 是平凡子群 $H=1$ 的主特征标，则 $\Ind_1^G(\chi_1)$ 是 $G$ 的正则特征标。这也说明，诱导特征标一般不是不可约的，即使被诱导的特征标本身不可约。
+
+  \item 令 $G=S_3$，令 $\psi$ 是 $A_3=\langle x\rangle$ 的一个非主线性特征标，使得 $\psi(x)=\zeta$，其中 $\zeta$ 是一个本原三次单位根（$A_3=Z_3$ 和 $S_3$ 的特征标表出现在第 1 节中）。令 $\Psi=\Ind_{A_3}^{S_3}(\psi)$。于是 $\Psi$ 的次数为 $1\cdot |S_3:A_3|=2$，并且由推论，$\Psi$ 在所有对换上为零。若 $y$ 是任意对换，则 $1,y$ 是 $S_3$ 中 $A_3$ 的左陪集代表集，且 $y^{-1}xy=x^2$。因此 $\Psi(x)=\psi(x)+\psi(x^2)$ 等于 $\zeta+\zeta^2=-1$。这说明若 $\psi$ 是 $A_3$ 的两个非主不可约特征标之一，则 $\psi$ 的诱导特征标就是 $S_3$ 的（唯一）次数 $2$ 不可约特征标。特别地，一个子群的不同特征标可能诱导出整个群的同一特征标。
+
+  \item 令 $G=D_8$ 有通常的生成元与关系，并令 $H=\langle s\rangle$。令 $\psi$ 是 $H$ 的非主不可约特征标，令 $\Psi=\Ind_H^G(\psi)$。取 $1,r,r^2,r^3$ 为 $H$ 的左陪集代表。由定理 11，$\Psi(1)=4$。由于 $\psi(s)=-1$，可直接计算出 $\Psi(s)=-2$。由推论 12(2)，得到 $\Psi(r)=\Psi(r^2)=\Psi(sr)=0$。在第 1 节 $D_8$ 特征标表的记号中，由正交关系得到 $\Psi=\chi_2+\chi_4+\chi_5$（也可通过观察检验）。
+\end{enumerate}
+
+本节剩余部分取域 $F$ 为复数域：$F=\CC$。
+
+在最后给出诱导特征标在单群上的一个应用之前，我们先计算一类重要群的特征标。
+
+\noindent\textbf{定义.} 有限群 $G$ 称为具有 Frobenius 核 $Q$ 的 \emph{Frobenius 群}，如果 $Q$ 是 $G$ 的真非平凡正规子群，并且对 $Q$ 的所有非恒等元 $x$ 都有 $C_G(x)\leq Q$。
+
+鉴于本节开头提到的对单群的应用，我们将限制在如下 Frobenius 群 $G$：其阶为 $q^a p$，其中 $p,q$ 是不同素数，Frobenius 核 $Q$ 是 $q^a$ 阶初等 Abel $q$-群，并且循环群 $G/Q$ 通过共轭作用不可约地作用在 $Q$ 上。换言之，我们假设 $Q$ 是若干 $q$ 阶循环群的直积，且 $G$ 中包含在 $Q$ 中的正规子群只有 $1$ 和 $Q$，即 $Q$ 是 $G$ 的极小正规子群。例如，$A_4$ 是这种类型的 Frobenius 群，其 Frobenius 核为它的 Sylow $2$-子群 $V_4$。此外，若 $p,q$ 是不同素数，$p<q$，且 $G$ 是 $pq$ 阶非 Abel 群（当 $p\mid q-1$ 时总存在），则 $G$ 是 Frobenius 群，其 Frobenius 核为它的 Sylow $q$-子群（由 Sylow 定理它是正规子群）。我们基本确定这些 Frobenius 群的特征标表。更一般 Frobenius 群的类似结果见练习。
+
+\noindent\textbf{命题 13.} 设 $G$ 是阶为 $q^a p$ 的 Frobenius 群，其中 $p,q$ 是不同素数，Frobenius 核 $Q$ 是阶为 $q^a$ 的初等 Abel $q$-群，并且循环群 $G/Q$ 通过共轭作用不可约地作用在 $Q$ 上。则下列结论成立：
+\begin{enumerate}[label=(\arabic*)]
+  \item $G=QP$，其中 $P$ 是 $G$ 的 Sylow $p$-子群。$G$ 的每个非恒等元的阶为 $p$ 或 $q$。每个 $p$ 阶元都与 $P$ 的某个元素共轭，每个 $q$ 阶元都属于 $Q$。$P$ 的非恒等元代表 $p-1$ 个不同的 $p$ 阶元共轭类，每个这样的类大小为 $q^a$。$q$ 阶元素有 $(q^a-1)/p$ 个不同共轭类，每个这样的类大小为 $p$。
+  \item $G'=Q$，所以 $G$ 的次数 $1$ 特征标数为 $p$，且每个次数 $1$ 特征标的核都含有 $Q$。
+  \item 若 $\psi$ 是 $Q$ 的任意非主不可约特征标，则 $\Ind_Q^G(\psi)$ 是 $G$ 的一个不可约特征标。此外，$G$ 的每个次数 $>1$ 的不可约特征标都等于某个 $Q$ 的非主不可约特征标 $\psi$ 的 $\Ind_Q^G(\psi)$。$G$ 的每个不可约特征标次数为 $1$ 或 $p$，而次数 $p$ 的不可约特征标个数为 $(q^a-1)/p$。
+\end{enumerate}
+
+\noindent\textbf{证明.} 注意，由阶的考虑，$QP=G$。由 Frobenius 群的定义并由于 $Q$ 是 Abel 群，对 $Q$ 的每个非恒等元 $h$，有 $C_G(h)=Q$。若 $x$ 是一个 $pq$ 阶元，则 $x^p$ 是 $q$ 阶元，因而属于 $G$ 的唯一 Sylow $q$-子群 $Q$。但于是 $x$ 与 $x^p$ 交换，所以 $x\in C_G(x^p)=Q$，矛盾。因此 $G$ 没有 $pq$ 阶元素。由 Sylow 定理，每个 $p$ 阶元都与 $P$ 的某个元素共轭，每个 $q$ 阶元都属于 $Q$。$P$ 的两个不同元素在 $G$ 中不共轭，因为若对某些 $x,y\in P$ 有 $g^{-1}xg=y$，则在 Abel 群 $\overline G=G/Q$ 中有 $\bar g^{-1}\bar x\bar g=\bar y$，所以 $\bar x=\bar y$。于是 $x=y$，因为 $P\cap Q=1$。因此 $p$ 阶元素恰有 $p-1$ 个共轭类，它们由 $P$ 的非恒等元代表。若 $x$ 是 $P$ 的非恒等元，则 $C_G(x)=P$，所以 $x$ 的共轭类含有 $|G:P|=q^a$ 个元素。最后，若 $h$ 是 $Q$ 的非恒等元，则 $C_G(h)=Q$，且若 $P=\langle x\rangle$，$h$ 的共轭类是 $\{h,h^x,\ldots,h^{x^{p-1}}\}$。这证明了 (1) 的所有部分。
+
+由于 $G/Q$ 是 Abel 群，$G'\leq Q$。由于 $G$ 非 Abel 且 $Q$ 按假设是 $G$ 的极小正规子群，必有 $G'=Q$。现在 (2) 由第 18.2 节推论 11 得出。
+
+令 $\psi$ 是 $Q$ 的非主不可约特征标，并令 $\Psi=\Ind_Q^G(\psi)$。我们用正交关系说明 $\Psi$ 不可约。令 $1,x,\ldots,x^{p-1}$ 为 $Q$ 在 $G$ 中的陪集代表。由推论 12，$\Psi$ 在 $G-Q$ 上为零，所以
+\[
+\begin{aligned}
+  \|\Psi\|^2
+  &=\frac1{|G|}\sum_{h\in Q}\Psi(h)\overline{\Psi(h)}\\
+  &=\frac1{|G|}\sum_{h\in Q}\left|\sum_{i=0}^{p-1}\psi(x^i h x^{-i})\right|^2\\
+  &=\frac{p}{|G|}\sum_{h\in Q}\psi(h)\overline{\psi(h)}\\
+  &=\frac{p|Q|}{|G|}=1,
+\end{aligned}
+\]
+其中第二行来自诱导特征标 $\Psi$ 的定义，第三行因为第二行求和中 $Q$ 的每个元素恰出现 $p$ 次，最后一行来自 $Q$ 中第一正交关系，因为 $\psi$ 是 $Q$ 的不可约特征标。这证明 $\Psi$ 是 $G$ 的不可约特征标。
+
+我们通过计数这样得到的不同不可约特征标的数目，证明 $G$ 的每个次数 $>1$ 的不可约特征标都是 $Q$ 的某个非主次数 $1$ 特征标的诱导特征标。由 (1) 和 (2)，$G$ 的不可约特征标数（即共轭类数）为 $p+(q^a-1)/p$，次数 $1$ 的特征标数为 $p$。因此 $G$ 的次数 $>1$ 的不可约特征标数为 $(q^a-1)/p$。群 $P$ 在 $Q$ 的非主不可约特征标集合 $\mathcal C$ 上作用如下：对每个 $\psi\in\mathcal C$ 和每个 $x\in P$，定义 $\psi^x$ 为
+\[
+  \psi^x(h)=\psi(xhx^{-1})\qquad\text{对所有 }h\in Q.
+\]
+由于 $\psi$ 是从 $Q$ 到 $\CC^\times$ 的非平凡同态（回忆，Abel 群 $Q$ 的所有不可约特征标次数都为 $1$），容易推出 $\psi^x$ 也是同态。因此 $\psi^x\in\mathcal C$，所以 $P$ 置换 $\mathcal C$ 的元素。现在令 $x$ 是循环群 $P$ 的生成元。于是 $1,x,\ldots,x^{p-1}$ 是 $Q$ 在 $G$ 中的左陪集代表。由推论 12，对这组陪集代表，若 $\psi\in\mathcal C$，则 $\Ind_Q^G(\psi)$ 在任意 $h\in Q$ 上的值是和
+\[
+  \psi(h)+\psi^x(h)+\cdots+\psi^{x^{p-1}}(h).
+\]
+因此诱导特征标 $\Ind_Q^G(\psi)$ 限制到 $Q$ 后，分解为 $Q$ 的不可约特征标之和：
+\[
+  \Ind_Q^G(\psi)|_Q=\psi+\psi^x+\cdots+\psi^{x^{p-1}}.
+\]
+若 $\psi_1,\psi_2$ 属于 $P$ 在 $\mathcal C$ 上作用的不同轨道，则诱导特征标 $\Ind_Q^G(\psi_1)$ 和 $\Ind_Q^G(\psi_2)$ 限制到 $Q$ 后是不同的特征标（它们没有共同的不可约组成因子）。因此从 $P$ 在 $\mathcal C$ 上的不同轨道中的元素诱导出的特征标，是 $G$ 的不同不可约特征标。Abel 群 $Q$ 有 $q^a-1$ 个非主不可约特征标（即 $|\mathcal C|=q^a-1$），且 $|P|=p$，所以 $P$ 在 $\mathcal C$ 上至少有 $(q^a-1)/p$ 个轨道，从而至少得到这么多不同的次数 $p$ 不可约特征标。由于 $G$ 恰有 $(q^a-1)/p$ 个次数 $>1$ 的不可约特征标，$G$ 的每个次数 $>1$ 不可约特征标必有次数 $p$，且必是某个 $\mathcal C$ 中元素的诱导特征标。证明完毕。
+
+对于最后的例子，我们需要诱导特征标的两个性质。这些性质列于下一个命题中，其证明是直接练习，很容易由诱导特征标公式或由诱导模的定义以及张量积性质得出。
+
+\noindent\textbf{命题 14.} 设 $G$ 是群，$H$ 是 $G$ 的子群，$\psi$ 与 $\psi'$ 是 $H$ 的特征标。
+\begin{enumerate}[label=(\arabic*)]
+  \item （特征标诱导的可加性）$\Ind_H^G(\psi+\psi')=\Ind_H^G(\psi)+\Ind_H^G(\psi')$。
+  \item （特征标诱导的传递性）若 $H\leq K\leq G$，则
+  \[
+    \Ind_K^G(\Ind_H^K(\psi))=\Ind_H^G(\psi).
+  \]
+\end{enumerate}
+
+由命题 14 的第 (1) 部分可知，若 $\sum_{i=1}^t n_i\psi_i$ 是 $H$ 的特征标的任意整线性组合，且对所有 $i$ 有 $n_i\geq0$，则
+\[
+  \Ind_H^G\left(\sum_{i=1}^t n_i\psi_i\right)
+  =\sum_{i=1}^t n_i\Ind_H^G(\psi_i). \tag{*}
+\]
+$H$ 的形如 $\sum_{i=1}^t n_i\psi_i$ 的类函数（其中系数是任意整数，不必非负）称为 $H$ 的\emph{广义特征标}或\emph{虚特征标}。对 $H$ 的广义特征标，我们用方程 (*) 定义其 $G$ 的诱导广义特征标，现在也允许负系数 $n_i$。这样，函数 $\Ind_H^G$ 成为从 $H$ 的广义特征标加法群到 $G$ 的广义特征标加法群的群同态（它把特征标映到特征标）。这意味着推论 12 中的诱导特征标公式在 $\psi$ 是 $H$ 的广义特征标时同样成立。
+
+\subsection*{关于 $3^3\cdot7\cdot13\cdot409$ 阶群的应用}
+
+现在我们以证明下列结果结束：
+\[
+  \text{不存在 }3^3\cdot7\cdot13\cdot409\text{ 阶单群。}
+\]
+如本节开头所说，在第 6.2 节末尾关于单群存在性问题的讨论中提到过这个阶的单群。可以通过涉及次数 $819$ 的置换表示的论证证明不存在这个阶的单群（参见第 6.2 节练习）。我们在这里给出一个特征标论证明，因为这些方法说明了有限群理论中的一些重要思想。这个方法基于 M. Suzuki 的奠基性论文 \emph{The nonexistence of a certain type of simple group of odd order}, Proc. Amer. Math. Soc., 8 (1957), pp. 686--695，该文处理更一般的群。由于我们处理的是一个具体的群阶，论证更简单，数值上也更显式，但仍保留了 Suzuki 工作的一些关键思想。此外，Suzuki 的论文及其后继论文 W. Feit、M. Hall 与 J. Thompson 的 \emph{Finite groups in which the centralizer of any non-identity element is nilpotent}, Math. Zeit., 74 (1960), pp. 1--17，是冗长而困难的 Feit--Thompson 定理（参见第 3.4 节）的原型。我们的讨论也传达了这些基本论文的一些风味。特别地，这些论文都遵循一种基本发展路线：首先确定 Sylow 子群的结构与嵌入方式，然后应用特征标理论（极大依赖诱导特征标）。
+
+在本节剩余部分，假设 $G$ 是一个 $3^3\cdot7\cdot13\cdot409$ 阶单群。我们列出 $G$ 的一些性质，它们可用第 6.2 节中源于 Sylow 定理的方法验证。细节留作练习。
+\begin{enumerate}[label=(\arabic*)]
+  \item 令 $q_1=3$，令 $Q_1$ 为 $G$ 的 Sylow $3$-子群，令 $N_1=N_G(Q_1)$。则 $Q_1$ 是一个 $3^3$ 阶初等 Abel $3$-群，且 $N_1$ 是一个阶为 $3^3\cdot13$ 的 Frobenius 群，Frobenius 核为 $Q_1$，并且 $N_1/Q_1$ 通过共轭不可约地作用在 $Q_1$ 上。
+  \item 令 $q_2=7$，令 $Q_2$ 为 $G$ 的 Sylow $7$-子群，令 $N_2=N_G(Q_2)$。则 $Q_2$ 是 $7$ 阶循环群，$N_2$ 是 $7\cdot3$ 阶非 Abel 群（所以 $N_2$ 是以 $Q_2$ 为 Frobenius 核的 Frobenius 群）。
+  \item 令 $q_3=13$，令 $Q_3$ 为 $G$ 的 Sylow $13$-子群，令 $N_3=N_G(Q_3)$。则 $Q_3$ 是 $13$ 阶循环群，$N_3$ 是 $13\cdot3$ 阶非 Abel 群（所以 $N_3$ 是以 $Q_3$ 为 Frobenius 核的 Frobenius 群）。
+  \item 令 $q_4=409$，令 $Q_4$ 为 $G$ 的 Sylow $409$-子群，令 $N_4=N_G(Q_4)$。则 $Q_4$ 是 $409$ 阶循环群，$N_4$ 是 $409\cdot3$ 阶非 Abel 群（所以 $N_4$ 是以 $Q_4$ 为 Frobenius 核的 Frobenius 群）。
+  \item $G$ 的每个非恒等元都有素数阶，并且对每个 $i=1,2,3,4$ 以及每个 $g\in G-N_G(Q_i)$ 都有 $Q_i\cap Q_i^g=1$。$G$ 的非恒等共轭类为：
+  \begin{enumerate}[label=(\alph*)]
+    \item $2$ 个 $3$ 阶元素类（每个类大小为 $7\cdot13\cdot409$）；
+    \item $2$ 个 $7$ 阶元素类（每个类大小为 $3^3\cdot13\cdot409$）；
+    \item $4$ 个 $13$ 阶元素类（每个类大小为 $3^3\cdot7\cdot409$）；
+    \item $136$ 个 $409$ 阶元素类（每个类大小为 $3^3\cdot7\cdot13$），
+  \end{enumerate}
+  因而 $G$ 中有 $145$ 个共轭类。
+\end{enumerate}
+由于每个群 $N_i$ 都是满足命题 13 假设的 Frobenius 群，$N_i$ 的次数 $>1$ 特征标个数可从该命题读出：
+\begin{enumerate}[label=(\roman*)]
+  \item $N_1$ 有 $2$ 个次数 $13$ 的不可约特征标；
+  \item $N_2$ 有 $2$ 个次数 $3$ 的不可约特征标；
+  \item $N_3$ 有 $4$ 个次数 $3$ 的不可约特征标；
+  \item $N_4$ 有 $136$ 个次数 $3$ 的不可约特征标。
+\end{enumerate}
+从现在起，为简化记号，对 $G$ 的任意子群 $H$ 和 $H$ 的任意广义特征标 $\mu$，令
+\[
+  \mu^*=\Ind_H^G(\mu),
+\]
+所以星号总表示从某个子群诱导到整个群 $G$，而该子群将由上下文明确。
+
+下面的引理是证明中的关键点。它说明推论 12 中诱导特征标的消失性质（连同 Sylow 子群 $Q_i$ 的平凡交性质，即对所有 $g\in G-N_G(Q_i)$ 有 $Q_i\cap Q_i^g=1$）如何把某些广义特征标的内积与它们的诱导广义特征标的内积联系起来。对于这些计算，重要的是广义特征标在恒等元上为零（这解释了为什么我们考虑相同次数特征标的差）。
+
+\noindent\textbf{引理 15.} 对任意 $i\in\{1,2,3,4\}$，令 $q=q_i$，$Q=Q_i$，$N=N_i$，并令 $p=|N:Q|$。令 $\psi_1,\ldots,\psi_4$ 是 $N$ 的任意次数 $p$ 不可约特征标（不必互异），并令 $\alpha=\psi_1-\psi_2$，$\beta=\psi_3-\psi_4$。则 $\alpha$ 与 $\beta$ 是 $N$ 的广义特征标，并且在 $N$ 中每个阶不等于 $q$ 的元素上为零。此外，$\alpha^*$ 与 $\beta^*$ 是 $G$ 的广义特征标，并且在 $G$ 中每个阶不等于 $q$ 的元素上为零，且
+\[
+  (\alpha^*,\beta^*)_G=(\alpha,\beta)_N
+\]
+（其中 $(\ ,\ )_H$ 表示在群 $H$ 中计算的类函数通常 Hermite 内积）。换言之，从 $N$ 到 $G$ 的诱导在这样的 $N$ 的广义特征标 $\alpha,\beta$ 上保持内积。
+
+\noindent\textbf{证明.} 由命题 13，存在 $Q$ 的非主次数 $1$ 特征标 $\lambda_1,\ldots,\lambda_4$，使得对 $j=1,\ldots,4$ 有 $\psi_j=\Ind_Q^N(\lambda_j)$。因此由推论 12，每个 $\psi_j$ 都在 $N-Q$ 上消失，故 $\alpha$ 与 $\beta$ 也如此。注意，由于对所有 $j$ 都有 $\psi_j(1)=p$，有 $\alpha(1)=\beta(1)=0$。由诱导的传递性，对所有 $j$，
+\[
+  \psi_j^*=\Ind_N^G(\psi_j)=\Ind_Q^G(\lambda_j).
+\]
+再次把推论 12 应用于后一诱导特征标，看到 $\psi_j^*$ 在所有不与 $Q$ 的某个元素共轭的元素上消失，因此 $\alpha^*$ 与 $\beta^*$ 也如此。由于诱导特征标 $\psi_j^*$ 全都次数为 $|G:Q|$，广义特征标 $\alpha^*$ 与 $\beta^*$ 在恒等元上为零。因此 $\alpha^*$ 与 $\beta^*$ 在 $G$ 中所有非 $q$ 阶元素上消失。最后，若 $g_1,\ldots,g_m$ 是 $N$ 在 $G$ 中的左陪集代表且 $g_1=1$，则由于对 $k>1$ 有 $Q\cap Q^{g_k}=1$（由上面的 (5)），由诱导（广义）特征标的公式立即得到，对所有非恒等元 $x\in Q$（即对所有 $N$ 中的 $q$ 阶元素 $x$），有 $\alpha^*(x)=\alpha(x)$ 且 $\beta^*(x)=\beta(x)$。此外，由 Sylow 定理，$G$ 中每个 $q$ 阶元素都属于 $Q$ 的某个共轭，因此集合 $Q-\{1\}$ 的 $G$-共轭把 $G$ 中 $q$ 阶元素划分为 $|G:N|$ 个不交子集。由于 $\alpha^*$ 与 $\beta^*$ 是 $G$ 上类函数，当 $x$ 遍历这些子集中的任意一个时，$\sum \alpha^*(x)\overline{\beta^*(x)}$ 相同。这些事实蕴含
+\[
+\begin{aligned}
+  (\alpha^*,\beta^*)_G
+  &=\frac1{|G|}\sum_{x\in G}\alpha^*(x)\overline{\beta^*(x)}\\
+  &=\frac1{|G|}\sum_{\substack{x\in G\\ |x|=q}}\alpha^*(x)\overline{\beta^*(x)}\\
+  &=\frac1{|G|}\sum_{\substack{x\in N\\ |x|=q}} |G:N|\alpha^*(x)\overline{\beta^*(x)}\\
+  &=\frac1{|N|}\sum_{x\in N}\alpha(x)\overline{\beta(x)}=(\alpha,\beta)_N.
+\end{aligned}
+\]
+证明完毕。
+
+下一个引理在 $N_i$ 的次数 $>1$ 不可约特征标与 $G$ 的某些非主不可约特征标之间建立对应。
+
+\noindent\textbf{引理 16.} 对任意 $i\in\{1,2,3,4\}$，令 $q=q_i$，$Q=Q_i$，$N=N_i$，并令 $p=|N:Q|$。令 $\psi_1,\ldots,\psi_k$ 是 $N$ 的不同次数 $p$ 不可约特征标。则存在 $G$ 的两两不同不可约特征标 $\chi_1,\ldots,\chi_k$，它们都有相同次数，并且存在一个固定符号 $\varepsilon=\pm1$，使得对所有 $j=2,3,\ldots,k$，有
+\[
+  \psi_1^*-\psi_j^*=\varepsilon(\chi_1-\chi_j).
+\]
+
+\noindent\textbf{证明.} 令 $\alpha_j=\psi_1-\psi_j$，$j=2,3,\ldots,k$，则 $\alpha_j$ 满足引理 15 的假设。由于 $\psi_1\neq\psi_j$，由引理 15，
+\[
+  2=\|\alpha_j\|^2=(\alpha_j,\alpha_j)_N=(\alpha_j^*,\alpha_j^*)_G=\|\alpha_j^*\|^2
+\]
+对所有 $j$ 成立。因此 $\alpha_j^*$ 必有 $G$ 的两个不同不可约特征标作为其不可约组成因子。由于 $\alpha_j^*(1)=0$，它必是两个具有相同次数的不同不可约特征标之差。特别地，若 $k=2$，引理成立（这正是 $q=3$ 与 $q=7$ 的情形）。所以假设 $k>2$，并写
+\[
+  \alpha_2^*=\psi_1^*-\psi_2^*=\varepsilon(\chi-\chi'),
+  \qquad
+  \alpha_3^*=\psi_1^*-\psi_3^*=\varepsilon_1(\theta-\theta')
+\]
+其中 $\chi,\chi',\theta,\theta'$ 是 $G$ 的不可约特征标，$\varepsilon,\varepsilon_1$ 是符号。如上所证，$\chi\neq\chi'$ 且 $\theta\neq\theta'$。必要时交换 $\theta$ 与 $\theta'$，可假设 $\varepsilon=\varepsilon_1$。于是
+\[
+  \alpha_2^*-\alpha_3^*=\psi_3^*-\psi_2^*=\varepsilon(\theta-\theta'-\chi+\chi').
+\]
+由引理 15，$\psi_2^*-\psi_3^*=(\psi_2-\psi_3)^*$ 也恰有两个不同不可约组成因子，因此或者 $\theta=\chi$，或者 $\theta'=\chi'$。必要时把 $\varepsilon$ 替换为 $-\varepsilon$，可假设 $\theta=\chi$，从而现在有
+\[
+  \alpha_2^*=\psi_1^*-\psi_2^*=\varepsilon(\chi-\chi'),
+  \qquad
+  \alpha_3^*=\psi_1^*-\psi_3^*=\varepsilon(\chi-\theta')
+\]
+其中 $\chi,\chi',\theta'$ 是 $G$ 的不同不可约特征标，符号 $\varepsilon$ 已确定。标记 $\chi=\chi_1$，$\chi'=\chi_2$，$\theta'=\chi_3$。现在类似地检查可知，对每个 $j\geq3$，存在 $G$ 的不可约特征标 $\chi_j$，使得
+\[
+  \alpha_j^*=\psi_1^*-\psi_j^*=\varepsilon(\chi_1-\chi_j),
+\]
+并且 $\chi_1,
+\ldots,\chi_k$ 两两不同。由于所有 $\chi_j$ 与 $\chi_1$ 有相同次数，证明完成。
+
+我们说明，未必有 $\chi_j=\psi_j^*$ 对任何 $j$ 成立；所成立的只是 $N$ 的不可约特征标之差诱导为 $G$ 的不可约特征标之差。
+
+由引理 16 得到的 $G$ 的不可约特征标 $\chi_j$ 称为与 $Q$ 相联系的\emph{例外特征标}。
+
+\noindent\textbf{引理 17.} 若 $i,j$ 是 $\{1,2,3,4\}$ 中不同元素，则与 $Q_i$ 相联系的例外特征标全都不同于与 $Q_j$ 相联系的例外特征标。
+
+\noindent\textbf{证明.} 令 $\chi$ 是与 $Q_i$ 相联系的例外特征标，$\theta$ 是与 $Q_j$ 相联系的例外特征标。由构造，存在 $Q_i$ 的不同不可约特征标 $\psi,\psi'$，使得 $\psi^*-\psi'^*=\chi-\chi'$；并且存在 $Q_j$ 的不同不可约特征标 $\lambda,\lambda'$，使得 $\lambda^*-\lambda'^*=\theta-\theta'$。令 $\alpha=\psi-\psi'$，$\beta=\lambda-\lambda'$。由引理 15，$\alpha^*$ 在 $G$ 中所有阶不等于 $q_i$ 的元素上为零（包括恒等元），而 $\beta^*$ 在 $G$ 中所有阶不等于 $q_j$ 的元素上为零。因此显然 $(\alpha^*,\beta^*)=0$。容易推出，$\alpha^*$ 的两个不可约组成因子也分别与 $\beta^*$ 的两个不可约组成因子正交。这证明了引理。
+
+现在很容易说明这样的单群 $G$ 不存在。由引理 16 和 $G$ 的性质 (i) 到 (iv)，我们可以计数例外特征标的个数：
+\begin{enumerate}[label=(\roman*)]
+  \item 与 $Q_1$ 相联系的例外特征标有 $2$ 个；
+  \item 与 $Q_2$ 相联系的例外特征标有 $2$ 个；
+  \item 与 $Q_3$ 相联系的例外特征标有 $4$ 个；
+  \item 与 $Q_4$ 相联系的例外特征标有 $136$ 个。
+\end{enumerate}
+记与 $Q_i$ 相联系的例外特征标的共同次数为 $d_i$，$i=1,\ldots,4$。由引理 17，例外特征标给出了 $G$ 的 $144$ 个非主不可约特征标；因此这些特征标连同主特征标，就是 $G$ 的全部不可约特征标（$G$ 的共轭类数为 $145$）。不可约特征标次数平方和等于 $G$ 的阶：
+\[
+  1+2d_1^2+2d_2^2+4d_3^2+136d_4^2=1004913.
+\]
+化简得到
+\[
+  d_1^2+d_2^2+2d_3^2+68d_4^2=502456. \tag{19.4}
+\]
+最后，由于单群 $G$ 的每个非主不可约表示都是忠实的，并且 $N_1$ 的忠实表示的最小次数为 $13$，每个 $d_i\geq13$。由于 $d_4<\sqrt{502456/68}<86$ 且 $d_4$ 整除 $|G|$，可知
+\[
+  d_4\in\{13,21,27,39,63\}.
+\]
+此外，由推论 5，每个 $d_i$ 都整除 $|G|$，因此每个 $d_i$ 的可能性很少。现在检查方程 (4) 没有解（用计算机做这件事尤其容易）。这个矛盾完成了证明。
+
+\subsection*{练习}
+
+在所有练习中，所有表示都取在复数域上。
+\begin{enumerate}[label=\arabic*.]
+  \item 令 $G=S_3$，令 $H=A_3$，令 $V$ 是实现 $A_3$ 的自然置换表示的三维 $\CC H$-模。更明确地说，令 $V$ 有基 $e_1,e_2,e_3$，并令 $\sigma\in A_3$ 在 $V$ 上按 $\sigma e_i=e_{\sigma(i)}$ 作用。取 $1$ 和 $(1\ 2)$ 为 $S_3$ 中 $A_3$ 的左陪集代表，写出定理 11 中描述的 $S_3$ 在诱导模 $W$ 上作用的显式矩阵，对 $S_3$ 的每个元素都写出。
+  \item 在 (a) 到 (f) 的每一部分中，都给出了某个群 $G$ 的子群 $H$ 的一个特征标 $\psi$。计算诱导特征标 $\Ind_H^G(\psi)$ 在 $G$ 的所有共轭类上的值，并利用第 1 节中的特征标表把 $\Ind_H^G(\psi)$ 写成不可约特征标之和：
+  \begin{enumerate}[label=(\alph*)]
+    \item $\psi$ 是 $S_3$ 的子群 $\langle(1\ 2)\rangle$ 的唯一非主次数 $1$ 特征标；
+    \item $\psi$ 是 $D_8$ 的子群 $\langle r\rangle$ 的次数 $1$ 特征标，定义为 $\psi(r)=i$，其中 $i\in\CC$ 是 $-1$ 的平方根；
+    \item $\psi$ 是 $D_8$ 的子群 $\langle r\rangle$ 的次数 $1$ 特征标，定义为 $\psi(r)=-1$；
+    \item $\psi$ 是 $S_4$ 的子群 $V_4=\langle(1\ 2),(3\ 4)\rangle$ 的任意非主次数 $1$ 特征标；
+    \item $\psi=\chi_4$ 是第 1 节中 $H=S_4$ 的特征标表中两个次数 $3$ 特征标的第一个，且 $H$ 是 $G=S_5$ 的子群；
+    \item $\psi$ 是 $S_5$ 的子群 $V_4=\langle(1\ 2),(3\ 4)\rangle$ 的任意非主次数 $1$ 特征标。
+  \end{enumerate}
+  \item 使用命题 13，显式写出下列各群的特征标表：
+  \begin{enumerate}[label=(\alph*)]
+    \item $10$ 阶二面体群；
+    \item $57$ 阶非 Abel 群；
+    \item 一个 $56$ 阶非 Abel 群，它有正规初等 Abel Sylow $2$-子群。
+  \end{enumerate}
+  \item 令 $H$ 是 $G$ 的子群，令 $\varphi$ 是 $H$ 的一个表示，并假设 $N$ 是 $G$ 的正规子群，满足 $N\leq H$ 且 $N$ 包含在 $\varphi$ 的核中。证明 $N$ 也包含在 $\varphi$ 的诱导表示的核中。
+  \item 令 $N$ 是 $G$ 的正规子群，令 $\psi_1$ 是 $N$ 的主特征标。令 $\Psi$ 为诱导特征标 $\Ind_N^G(\psi_1)$，于是由前一练习，我们可以把 $\Psi$ 看作 $G/N$ 的一个表示的特征标。证明 $\Psi$ 是 $G/N$ 的正则表示的特征标。
+  \item 令 $Z$ 是 $G$ 的中心的任意子群，令 $|G:Z|=m$，令 $\psi$ 是 $Z$ 的特征标。证明
+  \[
+    \Ind_Z^G(\psi)(g)=
+    \begin{cases}
+      m\psi(g),& g\in Z,\\
+      0,& g\notin Z.
+    \end{cases}
+  \]
+  \item 令 $\varphi$ 是 $G$ 的子群 $H$ 的一个矩阵表示，并按定理 11 陈述中的显示公式对每个 $g\in G$ 定义矩阵 $\Phi(g)$。直接证明 $\Phi$ 是一个表示，即证明对所有 $x,y\in G$，都有 $\Phi(xy)=\Phi(x)\Phi(y)$。
+  \item 令 $G$ 是一个具有 Frobenius 核 $Q$ 的 Frobenius 群。假设 $Q$ 和 $G/Q$ 都是 Abel 群，但 $G$ 不是 Abel 群（即 $G\neq Q$）。令 $|Q|=n$，$|G:Q|=m$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $G/Q$ 是循环群，并证明 $G=QC$，其中 $C$ 是 $G$ 的某个循环子群，满足 $C\cap Q=1$（即 $G$ 是 $Q$ 与 $C$ 的半直积，且 $|C|=m$）。［令 $q$ 为 $n$ 的一个素因子，并令 $G/Q$ 通过共轭作用在初等 Abel $q$-群 $\{h\in Q\mid h^q=1\}$ 上。对这个 $\FF_qG/Q$-模的一个不可约组成因子应用第 18.1 节练习 14(e) 和 Frobenius 群的定义。］
+    \item 证明 $n$ 与 $m$ 互素。［若素数 $p$ 同时整除 $Q$ 的阶与指数，令 $P$ 为 $G$ 的 Sylow $p$-子群。则 $P\cap Q\normal P$，且 $P\cap Q$ 是 $Q$ 的 Sylow $p$-子群。考虑子群 $Z(P)\cap Q$ 在 $G$ 中的中心化子（由第 6.1 节定理 1，这个交非平凡）。］
+    \item 证明 $G$ 没有 $qp$ 阶元素，其中 $q$ 是 $n$ 的任意非平凡因子，$p$ 是 $m$ 的任意非平凡因子。［像命题 13 中那样论证。］
+    \item 证明 $G$ 中包含在 $Q$ 中的非恒等共轭类个数为 $(n-1)/m$，每个这样的类大小为 $m$。［像命题 13 中那样论证。］
+    \item 证明 $C$ 的两个不同元素在 $G$ 中不共轭。推出 $C$ 的非恒等元代表 $m-1$ 个不同的 $G$ 共轭类，且每个这样的类大小为 $n$。进一步推出 $G-Q$ 的每个元素都共轭于 $C$ 的某个元素，且 $G$ 有 $m+(n-1)/m$ 个共轭类。
+    \item 证明 $G'=Q$，并推出 $G$ 有 $m$ 个不同的次数 $1$ 特征标。［为证明 $Q\leq G'$，令 $C=\langle x\rangle$，并论证映射 $h\mapsto[h,x]=x^{-1}h^{-1}xh$ 是从 $Q$ 到 $Q$ 的同态，其核平凡，因而该映射满。］
+    \item 证明若 $\psi$ 是 $Q$ 的任意非主不可约特征标，则 $\Ind_Q^G(\psi)$ 是 $G$ 的一个不可约特征标。证明 $G$ 的每个次数 $>1$ 的不可约特征标都等于某个 $Q$ 的非主不可约特征标 $\psi$ 的 $\Ind_Q^G(\psi)$。推出 $G$ 的每个不可约特征标次数或者为 $1$，或者为 $m$，且次数 $m$ 的不可约特征标数为 $(n-1)/m$。［检查命题 13(3) 的证明在对相应数值作适当改变后，给出了这个更一般的结果。］
+  \end{enumerate}
+  \item 使用前一练习，显式写出
+  \[
+    \langle(1\ 2\ 3\ 4\ 5),(2\ 3\ 5\ 4)\rangle
+  \]
+  的特征标表，它是 $S_5$ 中 Sylow $5$-子群的正规化子（这个群是 $20$ 阶 Frobenius 群）。
+  \item 令 $N$ 是 $G$ 的正规子群，令 $\psi$ 是 $N$ 的特征标，令 $g\in G$。定义 $\psi^g$ 为
+  \[
+    \psi^g(h)=\psi(ghg^{-1})\qquad\text{对所有 }h\in N.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item 证明 $\psi^g$ 是 $N$ 的特征标（$\psi$ 与 $\psi^g$ 称为 $N$ 的 $G$-共轭特征标）。证明 $\psi^g$ 不可约当且仅当 $\psi$ 不可约。
+    \item 证明映射 $\psi\mapsto\psi^g$ 是 $G$ 在 $N$ 的特征标集合上的一个右群作用，并且 $N$ 包含在这个作用的核中。
+    \item 证明若 $\psi_1$ 与 $\psi_2$ 是 $N$ 的 $G$-共轭特征标，则 $\Ind_N^G(\psi_1)=\Ind_N^G(\psi_2)$。还证明，若 $\psi_1$ 与 $\psi_2$ 是 $N$ 的不是 $G$-共轭的特征标，则 $\Ind_N^G(\psi_1)\neq\Ind_N^G(\psi_2)$。［使用命题 13(3) 证明中的论证。］
+  \end{enumerate}
+  \item 证明若 $G=A_4$ 且 $N=V_4$ 是它的 Sylow $2$-子群，则 $N$ 的任意两个非主不可约特征标都是 $G$-共轭的（参见前一练习）。
+  \item 令 $G=D_{2n}$ 由其通常的生成元与关系给出。证明若 $\psi$ 是 $H=\langle r\rangle$ 的任意次数 $1$ 特征标，且 $\psi\neq\psi^s$，则 $\Ind_H^G(\psi)$ 是 $D_{2n}$ 的一个不可约特征标。证明 $D_{2n}$ 的每个不可约特征标都是 $\langle r\rangle$ 的某个次数 $1$ 特征标的诱导特征标。
+  \item 证明命题 14 的两个部分。
+  \item 证明下列结果，称为 Frobenius 互反律：令 $H<G$，令 $\psi$ 是 $H$ 的任意特征标，令 $\chi$ 是 $G$ 的任意特征标。则
+  \[
+    (\psi,\chi|_H)_H=(\Ind_H^G(\psi),\chi)_G.
+  \]
+  ［用诱导特征标 $\Ind_H^G(\psi)$ 的公式展开右端，或仿照第 17.2 节中 Shapiro 引理的证明。］
+  \item 假设 $G$ 是一个 $3^3\cdot7\cdot13\cdot409$ 阶单群，其 Sylow 子群及其正规化子由本节性质 (1) 到 (5) 描述。证明由 $G$ 在子群 $N_4$ 的左陪集上的作用得到的次数 $819$ 置换特征标分解为 $\chi_0+\gamma+\gamma'$，其中 $\chi_0$ 是 $G$ 的主特征标，$\gamma$ 与 $\gamma'$ 是 $G$ 的不同次数 $409$ 不可约特征标。［使用第 18.3 节练习 9 说明这个置换特征标 $\pi$ 满足 $\|\pi\|^2=3$。］
+\end{enumerate}

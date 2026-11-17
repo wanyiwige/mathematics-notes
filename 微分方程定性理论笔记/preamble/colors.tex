@@ -1,0 +1,71 @@
+% preamble/colors.tex
+% ============================================
+% 配色方案：绛紫 + 香槟金 (Deep Purple & Champagne Gold)
+% 主色：绛紫 (Purple)  —— 章节彩带、定理框架
+% 强调：香槟金 (Gold)   —— 定义、装饰线、点缀
+% 辅助：淡紫 / 淡金     —— 辅助盒子、背景
+% ============================================
+
+% ---- 绛紫系（主结构色）----
+\definecolor{PurpleDeep}{RGB}{45, 31, 54}      % #2D1F36 — 深绛紫
+\definecolor{PurpleMain}{RGB}{59, 42, 69}      % #3B2A45 — 主绛紫
+\definecolor{PurpleMed}{RGB}{91, 63, 102}      % #5B3F66 — 中绛紫
+\definecolor{PurpleLight}{RGB}{139, 111, 149}  % #8B6F95 — 浅绛紫
+\definecolor{PurplePale}{RGB}{240, 234, 240}   % #F0EAF0 — 淡紫
+
+% ---- 香槟金系（强调色）----
+\definecolor{GoldDeep}{RGB}{156, 123, 77}      % #9C7B4D
+\definecolor{GoldMain}{RGB}{201, 168, 106}     % #C9A86A
+\definecolor{GoldMed}{RGB}{223, 198, 148}      % #DFC694
+\definecolor{GoldLight}{RGB}{234, 215, 178}    % #EAD7B2
+\definecolor{GoldPale}{RGB}{245, 232, 208}     % #F5E8D0
+
+% ---- 兼容别名（让 cover.tex、chapter.title.tex、part.title.tex 等无需改动）----
+\colorlet{BlueMain}{PurpleMain}
+\colorlet{BlueDark}{PurpleDeep}
+\colorlet{BlueLight}{PurpleLight}
+\colorlet{BlueMed}{PurpleMed}
+\colorlet{BluePale}{PurplePale}
+
+\colorlet{GreenMain}{PurpleMain}
+\colorlet{GreenDark}{PurpleDeep}
+\colorlet{GreenLight}{PurpleLight}
+\colorlet{GreenMed}{PurpleMed}
+\colorlet{GreenPale}{PurplePale}
+
+\colorlet{VerdeMain}{GoldMain}
+\colorlet{VerdeDark}{GoldDeep}
+\colorlet{VerdeLight}{GoldLight}
+\colorlet{VerdeMed}{GoldMed}
+\colorlet{VerdePale}{GoldPale}
+
+\colorlet{TealMain}{GoldMain!85!white}
+\colorlet{TealDark}{GoldDeep}
+\colorlet{TealLight}{GoldLight}
+\colorlet{TealPale}{GoldPale!90!white}
+
+\colorlet{LogicBlue}{PurpleMain}
+\colorlet{LogicDarkBlue}{PurpleDeep}
+\colorlet{LogicLightBlue}{PurpleLight}
+
+\colorlet{GreenMainAlias}{PurpleMain}
+\colorlet{OrangeMain}{PurpleMain!85}
+\colorlet{SlateMain}{PurpleMain}
+\colorlet{SlateMed}{PurpleMed}
+\colorlet{SlateDark}{PurpleDeep}
+\colorlet{SlateLight}{PurpleLight}
+
+\colorlet{mainblue}{PurpleMain}
+\colorlet{mediumblue}{PurpleDeep}
+\colorlet{lightblue}{PurpleLight}
+\colorlet{grayblue}{PurpleMain!50}
+\colorlet{brightblue}{GoldMain}
+\colorlet{paleblue}{PurpleMain!5}
+
+\lstset{
+	backgroundcolor=\color{PurpleMain!4},
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{PurpleMain},
+	commentstyle=\color{PurpleMain!40},
+	escapeinside={(*@}{@*)},
+}

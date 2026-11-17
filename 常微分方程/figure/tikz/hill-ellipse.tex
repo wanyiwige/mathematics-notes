@@ -1,0 +1,12 @@
+% TikZ mathematical illustration; compiled with the main document.
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.25cm,y=.85cm]
+ \draw[->,gray] (-1.8,0)--(2.1,0) node[right]{$x$（径向）};
+ \draw[->,gray] (0,-4.6)--(0,.8) node[above]{$y$（切向）};
+ \draw[GreenMain,thick,domain=0:360,samples=100,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GreenMain,->,thick,domain=30:50,samples=12,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GreenMain,->,thick,domain=210:230,samples=12,variable=\t] plot ({sin(\t)},{2*(cos(\t)-1)});
+ \draw[GoldMain,dashed] (-1,-2)--(1,-2);
+ \fill[GoldMain] (0,-2) circle(1.7pt) node[above left]{$(0,-2)$};
+ \fill (0,0) circle(1.7pt) node[above left]{空间站};
+ \node at (3.1,-1.5){$x=\sin t$};\node at (3.1,-2.3){$y=2(\cos t-1)$};
+\end{tikzpicture}

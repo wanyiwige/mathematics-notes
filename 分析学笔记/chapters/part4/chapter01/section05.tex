@@ -1,0 +1,878 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第1章：Fourier级数的基本性质
+% 节：1.5 Ces\`aro 和 Abel 求和：Fourier 级数的应用
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{Ces\`aro 和 Abel 求和：Fourier 级数的应用}
+
+因为 Fourier 级数可能在个别点处发散,为了克服这种缺点,我们寻求通过另一种方式来表示极限
+\[
+\lim_{N\to\infty}S_N(f)=f.
+\]
+
+假定给出一个复数级数
+\[
+c_0+c_1+c_2+\cdots=\sum_{k=0}^{\infty}c_k.
+\]
+定义第 $n$ 项和 $s_n$ 为
+\[
+s_n=\sum_{k=0}^{n}c_k.
+\]
+\begin{definition}
+	我们定义前 $N$ 项和的平均值
+\[
+\sigma_N=\frac{s_0+s_1+\cdots+s_{N-1}}{N}
+\]
+
+量 $\sigma_N$ 被称为级数 $\{s_n\}$ 的 $N$ 次 Ces\`aro 平均,或级数 $\sum\limits_{k=0}^{\infty}c_k$ 的 $N$ 次 Ces\`aro 和。如果当 $N$ 趋于无穷时,$\sigma_N$ 收敛于一个极限 $s$,我们就说级数是 Ces\`aro 可和的,并称 $s$ 为它的 Ces\`aro 和。在函数级数的情形下,我们关心的是级数是逐点收敛的还是一致收敛的。
+
+\end{definition}
+我们早先提及 Dirichlet 核不属于好核的类。但它们的平均是性质很好的核。我们用对 Fourier 级数的 $N$ 次 Ces\`aro 和,具体定义如下：
+\begin{definition}
+	\[
+\sigma_N(f)(x)=\frac{S_0(f)(x)+\cdots+S_{N-1}(f)(x)}{N}.
+\]
+因为 $S_N(f)=f\ast D_N$,故有
+\[
+\sigma_N(f)(x)=(f\ast F_N)(x),
+\]
+其中 $F_N(x)$ 是 $N$ 次 Fej\'er 核,定义如下：
+\[
+F_N(x)=\frac{D_0(x)+\cdots+D_{N-1}(x)}{N}=\sum_{\abs{k}\leqslant N}(1-\frac{|k|}{N})e^{ikx}.
+\]
+\end{definition}
+
+\begin{lemma}
+	可以得到
+	\[
+	F_N(x)=\frac1N\frac{\sin^2(Nx/2)}{\sin^2(x/2)},
+	\]
+	且 Fej\'er 核是好核。
+\end{lemma}
+
+\begin{proof}
+	由定义,
+	\[
+	\begin{aligned}
+		F_N(x)
+		&=\frac1N\sum_{k=0}^{N-1}D_k(x)
+		=\frac1N\sum_{k=0}^{N-1}\sum_{n=-k}^{k}e^{inx} \\
+		&=\frac1N\sum_{|n|\leq N-1}(N-|n|)e^{inx}.
+	\end{aligned}
+	\]
+	另一方面,
+	\[
+	\begin{aligned}
+		\left|\sum_{j=0}^{N-1}e^{ijx}\right|^2
+		&=\left(\sum_{j=0}^{N-1}e^{ijx}\right)
+		\left(\sum_{k=0}^{N-1}e^{-ikx}\right) \\
+		&=\sum_{|n|\leq N-1}(N-|n|)e^{inx}.
+	\end{aligned}
+	\]
+	于是
+	\[
+	F_N(x)=\frac1N\left|\sum_{j=0}^{N-1}e^{ijx}\right|^2
+	=\frac1N\left|\frac{1-e^{iNx}}{1-e^{ix}}\right|^2
+	=\frac1N\frac{\sin^2(Nx/2)}{\sin^2(x/2)}.
+	\]
+	由上式可见 $F_N(x)\geq0$。又因为 $F_N$ 的第 $0$ 个 Fourier 系数为 $1$,所以
+	\[
+	\frac1{2\pi}\int_{-\pi}^{\pi}F_N(x)\dd x=1.
+	\]
+	因此
+	\[
+	\int_{-\pi}^{\pi}|F_N(x)|\dd x=\int_{-\pi}^{\pi}F_N(x)\dd x=2\pi.
+	\]
+	最后,给定 $\delta>0$,当 $\delta\leq |x|\leq\pi$ 时,$\sin^2(x/2)$ 有正的下界,于是
+	\[
+	0\leq F_N(x)\leq \frac{C_\delta}{N}.
+	\]
+	故
+	\[
+	\int_{\delta\leq |x|\leq\pi}F_N(x)\dd x\to0.
+	\]
+	所以 $\{F_N\}$ 是好核。
+\end{proof}
+
+\begin{theorem}
+	如果 $f$ 在圆周上可积,那么 $f$ 的 Fourier 级数在 $f$ 的每个连续点是 Ces\`aro 和于 $f$ 的。并且,如果 $f$ 在圆周上连续,那么 $f$ 的 Fourier 级数是一致 Ces\`aro 和于 $f$ 的。
+\end{theorem}
+
+\begin{proof}
+	由上一引理,$F_N$ 是好核。又因为
+	\[
+	\sigma_N(f)(x)=(f\ast F_N)(x),
+	\]
+	所以由好核逼近定理立即得到结论。
+\end{proof}
+
+\begin{corollary}
+	若 $f$ 在圆周上可积且对所有 $n$,有 $\widehat f(n)=0$,则在 $f$ 的所有连续点都有
+	\[
+	f=0.
+	\]
+\end{corollary}
+
+\begin{proof}
+	这显然是成立的。因为 $f$ 的所有部分和都是零,所以其 Ces\`aro 平均也是零。由上一定理,在 $f$ 的连续点处,Ces\`aro 平均收敛到 $f$,于是 $f=0$。
+\end{proof}
+
+\begin{corollary}
+	圆周上的连续函数可以被三角多项式一致逼近。更精确地说,给定任意 $\eps>0$,存在三角多项式 $P$,使得对任意的 $-\pi\leq x\leq\pi$,
+	\[
+	|f(x)-P(x)|<\eps
+	\]
+	成立。
+\end{corollary}
+
+\begin{proof}
+	由于 Fourier 部分和是三角多项式,所以 Ces\`aro 平均 $\sigma_N(f)$ 也是三角多项式,从而直接由上一定理的一致收敛性得到结论。这个结论就是周期函数的 Weierstrass 逼近定理。
+\end{proof}
+
+\begin{definition}
+	如果对任意的 $0<r<1$,级数
+\[
+A(r)=\sum_{k=0}^{\infty}c_k r^k
+\]
+收敛,且
+\[
+\lim_{r\to1}A(r)=s,
+\]
+则复数 $s$ 称为级数 $\sum\limits_{k=0}^{\infty}c_k$ 的 Abel 求和,$A(r)$ 称为此级数的 Abel 平均。如果这个级数收敛于 $s$,那么它是 Abel 和于 $s$
+\end{definition}
+ 另外,Abel 和方法甚至比 Ces\`aro 方法更强。也就是说,当级数是 Ces\`aro 和时,它也是 Abel 和于相同的数。然而,如果考虑级数
+\[
+1-2+3-4+5-\cdots=\sum_{k=0}^{\infty}(-1)^k(k+1),
+\]
+由于
+\[
+A(r)=\sum_{k=0}^{\infty}(-1)^k(k+1)r^k=\frac1{(1+r)^2},
+\]
+故可以证明它是 Abel 和于 $1/4$,但这个级数不是 Ces\`aro 和的。
+\begin{proposition}
+	Abel 求和要比一般求和以及 Ces\`aro 求和更强,具体如下
+	
+	\begin{enumerate}
+		\item[(a)] 若复数级数$\sum\limits_{n=1}^{\infty}c_n$
+		收敛于一个有限数 $s$,则它的 Abel 和为 $s$
+		\item[(b)] 存在 Abel 可求和但是不收敛的级数。
+		\item[(c)] 类似地,证明：若$\sum\limits_{n=1}^{\infty}c_n$的 Ces\`aro 和为 $\sigma$,则它的 Abel 和也为 $\sigma$。
+		\item[(d)] 给出一个有 Abel 和,但是 Ces\`aro 和发散的例子。
+	\end{enumerate}
+	这些结果可以总结为
+	\[
+	\text{收敛}
+	\Longrightarrow
+	\text{Ces\`aro 可求和}
+	\Longrightarrow
+	\text{Abel 可求和},
+	\]
+	其中的箭头均无法逆向成立。
+\end{proposition}
+
+\begin{solution}
+	\textbf{(a)}
+	
+	
+	先假设$ \sum\limits_{n=1}^{\infty}c_n=0.$令$s_N=\sum\limits_{n=1}^{N}c_n,$则 $s_N\to0$,从而数列 $\{s_N\}$ 有界。
+	
+	注意到
+	\[
+	c_n=s_n-s_{n-1},
+	\qquad s_0=0,
+	\]
+	所以
+	\[\sum_{n=1}^{N}c_nr^n
+	=\sum_{n=1}^{N}(s_n-s_{n-1})r^n
+	=\sum_{n=1}^{N}s_nr^n
+	-r\sum_{n=1}^{N-1}s_nr^n
+	=(1-r)\sum_{n=1}^{N}s_nr^n+s_Nr^{N+1}
+	\]
+	
+	固定 $0<r<1$。由于 $\{s_N\}$ 有界,
+	\[
+	s_Nr^{N+1}\to0.
+	\]
+	令 $N\to\infty$,得到
+	\[
+	\sum_{n=1}^{\infty}c_nr^n
+	=(1-r)\sum_{n=1}^{\infty}s_nr^n.
+	\]
+	
+	下面证明右端在 $r\to1^-$ 时趋于 $0$。给定 $\varepsilon>0$,由 $s_n\to0$,存在正整数 $N_0$,使得当 $n>N_0$ 时,
+	\[
+	|s_n|<\varepsilon.
+	\]
+	于是
+	\[
+	\begin{aligned}
+		(1-r)\left|\sum_{n=1}^{\infty}s_nr^n\right|
+		&\leq
+		(1-r)\sum_{n=1}^{N_0}|s_n|r^n
+		+(1-r)\sum_{n=N_0+1}^{\infty}|s_n|r^n\\
+		&\leq
+		(1-r)\sum_{n=1}^{N_0}|s_n|r^n
+		+\varepsilon(1-r)\sum_{n=N_0+1}^{\infty}r^n.
+	\end{aligned}
+	\]
+	当 $r\to1^-$ 时,第一项趋于 $0$,而第二项满足
+	\[
+	\varepsilon(1-r)\sum_{n=N_0+1}^{\infty}r^n
+	=\varepsilon r^{N_0+1}
+	\leq\varepsilon.
+	\]
+	因此
+	\[
+	\lim_{r\to1^-}(1-r)\sum_{n=1}^{\infty}s_nr^n=0.
+	\]
+	所以
+	\[
+	\lim_{r\to1^-}\sum_{n=1}^{\infty}c_nr^n=0.
+	\]
+	
+	综上,若
+	\[
+	\sum_{n=1}^{\infty}c_n=s,
+	\]
+	则该级数的 Abel 和也是 $s$。
+	再说明为什么只需考虑 $s=0$ 的情形。若
+	\[
+	\sum_{n=1}^{\infty}c_n=s,
+	\]
+	定义
+	\[
+	d_1=c_1-s,\qquad d_n=c_n\quad(n\geq2).
+	\]
+	则
+	\[
+	\sum_{n=1}^{\infty}d_n=0,
+	\]
+	并且
+	\[
+	\sum_{n=1}^{\infty}c_nr^n
+	=\sum_{n=1}^{\infty}d_nr^n+sr.
+	\]
+	因此,只要证明和为 $0$ 的收敛级数的 Abel 和为 $0$,便有
+	\[
+	\lim_{r\to1^-}\sum_{n=1}^{\infty}c_nr^n
+	=0+s=s.
+	\]
+	
+	\textbf{(b)}取	$c_n=(-1)^n.$相应的级数为$-1+1-1+1-\cdots.$其部分和满足
+	\[
+	s_{2m}=0,\qquad s_{2m-1}=-1,
+	\]
+	因此该级数不收敛。
+	
+	但是,当 $0<r<1$ 时,
+	\[	\sum_{n=1}^{\infty}c_nr^n
+	=\sum_{n=1}^{\infty}(-1)^nr^n
+	=-r+r^2-r^3+\cdots
+	=-\frac{r}{1+r}.
+	\]
+	所以
+	\[
+	\lim_{r\to1^-}\sum_{n=1}^{\infty}c_nr^n
+	=-\frac12.
+	\]
+	因此该级数虽然不收敛,却是 Abel 可求和的,且 Abel 和为$-\frac12.$
+	
+	事实上,该级数也是 Ces\`aro 可求和的。因为
+	\[
+	\sigma_N=\frac{s_1+\cdots+s_N}{N},
+	\]
+	所以
+	\[
+	\sigma_{2m}
+	=\frac{-m}{2m}
+	=-\frac12,
+	\]
+	而
+	\[
+	\sigma_{2m-1}
+	=\frac{-m}{2m-1}
+	\to-\frac12.
+	\]
+	故其 Ces\`aro 和也为 $-\dfrac12$。
+	
+	\textbf{(c)}设
+	\[
+	s_n=c_1+\cdots+c_n,
+	\qquad
+	\sigma_n=\frac{s_1+\cdots+s_n}{n},
+	\]
+	并假设$\sigma_n\to\sigma.$
+	
+	类似于第 (a) 问,只需考虑 $\sigma=0$ 的情形。事实上,若定义
+	\[
+	d_1=c_1-\sigma,\qquad d_n=c_n\quad(n\geq2),
+	\]
+	则新级数的部分和为$t_n=s_n-\sigma,$其 Ces\`aro 平均为
+	\[
+	\frac{t_1+\cdots+t_n}{n}
+	=\sigma_n-\sigma\to0.
+	\]
+	同时
+	\[
+	\sum_{n=1}^{\infty}c_nr^n
+	=\sum_{n=1}^{\infty}d_nr^n+\sigma r.
+	\]
+	因此只需证明 Ces\`aro 和为 $0$ 时,Abel 和也为 $0$。
+	
+	下面假设$\sigma_n\to0.$由$n\sigma_n=s_1+\cdots+s_n$可得
+	\[
+	s_n=n\sigma_n-(n-1)\sigma_{n-1},
+	\]
+	其中规定 $\sigma_0=0$。
+	
+	于是
+	\[\sum_{n=1}^{\infty}s_nr^n
+	=\sum_{n=1}^{\infty}
+	\bigl(n\sigma_n-(n-1)\sigma_{n-1}\bigr)r^n
+	=\sum_{n=1}^{\infty}n\sigma_nr^n
+	-r\sum_{n=1}^{\infty}n\sigma_nr^n
+	=(1-r)\sum_{n=1}^{\infty}n\sigma_nr^n.
+	\]
+	由第 (a) 问中的分部求和公式,
+	\[
+	\sum_{n=1}^{\infty}c_nr^n
+	=(1-r)\sum_{n=1}^{\infty}s_nr^n.
+	\]
+	因此
+	\[
+	\sum_{n=1}^{\infty}c_nr^n
+	=(1-r)^2\sum_{n=1}^{\infty}n\sigma_nr^n.
+	\]
+	
+	给定 $\varepsilon>0$,由 $\sigma_n\to0$,存在正整数 $N_0$,使得当 $n>N_0$ 时,
+	\[
+	|\sigma_n|<\varepsilon.
+	\]
+	于是
+	\[(1-r)^2
+	\left|\sum_{n=1}^{\infty}n\sigma_nr^n\right|
+	\leq
+	(1-r)^2\sum_{n=1}^{N_0}n|\sigma_n|r^n
+	+
+	\varepsilon(1-r)^2
+	\sum_{n=N_0+1}^{\infty}nr^n.\]
+	当 $r\to1^-$ 时,第一项趋于 $0$。又因为
+	\[
+	\sum_{n=1}^{\infty}nr^n=\frac{r}{(1-r)^2},
+	\]
+	所以第二项不超过
+	\[
+	\varepsilon(1-r)^2
+	\sum_{n=1}^{\infty}nr^n
+	=\varepsilon r
+	\leq\varepsilon.
+	\]
+	故
+	\[
+	\lim_{r\to1^-}
+	(1-r)^2\sum_{n=1}^{\infty}n\sigma_nr^n=0.
+	\]
+	
+	因此,当 Ces\`aro 和为 $0$ 时,Abel 和也为 $0$。由前面的证明可知,若级数的 Ces\`aro 和为 $\sigma$,则其 Abel 和也是 $\sigma$。
+	
+	\textbf{(d)}取$c_n=(-1)^{n-1}n,$即考虑级数$	1-2+3-4+5-\cdots.$当 $0<r<1$ 时,由
+	\[
+	\sum_{n=0}^{\infty}(-r)^n=\frac{1}{1+r}
+	\]
+	两边对 $r$ 求导,得到
+	\[
+	\sum_{n=1}^{\infty}(-1)^{n-1}nr^{n-1}
+	=\frac{1}{(1+r)^2}.
+	\]
+	两边乘以 $r$,得到
+	\[
+	\sum_{n=1}^{\infty}(-1)^{n-1}nr^n
+	=\frac{r}{(1+r)^2}.
+	\]
+	因此
+	\[
+	\lim_{r\to1^-}
+	\sum_{n=1}^{\infty}(-1)^{n-1}nr^n
+	=\frac14.
+	\]
+	所以该级数是 Abel 可求和的,且 Abel 和为$\dfrac14.$
+	
+	
+	下面证明它不是 Ces\`aro 可求和的。首先证明：若级数 $\sum c_n$ 是 Ces\`aro 可求和的,则$\dfrac{c_n}{n}\to0.$
+	若 $\sigma_n\to\sigma$,则
+	\[
+	s_n=n\sigma_n-(n-1)\sigma_{n-1},
+	\]
+	从而
+	\[
+	\frac{s_n}{n}
+	=\sigma_n-\frac{n-1}{n}\sigma_{n-1}
+	\to\sigma-\sigma=0.
+	\]
+	又因为
+	\[
+	c_n=s_n-s_{n-1},
+	\]
+	所以
+	\[
+	\frac{c_n}{n}
+	=\frac{s_n}{n}
+	-\frac{n-1}{n}\frac{s_{n-1}}{n-1}
+	\to0.
+	\]
+	
+	但是对于$c_n=(-1)^{n-1}n,$有	$\dfrac{c_n}{n}=(-1)^{n-1},$
+	
+	它不趋于 $0$。因此级数$1-2+3-4+5-\cdots$不是 Ces\`aro 可求和的。
+	
+	综上,
+	\[
+	\boxed{
+		\text{收敛}
+		\Longrightarrow
+		\text{Ces\`aro 可求和}
+		\Longrightarrow
+		\text{Abel 可求和}
+	}
+	\]
+	且两个箭头均不能反向成立。
+\end{solution}
+下面介绍Tauber的一个定理,对上面的$c_n$
+,添加一个条件后,上面的箭头就是可逆的
+\begin{proposition}
+	若$\sum c_n$的Ces\'aro和为$\sigma$,且$c_n = o(\dfrac{1}{n})$,则$\sum c_n$收敛与$\sigma$,对Abel和,有同样的结论
+\end{proposition}
+\begin{proof}
+	考虑\[s_n- \sigma_n =\frac{(n-1)c_n +\cdots+c_2}{n}\]
+	由$c_n = o(\dfrac{1}{n})$,$\forall \eps >0,\exists N_0,\text{使得}\forall n>N_0,c_n<\dfrac{\eps}{n}$
+	那么
+	\[s_n- \sigma_n =\frac{(n-1)c_n +\cdots+c_2}{n} =\frac{c_2+\cdots+(N_0-1)c_{N_0}}{n}+\frac{N_0 c_{N_0+1}\cdots+(n-1)c_n}{n}\]
+	对第一项,存在$N>N_0$使,$\forall n>N$,$ \dfrac{c_2+\cdots+(N_0-1)c_{N_0}}{n}<\dfrac{\eps}{2}$对第二项
+	\[\frac{N_0 c_{N_0+1}\cdots+(n-1)c_n}{n}<(1-\frac{N_0}{n})\frac{\eps}{2}\],因此
+	\[s_n- \sigma_n< c\eps\]
+	从而\[\lim\limits_{n\to \infty}s_n- \sigma_n =0\]
+	对Abel和,类似的,我们考虑\[\sum_{n=1}^{N}c_n-\sum_{n=1}^{N}c_n r^n\]并且不妨取$r=1-\dfrac{1}{N}$
+	\[\sum_{n=1}^{N}c_n-\sum_{n=1}^{N}c_n r^n<\sum_{n=1}^{N}c_n\frac{n}{N}\]类似于上面的方法,不难得出\[\sum_{n=1}^{N}c_n-\sum_{n=1}^{N}c_n r^n\to0\]
+\end{proof}
+
+
+\begin{definition}
+	定义函数
+\[
+f(\theta)\sim\sum_{n=-\infty}^{\infty}a_ne^{in\theta}
+\]
+的 Abel 平均为
+\[
+A_r(f)(\theta)=\sum_{n=-\infty}^{\infty}r^{|n|}a_ne^{in\theta}.
+\]
+\end{definition}
+因为指数 $n$ 取正值和负值,很自然地出现 $r^{|n|}$。并且当 $r>0$ 时,$c_n=a_ne^{in\theta}+a_{-n}e^{-in\theta}$,所以 Fourier 级数的 Abel 平均对应于普通级数的 Abel 平均的定义。
+
+因为 $f$ 是可积的,$|a_n|$ 一致有界,所以对每个 $0\leq r<1$,$A_r(f)$ 绝对收敛且一致收敛。正如 Ces\`aro 平均的情形,关键是这些 Abel 平均可以写成卷积的形式,即
+\[
+A_r(f)(\theta)=(f\ast P_r)(\theta),
+\]
+其中 $P_r(\theta)$ 是 Poisson 核,定义如下：
+
+	$$P_r(\theta)=\sum_{n=-\infty}^{\infty}r^{|n|}e^{in\theta}.$$
+
+事实上,有
+\[
+\begin{aligned}
+	A_r(f)(\theta)
+	&=\sum_{n=-\infty}^{\infty}r^{|n|}a_ne^{in\theta} \\
+	&=\sum_{n=-\infty}^{\infty}r^{|n|}
+	\left(\frac1{2\pi}\int_{-\pi}^{\pi}f(\varphi)e^{-in\varphi}\dd\varphi\right)e^{in\theta} \\
+	&=\frac1{2\pi}\int_{-\pi}^{\pi}f(\varphi)
+	\left(\sum_{n=-\infty}^{\infty}r^{|n|}e^{in(\theta-\varphi)}\right)\dd\varphi,
+\end{aligned}
+\]
+其中,交换积分和求和顺序是因为该级数一致收敛。
+
+\begin{lemma}
+	如果 $0\leq r<1$,那么有
+	\[
+	P_r(\theta)=\frac{1-r^2}{1-2r\cos\theta+r^2}.
+	\]
+	当 $r\to1$ 时,Poisson 核是好核。
+\end{lemma}
+
+\begin{proof}
+	等式
+	\[
+	P_r(\theta)=\frac{1-r^2}{1-2r\cos\theta+r^2}
+	\]
+	已经在前面关于 Poisson 核的例子中给出。注意到由这个表达式可知 $P_r(\theta)>0$。此外,由于 $P_r$ 的第 $0$ 个 Fourier 系数为 $1$,得到
+	\[
+	\frac1{2\pi}\int_{-\pi}^{\pi}P_r(\theta)\dd\theta=1.
+	\]
+	因此
+	\[
+	\int_{-\pi}^{\pi}|P_r(\theta)|\dd\theta=2\pi.
+	\]
+	最后,给定 $\delta>0$。当 $1/2\leq r\leq1$ 且 $\delta\leq |\theta|\leq\pi$ 时,存在常数 $c_\delta>0$,使得
+	\[
+	1-2r\cos\theta+r^2\geq c_\delta.
+	\]
+	于是
+	\[
+	0\leq P_r(\theta)\leq \frac{1-r^2}{c_\delta}.
+	\]
+	当 $r\to1$ 时,上式右边趋于 $0$,故
+	\[
+	\int_{\delta\leq |\theta|\leq\pi}P_r(\theta)\dd\theta\to0.
+	\]
+	所以当 $r\to1$ 时,Poisson 核构成好核。
+\end{proof}
+
+\begin{theorem}
+	在圆周上可积函数的 Fourier 级数在每个连续点 Abel 和于 $f$。此外,如果 $f$ 在圆周上连续,那么 $f$ 的 Fourier 级数一致 Abel 和于 $f$。
+\end{theorem}
+
+\begin{proof}
+	由上一引理,$P_r$ 在 $r\to1$ 时构成好核。又因为
+	\[
+	A_r(f)(\theta)=(f\ast P_r)(\theta),
+	\]
+	所以由好核逼近定理可得结论。
+\end{proof}
+下面,我们考虑$f$在$\theta$处不连续的情况,我们只考虑跳跃点,即第一类间断点
+\begin{proposition}
+
+	\begin{enumerate}
+		\item[(a)] 若 $f$ 在 $\theta$ 处是跃点,则
+		\[
+		\lim_{r\to1^-}A_r(f)(\theta)
+		=\frac{f(\theta^+)+f(\theta^-)}{2}.
+		\]
+		
+		\item[(b)] 类似的：若 $f$ 在 $\theta$ 处有跳跃间断,
+		则 $f$ 在 $\theta$ 处的 Fourier 级数的 Ces\`aro 和为
+		\[
+		\frac{f(\theta^+)+f(\theta^-)}{2}.
+		\]
+	\end{enumerate}
+	
+\end{proposition}
+
+
+\begin{proof}
+	记
+	\[
+	\alpha=f(\theta^+),\qquad
+	\beta=f(\theta^-),\qquad
+	L=\frac{\alpha+\beta}{2}.
+	\]
+	
+	\textbf{(a)}
+	\[
+	A_r(f)(\theta)
+	=(P_r*f)(\theta)
+	=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+	f(\theta-t)P_r(t)\dd t,
+	\]
+	其中 Poisson 核为
+	\[
+	P_r(t)=\frac{1-r^2}{1-2r\cos t+r^2}.
+	\]
+	
+	由于 $P_r$ 是偶函数,且
+	\[
+	\frac{1}{2\pi}\int_{-\pi}^{\pi}P_r(t)\dd t=1,
+	\]
+	所以
+	\[
+	\frac{1}{2\pi}\int_{-\pi}^{0}P_r(t)\dd t
+	=
+	\frac{1}{2\pi}\int_{0}^{\pi}P_r(t)\dd t
+	=\frac12.
+	\]
+	
+	在积分区间 $[-\pi,0]$ 上作变量代换 $t\mapsto-t$,并利用
+	$P_r(-t)=P_r(t)$,可得
+	\[
+	\begin{aligned}
+		A_r(f)(\theta)
+		&=\frac{1}{2\pi}\int_0^\pi
+		f(\theta-t)P_r(t)\dd t
+		+\frac{1}{2\pi}\int_0^\pi
+		f(\theta+t)P_r(t)\dd t\\
+		&=\frac{1}{2\pi}\int_0^\pi
+		\bigl(f(\theta-t)+f(\theta+t)\bigr)P_r(t)\dd t.
+	\end{aligned}
+	\]
+	
+	另一方面,由
+	\[
+	\frac{1}{2\pi}\int_0^\pi P_r(t)\dd t=\frac12,
+	\]
+	有
+	\[
+	L
+	=\frac{\alpha+\beta}{2}
+	=\frac{1}{2\pi}\int_0^\pi
+	(\alpha+\beta)P_r(t)\dd t.
+	\]
+	因此
+	\[
+	\begin{aligned}
+		A_r(f)(\theta)-L
+		&=\frac{1}{2\pi}\int_0^\pi
+		\bigl[
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\bigr]P_r(t)\dd t.
+	\end{aligned}
+	\]
+	
+	给定 $\varepsilon>0$。由$\lim\limits_{\substack{t\to0\\t>0}}f(\theta+t)=\alpha,
+	\lim\limits_{\substack{t\to0\\t>0}}f(\theta-t)=\beta,$
+	存在 $\delta>0$,使得当 $0<t<\delta$ 时,
+	\[
+	|f(\theta+t)-\alpha|<\varepsilon,
+	\qquad
+	|f(\theta-t)-\beta|<\varepsilon.
+	\]
+	
+	将积分分为 $(0,\delta)$ 和 $(\delta,\pi)$ 两部分。对于第一部分,
+	由 $P_r(t)\geq0$,有
+	\[\frac{1}{2\pi}\int_0^\delta
+		\left|
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\right|P_r(t)\dd t\leq
+		\frac{2\varepsilon}{2\pi}
+		\int_0^\delta P_r(t)\dd t\leq
+		\frac{2\varepsilon}{2\pi}
+		\int_0^\pi P_r(t)\dd t
+		=\varepsilon.
+	\]
+	
+	对于第二部分,令
+	\[
+	C_\delta
+	=
+	\int_\delta^\pi
+	\bigl(
+	|f(\theta+t)|+|f(\theta-t)|+|\alpha|+|\beta|
+	\bigr)\dd t.
+	\]
+	由于 $f$ 可积,故 $C_\delta<\infty$。于是
+	\[\frac{1}{2\pi}\int_\delta^\pi
+		\left|
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\right|P_r(t)\dd t\leq
+		\frac{C_\delta}{2\pi}
+		\sup_{\delta\leq t\leq\pi}P_r(t).\]
+	
+	当 $\delta\leq t\leq\pi$ 时,
+	\[
+	1-2r\cos t+r^2
+	=(1-r)^2+2r(1-\cos t)
+	\geq 2r(1-\cos\delta).
+	\]
+	因此,当 $r$ 充分接近 $1$ 时,
+	\[
+	P_r(t)
+	\leq
+	\frac{1-r^2}{2r(1-\cos\delta)},
+	\qquad \delta\leq t\leq\pi.
+	\]
+	从而
+	\[
+	\sup_{\delta\leq t\leq\pi}P_r(t)\to0,
+	\qquad r\to1^-.
+	\]
+	
+	由此可得
+	\[
+	\limsup_{r\to1^-}|A_r(f)(\theta)-L|
+	\leq\varepsilon.
+	\]
+	由于 $\varepsilon>0$ 任意,所以
+	\[
+	\lim_{r\to1^-}A_r(f)(\theta)
+	=L
+	=\frac{f(\theta^+)+f(\theta^-)}{2}.
+	\]
+
+	
+	\textbf{(b)}
+	由 Fej\'er 平均的卷积表示,
+	\[
+	\sigma_N(f)(\theta)
+	=(F_N*f)(\theta)
+	=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+	f(\theta-t)F_N(t)\dd t,
+	\]
+	其中 Fej\'er 核为
+	\[
+	F_N(t)
+	=\frac{1}{N}
+	\left(
+	\frac{\sin(Nt/2)}{\sin(t/2)}
+	\right)^2.
+	\]
+	
+	Fej\'er 核具有下列性质：
+	\[
+	F_N(t)\geq0,\qquad F_N(-t)=F_N(t),
+	\]
+	并且
+	\[
+	\frac{1}{2\pi}\int_{-\pi}^{\pi}F_N(t)\dd t=1.
+	\]
+	因此
+	\[
+	\frac{1}{2\pi}\int_0^\pi F_N(t)\dd t=\frac12.
+	\]
+	
+	与第 (a) 问相同,在负半区间作变量代换,得到
+	\[
+	\sigma_N(f)(\theta)
+	=
+	\frac{1}{2\pi}\int_0^\pi
+	\bigl(f(\theta-t)+f(\theta+t)\bigr)F_N(t)\dd t.
+	\]
+	同时
+	\[
+	L
+	=
+	\frac{1}{2\pi}\int_0^\pi
+	(\alpha+\beta)F_N(t)\dd t.
+	\]
+	所以
+	\[
+	\begin{aligned}
+		\sigma_N(f)(\theta)-L
+		&=\frac{1}{2\pi}\int_0^\pi
+		\bigl[
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\bigr]F_N(t)\dd t.
+	\end{aligned}
+	\]
+	
+	给定 $\varepsilon>0$,取与第 (a) 问相同的 $\delta>0$,使得
+	当 $0<t<\delta$ 时,
+	\[
+	|f(\theta+t)-\alpha|<\varepsilon,
+	\qquad
+	|f(\theta-t)-\beta|<\varepsilon.
+	\]
+	
+	于是
+	\[\frac{1}{2\pi}\int_0^\delta
+		\left|
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\right|F_N(t)\dd t
+		\leq
+		\frac{2\varepsilon}{2\pi}
+		\int_0^\delta F_N(t)\dd t\leq
+		\frac{2\varepsilon}{2\pi}
+		\int_0^\pi F_N(t)\dd t
+		=\varepsilon.
+	\]
+	
+	在 $\delta\leq t\leq\pi$ 上
+	\[
+	F_N(t)
+	\leq
+	\frac{1}{N\sin^2(\delta/2)}.
+	\]
+	因此
+	\[
+	\sup_{\delta\leq t\leq\pi}F_N(t)
+	\leq
+	\frac{1}{N\sin^2(\delta/2)}
+	\to0,
+	\qquad N\to\infty.
+	\]
+	
+	利用第 (a) 问中定义的常数 $C_\delta$,有
+	\[\frac{1}{2\pi}\int_\delta^\pi
+		\left|
+		f(\theta+t)-\alpha
+		+f(\theta-t)-\beta
+		\right|F_N(t)\dd t\leq
+		\frac{C_\delta}{2\pi}
+		\sup_{\delta\leq t\leq\pi}F_N(t)
+		\to0.
+	\]
+	
+	所以
+	\[
+	\limsup_{N\to\infty}
+	|\sigma_N(f)(\theta)-L|
+	\leq\varepsilon.
+	\]
+	由于 $\varepsilon>0$ 任意,得到
+	\[
+	\lim_{N\to\infty}\sigma_N(f)(\theta)
+	=L
+	=\frac{f(\theta^+)+f(\theta^-)}{2}.
+	\]
+
+\end{proof}
+对上面的Tauber定理，Littlewood 给出了 一个细化版本
+\begin{proposition}
+	\begin{enumerate}
+		\item[(a)] 若级数
+		\[
+		\sum_{n=1}^{\infty}c_n
+		\]
+		的 Abel 和为 $s$，且
+		\[
+		c_n=O\left(\frac{1}{n}\right),
+		\]
+		则
+		\[
+		\sum_{n=1}^{\infty}c_n
+		\]
+		在通常意义下收敛于 $s$。
+		
+		\item[(b)] 从而，若级数
+		\[
+		\sum_{n=1}^{\infty}c_n
+		\]
+		的 Ces\`aro 和为 $s$，且
+		\[
+		c_n=O\left(\frac{1}{n}\right),
+		\]
+		则
+		\[
+		\sum_{n=1}^{\infty}c_n
+		\]
+		在通常意义下收敛于 $s$。
+	\end{enumerate}
+\end{proposition}
+证明极其复杂，这里略过
+
+这些结果可以应用到 Fourier 级数上。若可积函数 $f$
+满足
+\[
+\widehat{f}(\nu)
+=O\left(\frac{1}{|\nu|}\right),
+\qquad |\nu|\to\infty,
+\]
+则有：
+
+\begin{enumerate}
+	\item[(i)] 若 $f$ 在 $\theta$ 处连续，则当 $N\to\infty$ 时，
+	\[
+	S_N(f)(\theta)\to f(\theta).
+	\]
+	
+	\item[(ii)] 若 $f$ 在 $\theta$ 处是跃点，则当 $N\to\infty$ 时，
+	\[
+	S_N(f)(\theta)
+	\to
+	\frac{f(\theta^+)+f(\theta^-)}{2}.
+	\]
+	
+	\item[(iii)] 若 $f$ 在 $[-\pi,\pi]$ 上连续，则
+	\[
+	S_N(f)\rightrightarrows f.
+	\]
+\end{enumerate}

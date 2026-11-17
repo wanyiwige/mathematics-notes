@@ -1,0 +1,78 @@
+Contents
+7
+2. First-order Homogeneous Linear Equations with
+Periodic Coefficients.
+49
+3.Inhomogeneous Linear Equations
+51
+4. The Influence Function and S-shaped Inhomogeneities.
+53
+5. Inhomogeneous Linear Equations with Periodic Coefficients .
+56
+§4.PhaseFlows.
+57
+1. The Action of a Group on a Set ..
+57
+2. One-parameter Transformation Groups ....
+59
+3. One-parameter Diffeomorphism Groups ..
+61
+4.The Phase Velocity Vector Field.
+63
+$5.The Action of Diffeomorphisms onVectorFields and
+Direction Fields.
+66
+1. The Action of Smooth Mappings on Vectors ...
+66
+2. The Action of Diffeomorphisms on Vector Fields
+70
+3. Change of Variables in an Equation..
+72
+4. The Action of a Diffeomorphism on a Direction Field ..
+73
+5. The Action of a Diffeomorphism on a Phase Flow..
+75
+6.Symmetries..
+76
+1. Symmetry Groups...
+76
+2. Application of a One-parameter Symmetry Group to
+Integrate an Equation.
+77
+3.Homogeneous Equations.....
+79
+4. Quasi-homogeneous Equations..
+82
+5. Similarity and Dimensional Considcrations......
+84
+6. Methods of Integrating Differential Equations.
+86
+Chapter 2.Basic Theorems
+89
+ 7. Rectification Theorems..
+89
+1.Rectification of aDirectionField.
+89
+2. Existence and Uniqueness Theorems ..
+92
+3. Theorems on Continuous and Differentiable Dependence of the
+Solutions on the Initial Condition...
+93
+4. Transformation over the Timc Intcrval from to to t.
+96
+5.Theorems on Continuous and Differentiable Dependence on a
+Parameter..
+97
+6.Extension Theorems.
+100
+7.Rectification of a Vector Field
+103
+§8.Applications to Equations of Higher Order than First ...
+104
+1. The Equivalence of an Equation of Order n and a System of n
+First-orderEquations.
+104
+2.Existence and Uniqueness Theorems...
+107
+3. Differentiability and Extension Theorems.
+108

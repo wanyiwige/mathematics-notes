@@ -1,0 +1,1793 @@
+{
+  "线性泛函": [],
+  "对偶空间": [
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 2143,
+      "text": "\t\t\\item 若 $\\dim V=n$，则对偶空间"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 7,
+      "text": "\\section{线性函数、对偶空间}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 19,
+      "text": "\t称 $\\Hom(V,\\mathbb{F})$ 为 $V$ 的对偶空间(dual space)，记为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2458,
+      "text": "\t令 $\\alpha=x-y$. 若 $\\alpha\\ne0$，由前面关于对偶空间的结论，存在 $f\\in V^*$ 使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2750,
+      "text": "\t\t\\item 若 $u\\ne0$ 且 $v\\ne0$，由前面对偶空间的结论，存在 $\\xi^*\\in U^*$，使得 $\\xi^*(u)\\ne0$. 于是"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 35,
+      "text": "\\hyperref[p1:concept:c7-l150]{对偶基} & \\hyperref[p1:concept:c7-l12]{对偶空间} & \\hyperref[p1:concept:c1-l926]{多项式的导数}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 80,
+      "text": "\\hyperref[p1:concept:c7-l2876]{双线性型下的正交补} & \\hyperref[p1:concept:c7-l250]{双重对偶空间} & \\hyperref[p1:concept:c7-l1848]{顺序主子式}\\\\"
+    }
+  ],
+  "Cayley": [
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1399,
+      "text": "\\section{Hamilton-Cayley 定理}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1461,
+      "text": "\\begin{theorem}(Hamilton-Cayley 定理)"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1520,
+      "text": "取 $V$ 的一组基，使 $T$ 在该基下的矩阵为 $A$.由 Hamilton-Cayley 定理，$f_A(A)=0$，故 $f_T(T)=0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1560,
+      "text": "由 Hamilton-Cayley 定理，$f_A(A)=0$.对任意 $h(x)\\in\\F[x]$，用带余除法写成"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1620,
+      "text": "取 $h=f_A$，由 Hamilton-Cayley 定理得"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1653,
+      "text": "下面由 Hamilton-Cayley 定理，把准素分解定理应用于特征多项式."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1675,
+      "text": "由 Hamilton-Cayley 定理，$f(A)=0$.又 $(g,h)=1$，由准素分解定理，"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1845,
+      "text": "\\begin{proposition}(用$\\lambda$阵证明Hamilton-Cayley 定理)"
+    }
+  ],
+  "Hamilton": [
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1399,
+      "text": "\\section{Hamilton-Cayley 定理}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1461,
+      "text": "\\begin{theorem}(Hamilton-Cayley 定理)"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1520,
+      "text": "取 $V$ 的一组基，使 $T$ 在该基下的矩阵为 $A$.由 Hamilton-Cayley 定理，$f_A(A)=0$，故 $f_T(T)=0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1560,
+      "text": "由 Hamilton-Cayley 定理，$f_A(A)=0$.对任意 $h(x)\\in\\F[x]$，用带余除法写成"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1620,
+      "text": "取 $h=f_A$，由 Hamilton-Cayley 定理得"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1653,
+      "text": "下面由 Hamilton-Cayley 定理，把准素分解定理应用于特征多项式."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1675,
+      "text": "由 Hamilton-Cayley 定理，$f(A)=0$.又 $(g,h)=1$，由准素分解定理，"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1845,
+      "text": "\\begin{proposition}(用$\\lambda$阵证明Hamilton-Cayley 定理)"
+    }
+  ],
+  "正定": [
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 27,
+      "text": "\t\t\\item 正定性：对任意 $\\alpha\\in V$，有 $(\\alpha,\\alpha)\\geqslant 0$，且"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 63,
+      "text": "\t由 $\\mathbb{R}^n$ 标准内积的双线性、对称性和正定性可知，上式给出 $V$ 上的一个内积."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 94,
+      "text": "\t\t\\item 令 $\\alpha=\\beta$，由假设得 $(\\beta,\\beta)=0$，再由正定性得 $\\beta=0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 134,
+      "text": "\t由正定性，$\\varphi(t)\\geqslant0$. 展开得"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 513,
+      "text": "\t由内积的正定性，$\\alpha=0$，故 $\\ker f=0$，于是 $f$ 是单射."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 616,
+      "text": "\t这与正定性矛盾. 故 $A$ 可逆."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 707,
+      "text": "\t则称 $A$ 是一个\\textbf{正定阵}."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 711,
+      "text": "\t设 $A=\\operatorname{diag}(a_1,\\cdots,a_n)$ 是实对角阵，则 $A$ 正定当且仅当"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 723,
+      "text": "\t设 $A,B$ 是 $n$ 阶实对称阵，且 $A,B$ 合同，则 $A$ 正定当且仅当 $B$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 731,
+      "text": "\t若 $A$ 正定，则对任意 $X\\in\\mathbb{R}^n$，有"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 735,
+      "text": "\t若 $X'BX=0$，则 $(CX)'A(CX)=0$，由 $A$ 正定得 $CX=0$，又 $C$ 可逆，故 $X=0$. 因此 $B$ 正定. 反向同理."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 739,
+      "text": "\t设 $A\\in S_n(\\mathbb{R})$，则 $A$ 是正定阵当且仅当 $A$ 是某个 $n$ 维欧氏空间的内积在某组基下的度量矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 742,
+      "text": "\t先设 $A$ 是正定阵. 取 $V$ 的一组基 $\\alpha_1,\\cdots,\\alpha_n$. 对"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 754,
+      "text": "\t反之，若 $A$ 是某个欧氏空间的内积在某组基下的度量矩阵，则对任意 $X\\in\\mathbb{R}^n$，$X\\neq0$，令 $\\alpha=(\\alpha_1\\cdots\\alpha_n)X\\neq0$，有 $X'AX=(\\alpha,\\alpha)>0$，故 $A$ 正定。"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 760,
+      "text": "\t\t\\item $A$ 正定；"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 776,
+      "text": "\t则 $A$ 是正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 784,
+      "text": "\t则 $A$ 是正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2081,
+      "text": "\t由内积的正定性推出 $S_1(\\beta)=S_2(\\beta)$ 对任意 $\\beta\\in V$ 都成立，因此 $S_1=S_2$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1577,
+      "text": "\\section{正定二次型、正定阵}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1591,
+      "text": "\t则称 $f(x_1,\\cdots,x_n)$ 是一个正定的二次型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1600,
+      "text": "\t则 $f(x_1,\\cdots,x_n)$ 是正定的当且仅当"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1604,
+      "text": "\t特别地，$f(x_1,x_2,x_3)=x_1^2+2x_2^2$ 不是正定的，因为取 $X=(0,0,1)'\\ne0$ 时有 $f(X)=0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1612,
+      "text": "\t则 $f(x_1,\\cdots,x_n)$ 是正定的."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1628,
+      "text": "\t是正定的，则称 $A$ 是正定矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1632,
+      "text": "\t设 $D=\\operatorname{diag}(d_1,\\cdots,d_n)$，$d_i\\in\\R$. 则 $D$ 是正定矩阵当且仅当"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1642,
+      "text": "\tA\\text{ 正定}\\Longleftrightarrow B\\text{ 正定}."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1644,
+      "text": "\t即，正定性在合同关系下不变."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1652,
+      "text": "\t若 $B$ 正定，则对任意 $X\\in\\R^n$ 有"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1656,
+      "text": "\t若 $X'AX=0$，则 $(CX)'B(CX)=0$，由 $B$ 正定得 $CX=0$. 又 $C$ 可逆，所以 $X=0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1664,
+      "text": "\t\tA\\text{ 是正定阵}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1675,
+      "text": "\t由正定二次型的定义、惯性定理以及实对称阵正交相似于对角阵可得前四个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1686,
+      "text": "\t设 $A$ 是正定阵. 则"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1698,
+      "text": "\t例如 $-E_2$ 的行列式为 $1$，但 $-E_2$ 不是正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1704,
+      "text": "\tA\\text{ 正定}\\Longleftrightarrow A^{-1}\\text{ 正定}."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1709,
+      "text": "\t若 $A$ 正定，则存在可逆的 $C\\in M_n(\\R)$ 使得 $A=C'C$. 于是"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1714,
+      "text": "\t是正定阵. 反向对 $A^{-1}$ 使用同样的结论即可."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1718,
+      "text": "\t设 $A,B$ 是 $n$ 阶正定阵. 则 $A+B$ 是正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1722,
+      "text": "\t\t\\item 设 $A,B$ 是 $n$ 阶实对称阵，且 $A$ 正定. 则存在可逆的 $P\\in M_n(\\R)$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1728,
+      "text": "\t\t\t由 $A$ 正定可得，存在可逆的 $P_1\\in M_n(\\R)$ 使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1746,
+      "text": "\t\t\\item 设 $A$ 是 $n$ 阶正定阵. 则对任意正数 $t$，都有"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1751,
+      "text": "\t\t\t事实上，$tE_n+A$ 是正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1753,
+      "text": "\t\t\\item 设 $A,B\\in M_n(\\R)$ 且 $A,B$ 正定. 则"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1755,
+      "text": "\t\tAB\\text{ 正定}\\Longleftrightarrow AB=BA."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1759,
+      "text": "\t\t\t$\\Rightarrow$：若 $AB$ 正定，则 $AB$ 对称，所以"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1763,
+      "text": "\t\t\t$\\Leftarrow$：若 $AB=BA$，则 $AB$ 对称. 又 $A$ 正定，故存在可逆的 $C\\in M_n(\\R)$ 使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1771,
+      "text": "\t\t\t所以 $AB$ 与 $C'BC$ 相似. 由于 $B$ 正定，$C'BC$ 也正定，故 $C'BC$ 的特征值全大于 $0$. 因而 $AB$ 的特征值全大于 $0$. 又 $AB$ 对称，所以 $AB$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1773,
+      "text": "\t\t\\item 设 $A=A'\\in M_n(\\R)$. 则 $A$ 正定当且仅当存在唯一的正定阵 $B$ 使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1778,
+      "text": "\t\t\t$\\Leftarrow$：若 $B$ 正定，则 $B^2$ 的特征值全为正数，故 $A=B^2$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1780,
+      "text": "\t\t\t$\\Rightarrow$：设 $A$ 正定. 由于 $A$ 是实对称阵，存在正交阵 $T$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1789,
+      "text": "\t\t\t则 $B$ 正定，且 $A=B^2$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1791,
+      "text": "\t\t\t下面证明唯一性. 设 $B^2=C^2$，其中 $B,C$ 都正定. 任取 $B$ 的一个特征值 $\\lambda$ 和属于 $\\lambda$ 的特征向量 $\\xi$，则"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1795,
+      "text": "\t\t\t由于 $B$ 正定，$\\lambda>0$；由于 $C$ 正定，$C+\\lambda E_n$ 可逆. 因而"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1824,
+      "text": "\t也就是在 $f(x_1,\\cdots,x_n)$ 中令 $x_j=0\\ (j\\ne i_t)$. 如果 $f$ 正定，则 $g$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1832,
+      "text": "\t由正定二次型的定义直接可得 $g$ 正定. 由二次型矩阵的写法可知，$g$ 的矩阵正是从 $A$ 中取第 $i_1,\\cdots,i_k$ 行和第 $i_1,\\cdots,i_k$ 列所得的主子阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1835,
+      "text": "\t设 $A$ 是 $n$ 阶正定阵. 则 $A$ 的任意 $k$ 阶主子阵"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1839,
+      "text": "\t是正定阵. 从而，正定阵的任意 $k$ 阶主子式都大于 $0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1845,
+      "text": "\t设 $A=(a_{ij})$ 是 $n$ 阶正定阵. 取一节主子式，即对角元得 $A$ 的对角元都大于 $0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1863,
+      "text": "\t设 $A$ 是 $n$ 阶正定阵. 则 $A$ 的每个顺序主子式都大于 $0$，即"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1870,
+      "text": "\tA\\text{ 是正定阵}\\Longleftrightarrow A\\text{ 的每个顺序主子式都大于 }0."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1885,
+      "text": "\t则 $A_1$ 的顺序主子式都是 $A$ 的顺序主子式，从而都大于 $0$. 由归纳假设，$A_1$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1907,
+      "text": "\t由于 $A_1$ 正定，故 $A_1$ 可逆. 取"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1925,
+      "text": "\t又 $a_1,\\cdots,a_{n-1}>0$，所以 $a_n>0$. 因此 $A$ 在 $\\R$ 上合同于一个对角元全为正数的对角阵，故 $A$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1956,
+      "text": "\t\t&\\Longleftrightarrow -A\\text{ 正定}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1973,
+      "text": "\t设 $A=A'\\in M_n(\\R)$. 如果 $A$ 既不是正定的，也不是负定的，则称 $A$ 是不定的，其二次型 $X'AX$ 为一个不定二次型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1986,
+      "text": "\t则称 $f(x_1,\\cdots,x_n)$ 是半正定的. 若二次型 $X'AX$ 是半正定的，则称 $A$ 是半正定的."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1991,
+      "text": "\t\t\\item 实二次型$f(x_1,\\cdots,x_n)=d_1x_1^2+\\cdots+d_nx_n^2$是半正定的当且仅当"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1998,
+      "text": "\t\tA\\text{ 半正定}\\Longleftrightarrow B\\text{ 半正定}."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2005,
+      "text": "\t\t\t由于 $C$ 可逆，$CX$ 取遍 $\\R^n$，故半正定性在合同关系下不变."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2009,
+      "text": "\t\tA\\text{ 半正定}\\Longleftrightarrow A\\text{ 的负惯性指数为 }0"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2015,
+      "text": "\t\t是半正定的. 因而 $A'A$ 是半正定阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2018,
+      "text": "\t\tA\\text{ 半正定}\\Longleftrightarrow \\text{存在 }C\\in M_n(\\R)\\text{ 使得 }A=C'C."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2029,
+      "text": "\t\t\t故 $A$ 半正定."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2031,
+      "text": "\t\t\t$\\Rightarrow$：若 $A$ 半正定，设 $r(A)=r$. 由半正定的规范型，存在可逆的 $P\\in M_n(\\R)$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2064,
+      "text": "\t\t\\item 设 $A=A'\\in M_n(\\R)$ 半正定. 则"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2073,
+      "text": "\t\t\t由于 $A$ 半正定，所以存在 $C\\in M_n(\\R)$ 使得 $A=C'C$. 于是"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2082,
+      "text": "\t\t\\item 设 $A=A'\\in M_n(\\R)$ 半正定. 若 $A(i,i)=0$，则 $A$ 的第 $i$ 行和第 $i$ 列的元都为 $0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2084,
+      "text": "\t\t\t由半正定性，存在 $C\\in M_n(\\R)$ 使得 $A=C'C$. 设"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2102,
+      "text": "\t\t是半正定的. 则 $M$ 在实数域上合同于"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2113,
+      "text": "\t\t\\item 设 $A,B$ 是 $n$ 阶半正定阵. 则在 $\\R$ 上 $A,B$ 可以同时合同于对角阵. 即存在可逆的 $P\\in M_n(\\R)$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2119,
+      "text": "\t\t\t由 $A$ 半正定可知，存在可逆的 $P_1\\in M_n(\\R)$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2130,
+      "text": "\t\t\t则 $B_1$ 是半正定的. 把 $B_1$ 按照 $A_1$ 的分块方式进行分块："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2218,
+      "text": "\t\t\t其中 $A'A$ 半正定，且 $r(A'A)=r_1\\leq p$；$B'B$ 半正定，且 $r(B'B)=r_2\\leq q$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2219,
+      "text": "\t\t\t由半正定阵的同时合同对角化，存在可逆的 $C\\in M_n(\\R)$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3177,
+      "text": "\t证明：任意实对称矩阵都可以写成一个正定矩阵与一个负定矩阵之和."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3198,
+      "text": "\t则 $B$ 是正定矩阵，$C$ 是负定矩阵，并且"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3202,
+      "text": "\t因此任意实对称矩阵均可写成一个正定矩阵与一个负定矩阵之和."
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 19,
+      "text": "\\hyperref[p1:concept:c1-l7]{半群} & \\hyperref[p1:concept:c7-l1976]{半正定二次型} & \\hyperref[p1:concept:c7-l1976]{半正定矩阵}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 68,
+      "text": "\\hyperref[p1:concept:c6-l572]{内积的度量矩阵} & \\hyperref[p1:concept:c6-l6]{内积的对称性} & \\hyperref[p1:concept:c6-l6]{内积的正定性}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 116,
+      "text": "\\hyperref[p1:concept:c1-l59]{整数的整除} & \\hyperref[p1:concept:c1-l101]{整数互素} & \\hyperref[p1:concept:c7-l1578]{正定二次型}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 117,
+      "text": "\\hyperref[p1:concept:c6-l698]{正定矩阵} & \\hyperref[p1:concept:c7-l1623]{正定矩阵（二次型定义）} & \\hyperref[p1:concept:c7-l1527]{正惯性指数}\\\\"
+    }
+  ],
+  "平方根": [
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 264,
+      "text": "取$\\varphi(z)=z^2$。若$z^m=1$，则$\\varphi(z)^m=1$，故$\\varphi$是自同态。对任意$m$次单位根$w$，取它的一个平方根$z$，则$z^{2m}=1$，所以$z\\in G$且$\\varphi(z)=w$。但$\\varphi(1)=\\varphi(-1)=1"
+    }
+  ],
+  "极分解": [],
+  "半单": [],
+  "谱定理": [],
+  "正交化": [
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 3127,
+      "text": "\t一般地，设 $\\alpha_i=(a_{i1},\\ldots,a_{in})\\in\\R^n$，$1\\leq i\\leq n$，并令 $M=(a_{ij})$。由 Gram--Schmidt 正交化，$\\alpha_1,\\ldots,\\alpha_n$ 张成的平行多面体体积满足"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 290,
+      "text": "\\begin{theorem}(Schmidt 正交化)"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 327,
+      "text": "\t也就是说，$\\alpha_1,\\cdots,\\alpha_m$ 经过 Schmidt 正交化后得到 $\\beta_1,\\cdots,\\beta_m$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 331,
+      "text": "\t若把向量按列排列，则 Schmidt 正交化可以写为"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 357,
+      "text": "\t对这组基作 Schmidt 正交化，得到两两正交的非零向量"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 361,
+      "text": "\t由 Schmidt 正交化的性质，"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 423,
+      "text": "\t设 $\\dim V=n$，取 $V$ 的一组基 $\\alpha_1,\\cdots,\\alpha_n$. 对这组基作 Schmidt 正交化，得到两两正交的非零向量 $\\beta_1,\\cdots,\\beta_n$. 再令"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 439,
+      "text": "\t对这组基作 Schmidt 正交化. 由于 $\\varepsilon_1,\\cdots,\\varepsilon_r$ 已经是标准正交的，正交化并单位化后前 $r$ 个向量仍为 $\\varepsilon_1,\\cdots,\\varepsilon_r$. 因此得到"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1985,
+      "text": "\t\t\\item 对 $\\eta_{i1},\\cdots,\\eta_{ir_i}$ 作 Schmidt 正交化，再单位化，得到"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2033,
+      "text": "\t作 Schmidt 正交化，再单位化得"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2532,
+      "text": "\t\\item 可以用显然的方式定义标准正交基，并且同样有 Schmidt 正交化过程."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2747,
+      "text": "\t记 $A$ 的列向量为 $\\alpha_1,\\cdots,\\alpha_n$. 因 $A$ 可逆，$\\alpha_1,\\cdots,\\alpha_n$ 线性无关. 对它们作 Schmidt 正交化并单位化，得一组标准正交向量"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2867,
+      "text": "\t设 $V$ 是欧氏空间. 对 $\\eta_1,\\cdots,\\eta_m\\in V$，用 Schmidt 正交化作出"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2965,
+      "text": "\t\\textbf{实二次型正交化为标准型.}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3021,
+      "text": "\t对其正交化并单位化，可取"
+    }
+  ],
+  "Schmidt": [
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 3127,
+      "text": "\t一般地，设 $\\alpha_i=(a_{i1},\\ldots,a_{in})\\in\\R^n$，$1\\leq i\\leq n$，并令 $M=(a_{ij})$。由 Gram--Schmidt 正交化，$\\alpha_1,\\ldots,\\alpha_n$ 张成的平行多面体体积满足"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 290,
+      "text": "\\begin{theorem}(Schmidt 正交化)"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 327,
+      "text": "\t也就是说，$\\alpha_1,\\cdots,\\alpha_m$ 经过 Schmidt 正交化后得到 $\\beta_1,\\cdots,\\beta_m$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 331,
+      "text": "\t若把向量按列排列，则 Schmidt 正交化可以写为"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 357,
+      "text": "\t对这组基作 Schmidt 正交化，得到两两正交的非零向量"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 361,
+      "text": "\t由 Schmidt 正交化的性质，"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 423,
+      "text": "\t设 $\\dim V=n$，取 $V$ 的一组基 $\\alpha_1,\\cdots,\\alpha_n$. 对这组基作 Schmidt 正交化，得到两两正交的非零向量 $\\beta_1,\\cdots,\\beta_n$. 再令"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 439,
+      "text": "\t对这组基作 Schmidt 正交化. 由于 $\\varepsilon_1,\\cdots,\\varepsilon_r$ 已经是标准正交的，正交化并单位化后前 $r$ 个向量仍为 $\\varepsilon_1,\\cdots,\\varepsilon_r$. 因此得到"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1985,
+      "text": "\t\t\\item 对 $\\eta_{i1},\\cdots,\\eta_{ir_i}$ 作 Schmidt 正交化，再单位化，得到"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2033,
+      "text": "\t作 Schmidt 正交化，再单位化得"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2532,
+      "text": "\t\\item 可以用显然的方式定义标准正交基，并且同样有 Schmidt 正交化过程."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2747,
+      "text": "\t记 $A$ 的列向量为 $\\alpha_1,\\cdots,\\alpha_n$. 因 $A$ 可逆，$\\alpha_1,\\cdots,\\alpha_n$ 线性无关. 对它们作 Schmidt 正交化并单位化，得一组标准正交向量"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2867,
+      "text": "\t设 $V$ 是欧氏空间. 对 $\\eta_1,\\cdots,\\eta_m\\in V$，用 Schmidt 正交化作出"
+    }
+  ],
+  "赋范": [],
+  "Banach": [],
+  "范数": [
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 3114,
+      "text": "\t\t\tSchauder 基是泛函分析中的概念，它允许向量表示成无穷级数，但要求级数在给定范数下收敛。即"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 105,
+      "text": "\t\t\\item 向量 $\\alpha$ 的\\textbf{长度}或\\textbf{范数}定义为"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 114,
+      "text": "\\hyperref[p1:concept:c2-l705]{增广矩阵} & \\hyperref[p1:concept:c6-l101]{长度（范数）} & \\hyperref[p1:concept:c1-l7]{整环}\\\\"
+    }
+  ],
+  "算子范数": [],
+  "四元数": [
+    {
+      "file": "chapters/Part 2/chapter1.tex",
+      "line": 1090,
+      "text": "\\subsection*{四元数体的矩阵模型}"
+    },
+    {
+      "file": "chapters/Part 2/chapter1.tex",
+      "line": 1098,
+      "text": "是$M_2(\\C)$的子环，并且是非交换的体，称\\textbf{四元数体}。"
+    },
+    {
+      "file": "chapters/Part 2/chapter2-exercises.tex",
+      "line": 1127,
+      "text": "\\textbf{习题55：四元数群的关系与条件。}设$G=\\langle a,b\\rangle$满足"
+    },
+    {
+      "file": "chapters/Part 2/chapter2-exercises.tex",
+      "line": 1147,
+      "text": "\\textbf{识别为四元数群。}"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 4,
+      "text": "\\subsection*{环、理想与四元数（习题1--20）}"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 100,
+      "text": "\\textbf{习题9：}证明有理系数四元数$H_0=\\{a_0+a_1I+a_2J+a_3K:a_i\\in\\mathbb Q\\}$是$H$的子体。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 103,
+      "text": "四元数的乘法表表明$H_0$对加法、乘法及取负封闭，且含$1$。若$0\\ne q\\in H_0$，则"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 112,
+      "text": "\\textbf{习题10：}确定四元数体$H$的中心。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 115,
+      "text": "设$q=a+bI+cJ+dK$与$I,J$都交换。比较$qI=Iq$的$J,K$系数，得$c=d=0$；再比较$qJ=Jq$，得$b=0$。故$q=a\\in\\mathbb R$。实数与所有四元数交换，因此中心为$\\mathbb R$。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 372,
+      "text": "\\textbf{习题34：}证明$x^2+1$在四元数体$H$中有无穷多个根。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3-exercises.tex",
+      "line": 375,
+      "text": "若$q=bI+cJ+dK$且$b^2+c^2+d^2=1$，四元数乘法关系使交叉项成对抵消，故"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 502,
+      "text": "\\textbf{四元数共轭：}四元数体$H$中的元素写为"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 523,
+      "text": "这涵盖所有基的乘积，再对任意四元数展开即可得到所需等式。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 527,
+      "text": "\\textbf{四元数矩阵的共轭转置：}对$A=(\\alpha_{ij})\\in M_n(H)$，令$\\overline A=(\\overline{\\alpha_{ij}})$，再取转置$\\overline A^{\\,T}$。则$A\\mapsto\\overline A^{\\,T}$是反自同构，连续作"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 537,
+      "text": "所以$(AB)^*=B^*A^*$。共轭与转置结合起来，才在非交换的四元数矩阵环上得到反自同构。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 1312,
+      "text": "上述条件不能任意删去。在四元数体中，若"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 1316,
+      "text": "则由$I^2=J^2=K^2=-1$及不同虚单位相乘反交换，$u^2=-1$。所以$x^2+1$有无穷多个四元数根；这里乘法不交换。"
+    },
+    {
+      "file": "chapters/Part 2/concept-review.tex",
+      "line": 57,
+      "text": "\\hyperref[p2:concept:c1-l1092]{四元数体} & \\hyperref[p2:concept:c1-l1517]{素域}\\\\"
+    }
+  ],
+  "群作用": [
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 3,
+      "text": "\\setchapterintro{从同态与商群出发，研究循环群、单群与可解群；用群作用和西罗定理分析有限群，再理解自同构、直和、合成群列及自由构造。}"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 1353,
+      "text": "即$P\\leq N(Q)$。由前面的正规化子推论，$N(Q)$不能含$G$的另一个西罗$p$子群，因此$P=Q$。所以此作用恰有一个不动点。由$p$群作用的同余公式，$k=|X|\\equiv1\\pmod p$。"
+    }
+  ],
+  "群的作用": [
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 940,
+      "text": "群的作用也可以用到置换群的同态来定义，两种说法是等价的。"
+    }
+  ],
+  "一般线性群": [
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 107,
+      "text": "\\hyperref[p1:concept:c1-l7]{幺半群} & \\hyperref[p1:concept:c3-l1171]{一般线性群} & \\hyperref[p1:concept:c1-l558]{一元多项式}\\\\"
+    }
+  ],
+  "正交群": [
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 806,
+      "text": "\t则 $O(V)$ 是 $\\GL(V)$ 的子群，称为 $V$ 的\\textbf{正交群}."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1048,
+      "text": "\t称为 $\\mathbb{R}$ 上的 $n$ 阶\\textbf{正交群}."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1161,
+      "text": "\t称为 $n$ 阶\\textbf{特殊正交群}."
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 82,
+      "text": "\\hyperref[p1:concept:c6-l1156]{特殊正交群} & \\hyperref[p1:concept:c5-l1709]{特征矩阵} & \\hyperref[p1:concept:c5-l171]{特征向量}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 120,
+      "text": "\\hyperref[p1:concept:c6-l1043]{正交群} & \\hyperref[p1:concept:c6-l1225]{正交相似} & \\hyperref[p1:concept:c4-l1323]{直和的投影}\\\\"
+    }
+  ],
+  "反对称": [
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 866,
+      "text": "\t则称 $A$ 是反对称阵。"
+    },
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 867,
+      "text": "\t对称阵 $A$ 是 $E_{ij}+E_{ji}$ 与 $E_{ii}$ 的线性组合；反对称阵 $A$ 是 $E_{ij}-E_{ji}$ 的线性组合。"
+    },
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 3146,
+      "text": "\t令 $X=A-A^T$，则 $X^T=-X$，即 $X$ 为反对称矩阵。若 $X$ 为 $n$ 阶且 $n$ 为奇数，则"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2793,
+      "text": "\t设 $A$ 是实反对称矩阵，即 $A'=-A$. 证明 $E+A$ 可逆，且"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 3183,
+      "text": "\t证明实反对称矩阵的所有特征值都是纯虚数或 $0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 3186,
+      "text": "\t设 $A$ 是 $n$ 阶实反对称矩阵，$\\lambda_0$ 是 $A$ 的任意复特征值. 取非零向量"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 535,
+      "text": "\t设 $V$ 是数域 $\\F$ 上的有限维线性空间，$f\\in B(V)$ 是反对称的，即对任意 $\\alpha,\\beta\\in V$ 都有"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 548,
+      "text": "\tf\\text{ 是反对称的}\\Longleftrightarrow A'=-A."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 550,
+      "text": "\t事实上，若 $f$ 是反对称的，则"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 573,
+      "text": "即，奇数维的线性空间上没有非退化的反对称双线性型."
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 43,
+      "text": "\\hyperref[p1:concept:c3-l856]{反对称矩阵} & \\hyperref[p1:concept:c6-l809]{反射变换} & \\hyperref[p1:concept:c2-l47]{方程组的初等行变换}\\\\"
+    }
+  ],
+  "外积": [],
+  "楔积": [],
+  "张量": [
+    {
+      "file": "chapters/Part 1/chapter3.tex",
+      "line": 2915,
+      "text": "\t\\phantomsection\\label{p1:concept:c3-l2915}是数域 $\\F$ 上的两个矩阵。定义它们的 \\textbf{Kronecker 积}（或张量积）为如下 $ms\\times nt$ 分块矩阵："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2767,
+      "text": "\t\t特别地，对单纯张量有"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2795,
+      "text": "\t\t这说明 $\\beta_1,\\beta_2$ 都是 $v$ 的倍数，与 $\\beta_1,\\beta_2$ 线性无关矛盾. 因此并非每个 $U\\otimes V$ 中的元素都是形如 $u\\otimes v$ 的单纯张量."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2818,
+      "text": "\t\t\\item 设 $\\varepsilon_1,\\cdots,\\varepsilon_n$ 和 $\\varepsilon_1',\\cdots,\\varepsilon_k'$ 分别是 $U$ 和 $U_1$ 的基，$A$ 是 $f$ 的矩阵；设 $\\eta_1,\\cdots,\\eta_m$ 和 $\\"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2871,
+      "text": "\t\t若张量积基均按字典序排列，则上述系数正是 Kronecker 积矩阵 $A\\otimes B$ 的系数. 因此 $A\\otimes B$ 是 $f\\otimes g$ 在相应基下的矩阵."
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 90,
+      "text": "\\hyperref[p1:concept:c7-l2637]{线性空间的张量积} & \\hyperref[p1:concept:c4-l1981]{线性空间的自同构} & \\hyperref[p1:concept:c4-l1981]{线性空间的自同构群}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 95,
+      "text": "\\hyperref[p1:concept:c3-l248]{线性映射的像} & \\hyperref[p1:concept:c7-l2824]{线性映射的张量积} & \\hyperref[p1:concept:c4-l2617]{线性映射的秩}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 99,
+      "text": "\\hyperref[p1:concept:c4-l7]{向量的负元} & \\hyperref[p1:concept:c2-l270]{向量的线性表示} & \\hyperref[p1:concept:c7-l2632]{向量的张量积}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 134,
+      "text": "\\hyperref[p1:concept:c6-l399]{Kronecker符号} & \\hyperref[p1:concept:c3-l2915]{Kronecker积（张量积）} & \\hyperref[p1:concept:c3-l652]{Kronecker记号}\\\\"
+    }
+  ],
+  "等价关系": [
+    {
+      "file": "chapters/Part 1/chapter1.tex",
+      "line": 568,
+      "text": "\t\t\\item $\\forall f,g\\in \\F[x]$若$f=cg,c\\in\\F\\wedge c\\neq0$,称$ f,g$相伴，显然地，相伴关系是等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter2.tex",
+      "line": 531,
+      "text": "\t若 $(I)$ 与 $(II)$ 可以互相线性表示，则称它们是等价的，记为 $(I)\\cong(II)$。显然，这是等价关系。"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 277,
+      "text": "\t$V$ 是 $\\F$ 上的线性空间，$W$ 是 $V$ 的一个子空间。定义 $V$ 上的等价关系"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 2069,
+      "text": "\t显然，同构关系是等价关系。"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 828,
+      "text": "显然，相似关系是等价关系"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2007,
+      "text": "\t这是一个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 534,
+      "text": "\t显然，等距关系是一个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 674,
+      "text": "\t则称 $A$ 与 $B$ \\textbf{合同}，也称\\textbf{相合}. 合同关系是一个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1190,
+      "text": "$\\F$ 上的 $n$ 元二次型之间的等价关系满足反身性、对称性和传递性."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1431,
+      "text": "\\end{definition}任意 $n$ 元二次型 $X'AX$ 的在复数域上的规范型存在且唯一，其中\\[r=r(A).\\]因此，在复数域上对 $n$ 元二次型按等价关系进行分类，也就是按其矩阵的秩进行分类."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1675,
+      "text": "\t由正定二次型的定义、惯性定理以及实对称阵正交相似于对角阵可得前四个等价关系."
+    },
+    {
+      "file": "chapters/Part 2/chapter1-exercises.tex",
+      "line": 77,
+      "text": "\\textbf{习题9：由子集定义等价关系。}设$S\\subseteq G$非空，定义$a\\sim b\\iff ab^{-1}\\in S$。"
+    },
+    {
+      "file": "chapters/Part 2/chapter1-exercises.tex",
+      "line": 78,
+      "text": "该关系是等价关系当且仅当$S$为子群。"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 630,
+      "text": "因此，$G/N$有非平凡真正规子群，当且仅当存在$N_1\\trianglelefteq G$满足$N<N_1<G$。否定两边，便得到所述等价关系。"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 978,
+      "text": "\\phantomsection\\label{p2:concept:c2-l978}形如$gxg^{-1}$的元素称为与$x$\\textbf{共轭}；子群$gHg^{-1}$称为与$H$共轭的子群。元素之间以及子群之间的共轭都是等价关系：单位元给出自反性，取$g^{-1}$给出对称性，连续两次共轭等于"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 1027,
+      "text": "由$e(x)=x$，有$x\\sim x$。若$y=g(x)$，则$x=g^{-1}(y)$，所以$x\\sim y$蕴含$y\\sim x$。若又有$z=h(y)$，则$z=(hg)(x)$，所以$x\\sim y$、$y\\sim z$蕴含$x\\sim z$。因此这确实是等价关系。"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 1031,
+      "text": "\\phantomsection\\label{p2:concept:c2-l1031}上述等价关系中包含$x$的等价类称为$x$的\\textbf{轨道}，记为"
+    },
+    {
+      "file": "chapters/Part 2/chapter2.tex",
+      "line": 1442,
+      "text": "反设这两类西罗子群都不正规。由唯一性与正规性的等价关系，必须有"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 773,
+      "text": "由于$d\\ne0$，可消去$d$，得到$af=be$。因此该关系还满足传递性，是等价关系。将$(a,b)$的等价类记作$a/b$，所有这些等价类组成的集合记作$F$。"
+    },
+    {
+      "file": "chapters/Part 2/chapter3.tex",
+      "line": 880,
+      "text": "\\textbf{等价关系：}在$R\\times S$上规定"
+    }
+  ],
+  "商集": [],
+  "商空间": [
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 274,
+      "text": "下面介绍基的扩充定理。证明基的存在性定理与基的扩充定理等价，需要用到商空间，只给出必要定义，建议在完成商空间的学习后再回看。"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 291,
+      "text": "\t称为商空间。"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 308,
+      "text": "\t\t考虑商空间"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 324,
+      "text": "\t\t首先证明张成性。对任意 $v\\in V$，由于 $\\{\\overline{v_i}:i\\in I\\}$ 是商空间的基，存在有限多个 $a_i\\in\\F$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 717,
+      "text": "\t这是商空间 $V/W$ 的维数。"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 3515,
+      "text": "\\begin{problem}[陪集与商空间]"
+    },
+    {
+      "file": "chapters/Part 1/chapter4.tex",
+      "line": 3643,
+      "text": "\t\t所以 $V/U$ 是一个 $\\F$ 上的线性空间，称为 $V$ 关于 $U$ 的商空间。"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 74,
+      "text": "\\hyperref[p1:concept:c3-l1845]{奇排列} & \\hyperref[p1:concept:c1-l7]{群} & \\hyperref[p1:concept:c4-l276]{商空间}\\\\"
+    },
+    {
+      "file": "chapters/Part 2/chapter2-exercises.tex",
+      "line": 773,
+      "text": "在商空间$\\F_p^n/L_1$中，$U$诱导$(n-1)$维单位上三角群。"
+    }
+  ],
+  "相似": [
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 4,
+      "text": "\\chapter{线性变换以及相似理论}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 800,
+      "text": "\\section{相似}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 802,
+      "text": "有限维空间上的线性变换在不同基下的矩阵是相似的.设$\\dim_{\\F}V=n,"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 825,
+      "text": "\t则称 $A$ 与 $B$ 相似，记作 $A\\sim B$."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 828,
+      "text": "显然，相似关系是等价关系"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 893,
+      "text": "\t两个 $n$ 阶对角矩阵相似当且仅当它们的对角元仅差一个排列.即"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1044,
+      "text": "\t设 $A,B\\in M_n(\\F)$，若存在扩域 $\\mathbb{K}\\supseteq\\F$，使得 $A,B$ 在 $\\mathbb{K}$ 上相似，则 $A,B$ 在 $\\F$ 上相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1048,
+      "text": "\t在 $\\mathbb{K}$ 上相似等价于存在 $Q\\in \\GL_n(\\mathbb{K})$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1106,
+      "text": "\t则 $A$ 在 $\\mathbb K$ 上相似于形如"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1130,
+      "text": "\t设 $A\\in M_n(\\F)$.则 $A$ 的特征多项式在 $\\F$ 上完全分解(也即特征值全属于$\\F$)当且仅当 $A$ 在 $\\F$ 上相似于一个上三角矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1163,
+      "text": "\t知 $f_{A_1}$ 也在 $\\F$ 上完全分解.由归纳假设，$A_1$ 相似于上三角矩阵，因此 $A$ 相似于上三角矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1166,
+      "text": "\\begin{corollary}\\label{相似于一个上三角矩阵.}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1167,
+      "text": "\t任意 $A\\in M_n(\\mathbb C)$ 都在 $\\mathbb C$ 上相似于一个上三角矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1268,
+      "text": "\t$A$ 的唯一特征值为 $a$.若 $A$ 可对角化，则它相似于对角矩阵，而这个对角矩阵只能是 $aE_n$.但标量矩阵与任意矩阵可交换，且"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1474,
+      "text": "由\\ref{相似于一个上三角矩阵.},$A$ 在$\\C$相似于上三角矩阵.故只需证明上三角矩阵情形."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1707,
+      "text": "但仅有特征多项式相同一般不能推出 $A\\sim B$.为了研究相似关系，需要引入 $\\lambda$-矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2013,
+      "text": "\tA\\text{ 与 }B\\text{ 相似}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2411,
+      "text": "\tA\\text{ 在 }\\F\\text{ 上相似于 }B"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2413,
+      "text": "\tA\\text{ 在 }K\\text{ 上相似于 }B."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2773,
+      "text": "$\\F$上的一个有理块不可能相似与一个由更低阶有理块构成的$\\F$上的准对角阵"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2788,
+      "text": "\t则 $A$ 相似于准对角矩阵"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2889,
+      "text": "\t则 $\\F$ 上以 $f(\\lambda)$ 为特征多项式的所有 $n$ 阶方阵，在相似意义下可以分为"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2930,
+      "text": "它与 $(\\lambda-a)^r$ 的有理块相似"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2951,
+      "text": "\t设 $A\\in M_n(\\F)$。若 $\\F$ 上的与 $A$ 相似的 Jordan 矩阵存在，"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2956,
+      "text": "\t设 $A\\in M_n(\\F)$。则 $A$ 与 $\\F$ 上的一个 Jordan 矩阵相似，"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 2958,
+      "text": "\t此时，与 $A$ 相似的 Jordan 矩阵在允许交换对角块顺序的意义下是唯一的。"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3042,
+      "text": "\t由于相似不改变零空间维数，可设 $A$ 本身已经是 Jordan 标准型.先考虑一个 Jordan 块"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3278,
+      "text": "\t若两个实方阵在复数域上相似，则它们在实数域上相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3321,
+      "text": "\t故 $A,B$ 在实数域上相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3422,
+      "text": "\t在包含所有特征值的扩域中，$A$ 可三角化.设 $A$ 与上三角矩阵 $U$ 相似，且 $U$ 的对角元依次为"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3426,
+      "text": "\t于是 $g(A)$ 与 $g(U)$ 相似，而 $g(U)$ 仍是上三角矩阵，且其对角元为"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1230,
+      "text": "\t则称 $A$ 与 $B$ \\textbf{正交相似}."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1259,
+      "text": "\t任意二阶正交矩阵 $A$ 都正交相似于如下四个两两不相似的正交矩阵之一："
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1355,
+      "text": "\t故 $A$ 正交相似于"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1417,
+      "text": "\t故当 $\\pi<\\theta<2\\pi$ 时，$R_\\theta$ 也正交相似于某个"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1426,
+      "text": "\t最后说明这些标准形式两两不相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1431,
+      "text": "\t故两两不相似. 而"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1446,
+      "text": "\t不是实数，故它不与前三类矩阵相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1457,
+      "text": "\t综上，任意二阶正交矩阵都正交相似于上述四类之一，且这些标准形式两两不相似."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1499,
+      "text": "\t由上一定理，$A$ 正交相似于由 $\\pm1$ 与旋转块构成的准对角矩阵. 旋转块"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1757,
+      "text": "\t设 $A\\in M_n(\\mathbb{R})$ 且 $A'=A$. 则 $A$ 在实数域上可对角化. 进一步，$A$ 正交相似于对角阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1856,
+      "text": "\t故 $A$ 正交相似于对角阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1899,
+      "text": "\t必要性显然. 反之，若 $A,B$ 的特征多项式相同，则二者的特征值及其代数重数完全相同. 又 $A,B$ 均为实对称阵，故都相似于同一个由特征值按重数排列而成的对角阵. 因此 $A\\sim B$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1903,
+      "text": "\t设 $n$ 阶方阵 $A$ 的元素全为 $1$. 判断 $A$ 在 $\\mathbb{R}$ 上是否可对角化；如果可对角化，求与 $A$ 相似的对角阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 1957,
+      "text": "\t反之，若 $A=B^2$，其中 $B'=B$ 且 $B$ 可逆，则 $B$ 正交相似于实对角阵，故 $A=B^2$ 的特征值为 $B$ 的非零特征值的平方，均大于 $0$."
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2318,
+      "text": "\t设 $A\\in M_2(\\mathbb{R})$. 若 $A$ 是正规矩阵，则 $A$ 正交相似于下列形式之一："
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2377,
+      "text": "\t是实对称矩阵. 因此 $A$ 正交相似于对角阵，即存在正交矩阵 $U$，使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2423,
+      "text": "\t综上，$A$ 正交相似于"
+    },
+    {
+      "file": "chapters/Part 1/chapter6.tex",
+      "line": 2437,
+      "text": "\t设 $A\\in M_n(\\mathbb{R})$. 设 $A$ 是正规矩阵. 则 $A$ 正交相似于如下形式的准对角阵："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 781,
+      "text": "\t如果 $\\F=\\R$，则也可由 $A$ 正交相似于对角阵得到结论. 还可以利用 $\\F$ 上二次型的配方法证明. 与 $A$ 合同的对角阵不唯一."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1675,
+      "text": "\t由正定二次型的定义、惯性定理以及实对称阵正交相似于对角阵可得前四个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1771,
+      "text": "\t\t\t所以 $AB$ 与 $C'BC$ 相似. 由于 $B$ 正定，$C'BC$ 也正定，故 $C'BC$ 的特征值全大于 $0$. 因而 $AB$ 的特征值全大于 $0$. 又 $AB$ 对称，所以 $AB$ 正定."
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 98,
+      "text": "\\hyperref[p1:concept:c5-l820]{相似矩阵} & \\hyperref[p1:concept:c2-l222]{向量} & \\hyperref[p1:concept:c6-l3040]{向量到子空间的距离}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 120,
+      "text": "\\hyperref[p1:concept:c6-l1043]{正交群} & \\hyperref[p1:concept:c6-l1225]{正交相似} & \\hyperref[p1:concept:c4-l1323]{直和的投影}\\\\"
+    }
+  ],
+  "二次型": [
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3,
+      "text": "\\chapter{线性型，双线性型和二次型}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 781,
+      "text": "\t如果 $\\F=\\R$，则也可由 $A$ 正交相似于对角阵得到结论. 还可以利用 $\\F$ 上二次型的配方法证明. 与 $A$ 合同的对角阵不唯一."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1009,
+      "text": "\\section{二次型}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1013,
+      "text": "\t给定数域 $\\F$. $\\F$ 上的一个关于 $x_1,\\cdots,x_n$ 的二次齐次多项式称为 $\\F$ 上的一个 $n$ 元二次型(quadratic form). 也就是说，$\\F$ 上的一个 $n$ 元二次型是 $n$ 元二次函数."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1016,
+      "text": "$\\F$ 上的 $n$ 元二次型的一般形式为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1032,
+      "text": "\t没有交叉项的二次型称为一个标准型，即形如"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1036,
+      "text": "\t的二次型称为标准型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1051,
+      "text": "\t是 $\\F$ 上的一个 $n$ 元二次型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1057,
+      "text": "\t$\\F$ 上的 $n$ 元二次型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1078,
+      "text": "\t二次型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1093,
+      "text": "\t$\\F$ 上的关于 $x_1,\\cdots,x_n$ 的二次型 $f(x_1,\\cdots,x_n)$ 是标准型当且仅当其矩阵是一个对角阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1107,
+      "text": "\t也就是说，在二次型中，任意矩阵的非对称部分对二次型不起作用，可以看到\\[X'BX =X'(\\dfrac{1}{2}(B+B'))X\\]"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1111,
+      "text": "\t二次型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1135,
+      "text": "\t\\{\\F\\text{ 上的关于 }x_1,\\cdots,x_n\\text{ 的 }n\\text{ 元二次型}\\}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1159,
+      "text": "\t比较二次型中各平方项与交叉项的系数，即得 $A=B$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1183,
+      "text": "\t设 $f(x_1,\\cdots,x_n)$ 和 $g(y_1,\\cdots,y_n)$ 是 $\\F$ 上的 $n$ 元二次型. 如果存在可逆的 $C\\in M_n(\\F)$，使得在非退化线性替换 $X=CY$ 下有"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1190,
+      "text": "$\\F$ 上的 $n$ 元二次型之间的等价关系满足反身性、对称性和传递性."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1215,
+      "text": "\t由二次型矩阵的唯一性，$B=C'AC$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1238,
+      "text": "\t$f(x_1,\\cdots,x_n)$ 的在 $\\F$ 上的标准型不唯一，并且二次型的标准型依赖于数域."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1241,
+      "text": "\\noindent\\textbf{算法：求二次型的标准型}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1296,
+      "text": "配方法通常先考虑含 $x_1$ 的项，配方后，再对剩下的项进行配方. 若二次型没有平方项，则不能直接配方，需要先作非退化线性替换."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1396,
+      "text": "实数域上的二次型可以用正交变换求其标准型. 写出实二次型 $f(x_1,\\cdots,x_n)$ 的矩阵 $A$，求出正交阵 $P$ 使得"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1431,
+      "text": "\\end{definition}任意 $n$ 元二次型 $X'AX$ 的在复数域上的规范型存在且唯一，其中\\[r=r(A).\\]因此，在复数域上对 $n$ 元二次型按等价关系进行分类，也就是按其矩阵的秩进行分类."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1456,
+      "text": "\t为实二次型 $f(x_1,\\cdots,x_n)$ 的在实数域上的规范型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1462,
+      "text": "\t设两个 $n$ 元二次型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1485,
+      "text": "\t非退化线性替换不改变二次型的秩，故"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1516,
+      "text": "\t且至少有一个 $z_j^0\\ne0\\ (1\\le j\\le p')$. 因此右边二次型在 $Z^0$ 处的函数值 $>0$. 另一方面，"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1520,
+      "text": "\t所以左边二次型在 $Y^0$ 处的函数值 $\\le0$，矛盾. 故 $p\\ge p'$. 同理可得 $p'\\ge p$，从而 $p=p'$. 再由 $p+q=p'+q'$ 得 $q=q'$."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1524,
+      "text": "\t任意 $n$ 元实二次型的在实数域上的规范型是唯一的."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1528,
+      "text": "\t设实二次型 $f(x_1,\\cdots,x_n)$ 的规范型为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1540,
+      "text": "\t对任意 $n$ 元实二次型 $f(x_1,\\cdots,x_n)$ 都有："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1548,
+      "text": "\t两个 $n$ 元实二次型在实数域上等价，当且仅当它们的正惯性指数相等且负惯性指数也相等."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1567,
+      "text": "\t即，对于 $A=A'\\in M_n(\\R)$，$A$ 的正负惯性指数就是二次型 $X'AX$ 的正负惯性指数."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1577,
+      "text": "\\section{正定二次型、正定阵}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1591,
+      "text": "\t则称 $f(x_1,\\cdots,x_n)$ 是一个正定的二次型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1624,
+      "text": "\t设 $A=A'\\in M_n(\\R)$. 如果二次型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1675,
+      "text": "\t由正定二次型的定义、惯性定理以及实对称阵正交相似于对角阵可得前四个等价关系."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1825,
+      "text": "\t并且 $k$ 元实二次型 $g$ 的矩阵为主子阵"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1832,
+      "text": "\t由正定二次型的定义直接可得 $g$ 正定. 由二次型矩阵的写法可知，$g$ 的矩阵正是从 $A$ 中取第 $i_1,\\cdots,i_k$ 行和第 $i_1,\\cdots,i_k$ 列所得的主子阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1946,
+      "text": "\t若二次型 $X'AX$ 是负定的，则称 $A$ 是负定矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1973,
+      "text": "\t设 $A=A'\\in M_n(\\R)$. 如果 $A$ 既不是正定的，也不是负定的，则称 $A$ 是不定的，其二次型 $X'AX$ 为一个不定二次型."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1986,
+      "text": "\t则称 $f(x_1,\\cdots,x_n)$ 是半正定的. 若二次型 $X'AX$ 是半正定的，则称 $A$ 是半正定的."
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 1991,
+      "text": "\t\t\\item 实二次型$f(x_1,\\cdots,x_n)=d_1x_1^2+\\cdots+d_nx_n^2$是半正定的当且仅当"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2238,
+      "text": "\t\t是实二次型，其中 $A,B$ 是实对称矩阵. 若存在实方阵 $C,D$ 满足"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2929,
+      "text": "\t设 $Q(x_1,\\cdots,x_n)$ 是数域 $\\F$ 上的 $n$ 元二次型. 对 $X,Y\\in\\F^n$，定义"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2937,
+      "text": "\t设二次型 $Q$ 的矩阵为 $A=A'$，即"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2965,
+      "text": "\t\\textbf{实二次型正交化为标准型.}"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2967,
+      "text": "\t\t\\item 写出二次型的矩阵 $A$，其中 $A$ 必须是实对称矩阵；"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2973,
+      "text": "\t\t\\item 作非退化线性替换 $X=TY$，则二次型化为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2982,
+      "text": "\t用正交替换将下列实二次型化为标准型："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 2989,
+      "text": "\t原二次型的矩阵为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3043,
+      "text": "\t下，原二次型化为标准型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3050,
+      "text": "\t求可逆线性替换，将下列二次型化为对角型："
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3082,
+      "text": "\t\t故得到原二次型的一个标准型"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3087,
+      "text": "\t\t\\item 原二次型的矩阵为"
+    },
+    {
+      "file": "chapters/Part 1/chapter7.tex",
+      "line": 3125,
+      "text": "\t\t则在非退化线性替换 $X=CY$ 下，得到原二次型的一个标准型"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 19,
+      "text": "\\hyperref[p1:concept:c1-l7]{半群} & \\hyperref[p1:concept:c7-l1976]{半正定二次型} & \\hyperref[p1:concept:c7-l1976]{半正定矩阵}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 23,
+      "text": "\\hyperref[p1:concept:c7-l1972]{不定二次型} & \\hyperref[p1:concept:c7-l1972]{不定矩阵} & \\hyperref[p1:concept:c1-l558]{不定元}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 31,
+      "text": "\\hyperref[p1:concept:c2-l7]{等价的线性方程组} & \\hyperref[p1:concept:c7-l1182]{等价二次型} & \\hyperref[p1:concept:c2-l528]{等价向量组}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 41,
+      "text": "\\hyperref[p1:concept:c1-l1278]{多元多项式环} & \\hyperref[p1:concept:c7-l1012]{二次型} & \\hyperref[p1:concept:c7-l1031]{二次型的标准型}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 42,
+      "text": "\\hyperref[p1:concept:c7-l1056]{二次型的矩阵} & \\hyperref[p1:concept:c7-l1027]{二次型的系数} & \\hyperref[p1:concept:c7-l1056]{二次型的秩}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 47,
+      "text": "\\hyperref[p1:concept:c3-l1440]{分块矩阵的转置} & \\hyperref[p1:concept:c7-l1527]{符号差} & \\hyperref[p1:concept:c7-l1931]{负定二次型}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 48,
+      "text": "\\hyperref[p1:concept:c7-l1931]{负定矩阵} & \\hyperref[p1:concept:c7-l1527]{负惯性指数} & \\hyperref[p1:concept:c7-l1425]{复二次型的规范型}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 76,
+      "text": "\\hyperref[p1:concept:c7-l1451]{实二次型的规范型} & \\hyperref[p1:concept:c6-l6]{实内积空间} & \\hyperref[p1:concept:c1-l558]{首系数}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 116,
+      "text": "\\hyperref[p1:concept:c1-l59]{整数的整除} & \\hyperref[p1:concept:c1-l101]{整数互素} & \\hyperref[p1:concept:c7-l1578]{正定二次型}\\\\"
+    },
+    {
+      "file": "chapters/Part 1/concept-review.tex",
+      "line": 117,
+      "text": "\\hyperref[p1:concept:c6-l698]{正定矩阵} & \\hyperref[p1:concept:c7-l1623]{正定矩阵（二次型定义）} & \\hyperref[p1:concept:c7-l1527]{正惯性指数}\\\\"
+    }
+  ],
+  "Jacobi": [],
+  "几乎": [],
+  "三角化": [
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 491,
+      "text": "\\section{方阵特征多项式与三角化}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1097,
+      "text": "\\section{三角化与可对角化}"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1099,
+      "text": "本节继续讨论特征值、特征向量、三角化以及可对角化.以下默认 $A\\in M_n(\\F)$，若 $\\mathbb K\\supseteq\\F$ 是扩域，则可把 $A$ 看成 $M_n(\\mathbb K)$ 中的矩阵."
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1129,
+      "text": "\t(上三角化)"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 1184,
+      "text": "\t由上三角化，存在可逆矩阵 $P$ 使"
+    },
+    {
+      "file": "chapters/Part 1/chapter5.tex",
+      "line": 3422,
+      "text": "\t在包含所有特征值的扩域中，$A$ 可三角化.设 $A$ 与上三角矩阵 $U$ 相似，且 $U$ 的对角元依次为"
+    }
+  ],
+  "可公度": [],
+  "Lie": [],
+  "李代数": [],
+  "叉积": []
+}

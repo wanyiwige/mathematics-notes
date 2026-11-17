@@ -1,0 +1,97 @@
+% !TEX root = ../../../main.tex
+% 所属：第二部分：多变量分析学 / 第1章：Euclid空间
+% 节：1.6 连通性以及道路连通性
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{连通性以及道路连通性}
+在第三章中，我们曾经给出过一般的拓扑空间 $(\X,\mathcal T)$中的连通性的定义：
+
+$D\subset \X$,考虑$D$上的子空间拓扑$\T'$，对$(D,\T')$,若闭开集只有$D\text{与}\varnothing$，则称$D$是连通的.
+
+下面，我们以$\R^n$为例，给出另一种连通性的定义：
+
+
+\begin{definition}
+设 $D\subset\R^n$。若不存在非空、不交的子集 $A,B\subset D$，使得
+\[
+D=A\cup B,\qquad
+\overline A\cap B=A\cap\overline B=\varnothing,
+\]
+则称 $D$ 为\textbf{连通集}。
+
+等价地，对于任意非空、不交且并集为 $D$ 的 $A,B$，都有
+\[
+\overline A\cap B\neq\varnothing
+\quad\text{或}\quad A\cap\overline B\neq\varnothing.
+\]
+这里的闭包是在 $\R^n$ 中取的。
+\end{definition}
+下面我们证明两种定义的等价性,注意这里$A'$是由$A$的聚点构成的集合.
+\begin{proposition}
+	以上两种定义等价
+\end{proposition}
+\begin{proof}
+若存在非空、不交的 $A,B$，满足 $D=A\cup B$ 且 $\overline A\cap B=A\cap\overline B=\varnothing$，则
+\[
+\overline A^{\,D}=D\cap\overline A=A,\qquad
+\overline B^{\,D}=D\cap\overline B=B.
+\]
+因此 $A,B$ 都是 $D$ 中的闭集。又因为二者互为在 $D$ 中的补集，所以它们也都是 $D$ 中的开集。于是 $D$ 存在非平凡的闭开子集。
+
+反之，若 $A$ 是 $D$ 中的非平凡闭开子集，令 $B=D\setminus A$，则 $A,B$ 都非空且闭，并且
+\[
+D\cap\overline A=A,\qquad D\cap\overline B=B.
+\]
+由此得到 $\overline A\cap B=A\cap\overline B=\varnothing$。所以存在这样的分离，当且仅当 $D$ 存在非平凡闭开子集，两种连通性定义等价。
+\end{proof}
+\begin{definition}
+	非空连通的开集称为 (开) 区域, (开) 区域的闭包称为闭区域.
+\end{definition}
+\begin{definition}
+	设 $S$ 是 $\R^n$ 中点集, 若连续映射
+	\[
+	\vect\gamma: [0, 1] \to \R^n
+	\]
+	的值域全部落在 $S$ 中, 即满足 $\vect\gamma([0, 1]) \subset S$, 则称 $\vect\gamma$ 为 $S$ 中的道路, $\vect\gamma(0)$ 与 $\vect\gamma(1)$ 分别称为道路的起点与终点.
+	
+	若 $S$ 中的任意两点 $\vect x, \vect y$ 之间, 都存在 $S$ 中以 $\vect x$ 为起点, $\vect y$ 为终点的道路, 则称 $S$ 为 道路 连通的, 或称 $S$ 为道路连通集.
+\end{definition}
+\begin{proposition}[$\R^n$ 中的区域是道路连通的]
+	设 $D\subset\R^n$ 是一个区域, 则 $D$ 是道路连通的.
+\end{proposition}
+
+\begin{proof}
+	设 $D$ 是 $\mathbb{R}^n$ 中的一个非空连通开集。
+	取点 $\vect x\in D$，设 $U(\vect x)$ 为 $D$ 中所有与 $\vect x$ 有 $D$ 中连续曲线相联结的点的集合。
+	容易看到 $U(\vect x)$ 是一个道路连通集。我们证明$U(\vect x)=D.$
+	
+	设 $\vect y\in U(\vect x)$，并取 $\delta>0$ 使$O_\delta(\vect y)\subset D.$对任意$\vect z\in O_\delta(\vect y),$存在 $O_\delta(\vect y)$ 中的直线段联结 $\vect z$ 到 $\vect y$，从而存在 $D$ 中的连续曲线联结
+	$\vect z$ 到 $\vect x$，所以$O_\delta(\vect y)\subset U(\vect x).$因而 $U(\vect x)$ 是包含 $\vect x$ 的开集。如$D-U(\vect x)\neq\varnothing,$则$D-U(\vect x)=\bigcup U(\vect y'),$其中 $\vect y'$ 取遍 $D-U(\vect x)$ 中的点。按前面的证明，每个 $U(\vect y')$ 都是开集，
+	因此 $D-U(\vect x)$ 也是开集。	
+	于是 $D$ 有开集分解式$D=U(\vect x)\cup\bigl(D-U(\vect x)\bigr),$这与 $D$ 是连通开集矛盾。这就证明了$D-U(\vect x)=\varnothing,$所以$D=U(\vect x)$是道路连通集。
+\end{proof}
+
+
+\begin{proposition}[连续映射将连通集映成连通集]
+	\label{连续映射将连通集映成连通集}
+	连续映射将连通集映成连通集; 若定义域道路连通,
+	则其像集也道路连通.
+\end{proposition}
+
+\begin{proof}
+	第一点在第三章已经证得了。
+
+	若 $D$ 还道路连通, 对任意
+	$\vect f(\vect x),\vect f(\vect y)\in\vect f(D)$,
+	取 $D$ 中从 $\vect x$ 到 $\vect y$ 的道路
+	$\vect\gamma$, 则 $\vect f\circ\vect\gamma$
+	是 $\vect f(D)$ 中连接这两个像点的道路.
+	故 $\vect f(D)$ 也道路连通.
+\end{proof}
+
+\begin{corollary}[连续函数将非空连通紧集映成闭区间]
+	连续函数将非空连通紧集映成闭区间. 
+\end{corollary}
+由此立即得到:
+\begin{proposition}[中间值定理]
+	设 $K$ 是 $\R^n$ 中非空连通紧集, $f$ 是 $K$ 上的连续函数, 则 $f$ 可取到它在 $K$ 上的最小值 $m$ 与最大值 $M$ 之间的一切值. 换言之, $f$ 的值域是闭区间 $[m, M]$.
+\end{proposition}

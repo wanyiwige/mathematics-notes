@@ -1,0 +1,208 @@
+% !TEX root = ../../../main.tex
+% 所属：第四部分：Fourier 分析 / 第4章：$\R$上的Fourier变换
+% 节：4.1 基本定义
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{基本定义}
+
+在 Fourier 分析中，我们采用 Cauchy 主值积分作为实轴上积分的一种延拓，即
+\[
+\lim_{N\to\infty}\int_{-N}^{N}f(x)\dd x
+=(\mathrm{CPV})\int_{-\infty}^{\infty}f(x)\dd x,
+\]
+并将其简记为
+\[
+\int_{-\infty}^{\infty}f(x)\dd x.
+\]
+需要注意的是，这一节中的积分与 Part1 中所讲的积分并不完全相同。为了确保上述积分存在，我们对函数作如下限制。
+
+\begin{definition}
+	如果对于定义在 $\R$ 上的\textbf{连续函数} $f$，存在常数 $A>0$，使得对任意 $x\in\R$ 都有
+	\[
+	\abs{f(x)}\leq \frac{A}{1+x^2},
+	\]
+	则称 $f$ 是\textbf{适度下降的}。
+	
+	记 $\R$ 上全体适度下降的函数为 $\mathcal M(\R)$。在通常的函数加法与数乘下，$\mathcal M(\R)$ 是 $\C$ 上的一个向量空间。
+	
+\end{definition}
+该定义说明 $f$ 是有界的，并且由于$\dfrac{A}{1+x^2}\leq \dfrac{A}{x^2}(x\neq0),$ $f$ 在无穷远处至少与 $\dfrac{1}{x^2}$ 具有相同的下降速度。
+
+
+对于 $f\in\mathcal M(\R)$，定义
+\[
+\int_{-\infty}^{\infty}f(x)\dd x
+:=\lim_{N\to\infty}\int_{-N}^{N}f(x)\dd x.
+\]
+显然，
+\[
+\abs{\int_{-\infty}^{\infty}f(x)\dd x}
+\leq \int_{-\infty}^{\infty}\abs{f(x)}\dd x
+\leq \int_{-\infty}^{\infty}\frac{A}{1+x^2}\dd x
+=A\pi,
+\]
+所以该积分存在。
+
+\textbf{注.}\quad 适度下降的条件也可写成：存在 $A>0$ 与 $\eps>0$，使得
+\[
+\abs{f(x)}\leq \frac{A}{1+\abs{x}^{1+\eps}}.
+\]
+为方便起见，这里取 $\eps=1$。
+
+\begin{proposition}\label{prop:moderate-integral-properties}
+	适度下降函数的积分满足如下性质：
+	\begin{enumerate}[label=(\roman*)]
+		\item \textbf{线性性：}若 $f,g\in\mathcal M(\R)$ 且 $a,b\in\C$，则
+		\[
+		\int_{-\infty}^{\infty}\bigl(af(x)+bg(x)\bigr)\dd x
+		=a\int_{-\infty}^{\infty}f(x)\dd x
+		+b\int_{-\infty}^{\infty}g(x)\dd x.
+		\]
+		
+		\item \textbf{平移不变性：}对任意 $h\in\R$，有
+		\[
+		\int_{-\infty}^{\infty}f(x-h)\dd x
+		=\int_{-\infty}^{\infty}f(x)\dd x.
+		\]
+		
+		\item \textbf{伸缩性：}若 $\delta>0$，则
+		\[
+		\delta\int_{-\infty}^{\infty}f(\delta x)\dd x
+		=\int_{-\infty}^{\infty}f(x)\dd x.
+		\]
+		
+		\item \textbf{连续性：}若 $f\in\mathcal M(\R)$，则当 $h\to0$ 时，
+		\[
+		\int_{-\infty}^{\infty}\abs{f(x-h)-f(x)}\dd x\longrightarrow0.
+		\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	(i) 由积分的线性性立即得到。
+	
+	(ii) 不妨设 $h\geq0$。由变量替换，
+	\[
+	\int_{-N}^{N}f(x-h)\dd x
+	=\int_{-N-h}^{N-h}f(x)\dd x.
+	\]
+	当 $N>h$ 时，
+	\[
+	\begin{aligned}
+		&\abs{\int_{-N}^{N}f(x-h)\dd x-\int_{-N}^{N}f(x)\dd x}\\
+		&\qquad\leq
+		\int_{-N-h}^{-N}\abs{f(x)}\dd x
+		+\int_{N-h}^{N}\abs{f(x)}\dd x
+		\leq \frac{2Ah}{1+(N-h)^2}\longrightarrow0.
+	\end{aligned}
+	\]
+	令 $N\to\infty$ 即得结论；$h<0$ 的情形同理。
+	
+	(iii) 由变量替换，
+	\[
+	\delta\int_{-N}^{N}f(\delta x)\dd x
+	=\int_{-\delta N}^{\delta N}f(u)\dd u.
+	\]
+	令 $N\to\infty$ 类似于(ii)即得证。
+	
+	(iv) 只需考虑 $\abs{h}\leq1$。给定 $\eps>0$，取充分大的 $N$，使得
+	\[
+	\int_{\abs{x}\geq N-1}\abs{f(x)}\dd x<\frac{\eps}{4}.
+	\]
+	于是对 $\abs{h}\leq1$，
+	\[
+	\int_{\abs{x}\geq N}\abs{f(x-h)}\dd x
+	\leq\int_{\abs{u}\geq N-1}\abs{f(u)}\dd u
+	<\frac{\eps}{4},
+	\]
+	并且
+	\[
+	\int_{\abs{x}\geq N}\abs{f(x)}\dd x<\frac{\eps}{4}.
+	\]
+	固定 $N$。由于 $f$ 在 $[-N-1,N+1]$ 上一致连续，当 $h\to0$ 时，
+	\[
+	\sup_{\abs{x}\leq N}\abs{f(x-h)-f(x)}\longrightarrow0.
+	\]
+	因此可取充分小的 $h$，使得上述上确界小于 $\eps/(4N)$。此时
+	\[
+	\begin{aligned}
+		\int_{-\infty}^{\infty}\abs{f(x-h)-f(x)}\dd x
+		\leq{}&\int_{-N}^{N}\abs{f(x-h)-f(x)}\dd x\\
+		&+\int_{\abs{x}\geq N}\abs{f(x-h)}\dd x
+		+\int_{\abs{x}\geq N}\abs{f(x)}\dd x\\
+		<&\frac{\eps}{2}+\frac{\eps}{4}+\frac{\eps}{4}=\eps.
+	\end{aligned}
+	\]
+	故结论成立。
+\end{proof}
+另一个可能会用到概念是支集
+\begin{definition}
+	函数 $f$ 的支集记作
+	
+	$$
+	\operatorname{supp} f
+	$$
+	
+	定义为
+	
+	$$
+	\operatorname{supp} f=\overline{\{x: f(x) \neq 0\}} .
+	$$
+	
+	也就是：先取出所有使 $f(x) \neq 0$ 的点，再把这个集合闭包起来。
+\end{definition}
+\begin{definition}
+	若 $f\in\mathcal M(\R)$，则在 $\xi\in\R$ 处定义 $f$ 的 Fourier 变换为
+	\[
+	\widehat f(\xi)
+	=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\dd x.
+	\]
+	
+\end{definition}
+由于 $\abs{e^{-2\pi i x\xi}}=1$，这是一个关于适度下降函数的积分，因而积分有意义。
+\begin{proposition}
+	若 $f\in\mathcal M(\R)$，则 $\widehat f$ 是一个连续且有界的函数，并且当 $\abs{\xi}\to\infty$ 时，
+	\[
+	\widehat f(\xi)\longrightarrow0.
+	\]
+\end{proposition}
+
+\begin{proof}
+	首先，
+	\[
+	\abs{\widehat f(\xi)}
+	\leq\int_{-\infty}^{\infty}\abs{f(x)}\dd x
+	\leq A\pi,
+	\]
+	故 $\widehat f$ 有界。
+	
+	若 $\xi_n\to\xi$，则
+	\[
+	f(x)e^{-2\pi i x\xi_n}\longrightarrow f(x)e^{-2\pi i x\xi},
+	\qquad
+	\abs{f(x)e^{-2\pi i x\xi_n}}\leq\abs{f(x)}.
+	\]
+	由含参变量积分的连续性定理，$\widehat f(\xi_n)\to\widehat f(\xi)$，所以 $\widehat f$ 连续。
+	
+	最后，设 $\xi\neq0$，令 $h=1/(2\xi)$。由平移不变性与变量替换，
+	\[
+	\int_{-\infty}^{\infty}f(x-h)e^{-2\pi i x\xi}\dd x
+	=e^{-2\pi i h\xi}\widehat f(\xi)
+	=-\widehat f(\xi).
+	\]
+	因此
+	\[
+	\widehat f(\xi)
+	=\frac12\int_{-\infty}^{\infty}
+	\left(f(x)-f\left(x-\frac1{2\xi}\right)\right)e^{-2\pi i x\xi}\dd x.
+	\]
+	从而
+	\[
+	\abs{\widehat f(\xi)}
+	\leq\frac12\int_{-\infty}^{\infty}
+	\abs{f(x)-f\left(x-\frac1{2\xi}\right)}\dd x.
+	\]
+	当 $\abs{\xi}\to\infty$ 时，$1/(2\xi)\to0$，由命题 \ref{prop:moderate-integral-properties} 的连续性结论，右端趋于 $0$，故
+	\[
+	\widehat f(\xi)\longrightarrow0.
+	\]
+\end{proof}

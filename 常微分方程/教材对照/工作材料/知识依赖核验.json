@@ -1,0 +1,76 @@
+{
+  "active_chapter_files": [
+    "chapter1.tex",
+    "chapter2.tex",
+    "chapter3.tex",
+    "chapter4.tex",
+    "chapter5.tex",
+    "chapter6.tex",
+    "chapter7.tex",
+    "chapter8.tex",
+    "chapter9.tex",
+    "chapter10.tex",
+    "chapter11.tex",
+    "chapter12.tex",
+    "chapter13.tex",
+    "chapter14.tex",
+    "chapter15.tex"
+  ],
+  "retained_labels": 178,
+  "current_labels": 210,
+  "dependency_chains_checked": [
+    [
+      "thm:有限维Picard存在唯一性定理",
+      "sec:picard-contraction",
+      "thm:Peano存在性定理"
+    ],
+    [
+      "prop:compact-extension-vector",
+      "thm:energy-global-extension"
+    ],
+    [
+      "thm:C1依赖性定理",
+      "prop:matrix-variation",
+      "cor:Cr依赖性推论",
+      "thm:local-inverse"
+    ],
+    [
+      "def:动力系统与流",
+      "thm:nonlinear-liouville",
+      "def:Lyapunov稳定性",
+      "prop:harvest-threshold"
+    ],
+    [
+      "sec:normal-modes",
+      "thm:Lyapunov稳定性判据",
+      "prop:normal-mode-stability"
+    ],
+    [
+      "def:Poincare映射",
+      "prop:discrete-derivative-test",
+      "sec:perturbed-oscillation"
+    ],
+    [
+      "def:Hamilton系统",
+      "thm:Hamilton函数沿轨道守恒",
+      "cor:hamilton-volume",
+      "thm:regular-energy-level"
+    ],
+    [
+      "chap:manifolds",
+      "chap:characteristics"
+    ]
+  ],
+  "new_environments": {
+    "definition": 58,
+    "theorem": 50,
+    "proof": 114,
+    "proposition": 49,
+    "example": 9,
+    "lemma": 7,
+    "corollary": 7
+  },
+  "backup_crc_valid": true,
+  "chapter2_unchanged_this_revision": true,
+  "modules_directly_embedded": true
+}

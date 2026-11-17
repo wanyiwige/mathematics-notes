@@ -1,0 +1,2043 @@
+% !TEX root = ../../main.tex
+\setchapterimage{figure/P2/C2封面图.jpg}
+\setchapterintro{从同态与商群出发，研究循环群、单群与可解群；用群作用和西罗定理分析有限群，再理解自同构、直和、合成群列及自由构造。}
+\chapter{群}
+\label{p2:ch2}
+
+
+\section{群的同态定理}
+
+设$N\trianglelefteq G$，自然满同态$\pi:G\to G/N$由$\pi(x)=xN$给出。下面先研究$G/N$的子群与$G$的子群之间的关系，再说明相应商群之间的同构。
+
+\phantomsection\label{p2:concept:c2-l12}若$H\leq G$且$N\leq H$，则$\pi(H)=\{hN:h\in H\}$是$G/N$的子群，通常记为$H/N$。反过来，对$G/N$中的子群$\overline H$，定义其\textbf{完全反像}
+\[
+\pi^{-1}(\overline H)=\{x\in G:\pi(x)\in\overline H\}.
+\]
+这里的$\pi^{-1}$表示集合的反像，不要求$\pi$存在逆映射。
+
+\begin{theorem}\label{p2:correspondence}
+\textbf{子群对应定理：}设$N\trianglelefteq G$。自然同态$\pi:G\to G/N$建立$G$中包含$N$的子群与$G/N$的全部子群之间的一一对应，互逆的映射为
+\[
+H\longmapsto H/N,\qquad
+\overline H\longmapsto\pi^{-1}(\overline H).
+\]
+该对应保持包含关系，并使正规子群与正规子群对应。若$H\trianglelefteq G$且$N\leq H$，则
+\[
+G/H\cong(G/N)/(H/N).
+\]
+\end{theorem}
+\begin{proof}
+\textbf{子群的像与反像：}若$N\leq H\leq G$，则$\pi(H)$包含单位元$N$，且对$h_1,h_2\in H$，
+\[
+\pi(h_1)\pi(h_2)^{-1}=\pi(h_1h_2^{-1})\in\pi(H).
+\]
+所以$\pi(H)=H/N$为子群。
+
+若$\overline H\leq G/N$，则$\pi^{-1}(\overline H)$包含$N$，因为$N$的元素都映到$\overline H$的单位元。对$x,y\in\pi^{-1}(\overline H)$，
+\[
+\pi(xy^{-1})=\pi(x)\pi(y)^{-1}\in\overline H,
+\]
+故$xy^{-1}\in\pi^{-1}(\overline H)$，它也是子群。
+
+\textbf{两个对应互逆：}若$z\in\pi(\pi^{-1}(\overline H))$，则$z=\pi(x)$，其中$x\in\pi^{-1}(\overline H)$，从而$z\in\overline H$。反过来，任取$z\in\overline H$，由$\pi$满射，可取$x\in G$使$\pi(x)=z$。这时$x\in\pi^{-1}(\overline H)$，所以
+\[
+\pi(\pi^{-1}(\overline H))=\overline H.
+\]
+
+再设$N\leq H$。每个$h\in H$都满足$\pi(h)\in\pi(H)$，故$H\subseteq\pi^{-1}(\pi(H))$。若$x\in\pi^{-1}(\pi(H))$，则有$h\in H$使$\pi(x)=\pi(h)$，于是
+\[
+h^{-1}x\in\ker\pi=N,\qquad x\in hN\subseteq H.
+\]
+所以$\pi^{-1}(\pi(H))=H$，两种映射互逆。集合的像与反像都保持包含关系，因此这一对应也保持包含关系。
+
+\textbf{正规子群的对应：}若$H\trianglelefteq G$且$N\leq H$，任取$g\in G$，则
+\[
+\pi(g)\pi(H)\pi(g)^{-1}=\pi(gHg^{-1})=\pi(H).
+\]
+由于$G/N$中的元素均为$\pi(g)$，这证明$H/N\trianglelefteq G/N$。
+反过来，若$\overline H\trianglelefteq G/N$，则对$g\in G$和$x\in\pi^{-1}(\overline H)$，
+\[
+\pi(gxg^{-1})=\pi(g)\pi(x)\pi(g)^{-1}\in\overline H.
+\]
+故完全反像在共轭下封闭，因而在$G$中正规。
+
+\textbf{商群的同构：}设$H\trianglelefteq G$且$N\leq H$。将自然同态
+\[
+q:G/N\longrightarrow(G/N)/(H/N)
+\]
+与$\pi$复合，得到满同态$q\pi$。其核由
+\[
+g\in\ker(q\pi)
+\iff gN\in H/N
+\iff g\in H
+\]
+确定为$H$。由同态基本定理，得到所述同构，具体映射为
+\[
+gH\longmapsto(gN)(H/N).
+\]
+\end{proof}
+
+自然同态只是满同态的一种。对于任意满同态，先把值域识别为核的商群，便得到同样的对应。
+
+\begin{theorem}\label{p2:correspondence-onto}
+\textbf{满同态的子群对应定理：}设$\sigma:G\to G'$为满同态，$K=\ker\sigma$。映射$H\mapsto\sigma(H)$与$H'\mapsto\sigma^{-1}(H')$给出
+\[
+\{H\leq G:K\leq H\}\longleftrightarrow\{H'\leq G'\}
+\]
+之间保持包含关系的一一对应，且正规子群与正规子群对应。若$H\trianglelefteq G$且$K\leq H$，记$H'=\sigma(H)$，则
+\[
+G/H\cong G'/H',\qquad gH\longmapsto\sigma(g)H'.
+\]
+\end{theorem}
+\begin{proof}
+同态基本定理给出同构
+\[
+\theta:G/K\longrightarrow G',\qquad gK\longmapsto\sigma(g).
+\]
+前一定理把包含$K$的子群$H$对应于$G/K$的子群$H/K$，而$\theta$将$H/K$映到$\sigma(H)$。同构把子群映为子群，也保持正规性与包含关系，所以得到所述对应。
+
+具体地，$\sigma$满射说明$\sigma(\sigma^{-1}(H'))=H'$。若$K\leq H$，则
+\begin{align*}
+x\in\sigma^{-1}(\sigma(H))
+&\iff\text{存在 }h\in H\text{ 使 }\sigma(x)=\sigma(h)\\
+&\iff\text{存在 }h\in H\text{ 使 }h^{-1}x\in K\\
+&\iff x\in H.
+\end{align*}
+最后，$G/H\cong(G/K)/(H/K)$，而$\theta$又诱导$(G/K)/(H/K)\cong G'/H'$。两者复合就是所列的商群同构。
+\end{proof}
+
+如果$H$并不包含$N$，自然同态限制在$H$上仍然有意义。此时核变为$H\cap N$，同时可把$H$扩大为$HN$，使它包含$N$。
+
+\begin{theorem}\label{p2:second-iso}
+\textbf{第二同构定理：}设$H\leq G$、$N\trianglelefteq G$，并记$HN=\{hn:h\in H,n\in N\}$。则$HN\leq G$、$H\cap N\trianglelefteq H$，且
+\[
+HN/N\cong H/(H\cap N),\qquad hN\longmapsto h(H\cap N).
+\]
+\end{theorem}
+\begin{proof}
+先将自然同态$\pi:G\to G/N$限制到$H$。其核为$H\cap N$，所以$H\cap N\trianglelefteq H$，并且
+\[
+H/(H\cap N)\cong\pi(H).
+\]
+
+再验证$HN$是子群。它包含$e$，对$h_1,h_2\in H$和$n_1,n_2\in N$，由$N$正规可得
+\begin{align*}
+(h_1n_1)(h_2n_2)
+&=h_1h_2(h_2^{-1}n_1h_2)n_2\in HN,\\
+(h_1n_1)^{-1}
+&=h_1^{-1}(h_1n_1^{-1}h_1^{-1})\in HN.
+\end{align*}
+其中括号内的共轭元素仍属于$N$，故两个结果都有$hn$的形式。
+
+因为$N\leq HN$，限制同态$\pi|_{HN}$的核为$N$。又因$\pi(hn)=\pi(h)$，有$\pi(HN)=\pi(H)$，所以
+\[
+HN/N\cong\pi(H)\cong H/(H\cap N).
+\]
+第一个同构把$hN$映到$\pi(h)$，第二个把$\pi(h)$映到$h(H\cap N)$，因而复合映射正如定理所述。
+\end{proof}
+
+下面讨论另一问题：交换群的同态像仍交换，但同态像交换并不能推出原群交换。要说明这种满同态的核具有什么性质，需要先引入由子集生成的子群。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l142}设$S\subseteq G$。所有包含$S$的子群之交称为\textbf{由$S$生成的子群}，记为
+\[
+\langle S\rangle=\bigcap_{S\subseteq H\leq G}H.
+\]
+\phantomsection\label{p2:concept:c2-l146}若$\langle S\rangle=G$，则称$S$为$G$的一组\textbf{生成元}；若可取有限的$S$，则称$G$为\textbf{有限生成群}。简记$\langle a,b\rangle=\langle\{a,b\}\rangle$。
+\end{definition}
+
+因为$G$本身包含$S$，参与求交的子群非空；子群之交仍为子群，所以$\langle S\rangle$确为包含$S$的最小子群。
+
+\begin{proposition}
+$\langle S\rangle$恰由$S\cup S^{-1}$中元素的全部有限乘积组成，其中$S^{-1}=\{s^{-1}:s\in S\}$，并允许空乘积$e$。特别地，$\langle\varnothing\rangle=\{e\}$。
+\end{proposition}
+\begin{proof}[补充证明]
+令$W$为上述有限乘积组成的集合。它包含$e$及$S$；连接两串乘积仍得到这样的乘积。若$w=x_1\cdots x_r$，则
+\[
+w^{-1}=x_r^{-1}\cdots x_1^{-1}\in W,
+\]
+因为每个$x_i^{-1}$仍在$S\cup S^{-1}$中。因此$W$是包含$S$的子群，故$\langle S\rangle\subseteq W$。
+反过来，任一包含$S$的子群都包含$S^{-1}$及这些有限乘积，故$W\subseteq\langle S\rangle$。两边相等。
+\end{proof}
+
+有限群可取自身为一组有限生成元，但有限生成群不一定有限，例如$\Z=\langle1\rangle$。由单个元素生成的群称为循环群。
+
+若满同态$\sigma:G\to G'$的目标群交换，则任取$a,b\in G$，有
+\[
+\sigma(a^{-1}b^{-1}ab)
+=\sigma(a)^{-1}\sigma(b)^{-1}\sigma(a)\sigma(b)=e_{G'}.
+\]
+这说明核必须包含下面这类元素及其生成的子群。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l173}元素$[a,b]=a^{-1}b^{-1}ab$称为$a,b$的\textbf{换位子}。全部换位子生成的子群称为$G$的\textbf{换位子群}，记为$G^{(1)}$或$[G,G]$。
+\end{definition}
+
+\begin{theorem}\label{p2:abelianization}
+设$\sigma:G\to G'$为满同态，则
+\[
+G'\text{交换}\quad\Longleftrightarrow\quad G^{(1)}\leq\ker\sigma.
+\]
+此外，$G^{(1)}\trianglelefteq G$，且$G/G^{(1)}$为交换群。
+\end{theorem}
+\begin{proof}[补充证明]
+若$G'$交换，上面的计算说明全部换位子都在$\ker\sigma$中。因为核是子群，它也包含这些元素生成的$G^{(1)}$。
+
+反过来，若$G^{(1)}\leq\ker\sigma$，则对任意$a,b\in G$，
+\[
+\sigma(a)^{-1}\sigma(b)^{-1}\sigma(a)\sigma(b)
+=\sigma([a,b])=e_{G'}.
+\]
+这等价于$\sigma(a)\sigma(b)=\sigma(b)\sigma(a)$。满射性使$G'$中的任意两个元素均能如此表示，所以$G'$交换。
+
+再证正规性。对任意$g,a,b\in G$，直接展开得
+\[
+g[a,b]g^{-1}=[gag^{-1},gbg^{-1}].
+\]
+共轭因此把每个生成换位子映为另一个换位子，也把它们的逆及有限乘积映入$G^{(1)}$。故$gG^{(1)}g^{-1}\subseteq G^{(1)}$。将$g$换为$g^{-1}$并移项，得反向包含，因此$G^{(1)}$正规。
+
+将已证的等价条件用于自然满同态$G\to G/G^{(1)}$，其核正是$G^{(1)}$，便知该商群交换。
+\end{proof}
+
+\section{循环群}
+
+\phantomsection\label{p2:concept:c2-l204}由一个元素$g$生成的群称为循环群，记为$G=\langle g\rangle$。其中每个元素都为$g$的整数次幂，且
+\[
+g^rg^s=g^{r+s}=g^{s+r}=g^sg^r,
+\]
+所以循环群一定交换。整数加法群$\Z$由1生成，是无限循环群的基本例子。先弄清$\Z$的子群，就可以通过同态研究一般循环群。
+
+\begin{proposition}
+$\Z$的每个子群都形如$m\Z$，其中$m$为唯一的非负整数。对$m,n\geq0$，
+\[
+n\Z\supseteq m\Z\quad\Longleftrightarrow\quad n\mid m.
+\]
+\end{proposition}
+\begin{proof}
+设$H\leq\Z$。若$H=\{0\}$，取$m=0$。否则$H$含非零整数；同时含其负元，所以必含正整数。取$H$中最小的正整数$m$。
+
+对任意$x\in H$，作带余除法：
+\[
+x=qm+r,\qquad q,r\in\Z,\quad0\leq r<m.
+\]
+因为$x,m\in H$，故$r=x-qm\in H$。若$r>0$，就得到$H$中比$m$更小的正整数，矛盾。因此$r=0$，即$x\in m\Z$。这说明$H\subseteq m\Z$；反过来，$m\in H$使$m$的全部整数倍都属于$H$，故$H=m\Z$。非零子群的$m$由最小正整数唯一确定。
+
+若$n\Z\supseteq m\Z$，则$m\in n\Z$，即$n\mid m$；若$m=nt$，则每个$mk=n(tk)$都在$n\Z$中，得到反向推论。含0的情形也按$m=nt$解释。
+\end{proof}
+
+\begin{theorem}
+无限循环群同构于$\Z$，其子群也均为循环群。若$G=\langle g\rangle$的阶为$m$，则$G\cong\Z/m\Z$，且对$m$的每个正因子$s$，恰有一个$s$阶子群，为
+\[
+\langle g^{m/s}\rangle.
+\]
+\end{theorem}
+\begin{proof}
+定义满同态
+\[
+\varphi:\Z\longrightarrow G,\qquad n\longmapsto g^n.
+\]
+满射性由$g$生成$G$得到；它保持运算，因为$g^{r+s}=g^rg^s$。
+其核是$\Z$的子群，所以形如$m\Z$，$m\geq0$。
+
+若$m=0$，$\varphi$单射，故$G\cong\Z$。此时子群也对应于$n\Z$，所以仍为循环群，生成元为$g^n$。
+
+若$m>0$，同态基本定理给出$G\cong\Z/m\Z$，从而$|G|=m$。$m$又是使$g^m=e$的最小正整数，所以它就是$g$的阶。
+由子群对应定理，$G$的子群对应于包含$m\Z$的子群$t\Z$，即$t\mid m$。其像为$\langle g^t\rangle$，而
+\[
+e,g^t,g^{2t},\ldots,g^{(m/t-1)t}
+\]
+两两不同，且已包含全部$t$的倍数指数所给出的元素。因此其阶为$m/t$。若要求阶为$s$，只能取$t=m/s$，所以所述子群存在且唯一。
+\end{proof}
+
+上述分类还可用来计算有限阶元素的幂的阶。
+
+\begin{proposition}
+设$g$的阶为正整数$m$。则$g^l=e$当且仅当$m\mid l$，并且对任意整数$s$，
+\[
+\operatorname{ord}(g^s)=\frac{m}{\gcd(m,s)}.
+\]
+因此$m$阶循环群的生成元恰为满足$\gcd(m,s)=1$的$g^s$。不同的生成元有$\varphi(m)$个，其中$\varphi(m)$表示$0\leq s<m$中与$m$互素的整数个数。
+\end{proposition}
+\begin{proof}
+同态$\varphi:\Z\to\langle g\rangle$的核为$m\Z$，所以$g^l=e$等价于$l\in m\Z$。
+
+由循环群的子群分类，存在$m$的正因子$d$，使$\langle g^s\rangle=\langle g^d\rangle$。两个生成元互相属于对方生成的子群，因此有整数$n,v,t,w$满足
+\[
+s=nd+vm,\qquad d=ts+wm.
+\]
+第一式连同$d\mid m$说明$d\mid s$，所以$d\mid\gcd(m,s)$。第二式说明$\gcd(m,s)\mid d$。故$d=\gcd(m,s)$。
+由前一定理，$\langle g^d\rangle$的阶为$m/d$，得到所需阶公式。
+
+最后，$g^s$生成整个$m$阶群当且仅当其阶为$m$，也就是$\gcd(m,s)=1$。指数只须按模$m$区分，故其个数为$\varphi(m)$。
+\end{proof}
+
+下面寻求有限交换群成为循环群的判别条件。先利用交换性，将互素阶元素合成一个阶为两者乘积的元素。
+
+\begin{lemma}
+若群元素$g,h$交换，其阶分别为互素的$m,n$，则$gh$的阶为$mn$。
+\end{lemma}
+\begin{proof}
+由交换性，$(gh)^{mn}=g^{mn}h^{mn}=e$，所以$gh$有有限阶，记为$l$，则$l\mid mn$。
+另一方面，由$(gh)^l=e$再取$m$次幂，得到
+\[
+e=(gh)^{lm}=g^{lm}h^{lm}=h^{lm}.
+\]
+因此$n\mid lm$。因为$\gcd(m,n)=1$，有$n\mid l$。同样取$n$次幂可得$m\mid l$，故$mn\mid l$。合并两边整除关系，得到$l=mn$。
+\end{proof}
+
+\begin{theorem}\label{p2:max-order}
+有限交换群$G$中存在一个元素，其阶为$G$中所有元素的阶的公倍数。
+\end{theorem}
+\begin{proof}
+在有限集合$G$中取阶最大的元素$g$，记其阶为$n$。要证明任一元素的阶均整除$n$。
+
+反设存在$g_1\in G$，其阶$n_1$不整除$n$。由整数的素因子分解，必有某个素数$p$在$n_1$中的指数大于在$n$中的指数。写成
+\[
+n_1=p^rl,\qquad n=p^sm,\qquad r>s,\quad p\nmid l,\quad p\nmid m.
+\]
+由幂的阶公式，
+\[
+\operatorname{ord}(g_1^l)=p^r,\qquad
+\operatorname{ord}(g^{p^s})=m.
+\]
+这两个元素因$G$交换而交换，阶又互素。由引理，
+\[
+\operatorname{ord}(g_1^l g^{p^s})=p^rm>p^sm=n.
+\]
+这与$g$的阶最大矛盾，所以不存在这样的$g_1$，结论成立。
+\end{proof}
+
+\begin{theorem}\label{p2:cyclic-root-count}
+有限交换群$G$为循环群，当且仅当对每个正整数$m$，方程$x^m=e$在$G$中至多有$m$个解。
+\end{theorem}
+\begin{proof}
+\textbf{充分性：}由前一定理，存在阶为$n$的$g\in G$，使全体元素的阶都整除$n$。所以每个$x\in G$都满足$x^n=e$。由题设，$|G|\leq n$。
+但$\langle g\rangle$本身已有$n$个元素，且包含于$G$，故$|G|=n$、$G=\langle g\rangle$。
+
+\textbf{必要性（补充证明）：}设$G=\langle g\rangle$的阶为$n$，令$d=\gcd(n,m)$，写$n=dn_0$、$m=dm_0$，其中$\gcd(n_0,m_0)=1$。则
+\begin{align*}
+(g^k)^m=e
+&\iff n\mid km\\
+&\iff n_0\mid km_0\\
+&\iff n_0\mid k.
+\end{align*}
+在$0\leq k<n$中，这样的指数恰为$0,n_0,\ldots,(d-1)n_0$，共$d$个。因为$d\leq m$，方程的解数至多为$m$。
+\end{proof}
+
+\section{单群与交错群的单性}
+
+若群$G$有非平凡真正规子群$N$，就可以同时研究$N$及商群$G/N$，以便逐步了解$G$。不能再这样分解的群称为单群，它们是研究一般群结构的重要组成部分。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l332}非平凡群$G$若没有除$\{e\}$与$G$以外的正规子群，则称为\textbf{单群}。
+\end{definition}
+
+\begin{proposition}
+非平凡交换群为单群，当且仅当它是素数阶循环群。
+\end{proposition}
+\begin{proof}
+交换群的全部子群都正规，故只需判定何时没有非平凡真子群。若$G$交换且单，取$a\ne e$，则$\langle a\rangle$非平凡且正规，只能等于$G$，所以$G$循环。
+
+若$G$无限，则$\langle a^2\rangle$为非平凡真子群；若其阶$m$为合数，则取$1<d<m$且$d\mid m$，由循环群子群分类得到$d$阶非平凡真子群。两种情况都与单性矛盾，故$|G|$只能为素数。
+反过来，素数阶群由拉格朗日定理没有非平凡真子群，因此当然是单群。
+\end{proof}
+
+非交换单群的情形复杂得多。下面给出一类非交换单群：$n\geq5$时的交错群$A_n$。为此先研究对换、3-轮换以及共轭对轮换分解的影响。
+
+\begin{lemma}\label{p2:three-cycles}
+每个置换都可表示为对换的乘积；每个偶置换都可表示为3-轮换的乘积。因此$A_n$由全体3-轮换生成。
+\end{lemma}
+\begin{proof}
+将置换分解为不相交轮换后，对每个轮换使用
+\[
+(i_1i_2\cdots i_r)=(i_1i_r)\cdots(i_1i_2).
+\]
+右侧按从右到左作用，把$i_1$送到$i_2$，把$i_k$送到$i_{k+1}$（$2\leq k<r$），把$i_r$送回$i_1$，并固定其余点，所以等式成立。这就得到对换分解。
+
+每个对换为奇置换，故偶置换的任一对换分解都含偶数个对换。将它们按次序两两配对。若一对中的两个对换相同，乘积为$e$；若不同，则要么恰有一个共同点，要么没有共同点。重新命名涉及的点后，两种乘积分别为
+\begin{align*}
+(ij)(ik)&=(ikj),\\
+(ij)(kl)&=(ij)(jk)(jk)(kl)\\
+&=(jki)(klj).
+\end{align*}
+第一式将$i,k,j$依次送到$k,j,i$；第二式在中间插入$(jk)^2=e$，再把左右两对分别化为3-轮换。因此每一对都能写为3-轮换的乘积，任意偶置换也能如此表示。每个3-轮换又是偶置换，故它们生成的正是$A_n$。
+\end{proof}
+
+\begin{proposition}
+共轭把轮换中的各个符号逐个替换：
+\[
+\pi(i_1\cdots i_r)\pi^{-1}
+=(\pi(i_1)\cdots\pi(i_r)).
+\]
+\phantomsection\label{p2:concept:c2-l372}若在不相交轮换分解中计入长度为1的轮换，则称各个轮换长度（保留重复次数、不计次序）为置换的\textbf{轮换类型}。两个置换在$S_n$中共轭，当且仅当其轮换类型相同。若$n\geq5$，全部3-轮换在$A_n$中也互相共轭。
+\end{proposition}
+\begin{proof}
+记$\pi(i_k)=j_k$。对$1\leq k<r$，
+\[
+\pi(i_1\cdots i_r)\pi^{-1}(j_k)
+=\pi(i_{k+1})=j_{k+1}.
+\]
+同理$j_r$被送到$j_1$。若点不在$\{j_1,\ldots,j_r\}$中，它的$\pi^{-1}$像也不在原轮换中，故共轭后仍固定。这就证明公式。
+
+把公式用于不相交轮换分解，便知共轭保持轮换类型。反过来，若两个置换轮换类型相同，则将等长轮换配对，并依循环次序把每个点映到配对轮换中的对应点；不动点之间也任选一一对应。这定义一个$\pi\in S_n$，由公式知它把第一个置换共轭到第二个。
+
+最后，取任意两个3-轮换$(i_1i_2i_3)$与$(j_1j_2j_3)$，先选$\pi\in S_n$满足$\pi(i_k)=j_k$，$k=1,2,3$。若$\pi$为偶置换，已满足要求。若$\pi$为奇置换，由$n\geq5$可在$i_1,i_2,i_3$之外取两个不同的点$l,m$，令$\varphi=\pi(lm)$。此时$\varphi$为偶置换，且仍有$\varphi(i_k)=j_k$，所以
+\[
+\varphi(i_1i_2i_3)\varphi^{-1}=(j_1j_2j_3).
+\]
+故全部3-轮换在$A_n$内共轭。
+\end{proof}
+
+\begin{example}
+若$\sigma=(123)(45)$，$\pi$把$1,2,3,4,5$分别映到$5,4,1,3,2$，则只需按上述公式替换符号，就得到
+\[
+\pi\sigma\pi^{-1}=(541)(32).
+\]
+\end{example}
+
+\begin{theorem}\label{p2:an-simple}
+$A_n$在$n\geq5$时为非交换单群。
+\end{theorem}
+\begin{proof}
+设$\{e\}\neq H\trianglelefteq A_n$。
+由全体3-轮换生成$A_n$，以及它们在$A_n$内互相共轭，只需证明$H$中有一个3-轮换。
+
+\phantomsection\label{p2:concept:c2-l405}对于置换$\sigma$，若$\sigma(i)=i$，则称$i$为$\sigma$的一个\textbf{不动点}；若$\sigma(i)\ne i$，则称$i$被$\sigma$移动。
+由于$H$是有限群，可在$H$的所有非单位元中选取一个不动点个数最多的置换$\tau$。
+
+非单位置换至少移动两个点；若恰好移动两个点，它就是一个对换。由于对换是奇置换，而$\tau\in A_n$，所以$\tau$至少移动三个点，即其不动点个数至多为$n-3$。
+若$\tau$恰有$n-3$个不动点，它只移动三个点，因而必为一个3-轮换，结论成立。
+
+下面证明$\tau$的不动点个数小于$n-3$不可能。反设如此，则$\tau$移动的点数$r>3$。将$\tau$分解为不相交轮换的乘积，并略去长度为1的轮换。按分解中是否含有长度至少为3的轮换，分为以下两种情形。
+
+\textbf{情形一：分解中含有长度至少为3的轮换。}
+重新给元素编号，使该轮换的前三个点为1、2、3，于是
+\[
+\tau=(123\cdots)\cdots.
+\]
+此时$\tau$至少移动五个点。事实上，若它恰好移动四个点，则含有上述轮换的分解只能是一个4-轮换；而4-轮换是奇置换，与$\tau\in A_n$矛盾。
+所以除1、2、3外，还可选出两个被$\tau$移动的点，将它们编号为4、5。
+
+取偶置换$\varphi=(345)$。由轮换的共轭公式，
+\[
+\varphi\tau\varphi^{-1}=(124\cdots)\cdots.
+\]
+令
+\[
+\tau_1=\tau^{-1}\varphi\tau\varphi^{-1}.
+\]
+因为$H\trianglelefteq A_n$且$\varphi\in A_n$，所以$\varphi\tau\varphi^{-1}\in H$；再由$\tau^{-1}\in H$，得到$\tau_1\in H$。
+
+由于$\varphi$固定1、2，而$\tau(1)=2$，有
+\[
+\tau_1(1)
+=\tau^{-1}\bigl(\varphi(\tau(\varphi^{-1}(1)))\bigr)
+=\tau^{-1}(2)=1.
+\]
+另一方面，
+\[
+(\varphi\tau\varphi^{-1})(2)=\varphi(\tau(2))=\varphi(3)=4
+\ne3=\tau(2).
+\]
+因此$\varphi\tau\varphi^{-1}\ne\tau$，从而$\tau_1\ne e$。
+
+现在比较不动点个数。$\tau$原来的每个不动点$i$都不在1、2、3、4、5中，所以$\varphi(i)=\varphi^{-1}(i)=i$。由$\tau(i)=i$，得
+\[
+\tau_1(i)=\tau^{-1}\bigl(\varphi(\tau(i))\bigr)=\tau^{-1}(i)=i.
+\]
+故原有不动点全部保留；此外，原来被$\tau$移动的点1变成了$\tau_1$的不动点。这说明$\tau_1$是不动点更多的非单位元，与$\tau$的选择矛盾。
+
+\textbf{情形二：分解中只有对换。}
+由于$\tau$是非单位偶置换，其不相交对换的个数为正偶数，至少有两个。重新编号，写成
+\[
+\tau=(12)(34)\cdots.
+\]
+若$\tau$只移动四个点，选取其外的一个点编号为5；这样的点由$n\geq5$保证存在。若它移动的点多于四个，则选取另一个对换，编号为$(56)$，于是$\tau=(12)(34)(56)\cdots$。
+
+仍取$\varphi=(345)$，令$\tau_1=\tau^{-1}\varphi\tau\varphi^{-1}$。与情形一相同，由正规性得$\tau_1\in H$。共轭后，前两个对换变为
+\[
+\varphi\tau\varphi^{-1}=(12)(45)\cdots.
+\]
+由于$\varphi$固定1、2，$\tau$交换1、2，所以
+\begin{align*}
+\tau_1(1)&=\tau^{-1}(\varphi(\tau(1)))=\tau^{-1}(2)=1,\\
+\tau_1(2)&=\tau^{-1}(\varphi(\tau(2)))=\tau^{-1}(1)=2.
+\end{align*}
+还需确认$\tau_1\ne e$。若$\tau=(12)(34)$，则
+\[
+(\varphi\tau\varphi^{-1})(3)=3\ne4=\tau(3).
+\]
+若$\tau=(12)(34)(56)\cdots$，则
+\[
+(\varphi\tau\varphi^{-1})(3)=\varphi(\tau(5))=\varphi(6)=6
+\ne4=\tau(3).
+\]
+两种情况下都有$\varphi\tau\varphi^{-1}\ne\tau$，故$\tau_1\ne e$。
+
+对$\tau$原来位于1、2、3、4、5以外的不动点，情形一的计算仍说明它们都是$\tau_1$的不动点。若5原来被$\tau$移动，则原有不动点全部保留，又新增1、2两个不动点。
+若5原来是$\tau$的不动点，则原有不动点至多失去5这一个，同时新增1、2两个不动点。因此不论哪种情况，$\tau_1$的不动点都比$\tau$多，再次矛盾。
+
+所以$\tau$的不动点个数不可能小于$n-3$，只能等于$n-3$，从而$\tau$为3-轮换。于是$H$含有一个3-轮换。由正规性，它包含这个3-轮换在$A_n$中的所有共轭，即包含全体3-轮换；这些3-轮换生成$A_n$，所以$H=A_n$。
+最后，$(123)$与$(124)$不交换，说明$A_n$非交换。
+\end{proof}
+
+\begin{example}
+以下记$C_m$为$m$阶循环群，$V_4=C_2\times C_2$。
+$A_3\cong C_3$为单群；$A_4$含正规子群
+$V=\{e,(12)(34),(13)(24),(14)(23)\}\cong V_4$，且$A_4/V\cong C_3$，所以$A_4$不单。
+\end{example}
+
+\section{可解群}
+
+设$G$为单群。因为换位子群$G^{(1)}$是$G$的正规子群，单群的定义给出
+\[
+G^{(1)}=\{e\}\quad\text{或}\quad G^{(1)}=G.
+\]
+若$G^{(1)}=\{e\}$，则$G$中任意两个元素$a,b$的换位子都等于$e$，即$a^{-1}b^{-1}ab=e$，从而$ab=ba$。所以$G$是交换群。这说明，非交换单群必满足
+\[
+G^{(1)}=G.
+\]
+
+对于一般的群$G$，换位子群$G^{(1)}$也是正规子群，但它既可能等于$\{e\}$，也可能等于$G$，还可能是非平凡真子群。继续对$G^{(1)}$取换位子群，便得到下面的递降子群列。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l504}令$G^{(0)}=G$，递归定义
+\[
+G^{(k)}=\bigl(G^{(k-1)}\bigr)^{(1)}\qquad(k\geq1).
+\]
+所得子群列
+\[
+G=G^{(0)}\geq G^{(1)}\geq G^{(2)}\geq\cdots
+\]
+称为$G$的\textbf{导出列}。其中每一项都是前一项的换位子群，因而是前一项的正规子群。且每个商群$G^{(i-1)}/G^{(i)}$交换(由\ref{p2:abelianization})
+\end{definition}
+
+若$G$为有限群，导出列不能无限次严格下降，因而只有两种可能：一是到达$\{e\}$，此后各项都等于$\{e\}$；二是在某个非平凡子群处稳定，即存在$k$使
+\[
+G^{(k)}=G^{(k+1)}=\cdots\ne\{e\}.
+\]
+这里，一旦相邻两项相等，继续取换位子群便得到后面的各项也相等。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l522}若存在正整数$k$使$G^{(k)}=\{e\}$，则称$G$为\textbf{可解群}。
+\end{definition}
+
+交换群都是可解群，因为交换群的换位子群等于$\{e\}$。非交换单群的导出列则一直等于自身，所以非交换单群不可解。
+
+\begin{example}
+对称群$S_n$在$n\leq4$时可解，在$n\geq5$时不可解。分别计算如下。
+
+\textbf{$S_1,S_2$：}$S_1$为平凡群，$S_2=\{e,(12)\}$为二阶循环群，都是交换群，因而可解。
+
+\textbf{$S_3$：}由$S_3/A_3\cong C_2$为交换群，得$S_3^{(1)}\leq A_3$(由\ref{p2:abelianization})。另一方面，按照$[a,b]=a^{-1}b^{-1}ab$的约定，
+\[
+[(12),(23)]=(12)(23)(12)(23)=(132).
+\]
+因此$S_3^{(1)}$包含$(132)$生成的整个$A_3$，故
+\[
+S_3^{(1)}=A_3=\{e,(123),(132)\}.
+\]
+由于$A_3$是三阶循环群，它是交换群，所以$S_3^{(2)}=A_3^{(1)}=\{e\}$。
+
+\textbf{$S_4$：}同理由$S_4/A_4$交换得$S_4^{(1)}\leq A_4$，且上述换位子说明$S_4^{(1)}$含有一个3-轮换。$S_4^{(1)}$在$S_4$中正规，而所有3-轮换在$S_4$中互相共轭，所以$S_4^{(1)}$包含全部3-轮换。由3-轮换生成$A_4$，得
+\[
+S_4^{(1)}=A_4.
+\]
+令
+\[
+V_4=\{e,(12)(34),(13)(24),(14)(23)\}.
+\]
+由$A_4/V_4\cong C_3$为交换群，得$A_4^{(1)}\leq V_4$。又直接计算有
+\[
+[(123),(124)]=(132)(142)(123)(124)=(12)(34).
+ \]
+把$(12)(34)$分别用$(123)$及$(132)$共轭，得到
+\begin{align*}
+(123)(12)(34)(132)&=(14)(23),\\
+(132)(12)(34)(123)&=(13)(24).
+\end{align*}
+因$A_4^{(1)}\trianglelefteq A_4$，它包含上述三个双对换，故$A_4^{(1)}=V_4$。$V_4$是交换群，所以
+\[
+S_4^{(1)}=A_4,\qquad S_4^{(2)}=V_4,\qquad S_4^{(3)}=\{e\}.
+\]
+
+\textbf{$n\geq5$：}任取$\sigma,\tau\in S_n$，其换位子为偶置换，因为
+\[
+\operatorname{sgn}(\sigma^{-1}\tau^{-1}\sigma\tau)
+=\operatorname{sgn}(\sigma)^{-1}\operatorname{sgn}(\tau)^{-1}
+\operatorname{sgn}(\sigma)\operatorname{sgn}(\tau)=1.
+\]
+所以$S_n^{(1)}\leq A_n$。同时$S_n^{(1)}\trianglelefteq S_n$，故它也是$A_n$的正规子群。上述$[(12),(23)]=(132)$表明$S_n^{(1)}\ne\{e\}$。由$A_n$为单群，得到
+\[
+S_n^{(1)}=A_n.
+\]
+又因$A_n$是非交换单群，$A_n^{(1)}=A_n$，于是
+\[
+S_n^{(k)}=A_n\ne\{e\}\qquad(k\geq1).
+\]
+因此$S_n$不可解，$A_n$也不可解。
+\end{example}
+
+若$G$可解，则其导出列经过有限步到达$\{e\}$。每个$G^{(i)}$都是$G^{(i-1)}$的换位子群，故相应的商群
+\[
+G^{(i-1)}/G^{(i)}
+\]
+均为交换群。因此可解群具有一条相邻两项正规、相应商群交换的有限子群列。下面证明，这一性质也足以保证可解。
+
+\begin{theorem}\label{p2:solvable-series}
+群$G$可解，当且仅当存在有限递降子群列
+\[
+G=G_0\geq G_1\geq\cdots\geq G_s=\{e\},
+\]
+其中$G_i\trianglelefteq G_{i-1}$，且$G_{i-1}/G_i$为交换群，$i=1,\ldots,s$。
+\end{theorem}
+\begin{proof}
+\textbf{必要性：}若$G^{(s)}=\{e\}$，取$G_i=G^{(i)}$。由导出列的定义，每一项在前一项中正规，且每个商群$G^{(i-1)}/G^{(i)}$交换，故满足条件。
+
+\textbf{充分性：}设存在上述子群列。由定理\ref{p2:abelianization}，对任一正规子群$N\trianglelefteq G$，有
+\[
+G/N\text{为交换群}\quad\Longleftrightarrow\quad G^{(1)}\leq N.
+\]
+因此，$G_0/G_1$交换首先给出$G^{(1)}\leq G_1$。下面对$k$归纳，证明
+\[
+G^{(k)}\leq G_k\qquad(1\leq k\leq s).
+\]
+若已知$G^{(k-1)}\leq G_{k-1}$，则$G^{(k-1)}$中元素的换位子也是$G_{k-1}$中元素的换位子，所以
+\[
+G^{(k)}=\bigl(G^{(k-1)}\bigr)^{(1)}\leq G_{k-1}^{(1)}.
+\]
+另一方面，$G_{k-1}/G_k$交换给出$G_{k-1}^{(1)}\leq G_k$。合并即得$G^{(k)}\leq G_k$，完成归纳。
+
+最后取$k=s$，有$G^{(s)}\leq G_s=\{e\}$，故$G^{(s)}=\{e\}$，即$G$可解。
+\end{proof}
+
+进一步讨论有限可解群时，需要说明何时还能在相邻两项之间插入新的正规子群。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l617}设$N$为$G$的真正规子群。若不存在$G$的正规子群$N_1$使
+\[
+N<N_1<G,
+\]
+则称$N$为$G$的\textbf{极大正规子群}。这里要求中间子群$N_1$在$G$中正规。
+\end{definition}
+
+\begin{proposition}
+设$N\trianglelefteq G$且$N\ne G$。商群$G/N$为单群，当且仅当$N$为$G$的极大正规子群。
+\end{proposition}
+\begin{proof}
+由正规子群的对应定理，$G/N$中的正规子群与$G$中包含$N$的正规子群一一对应，其中$\{N\}$对应$N$，$G/N$对应$G$。
+
+因此，$G/N$有非平凡真正规子群，当且仅当存在$N_1\trianglelefteq G$满足$N<N_1<G$。否定两边，便得到所述等价关系。
+\end{proof}
+
+\begin{theorem}\label{p2:finite-solvable-series}
+有限群$G$可解，当且仅当存在有限严格递降子群列
+\[
+G=H_0>H_1>\cdots>H_t=\{e\},
+\]
+其中$H_i\trianglelefteq H_{i-1}$，且每个商群$H_{i-1}/H_i$都是素数阶循环群。对平凡群，允许$t=0$。
+\end{theorem}
+\begin{proof}
+\textbf{必要性：}设$G$为有限可解群。由定理\ref{p2:solvable-series}，可取一条相邻商群均交换的有限子群列，并删去重复项，写成
+\[
+G=G_0>G_1>\cdots>G_k=\{e\}.
+\]
+若某个商群$G_{i-1}/G_i$不是单群，则它有非平凡真正规子群$L$。由对应定理，$L$的完全反像$G_i'$满足
+\[
+G_i<G_i'<G_{i-1},\qquad G_i'\trianglelefteq G_{i-1}.
+\]
+又因$G_i\trianglelefteq G_{i-1}$，也有$G_i\trianglelefteq G_i'$。因此可在原群列中插入$G_i'$。
+
+插入后新增的两个商群满足
+\[
+G_i'/G_i\cong L,\qquad
+G_{i-1}/G_i'\cong(G_{i-1}/G_i)/(G_i'/G_i).
+\]
+前一个是交换群$G_{i-1}/G_i$的子群，后一个同构于该交换群的商群，因此两者都仍为交换群。
+
+只要还有一个相邻商群不是单群，就重复上述插入过程。由于$G$有限，严格递降子群列的长度有界，所以不能无限次插入。最终得到一条不能再插入的子群列
+\[
+G=H_0>H_1>\cdots>H_t=\{e\},
+\]
+其中每个商群$H_{i-1}/H_i$都既交换又单。
+
+交换单群必为素数阶循环群：任取非单位元$a$，其生成的非平凡子群$\langle a\rangle$因交换而正规，所以等于整个群；若这个循环群的阶为合数，则又有非平凡真子群，与单性矛盾。因此上述各商群均为素数阶循环群。
+
+\textbf{充分性：}若存在所述子群列，则每个相邻商群都为循环群，因而交换。由定理\ref{p2:solvable-series}，$G$可解。
+\end{proof}
+
+\textbf{注：}
+有限可解群的上述子群列不一定唯一。若
+\[
+|H_{i-1}/H_i|=p_i\qquad(i=1,\ldots,t),
+\]
+其中$p_i$均为素数，则逐次使用$|H_{i-1}|=p_i|H_i|$，得到
+\[
+|G|=p_1p_2\cdots p_t.
+\]
+由整数的素因子分解唯一性，$t$等于$|G|$的素因子个数，重复的素因子重复计算。因此虽然子群列未必唯一，它的长度以及相邻商群的素数阶（允许调整顺序）都是由$|G|$唯一确定的。
+
+
+\begin{proposition}\label{p2:solvable-extension}
+可解群的子群、同态像均可解。若$N\trianglelefteq G$，且$N$与$G/N$均可解，则$G$可解。
+\end{proposition}
+\begin{proof}
+\textbf{子群：}设$H\leq G$。$H$中元素的换位子也是$G$中元素的换位子，故$H^{(1)}\leq G^{(1)}$。逐次取换位子群并归纳，得到
+\[
+H^{(i)}\leq G^{(i)}\qquad(i\geq0).
+\]
+若$G^{(k)}=\{e\}$，则$H^{(k)}=\{e\}$，所以$H$可解。
+
+\textbf{同态像：}设$\varphi:G\to Q$为满同态。由
+\[
+\varphi([a,b])=[\varphi(a),\varphi(b)]
+\]
+可知$\varphi(G^{(1)})\leq Q^{(1)}$。反过来，因$\varphi$满射，$Q$中任一换位子都可如此得到；这些换位子生成$Q^{(1)}$，故$\varphi(G^{(1)})=Q^{(1)}$。反复应用于各级导出子群，得
+\[
+\varphi(G^{(i)})=Q^{(i)}.
+\]
+所以$G^{(k)}=\{e\}$蕴含$Q^{(k)}=\{e\}$，即$Q$可解。
+
+\textbf{由正规子群与商群推出原群可解：}设$N^{(s)}=\{e\}$、$(G/N)^{(r)}=\{N\}$。对自然满同态$\pi:G\to G/N$，上面的等式给出
+\[
+\pi(G^{(r)})=(G/N)^{(r)}=\{N\},
+\]
+因而$G^{(r)}\leq\ker\pi=N$。再逐次取$s$次换位子群，得到
+\[
+G^{(r+s)}=\bigl(G^{(r)}\bigr)^{(s)}\leq N^{(s)}=\{e\}.
+\]
+因此$G$可解。
+\end{proof}
+
+
+\section{群的自同构群}
+
+同构可以把一个群的结构转移到另一个群上。特别地，当同构的定义域和值域都是同一个群时，便得到这个群自身的对称变换。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l718}群$G$到自身的同构映射称为$G$的\textbf{自同构}。$G$的全体自同构组成的集合记为$\Aut(G)$，其中的乘法规定为映射的复合，即先作用右边的映射，再作用左边的映射。
+\end{definition}
+
+\begin{proposition}
+\phantomsection\label{p2:concept:c2-l722}$\Aut(G)$在映射复合下构成一个群，称为$G$的\textbf{自同构群}。
+\end{proposition}
+\begin{proof}
+若$\alpha,\beta\in\Aut(G)$，则它们的复合仍为双射，且对任意$x,y\in G$，
+\[
+(\alpha\beta)(xy)
+=\alpha(\beta(x)\beta(y))
+=\alpha(\beta(x))\alpha(\beta(y)).
+\]
+因此$\alpha\beta$仍是自同构。映射复合满足结合律，恒等映射$\operatorname{id}_G$是单位元。自同构$\alpha$的逆映射$\alpha^{-1}$仍是同构，故属于$\Aut(G)$，并满足
+\[
+\alpha\alpha^{-1}=\alpha^{-1}\alpha=\operatorname{id}_G.
+\]
+所以群的各条公理均成立。
+\end{proof}
+
+先以循环群为例，说明如何由生成元的像确定自同构。
+
+\begin{proposition}
+无限循环群的自同构群同构于$C_2$，特别地$\Aut(\Z)\cong C_2$。若$G=\langle g\rangle$为$n$阶循环群，$n\geq2$，则
+\[
+\Aut(G)\cong(\Z/n\Z)^\times.
+\]
+这里$(\Z/n\Z)^\times$是模$n$的可逆剩余类在乘法下组成的群，其元素恰为与$n$互素的整数所代表的剩余类。
+\end{proposition}
+\begin{proof}
+设$G=\langle g\rangle$，$\alpha\in\Aut(G)$。因为同态满足
+\[
+\alpha(g^k)=\alpha(g)^k\qquad(k\in\Z),
+\]
+$\alpha$完全由$\alpha(g)$决定。又因为$\alpha$满射，
+\[
+G=\alpha(G)=\langle\alpha(g)\rangle,
+\]
+所以$\alpha(g)$必须仍为$G$的生成元。
+
+\textbf{无限循环群：}其生成元只有$g$和$g^{-1}$，因此自同构只能是恒等映射或
+\[
+\alpha(g^k)=g^{-k}.
+\]
+后一个映射保持乘法，且复合自身得到恒等映射，所以确为自同构。它不等于恒等映射，故$\Aut(G)$恰有两个元素，同构于$C_2$。
+
+\textbf{有限循环群：}设$|G|=n$。由循环群的生成元判别，$g^t$生成$G$当且仅当$\gcd(t,n)=1$。对每个这样的$t$，定义
+\[
+\alpha_t(g^k)=g^{tk}.
+\]
+若$g^k=g^l$，则$n\mid k-l$，从而$n\mid t(k-l)$，所以此定义与指数的选择无关。它保持乘法；又由贝祖等式，可取整数$s$使$st\equiv1\pmod n$，于是$\alpha_s$与$\alpha_t$互为逆映射。因此$\alpha_t$是自同构。
+
+上述讨论说明，模$n$的可逆剩余类$\overline t$与$\alpha_t$一一对应。对于两个这样的指数$s,t$，
+\[
+(\alpha_s\alpha_t)(g)=\alpha_s(g^t)=g^{st}=\alpha_{st}(g).
+\]
+因为映射由生成元的像决定，$\alpha_s\alpha_t=\alpha_{st}$。故这一对应保持乘法，给出所述群同构。
+\end{proof}
+
+对于任意群，都可利用群内的元素构造自同构。固定$a\in G$，考虑共轭映射
+\[
+\sigma_a:G\longrightarrow G,\qquad \sigma_a(x)=axa^{-1}.
+\]
+它保持乘法，因为
+\begin{align*}
+\sigma_a(xy)&=axya^{-1}\\
+&=(axa^{-1})(aya^{-1})\\
+&=\sigma_a(x)\sigma_a(y).
+\end{align*}
+同时，$\sigma_a c_{a^{-1}}=c_{a^{-1}}\sigma_a=\operatorname{id}_G$，所以$\sigma_a$还是双射，因而为自同构。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l790}由群内元素$a$引起的自同构$\sigma_a$称为\textbf{内自同构}。全体内自同构组成的集合记为$\operatorname{Inn}(G)$。
+\end{definition}
+
+对于$a,b,x\in G$，有
+\begin{align*}
+(\sigma_a \sigma_b)(x)&=a(bxb^{-1})a^{-1}\\
+&=(ab)x(ab)^{-1}\\
+&=\sigma_{ab}(x).
+\end{align*}
+\phantomsection\label{p2:concept:c2-l799}所以$f:G\to\Aut(G)$，$a\mapsto \sigma_a$为同态，其像正是$\operatorname{Inn}(G)$。因此$\operatorname{Inn}(G)$是$\Aut(G)$的子群，称为$G$的\textbf{内自同构群}。
+
+接下来确定$f:G\to\operatorname{Inn}(G)$的核。$a\in\ker f$当且仅当$\sigma_a$为恒等映射，即
+\[
+axa^{-1}=x\qquad(\forall x\in G),
+\]
+也就是$a$与$G$中的每个元素都交换。这引出中心的定义。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l808}群$G$中与所有元素交换的元素组成的集合称为$G$的\textbf{中心}，记为
+\[
+Z(G)=\{a\in G:ax=xa\text{，对所有 }x\in G\}.
+\]
+\end{definition}
+
+由上述计算，$Z(G)=\ker f$，故$Z(G)\trianglelefteq G$。再由同态基本定理，得到
+\[
+G/Z(G)\cong\operatorname{Inn}(G),\qquad aZ(G)\longmapsto \sigma_a.
+\]
+
+\begin{theorem}\label{p2:inner-aut}
+对任意群$G$，有
+\[
+G/Z(G)\cong\operatorname{Inn}(G),\qquad
+\operatorname{Inn}(G)\trianglelefteq\Aut(G).
+\]
+\end{theorem}
+\begin{proof}
+第一个同构已由上面的同态$f$及其核得到。下面证明正规性。
+
+任取$\sigma_a\in\operatorname{Inn}(G)$及$\alpha\in\Aut(G)$。对每个$x\in G$，
+\begin{align*}
+(\alpha \sigma_a\alpha^{-1})(x)
+&=\alpha\bigl(a\alpha^{-1}(x)a^{-1}\bigr)\\
+&=\alpha(a)\alpha(\alpha^{-1}(x))\alpha(a^{-1})\\
+&=\alpha(a)x\alpha(a)^{-1}\\
+&=c_{\alpha(a)}(x).
+\end{align*}
+因此
+\[
+\alpha \sigma_a\alpha^{-1}=c_{\alpha(a)}\in\operatorname{Inn}(G).
+\]
+任一内自同构被任一自同构共轭后仍是内自同构，这就证明$\operatorname{Inn}(G)$在$\Aut(G)$中正规。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l845}商群
+\[
+\operatorname{Out}(G)=\Aut(G)/\operatorname{Inn}(G)
+\]
+称为$G$的\textbf{外自同构群}。
+\end{definition}
+
+若$Z(G)=\{e\}$，则$a\mapsto \sigma_a$为单同态。于是可将$G$与$\operatorname{Inn}(G)$视为同一个群，从而把$G$嵌入$\Aut(G)$。
+
+\begin{theorem}\label{p2:aut-centerless}
+若$Z(G)=\{e\}$，则$\Aut(G)$中与全部内自同构交换的自同构只有恒等映射。特别地，
+\[
+Z(\Aut(G))=\{\operatorname{id}_G\}.
+\]
+\end{theorem}
+\begin{proof}
+设$\alpha\in\Aut(G)$与全部内自同构交换。任取$a\in G$，由前一定理证明中的公式，
+\[
+\alpha \sigma_a\alpha^{-1}=c_{\alpha(a)}.
+\]
+另一方面，由$\alpha \sigma_a=\sigma_a\alpha$，左侧等于$\sigma_a$，故$c_{\alpha(a)}=\sigma_a$。这意味着对每个$x\in G$，
+\[
+\alpha(a)x\alpha(a)^{-1}=axa^{-1}.
+\]
+移项可得$a^{-1}\alpha(a)$与每个$x$交换，即
+\[
+a^{-1}\alpha(a)\in Z(G)=\{e\}.
+\]
+因此$\alpha(a)=a$。因为$a$任意，$\alpha=\operatorname{id}_G$。
+
+若$\alpha\in Z(\Aut(G))$，它当然与全部内自同构交换，故也只能是恒等映射。这就得到所述中心的结论。
+\end{proof}
+
+上述结论说明，从中心平凡的群$G$出发，$\Aut(G)$仍中心平凡，因此可以继续取自同构群，得到一串嵌入
+\[
+G\hookrightarrow\Aut(G)\hookrightarrow\Aut(\Aut(G))\hookrightarrow\cdots.
+\]
+每一步的嵌入都由内自同构给出，群不一定严格增大。自然要问：这一过程是否会在有限步后停止？这里的停止是指某一步的内自同构已包含该群的全部自同构。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l885}若$G$的中心平凡，且$G$的每个自同构都是内自同构，则称$G$为\textbf{完全群}。
+\end{definition}
+
+维兰特定理说明，从任意有限的中心平凡群出发，反复取自同构群，在有限步后一定到达一个完全群。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l891}若子群$H\leq G$满足
+\[
+\alpha(H)=H\qquad(\forall\alpha\in\Aut(G)),
+\]
+则称$H$为$G$的\textbf{特征子群}。
+\end{definition}
+
+\begin{proposition}
+特征子群一定正规；特征子群的特征子群仍为原群的特征子群。换位子群$G^{(1)}$及导出列的每一项都是$G$的特征子群。
+\end{proposition}
+\begin{proof}
+\textbf{正规性：}内自同构是自同构，因此特征子群$H$满足$\sigma_a(H)=H$对每个$a\in G$成立，即$aHa^{-1}=H$。这正是$H$正规的条件。
+
+\textbf{传递性：}设$K$是$H$的特征子群，$H$是$G$的特征子群。任取$\alpha\in\Aut(G)$，由$\alpha(H)=H$，其限制$\alpha|_H$是$H$的自同构。于是$\alpha(K)=K$，所以$K$是$G$的特征子群。
+
+\textbf{导出子群：}对$\alpha\in\Aut(G)$及$a,b\in G$，
+\[
+\alpha([a,b])=[\alpha(a),\alpha(b)].
+\]
+所以$\alpha$把每个换位子映为换位子，进而把它们生成的子群映入自身，即$\alpha(G^{(1)})\subseteq G^{(1)}$。对$\alpha^{-1}$使用同一结论，再施以$\alpha$，得到反向包含。因此$\alpha(G^{(1)})=G^{(1)}$。
+对各级导出子群重复这一结论，再用特征性的传递性，得$G^{(k)}$是$G$的特征子群。
+\end{proof}
+
+正规子群未必是特征子群。例如$V_4=\{e,a,b,ab\}$中，$a^2=b^2=e$且$ab=ba$，三个二阶子群都因$V_4$交换而正规。定义
+\[
+\alpha(a^ib^j)=a^jb^i\qquad(i,j\in\{0,1\}).
+\]
+每个元素均有上述唯一表示；乘法对应于两个指数分别模2相加，故$\alpha$保持乘法。又$\alpha^2=\operatorname{id}_{V_4}$，所以$\alpha$为自同构。它把$\langle a\rangle$映成不同的$\langle b\rangle$，故$\langle a\rangle$不是特征子群。
+
+\section{群在集合上的作用}
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l924}设$G$为群，$X$为非空集合。若映射
+\[
+f:G\times X\longrightarrow X
+\]
+满足
+\begin{align*}
+f(e,x)&=x,\\
+f(g_1g_2,x)&=f(g_1,f(g_2,x)),
+\end{align*}
+其中$g_1,g_2\in G$、$x\in X$，则称$f$给出$G$在$X$上的一个\textbf{左作用}。
+通常将$f(g,x)$记为$g(x)$，于是两条条件写成
+\[
+e(x)=x,\qquad g_1(g_2(x))=(g_1g_2)(x).
+\]
+\end{definition}
+
+群的作用也可以用到置换群的同态来定义，两种说法是等价的。
+
+\begin{proposition}
+若$G$作用于$X$，则每个$g\in G$确定一个置换$\rho(g):x\mapsto g(x)$，且$\rho:G\to S(X)$为群同态。反过来，每个这样的同态都确定一个$G$在$X$上的作用。
+\end{proposition}
+\begin{proof}
+由作用的两条条件，任取$x\in X$，
+\begin{align*}
+g^{-1}(g(x))&=(g^{-1}g)(x)=x,\\
+g(g^{-1}(x))&=(gg^{-1})(x)=x.
+\end{align*}
+因此$\rho(g)$为双射，其逆映射是$\rho(g^{-1})$，故$\rho(g)\in S(X)$。又有
+\begin{align*}
+\rho(g_1g_2)(x)&=(g_1g_2)(x)\\
+&=g_1(g_2(x))\\
+&=(\rho(g_1)\rho(g_2))(x),
+\end{align*}
+所以$\rho(g_1g_2)=\rho(g_1)\rho(g_2)$。
+
+反过来，若给定同态$\rho:G\to S(X)$，令$g(x)=\rho(g)(x)$。由$\rho(e)=\operatorname{id}_X$及$\rho(g_1g_2)=\rho(g_1)\rho(g_2)$，直接得到作用的两条条件。
+\end{proof}
+
+\begin{example}
+\phantomsection\label{p2:concept:c2-l963}\textbf{左平移作用：}取$X=G$，定义$g(x)=gx$。由群的单位元性质及结合律，
+\[
+e(x)=x,\qquad(g_1g_2)(x)=(g_1g_2)x=g_1(g_2x)=g_1(g_2(x)).
+\]
+所以这给出$G$在自身上的作用。
+\end{example}
+
+\begin{example}
+\phantomsection\label{p2:concept:c2-l971}\textbf{共轭作用：}取$X=G$，定义$g(x)=gxg^{-1}$。对任意$g_1,g_2,x\in G$，
+\begin{align*}
+(g_1g_2)(x)
+&=g_1g_2xg_2^{-1}g_1^{-1}\\
+&=g_1(g_2(x)),
+\end{align*}
+且$e(x)=x$，所以这也是作用。
+\phantomsection\label{p2:concept:c2-l978}形如$gxg^{-1}$的元素称为与$x$\textbf{共轭}；子群$gHg^{-1}$称为与$H$共轭的子群。元素之间以及子群之间的共轭都是等价关系：单位元给出自反性，取$g^{-1}$给出对称性，连续两次共轭等于用两个共轭元素的乘积作共轭，给出传递性。
+\end{example}
+
+\begin{example}
+\textbf{左陪集上的作用：}设$H\leq G$，记
+\[
+\mathcal L_G(H)=\{aH:a\in G\}
+\]
+\phantomsection\label{p2:concept:c2-l986}为$H$的全部左陪集组成的集合，称为相应的\textbf{齐性空间}。定义
+\[
+g(aH)=(ga)H.
+\]
+若$aH=bH$，则$b^{-1}a\in H$，而$(gb)^{-1}(ga)=b^{-1}a$，故$(ga)H=(gb)H$。因此此定义不依赖陪集代表的选择。再由
+\[
+e(aH)=aH,\qquad
+(g_1g_2)(aH)=g_1(g_2(aH)),
+\]
+可知这是一个作用。这里不要求$H$正规，$\mathcal L_G(H)$只是陪集集合，不一定是商群。
+\end{example}
+
+不同的群元素可能在$X$上引起相同的置换，因此作用所对应的同态$\rho:G\to S(X)$不一定单射。例如在共轭作用中，中心中的每个元素都在$G$上引起恒等映射。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1001}若作用所对应的同态$\rho:G\to S(X)$是单射，则称此作用\textbf{忠实}(或称为\textbf{如实的})。等价地，只有群的单位元才固定$X$中的每个元素。
+\end{definition}
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1004}设$G$分别作用于非空集合$X,Y$。若存在双射$\varphi:X\to Y$，使
+\[
+\varphi(g(x))=g(\varphi(x))
+\qquad(g\in G,\ x\in X),
+\]
+则称这两个作用\textbf{等价}。这条等式表示，先在$X$中作用再作对应，与先作对应再在$Y$中作用，得到同一结果。
+\end{definition}
+
+\begin{example}
+\textbf{左、右正则作用的等价性：}在$G$自身上，除左平移外，还可定义$g(x)=xg^{-1}$。它是左作用，因为
+\[
+(g_1g_2)(x)=xg_2^{-1}g_1^{-1}
+=g_1(g_2(x)).
+\]
+取逆映射$\varphi(x)=x^{-1}$为双射，并满足
+\[
+\varphi(gx)=(gx)^{-1}=x^{-1}g^{-1}.
+\]
+右侧正是$g$在右正则作用下作用于$\varphi(x)$的结果，所以左右正则作用等价。
+\end{example}
+
+为了描述一个作用如何分解整个集合，在$X$中定义关系：$x\sim y$当且仅当存在$g\in G$使$y=g(x)$。
+\begin{proof}[补充验证]
+由$e(x)=x$，有$x\sim x$。若$y=g(x)$，则$x=g^{-1}(y)$，所以$x\sim y$蕴含$y\sim x$。若又有$z=h(y)$，则$z=(hg)(x)$，所以$x\sim y$、$y\sim z$蕴含$x\sim z$。因此这确实是等价关系。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1031}上述等价关系中包含$x$的等价类称为$x$的\textbf{轨道}，记为
+\[
+O_x=\{g(x):g\in G\}.
+\]
+\phantomsection\label{p2:concept:c2-l1035}若$g(x)=x$对所有$g\in G$成立，则称$x$为此作用的\textbf{不动点}，全体不动点组成的集合记为$X^G$。若$X$只有一个轨道，即任意$x,y\in X$之间都有$y=g(x)$，则称作用\textbf{传递}。
+\end{definition}
+
+等价类把集合分成互不相交的部分，因此不同轨道互不相交，所有轨道的并为$X$。取每个轨道的一个代表$x_i$，可以写成
+\[
+X=\coprod_i O_{x_i}.
+\]
+其中$\coprod$表示不交并。轨道$O_x$只有一个元素当且仅当$x\in X^G$。对于共轭作用，这又等价于$x\in Z(G)$。左平移作用和左陪集作用都是传递的：前者可用$yx^{-1}$把$x$移到$y$，后者可用$ba^{-1}$把$aH$移到$bH$。
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1046}设$G$作用于$X$。对$x\in X$，称
+\[
+H_x=\{g\in G:g(x)=x\}
+\]
+为$x$的\textbf{稳定子群}。
+\end{definition}
+\begin{proof}
+单位元属于$H_x$。若$g\in H_x$，对$g(x)=x$施以$g^{-1}$，得$g^{-1}(x)=x$。若再有$h\in H_x$，则
+\[
+(gh^{-1})(x)=g(h^{-1}(x))=g(x)=x.
+\]
+所以$H_x$确为$G$的子群。
+\end{proof}
+
+\begin{theorem}\label{p2:orbit-stabilizer}
+设$G$作用于$X$，$x\in X$。则$G$在轨道$O_x$上的作用与$G$在左陪集集合$\mathcal L_G(H_x)$上的作用等价，等价映射为
+\[
+\theta:\mathcal L_G(H_x)\longrightarrow O_x,
+\qquad aH_x\longmapsto a(x).
+\]
+\end{theorem}
+\begin{proof}
+首先说明$G$在$O_x$上的作用确实有意义。若$y=a(x)\in O_x$，则任取$g\in G$，有
+\[
+g(y)=(ga)(x)\in O_x,
+\]
+所以原作用可以限制到$O_x$上。
+
+再考察$\theta$。若$g\in aH_x$，可写$g=ah$，其中$h\in H_x$，于是
+\[
+g(x)=a(h(x))=a(x).
+\]
+因此同一左陪集的元素把$x$映到同一点，$\theta$与代表的选择无关。
+
+反过来，若$a(x)=b(x)$，则施以$b^{-1}$得到
+\[
+(b^{-1}a)(x)=x,
+\]
+即$b^{-1}a\in H_x$，所以$aH_x=bH_x$。这说明$\theta$是单射。轨道中的每个元素本来就形如$a(x)$，故$\theta$也是满射。
+
+最后，对任意$g\in G$及$aH_x\in\mathcal L_G(H_x)$，
+\begin{align*}
+\theta\bigl(g(aH_x)\bigr)
+&=\theta((ga)H_x)\\
+&=(ga)(x)\\
+&=g(a(x))\\
+&=g(\theta(aH_x)).
+\end{align*}
+所以该双射满足作用等价的条件。
+\end{proof}
+
+\begin{corollary}
+若$G$在$X$上的作用传递，则对任意$x\in X$，该作用与$G$在$\mathcal L_G(H_x)$上的作用等价。
+
+
+若$G$有限，则每个轨道的元素个数均整除$|G|$，且
+\[
+|O_x|=[G:H_x]=\frac{|G|}{|H_x|}.
+\]
+\end{corollary}
+\begin{proof}
+传递时$O_x=X$，第一条便是上一定理。有限时，由上一定理的双射，轨道元素个数等于左陪集个数，再用拉格朗日定理即得公式及整除关系。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1111}设$p$为素数。若有限群$G$的阶为$p$的正整数次幂，即$|G|=p^k$、$k\geq1$，则称$G$为有限\textbf{$p$群}。
+\end{definition}
+
+\begin{corollary}
+有限$p$群$G$作用于有限集合$X$时，若$p\nmid|X|$，则$X$中必有不动点。
+\end{corollary}
+\begin{proof}
+取各轨道代表$x_1,\ldots,x_m$。由轨道大小整除$|G|$，每个$|O_{x_i}|$都是$p$的非负整数次幂。若没有不动点，则没有大小为1的轨道，所以每个轨道大小都被$p$整除。于是
+\[
+|X|=\sum_{i=1}^m|O_{x_i}|
+\]
+也被$p$整除，与假设矛盾。
+\end{proof}
+
+上述证明还给出更精确的计数关系。
+
+\begin{theorem}\label{p2:p-fixed}
+有限$p$群$G$作用于有限集合$X$时，若$t=|X^G|$为不动点个数，则
+\[
+|X|\equiv t\pmod p.
+\]
+\end{theorem}
+\begin{proof}
+大小为1的轨道与不动点一一对应，共贡献$t$个元素。其余轨道的大小均为$p$的正整数次幂。因此
+\[
+|X|=t+\sum_{|O_{x_i}|>1}|O_{x_i}|\equiv t\pmod p.
+\]
+\end{proof}
+
+\begin{corollary}
+有限$p$群的中心非平凡。
+\end{corollary}
+\begin{proof}
+让$G$通过共轭作用于自身。此时不动点恰为中心中的元素，所以上一定理给出
+\[
+|Z(G)|\equiv|G|\equiv0\pmod p.
+\]
+又因为$e\in Z(G)$，$|Z(G)|$为正数。因此它至少为$p$，特别地$Z(G)\ne\{e\}$。
+\end{proof}
+
+\phantomsection\label{p2:concept:c2-l1151}对于$G$在$G$上的共轭作用，$x$的轨道就是与$x$共轭的全部元素组成的集合，称为$x$的\textbf{共轭类}，记为
+\[
+C(x)=\{gxg^{-1}:g\in G\}.
+\]
+对应的稳定子群为
+\[
+H_x=\{g\in G:gxg^{-1}=x\}
+=\{g\in G:gx=xg\}.
+\]
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1162}上述由全部与$x$交换的元素组成的子群称为$x$在$G$中的\textbf{中心化子}，记为$C_G(x)$。因此对于共轭作用，有$H_x=C_G(x)$。它等于整个$G$当且仅当$x\in Z(G)$。
+\end{definition}
+
+\begin{theorem}\label{p2:class-equation}
+\textbf{类方程：}设$G$有限，取非中心共轭类的各个代表$x_1,\ldots,x_s$，则
+\[
+|G|=|Z(G)|+\sum_{i=1}^s[G:C_G(x_i)].
+\]
+\end{theorem}
+\begin{proof}
+共轭类将$G$分为不交并。由轨道与稳定子群的计数公式，
+\[
+|C(x_i)|=[G:C_G(x_i)].
+\]
+中心中的每个元素单独构成一个共轭类，全部这样的类共贡献$|Z(G)|$个元素。其余元素恰属于所列的非中心共轭类，逐类相加便得到类方程。
+\end{proof}
+
+轨道上选取不同的点，会得到不同的稳定子群，但这些稳定子群之间有明确的共轭关系。
+
+\begin{theorem}
+设$G$作用于$X$，$x,y\in X$，且$y=g_0(x)$，则
+\[
+H_y=g_0H_xg_0^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+若$g\in H_x$，则$g(x)=x$，所以
+\begin{align*}
+(g_0gg_0^{-1})(y)
+&=g_0\bigl(g(g_0^{-1}(g_0(x)))\bigr)\\
+&=g_0(g(x))\\
+&=g_0(x)=y.
+\end{align*}
+因此$g_0H_xg_0^{-1}\subseteq H_y$。
+
+反过来，若$h\in H_y$，则$h(y)=y$。由$x=g_0^{-1}(y)$，同样计算得
+\[
+(g_0^{-1}hg_0)(x)
+=g_0^{-1}(h(y))=g_0^{-1}(y)=x.
+\]
+故$g_0^{-1}hg_0\in H_x$，即$h\in g_0H_xg_0^{-1}$，得到反向包含。
+\end{proof}
+
+因而，同一轨道上不同点的稳定子群彼此共轭；相应的左陪集作用也都与同一个轨道上的作用等价。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1208}对$H\leq G$，定义$H$在$G$中的\textbf{正规化子}为
+\[
+N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+\end{definition}
+\begin{proposition}
+$N_G(H)$是$G$的子群，且$H\trianglelefteq N_G(H)$。
+\end{proposition}
+\begin{proof}
+单位元属于$N_G(H)$。若$a,b\in N_G(H)$，则
+\[
+(ab)H(ab)^{-1}=a(bHb^{-1})a^{-1}=aHa^{-1}=H.
+\]
+由$aHa^{-1}=H$两侧分别施以$a^{-1}$和$a$，得$a^{-1}Ha=H$，所以逆元也属于$N_G(H)$。这说明它是子群。
+
+任取$h\in H$，由$H$的子群性质有$hHh^{-1}=H$，故$H\leq N_G(H)$。正规化子的定义又说明其每个元素共轭$H$后仍得到$H$，所以$H\trianglelefteq N_G(H)$。
+\end{proof}
+
+\section{西罗定理}
+
+
+
+\begin{lemma}
+设$n=p^lm$，其中$p$为素数、$p\nmid m$，$0\leq k\leq l$。则
+\[
+p^{l-k}\mid\binom n{p^k},\qquad
+p^{l-k+1}\nmid\binom n{p^k}.
+\]
+也就是说，该组合数含有的$p$因子的个数恰为$l-k$。
+\end{lemma}
+\begin{proof}
+当$k=0$时，组合数为$n$，结论成立。设$k\geq1$，展开为
+\[
+\binom n{p^k}
+=\frac{n}{p^k}\,
+\frac{(n-1)(n-2)\cdots(n-p^k+1)}{(p^k-1)(p^k-2)\cdots1}.
+\]
+比较后一分式中相配的$n-i$与$p^k-i$。对$0<i<p^k$，写$i=p^ti'$，其中$p\nmid i'$，则$0\leq t<k\leq l$。于是
+\begin{align*}
+n-i&=p^t(p^{l-t}m-i'),\\
+p^k-i&=p^t(p^{k-t}-i').
+\end{align*}
+因为$l-t>0$、$k-t>0$而$p\nmid i'$，两个括号内的整数都不被$p$整除。因此这两个因子各含恰好$t$个$p$因子。
+
+将所有对应因子中的$p$约去，后一分式化为分子、分母均与$p$互素的有理数。所以组合数中的全部$p$因子恰来自
+\[
+\frac n{p^k}=p^{l-k}m,
+\]
+其个数为$l-k$。
+\end{proof}
+
+\begin{theorem}\label{p2:sylow-one}
+\textbf{西罗第一定理：}设$G$为有限群，$p$为素数。若$p^k\mid|G|$，$k\geq0$，则$G$有一个$p^k$阶子群。
+\end{theorem}
+\begin{proof}
+写$|G|=n=p^lm$，其中$p\nmid m$。由条件$k\leq l$。令$X$为$G$中所有含$p^k$个元素的子集组成的集合，故
+\[
+|X|=\binom n{p^k}.
+\]
+对$g\in G$及$A\in X$，定义$g(A)=gA$。左乘$g$是$G$的双射，所以$gA$仍有$p^k$个元素；又$eA=A$、$(g_1g_2)A=g_1(g_2A)$，这确实给出作用。
+
+将$X$分成轨道。若每个轨道的大小都被$p^{l-k+1}$整除，则其总和$|X|$也被整除，与引理矛盾。因此存在$A\in X$，其轨道$O_A$满足
+\[
+p^{l-k+1}\nmid|O_A|.
+\]
+记$A$的稳定子群为$H_A=\{g\in G:gA=A\}$。由轨道计数公式，
+\[
+|G|=|O_A|\,|H_A|.
+\]
+设$|O_A|$中$p$因子的个数为$t$，则$t\leq l-k$，所以$|H_A|$中至少含$k$个$p$因子，即$p^k\mid|H_A|$。
+
+另一方面，取$a\in A$。若$h\in H_A$，则$ha\in hA=A$，从而$H_Aa\subseteq A$。映射$h\mapsto ha$为双射$H_A\to H_Aa$，所以
+\[
+|H_A|=|H_Aa|\leq|A|=p^k.
+\]
+结合整除关系，必有$|H_A|=p^k$，它就是所求子群。
+\end{proof}
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1287}若$|G|=p^lm$且$p\nmid m$，则$G$中$p^l$阶的子群称为$G$的\textbf{西罗$p$子群}。它的阶包含$|G|$中的全部$p$因子，第一定理保证其存在。
+\end{definition}
+
+\begin{theorem}\label{p2:sylow-two}
+\textbf{西罗第二定理：}设$P$为有限群$G$的一个西罗$p$子群。若$H$为$G$的$p$幂阶子群，则存在$g\in G$使
+\[
+H\leq gPg^{-1}.
+\]
+因此，任意两个西罗$p$子群互相共轭。
+\end{theorem}
+\begin{proof}
+写$|G|=p^lm$，$p\nmid m$。让$H$作用于$P$的左陪集集合$\mathcal L_G(P)$，作用为
+\[
+h(gP)=hgP.
+\]
+该集合有$[G:P]=m$个元素，且$p\nmid m$。若$H=\{e\}$，结论直接成立；否则$H$为有限$p$群，由\ref{p2:p-fixed}可取一个被$H$中全部元素固定的陪集$gP$。因此
+\[
+hgP=gP\qquad(\forall h\in H),
+\]
+等价地$g^{-1}hg\in P$对全部$h\in H$成立。所以$g^{-1}Hg\leq P$，即$H\leq gPg^{-1}$。
+
+若$H$本身也是西罗$p$子群，则它与$gPg^{-1}$阶相同，有限子群的包含关系因而成为等号。这证明了共轭性。
+\end{proof}
+
+特别地，西罗$p$子群唯一当且仅当它正规：唯一时每个共轭子群都只能等于它；正规时，它的全部共轭子群均相同，再由第二定理知没有其他西罗$p$子群。
+
+以下沿用正规化子的概念。为与本节的记号一致，简写
+\[
+N(H)=N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+
+\begin{corollary}\label{p2:sylow-normalizer}
+若$P$为$G$的西罗$p$子群，则$N(P)$不含$G$的其他西罗$p$子群，且
+\[
+N(N(P))=N(P).
+\]
+\end{corollary}
+\begin{proof}
+因为$P\leq N(P)\leq G$，$P$也是$N(P)$的西罗$p$子群。由定义$P\trianglelefteq N(P)$，所以它是$N(P)$中唯一的西罗$p$子群。任何包含在$N(P)$内的$G$的西罗$p$子群都有同样的阶，故只能等于$P$。
+
+若$g\in N(N(P))$，则$gN(P)g^{-1}=N(P)$。此时$gPg^{-1}$也是$N(P)$内的西罗$p$子群，由唯一性得$gPg^{-1}=P$，故$g\in N(P)$。这证明一个方向的包含；反向由子群的元素都正规化该子群成立。
+\end{proof}
+
+\begin{proposition}
+设$G$的西罗$p$子群有$k$个，则对任一个这样的子群$P$，
+\[
+k=[G:N(P)].
+\]
+特别地，$k$整除$|G|$。
+\end{proposition}
+\begin{proof}
+令$X$为全部西罗$p$子群组成的集合，$G$通过共轭作用于$X$。第二定理说明此作用传递，$P$的稳定子群正是$N(P)$，故由轨道计数公式得到等式。
+\end{proof}
+
+\begin{theorem}\label{p2:sylow-three}
+\textbf{西罗第三定理：}设$p\mid|G|$，$k$为$G$的西罗$p$子群个数，则
+\[
+k\equiv1\pmod p.
+\]
+若$|G|=p^lm$、$p\nmid m$，则还有$k\mid m$。
+\end{theorem}
+\begin{proof}
+令$X$为全部西罗$p$子群组成的集合，固定其中一个$P$，只让$P$通过共轭作用于$X$。$P$自身是不动点。若$Q\in X$也是不动点，则
+\[
+gQg^{-1}=Q\qquad(\forall g\in P),
+\]
+即$P\leq N(Q)$。由前面的正规化子推论，$N(Q)$不能含$G$的另一个西罗$p$子群，因此$P=Q$。所以此作用恰有一个不动点。由$p$群作用的同余公式，$k=|X|\equiv1\pmod p$。
+
+再由$P\leq N(P)$及指数乘法公式，
+\[
+m=[G:P]=[G:N(P)]\,[N(P):P]=k[N(P):P].
+\]
+故$k\mid m$。
+\end{proof}
+
+\begin{example}
+\textbf{72阶群不是单群：}设$|G|=72=2^3\cdot3^2$。西罗3子群的个数$k$满足$k\mid8$、$k\equiv1\pmod3$，因此$k=1$或$4$。
+
+若$k=1$，唯一的西罗3子群为9阶非平凡真正规子群。
+若$k=4$，记四个西罗3子群为$P_1,P_2,P_3,P_4$。共轭作用给出同态
+\[
+\varphi:G\longrightarrow S_4.
+\]
+由于$72>24=|S_4|$，它不可能单射，所以$\ker\varphi\ne\{e\}$。又因$G$在这四个子群上的共轭作用传递，像不能只有恒等置换，所以$\ker\varphi\ne G$。核因此又是非平凡真正规子群。
+\end{example}
+
+下面补充几个利用西罗定理分析有限群的例子。以下记$k_p$为西罗$p$子群的个数。若$|G|=p^lm$、$p\nmid m$，则
+\[
+k_p\mid m,\qquad k_p\equiv1\pmod p.
+\]
+先由这两个条件限制子群的个数；若能证明$k_p=1$，就得到正规子群。若个数尚不能唯一确定，还可以结合不同子群中的元素计数进一步讨论。
+
+\begin{example}
+\textbf{21阶群有正规的7阶子群：}若$|G|=21$，则$G$有唯一的7阶子群，且该子群正规。因此$G$不是单群。
+\end{example}
+\begin{proof}
+由西罗定理，
+\[
+k_7\mid3,\qquad k_7\equiv1\pmod7.
+\]
+第一个条件给出$k_7=1$或$3$，其中只有$1$满足第二个条件，所以$k_7=1$。西罗7子群的阶为7，且唯一，故为正规子群。由于$1<7<21$，它是非平凡真正规子群，因此$G$不是单群。
+\end{proof}
+
+\begin{example}
+\textbf{15阶群是循环群：}每个15阶群都是循环群。
+\end{example}
+\begin{proof}
+\textbf{先证明两个西罗子群都正规：}设$|G|=15=3\cdot5$。由
+\[
+k_5\mid3,\qquad k_5\equiv1\pmod5,
+\]
+可得$k_5=1$。同样，由
+\[
+k_3\mid5,\qquad k_3\equiv1\pmod3,
+\]
+可得$k_3=1$，因为$5$的正因数只有$1,5$，而$5\not\equiv1\pmod3$。
+
+记唯一的西罗5子群和西罗3子群分别为$P,Q$，则
+\[
+|P|=5,\qquad |Q|=3,\qquad P\trianglelefteq G,\quad Q\trianglelefteq G.
+\]
+由拉格朗日定理，$|P\cap Q|$同时整除5和3，所以$P\cap Q=\{e\}$。
+
+\textbf{再证明两子群中的元素互相交换：}任取$a\in P,b\in Q$。由$P$正规，$ba^{-1}b^{-1}\in P$；由$Q$正规，$aba^{-1}\in Q$。因此
+\begin{align*}
+aba^{-1}b^{-1}&=a(ba^{-1}b^{-1})\in P,\\
+aba^{-1}b^{-1}&=(aba^{-1})b^{-1}\in Q.
+\end{align*}
+故$aba^{-1}b^{-1}\in P\cap Q=\{e\}$，得到$ab=ba$。
+
+\textbf{最后构造15阶元素：}素数阶群为循环群，选$P=\langle a\rangle$、$Q=\langle b\rangle$，于是$|a|=5$、$|b|=3$。由于$a,b$可交换，
+\[
+(ab)^{15}=a^{15}b^{15}=e.
+\]
+若$(ab)^k=e$，其中$k$为正整数，则
+\[
+a^k=b^{-k}\in P\cap Q=\{e\}.
+\]
+所以$5\mid k$且$3\mid k$，从而$15\mid k$。这说明$ab$的阶恰为15，故$\langle ab\rangle$已经包含$G$的全部15个元素。因此$G$为循环群。
+\end{proof}
+
+\begin{example}
+\textbf{30阶群有正规的西罗3子群或西罗5子群：}若$|G|=30$，则$k_3=1$或$k_5=1$。因此$G$不是单群。
+\end{example}
+\begin{proof}
+由西罗定理，
+\[
+k_5\mid6,\qquad k_5\equiv1\pmod5,
+\]
+所以$k_5=1$或$6$。同样，
+\[
+k_3\mid10,\qquad k_3\equiv1\pmod3,
+\]
+所以$k_3=1$或$10$。
+
+反设这两类西罗子群都不正规。由唯一性与正规性的等价关系，必须有
+\[
+k_5=6,\qquad k_3=10.
+\]
+下面分别计算这些子群提供的非单位元个数。
+
+两个不同的5阶子群只能以单位元相交。事实上，若它们有共同的非单位元$x$，则$x$的阶为5，$\langle x\rangle$同时等于这两个子群，与它们不同矛盾。每个5阶子群有4个非单位元，这些元素的阶均为5，所以6个这样的子群提供
+\[
+6(5-1)=24
+\]
+个不同的5阶元素。以相同理由，两个不同的3阶子群也只以单位元相交，10个这样的子群提供
+\[
+10(3-1)=20
+\]
+个不同的3阶元素。
+
+一个元素的阶不可能同时为3和5，所以两类元素不重合。再加上单位元，得到
+\[
+|G|\ge1+24+20=45,
+\]
+与$|G|=30$矛盾。因此$k_3=1$或$k_5=1$，相应的西罗子群是非平凡真正规子群，$G$不是单群。
+\end{proof}
+
+\begin{example}
+\textbf{56阶群有正规的西罗7子群或西罗2子群：}若$|G|=56$，则$k_7=1$或$k_2=1$。因此$G$不是单群。
+\end{example}
+\begin{proof}
+写成$|G|=2^3\cdot7$，由西罗定理，
+\[
+k_7\mid8,\qquad k_7\equiv1\pmod7,
+\]
+所以$k_7=1$或$8$。若$k_7=1$，唯一的西罗7子群就是所求的正规子群。
+
+以下设$k_7=8$。不同的7阶子群只以单位元相交：若它们共有非单位元$x$，则$x$的阶为7，$\langle x\rangle$就会等于这两个子群，矛盾。因此8个西罗7子群共有
+\[
+8(7-1)=48
+\]
+个不同的7阶元素。反过来，每个7阶元素都生成一个7阶子群，所以这48个元素就是$G$的全部7阶元素。
+
+令$T$为$G$中所有阶不等于7的元素组成的集合，则
+\[
+|T|=56-48=8.
+\]
+任取一个西罗2子群$P$，有$|P|=8$。由拉格朗日定理，$P$中每个元素的阶都整除8，因而不会等于7。这说明$P\subseteq T$。两集合的元素个数同为8，故$P=T$。
+
+任何西罗2子群都满足同样的包含关系，因此都必须等于$T$，所以$k_2=1$，该子群正规。两种情形都给出非平凡真正规子群，故$G$不是单群。
+\end{proof}
+
+
+
+\section{群的直和}
+
+下面介绍由已有群构造新群的方法。先取两个群$G_1,G_2$，在笛卡尔积$G_1\times G_2$上定义
+\[
+(a_1,b_1)(a_2,b_2)=(a_1a_2,b_1b_2).
+\]
+第一分量在$G_1$中相乘，第二分量在$G_2$中相乘。两个群的结合律使这个运算结合；若$e_i$为$G_i$的单位元，则$(e_1,e_2)$为单位元，而$(a,b)$的逆为$(a^{-1},b^{-1})$。所以这确实构成一个群。
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1501}设$G_1,\ldots,G_s$为有限多个群。在集合$G_1\times\cdots\times G_s$上按分量定义乘法
+\[
+(a_1,\ldots,a_s)(b_1,\ldots,b_s)=(a_1b_1,\ldots,a_sb_s).
+\]
+\phantomsection\label{p2:concept:c2-l1505}所得群称为这些群的\textbf{外直和}，记为$G_1\oplus\cdots\oplus G_s$。对于有限个因子，也称为\textbf{直积}，可记为$G_1\times\cdots\times G_s$。
+\end{definition}
+\begin{proof}[验证]
+设$x=(x_i)$、$y=(y_i)$、$z=(z_i)$。逐分量计算得
+\begin{align*}
+(xy)z&=((x_iy_i)z_i)_i=(x_i(y_iz_i))_i=x(yz),\\
+(e_i)_i(x_i)_i&=(x_i)_i=(x_i)_i(e_i)_i,\\
+(x_i)_i(x_i^{-1})_i&=(e_i)_i=(x_i^{-1})_i(x_i)_i.
+\end{align*}
+因此单位元为$(e_1,\ldots,e_s)$，逆元也按分量取，群公理均成立。
+\end{proof}
+
+直和的运算完全由各个因子的运算决定。如果各因子有限，则
+\[
+|G_1\oplus\cdots\oplus G_s|=|G_1|\cdots|G_s|.
+\]
+各个$G_i$还可在直和内部实现为只在第$i$个坐标变化的子群。
+
+\begin{proposition}
+在$G=G_1\oplus\cdots\oplus G_s$中，令
+\[
+\overline G_i=\{(e_1,\ldots,e_{i-1},a_i,e_{i+1},\ldots,e_s):a_i\in G_i\}.
+\]
+则$\overline G_i\cong G_i$、$\overline G_i\trianglelefteq G$，且每个$x\in G$都可唯一表示为$x=x_1\cdots x_s$，其中$x_i\in\overline G_i$。
+\end{proposition}
+\begin{proof}
+映射$a_i\mapsto(e_1,\ldots,a_i,\ldots,e_s)$保持乘法，且是到$\overline G_i$的双射，故为同构。对$a=(a_j)\in G$及$x_i=(e_1,\ldots,b_i,\ldots,e_s)$，
+\[
+ax_ia^{-1}=(e_1,\ldots,a_ib_ia_i^{-1},\ldots,e_s)\in\overline G_i.
+\]
+所以$\overline G_i$正规。
+
+若$x=(a_1,\ldots,a_s)$，则取$x_i$为仅在第$i$坐标等于$a_i$的元素，即有$x=x_1\cdots x_s$。反过来，在这种乘积中，第$i$个坐标只能来自$x_i$，所以每个$x_i$都由$x$唯一确定。
+\end{proof}
+
+这说明直和内部含有与各因子同构的正规子群。下面反过来讨论：一个群具有怎样的正规子群时，能由这些子群的外直和来恢复？
+
+\begin{theorem}\label{p2:internal-product}\phantomsection\label{p2:concept:c2-l1542}
+设$N_1,\ldots,N_s\trianglelefteq G$，满足
+\[
+G=N_1\cdots N_s,
+\]
+且每个$x\in G$的表示$x=x_1\cdots x_s$（$x_i\in N_i$）唯一。则
+\[
+G\cong N_1\oplus\cdots\oplus N_s.
+\]
+此时称$G$为$N_1,\ldots,N_s$的\textbf{内直和}。在上述正规性和乘积等于$G$的条件下，表示唯一等价于：单位元只有平凡表示；也等价于
+\[
+N_i\cap(N_1\cdots N_{i-1}N_{i+1}\cdots N_s)=\{e\}
+\qquad(1\leq i\leq s).
+\]
+\end{theorem}
+\begin{proof}
+由表示的存在性与唯一性，可先定义双射
+\[
+\Phi:G\longrightarrow N_1\oplus\cdots\oplus N_s,
+\qquad x_1\cdots x_s\longmapsto(x_1,\ldots,x_s).
+\]
+要证明它保持乘法，先说明不同因子中的元素相互交换。
+
+若$i\ne j$，则$N_i\cap N_j=\{e\}$。否则其中某个非单位元$x$既可放在乘积的第$i$个位置，也可放在第$j$个位置，其他位置取$e$，产生两个不同表示。
+取$x_i\in N_i,x_j\in N_j$，考虑$c=x_ix_jx_i^{-1}x_j^{-1}$。由于两个子群都正规，
+\begin{align*}
+c&=x_i(x_jx_i^{-1}x_j^{-1})\in N_i,\\
+c&=(x_ix_jx_i^{-1})x_j^{-1}\in N_j.
+\end{align*}
+因此$c=e$，即$x_ix_j=x_jx_i$。
+
+若$x=x_1\cdots x_s$、$y=y_1\cdots y_s$，便可只交换属于不同因子的元素，将乘积整理为
+\[
+xy=(x_1y_1)\cdots(x_sy_s).
+\]
+这就是$xy$的唯一表示，所以
+\[
+\Phi(xy)=(x_1y_1,\ldots,x_sy_s)=\Phi(x)\Phi(y).
+\]
+故$\Phi$为群同构。
+
+\textbf{单位元表示的判别：}一般表示唯一时，单位元当然只有平凡表示。反过来，若只有单位元的表示已知唯一，则先以同样的方法推出两两交平凡，继而推出不同因子交换。若$x_1\cdots x_s=y_1\cdots y_s$，移项并重排得
+\[
+(y_1^{-1}x_1)\cdots(y_s^{-1}x_s)=e.
+\]
+由单位元表示唯一，每个$y_i^{-1}x_i=e$，所以$x_i=y_i$。
+
+\textbf{交条件的判别：}有限个正规子群的乘积仍为子群，且交换因子次序不改变该乘积集合。若交条件成立，从$x_1\cdots x_s=e$中隔离$x_i$，可知$x_i$也属于其他因子的乘积，故$x_i=e$。这给出单位元表示唯一。
+反过来，若$x\in N_i$又属于其他因子的乘积，写$x=AB$，其中$A\in N_1\cdots N_{i-1}$、$B\in N_{i+1}\cdots N_s$。则$A^{-1}xB^{-1}=e$。把$A^{-1}$和$B^{-1}$分别在对应的因子乘积中展开，就得到单位元的一个表示，其中第$i$项为$x$。由表示唯一，$x=e$。
+\end{proof}
+
+对上述正规子群乘积中使用的事实，也可直接验证：若$A,B\trianglelefteq G$，则$ab=b(b^{-1}ab)$给出$AB\subseteq BA$，交换角色得$AB=BA$；再按第二同构定理中的乘积、逆元计算得$AB\leq G$，且共轭后仍为$AB$，所以$AB$正规。对因子个数归纳，便得到有限乘积的结论。
+
+\textbf{注：}
+当$s>2$时，不能把交条件换成仅要求$N_i\cap N_j=\{e\}$。例如$V_4$的三个二阶子群两两交平凡，但第三个已包含在前两个的乘积中，所以三个因子的表达不唯一。
+
+
+\begin{definition}
+\phantomsection\label{p2:concept:c2-l1600}非平凡群若不能分解成两个非平凡正规子群的内直和，则称为\textbf{不可分解群}。等价地，它不同构于两个非平凡群的外直和。
+\end{definition}
+
+\begin{proposition}
+每个非平凡有限群均可分解成有限多个不可分解群的直和。
+\end{proposition}
+\begin{proof}
+对群阶归纳。若$G$不可分解，取$G$本身作为唯一因子。否则$G\cong H\oplus K$，其中$H,K$均非平凡，因此
+\[
+1<|H|,|K|<|G|.
+\]
+对两个较小的群应用归纳假设，再把它们的直和因子合在一起，便得到$G$的分解。
+\end{proof}
+
+下面以有限交换群为例应用内直和判别。
+
+\begin{theorem}
+有限交换群是它的各西罗子群的内直和。
+\end{theorem}
+\begin{proof}
+设$|G|=p_1^{r_1}\cdots p_s^{r_s}$，其中$p_i$为不同素数。令$G_i$为西罗$p_i$子群。交换群的每个子群都正规，因此各$G_i$由西罗共轭定理可知唯一。
+
+$G_i$也就是$G$中全部$p_i$幂阶元素（包括单位元）组成的集合：其中每个元素的阶都整除$|G_i|=p_i^{r_i}$；反过来，若$x$的阶为$p_i$的幂，则$\langle x\rangle$由西罗第二定理包含于某个西罗$p_i$子群，而该子群只能是$G_i$，所以$x\in G_i$。
+
+固定$i$，令$M_i=\prod_{j\ne i}p_j^{r_j}$。其他因子乘积中的元素可写为$x=\prod_{j\ne i}x_j$，其中$x_j\in G_j$。因为所有元素交换，且每个$|G_j|$都整除$M_i$，
+\[
+x^{M_i}=\prod_{j\ne i}x_j^{M_i}=e.
+\]
+因此$x$的阶整除$M_i$；而$G_i$中元素的阶整除$p_i^{r_i}$。两数互素，所以
+\[
+G_i\cap\Bigl(\prod_{j\ne i}G_j\Bigr)=\{e\}.
+\]
+令$H=G_1\cdots G_s$，在$H$中应用内直和判别，得$H\cong G_1\oplus\cdots\oplus G_s$，从而
+\[
+|H|=\prod_i|G_i|=|G|.
+\]
+所以$H=G$，得到所述分解。平凡群的情形可视为空直和。
+\end{proof}
+
+因此，研究有限交换群可先分别研究各个素数对应的交换$p$群。交换$p$群还可能继续分解；它的进一步结构将在交换群的结构理论中讨论。
+
+\section{若尔当--赫尔德定理}
+
+
+
+\begin{definition}
+设有限递降子群列
+\[
+G=G_0\geq G_1\geq\cdots\geq G_r=\{e\}
+\]
+满足$G_i\trianglelefteq G_{i-1}$，则称其为$G$的一个\textbf{次正规子群列}。各商群$G_{i-1}/G_i$组成的群组称为其\textbf{因子群组}。这里的“次”表示只要求每一项在前一项中正规，不要求它在整个$G$中正规。
+
+允许群列中有重复项，重复项对应平凡因子群；非平凡因子群的个数称为该群列的\textbf{长度}。若群列无重复项，且各因子群均为单群(也就是说取得都是极大正规子群)，则称它为\textbf{合成群列}。
+\end{definition}
+
+若$G$本身为单群，则$G>\{e\}$就是唯一的无重复项合成群列。一般群的次正规子群列并不唯一；我们先证明有限群至少存在一条合成群列。
+
+\begin{proposition}
+每个有限群都有合成群列；无限群则未必如此。
+\end{proposition}
+\begin{proof}
+平凡群可取长度为0的群列。设$G\ne\{e\}$且是有限群。在所有无重复项的次正规子群列中，选择长度最大的一条。由于每次严格下降都使子群阶变小，这些长度有有限上界，故这样的选择存在。
+
+若其中某个因子$G_i/G_{i+1}$不是单群，则它有非平凡真正规子群$\overline H$。由子群对应定理，完全反像$H$满足
+\[
+G_{i+1}<H<G_i,\qquad H\trianglelefteq G_i,
+\qquad H/G_{i+1}=\overline H.
+\]
+而$G_{i+1}\trianglelefteq G_i$也保证$G_{i+1}\trianglelefteq H$，所以可以把$H$插入群列，形成一条更长的无重复项次正规子群列，矛盾。因此每个因子均单，所选群列为合成群列。
+\end{proof}
+
+这一论证还说明，合成群列恰是不能在相邻两项之间真正插入新子群的次正规子群列。有限性在这里保证插入过程最终结束。
+
+\begin{example}
+整数加法群$\Z$没有有限的合成群列。事实上，若有这样一条群列，其最后一个非平凡项必须是$\Z$的单子群。但$\Z$的每个非零子群都是$m\Z$，同构于$\Z$；它又含非平凡真子群$2m\Z$，所以不可能是单群。
+\end{example}
+
+第四节已证明，有限可解群的合成因子都是素数阶循环群，且这些素数计入重数后由群阶确定。对于一般有限群，也有相应的唯一性，只是因子可能为非交换单群。
+
+\begin{theorem}\label{p2:jordan-holder}
+\textbf{若尔当--赫尔德定理：}有限群$G$的任意两条无重复项合成群列长度相等，其因子群组在不计次序、保留重复次数的意义下对应同构。
+\end{theorem}
+\begin{proof}
+设两条合成群列为
+\begin{align*}
+G&=G_0\triangleright G_1\triangleright\cdots\triangleright G_r=\{e\},\\
+G&=H_0\triangleright H_1\triangleright\cdots\triangleright H_s=\{e\}.
+\end{align*}
+对第一条的长度$r$归纳。平凡群的情形成立；当$r=1$时，$G$为单 群，它没有可作第一步的非平凡真正规子群，所以第二条也只能为$G>\{e\}$，结论成立。
+
+设$r>1$，并假设定理对具有长度小于$r$的合成群列的有限群都成立。
+
+\textbf{若$G_1=H_1$：}删去两列的首项$G$，便得到同一群$G_1$的两条合成群列，其中第一条长度为$r-1$。归纳假设给出$r-1=s-1$，且下面的因子群组对应同构。补回共同的第一个因子$G/G_1$，即得结论。
+
+\textbf{若$G_1\ne H_1$：}由于$G/G_1$和$G/H_1$均为单群，$G_1,H_1$都是$G$的极大真正规子群。它们不能彼此包含，否则极大性将迫使二者相等。乘积$G_1H_1$是包含两者的正规子群，严格大于$G_1$，所以
+\[
+G_1H_1=G.
+\]
+令$N_2=G_1\cap H_1$。由第二同构定理，
+\[
+G_1/N_2\cong G/H_1,\qquad
+H_1/N_2\cong G/G_1.
+\]
+因此这两个商群均为单群。
+
+取$N_2$的一条合成群列$N_2>N_3>\cdots>N_t=\{e\}$，若$N_2=\{e\}$，则取$t=2$。接成两条新合成群列：
+\begin{align*}
+G&\triangleright G_1\triangleright N_2\triangleright\cdots\triangleright N_t=\{e\},\\
+G&\triangleright H_1\triangleright N_2\triangleright\cdots\triangleright N_t=\{e\}.
+\end{align*}
+它们都是合成群列，因为最上面两个商群分别由已知的单群给出，下面沿用$N_2$的合成群列。
+
+先比较原第一条群列与第一条新群列。二者从$G_1$开始都是$G_1$的合成群列，原群列的这段长度为$r-1$，可用归纳假设。因此第一条新群列也有长度$r$，即$t=r$，且它的因子群组与原第一条对应同构。
+
+第二条新群列与第一条新群列使用相同的下半段，故长度也为$r$。再比较它从$H_1$开始的群列与原第二条从$H_1$开始的群列，前者长度为$r-1$，又可用归纳假设，得到$s=r$，并且原第二条与第二条新群列的因子群组对应同构。
+
+最后，两条新群列从$N_2$以下的因子相同，而最上面两个因子分别为
+\[
+G/G_1,\ G_1/N_2
+\quad\text{及}\quad
+G/H_1,\ H_1/N_2.
+\]
+由前面的两个同构，它们只是互换次序。因此两条新群列的因子群组对应同构，进而原来的两条群列也如此，归纳完成。
+\end{proof}
+
+
+
+更一般地，给定群$H,N$，寻找所有具有正规子群同构于$N$、相应商群同构于$H$的群$G$，即研究
+\[
+G/N\cong H,
+\]
+所允许的群结构，称为\textbf{群扩张问题}。合成群列把群分解为单群因子，但从这些因子重新构造原群，还需要知道它们如何结合。
+
+\section{幺半群}
+\begin{definition}
+设$S$为非空集合，其上定义二元运算，记为乘法。若对任意$a,b,c\in S$有
+\[
+a(bc)=(ab)c,
+\]
+且存在$e\in S$使$ea=ae=a$对每个$a\in S$成立，则称$S$为\textbf{幺半群}。元素$e$称为单位元。若还满足$ab=ba$，则称为\textbf{交换幺半群}。
+\end{definition}
+
+单位元仍然唯一：若$e,f$均为双边单位元，则$e=ef=f$。但幺半群中的元素不必可逆，因此不能直接使用群中的消去、移项等运算。
+\begin{example}
+对非空集合$X$，记$M(X)$为$X$到自身的全部映射组成的集合。以映射复合为乘法，恒等映射为单位元，得到一个幺半群。它与置换群$S(X)$的区别在于，不要求映射为双射。
+
+$X$的幂集$P(X)$在并运算下为交换幺半群，单位元为$\varnothing$；在交运算下也为交换幺半群，单位元为$X$。
+\end{example}
+
+\begin{example}
+对群$G$，在$G$之外添加一个符号0，并规定$0g=g0=0$以及$00=0$。所得$G\cup\{0\}$是幺半群：若三个因子均在$G$中，结合律来自$G$；若其中有0，两种加括号的结果都为0。单位元仍为$G$原来的$e$，不是新增的0。
+\end{example}
+
+\begin{definition}
+若$Q\subseteq S$包含$S$的单位元，且对乘法封闭，则称$Q$为$S$的\textbf{子幺半群}。集合\textbf{$X$上的变换幺半群}是$M(X)$的子幺半群。
+
+设$S,S'$为幺半群，单位元分别为$e,e'$。映射$\varphi:S\to S'$若满足
+\[
+\varphi(e)=e',\qquad\varphi(ab)=\varphi(a)\varphi(b),
+\]
+则称为\textbf{幺半群同态}。双射同态称为\textbf{同构}。
+\end{definition}
+
+\begin{theorem}
+每个幺半群$S$都同构于集合$S$上的一个变换幺半群。
+\end{theorem}
+\begin{proof}
+对$a\in S$，定义左乘映射$L_a:S\to S$，$L_a(x)=ax$。由结合律，
+\[
+(L_aL_b)(x)=a(bx)=(ab)x=L_{ab}(x),
+\qquad L_e=\operatorname{id}_S.
+\]
+因此$a\mapsto L_a$为到$M(S)$的同态。若$L_a=L_b$，在单位元处取值即得
+\[
+a=L_a(e)=L_b(e)=b.
+\]
+故它单射，满到其像，给出$S$与变换幺半群$\{L_a:a\in S\}$之间的同构。
+\end{proof}
+
+同态$\varphi:S\to S'$的像仍为子幺半群。也可仿照群定义它的核，但核在这里不足以记录全部被同态合并的元素。
+
+\begin{definition}
+幺半群同态$\varphi:S\to S'$的\textbf{核}定义为
+\[
+\ker\varphi=\{a\in S:\varphi(a)=e'\}.
+\]
+\end{definition}
+\begin{proposition}
+$\varphi(S)$是$S'$的子幺半群，$\ker\varphi$是$S$的子幺半群。
+\end{proposition}
+\begin{proof}
+由$\varphi(e)=e'$，单位元属于像。像中两个元素$\varphi(a),\varphi(b)$的积为$\varphi(ab)$，仍在像中。
+单位元$e$也属于核；若$a,b$属于核，则$\varphi(ab)=e'e'=e'$，所以$ab$也属于核。
+\end{proof}
+
+在群中，$\varphi(a)=\varphi(b)$等价于$\varphi(b^{-1}a)=e'$，故可由核恢复每个原像集合。幺半群中通常没有$b^{-1}$，这个步骤不能照搬。为完整记录哪些元素有相同的像，需要使用与乘法相容的等价关系。
+
+\begin{definition}
+幺半群$S$上的等价关系$\sim$若满足
+\[
+a\sim b,\quad c\sim d\quad\Longrightarrow\quad ac\sim bd,
+\]
+则称为$S$上的\textbf{同余关系}。相应的等价类称为\textbf{同余类}，记为$[a]$。
+\end{definition}
+
+
+
+\begin{definition}
+对同余关系$\sim$，在全部同余类组成的集合上定义$[a][b]=[ab]$。所得幺半群称为\textbf{商幺半群}，记为$S/{\sim}$。映射
+\[
+\pi:S\longrightarrow S/{\sim},\qquad a\longmapsto[a]
+\]
+称为\textbf{自然同态}。
+\end{definition}
+
+
+\begin{theorem}
+设$\varphi:S\to S'$为幺半群同态。在$S$上定义
+\[
+a\sim_\varphi b\quad\Longleftrightarrow\quad\varphi(a)=\varphi(b),
+\]
+则它为同余关系，且$S/{\sim_\varphi}\cong\varphi(S)$。
+\end{theorem}
+\begin{proof}
+相等关系的自反性、对称性、传递性使$\sim_\varphi$成为等价关系。若$a\sim_\varphi b$、$c\sim_\varphi d$，则
+\[
+\varphi(ac)=\varphi(a)\varphi(c)=\varphi(b)\varphi(d)=\varphi(bd),
+\]
+所以它是同余。定义$\theta([a])=\varphi(a)$，由同余的定义，它良定义，并且不同的类有不同的像。它满到$\varphi(S)$，又保持乘法与单位元，因此为同构。
+\end{proof}
+
+\begin{theorem}\label{p2:monoid-factor}
+设$\sim$为幺半群$S$上的同余，$\pi:S\to S/{\sim}$为自然同态。若同态$\varphi:S\to S'$满足
+\[
+a\sim b\quad\Longrightarrow\quad\varphi(a)=\varphi(b),
+\]
+则存在唯一的幺半群同态$\psi:S/{\sim}\to S'$，使$\psi\pi=\varphi$。
+\end{theorem}
+\begin{proof}
+题设说明$\varphi$在每个同余类上取值相同，因此可以定义
+\[
+\psi([a])=\varphi(a).
+\]
+这个定义与代表选择无关，且
+\[
+\psi([a][b])=\varphi(ab)=\varphi(a)\varphi(b)=\psi([a])\psi([b]),
+\quad\psi([e])=e'.
+\]
+所以$\psi$是同态，并有$(\psi\pi)(a)=\varphi(a)$。
+
+若另一同态$\psi'$也满足$\psi'\pi=\varphi$，则对任意同余类$[a]=\pi(a)$，
+\[
+\psi'([a])=\psi'(\pi(a))=\varphi(a)=\psi([a]).
+\]
+自然同态满射，所以这已经确定它在全部商幺半群上的值，证明唯一性。
+\end{proof}
+
+
+
+若只要求运算结合而不要求单位元，所得结构称为\textbf{半群}。这里的幺半群讨论均要求有双边单位元，同态也须保持它。
+
+\section{自由幺半群与自由群}
+
+下面从一组符号出发构造幺半群与群。先只把符号依次排列，不规定任何额外关系；再引入与每个符号配对的符号，使它在商结构中成为逆元。这就是自由幺半群与自由群的构造。
+
+\begin{definition}
+设$X=\{a_1,\ldots,a_n\}$为非空有限集合，称为\textbf{字母表}。由$X$中元素组成的有限序列$x_1\cdots x_r$称为一个\textbf{字}，其\textbf{长度}为$r$。也允许长度为0的\textbf{空字}，记为$\Lambda$。全部字组成的集合记为$\widetilde X$。
+
+在$\widetilde X$中，以两个字的连接为乘法：
+\[
+(x_1\cdots x_r)(y_1\cdots y_s)=x_1\cdots x_ry_1\cdots y_s.
+\]
+所得幺半群称为\textbf{由$X$生成的自由幺半群}。
+\end{definition}
+
+字的相等是指字长相等，且各个位置的字母都相同。连接三个字时，无论怎样加括号，字母排列都不变，故连接满足结合律；空字不增加任何字母，是双边单位元。
+
+\begin{theorem}
+设$S$为幺半群。任意映射$f:X\to S$都可唯一延拓为幺半群同态$\varphi:\widetilde X\to S$，使$\varphi(a)=f(a)$对每个$a\in X$成立。
+\end{theorem}
+\begin{proof}
+令$e$为$S$的单位元，定义
+\[
+\varphi(\Lambda)=e,\qquad
+\varphi(x_1\cdots x_r)=f(x_1)\cdots f(x_r).
+\]
+每个字的序列唯一确定，$S$的结合律保证右侧乘积与括号无关，所以映射良定义。连接两个字时，右侧也只是把两串乘积依次相乘，故$\varphi(uv)=\varphi(u)\varphi(v)$；空字映到单位元。因此$\varphi$是同态，并延拓$f$。
+
+若$\varphi'$也是这样的同态，则它必须把空字映到$e$，并且
+\[
+\varphi'(x_1\cdots x_r)=\varphi'(x_1)\cdots\varphi'(x_r)
+=f(x_1)\cdots f(x_r)=\varphi(x_1\cdots x_r).
+\]
+所以延拓唯一。
+\end{proof}
+
+“字”的名称来自通常的文字排列：若字母表是26个拉丁字母，则英文单词都是其上的字；加入空格符号后，句子也可视为字。不过自由幺半群包含所有有限排列，并不只包含语言中有意义的单词或句子。
+
+\begin{construction}
+取与$X$不相交的集合$X'=\{a_1',\ldots,a_n'\}$，使$a_i'$与$a_i$一一配对，令
+\[
+X^*=X\cup X'.
+\]
+这里$X^*$表示扩大的字母表，而它生成的自由幺半群记为$\widetilde{X^*}$。对扩大后的字母规定$(a_i)'=a_i'$、$(a_i')'=a_i$。
+
+如果两个字中，一个为$ua_ia_i'v$而另一个为$uv$，或一个为$ua_i'a_iv$而另一个为$uv$，则称它们\textbf{相邻}。若两个字可通过有限次这样的插入、删除互相得到，则称它们\textbf{等价}，记为$w_1\sim w_2$。
+\end{construction}
+
+\begin{proposition}
+$\sim$是$\widetilde{X^*}$上的同余关系，且商幺半群$\widetilde{X^*}/{\sim}$是群。
+\end{proposition}
+\begin{proof}
+零次操作使每个字与自身等价；倒序执行插入、删除步骤给出对称性；接续两串有限步骤给出传递性。因此$\sim$为等价关系。
+
+若$w_1\sim w_2$，则在同一串操作的左右接上固定的字$u,v$，所有步骤仍然可以执行，所以$uw_1v\sim uw_2v$。若再有$z_1\sim z_2$，便有
+\[
+w_1z_1\sim w_2z_1\sim w_2z_2.
+\]
+这就是同余条件。
+
+设一个同余类$A$由字$w=x_1\cdots x_r$代表。取反序配对字$w'=x_r'\cdots x_1'$，其同余类记为$B$。在$ww'$中，从中间开始依次删除相邻配对字母，得到
+\[
+x_1\cdots x_rx_r'\cdots x_1'\sim\Lambda.
+\]
+同理$w'w\sim\Lambda$，所以$AB=BA=[\Lambda]$。每个元素都有双边逆元，故该商幺半群是群。
+\end{proof}
+
+\begin{definition}
+群$\widetilde{X^*}/{\sim}$称为\textbf{由$X$生成的自由群}，记为$F(X)$。在该群中，单字母$a_i'$的类为$a_i$的类的逆元，因此通常将其写成$a_i^{-1}$。
+
+若字中含有相邻的$a_ia_i'$或$a_i'a_i$，则称它\textbf{可约}；否则称为\textbf{不可约字}，也称\textbf{既约字}。
+\end{definition}
+
+\begin{proposition}
+每个$F(X)$的元素均有唯一的不可约字代表。
+\end{proposition}
+\begin{proof}
+\textbf{存在性：}对字长归纳。空字和单字母字已经不可约；任意字若可约，删除一对相邻配对字母，便得到长度减少2的等价字，再用归纳假设。因此每个同余类至少含有一个不可约字。
+
+\textbf{唯一性：}规定一个从左向右的约简过程。逐个读入字母，始终保留一串不可约字：若读入的新字母与末尾字母配对，就删掉末尾字母；否则将新字母接到末尾。所得最终结果记为$\operatorname{red}(w)$。每一步都保持已保留部分不可约，并且只相当于删除相邻配对字母，所以$w\sim\operatorname{red}(w)$。
+
+关键是，这个过程不受一次插入或删除配对字母的影响。设已经读完某个前缀，接下来连续读入$x,x'$。若原来保留的字不以$x'$结尾，则先添上$x$，再由$x'$将它消去，恢复原字。若原来以$x'$结尾，则先由$x$消去这个末尾，再由$x'$将其添回。后一种情形中，删去末尾后剩余部分不能以$x$结尾，否则原先保留的字并非不可约。
+
+所以连续读入$x,x'$后，保留的字总能恢复原状；再读入相同的后缀也就得到相同结果。因此
+\[
+\operatorname{red}(uxx'v)=\operatorname{red}(uv).
+\]
+这里$x$可为任意扩大后的字母，故同时涵盖$a_ia_i'$与$a_i'a_i$。有限次插入、删除也不改变约简结果。
+
+若不可约字$w_1,w_2$等价，则
+\[
+w_1=\operatorname{red}(w_1)=\operatorname{red}(w_2)=w_2.
+\]
+所以不可约代表唯一。特别地，非空不可约字不能代表单位元。
+\end{proof}
+
+这样，$F(X)$的元素可直接用不可约字表示；乘法是先连接两个字，再约简。它由原来的字母$a_1,\ldots,a_n$生成，配对字母在群中就是它们的逆元。
+
+\begin{theorem}\label{p2:free-universal}
+设$G$为群。对任意映射$f:X\to G$，存在唯一群同态$\psi:F(X)\to G$，使$\psi(a)=f(a)$对每个$a\in X$成立。
+\end{theorem}
+\begin{proof}
+先将$f$扩充到$X^*$，规定
+\[
+f(a_i')=f(a_i)^{-1}\qquad(1\leq i\leq n).
+\]
+由自由幺半群的性质，它唯一延拓为同态$\varphi:\widetilde{X^*}\to G$。
+插入、删除$a_ia_i'$或$a_i'a_i$不会改变$\varphi$的值，因为
+\[
+f(a_i)f(a_i')=f(a_i')f(a_i)=e_G.
+\]
+因此等价字有相同的像，由定理\ref{p2:monoid-factor}，$\varphi$可分解为同态
+\[
+\psi:\widetilde{X^*}/{\sim}=F(X)\longrightarrow G.
+\]
+这就是所求延拓。
+
+因为$a_i$在$F(X)$中的类生成整个自由群，群同态又必须把逆元映成逆元，所以一旦指定全部$\psi(a_i)$，每个字的像都被唯一确定。因此$\psi$唯一。
+\end{proof}
+
+
+\begin{corollary}
+每个有限生成群都同构于一个有限字母表上的自由群的商群。
+\end{corollary}
+\begin{proof}
+设$g_1,\ldots,g_n$生成$G$，取$X=\{a_1,\ldots,a_n\}$，令$f(a_i)=g_i$。由上一定理，得到同态$\psi:F(X)\to G$。它的像包含全部生成元，所以满射。令$N=\ker\psi$，由同态基本定理，
+\[
+G\cong F(X)/N.
+\]
+对平凡群，可取一个字母并将它映到单位元，结论同样成立。
+\end{proof}
+
+核$N$在这里记录了生成元之间的关系：若一个字$w\in N$，则把各$a_i$替换为$g_i$、各$a_i'$替换为$g_i^{-1}$，所得乘积在$G$中等于单位元。反过来，每一个这样的关系都对应于$N$中的一个字。为了用较少的关系描述整个核，需要区别普通子群生成与正规生成。
+
+\begin{definition}
+对群$K$的子集$A$，所有包含$A$的正规子群之交称为$A$的\textbf{正规闭包}，记为$\langle\!\langle A\rangle\!\rangle$。它是包含$A$的最小正规子群，称为由$A$\textbf{正规生成}的子群。
+\end{definition}
+\begin{proposition}
+$\langle\!\langle A\rangle\!\rangle$是由全部$wa^{\pm1}w^{-1}$（$w\in K,a\in A$）生成的普通子群。
+\end{proposition}
+\begin{proof}
+令$L$为这些元素生成的子群。取$w=e$知$L$包含$A$。任一包含$A$的正规子群都包含这些共轭及其有限乘积，故包含$L$。另一方面，对$g\in K$，
+\[
+g(wa^{\pm1}w^{-1})g^{-1}=(gw)a^{\pm1}(gw)^{-1},
+\]
+仍是所列生成元之一。因此共轭保持$L$，$L$正规，故它就是所述最小正规子群。
+\end{proof}
+
+\begin{definition}
+若$G\cong F(X)/N$，且$N$由字$w_1,\ldots,w_k$正规生成，则等式
+\[
+w_1=e,\ldots,w_k=e
+\]
+称为所选生成元的一组\textbf{生成关系}，记为
+\[
+G=\langle X\mid w_1=e,\ldots,w_k=e\rangle.
+\]
+若生成元及所需关系均可取为有限个，则称$G$为\textbf{有限展示群}。
+\end{definition}
+
+这里要求核作为正规子群可由有限个关系正规生成，不要求它作为普通子群有限生成；正规闭包允许使用关系的全部共轭。有限生成群也未必有限展示。
+
+\begin{example}
+\textbf{二面体群的生成关系：}对$n\geq3$，有
+\[
+D_n=\langle a,b\mid a^n=e,\ b^2=e,\ b^{-1}ab=a^{-1}\rangle.
+\]
+准确地说，右侧是$F(\{a,b\})$模去$a^n,b^2,b^{-1}aba$的正规闭包所得到的群，下面验证它确为$D_n$。
+
+在该商群中，$a^{-1}=a^{n-1}$、$b^{-1}=b$，且$ab=ba^{-1}$。利用最后一个等式，可逐次将字中的$b$移到左侧，再用$b^2=e$与$a^n=e$约去多余幂次。因此每个元素都可写为
+\[
+a^j\quad\text{或}\quad ba^j,\qquad0\leq j<n,
+\]
+故商群至多有$2n$个元素。
+
+另一方面，将$a$映到正$n$边形的一次基本旋转，$b$映到一个反射，几何二面体群中的这两个元素满足全部关系，并生成一个恰有$2n$个元素的群。自由群的延拓性质给出到$D_n$的满同态；所列关系及其正规闭包均在核中，所以该同态可下降到上述商群。商群因此至少有$2n$个元素，结合上界恰有$2n$个，满同态为同构。
+\end{example}
+
+本节按非空有限字母表书写，以便与有限生成的情形对应；任意字母表上的构造也一样，因为每个字本身仍然只含有限多个字母。
+
+%%\section{章末习题中的知识与解法}
+%%\input{chapters/Part 2/chapter2-exercises}
+%%
+%

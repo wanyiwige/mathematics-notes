@@ -1,0 +1,25 @@
+{
+  "first_four_sections_preserved": true,
+  "exercise_switch_preserved": true,
+  "original_labels_preserved": [
+    "p2:field-poly-pid",
+    "p2:finite-multiplicative-subgroup",
+    "p2:fraction-field",
+    "p2:fraction-field-extension",
+    "p2:irreducible-maximal",
+    "p2:localization-existence",
+    "p2:localization-universal",
+    "p2:multi-poly-universal",
+    "p2:poly-division",
+    "p2:poly-functions-many",
+    "p2:poly-functions-one",
+    "p2:poly-roots",
+    "p2:poly-universal"
+  ],
+  "new_section_lines": [
+    328,
+    241,
+    318,
+    153
+  ]
+}

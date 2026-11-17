@@ -1,0 +1,241 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第4章：数列极限的应用与一些反例
+% 节：4.3 单调有界收敛原理的应用
+% 正文按原文件顺序保存；由 ../chapter4.tex 调用。
+\section{单调有界收敛原理的应用}
+\begin{example}
+	利用单调有界收敛原理，证明 $\left\{\dfrac{n^5}{2^n}\right\}$ 收敛.
+	
+	
+\end{example}
+\begin{proof}
+	设 $a_n = \dfrac{n^5}{2^n}$，那么
+	
+	\[
+	\frac{a_{n+1}}{a_n} = \frac{1}{2} \left(1 + \frac{1}{n}\right)^5
+	\]
+	
+	对于 $(1 + \dfrac{1}{n})^5$，$\exists N$，当 $n > N$ 时，$(1 + \dfrac{1}{n})^5 < 2$.因此 $\forall n > N$，
+	
+	\[
+	a_{n+1} = \frac{1}{2} \left(1 + \frac{1}{n}\right)^5 a_n < a_n
+	\]
+	
+	从 $n > N$ 起 $\{a_n\}$ 单调递减，且 $a_n \geqslant 0$，所以 $\exists a\in\R$使得$a = \lim\limits_{n\to\infty} a_n$，
+	
+	\[
+	\lim_{n \to \infty} a_{n+1} = \lim_{n \to \infty} \frac{1}{2} \left(1 + \frac{1}{n}\right)^5 a_n = a
+	\]
+	
+	\[
+	a = \frac{1}{2} a \implies a = 0
+	\]
+\end{proof}
+
+\begin{example}
+	设 $x_1 > 0$，$x_{n+1} = 1 + \dfrac{x_n}{1 + x_n}$，$n = 1, 2, 3, \dots$
+	
+	证明 $\{x_n\}$ 收敛，并求极限值.
+\end{example}
+\begin{proof}
+	观察 $x_{n+1} = 1 + \dfrac{x_n}{1 + x_n}$，注意到 $\dfrac{x_n}{1 + x_n} < 1$，所以 $x_{n+1} < 2$.
+	
+	
+	$n = 2$ 时，$x_2 = 1 + \dfrac{x_1}{1 + x_1} \in (1, 2)$.
+	
+	假设 $n = k$ 时，$x_k \in (1, 2)$.
+	
+	$n = k + 1$ 时，$x_{k+1} = 1 + \dfrac{x_k}{1 + x_k} = 2 - \dfrac{1}{1 + x_k} \in (1, 2)$.
+	
+	因此， $\{x_n\}$ 是有界的.下面考虑单调性：
+	
+	\[
+	x_{n+1} - x_n = \dfrac{x_n - x_{n-1}}{(1 + x_n)(1 + x_{n-1})}
+	\]
+	
+	$\forall n \geqslant 2$，$x_{n+1} - x_n$ 与 $x_n - x_{n-1}$ 同号.从而 $\{x_n\}$ 单调.由单调有界收敛原理，$\{x_n\}$ 收敛.
+	
+	对 $x_{n+1} = 1 + \dfrac{x_n}{1 + x_n}$ 两边求极限，得到极限 $a$ 满足：
+	
+	\[
+	a = 1 + \frac{a}{1 + a}
+	\]
+	(注：由极限的运算，这里是可以取的.)
+	
+	解得 $a = \dfrac{1+\sqrt{5}}{2}$.由 $x_n \geqslant 1$ ,由极限的保序性，舍去负值.综上
+	
+	\[
+	\lim_{n \to \infty} x_n = \frac{1+\sqrt{5}}{2}
+	\]
+\end{proof}
+\begin{example}
+	对 Fibonacci 数列
+	
+	\[
+	a_{n+1} = a_n + a_{n-1}, \quad n = 2, 3, 4, \dots
+	\]
+	
+	$a_1 = a_2 = 1$.设 $b_n = \dfrac{a_{n+1}}{a_n}$.证明 $\{b_n\}$ 收敛，并求其收敛值.
+\end{example}
+\begin{proof}
+	\[
+	b_n = \frac{a_{n+1}}{a_n} = \frac{a_n + a_{n-1}}{a_n} = 1 + \frac{1}{b_{n-1}}
+	\]
+	
+	考虑方程 $x = 1 + \dfrac{1}{x}$，解得 $x = \dfrac{1 \pm \sqrt{5}}{2}$.
+	
+	发现 $b_n > \dfrac{1+\sqrt{5}}{2}$ 时，$b_{n+1} < \dfrac{1+\sqrt{5}}{2}$;$b_n < \dfrac{1+\sqrt{5}}{2}$ 时，$b_{n+1} > \dfrac{1+\sqrt{5}}{2}$
+	
+	考虑 $b_n - b_{n-1}$：
+	
+	\[
+	b_n - b_{n-1} = \frac{b_{n-2} - b_{n-1}}{b_{n-1} b_{n-2}}
+	\]
+	
+	$b_n - b_{n-1}$ 与 $b_{n-1} - b_{n-2}$ 异号，故 $\{b_{n}\}$ 的奇数项与偶数项分别单调.
+	
+	考虑 $b_1 = 1 < \dfrac{1+\sqrt{5}}{2}$，则 $b_{2} > \dfrac{1+\sqrt{5}}{2}$，$b_{3} < \dfrac{1+\sqrt{5}}{2}$，应有$b_{2n} > \dfrac{1+\sqrt{5}}{2}$，$b_{2n-1} < \dfrac{1+\sqrt{5}}{2}$
+	
+	对于偶数项 $\{b_{2n}\}$：
+	\[b_{2k+2} - b_{2k} = 1 + \frac{b_{2k}}{1 + b_{2k}} - b_{2k} = \dfrac{(\dfrac{1+\sqrt{5}}{2} - b_{2k})(\dfrac{1+\sqrt{5}}{2} + b_{2k})}{1 + b_{2k}} < 0\]
+	
+	对于奇数项 $\{b_{2n-1}\}$：
+	\[
+	b_{2k+1} - b_{2k-1} = \dfrac{(\dfrac{1+\sqrt{5}}{2} - b_{2k-1})(\dfrac{1+\sqrt{5}}{2} + b_{2k-1})}{1 + b_{2k-1}} > 0
+	\]
+	
+	于是 $\{b_{2n}\}$ 单调递增有上界，$\{b_{2n-1}\}$ 单调递减有下界.
+	
+	由于 $\{b_{2k}\}$ 与 $\{b_{2k-1}\}$ 都收敛，
+	
+	对 $\{b_{2k}\}$：
+	
+	\[
+	b_{2k+2} = \frac{1 + 2b_{2k}}{1 + b_{2k}}
+	\]
+	
+	两边同时取极限：
+	
+	\[
+	a = \frac{1 + 2a}{1 + a} \implies a = \frac{1 + \sqrt{5}}{2}
+	\]
+	
+	对 $\{b_{2k-1}\}$ 同理，
+	
+	\[
+	b_{2k+1} = \frac{1 + 2b_{2k-1}}{1 + b_{2k-1}}
+	\]
+	
+	\[
+	b = \frac{1 + 2b}{1 + b} \implies b = \frac{1 + \sqrt{5}}{2}
+	\]
+	
+	因此 $a = b = \dfrac{1 + \sqrt{5}}{2}$，由极限的保序性，舍去负值.
+	
+	\[
+	\lim_{n \to \infty} b_n = \frac{1 + \sqrt{5}}{2}
+	\]
+	
+\end{proof}
+\begin{proposition}
+	设数列 $\{x_n\}$ 通过递推公式 $x_{n+1} = f(x_n)$，$n \in \mathbb{N}$，若有，
+	\[
+	\text{若}\lim_{n \to \infty} x_n = \xi \quad \text{则成立} \quad \lim_{n \to \infty} f(x_n) = f(\xi)
+	\]
+	
+	则极限 $\xi$ 是方程 $f(x) = x$ 的根
+\end{proposition}
+\begin{proof}
+	对 $x_{n+1} = f(x_n)$ 两侧取极限即可
+	
+\end{proof}
+
+\begin{proposition}
+	设 $\{x_n\}$ 满足 $x_{n+1} = f(x_n)$，$n \in \mathbb{N}_+$，其中的函数 $f$ 在区间 $I$ 上单调，且$\forall n\in\N_+,x_n\in I$，则有两种可能：
+	
+	(1) 当 $f$ 单调递增时，$\{x_n\}$ 为单调数列.
+	
+	(2) 当 $f$ 单调递减时，$\{x_n\}$ 的两个子列 $\{x_{2k-1}\}$,$\{x_{2k}\}$ 分别为单调数列，且具有相反的单调性.
+	
+\end{proposition}
+\begin{proof}
+	(1) 当 $f$ 递增，若 $x_1 \leqslant x_2$，则$x_1=f(x_1) \leqslant f(x_2)=x_3$.用数学归纳法：若 $x_n \leqslant x_{n+1}$，则 $x_{n+1} \leqslant x_{n+2}$ ,故$\{x_n\}$ 单调递增.
+	
+	类似的,若$x_1\geqslant x_2$,$\{x_n\}$ 为单调递减的数列.
+	
+	(2) 注意到 $f$ 在 $I$ 上递减，那么$I$上的复合映射$f\circ f$是递增的.
+	
+	由(1),得证.
+\end{proof}
+上面的两条命题，为研究递推型的收敛数列提供了理论.
+
+
+
+
+\begin{proposition}
+	$0 < a < b$，令 $x_1 = a$，$y_1 = b$，
+	
+	(1) 若 $x_{n+1} = \sqrt{x_n y_n}$，$y_{n+1} = \dfrac{x_n + y_n}{2}$，证明 $\{x_n\}$，$\{y_n\}$ 收敛且
+	\[
+	\lim_{n \to \infty} x_n = \lim_{n \to \infty} y_n.
+	\]
+	这个公共极限称为 $a, b$ 的算术几何平均.
+	
+	(2) 若 $x_{n+1} = \dfrac{x_n + y_n}{2}$，$y_{n+1} = \dfrac{2x_n y_n}{x_n + y_n}$，证明 $\{x_n\}$，$\{y_n\}$ 收敛且
+	\[
+	\lim_{n \to \infty} x_n = \lim_{n \to \infty} y_n = \sqrt{ab}
+	\]
+	此极限称为 $a, b$ 的调和算术平均
+\end{proposition}
+注:(1) 中, $a, b$ 的算术几何平均无初等表达.记作 $AG(a, b)$，
+
+\[
+AG(a, b) = \frac{\pi}{2G}, \quad \text{其中} \quad G = \int_0^{\frac{\pi}{2}} \dfrac{\mathrm{d} x}{\sqrt{a^2 \cos^2 x + b^2 \sin^2 x}}
+\]
+\begin{proof}
+	(1) $n=1$ 时，$a = x_1 < x_2 < y_2 < y_1 = b$.
+	
+	$n = k-1$ 时，假设 $x_{k-1} < x_k < y_k < y_{k-1}$.
+	
+	$n = k$ 时，
+	\[
+	x_k < \sqrt{x_k y_k} = x_{k+1} < y_{k+1} = \frac{x_k + y_k}{2} < y_k
+	\]
+	故 $a = x_1 < x_2 < \cdots < x_n < x_{n+1} < y_{n+1} < y_n < \cdots < y_2 < y_1 = b$.
+	
+	那么 $\{x_n\}$ 单调增加有上界，$ \{y_n\}$ 单调减小有下界，故 $\{x_n\}$，$ \{y_n\}$ 都收敛.设 $\lim\limits_{n \to \infty} x_n = \alpha$，$\lim\limits_{n \to \infty} y_n = \beta$.对 $x_{n+1} = \sqrt{x_n y_n}$ 与 $y_{n+1} = \dfrac{x_n + y_n}{2}$ 两侧取极限，
+	\[
+	\alpha = \sqrt{\alpha \beta}, \quad \beta = \frac{\alpha + \beta}{2}
+	\]
+	得 $\alpha = \beta$
+	
+	(2) 同 (1) 得
+	\[
+	a = x_1 < y_2 < \cdots < y_n < y_{n+1} < x_{n+1} < x_n < \cdots < x_3 < x_2 < y_1 = b
+	\]
+	$n \geqslant 2$ 时 $\{x_n\}$ 单调减少有下界，$ \{y_n\}$ 单调增加有上界，故 $\{x_n\}$，$ \{y_n\}$ 收敛.
+	
+	同 (1)
+	\[
+	\lim_{n \to \infty} x_n = \lim_{n \to \infty} y_n = C
+	\]
+	
+	下证 $C = \sqrt{ab}$，
+	\[x_{n+1} y_{n+1} = \frac{x_n + y_n}{2} \cdot \dfrac{2x_ny_n}{x_n+y_n} = x_n y_n\]
+	
+	
+	
+	故$\{x_n y_n\}$ 是常数数列，
+	
+	\[
+	x_1 y_1 = ab
+	\]
+	
+	\[
+	\lim_{n \to \infty} x_n y_n = ab
+	\]
+	
+	故 $C^2 = ab \implies C = \sqrt{ab} $
+	
+\end{proof}
+

@@ -1,0 +1,103 @@
+% !TEX root = ../../../main.tex
+% 所属：第一部分：单变量分析学 / 第1章：实数理论——从Peano公理到实数的连续性
+% 节：1.6 数域
+% 正文按原文件顺序保存；由 ../chapter1.tex 调用。
+\section{数域}
+我们在这里，对域的概念加以重申.
+\begin{definition}\label{1.6.1}
+	一个三元组$(\F,+,\cdot)$若满足以下 11 条公理，则被称为\textbf{域}:
+	\begin{enumerate}
+		\item $\forall a, b \in \mathbb{F} \quad a+b \in \mathbb{F}$
+		\item $\forall a, b \in \mathbb{F} \quad a+b=b+a$
+		\item $\forall a, b, c \in \mathbb{F} \quad(a+b)+c=a+(b+c)$
+		\item $\exists 0 \in \mathbb{F}$ 使得$a+0=a$
+		\item $\exists-a \in \mathbb{F}$ 使得$-a+a=0$
+		\item $\forall a, b \in \mathbb{F} \quad a b \in \mathbb{F}$
+		\item $\forall a, b \in \mathbb{F} \quad a b=b a$
+		\item $\forall a, b, c \in \mathbb{F} \quad(a b) c=a(b c)$
+		\item $\exists 1 \in \mathbb{F}$使得 $a \cdot 1=a$
+		\item $\forall a \in \F, a \neq 0 \Rightarrow \exists a^{-1} \in \F$ 使得 $a \cdot a^{-1}=1$
+		\item $\forall a, b, c \in \mathbb{F} \quad(a+b) c=a \cdot c+b \cdot c$
+	\end{enumerate}
+	$1\sim5$称为加法公理记为$(A1)\sim(A5)$,$6\sim10$称为乘法公理记为$(M1)\sim(M5)$，11称为分配公理，记为(D)
+\end{definition}
+事实上，对四则运算封闭，有交换律，结合律，分配律就为域.
+\begin{proposition}\label{1.6.2}
+	$(A1)\sim(A5)$中有以下命题成立
+	\begin{enumerate}
+		\item $x+y=x+z \Rightarrow y=z$
+		\item $x+y=x \Rightarrow y=0$
+		\item$x+y=0 \Rightarrow y=-x$
+		
+		\item $-(-x)=x$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	$$
+	\begin{aligned}
+		y & =0+y=(-x+x)+y=-x+(x+y) \\
+		& =-x+(x+z)=(-x+x)+z=0+z=z .
+	\end{aligned}
+	$$
+	
+	
+	得证．
+	
+	在1中取 $z=0$ 就是2，在1中取 $z=-x$ 就是3，
+	因 $-x+x=0$ ，3（用 $-x$ 代替 $x, x$ 代替 $y$ ）就能产生出4.
+\end{proof}
+\begin{proposition}
+	$(M1)\sim(M5)$中有以下命题成立
+	\begin{enumerate}
+		\item $x \neq 0$ 且 $x y=x z \Rightarrow y=z$
+		\item$x \neq 0$ 且 $x y=x \Rightarrow y=1$
+		\item$x \neq 0$ 且 $x y=1 \Rightarrow y=\dfrac{1}{x}$
+		\item $x \neq 0 \Rightarrow\left(x^{-1}\right)^{-1}=x$
+	\end{enumerate}
+	
+\end{proposition}
+\begin{proof}
+	类似\ref{1.6.2}，省略
+\end{proof}
+\begin{proposition}\label{1.6.4}
+	$\forall x, y, z \in \mathbb{F}$ ，以下命题成立
+	\begin{enumerate}
+		\item  $0 x=0$
+		\item $x \neq 0$ 且 $y \neq 0$ 那么 $x y \neq 0$
+		\item $(-x) y=-(x y)=x(-y)$
+		\item $(-x)(-y)=x y$
+	\end{enumerate} 
+\end{proposition}
+\begin{proof}
+	$0 x+0 x=(0+0) x=0 x$ ．因此,有 $0 x=0$ ，而1成立
+	
+	
+	设 $x \neq 0, y \neq 0$ 而 $x y=0$ ．于是由（a）能推出
+	
+	$$
+	1=\left(\dfrac{1}{y}\right)\left(\dfrac{1}{x}\right) x y=\left(\dfrac{1}{y}\right)\left(\dfrac{1}{x}\right) 0=0
+	$$
+	
+	
+	矛盾．于是2成立．
+	
+	
+	3中前一等式，可由
+	
+	$$
+	(-x) y+x y=(-x+x) y=0 y=0
+	$$
+	
+	
+	得来；3的后半可用同样方法证明．
+	
+	最后，由3得
+	
+	$$
+	(-x)(-y)=-[x(-y)]=-[-(x y)]=x y 
+	$$
+\end{proof}
+
+
+
+

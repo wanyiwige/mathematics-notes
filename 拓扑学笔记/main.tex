@@ -1,0 +1,94 @@
+% main.tex
+\documentclass[9pt]{book}
+
+% 加载所有配置
+\input{preamble/packages}
+\input{preamble/colors}
+\input{preamble/theorems}
+\input{preamble/commands}
+\input{preamble/geometry}
+ 
+\begin{document}
+	
+	\begin{titlepage}
+	\thispagestyle{empty}
+	
+	% 左侧蓝色竖条 - 主题色
+	\begin{tikzpicture}[remember picture,overlay]
+		\fill[BlueMain!100]
+		(current page.south west) rectangle
+		([xshift=2.8cm]current page.north west);
+		\draw[BlueMain,line width=1pt]
+		([xshift=2.8cm]current page.south west) --
+		([xshift=2.8cm]current page.north west);
+	\end{tikzpicture}
+	
+	% 内容区
+	\vspace*{2cm}
+	
+	\hspace*{3.3cm}
+	\begin{minipage}{0.7\textwidth}
+	
+		{\Huge\bfseries 拓扑学笔记 \par}
+		\vspace{0.6cm}
+		{\Large Topology Notes \par}
+		
+		\vspace{1.8cm}
+		{\large $\mathcal{FOR~THE~WORTHY}$\par}
+		
+		\vfill
+		
+		{\large Huginn Wong \par}
+		
+	\end{minipage}
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[
+		anchor=south west,
+		xshift=4cm,  
+		yshift=2.7cm   
+		] at (current page.south west)
+		{
+			\begin{minipage}{7cm}
+				\centering
+				\includegraphics[width=16cm]{figure/紫色封面.jpg} % ← 换成你的图片文件
+			\end{minipage}
+		};
+	\end{tikzpicture}
+	% 封面装饰（右下角）
+	\begin{tikzpicture}[remember picture,overlay]
+		\begin{scope}[shift={([xshift=-5cm,yshift=1.5cm]current page.south east)}]
+			% 蓝色小方块
+			\draw[BlueMain,line width=0.8pt] (0,0) rectangle (1,0.8);
+			\draw[BlueMain,line width=0.8pt] (0,0.8) -- (0.5,1.2) -- (1,0.8);
+			\draw[BlueMain,line width=0.5pt] (0.25,0) -- (0.25,0.8);
+			\draw[BlueMain,line width=0.5pt] (0.75,0) -- (0.75,0.8);
+			\node[anchor=west,BlueMain] at (1.2,0.35) {\small Produced by Huginn };
+		\end{scope}
+	\end{tikzpicture}
+	
+\end{titlepage}
+	\tableofcontents
+	\newpage
+	
+	\setcounter{page}{1}
+	
+	% 引入章节
+	\part{点集拓扑}
+	\include{chapters/chapter1}
+	%\include{chapters/chapter2}
+	%\include{chapters/chapter3}
+	%\include{chapters/chapter4}
+	%\include{chapters/chapter5}
+	%\include{chapters/chapter6}
+	%\include{chapters/chapter7}
+	%\include{chapters/chapter8}
+	%\include{chapters/chapter9}
+	%\include{chapters/chapter10}
+	
+	%\part{代数拓扑}
+	%\setcounterref{chapter}{1}
+    %\include{chapters/chapter11}
+	%\part{微分拓扑}
+
+	
+\end{document}

@@ -1,0 +1,331 @@
+% ============================================================
+%  chapter08.tex — 第八章 结构稳定性
+%  对应原书第八章。
+%  研究系统对扰动的鲁棒性：平面圆盘上及一般二维流形上常微系统的
+%  结构稳定性，作为全书的综合与收束。
+% ============================================================
+
+\setchapterimage{}
+\setchapterintro{}
+\chapter{结构稳定性}
+
+\newcommand{\chEightFigurePlaceholder}[1]{%
+  \begin{center}
+    \fbox{\parbox{0.72\textwidth}{\centering\vspace{1.7cm}图~#1\\（图片占位）\vspace{1.7cm}}}
+  \end{center}%
+}
+
+% ============================================================
+%  §1  平面圆盘上常微系统的结构稳定性
+% ============================================================
+\section{平面圆盘上常微系统的结构稳定性}
+
+考虑圆盘
+\[
+  B^2:\quad x_1^2+x_2^2\leq1
+\]
+上的系统
+\[
+  \dfrac{\mathrm dx_i}{\mathrm dt}=X_i(x_1,x_2),\qquad i=1,2. \tag{1.1}
+\]
+设 $X_i\in C^1[B^2]$，且向量场 $X=(X_1,X_2)$ 与边界 $\partial B^2$ 无切。
+满足这些条件的全体系统记为 $\mathfrak X(B^2)$。对 $X,Y\in\mathfrak X(B^2)$，取
+\[
+ \rho(X,Y)=\max_{(x_1,x_2)\in B^2}\left\{
+ \sum_{i=1}^2|X_i-Y_i|+
+ \sum_{i,j=1}^2\left|\dfrac{\partial X_i}{\partial x_j}
+ -\dfrac{\partial Y_i}{\partial x_j}\right|\right\}. \tag{1.2}
+\]
+这称为 $C^1$ 度量。
+
+\begin{definition}{Andronov--Pontryagin}{ch8-ap-definition}
+设 $X\in\mathfrak X(B^2)$。若对任意 $\varepsilon>0$，存在 $\delta>0$，使每一满足
+$\rho(X,Y)<\delta$ 的系统 $Y$，都存在从 $B^2$ 到自身的同胚 $T$，把 $X$ 的有向轨线
+映为 $Y$ 的有向轨线，且
+\[
+ d(P,T(P))<\varepsilon,\qquad P\in B^2,
+\]
+则称 $X$ 为\textbf{结构稳定的}。
+\end{definition}
+
+Peixoto 的定义去掉了同胚必须为 $\varepsilon$ 映射的条件。以下用 A--P 定义叙述
+平面圆盘情形的基本结论。
+
+\begin{theorem}{Andronov--Pontryagin}{ch8-disk-structural-stability}
+设 $X\in\mathfrak X(B^2)$。则 $X$ 结构稳定的充要条件为：
+
+\begin{enumerate}
+  \item $X$ 只有有限个奇点，所有奇点均为初等的，且其特征根实部不为零；
+  \item $X$ 不存在从鞍点到鞍点的轨线；
+  \item $X$ 只有有限条闭轨线，且每条闭轨线 $\gamma$ 都是双曲的，即
+  \[
+     h(\gamma)=\int_\gamma\operatorname{div}X\,\mathrm dt\ne0.
+  \]
+\end{enumerate}
+\end{theorem}
+
+条件 (1) 排除了中心及非初等奇点；条件 (2) 排除了鞍点间的分界连接；条件 (3) 保证
+闭轨线是稳定或不稳定的单重极限环。它们正是前面各章中出现的典型非稳定现象。
+
+\begin{theorem}{}{ch8-equivalent-definitions}
+Andronov--Pontryagin 定义与 Peixoto 定义在 $\mathfrak X(B^2)$ 上等价。
+\end{theorem}
+
+下面列出必要性证明中所用的主要引理。它们也揭示了结构稳定系统的轨线构造。
+
+\begin{lemma}{}{ch8-finite-singularities}
+结构稳定系统 $X$ 只有有限个奇点，且所有奇点均为初等奇点。
+\end{lemma}
+
+证明中以多项式系统逼近 $X$；可允许系统的奇点数必须相同，故 $X$ 的奇点有限。若
+某奇点的线性部分行列式为零，则在该点附近作任意小的局部扰动即可改变奇点指数，
+从而矛盾。
+
+\begin{lemma}{}{ch8-no-centers}
+结构稳定系统没有中心，且每个奇点的特征根实部不为零。
+\end{lemma}
+
+在奇点附近取局部坐标，并利用小的截断扰动改变散度；若特征根实部为零，就可使
+该奇点的类型发生改变。中心则可由局部扰动变为焦点，这均与结构稳定性矛盾。
+
+\begin{lemma}{}{ch8-no-saddle-connections}
+结构稳定系统不存在从鞍点到鞍点的轨线。
+\end{lemma}
+
+可把向量场的每一鞍点特征方向作一微小旋转。鞍点仍然存在，而连接两鞍点的轨线随
+旋转参数单调移动；若连接轨线在所有扰动下都保留，就会有不可数多条轨线连接同一对
+鞍点，这与鞍点的局部拓扑结构矛盾。
+
+\chEightFigurePlaceholder{8.1}
+\chEightFigurePlaceholder{8.2}
+\chEightFigurePlaceholder{8.3}
+
+\begin{lemma}{}{ch8-limit-cycles}
+结构稳定系统的每条闭轨线都是极限环，且系统只有有限条极限环。
+\end{lemma}
+
+若闭轨线的 Poincar\'e 映射在截面上的不动点不孤立，则邻域内有由闭轨线组成的环域；
+该环域的边界只能由闭轨线或鞍点连接轨线组成，分别同前述引理矛盾。若极限环无穷多，
+由圆盘的紧致性可取聚点，再用同样的边界分析即得矛盾。
+
+\chEightFigurePlaceholder{8.4}
+\chEightFigurePlaceholder{8.5}
+
+\begin{lemma}{}{ch8-hyperbolic-cycles}
+若 $\gamma$ 是结构稳定系统的极限环，则
+\[
+  h(\gamma)=\int_\gamma\operatorname{div}X\,\mathrm dt\ne0.
+\]
+\end{lemma}
+
+事实上，若 $h(\gamma)=0$，可在 $\gamma$ 的管状邻域内取辅助函数 $\varphi$，并作
+扰动
+\[
+Y=\left(X_1+\varepsilon a\varphi\dfrac{\partial\varphi}{\partial x_1},
+X_2+\varepsilon a\varphi\dfrac{\partial\varphi}{\partial x_2}\right).
+\]
+取 $a=1$ 或 $a=-1$，可分别使相应闭轨线稳定或不稳定，这不可能同 $X$ 拓扑等价。
+
+\chEightFigurePlaceholder{8.6}
+
+以上各引理给出本节结构稳定性定理的必要性。现说明充分性所用的
+轨线分解。把不稳定的结点、焦点及不稳定极限环称为\textbf{源}，稳定的结点、焦点及
+稳定极限环称为\textbf{渊}；边界上向量场指向圆盘内部（外部）时，也分别按源（渊）处理。
+
+除奇点和极限环外，轨线只有两类：连接源与渊的轨线，以及连接鞍点和源或渊的轨线。
+连接同一源、渊的轨线构成开集；其每一连通分支称为一个\textbf{规范区域}。每一规范
+区域只有一个源和一个渊，边界由源、渊、鞍点及其分界轨线构成。
+
+\chEightFigurePlaceholder{8.7}
+\chEightFigurePlaceholder{8.8}
+
+在充分小的 $C^1$ 扰动下，源、渊和鞍点各自有唯一的相应对象，闭轨线亦保持其稳定性
+及位置。于是相应规范区域的数目和类型相同。把每一个规范区域分别剖分成有限个小块，
+在边界和横截线上建立对应，并沿轨线延拓，便可得到一个把 $X$ 的有向轨线映为 $Y$ 的
+$\varepsilon$ 同胚。
+
+\chEightFigurePlaceholder{8.9}
+\chEightFigurePlaceholder{8.10}
+\chEightFigurePlaceholder{8.11}
+\chEightFigurePlaceholder{8.12}
+
+这就完成了平面圆盘上结构稳定性定理的证明。
+
+% ============================================================
+%  §2  二维流形上常微系统的结构稳定性
+% ============================================================
+\section{二维流形上常微系统的结构稳定性}
+
+本节介绍 Peixoto 关于紧致、可定向二维流形 $M^2$ 的结构稳定性定理。对于一般的
+不可定向曲面，原证明中相应结论并不都成立，因此以下始终假定 $M^2$ 紧致且可定向。
+
+二维流形的局部邻域同胚于平面小方块，整个流形可由有限个局部坐标邻域光滑粘合而成。
+闭的可定向二维流形同胚于带 $k\geq0$ 个环柄的球面，且
+\[
+  \chi(M^2)=2(1-k).
+\]
+不定向闭曲面可由带 $h\geq1$ 个交叉帽的球面表示，满足
+\[
+  \chi(M^2)=2-h.
+\]
+
+\chEightFigurePlaceholder{8.13}
+\chEightFigurePlaceholder{8.14}
+
+若 $\gamma_1,\ldots,\gamma_n$ 是 $M^2$ 上互不相交且不界于胞腔的闭曲线，则当 $n$
+充分大时，其中有两条闭曲线界成一个柱面。这一拓扑事实是消除非平凡极小集的关键。
+
+设 $S$ 为 $M^2$ 上的 $C^r$ 向量场，$r\geq1$，相应常微系统为
+\[
+  \dfrac{\mathrm dx}{\mathrm dt}=S(x). \tag{2.1}
+\]
+由紧致性，解曲线对任意初值均在全时间轴上存在。对有限坐标覆盖，可定义向量场的
+$C^1$ 度量 $\rho(X,Y)$；由此得到 $M^2$ 上常微系统的 $C^1$ 拓扑。
+
+\begin{definition}{}{ch8-manifold-terminology}
+设 $X$ 是 $M^2$ 上向量场。若奇点的 Jacobi 矩阵非奇异，称该奇点为\textbf{初等的}；
+若其特征值实部非零，称为\textbf{双曲奇点}。对闭轨线 $\gamma$，定义
+\[
+ h(\gamma)=\int_\gamma\operatorname{div}X\,\mathrm dt.
+\]
+当 $h(\gamma)\ne0$ 时，称 $\gamma$ 为双曲闭轨线；$h(\gamma)<0$ 时稳定，
+$h(\gamma)>0$ 时不稳定。
+\end{definition}
+
+\begin{theorem}{Peixoto}{ch8-peixoto-theorem}
+设 $M^2$ 是紧致、可定向二维流形，$X$ 是其上的 $C^1$ 向量场。则 $X$ 结构稳定，
+当且仅当：
+
+\begin{enumerate}
+  \item $X$ 只有有限个奇点，且均为双曲奇点；
+  \item 每条轨线的 $\alpha$、$\omega$ 极限集均为奇点或闭轨线；
+  \item 不存在连接鞍点与鞍点的轨线；
+  \item $X$ 只有有限条闭轨线，且它们均为双曲的。
+\end{enumerate}
+\end{theorem}
+
+若系统满足上述前 $i$ 个条件，简称为 $(1,\ldots,i)$ 型系统。定理中的第二个条件
+排除了非平凡极小集合；这正是环面上 Denjoy 型现象在一般流形上的对应障碍。
+
+\subsection*{非平凡极小集合的消去}
+
+极小集合是非空不变闭集，且不含真非空不变闭子集。奇点和闭轨线是平凡极小集合；
+其他极小集合称为非平凡极小集合。Peixoto 的逼近步骤可概括如下。
+
+\begin{lemma}{}{ch8-approximation-lemmas}
+任意 $C^1$ 向量场可由 $(1)$ 型系统逼近；任一 $(1)$ 型系统又可由 $(1,2)$ 型系统逼近。
+\end{lemma}
+
+在一点 $P$ 的局部坐标方形 $R=abcd$ 中，取水平边为轨线弧、竖直边为横截弧。由右边
+到左边的首次通过映射定义在有限个区间上；其端点轨线趋于鞍点。若一个非平凡极小集
+经过 $R$，可在 $R$ 内加入任意小的竖直扰动，从而产生一条不界于胞腔的闭轨线。
+
+\chEightFigurePlaceholder{8.15}
+\chEightFigurePlaceholder{8.16}
+\chEightFigurePlaceholder{8.17}
+\chEightFigurePlaceholder{8.18}
+\chEightFigurePlaceholder{8.19}
+\chEightFigurePlaceholder{8.20}
+
+重复这种局部扰动，若非平凡极小集仍存在，就会得到任意多条互不相交、且不界于胞腔的
+闭轨线；由二维流形的拓扑引理，其中两条必须界成柱面，矛盾。因此，经过任意小扰动，
+可消去全部非平凡极小集合。
+
+\subsection*{进一步的逼近}
+
+在消除非平凡极小集合后，还可能有鞍点之间的连接轨线及由这些连接组成的闭圈。局部
+调整横截面附近的向量场，可以切断这些连接，而不会影响其他已确定的轨线结构。
+
+\begin{lemma}{}{ch8-separatrix-approximation}
+每个 $(1,2)$ 型系统均可由 $(1,2,3)$ 型系统逼近；每个 $(1,2,3)$ 型系统均可由
+$(1,2,3,4)$ 型系统逼近。
+\end{lemma}
+
+后一逼近先消除鞍点连接所成的闭圈，再逐一切断剩余的连接轨线。对非双曲闭轨线，
+在其管状邻域内作局部旋转扰动，可使其稳定指数严格为正或严格为负；对非孤立闭轨线
+所组成的环域，可先沿两条闭曲线切开流形，化归于平面圆盘的情形处理。
+
+\chEightFigurePlaceholder{8.21}
+\chEightFigurePlaceholder{8.22}
+\chEightFigurePlaceholder{8.23}
+\chEightFigurePlaceholder{8.24}
+
+于是任意向量场都能由满足 Peixoto 定理四项条件的系统逼近。反过来，对满足四项条件
+的系统，奇点、双曲闭轨线和规范区域在充分小扰动下保持一一对应；逐区域构造同胚并在
+公共边界上拼合，即得结构稳定性。由此还有下列结论。
+
+\begin{proposition}{}{ch8-epsilon-equivalence}
+在定向二维流形上，结构稳定性与 $\varepsilon$ 结构稳定性等价。
+\end{proposition}
+
+\begin{theorem}{稠密性定理}{ch8-density-theorem}
+设 $M^2$ 为紧致、可定向二维流形，令 $\Sigma$ 为 $M^2$ 上所有结构稳定的常微系统
+构成的集合。则 $\Sigma$ 在全体 $C^1$ 常微系统空间中为开稠密集。
+\end{theorem}
+
+开性来自规范区域及双曲对象在小扰动下的保持性；稠密性由前述各步逼近引理直接得到。
+
+% ============================================================
+%  习题和参考文献
+% ============================================================
+\section*{习题和参考文献}
+
+\subsection*{习题}
+\begin{enumerate}
+  \item 若把本节结构稳定性定理中的圆盘 $B^2$ 换为整个平面
+  $\mathbb R^2$，结论是否仍成立？提示：化为球面上的系统考虑。
+  \item 在结构稳定性的定义中，能否把 $C^1$ 度量改为 $C^0$ 度量？
+  \item 证明：若 $X\in\mathfrak X(B^2)$ 的奇点均为初等的，则奇点只有有限个。
+  \item 证明本节结构稳定性定理充分性证明中规范区域边界情形
+  (a)、(c) 的对应构造。
+  \item 证明图~8.25 所示的两个区域 $A,B$ 间存在同胚 $h:A\to B$，且 $h$ 把 $A$ 上
+  的有向轨线映为 $B$ 上的有向轨线。
+  \item 证明在平面圆盘 $B^2$ 上，Peixoto 定理中关于闭轨线的条件可由其余条件推出。
+  \item 证明 Peixoto 定理的充分性部分。
+  \item 设 $M^2$ 为紧致可定向二维流形，证明其上全体结构稳定常微系统所成集合在
+  $C^1$ 向量场空间中为开集。
+\end{enumerate}
+
+\chEightFigurePlaceholder{8.25}
+
+\subsection*{本章参考文献}
+\begin{enumerate}
+  \item Andronov, A.~A. and Pontryagin, L.~S., \textit{Syst\`emes grossiers}, DAN, 16 (1937),
+  247--250.
+  \item DeBaggis, H.~F., Dynamical systems with stable structures, \textit{Contributions to
+  Nonlinear Oscillations}, II (1952), 37--59.
+  \item Peixoto, M.~M., On structural stability, \textit{Ann. Math.}, 69 (1959), 199--222.
+  \item Peixoto, M.~M., Structural stability on two-dimensional manifolds, \textit{Topology},
+  1 (1962), 101--120.
+  \item Smale, S., Differentiable dynamical systems, \textit{Bull. Amer. Math. Soc.}, 73
+  (1967), 747--817.
+  \item Nitecki, Z., \textit{Differentiable Dynamics}, MIT Press, 1971.
+  \item Markus, L., \textit{Lectures in Differentiable Dynamics}, CBMS Regional Conference
+  Series, no.~3, 1970; revised edition, 1980.
+  \item 廖山涛，紧致微分流形上常微分方程系统的某类谱态备性质，\textit{北京大学学报
+  （自然科学）}，1963，3，241--265；1963，4，309--324。
+  \item 廖山涛，典范方程组，\textit{数学学报}，17 (1974)，100--109，175--196，270--295。
+  \item 廖山涛，阻碍集（一），\textit{数学学报}，3 (1980)，23，411--453。
+  \item 廖山涛，阻碍集（二），\textit{北京大学学报（自然科学）}，1981，2，1--36。
+  \item 廖山涛，一个推广的 $C^1$ 封闭引理，\textit{北京大学学报（自然科学）}，1979，3，1--41。
+  \item 廖山涛，On the Stability Conjecture, \textit{Chinese Annals of Math.}, 1 (1980),
+  9--30.
+  \item 廖山涛，常微系统的结构稳定性及一些相关的问题，\textit{计算机应用与应用数学}，
+  1978，7，52--64。
+  \item 第一章，参考文献 [2]。
+  \item 第一章，参考文献 [1]。
+  \item N.~沙爱福，W.~施雷登，\textit{拓扑学}，人民教育出版社，1981。
+  \item Boothby, W.~M., \textit{An Introduction to Differentiable Manifolds and Riemannian
+  Geometry}, Academic Press, 1975.
+  \item Gutierrez, C., Smooth nonorientable nontrivial recurrence on two-manifolds,
+  \textit{J. Differential Equations}, 29 (1978), 388--395.
+  \item 陈瀚平，环面上具有一个奇点的系统的拓扑分类，\textit{数学学报}，24 (1981)，1，154--160。
+  \item 叶彦谦、罗定军，环面上含奇点的微分方程的定性研究，\textit{数学年刊}，1 (1980)，3--4，335--349。
+  \item 余树祥，二维流形上动力系统的某些问题，\textit{数学进展}，10 (1981)，1，12--23。
+  \item 董镇喜，二维定向流形上动力系统的一些拓扑结构，\textit{北京大学学报（自然科学）}，
+  1982，2，23--29。
+  \item 董镇喜，二维流形的广义 Poincar\'e--Bendixson 环域定理，\textit{数学进展}，12
+  (1983)，3，222--225。
+\end{enumerate}
+
+\endinput

@@ -1,0 +1,41 @@
+% ============================================
+%  theorems.tex — 定理环境（标准 amsthm，无色框）
+%  基于大笔记模板，去掉 tcolorbox，改用纯 amsthm
+% ============================================
+
+% ── 定理样式 ──
+\theoremstyle{definition}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{remark}[theorem]{注记}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{axiom}[theorem]{公理}
+\newtheorem{problem}[theorem]{问题}
+
+% ── example 环境楷体 ──
+\AddToHook{env/example/begin}{\proofFont}
+
+% ── 证明环境 ──
+\renewenvironment{proof}[1][证明]{%
+  \par\proofFont
+  \noindent\textbf{#1.}\quad
+}{%
+  \hfill $\square$\par
+}
+
+% ── 解答环境 ──
+\newcounter{solution}
+\newenvironment{solution}{%
+  \par\proofFont
+  \refstepcounter{solution}%
+  \noindent\textbf{解.}\quad
+}{%
+  \hfill $\square$\par
+}
+
+% ── 方程编号按章 ──
+\numberwithin{equation}{chapter}

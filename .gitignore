@@ -1,0 +1,49 @@
+# LaTeX intermediate files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.idx
+*.ilg
+*.ind
+*.nav
+*.snm
+*.vrb
+*.alg
+*.acr
+*.glg
+*.glo
+*.gls
+*.ist
+*.lol
+*.thm
+*.mtc*
+*.maf
+*.pyc
+__pycache__/
+# Generated build directories and local backups
+build/
+.codex-backups/
+/常微分方程备份/
+# Local editor state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+desktop.ini
+
+# Images are added explicitly when referenced by notes.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.svg
