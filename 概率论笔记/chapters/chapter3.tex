@@ -2010,6 +2010,147 @@ X\sim\Gamma(n,\lambda),\qquad Y\sim\Gamma(m,\lambda)
 \]
 相互独立，故甲的用时比例服从 $\operatorname{Beta}(n,m)$。这一比例的分布不依赖公共率参数 $\lambda$；它仍由各次实际用时决定，不能理解为与构成它的每次用时都相互独立。
 
+\begin{example}[标准正态变量的极坐标变换]
+设 $X,Y$ 相互独立，均服从 $N(0,1)$。令
+\[
+R=\sqrt{X^2+Y^2},
+\]
+并以 $\Theta\in[0,2\pi)$ 表示点 $(X,Y)$ 的极角；在原点约定 $\Theta=0$。求 $R,\Theta$ 的联合分布，并利用均匀分布模拟标准正态变量。
+
+原联合密度为
+\[
+f_{X,Y}(x,y)=\frac{1}{2\pi}e^{-(x^2+y^2)/2}.
+\]
+去掉原点和非负横轴后，剩余区域的概率为 $1$。极坐标变换将其一一映到 $r>0,\ 0<\theta<2\pi$，逆变换为
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+其雅可比为
+\[
+\left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
+=\left|\det
+\begin{pmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{pmatrix}\right|=r.
+\]
+所以可取联合密度
+\[
+f_{R,\Theta}(r,\theta)=
+\begin{cases}
+\displaystyle\frac{r}{2\pi}e^{-r^2/2},&r>0,\ 0<\theta<2\pi,\\
+0,&\text{其他}.
+\end{cases}
+\]
+两个边缘密度分别为
+\[
+f_R(r)=
+\begin{cases}re^{-r^2/2},&r>0,\\0,&\text{其他},\end{cases}
+\qquad
+f_\Theta(\theta)=
+\begin{cases}\displaystyle\frac{1}{2\pi},&0<\theta<2\pi,\\0,&\text{其他}.\end{cases}
+\]
+联合密度等于边缘密度的乘积，故 $R,\Theta$ 相互独立，且 $\Theta\sim U(0,2\pi)$。$R$ 的分布称为\textbf{瑞利分布}。对于 $t\geq0$，
+\[
+P(R^2>t)=\int_{\sqrt t}^{\infty}re^{-r^2/2}\,dr=e^{-t/2},
+\]
+故 $R^2\sim\operatorname{Exp}(1/2)=\Gamma(1,1/2)=\chi^2(2)$，其中指数分布和 Gamma 分布均采用率参数。
+
+反过来，取相互独立的 $U_1,U_2\sim U(0,1)$，令
+\[
+R=\sqrt{-2\ln U_1},\qquad \Theta=2\pi U_2.
+\]
+由于这两个变量分别由独立的 $U_1,U_2$ 决定，它们仍相互独立。对于 $t\geq0$，
+\[
+P(-2\ln U_1>t)=P(U_1<e^{-t/2})=e^{-t/2},
+\]
+因而 $R,\Theta$ 具有上面求出的分布。
+
+令
+\[
+X=\sqrt{-2\ln U_1}\cos(2\pi U_2),\qquad
+Y=\sqrt{-2\ln U_1}\sin(2\pi U_2).
+\]
+在去掉非负横轴的平面上，正向极坐标变换的雅可比绝对值为 $1/r$，于是
+\begin{align*}
+f_{X,Y}(x,y)
+&=\frac{r}{2\pi}e^{-r^2/2}\frac1r\\
+&=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+  \frac{1}{\sqrt{2\pi}}e^{-y^2/2}.
+\end{align*}
+被去掉的边界对应 $\Theta=0$，其概率为 $0$，不影响分布。密度分解说明生成的 $X,Y$ 相互独立，且均服从 $N(0,1)$。
+\end{example}
+
+\textbf{注：}\quad 设随机向量 $\boldsymbol X=(X_1,\ldots,X_n)$ 的密度为 $f_{\boldsymbol X}$，开集 $D\subseteq\mathbb R^n$ 满足 $P(\boldsymbol X\in D)=1$。若 $g:D\to E$ 是开集之间的一一映射，连续可微且处处满足 $\det Dg\ne0$，则逆映射 $h=g^{-1}$ 连续可微。$\boldsymbol Y=g(\boldsymbol X)$ 的密度可取为
+\[
+f_{\boldsymbol Y}(\boldsymbol y)=
+\begin{cases}
+f_{\boldsymbol X}(h(\boldsymbol y))|\det Dh(\boldsymbol y)|,
+&\boldsymbol y\in E,\\
+0,&\boldsymbol y\notin E.
+\end{cases}
+\]
+在 $D$ 外可将变换固定定义为某个向量；由于 $P(\boldsymbol X\notin D)=0$，这不影响分布。
+
+% 补足多维密度变换的积分证明。
+\begin{proof}
+对任意 Borel 集 $B\subseteq\mathbb R^n$，由积分换元公式，
+\begin{align*}
+P(\boldsymbol Y\in B)
+&=\int_{h(B\cap E)}f_{\boldsymbol X}(\boldsymbol x)\,d\boldsymbol x\\
+&=\int_{B\cap E}f_{\boldsymbol X}(h(\boldsymbol y))
+ |\det Dh(\boldsymbol y)|\,d\boldsymbol y.
+\end{align*}
+这就验证了所给密度。由 $g(h(\boldsymbol y))=\boldsymbol y$ 求导，还得到
+\[
+Dh(\boldsymbol y)=[Dg(h(\boldsymbol y))]^{-1},\qquad
+|\det Dh(\boldsymbol y)|
+=\frac{1}{|\det Dg(h(\boldsymbol y))|}.
+\]
+\end{proof}
+
+\begin{example}[独立指数变量的部分和]
+设 $X_1,\ldots,X_n$ 相互独立，均服从 $\operatorname{Exp}(\lambda)$，$\lambda>0$。令
+\[
+Y_i=\sum_{j=1}^{i}X_j,\qquad i=1,\ldots,n.
+\]
+\begin{enumerate}
+\item 求 $(Y_1,\ldots,Y_n)$ 的联合密度。
+
+逆变换为 $x_1=y_1$、$x_i=y_i-y_{i-1}$（$i\geq2$），其导数矩阵是对角元为 $1$、紧邻对角线下方为 $-1$ 的下三角矩阵，行列式为 $1$。原区域 $x_i>0$ 等价于 $0<y_1<\cdots<y_n$，且 $\sum_i x_i=y_n$，故
+\[
+f_{Y_1,\ldots,Y_n}(y_1,\ldots,y_n)=
+\begin{cases}
+\lambda^ne^{-\lambda y_n},&0<y_1<\cdots<y_n,\\
+0,&\text{其他}.
+\end{cases}
+\]
+\item 求 $Y_n$ 的边缘分布。
+
+当 $n\geq2$、$z>0$ 时，对前 $n-1$ 个坐标积分，得
+\begin{align*}
+f_{Y_n}(z)
+&=\lambda^ne^{-\lambda z}
+  \int_{0<y_1<\cdots<y_{n-1}<z}dy_1\cdots dy_{n-1}\\
+&=\frac{\lambda^n}{(n-1)!}z^{n-1}e^{-\lambda z}.
+\end{align*}
+积分区域的体积为 $z^{n-1}/(n-1)!$：除去坐标相等的零体积集合，立方体 $(0,z)^{n-1}$ 按坐标的 $(n-1)!$ 种排列分成体积相同的区域。$z\leq0$ 时密度取 $0$，所以 $Y_n\sim\Gamma(n,\lambda)$；$n=1$ 时结论就是指数分布本身。
+
+\item 设 $n\geq2$，求给定 $Y_n=z$ 时前 $n-1$ 个部分和的条件联合密度。
+
+对每个 $z>0$，$f_{Y_n}(z)>0$，因此
+\[
+f_{Y_1,\ldots,Y_{n-1}\mid Y_n}(y_1,\ldots,y_{n-1}\mid z)=
+\begin{cases}
+\displaystyle\frac{(n-1)!}{z^{n-1}},
+&0<y_1<\cdots<y_{n-1}<z,\\
+0,&\text{其他}.
+\end{cases}
+\]
+这正是 $n-1$ 个相互独立的 $U(0,z)$ 变量的次序统计量联合密度。排序前的变量独立；当 $n-1\geq2$ 时，排序后的变量受到大小次序的约束，并不相互独立。
+\end{enumerate}
+\end{example}
+
 
 
 

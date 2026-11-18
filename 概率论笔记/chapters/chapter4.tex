@@ -1,0 +1,215 @@
+\chapter{期望}
+
+\section{关于测度的积分}
+
+\subsection*{可测函数}
+
+设 $(\Omega,\mathcal F,\mu)$ 为测度空间，即 $\Omega$ 为非空集合，$\mathcal F$ 为其上的 $\sigma$ 域，$\mu:\mathcal F\to[0,+\infty]$ 满足 $\mu(\varnothing)=0$，并对两两不交的 $A_1,A_2,\ldots\in\mathcal F$ 满足
+\[
+\mu\left(\bigcup_{n=1}^{\infty}A_n\right)=\sum_{n=1}^{\infty}\mu(A_n).
+\]
+
+\begin{mydefinition}{可测函数}{measurable-function}
+若函数 $X:\Omega\to\mathbb R$ 对每个 Borel 集 $B\in\mathcal B(\mathbb R)$ 都满足
+\[
+X^{-1}(B)=\{\omega\in\Omega:X(\omega)\in B\}\in\mathcal F,
+\]
+则称 $X$ 为 $\mathcal F$-\textbf{可测函数}。当 $\mu$ 为概率测度时，这就是随机变量的定义。
+\end{mydefinition}
+
+\begin{example}[实直线上的可测函数]
+若 $g:\mathbb R\to\mathbb R$ 是 Borel 可测函数，则对任意定义在 $\mathcal B(\mathbb R)$ 上的测度 $\mu$，$g$ 都是测度空间 $(\mathbb R,\mathcal B(\mathbb R),\mu)$ 上的可测函数。特别地，恒等函数及连续实函数都是可测函数。
+\end{example}
+
+\subsection*{可测函数的性质}
+
+\begin{proposition}{可测性的半直线判别}{measurable-halfline}
+对函数 $X:\Omega\to\mathbb R$，下列条件等价：
+\begin{enumerate}
+\item $X$ 可测；
+\item 对每个 $t\in\mathbb R$，$\{X\leq t\}\in\mathcal F$；
+\item 对每个 $t\in\mathbb R$，$\{X<t\}\in\mathcal F$。
+\end{enumerate}
+\end{proposition}
+
+% 补足由半直线生成 Borel sigma 域的判别证明。
+\begin{proof}
+\begin{enumerate}
+\item 由 (1) 推出 (2)。因为 $(-\infty,t]$ 为 Borel 集，其原像 $\{X\leq t\}$ 属于 $\mathcal F$。
+\item 由 (2) 推出 (3)。对任意 $t\in\mathbb R$，
+\[
+\{X<t\}=\bigcup_{n=1}^{\infty}\{X\leq t-1/n\}\in\mathcal F.
+\]
+若 $X(\omega)<t$，可取充分大的 $n$ 使 $1/n\leq t-X(\omega)$；反向包含由 $t-1/n<t$ 得到。
+\item 由 (3) 推出 (1)。首先，
+\[
+\{X\leq t\}=\bigcap_{n=1}^{\infty}\{X<t+1/n\}\in\mathcal F.
+\]
+若 $X(\omega)>t$，取 $1/n<X(\omega)-t$，便知该点不在右侧交集中，所以等式成立。
+
+令
+\[
+\mathcal H=\{B\subseteq\mathbb R:X^{-1}(B)\in\mathcal F\}.
+\]
+原像运算保持全集、补集和可数并，故 $\mathcal H$ 为 $\sigma$ 域。上式说明它包含所有 $(-\infty,t]$。这些半直线生成 $\mathcal B(\mathbb R)$：它们的可数并给出开半直线，取差得到开区间，而每个开集都是有理端点开区间的可数并。因此 $\mathcal B(\mathbb R)\subseteq\mathcal H$，即 $X$ 可测。
+\end{enumerate}
+\end{proof}
+
+\begin{proposition}{可测函数的运算}{measurable-operations}
+设 $X,Y:\Omega\to\mathbb R$ 可测，则：
+\begin{enumerate}
+\item 对任意 $a\in\mathbb R$，$aX$ 可测；
+\item $X+Y$ 可测；
+\item $XY$ 可测；
+\item 若处处有 $Y\ne0$，则 $X/Y$ 可测。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item 当 $a>0$ 时，
+\[
+\{aX\leq t\}=\{X\leq t/a\}\in\mathcal F.
+\]
+当 $a<0$ 时，不等号反向，
+\[
+\{aX\leq t\}=\{X\geq t/a\}=\Omega\setminus\{X<t/a\}\in\mathcal F.
+\]
+当 $a=0$ 时，该集合在 $t<0$ 时为空集，在 $t\geq0$ 时为 $\Omega$。故三种情形均可测。
+\item 对任意 $t\in\mathbb R$，
+\[
+\{X+Y<t\}
+=\bigcup_{q\in\mathbb Q}\bigl(\{X<q\}\cap\{Y<t-q\}\bigr).
+\]
+若 $X(\omega)+Y(\omega)<t$，由有理数的稠密性，可取 $X(\omega)<q<t-Y(\omega)$，故该点属于右侧。反之，右侧任一集合中的点均满足 $X+Y<q+(t-q)=t$。右侧为可数个可测集合的并，故 $X+Y$ 可测。
+% 补证性质：源 PDF 省略乘积可测性的证明，此处补全。
+\item 对任意实值可测函数 $Z$，当 $t<0$ 时 $\{Z^2\leq t\}=\varnothing$；当 $t\geq0$ 时，
+\[
+\{Z^2\leq t\}=\{Z\geq-\sqrt t\}\cap\{Z\leq\sqrt t\}\in\mathcal F.
+\]
+所以 $Z^2$ 可测。由前两项，$X-Y$ 可测，再利用
+\[
+XY=\frac{(X+Y)^2-(X-Y)^2}{4},
+\]
+得到 $XY$ 可测。
+% 补证性质：源 PDF 省略商可测性的证明，此处补全。
+\item 定义 $g(0)=0$，并对 $y\ne0$ 定义 $g(y)=1/y$。函数 $g$ 在 $(-\infty,0)$ 和 $(0,\infty)$ 上连续；任意开集的原像是这两个区间中的开集之并，再按是否包含 $g(0)$ 决定是否添上 $\{0\}$，故为 Borel 集。因此 $g$ 是 Borel 可测函数。
+
+对任意 Borel 集 $B$，有
+\[
+\{g(Y)\in B\}=Y^{-1}(g^{-1}(B))\in\mathcal F,
+\]
+所以 $g(Y)$ 可测。由 $Y$ 处处非零，$g(Y)=1/Y$，再由上一项可知 $X/Y=Xg(Y)$ 可测。
+\end{enumerate}
+\end{proof}
+
+\textbf{注：}\quad 实值函数列的上、下确界和上、下极限可能取 $+\infty$ 或 $-\infty$。记 $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$；若 $Z:\Omega\to\overline{\mathbb R}$ 对每个实数 $t$ 都满足 $\{Z\leq t\}\in\mathcal F$，则称 $Z$ 为\textbf{扩展实值可测函数}。用 $\{Z<t\}$ 作判别与此等价，证明中的可数并、交公式仍成立。
+
+\begin{proposition}{可数上下确界与极限的可测性}{measurable-limits}
+设 $X_1,X_2,\ldots$ 为实值可测函数，则
+\[
+\inf_{n\geq1}X_n,\qquad \sup_{n\geq1}X_n,\qquad
+\liminf_{n\to\infty}X_n,\qquad \limsup_{n\to\infty}X_n
+\]
+均为扩展实值可测函数。其中逐点定义
+\[
+\liminf_{n\to\infty}X_n=\sup_{n\geq1}\inf_{k\geq n}X_k,\qquad
+\limsup_{n\to\infty}X_n=\inf_{n\geq1}\sup_{k\geq n}X_k.
+\]
+进一步，若 $X_n$ 逐点收敛于有限值函数 $X$，则 $X$ 为实值可测函数。
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item 对每个 $t\in\mathbb R$，
+\[
+\left\{\inf_{n\geq1}X_n<t\right\}
+=\bigcup_{n=1}^{\infty}\{X_n<t\}\in\mathcal F.
+\]
+当下确界严格小于 $t$ 时，至少有一项严格小于 $t$；反向包含直接由下确界的定义得到。
+\item 对每个 $t\in\mathbb R$，
+\[
+\left\{\sup_{n\geq1}X_n\leq t\right\}
+=\bigcap_{n=1}^{\infty}\{X_n\leq t\}\in\mathcal F.
+\]
+因为上确界不超过 $t$ 当且仅当每一项均不超过 $t$。
+\item 对每个 $a\in\mathbb R$，
+\[
+\left\{\liminf_{n\to\infty}X_n\leq a\right\}
+=\bigcap_{m=1}^{\infty}\bigcap_{n=1}^{\infty}
+ \bigcup_{k=n}^{\infty}\{X_k<a+1/m\}.
+\]
+若某点属于左侧，则每个尾部的下确界都不超过 $a$，严格小于 $a+1/m$，所以对任意 $m,n$，总有 $k\geq n$ 使 $X_k<a+1/m$，该点属于右侧。
+
+反过来，若某点属于右侧，则对任意 $m,n$，有
+\[
+\inf_{k\geq n}X_k\leq a+1/m.
+\]
+先对 $n$ 取上确界，得 $\liminf X_n\leq a+1/m$，再令 $m\to\infty$，得 $\liminf X_n\leq a$。右侧只涉及可数并、交，因而属于 $\mathcal F$。
+\item 由数列上、下极限的关系，
+\[
+\limsup_{n\to\infty}X_n=-\liminf_{n\to\infty}(-X_n).
+\]
+上一项适用于实值可测函数列 $-X_n$。若 $Z$ 为扩展实值可测函数，则
+\[
+\{-Z\leq t\}=\Omega\setminus\{Z<-t\}\in\mathcal F,
+\]
+故取负仍可测，上极限也可测。当逐点极限存在且有限时，它等于下极限，因而为实值可测函数。
+\end{enumerate}
+\end{proof}
+
+\subsection*{简单函数及其逼近}
+
+\begin{mydefinition}{简单函数}{simple-function}
+若 $A_1,\ldots,A_N\in\mathcal F$ 两两不交，且 $\bigcup_{i=1}^N A_i=\Omega$，$a_1,\ldots,a_N$ 为实数，则函数
+\[
+X=\sum_{i=1}^N a_i I_{A_i}
+\]
+称为\textbf{简单函数}。其中 $I_A$ 为集合 $A$ 的示性函数，即在 $A$ 上取 $1$，在 $\Omega\setminus A$ 上取 $0$。
+\end{mydefinition}
+
+\textbf{注：}\quad 对 $A\in\mathcal F$，
+\[
+\{I_A\leq t\}=
+\begin{cases}
+\varnothing,&t<0,\\
+\Omega\setminus A,&0\leq t<1,\\
+\Omega,&t\geq1.
+\end{cases}
+\]
+所以 $I_A$ 可测，由可测函数的有限次线性运算可知，每个简单函数都可测。
+
+\begin{mytheorem}{非负可测函数的简单函数逼近}{simple-approximation}
+若 $X:\Omega\to[0,+\infty]$ 可测，则存在非负简单函数列 $\{X_n\}$，使得
+\[
+0\leq X_n\leq X_{n+1}\leq X,\qquad
+\lim_{n\to\infty}X_n(\omega)=X(\omega)\quad(\omega\in\Omega).
+\]
+\end{mytheorem}
+
+% 沿用二进分割与高度截断构造，补足单调性和逐点收敛的验证。
+\begin{proof}
+对每个正整数 $n$，令
+\[
+X_n=\sum_{k=0}^{n2^n-1}\frac{k}{2^n}
+ I_{\{k/2^n\leq X<(k+1)/2^n\}}
+ +nI_{\{X\geq n\}}.
+\]
+这些集合均可测、两两不交，且覆盖 $\Omega$，所以 $X_n$ 是非负简单函数。该构造把 $[0,n)$ 分成长度为 $2^{-n}$ 的区间，在每个区间取左端点的值，而把不小于 $n$ 的部分截断为 $n$，故 $0\leq X_n\leq X$。
+
+固定 $\omega$，若 $x=X(\omega)<+\infty$，则
+\[
+X_n(\omega)=\min\left\{n,\frac{\lfloor2^n x\rfloor}{2^n}\right\},
+\]
+其中 $\lfloor u\rfloor$ 表示不超过 $u$ 的最大整数。由
+\[
+\lfloor2^{n+1}x\rfloor\geq2\lfloor2^n x\rfloor
+\]
+可知二进向下取整的值随 $n$ 不减，截断高度 $n$ 也不减，所以 $X_{n+1}(\omega)\geq X_n(\omega)$。当 $n>x$ 时，截断不再发生，且
+\[
+0\leq x-X_n(\omega)<2^{-n},
+\]
+从而 $X_n(\omega)\to x$。
+
+若 $X(\omega)=+\infty$，则每个 $n$ 都有 $X_n(\omega)=n$，同样单调趋于 $X(\omega)$。因此结论在每个 $\omega$ 上均成立。
+\end{proof}
