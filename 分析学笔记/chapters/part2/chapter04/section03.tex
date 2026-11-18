@@ -8,7 +8,7 @@
 平面 Jordan 曲线定理指出：平面上的 Jordan 闭曲线将其补集分成两个互不相交的连通分支，其中一个有界，称为曲线的内部；另一个无界，称为曲线的外部。对 $\mathbb R^n$ 中的一条闭曲线，$n\ge3$ 时不存在这样的平面内外分割结论。
 
 \begin{definition}
-设 $D$ 为平面区域。如果 $D$ 内的任一闭曲线都可以不经过 $D$ 外的点而连续收缩为 $D$ 中一点，则称 $D$ 为单连通区域；否则称为复连通区域。
+设 $D$ 为平面上的一个区域。如果 $D$ 内的任意一条封闭曲线都可以不经过 $D$ 外的点而连续地收缩成 $D$ 中一点，那么 $D$ 称为单连通区域；否则称为复连通区域。
 \end{definition}
 \begin{definition}
 沿区域边界行进时，区域始终在左侧的方向称为边界相对于区域的诱导定向，也称正向。对于有洞的区域，外边界取逆时针方向，内边界取顺时针方向。
@@ -412,18 +412,27 @@ x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
 故两个单侧积分均收敛，其和为 $\pi$。一般经过原点的曲线也可能使反常积分发散，须检查相应的单侧极限。
 
 \subsection*{Gauss 公式}
-原图以“区域内任意封闭曲面所围的立体仍属于区域”描述空间区域没有空腔的性质。例如实心球没有空腔，球壳有空腔。这里的“无空腔”须与通常以闭曲线可收缩定义的单连通性区分：三维球壳虽有空腔，却仍是通常意义下的单连通区域。Gauss 公式并不要求区域无空腔。
+% 空间单连通、复连通按本节教材的称谓定义，不与前面的平面定义混用。
+\begin{definition}
+本节按教材采用下列空间区域的称谓：设 $\Omega$ 为空间中的一个区域。如果 $\Omega$ 内的任意一张封闭曲面所围的立体仍属于 $\Omega$，那么称 $\Omega$ 为三维单连通区域；否则称为三维复连通区域。
+\end{definition}
+通俗地说，这里三维单连通区域之中不含有“洞”，而三维复连通区域之中含有“洞”。例如，单位球
+\[
+\{(x,y,z):x^2+y^2+z^2<1\}
+\]
+是三维单连通区域，而空心球
+\[
+\left\{(x,y,z):\frac12<x^2+y^2+z^2<1\right\}
+\]
+是三维复连通区域。
 
 \begin{theorem}[Gauss 公式（Ostrogradsky--Gauss 公式）]
-设 $\Omega\subset\mathbb R^3$ 为有界区域，其边界由有限片正则光滑曲面组成，具有通常的分片光滑边界结构：各光滑面在边界点附近可写为图像，区域位于其一侧，面之间沿有限条分段光滑棱及有限个顶点相接，且整体局部为 Lipschitz 图像。这里 Lipschitz 图像指图像函数满足 $|f(p)-f(q)|\le C|p-q|$，不允许边界自交或零角度尖裂造成的退化。
-
-若 $\boldsymbol F=(P,Q,R)$ 在 $\overline\Omega$ 的一个邻域上具有连续偏导数，则
+设 $\Omega$ 是 $\mathbb R^3$ 上由光滑（或分片光滑）的封闭曲面所围成的三维单连通闭区域，函数 $P(x,y,z),Q(x,y,z),R(x,y,z)$ 在 $\Omega$ 上具有连续偏导数，则
 \[
-\iiint_\Omega(P_x+Q_y+R_z)\,\dd x\dd y\dd z
-=\displaystyle\iint_{\partial\Omega}P\,\dd y\dd z+Q\,\dd z\dd x+R\,\dd x\dd y
-=\displaystyle\iint_{\partial\Omega}\boldsymbol F\cdot\boldsymbol n\,\dd S,
+\iiint_\Omega\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)\,\dd x\dd y\dd z
+=\displaystyle\iint_{\partial\Omega}P\,\dd y\dd z+Q\,\dd z\dd x+R\,\dd x\dd y.
 \]
-其中 $\boldsymbol n$ 指向 $\Omega$ 外部。
+这里 $\partial\Omega$ 的定向为外侧，称为 $\Omega$ 的诱导定向。
 \end{theorem}
 \begin{proof}
 先按原图证明标准区域的情形。设 $\Omega$ 同时可表示为
@@ -486,7 +495,11 @@ x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
 \]
 因为 $\sum_i\rho_i=1$ 在相关紧集附近成立。
 
-最后去掉棱和顶点附近为零的限制。记这些棱和顶点的并为 $E$。取光滑截断函数 $\theta_\varepsilon$，在 $E$ 的 $\varepsilon$ 邻域内为零，$C\varepsilon$ 邻域外为 $1$，满足 $0\le\theta_\varepsilon\le1$、$|\nabla\theta_\varepsilon|\le C/\varepsilon$。这种函数可先对距离函数作尺度为 $\varepsilon$ 的光滑化，再复合固定的一元截断函数得到；距离函数是 $1$-Lipschitz，故有上述导数界。
+最后去掉棱和顶点附近为零的限制。记这些棱和顶点的并为 $E$。取光滑截断函数 $\theta_\varepsilon$，在 $E$ 的 $\varepsilon$ 邻域内为零，$C\varepsilon$ 邻域外为 $1$，满足 $0\le\theta_\varepsilon\le1$、$|\nabla\theta_\varepsilon|\le C/\varepsilon$。这里距离函数为 $d(p,E)=\inf_{q\in E}|p-q|$，由三角不等式有
+\[
+|d(p,E)-d(p',E)|\le |p-p'|.
+\]
+先用支集在半径 $\varepsilon/4$ 球内、积分为 $1$ 的光滑非负函数对它作光滑平均，再复合从 $0$ 过渡到 $1$ 的固定一元光滑函数，就得到所需截断；上面的差值估计保证缩放后的梯度界为 $C/\varepsilon$。
 
 有限条有限长光滑棱的 $C\varepsilon$ 邻域体积为 $O(\varepsilon^2)$，与边界各面的交集面积为 $O(\varepsilon)$；有限个顶点所需的体积、面积分别为 $O(\varepsilon^3)$、$O(\varepsilon^2)$。这些估计可由局部正则参数表示及有限覆盖得到。对 $\theta_\varepsilon\boldsymbol F$ 应用已证公式，体积分新增项为
 \[
@@ -495,7 +508,7 @@ x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
 其绝对值为 $O(\varepsilon^{-1}\varepsilon^2)=O(\varepsilon)$；原体积分被去掉的部分趋于零，边界通量之差也为 $O(\varepsilon)$。令 $\varepsilon\to0$，便得一般分片光滑边界上的 Gauss 公式。
 \end{proof}
 
-有空腔时，外边界取几何外侧，内边界取指向空腔的一侧，它们都是相对于 $\Omega$ 的外侧。上述局部证明不要求边界连通，因而直接覆盖这类情形。
+Gauss 公式还可推广到具有有限个“洞”的三维复连通区域。可用适当的辅助曲面将其分割，再对各部分应用公式并相加；公共曲面两侧的积分相互抵消。此时区域外面的边界仍取外侧，内部空腔的边界取指向空腔的一侧，相对于区域而言它们都是外侧。前面的局部化证明也适用于这些边界片。
 \par\addvspace{3pt}
 {\centering
 \includegraphics[width=0.35\linewidth,viewport=152 98 537 497,clip]{figure/P2/gauss_stokes_diagrams_hd.png}\par}
