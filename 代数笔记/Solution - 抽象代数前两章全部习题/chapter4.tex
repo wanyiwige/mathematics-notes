@@ -1,0 +1,1565 @@
+% !TEX root = 抽象代数前四章全部习题详解.tex
+
+\clearpage\section{第4章：整环的整除性}
+
+原题据聂灵沼、丁石孙《代数学引论》第三版书页157--161（扫描PDF第167--171页）逐页转录。原题的条件、子问和提示保留；可核实的问题在解答中单独说明。各题的证明为本册解答，引用原笔记的定义、定理与证明。
+
+\subsection{习题1：主理想整环中最大公因子在扩环内的保持}
+
+\label{ex:4:1}
+
+\paragraph{题目}
+
+设$D$为一个主理想整环而且包含在一个整环$R$内，设$a,b\in D$。证明，若$d$是$a,b$在$D$中的最大公因子，则$d$也是$a,b$在$R$内的最大公因子。
+
+\paragraph{考点与思路}
+
+使用主理想整环中的贝祖表示，使扩环中的任意公因子也整除$d$。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4bezout}；\noteref{c4gcd}。原题：《代数学引论》第三版，书页157，扫描PDF第167页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+在$D$中，存在$u,v\in D$使$d=ua+vb$。又$d\mid a,b$在$D$中成立，故这些整除关系在包含$D$的环$R$中仍成立。
+
+任取$R$中$a,b$的公因子$c$，写$a=cr,b=cs$，其中$r,s\in R$。则
+\[
+d=ua+vb=c(ur+vs),
+\]
+所以$c\mid d$在$R$中成立。因此$d$在$R$中也满足最大公因子的两个定义条件。
+若$a=b=0$，其最大公因子为$0$，每个环元都整除$0$，结论同样成立。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+只保留原来的整除关系不足以说明最大性；贝祖等式使新出现的公因子也受到限制。
+
+\subsection{习题2：主理想整环中素元的商环}
+
+\label{ex:4:2}
+
+\paragraph{题目}
+
+设$D$为主理想整环，$a\in D$，$a\ne0$。若$a$为素元，则$D/(a)$为一域。
+
+\paragraph{考点与思路}
+
+将素元转为非零素理想，再使用主理想整环中非零素理想的极大性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4pidprime}；\noteref{c3prime}。原题：《代数学引论》第三版，书页157，扫描PDF第167页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+$a$为素元意味着$a\ne0$且不是单位，故$(a)$为非零真理想。若$bc\in(a)$，则$a\mid bc$；素性给出$a\mid b$或$a\mid c$，即$b\in(a)$或$c\in(a)$。因此$(a)$为素理想。
+
+主理想整环中的非零素理想均极大，所以$(a)$极大。由极大理想的商域判据，$D/(a)$为域。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+$a\ne0$排除了零素理想；在非域的主理想整环中，零理想并非极大理想。
+
+\subsection{习题3：主理想整环的中间环与分式环}
+
+\label{ex:4:3}
+
+\paragraph{题目}
+
+设$D$为一主理想整环，$F$为$D$的商域。证明：$F$内任一包含$D$的子环$D'$仍为主理想整环（域看作主理想整环），而且$D'$是$D$关于某一乘性子集的分式环。反之，$D$的任一分式环是$F$的一个子环，因而仍是主理想整环。
+
+\paragraph{考点与思路}
+
+先把中间环中的既约分数的分母证明为单位，再用理想的收缩说明每个理想由一个元素生成。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4bezout}；\noteref{c3fraction}；\noteref{c4pidprime}。原题：《代数学引论》第三版，书页157，扫描PDF第167页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+定义$S=\{s\in D:s\text{ 在 }D'\text{ 中可逆}\}$。它含$1$，不含$0$，且对乘法封闭，所以$S^{-1}D$可嵌入商域$F$；因$s^{-1}\in D'$，有$S^{-1}D\subseteq D'$。
+
+反取$z\in D'$，在$F$中把它写成$z=a/b$，并约去$a,b$在$D$中的最大公因子，使$(a,b)=1$、$b\ne0$。由贝祖等式，存在$u,v\in D$使$ua+vb=1$。在$D'$中有
+\[
+uz+v=\frac{ua+vb}{b}=\frac1b.
+\]
+所以$b$在$D'$中为单位，$b\in S$，从而$z\in S^{-1}D$。故$D'=S^{-1}D$。
+
+设$J\lhd D'$，令$I=J\cap D$。因$D$为主理想整环，$I=(d)$。对任意$a/s\in J$，有$a=s(a/s)\in J\cap D=(d)$，故$a=dc$，于是$a/s=d(c/s)\in dD'$。反过来，$d\in J$及吸收性给出$dD'\subseteq J$。因此$J=dD'$，每个理想都是主理想。$D'$为域$F$的子环，是整环，所以它为主理想整环。
+
+反过来，对不含$0$的任一乘性子集$T\subseteq D$，映射$a/t\mapsto a/t\in F$良定义且单射，像包含$D$。由刚才的中间环结论，它也是主理想整环。若把含$0$的乘性集合也允许在分式环定义中，则所得零环不嵌入$F$；原题的商域内分式环按$0\notin T$理解。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+关键是用互素分子、分母的贝祖等式，在中间环内部构造出分母的逆。
+
+\subsection{习题4：二次域中的代数整数环}
+
+\label{ex:4:4}
+
+\paragraph{题目}
+
+设$m$是一个无平方因子的整数且$m\ne0,1$，令
+\[
+F=\Q(\sqrt m)=\{a+b\sqrt m\mid a,b\in\Q\},
+\]
+则$F$是一域，叫做有理数域$\Q$上的二次域。$F$中有一个子集$R$定义如下：
+当$m\equiv2$或$3\pmod4$时，$R=\{a+b\sqrt m\mid a,b\in\Z\}$；
+当$m\equiv1\pmod4$时，$R=\{a+b(1+\sqrt m)/2\mid a,b\in\Z\}$。
+证明$R$是$F$的一个子环。$R$以后分别记作$\Z[\sqrt m]$、$\Z[(1+\sqrt m)/2]$（即$\S2$中的$R_m$），$R$叫做$F$的代数整数环。
+
+\paragraph{考点与思路}
+
+两种情形分别以一个满足整系数二次关系的生成元表示，再检查减法与乘法封闭。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{subring}。原题：《代数学引论》第三版，书页157，扫描PDF第167页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+若$m\equiv2,3\pmod4$，对$a+b\sqrt m,c+d\sqrt m\in R$，有
+\begin{align*}
+(a+b\sqrt m)-(c+d\sqrt m)&=(a-c)+(b-d)\sqrt m,\\
+(a+b\sqrt m)(c+d\sqrt m)&=(ac+mbd)+(ad+bc)\sqrt m.
+\end{align*}
+新系数仍为整数，且$1\in R$，故$R$为$F$的子环。
+
+若$m\equiv1\pmod4$，令$\omega=(1+\sqrt m)/2$、$h=(m-1)/4\in\Z$，则$\omega^2=\omega+h$。于是
+\begin{align*}
+(a+b\omega)-(c+d\omega)&=(a-c)+(b-d)\omega,\\
+(a+b\omega)(c+d\omega)&=(ac+hbd)+(ad+bc+bd)\omega.
+\end{align*}
+新系数同样为整数，且$1\in R$，故也是子环。
+
+$m$无平方因子且$m\ne0,1$，所以$\sqrt m\notin\Q$。因此两种情形中的整数系数表示都唯一。共轭$a+b\sqrt m\mapsto a-b\sqrt m$保持相应子环，范数$N(z)=z\bar z$为整数，且$N(zw)=N(z)N(w)$。这些是以下各题使用的二次环运算。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+第二种情形不要求两个半整数系数任意出现；使用整基$1,\omega$可以直接保证封闭性。
+
+\subsection{习题5：虚二次代数整数环的单位群}
+
+\label{ex:4:5}
+
+\paragraph{题目}
+
+假设$\Q(\sqrt m)$、$\Z[\sqrt m]$或$\Z[\tfrac12(1+\sqrt m)]$如习题4。$\Z[\sqrt m]$或$\Z[\tfrac12(1+\sqrt m)]$统记作$R_m$。$R_m$的单位乘法群记作$R_m^*$。证明：
+\begin{enumerate}[label=(\roman*)]
+\item $R_{-1}^*=\{\pm1,\pm\sqrt{-1}\}$；
+\item $R_{-3}^*=\{\pm1,\pm\omega,\pm\omega^2\}$，其中$\omega=\tfrac12(-1+\sqrt{-3})$，$\omega$是一个三次单位根；
+\item 当$m<0$但$m\ne-1,-3$时，$R_m^*=\{\pm1\}$。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+先以整数范数判别单位，再在正定二次型等于1时列出全部解。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\exref{4}{4}。原题：《代数学引论》第三版，书页157，扫描PDF第167页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+先说明单位判据。若$z\in R_m$为单位，则$N(z)N(z^{-1})=1$，两范数为整数，故$N(z)=\pm1$。反之，若$N(z)=\pm1$，则$z^{-1}=\bar z/N(z)\in R_m$，所以$z$为单位。对$m<0$，非零元的范数为正，故单位恰满足$N(z)=1$。
+\begin{enumerate}[label=(\roman*)]
+\item $R_{-1}=\Z[i]$，$N(a+bi)=a^2+b^2$。等于$1$的整数解恰为$(\pm1,0),(0,\pm1)$，所以单位为$\pm1,\pm i$。
+\item 在$R_{-3}$中，每个元素可写为$(u+v\sqrt{-3})/2$，其中$u,v$同奇偶。单位条件为$u^2+3v^2=4$。若$v=0$，则$u=\pm2$；若$|v|=1$，则$u=\pm1$；$|v|\ge2$不可能。因此单位恰为
+\[
+\pm1,\qquad \frac{\pm1\pm\sqrt{-3}}2.
+\]
+令$\omega=(-1+\sqrt{-3})/2$，有$\omega^2=(-1-\sqrt{-3})/2$、$\omega^3=1$且$\omega\ne1$，所以这六个单位正是$\pm1,\pm\omega,\pm\omega^2$。
+\item 若$m\equiv2,3\pmod4$且$m<0,m\ne-1$，写$z=a+b\sqrt m$，$1=N(z)=a^2+|m|b^2$，$|m|\ge2$迫使$b=0,a=\pm1$。
+
+若$m\equiv1\pmod4$且$m<0,m\ne-3$，则$m\le-7$。写$z=(u+v\sqrt m)/2$，其中$u,v$同奇偶。单位条件为$u^2+|m|v^2=4$，故$v=0$、$u=\pm2$。所以其单位也仅为$\pm1$。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+虚二次范数为正；实二次情形必须允许范数为$-1$，不能套用这里的单位列表。
+
+\subsection{习题6：四元数整数子环及其二十四个单位}
+
+\label{ex:4:6}
+
+\paragraph{题目}
+
+设$H$为四元数体，令$D=\{a_0+a_1I+a_2J+a_3K\mid a_0,\ldots,a_3\text{ 或全为整数或全为奇整数的一半}\}$。证明：$D$是$H$的一个子环，并确定$D$的单位群。
+
+\paragraph{考点与思路}
+
+把给定集合写成整数四元数与一个半整数四元数生成的加法群，检查有限个生成元的乘积，再解范数等于1。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{quaternion}；\noteref{c3conjugate}；\noteref{unit}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+令$L=\Z1+\Z I+\Z J+\Z K$，$h=(1+I+J+K)/2$。题中集合正是$D=L+\Z h$：$2h\in L$，所以$h$的偶数倍落在$L$，奇数倍落在$L+h$；后者的四个坐标全为奇整数的一半。因此$D$是加法子群，含$1$。
+
+$L$内基元的乘积仍在$L$。对$h$与虚基元，直接按四元数乘法表得到
+\begin{align*}
+Ih&=(-1+I-J+K)/2,&hI&=(-1+I+J-K)/2,\\
+Jh&=(-1+I+J-K)/2,&hJ&=(-1-I+J+K)/2,\\
+Kh&=(-1-I+J+K)/2,&hK&=(-1+I-J+K)/2.
+\end{align*}
+它们都属于$D$。又设$v=I+J+K$，则$v^2=-3$，故$h^2=(-1+v)/2=h-1\in D$。任意两个$L+\Z h$中的元素展开后，都是这些乘积的整数线性组合，所以乘法封闭，$D$是$H$的子环。
+
+四元数共轭保持$D$。范数
+\[
+N(q)=q\bar q=a_0^2+a_1^2+a_2^2+a_3^2
+\]
+对$D$中元素为非负整数；半整数情形中，四个奇数平方之和被$4$整除。非零元素范数为正，且$N(qr)=N(q)N(r)$。所以单位必须满足$N(q)=1$，反之该条件使$q^{-1}=\bar q\in D$，故也是充分的。
+
+若四坐标为整数，平方和为$1$只可能一个坐标为$\pm1$、其余为零，得到$\pm1,\pm I,\pm J,\pm K$八个元素。若四坐标均为奇数的一半，每个平方至少为$1/4$，总和等于$1$迫使每个坐标都是$\pm1/2$，共有$16$种符号选择。因此单位群为
+\[
+D^\times=\{\pm1,\pm I,\pm J,\pm K\}
+\ \cup\ \left\{\frac{\pm1\pm I\pm J\pm K}{2}\right\},
+\]
+第二个集合的四个符号独立选择，群阶为$24$，乘法为四元数乘法。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+半整数坐标必须四个同时出现；单位群的16个半整数元素允许所有独立符号组合。
+
+\subsection{习题7：四元数整数子环的理想均为主理想}
+
+\label{ex:4:7}
+
+\paragraph{题目}
+
+设$H,D$如题6。证明$D$的每个理想是一个主理想。
+
+\paragraph{考点与思路}
+
+用四维坐标的最近整数构造范数较小的余项，再取理想中范数最小的非零元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{ideal}；\exref{4}{6}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+先证：对每个$q\in H$，存在$d\in D$使$N(q-d)<1$。写$q=\sum_{i=0}^3t_ie_i$，其中$e_0=1,e_1=I,e_2=J,e_3=K$，取最近整数$n_i$使$|t_i-n_i|\le1/2$。令$d=\sum_i n_ie_i\in D$，则$N(q-d)\le1$。如果至少一个不等式严格，平方和就严格小于$1$。若四个误差绝对值全为$1/2$，$q$的四个坐标全为奇数的一半，故$q\in D$；改取$d=q$，范数为零。
+
+设$A\lhd D$非零，在$A$中取$0\ne b$使正整数$N(b)$最小。任取$a\in A$，将上述近似用于$ab^{-1}$，选$d\in D$使$N(ab^{-1}-d)<1$，令$r=a-db$。则$r\in A$，而
+\[
+N(r)=N((ab^{-1}-d)b)=N(ab^{-1}-d)N(b)<N(b).
+\]
+由最小性，$r=0$，所以$a=db$。因此$A\subseteq Db$；由$b\in A$及左吸收性，$Db\subseteq A$，故$A=Db$，特别地$A$由$b$生成。
+
+若同样对$b^{-1}a$近似，可得$A=bD$。所以既能作为主左理想，也能作为主右理想；作为题中的双边理想，其生成元仍为$b$。零理想由$0$生成。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+最近整数估计可能等于1；四个误差均为一半时，需改用半整数四元数才能得到严格小于1。
+
+\subsection{习题8：域上形式幂级数环的全部理想}
+
+\label{ex:4:8}
+
+\paragraph{题目}
+
+证明：域$F$上一元形式幂级数环$F[[x]]$是一个主理想整环，而且$F[[x]]$只有一个非零的素理想$(x)$，因而它也是唯一的极大理想。试问$F[[x]]$的其它理想取什么形式？
+
+\paragraph{考点与思路}
+
+分离每个非零级数的最低非零项，把其余部分视为单位，再由最低阶数选取理想生成元。
+
+\paragraph{所用结论与原文依据}
+
+\exref{3}{62}；\noteref{c3prime}；\noteref{c4pidprime}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+由\exref{3}{62}，$F[[x]]$是整环，级数为单位当且仅当常数项非零。对$0\ne f=\sum_i a_ix^i$，定义$\operatorname{ord}_x f$为最小的使$a_i\ne0$的下标$r$，则$f=x^r u$，其中$u$常数项非零，是单位。
+
+若$A\lhd F[[x]]$非零，取$A$中非零级数的最低阶数最小者$f=x^r u$。因$u$为单位，$x^r=fu^{-1}\in A$，所以$(x^r)\subseteq A$。任取$g\in A$，若$g\ne0$，其最低阶数$s\ge r$，故$g=x^r(x^{s-r}v)\in(x^r)$。零元素也属于$(x^r)$，所以$A=(x^r)$。
+
+因此全部理想为$(0)$及$(x^r)$，$r=0,1,2,\ldots$，其中$(x^0)=F[[x]]$，环是主理想整环。常数项映射$F[[x]]\to F$的核为$(x)$且满射，所以$(x)$极大，特别地为素理想。若$r\ge2$，$x$与$x^{r-1}$均不属于$(x^r)$而乘积属于它，故$(x^r)$不素。整个环不是真理想，所以唯一非零素理想与唯一极大理想均为$(x)$。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+零理想在此也是素理想，但不极大；原题限定的是唯一非零素理想。
+
+\subsection{习题9：整数多项式环的主理想不极大}
+
+\label{ex:4:9}
+
+\paragraph{题目}
+
+证明$\Z[x]$的任一个主理想都非极大。
+
+\paragraph{考点与思路}
+
+先排除零理想与单位生成的理想，对其余生成元选择不整除首项系数的素数，再取模后不可约因子。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4zprimes}；\noteref{c3polyquot}；\noteref{c3prime}；\noteref{c4polynomial}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+设主理想为$(f)$。若$f=0$，商环为$\Z[x]$而不是域（例如$2$不可逆），故不极大。若$f=\pm1$，则$(f)$为整个环，不是极大理想。若$f=gh$为两个非单位之积，则$g,h$取模$(f)$后的类均非零：例如若$g=fk=ghk$，整环中消去$g\ne0$会使$hk=1$，与$h$非单位矛盾。两个非零类的乘积却为零，所以商环不可能是域。因此只需处理不可约$f$。
+
+若$f$为常数，忽略符号后为整数素数$p$，商环为$\F_p[x]$，其中$x$不可逆，不是域。
+
+若$\deg f>0$，取一个不整除其首项系数的素数$p$。模$p$约化后，$\bar f\in\F_p[x]$仍有正次数，故有一个首一不可约因子$h$。取$h$的整数系数提升$\widetilde h$，理想$M=(p,\widetilde h)$的商环为$\F_p[x]/(h)$，是域，故$M$是真理想。由$h\mid\bar f$得$f\in M$，从而$(f)\subseteq M$。
+
+但$p\notin(f)$：若$p=fg$，非零乘积次数可加会使$0=\deg f+\deg g>0$，矛盾。所以$(f)\subsetneq M\subsetneq\Z[x]$，$(f)$不极大。所有情形已覆盖。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+正次数多项式取模后必须仍为正次数，所以素数$p$要避开其首项系数的素因子。
+
+\subsection{习题10：二次整数环的因子链条件}
+
+\label{ex:4:10}
+
+\paragraph{题目}
+
+证明$\Z[\sqrt{-5}]$满足因子链条件。进一步证明，习题5中的环$R_m$都满足因子链条件。
+
+\paragraph{考点与思路}
+
+利用整数范数的乘法性，把每次非相伴真因子下降转化为正整数绝对范数的严格下降。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c4chain}；\exref{4}{4}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+对习题4的每个$R_m$，共轭保持环，非零元素的范数为非零整数，且
+\[
+|N(ab)|=|N(a)|\,|N(b)|.
+\]
+若$|N(a)|=1$，则$a^{-1}=\bar a/N(a)\in R_m$；若$a$为单位，其范数与逆元范数的整数乘积为$1$，所以$|N(a)|=1$。因此非零非单位的绝对范数至少为$2$。
+
+设$a_{j+1}\mid a_j$，写$a_j=a_{j+1}b_j$，且从一个非零$a_0$开始。若$a_{j+1}$与$a_j$不相伴，$b_j$不是单位，所以
+\[
+|N(a_j)|=|N(a_{j+1})|\,|N(b_j)|\ge2|N(a_{j+1})|.
+\]
+正整数绝对范数不可能无限严格下降，因此链中只有有限多次不相伴的下降，从某项起各元素相伴。这就是因子链条件。若链从$0$开始，要么一直为$0$，要么在第一项非零元素之后使用上述论证。
+
+$m=-5$给出$\Z[\sqrt{-5}]$的结论；全部$m$的论证相同。实二次范数可能为负，所以这里统一取绝对值。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+满足因子链条件不等于唯一分解；$\Z[\sqrt{-5}]$正是满足前者而不满足后者的例子。
+
+\subsection{习题11：有理非负指数多项式整环与不终止的因子链}
+
+\label{ex:4:11}
+
+\paragraph{题目}
+
+$F$为一域，$\Q^+$表示非负有理数全体，$\Q^+$是一个加法半群（也是乘法半群）。用$D$表示一元多项式
+\[
+a_1x^{\alpha_1}+a_2x^{\alpha_2}+\cdots+a_nx^{\alpha_n}
+\]
+的全体，其中$a_1,\ldots,a_n\in F$，而$x$的次数$\alpha_1,\ldots,\alpha_n$允许取$\Q^+$中的任意数，即允许取任意非负有理数。这样两个多项式相等规定为同类单项式的系数一一相等；它们相加规定为同类单项式的系数一一相加；它们相乘规定为：先按分配律展开，然后单项式相乘
+\[
+a_ix^{\alpha_i}b_jx^{\beta_j}=a_ib_jx^{\alpha_i+\beta_j},
+\]
+最后按加法求和。证明$D$构成一个整环，并且$D$不满足因子链条件。
+
+\paragraph{考点与思路}
+
+对有限多个指数统一取分母，将任一有限次运算放进一个普通多项式环；再用不断开平方的单项式构造真因子链。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4chain}；\noteref{c3degree}；\noteref{c3poly}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+每个元素只有有限多个非零项。给定有限多个这样的元素，可选正整数$N$为全部指数分母的公倍数，使这些元素都属于
+\[
+D_N=\left\{\sum_{j=0}^r a_jx^{j/N}:a_j\in F\right\}.
+\]
+以形式未定元$t$代替$x^{1/N}$，映射$F[t]\to D_N$、$t^j\mapsto x^{j/N}$由系数唯一性给出环同构。任意有限个元素的结合律、分配律、交换律都可在同一个$D_N$中验证，零元、单位元及负元也都在$D$中，故$D$为交换幺环。
+
+若$f,g\ne0$，把二者放入同一个$D_N$。$F[t]$为整环，所以$fg\ne0$，故$D$无零因子，且$1\ne0$，因此是整环。
+
+对非零$f$定义其次数为合并同类项后的最大指数。最高项系数相乘非零，故$\deg(fg)=\deg f+\deg g$。因所有指数非负，单位只能有零次，故$D^\times=F^\times$。
+
+现在考虑
+\[
+x,\quad x^{1/2},\quad x^{1/4},\quad\ldots,\quad x^{1/2^j},\quad\ldots.
+\]
+后一项整除前一项，因为$(x^{1/2^{j+1}})^2=x^{1/2^j}$。其商$x^{1/2^{j+1}}$次数为正，不是单位，所以相邻两项不相伴。这是一条永不终止的真因子降链，$D$不满足因子链条件。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+每个多项式只有有限项，所以能统一分母；不应把无限指数集合当成单个有限维多项式环。
+
+\subsection{习题12：黄金比例整数环的欧几里得除法}
+
+\label{ex:4:12}
+
+\paragraph{题目}
+
+证明$\Z[\tfrac12(1+\sqrt5)]$为欧几里得整环。
+
+\paragraph{考点与思路}
+
+以绝对范数为函数，在整基$1,(1+\sqrt5)/2$上分别取最近整数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4euclid}；\noteref{c4quadratic}；\exref{4}{4}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+令$\omega=(1+\sqrt5)/2$，$D=\Z[\omega]$。由$\omega+\bar\omega=1$、$\omega\bar\omega=-1$，
+\[
+N(s+t\omega)=s^2+st-t^2.
+\]
+对非零$\alpha\in D$，令$d(\alpha)=|N(\alpha)|$，它是正整数。
+
+给定$\alpha,\beta\in D$、$\beta\ne0$，在商域中写$\alpha/\beta=s+t\omega$，$s,t\in\Q$。选整数$u,v$使$|s-u|,|t-v|\le1/2$，令$q=u+v\omega\in D$、$r=\alpha-q\beta\in D$。记$e=s-u,f=t-v$，则
+\begin{align*}
+|N(e+f\omega)|&=|e^2+ef-f^2|\\
+&\le e^2+|ef|+f^2\le\frac34<1.
+\end{align*}
+范数乘法性给出
+\[
+|N(r)|=|N(\beta)|\,|N(\alpha/\beta-q)|<|N(\beta)|.
+\]
+若$r=0$则除法已完成；否则$d(r)<d(\beta)$。故$D$满足欧几里得除法条件。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+实二次范数可能为负，应使用其绝对值；整基坐标上的两次舍入直接给出统一的小于1估计。
+
+\subsection{习题13：特殊欧几里得函数刻画域上多项式环}
+
+\label{ex:4:13}
+
+\paragraph{题目}
+
+设$D$为一欧几里得整环，证明：若$D$的$d$函数满足：
+\begin{enumerate}[label=(\roman*)]
+\item $d(ab)=d(a)d(b)$；
+\item $d(a+b)\le\max(d(a),d(b))$，
+\end{enumerate}
+则$D$是一个域或者是某域上一元多项式环。
+
+\paragraph{考点与思路}
+
+取函数值最小的非单位，证明余项必在一个系数域内，并用商的函数值下降归纳生成整个环。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4euclid}；\noteref{c3algebraic}；\exref{3}{64}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+先说明$d$在非零元素上的取值。若存在非零$b$使$d(b)=0$，则除以$b$时不可能有$d(r)<0$的非零余项，所以$b$整除每个元素，特别地$b$为单位。由乘法性可得$d(1)=0$，于是$d(a)=d(a)d(1)=0$对所有$a\ne0$成立。对任意非零$a$作除法，余项都只能为零，故$a\mid1$，$D$为域。以下排除此情形，$d$均为正整数，且$d(1)=1$。
+
+若$u$为单位，由$d(u)d(u^{-1})=1$知$d(u)=1$。反之，若$d(u)=1$，用$u$除$1$，非零余项不可能有小于$1$的正函数值，所以余项为零，$u$为单位。
+
+设$D$不是域。令$F=D^\times\cup\{0\}$。它对非零元取逆、乘法及取负封闭；若$u,v$是单位且$u+v\ne0$，则$d(u+v)\le\max(1,1)=1$，所以$u+v$也是单位。因此$F$是子域。
+
+在全部非单位非零元素中选$t$使$h=d(t)>1$最小。对任意$a\in D$作带余除法，
+\[
+a=qt+r,\qquad r=0\text{ 或 }d(r)<h.
+\]
+由$h$最小，非零$r$只能为单位，所以$r\in F$。若$q\ne0$，则$qt=a-r\ne0$，由加法条件（零项的情形直接去掉）和乘法条件得
+\[
+d(q)h=d(a-r)\le\max(d(a),d(r))\le d(a).
+\]
+故$d(q)<d(a)$。对正整数$d(a)$作归纳，函数值为$1$时$a\in F$；其余情形由归纳假设$q\in F[t]$，再由$a=qt+r$得$a\in F[t]$。所以$D=F[t]$。
+
+最后证明$t$在$F$上超越。若它代数，取常数项非零的非零关系$c_0+c_1t+\cdots+c_nt^n=0$；若初始常数项为零，利用整环中$t\ne0$可消去公共$t$幂，得到这样的关系。因$c_0\in F^\times$，有
+\[
+t\bigl[-c_0^{-1}(c_1+c_2t+\cdots+c_nt^{n-1})\bigr]=1,
+\]
+使$t$为单位，矛盾。因此代入映射$F[X]\to D$、$X\mapsto t$既满又单，是环同构，$D$是域上的一元多项式环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+须先证明函数值为1等价于单位，再说明单位加零是系数域；商的函数值下降保证归纳有效。
+
+\subsection{习题14：负一为模奇素数平方的判据}
+
+\label{ex:4:14}
+
+\paragraph{题目}
+
+设$p$为一奇素数。证明：在整数环$\Z$内$x^2\equiv-1\pmod p$有解的充要条件是$p\equiv1\pmod4$。
+
+\paragraph{考点与思路}
+
+必要性取一个四阶元素，充分性在有限域的循环乘法群中构造平方根。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{lagrange}；\noteref{c3finite}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+若$a^2\equiv-1\pmod p$，则$\bar a\ne0$，且$\bar a^4=1$。因为$p$为奇数，$-1\ne1$，所以$\bar a^2\ne1$，$\bar a$在$\F_p^\times$中的阶恰为$4$。由拉格朗日定理，$4\mid p-1$，即$p\equiv1\pmod4$。
+
+反之，设$p-1=4k$。有限域的非零乘法群是循环群，取一个生成元$g$。令$b=g^k$，则$b^2=g^{2k}$为阶$2$的元素。域中的方程$z^2=1$等价于$(z-1)(z+1)=0$，所以仅有$1,-1$两个解。阶$2$的元素不是$1$，故$b^2=-1$。取$b$的整数代表元，得到原同余式的解。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+奇素数条件保证$-1$与$1$不同，从而平方根的乘法阶确实为4。
+
+\subsection{习题15：范数为素数的充分性与原题反例}
+
+\label{ex:4:15}
+
+\paragraph{题目}
+
+设$R_m$为习题5所定义的。$R_m$中不属于$\Z$的元素$\pi$是一个不可约元的充要条件是范数$N(\pi)$是$\Z$的一个素数。
+
+\paragraph{考点与思路}
+
+先证明范数为素数时必不可约，再在$\Z[\sqrt{-5}]$内检验原题所声称的必要性。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c4nonufd}；\exref{4}{5}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+原题的充分性成立。设$N(\pi)=p$为整数素数，若$\pi=ab$，则$|N(a)|\,|N(b)|=p$。两个因子为正整数，所以至少一个为$1$，由\exref{4}{5}证明的单位判据，该因子对应的环元是单位。因此$\pi$不可约。这一论证也适用于$|N(\pi)|$为素数的情形。
+
+但原题在全部$R_m$上的必要性不成立。取$m=-5$，$\pi=1+\sqrt{-5}\notin\Z$，则
+\[
+N(\pi)=1^2+5\cdot1^2=6,
+\]
+不是素数。若$\pi$可分为两个非单位之积，因$R_{-5}$的非零范数为正整数，两个因子的范数均大于$1$，只能分别为$2,3$。然而方程$a^2+5b^2=2$或$3$均无整数解：$b\ne0$时左侧至少为$5$，$b=0$时为整数平方，不等于$2,3$。所以$\pi$不可约。
+
+这给出原题“不可约$\Rightarrow$范数为素数”的反例。故题面按扫描本保留，但不能在所给范围内证明该充要条件。后面的高斯整数分类将由欧几里得整环的素元性质独立完成，不使用这个错误的必要性。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+范数为素数足以判不可约，复合范数却不一定给出环内分解。
+
+\subsection{习题16：有理素数在高斯整数中的分解}
+
+\label{ex:4:16}
+
+\paragraph{题目}
+
+设$p$为一素数。证明：
+\begin{enumerate}[label=(\roman*)]
+\item 若$p\equiv1\pmod4$，则$p$在高斯整数环$R_{-1}=\Z[\sqrt{-1}]$内可分解成两个共轭的不可约元的乘积。由此证明，若$p\equiv1\pmod4$，则$p$可表成两个整数的平方和；
+\item 若$p\equiv-1\pmod4$，则$p$也是$R_{-1}$的不可约元；
+\item 在$R_{-1}$内$2$与一个不可约元的平方相伴，即
+\[
+2=(1+\sqrt{-1})(1-\sqrt{-1})=-\sqrt{-1}(1+\sqrt{-1})^2,
+\]
+其中$1+\sqrt{-1}$是不可约元。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+对模4的三种情形分别使用负一平方根、正定范数和范数为2的元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4gaussian}；\noteref{c4pidprime}；\noteref{c4ufd}；\exref{4}{5}；\exref{4}{14}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+记$i=\sqrt{-1}$。原笔记证明$\Z[i]$为欧几里得整环，因此为主理想整环和唯一因子分解整环；其中不可约元为素元，单位为$\pm1,\pm i$。
+\begin{enumerate}[label=(\roman*)]
+\item 若$p\equiv1\pmod4$，由\exref{4}{14}，存在整数$a$使$p\mid a^2+1=(a+i)(a-i)$。若$p$在$\Z[i]$中不可约，则为素元，必整除$a+i$或$a-i$。但$p\mid a\pm i$要求其虚部系数$\pm1$也被$p$整除，不可能。所以$p$可约，写$p=\alpha\beta$，两因子均非单位。
+
+范数乘法性给出$p^2=N(\alpha)N(\beta)$，两个正整数均大于$1$，因此都为$p$。写$\alpha=u+vi$，得到$p=u^2+v^2=\alpha\bar\alpha$。范数为素数保证$\alpha,\bar\alpha$均不可约，于是$p$分解为两个共轭不可约元之积，同时得到平方和表示。
+
+这两个因子不相伴。若$\alpha=w\bar\alpha$，其中$w=\pm1,\pm i$，比较实、虚部会得到$u=0$、$v=0$或$u=\pm v$。前两种使$p$为整数平方，后一种使$p=2u^2$，均与$p$为模4余1的素数矛盾。
+\item 若$p\equiv-1\pmod4$而$p=\alpha\beta$为两个非单位之积，同样有$N(\alpha)=p$，故$p=u^2+v^2$。整数平方模4只能为$0,1$，两个平方之和不可能模4余3，矛盾。所以$p$不可约。
+\item 元素$1+i$范数为$2$，所以不可约。直接相乘得
+\[
+(1+i)(1-i)=2,\qquad -i(1+i)^2=-i(2i)=2.
+\]
+$-i$为单位，故$2$与$(1+i)^2$相伴。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+第一项还需证明两个共轭因子不相伴；这一点用于后续的艾森斯坦判别。
+
+\subsection{习题17：高斯整数的全部不可约元}
+
+\label{ex:4:17}
+
+\paragraph{题目}
+
+根据习题16定出高斯整数环$\Z[\sqrt{-1}]$的全部不可约元。
+
+\paragraph{考点与思路}
+
+任意不可约元整除其整数范数，再用有理素数分解和上一题逐类识别。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4ufd}；\noteref{c4gaussian}；\exref{4}{16}。原题：《代数学引论》第三版，书页158，扫描PDF第168页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+对每个$p\equiv1\pmod4$的有理素数，固定上一题构造的一个$\pi_p=a_p+b_pi$，使$N(\pi_p)=p$。全部不可约元为下列元素及其单位倍：
+\[
+1+i;\qquad p\ (p\equiv3\pmod4);\qquad
+\pi_p,\bar\pi_p\ (p\equiv1\pmod4).
+\]
+单位为$\pm1,\pm i$。上一题已经逐类证明这些元素不可约。
+
+现证无遗漏。设$\rho$为任意不可约高斯整数。它为素元，并整除$N(\rho)=\rho\bar\rho$。将正整数$N(\rho)>1$在$\Z$中分解为有理素数乘积，由素元性质，$\rho$整除其中某个有理素数$p$。
+
+若$p=2$，由$2=-i(1+i)^2$及$\rho$为素元，$\rho\mid1+i$，而$1+i$不可约，故二者相伴。若$p\equiv3\pmod4$，$p$本身不可约，$\rho\mid p$使它与$p$相伴。若$p\equiv1\pmod4$，由$p=\pi_p\bar\pi_p$，$\rho$整除其中一个不可约因子，从而与该因子相伴。三种情形穷尽所有有理素数，分类完成。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+不属于整数的不可约元在高斯环内范数为素数，但这是本题分类的结论，不能预先套用第15题的一般错误陈述。
+
+\subsection{习题18：两个整数平方和的素因子判据}
+
+\label{ex:4:18}
+
+\paragraph{题目}
+
+证明：一个正整数$m$可以表成两个整数的平方和，其充要条件是在$m$的标准分解中出现的$4k+3$形式的素数的幂指数为偶数。
+
+\paragraph{考点与思路}
+
+必要性反复消去模4余3的素数平方；充分性用范数乘法把各类素数的表示合成。
+
+\paragraph{所用结论与原文依据}
+
+\exref{4}{14}；\exref{4}{16}；\noteref{c4ufd}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+设$m=a^2+b^2$，并取$p\equiv3\pmod4$且$p\mid m$。如果$p\nmid b$，在$\F_p$中除以$b^2$会得$(a/b)^2=-1$，与\exref{4}{14}矛盾。所以$p\mid b$，进而$p\mid a^2$使$p\mid a$。于是$a=pa_1,b=pb_1$，有
+\[
+m=p^2(a_1^2+b_1^2).
+\]
+反复使用这一论证，每次恰去掉两个$p$因子；最后剩余的平方和不再被$p$整除。因此$p$在$m$的标准分解中的指数为偶数。
+
+反过来，设所有模4余3的素因子指数均为偶数。整数$1=1^2+0^2$，$2=1^2+1^2$；每个$p\equiv1\pmod4$由\exref{4}{16}可写为两个平方之和；每个$p^{2e}$当然等于$(p^e)^2+0^2$。
+
+两个平方和的乘积仍为平方和，因为
+\[
+(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2.
+\]
+把$m$的标准分解中这些因子及其幂逐次相乘，得到$m$的平方和表示。若$m=1$，使用开头的表示即可。两方向均已证明。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+必要性必须解释为何一个模4余3的素因子能同时整除$a,b$，并将该步骤反复应用。
+
+\subsection{习题19：关于素理想的本原多项式之积}
+
+\label{ex:4:19}
+
+\paragraph{题目}
+
+设$R$为一个有$1$的交换环，$P$为它的一个素理想。在多项式环$R[x_1,\ldots,x_n]$中，如果一个多项式$f(x_1,\ldots,x_n)$（假设同类项都已合并）的系数在$R$内生成的理想与$P$互素，则$f(x_1,\ldots,x_n)$叫做关于$P$的本原多项式。证明：两个关于$P$的本原多项式的乘积仍是关于$P$的本原多项式。
+
+\paragraph{考点与思路}
+
+若乘积系数与$P$不互素，取包含它们及$P$的极大理想，再在商域的多项式环中产生矛盾。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\noteref{c3multi}；\exref{3}{20}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+设$f,g$的系数分别生成理想$I,J$，乘积$fg$的系数生成理想$K$。题设为$I+P=R$、$J+P=R$，须证明$K+P=R$。
+
+反设$K+P\ne R$，由极大理想存在性，可取极大理想$M\supseteq K+P$。在域$R/M$上逐系数取像，得到$\bar f,\bar g$。因为$K\subseteq M$，有$\bar f\bar g=0$。域上的多元多项式环为整环，所以$\bar f=0$或$\bar g=0$。
+
+若$\bar f=0$，$f$的全部系数都在$M$中，即$I\subseteq M$；又$P\subseteq M$，从而$R=I+P\subseteq M$，矛盾。若$\bar g=0$，同样由$R=J+P\subseteq M$矛盾。因此$K+P=R$，$fg$关于$P$本原。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+“系数不全在$P$中”并不等于“系数理想与$P$互素”；证明要使用题中较强的互素条件。
+
+\subsection{习题20：唯一因子分解整环的局部化}
+
+\label{ex:4:20}
+
+\paragraph{题目}
+
+设$R$为一个唯一因子分解整环，$S$是由$R$的一些不可约元生成的乘法半群。证明：$S^{-1}R$仍为一唯一因子分解整环。
+
+\paragraph{考点与思路}
+
+把分母中的不可约因子变成单位，其余不可约因子仍保持素性，再从原环的分解导出新环的分解。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3fraction}；\noteref{c4ufd}；\noteref{c4ufdcriterion}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+令$T$为用于生成$S$的不可约元的相伴类集合。$S$由这些元素的有限乘积及$1$组成，不含$0$，所以$S^{-1}R$可嵌入$R$的商域，仍为整环。
+
+每个$T$中的不可约元在分式环内变为单位。若不可约元$q$的相伴类不在$T$中，则$q$不整除任何$s\in S$，因$R$中分解唯一。特别地$q/1$不是单位：若$(q/1)(a/s)=1$，整环中的分数相等给出$qa=s$，与$q\nmid s$矛盾。
+
+再证$q/1$仍为素元。若它整除$(a/s)(b/t)$，则存在$c/u$使$ab/(st)=qc/u$，故$uab=q cst$。$q$不整除$u\in S$，且在$R$中为素元，所以$q\mid a$或$q\mid b$。相应地$q/1$整除$a/s$或$b/t$。因此$q/1$为非零非单位素元，特别地不可约。
+
+任取非零$a/s$，在$R$中分解$a$。属于$T$的因子与分母合并为单位，其余因子成为刚证明的素元，故每个非零非单位都有有限个不可约因子的分解。唯一性由素元逐次整除某个对侧因子、相伴后消去得到：若两种分解长度不同，最后将使一个单位等于若干非单位的乘积，不可能。因此$S^{-1}R$为唯一因子分解整环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+必须说明未被分母倒置的不可约元仍非单位、且仍是素元；仅把原分解写成分数不能完成唯一性证明。
+
+\subsection{习题21：素数阶分圆多项式的不可约性}
+
+\label{ex:4:21}
+
+\paragraph{题目}
+
+证明$f(x)=x^{p-1}+x^{p-2}+\cdots+1$在$\Z[x]$内不可约，其中$p$为素数。
+
+\paragraph{考点与思路}
+
+平移未定元后使用整数素数$p$的艾森斯坦判别，再由本原性转回整数多项式环。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4eisenstein}；\noteref{c4primitive}；\noteref{c4gauss}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+令$f(x)=1+x+\cdots+x^{p-1}$。恒等式$(x-1)f(x)=x^p-1$给出
+\[
+f(x+1)=\frac{(x+1)^p-1}{x}
+=p+\binom p2x+\cdots+\binom p{p-1}x^{p-2}+x^{p-1}.
+\]
+对$1\le j<p$，$p\mid\binom pj$；常数项为$p$，不被$p^2$整除，首项系数为$1$，不被$p$整除。若$p>2$，由艾森斯坦判别，$f(x+1)$在$\Q[x]$中不可约；$p=2$时它为一次式$x+2$，也不可约。
+
+平移$x\mapsto x+1$是$\Q[x]$的自同构，逆为$x\mapsto x-1$，所以$f(x)$也不可约。$f$首一，故本原；高斯引理将不可约性从$\Q[x]$转回$\Z[x]$，得到所求。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+艾森斯坦应用于$f(x+1)$而非直接应用于$f(x)$；平移可逆才保证原式也不可约。
+
+\subsection{习题22：高斯整数上两类多项式的不可约性}
+
+\label{ex:4:22}
+
+\paragraph{题目}
+
+判定下列多项式在高斯整数环$R_{-1}=\Z[\sqrt{-1}]$上是否可约：
+\begin{enumerate}[label=(\roman*)]
+\item $f(x)=x^{p-1}+x^{p-2}+\cdots+1$，$p$为素数；
+\item $f(x)=x^4+(8+i)x^3+(3-4i)x+5$，其中$i=\sqrt{-1}$。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+第一项平移后选取有理素数的一个高斯素因子；第二项以$2-i$作艾森斯坦素元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4eisenstein}；\noteref{c4gaussian}；\noteref{c4primitive}；\exref{4}{16}；\exref{4}{21}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+高斯整数环为唯一因子分解整环，所给多项式均首一，所以只需在其商域$\Q(i)$上判不可约。
+\begin{enumerate}[label=(\roman*)]
+\item $p=2$时$f=x+1$为一次式，不可约。以下设$p$为奇素数。与上一题相同，$f(x+1)$首一，其余系数均被$p$整除，常数项恰为$p$。
+
+若$p\equiv3\pmod4$，$p$本身为高斯素元，且$p^2\nmid p$，直接应用艾森斯坦判别。若$p\equiv1\pmod4$，由\exref{4}{16}，$p=\pi\bar\pi$，其中$\pi,\bar\pi$为不相伴的高斯素元。所以$\pi\mid p$而$\pi^2\nmid p$；所有非首项系数均被$\pi$整除，仍满足艾森斯坦条件。因此两种情形中$f(x+1)$均在$\Q(i)[x]$中不可约。可逆平移及高斯引理说明$f$在$\Z[i][x]$中不可约。
+\item 令$\pi=2-i$，其范数为$5$，故为高斯素元。直接计算
+\[
+8+i=(2-i)(3+2i),\qquad
+3-4i=(2-i)^2,\qquad 5=(2-i)(2+i).
+\]
+故$x^3,x^2,x$及常数项的系数均被$\pi$整除（$x^2$系数为零）。但$\pi^2\nmid5$，因为$(2+i)/(2-i)=(3+4i)/5\notin\Z[i]$。首项系数为$1$，不被$\pi$整除。因此艾森斯坦判别说明第二个多项式也不可约。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+$p$在高斯环内可分解时，仍可选取单个素因子作判别元，关键是其平方不整除常数项。
+
+\subsection{习题23：非域主理想整环的多项式环不再为主理想整环}
+
+\label{ex:4:23}
+
+\paragraph{题目}
+
+设$D$为主理想整环。证明：若$D$不是域，则$D[x]$不是主理想整环。
+
+\paragraph{考点与思路}
+
+用一个非零非单位$a$构造理想$(a,x)$，由次数与$x$的首项系数排除单个生成元。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4pidprime}；\noteref{c3degree}；\noteref{c3polyquot}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+因$D$不是域，可取非零非单位$a\in D$。令$I=(a,x)\subseteq D[x]$。代入$x=0$再取模$(a)$得到满同态$D[x]\to D/(a)$，其核为$I$；因$a$不是单位，$D/(a)\ne0$，故$I$是真理想。
+
+若$I=(g)$，由$a\in I$可写$a=gh$。整环中次数可加，$a\ne0$为常数，所以$g$必须为非零常数。又$x\in(g)$，写$x=gk(x)$并比较$x$的系数，得到$1=gc$对某个$c\in D$成立。因此$g$是单位，$(g)=D[x]$，与$I$真矛盾。
+
+所以$I$不是主理想，$D[x]$不是主理想整环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+这个理想不能只写出而不证明为真；取常数项并模$a$给出直接的判据。
+
+\subsection{习题24：主理想整环商环的理想}
+
+\label{ex:4:24}
+
+\paragraph{题目}
+
+证明：主理想整环的商环的每个理想仍为主理想。
+
+\paragraph{考点与思路}
+
+对商环理想取完全反像，在母环选单个生成元，再取像。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3correspondence}；\noteref{c3principal}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+设$A\lhd D$，自然满同态为$\pi:D\to D/A$。取任意$J\lhd D/A$。完全反像$I=\pi^{-1}(J)$为包含$A$的$D$的理想，所以$I=(d)$对某个$d\in D$成立。
+
+满射性与理想对应给出
+\[
+J=\pi(I)=\pi((d))
+=\{\pi(r)\pi(d):r\in D\}=(d+A).
+\]
+故商环的每个理想仍由一个元素生成。这里并不声称商环仍是整环：例如$\Z/(6)$有非零零因子，但其理想仍全为主理想。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+商环理想为主理想与商环为主理想整环是不同结论；本题只要求前者。
+
+\subsection{习题25：实二次环的基本单位与非唯一分解}
+
+\label{ex:4:25}
+
+\paragraph{题目}
+
+在$R_{10}=\Z[\sqrt{10}]$中证明：
+\begin{enumerate}[label=(\roman*)]
+\item $\varepsilon=\sqrt{10}+3$是一个单位；
+\item $R_{10}$的任一个单位$u$可写成$u=\pm\varepsilon^r$，$r\in\Z$。因此$R_{10}$的单位群$U$等于一个$2$阶群$\langle-1\rangle$和一个无限循环群$\langle\varepsilon\rangle$的直积。$\pm\varepsilon^{\pm1}$叫做$R_{10}$的基本单位。（注意，若$v=a+b\sqrt{10}$是$R_{10}$的单位，则$\pm v^{\pm1}=\pm a\pm b\sqrt{10}$也都是$R_{10}$的单位。）
+\item $R_{10}$不是唯一因子分解整环。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+用范数给出逆元，把任一单位乘以适当幂压到$[1,\varepsilon)$内，再排除该区间中的非平凡单位。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c4ufd}；\exref{4}{4}；\exref{4}{5}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+\begin{enumerate}[label=(\roman*)]
+\item $N(3+\sqrt{10})=9-10=-1$，且
+\[
+(3+\sqrt{10})(\sqrt{10}-3)=1.
+\]
+故$\varepsilon=3+\sqrt{10}$是单位，逆为$\sqrt{10}-3$。
+\item 取任意单位$u$。按实数域中的嵌入，$u\ne0$；先乘$\pm1$使之为正，再乘适当的$\varepsilon$整数次幂，使所得单位$v$满足$1\le v<\varepsilon$。这样的整数存在，因为$\varepsilon>1$，其正整数次幂无界，负整数次幂趋于零。
+
+写$v=a+b\sqrt{10}$，$a,b\in\Z$。单位范数为$\delta=\pm1$，所以$\bar v=\delta/v$，从而
+\[
+b=\frac{v-\delta/v}{2\sqrt{10}}\ge0.
+\]
+对$1\le v<\varepsilon$，$v+v^{-1}<\varepsilon+\varepsilon^{-1}=2\sqrt{10}$：函数$t+t^{-1}$在$[1,\infty)$严格递增，可由差$(t-s)(1-1/(st))$判断。因此
+\[
+0\le b\le\frac{v+v^{-1}}{2\sqrt{10}}<1.
+\]
+$b$为整数，故$b=0$。$v$为正整数单位，其范数$a^2=1$，所以$v=1$。还原先前的符号和幂，得到$u=\pm\varepsilon^r$。
+
+因$\varepsilon>1$，它的整数次幂两两不同，故生成无限循环群；又其所有整数次幂为正实数，与$\langle-1\rangle$的交仅有$1$。两者交换并生成全部单位，因此$U=\langle-1\rangle\times\langle\varepsilon\rangle$。
+
+原题提示中的符号由范数公式解释：若$v=a+b\sqrt{10}$为单位，$v^{-1}=\pm\bar v$，故各符号的共轭元素也都是单位。分类证明中没有预先假定这类单位只有有限多个。
+\item 若存在$z=a+b\sqrt{10}$满足$|N(z)|=2$，则$a^2-10b^2=\pm2$。模5化为$a^2\equiv2$或$3$，但模5平方只可能为$0,1,4$，矛盾。因此不存在绝对范数为2的元素。
+
+若$2$为两个非单位之积，其绝对范数$4$必须分解为$2\cdot2$，与刚才的结论矛盾，所以$2$不可约。但
+\[
+(\sqrt{10}+2)(\sqrt{10}-2)=6
+\]
+被$2$整除，而两个因子均不被$2$整除，因为其$\sqrt{10}$系数均为$1$。因此$2$不是素元。唯一因子分解整环的不可约元必为素元，所以$R_{10}$不是唯一因子分解整环。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+先把单位归一化到一个有界实区间，再利用整数系数排除余下可能；非唯一分解可由不可约而非素直接证明。
+
+\subsection{习题26：整数在一个素数处的分式环}
+
+\label{ex:4:26}
+
+\paragraph{题目}
+
+设$p$为一素数，$S$表示与$p$互素的整数全体，则$S$为$\Z$的一个乘性子集。作$\Z$对$S$的分式环$S^{-1}\Z$，记作$\Z_S$。
+\begin{enumerate}[label=(\roman*)]
+\item 决定$\Z_S$的单位群$U$；
+\item 证明$P=\Z_S\setminus U$是$\Z_S$的唯一极大理想；
+\item 证明$\Z_S$的每个非零理想是$P$的一个方幂。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+以分子是否被$p$整除判别单位，再以$p$的最小指数分类非零理想。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3fraction}；\noteref{c3prime}；\noteref{unit}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+将$\Z_S$作为$\Q$的子环看待，其元素为$a/s$，$a\in\Z$、$p\nmid s$。
+\begin{enumerate}[label=(\roman*)]
+\item 若$p\nmid a$，则$s/a\in\Z_S$为逆元。若$p\mid a$，假设$(a/s)(b/t)=1$，则$ab=st$，左侧被$p$整除而右侧不被$p$整除，矛盾。所以
+\[
+U=\{a/s:p\nmid a,\ p\nmid s\}.
+\]
+\item 非单位集恰为$P=p\Z_S$。映射$a/s\mapsto\bar a\bar s^{-1}\in\F_p$良定义：若$a/s=b/t$，$at=bs$，模$p$并乘以两个非零分母的逆即得同像。它保运算、满射，核恰为$P$，故$P$为极大理想。任意真理想不含单位，所以都含于$P$；于是任何极大理想只能等于$P$。
+\item 对非零$a/s$，定义$v_p(a/s)=v_p(a)$，即分子中$p$的指数；它不依赖所用分母，因为分母均不含$p$。取非零理想$A$，在其非零元素的非负整数赋值中选最小者$k$，并取$z\in A$达到此值。写$z=p^k u$，其中$u$为单位，则$p^k=zu^{-1}\in A$。
+
+任一$w\in A\setminus\{0\}$的赋值至少为$k$，所以$w=p^k w_1$，$w_1\in\Z_S$。故$A=p^k\Z_S=P^k$。$k=0$时$A$为整个环，也按$P^0=\Z_S$包含在结论中。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+所有分母都与$p$互素，所以元素的$p$指数是非负整数，最小值确实存在。
+
+\subsection{习题27：素理想收缩与极大理想收缩的区别}
+
+\label{ex:4:27}
+
+\paragraph{题目}
+
+设$S$为交换环$R$的一个子环而且$S$与$R$有相同的单位元素。证明：$R$的任一个素理想$P$与$S$的交$P\cap S$是$S$的一个素理想。问$R$的任一极大理想$M$与$S$的交$M\cap S$是不是$S$的极大理想？
+
+\paragraph{考点与思路}
+
+直接验证收缩的素性；极大性用整数环嵌入有理数域给出反例。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3prime}；\noteref{ideal}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+首先$P\cap S$是$S$的理想：对减法封闭；若$a\in P\cap S,s\in S$，则$sa\in P$且$sa\in S$。又$1_S=1_R\notin P$，所以$P\cap S\ne S$。
+
+若$a,b\in S$且$ab\in P\cap S$，则$ab\in P$，由$P$素，$a\in P$或$b\in P$。结合$a,b\in S$，得$a\in P\cap S$或$b\in P\cap S$。故收缩为素理想。
+
+极大理想的收缩不一定极大。取$S=\Z\subset R=\Q$，二者单位元同为$1$。域$\Q$的零理想$M=0$为极大理想，但$M\cap\Z=0$不是$\Z$的极大理想，因为$0\subsetneq2\Z\subsetneq\Z$。这给出所求反例。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+共享单位元保证收缩仍为真理想；素性可直接传回子环，商域性质则不能这样传回。
+
+\subsection{习题28：平方根二的整数环的基本单位}
+
+\label{ex:4:28}
+
+\paragraph{题目}
+
+在$R_2=\Z[\sqrt2]$中，证明：
+\begin{enumerate}[label=(\roman*)]
+\item $\varepsilon=1+\sqrt2$是一个单位；
+\item $R_2$的每个单位$u$可表成$u=\pm\varepsilon^r$，$r\in\Z$。因此$\pm\varepsilon^{\pm1}$是基本单位而且$R_2$的单位群$U=\langle-1\rangle\times\langle\varepsilon\rangle$。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+按第25题的区间归一化方法，以$1+\sqrt2$的幂缩减任意正单位。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\exref{4}{25}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+\begin{enumerate}[label=(\roman*)]
+\item $(1+\sqrt2)(\sqrt2-1)=1$，所以$\varepsilon=1+\sqrt2$为单位，$N(\varepsilon)=-1$。
+\item 任取单位$u$，先改变符号使其为正，再乘$\varepsilon$的适当整数次幂，使$v$落在$1\le v<\varepsilon$。写$v=a+b\sqrt2$，其范数为$\delta=\pm1$，故$\bar v=\delta/v$，并有
+\[
+0\le b=\frac{v-\delta/v}{2\sqrt2}
+\le\frac{v+v^{-1}}{2\sqrt2}
+<\frac{\varepsilon+\varepsilon^{-1}}{2\sqrt2}=1.
+\]
+最后的严格不等式使用$t+t^{-1}$在$[1,\infty)$上严格递增，理由同\exref{4}{25}。因此整数$b=0$，正整数单位$v=1$。还原归一化，得到$u=\pm\varepsilon^r$，$r\in\Z$。
+
+$\varepsilon>1$使其生成无限循环群，所有幂都为正，与$\langle-1\rangle$仅交于$1$，故单位群为$\langle-1\rangle\times\langle\varepsilon\rangle$。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+范数等于$-1$的单位也参与归一化；不能只求解范数等于$1$的佩尔方程。
+
+\subsection{习题29：二次整数环生成元的极小多项式}
+
+\label{ex:4:29}
+
+\paragraph{题目}
+
+在第4题的假设下，证明：
+\begin{enumerate}[label=(\roman*)]
+\item 当$m\equiv2$或$3\pmod4$时（$R_m=\Z[\sqrt m]$），$\sqrt m$的极小多项式是$x^2-m$；
+\item 当$m\equiv1\pmod4$时（$R_m=\Z[\tfrac12(1+\sqrt m)]$），$\tfrac12(1+\sqrt m)$的极小多项式为$x^2-x+\tfrac14(1-m)$。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+分别求出整基生成元的首一二次关系，再利用其不属于有理数域排除一次关系。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c3minimal}；\noteref{c4quadratic}；\exref{4}{4}。原题：《代数学引论》第三版，书页159，扫描PDF第169页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+\begin{enumerate}[label=(\roman*)]
+\item $\sqrt m$满足$x^2-m=0$。若有一次有理系数关系$a\sqrt m+b=0$、$a\ne0$，则$\sqrt m=-b/a\in\Q$，与$m$无平方因子且$m\ne0,1$矛盾。因此极小次数为$2$，首一极小多项式为$x^2-m$。
+\item 令$\omega=(1+\sqrt m)/2$。直接展开得
+\[
+\omega^2-\omega+\frac{1-m}{4}=0.
+\]
+若$\omega\in\Q$，则$\sqrt m=2\omega-1\in\Q$，矛盾。所以同样没有一次关系，极小多项式恰为$x^2-x+(1-m)/4$。因$m\equiv1\pmod4$，常数项$(1-m)/4$为整数。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+后面模素数约化的是整数$(1-m)/4$；素数为2时不能把它误写成在$\F_2$中除以4。
+
+\subsection{习题30：二次整数环的非零素理想都是极大理想}
+
+\label{ex:4:30}
+
+\paragraph{题目}
+
+承上题。设$P$为$R_m$的一个非零素理想，证明：
+\begin{enumerate}[label=(\roman*)]
+\item 交$P\cap\Z$是$\Z$的一个非零素理想，因而$P\cap\Z=p\Z$，$p$是含于$P$内的唯一的素数；
+\item 商环$F=R_m/P$是一个整环而且包含$F_p=\Z/p\Z$作为子域；
+\item $F=F_p[\alpha]$，$\alpha$表示陪集$\sqrt m+P$或陪集$\tfrac12(1+\sqrt m)+P$，按照$m\equiv2$或$3\pmod4$或$m\equiv1\pmod4$而定，而且$\alpha$在$F_p$上的极小多项式是$x^2-m\pmod P$的因式，或是$x^2-x+\tfrac14(1-m)\pmod P$的因式，按照上述两种情况而定。总之$F$是$p$个元素或$p^2$个元素的有限整环，因而$F$是一个域。由此可知，$R_m$的任一非零素理想是极大理想。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+用一个非零元素的范数证明收缩非零，再将商环表示为有限域上由一个二次代数元生成的整环。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c3minimal}；\noteref{c3prime}；\exref{4}{27}；\exref{4}{29}。原题：《代数学引论》第三版，书页160，扫描PDF第170页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+记$A=R_m$，整基生成元记为$\omega$：$m\equiv2,3\pmod4$时$\omega=\sqrt m$，$m\equiv1\pmod4$时$\omega=(1+\sqrt m)/2$。
+\begin{enumerate}[label=(\roman*)]
+\item 由\exref{4}{27}，$P\cap\Z$是$\Z$的素理想。取$0\ne z\in P$，其共轭$\bar z\in A$，所以$0\ne N(z)=z\bar z\in P\cap\Z$，收缩非零。因此$P\cap\Z=p\Z$，其中$p$为一个正素数。若另有不同的正素数$q\in P$，整数贝祖等式将使$1\in(p,q)\subseteq P$，矛盾。所以$p$唯一。
+\item 因$P$为素理想，$F=A/P$是整环。映射$\Z\to A/P$的核是$p\Z$，所以它诱导$\F_p\hookrightarrow F$，将素域嵌入商整环。
+\item 任一$A$中元素唯一为$a+b\omega$，故$F=\F_p[\alpha]$，$\alpha=\omega+P$。令
+\[
+\phi(X)=\begin{cases}
+X^2-m,&m\equiv2,3\pmod4,\\
+X^2-X+(1-m)/4,&m\equiv1\pmod4.
+\end{cases}
+\]
+它的系数都是整数，且$\phi(\omega)=0$。于是$\bar\phi(\alpha)=0$，其中横线表示整数系数模$p$约化。代入同态$\F_p[X]\to F$的核由$\alpha$的首一极小多项式$h$生成，$h\mid\bar\phi$；因非零常数不能映为零，$1\le\deg h\le2$。
+
+所以$F\cong\F_p[X]/(h)$，每个类唯一有次数小于$\deg h$的代表，故$|F|=p$或$p^2$。有限整环为域：非零元素的乘法映射由消去律为单射，有限性使之满射，从而能解乘积为$1$的方程。因此$F$是域，$P$极大。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+首步必须证明收缩不是零理想；非零范数同时属于$P$和$\Z$正好提供这一点。
+
+\subsection{习题31：有理素数在二次整数环中的分裂、分歧与惰性}
+
+\label{ex:4:31}
+
+\paragraph{题目}
+
+承29题。设$p$为一素数，$p$在$R_m$内生成的理想记作$R_mp$，证明：
+\begin{enumerate}[label=(\roman*)]
+\item $R_mp\cap\Z=p\Z$，而且商环$R=R_m/R_mp$包含$F_p=\Z/p\Z$作为子域；
+\item $R=F_p[\gamma]$，$\gamma$表示陪集$\sqrt m+R_mp$或陪集$\tfrac12(1+\sqrt m)+R_mp$，按照$m\equiv2$或$3\pmod4$或$m\equiv1\pmod4$而定。按照这两种情况，$\gamma$的极小多项式是$x^2-m\pmod{p\Z}$或$x^2-x+\tfrac14(1-m)\pmod{p\Z}$。总之，$R$是含$p^2$个元素的有限环；
+\item 设$m\equiv2$或$3\pmod4$，$x^2-m\pmod{p\Z}$可约，若
+\[
+x^2-m\equiv(x-a)(x-b)\pmod{p\Z},
+\]
+其中$a,b\in\Z$而且$a\not\equiv b\pmod{p\Z}$，则$R_m$的理想
+\[
+P_1=(p,\sqrt m-a),\qquad P_2=(p,\sqrt m-b)
+\]
+是素理想，而且$R_mp=P_1\cap P_2=P_1P_2$；
+\item 设$m$同于(iii)，$x^2-m\pmod{p\Z}$可约。若
+\[
+x^2-m\equiv(x-a)^2\pmod{p\Z},\qquad a\in\Z,
+\]
+则$R_m$的理想$P=(p,\sqrt m-a)$是素理想，而且$R_mp=P^2$。这种情况仅当$p=2$或$p\mid m$时才出现；
+\item 设$m$同于(iii)，若$x^2-m\pmod{p\Z}$不可约，则$R_mp$是$R_m$的素理想；
+\item 在情况(iii)--(v)中用$x^2-x+\tfrac14(1-m)$替代$x^2-m$，结论仍然成立。此时(iv)仅当$p\mid m$时才出现。
+\end{enumerate}
+因此，明显地决定了$R_m$的一切素理想。
+
+\paragraph{考点与思路}
+
+先明确模$p$商环的二次多项式表示，再按二次式的分解类型分别计算素理想及其乘积。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c3correspondence}；\noteref{c3comaximal}；\noteref{c3crt}；\noteref{c3irred}；\exref{4}{29}；\exref{4}{30}。原题：《代数学引论》第三版，书页160，扫描PDF第170页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+记$A=R_m=\Z+\Z\omega$，$\omega$和$\phi$取自\exref{4}{30}。基$1,\omega$的整数线性表示唯一。
+\begin{enumerate}[label=(\roman*)]
+\item $pA=\{pa+pb\omega:a,b\in\Z\}$。若其中元素为整数，由表示唯一性，$pb=0$使$b=0$，所以$pA\cap\Z=p\Z$。因此$\Z\to A/pA$诱导一个单射$\F_p\hookrightarrow A/pA$。
+\item 令$\gamma=\omega+pA$。任意类唯一为$\bar a+\bar b\gamma$，$\bar a,\bar b\in\F_p$，所以$A/pA=\F_p[\gamma]$且有$p^2$个元素。$\bar\phi(\gamma)=0$，而不存在非零的至多一次多项式关系，因为$1,\gamma$在$\F_p$上线性无关。因此$\gamma$的首一极小多项式恰为$\bar\phi$，并有
+\[
+A/pA\cong\F_p[X]/(\bar\phi).
+\]
+这在商环有零因子时仍成立；这里的极小多项式是代入核的首一生成元，不预先断言不可约。
+
+\item 设$m\equiv2,3\pmod4$，且$X^2-m=(X-\bar a)(X-\bar b)$于$\F_p[X]$，$\bar a\ne\bar b$。代入$\omega\mapsto\bar a$的满同态$A\to\F_p$的核为$P_1=(p,\omega-a)$：因为$a_0+b_0\omega$的值为零当且仅当$a_0+b_0a$被$p$整除，此时它可写为$p c+b_0(\omega-a)$。同理$P_2=(p,\omega-b)$也是满同态的核。因此两者均为极大理想，特别地为素理想。
+
+$P_1+P_2$包含$p$和整数$a-b$，二者互素，贝祖等式给出$P_1+P_2=A$。由$\F_p[X]$中两个不同一次因式互素，且交等于积，
+\[
+(X-\bar a)\cap(X-\bar b)=((X-\bar a)(X-\bar b))=(\bar\phi).
+\]
+在上述商环对应下，这说明$P_1\cap P_2=pA$。交换幺环中互素理想的交等于积，所以$pA=P_1\cap P_2=P_1P_2$。
+
+\item 设$m\equiv2,3\pmod4$，且$\bar\phi=(X-\bar a)^2$。同样的代入给出$P=(p,\omega-a)$为极大理想。其平方由$p^2,p(\omega-a),(\omega-a)^2$生成。重复根条件说明$p\mid2a$、$p\mid m-a^2$，而
+\[
+(\omega-a)^2=m-a^2-2a(\omega-a),
+\]
+故$P^2\subseteq pA$。为证明反向包含，只须证明$p\in P^2$。
+
+若$p$为奇数，则$p\mid a$且$p\mid m$，可改用代表元$a=0$，$P=(p,\omega)$。因$m$无平方因子，$\gcd(p^2,m)=p$，而$p^2,\omega^2=m$均在$P^2$中，整数贝祖等式给出$p\in P^2$。
+
+若$p=2$且$m\equiv2\pmod4$，重复根为$0$，$P=(2,\omega)$，$4,m\in P^2$且$\gcd(4,m)=2$，故$2\in P^2$。若$p=2$且$m\equiv3\pmod4$，重复根为$1$，$P=(2,\omega-1)$，且
+\[
+(\omega-1)^2+2(\omega-1)=m-1\in P^2.
+\]
+由于$m-1\equiv2\pmod4$，$4,m-1$的最大公因子为$2$，仍得$2\in P^2$。于是全部情形中$pA=P^2$。
+
+从$\bar\phi$的导数$2X$可知，奇$p$有重复根仅当$p\mid m$；$p=2$时二次式总为一个一次式的平方。故原题所列$p=2$或$p\mid m$覆盖了全部重复根情形。
+
+\item 若$\bar\phi=X^2-m$不可约，则$A/pA\cong\F_p[X]/(\bar\phi)$为域，所以$pA$是素理想，而且是极大理想。
+
+\item 现设$m\equiv1\pmod4$，$\omega=(1+\sqrt m)/2$，令$c=(1-m)/4\in\Z$，$\phi=X^2-X+c$。若$\bar\phi=(X-\bar a)(X-\bar b)$且$\bar a\ne\bar b$，则
+\[
+P_1=(p,\omega-a),\quad P_2=(p,\omega-b)
+\]
+为代入满同态的核，都是素理想；它们互素，由第三项同样的理想对应和互素交积公式，$pA=P_1\cap P_2=P_1P_2$。若$\bar\phi$不可约，由第五项的商域论证，$pA$为素理想。
+
+若$\bar\phi=(X-\bar a)^2$，先比较导数：$p=2$时$\bar\phi'=1$，没有重复根；奇$p$时$2a-1\equiv0$且$\phi(a)\equiv0\pmod p$，等式
+\[
+4\phi(a)=(2a-1)^2-m
+\]
+说明$p\mid m$。反过来，奇$p\mid m$时取$2a\equiv1\pmod p$即得到重复根。
+
+令$P=(p,\omega-a)$，它仍为代入满同态的核。记$t=\omega-a$，有$t^2+(2a-1)t+\phi(a)=0$。因$p\mid2a-1$和$p\mid\phi(a)$，故$P^2\subseteq pA$。又$m$无平方因子，上面的整数等式表明$p^2\nmid\phi(a)$，故$\gcd(p^2,\phi(a))=p$。而
+\[
+\phi(a)=-t^2-(2a-1)t\in P^2,
+\]
+连同$p^2\in P^2$，贝祖等式给出$p\in P^2$，所以$pA=P^2$。这证明了替换后的全部三类结论，并说明重复根只在$p\mid m$时出现。
+\end{enumerate}
+
+最后说明分类的完备性。由\exref{4}{30}，任一非零素理想收缩为某个$(p)$，所以包含$pA$。它们对应于$\F_p[X]/(\bar\phi)$的素理想，也即$\F_p[X]$中包含$(\bar\phi)$的素理想。这些恰由$\bar\phi$的不可约因子生成，而二次式的因子类型已由上述三类穷尽。加上整环$A$的零素理想，便得到$A$的一切素理想。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+重复根只给出$P^2\subseteq pA$还不够；平方因子不存在的条件用于反向构造$p\in P^2$，不能省略。
+
+\subsection{习题32：二次整数环的有限商与诺特性}
+
+\label{ex:4:32}
+
+\paragraph{题目}
+
+承29题。证明：
+\begin{enumerate}[label=(\roman*)]
+\item 设$d$为任一正整数，则商环$R_m/R_md$是含$d^2$个元素的有限环；
+\item 设$A$为$R_m$的任一非零理想，则交$A\cap\Z$是$\Z$的一个非零理想。令$A\cap\Z=d\Z$，则商环$R_m/A$的元素的个数不超过$d^2$；
+\item $R_m$是一个诺特环。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+以整基直接计数模整数的商，再用范数将任意非零理想压在一个有限商之上。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4quadratic}；\noteref{c4noeth}；\exref{4}{29}。原题：《代数学引论》第三版，书页160--161，扫描PDF第170页起。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+记$A=R_m=\Z+\Z\omega$。
+\begin{enumerate}[label=(\roman*)]
+\item $dA=\{da+db\omega:a,b\in\Z\}$。两个元素$a+b\omega,a'+b'\omega$模$dA$同余，当且仅当$d\mid a-a'$且$d\mid b-b'$。因此每个类有唯一代表$a+b\omega$，$0\le a,b<d$，商环恰有$d^2$个元素。$d=1$时为单元素零环，也符合公式。
+\item 取$0\ne z\in A_0$，这里以$A_0$记原题的非零理想。由共轭封闭性，$0\ne N(z)=z\bar z\in A_0\cap\Z$，故该交为非零整数理想$d\Z$，可取$d>0$。因为$d\in A_0$，有$dA\subseteq A_0$，所以自然映射
+\[
+A/dA\longrightarrow A/A_0
+\]
+满射。前者有$d^2$个元素，后者的元素个数因而不超过$d^2$。
+\item 取任意理想升链$A_1\subseteq A_2\subseteq\cdots$。若全为零，已稳定；否则取其中一个非零项$A_k$。由第二项，$A/A_k$为有限环。对$i\ge k$，理想$A_i/A_k$在这个有限集合中形成升链，严格增加只可能发生有限次，因此从某项起相等。取完全反像，原链从该项起也相等。
+
+故$A$满足理想升链条件，是诺特环。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+先证明任意非零理想都含一个非零整数，才能把它的商环与有限商$A/dA$联系起来。
+
+\subsection{习题33：诺特性在商环、直和与分式环中的保持}
+
+\label{ex:4:33}
+
+\paragraph{题目}
+
+证明：
+\begin{enumerate}[label=(\roman*)]
+\item 诺特环的商环为诺特环；
+\item 有限多个诺特环的直和为诺特环；
+\item 诺特环的分式环为诺特环；
+\item 举例说明诺特环的子环不一定是诺特环。
+\end{enumerate}
+
+\paragraph{考点与思路}
+
+用理想有限生成的刻画处理前三项；子环的反例取无限多个未定元的多项式环嵌入其商域。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4noeth}；\noteref{c3direct}；\noteref{c3fraction}；\noteref{c3correspondence}。原题：《代数学引论》第三版，书页161，扫描PDF第171页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+以下使用交换幺环的诺特性约定。
+\begin{enumerate}[label=(\roman*)]
+\item 设$A\lhd R$，$J$为$R/A$的理想。其完全反像$I$是$R$的理想，故$I=(a_1,\ldots,a_s)$。满同态取像给出$J=(a_1+A,\ldots,a_s+A)$，所以商环的每个理想有限生成，商环诺特。
+\item 设$R=\bigoplus\limits_{i=1}^rR_i$，各$R_i$诺特。令$e_i$为第$i$分量的单位元，其他分量为零。对理想$J\lhd R$及$x\in J$，$e_ix\in J\cap R_i$，并有$x=\sum_i e_ix$，所以$J=\bigoplus_i(J\cap R_i)$。每个交在对应的$R_i$内有限生成；把有限多个分量的生成元嵌入$R$后合并，就得到$J$的有限生成元。因此直和诺特。
+\item 设$S$为乘性子集，$J\lhd S^{-1}R$。令$I=\{a\in R:a/1\in J\}$，它为$R$的理想，取有限生成元$a_1,\ldots,a_s$。若$a/t\in J$，则$a/1=(t/1)(a/t)\in J$，所以$a\in I$。写$a=\sum r_ia_i$，便有
+\[
+a/t=\sum_i(r_i/t)(a_i/1).
+\]
+反过来，$a_i/1\in J$。因此$J=(a_1/1,\ldots,a_s/1)$，分式环诺特。
+\item 取域$F$及可数个代数无关未定元$X_1,X_2,\ldots$，令$B=F[X_1,X_2,\ldots]$表示所有仅含有限多个未定元的多项式。它为整环，故嵌入其商域$K$。域的理想只有零理想和整个域，所以$K$诺特。
+
+但$B$中的链$(X_1)\subsetneq(X_1,X_2)\subsetneq\cdots$无限严格增加：将$X_1,\ldots,X_n$都代为零会消去前一理想的全部元素，却不会消去$X_{n+1}$，故后者不属于该理想。所以$B$不诺特，是诺特环$K$的一个非诺特子环。
+\end{enumerate}
+
+\end{proof}
+
+\paragraph{复习提示}
+
+第三项中把分母移回分子时，使用的是分式环内$t/1$为单位，不要求原环元素$t$可逆。
+
+\subsection{习题34：唯一分解整环的素理想商未必唯一分解}
+
+\label{ex:4:34}
+
+\paragraph{题目}
+
+举例说明一个唯一因子分解整环$R$模它的一个素理想得到的商环不一定是唯一因子分解整环。
+
+\paragraph{考点与思路}
+
+取整数多项式环模掉$x^2+5$，识别为$\Z[\sqrt{-5}]$，再给出不可约而非素的元素。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4polynomial}；\noteref{c4ufd}；\noteref{c4nonufd}；\noteref{c3prime}。原题：《代数学引论》第三版，书页161，扫描PDF第171页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+取$R=\Z[x]$、$P=(x^2+5)$。$\Z$为唯一因子分解整环，由高斯整环的多项式扩张定理，$R$也是唯一因子分解整环。
+
+代入$x\mapsto\sqrt{-5}$给出满同态$\Z[x]\to\Z[\sqrt{-5}]$。用首一多项式$x^2+5$作带余除法，余式形如$a+bx$；若代入值为零，则$a+b\sqrt{-5}=0$使$a=b=0$。故核恰为$P$，得到
+\[
+R/P\cong\Z[\sqrt{-5}].
+\]
+右侧为复数域的子环，是整环，所以$P$确为素理想。
+
+在右侧，范数为$a^2+5b^2$，非零非单位的范数大于$1$。范数为$2$的元素不存在：$b\ne0$时范数至少为$5$，$b=0$时为整数平方。因此$2$的范数$4$不能分为两个非单位的范数乘积，$2$不可约。
+
+但$(1+\sqrt{-5})(1-\sqrt{-5})=6$被$2$整除，而两个因子的系数并非全为偶数，所以均不被$2$整除。$2$不可约而非素，右侧不是唯一因子分解整环。这给出所求反例。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+须同时验证母环唯一分解、所模理想为素理想，以及商整环不唯一分解。
+
+\subsection{习题35：唯一分解整环的子环未必唯一分解}
+
+\label{ex:4:35}
+
+\paragraph{题目}
+
+举例说明唯一因子分解整环的子环不一定是唯一因子分解整环。
+
+\paragraph{考点与思路}
+
+在域上一元多项式环内，取由$t^2,t^3$生成的子环，用$t^2$不可约而不素作判别。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4ufd}；\noteref{c4polynomial}；\noteref{c4div}。原题：《代数学引论》第三版，书页161，扫描PDF第171页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+取域$F$，母环$F[t]$为主理想整环，因而为唯一因子分解整环。令$A=F[t^2,t^3]\subseteq F[t]$。它由形如$c_0+\sum_{j\ge2}c_jt^j$的多项式组成，和式仅有有限个非零项：每个$j\ge2$均可写为$2a+3b$，而次数为$1$的项不可能由$t^2,t^3$产生。
+
+$A$的单位只能是$F^\times$，因为在$F[t]$中非零多项式乘积次数可加。故每个非单位非零元的次数至少为$2$。若$t^2$分为两个非单位之积，其次数至少为$4$，矛盾，因此$t^2$在$A$内不可约。
+
+但$t^2\mid(t^3)^2$在$A$中成立，商为$t^4\in A$，而$t^2\nmid t^3$，因为在母环中的唯一商为$t$，它不在$A$中。因此$t^2$不是素元，$A$不为唯一因子分解整环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+整除是否成立取决于商是否仍在子环内；母环中的商$t$不属于这里的子环。
+
+\subsection{习题36：诺特环的诣零根是幂零理想}
+
+\label{ex:4:36}
+
+\paragraph{题目}
+
+证明诺特环的诣零根$N$是幂零的，即存在一个正整数$r$使得$N^r=(0)$。
+
+\paragraph{考点与思路}
+
+取诣零根的有限生成元，给每个生成元选幂零指数，再用一个统一指数消去所有生成元乘积。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4noeth}；\noteref{c3nil}；\noteref{c3product}。原题：《代数学引论》第三版，书页161，扫描PDF第171页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+诣零根$N$由全部幂零元组成，是一个理想。因$R$诺特，可写$N=(a_1,\ldots,a_s)$。若$N=0$，取$r=1$即可。以下为每个生成元取$n_i\ge1$使$a_i^{n_i}=0$，令
+\[
+r=1+\sum_{i=1}^s(n_i-1).
+\]
+理想$N^r$由全部$r$个生成元的乘积$a_{i_1}\cdots a_{i_r}$生成。若其中每个$a_i$出现次数均不超过$n_i-1$，总因子数将不超过$r-1$，矛盾。所以至少某个$a_i$出现$n_i$次；环交换使该乘积含因子$a_i^{n_i}=0$，故整个乘积为零。
+
+所有生成乘积都为零，因此$N^r=0$。这里有限生成性把逐元素的幂零条件统一成了整个理想的一个幂零指数。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+一般环的幂零根不一定有统一幂零指数；本题的关键是诺特性保证只需有限个生成元。
+
+\subsection{习题37：诺特环上形式幂级数环仍为诺特环}
+
+\label{ex:4:37}
+
+\paragraph{题目}
+
+设$R$为一诺特环。证明$R$上形式幂级数环$R[[x]]$也是诺特环。
+
+\paragraph{考点与思路}
+
+把理想中从第$n$次开始的级数的第$n$项系数组成升链，选有限个代表级数后逐项消去，并将无限消去过程收集为有限个形式级数系数。
+
+\paragraph{所用结论与原文依据}
+
+\noteref{c4noeth}；\noteref{c4hilbert}；\exref{3}{62}。原题：《代数学引论》第三版，书页161，扫描PDF第171页。
+
+% 原题来自扫描本；下列证明为本册补写，不声称教材提供了原解。
+
+\begin{proof}
+
+设$H\lhd R[[x]]$，须证明$H$有限生成。形式级数的相等按系数判断，乘法的每个系数仅涉及有限个项，使用\exref{3}{62}的运算约定。
+
+对每个$n\ge0$，令
+\[
+I_n=\{a\in R:\text{存在 }f=ax^n+a_{n+1}x^{n+1}+\cdots\in H\}.
+\]
+这里$f$的低于$n$次项全为零，允许$a=0$。两个代表级数相减、或乘以$R$中的常数，说明$I_n$对减法与常数乘法封闭，且含$0$，故为$R$的理想。将代表级数乘以$x$，得$I_n\subseteq I_{n+1}$。
+
+$R$诺特，所以存在$m$使$I_m=I_{m+1}=\cdots$。对$0\le n\le m$，取有限生成元$I_n=(a_{n1},\ldots,a_{nr_n})$，并为每个非零生成元选择
+\[
+f_{nj}=a_{nj}x^n+\text{高于 }n\text{ 次的项}\in H.
+\]
+若$I_n=0$，无需选代表，视$r_n=0$。这些级数总共只有有限个。令$J$为它们在$R[[x]]$中生成的理想，已有$J\subseteq H$。
+
+任取$f\in H$。递推构造余项$g_t\in H\cap x^tR[[x]]$，从$g_0=f$开始。设$g_t$的$x^t$系数为$c_t$，令$n=\min(t,m)$。由定义$c_t\in I_t=I_n$，选$b_{tj}\in R$使$c_t=\sum_j b_{tj}a_{nj}$，并置
+\[
+g_{t+1}=g_t-\sum_{j=1}^{r_n}b_{tj}x^{t-n}f_{nj}.
+\]
+被减级数均在$H$中，最低次至少为$t$，其第$t$项系数之和恰为$c_t$。所以$g_{t+1}\in H$且低于$t+1$次的项全零，递推成立。若$c_t=0$，可将所有$b_{tj}$取零。
+
+现在把这些消去项收集起来。对$n<m$，该组$f_{nj}$仅在$t=n$时出现，给它的系数为常数$b_{nj}$。对$n=m$，定义形式级数
+\[
+B_j(x)=\sum_{t=m}^{\infty}b_{tj}x^{t-m}\in R[[x]].
+\]
+每个系数在递推时已经确定，不涉及解析收敛。于是形成有限个生成元的组合
+\[
+F(x)=\sum_{n=0}^{m-1}\sum_{j=1}^{r_n}b_{nj}f_{nj}
++\sum_{j=1}^{r_m}B_j(x)f_{mj}\in J.
+\]
+若$m=0$，前面的双重有限和为空，仍按相同公式理解。
+
+对任意固定次数$k$，所有$t>k$时减去的项都从高于$k$次开始，不影响前$k+1$个系数；而递推后的$g_{k+1}$这几个系数全为零。因此$f$与$F$在每个固定次数$k$的系数相等，故$f=F\in J$。
+
+所以$H\subseteq J$，合并得到$H=J$有限生成。$R[[x]]$的每个理想都有限生成，由诺特性等价判据，$R[[x]]$为诺特环。
+
+\end{proof}
+
+\paragraph{复习提示}
+
+形式级数不能靠最高次数下降；要逐次消去最低未消去项，再证明所得无限过程确实给出有限个生成元的形式级数线性组合。
