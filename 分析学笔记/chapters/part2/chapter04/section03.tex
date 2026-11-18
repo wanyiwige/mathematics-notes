@@ -414,7 +414,7 @@ x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
 \subsection*{Gauss 公式}
 % 空间单连通、复连通按本节教材的称谓定义，不与前面的平面定义混用。
 \begin{definition}
-本节按教材采用下列空间区域的称谓：设 $\Omega$ 为空间中的一个区域。如果 $\Omega$ 内的任意一张封闭曲面所围的立体仍属于 $\Omega$，那么称 $\Omega$ 为三维单连通区域；否则称为三维复连通区域。
+设 $\Omega$ 为空间中的一个区域。如果 $\Omega$ 内的任意一张封闭曲面所围的立体仍属于 $\Omega$，那么称 $\Omega$ 为三维单连通区域；否则称为三维复连通区域。
 \end{definition}
 通俗地说，这里三维单连通区域之中不含有“洞”，而三维复连通区域之中含有“洞”。例如，单位球
 \[
@@ -435,7 +435,7 @@ x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
 这里 $\partial\Omega$ 的定向为外侧，称为 $\Omega$ 的诱导定向。
 \end{theorem}
 \begin{proof}
-先按原图证明标准区域的情形。设 $\Omega$ 同时可表示为
+先证明标准区域的情形。设 $\Omega$ 同时可表示为
 \[
 \begin{aligned}
 \Omega&=\{(x,y,z):(x,y)\in\Omega_{xy},\ z_1(x,y)\le z\le z_2(x,y)\}\\
@@ -542,7 +542,7 @@ V&=\iiint_\Omega1\,\dd x\dd y\dd z
 这里边界取诱导定向，光滑参数表示先取 $C^2$ 以便使用混合偏导数；$C^1$ 正则曲面的情形见证明末尾的逼近论证。
 \end{theorem}
 \begin{proof}
-先沿原图的思路，设曲面可表示为 $z=z(x,y)$ 并取上侧，投影区域记为 $D=\Sigma_{xy}$。其单位法向量满足
+先设曲面可表示为 $z=z(x,y)$ 并取上侧，投影区域记为 $D=\Sigma_{xy}$。其单位法向量满足
 \[
 \boldsymbol n=\frac{(-z_x,-z_y,1)}{\sqrt{1+z_x^2+z_y^2}},\qquad
 z_y=-\frac{\cos\beta}{\cos\gamma},\quad
@@ -573,7 +573,7 @@ z_y=-\frac{\cos\beta}{\cos\gamma},\quad
 &=\displaystyle\iint_D(R_xz_y-R_yz_x)\,\dd x\dd y\\
 &=\displaystyle\iint_\Sigma R_y\,\dd y\dd z-R_x\,\dd z\dd x.
 \end{align*}
-第二行中含 $R_z$ 的乘积相消，且 $z_{xy}=z_{yx}$。三式相加即得公式；这也补明了原图中三种投影表示下的分量计算。
+第二行中含 $R_z$ 的乘积相消，且 $z_{xy}=z_{yx}$。三式相加即得 Stokes 公式。
 
 % 一般曲面通过局部参数片与单位分解拼接，不假定存在一张全局图像。
 对一般曲面，取一个与定向相容的正则参数片 $\boldsymbol r(u,v)$，以及支集紧含于此片邻域的向量场 $\boldsymbol H$。定义参数平面上的两个函数
