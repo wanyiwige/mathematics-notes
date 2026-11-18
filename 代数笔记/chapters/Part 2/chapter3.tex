@@ -37,7 +37,7 @@ rx,xr\in H\cap N.
 
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-subring-sum}
 设$H,N$为环$R$的子环，定义它们的和为
 \[
 H+N=\{a+b:a\in H,\ b\in N\}.
@@ -251,7 +251,7 @@ H/(H\cap N)\cong\pi(H).
 
 本节讨论的环默认有单位元，即为幺环；讨论任意环的理想生成时会另行说明。对幺环中的元素，零次幂记为$a^0=1$。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-ring-sum}
 设$R_1,\ldots,R_r$为有限多个环。在它们的加法群直和上定义
 \[
 (a_1,\ldots,a_r)(b_1,\ldots,b_r)=(a_1b_1,\ldots,a_rb_r).
@@ -293,7 +293,7 @@ xy=(0,\ldots,a_ib_i,\ldots,0),
 
 直和中的这些理想具有独立的加法分解和相互为零的乘法。下面反过来从环内部的理想恢复这种结构。
 
-\begin{theorem}\label{p2:ring-internal-sum}
+\begin{theorem}\phantomsection\label{p2:concept:c3-ring-internal-sum}\label{p2:ring-internal-sum}
 设$R_1,\ldots,R_r$为环$R$的理想，并满足
 \[
 R=R_1+\cdots+R_r,\qquad
@@ -329,7 +329,7 @@ a=a1=ae_i,\qquad a=1a=e_i a.
 
 为了给出与内直和判别相对应的商环形式，先定义理想的积与互素性。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-ideal-product}
 设$H,N$为$R$的理想。全部有限和
 \[
 \sum_{i=1}^m a_ib_i,\qquad a_i\in H,\ b_i\in N,
@@ -418,7 +418,7 @@ M_1+\cdots+M_k=N_{k+1}\cdots N_r.
 最后，$\sigma(x)=0$当且仅当每个$\sigma_i(x)=0$，即$x\in N_i$对所有$i$成立。因此核为$\bigcap_iN_i$，再用环同态基本定理得到商环同构。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-congruence}
 设$N\lhd R$。若$a-b\in N$，则称$a,b$\textbf{模$N$同余}，记为$a\equiv b\pmod N$。它等价于$a+N=b+N$。
 \end{definition}
 
@@ -439,7 +439,7 @@ x\equiv b_i\pmod{N_i}\qquad(1\leq i\leq r)
 
 本节最后讨论任意环中的理想生成，此处不要求环有单位元。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-generated-ideal}
 对非空子集$S\subseteq R$，所有包含$S$的理想之交称为\textbf{由$S$生成的理想}，记为$(S)$。它是包含$S$的最小理想。若$S=\{a_1,\ldots,a_r\}$，简记为$(a_1,\ldots,a_r)$，称为\textbf{有限生成理想}；由一个元素生成的理想$(a)$称为\textbf{主理想}。
 \end{definition}
 
@@ -466,7 +466,7 @@ na+xa+ay+\sum_{i=1}^m x_iay_i,
 \section{环的反同构}
 
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-antiisomorphism}
 若双射$\sigma:R\to R'$满足
 \[
 \sigma(a+b)=\sigma(a)+\sigma(b),\qquad
@@ -561,7 +561,7 @@ x'+y'=(x+y)',\qquad x'y'=(yx)'.
 
 
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-prime-maximal}
 设$R$为交换幺环。
 \begin{enumerate}
 \item 若$R$的理想$P\ne R$，并且$ab\in P$蕴含$a\in P$或$b\in P$，则称$P$为$R$的一个\textbf{素理想}。
@@ -653,7 +653,7 @@ M\subsetneq A\subsetneq R,
 
 由上可知，交换幺环的每个极大理想也是素理想，因为域是整环。但素理想不一定是极大理想。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-nilpotent}
 若$a\in R$满足$a^m=0$，其中$m$为某个正整数，则称$a$为\textbf{零幂元}。若对每个正整数$m$都有$a^m\ne0$，则称$a$为非零幂元。
 \end{definition}
 
@@ -731,7 +731,7 @@ a^r=a\,a^{r-1}\in P.
 反过来，设$a$不是零幂元。根据定理\ref{p2:prime-avoid-powers}，存在$R$的一个素理想$P$使$a\notin P$，所以$a\notin r(R)$。这就证明$r(R)$恰由全部零幂元组成。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-nilradical}
 全部素理想之交$r(R)$称为$R$的\textbf{诣零根}，即
 \[
 r(R)=\bigcap_{P\text{为}R\text{的素理想}}P.
@@ -747,7 +747,7 @@ r(R)=\bigcap_{P\text{为}R\text{的素理想}}P.
 
 本节讨论交换幺环。从整数构造有理数的方法可以推广到整环：在包含$R$的域中，使$R$的每个非零元素都有逆元，并要求所得域的元素都能写成$R$中两个元素的商。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-fraction-field}
 设$R$为整环。若域$F$满足下列条件，则称$F$为$R$的\textbf{商域}：
 \begin{enumerate}
 \item $R$是$F$的子环；
@@ -865,7 +865,7 @@ R'=\left\{\frac a1:a\in R\right\}.
 若$F,F'$都是$R$的商域，把包含映射$R\hookrightarrow F'$扩充为单同态$\eta':F\to F'$。任意$x'\in F'$可写成$a/b$，而$F$中的$a/b$在$\eta'$下恰映为$x'$，所以$\eta'$满射，是保持$R$不动的同构。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-multiplicative-set}
 交换幺环$R$的非空子集$S$若对乘法封闭，即$s_1,s_2\in S$蕴含$s_1s_2\in S$，则称$S$为\textbf{乘性子集}，也称乘法子集。这里不要求$1\in S$。
 \end{definition}
 
@@ -896,7 +896,7 @@ N(S)=N=\{a\in R:\text{存在 }s\in S\text{ 使 }as=0\}.
 \end{enumerate}
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-fraction-ring}
 设$R$为交换幺环，$S$为乘性子集，$N$为上述理想。如果交换幺环$R'$满足下列条件，则称$R'$为$R$关于$S$的\textbf{分式环}：
 \begin{enumerate}
 \item 存在环同态$\sigma:R\to R'$，使$\sigma(1)=1_{R'}$，而且对每个$s\in S$，$\sigma(s)$在$R'$中可逆；
@@ -1144,9 +1144,9 @@ S_2^{-1}R\cong R/N_2\cong\Z/(2),
 
 \section{交换环上的多项式环}
 
-本节讨论交换幺环。若$R$是$R'$的子环，称$R'$为$R$的\textbf{扩环}；本节涉及扩环时，总假定$R,R'$有相同的单位元。
+\phantomsection\label{p2:concept:c3-extension-ring}本节讨论交换幺环。若$R$是$R'$的子环，称$R'$为$R$的\textbf{扩环}；本节涉及扩环时，总假定$R,R'$有相同的单位元。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-generated-subring}
 设$R'$为$R$的扩环，$u\in R'$。所有形如
 \[
 a_0+a_1u+\cdots+a_nu^n,\qquad a_i\in R,\quad n\ge0,
@@ -1164,10 +1164,10 @@ $R[u]$包含$0$，且对减法封闭。由交换性，
 \end{align*}
 因此$R[u]$也对乘法封闭，是$R'$的子环。取常数多项式可知$R\subseteq R[u]$，取一次式$u$可知$u\in R[u]$。反过来，包含$R$与$u$的任何子环均包含$u$的所有非负整数次幂及它们的有限线性组合，故均包含$R[u]$。所以$R[u]$是包含$R$和$u$的最小子环。
 \end{proof}
-若关于$u$的多项式$a_0+a_1 u +\cdots +a_n u^n=0$,称这个多项式为$u$在$R$上的一个代数关系.
+\phantomsection\label{p2:concept:c3-algebraic-relation}若关于$u$的多项式$a_0+a_1 u +\cdots +a_n u^n=0$,称这个多项式为$u$在$R$上的一个代数关系.
 $R[u]$中的两个多项式表达式可能表示同一元素，这取决于$u$在$R$上满足的代数关系。先构造一个扩环及其中的元素$x$，使$x$的多项式只有在对应系数全相等时才相等。
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-formal-series}
 用$R[[x]]$表示所有无穷序列
 \[
 (a_n)=(a_0,a_1,a_2,\ldots),\qquad a_i\in R,
@@ -1206,7 +1206,7 @@ $R[[x]]$包含子环$R_0=\{(a,0,0,\ldots):a\in R\}$，且$a\mapsto(a,0,0,\ldots)
 \[
 a(b_0,b_1,\ldots)=(ab_0,ab_1,\ldots).
 \]
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-polynomial-ring}
 在$R[[x]]$中取$x=(0,1,0,\ldots)$，$x$在$R$上生成的子环$R[x]$称为$R$上的\textbf{一元多项式环}。
 \end{definition}
 
@@ -1219,7 +1219,7 @@ a_0+a_1x+\cdots+a_nx^n=(a_0,a_1,\ldots,a_n,0,\ldots).
 a_0+a_1x+\cdots+a_nx^n=0
 \quad\Longleftrightarrow\quad a_0=\cdots=a_n=0.
 \]
-两个多项式相等当且仅当对应系数相等；比较时允许在末尾添上零系数。称$x$为$R$上的一个\textbf{未定元}，也称不定元。
+\phantomsection\label{p2:concept:c3-indeterminate}两个多项式相等当且仅当对应系数相等；比较时允许在末尾添上零系数。称$x$为$R$上的一个\textbf{未定元}，也称不定元。
 
 \begin{theorem}\label{p2:poly-universal}
 设$\sigma:R\to S$为交换幺环之间的环同态，且$\sigma(1_R)=1_S$。对任意$u\in S$，$\sigma$可以唯一地扩充为环同态
@@ -1274,7 +1274,7 @@ R[u]\cong R[x]/I,\qquad I\cap R=(0).
 若$a\in I\cap R$，则一方面$\sigma_u(a)=0$，另一方面$\sigma_u(a)=a$，所以$a=0$。故$I\cap R=(0)$。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-evaluation}
 映射$f(x)\mapsto f(u)$称为\textbf{代入同态}。若$f(u)=0$，称$u$为$f(x)$的\textbf{根}，并称$f(u)=0$为$u$在$R$上的一个代数关系。
 
 若不存在非零$f\in R[x]$使$f(u)=0$，称$u$在$R$上\textbf{超越}；若存在这样的非零多项式，则称$u$在$R$上\textbf{代数}，或称$u$为$R$上的代数元。
@@ -1293,7 +1293,7 @@ f(x)+I=(a_0+I)+(a_1+I)u+\cdots+(a_n+I)u^n.
 将$a_i+I$与$a_i$等同后，这就是$R[u]$中的元素，故商环由$R$与$u$生成。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-multivariate-ring}
 对正整数$n$归纳定义\textbf{多元多项式环}：$n=1$时即$R[x_1]$；$n>1$时，
 \[
 R[x_1,\ldots,x_n]=R[x_1,\ldots,x_{n-1}][x_n].
@@ -1337,7 +1337,7 @@ a_{i_1\ldots i_n}=0\text{ 对所有指数组成立}.
 若另有同态满足条件，它在前$n-1$个变量的多项式环上的限制必为$\sigma_{n-1}$，再由一元扩充的唯一性，它在整个环上必与$\sigma_n$相同。因此扩充唯一。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-finitely-generated-ring}
 设$R'$为$R$的扩环，$u_1,\ldots,u_n\in R'$。集合
 \[
 R[u_1,\ldots,u_n]
@@ -1385,7 +1385,7 @@ R[x_1,\ldots,x_n]/N[x_1,\ldots,x_n]
 
 \section{整环上的一元多项式环}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-degree}
 设$f(x)=a_0+\cdots+a_nx^n$且$a_n\ne0$。称$n$为$f$的\textbf{次数}，记作$\deg f$；称$a_n$为\textbf{首项系数}。首项系数为$1$的非零多项式称为\textbf{首一多项式}。约定$\deg0=-\infty$。
 \end{definition}
 
@@ -1459,7 +1459,7 @@ f=\bigl(q_1+a_nb_m^{-1}x^{n-m}\bigr)g+r,
 而右端次数小于$m$，矛盾。所以$q=q'$，进而$r=r'$。
 \end{proof}
 
-当余式$r=0$时，称$g$\textbf{整除}$f$，记为$g\mid f$，并称$g$为$f$的因式，$f$为$g$的倍式。
+\phantomsection\label{p2:concept:c3-divisibility}当余式$r=0$时，称$g$\textbf{整除}$f$，记为$g\mid f$，并称$g$为$f$的因式，$f$为$g$的倍式。
 
 \begin{corollary}
 对$c\in R$及$f\in R[x]$，存在唯一的$q\in R[x]$使
@@ -1540,7 +1540,7 @@ f(x)=(x-c)g(x),\qquad\deg g=n-1.
 域的全部非零元素在乘法及取逆下封闭，所以$F^*$为有限乘法群，由上一定理，它是循环群。若$a\ne0$，则$a^{q-1}=1$，所以$a^q=a$；$a=0$时也成立。因此$x^q-x$有$F$的全部$q$个元素为根，且它的次数为$q$，没有更多的根。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-primitive-root}
 设$p$为素数，称$F_p=\Z/(p)$的乘法群$F_p^*$的生成元为\textbf{模$p$的原根}。
 \end{definition}
 
@@ -1551,7 +1551,7 @@ f(x)=(x-c)g(x),\qquad\deg g=n-1.
 $F_p^*$为$p-1$阶循环群。若$\overline a$是一个生成元，则$\overline a^{\,r}$仍为生成元当且仅当$(r,p-1)=1$，这样的剩余类恰有$\varphi(p-1)$个。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-pid}
 若整环$R$的每个理想都由一个元素生成，则称$R$为\textbf{主理想整环}。
 \end{definition}
 例如整数环$\mathbb Z$是主理想整环。
@@ -1568,7 +1568,7 @@ g=qf+r,\qquad\deg r<\deg f.
 把$f$除以非零首项系数，可使其首一而不改变生成理想。若两个首一多项式$f,g$生成同一非零理想，则$f=ag$且$g=bf$。比较次数得$\deg f=\deg g$，故$a,b$均为非零常数。再比较首项系数得$a=b=1$，所以$f=g$。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-minimal-polynomial}
 设$F$为域，$u$是包含$F$的交换幺环中的元素，且$u$在$F$上代数。代入同态$F[x]\to F[u]$的核是非零理想，其唯一的首一生成元称为$u$在$F$上的\textbf{极小多项式}。
 \end{definition}
 
@@ -1586,7 +1586,7 @@ F[u]\cong F[x]/(f).
 非零常数代入后不为零，所以核不含非零常数，$\deg f\ge1$。由核等于$(f)$，$g(u)=0$等价于$g\in(f)$，也就是$f\mid g$。非零倍式的次数不小于$\deg f$，所以它确有最小次数。商环同构由代入同态及同构定理得到。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-irreducible}
 域$F$上的正次数多项式$f$，若不能写成两个正次数多项式之积，就称为\textbf{不可约多项式}；否则称为\textbf{可约多项式}。等价地，$f=gh$时至少有一个因子是非零常数，即$F[x]$的可逆元。
 \end{definition}
 
@@ -1698,7 +1698,7 @@ B+C=E,\qquad BC=CB=0.
 \end{enumerate}
 \end{example}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-nilpotent-ideal}
 若环$R$的理想$N$满足$N^m=(0)$对某个正整数$m$成立，则称$N$为\textbf{零幂理想}。上述例子的$N=\mathbb QB$满足$N^2=(0)$，就是零幂理想。
 \end{definition}
 
@@ -1707,7 +1707,7 @@ B+C=E,\qquad BC=CB=0.
 
 \section{多项式函数}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-functions}
 设$F$为域。每个映射$f:F\to F$称为$F$上的一个函数，全体函数组成的集合记为$F^F$。对$f,g\in F^F$定义
 \[
 (f+g)(a)=f(a)+g(a),\qquad(fg)(a)=f(a)g(a)\quad(a\in F).
@@ -1722,12 +1722,12 @@ B+C=E,\qquad BC=CB=0.
 ((fg)h)(a)&=(f(a)g(a))h(a)=f(a)(g(a)h(a))=(f(gh))(a),\\
 (f(g+h))(a)&=f(a)(g(a)+h(a))=(fg+fh)(a).
 \end{align*}
-加法与乘法也可交换。零函数$f_0$为零元，$f_1$为单位元，负元逐点取负，故$F^F$为交换幺环。
+\phantomsection\label{p2:concept:c3-zero-function}加法与乘法也可交换。零函数$f_0$为零元，$f_1$为单位元，负元逐点取负，故$F^F$为交换幺环。
 
-由$f_c+f_d=f_{c+d}$、$f_cf_d=f_{cd}$，映射$c\mapsto f_c$是环同态。不同常数给出不同函数，所以它为单射。将$c$与$f_c$等同后，$F$成为$F^F$的常函数子域。
+\phantomsection\label{p2:concept:c3-constant-subfield}由$f_c+f_d=f_{c+d}$、$f_cf_d=f_{cd}$，映射$c\mapsto f_c$是环同态。不同常数给出不同函数，所以它为单射。将$c$与$f_c$等同后，$F$成为$F^F$的常函数子域。
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-polynomial-functions}
 函数$s$在常函数子域$F$上生成的子环$F[s]$称为$F$上的\textbf{多项式函数环}。其元素形如
 \[
 a_0+a_1s+\cdots+a_ns^n,\qquad a_i\in F,
@@ -1784,7 +1784,7 @@ a_0+a_1x+\cdots+a_{q-1}x^{q-1},\qquad a_i\in F.
 \end{enumerate}
 \end{proof}
 
-\begin{definition}
+\begin{definition}\phantomsection\label{p2:concept:c3-multivariate-functions}
 设$S=F^n$，从$S$到$F$的全部函数按逐点运算构成函数环$F^S$。对$1\le i\le n$，定义自变量函数
 \[
 s_i(a_1,\ldots,a_n)=a_i.
