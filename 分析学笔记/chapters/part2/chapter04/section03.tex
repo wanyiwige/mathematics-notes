@@ -359,3 +359,264 @@ U(x,y)=\int_{x_0}^x P(t,y_0)\,\dd t+\int_{y_0}^y Q(x,s)\,\dd s+c.
 U(x,y)=\int_{y_0}^y Q(x_0,s)\,\dd s+\int_{x_0}^x P(t,y_0)\,\dd t+c,
 \qquad c=U(x_0,y_0).
 \]
+
+\subsection*{原点处有奇点的例子}
+\begin{example}
+设 $L$ 为不经过原点的分段光滑简单闭曲线，方向为逆时针，计算
+\[
+I=\oint_L\frac{x\,\dd y-y\,\dd x}{x^2+y^2}.
+\]
+\end{example}
+\begin{solution}
+记 $L$ 围成的区域为 $D$，并令
+\[
+P=-\frac{y}{x^2+y^2},\qquad Q=\frac{x}{x^2+y^2}.
+\]
+当 $x^2+y^2\ne0$ 时，
+\[
+P_y=\frac{y^2-x^2}{(x^2+y^2)^2}=Q_x.
+\]
+若原点在 $D$ 外，则 $P,Q$ 在 $\overline D$ 附近具有连续偏导数，由 Green 公式，$I=0$。
+
+若原点在 $D$ 内，不能直接在整个 $D$ 上使用 Green 公式。取充分小的 $r>0$，使闭圆盘 $\overline{B(0,r)}\subset D$，令 $D_1=D\setminus\overline{B(0,r)}$，并记小圆周为 $l$。
+\par\addvspace{3pt}
+{\centering
+\includegraphics[width=0.42\linewidth,viewport=115 658 616 1135,clip]{figure/P2/gauss_stokes_diagrams_hd.png}\par}
+\addvspace{3pt}
+若 $l$ 也取逆时针方向，则 $D_1$ 的正向边界是 $L-l$。所以
+\[
+0=\displaystyle\iint_{D_1}(Q_x-P_y)\,\dd x\dd y
+=\oint_L\frac{x\,\dd y-y\,\dd x}{x^2+y^2}
+-\oint_l\frac{x\,\dd y-y\,\dd x}{x^2+y^2}.
+\]
+以 $x=r\cos\theta,y=r\sin\theta$（$0\le\theta\le2\pi$）参数化 $l$，得
+\[
+I=\int_0^{2\pi}\frac{r^2\cos^2\theta+r^2\sin^2\theta}{r^2}\,\dd\theta=2\pi.
+\]
+因此，原点在 $L$ 内部时积分为 $2\pi$，在外部时为 $0$。这也说明仅有 $P_y=Q_x$ 不能在非单连通区域上推出路径无关。
+\end{solution}
+
+若 $L$ 经过原点，原来的第二类曲线积分没有定义。仍可另外讨论沿给定参数的反常积分：设 $L:\boldsymbol r(t)=(x(t),y(t))$，$a\le t\le b$，且只在 $t=t_0$ 经过原点，则考虑
+\[
+\int_a^{t_0}\frac{xy'-yx'}{x^2+y^2}\,\dd t
++\int_{t_0}^b\frac{xy'-yx'}{x^2+y^2}\,\dd t,
+\]
+其中两个单侧反常积分须分别收敛；只取对称截断的极限并不足以定义反常积分。例如
+\[
+x=1+\cos t,\qquad y=\sin t,\qquad 0\le t\le2\pi,
+\]
+在 $t=\pi$ 经过原点，而对 $t\ne\pi$ 有
+\[
+\frac{xy'-yx'}{x^2+y^2}=\frac{1+\cos t}{2+2\cos t}=\frac12.
+\]
+故两个单侧积分均收敛，其和为 $\pi$。一般经过原点的曲线也可能使反常积分发散，须检查相应的单侧极限。
+
+\subsection*{Gauss 公式}
+原图以“区域内任意封闭曲面所围的立体仍属于区域”描述空间区域没有空腔的性质。例如实心球没有空腔，球壳有空腔。这里的“无空腔”须与通常以闭曲线可收缩定义的单连通性区分：三维球壳虽有空腔，却仍是通常意义下的单连通区域。Gauss 公式并不要求区域无空腔。
+
+\begin{theorem}[Gauss 公式（Ostrogradsky--Gauss 公式）]
+设 $\Omega\subset\mathbb R^3$ 为有界区域，其边界由有限片正则光滑曲面组成，具有通常的分片光滑边界结构：各光滑面在边界点附近可写为图像，区域位于其一侧，面之间沿有限条分段光滑棱及有限个顶点相接，且整体局部为 Lipschitz 图像。这里 Lipschitz 图像指图像函数满足 $|f(p)-f(q)|\le C|p-q|$，不允许边界自交或零角度尖裂造成的退化。
+
+若 $\boldsymbol F=(P,Q,R)$ 在 $\overline\Omega$ 的一个邻域上具有连续偏导数，则
+\[
+\iiint_\Omega(P_x+Q_y+R_z)\,\dd x\dd y\dd z
+=\displaystyle\iint_{\partial\Omega}P\,\dd y\dd z+Q\,\dd z\dd x+R\,\dd x\dd y
+=\displaystyle\iint_{\partial\Omega}\boldsymbol F\cdot\boldsymbol n\,\dd S,
+\]
+其中 $\boldsymbol n$ 指向 $\Omega$ 外部。
+\end{theorem}
+\begin{proof}
+先按原图证明标准区域的情形。设 $\Omega$ 同时可表示为
+\[
+\begin{aligned}
+\Omega&=\{(x,y,z):(x,y)\in\Omega_{xy},\ z_1(x,y)\le z\le z_2(x,y)\}\\
+&=\{(x,y,z):(z,x)\in\Omega_{zx},\ y_1(z,x)\le y\le y_2(z,x)\}\\
+&=\{(x,y,z):(y,z)\in\Omega_{yz},\ x_1(y,z)\le x\le x_2(y,z)\}.
+\end{aligned}
+\]
+\par\addvspace{3pt}
+{\centering
+\includegraphics[width=0.45\linewidth,viewport=696 659 1213 1134,clip]{figure/P2/gauss_stokes_diagrams_hd.png}\par}
+\addvspace{3pt}
+记下、上表面为 $\Sigma_1,\Sigma_2$，其外侧分别向下、向上。由累次积分，
+\begin{align*}
+\iiint_\Omega R_z\,\dd x\dd y\dd z
+&=\displaystyle\iint_{\Omega_{xy}}\left[\int_{z_1(x,y)}^{z_2(x,y)}R_z(x,y,z)\,\dd z\right]\,\dd x\dd y\\
+&=\displaystyle\iint_{\Omega_{xy}}[R(x,y,z_2)-R(x,y,z_1)]\,\dd x\dd y\\
+&=\displaystyle\iint_{\Sigma_2}R\,\dd x\dd y+\displaystyle\iint_{\Sigma_1}R\,\dd x\dd y\\
+&=\displaystyle\iint_{\partial\Omega}R\,\dd x\dd y.
+\end{align*}
+可能存在的竖直侧面上 $n_z=0$，故不贡献最后一个积分。同理由另外两种表示，分别先对 $y$ 和 $x$ 积分，得到
+\[
+\iiint_\Omega Q_y\,\dd x\dd y\dd z=\displaystyle\iint_{\partial\Omega}Q\,\dd z\dd x,
+\qquad
+\iiint_\Omega P_x\,\dd x\dd y\dd z=\displaystyle\iint_{\partial\Omega}P\,\dd y\dd z.
+\]
+三式相加即得结论。若区域能有限分成标准区域，逐块应用公式；公共面的两侧外法向量相反，相应积分抵消，体积分相加，便得到整体公式。
+
+% 一般情形沿用前面 Green 公式的局部化方法。
+对一般边界，先作局部计算。设局部边界为 $z=\varphi(x,y)$，$\Omega$ 在图像上方，并设 $\boldsymbol A=(A_1,A_2,A_3)$ 的支集紧含于该局部邻域。将其在邻域外延拓为零。对变限积分求导并对 $x,y$ 积分，紧支集使外端点项为零，故
+\begin{align*}
+\iiint_\Omega\partial_x A_1\,\dd x\dd y\dd z
+&=\displaystyle\iint A_1(x,y,\varphi)\varphi_x\,\dd x\dd y,\\
+\iiint_\Omega\partial_y A_2\,\dd x\dd y\dd z
+&=\displaystyle\iint A_2(x,y,\varphi)\varphi_y\,\dd x\dd y,\\
+\iiint_\Omega\partial_z A_3\,\dd x\dd y\dd z
+&=-\displaystyle\iint A_3(x,y,\varphi)\,\dd x\dd y.
+\end{align*}
+例如第一式来自
+\[
+\partial_x\int_{\varphi(x,y)}^{+\infty}A_1(x,y,z)\,\dd z
+=\int_{\varphi(x,y)}^{+\infty}\partial_xA_1\,\dd z-A_1(x,y,\varphi)\varphi_x.
+\]
+上方区域的外法向指向下侧，因而
+\[
+\boldsymbol n\,\dd S=(\varphi_x,\varphi_y,-1)\,\dd x\dd y.
+\]
+三式相加即得该局部的 Gauss 公式。区域在图像下方时，变限积分及外法向同时变号，公式仍成立。保持定向的正交坐标变换保持体积、面积和法向内积；向量场导数矩阵按 $D\widetilde{\boldsymbol A}=U^{\mathsf T}(D\boldsymbol A)U$ 变换，三个对角项之和不变，故同一计算适用于旋转后才能表示为图像的边界片。支集完全在内部的向量场，对每个变量积分均无边界项，两端皆为零。
+
+先假定 $\boldsymbol F$ 在棱和顶点附近为零。其支集与 $\overline\Omega$ 的交集可由有限个上述边界邻域及内部邻域覆盖。前面的支集、紧支集及单位分解定义逐字推广到 $\mathbb R^3$；光滑球内函数的构造不变。取单位分解 $\rho_i$，令 $\boldsymbol F_i=\rho_i\boldsymbol F$，则
+\[
+\sum_i\boldsymbol F_i=\boldsymbol F,\qquad
+\sum_i\bigl[\partial_x(F_i)_1+\partial_y(F_i)_2+\partial_z(F_i)_3\bigr]=P_x+Q_y+R_z.
+\]
+对各 $\boldsymbol F_i$ 应用局部结论并相加，就得到整体公式；乘积求导产生的附加项之和为
+\[
+\boldsymbol F\cdot\sum_i\nabla\rho_i=0,
+\]
+因为 $\sum_i\rho_i=1$ 在相关紧集附近成立。
+
+最后去掉棱和顶点附近为零的限制。记这些棱和顶点的并为 $E$。取光滑截断函数 $\theta_\varepsilon$，在 $E$ 的 $\varepsilon$ 邻域内为零，$C\varepsilon$ 邻域外为 $1$，满足 $0\le\theta_\varepsilon\le1$、$|\nabla\theta_\varepsilon|\le C/\varepsilon$。这种函数可先对距离函数作尺度为 $\varepsilon$ 的光滑化，再复合固定的一元截断函数得到；距离函数是 $1$-Lipschitz，故有上述导数界。
+
+有限条有限长光滑棱的 $C\varepsilon$ 邻域体积为 $O(\varepsilon^2)$，与边界各面的交集面积为 $O(\varepsilon)$；有限个顶点所需的体积、面积分别为 $O(\varepsilon^3)$、$O(\varepsilon^2)$。这些估计可由局部正则参数表示及有限覆盖得到。对 $\theta_\varepsilon\boldsymbol F$ 应用已证公式，体积分新增项为
+\[
+\iiint_\Omega\nabla\theta_\varepsilon\cdot\boldsymbol F\,\dd x\dd y\dd z,
+\]
+其绝对值为 $O(\varepsilon^{-1}\varepsilon^2)=O(\varepsilon)$；原体积分被去掉的部分趋于零，边界通量之差也为 $O(\varepsilon)$。令 $\varepsilon\to0$，便得一般分片光滑边界上的 Gauss 公式。
+\end{proof}
+
+有空腔时，外边界取几何外侧，内边界取指向空腔的一侧，它们都是相对于 $\Omega$ 的外侧。上述局部证明不要求边界连通，因而直接覆盖这类情形。
+\par\addvspace{3pt}
+{\centering
+\includegraphics[width=0.35\linewidth,viewport=152 98 537 497,clip]{figure/P2/gauss_stokes_diagrams_hd.png}\par}
+\addvspace{3pt}
+
+\begin{corollary}
+设 $\Omega$ 满足 Gauss 公式的条件，体积为 $V$，则在边界取外侧时，
+\begin{align*}
+V&=\iiint_\Omega1\,\dd x\dd y\dd z
+=\displaystyle\iint_{\partial\Omega}x\,\dd y\dd z
+=\displaystyle\iint_{\partial\Omega}y\,\dd z\dd x\\
+&=\displaystyle\iint_{\partial\Omega}z\,\dd x\dd y
+=\frac13\displaystyle\iint_{\partial\Omega}(x\,\dd y\dd z+y\,\dd z\dd x+z\,\dd x\dd y).
+\end{align*}
+\end{corollary}
+\begin{proof}
+分别对 $(x,0,0)$、$(0,y,0)$、$(0,0,z)$ 使用 Gauss 公式，其三个偏导数之和均为 $1$；再将所得三式相加除以 $3$。
+\end{proof}
+
+\subsection*{Stokes 公式}
+设 $\Sigma$ 为有界定向双侧曲面，有分段光滑边界。沿其边界行走时，若保持头部朝所选法向，则曲面始终位于左侧，这给出边界的诱导定向，也称右手定则。
+\begin{theorem}[Stokes 公式]
+设 $\Sigma$ 为紧的定向正则光滑曲面，边界为分段光滑曲线；$P,Q,R$ 在 $\Sigma$ 的一个邻域内具有连续偏导数，则
+\begin{align*}
+&\oint_{\partial\Sigma}P\,\dd x+Q\,\dd y+R\,\dd z\\
+&=\displaystyle\iint_\Sigma(R_y-Q_z)\,\dd y\dd z
++(P_z-R_x)\,\dd z\dd x+(Q_x-P_y)\,\dd x\dd y\\
+&=\displaystyle\iint_\Sigma\bigl[(R_y-Q_z)\cos\alpha
++(P_z-R_x)\cos\beta+(Q_x-P_y)\cos\gamma\bigr]\,\dd S.
+\end{align*}
+这里边界取诱导定向，光滑参数表示先取 $C^2$ 以便使用混合偏导数；$C^1$ 正则曲面的情形见证明末尾的逼近论证。
+\end{theorem}
+\begin{proof}
+先沿原图的思路，设曲面可表示为 $z=z(x,y)$ 并取上侧，投影区域记为 $D=\Sigma_{xy}$。其单位法向量满足
+\[
+\boldsymbol n=\frac{(-z_x,-z_y,1)}{\sqrt{1+z_x^2+z_y^2}},\qquad
+z_y=-\frac{\cos\beta}{\cos\gamma},\quad
+\dd x\dd y=\cos\gamma\,\dd S.
+\]
+\par\addvspace{3pt}
+{\centering
+\includegraphics[width=0.42\linewidth,viewport=684 70 1188 545,clip]{figure/P2/gauss_stokes_diagrams_hd.png}\par}
+\addvspace{3pt}
+由平面 Green 公式和链式法则，
+\begin{align*}
+\oint_{\partial\Sigma}P\,\dd x
+&=\oint_{\partial D}P(x,y,z(x,y))\,\dd x\\
+&=-\displaystyle\iint_D(P_y+P_zz_y)\,\dd x\dd y\\
+&=\displaystyle\iint_\Sigma(P_z\cos\beta-P_y\cos\gamma)\,\dd S\\
+&=\displaystyle\iint_\Sigma P_z\,\dd z\dd x-P_y\,\dd x\dd y.
+\end{align*}
+其中 $P_y,P_z$ 是空间函数的偏导数，在曲面点处取值。对 $Q\,\dd y$ 同样计算，得
+\[
+\oint_{\partial\Sigma}Q\,\dd y
+=\displaystyle\iint_D(Q_x+Q_zz_x)\,\dd x\dd y
+=\displaystyle\iint_\Sigma Q_x\,\dd x\dd y-Q_z\,\dd y\dd z.
+\]
+最后将 $R\,\dd z$ 写成 $Rz_x\,\dd x+Rz_y\,\dd y$，再用 Green 公式，得到
+\begin{align*}
+\oint_{\partial\Sigma}R\,\dd z
+&=\displaystyle\iint_D\bigl[\partial_x(Rz_y)-\partial_y(Rz_x)\bigr]\,\dd x\dd y\\
+&=\displaystyle\iint_D(R_xz_y-R_yz_x)\,\dd x\dd y\\
+&=\displaystyle\iint_\Sigma R_y\,\dd y\dd z-R_x\,\dd z\dd x.
+\end{align*}
+第二行中含 $R_z$ 的乘积相消，且 $z_{xy}=z_{yx}$。三式相加即得公式；这也补明了原图中三种投影表示下的分量计算。
+
+% 一般曲面通过局部参数片与单位分解拼接，不假定存在一张全局图像。
+对一般曲面，取一个与定向相容的正则参数片 $\boldsymbol r(u,v)$，以及支集紧含于此片邻域的向量场 $\boldsymbol H$。定义参数平面上的两个函数
+\[
+A(u,v)=\boldsymbol H(\boldsymbol r(u,v))\cdot\boldsymbol r_u,
+\qquad B(u,v)=\boldsymbol H(\boldsymbol r(u,v))\cdot\boldsymbol r_v.
+\]
+链式法则给出
+\begin{align*}
+B_u-A_v
+&=\bigl(D\boldsymbol H\,\boldsymbol r_u\bigr)\cdot\boldsymbol r_v
+-\bigl(D\boldsymbol H\,\boldsymbol r_v\bigr)\cdot\boldsymbol r_u\\
+&\quad+\boldsymbol H\cdot(\boldsymbol r_{vu}-\boldsymbol r_{uv})\\
+&=(H_{3,y}-H_{2,z})(y_uz_v-z_uy_v)\\
+&\quad+(H_{1,z}-H_{3,x})(z_ux_v-x_uz_v)\\
+&\quad+(H_{2,x}-H_{1,y})(x_uy_v-y_ux_v).
+\end{align*}
+偏导数在 $\boldsymbol r(u,v)$ 处取值。这个等式把平面 Green 公式的右端化为所需的曲面积分。
+
+若参数片在曲面内部，支集之外函数为零，平面边界积分为零；若参数片遇到曲面边界，则参数区域只取边界的一侧，Green 公式的边界项恰为实际的 $\partial\Sigma$ 上的积分。为使用有界参数域，可在支集外加入辅助边界，那里 $A=B=0$，不产生额外贡献。定向相容保证参数区域的正向边界映为曲面的诱导边界。于是局部 Stokes 公式成立。
+
+在 $\Sigma$ 的有限个参数片邻域上取环境空间中的光滑单位分解 $\rho_i$，使 $\sum_i\rho_i=1$ 在 $\Sigma$ 附近成立。令 $\boldsymbol H_i=\rho_i\boldsymbol F$，对每项应用局部公式。左端由线性性相加为原边界积分。右端例如第一个系数之和为
+\[
+\sum_i\bigl[\partial_y(\rho_iR)-\partial_z(\rho_iQ)\bigr]
+=R_y-Q_z+R\sum_i(\rho_i)_y-Q\sum_i(\rho_i)_z
+=R_y-Q_z.
+\]
+另两个系数之和分别为 $P_z-R_x$、$Q_x-P_y$，理由相同。因此求和得到整体 Stokes 公式，无须把整张曲面写为一张全局图像。
+
+若曲面由有限片光滑面拼成，对每片使用此式。公共棱的两侧诱导方向相反，边界积分相互抵消；曲面积分按相容定向相加，故公式也适用于这样的分片光滑定向曲面。参数域的角点已由一般 Green 公式处理。
+
+对于仅为 $C^1$ 的正则参数片，在包含相关紧支集的稍大参数邻域内，用光滑函数 $\boldsymbol r_k$ 逼近 $\boldsymbol r$，使函数及一阶导数一致收敛。具体地，取光滑非负函数 $\eta$，使其支集在单位圆盘内且 $\int_{\mathbb R^2}\eta(t)\,\dd t=1$；对 $\delta_k\downarrow0$，定义
+\[
+\boldsymbol r_k(p)=\int_{\mathbb R^2}\eta(t)\boldsymbol r(p-\delta_kt)\,\dd t.
+\]
+这就是所用的光滑平均（卷积）。在紧集上，$\boldsymbol r$ 和 $D\boldsymbol r$ 的一致连续性分别保证函数及一阶导数的一致收敛；对积分核求高阶导数则说明 $\boldsymbol r_k$ 光滑。参数片在真实边界附近可先用局部 $C^1$ 图像延拓。由于所考察紧集上 $|\boldsymbol r_u\times\boldsymbol r_v|$ 有正下界，充分大的 $k$ 仍正则，并可缩小邻域使各逼近片仍为同一坐标平面上的图像。对 $\boldsymbol r_k$ 使用局部公式，再令 $k\to\infty$。两端只涉及参数位置、一阶导数和 $\boldsymbol H$ 的一阶导数，故在紧参数域上一致收敛，边界积分及面积积分均收敛到原来的值。由此 $C^1$ 情形的局部公式也成立，再用同一单位分解即可完成整体证明。
+\end{proof}
+
+令 $\boldsymbol F=(P,Q,R)$，定义其旋度为
+\[
+\operatorname{rot}\boldsymbol F
+=(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y).
+\]
+于是 Stokes 公式可简写为
+\[
+\oint_{\partial\Sigma}\boldsymbol F\cdot\dd\boldsymbol s
+=\displaystyle\iint_\Sigma\operatorname{rot}\boldsymbol F\cdot\boldsymbol n\,\dd S.
+\]
+行列式形式为
+\[
+\oint_{\partial\Sigma}P\,\dd x+Q\,\dd y+R\,\dd z
+=\displaystyle\iint_\Sigma
+\begin{vmatrix}
+\cos\alpha&\cos\beta&\cos\gamma\\
+\partial_x&\partial_y&\partial_z\\
+P&Q&R
+\end{vmatrix}\,\dd S,
+\]
+其中第二行的符号表示对第三行函数作相应偏导数，须按展开式理解。也可把首行写为有向面积元 $\dd y\dd z,\dd z\dd x,\dd x\dd y$ 并省去末尾的 $\dd S$。当曲面位于 $xy$ 平面且取上侧时，$\boldsymbol n=(0,0,1)$，Stokes 公式正好化为 Green 公式。
