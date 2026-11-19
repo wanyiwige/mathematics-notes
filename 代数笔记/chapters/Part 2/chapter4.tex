@@ -159,22 +159,18 @@ a=qb+r,\qquad r=0\text{ 或 }d(r)<d(b),
 在欧几里得整环中可逐次作带余除法。非零余数的$d$值严格下降，因此算法有限步终止；利用$(a,b)=(b,r)$所对应的公因子相同关系，最后一个非零余数为最大公因子，回代可得到它的线性组合表示。
 
 \begin{definition}
-设$m\ne0,1$为无平方因子的整数。二次域为
+设$m\ne0,1$为无平方因子的整数，即不存在素数$p$使$p^2\mid m$。称
 \[
-\Q(\sqrt m)=\{s+t\sqrt m:s,t\in\Q\}.
+\Q(\sqrt m)=\{s+t\sqrt m:s,t\in\Q\}
 \]
-其中元素的共轭为$\overline{s+t\sqrt m}=s-t\sqrt m$，范数为$N(\alpha)=\alpha\overline\alpha$。其在$\Q$上的首一极小多项式有整数系数时，称该元素为代数整数。
-\end{definition}
+为一个\textbf{二次域}。由于$\sqrt m\notin\Q$，每个元素的表示$s+t\sqrt m$唯一。
 
-对$t\ne0$，$\alpha=s+t\sqrt m$的极小多项式为
+对$\alpha=s+t\sqrt m$，称$\overline\alpha=s-t\sqrt m$为$\alpha$的\textbf{共轭}，称
 \[
-x^2-2sx+s^2-mt^2.
+N(\alpha)=\alpha\overline\alpha=s^2-mt^2
 \]
-因此它是代数整数当且仅当$2s\in\Z$、$s^2-mt^2\in\Z$。令$a=2s$，将$t=u/v$约为最简分数，则$v^2\mid4m$；由$m$无平方因子可知$v\mid2$，所以$b=2t\in\Z$。于是条件化为
-\[
-a^2-mb^2\equiv0\pmod4.
-\]
-整数平方模$4$为$0$或$1$，故$m\equiv2,3\pmod4$时$a,b$均为偶数；$m\equiv1\pmod4$时$a,b$同奇偶。$t=0$的有理数情形，代数整数恰为整数，也包含在下面的描述中。
+为$\alpha$的\textbf{范数}。若$\alpha$在$\Q$上的首一极小多项式的系数均为整数，则称$\alpha$为\textbf{代数整数}。
+\end{definition}
 
 \begin{proposition}
 $\Q(\sqrt m)$的代数整数全体为
@@ -184,10 +180,106 @@ R_m=\begin{cases}
 \Z[(1+\sqrt m)/2],&m\equiv1\pmod4.
 \end{cases}
 \]
-它是子环，称为该二次域的代数整数环。
+它是$\Q(\sqrt m)$的子环，称为该二次域的\textbf{代数整数环}。
 \end{proposition}
-\begin{proof}[验证]
-第一种情形由$(\sqrt m)^2=m\in\Z$验证封闭性。第二种情形令$\omega=(1+\sqrt m)/2$，则$\omega^2=\omega+(m-1)/4$，故整数线性组合$a+b\omega$对加法、减法和乘法均封闭，并含$1$。上面的系数计算已证明这些元素恰为全部代数整数。
+\begin{proof}
+设$\alpha=s+t\sqrt m$，其中$s,t\in\Q$。
+
+先考虑$t=0$的情形。此时$\alpha=s\in\Q$，其在$\Q$上的首一极小多项式为$x-s$。它的系数均为整数当且仅当$s\in\Z$，所以有理数中的代数整数恰为整数。
+
+以下设$t\ne0$。由$\sqrt m\notin\Q$可知$\alpha\notin\Q$，所以$\alpha$不可能满足有理系数的一次多项式。另一方面，
+\begin{align*}
+(x-\alpha)(x-\overline\alpha)
+&=x^2-(\alpha+\overline\alpha)x+\alpha\overline\alpha\\
+&=x^2-2sx+s^2-mt^2
+\end{align*}
+是以$\alpha$为根的首一有理系数二次多项式。因此它就是$\alpha$在$\Q$上的首一极小多项式。于是
+\[
+\alpha\text{为代数整数}
+\quad\Longleftrightarrow\quad
+2s\in\Z\text{ 且 }s^2-mt^2\in\Z.
+\]
+
+设这两个条件成立，记$a=2s\in\Z$、$k=s^2-mt^2\in\Z$。将$t$写成最简分数$t=u/v$，其中$u,v\in\Z$、$v>0$且$\gcd(u,v)=1$。由$4mt^2=a^2-4k$得
+\[
+4mu^2=v^2(a^2-4k).
+\]
+所以$v^2\mid4mu^2$。由于$\gcd(u^2,v^2)=1$，可以消去与$v^2$互素的因子$u^2$，得到
+\[
+v^2\mid4m.
+\]
+若奇素数$p$整除$v$，则$p^2\mid4m$，从而$p^2\mid m$，与$m$无平方因子矛盾。因此$v$只能是$2$的幂。若$4\mid v$，则$16\mid v^2$，进而$16\mid4m$，即$4\mid m$，仍与$m$无平方因子矛盾。故$v=1$或$v=2$，于是
+\[
+b=2t\in\Z,\qquad
+\alpha=\frac{a+b\sqrt m}{2}.
+\]
+此时$s^2-mt^2=(a^2-mb^2)/4$，所以必须有
+\[
+a^2-mb^2\equiv0\pmod4.
+\]
+反过来，若$a,b\in\Z$满足这一同余式，并令$s=a/2$、$t=b/2\ne0$，则$2s=a\in\Z$且$s^2-mt^2\in\Z$，故相应的$\alpha$为代数整数。
+
+$t=0$时，上述表示中的$b=0$，同余条件为$a^2\equiv0\pmod4$，等价于$a$为偶数，恰好给出$\alpha=a/2\in\Z$。因此，在所有情形下均有
+\[
+R_m=\left\{\frac{a+b\sqrt m}{2}:a,b\in\Z,\ a^2-mb^2\equiv0\pmod4\right\}.
+\]
+
+因为$m$无平方因子，所以$4\nmid m$，只需讨论$m$模$4$余$1,2,3$的情形。偶数的平方模$4$为$0$，奇数的平方模$4$为$1$。
+\begin{enumerate}
+\item 当$m\equiv2,3\pmod4$时，若$b$为奇数，则$b^2\equiv1\pmod4$，于是
+\[
+a^2\equiv mb^2\equiv m\pmod4,
+\]
+即$a^2$模$4$余$2$或$3$，不可能。因此$b$为偶数，从而$mb^2\equiv0\pmod4$，同余条件又迫使$a$为偶数。
+
+反过来，若$a,b$均为偶数，则$a^2-mb^2$必被$4$整除。所以此时
+\[
+R_m=\left\{\frac{a+b\sqrt m}{2}:a,b\in2\Z\right\}
+=\{c+d\sqrt m:c,d\in\Z\}.
+\]
+由于$(\sqrt m)^2=m\in\Z$，$\sqrt m$的任意整数系数多项式都可以化为$c+d\sqrt m$，而这种形式的元素也都属于$\Z[\sqrt m]$。故$R_m=\Z[\sqrt m]$。
+
+\item 当$m\equiv1\pmod4$时，同余条件等价于
+\[
+a^2\equiv b^2\pmod4.
+\]
+由整数平方模$4$的取值可知，该条件等价于$a,b$同为偶数或同为奇数。
+
+令$\omega=(1+\sqrt m)/2$。当$a,b$同奇偶时，$(a-b)/2\in\Z$，且
+\[
+\frac{a+b\sqrt m}{2}=\frac{a-b}{2}+b\omega.
+\]
+反过来，对任意$c,d\in\Z$，有
+\[
+c+d\omega=\frac{(2c+d)+d\sqrt m}{2},
+\]
+其中$2c+d$与$d$同奇偶，所以$c+d\omega$为代数整数。因此$R_m=\{c+d\omega:c,d\in\Z\}$。
+
+又因为$h=(m-1)/4\in\Z$，并且
+\[
+\omega^2=\frac{1+2\sqrt m+m}{4}=\omega+h,
+\]
+利用这个等式，$\omega$的任意整数系数多项式都可化为$c+d\omega$。因此$R_m=\Z[\omega]$。
+\end{enumerate}
+
+最后直接验证上述集合为子环。$m\equiv2,3\pmod4$时，对$c,d,e,f\in\Z$，
+\begin{align*}
+(c+d\sqrt m)-(e+f\sqrt m)
+&=(c-e)+(d-f)\sqrt m,\\
+(c+d\sqrt m)(e+f\sqrt m)
+&=(ce+mdf)+(cf+de)\sqrt m.
+\end{align*}
+两式中的系数均为整数，因此$\Z[\sqrt m]$对减法与乘法封闭，并且含有$0$和$1$，故为子环。
+
+$m\equiv1\pmod4$时，仍记$h=(m-1)/4\in\Z$。由$\omega^2=\omega+h$，
+\begin{align*}
+(c+d\omega)-(e+f\omega)
+&=(c-e)+(d-f)\omega,\\
+(c+d\omega)(e+f\omega)
+&=ce+(cf+de)\omega+df\omega^2\\
+&=(ce+hdf)+(cf+de+df)\omega.
+\end{align*}
+两式仍为$\omega$的整数线性组合，并且$\Z[\omega]$含有$0$和$1$，故也为子环。
 \end{proof}
 
 \begin{example}
