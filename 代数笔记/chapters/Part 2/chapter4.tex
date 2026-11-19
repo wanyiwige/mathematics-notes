@@ -67,16 +67,66 @@ d=ua+vb.
 \end{definition}
 
 \begin{lemma}\label{p2:pid-acc}
-主理想整环的每条理想升链都终止，因而每条因子降链都终止。
+设$R$为主理想整环，则：
+\begin{enumerate}
+\item $R$的任一理想升链$\{(a_i)\}$恒有一个正整数$m$，使得
+\[
+(a_m)=(a_{m+1})=(a_{m+2})=\cdots.
+\]
+\item $R$的任一因子降链$\{a_i\}$恒有一个正整数$m$，使得
+\[
+a_m\sim a_{m+1}\sim a_{m+2}\sim\cdots.
+\]
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-设$N_1\subseteq N_2\subseteq\cdots$，令$N=\bigcup_iN_i$。两个元素属于链中某个共同的较大理想，所以它们的差仍在$N$中；环元乘以$N$中的元素也仍在相应理想中。因此$N$为理想。
-
-写$N=(d)$。由并集的定义，$d\in N_m$对某个$m$成立，故
+根据引理\ref{p2:divisibility-ideals}，
 \[
-N=(d)\subseteq N_m\subseteq N_{m+1}\subseteq\cdots\subseteq N.
+a_{i+1}\mid a_i
+\quad\Longleftrightarrow\quad
+(a_i)\subseteq(a_{i+1}),
+\qquad
+ a_i\sim a_{i+1}
+\quad\Longleftrightarrow\quad
+(a_i)=(a_{i+1}).
 \]
-所以从$N_m$起各项相等。因子降链对应主理想升链$(a_1)\subseteq(a_2)\subseteq\cdots$，理想相等等价于生成元相伴，故也终止。
+又因为$R$的每个理想都是主理想，所以两条结论等价。现证明第一条。
+
+设$(a_1)\subseteq(a_2)\subseteq\cdots$为$R$的一条理想升链，令
+\[
+N=\bigcup\limits_{i\ge1}(a_i).
+\]
+首先证明$N$是一个理想。每个$(a_i)$都含有$0$，所以$N$非空。对$a,b\in N$，存在正整数$r,s$使
+\[
+a\in(a_r),\qquad b\in(a_s).
+\]
+不妨设$r\le s$，于是$(a_r)\subseteq(a_s)$，从而$a,b\in(a_s)$。因为$(a_s)$是理想，所以
+\[
+a-b\in(a_s)\subseteq N.
+\]
+对$c\in R$，由$a\in(a_r)$得
+\[
+ac\in(a_r)\subseteq N.
+\]
+由于$R$交换，也有$ca=ac\in N$。因此$N$是$R$的一个理想。
+
+因为$R$是主理想整环，所以存在$d\in R$使得$N=(d)$。根据$N$的定义，$d$属于某个$(a_m)$。由于$(a_m)$为包含$d$的理想，便有
+\[
+N=(d)\subseteq(a_m).
+\]
+反之，由并集的定义有$(a_m)\subseteq N$，所以
+\[
+N=(a_m).
+\]
+对任意大于$m$的整数$n$，由理想升链的包含关系及$N$的定义，
+\[
+(a_m)\subseteq(a_n)\subseteq N.
+\]
+结合$(a_m)=N$，得到$(a_n)=N$。最后得到
+\[
+N=(a_m)=(a_{m+1})=(a_{m+2})=\cdots.
+\]
+第一条得证，第二条也随之成立。
 \end{proof}
 
 \begin{example}
