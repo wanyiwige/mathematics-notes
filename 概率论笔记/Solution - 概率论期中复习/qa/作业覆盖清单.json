@@ -1,0 +1,620 @@
+[
+  {
+    "week": 1,
+    "title": "教材第9--10页第1题",
+    "label": "ex:w01-t1",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "教材第10页第2题",
+    "label": "ex:w01-t2",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "教材第10页第4题",
+    "label": "ex:w01-t4",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "教材第10页第5题",
+    "label": "ex:w01-t5",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "教材第10页第6题",
+    "label": "ex:w01-t6",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "教材第10页第7题",
+    "label": "ex:w01-t7",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "作业第2题：可列德摩根律",
+    "label": "ex:w01-h2",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "作业第3题：恰有两个事件发生",
+    "label": "ex:w01-h3",
+    "has_answer": true
+  },
+  {
+    "week": 1,
+    "title": "作业第4项：绳子连接问题（阅读）",
+    "label": "ex:w01-h4",
+    "has_answer": false
+  },
+  {
+    "week": 2,
+    "title": "教材第19页第1题",
+    "label": "ex:w02-t1",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "教材第19页第2题(1)",
+    "label": "ex:w02-t2",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "教材第19页第4题",
+    "label": "ex:w02-t4",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "教材第19页第5题",
+    "label": "ex:w02-t5",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "作业第2题：偏离独立乘积的界",
+    "label": "ex:w02-h2",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "作业第3题：开区间的可列表示",
+    "label": "ex:w02-h3",
+    "has_answer": true
+  },
+  {
+    "week": 2,
+    "title": "作业第4题：无限重复试验的事件极限",
+    "label": "ex:w02-h4",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "教材第19页第3题",
+    "label": "ex:w03-t3",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "教材第19页第6题",
+    "label": "ex:w03-t6",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "教材第24页第1题",
+    "label": "ex:w03-t241",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "教材第24页第2题",
+    "label": "ex:w03-t242",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "教材第25页第4题",
+    "label": "ex:w03-t254",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "作业第2题：一排夫妻均不相邻",
+    "label": "ex:w03-h2",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "作业第3题：已知补事件条件概率",
+    "label": "ex:w03-h3",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "作业第4题：玻璃器皿连续三次未摔坏",
+    "label": "ex:w03-h4",
+    "has_answer": true
+  },
+  {
+    "week": 3,
+    "title": "作业第5题：两种天气的递推",
+    "label": "ex:w03-h5",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第25页第3题",
+    "label": "ex:w04-t25-3",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第25页第5题",
+    "label": "ex:w04-t25-5",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第25页第6题",
+    "label": "ex:w04-t25-6",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第32页第1题",
+    "label": "ex:w04-t32-1",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第32页第2题",
+    "label": "ex:w04-t32-2",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "教材第33页第6题",
+    "label": "ex:w04-t33-6",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "作业第2题：讲义例1.101第(3)问",
+    "label": "ex:w04-h2",
+    "has_answer": false
+  },
+  {
+    "week": 4,
+    "title": "作业第3题：两个并事件的独立性",
+    "label": "ex:w04-h3",
+    "has_answer": true
+  },
+  {
+    "week": 4,
+    "title": "作业第4题：失败无穷多次",
+    "label": "ex:w04-h4",
+    "has_answer": true
+  },
+  {
+    "week": 5,
+    "title": "教材第33页第4题",
+    "label": "ex:w05-t33-4",
+    "has_answer": true
+  },
+  {
+    "week": 5,
+    "title": "教材第44页第5题",
+    "label": "ex:w05-t44-5",
+    "has_answer": true
+  },
+  {
+    "week": 5,
+    "title": "作业第2题：区间投点的重复试验",
+    "label": "ex:w05-h2",
+    "has_answer": true
+  },
+  {
+    "week": 5,
+    "title": "作业第3题：示性函数的乘积与并",
+    "label": "ex:w05-h3",
+    "has_answer": true
+  },
+  {
+    "week": 5,
+    "title": "作业第4题：随机变量与常数取最小值",
+    "label": "ex:w05-h4",
+    "has_answer": true
+  },
+  {
+    "week": 6,
+    "title": "作业第1题：取出号码的中间值",
+    "label": "ex:w06-h1",
+    "has_answer": true
+  },
+  {
+    "week": 6,
+    "title": "作业第2题：随机选盒后取球",
+    "label": "ex:w06-h2",
+    "has_answer": true
+  },
+  {
+    "week": 6,
+    "title": "作业第3题：分段分布函数的跳跃与连续部分",
+    "label": "ex:w06-h3",
+    "has_answer": true
+  },
+  {
+    "week": 6,
+    "title": "作业第4题：由单点概率确定分布函数参数",
+    "label": "ex:w06-h4",
+    "has_answer": true
+  },
+  {
+    "week": 6,
+    "title": "作业第5题（思考题，选做）：分布函数的一致收敛",
+    "label": "ex:w06-h5",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第52页第1题",
+    "label": "ex:w07-b52-1",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第52页第2题",
+    "label": "ex:w07-b52-2",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第53页第3题",
+    "label": "ex:w07-b53-3",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第53页第4题",
+    "label": "ex:w07-b53-4",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第53页第5题",
+    "label": "ex:w07-b53-5",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "教材第58页第3题",
+    "label": "ex:w07-b58-3",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "作业第2题：三角形密度的区间概率",
+    "label": "ex:w07-h2",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "作业第3题：储油量",
+    "label": "ex:w07-h3",
+    "has_answer": true
+  },
+  {
+    "week": 7,
+    "title": "作业第4题：由归一化求密度参数",
+    "label": "ex:w07-h4",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "教材第57页第2题",
+    "label": "ex:w08-b57-2",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "教材第58页第4题",
+    "label": "ex:w08-b58-4",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第2题：由三角形密度求分布函数",
+    "label": "ex:w08-h2",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第3题：对称密度的分布函数",
+    "label": "ex:w08-h3",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第4题：先到列车的方向",
+    "label": "ex:w08-h4",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第5题：修理时间",
+    "label": "ex:w08-h5",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第6题：旧车的剩余里程",
+    "label": "ex:w08-h6",
+    "has_answer": true
+  },
+  {
+    "week": 8,
+    "title": "作业第7题：正态分布的中心",
+    "label": "ex:w08-h7",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "教材第58页第4题（再次布置）",
+    "label": "ex:w09-b58-4",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "教材第58页第5题",
+    "label": "ex:w09-b58-5",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "教材第62页第1题",
+    "label": "ex:w09-b62-1",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第2题：正态分布的区间概率",
+    "label": "ex:w09-h2",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第3题：由分位点确定收入分布",
+    "label": "ex:w09-h3",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第4题：正态分位点",
+    "label": "ex:w09-h4",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第5题：线段分割的长短比",
+    "label": "ex:w09-h5",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第6题：由均匀分布构造指数分布",
+    "label": "ex:w09-h6",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第7题：指数变量的尺度变换",
+    "label": "ex:w09-h7",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第8题：均匀变量的绝对值",
+    "label": "ex:w09-h8",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第9题：指数变量的余弦",
+    "label": "ex:w09-h9",
+    "has_answer": true
+  },
+  {
+    "week": 9,
+    "title": "作业第10题及思考题：概率积分变换",
+    "label": "ex:w09-h10",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第72页第1题",
+    "label": "ex:w10-b72-1",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第72页第2题",
+    "label": "ex:w10-b72-2",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第72页第4题",
+    "label": "ex:w10-b72-4",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第72页第5题",
+    "label": "ex:w10-b72-5",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第72页第6题",
+    "label": "ex:w10-b72-6",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "教材第81页第4题",
+    "label": "ex:w10-b81-4",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "作业第2题：由事件独立性确定联合分布",
+    "label": "ex:w10-h2",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "作业第3题：三项分布的边缘分布",
+    "label": "ex:w10-h3",
+    "has_answer": true
+  },
+  {
+    "week": 10,
+    "title": "作业第4题：双曲线之间的联合密度",
+    "label": "ex:w10-h4",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "教材第80页第1题",
+    "label": "ex:w11-b80-1",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "教材第80页第2题",
+    "label": "ex:w11-b80-2",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "教材第81页第3题",
+    "label": "ex:w11-b81-3",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "教材第81页第5题",
+    "label": "ex:w11-b81-5",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第2题：中间次序与两个变量之和",
+    "label": "ex:w11-h2",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第3题：首次非零结果与等待次数",
+    "label": "ex:w11-h3",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第4题：保龄球得分",
+    "label": "ex:w11-h4",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第5题：正态分布的等尾概率",
+    "label": "ex:w11-h5",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第6题：逐次选数的条件分布",
+    "label": "ex:w11-h6",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第7题：三角形区域上的条件密度",
+    "label": "ex:w11-h7",
+    "has_answer": true
+  },
+  {
+    "week": 11,
+    "title": "作业第8题：对称三角形区域上的条件密度",
+    "label": "ex:w11-h8",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "教材第90页第1题",
+    "label": "ex:w12-b90-1",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "教材第90页第3题",
+    "label": "ex:w12-b90-3",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "教材第90页第4题",
+    "label": "ex:w12-b90-4",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "教材第90页第6题",
+    "label": "ex:w12-b90-6",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第2题：Gamma--泊松条件分布",
+    "label": "ex:w12-h2",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第3题：差、积、商的密度",
+    "label": "ex:w12-h3",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第4题：指数样本的极差",
+    "label": "ex:w12-h4",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第5题：五台发动机组成的机器寿命",
+    "label": "ex:w12-h5",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第6题：平方和与比值的联合分布",
+    "label": "ex:w12-h6",
+    "has_answer": true
+  },
+  {
+    "week": 12,
+    "title": "作业第7题：不同指数变量的最先发生概率",
+    "label": "ex:w12-h7",
+    "has_answer": true
+  }
+]

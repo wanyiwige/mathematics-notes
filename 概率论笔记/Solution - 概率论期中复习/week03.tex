@@ -1,0 +1,171 @@
+% !TEX root = 概率论期中复习.tex
+\clearpage\section{第三周：可列可加性、容斥与条件概率}
+\subsection{教材第19页第3题}\label{ex:w03-t3}
+设$(\Omega_1,\mathscr F_1,\mu_1),\ldots,(\Omega_n,\mathscr F_n,\mu_n)$是$n$个有限测度空间，其中$\Omega_1,\ldots,\Omega_n$两两不相交。令$\Omega=\bigcup_{k=1}^n\Omega_k$。
+\begin{enumerate}[label=(\arabic*)]
+\item 证明$\mathscr F=\{A\subseteq\Omega:A\cap\Omega_k\in\mathscr F_k,\ 1\leq k\leq n\}$是$\Omega$上的$\sigma$代数；
+\item 对$A\in\mathscr F$令$\mu(A)=\sum_{k=1}^n\mu_k(A\cap\Omega_k)$，证明$\mu$是$(\Omega,\mathscr F)$上的有限测度。
+\end{enumerate}
+\basis{原笔记第1.2节$\sigma$代数与测度的定义。测度是取值于$[0,\infty]$、空集取0且可列可加的集函数；有限测度另要求全集测度有限。}
+\paragraph{思路}所有运算都限制到各个互不相交的分块上验证。
+\begin{proof}
+\begin{enumerate}[label=(\arabic*)]
+\item 对每个$k$，$\Omega\cap\Omega_k=\Omega_k\in\mathscr F_k$，故$\Omega\in\mathscr F$。
+
+若$A\in\mathscr F$，则
+\[(\Omega\setminus A)\cap\Omega_k=\Omega_k\setminus(A\cap\Omega_k)\in\mathscr F_k,\]
+因右侧是$\mathscr F_k$中集合相对于$\Omega_k$的补集。因此$\Omega\setminus A\in\mathscr F$。
+
+若$A_j\in\mathscr F$，则对每个$k$，
+\[\left(\bigcup_{j=1}^{\infty}A_j\right)\cap\Omega_k
+=\bigcup_{j=1}^{\infty}(A_j\cap\Omega_k)\in\mathscr F_k.\]
+所以$\bigcup_jA_j\in\mathscr F$。$\sigma$代数的三个条件均成立。
+\item 由各$\mu_k$的非负性，$\mu(A)\geq0$，且$\mu(\varnothing)=0$。若$A_j\in\mathscr F$两两不交，则固定$k$时，$A_j\cap\Omega_k$也两两不交，从而
+\begin{align*}
+\mu\left(\bigcup_{j=1}^{\infty}A_j\right)
+&=\sum_{k=1}^n\mu_k\left(\bigcup_{j=1}^{\infty}(A_j\cap\Omega_k)\right)\\
+&=\sum_{k=1}^n\sum_{j=1}^{\infty}\mu_k(A_j\cap\Omega_k)\\
+&=\sum_{j=1}^{\infty}\sum_{k=1}^n\mu_k(A_j\cap\Omega_k)
+=\sum_{j=1}^{\infty}\mu(A_j).
+\end{align*}
+交换求和次序可先在$j\leq M$的有限和中进行，再令$M\to\infty$；由于$k$仅有有限个且各项非负，极限与有限和可交换。
+
+最后，
+\[\mu(\Omega)=\sum_{k=1}^n\mu_k(\Omega_k)<\infty,\]
+因为这是有限个有限数的和。故$\mu$为有限测度。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}两项均成立，且$\mu(\Omega)=\sum_{k=1}^n\mu_k(\Omega_k)$。
+
+\subsection{教材第19页第6题}\label{ex:w03-t6}
+对于随机事件序列$A_1,A_2,\ldots\in\mathscr F$，证明：若对一切$k\geq1$有$P(A_k)=1$，则
+\[P\left(\bigcap_{k=1}^{\infty}A_k\right)=1.\]
+\basis{原笔记第1.2节可列次可加性、例“可列个零概率事件的并”。}
+\paragraph{思路}对交集取补，把满概率事件变为零概率事件。
+\begin{proof}
+对每个$k$，$P(A_k^c)=1-P(A_k)=0$。由可列次可加性，
+\[0\leq P\left(\bigcup_{k=1}^{\infty}A_k^c\right)
+\leq\sum_{k=1}^{\infty}P(A_k^c)=0.\]
+故补集的概率为0。再由德摩根律，
+\[P\left(\bigcap_{k=1}^{\infty}A_k\right)
+=1-P\left(\bigcup_{k=1}^{\infty}A_k^c\right)=1.\]
+\end{proof}
+\paragraph{答案}可列个满概率事件的交仍为满概率事件。
+
+\subsection{教材第24页第1题}\label{ex:w03-t241}
+对于事件$A,B$，证明：若$P(A\mid B)>P(A)$，则$P(B\mid A)>P(B)$。
+\basis{原笔记第1.3节条件概率的定义；见\hyperref[k:conditional]{条件概率}。}
+\paragraph{思路}两个条件概率不等式都等价于$P(AB)>P(A)P(B)$，但要先确认分母为正。
+\begin{proof}
+题设$P(A\mid B)$有定义，故$P(B)>0$。由
+\[P(A\mid B)=\frac{P(AB)}{P(B)}>P(A),\]
+得到$P(AB)>P(A)P(B)\geq0$。因此$P(A)\geq P(AB)>0$，可除以$P(A)$，得到
+\[P(B\mid A)=\frac{P(AB)}{P(A)}>P(B).\]
+\end{proof}
+\paragraph{答案}结论成立，且题设自动保证$P(A)>0$。
+
+\subsection{教材第24页第2题}\label{ex:w03-t242}
+假设有三个事件$A,B,C$。
+\begin{enumerate}[label=(\arabic*)]
+\item 已知$P(A\mid C)>P(B\mid C)$和$P(A\mid C^c)>P(B\mid C^c)$，是否一定有$P(A)>P(B)$？若是，加以证明；否则举出反例。
+\item 已知$P(A\mid C)>P(A\mid C^c)$和$P(B\mid C)>P(B\mid C^c)$，是否一定有$P(A)>P(B)$？若是，加以证明；否则举出反例。
+\end{enumerate}
+\basis{原笔记第1.3节全概率公式。题中的条件概率要求$0<P(C)<1$。}
+\paragraph{思路}第一问在同一个分割内比较两个事件；第二问只比较每个事件在不同条件下的概率，不能决定两个事件的大小。
+\begin{proof}[解答]
+\begin{enumerate}[label=(\arabic*)]
+\item 由全概率公式，
+\begin{align*}
+P(A)-P(B)
+&=P(C)\bigl[P(A\mid C)-P(B\mid C)\bigr]\\
+&\quad+P(C^c)\bigl[P(A\mid C^c)-P(B\mid C^c)\bigr]>0.
+\end{align*}
+两个权重均为正，两个括号也均为正，故一定有$P(A)>P(B)$。
+\item 取$\Omega=(0,1)$上的均匀概率，令
+\[C=(0,1/2),\quad A=(0,1/5)\cup(1/2,3/5),\quad B=(0,2/5)\cup(1/2,4/5).\]
+用区间长度计算得
+\[P(A\mid C)=\frac25>\frac15=P(A\mid C^c),\]
+\[P(B\mid C)=\frac45>\frac35=P(B\mid C^c).\]
+然而$P(A)=3/10<7/10=P(B)$。所有条件均满足而结论不成立，因此第二问的答案是否定的。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}(1)一定成立；(2)不一定，以上反例中$P(A)=3/10<P(B)=7/10$。
+
+\subsection{教材第25页第4题}\label{ex:w03-t254}
+盒子里有15个乒乓球，其中9个是新球。第一场比赛时从中取出3个用完后放回盒中。第二场比赛时再从中取出3个，求这3个都是新球的概率。
+\basis{原笔记第1.3节全概率公式与古典计数。}
+\paragraph{思路}以第一场取出的新球数作分割；新球使用后变为旧球。也可固定第二场取出的三个球，要求它们原本为新球且第一场未用过。
+\begin{proof}[解答]
+设$K$是第一场取出的新球数，则$K=0,1,2,3$，且
+\[P(K=k)=\frac{\binom9k\binom6{3-k}}{\binom{15}3}.\]
+给定$K=k$后，第二场之前剩下$9-k$个新球，总球数仍为15。因此全概率公式给出
+\[P=\sum_{k=0}^3\frac{\binom9k\binom6{3-k}}{\binom{15}3}
+\frac{\binom{9-k}3}{\binom{15}3}.\]
+为简化计算，考察第二场随机取出的球组。它们原本都是新球的概率为$\binom93/\binom{15}3$。给定这个三球组，第一场必须全部从其余12个球中取出，其概率为$\binom{12}3/\binom{15}3$。故
+\[P=\frac{\binom93\binom{12}3}{\binom{15}3^2}
+=\frac{84\cdot220}{455^2}=\frac{528}{5915}.\]
+这也核对了上面的全概率求和。
+\end{proof}
+\paragraph{答案}$528/5915\approx0.08926$。
+
+\subsection{作业第2题：一排夫妻均不相邻}\label{ex:w03-h2}
+有$n$对夫妇随机地坐成一排，求没有任何妻子坐在她丈夫身边的概率。
+\basis{原笔记第1.2节例“圆桌夫妻问题”的捆绑计数与容斥方法；本题为一排座位，不能使用圆排列总数。}
+\paragraph{思路}令$A_i$为第$i$对夫妻相邻；指定$r$对相邻后把各对捆为一个整体。
+\begin{proof}[解答]
+总排法为$(2n)!$，并且各排法等可能。指定$i_1,\ldots,i_r$这$r$对夫妻相邻时，捆绑后共有$2n-r$个对象，各对内部有两种次序，所以
+\[P(A_{i_1}\cap\cdots\cap A_{i_r})=\frac{2^r(2n-r)!}{(2n)!}.\]
+这样的$r$对可以从$n$对中选出$\binom nr$种。由容斥公式，至少一对夫妻相邻的概率为
+\[P\left(\bigcup_{i=1}^nA_i\right)
+=\sum_{r=1}^n(-1)^{r+1}\binom nr\frac{2^r(2n-r)!}{(2n)!}.\]
+取补，并把常数1记为$r=0$项，所求概率为
+\[\boxed{\sum_{r=0}^n(-1)^r\binom nr\frac{2^r(2n-r)!}{(2n)!}}.\]
+\end{proof}
+\paragraph{答案}$\displaystyle\sum_{r=0}^n(-1)^r\binom nr2^r(2n-r)!/(2n)!$。
+
+\subsection{作业第3题：已知补事件条件概率}\label{ex:w03-h3}
+设$P(A)=0.7$，$P(B\mid\overline A)=0.1$。求$P(A\cup B)$。
+\basis{原笔记第1.3节条件概率乘法公式。}
+\paragraph{思路}将并事件拆为两个互斥事件$A$与$A^cB$。
+\begin{proof}[解答]
+因为$A\cup B=A\mathbin{\dot\cup}(A^cB)$，所以
+\begin{align*}
+P(A\cup B)&=P(A)+P(A^cB)\\
+&=P(A)+P(A^c)P(B\mid A^c)\\
+&=0.7+0.3\times0.1=0.73.
+\end{align*}
+\end{proof}
+\paragraph{答案}$0.73$。
+
+\subsection{作业第4题：玻璃器皿连续三次未摔坏}\label{ex:w03-h4}
+某玻璃器皿第一次落下时摔坏的概率为0.3。若第一次落下没有摔坏，则第二次落下摔坏的条件概率为0.6；若前两次落下都没有摔坏，则第三次落下摔坏的条件概率为0.9。求该玻璃器皿三次落下都没有摔坏的概率。
+\basis{原笔记第1.3节条件概率的乘法公式。}
+\paragraph{思路}按存活到每一次的条件顺序相乘，无须假设三次独立。
+\begin{proof}[解答]
+令$S_i$表示第$i$次落下未摔坏。题设给出
+\[P(S_1)=0.7,\quad P(S_2\mid S_1)=0.4,\quad P(S_3\mid S_1S_2)=0.1.\]
+由乘法公式，
+\[P(S_1S_2S_3)=P(S_1)P(S_2\mid S_1)P(S_3\mid S_1S_2)
+=0.7\times0.4\times0.1=0.028.\]
+\end{proof}
+\paragraph{答案}$0.028$。
+
+\subsection{作业第5题：两种天气的递推}\label{ex:w03-h5}
+只考虑有雨、无雨两种天气。已知今天天气时，明天天气保持不变的条件概率为$p$，$0<p<1$，改变的条件概率为$1-p$。设第一天无雨，求第$n$天也无雨的概率，$n\geq1$。
+\basis{原笔记第1.3节全概率公式；原笔记第1.5节“不独立子试验与转移概率”。}
+\paragraph{思路}以第$n$天是否无雨作分割，写递推式后减去平衡值$1/2$。
+\begin{proof}[解答]
+记$q_n=P(\text{第$n$天无雨})$，则$q_1=1$。按题给的一步转移概率与全概率公式，
+\begin{align*}
+q_{n+1}&=pq_n+(1-p)(1-q_n)\\
+&=(2p-1)q_n+1-p.
+\end{align*}
+因此
+\[q_{n+1}-\frac12=(2p-1)\left(q_n-\frac12\right).\]
+迭代$n-1$次得到
+\[q_n-\frac12=(2p-1)^{n-1}\left(q_1-\frac12\right)=\frac12(2p-1)^{n-1}.\]
+所以
+\[q_n=\frac{1+(2p-1)^{n-1}}2.\]
+$n=1$时将零次幂按1处理，结果为1；$p=1/2$时$n\geq2$的结果为$1/2$。
+\end{proof}
+\paragraph{答案}$\bigl[1+(2p-1)^{n-1}\bigr]/2$。

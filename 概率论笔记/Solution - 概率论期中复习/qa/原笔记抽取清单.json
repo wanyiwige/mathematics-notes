@@ -1,0 +1,2142 @@
+[
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "随机试验",
+    "label": "random-experiment",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 12,
+    "end_line": 19
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "样本点与样本空间",
+    "label": "sample-space",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 21,
+    "end_line": 26
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "事件",
+    "label": "event",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 34,
+    "end_line": 39
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "古典概率模型",
+    "label": "classical-probability-model",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 142,
+    "end_line": 147
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "proposition",
+    "title": "计数的乘法原理",
+    "label": "multiplication-principle",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 151,
+    "end_line": 157
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "example",
+    "title": "抽取方式与排列计数",
+    "label": "note:c1:e1",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 158,
+    "end_line": 173
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "proposition",
+    "title": "多组分配",
+    "label": "multinomial-count",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 175,
+    "end_line": 185
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mycorollary",
+    "title": "多项式定理",
+    "label": "multinomial-theorem",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 202,
+    "end_line": 215
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "proposition",
+    "title": "正整数解的个数",
+    "label": "positive-integer-solutions",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 217,
+    "end_line": 227
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "proposition",
+    "title": "非负整数解的个数",
+    "label": "nonnegative-integer-solutions",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 238,
+    "end_line": 248
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "几何概率模型",
+    "label": "geometric-probability-model",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 263,
+    "end_line": 273
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "example",
+    "title": "贝特朗奇论",
+    "label": "note:c1:e2",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 279,
+    "end_line": 303
+  },
+  {
+    "chapter": 1,
+    "section": 1,
+    "kind": "example",
+    "title": "布丰投针实验",
+    "label": "note:c1:e3",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 305,
+    "end_line": 336
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "频率",
+    "label": "frequency",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 363,
+    "end_line": 369
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "频率的性质",
+    "label": "frequency-properties",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 371,
+    "end_line": 389
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "$\\sigma$-域与可测空间",
+    "label": "sigma-algebra",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 412,
+    "end_line": 423
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "$\\sigma$-域的基本封闭性",
+    "label": "sigma-algebra-closure",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 425,
+    "end_line": 436
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "一些 $\\sigma$-代数的例子",
+    "label": "note:c1:e4",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 451,
+    "end_line": 461
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "$\\sigma$-域的交",
+    "label": "intersection-of-sigma-algebras",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 465,
+    "end_line": 471
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "由集合类生成的 $\\sigma$-域",
+    "label": "generated-sigma-algebra",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 477,
+    "end_line": 484
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "Borel $\\sigma$-域",
+    "label": "borel-sigma-algebra",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 495,
+    "end_line": 508
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "常用集合属于 $\\mathscr{B}(\\mathbb{R})$",
+    "label": "common-borel-sets",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 510,
+    "end_line": 512
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "概率与概率空间",
+    "label": "probability-space",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 536,
+    "end_line": 552
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "空集的概率",
+    "label": "probability-empty-set",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 555,
+    "end_line": 559
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "有限可加性",
+    "label": "finite-additivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 576,
+    "end_line": 582
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "单调性",
+    "label": "probability-monotonicity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 588,
+    "end_line": 593
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mycorollary",
+    "title": "概率的上界",
+    "label": "probability-upper-bound",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 602,
+    "end_line": 607
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "补事件的概率",
+    "label": "probability-complement",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 613,
+    "end_line": 618
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "一般加法公式",
+    "label": "probability-addition-formula",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 627,
+    "end_line": 632
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "容斥恒等式",
+    "label": "inclusion-exclusion",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 655,
+    "end_line": 663
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mycorollary",
+    "title": "有限次次可加性",
+    "label": "finite-subadditivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 677,
+    "end_line": 683
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "Kounias 不等式",
+    "label": "note:c1:e5",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 696,
+    "end_line": 718
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "事件序列的极限",
+    "label": "limit-of-event-sequences",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 720,
+    "end_line": 737
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "概率的连续性",
+    "label": "continuity-of-probability",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 739,
+    "end_line": 752
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "可列次可加性（布尔不等式）",
+    "label": "countable-subadditivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 779,
+    "end_line": 785
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "可列个零概率事件的并",
+    "label": "note:c1:e6",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 803,
+    "end_line": 816
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "事件列的上极限与下极限",
+    "label": "limsup-liminf-events",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 824,
+    "end_line": 836
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "事件列极限的存在",
+    "label": "event-limit-exists",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 860,
+    "end_line": 865
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "伯努利概率空间",
+    "label": "note:c1:e7",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 868,
+    "end_line": 879
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "古典概率空间",
+    "label": "note:c1:e8",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 881,
+    "end_line": 891
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "最大号码问题",
+    "label": "note:c1:e9",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 895,
+    "end_line": 918
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "配对问题",
+    "label": "note:c1:e10",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 920,
+    "end_line": 948
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "圆桌夫妻问题",
+    "label": "note:c1:e11",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 950,
+    "end_line": 973
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "反复抽取扑克牌中的大王",
+    "label": "note:c1:e12",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 975,
+    "end_line": 1016
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "测度、有限测度与 $\\sigma$ 有限测度",
+    "label": "measure-space",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1024,
+    "end_line": 1040
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的有限可加性",
+    "label": "measure-finite-additivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1050,
+    "end_line": 1055
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的单调性",
+    "label": "measure-monotonicity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1061,
+    "end_line": 1066
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的可减性",
+    "label": "measure-subtractivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1075,
+    "end_line": 1080
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的容斥恒等式",
+    "label": "measure-inclusion-exclusion",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1090,
+    "end_line": 1098
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "测度的可列次可加性",
+    "label": "measure-countable-subadditivity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1104,
+    "end_line": 1110
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的下连续性",
+    "label": "measure-lower-continuity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1129,
+    "end_line": 1135
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "proposition",
+    "title": "测度的上连续性",
+    "label": "measure-upper-continuity",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1141,
+    "end_line": 1147
+  },
+  {
+    "chapter": 1,
+    "section": 2,
+    "kind": "example",
+    "title": "Lebesgue 测度",
+    "label": "note:c1:e13",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1167,
+    "end_line": 1178
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "掷两枚骰子",
+    "label": "note:c1:e14",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1186,
+    "end_line": 1193
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "条件概率",
+    "label": "conditional-probability",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1195,
+    "end_line": 1201
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "寻找钥匙",
+    "label": "note:c1:e15",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1203,
+    "end_line": 1216
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "条件概率的乘法公式",
+    "label": "conditional-multiplication-formula",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1220,
+    "end_line": 1238
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "全概率公式",
+    "label": "total-probability-formula",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1254,
+    "end_line": 1266
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "同卵双胞胎的比例",
+    "label": "note:c1:e16",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1283,
+    "end_line": 1299
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "Pólya 罐模型",
+    "label": "note:c1:e17",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1301,
+    "end_line": 1319
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "配对问题的递推与恰有 $k$ 个配对",
+    "label": "note:c1:e18",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1321,
+    "end_line": 1358
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "贝叶斯公式",
+    "label": "bayes-formula",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1362,
+    "end_line": 1370
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "保险事故原因",
+    "label": "note:c1:e19",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1384,
+    "end_line": 1404
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "Monty Hall 问题",
+    "label": "note:c1:e20",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1406,
+    "end_line": 1432
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "条件概率构成概率测度",
+    "label": "conditional-probability-measure",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1436,
+    "end_line": 1442
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "条件概率空间中的再次条件化",
+    "label": "iterated-conditioning",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1463,
+    "end_line": 1468
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "proposition",
+    "title": "再次条件化等价于对交事件条件化",
+    "label": "nested-conditioning",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1470,
+    "end_line": 1479
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "血液化验与重复检测",
+    "label": "note:c1:e21",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1515,
+    "end_line": 1558
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "飞机失事搜索",
+    "label": "note:c1:e22",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1560,
+    "end_line": 1592
+  },
+  {
+    "chapter": 1,
+    "section": 3,
+    "kind": "example",
+    "title": "赌徒破产模型",
+    "label": "note:c1:e23",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1594,
+    "end_line": 1661
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "两个事件的独立性",
+    "label": "independence-two-events",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1675,
+    "end_line": 1681
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "proposition",
+    "title": "独立性对补事件保持",
+    "label": "independence-complements",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1691,
+    "end_line": 1700
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "独立与互斥的区别",
+    "label": "note:c1:e24",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1726,
+    "end_line": 1768
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "两两独立与相互独立",
+    "label": "pairwise-mutual-independence",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1769,
+    "end_line": 1788
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "两两独立不推出相互独立",
+    "label": "note:c1:e25",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1791,
+    "end_line": 1814
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "三色球模型",
+    "label": "note:c1:e26",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1816,
+    "end_line": 1839
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "可列个事件的相互独立",
+    "label": "countable-event-independence",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1847,
+    "end_line": 1849
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "独立试验、伯努利试验与独立重复试验",
+    "label": "independent-trials",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1853,
+    "end_line": 1860
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "伯努利试验中的常用计算",
+    "label": "note:c1:e27",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1863,
+    "end_line": 1904
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "分赌注问题",
+    "label": "note:c1:e28",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1908,
+    "end_line": 1919
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "事件 $A$ 先于事件 $B$ 发生",
+    "label": "note:c1:e29",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1921,
+    "end_line": 1935
+  },
+  {
+    "chapter": 1,
+    "section": 4,
+    "kind": "example",
+    "title": "由独立性得到欧拉乘积公式",
+    "label": "note:c1:e30",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1937,
+    "end_line": 1978
+  },
+  {
+    "chapter": 1,
+    "section": 5,
+    "kind": "example",
+    "title": "掷骰子与独立取球",
+    "label": "note:c1:e31",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 1999,
+    "end_line": 2008
+  },
+  {
+    "chapter": 1,
+    "section": 5,
+    "kind": "mydefinition",
+    "title": "两个独立子试验的乘积空间表述",
+    "label": "two-independent-experiments-product",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 2010,
+    "end_line": 2021
+  },
+  {
+    "chapter": 1,
+    "section": 5,
+    "kind": "mydefinition",
+    "title": "有限个独立子试验",
+    "label": "finite-independent-experiments-product",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 2034,
+    "end_line": 2051
+  },
+  {
+    "chapter": 1,
+    "section": 5,
+    "kind": "example",
+    "title": "掷骰子后按点数取球",
+    "label": "note:c1:e32",
+    "source": "chapters\\chapter1.tex",
+    "start_line": 2055,
+    "end_line": 2092
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "随机变量",
+    "label": "random-variable",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 9,
+    "end_line": 15
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "proposition",
+    "title": "随机变量的半直线判别",
+    "label": "random-variable-halfline-criterion",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 19,
+    "end_line": 24
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "example",
+    "title": "示性函数",
+    "label": "note:c2:e1",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 26,
+    "end_line": 48
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "分布函数",
+    "label": "distribution-function",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 73,
+    "end_line": 79
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "mytheorem",
+    "title": "分布函数的基本性质",
+    "label": "distribution-function-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 85,
+    "end_line": 103
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "example",
+    "title": "含跳跃的分布函数",
+    "label": "note:c2:e2",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 169,
+    "end_line": 200
+  },
+  {
+    "chapter": 2,
+    "section": 1,
+    "kind": "example",
+    "title": "可列个分布函数的凸组合",
+    "label": "note:c2:e3",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 204,
+    "end_line": 265
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "离散型随机变量与分布列",
+    "label": "discrete-random-variable-pmf",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 274,
+    "end_line": 297
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "proposition",
+    "title": "分布列的基本性质",
+    "label": "pmf-basic-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 301,
+    "end_line": 307
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "proposition",
+    "title": "分布列与分布函数相互确定",
+    "label": "pmf-cdf-equivalence",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 326,
+    "end_line": 335
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "收集齐优惠券所需的张数",
+    "label": "note:c2:e4",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 341,
+    "end_line": 377
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "二项分布",
+    "label": "binomial-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 381,
+    "end_line": 388
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "proposition",
+    "title": "二项分布的单调性与最可能取值",
+    "label": "binomial-modes",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 407,
+    "end_line": 414
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "均匀硬币的中心项",
+    "label": "note:c2:e5",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 436,
+    "end_line": 469
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "泊松分布",
+    "label": "poisson-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 473,
+    "end_line": 480
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "一页上至少有一处印刷错误",
+    "label": "note:c2:e6",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 492,
+    "end_line": 497
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "泊松粒子数的独立捕捉",
+    "label": "note:c2:e7",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 499,
+    "end_line": 518
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "proposition",
+    "title": "泊松分布的单调性与最可能取值",
+    "label": "poisson-modes",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 520,
+    "end_line": 526
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "泊松定理",
+    "label": "poisson-limit-theorem",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 546,
+    "end_line": 555
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "死亡人数不超过五人的泊松近似",
+    "label": "note:c2:e8",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 588,
+    "end_line": 605
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "几何分布",
+    "label": "geometric-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 618,
+    "end_line": 624
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "几何分布的无记忆性",
+    "label": "geometric-memorylessness",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 642,
+    "end_line": 647
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "帕斯卡分布",
+    "label": "pascal-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 686,
+    "end_line": 693
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "负二项分布",
+    "label": "negative-binomial-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 715,
+    "end_line": 725
+  },
+  {
+    "chapter": 2,
+    "section": 2,
+    "kind": "example",
+    "title": "巴拿赫火柴盒问题",
+    "label": "note:c2:e9",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 739,
+    "end_line": 765
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "连续型随机变量与概率密度",
+    "label": "continuous-random-variable-density",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 794,
+    "end_line": 800
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "概率密度的基本性质",
+    "label": "density-basic-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 804,
+    "end_line": 811
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "分段密度的参数、区间概率与分布函数",
+    "label": "note:c2:e10",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 828,
+    "end_line": 870
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "连续型分布的基本性质",
+    "label": "continuous-distribution-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 874,
+    "end_line": 896
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "五个电子管中恰有两个需要更换",
+    "label": "note:c2:e11",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 934,
+    "end_line": 961
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "由分布函数求密度",
+    "label": "note:c2:e12",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 963,
+    "end_line": 988
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "均匀分布",
+    "label": "uniform-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1005,
+    "end_line": 1015
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "等公交车不超过五分钟",
+    "label": "note:c2:e13",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1031,
+    "end_line": 1047
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "指数分布",
+    "label": "exponential-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1051,
+    "end_line": 1061
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "指数分布的分布函数与尾概率",
+    "label": "exponential-cdf",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1073,
+    "end_line": 1090
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "指数分布的无记忆性",
+    "label": "exponential-memorylessness",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1108,
+    "end_line": 1114
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mylemma",
+    "title": "连续乘法方程",
+    "label": "continuous-multiplicative-equation",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1151,
+    "end_line": 1157
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "邮局中最后办完事情的人",
+    "label": "note:c2:e14",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1200,
+    "end_line": 1219
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "第一位顾客的到达时刻",
+    "label": "note:c2:e15",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1221,
+    "end_line": 1239
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "Gamma 函数与 Gamma 分布",
+    "label": "gamma-function-and-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1243,
+    "end_line": 1264
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "Gamma 函数的基本性质",
+    "label": "gamma-function-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1280,
+    "end_line": 1287
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "Gamma 密度的归一化",
+    "label": "gamma-density-normalization",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1363,
+    "end_line": 1365
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "第 $n$ 位顾客的到达时刻",
+    "label": "note:c2:e16",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1381,
+    "end_line": 1425
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "贝塔函数与贝塔分布",
+    "label": "beta-function-and-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1429,
+    "end_line": 1443
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "贝塔函数的基本性质",
+    "label": "beta-function-properties",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1452,
+    "end_line": 1459
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "正态分布",
+    "label": "normal-distribution",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1504,
+    "end_line": 1512
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "正态密度的归一化",
+    "label": "normal-density-normalization",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1514,
+    "end_line": 1516
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "正态密度的图像性质",
+    "label": "normal-density-shape",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1535,
+    "end_line": 1539
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "proposition",
+    "title": "标准正态分布的对称公式",
+    "label": "standard-normal-symmetry",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1577,
+    "end_line": 1582
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "对两侧尾部作符号翻转",
+    "label": "note:c2:e17",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1600,
+    "end_line": 1647
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "正态分布的线性性质",
+    "label": "normal-affine-transformation",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1651,
+    "end_line": 1656
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "mycorollary",
+    "title": "正态分布的标准化",
+    "label": "normal-standardization",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1700,
+    "end_line": 1705
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "三倍尺度区间的概率",
+    "label": "note:c2:e18",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1727,
+    "end_line": 1740
+  },
+  {
+    "chapter": 2,
+    "section": 3,
+    "kind": "example",
+    "title": "由两端比例估计录取分数线",
+    "label": "note:c2:e19",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1742,
+    "end_line": 1787
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "博雷尔函数",
+    "label": "borel-function",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1803,
+    "end_line": 1810
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "离散型随机变量的多项式变换",
+    "label": "note:c2:e20",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1818,
+    "end_line": 1844
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "一般连续型随机变量的线性变换",
+    "label": "note:c2:e21",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1848,
+    "end_line": 1871
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "分布函数的广义逆",
+    "label": "generalized-inverse-cdf",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1887,
+    "end_line": 1898
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "mylemma",
+    "title": "广义逆与分布函数的不等式",
+    "label": "generalized-inverse-equivalence",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1906,
+    "end_line": 1911
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "mytheorem",
+    "title": "由均匀分布构造给定分布",
+    "label": "inverse-transform-construction",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1935,
+    "end_line": 1941
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "mytheorem",
+    "title": "分支反函数的密度变换公式",
+    "label": "inverse-branches-density",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1977,
+    "end_line": 1991
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "用反函数公式求线性变换的密度",
+    "label": "note:c2:e22",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 1993,
+    "end_line": 2003
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "平方变换与不同分支的取值范围",
+    "label": "note:c2:e23",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 2005,
+    "end_line": 2048
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "均匀随机变量的余弦变换",
+    "label": "note:c2:e24",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 2050,
+    "end_line": 2082
+  },
+  {
+    "chapter": 2,
+    "section": 4,
+    "kind": "example",
+    "title": "倒数的小数部分与可数个反函数分支",
+    "label": "note:c2:e25",
+    "source": "chapters\\chapter2.tex",
+    "start_line": 2084,
+    "end_line": 2121
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "随机向量",
+    "label": "random-vector",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 9,
+    "end_line": 18
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "联合分布函数",
+    "label": "joint-distribution-function",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 56,
+    "end_line": 64
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "联合分布函数的基本性质",
+    "label": "joint-cdf-properties",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 66,
+    "end_line": 85
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "边缘分布函数",
+    "label": "marginal-distribution-function",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 175,
+    "end_line": 187
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "由联合分布函数求边缘分布函数",
+    "label": "marginal-cdf-limits",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 195,
+    "end_line": 207
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "离散型随机向量与联合分布列",
+    "label": "discrete-vector-joint-pmf",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 244,
+    "end_line": 257
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "联合分布列的基本性质",
+    "label": "joint-pmf-properties",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 265,
+    "end_line": 271
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "由联合分布列计算事件概率与分布函数",
+    "label": "joint-pmf-event-probability",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 295,
+    "end_line": 307
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "指数随机变量经阈值变换得到的联合分布列",
+    "label": "note:c3:e1",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 324,
+    "end_line": 359
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "边缘分布列",
+    "label": "marginal-probability-mass",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 361,
+    "end_line": 367
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "由联合分布列求边缘分布列",
+    "label": "marginal-pmf-sums",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 369,
+    "end_line": 384
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "由联合分布表求边缘分布列",
+    "label": "note:c3:e2",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 415,
+    "end_line": 444
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "连续型随机向量与联合密度",
+    "label": "continuous-vector-joint-density",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 448,
+    "end_line": 454
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "联合密度的基本性质",
+    "label": "joint-density-properties",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 462,
+    "end_line": 468
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "proposition",
+    "title": "联合密度与联合分布函数",
+    "label": "joint-density-cdf",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 475,
+    "end_line": 487
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "在抛物线围成的区域上归一化并计算概率",
+    "label": "note:c3:e3",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 537,
+    "end_line": 555
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mydefinition",
+    "title": "平面区域上的均匀分布",
+    "label": "uniform-planar-region",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 557,
+    "end_line": 570
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "圆盘上的均匀分布",
+    "label": "note:c3:e4",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 572,
+    "end_line": 597
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "mytheorem",
+    "title": "由联合密度求边缘密度",
+    "label": "marginal-density-integrals",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 599,
+    "end_line": 606
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "固定坐标求积分上下限",
+    "label": "note:c3:e5",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 641,
+    "end_line": 672
+  },
+  {
+    "chapter": 3,
+    "section": 1,
+    "kind": "example",
+    "title": "各分量连续型不保证向量连续型",
+    "label": "note:c3:e6",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 674,
+    "end_line": 691
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "随机变量的相互独立",
+    "label": "mutually-independent-random-variables",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 699,
+    "end_line": 705
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "proposition",
+    "title": "独立随机变量的函数",
+    "label": "functions-of-independent-variables",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 711,
+    "end_line": 718
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "独立性的分布判据",
+    "label": "independence-distribution-criteria",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 754,
+    "end_line": 772
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mycorollary",
+    "title": "独立的连续型分量具有联合密度",
+    "label": "independent-continuous-joint-density",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 835,
+    "end_line": 837
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "example",
+    "title": "泊松总人数的随机分流",
+    "label": "note:c3:e7",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 856,
+    "end_line": 887
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "proposition",
+    "title": "非负函数分解判据",
+    "label": "independence-factorization",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 889,
+    "end_line": 902
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "example",
+    "title": "乘积区域与三角形区域中的独立性",
+    "label": "note:c3:e8",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 930,
+    "end_line": 967
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "独立同分布",
+    "label": "iid-random-variables",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 969,
+    "end_line": 975
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "example",
+    "title": "独立同分布的指数变量的联合密度",
+    "label": "note:c3:e9",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 979,
+    "end_line": 994
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "独立随机变量求和的卷积公式",
+    "label": "sum-convolution",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 998,
+    "end_line": 1014
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "二项分布的可加性",
+    "label": "binomial-additivity",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1051,
+    "end_line": 1056
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "泊松分布的可加性",
+    "label": "poisson-additivity",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1084,
+    "end_line": 1089
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "Gamma 分布的可加性",
+    "label": "gamma-additivity",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1105,
+    "end_line": 1110
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mydefinition",
+    "title": "卡方分布",
+    "label": "chi-square-distribution",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1142,
+    "end_line": 1148
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "proposition",
+    "title": "卡方分布与 Gamma 分布",
+    "label": "chi-square-gamma",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1150,
+    "end_line": 1152
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "mytheorem",
+    "title": "独立正态随机变量的线性组合",
+    "label": "normal-linear-combination",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1169,
+    "end_line": 1179
+  },
+  {
+    "chapter": 3,
+    "section": 2,
+    "kind": "example",
+    "title": "两个独立均匀变量之和",
+    "label": "note:c3:e10",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1209,
+    "end_line": 1228
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "给定事件的条件分布函数",
+    "label": "conditional-cdf-event",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1239,
+    "end_line": 1245
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "离散型条件分布列与条件分布函数",
+    "label": "discrete-conditional-distribution",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1249,
+    "end_line": 1272
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "proposition",
+    "title": "条件分布列的归一化",
+    "label": "conditional-pmf-normalization",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1274,
+    "end_line": 1276
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "example",
+    "title": "给定独立泊松变量的和",
+    "label": "note:c3:e11",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1298,
+    "end_line": 1316
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "mydefinition",
+    "title": "连续型条件概率的邻域极限",
+    "label": "continuous-conditional-neighborhood",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1326,
+    "end_line": 1339
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "mytheorem",
+    "title": "由联合密度求条件密度",
+    "label": "conditional-density-ratio",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1350,
+    "end_line": 1370
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "mycorollary",
+    "title": "条件分布函数的积分公式",
+    "label": "conditional-cdf-density",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1422,
+    "end_line": 1430
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "example",
+    "title": "固定条件值与区间条件事件",
+    "label": "note:c3:e12",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1445,
+    "end_line": 1498
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "example",
+    "title": "$t$ 分布的密度",
+    "label": "note:c3:e13",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1500,
+    "end_line": 1537
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "proposition",
+    "title": "离散与连续变量的条件分布乘法公式",
+    "label": "mixed-conditional-bayes",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1549,
+    "end_line": 1565
+  },
+  {
+    "chapter": 3,
+    "section": 3,
+    "kind": "example",
+    "title": "均匀先验与二项抽样",
+    "label": "note:c3:e14",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1588,
+    "end_line": 1616
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "mydefinition",
+    "title": "次序统计量",
+    "label": "order-statistics",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1621,
+    "end_line": 1627
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "example",
+    "title": "三个变量的排序",
+    "label": "note:c3:e15",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1635,
+    "end_line": 1645
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "proposition",
+    "title": "最小值与最大值的分布",
+    "label": "minimum-maximum-cdf",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1649,
+    "end_line": 1655
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "proposition",
+    "title": "连续独立样本无相同取值",
+    "label": "no-ties-continuous-sample",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1673,
+    "end_line": 1678
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "mytheorem",
+    "title": "次序统计量的联合密度",
+    "label": "joint-density-order-statistics",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1687,
+    "end_line": 1696
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "example",
+    "title": "路上随机位置的最小间距",
+    "label": "note:c3:e16",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1718,
+    "end_line": 1745
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "mytheorem",
+    "title": "单个次序统计量的密度",
+    "label": "single-order-density",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1747,
+    "end_line": 1756
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "mytheorem",
+    "title": "两个次序统计量的联合密度",
+    "label": "pair-order-density",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1779,
+    "end_line": 1793
+  },
+  {
+    "chapter": 3,
+    "section": 4,
+    "kind": "example",
+    "title": "样本极差的分布",
+    "label": "note:c3:e17",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1817,
+    "end_line": 1864
+  },
+  {
+    "chapter": 3,
+    "section": 5,
+    "kind": "mytheorem",
+    "title": "二维一一变换的密度公式",
+    "label": "bivariate-density-transformation",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1869,
+    "end_line": 1895
+  },
+  {
+    "chapter": 3,
+    "section": 5,
+    "kind": "example",
+    "title": "引入辅助变量求和的密度",
+    "label": "note:c3:e18",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1915,
+    "end_line": 1941
+  },
+  {
+    "chapter": 3,
+    "section": 5,
+    "kind": "example",
+    "title": "独立 Gamma 变量的和与比例",
+    "label": "note:c3:e19",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 1943,
+    "end_line": 1999
+  },
+  {
+    "chapter": 3,
+    "section": 5,
+    "kind": "example",
+    "title": "标准正态变量的极坐标变换",
+    "label": "note:c3:e20",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 2013,
+    "end_line": 2082
+  },
+  {
+    "chapter": 3,
+    "section": 5,
+    "kind": "example",
+    "title": "独立指数变量的部分和",
+    "label": "note:c3:e21",
+    "source": "chapters\\chapter3.tex",
+    "start_line": 2112,
+    "end_line": 2152
+  }
+]

@@ -1,0 +1,239 @@
+% !TEX root = 概率论期中复习.tex
+\section{第十周：联合分布与边缘分布}
+
+\subsection{教材第72页第1题}\label{ex:w10-b72-1}
+从 $1,2,\ldots,n$ 中随机选取一个数记为 $\eta$，再从 $1,2,\ldots,\eta$ 中随机选取一数记为 $\xi$。求 $(\xi,\eta)$ 的联合分布和边缘分布。
+\basis{原笔记第3章第1节“离散型随机向量的联合分布列与边缘分布列”，第3节“离散型条件分布列与条件分布函数”。}
+\paragraph{思路}先按选取顺序相乘得到联合概率，再沿另一坐标求和。
+\begin{proof}[解答]
+对 $1\leq i\leq j\leq n$，第一步选到 $j$ 的概率是 $1/n$，在此条件下第二步选到 $i$ 的概率是 $1/j$。因此
+\[
+P(\xi=i,\eta=j)=P(\eta=j)P(\xi=i\mid\eta=j)=\frac1{nj}.
+\]
+不满足上述整数范围时，联合概率为 $0$。固定 $i$ 时，只有 $j=i,\ldots,n$ 能使 $\xi=i$，故
+\[
+P(\xi=i)=\frac1n\sum_{j=i}^n\frac1j,\qquad i=1,\ldots,n.
+\]
+固定 $j$ 时，有 $j$ 个可能的 $i$，所以
+\[
+P(\eta=j)=\sum_{i=1}^j\frac1{nj}=\frac1n,\qquad j=1,\ldots,n.
+\]
+\end{proof}
+\paragraph{答案}联合分布为 $p(i,j)=1/(nj)$（$1\leq i\leq j\leq n$）；两个边缘分布如上。
+
+\subsection{教材第72页第2题}\label{ex:w10-b72-2}
+设 $(\xi,\eta)$ 为绝对连续型随机向量。证明 $P(\xi=\eta)=0$。
+\basis{原笔记第3章第1节“联合密度的基本性质”及例“各分量连续型不保证向量连续型”。}
+\paragraph{思路}把等值事件写成平面上对角线的概率，对联合密度积分。
+\begin{proof}
+记联合密度为 $f$。对每个固定 $x$，单点集合 $\{x\}$ 的一维长度为 $0$，故
+\[
+\int_{\mathbb R}I_{\{y=x\}}f(x,y)\,dy=0.
+\]
+被积函数非负，可以逐次积分，得到
+\[
+P(\xi=\eta)=\iint_{\{x=y\}}f(x,y)\,dx\,dy
+=\int_{\mathbb R}\left(\int_{\mathbb R}I_{\{y=x\}}f(x,y)\,dy\right)dx=0.
+\]
+这里使用的是联合分布具有密度；仅有两个边缘分布连续不足以推出结论，例如取 $\eta=\xi$。
+\end{proof}
+\paragraph{答案}$P(\xi=\eta)=0$。
+
+\subsection{教材第72页第4题}\label{ex:w10-b72-4}
+随机向量 $(\xi,\eta)$ 的联合分布密度为
+\[
+p(x,y)=ae^{-(2x+y)}I_{\{x>0\}}I_{\{y>0\}}.
+\]
+求：（1）常数 $a$；（2）$\xi$ 的边缘密度；（3）$P(\xi\leq2,\eta\leq1)$；（4）$P(\xi+\eta\leq2)$。
+\basis{原笔记第3章第1节“联合密度的基本性质”“固定坐标求积分上下限”。}
+\paragraph{思路}归一化确定常数；矩形区域与三角形区域分别积分。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 由总积分为 $1$，
+\[
+1=a\int_0^\infty e^{-2x}dx\int_0^\infty e^{-y}dy=\frac a2,
+\qquad a=2.
+\]
+\item 对 $x>0$，
+\[
+f_\xi(x)=\int_0^\infty2e^{-2x-y}dy=2e^{-2x}.
+\]
+对 $x\leq0$ 取 $f_\xi(x)=0$。同理 $f_\eta(y)=e^{-y}$（$y>0$），区域外为 $0$。
+\item 所求区域是 $0<x\leq2,0<y\leq1$，故
+\[
+P(\xi\leq2,\eta\leq1)=\int_0^2\int_0^1 2e^{-2x-y}\,dy\,dx
+=(1-e^{-4})(1-e^{-1}).
+\]
+\item 在正象限内，$x+y\leq2$ 等价于 $0<x<2,0<y\leq2-x$。因此
+\begin{align*}
+P(\xi+\eta\leq2)
+&=\int_0^2 2e^{-2x}(1-e^{-(2-x)})\,dx\\
+&=(1-e^{-4})-2e^{-2}(1-e^{-2})
+=(1-e^{-2})^2.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$a=2$；$f_\xi(x)=2e^{-2x}I_{\{x>0\}}$；后两问为 $(1-e^{-4})(1-e^{-1})$、$(1-e^{-2})^2$。
+
+\subsection{教材第72页第5题}\label{ex:w10-b72-5}
+设随机向量 $(\xi,\eta)$ 的联合分布密度为
+\[
+p(x,y)=3(1-x)I_{\{0<x<y<1\}}.
+\]
+求其边缘分布密度。
+\basis{原笔记第3章第1节“固定坐标求积分上下限”。}
+\paragraph{思路}固定 $x$ 时 $y\in(x,1)$；固定 $y$ 时 $x\in(0,y)$。
+\begin{proof}[解答]
+对 $0<x<1$，
+\[
+f_\xi(x)=\int_x^1 3(1-x)\,dy=3(1-x)^2.
+\]
+对 $0<y<1$，
+\[
+f_\eta(y)=\int_0^y3(1-x)\,dx=3y-\frac32y^2.
+\]
+相应区间之外的密度均为 $0$。两个表达式都非负，而且
+\[
+\int_0^1 3(1-x)^2dx=1,\qquad
+\int_0^1\left(3y-\frac32y^2\right)dy=1.
+\]
+\end{proof}
+\paragraph{答案}$f_\xi(x)=3(1-x)^2I_{\{0<x<1\}}$，$f_\eta(y)=(3y-\frac32y^2)I_{\{0<y<1\}}$。
+
+\subsection{教材第72页第6题}\label{ex:w10-b72-6}
+函数
+\[
+F(x,y)=(1-e^{-xy})I_{\{x>0,y>0\}}
+\]
+是否为二维概率分布函数？
+\basis{原笔记第3章第1节“联合分布函数的基本性质”：每个矩形的分布函数增量必须非负。}
+\paragraph{思路}检验矩形 $(1,2]\times(1,2]$ 对应的增量。
+\begin{proof}[解答]
+若 $F$ 是联合分布函数，则矩形概率应为
+\begin{align*}
+P(1<X\leq2,1<Y\leq2)
+&=F(2,2)-F(1,2)-F(2,1)+F(1,1)\\
+&=2e^{-2}-e^{-1}-e^{-4}.
+\end{align*}
+由于 $e>2$，有 $2e^{-2}<e^{-1}$，上述增量严格小于 $0$，与概率非负矛盾。
+\end{proof}
+\paragraph{答案}不是二维概率分布函数。
+
+\subsection{教材第81页第4题}\label{ex:w10-b81-4}
+设随机向量 $(\xi,\eta)$ 的联合分布密度为
+\[
+p(x,y)=4xyI_{\{0<x,y<1\}}.
+\]
+求 $\xi$ 和 $\eta$ 的边缘分布密度，并证明 $\xi$ 和 $\eta$ 相互独立。
+\basis{原笔记第3章第1节边缘密度公式，第2节连续型随机变量的独立性判据。}
+\paragraph{思路}求边缘密度后，检查联合密度是否等于二者乘积。
+\begin{proof}[解答]
+对 $0<x<1$，$f_\xi(x)=\int_0^14xy\,dy=2x$；对 $0<y<1$，$f_\eta(y)=\int_0^14xy\,dx=2y$。区间外均取 $0$。
+
+当 $0<x,y<1$ 时，$p(x,y)=(2x)(2y)=f_\xi(x)f_\eta(y)$；当至少一个坐标不在 $(0,1)$ 内时，两边都为 $0$。因而联合密度分解为两个边缘密度的乘积，$\xi,\eta$ 相互独立。
+\end{proof}
+\paragraph{答案}$f_\xi(x)=2xI_{\{0<x<1\}}$、$f_\eta(y)=2yI_{\{0<y<1\}}$，且二者独立。
+
+\subsection{作业第2题：由事件独立性确定联合分布}\label{ex:w10-h2}
+已知 $(X,Y)$ 的联合分布列如下，其中 $a,b$ 是常数，事件 $\{X=1\}$ 和 $\{X+Y=1\}$ 相互独立。
+\[
+\begin{array}{c|cc}
+X\backslash Y&0&1\\\hline
+0&0.4&a\\
+1&b&0.1
+\end{array}
+\]
+（1）求 $a,b$；（2）求 $(X,Y)$ 的边缘分布列；（3）判断 $X$ 和 $Y$ 是否相互独立。
+\basis{原笔记第3章第1节例“由联合分布表求边缘分布列”，第2节离散型独立性判据。}
+\paragraph{思路}先将给定的两个事件写成表格中格子的并，再使用独立性方程。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 归一化给出 $a+b=0.5$。令 $A=\{X=1\}$、$B=\{X+Y=1\}$，则
+\[
+P(A)=b+0.1,\quad P(B)=a+b=0.5,\quad P(AB)=P(X=1,Y=0)=b.
+\]
+由独立性，$b=0.5(b+0.1)$，解得 $b=0.1,a=0.4$。
+\item 沿行、列求和，有
+\[
+P(X=0)=0.8,\quad P(X=1)=0.2;\qquad
+P(Y=0)=P(Y=1)=0.5.
+\]
+\item 四个联合概率分别为
+\[
+0.4=0.8\cdot0.5,\quad0.4=0.8\cdot0.5,\quad
+0.1=0.2\cdot0.5,\quad0.1=0.2\cdot0.5.
+\]
+每一个可能取值对的联合概率均等于边缘概率的乘积，故 $X,Y$ 独立。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$a=0.4,b=0.1$；$X$ 的分布为 $(0.8,0.2)$，$Y$ 的分布为 $(0.5,0.5)$；相互独立。
+
+\subsection{作业第3题：三项分布的边缘分布}\label{ex:w10-h3}
+设正整数 $n\geq1$，$0<p_1,p_2,p_3<1$，$p_1+p_2+p_3=1$。二维离散型随机变量 $(X_1,X_2)$ 服从三项分布，即对非负整数 $k_1,k_2$，$k_1+k_2\leq n$，
+\[
+P(X_1=k_1,X_2=k_2)=\frac{n!}{k_1!k_2!(n-k_1-k_2)!}
+p_1^{k_1}p_2^{k_2}p_3^{n-k_1-k_2}.
+\]
+求 $(X_1,X_2)$ 的边缘分布列，并写出 $X_1,X_2$ 分别满足什么常用分布。
+\basis{原笔记第3章第1节“由联合分布列求边缘分布列”，第2章二项分布。}
+\paragraph{思路}固定一种结果的出现次数，将其余两种结果合并，用二项式公式求和。
+\begin{proof}[解答]
+固定 $0\leq k\leq n$，
+\begin{align*}
+P(X_1=k)
+&=\sum_{j=0}^{n-k}\frac{n!}{k!j!(n-k-j)!}p_1^kp_2^jp_3^{n-k-j}\\
+&=\binom nkp_1^k\sum_{j=0}^{n-k}\binom{n-k}{j}p_2^jp_3^{n-k-j}\\
+&=\binom nkp_1^k(p_2+p_3)^{n-k}
+=\binom nkp_1^k(1-p_1)^{n-k}.
+\end{align*}
+同样，固定 $X_2=k$ 时对 $X_1=0,\ldots,n-k$ 求和，得到
+\[
+P(X_2=k)=\binom nkp_2^k(p_1+p_3)^{n-k}
+=\binom nkp_2^k(1-p_2)^{n-k}.
+\]
+因此 $X_1\sim B(n,p_1)$，$X_2\sim B(n,p_2)$。
+\end{proof}
+\paragraph{答案}$X_1\sim B(n,p_1)$，$X_2\sim B(n,p_2)$，分布列如上。
+
+\subsection{作业第4题：双曲线之间的联合密度}\label{ex:w10-h4}
+设 $(X,Y)$ 有联合密度函数
+\[
+f(x,y)=Ax^{-3}y^{-2},\qquad 1<x,\quad x^{-1}<y<x,
+\]
+区域外为 $0$。（1）求 $A$；（2）求边缘密度 $f_X(x),f_Y(y)$；（3）求 $P(1<X<2)$、$P(\frac12<Y<2)$。
+\basis{原笔记第3章第1节“联合密度的基本性质”及例“固定坐标求积分上下限”。}
+\paragraph{思路}先对 $y$ 积分；反过来固定 $y$ 时，须同时满足 $x>1,x>y,x>1/y$，在 $y=1$ 处分段。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 对固定 $x>1$，
+\[
+\int_{1/x}^xy^{-2}dy=x-\frac1x.
+\]
+于是
+\[
+1=A\int_1^\infty(x^{-2}-x^{-4})\,dx=A\left(1-\frac13\right),
+\qquad A=\frac32.
+\]
+\item 由上一计算，
+\[
+f_X(x)=\begin{cases}\frac32(x^{-2}-x^{-4}),&x>1,\\0,&\text{其他}.\end{cases}
+\]
+固定 $y>0$，若 $0<y<1$，则 $x>1/y$；若 $y\geq1$，则 $x>y$。设 $L=\max(y,1/y)$，有
+\[
+f_Y(y)=\frac32y^{-2}\int_L^\infty x^{-3}dx=\frac34y^{-2}L^{-2}.
+\]
+因此可取
+\[
+f_Y(y)=\begin{cases}\frac34,&0<y<1,\\\frac3{4y^4},&y\geq1,\\0,&y\leq0.\end{cases}
+\]
+\item 使用边缘密度，
+\begin{align*}
+P(1<X<2)&=\frac32\int_1^2(x^{-2}-x^{-4})dx
+=\left[-\frac3{2x}+\frac1{2x^3}\right]_1^2=\frac5{16},\\
+P\left(\frac12<Y<2\right)
+&=\int_{1/2}^1\frac34dy+\int_1^2\frac3{4y^4}dy
+=\frac38+\frac14\left(1-\frac18\right)=\frac{19}{32}.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$A=3/2$；边缘密度如上；两概率为 $5/16$、$19/32$。

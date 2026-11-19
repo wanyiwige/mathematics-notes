@@ -1,0 +1,297 @@
+% !TEX root = 概率论期中复习.tex
+\section{第十二周：随机变量函数与次序统计量}
+
+\subsection{教材第90页第1题}\label{ex:w12-b90-1}
+设随机变量 $\xi$ 和 $\eta$ 独立且都服从均匀分布 $U(0,1)$。求 $\xi+\eta$ 的分布密度。
+\basis{原笔记第3章第2节“独立随机变量求和的卷积公式”，例“两个独立均匀变量之和”。}
+\paragraph{思路}卷积积分等于区间 $(0,1)$ 与 $(z-1,z)$ 的交集长度。
+\begin{proof}[解答]
+令 $S=\xi+\eta$。两变量密度均为 $I_{\{0<x<1\}}$，所以
+\[
+f_S(s)=\int_{\mathbb R}I_{\{0<x<1\}}I_{\{0<s-x<1\}}dx.
+\]
+当 $0<s\leq1$ 时，积分区间为 $(0,s)$，积分为 $s$；当 $1<s<2$ 时，积分区间为 $(s-1,1)$，积分为 $2-s$。其他 $s$ 对应的积分区间为空。因此
+\[
+f_S(s)=\begin{cases}s,&0<s\leq1,\\2-s,&1<s<2,\\0,&\text{其他}.\end{cases}
+\]
+\end{proof}
+\paragraph{答案}$\xi+\eta$ 服从上述三角形密度。
+
+\subsection{教材第90页第3题}\label{ex:w12-b90-3}
+设随机变量 $\xi_1,\xi_2$ 独立且分别服从泊松分布 $P(\lambda_1)$ 和 $P(\lambda_2)$。求：（1）$\xi_1+\xi_2$ 的分布列；（2）在给定 $\xi_1+\xi_2=n$ 时 $\xi_1$ 的条件分布列。
+\basis{原笔记第3章第2节泊松分布的可加性，第3节例“给定独立泊松变量的和”。}
+\paragraph{思路}和的分布用离散卷积；条件分布用“联合概率除以条件事件概率”。
+\begin{proof}[解答]
+记 $S=\xi_1+\xi_2$，$\lambda_1,\lambda_2>0$。
+\begin{enumerate}
+\item 对非负整数 $n$，
+\begin{align*}
+P(S=n)
+&=\sum_{k=0}^nP(\xi_1=k)P(\xi_2=n-k)\\
+&=e^{-(\lambda_1+\lambda_2)}\sum_{k=0}^n
+\frac{\lambda_1^k\lambda_2^{n-k}}{k!(n-k)!}\\
+&=\frac{e^{-(\lambda_1+\lambda_2)}}{n!}
+\sum_{k=0}^n\binom nk\lambda_1^k\lambda_2^{n-k}\\
+&=e^{-(\lambda_1+\lambda_2)}\frac{(\lambda_1+\lambda_2)^n}{n!}.
+\end{align*}
+所以 $S\sim P(\lambda_1+\lambda_2)$。
+\item 对 $k=0,\ldots,n$，
+\begin{align*}
+P(\xi_1=k\mid S=n)
+&=\frac{P(\xi_1=k,\xi_2=n-k)}{P(S=n)}\\
+&=\frac{e^{-(\lambda_1+\lambda_2)}
+\lambda_1^k\lambda_2^{n-k}/[k!(n-k)!]}
+{e^{-(\lambda_1+\lambda_2)}(\lambda_1+\lambda_2)^n/n!}\\
+&=\binom nk\left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^k
+\left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{n-k}.
+\end{align*}
+其他 $k$ 的条件概率为 $0$。当 $n=0$ 时，该条件下 $\xi_1=0$ 的概率为 $1$。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$S\sim P(\lambda_1+\lambda_2)$，$\xi_1\mid(S=n)\sim B(n,\lambda_1/(\lambda_1+\lambda_2))$。
+
+\subsection{教材第90页第4题}\label{ex:w12-b90-4}
+设随机变量 $\xi_1,\xi_2$ 独立且均服从指数分布 $\operatorname{Exp}(\lambda)$。证明 $\xi_1+\xi_2$ 与 $\xi_1/\xi_2$ 独立。
+\basis{原笔记第3章第5节“二维一一变换的密度公式”，例“独立 Gamma 变量的和与比例”，第2节密度分解判据。}
+\paragraph{思路}将和与比值一起作为新坐标，计算联合密度并分解。
+\begin{proof}
+记 $U=\xi_1+\xi_2$、$V=\xi_1/\xi_2$。在 $x>0,y>0$ 上，变换
+\[
+u=x+y,\quad v=\frac xy
+\]
+是一一变换，其逆变换和逆雅可比绝对值为
+\[
+x=\frac{uv}{1+v},\qquad y=\frac{u}{1+v},\qquad
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=\frac{u}{(1+v)^2}.
+\]
+原区域恰好变为 $u>0,v>0$，所以
+\[
+f_{U,V}(u,v)=\lambda^2e^{-\lambda u}\frac{u}{(1+v)^2},\qquad u,v>0,
+\]
+区域外为 $0$。两因子各自满足
+\[
+\int_0^\infty\lambda^2ue^{-\lambda u}du=1,\qquad
+\int_0^\infty\frac1{(1+v)^2}dv=1.
+\]
+因此边缘密度分别为
+\[
+f_U(u)=\lambda^2ue^{-\lambda u}I_{\{u>0\}},\qquad
+f_V(v)=\frac{I_{\{v>0\}}}{(1+v)^2},
+\]
+且 $f_{U,V}=f_Uf_V$，从而 $U,V$ 独立。
+\end{proof}
+\paragraph{答案}$\xi_1+\xi_2$ 与 $\xi_1/\xi_2$ 独立。
+
+\subsection{教材第90页第6题}\label{ex:w12-b90-6}
+设随机变量 $\xi_1,\ldots,\xi_n$ 独立且分别服从指数分布
+$\operatorname{Exp}(\lambda_1),\ldots,\operatorname{Exp}(\lambda_n)$。求
+$\eta_n=\xi_1\wedge\cdots\wedge\xi_n$ 的分布。
+\basis{原笔记第3章第2节独立性的定义，第4节最小值分布的求法。}
+\paragraph{思路}最小值超过 $t$，等价于每个变量都超过 $t$。
+\begin{proof}[解答]
+令 $\Lambda=\sum_{i=1}^n\lambda_i$。当 $t\geq0$ 时，
+\begin{align*}
+P(\eta_n>t)
+&=P(\xi_1>t,\ldots,\xi_n>t)\\
+&=\prod_{i=1}^nP(\xi_i>t)
+=\prod_{i=1}^ne^{-\lambda_it}=e^{-\Lambda t}.
+\end{align*}
+每个 $\xi_i$ 以概率 $1$ 为正，所以 $t<0$ 时 $F_{\eta_n}(t)=0$。因此
+\[
+F_{\eta_n}(t)=\begin{cases}0,&t<0,\\1-e^{-\Lambda t},&t\geq0,\end{cases}
+\qquad
+f_{\eta_n}(t)=\Lambda e^{-\Lambda t}I_{\{t>0\}}.
+\]
+\end{proof}
+\paragraph{答案}$\eta_n\sim\operatorname{Exp}(\lambda_1+\cdots+\lambda_n)$。
+
+\subsection{作业第2题：Gamma--泊松条件分布}\label{ex:w12-h2}
+设某天内空气中的水分含量 $W\sim\Gamma(t,\beta)$，其密度为
+\[
+f_W(w)=\frac{(\beta w)^{t-1}}{\Gamma(t)}\beta e^{-\beta w},\qquad w>0,
+\]
+其中 $t,\beta>0$。已知 $W=w>0$ 的条件下，当天内交通事故数量 $N$ 服从参数为 $w$ 的泊松分布。证明：已知 $N=n$ 的条件下，$W$ 的条件分布是 $\Gamma(t+n,\beta+1)$。Gamma 分布第二参数采用率参数。
+\basis{原笔记第3章第3节“离散与连续变量的条件分布乘法公式”，第2章 Gamma 密度与 Gamma 积分。}
+\paragraph{思路}用混合型贝叶斯公式，先将条件泊松概率与先验密度相乘，再归一化。
+\begin{proof}
+对非负整数 $n$ 和 $w>0$，
+\[
+P(N=n\mid W=w)=e^{-w}\frac{w^n}{n!}.
+\]
+于是离散变量与连续变量的联合概率密度表达式为
+\begin{align*}
+P(N=n\mid W=w)f_W(w)
+&=\frac{\beta^t}{n!\Gamma(t)}w^{t+n-1}e^{-(\beta+1)w}.
+\end{align*}
+利用 $a,b>0$ 时的 Gamma 积分
+\[
+\int_0^\infty w^{a-1}e^{-bw}dw=\frac{\Gamma(a)}{b^a},
+\]
+得到
+\[
+P(N=n)=\frac{\beta^t\Gamma(t+n)}{n!\Gamma(t)(\beta+1)^{t+n}}>0.
+\]
+所以相应条件密度是
+\begin{align*}
+f_{W\mid N}(w\mid n)
+&=\frac{P(N=n\mid W=w)f_W(w)}{P(N=n)}\\
+&=\frac{(\beta+1)^{t+n}}{\Gamma(t+n)}
+w^{t+n-1}e^{-(\beta+1)w},\qquad w>0,
+\end{align*}
+在 $w\leq0$ 处取 $0$。这正是形状参数 $t+n$、率参数 $\beta+1$ 的 Gamma 密度。
+\end{proof}
+\paragraph{答案}$W\mid(N=n)\sim\Gamma(t+n,\beta+1)$。
+
+\subsection{作业第3题：差、积、商的密度}\label{ex:w12-h3}
+设 $(X,Y)$ 的联合密度为 $f(x,y)=3y$，$0<x<y<1$，区域外为 $0$。
+（1）求 $Y-X$ 的密度；（2）求 $XY$ 的密度；（3）求 $X/Y$ 的密度。
+\basis{原笔记第3章第5节“二维一一变换的密度公式”及例“引入辅助变量求和的密度”。}
+\paragraph{思路}每次保留 $Y$ 为辅助坐标，写逆变换、雅可比和新区域，再对辅助坐标积分。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 令 $D=Y-X$，保留 $Y$，则逆变换为 $x=y-d$，逆雅可比绝对值为 $1$。原区域等价于 $0<d<y<1$。因此
+\[
+f_{D,Y}(d,y)=3y,\qquad0<d<y<1,
+\]
+区域外为 $0$。对 $0<d<1$，
+\[
+f_D(d)=\int_d^13y\,dy=\frac32(1-d^2),
+\]
+其余处为 $0$。
+\item 令 $Z=XY$，逆变换为 $x=z/y$，逆雅可比绝对值为 $1/y$。条件 $0<x<y<1$ 等价于 $0<z<1,\sqrt z<y<1$，故
+\[
+f_{Z,Y}(z,y)=3y\frac1y=3,\qquad0<z<1,\ \sqrt z<y<1.
+\]
+于是
+\[
+f_Z(z)=\int_{\sqrt z}^13\,dy=3(1-\sqrt z),\qquad0<z<1,
+\]
+其余处为 $0$。
+\item 令 $Q=X/Y$，逆变换为 $x=qy$，逆雅可比绝对值为 $y$。原区域等价于 $0<q<1,0<y<1$。所以
+\[
+f_{Q,Y}(q,y)=3y^2,\qquad0<q<1,\ 0<y<1,
+\]
+\[
+f_Q(q)=\int_0^13y^2dy=1,\qquad0<q<1,
+\]
+其余处为 $0$。因此 $Q\sim U(0,1)$。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}
+\[
+f_{Y-X}(z)=\frac32(1-z^2)I_{\{0<z<1\}},\quad
+f_{XY}(z)=3(1-\sqrt z)I_{\{0<z<1\}},\quad
+f_{X/Y}(z)=I_{\{0<z<1\}}.
+\]
+
+\subsection{作业第4题：指数样本的极差}\label{ex:w12-h4}
+设 $X_1,\ldots,X_n$ 独立同分布于参数为 $\lambda$ 的指数分布。求极差 $R=X_{(n)}-X_{(1)}$ 的密度函数。
+\basis{原笔记第3章第4节“两个次序统计量的联合密度”及例“样本极差的分布”。}
+\paragraph{思路}将原笔记的极差分布函数公式代入指数分布，再对 $r$ 求导。
+\begin{proof}[解答]
+先设 $n\geq2$。共同分布函数与密度为
+\[
+F(x)=1-e^{-\lambda x},\qquad f(x)=\lambda e^{-\lambda x},\qquad x>0.
+\]
+原笔记的极差分布公式给出，对 $r\geq0$，
+\begin{align*}
+F_R(r)
+&=n\int_0^\infty[F(x+r)-F(x)]^{n-1}f(x)dx\\
+&=n\int_0^\infty
+\bigl[e^{-\lambda x}(1-e^{-\lambda r})\bigr]^{n-1}
+\lambda e^{-\lambda x}dx\\
+&=n\lambda(1-e^{-\lambda r})^{n-1}\int_0^\infty e^{-n\lambda x}dx\\
+&=(1-e^{-\lambda r})^{n-1}.
+\end{align*}
+$r<0$ 时分布函数为 $0$。对 $r>0$ 求导，得到
+\[
+f_R(r)=(n-1)\lambda e^{-\lambda r}(1-e^{-\lambda r})^{n-2},
+\]
+其余处可取 $0$。分布函数在 $0$ 处无跳跃，且在无穷处趋于 $1$，所以该密度没有漏掉点质量。
+
+若 $n=1$，则 $R=X_1-X_1=0$ 几乎必然，是集中于 $0$ 的退化分布，不存在通常意义下的概率密度。
+\end{proof}
+\paragraph{答案}$n\geq2$ 时，$f_R(r)=(n-1)\lambda e^{-\lambda r}(1-e^{-\lambda r})^{n-2}I_{\{r>0\}}$；$n=1$ 时 $R=0$ 几乎必然。
+
+\subsection{作业第5题：五台发动机组成的机器寿命}\label{ex:w12-h5}
+某机器里有五台发动机，寿命独立同分布，密度为 $f(t)=te^{-t}$，$t>0$，其他处为 $0$。只要五台发动机中至少有三台正常工作，机器就能正常工作。求机器正常工作时间的密度。提示：机器寿命可以表示为某个次序统计量。
+\basis{原笔记第3章第4节“次序统计量”及“单个次序统计量的密度”。}
+\paragraph{思路}机器在第三台发动机失效时停止工作，寿命为五个发动机寿命的第三次序统计量。
+\begin{proof}[解答]
+记五台发动机寿命为 $T_1,\ldots,T_5$，按递增顺序排列为 $T_{(1)}<\cdots<T_{(5)}$；等值情况概率为 $0$。
+前两台失效后仍有三台工作；第三台失效后只剩两台工作。因此机器寿命为 $T=T_{(3)}$。
+
+单台发动机的分布函数为
+\[
+F(t)=\int_0^t se^{-s}ds=1-(1+t)e^{-t},\qquad t>0.
+\]
+单个次序统计量密度公式给出
+\begin{align*}
+f_T(t)
+&=\frac{5!}{(3-1)!(5-3)!}[F(t)]^{3-1}[1-F(t)]^{5-3}f(t)\\
+&=30[1-(1+t)e^{-t}]^2[(1+t)e^{-t}]^2te^{-t}\\
+&=30t(1+t)^2e^{-3t}[1-(1+t)e^{-t}]^2,\qquad t>0.
+\end{align*}
+$t\leq0$ 时密度取 $0$。
+\end{proof}
+\paragraph{答案}机器寿命为 $T_{(3)}$，密度为
+\[
+f_T(t)=30t(1+t)^2e^{-3t}[1-(1+t)e^{-t}]^2I_{\{t>0\}}.
+\]
+
+\subsection{作业第6题：平方和与比值的联合分布}\label{ex:w12-h6}
+设 $X,Y$ 独立同分布于标准正态分布 $N(0,1)$。令 $U=X^2+Y^2$、$V=X/Y$。求 $(U,V)$ 的联合密度和边缘密度，并判断 $U,V$ 是否相互独立。
+\basis{原笔记第3章第5节“二维一一变换的密度公式”及例“标准正态变量的极坐标变换”，第2节独立性判据。}
+\paragraph{思路}变换在整个平面上不是一一的，按 $Y>0$ 与 $Y<0$ 分成两个分支，分别换元后相加。
+\begin{proof}[解答]
+$P(Y=0)=0$，所以 $V$ 在 $Y=0$ 上任意定义不改变分布。对 $u>0,v\in\R$，逆变换有两个分支：
+\[
+y_\pm=\pm\sqrt{\frac{u}{1+v^2}},\qquad x_\pm=vy_\pm.
+\]
+两个分支分别对应 $y>0$ 与 $y<0$，各自是一一变换。正向雅可比为
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=\begin{vmatrix}2x&2y\\1/y&-x/y^2\end{vmatrix}
+=-2\frac{x^2+y^2}{y^2}=-2(1+v^2),
+\]
+所以每一分支的逆雅可比绝对值为 $1/[2(1+v^2)]$。
+
+原联合密度为 $(2\pi)^{-1}e^{-(x^2+y^2)/2}$。两个分支对变换后密度的贡献相同，故
+\begin{align*}
+f_{U,V}(u,v)
+&=2\cdot\frac1{2\pi}e^{-u/2}\frac1{2(1+v^2)}\\
+&=\frac{e^{-u/2}}{2\pi(1+v^2)},\qquad u>0,\ v\in\R.
+\end{align*}
+$u\leq0$ 时密度取 $0$。分别积分得到
+\[
+f_U(u)=\frac12e^{-u/2}I_{\{u>0\}},\qquad
+f_V(v)=\frac1{\pi(1+v^2)},\quad v\in\R,
+\]
+其中使用了 $\int_{\mathbb R}(1+v^2)^{-1}dv=\pi$ 与 $\int_0^\infty e^{-u/2}du=2$。
+联合密度等于上述两个边缘密度的乘积，故 $U,V$ 相互独立。
+\end{proof}
+\paragraph{答案}$U\sim\operatorname{Exp}(1/2)=\chi^2(2)$，$V$ 服从标准柯西分布；联合密度如上，二者独立。
+
+\subsection{作业第7题：不同指数变量的最先发生概率}\label{ex:w12-h7}
+设 $X_1,\ldots,X_n$ 相互独立，且 $X_i\sim\operatorname{Exp}(\lambda_i)$，$1\leq i\leq n$。证明
+\[
+P(X_i=\min\{X_1,\ldots,X_n\})
+=\frac{\lambda_i}{\lambda_1+\cdots+\lambda_n},\qquad1\leq i\leq n.
+\]
+提示：可以考虑 $n$ 重积分，也可考虑其他方法。
+\basis{原笔记第3章第2节独立随机变量的联合密度，第4节最小值分布的求法。}
+\paragraph{思路}固定第 $i$ 个变量取值 $t$，其余变量均须大于 $t$；按这个区域逐次积分。
+\begin{proof}
+先设 $n\geq2$。独立连续变量取相同值的概率为 $0$，所以 $X_i$ 为最小值与 $X_j>X_i$（所有 $j\ne i$）仅相差零概率事件。记 $\Lambda=\sum_{j=1}^n\lambda_j$。由联合密度的乘积形式，
+\begin{align*}
+P(X_i=\min_jX_j)
+&=\int_0^\infty\lambda_i e^{-\lambda_i t}
+\prod_{j\ne i}\left(\int_t^\infty\lambda_je^{-\lambda_jx_j}dx_j\right)dt\\
+&=\int_0^\infty\lambda_i e^{-\lambda_i t}
+\prod_{j\ne i}e^{-\lambda_jt}dt\\
+&=\lambda_i\int_0^\infty e^{-\Lambda t}dt
+=\frac{\lambda_i}{\Lambda}.
+\end{align*}
+若 $n=1$，所求概率为 $1$，也等于 $\lambda_1/\lambda_1$。
+\end{proof}
+\paragraph{答案}第 $i$ 个变量最先发生的概率为 $\lambda_i/(\lambda_1+\cdots+\lambda_n)$。

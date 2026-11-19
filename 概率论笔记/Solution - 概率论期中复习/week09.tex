@@ -1,0 +1,283 @@
+% !TEX root = 概率论期中复习.tex
+\section{第九周：正态计算与随机变量函数的分布}
+
+\subsection{教材第58页第4题（再次布置）}\label{ex:w09-b58-4}
+设 $\R$ 上的绝对连续型随机变量 $\xi$ 有密度函数 $f(x)=e^{-x-e^{-x}}$。求 $\xi$ 的分布函数 $F$（称为极值分布）。
+\basis{原笔记第2章第3节“密度与分布函数的关系”。}
+\paragraph{思路} 本题在第八周已经布置，保留此次作业题号，并沿用同一换元。
+\begin{proof}[解答]
+令 $u=e^{-x}$，则 $du=-e^{-x}\,dx$。对 $t\in\R$，
+\[
+F(t)=\int_{-\infty}^{t}e^{-x}\exp(-e^{-x})\,dx
+=\int_{e^{-t}}^{\infty}e^{-u}\,du
+=\exp(-e^{-t}).
+\]
+完整换元说明见\hyperref[ex:w08-b58-4]{第八周教材第58页第4题}。
+\end{proof}
+\paragraph{答案} $F(t)=\exp(-e^{-t})$，$t\in\R$。
+
+\subsection{教材第58页第5题}\label{ex:w09-b58-5}
+设随机变量 $\xi$ 服从标准正态分布 $N(0,1)$。令 $X=\sigma\xi+a$，其中 $\sigma\ne0$ 和 $a$ 为常数。证明 $X$ 服从正态分布 $N(a,\sigma^2)$。
+\basis{原笔记第2章第3节“正态分布的线性变换与标准化”；第4节例“一般连续型随机变量的线性变换”。}
+\paragraph{思路} 沿原笔记的线性密度变换，绝对值 $|\sigma|$ 同时处理正、负的尺度。
+\begin{proof}
+记标准正态密度为 $\varphi(u)=(2\pi)^{-1/2}e^{-u^2/2}$。由线性变换的密度公式，
+\begin{align*}
+f_X(x)
+&=\frac1{|\sigma|}\varphi\left(\frac{x-a}{\sigma}\right)\\
+&=\frac1{\sqrt{2\pi}|\sigma|}
+\exp\left(-\frac{(x-a)^2}{2\sigma^2}\right),\qquad x\in\R.
+\end{align*}
+这就是均值参数为 $a$、方差参数为 $\sigma^2$ 的正态密度，所以 $X\sim N(a,\sigma^2)$。这里即使 $\sigma<0$，标准差仍为正数 $|\sigma|$。
+\end{proof}
+\paragraph{答案} $X\sim N(a,\sigma^2)$，密度如上。
+
+\subsection{教材第62页第1题}\label{ex:w09-b62-1}
+设随机变量 $\xi$ 服从均匀分布 $U(0,1)$。求方程 $x^2+3\xi x+1=0$ 有实根的概率。
+\basis{原笔记第2章第3节“均匀分布”。}
+\paragraph{思路} 将有实根转化为判别式非负，再计算均匀随机变量落入相应区间的概率。
+\begin{proof}[解答]
+关于 $x$ 的方程有实根当且仅当
+\[
+\Delta=(3\xi)^2-4\geq0
+\quad\Longleftrightarrow\quad |\xi|\geq\frac23.
+\]
+由于 $0<\xi<1$ 几乎必然，上述条件等价于 $\xi\geq2/3$。故
+\[
+\P(\Delta\geq0)=\P(\xi\geq2/3)=\int_{2/3}^{1}1\,du=\frac13.
+\]
+\end{proof}
+\paragraph{答案} $1/3$。
+
+\subsection{作业第2题：正态分布的区间概率}\label{ex:w09-h2}
+设 $X\sim N(10,36)$，求以下概率（可以利用软件、计算器等，结果保留4位小数）：
+\begin{enumerate}
+\item $\P(X>5)$；
+\item $\P(4\leq X\leq16)$；
+\item $\P(X<16)$。
+\end{enumerate}
+\basis{原笔记第2章第3节“正态分布的线性变换与标准化”、命题“标准正态分布的对称公式”。}
+\paragraph{思路} 方差为 $36$，标准差为 $6$；先标准化，再使用 $\Phi$。
+\begin{proof}[解答]
+令 $Z=(X-10)/6\sim N(0,1)$。
+\begin{enumerate}
+\item
+\[
+\P(X>5)=\P(Z>-5/6)
+=1-\Phi(-5/6)=\Phi(5/6)\approx0.7977.
+\]
+\item
+\[
+\P(4\leq X\leq16)=\P(-1\leq Z\leq1)
+=\Phi(1)-\Phi(-1)=2\Phi(1)-1\approx0.6827.
+\]
+\item
+\[
+\P(X<16)=\P(Z<1)=\Phi(1)\approx0.8413.
+\]
+\end{enumerate}
+\end{proof}
+\paragraph{答案} 依次为 $0.7977$、$0.6827$、$0.8413$。
+
+\subsection{作业第3题：由分位点确定收入分布}\label{ex:w09-h3}
+设某领域的物理学家的年收入近似服从正态分布。已知该群物理学家中年收入低于180000元的占25\%，而高于320000元的占25\%。
+\begin{enumerate}
+\item 近似求年收入少于200000元的概率。（结果保留4位小数）
+\item 近似求年收入介入280000元和320000元之间的概率。（结果保留4位小数）
+\end{enumerate}
+\basis{原笔记第2章第3节例“由两端比例估计录取分数线”。}
+\paragraph{思路} 两个已知分位点关于均值对称，先求均值、标准差，再代入目标区间。
+\begin{proof}[解答]
+记年收入为 $X\sim N(\mu,\sigma^2)$，$\sigma>0$，并记
+\[
+z_{0.75}=\Phi^{-1}(0.75)\approx0.67448975.
+\]
+已知条件等价于
+\[
+\frac{180000-\mu}{\sigma}=-z_{0.75},\qquad
+\frac{320000-\mu}{\sigma}=z_{0.75}.
+\]
+两式相加得到 $\mu=250000$；相减得到
+\[
+\sigma=\frac{320000-180000}{2z_{0.75}}
+=\frac{70000}{z_{0.75}}\approx103782.1553.
+\]
+\begin{enumerate}
+\item
+\[
+\P(X<200000)=\Phi\left(\frac{-50000}{\sigma}\right)
+=\Phi\left(-\frac57z_{0.75}\right)\approx0.3150.
+\]
+\item 将题面“介入”按“介于”理解，有
+\begin{align*}
+\P(280000<X<320000)
+&=\Phi\left(\frac{70000}{\sigma}\right)
+-\Phi\left(\frac{30000}{\sigma}\right)\\
+&=0.75-\Phi\left(\frac37z_{0.75}\right)\approx0.1363.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案} $\mu=250000$、$\sigma\approx103782.1553$；两问概率分别为 $0.3150$、$0.1363$。
+
+\subsection{作业第4题：正态分位点}\label{ex:w09-h4}
+设 $X\sim N(12,4)$。若 $\P(X>c)=0.1$，求 $c$（结果保留2位小数）。
+\basis{原笔记第2章第3节“正态分布的线性变换与标准化”。}
+\paragraph{思路} 右尾为 $0.1$ 对应左尾分位点 $0.9$；标准差为 $2$。
+\begin{proof}[解答]
+由标准化，
+\[
+0.1=\P\left(\frac{X-12}{2}>\frac{c-12}{2}\right)
+=1-\Phi\left(\frac{c-12}{2}\right).
+\]
+因此 $(c-12)/2=\Phi^{-1}(0.9)\approx1.28155157$，即
+\[
+c=12+2\Phi^{-1}(0.9)\approx14.56310313.
+\]
+\end{proof}
+\paragraph{答案} $c\approx14.56$。
+
+\subsection{作业第5题：线段分割的长短比}\label{ex:w09-h5}
+从长为 $L$ 的线段上随机等可能地选取一点将线段截断。设 $X$ 表示从线段左端到该断点的距离。求短的那一截长度相对于长的那一截长度之比小于 $1/4$ 的概率。
+\basis{原笔记第2章第3节“均匀分布”；第4节“先分布函数，后密度”中求取值集合的方法。}
+\paragraph{思路} 在断点位于左半段、右半段时分别解比例不等式。
+\begin{proof}[解答]
+由随机等可能选点，$X\sim U(0,L)$。两截长度为 $X$ 与 $L-X$。
+
+当 $0<X\leq L/2$ 时，短截为 $X$，故
+\[
+\frac{X}{L-X}<\frac14
+\quad\Longleftrightarrow\quad 5X<L
+\quad\Longleftrightarrow\quad X<L/5.
+\]
+当 $L/2<X<L$ 时，短截为 $L-X$，故
+\[
+\frac{L-X}{X}<\frac14
+\quad\Longleftrightarrow\quad 5X>4L
+\quad\Longleftrightarrow\quad X>4L/5.
+\]
+两个事件互斥，合并得到
+\[
+\P\left(\frac{\min(X,L-X)}{\max(X,L-X)}<\frac14\right)
+=\frac{L/5+L/5}{L}=\frac25.
+\]
+\end{proof}
+\paragraph{答案} $2/5$。
+
+\subsection{作业第6题：由均匀分布构造指数分布}\label{ex:w09-h6}
+设 $X\sim U(0,1)$，令 $Y=-\lambda^{-1}\ln X$，$\lambda>0$。求 $Y$ 的密度函数并判断 $Y$ 服从什么常用分布。
+\basis{原笔记第2章第4节“求随机变量函数密度的一般方法”；第3节“指数分布”。}
+\paragraph{思路} 变换严格递减，解 $Y\leq y$ 时必须反向改变关于 $X$ 的不等号。
+\begin{proof}[解答]
+因为 $0<X<1$ 几乎必然，$Y>0$ 几乎必然。对 $y<0$，$F_Y(y)=0$；对 $y\geq0$，
+\begin{align*}
+F_Y(y)
+&=\P\left(-\frac1\lambda\ln X\leq y\right)\\
+&=\P(X\geq e^{-\lambda y})
+=1-e^{-\lambda y}.
+\end{align*}
+在各开区间求导，得到一个密度版本
+\[
+f_Y(y)=\begin{cases}\lambda e^{-\lambda y},&y>0,\\0,&y\leq0.\end{cases}
+\]
+这与参数为 $\lambda$ 的指数密度一致。
+\end{proof}
+\paragraph{答案} $Y\sim\operatorname{Exp}(\lambda)$，密度为 $\lambda e^{-\lambda y}$（$y>0$），其他处取 $0$。
+
+\subsection{作业第7题：指数变量的尺度变换}\label{ex:w09-h7}
+设 $X\sim\operatorname{Exp}(\lambda)$，常数 $c>0$。令 $Y=cX$，求 $Y$ 的密度函数，并判断 $Y$ 服从什么常用分布。
+\basis{原笔记第2章第4节例“用反函数公式求线性变换的密度”；第3节指数分布的率参数约定。}
+\paragraph{思路} 对线性变换使用密度公式，同时换算率参数。
+\begin{proof}[解答]
+反函数为 $x=y/c$，导数绝对值为 $1/c$。由于 $c>0$，$Y$ 只在正半轴有密度，于是
+\[
+f_Y(y)=\frac1c f_X(y/c)
+=\begin{cases}\dfrac\lambda c e^{-\lambda y/c},&y>0,\\0,&y\leq0.\end{cases}
+\]
+令 $\lambda'=\lambda/c>0$，这正是率参数为 $\lambda'$ 的指数密度。
+\end{proof}
+\paragraph{答案} $Y\sim\operatorname{Exp}(\lambda/c)$。
+
+\subsection{作业第8题：均匀变量的绝对值}\label{ex:w09-h8}
+设 $X\sim U(-1/2,1/2)$。令 $Y=|X|$。求 $Y$ 的密度函数，并判断 $Y$ 服从什么常用分布。
+\basis{原笔记第2章第4节“求随机变量函数密度的一般方法”；第3节“均匀分布”。}
+\paragraph{思路} $|X|\leq y$ 等价于 $-y\leq X\leq y$，区间长度加倍。
+\begin{proof}[解答]
+对 $y<0$，$F_Y(y)=0$。当 $0\leq y<1/2$ 时，$[-y,y]$ 位于 $X$ 的均匀区间内，所以
+\[
+F_Y(y)=\P(-y\leq X\leq y)=\int_{-y}^y1\,dx=2y.
+\]
+对 $y\geq1/2$，$F_Y(y)=1$。因此
+\[
+F_Y(y)=\begin{cases}0,&y<0,\\2y,&0\leq y<1/2,\\1,&y\geq1/2,\end{cases}
+\qquad
+f_Y(y)=\begin{cases}2,&0<y<1/2,\\0,&\text{其他。}\end{cases}
+\]
+\end{proof}
+\paragraph{答案} $Y\sim U(0,1/2)$。
+
+\subsection{作业第9题：指数变量的余弦}\label{ex:w09-h9}
+设 $X\sim\operatorname{Exp}(1)$，令 $Y=\cos X$。求 $Y$ 的密度函数。
+\basis{原笔记第2章第4节定理“分支反函数的密度变换公式”，例“均匀随机变量的余弦变换”“倒数的小数部分与可数个反函数分支”。}
+\paragraph{思路} 余弦在正半轴有无穷多个单调分支，必须将每个原像的密度贡献相加。
+\begin{proof}[解答]
+$Y$ 的值域包含于 $[-1,1]$。固定 $-1<y<1$，令 $\alpha=\arccos y\in(0,\pi)$。正半轴上满足 $\cos x=y$ 的全部原像为
+\[
+x=2k\pi+\alpha\quad(k=0,1,\ldots),\qquad
+x=2k\pi-\alpha\quad(k=1,2,\ldots).
+\]
+这些原像分别位于余弦的各个单调区间，每一反函数分支的导数绝对值均为 $1/\sqrt{1-y^2}$。区间端点 $k\pi$ 构成可数集，$X$ 落在该集合的概率为零，因此这些开区间覆盖了全部概率。
+
+由分支反函数公式，
+\begin{align*}
+f_Y(y)
+&=\frac1{\sqrt{1-y^2}}
+\left(\sum_{k=0}^{\infty}e^{-(2k\pi+\alpha)}
++\sum_{k=1}^{\infty}e^{-(2k\pi-\alpha)}\right)\\
+&=\frac{e^{-\alpha}+e^{-2\pi+\alpha}}
+{(1-e^{-2\pi})\sqrt{1-y^2}}.
+\end{align*}
+这是正项等比级数求和，因公比 $e^{-2\pi}<1$ 而收敛。$|y|>1$ 时密度为 $0$；在 $y=\pm1$ 处的密度值可另取 $0$，不影响分布。
+\end{proof}
+\paragraph{答案}
+\[
+f_Y(y)=\begin{cases}
+\dfrac{e^{-\arccos y}+e^{-2\pi+\arccos y}}
+{(1-e^{-2\pi})\sqrt{1-y^2}},&-1<y<1,\\[6pt]
+0,&\text{其他。}
+\end{cases}
+\]
+
+\subsection{作业第10题及思考题：概率积分变换}\label{ex:w09-h10}
+设连续型随机变量 $X$ 的分布函数为 $F(t)$，且 $F(t)$ 严格单增。令 $Y=F(X)$（即 $Y$ 是随机变量 $X$ 和分布函数 $F$ 的复合）。求证：$Y\sim U(0,1)$。
+
+思考题：如果去掉以上 $F(t)$ 严格单增的条件，结论对吗？
+\basis{原笔记第2章第1节“分布函数的性质”；第4节“构造给定分布函数的随机变量”中广义逆的思想。}
+\paragraph{思路} 严格单增时用通常反函数；去掉严格单增后，用同一水平集的最右端处理平坦区间。
+\begin{proof}
+先保留严格单增条件。因为 $X$ 连续型，$F$ 连续；结合两端极限为 $0,1$，对每个 $u\in(0,1)$ 恰有一个 $t_u\in\R$ 使 $F(t_u)=u$。严格单增性给出
+\[
+\{F(X)\leq u\}=\{X\leq t_u\},
+\]
+从而
+\[
+F_Y(u)=\P(F(X)\leq u)=F(t_u)=u,\qquad0<u<1.
+\]
+又因 $0\leq Y\leq1$，并由上式令 $u\downarrow0$ 知 $\P(Y=0)=0$，得到
+\[
+F_Y(u)=\begin{cases}0,&u<0,\\u,&0\leq u\leq1,\\1,&u>1.\end{cases}
+\]
+所以 $Y\sim U(0,1)$。
+
+再去掉严格单增条件，保留 $X$ 连续型，故 $F$ 仍连续。固定 $u\in(0,1)$，令
+\[
+b_u=\sup\{x\in\R:F(x)\leq u\}.
+\]
+由 $F$ 的两端极限，集合非空且有上界，故 $b_u$ 为有限实数。由连续性和上确界定义，$F(b_u)\leq u$。若 $F(b_u)<u$，连续性保证某个 $b_u$ 右侧的点仍满足 $F(x)<u$，与上确界的定义矛盾。因此 $F(b_u)=u$。
+
+由单调性，$x\leq b_u$ 时 $F(x)\leq u$；$x>b_u$ 时按上确界定义 $F(x)>u$。于是
+\[
+\P(F(X)\leq u)=\P(X\leq b_u)=F(b_u)=u.
+\]
+再如前处理 $u\leq0$ 与 $u\geq1$，得到同一个均匀分布函数。故严格单增条件可以去掉；连续性足以保证结论。
+\end{proof}
+\paragraph{答案} $F(X)\sim U(0,1)$；即使 $F$ 有平坦区间，结论仍成立。这里保留了题设中 $X$ 连续型的条件。

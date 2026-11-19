@@ -1,0 +1,176 @@
+% !TEX root = 概率论期中复习.tex
+\section{第五周：重复试验与随机变量}
+
+\subsection{教材第33页第4题}
+\label{ex:w05-t33-4}
+独立地重复投掷两枚骰子，并计算点数之和。求“和数为5”出现在“和数为7”之前的概率。
+\basis{原笔记第1章第4节例“事件$A$先于事件$B$发生”；见\hyperref[k:independence]{独立试验}。}
+\paragraph{思路}在第一次出现5或7以前，其余点数和只使试验继续。
+\begin{proof}[解答]
+记$A$为“一次投掷的点数和为5”，$B$为“点数和为7”。两枚均匀骰子共有36个等可能的有序结果，和为5有
+\[
+(1,4),(2,3),(3,2),(4,1)
+\]
+四种，和为7有六种，故
+\[
+\P(A)=\frac19,\qquad \P(B)=\frac16,\qquad
+\P((A\cup B)^c)=\frac{13}{18}.
+\]
+$A,B$互斥，且各次投掷独立。按首次出现$A\cup B$的次数分类，所求概率为
+\[
+\sum_{n=1}^\infty\left(\frac{13}{18}\right)^{n-1}\frac19
+=\frac{1/9}{1-13/18}=\frac25.
+\]
+\end{proof}
+\paragraph{答案}$2/5$。
+
+\subsection{教材第44页第5题}
+\label{ex:w05-t44-5}
+设随机变量$\xi$满足$\P(\xi\geq a)\geq1-\alpha$和$\P(\xi\leq b)\geq1-\beta$，其中$a\leq b\in\R$，而$\alpha,\beta\in[0,1]$。证明
+\[
+\P(a\leq\xi\leq b)\geq1-\alpha-\beta.
+\]
+\basis{原笔记第1章第2节命题“一般加法公式”“可列次可加性”；见\hyperref[k:events]{事件与概率}。}
+\paragraph{思路}区间事件的补由左右两端越界事件组成，分别用已知概率控制。
+\begin{proof}
+由题设，
+\[
+\P(\xi<a)=1-\P(\xi\geq a)\leq\alpha,
+\qquad
+\P(\xi>b)=1-\P(\xi\leq b)\leq\beta.
+\]
+因$a\leq b$，事件$\{\xi<a\}$和$\{\xi>b\}$互斥，且它们的并正是$\{a\leq\xi\leq b\}^c$。所以
+\begin{align*}
+\P(a\leq\xi\leq b)
+&=1-\P(\xi<a)-\P(\xi>b)\\
+&\geq1-\alpha-\beta.
+\end{align*}
+即使$\alpha+\beta>1$，右侧为负，以上不等式仍然成立。
+\end{proof}
+\paragraph{答案}$\P(a\leq\xi\leq b)\geq1-\alpha-\beta$。
+
+\subsection{作业第2题：区间投点的重复试验}
+\label{ex:w05-h2}
+一个试验为向$[0,1]$区间内随机地投掷一个粒子，观察该粒子的位置。设事件$A$表示粒子位于$[0,1/3]$区间内，事件$B$表示粒子位于$[1/4,3/4]$区间内。现将该试验独立重复地做。设事件$C$表示前$k$次独立重复试验中$A$至少发生一次，事件$D$表示前$k$次独立重复试验中$B$至少发生一次。
+\begin{enumerate}
+\item 求概率$\P(C)$和$\P(D)$。
+\item 求概率$\P(C\cup D)$。
+\item 请问：事件$C$和事件$D$是否相互独立？请说明理由。若其相互不独立，保持$A$事件不变，请调整$B$事件中的区间，要求保持$0<\P(B)<1$，使得事件$C$与$D$相互独立。
+\item 由(3)启发，得到“$A$与$B$的相互独立性”和“$C$与$D$的相互独立性”的关系，请说明理由。
+\item 保持$A$与$B$如题干不变，不进行(3)(4)的调整，求将该试验独立重复地进行，事件$A$严格发生在事件$B$之前的概率。
+\end{enumerate}
+\basis{原笔记第1章第1节“几何概率模型”、第4节例“独立与互斥的区别”“事件$A$先于事件$B$发生”；见\hyperref[k:independence]{事件独立性与重复试验}。}
+\paragraph{思路}“至少一次”取补转化为“每次都不发生”；独立性等价于两个补事件独立；严格先发生要求首次出现$A\cup B$时落在$A\setminus B$。
+\begin{proof}[解答]
+按均匀投点模型，概率为区间长度，故
+\[
+\P(A)=\frac13,\qquad \P(B)=\frac12,
+\qquad \P(AB)=\frac13-\frac14=\frac1{12}.
+\]
+因此
+\[
+\P(A\cup B)=\frac13+\frac12-\frac1{12}=\frac34,
+\qquad \P(A\setminus B)=\frac14.
+\]
+以下$k$为正整数。
+\begin{enumerate}
+\item 由各次试验独立，
+\[
+\P(C^c)=\left(1-\frac13\right)^k=\left(\frac23\right)^k,
+\qquad
+\P(D^c)=\left(1-\frac12\right)^k=\left(\frac12\right)^k.
+\]
+所以
+\[
+\P(C)=1-\left(\frac23\right)^k,
+\qquad
+\P(D)=1-\left(\frac12\right)^k.
+\]
+\item $C^c\cap D^c$要求每次试验中$A,B$均不发生，因此
+\[
+\P(C^c\cap D^c)=\P((A\cup B)^c)^k=\left(\frac14\right)^k,
+\qquad \P(C\cup D)=1-\left(\frac14\right)^k.
+\]
+\item 由于
+\[
+\P(C^c)\P(D^c)=\left(\frac13\right)^k
+\ne\left(\frac14\right)^k=\P(C^c\cap D^c),
+\]
+$C^c,D^c$不独立，从而$C,D$不独立。
+
+保持$A$不变，改为$B'=[1/6,2/3]$。此时
+\[
+\P(B')=\frac12,\qquad
+\P(AB')=\frac13-\frac16=\frac16=\P(A)\P(B').
+\]
+所以$A,B'$独立。相应地，若$D'$表示前$k$次中$B'$至少发生一次，则
+\[
+\P(C^c\cap (D')^c)
+=\P(A^c\cap (B')^c)^k
+=[\P(A^c)\P((B')^c)]^k
+=\P(C^c)\P((D')^c).
+\]
+故$C,D'$独立，且调整后的$\P(B')$满足要求。
+\item 一般地，记$a=\P(A)$、$b=\P(B)$、$r=\P(AB)$。则
+\[
+\P(C^c\cap D^c)=(1-a-b+r)^k,
+\quad \P(C^c)\P(D^c)=[(1-a)(1-b)]^k.
+\]
+两式中底数均非负，正整数次幂在非负数上是单射。因此
+\begin{align*}
+C,D\text{独立}
+&\Longleftrightarrow C^c,D^c\text{独立}\\
+&\Longleftrightarrow1-a-b+r=(1-a)(1-b)\\
+&\Longleftrightarrow r=ab\\
+&\Longleftrightarrow A,B\text{独立}.
+\end{align*}
+\item 严格先发生意味着$A$首次发生的次数小于$B$首次发生的次数。同时落入$A\cap B$不算$A$严格先发生。令$E_n$为“前$n-1$次中$A,B$均不发生，第$n$次发生$A\setminus B$”。这些事件两两不交，其并即为待求事件，故
+\begin{align*}
+\P(A\text{严格先于}B)
+&=\sum_{n=1}^\infty\P(E_n)\\
+&=\sum_{n=1}^\infty\left(\frac14\right)^{n-1}\frac14
+=\frac{1/4}{1-1/4}=\frac13.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案}(1) $1-(2/3)^k$、$1-(1/2)^k$；(2) $1-(1/4)^k$；(3) 不独立，可改取$B'=[1/6,2/3]$；(4) $C,D$独立当且仅当$A,B$独立；(5) $1/3$。
+
+\subsection{作业第3题：示性函数的乘积与并}
+\label{ex:w05-h3}
+设概率空间$(\Omega,\mathcal F,\P)$，事件$A,B\in\mathcal F$。求证：
+\begin{enumerate}
+\item 对任意$\omega\in\Omega$，示性函数$I_{AB}(\omega)=I_A(\omega)\cdot I_B(\omega)$；
+\item 对任意$\omega\in\Omega$，示性函数$I_{A\cup B}(\omega)=I_A(\omega)+I_B(\omega)-I_A(\omega)\cdot I_B(\omega)$。
+\end{enumerate}
+\basis{原笔记第2章第1节例“示性函数”；见\hyperref[k:cdf]{随机变量与分布函数}。}
+\paragraph{思路}按$\omega$分别属于$A\cap B$、$A\setminus B$、$B\setminus A$、$(A\cup B)^c$分类。四类互斥且覆盖$\Omega$。
+\begin{proof}
+对事件$E$，其示性函数$I_E(\omega)$在$\omega\in E$时为1，在$\omega\notin E$时为0。
+\begin{enumerate}
+\item 若$\omega\in A\cap B$，则$I_A(\omega)=I_B(\omega)=1$，乘积为1，等于$I_{AB}(\omega)$。若$\omega\notin A\cap B$，则$I_A(\omega),I_B(\omega)$至少有一个为0，乘积为0，也等于$I_{AB}(\omega)$。
+\item 若$\omega\in A\cap B$，右端为$1+1-1=1$；若$\omega\in A\setminus B$，右端为$1+0-0=1$；若$\omega\in B\setminus A$，右端为$0+1-0=1$；若$\omega\notin A\cup B$，右端为0。前面三种情形恰好对应$I_{A\cup B}(\omega)=1$，最后一种对应$I_{A\cup B}(\omega)=0$。所以等式对所有$\omega$成立。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$I_{AB}=I_AI_B$，$I_{A\cup B}=I_A+I_B-I_AI_B$，均为逐点恒等式。
+
+\subsection{作业第4题：随机变量与常数取最小值}
+\label{ex:w05-h4}
+设$(\Omega,\mathcal F,\P)$是一个概率空间，$X$是该概率空间上的一个随机变量，$a$是一个常数。对任意$\omega\in\Omega$，令$Y(\omega):=\min\{X(\omega),a\}=X(\omega)\wedge a$。求证：$Y$也是该概率空间上的一个随机变量。
+\basis{原笔记第2章第1节命题“随机变量的半直线判别”；见\hyperref[k:cdf]{随机变量与分布函数}。}
+\paragraph{思路}不需要先求$Y$的分布，只需检查每个半直线的原像是否为事件。
+\begin{proof}
+由于$X(\omega)$与$a$均为有限实数，$Y$是$\Omega$上的实值函数。任取$t\in\R$。若$t<a$，则
+\[
+\min\{X(\omega),a\}\leq t\quad\Longleftrightarrow\quad X(\omega)\leq t.
+\]
+其中，若$X(\omega)>t$，因为$a>t$，两者的最小值也大于$t$。若$t\geq a$，则对每个$\omega$均有$Y(\omega)\leq a\leq t$。因此
+\[
+\{Y\leq t\}=
+\begin{cases}
+\{X\leq t\},&t<a,\\
+\Omega,&t\geq a.
+\end{cases}
+\]
+$X$为随机变量，故$\{X\leq t\}\in\mathcal F$；又$\Omega\in\mathcal F$。于是所有$\{Y\leq t\}$都属于$\mathcal F$，由半直线判别，$Y$是随机变量。
+\end{proof}
+\paragraph{答案}$Y=X\wedge a$是原概率空间上的随机变量。

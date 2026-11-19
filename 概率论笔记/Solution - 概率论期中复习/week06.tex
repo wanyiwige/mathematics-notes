@@ -1,0 +1,217 @@
+% !TEX root = 概率论期中复习.tex
+\section{第六周：分布函数与端点概率}
+
+\subsection{作业第1题：取出号码的中间值}
+\label{ex:w06-h1}
+不透明的口袋中有5个球，编号为1、2、3、4、5号。现从袋中不放回任取3个球。设$X$表示取出的3个球中编号居中的号码，求随机变量$X$的分布函数$F(t)$。
+\basis{原笔记第1章第1节“古典概率模型”、第2章第2节命题“分布列与分布函数相互确定”；见\hyperref[k:discrete]{离散型分布}。}
+\paragraph{思路}固定中间号码$j$后，要在其左右各选一个号码；先得分布列，再累加。
+\begin{proof}[解答]
+全部无序取球结果共有$\binom53=10$种，且等可能。最小号码1不可能居中，最大号码5也不可能居中，所以$X$只取2、3、4。
+
+若中间号码为$j$，则必须取到$j$，在$\{1,\ldots,j-1\}$中选一个号码，在$\{j+1,\ldots,5\}$中选一个号码。这给出$(j-1)(5-j)$种不同结果，且每种中间号码为$j$的结果都恰好由此构成。因此
+\[
+\P(X=j)=\frac{(j-1)(5-j)}{10},\qquad j=2,3,4.
+\]
+分布列为
+\[
+\begin{array}{c|ccc}
+j&2&3&4\\\hline
+\P(X=j)&3/10&2/5&3/10
+\end{array}.
+\]
+由$F(t)=\P(X\leq t)$逐段累加，得到
+\[
+F(t)=\begin{cases}
+0,&t<2,\\
+3/10,&2\leq t<3,\\
+7/10,&3\leq t<4,\\
+1,&t\geq4.
+\end{cases}
+\]
+\end{proof}
+\paragraph{答案}$X$在2、3、4处的概率分别为$3/10,2/5,3/10$，分布函数如上。
+
+\subsection{作业第2题：随机选盒后取球}
+\label{ex:w06-h2}
+有3个外表一样的不透明的盒子。第一个盒子里装有1个红球和2个蓝球，第二个盒子里装有2个红球和2个蓝球，第3个盒子里装有3个红球和1个蓝球。现任取一个盒子，再从该盒子中任取两个球。设$X$表示所取到的红球个数。
+\begin{enumerate}
+\item 求概率$\P(X=0),\P(X=1),\P(X=2)$。
+\item 求随机变量$X$的分布函数。
+\end{enumerate}
+\basis{原笔记第1章第3节“全概率公式”、第2章第2节“超几何分布”与“分布列与分布函数相互确定”。}
+\paragraph{思路}按盒子分类，在每个盒内按无放回抽取计数，然后取三种条件分布的平均。
+\begin{proof}[解答]
+记$B_i$为“取到第$i$个盒子”，则$\P(B_i)=1/3$。题中的“任取两个球”按一次取出两个不同球理解。
+\begin{enumerate}
+\item 从第一个盒子中抽取两个球有$\binom32=3$种；第二、三个盒子均有$\binom42=6$种。分别按红球个数计数，得到
+\[
+\begin{array}{c|ccc}
+&X=0&X=1&X=2\\\hline
+B_1&\binom22/\binom32&\binom11\binom21/\binom32&0\\[0.3em]
+B_2&\binom22/\binom42&\binom21\binom21/\binom42&\binom22/\binom42\\[0.3em]
+B_3&0&\binom31\binom11/\binom42&\binom32/\binom42
+\end{array}.
+\]
+表内各行表示给定相应盒子后的条件概率。由全概率公式，
+\begin{align*}
+\P(X=0)&=\frac13\left(\frac13+\frac16+0\right)=\frac16,\\
+\P(X=1)&=\frac13\left(\frac23+\frac46+\frac36\right)=\frac{11}{18},\\
+\P(X=2)&=\frac13\left(0+\frac16+\frac36\right)=\frac29.
+\end{align*}
+三者之和为$3/18+11/18+4/18=1$。
+\item 将以上分布列累加，得到
+\[
+F(t)=\begin{cases}
+0,&t<0,\\
+1/6,&0\leq t<1,\\
+7/9,&1\leq t<2,\\
+1,&t\geq2.
+\end{cases}
+\]
+\end{enumerate}
+\end{proof}
+\paragraph{答案}(1) $1/6,11/18,2/9$；(2) 分布函数如上。
+
+\subsection{作业第3题：分段分布函数的跳跃与连续部分}
+\label{ex:w06-h3}
+设随机变量$X$的分布函数为
+\[
+F(t)=\begin{cases}
+0,&t<0,\\
+\dfrac1{10}(t+1),&0\leq t<1,\\
+\dfrac15(t+1),&1\leq t<3,\\
+\dfrac{11}{12},&3\leq t<4,\\
+1,&t\geq4.
+\end{cases}
+\]
+\begin{enumerate}
+\item 求概率$\P(X=i)$，$i=0,1,3,4$，并判断概率$\P(\{X=0\}\cup\{X=1\}\cup\{X=3\}\cup\{X=4\})$是否等于1。
+\item 求概率$\P(0<X<1),\P(1<X<3),\P(3<X<4)$。
+\end{enumerate}
+\basis{原笔记第2章第1节定理“分布函数的基本性质”与“用分布函数计算概率”；见\hyperref[k:cdf]{分布函数与端点概率}。}
+\paragraph{思路}单点概率是跳跃量$F(a)-F(a^-)$；开区间概率为$F(b^-)-F(a)$，不能把端点跳跃误算进去。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 根据每段的端点值和左极限，
+\begin{align*}
+\P(X=0)&=F(0)-F(0^-)=\frac1{10}-0=\frac1{10},\\
+\P(X=1)&=F(1)-F(1^-)=\frac25-\frac15=\frac15,\\
+\P(X=3)&=F(3)-F(3^-)=\frac{11}{12}-\frac45=\frac7{60},\\
+\P(X=4)&=F(4)-F(4^-)=1-\frac{11}{12}=\frac1{12}.
+\end{align*}
+这四个事件两两互斥，故其并的概率为
+\[
+\frac1{10}+\frac15+\frac7{60}+\frac1{12}=\frac12\ne1.
+\]
+因此，$X$并不以概率1只取这四个值，不能仅看分段的断点就把它当作四点离散分布。
+\item 由开区间公式，
+\begin{align*}
+\P(0<X<1)&=F(1^-)-F(0)=\frac15-\frac1{10}=\frac1{10},\\
+\P(1<X<3)&=F(3^-)-F(1)=\frac45-\frac25=\frac25,\\
+\P(3<X<4)&=F(4^-)-F(3)=\frac{11}{12}-\frac{11}{12}=0.
+\end{align*}
+三个开区间的概率之和为$1/2$，与四个单点的总概率相加为1，与全部分布相符。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}(1) $1/10,1/5,7/60,1/12$，四点总概率为$1/2$；(2) $1/10,2/5,0$。
+
+\subsection{作业第4题：由单点概率确定分布函数参数}
+\label{ex:w06-h4}
+设随机变量$X$的分布函数为
+\[
+F(t)=\begin{cases}
+0,&t<-2,\\
+\dfrac15,&-2\leq t<-1,\\
+Bt+A,&-1\leq t<0,\\
+1-\dfrac12e^{-t},&t\geq0,
+\end{cases}
+\]
+其中$A$和$B$是未知常数，并且$\P(X=-1)=1/5$，$\P(X=0)=0$。
+\begin{enumerate}
+\item 求常数$A$和$B$。
+\item 求概率$\P(-1\leq X\leq-1/2)$。
+\end{enumerate}
+\basis{原笔记第2章第1节定理“分布函数的基本性质”及区间概率公式；见\hyperref[k:cdf]{分布函数与端点概率}。}
+\paragraph{思路}以0点连续和$-1$点跳跃量列方程，闭区间左端要取左极限。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 在0处，$F(0)=1/2$、$F(0^-)=A$，所以
+\[
+0=\P(X=0)=F(0)-F(0^-)=\frac12-A,
+\]
+得到$A=1/2$。在$-1$处，$F(-1)=A-B$、$F(-1^-)=1/5$，因此
+\[
+\frac15=\P(X=-1)=A-B-\frac15.
+\]
+由此$A-B=2/5$，得到$B=1/10$。
+
+所得函数在$[-1,0)$上斜率为正，在$[0,\infty)$上也单调增加；它在0处连续，在$-2,-1$处向上跳跃，且两端极限为0、1，符合分布函数的性质。
+\item 因区间包含左端点$-1$，
+\begin{align*}
+\P\left(-1\leq X\leq-\frac12\right)
+&=F\left(-\frac12\right)-F(-1^-)\\
+&=\left(-\frac1{20}+\frac12\right)-\frac15=\frac14.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$A=1/2$，$B=1/10$；所求概率为$1/4$。
+
+\subsection{作业第5题（思考题，选做）：分布函数的一致收敛}
+\label{ex:w06-h5}
+设$F(t),F_n(t)$，$n\geq1$都是分布函数。已知$F(t)$在$\R$上连续，并且对任意$t\in\R$，有
+\[
+\lim_{n\to+\infty}F_n(t)=F(t).
+\]
+求证：当$n\to+\infty$时，$F_n(t)$在$\R$上一致收敛于$F(t)$。
+\basis{原笔记第2章第1节“分布函数的基本性质”（单调性与两端极限）；连续函数在闭有界区间上的一致连续性用于有限分点。}
+\paragraph{思路}先用两端极限控制左右尾部，再在中间闭区间上取有限分点，借助单调性把分点上的收敛控制推广到整个实轴。
+\begin{proof}
+一致收敛的目标是：对任意$\varepsilon>0$，找到与$t$无关的$N$，使$n\geq N$时所有$t\in\R$均满足$|F_n(t)-F(t)|<\varepsilon$。
+
+固定$\varepsilon>0$，令$\delta=\varepsilon/3$。利用$F$在两端的极限，选取$M>0$使
+\[
+F(-M)<\delta,\qquad 1-F(M)<\delta.
+\]
+因为$F$在$[-M,M]$上连续，所以在该闭区间上一致连续。于是可以选取有限分点
+\[
+-M=t_0<t_1<\cdots<t_r=M,
+\]
+使每个相邻分点满足$F(t_{j+1})-F(t_j)<\delta$。具体地，先取使$|s-t|$充分小时$|F(s)-F(t)|<\delta$的统一长度，再将$[-M,M]$等分到每段短于该长度。
+
+每个固定分点$t_j$上都有$F_n(t_j)\to F(t_j)$。分点只有有限个，因此存在统一的$N$使$n\geq N$时
+\[
+|F_n(t_j)-F(t_j)|<\delta,\qquad 0\leq j\leq r.
+\]
+以下固定$n\geq N$，分三类控制$t$。
+\begin{enumerate}
+\item 若$-M\leq t\leq M$，则$t$位于某个$[t_j,t_{j+1}]$中。$F_n,F$均单调不减，故
+\begin{align*}
+F_n(t)-F(t)
+&\leq F_n(t_{j+1})-F(t_j)\\
+&=[F_n(t_{j+1})-F(t_{j+1})]+[F(t_{j+1})-F(t_j)]<2\delta,\\
+F(t)-F_n(t)
+&\leq F(t_{j+1})-F_n(t_j)\\
+&=[F(t_{j+1})-F(t_j)]+[F(t_j)-F_n(t_j)]<2\delta.
+\end{align*}
+所以$|F_n(t)-F(t)|<2\delta$。
+\item 若$t<-M$，利用概率非负与单调性，
+\[
+0\leq F(t)\leq F(-M)<\delta,
+\qquad 0\leq F_n(t)\leq F_n(-M)<F(-M)+\delta<2\delta.
+\]
+因此$|F_n(t)-F(t)|<2\delta$。
+\item 若$t>M$，同理
+\[
+0\leq1-F(t)\leq1-F(M)<\delta,
+\qquad0\leq1-F_n(t)\leq1-F_n(M)<2\delta.
+\]
+从而$|F_n(t)-F(t)|<2\delta$。
+\end{enumerate}
+三个范围覆盖$\R$。于是$n\geq N$时，
+\[
+\sup_{t\in\R}|F_n(t)-F(t)|\leq2\delta=\frac{2\varepsilon}{3}<\varepsilon,
+\]
+证明了在整个实轴上的一致收敛。
+\end{proof}
+\paragraph{答案}$\displaystyle\sup_{t\in\R}|F_n(t)-F(t)|\to0$。

@@ -1,0 +1,56 @@
+% !TEX program = xelatex
+\documentclass[UTF8,a4paper,11pt,fontset=windows]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,enumitem,booktabs,longtable,array}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{xurl,fancyhdr,microtype}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{概率论期中复习}\fancyhead[R]{原笔记例题与历次作业}\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{0.35em}
+\setlength{\emergencystretch}{2em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em}
+\setcounter{tocdepth}{2}
+\renewcommand{\proofname}{证明}
+\newcommand{\R}{\mathbb R}\newcommand{\N}{\mathbb N}\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}\newcommand{\Q}{\mathbb Q}\newcommand{\F}{\mathbb F}
+\renewcommand{\P}{P}\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\dd}{\mathrm d}\newcommand{\dif}{\mathop{}\!\mathrm d}
+\newcommand{\PP}{P}\newcommand{\EE}{\mathbb E}\newcommand{\Exp}{\operatorname{Exp}}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\basis}[1]{\par\begingroup\small\raggedright\noindent\textbf{所用结论与原文依据}\quad #1\par\endgroup\smallskip}
+\newcommand{\origin}[1]{\par\noindent{\small #1}\par\medskip}
+\newcounter{statement}[section]\renewcommand{\thestatement}{\thesection.\arabic{statement}}
+\newcommand{\statementstart}[4]{\par\medskip\refstepcounter{statement}\label{#3:#4}\noindent\textbf{#1~\thestatement\quad #2}\par\smallskip}
+\newenvironment{mydefinition}[2]{\statementstart{定义}{#1}{def}{#2}}{\par\medskip}
+\newenvironment{mytheorem}[2]{\statementstart{定理}{#1}{th}{#2}}{\par\medskip}
+\newenvironment{proposition}[2]{\statementstart{命题}{#1}{prop}{#2}}{\par\medskip}
+\newenvironment{mycorollary}[2]{\statementstart{推论}{#1}{cor}{#2}}{\par\medskip}
+\newenvironment{mylemma}[2]{\statementstart{引理}{#1}{lem}{#2}}{\par\medskip}
+\title{概率论期中复习\\\large 原笔记前三章例题与第一至十二周作业详解}
+\author{}\date{2026年11月20日}
+\begin{document}
+\maketitle
+\noindent 本册分为概率空间与随机事件、一维随机变量、随机向量三部分。每部分先列原笔记中的定义与结论，并保留该章全部例题及已有解答，再整理相应阶段的作业。原笔记定理不重复证明；作业要求证明的内容仍给出完整证明。第四章不在本册范围内。
+
+原笔记共收录78个例题。作业中的教材题已按指定页码补全题面；选做题保留，重复布置的题目保留各周出处。仅由讲义编号引用且未找到可核对题面的第四周第2题按要求略去。第一周第4项是未指定题目的开放阅读，保留该项说明。
+
+题面存在条件不足、单位不一致或措辞冲突时，原文保留，解答中分别说明字面结论和所采用的明确解释。
+\tableofcontents
+\clearpage
+\part{概率空间与随机事件}
+\input{notes01}
+\clearpage\section*{第一至第五周作业}\addcontentsline{toc}{section}{第一至第五周作业}
+\input{week01}\input{week02}\input{week03}\input{week04}\input{week05}
+\clearpage\part{一维随机变量及其分布}
+\input{notes02}
+\clearpage\section*{第六至第九周作业}\addcontentsline{toc}{section}{第六至第九周作业}
+\input{week06}\input{week07}\input{week08}\input{week09}
+\clearpage\part{随机向量、条件分布与变量变换}
+\input{notes03}
+\clearpage\section*{第十至第十二周作业}\addcontentsline{toc}{section}{第十至第十二周作业}
+\input{week10}\input{week11}\input{week12}
+\clearpage\part{检索与答案速查}
+\input{answers}
+\end{document}

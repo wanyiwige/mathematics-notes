@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-20",
+  "entry": "概率论期中复习.tex",
+  "pdf": "概率论期中复习.pdf",
+  "pages": 164,
+  "compile_command": "xelatex -interaction=nonstopmode -halt-on-error -file-line-error 概率论期中复习.tex",
+  "final_log": "qa/compile-pass5.txt（本地保留，不纳入Git）",
+  "compile_success": true,
+  "warnings_overfull_missing_undefined": [],
+  "visual_review": false,
+  "scope": "原笔记前三章；排除第四章",
+  "examples_by_chapter": {
+    "1": 32,
+    "2": 25,
+    "3": 21
+  },
+  "homework_entries": 103,
+  "homework_with_answers": 101,
+  "not_solved_entries": [
+    {
+      "week": 1,
+      "title": "作业第4项：绳子连接问题（阅读）",
+      "label": "ex:w01-h4",
+      "has_answer": false
+    },
+    {
+      "week": 4,
+      "title": "作业第2题：讲义例1.101第(3)问",
+      "label": "ex:w04-h2",
+      "has_answer": false
+    }
+  ],
+  "original_files_equal_start_hash": {
+    "概率论笔记\\chapters\\chapter1.tex": true,
+    "概率论笔记\\chapters\\chapter2.tex": true,
+    "概率论笔记\\chapters\\chapter3.tex": true,
+    "概率论笔记\\chapters\\chapter4.tex": true,
+    "概率论笔记\\main.tex": true,
+    "概率论笔记\\main.pdf": true
+  },
+  "independent_reviews": {
+    "week01_03": "PASS",
+    "week04_09": "PASS",
+    "week10_12": "PASS",
+    "notes_final": "PASS；8处上下文缺失由新执行者修复后复核；78例与8段紧随证明保留"
+  },
+  "pdf_sha256": "55b23867d0304763d07bf7c687bccdc96c23d835b4fbbc695591ee2b2d885461",
+  "image_dependencies": []
+}

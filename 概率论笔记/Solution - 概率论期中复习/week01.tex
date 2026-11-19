@@ -1,0 +1,151 @@
+% !TEX root = 概率论期中复习.tex
+\clearpage\section{第一周：事件运算与古典、几何概型}
+\subsection{教材第9--10页第1题}\label{ex:w01-t1}
+设$A,B,C$是三个事件。用它们给出下列事件的表示：
+\begin{enumerate}[label=(\arabic*)]
+\item 至少有一个事件发生；\item 至少有两个事件发生；\item 所有事件都不发生；\item 至多一个事件发生；\item 至多两个事件发生；\item 恰有两个事件发生。
+\end{enumerate}
+\basis{原笔记第1.1节“事件的并、交、差与补事件”；见\hyperref[k:events]{事件运算与概率模型}。}
+\paragraph{思路}“至少”用并表示，“同时”用交表示；“至多”可以取相应事件的补集。
+\begin{proof}[解答]
+\begin{enumerate}[label=(\arabic*)]
+\item 至少一个发生，即$A,B,C$中存在一个发生，故为$A\cup B\cup C$。
+\item 至少两个发生时，三对$AB,AC,BC$中至少有一对同时发生，故为$AB\cup AC\cup BC$。三个都发生也包含在内。
+\item 三个都不发生为$A^cB^cC^c=(A\cup B\cup C)^c$。
+\item 至多一个发生等价于没有一对同时发生，故为
+\[(AB\cup AC\cup BC)^c=A^cB^c\cup A^cC^c\cup B^cC^c.\]
+\item 至多两个发生只需排除三个都发生，故为$(ABC)^c=A^c\cup B^c\cup C^c$。
+\item 恰有两个发生，须区分不发生的是哪一个，故为
+\[ABC^c\cup AB^cC\cup A^cBC=(AB\cup AC\cup BC)\setminus ABC.\]
+三项两两互斥，已穷尽所有恰有两个发生的情形。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}依次为$A\cup B\cup C$，$AB\cup AC\cup BC$，$A^cB^cC^c$，$(AB\cup AC\cup BC)^c$，$(ABC)^c$，$ABC^c\cup AB^cC\cup A^cBC$。
+
+\subsection{教材第10页第2题}\label{ex:w01-t2}
+从$0,1,2,3,4,5$中任取4个数排成一行。求恰好构成四位偶数的概率。
+\basis{原笔记第1.1节古典概型与计数乘法原理。}
+\paragraph{思路}采用有序无放回抽取，按末位是否为0分类；首位不能为0。
+\begin{proof}[解答]
+等可能排列总数为$6\cdot5\cdot4\cdot3=360$。
+
+末位为0时，首位有5种选法，中间两位依次有4、3种，共$5\cdot4\cdot3=60$种。
+
+末位为2或4时，末位有2种选法；首位不能为0且不能等于末位，有4种选法；中间两位从余下4个数字中有序选取，共$4\cdot3$种。因此
+\[P=\frac{60+2\cdot4\cdot4\cdot3}{360}=\frac{13}{30}.\]
+\end{proof}
+\paragraph{答案}$13/30$。
+
+\subsection{教材第10页第4题}\label{ex:w01-t4}
+信封里有8把钥匙，其中只有一把能打开房门，现取出钥匙试开。分有放回和无放回两种情形，求3次以内能打开房门的概率。
+\basis{原笔记第1.1节古典概型；第1.4节独立重复试验。}
+\paragraph{思路}有放回取“前三次均失败”的补事件；无放回看正确钥匙在随机排列中的位置。
+\begin{proof}[解答]
+有放回且每次重新等可能抽取时，各次失败的概率都是$7/8$且相互独立，故
+\[P(\text{3次以内打开})=1-\left(\frac78\right)^3=\frac{169}{512}.\]
+无放回时，8把钥匙的试用顺序是随机排列。正确钥匙在每个位置的概率均为$1/8$，前三个位置互斥，故所求概率为$3/8$。也可直接计算为
+\[1-\frac78\frac67\frac56=\frac38.\]
+\end{proof}
+\paragraph{答案}有放回$169/512$；无放回$3/8$。
+
+\subsection{教材第10页第5题}\label{ex:w01-t5}
+袋子里有$m$个白球，$n$个黑球（$m,n\geq1$）。
+\begin{enumerate}[label=(\arabic*)]
+\item 从袋中随机取两个球，求两球同色的概率；
+\item 从袋中随机取一个球，记录颜色后放回，从中再取一球，求两次取的球同色的概率；
+\item 证明(2)的概率始终大于(1)的概率。
+\end{enumerate}
+\basis{原笔记第1.1节组合计数；第1.4节独立试验。}
+\paragraph{思路}同色分为都白与都黑两种互斥情况，再通分比较。
+\begin{proof}[解答]
+记$M=m+n\geq2$。
+\begin{enumerate}[label=(\arabic*)]
+\item 不放回时，所有两球组合等可能，故
+\[p_1=\frac{\binom m2+\binom n2}{\binom M2}=\frac{m(m-1)+n(n-1)}{M(M-1)}.\]
+当$m=1$或$n=1$时，相应组合数取0。
+\item 放回后各次独立，故
+\[p_2=\left(\frac mM\right)^2+\left(\frac nM\right)^2=\frac{m^2+n^2}{M^2}.\]
+\item 用$m^2+n^2=M^2-2mn$化简，得
+\begin{align*}
+p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
+&=\frac{M^2-m^2-n^2}{M^2(M-1)}=\frac{2mn}{M^2(M-1)}>0.
+\end{align*}
+分母为正，且$m,n\geq1$，所以严格大于。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$p_1=[m(m-1)+n(n-1)]/[M(M-1)]$，$p_2=(m^2+n^2)/M^2$，且$p_2-p_1=2mn/[M^2(M-1)]>0$。
+
+\subsection{教材第10页第6题}\label{ex:w01-t6}
+在区间$(0,1)$中随机地取出三个数，以它们作为三条线段的长度。求这些线段能连接成一个三角形的概率。
+\basis{原笔记第1.1节几何概率模型；按三个数相互独立且均匀抽取理解。}
+\paragraph{思路}在单位立方体内去掉一条边不小于另外两边之和的区域。
+\begin{proof}[解答]
+记三个数为$x,y,z$。组成非退化三角形当且仅当
+\[x<y+z,\quad y<x+z,\quad z<x+y.\]
+除去零体积的边界，三个失败区域互不相交，而且由对称性体积相等。其中$x\geq y+z$的体积为
+\begin{align*}
+\int_0^1\int_0^x\int_0^{x-y} dz\,dy\,dx
+&=\int_0^1\int_0^x(x-y)\,dy\,dx\\
+&=\int_0^1\frac{x^2}{2}\,dx=\frac16.
+\end{align*}
+单位立方体体积为1，故所求概率为$1-3/6=1/2$。
+\end{proof}
+\paragraph{答案}$1/2$。
+
+\subsection{教材第10页第7题}\label{ex:w01-t7}
+在打好方格的白纸上投掷一枚直径为1的硬币。问方格的边长至少应为多少才能使硬币与方格的边不交的概率小于$1/100$。
+\basis{原笔记第1.1节几何概率模型。}
+\paragraph{思路}硬币中心到网格线的距离必须都大于半径$1/2$；先按原题求概率条件，再检查“至少”的方向。
+\begin{proof}[解答]
+设方格边长为$a>0$。假设硬币中心在一个基本方格内均匀分布。当$a\leq1$时，硬币无法完整落在方格内部，所求不交概率为0。当$a>1$时，中心必须位于边长$a-1$的内方形，故
+\[p(a)=\frac{(a-1)^2}{a^2}=\left(1-\frac1a\right)^2.\]
+于是对$a>1$，
+\[p(a)<\frac1{100}\iff 1-\frac1a<\frac1{10}\iff a<\frac{10}{9}.\]
+合并得$0<a<10/9$。这给出的是上界，而不是题面“至少”所暗示的下界；题面方向有误，不能给出一个正的最小边长。若原意是“不交概率大于$1/100$”，则应为$a>10/9$；若要求“至少$1/100$”，则为$a\geq10/9$。
+\end{proof}
+\paragraph{答案}按原题“小于”理解，$0<a<10/9$，不存在正的最小边长。
+
+\subsection{作业第2题：可列德摩根律}\label{ex:w01-h2}
+设$A_i$，$i\geq1$是一列事件。求证：
+\[\left(\bigcup_{i=1}^{\infty}A_i\right)^c=\bigcap_{i=1}^{\infty}A_i^c,\qquad
+\left(\bigcap_{i=1}^{\infty}A_i\right)^c=\bigcup_{i=1}^{\infty}A_i^c.\]
+\basis{原笔记第1.1节事件运算与德摩根律；此处是作业要求证明的结论，故展开证明。}
+\paragraph{思路}逐点把集合所属关系转为量词。
+\begin{proof}
+任取$\omega\in\Omega$，有
+\begin{align*}
+\omega\in\left(\bigcup_{i=1}^{\infty}A_i\right)^c
+&\iff \text{不存在$i\geq1$使$\omega\in A_i$}\\
+&\iff \text{对每个$i\geq1$，$\omega\in A_i^c$}\\
+&\iff \omega\in\bigcap_{i=1}^{\infty}A_i^c.
+\end{align*}
+两集合含有相同的样本点，第一式得证。同理，
+\begin{align*}
+\omega\in\left(\bigcap_{i=1}^{\infty}A_i\right)^c
+&\iff \text{并非对所有$i\geq1$都有$\omega\in A_i$}\\
+&\iff \text{存在$i\geq1$使$\omega\in A_i^c$}\\
+&\iff \omega\in\bigcup_{i=1}^{\infty}A_i^c.
+\end{align*}
+故第二式也成立。
+\end{proof}
+\paragraph{答案}两式均成立。
+
+\subsection{作业第3题：恰有两个事件发生}\label{ex:w01-h3}
+设$A,B,C$是三个事件。求证：
+\[ABC^c\cup AB^cC\cup A^cBC=(AB\cup AC\cup BC)\setminus ABC.\]
+\basis{原笔记第1.1节事件运算；与\hyperref[ex:w01-t1]{本周教材第1题(6)}相联系。}
+\paragraph{思路}右侧是在“至少两个发生”中排除“三个都发生”。
+\begin{proof}
+利用分配律与德摩根律，
+\begin{align*}
+(AB\cup AC\cup BC)\setminus ABC
+&=(AB\cap(ABC)^c)\cup(AC\cap(ABC)^c)\cup(BC\cap(ABC)^c)\\
+&=ABC^c\cup AB^cC\cup A^cBC.
+\end{align*}
+第二步中，例如$AB\cap(ABC)^c=AB\cap(A^c\cup B^c\cup C^c)=ABC^c$，因为$AB$分别与$A^c,B^c$的交为空集。另两项同理，故等式成立。
+\end{proof}
+\paragraph{答案}两边均表示恰有两个事件发生。
+
+\subsection{作业第4项：绳子连接问题（阅读）}\label{ex:w01-h4}
+阅读：自己去查找一些关于“$n$根绳子，$2n$个端头任意连接”的相关类型的古典概型的题目和解答。（自己找来看明白即可，不需要上交。）
+\paragraph{整理说明}原作业这一项是开放阅读要求，没有指定待求事件。保留原项以便核对作业范围，不将任意选定的连接问题冒充原题。

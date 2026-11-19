@@ -1,0 +1,1556 @@
+% !TEX root = 概率论期中复习.tex
+% 自动抽取自 chapters/chapter1.tex；原例题及其解答保留。
+
+\clearpage\section{随机试验和事件}\label{k:events}
+事件的全集为$\Omega$；$AB=A\cap B$，$A^c=\Omega\setminus A$。并表示至少一个发生，交表示同时发生，差表示前者发生而后者不发生。
+
+\begin{enumerate}
+\item \textbf{互斥（互不相容）事件}
+
+若 $A\cap B=\varnothing$，则称事件 $A$ 与 $B$ 互斥或互不相容，其概率意义是二者不能同时发生。若对一列事件 $A_n\ (n\geq1)$，任意 $i\ne j$ 都有 $A_i\cap A_j=\varnothing$，则称该列事件两两互斥。
+
+\item \textbf{补事件}
+
+事件 $A$ 的补集
+\[
+A^c=\left\{\omega\in\Omega\mathrel{\big|}\omega\notin A\right\}
+\]
+称为 $A$ 的补事件，其概率意义是 $A$ 不发生。并且
+\[
+A\setminus B=A\cap B^c.
+\]
+事件运算约定先进行补运算，再进行交运算，最后进行并运算或差运算。
+
+\item \textbf{完备事件组}
+
+若事件 $A_1,A_2,\ldots$ 两两互斥，且
+\[
+\bigcup_{i=1}^{\infty}A_i=\Omega,
+\]
+则称 $A_1,A_2,\ldots$ 构成一个\textbf{完备事件组}，或称为 $\Omega$ 的一个可数划分。
+\end{enumerate}
+
+事件的运算性质就是集合的运算性质。对任意事件 $A,B,C$，有
+\[
+A\cup B=B\cup A,\qquad A\cap B=B\cap A,
+\]
+\[
+(A\cup B)\cup C=A\cup(B\cup C),\qquad
+(A\cap B)\cap C=A\cap(B\cap C),
+\]
+\[
+A\cup(B\cap C)=(A\cup B)\cap(A\cup C),\qquad
+A\cap(B\cup C)=(A\cap B)\cup(A\cap C).
+\]
+此外，德摩根律为
+\[
+\left(\bigcup_{i=1}^{n}A_i\right)^c=\bigcap_{i=1}^{n}A_i^c,
+\qquad
+\left(\bigcap_{i=1}^{n}A_i\right)^c=\bigcup_{i=1}^{n}A_i^c,
+\]
+以及
+\[
+\left(\bigcup_{i=1}^{\infty}A_i\right)^c=\bigcap_{i=1}^{\infty}A_i^c,
+\qquad
+\left(\bigcap_{i=1}^{\infty}A_i\right)^c=\bigcup_{i=1}^{\infty}A_i^c.
+\]
+
+\begin{mydefinition}{随机试验}{random-experiment}
+在概率论中，将满足下列条件的试验称为随机试验，简称试验：
+\begin{enumerate}
+\item 试验进行前，无法确切知道一定会出现哪个结果；
+\item 已知试验所有可能的结果；
+\item 试验结束后，能够明确知道哪个试验结果出现。
+\end{enumerate}
+\end{mydefinition}
+\origin{原笔记第1.1节，定义“随机试验”；源码第12行。}
+
+\begin{mydefinition}{样本点与样本空间}{sample-space}
+\begin{enumerate}
+\item 一个随机试验的任意一个可能结果称为一个\textbf{样本点}（sample），记为 $\omega$；
+\item 该随机试验所有可能结果组成的集合称为该试验的\textbf{样本空间}（sample space），记为 $\Omega$。
+\end{enumerate}
+\end{mydefinition}
+\origin{原笔记第1.1节，定义“样本点与样本空间”；源码第21行。}
+
+\begin{mydefinition}{事件}{event}
+\begin{enumerate}
+\item 样本空间 $\Omega$ 的一个子集称为一个\textbf{事件}，通常用大写字母 $A,B,C,\ldots$ 表示；
+\item 对事件 $A$，若试验结果 $\omega\in A$，则称事件 $A$ 发生；否则称事件 $A$ 不发生。
+\end{enumerate}
+\end{mydefinition}
+\origin{原笔记第1.1节，定义“事件”；源码第34行。}
+
+\begin{mydefinition}{古典概率模型}{classical-probability-model}
+若某随机试验的样本空间 $\Omega$ 只含有限个样本点，且每个样本点出现的概率相等，则称该随机试验为\textbf{古典概率模型}，简称\textbf{古典概型}。对任意事件 $A\subseteq\Omega$，记 $A$ 中元素个数为 $n(A)$，则
+\[
+P(A)=\dfrac{n(A)}{n(\Omega)}.
+\]
+\end{mydefinition}
+\origin{原笔记第1.1节，定义“古典概率模型”；源码第142行。}
+
+\begin{proposition}{计数的乘法原理}{multiplication-principle}
+若一个过程由 $r$ 个试验构成，第 $i$ 个试验有 $n_i$ 种可能结果，则该过程共有
+\[
+n_1n_2\cdots n_r
+\]
+种可能结果。
+\end{proposition}
+\origin{原笔记第1.1节，命题“计数的乘法原理”；源码第151行。}
+
+\subsection{例题：抽取方式与排列计数}\label{note:c1:e1}
+\basis{原笔记第1.1节，例“抽取方式与排列计数”；源码\texttt{chapters/chapter1.tex}第158行。}
+\begin{enumerate}
+		\item 有放回有序抽取：从 $n$ 个不同的球中有放回地每次抽取一个，依次抽取 $m$ 次并按顺序排成一列，可得到 $n^m$ 个不同排列。
+		\item 无放回有序抽取：从 $n$ 个不同的球中无放回地抽取 $m$ 个并按顺序排成一列，可得到
+		\[
+		A_n^m=n(n-1)\cdots(n-m+1)=\dfrac{n!}{(n-m)!}
+		\]
+		个不同排列。
+		\item 圆排列数：$n$个人坐一圈，有$(n-1)!$种排列方式.
+		\item 组合数：从 $n$ 个不同的球中无放回地抽取 $m$ 个并放在一起，不计顺序，可得到
+		\[
+		C_n^m=\binom{n}{m}=\dfrac{n!}{(n-m)!m!}
+		\]
+		个不同组合。
+	\end{enumerate}
+
+\begin{proposition}{多组分配}{multinomial-count}
+将 $n$ 个不同元素分成 $r$ 个组，其中第 $i$ 组有 $n_i$ 个元素，组内不计顺序，且
+\[
+n_1+n_2+\cdots+n_r=n,
+\]
+则不同分法共有
+\[
+\dfrac{n!}{n_1!n_2!\cdots n_r!}
+\]
+种。
+\end{proposition}
+\origin{原笔记第1.1节，命题“多组分配”；源码第175行。}
+
+\begin{mycorollary}{多项式定理}{multinomial-theorem}
+\[
+(x_1+x_2+\cdots+x_r)^n
+=\sum_{n_1+n_2+\cdots+n_r=n}
+\dfrac{n!}{n_1!n_2!\cdots n_r!}
+x_1^{n_1}x_2^{n_2}\cdots x_r^{n_r}.
+\]
+其中
+\[
+\binom{n}{n_1,n_2,\ldots,n_r}
+:=\dfrac{n!}{n_1!n_2!\cdots n_r!}
+\]
+称为多项式系数。
+\end{mycorollary}
+\origin{原笔记第1.1节，推论“多项式定理”；源码第202行。}
+
+\begin{proposition}{正整数解的个数}{positive-integer-solutions}
+设 $n\geq1$，方程
+\[
+x_1+x_2+\cdots+x_r=n,\qquad x_i>0\quad(i=1,2,\ldots,r)
+\]
+有
+\[
+\binom{n-1}{r-1}
+\]
+个不同的正整数解。
+\end{proposition}
+\origin{原笔记第1.1节，命题“正整数解的个数”；源码第217行。}
+
+\begin{proposition}{非负整数解的个数}{nonnegative-integer-solutions}
+设 $n\geq1$，方程
+\[
+x_1+x_2+\cdots+x_r=n,\qquad x_i\geq0\quad(i=1,2,\ldots,r)
+\]
+有
+\[
+\binom{n+r-1}{r-1}
+\]
+个不同的非负整数解。
+\end{proposition}
+\origin{原笔记第1.1节，命题“非负整数解的个数”；源码第238行。}
+
+\begin{mydefinition}{几何概率模型}{geometric-probability-model}
+设随机试验的样本空间 $\Omega$ 是 $\mathbb{R}^d$ 中一个具有体积 $m(\Omega)$ 的子集，且
+\[
+0<m(\Omega)<+\infty.
+\]
+若事件 $A\subseteq\Omega$ 具有体积 $m(A)$，并规定
+\[
+P(A)=\dfrac{m(A)}{m(\Omega)},
+\]
+则称该随机试验为\textbf{几何概率模型}，简称\textbf{几何概型}。
+\end{mydefinition}
+\origin{原笔记第1.1节，定义“几何概率模型”；源码第263行。}
+
+\subsection{例题：贝特朗奇论}\label{note:c1:e2}
+\basis{原笔记第1.1节，例“贝特朗奇论”；源码\texttt{chapters/chapter1.tex}第279行。}
+随机地从半径为 $r$ 的圆中取一根弦，求该弦长度大于圆内接正三角形边长 $\sqrt{3}r$ 的概率。设事件 $A$ 表示“弦长大于 $\sqrt{3}r$”。
+
+“随机取弦”的说法本身并未说明等可能的参照标准，因此可以得到不同的概率。
+\begin{enumerate}
+\item 若以弦的中点 $M$ 确定一根弦，并规定 $M$ 在大圆内均匀取值，则弦长大于 $\sqrt{3}r$ 当且仅当 $M$ 落在半径为 $r/2$ 的同心小圆内。因此
+\[
+P(A)=\dfrac{\pi(r/2)^2}{\pi r^2}=\dfrac14.
+\]
+
+\item 若固定弦的一个端点，并规定弦与该端点处切线的夹角 $\theta$ 在 $[0,\pi]$ 上均匀取值，则
+\[
+A=\left(\dfrac{\pi}{3},\dfrac{2\pi}{3}\right),
+\qquad
+P(A)=\dfrac{\pi/3}{\pi}=\dfrac13.
+\]
+
+\item 若以弦到圆心的距离 $D$ 确定一根弦，并规定 $D$ 在 $[0,r]$ 上均匀取值，则 $A=\{0<D<r/2\}$，从而
+\[
+P(A)=\dfrac{r/2}{r}=\dfrac12.
+\]
+\end{enumerate}
+
+三种理解得到不同答案的原因在于：它们分别选择了不同的样本空间和等可能标准。求概率前，必须先明确随机试验的样本空间以及概率模型。
+
+\subsection{例题：布丰投针实验}\label{note:c1:e3}
+\basis{原笔记第1.1节，例“布丰投针实验”；源码\texttt{chapters/chapter1.tex}第305行。}
+在平面上画出间距为 $d$ 的一组平行直线。随机投掷一根长度为 $l$ 的针，设
+\[
+0<l\leq d.
+\]
+记针与任一直线相交为事件 $A$。令 $X$ 表示针的中点到最近平行线的距离，$\Theta$ 表示针与平行线的夹角。按照几何概型，取
+\[
+0\leq X\leq \dfrac d2,
+\qquad
+0\leq \Theta\leq \dfrac{\pi}{2},
+\]
+并把 $(X,\Theta)$ 看作在该矩形内等可能取值。
+
+针与直线相交当且仅当
+\[
+X\leq \dfrac l2\sin\Theta.
+\]
+因此，事件 $A$ 对应的面积为
+\[
+\int_0^{\pi/2}\dfrac l2\sin\theta\,\mathrm{d}\theta
+=\dfrac l2,
+\]
+而样本空间的面积为 $\dfrac d2\cdot\dfrac{\pi}{2}=\dfrac{d\pi}{4}$。故
+\[
+P(A)=\dfrac{l/2}{d\pi/4}=\dfrac{2l}{\pi d}.
+\]
+
+若独立投针 $N$ 次，其中有 $H$ 次与直线相交，则当 $N$ 较大时，频率 $H/N$ 可近似看作 $P(A)$，从而得到 $\pi$ 的实验估计式
+\[
+\pi\approx\dfrac{2lN}{dH}.
+\]
+
+\clearpage\section{可测空间和概率空间}\label{k:probability}
+事件列$A_n\uparrow A$表示$A_n\subseteq A_{n+1}$且$A=\bigcup_nA_n$；$A_n\downarrow A$表示$A_{n+1}\subseteq A_n$且$A=\bigcap_nA_n$。
+
+\begin{mydefinition}{频率}{frequency}
+在 $N$ 次重复试验中，若事件 $A$ 出现 $N(A)$ 次，则比值
+\[
+f_N(A)=\dfrac{N(A)}{N}
+\]
+称为事件 $A$ 发生的\textbf{频率}。
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“频率”；源码第363行。}
+
+\begin{proposition}{频率的性质}{frequency-properties}
+对任意事件 $A$，有
+\[
+0\leq f_N(A)\leq1,
+\qquad
+f_N(\Omega)=1,
+\qquad
+f_N(\varnothing)=0.
+\]
+并且
+\[
+f_N(A^c)=1-f_N(A).
+\]
+若 $A_1,A_2,\ldots,A_r$ 两两互斥，则
+\[
+f_N\left(\bigcup_{i=1}^{r}A_i\right)
+=\sum_{i=1}^{r}f_N(A_i).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“频率的性质”；源码第371行。}
+
+\begin{mydefinition}{$\sigma$-域与可测空间}{sigma-algebra}
+设 $\Omega$ 是非空集合，$\mathscr{F}$ 是由 $\Omega$ 的一些子集构成的集合类。若 $\mathscr{F}$ 满足：
+\begin{enumerate}
+\item $\Omega\in\mathscr{F}$；
+\item 若 $A\in\mathscr{F}$，则 $A^c\in\mathscr{F}$；
+\item 若 $A_n\in\mathscr{F}$（$n\geq1$），则
+\[
+\bigcup_{n=1}^{\infty}A_n\in\mathscr{F},
+\]
+\end{enumerate}
+则称 $\mathscr{F}$ 为 $\Omega$ 的一个\textbf{$\sigma$-域}或\textbf{事件域}，在分析学中我们称之为\textbf{$\sigma$-代数}，$\mathscr{F}$ 中的元素称为事件或可测集，二元组 $(\Omega,\mathscr{F})$ 称为\textbf{可测空间}。
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“$\sigma$-域与可测空间”；源码第412行。}
+
+\begin{proposition}{$\sigma$-域的基本封闭性}{sigma-algebra-closure}
+若 $\mathscr{F}$ 是 $\Omega$ 的一个 $\sigma$-域，则：
+\begin{enumerate}
+\item $\varnothing\in\mathscr{F}$；
+\item 若 $A_n\in\mathscr{F}$（$n\geq1$），则
+\[
+\bigcap_{n=1}^{\infty}A_n\in\mathscr{F};
+\]
+\item 若 $A_1,\ldots,A_k\in\mathscr{F}$，则有限并与有限交都属于 $\mathscr{F}$；
+\item 若 $A,B\in\mathscr{F}$，则 $A\setminus B\in\mathscr{F}$。
+\end{enumerate}
+\end{proposition}
+\origin{原笔记第1.2节，命题“$\sigma$-域的基本封闭性”；源码第425行。}
+
+\subsection{例题：\texorpdfstring{一些 $\sigma$-代数的例子}{一些 sigma-代数的例子}}\label{note:c1:e4}
+\basis{原笔记第1.2节，例“一些 $\sigma$-代数的例子”；源码\texttt{chapters/chapter1.tex}第451行。}
+\begin{enumerate}
+\item $\{\varnothing,\Omega\}$ 是 $\Omega$ 上所含事件最少的 $\sigma$-域；
+\item 对任意 $A\subseteq\Omega$，集合类
+\[
+\{\varnothing,\Omega,A,A^c\}
+\]
+是包含 $A$ 的一个 最小的$\sigma$-域；
+\item $\mathcal{P}(\Omega):=\{A\mid A\subseteq\Omega\}$ 是 $\Omega$ 的所有子集构成的 $\sigma$-域。
+\end{enumerate}
+
+\begin{proposition}{$\sigma$-域的交}{intersection-of-sigma-algebras}
+设 $I$ 是一个指标集。若对任意 $\alpha\in I$，$\mathscr{F}_\alpha$ 都是 $\Omega$ 上的 $\sigma$-域，则
+\[
+\mathscr{F}=\bigcap_{\alpha\in I}\mathscr{F}_\alpha
+\]
+也是 $\Omega$ 上的 $\sigma$-域。
+\end{proposition}
+\origin{原笔记第1.2节，命题“$\sigma$-域的交”；源码第465行。}
+
+\begin{mytheorem}{由集合类生成的 $\sigma$-域}{generated-sigma-algebra}
+设 $\Omega$ 是非空集合，$\mathscr{E}$ 是由 $\Omega$ 的一些子集构成的非空集合类。则存在唯一的 $\sigma$-域 $\mathscr{F}$ 满足：
+\begin{enumerate}
+\item $\mathscr{E}\subseteq\mathscr{F}$；
+\item 对任意包含 $\mathscr{E}$ 的 $\sigma$-域 $\mathcal{M}$，都有 $\mathscr{F}\subseteq\mathcal{M}$。
+\end{enumerate}
+此时称 $\mathscr{F}$ 为由 $\mathscr{E}$ \textbf{生成的 $\sigma$-域}，记为 $\sigma(\mathscr{E})$。
+\end{mytheorem}
+\origin{原笔记第1.2节，定理“由集合类生成的 $\sigma$-域”；源码第477行。}
+
+\begin{mydefinition}{Borel $\sigma$-域}{borel-sigma-algebra}
+记
+\[
+\mathscr{E}_{\mathbb{R}}=\{(a,b]\mid a,b\in\mathbb{R}\}.
+\]
+称 $\sigma(\mathscr{E}_{\mathbb{R}})$ 为 $\mathbb{R}$ 上的\textbf{Borel $\sigma$-域}，记为 $\mathscr{B}(\mathbb{R})$。
+
+类似地，记
+\[
+\mathscr{E}_{\mathbb{R}^d}
+=\left\{(a_1,b_1]\times\cdots\times(a_d,b_d]\mid a_i,b_i\in\mathbb{R},\ 1\leq i\leq d\right\}.
+\]
+称 $\sigma(\mathscr{E}_{\mathbb{R}^d})$ 为 $\mathbb{R}^d$ 上的 Borel $\sigma$-域，记为 $\mathscr{B}(\mathbb{R}^d)$。
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“Borel $\sigma$-域”；源码第495行。}
+
+\begin{proposition}{常用集合属于 $\mathscr{B}(\mathbb{R})$}{common-borel-sets}
+对任意 $a<b$，开区间 $(a,b)$、闭区间 $[a,b]$、半开半闭区间 $[a,b)$ 以及单点集 $\{b\}$ 都属于 $\mathscr{B}(\mathbb{R})$。
+\end{proposition}
+\origin{原笔记第1.2节，命题“常用集合属于 $\mathscr{B}(\mathbb{R})$”；源码第510行。}
+
+\begin{mydefinition}{概率与概率空间}{probability-space}
+设 $\Omega$ 是非空集合，$\mathscr{F}$ 是 $\Omega$ 上给定的一个 $\sigma$-域。若映射
+\[
+P:\mathscr{F}\longrightarrow[0,+\infty)
+\]
+满足：
+\begin{enumerate}
+\item \textbf{非负性：}对任意 $A\in\mathscr{F}$，有 $P(A)\geq0$；
+\item \textbf{规范性：}$P(\Omega)=1$；
+\item \textbf{可列可加性：}若 $A_n\in\mathscr{F}$（$n\geq1$）两两互斥，则
+\[
+P\left(\bigcup_{n=1}^{\infty}A_n\right)
+=\sum_{n=1}^{\infty}P(A_n),
+\]
+\end{enumerate}
+则称 $P$ 为 $\mathscr{F}$ 上的\textbf{概率}，三元组 $(\Omega,\mathscr{F},P)$ 称为\textbf{概率空间}。
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“概率与概率空间”；源码第536行。}
+
+\begin{proposition}{空集的概率}{probability-empty-set}
+\[
+P(\varnothing)=0.
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“空集的概率”；源码第555行。}
+
+\begin{proposition}{有限可加性}{finite-additivity}
+若 $A_1,\ldots,A_n\in\mathscr{F}$ 两两互斥，则
+\[
+P\left(\bigcup_{i=1}^{n}A_i\right)
+=\sum_{i=1}^{n}P(A_i).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“有限可加性”；源码第576行。}
+
+\begin{proposition}{单调性}{probability-monotonicity}
+若 $A,B\in\mathscr{F}$ 且 $B\subseteq A$，则
+\[
+P(B)\leq P(A).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“单调性”；源码第588行。}
+
+\begin{mycorollary}{概率的上界}{probability-upper-bound}
+对任意 $A\in\mathscr{F}$，有
+\[
+0\leq P(A)\leq1.
+\]
+\end{mycorollary}
+\origin{原笔记第1.2节，推论“概率的上界”；源码第602行。}
+
+\begin{proposition}{补事件的概率}{probability-complement}
+对任意 $A\in\mathscr{F}$，有
+\[
+P(A^c)=1-P(A).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“补事件的概率”；源码第613行。}
+
+\begin{proposition}{一般加法公式}{probability-addition-formula}
+对任意事件 $A,B\in\mathscr{F}$，有
+\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“一般加法公式”；源码第627行。}
+
+\begin{mytheorem}{容斥恒等式}{inclusion-exclusion}
+对任意 $n$ 个事件 $A_1,A_2,\ldots,A_n$，有
+\[
+P\left(\bigcup_{i=1}^{n}A_i\right)
+=\sum_{r=1}^{n}(-1)^{r+1}
+\sum_{1\leq i_1<\cdots<i_r\leq n}
+P\left(A_{i_1}\cap\cdots\cap A_{i_r}\right).
+\]
+\end{mytheorem}
+\origin{原笔记第1.2节，定理“容斥恒等式”；源码第655行。}
+
+\begin{mycorollary}{有限次次可加性}{finite-subadditivity}
+对任意 $n$ 个事件 $A_1,\ldots,A_n$，有
+\[
+P\left(\bigcup_{i=1}^{n}A_i\right)
+\leq\sum_{i=1}^{n}P(A_i).
+\]
+\end{mycorollary}
+\origin{原笔记第1.2节，推论“有限次次可加性”；源码第677行。}
+
+\subsection{例题：Kounias 不等式}\label{note:c1:e5}
+\basis{原笔记第1.2节，例“Kounias 不等式”；源码\texttt{chapters/chapter1.tex}第696行。}
+对任意 $n$ 个事件 $A_1,\ldots,A_n$，有
+\[
+P\left(\bigcup_{r=1}^{n}A_r\right)
+\leq\min_{1\leq k\leq n}
+\left\{
+\sum_{r=1}^{n}P(A_r)-\sum_{\substack{1\leq r\leq n\\ r\ne k}}P(A_r\cap A_k)
+\right\}.
+\]
+
+\begin{proof}
+固定 $k$。由有限次次可加性，
+\[
+\begin{aligned}
+\sum_{r=1}^{n}P(A_r)-\sum_{r\ne k}P(A_r\cap A_k)
+&=P(A_k)+\sum_{r\ne k}P(A_r\cap A_k^c)\\
+&\geq P\left(A_k\cup\bigcup_{r\ne k}(A_r\cap A_k^c)\right)\\
+&=P\left(\bigcup_{r=1}^{n}A_r\right).
+\end{aligned}
+\]
+对 $k=1,\ldots,n$ 取最小值即得结论。
+\end{proof}
+
+\begin{mydefinition}{事件序列的极限}{limit-of-event-sequences}
+若事件列 $\{A_n\}_{n\geq1}$ 满足
+\[
+A_1\subseteq A_2\subseteq\cdots\subseteq A_n\subseteq\cdots,
+\]
+则称其为\textbf{递增序列}（或不降序列），并定义
+\[
+\lim_{n\to\infty}A_n:=\bigcup_{n=1}^{\infty}A_n.
+\]
+若
+\[
+A_1\supseteq A_2\supseteq\cdots\supseteq A_n\supseteq\cdots,
+\]
+则称其为\textbf{递减序列}（或不增序列），并定义
+\[
+\lim_{n\to\infty}A_n:=\bigcap_{n=1}^{\infty}A_n.
+\]
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“事件序列的极限”；源码第720行。}
+
+\begin{mytheorem}{概率的连续性}{continuity-of-probability}
+\begin{enumerate}
+\item 若 $\{A_n\}_{n\geq1}$ 为递增序列，则
+\[
+P\left(\lim_{n\to\infty}A_n\right)=\lim_{n\to\infty}P(A_n).
+\]
+称为概率的\textbf{下连续性}；
+\item 若 $\{A_n\}_{n\geq1}$ 为递减序列，则
+\[
+P\left(\lim_{n\to\infty}A_n\right)=\lim_{n\to\infty}P(A_n).
+\]
+称为概率的\textbf{上连续性}。
+\end{enumerate}
+\end{mytheorem}
+\origin{原笔记第1.2节，定理“概率的连续性”；源码第739行。}
+
+\begin{proposition}{可列次可加性（布尔不等式）}{countable-subadditivity}
+对任意可列个事件 $A_1,A_2,\ldots$，有
+\[
+P\left(\bigcup_{i=1}^{\infty}A_i\right)
+\leq\sum_{i=1}^{\infty}P(A_i).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“可列次可加性（布尔不等式）”；源码第779行。}
+
+\subsection{例题：可列个零概率事件的并}\label{note:c1:e6}
+\basis{原笔记第1.2节，例“可列个零概率事件的并”；源码\texttt{chapters/chapter1.tex}第803行。}
+若事件列 $\{A_i\}_{i\geq1}$ 满足 $P(A_i)=0$（$i\geq1$），则
+\[
+P\left(\bigcup_{i=1}^{\infty}A_i\right)=0.
+\]
+
+\begin{proof}
+由布尔不等式，
+\[
+0\leq P\left(\bigcup_{i=1}^{\infty}A_i\right)
+\leq\sum_{i=1}^{\infty}P(A_i)=0.
+\]
+\end{proof}
+
+\begin{mydefinition}{事件列的上极限与下极限}{limsup-liminf-events}
+设 $A_n\in\mathscr{F}$（$n\geq1$），不要求事件列 $\{A_n\}$ 单调。定义
+\[
+\limsup_{n\to\infty}A_n
+:=\bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}A_k
+\]
+为事件列的\textbf{上极限}，定义
+\[
+\liminf_{n\to\infty}A_n
+:=\bigcup_{n=1}^{\infty}\bigcap_{k=n}^{\infty}A_k
+\]
+为事件列的\textbf{下极限}。
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“事件列的上极限与下极限”；源码第824行。}
+
+\begin{mydefinition}{事件列极限的存在}{event-limit-exists}
+	当一个事件列的上极限与下极限相等时，也即
+	\[\liminf_{n\to\infty}A_n =\limsup_{n\to\infty}A_n\]
+	时，我们定义这个事件列的极限为
+	\[\lim\limits_{n\to\infty}A_n :=\liminf_{n\to\infty}A_n =\limsup_{n\to\infty}A_n\]
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“事件列极限的存在”；源码第860行。}
+
+\subsection{例题：伯努利概率空间}\label{note:c1:e7}
+\basis{原笔记第1.2节，例“伯努利概率空间”；源码\texttt{chapters/chapter1.tex}第868行。}
+设 $\Omega$ 是非空集合，$\varnothing\subsetneq A\subsetneq\Omega$，并令
+\[
+\mathscr{F}=\{\varnothing,\Omega,A,A^c\}.
+\]
+给定 $0<p<1$，定义
+\[
+P(\varnothing)=0,\qquad P(\Omega)=1,
+\qquad P(A)=p,\qquad P(A^c)=1-p.
+\]
+则 $(\Omega,\mathscr{F},P)$ 构成一个概率空间，称为\textbf{伯努利概率空间}（或伯努利概率模型），它用于讨论单个事件是否发生。
+
+\subsection{例题：古典概率空间}\label{note:c1:e8}
+\basis{原笔记第1.2节，例“古典概率空间”；源码\texttt{chapters/chapter1.tex}第881行。}
+设 $\Omega$ 只含有限个样本点，并取
+\[
+\mathscr{F}=2^\Omega=\{A:A\subseteq\Omega\}.
+\]
+若 $n(A)$ 表示集合 $A$ 中元素的个数，定义
+\[
+P(A)=\frac{n(A)}{n(\Omega)},\qquad A\in\mathscr{F},
+\]
+则 $(\Omega,\mathscr{F},P)$ 构成古典概率空间。这里每个单点事件的概率均为 $1/n(\Omega)$。
+
+\subsection{例题：最大号码问题}\label{note:c1:e9}
+\basis{原笔记第1.2节，例“最大号码问题”；源码\texttt{chapters/chapter1.tex}第895行。}
+某城市有编号为 $1,2,\ldots,N$ 的 $N$ 部卡车。独立记录遇到的 $n$ 辆卡车的编号，允许重复。求记录到的最大编号为 $k$（$1\leq k\leq N$）的概率。
+
+\begin{proof}
+令 $B_k$ 表示最大编号恰为 $k$，$A_k$ 表示最大编号不超过 $k$。则
+\[
+B_1=A_1,\qquad B_k=A_k\setminus A_{k-1}\quad(2\leq k\leq N),
+\]
+且
+\[
+P(A_k)=\left(\frac{k}{N}\right)^n.
+\]
+因此
+\[
+P(B_1)=\frac{1}{N^n},
+\]
+而当 $2\leq k\leq N$ 时，
+\[
+P(B_k)=P(A_k)-P(A_{k-1})
+=\frac{k^n-(k-1)^n}{N^n}.
+\]
+
+\end{proof}
+
+\subsection{例题：配对问题}\label{note:c1:e10}
+\basis{原笔记第1.2节，例“配对问题”；源码\texttt{chapters/chapter1.tex}第920行。}
+在有 $n$ 人参加的晚会上，每人带来一顶各不相同的帽子。离场时，每人从随机混放的帽子中抽取一顶。求至少有一人抽到自己帽子的概率。
+
+\begin{proof}
+给人和帽子分别编号 $1,2,\ldots,n$，令 $A_i$ 表示第 $i$ 人抽到自己的帽子。对任意
+$1\leq i_1<i_2<\cdots<i_r\leq n$，有
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_r})=\frac{(n-r)!}{n!}.
+\]
+同阶交事件共有 $\binom{n}{r}$ 个，故
+\[
+\sum_{1\leq i_1<\cdots<i_r\leq n}
+P(A_{i_1}\cap\cdots\cap A_{i_r})
+=\binom{n}{r}\frac{(n-r)!}{n!}=\frac{1}{r!}.
+\]
+由容斥恒等式，所求概率为
+\[
+P\left(\bigcup_{i=1}^{n}A_i\right)
+=\sum_{r=1}^{n}\frac{(-1)^{r+1}}{r!}
+=1-\sum_{r=0}^{n}\frac{(-1)^r}{r!}.
+\]
+因此
+\[
+\lim_{n\to\infty}P\left(\bigcup_{i=1}^{n}A_i\right)
+=1-e^{-1}\approx0.6321,
+\]
+而无人抽到自己帽子的概率趋于 $e^{-1}\approx0.3679$。
+\end{proof}
+
+\subsection{例题：圆桌夫妻问题}\label{note:c1:e11}
+\basis{原笔记第1.2节，例“圆桌夫妻问题”；源码\texttt{chapters/chapter1.tex}第950行。}
+十对夫妻随机地沿圆桌坐下，求没有妻子坐在丈夫身边的概率。
+
+\begin{proof}
+令 $A_i$ 表示第 $i$ 对夫妻相邻（$i=1,2,\ldots,10$）。总坐法数为
+$(20-1)!=19!$。指定 $r$ 对夫妻相邻时，将每对夫妻看作一个整体，并计入夫妻内部的两种次序，故
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_r})
+=\frac{2^r(20-r-1)!}{19!}
+=\frac{2^r(19-r)!}{19!}.
+\]
+由容斥恒等式，至少有一对夫妻相邻的概率为
+\[
+P\left(\bigcup_{i=1}^{10}A_i\right)
+=\sum_{r=1}^{10}(-1)^{r+1}\binom{10}{r}
+\frac{2^r(19-r)!}{19!}
+\approx0.6605.
+\]
+所以，没有夫妻相邻的概率约为
+\[
+1-0.6605=0.3395.
+\]
+\end{proof}
+
+\subsection{例题：反复抽取扑克牌中的大王}\label{note:c1:e12}
+\basis{原笔记第1.2节，例“反复抽取扑克牌中的大王”；源码\texttt{chapters/chapter1.tex}第975行。}
+从一副 $54$ 张的扑克牌中反复抽牌，每次抽取一张，记录后放回。求：
+\begin{enumerate}
+\item 一直抽不到大王的概率；
+\item 无穷多次抽到大王的概率。
+\end{enumerate}
+
+\begin{proof}
+设 $E_n$ 表示第 $n$ 次抽到大王。
+
+对第一个问题，令
+\[
+C_n=\bigcap_{k=1}^{n}E_k^c.
+\]
+则 $C_n$ 表示前 $n$ 次均未抽到大王，且 $\{C_n\}$ 为递减序列。令
+\[
+C=\bigcap_{n=1}^{\infty}C_n,
+\]
+则 $C$ 表示始终抽不到大王。由独立性和概率的上连续性，
+\[
+P(C)=\lim_{n\to\infty}P(C_n)
+=\lim_{n\to\infty}\left(\frac{53}{54}\right)^n=0.
+\]
+因此，最终至少抽到一次大王的概率为 $1$。
+
+对第二个问题，令 $B$ 表示无穷多次抽到大王，则
+\[
+B=\limsup_{n\to\infty}E_n
+=\bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}E_k.
+\]
+再令
+\[
+B_n=\bigcup_{k=n}^{\infty}E_k.
+\]
+事件 $B_n$ 表示“从第 $n$ 次抽牌起至少抽到一次大王”。由第一个问题同样的计算，
+$P(B_n^c)=0$，故 $P(B_n)=1$。由于 $\{B_n\}$ 为递减序列，
+\[
+P(B)=P\left(\bigcap_{n=1}^{\infty}B_n\right)
+=\lim_{n\to\infty}P(B_n)=1.
+\]
+\end{proof}
+
+\begin{mydefinition}{测度、有限测度与 $\sigma$ 有限测度}{measure-space}
+设 $\Omega$ 是非空集合，$\mathscr{F}$ 是 $\Omega$ 上给定的一个 $\sigma$-域。若映射
+\[
+\mu:\mathscr{F}\longrightarrow[0,+\infty]
+\]
+满足：
+\begin{enumerate}
+\item $\mu(\varnothing)=0$；
+\item 对任意两两互斥的事件列 $A_1,A_2,\ldots\in\mathscr{F}$，有
+\[
+\mu\left(\bigcup_{n=1}^{\infty}A_n\right)
+=\sum_{n=1}^{\infty}\mu(A_n),
+\]
+\end{enumerate}
+则称 $\mu$ 为 $\mathscr{F}$ 上的\textbf{测度}，三元组 $(\Omega,\mathscr{F},\mu)$ 称为\textbf{测度空间}。
+
+\end{mydefinition}
+\origin{原笔记第1.2节，定义“测度、有限测度与 $\sigma$ 有限测度”；源码第1024行。}
+
+若存在两两互斥的事件列 $A_1,A_2,\ldots\in\mathscr{F}$，使得
+\[
+\bigcup_{n=1}^{\infty}A_n=\Omega,
+\qquad
+\mu(A_n)<+\infty\quad(n\geq1),
+\]
+则称 $\mu$ 为\textbf{$\sigma$ 有限测度}。若 $\mu(\Omega)<+\infty$，则称 $\mu$ 为\textbf{有限测度}；若 $\mu(\Omega)=1$，则称 $\mu$ 为\textbf{概率测度}，也简称为\textbf{概率}。
+
+\begin{proposition}{测度的有限可加性}{measure-finite-additivity}
+若 $A_1,\ldots,A_n\in\mathscr{F}$ 两两互斥，则
+\[
+\mu\left(\bigcup_{i=1}^{n}A_i\right)=\sum_{i=1}^{n}\mu(A_i).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的有限可加性”；源码第1050行。}
+
+\begin{proposition}{测度的单调性}{measure-monotonicity}
+若 $A,B\in\mathscr{F}$ 且 $B\subseteq A$，则
+\[
+\mu(B)\leq\mu(A).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的单调性”；源码第1061行。}
+
+\begin{proposition}{测度的可减性}{measure-subtractivity}
+若 $A,B\in\mathscr{F}$，$A\subseteq B$，且 $\mu(A)<+\infty$，则
+\[
+\mu(B\setminus A)=\mu(B)-\mu(A).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的可减性”；源码第1075行。}
+
+\begin{proposition}{测度的容斥恒等式}{measure-inclusion-exclusion}
+若 $A_1,A_2,\ldots,A_n\in\mathscr{F}$，且对每个 $1\leq k\leq n$ 都有 $\mu(A_k)<+\infty$，则
+\[
+\mu\left(\bigcup_{k=1}^{n}A_k\right)
+=\sum_{r=1}^{n}(-1)^{r+1}
+\sum_{1\leq i_1<i_2<\cdots<i_r\leq n}
+\mu(A_{i_1}\cap A_{i_2}\cap\cdots\cap A_{i_r}).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的容斥恒等式”；源码第1090行。}
+
+\begin{mytheorem}{测度的可列次可加性}{measure-countable-subadditivity}
+对任意事件列 $A_1,A_2,\ldots\in\mathscr{F}$，有
+\[
+\mu\left(\bigcup_{n=1}^{\infty}A_n\right)
+\leq\sum_{n=1}^{\infty}\mu(A_n).
+\]
+\end{mytheorem}
+\origin{原笔记第1.2节，定理“测度的可列次可加性”；源码第1104行。}
+
+\begin{proposition}{测度的下连续性}{measure-lower-continuity}
+若 $\{A_n\}_{n\geq1}\subseteq\mathscr{F}$ 为递增序列，则
+\[
+\mu\left(\lim_{n\to\infty}A_n\right)
+=\lim_{n\to\infty}\mu(A_n).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的下连续性”；源码第1129行。}
+
+\begin{proposition}{测度的上连续性}{measure-upper-continuity}
+若 $\{A_n\}_{n\geq1}\subseteq\mathscr{F}$ 为递减序列，且 $\mu(A_1)<+\infty$，则
+\[
+\mu\left(\lim_{n\to\infty}A_n\right)
+=\lim_{n\to\infty}\mu(A_n).
+\]
+\end{proposition}
+\origin{原笔记第1.2节，命题“测度的上连续性”；源码第1141行。}
+
+\subsection{例题：Lebesgue 测度}\label{note:c1:e13}
+\basis{原笔记第1.2节，例“Lebesgue 测度”；源码\texttt{chapters/chapter1.tex}第1167行。}
+在 $\mathscr{B}(\mathbb{R}^d)$ 上存在唯一的测度 $\lambda$，使得对任意半开长方体
+\[
+(a_1,b_1]\times(a_2,b_2]\times\cdots\times(a_d,b_d]
+\]
+（其中 $a_i\leq b_i$，$1\leq i\leq d$），都有
+\[
+\lambda\left((a_1,b_1]\times\cdots\times(a_d,b_d]\right)
+=(b_1-a_1)(b_2-a_2)\cdots(b_d-a_d).
+\]
+该测度称为 $\mathbb{R}^d$ 上的\textbf{Lebesgue 测度}，它给出了通常所说的长度、面积和体积。
+
+\clearpage\section{条件概率}\label{k:conditional}
+
+\subsection{例题：掷两枚骰子}\label{note:c1:e14}
+\basis{原笔记第1.3节，例“掷两枚骰子”；源码\texttt{chapters/chapter1.tex}第1186行。}
+依次掷两枚均匀骰子。已知第一枚骰子的点数为 $4$，求两枚骰子点数之和为偶数的概率。
+
+设 $B$ 表示“第一枚骰子的点数为 $4$”，$A$ 表示“两枚骰子点数之和为偶数”。在 $B$ 已经发生时，第二枚骰子共有 $6$ 种等可能结果；其中点数为 $2,4,6$ 时 $A$ 发生，故
+\[
+P(A\mid B)=\frac{3}{6}=\frac12.
+\]
+
+\begin{mydefinition}{条件概率}{conditional-probability}
+设 $(\Omega,\mathscr{F},P)$ 为概率空间，$A,B\in\mathscr{F}$，且 $P(B)>0$。称
+\[
+P(A\mid B)=\frac{P(A\cap B)}{P(B)}
+\]
+为在事件 $B$ 发生的条件下事件 $A$ 的\textbf{条件概率}。
+\end{mydefinition}
+\origin{原笔记第1.3节，定义“条件概率”；源码第1195行。}
+
+\subsection{例题：寻找钥匙}\label{note:c1:e15}
+\basis{原笔记第1.3节，例“寻找钥匙”；源码\texttt{chapters/chapter1.tex}第1203行。}
+一串钥匙可能落在左口袋或右口袋。设 $L$ 表示“钥匙在左口袋”，$R$ 表示“钥匙在右口袋”，且
+\[
+P(L)=0.4,\qquad P(R)=0.4,\qquad R\subseteq L^{\mathrm c}.
+\]
+检查左口袋后发现没有钥匙，即已知 $L^{\mathrm c}$ 发生。于是
+\[
+P(R\mid L^{\mathrm c})
+=\frac{P(R\cap L^{\mathrm c})}{P(L^{\mathrm c})}
+=\frac{P(R)}{1-P(L)}
+=\frac{0.4}{0.6}
+=\frac23.
+\]
+
+\begin{mytheorem}{条件概率的乘法公式}{conditional-multiplication-formula}
+若 $A,B\in\mathscr{F}$ 且 $P(B)>0$，则
+\[
+P(A\cap B)=P(B)P(A\mid B).
+\]
+
+更一般地，若 $A_1,\ldots,A_n\in\mathscr{F}$ 且
+\[
+P(A_1\cap\cdots\cap A_{n-1})>0,
+\]
+则
+\[
+\begin{aligned}
+P(A_1\cap\cdots\cap A_n)
+={}&P(A_1)P(A_2\mid A_1)P(A_3\mid A_1\cap A_2)\cdots\\
+&\cdot P(A_n\mid A_1\cap\cdots\cap A_{n-1}).
+\end{aligned}
+\]
+\end{mytheorem}
+\origin{原笔记第1.3节，定理“条件概率的乘法公式”；源码第1220行。}
+
+\begin{mytheorem}{全概率公式}{total-probability-formula}
+设 $A_1,A_2,\ldots$ 构成样本空间 $\Omega$ 的一个可列分割，即
+\[
+A_i\cap A_j=\varnothing\quad(i\ne j),
+\qquad
+\bigcup_{i=1}^{\infty}A_i=\Omega,
+\]
+并且 $P(A_i)>0$。则对任意 $B\in\mathscr{F}$，
+\[
+P(B)=\sum_{i=1}^{\infty}P(A_i)P(B\mid A_i).
+\]
+当分割只有有限个事件时，相应地使用有限求和。
+\end{mytheorem}
+\origin{原笔记第1.3节，定理“全概率公式”；源码第1254行。}
+
+\subsection{例题：同卵双胞胎的比例}\label{note:c1:e16}
+\basis{原笔记第1.3节，例“同卵双胞胎的比例”；源码\texttt{chapters/chapter1.tex}第1283行。}
+设 $A$ 表示“双胞胎为同卵”，$B$ 表示“双胞胎性别相同”。已知同卵双胞胎性别必然相同，异卵双胞胎两人的性别可视为独立且各以 $1/2$ 的概率为男或女，所以
+\[
+P(B\mid A)=1,
+\qquad
+P(B\mid A^{\mathrm c})=\frac12.
+\]
+若总体中双胞胎性别相同的比例为 $P(B)=0.64$，记 $P(A)=x$。由全概率公式，
+\[
+0.64=x+\frac12(1-x),
+\]
+解得
+\[
+x=0.28.
+\]
+因此同卵双胞胎约占 $28\%$。
+
+\subsection{例题：Pólya 罐模型}\label{note:c1:e17}
+\basis{原笔记第1.3节，例“Pólya 罐模型”；源码\texttt{chapters/chapter1.tex}第1301行。}
+罐中原有 $a$ 个红球与 $b$ 个蓝球，其中 $a,b>0$。每次随机取出一个球，放回后再加入 $c$ 个同色球，其中 $c\geq0$。证明：任意第 $k$ 次取到红球的概率都等于
+\[
+\frac{a}{a+b}.
+\]
+
+\begin{proof}
+对 $k$ 作归纳。$k=1$ 时结论显然成立。假设结论对第 $k-1$ 次抽取成立。以第一次抽取的颜色作分割：若第一次取到红球，则此后罐中有 $a+c$ 个红球与 $b$ 个蓝球；若第一次取到蓝球，则有 $a$ 个红球与 $b+c$ 个蓝球。由归纳假设和全概率公式，
+\[
+\begin{aligned}
+P(\text{第 $k$ 次为红球})
+&=\frac{a}{a+b}\cdot\frac{a+c}{a+b+c}
++\frac{b}{a+b}\cdot\frac{a}{a+b+c}\\
+&=\frac{a}{a+b}.
+\end{aligned}
+\]
+故结论对所有 $k\geq1$ 成立。
+\end{proof}
+
+\subsection{例题：\texorpdfstring{配对问题的递推与恰有 $k$ 个配对}{配对问题的递推与恰有 k 个配对}}\label{note:c1:e18}
+\basis{原笔记第1.3节，例“配对问题的递推与恰有 $k$ 个配对”；源码\texttt{chapters/chapter1.tex}第1321行。}
+将 $n$ 封信随机放入写有相应地址的 $n$ 个信封中。令 $E_n$ 表示“没有一封信放入正确的信封”，并记
+\[
+q_n=P(E_n),\qquad q_0=1,\quad q_1=0.
+\]
+则对 $n\geq2$，
+\[
+q_n=\frac1n q_{n-2}+\frac{n-1}{n}q_{n-1}.
+\]
+从而
+\[
+q_n-q_{n-1}=-\frac1n(q_{n-1}-q_{n-2})=\frac{(-1)^n}{n!},
+\]
+于是
+\[
+q_n=\sum_{r=0}^{n}\frac{(-1)^r}{r!}.
+\]
+
+进一步，恰有 $k$ 封信放入正确信封的概率为
+\[
+\binom{n}{k}\frac{(n-k)!q_{n-k}}{n!}
+=\frac1{k!}\sum_{r=0}^{n-k}\frac{(-1)^r}{r!},
+\qquad 0\leq k\leq n.
+\]
+
+\begin{proof}
+记 $D_n=n!q_n$ 为 $n$ 个元素的错排数。先指定第一封信放入哪一个错误的信封，共有 $n-1$ 种选择。若该信封对应的信又恰好放入第一封信的信封，剩余部分有 $D_{n-2}$ 种错排；否则把这两封信的放置关系合并后，可与 $n-1$ 个元素的错排一一对应，因而有 $D_{n-1}$ 种。因此
+\[
+D_n=(n-1)(D_{n-1}+D_{n-2}).
+\]
+两边除以 $n!$，便得到
+\[
+q_n=\frac1n q_{n-2}+\frac{n-1}{n}q_{n-1}.
+\]
+
+由 $q_1-q_0=-1$，反复使用差分递推即可得到 $q_n$ 的交错和。若恰有 $k$ 个位置正确，先选出这 $k$ 个位置，再将其余 $n-k$ 个位置完全错排，便得到最后一个公式。
+\end{proof}
+
+\begin{mytheorem}{贝叶斯公式}{bayes-formula}
+设 $A_1,A_2,\ldots$ 构成 $\Omega$ 的一个可列分割，且 $P(A_i)>0$。若 $B\in\mathscr{F}$ 且 $P(B)>0$，则
+\[
+P(A_i\mid B)
+=\frac{P(A_i)P(B\mid A_i)}
+{\displaystyle\sum_{k=1}^{\infty}P(A_k)P(B\mid A_k)}.
+\]
+有限分割的情形只需将分母改为有限求和。
+\end{mytheorem}
+\origin{原笔记第1.3节，定理“贝叶斯公式”；源码第1362行。}
+
+\subsection{例题：保险事故原因}\label{note:c1:e19}
+\basis{原笔记第1.3节，例“保险事故原因”；源码\texttt{chapters/chapter1.tex}第1384行。}
+设 $A$ 表示“事故较容易发生”，$B$ 表示“发生事故”。已知
+\[
+P(A)=0.3,
+\qquad
+P(B\mid A)=0.4,
+\qquad
+P(B\mid A^{\mathrm c})=0.2.
+\]
+由全概率公式，
+\[
+P(B)=0.3\times0.4+0.7\times0.2=0.26.
+\]
+故
+\[
+P(A\mid B)
+=\frac{0.3\times0.4}{0.26}
+=\frac6{13}
+\approx0.4615.
+\]
+
+\subsection{例题：Monty Hall 问题}\label{note:c1:e20}
+\basis{原笔记第1.3节，例“Monty Hall 问题”；源码\texttt{chapters/chapter1.tex}第1406行。}
+三扇门后分别藏有一辆汽车和两只山羊。参赛者先选择第 $1$ 扇门；主持人知道汽车的位置，随后一定在第 $2,3$ 扇门中打开一扇藏有山羊的门。若两扇门都可打开，主持人以相同概率选择其中一扇。已知主持人打开了第 $3$ 扇门，问是否应改选第 $2$ 扇门。
+
+令 $A_i$ 表示“汽车在第 $i$ 扇门后”，$B$ 表示“主持人打开第 $3$ 扇门”。则
+\[
+P(A_1)=P(A_2)=P(A_3)=\frac13,
+\]
+且
+\[
+P(B\mid A_1)=\frac12,
+\qquad
+P(B\mid A_2)=1,
+\qquad
+P(B\mid A_3)=0.
+\]
+因此
+\[
+P(B)=\frac13\cdot\frac12+\frac13\cdot1+\frac13\cdot0=\frac12.
+\]
+由贝叶斯公式，
+\[
+P(A_1\mid B)=\frac13,
+\qquad
+P(A_2\mid B)=\frac23.
+\]
+所以改选第 $2$ 扇门的获胜概率为 $2/3$，应当换门。
+
+\begin{mytheorem}{条件概率构成概率测度}{conditional-probability-measure}
+固定 $B\in\mathscr{F}$ 且 $P(B)>0$，定义
+\[
+P_B(A)=P(A\mid B),\qquad A\in\mathscr{F}.
+\]
+则 $P_B$ 是可测空间 $(\Omega,\mathscr{F})$ 上的一个概率测度。
+\end{mytheorem}
+\origin{原笔记第1.3节，定理“条件概率构成概率测度”；源码第1436行。}
+
+\begin{mydefinition}{条件概率空间中的再次条件化}{iterated-conditioning}
+固定 $B\in\mathscr{F}$ 且 $P(B)>0$。若 $C\in\mathscr{F}$ 且 $P_B(C)>0$，定义
+\[
+P_B(A\mid C)=\frac{P_B(A\cap C)}{P_B(C)}.
+\]
+\end{mydefinition}
+\origin{原笔记第1.3节，定义“条件概率空间中的再次条件化”；源码第1463行。}
+
+\begin{proposition}{再次条件化等价于对交事件条件化}{nested-conditioning}
+固定 $B\in\mathscr{F}$ 且 $P(B)>0$。对任意 $C\in\mathscr{F}$，有
+\[
+P_B(C)>0\quad\Longleftrightarrow\quad P(B\cap C)>0.
+\]
+在上述条件成立时，对任意 $A\in\mathscr{F}$，
+\[
+P_B(A\mid C)=P(A\mid B\cap C).
+\]
+\end{proposition}
+\origin{原笔记第1.3节，命题“再次条件化等价于对交事件条件化”；源码第1470行。}
+
+\subsection{例题：血液化验与重复检测}\label{note:c1:e21}
+\basis{原笔记第1.3节，例“血液化验与重复检测”；源码\texttt{chapters/chapter1.tex}第1515行。}
+某项血液化验对患者有 $95\%$ 的概率检出阳性，但对健康人也有 $1\%$ 的概率出现伪阳性。已知该疾病患者占总人口的 $0.5\%$。若某人的一次化验结果为阳性，求此人确实患病的条件概率。
+
+设 $A$ 表示“此人患病”，$B$ 表示“第一次化验呈阳性”。则
+\[
+P(A)=0.005,
+\qquad
+P(B\mid A)=0.95,
+\qquad
+P(B\mid A^{\mathrm c})=0.01.
+\]
+由贝叶斯公式，
+\[
+\begin{aligned}
+P(A\mid B)
+&=\frac{P(A)P(B\mid A)}
+{P(A)P(B\mid A)+P(A^{\mathrm c})P(B\mid A^{\mathrm c})}\\
+&=\frac{0.005\times0.95}
+{0.005\times0.95+(1-0.005)\times0.01}\\
+&\approx0.323.
+\end{aligned}
+\]
+因此，即使检验对患者的阳性检出率很高，一次阳性结果所对应的患病概率也只有约 $32.3\%$。原因在于患病率很低，健康人数量很大，伪阳性在全部阳性结果中占据了不可忽略的比例。
+
+若此人再次接受同样的化验，记第二次阳性为 $B_2$。假设两次化验在给定患病状态后条件独立，即
+\[
+P(B_2\mid A\cap B)=P(B_2\mid A)=0.95,
+\qquad
+P(B_2\mid A^{\mathrm c}\cap B)=P(B_2\mid A^{\mathrm c})=0.01,
+\]
+则连续两次呈阳性后，
+\[
+\begin{aligned}
+P(A\mid B\cap B_2)
+&=\frac{P(A)P(B\mid A)P(B_2\mid A)}
+{P(A)P(B\mid A)P(B_2\mid A)
++P(A^{\mathrm c})P(B\mid A^{\mathrm c})P(B_2\mid A^{\mathrm c})}\\
+&=\frac{0.005\times0.95^2}
+{0.005\times0.95^2+0.995\times0.01^2}\\
+&\approx0.978.
+\end{aligned}
+\]
+连续两次阳性使后验患病概率提高到约 $97.8\%$。
+
+\subsection{例题：飞机失事搜索}\label{note:c1:e22}
+\basis{原笔记第1.3节，例“飞机失事搜索”；源码\texttt{chapters/chapter1.tex}第1560行。}
+一架飞机失踪，并且等可能地落在第 $1,2,3$ 号区域。设 $B_i$ 表示“飞机落在第 $i$ 个区域”，$A_i$ 表示“搜索第 $i$ 个区域后没有找到飞机”，并设
+\[
+P(A_i\mid B_i)=\beta_i,
+\qquad 0<\beta_i<1,
+\qquad i=1,2,3.
+\]
+若飞机不在被搜索的区域，则在那里搜索必然找不到飞机。
+
+搜索第 $1$ 号区域而没有找到飞机后，由贝叶斯公式，
+\[
+P(B_1\mid A_1)=\frac{\beta_1}{\beta_1+2},
+\qquad
+P(B_2\mid A_1)=P(B_3\mid A_1)=\frac{1}{\beta_1+2}.
+\]
+
+随后又搜索第 $2$ 号区域，仍未找到飞机，则
+\[
+\begin{aligned}
+P(B_1\mid A_1\cap A_2)&=\frac{\beta_1}{\beta_1+\beta_2+1},\\
+P(B_2\mid A_1\cap A_2)&=\frac{\beta_2}{\beta_1+\beta_2+1},\\
+P(B_3\mid A_1\cap A_2)&=\frac{1}{\beta_1+\beta_2+1}.
+\end{aligned}
+\]
+
+若三个区域依次搜索后都没有找到飞机，则
+\[
+P(B_i\mid A_1\cap A_2\cap A_3)
+=\frac{\beta_i}{\beta_1+\beta_2+\beta_3},
+\qquad i=1,2,3.
+\]
+可见每次搜索失败后，都应使用新的后验概率作为下一次更新的先验概率。
+
+\subsection{例题：赌徒破产模型}\label{note:c1:e23}
+\basis{原笔记第1.3节，例“赌徒破产模型”；源码\texttt{chapters/chapter1.tex}第1594行。}
+设 $a$ 为正整数，质点从整数点 $i\in\{0,1,\ldots,a\}$ 出发。只要质点位于 $1,2,\ldots,a-1$ 中，它就以概率 $p$ 向右移动一步，以概率 $q=1-p$ 向左移动一步，其中 $0<p<1$；一旦到达 $0$ 或 $a$，便停留在那里。求质点最终到达 $0$ 与到达 $a$ 的概率。
+
+设 $E_i$ 表示“质点从 $i$ 出发”，$F$ 表示“最终到达 $0$”，并记
+\[
+Q_i=P(F\mid E_i).
+\]
+按第一次移动的方向使用全概率公式，得到
+\[
+Q_i=pQ_{i+1}+qQ_{i-1},
+\qquad 1\leq i\leq a-1,
+\]
+边界条件为
+\[
+Q_0=1,
+\qquad
+Q_a=0.
+\]
+递推式可改写为
+\[
+Q_{i+1}-Q_i=\frac{q}{p}(Q_i-Q_{i-1}).
+\]
+
+当 $p=q=1/2$ 时，各阶差分相等，结合边界条件可得
+\[
+Q_i=\frac{a-i}{a}.
+\]
+当 $p\ne q$ 时，对等比差分求和并代入边界条件，得到
+\[
+Q_i
+=\frac{\left(\dfrac qp\right)^i-\left(\dfrac qp\right)^a}
+{1-\left(\dfrac qp\right)^a}.
+\]
+因此
+\[
+P(F\mid E_i)=
+\begin{cases}
+\dfrac{\left(\dfrac qp\right)^i-\left(\dfrac qp\right)^a}
+{1-\left(\dfrac qp\right)^a},&p\ne q,\\[1.2em]
+\dfrac{a-i}{a},&p=q=\dfrac12.
+\end{cases}
+\]
+
+同理，若 $M$ 表示“最终到达 $a$”，则
+\[
+P(M\mid E_i)=
+\begin{cases}
+\dfrac{1-\left(\dfrac qp\right)^i}
+{1-\left(\dfrac qp\right)^a},&p\ne q,\\[1.2em]
+\dfrac{i}{a},&p=q=\dfrac12.
+\end{cases}
+\]
+两式相加得到
+\[
+P(F\cup M\mid E_i)=P(F\mid E_i)+P(M\mid E_i)=1,
+\]
+即质点以概率 $1$ 被某一个端点吸收。
+
+这个模型也可解释为赌徒破产问题：甲、乙的初始赌本分别为 $i$ 元和 $a-i$ 元，每局胜者从败者处获得 $1$ 元，甲每局获胜的概率为 $p$。固定甲的初始赌本 $i$，令乙的初始赌本趋于无穷，即令 $a\to\infty$，则
+\[
+\lim_{a\to\infty}P(F\mid E_i)=
+\begin{cases}
+\left(\dfrac qp\right)^i,&p>\dfrac12,\\[0.8em]
+1,&p\leq\dfrac12.
+\end{cases}
+\]
+因此，当 $p>1/2$ 时，甲有正概率永不破产；当 $p\leq1/2$ 时，面对拥有无限赌资的对手，甲以概率 $1$ 破产。
+
+\clearpage\section{事件的独立性和试验的独立性}\label{k:independence}
+
+\begin{mydefinition}{两个事件的独立性}{independence-two-events}
+设 $(\Omega,\mathscr{F},P)$ 为概率空间，$A,B\in\mathscr{F}$。若
+\[
+P(A\cap B)=P(A)P(B),
+\]
+则称事件 $A$ 与 $B$\textbf{相互独立}。
+\end{mydefinition}
+\origin{原笔记第1.4节，定义“两个事件的独立性”；源码第1675行。}
+
+\begin{proposition}{独立性对补事件保持}{independence-complements}
+若事件 $A$ 与 $B$ 相互独立，则下面三对事件也分别相互独立：
+\[
+A\text{ 与 }B^{\mathrm c},
+\qquad
+A^{\mathrm c}\text{ 与 }B,
+\qquad
+A^{\mathrm c}\text{ 与 }B^{\mathrm c}.
+\]
+\end{proposition}
+\origin{原笔记第1.4节，命题“独立性对补事件保持”；源码第1691行。}
+
+\subsection{例题：独立与互斥的区别}\label{note:c1:e24}
+\basis{原笔记第1.4节，例“独立与互斥的区别”；源码\texttt{chapters/chapter1.tex}第1726行。}
+向区间 $[0,1]$ 内均匀随机投入一个粒子。
+
+令
+\[
+A_1=\left[0,\frac12\right],
+\qquad
+B_1=\left[\frac14,\frac34\right].
+\]
+则
+\[
+A_1\cap B_1=\left[\frac14,\frac12\right],
+\]
+并且
+\[
+P(A_1)=\frac12,
+\qquad
+P(B_1)=\frac12,
+\qquad
+P(A_1\cap B_1)=\frac14=P(A_1)P(B_1).
+\]
+所以 $A_1$ 与 $B_1$ 不互斥，但相互独立。
+
+再令
+\[
+A_2=\left[\frac15,\frac13\right],
+\qquad
+B_2=\left[\frac14,1\right].
+\]
+则
+\[
+A_2\cap B_2=\left[\frac14,\frac13\right],
+\]
+且
+\[
+P(A_2)=\frac{2}{15},
+\qquad
+P(B_2)=\frac34,
+\qquad
+P(A_2\cap B_2)=\frac1{12}\ne\frac1{10}=P(A_2)P(B_2).
+\]
+所以 $A_2$ 与 $B_2$ 既不互斥，也不相互独立。
+
+\begin{mydefinition}{两两独立与相互独立}{pairwise-mutual-independence}
+	设 $A_1,A_2,\ldots,A_n$ 为 $n\geq2$ 个事件。
+
+	若对任意 $i\ne j$ 都有
+	\[
+	P(A_i\cap A_j)=P(A_i)P(A_j),
+	\]
+	则称 $A_1,A_2,\ldots,A_n$\textbf{两两独立}。
+
+	若对任意 $k\in\{2,3,\ldots,n\}$ 以及任意不同的指标
+	\[
+	1\leq i_1<i_2<\cdots<i_k\leq n,
+	\]
+	都有
+	\[
+	P(A_{i_1}\cap A_{i_2}\cap\cdots\cap A_{i_k})
+	=\prod_{r=1}^{k}P(A_{i_r}),
+	\]
+	则称 $A_1,A_2,\ldots,A_n$\textbf{相互独立}。
+\end{mydefinition}
+\origin{原笔记第1.4节，定义“两两独立与相互独立”；源码第1769行。}
+
+\subsection{例题：两两独立不推出相互独立}\label{note:c1:e25}
+\basis{原笔记第1.4节，例“两两独立不推出相互独立”；源码\texttt{chapters/chapter1.tex}第1791行。}
+掷两枚均匀骰子。令 $E$ 表示“两枚骰子的点数之和为 $7$”，$F$ 表示“第一枚骰子的点数为 $4$”，$G$ 表示“第二枚骰子的点数为 $3$”。则
+\[
+P(E)=P(F)=P(G)=\frac16,
+\]
+并且
+\[
+P(E\cap F)=P(E\cap G)=P(F\cap G)=P(E\cap F\cap G)=\frac1{36}.
+\]
+因此
+\[
+P(E\cap F)=P(E)P(F),
+\qquad
+P(E\cap G)=P(E)P(G),
+\qquad
+P(F\cap G)=P(F)P(G),
+\]
+所以 $E,F,G$ 两两独立。但是
+\[
+P(E\cap F\cap G)=\frac1{36}
+\ne\frac1{216}=P(E)P(F)P(G),
+\]
+故它们并不相互独立。
+
+\subsection{例题：三色球模型}\label{note:c1:e26}
+\basis{原笔记第1.4节，例“三色球模型”；源码\texttt{chapters/chapter1.tex}第1816行。}
+袋中有 $4$ 个球：一个只涂白色，一个只涂蓝色，一个只涂红色，另一个同时涂有白、蓝、红三色。随机取出一个球。设 $A,B,C$ 分别表示“取出的球涂有白色、蓝色、红色”。则
+\[
+P(A)=P(B)=P(C)=\frac12,
+\]
+且
+\[
+P(A\cap B)=P(A\cap C)=P(B\cap C)=P(A\cap B\cap C)=\frac14.
+\]
+因此
+\[
+P(A\cap B)=P(A)P(B),
+\quad
+P(A\cap C)=P(A)P(C),
+\quad
+P(B\cap C)=P(B)P(C),
+\]
+所以 $A,B,C$ 两两独立；但
+\[
+P(A\cap B\cap C)=\frac14
+\ne\frac18=P(A)P(B)P(C),
+\]
+故它们不相互独立。
+
+\begin{mydefinition}{可列个事件的相互独立}{countable-event-independence}
+设 $A_1,A_2,\ldots$ 为可列个事件。若其中任意有限多个不同事件都相互独立，则称事件列 $\{A_n\}_{n\geq1}$\textbf{相互独立}。
+\end{mydefinition}
+\origin{原笔记第1.4节，定义“可列个事件的相互独立”；源码第1847行。}
+
+\begin{mydefinition}{独立试验、伯努利试验与独立重复试验}{independent-trials}
+设一个试验由一系列子试验组成。
+\begin{enumerate}
+    \item 若分别由不同子试验决定的任意有限个事件相互独立，则称这些子试验\textbf{相互独立}。
+    \item 若一个试验由 $n$ 个相互独立且同分布的子试验组成，则称其为\textbf{$n$ 重独立试验}。若每个子试验只有“成功”和“失败”两种结果，且成功概率为 $p$，$0<p<1$，则称其为\textbf{$n$ 重伯努利试验}。
+    \item 若一个试验由可列个相互独立且同分布的子试验组成，则称其为\textbf{独立重复试验}。
+\end{enumerate}
+\end{mydefinition}
+\origin{原笔记第1.4节，定义“独立试验、伯努利试验与独立重复试验”；源码第1853行。}
+
+\subsection{例题：伯努利试验中的常用计算}\label{note:c1:e27}
+\basis{原笔记第1.4节，例“伯努利试验中的常用计算”；源码\texttt{chapters/chapter1.tex}第1863行。}
+进行独立重复伯努利试验，每次成功的概率为 $p$，失败的概率为 $q=1-p$。
+\begin{enumerate}
+    \item 前 $n$ 次中恰好成功 $k$ 次的概率为
+    \[
+    \binom nk p^kq^{n-k}.
+    \]
+    \item 第一次成功发生在第 $k$ 次的概率为
+    \[
+    q^{k-1}p.
+    \]
+    \item 第 $r$ 次成功发生在第 $k$ 次的概率为
+    \[
+    \binom{k-1}{r-1}p^rq^{k-r},
+    \qquad 1\leq r\leq k.
+    \]
+    \item 令 $F_n$ 表示前 $n$ 次全部失败，则
+    \[
+    F_n\downarrow\bigcap_{n=1}^{\infty}F_n
+    =\{\text{永远不成功}\}.
+    \]
+    由概率的上连续性，
+    \[
+    P(\text{永远不成功})
+    =\lim_{n\to\infty}P(F_n)
+    =\lim_{n\to\infty}q^n=0.
+    \]
+    因而最终至少成功一次的概率为 $1$。
+    \item “第 $n$ 次成功出现在第 $m$ 次失败之前”的概率可写成三种等价形式：
+    \[
+    \sum_{k=0}^{m-1}\binom{k+n-1}{n-1}p^nq^k,
+    \]
+    \[
+    \sum_{k=n}^{\infty}\binom{k+m-1}{k}p^kq^m,
+    \]
+    或
+    \[
+    \sum_{k=n}^{m+n-1}\binom{m+n-1}{k}p^kq^{m+n-1-k}.
+    \]
+    三式分别按第 $n$ 次成功前的失败次数、第 $m$ 次失败前的成功次数，以及前 $m+n-1$ 次中的成功总数分类。
+\end{enumerate}
+
+\subsection{例题：分赌注问题}\label{note:c1:e28}
+\basis{原笔记第1.4节，例“分赌注问题”；源码\texttt{chapters/chapter1.tex}第1908行。}
+甲、乙约定先胜 $t$ 局者获得全部赌注。比赛在甲已胜 $r$ 局、乙已胜 $s$ 局时中止，其中 $r<t$、$s<t$。若以后每局甲获胜的概率为 $p$，且各局相互独立，则
+\[
+\begin{aligned}
+P(\text{甲最终先胜 }t\text{ 局})
+&=P(t-r\text{ 次成功发生在 }t-s\text{ 次失败之前})\\
+&=\sum_{k=0}^{t-s-1}
+\binom{k+t-r-1}{t-r-1}p^{t-r}(1-p)^k.
+\end{aligned}
+\]
+合理的分配方式是按甲、乙最终先胜 $t$ 局的概率分配赌注。
+
+\subsection{例题：\texorpdfstring{事件 $A$ 先于事件 $B$ 发生}{事件 A 先于事件 B 发生}}\label{note:c1:e29}
+\basis{原笔记第1.4节，例“事件 $A$ 先于事件 $B$ 发生”；源码\texttt{chapters/chapter1.tex}第1921行。}
+进行独立重复试验。每次试验中，互斥事件 $A,B$ 发生的概率分别为 $p_A,p_B$，并设 $p_A+p_B>0$。于是
+\[
+\begin{aligned}
+P(A\text{ 先于 }B\text{ 发生})
+&=\sum_{n=1}^{\infty}(1-p_A-p_B)^{n-1}p_A\\
+&=\frac{p_A}{p_A+p_B}.
+\end{aligned}
+\]
+也可以令所求概率为 $x$。按第一次试验分类，
+\[
+x=p_A+(1-p_A-p_B)x,
+\]
+解得同一结果。
+
+\subsection{例题：由独立性得到欧拉乘积公式}\label{note:c1:e30}
+\basis{原笔记第1.4节，例“由独立性得到欧拉乘积公式”；源码\texttt{chapters/chapter1.tex}第1937行。}
+设 $s>1$，在正整数集合 $\mathbb Z_{>0}$ 上定义
+\[
+P(A)=\frac{\displaystyle\sum_{k\in A}k^{-s}}
+{\displaystyle\sum_{k=1}^{\infty}k^{-s}}.
+\]
+将所有素数依次记为 $p_1,p_2,\ldots$，令
+\[
+A_i=\{mp_i:m\in\mathbb Z_{>0}\}.
+\]
+则 $P(A_i)=p_i^{-s}$。任取不同的 $i_1,\ldots,i_r$，有
+\[
+A_{i_1}\cap\cdots\cap A_{i_r}
+=\{mp_{i_1}\cdots p_{i_r}:m\in\mathbb Z_{>0}\},
+\]
+所以
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_r})
+=\frac1{p_{i_1}^s\cdots p_{i_r}^s}
+=\prod_{j=1}^{r}P(A_{i_j}).
+\]
+因此 $A_1,A_2,\ldots$ 相互独立。
+
+又因为每个大于 $1$ 的正整数至少有一个素因子，
+\[
+\{1\}=\bigcap_{i=1}^{\infty}A_i^{\mathrm c}.
+\]
+由概率的上连续性和独立性，
+\[
+P(\{1\})
+=\prod_{i=1}^{\infty}\left(1-\frac1{p_i^s}\right).
+\]
+另一方面，
+\[
+P(\{1\})=\left(\sum_{k=1}^{\infty}\frac1{k^s}\right)^{-1}.
+\]
+故得到欧拉乘积公式
+\[
+\sum_{k=1}^{\infty}\frac1{k^s}
+=\prod_{i=1}^{\infty}\left(1-\frac1{p_i^s}\right)^{-1}.
+\]
+
+\clearpage\section{关于试验独立性的补充}\label{k:product}
+
+设子试验 $1$ 和子试验 $2$ 的概率空间分别为
+\[
+(\Omega_1,\mathscr F_1,P_1),
+\qquad
+(\Omega_2,\mathscr F_2,P_2).
+\]
+两个子试验组成的大试验以
+\[
+\Omega=\Omega_1\times\Omega_2
+\]
+为样本空间。子试验 $1$ 中的事件 $A\in\mathscr F_1$ 在大样本空间中表示为 $A\times\Omega_2$；子试验 $2$ 中的事件 $B\in\mathscr F_2$ 表示为 $\Omega_1\times B$。两者同时发生对应
+\[
+(A\times\Omega_2)\cap(\Omega_1\times B)=A\times B.
+\]
+
+\subsection{例题：掷骰子与独立取球}\label{note:c1:e31}
+\basis{原笔记第1.5节，例“掷骰子与独立取球”；源码\texttt{chapters/chapter1.tex}第1999行。}
+子试验 $1$ 为掷一枚均匀骰子，$\Omega_1=\{1,2,3,4,5,6\}$；子试验 $2$ 为从红、白、蓝三个球中等概率取一个，$\Omega_2=\{\text{红},\text{白},\text{蓝}\}$。若两个子试验相互独立，则每个联合结果 $(i,c)\in\Omega_1\times\Omega_2$ 的概率为
+\[
+P(\{(i,c)\})=\frac16\cdot\frac13=\frac1{18}.
+\]
+更一般地，对任意 $A\subseteq\Omega_1$、$B\subseteq\Omega_2$，有
+\[
+P(A\times B)=P_1(A)P_2(B).
+\]
+
+\begin{mydefinition}{两个独立子试验的乘积空间表述}{two-independent-experiments-product}
+在 $\Omega_1\times\Omega_2$ 上取乘积 $\sigma$ 域
+\[
+\mathscr F_1\otimes\mathscr F_2
+=\sigma\bigl(\{A\times B:A\in\mathscr F_1,\ B\in\mathscr F_2\}\bigr).
+\]
+若其上的概率 $P$ 对任意 $A\in\mathscr F_1$、$B\in\mathscr F_2$ 都满足
+\[
+P(A\times B)=P_1(A)P_2(B),
+\]
+则称这两个子试验相互独立，并将 $P$ 记为 $P_1\otimes P_2$。
+\end{mydefinition}
+\origin{原笔记第1.5节，定义“两个独立子试验的乘积空间表述”；源码第2010行。}
+
+\begin{mydefinition}{有限个独立子试验}{finite-independent-experiments-product}
+设第 $i$ 个子试验的概率空间为 $(\Omega_i,\mathscr F_i,P_i)$，$i=1,\ldots,n$。在
+\[
+\Omega=\prod_{i=1}^{n}\Omega_i,
+\qquad
+\mathscr F=\bigotimes_{i=1}^{n}\mathscr F_i
+\]
+上，若概率 $P$ 对任意 $A_i\in\mathscr F_i$ 都满足
+\[
+P(A_1\times\cdots\times A_n)
+=\prod_{i=1}^{n}P_i(A_i),
+\]
+则称这 $n$ 个子试验相互独立，并记
+\[
+P=P_1\otimes\cdots\otimes P_n.
+\]
+若各个概率空间完全相同，则它们组成 $n$ 重独立试验。
+\end{mydefinition}
+\origin{原笔记第1.5节，定义“有限个独立子试验”；源码第2034行。}
+
+\subsection{例题：掷骰子后按点数取球}\label{note:c1:e32}
+\basis{原笔记第1.5节，例“掷骰子后按点数取球”；源码\texttt{chapters/chapter1.tex}第2055行。}
+先掷一枚均匀骰子。若点数为偶数，则从红、白两球中等概率取一个；若点数为奇数，则取蓝球。用
+\[
+p(\omega_1,\{\omega_2\})
+=P(\text{第二步取出 }\omega_2\mid\text{第一步点数为 }\omega_1)
+\]
+表示转移概率。若 $\omega_1=2,4,6$，则
+\[
+p(\omega_1,\{\text{红}\})=p(\omega_1,\{\text{白}\})=\frac12,
+\qquad
+p(\omega_1,\{\text{蓝}\})=0;
+\]
+若 $\omega_1=1,3,5$，则
+\[
+p(\omega_1,\{\text{红}\})=p(\omega_1,\{\text{白}\})=0,
+\qquad
+p(\omega_1,\{\text{蓝}\})=1.
+\]
+
+对事件 $A\subseteq\Omega_1$ 和颜色集合 $B\subseteq\Omega_2$，联合概率可写为
+\[
+P(A\times B)
+=\sum_{\omega_1\in A}P_1(\{\omega_1\})
+\sum_{\omega_2\in B}p(\omega_1,\{\omega_2\}).
+\]
+例如，
+\[
+P(\text{取出红球})=\frac14,
+\qquad
+P(\text{骰子点数为 }2)=\frac16,
+\]
+而
+\[
+P(\text{点数为 }2\text{ 且取出红球})=\frac1{12}
+\ne\frac16\cdot\frac14.
+\]
+所以两个子试验不独立。

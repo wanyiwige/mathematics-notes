@@ -1,0 +1,197 @@
+% !TEX root = 概率论期中复习.tex
+\section{第七周：离散分布与密度计算}
+
+\subsection{教材第52页第1题}\label{ex:w07-b52-1}
+设某市不同路口的红绿灯独立工作，每个路口的红灯、绿灯出现的时间相同。用 $X$ 表示一辆汽车首次遇到红灯时已经经过的路口数。求 $X$ 的概率分布。
+\basis{原笔记第2章第2节“几何分布”；第1章第4节“独立试验”。}
+\paragraph{思路} 将经过一个绿灯路口看成一次失败，第一次遇红灯看成首次成功；先明确计数是否包含当前红灯路口。
+\begin{proof}[解答]
+按“已经经过”指此前已通过的路口理解，$X=k$ 表示前 $k$ 个路口都是绿灯，而第 $k+1$ 个路口是红灯。每处红、绿灯概率各为 $1/2$，不同路口独立，所以
+\[
+\P(X=k)=\left(\frac12\right)^k\frac12=2^{-(k+1)},\qquad k=0,1,2,\ldots.
+\]
+这些概率之和为 $\sum_{k=0}^{\infty}2^{-(k+1)}=1$，故给出了完整分布。
+
+若将首次遇到红灯的那个路口也计入，则相应变量为 $N=X+1$，其分布为 $\P(N=n)=2^{-n}$，$n=1,2,\ldots$。两种计数仅相差 $1$。
+\end{proof}
+\paragraph{答案} 已通过的路口数满足 $\P(X=k)=2^{-(k+1)}$，$k\geq0$；包含当前路口的计数服从参数 $1/2$ 的几何分布。
+
+\subsection{教材第52页第2题}\label{ex:w07-b52-2}
+用 $\xi$ 表示成功概率为 $p$（$0\leq p\leq1$）的伯努利实验中第一个游程（即连续成功或连续失败）的长度。求 $\xi$ 的分布。
+
+作业说明：用 $1$ 表示成功、$0$ 表示失败。对 $11000111$，第一个游程为最左端的 $11$，长度为 $2$；对 $010000111$，第一个游程为最左端的 $0$，长度为 $1$；对 $00011100$，第一个游程为最左端的 $000$，长度为 $3$。
+\basis{原笔记第1章第4节“独立试验”；第2章第2节“几何分布”。}
+\paragraph{思路} 按第一个结果是成功还是失败，将长度为 $k$ 的事件拆为两个不交事件。
+\begin{proof}[解答]
+先设 $0<p<1$，记 $q=1-p$。$\xi=k$ 当且仅当出现下列两种情形之一：前 $k$ 次均成功、第 $k+1$ 次失败；前 $k$ 次均失败、第 $k+1$ 次成功。由独立性及有限可加性，
+\[
+\P(\xi=k)=p^kq+q^kp,\qquad k=1,2,\ldots.
+\]
+同时，$\xi>k$ 等价于前 $k+1$ 次结果全部相同，故
+\[
+\P(\xi>k)=p^{k+1}+q^{k+1}\longrightarrow0.
+\]
+因而 $\xi$ 以概率 $1$ 有限，所列概率构成完整分布。也可直接核对
+\[
+\sum_{k=1}^{\infty}(p^kq+q^kp)=q\frac{p}{1-p}+p\frac{q}{1-q}=1.
+\]
+若 $p=0$ 或 $p=1$，所有试验的结果几乎必然相同，第一个游程不会结束。此时应允许取值 $\xi=\infty$，且 $\P(\xi=\infty)=1$；它不是取有限实值的随机变量。
+\end{proof}
+\paragraph{答案} $0<p<1$ 时，$\P(\xi=k)=p^k(1-p)+(1-p)^kp$，$k\geq1$；$p=0,1$ 时游程无限长。
+
+\subsection{教材第53页第3题}\label{ex:w07-b53-3}
+连续射击某个目标，直至第一次击中目标或者射击次数达到 $5$ 次就停止。假定一次射击击中目标的概率为 $p$（$0\leq p\leq1$）且各次射击结果独立。用 $X$ 表示停止时的射击次数。求 $X$ 的概率分布。
+\basis{原笔记第2章第2节“几何分布”；第1章第4节“独立试验”。}
+\paragraph{思路} 前四次停止必须因为当次首次击中；第五次停止则只要求前四次未击中。
+\begin{proof}[解答]
+记 $q=1-p$。对 $k=1,2,3,4$，停止于第 $k$ 次等价于前 $k-1$ 次未中、第 $k$ 次击中，故
+\[
+\P(X=k)=q^{k-1}p.
+\]
+而 $X=5$ 只要求前四次未击中。无论第五次是否击中，都会停止，所以
+\[
+\P(X=5)=q^4p+q^5=q^4.
+\]
+当 $p=0$ 时必有 $X=5$；当 $p=1$ 时必有 $X=1$。上述分布包含这两种端点情形。
+\end{proof}
+\paragraph{答案} $\P(X=k)=(1-p)^{k-1}p$（$1\leq k\leq4$），$\P(X=5)=(1-p)^4$。
+
+\subsection{教材第53页第4题}\label{ex:w07-b53-4}
+某种昆虫在单位时间内产卵的个数 $\xi$ 服从泊松分布 $P(\lambda)$，其中每个卵孵化出幼虫的概率为 $p$，各个卵是否孵化相互独立，并且虫子产卵的个数和产出卵是否孵化相互独立。以 $\eta$ 表示单位时间内幼虫的个数。求 $\eta$ 的概率分布。
+\basis{原笔记第2章第2节“二项分布”“泊松分布”，例“泊松粒子数的独立捕捉”。}
+\paragraph{思路} 给定产卵数后，幼虫数是二项分布；再对产卵数用全概率公式求和。
+\begin{proof}[解答]
+给定 $\xi=n$，每个卵独立地以概率 $p$ 孵化，因此
+\[
+\P(\eta=k\mid\xi=n)=\binom nkp^k(1-p)^{n-k},\qquad 0\leq k\leq n.
+\]
+对 $k=0,1,2,\ldots$，全概率公式给出
+\begin{align*}
+\P(\eta=k)
+&=\sum_{n=k}^{\infty}\binom nkp^k(1-p)^{n-k}e^{-\lambda}\frac{\lambda^n}{n!}\\
+&=e^{-\lambda}\frac{(\lambda p)^k}{k!}\sum_{n=k}^{\infty}\frac{[\lambda(1-p)]^{n-k}}{(n-k)!}\\
+&=e^{-\lambda}\frac{(\lambda p)^k}{k!}e^{\lambda(1-p)}
+=e^{-\lambda p}\frac{(\lambda p)^k}{k!}.
+\end{align*}
+这正是参数为 $\lambda p$ 的泊松分布列。当 $p=0$ 时，$\eta=0$ 几乎必然；当 $p=1$ 时，$\eta=\xi$。
+\end{proof}
+\paragraph{答案} $\eta\sim P(\lambda p)$，即 $\P(\eta=k)=e^{-\lambda p}(\lambda p)^k/k!$。
+
+\subsection{教材第53页第5题}\label{ex:w07-b53-5}
+设随机变量 $X$ 服从泊松分布 $P(\lambda)$。记 $p=\P(X\text{ 为奇数})$ 和 $q=\P(X\text{ 为偶数})$。证明
+\[
+p=e^{-\lambda}\sinh\lambda=\frac12(1-e^{-2\lambda}),\qquad
+q=e^{-\lambda}\cosh\lambda=\frac12(1+e^{-2\lambda}).
+\]
+提示：注意 $q+p=1$ 和 $q-p=e^{-2\lambda}$。
+\basis{原笔记第2章第2节“泊松分布”；指数函数的幂级数。}
+\paragraph{思路} 沿教材提示，对分布列作交错求和，再联立奇、偶概率之和为 $1$。
+\begin{proof}
+$X$ 只取非负整数，其中奇数与偶数划分了全部可能取值，因此 $p+q=1$。泊松分布列的绝对收敛性允许作下列求和：
+\begin{align*}
+q-p
+&=\sum_{k=0}^{\infty}(-1)^k\P(X=k)\\
+&=e^{-\lambda}\sum_{k=0}^{\infty}\frac{(-\lambda)^k}{k!}
+=e^{-\lambda}e^{-\lambda}=e^{-2\lambda}.
+\end{align*}
+于是
+\[
+p=\frac{(p+q)-(q-p)}2=\frac{1-e^{-2\lambda}}2,\qquad
+q=\frac{(p+q)+(q-p)}2=\frac{1+e^{-2\lambda}}2.
+\]
+再由 $\sinh t=(e^t-e^{-t})/2$、$\cosh t=(e^t+e^{-t})/2$，分别得到题中另两种表示。
+\end{proof}
+\paragraph{答案} 奇数概率为 $(1-e^{-2\lambda})/2$，偶数概率为 $(1+e^{-2\lambda})/2$。
+
+\subsection{教材第58页第3题}\label{ex:w07-b58-3}
+设绝对连续型随机变量 $X$ 的密度函数 $p$ 满足
+\[
+p(x)=\begin{cases}2ax,&0\leq x\leq1,\\2-x,&1<x\leq2,\\0,&\text{其他。}\end{cases}
+\]
+求常数 $a$ 和概率 $\P(X<3/2)$。
+\basis{原笔记第2章第3节命题“概率密度的基本性质”，例“分段密度的参数、区间概率与分布函数”。}
+\paragraph{思路} 先用总积分等于 $1$ 求参数，再在分段点 $1$ 处分开积分。
+\begin{proof}[解答]
+密度归一化要求
+\[
+1=\int_0^12ax\,dx+\int_1^2(2-x)\,dx=a+\frac12,
+\]
+故 $a=1/2$，此时各段密度均非负。于是
+\begin{align*}
+\P(X<3/2)
+&=\int_0^1x\,dx+\int_1^{3/2}(2-x)\,dx\\
+&=\frac12+\left[2x-\frac{x^2}2\right]_1^{3/2}
+=\frac12+\frac38=\frac78.
+\end{align*}
+\end{proof}
+\paragraph{答案} $a=1/2$，$\P(X<3/2)=7/8$。
+
+\subsection{作业第2题：三角形密度的区间概率}\label{ex:w07-h2}
+设连续型随机变量 $X$ 的密度函数为
+\[
+f(x)=\begin{cases}1-|x|,&-1\leq x\leq1,\\0,&\text{其他。}\end{cases}
+\]
+求概率 $\P(-\tfrac12<X\leq\tfrac23)$。
+\basis{原笔记第2章第3节“利用密度与分布函数计算概率”。}
+\paragraph{思路} 绝对值在 $0$ 两侧有不同表达，应在 $0$ 处分段积分。
+\begin{proof}[解答]
+由于 $X$ 连续型，端点取或不取不改变概率。在 $x\leq0$ 时 $1-|x|=1+x$，在 $x\geq0$ 时 $1-|x|=1-x$，所以
+\begin{align*}
+\P(-\tfrac12<X\leq\tfrac23)
+&=\int_{-1/2}^0(1+x)\,dx+\int_0^{2/3}(1-x)\,dx\\
+&=\left[x+\frac{x^2}2\right]_{-1/2}^0
++\left[x-\frac{x^2}2\right]_0^{2/3}\\
+&=\frac38+\frac49=\frac{59}{72}.
+\end{align*}
+\end{proof}
+\paragraph{答案} $59/72$。
+
+\subsection{作业第3题：储油量}\label{ex:w07-h3}
+一个加油站每周补给一次油。如果它每周的销售量（单位：千升）为随机变量 $X$，且 $X$ 的密度为
+\[
+f(x)=\begin{cases}0.05(1-x/100)^4,&0\leq x\leq100,\\0,&\text{其他。}\end{cases}
+\]
+设 $a$ 表示储油罐的最大储油量（单位：千升）。问 $a$ 至少取多大整数，才能把一周内缺油的概率控制到 $0.01$ 以下？
+\basis{原笔记第2章第3节“利用密度与分布函数计算概率”。}
+\paragraph{思路} 缺油事件是销售量超过储油量，先求尾概率，再按严格不等式取整数。
+\begin{proof}[解答]
+每周开始时储满油，缺油事件为 $\{X>a\}$。当 $0\leq a\leq100$ 时，令 $u=1-x/100$，得到
+\begin{align*}
+\P(X>a)
+&=\int_a^{100}0.05(1-x/100)^4\,dx\\
+&=5\int_0^{1-a/100}u^4\,du
+=(1-a/100)^5.
+\end{align*}
+因此要求
+\[
+(1-a/100)^5<0.01
+\quad\Longleftrightarrow\quad
+a>100(1-0.01^{1/5})\approx60.1893.
+\]
+满足条件的最小整数为 $61$。其中 $a=60$ 时缺油概率为 $0.4^5=0.01024>0.01$，而 $a=61$ 时为 $0.39^5\approx0.00902<0.01$。
+\end{proof}
+\paragraph{答案} 至少 $61$ 千升。
+
+\subsection{作业第4题：由归一化求密度参数}\label{ex:w07-h4}
+设连续型随机变量 $X$ 的密度函数为
+\[
+f(x)=\begin{cases}Cxe^{-x/2},&x>0,\\0,&\text{其他。}\end{cases}
+\]
+求常数 $C$，求概率 $\P(-1<X\leq1)$。
+\basis{原笔记第2章第3节命题“概率密度的基本性质”；分部积分。}
+\paragraph{思路} 用分部积分算总积分，再在实际支撑集内计算概率。
+\begin{proof}[解答]
+由分部积分，
+\[
+\int_0^{\infty}xe^{-x/2}\,dx
+=\left[-2xe^{-x/2}-4e^{-x/2}\right]_0^{\infty}=4.
+\]
+因此 $4C=1$，即 $C=1/4$。因为 $X>0$ 几乎必然，
+\begin{align*}
+\P(-1<X\leq1)
+&=\frac14\int_0^1xe^{-x/2}\,dx\\
+&=\frac14\left[-2xe^{-x/2}-4e^{-x/2}\right]_0^1
+=1-\frac32e^{-1/2}.
+\end{align*}
+\end{proof}
+\paragraph{答案} $C=1/4$，所求概率为 $1-\tfrac32e^{-1/2}$。

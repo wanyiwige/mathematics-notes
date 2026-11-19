@@ -1,0 +1,1296 @@
+% !TEX root = 概率论期中复习.tex
+% 自动抽取自 chapters/chapter3.tex；原例题及其解答保留。
+
+\clearpage\section{联合分布函数和边缘分布函数}\label{k:joint}
+
+\begin{mydefinition}{随机向量}{random-vector}
+若随机变量 $X_1,X_2,\ldots,X_n$ 定义在同一个概率空间 $(\Omega,\mathcal F,P)$ 上，则称
+\[
+\boldsymbol X=(X_1,X_2,\ldots,X_n)
+\]
+为一个 \textbf{$n$ 维随机向量}，也称 $n$ 维随机变量。它把同一次试验结果 $\omega$ 映为
+\[
+\boldsymbol X(\omega)=\bigl(X_1(\omega),\ldots,X_n(\omega)\bigr)\in\mathbb R^n.
+\]
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“随机向量”；源码第9行。}
+
+记 $\sigma(\mathcal C)$ 为包含集合族 $\mathcal C$ 的最小 $\sigma$-域。定义 $n$ 维博雷尔 $\sigma$-域
+\[
+\mathcal B(\mathbb R^n)
+=\sigma\left(
+\left\{\prod_{i=1}^n(a_i,b_i]:
+a_i,b_i\in\mathbb R,\ a_i<b_i\right\}
+\right).
+\]
+于是，随机向量的等价表述为：映射 $\boldsymbol X:\Omega\to\mathbb R^n$ 满足
+\[
+\boldsymbol X^{-1}(B)\in\mathcal F,
+\qquad \forall B\in\mathcal B(\mathbb R^n).
+\]
+
+\begin{mydefinition}{联合分布函数}{joint-distribution-function}
+设 $\boldsymbol X=(X_1,\ldots,X_n)$ 为 $n$ 维随机向量。对任意 $(t_1,\ldots,t_n)\in\mathbb R^n$，令
+\[
+F(t_1,\ldots,t_n)
+=P(X_1\leq t_1,\ldots,X_n\leq t_n)
+=P\left(\bigcap_{i=1}^n\{X_i\leq t_i\}\right).
+\]
+称 $F$ 为 $\boldsymbol X$ 的\textbf{联合分布函数}。逗号表示这些事件同时发生，即取交集。
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“联合分布函数”；源码第56行。}
+
+\begin{proposition}{联合分布函数的基本性质}{joint-cdf-properties}
+设 $F$ 是 $n$ 维随机向量的联合分布函数，$n\geq2$，则：
+\begin{enumerate}
+\item 固定其他分量时，$F$ 关于每个分量单调不减。
+\item 固定其他分量时，对每个 $i=1,\ldots,n$，
+\[
+\lim_{t_i\to-\infty}F(t_1,\ldots,t_i,\ldots,t_n)=0;
+\]
+当所有分量同时趋于 $+\infty$ 时，
+\[
+\lim_{\substack{t_1\to+\infty,\ldots,t_n\to+\infty}}
+F(t_1,\ldots,t_n)=1.
+\]
+\item 固定其他分量时，$F$ 关于每个分量右连续。
+\item 当 $n=2$ 时，对任意 $a<b$ 和 $c<d$，
+\[
+F(b,d)-F(a,d)-F(b,c)+F(a,c)\geq0.
+\]
+\end{enumerate}
+\end{proposition}
+\origin{原笔记第3.1节，命题“联合分布函数的基本性质”；源码第66行。}
+
+\begin{mydefinition}{边缘分布函数}{marginal-distribution-function}
+设 $\boldsymbol X=(X_1,\ldots,X_n)$ 为 $n$ 维随机向量。选取非空且不包含全部坐标的指标集
+\[
+I=\{i_1,\ldots,i_k\},\qquad
+1\leq i_1<\cdots<i_k\leq n,\quad 1\leq k\leq n-1.
+\]
+子向量 $\boldsymbol X_I=(X_{i_1},\ldots,X_{i_k})$ 的联合分布函数
+\[
+F_I(t_{i_1},\ldots,t_{i_k})
+=P(X_{i_1}\leq t_{i_1},\ldots,X_{i_k}\leq t_{i_k})
+\]
+称为原随机向量的一个\textbf{边缘分布函数}。
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“边缘分布函数”；源码第175行。}
+
+\begin{proposition}{由联合分布函数求边缘分布函数}{marginal-cdf-limits}
+设 $(X,Y)$ 的联合分布函数为 $F(t,s)$，则
+\[
+F_X(t)=\lim_{s\to+\infty}F(t,s),\qquad
+F_Y(s)=\lim_{t\to+\infty}F(t,s).
+\]
+一般地，设 $\boldsymbol X$ 的联合分布函数为 $F$，保留指标集 $I$ 对应的参数，将其他参数都趋于 $+\infty$，即得
+\[
+F_I((t_i)_{i\in I})
+=\lim_{\substack{t_j\to+\infty\\j\notin I}}F(t_1,\ldots,t_n).
+\]
+其中 $(t_i)_{i\in I}$ 表示按指标从小到大排列的保留参数。
+\end{proposition}
+\origin{原笔记第3.1节，命题“由联合分布函数求边缘分布函数”；源码第195行。}
+
+\begin{mydefinition}{离散型随机向量与联合分布列}{discrete-vector-joint-pmf}
+若存在有限集或可数集 $S\subseteq\mathbb R^n$，使
+\[
+P(\boldsymbol X\in S)=1,
+\]
+则称 $\boldsymbol X=(X_1,\ldots,X_n)$ 为 \textbf{$n$ 维离散型随机向量}。也就是说，它以概率 $1$ 只取有限个或可数个向量值。
+
+对 $\boldsymbol x=(x_1,\ldots,x_n)$，记
+\[
+p(\boldsymbol x)=p(x_1,\ldots,x_n)
+=P(X_1=x_1,\ldots,X_n=x_n).
+\]
+这些单点概率构成 $\boldsymbol X$ 的\textbf{联合分布列}。在 $S$ 以外，$p(\boldsymbol x)=0$。
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“离散型随机向量与联合分布列”；源码第244行。}
+
+\begin{proposition}{联合分布列的基本性质}{joint-pmf-properties}
+离散型随机向量的联合分布列满足
+\[
+p(x_1,\ldots,x_n)\geq0,\qquad
+\sum_{x_1}\cdots\sum_{x_n}p(x_1,\ldots,x_n)=1.
+\]
+\end{proposition}
+\origin{原笔记第3.1节，命题“联合分布列的基本性质”；源码第265行。}
+
+\begin{proposition}{由联合分布列计算事件概率与分布函数}{joint-pmf-event-probability}
+对任意 $B\in\mathcal B(\mathbb R^n)$，
+\[
+P(\boldsymbol X\in B)
+=\sum_{\boldsymbol x\in S\cap B}p(\boldsymbol x).
+\]
+特别地，
+\[
+F(t_1,\ldots,t_n)
+=\sum_{x_1\leq t_1}\cdots\sum_{x_n\leq t_n}
+p(x_1,\ldots,x_n).
+\]
+\end{proposition}
+\origin{原笔记第3.1节，命题“由联合分布列计算事件概率与分布函数”；源码第295行。}
+
+\subsection{例题：指数随机变量经阈值变换得到的联合分布列}\label{note:c3:e1}
+\basis{原笔记第3.1节，例“指数随机变量经阈值变换得到的联合分布列”；源码\texttt{chapters/chapter3.tex}第324行。}
+设 $Y\sim\operatorname{Exp}(1)$，令
+\[
+X_k=
+\begin{cases}
+0,&Y\leq k,\\
+1,&Y>k,
+\end{cases}
+\qquad k=1,2.
+\]
+求 $(X_1,X_2)$ 的联合分布列。
+
+两个变量都由同一个 $Y$ 决定，四种组合必须先还原为 $Y$ 的事件，不能把各自的概率直接相乘。逐项计算：
+\begin{align*}
+P(X_1=0,X_2=0)
+&=P(Y\leq1,Y\leq2)\\
+&=P(Y\leq1)=\int_0^1e^{-y}\,dy
+=1-e^{-1},\\
+P(X_1=0,X_2=1)
+&=P(Y\leq1,Y>2)=P(\varnothing)=0,\\
+P(X_1=1,X_2=0)
+&=P(Y>1,Y\leq2)\\
+&=\int_1^2e^{-y}\,dy=e^{-1}-e^{-2},\\
+P(X_1=1,X_2=1)
+&=P(Y>1,Y>2)=P(Y>2)=e^{-2}.
+\end{align*}
+按行表示 $X_1$、按列表示 $X_2$，得到
+\[
+\begin{array}{c|cc}
+X_1\backslash X_2&0&1\\ \hline
+0&1-e^{-1}&0\\
+1&e^{-1}-e^{-2}&e^{-2}
+\end{array}.
+\]
+三段 $(0,1]$、$(1,2]$、$(2,+\infty)$ 覆盖 $Y$ 的全概率取值，故这些概率非负且总和为 $1$。
+
+\begin{mydefinition}{边缘分布列}{marginal-probability-mass}
+设 $\boldsymbol X$ 为 $n$ 维离散型随机向量，$I=\{i_1,\ldots,i_k\}$ 为前述非空真子指标集。子向量
+\[
+\boldsymbol X_I=(X_{i_1},\ldots,X_{i_k})
+\]
+的联合分布列，称为原向量的一个\textbf{边缘分布列}。
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“边缘分布列”；源码第361行。}
+
+\begin{proposition}{由联合分布列求边缘分布列}{marginal-pmf-sums}
+设二维离散型随机向量 $(X,Y)$ 的不同可能取值分别列为 $x_i$ 和 $y_j$，联合分布列为 $p(x_i,y_j)$，则
+\[
+p_X(x_i)=\sum_jp(x_i,y_j),\qquad
+p_Y(y_j)=\sum_ip(x_i,y_j).
+\]
+求和遍历全部有限个或可数个相应取值。
+
+一般地，固定保留坐标 $x_i$（$i\in I$），有
+\[
+p_I((x_i)_{i\in I})
+=\sum_{\substack{x_j\in A_j\\j\notin I}}
+p(x_1,\ldots,x_n).
+\]
+右侧表示对所有被舍去坐标的取值组合求和，保留坐标不参与求和。
+\end{proposition}
+\origin{原笔记第3.1节，命题“由联合分布列求边缘分布列”；源码第369行。}
+
+\subsection{例题：由联合分布表求边缘分布列}\label{note:c3:e2}
+\basis{原笔记第3.1节，例“由联合分布表求边缘分布列”；源码\texttt{chapters/chapter3.tex}第415行。}
+已知 $(X,Y)$ 的联合分布列为
+\[
+\begin{array}{c|cc}
+X\backslash Y&0&1\\ \hline
+0&\dfrac13&\dfrac16\\[2pt]
+1&\dfrac14&\dfrac14
+\end{array}.
+\]
+按行求和，
+\begin{align*}
+P(X=0)&=\frac13+\frac16=\frac12,\\
+P(X=1)&=\frac14+\frac14=\frac12.
+\end{align*}
+按列求和，
+\begin{align*}
+P(Y=0)&=\frac13+\frac14=\frac7{12},\\
+P(Y=1)&=\frac16+\frac14=\frac5{12}.
+\end{align*}
+将边缘概率写在联合分布表旁边：
+\[
+\begin{array}{c|cc|c}
+X\backslash Y&0&1&P(X=x)\\ \hline
+0&\dfrac13&\dfrac16&\dfrac12\\[2pt]
+1&\dfrac14&\dfrac14&\dfrac12\\[2pt] \hline
+P(Y=y)&\dfrac7{12}&\dfrac5{12}&1
+\end{array}.
+\]
+两组边缘概率分别加和为 $1$，与联合分布总概率一致。
+
+记 $m_n(B)$ 为集合 $B$ 的 $n$ 维体积（严格地说是勒贝格测度）；$m_n(B)=0$ 的集合称为 $n$ 维零测集。“几乎处处”表示允许在一个零测集上例外。本小节的密度统一采用非负博雷尔可测版本，允许取 $+\infty$；由全积分为 $1$，密度几乎处处有限。
+
+\begin{mydefinition}{连续型随机向量与联合密度}{continuous-vector-joint-density}
+若随机向量 $\boldsymbol X=(X_1,\ldots,X_n)$ 存在非负博雷尔可测函数 $f:\mathbb R^n\to[0,+\infty]$，使对任意 $B\in\mathcal B(\mathbb R^n)$，
+\[
+P(\boldsymbol X\in B)=\int_B f(x_1,\ldots,x_n)\,dx_1\cdots dx_n,
+\]
+则称 $\boldsymbol X$ 为 \textbf{$n$ 维连续型随机向量}，$f$ 称为其\textbf{联合密度}。这里“连续型”指存在关于 $n$ 维体积的密度，不仅指分布函数连续。
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“连续型随机向量与联合密度”；源码第448行。}
+
+\begin{proposition}{联合密度的基本性质}{joint-density-properties}
+联合密度非负，且
+\[
+\int_{\mathbb R^n}f(\boldsymbol x)\,d\boldsymbol x=1,
+\qquad d\boldsymbol x=dx_1\cdots dx_n.
+\]
+\end{proposition}
+\origin{原笔记第3.1节，命题“联合密度的基本性质”；源码第462行。}
+
+\begin{proposition}{联合密度与联合分布函数}{joint-density-cdf}
+设 $\boldsymbol X$ 有联合密度 $f$、联合分布函数 $F$，则：
+\begin{enumerate}
+\item 对任意 $\boldsymbol t=(t_1,\ldots,t_n)$，
+\[
+F(\boldsymbol t)=\int_{\{x_1\leq t_1,\ldots,x_n\leq t_n\}}
+ f(\boldsymbol x)\,d\boldsymbol x.
+\]
+\item $F$ 是关于所有参数的连续函数。
+\item 若博雷尔集 $B$ 满足 $m_n(B)=0$，则 $P(\boldsymbol X\in B)=0$。
+\item 同一分布的两个联合密度在几乎处处相等；在零测集上改变密度的取值，只要仍保持非负和博雷尔可测，就不改变其分布。
+\end{enumerate}
+\end{proposition}
+\origin{原笔记第3.1节，命题“联合密度与联合分布函数”；源码第475行。}
+
+\subsection{例题：在抛物线围成的区域上归一化并计算概率}\label{note:c3:e3}
+\basis{原笔记第3.1节，例“在抛物线围成的区域上归一化并计算概率”；源码\texttt{chapters/chapter3.tex}第537行。}
+设联合密度在 $x^2\leq y\leq1$ 内为 $cx^2y$，区域外为 $0$，求 $c$ 和 $P(X>Y)$。
+
+区域要求 $-1\leq x\leq1$。先固定 $x$，再沿 $y$ 积分：
+\begin{align*}
+1&=c\int_{-1}^1x^2\left(\int_{x^2}^1y\,dy\right)dx\\
+&=\frac c2\int_{-1}^1(x^2-x^6)\,dx\\
+&=\frac c2\left(\frac23-\frac27\right)=\frac{4c}{21}.
+\end{align*}
+所以 $c=21/4$。
+
+事件 $X>Y$ 还要求 $y<x$。结合 $y\geq x^2\geq0$，得到 $0<x<1$，且 $x^2\leq y<x$。边界曲线为零测集，不影响积分，故
+\begin{align*}
+P(X>Y)
+&=\frac{21}4\int_0^1x^2\left(\int_{x^2}^{x}y\,dy\right)dx\\
+&=\frac{21}8\int_0^1(x^4-x^6)\,dx
+=\frac{21}8\left(\frac15-\frac17\right)=\frac3{20}.
+\end{align*}
+
+\begin{mydefinition}{平面区域上的均匀分布}{uniform-planar-region}
+设 $G\subseteq\mathbb R^2$ 为有界博雷尔可测区域，面积 $m_2(G)>0$。若
+\[
+f(x,y)=
+\begin{cases}
+1/m_2(G),&(x,y)\in G,\\
+0,&(x,y)\notin G,
+\end{cases}
+\]
+则称 $(X,Y)$ 服从 $G$ 上的\textbf{均匀分布}，记为 $(X,Y)\sim U(G)$。对任意博雷尔集 $B$，
+\[
+P((X,Y)\in B)=\frac{m_2(B\cap G)}{m_2(G)}.
+\]
+\end{mydefinition}
+\origin{原笔记第3.1节，定义“平面区域上的均匀分布”；源码第557行。}
+
+\subsection{例题：圆盘上的均匀分布}\label{note:c3:e4}
+\basis{原笔记第3.1节，例“圆盘上的均匀分布”；源码\texttt{chapters/chapter3.tex}第572行。}
+设 $G=\{(x,y):x^2+y^2\leq R^2\}$，$R>0$，且 $(X,Y)\sim U(G)$。
+
+（1）求 $P(|X|\leq R/2)$。联合密度在圆盘内为 $1/(\pi R^2)$，外部为 $0$。利用关于两轴的对称性，
+\[
+P(|X|\leq R/2)=\frac4{\pi R^2}\int_0^{R/2}\sqrt{R^2-x^2}\,dx.
+\]
+取 $x=R\sin\theta$，则 $dx=R\cos\theta\,d\theta$，上下限为 $0,\pi/6$，于是
+\begin{align*}
+P(|X|\leq R/2)
+&=\frac4\pi\int_0^{\pi/6}\cos^2\theta\,d\theta\\
+&=\frac4\pi\left[\frac\theta2+\frac{\sin2\theta}4\right]_0^{\pi/6}\\
+&=\frac13+\frac{\sqrt3}{2\pi}.
+\end{align*}
+
+（2）令 $D=\sqrt{X^2+Y^2}$，求其分布函数。$t<0$ 时事件为空，$t\geq R$ 时覆盖整个圆盘。$0\leq t<R$ 时，事件对应半径为 $t$ 的同心圆盘，其面积与原圆盘面积之比为 $t^2/R^2$。所以
+\[
+F_D(t)=
+\begin{cases}
+0,&t<0,\\
+t^2/R^2,&0\leq t<R,\\
+1,&t\geq R.
+\end{cases}
+\]
+它在 $0,R$ 两端连续。
+
+\begin{mytheorem}{由联合密度求边缘密度}{marginal-density-integrals}
+若 $(X,Y)$ 有联合密度 $f$，则两个分量都是一维连续型随机变量，其\textbf{边缘密度}可取为
+\[
+f_X(x)=\int_{\mathbb R}f(x,y)\,dy,\qquad
+f_Y(y)=\int_{\mathbb R}f(x,y)\,dx.
+\]
+这里采用上述非负博雷尔可测的 $f$，故截面积分也是非负博雷尔可测函数，并且几乎处处有限；在取无穷大的博雷尔零测异常集上，可统一改取 $0$，或另取保持博雷尔可测的非负有限值，不影响分布。
+\end{mytheorem}
+\origin{原笔记第3.1节，定理“由联合密度求边缘密度”；源码第599行。}
+
+\subsection{例题：固定坐标求积分上下限}\label{note:c3:e5}
+\basis{原笔记第3.1节，例“固定坐标求积分上下限”；源码\texttt{chapters/chapter3.tex}第641行。}
+设联合密度在 $x^2\leq y\leq x$ 内为 $6$，其余为 $0$，求 $f_X,f_Y$ 和 $P(-1<X\leq1/2)$。
+
+由 $x^2\leq x$ 可得 $0\leq x\leq1$。固定 $x\in(0,1)$ 时，$y$ 从 $x^2$ 到 $x$，所以
+\[
+f_X(x)=
+\begin{cases}
+\displaystyle\int_{x^2}^x6\,dy=6(x-x^2),&0<x<1,\\
+0,&\text{其他}.
+\end{cases}
+\]
+因而
+\begin{align*}
+P(-1<X\leq1/2)
+&=\int_0^{1/2}6(x-x^2)\,dx\\
+&=[3x^2-2x^3]_0^{1/2}=\frac12.
+\end{align*}
+
+固定 $y$ 时，$y\leq x$ 给出 $x\geq y$，$x^2\leq y$ 结合 $x\geq0$ 给出 $x\leq\sqrt y$。只有 $0<y<1$ 时存在非退化截面，所以
+\[
+f_Y(y)=
+\begin{cases}
+\displaystyle\int_y^{\sqrt y}6\,dx=6(\sqrt y-y),&0<y<1,\\
+0,&\text{其他}.
+\end{cases}
+\]
+端点取 $0$ 不影响积分。核验两个边缘的归一化：
+\[
+\int_0^1 6(x-x^2)\,dx=1,\qquad
+\int_0^1 6(\sqrt y-y)\,dy=6\left(\frac23-\frac12\right)=1.
+\]
+
+\subsection{例题：各分量连续型不保证向量连续型}\label{note:c3:e6}
+\basis{原笔记第3.1节，例“各分量连续型不保证向量连续型”；源码\texttt{chapters/chapter3.tex}第674行。}
+设 $X$ 是一维连续型随机变量，令 $Y=X$。则 $Y$ 与 $X$ 同分布，也是一维连续型随机变量，但 $(X,Y)$ 不存在二维联合密度。
+
+事实上，$(X,Y)$ 必落在直线 $L=\{(x,y):x=y\}$ 上，所以 $P((X,Y)\in L)=1$。这条直线的二维面积为 $0$。补充一个面积说明：在 $[-M,M]^2$ 内，将对角线分成 $N$ 段，每段可放入边长 $2M/N$ 的正方形，总面积不超过 $4M^2/N$；令 $N\to\infty$，得这段对角线零测。整条直线是 $M=1,2,\ldots$ 所对应线段的可数并，故仍零测。
+
+若存在联合密度 $f$，则应有
+\[
+1=P((X,Y)\in L)=\int_Lf(x,y)\,dx\,dy=0,
+\]
+矛盾。因此各分量分别具有密度，不足以保证存在联合密度。
+
+再求联合分布函数：
+\begin{align*}
+F(t,s)&=P(X\leq t,Y\leq s)\\
+&=P(X\leq t,X\leq s)=F_X(\min\{t,s\}).
+\end{align*}
+由于 $\min\{t,s\}=(t+s-|t-s|)/2$ 连续，且 $F_X$ 连续，$F$ 也是连续函数。这说明即使联合分布函数连续，向量仍可能没有联合密度。
+
+\clearpage\section{随机变量的独立性}\label{k:rvindependence}
+
+\begin{mydefinition}{随机变量的相互独立}{mutually-independent-random-variables}
+设 $X_1,\ldots,X_n$ 定义在同一概率空间上。若对任意 $A_1,\ldots,A_n\in\mathcal B(\mathbb R)$，
+\[
+P(X_1\in A_1,\ldots,X_n\in A_n)=\prod_{i=1}^nP(X_i\in A_i),
+\]
+则称这些随机变量\textbf{相互独立}。对无穷列 $X_1,X_2,\ldots$，若任取其中有限个都相互独立，则称该列相互独立。
+\end{mydefinition}
+\origin{原笔记第3.2节，定义“随机变量的相互独立”；源码第699行。}
+
+\begin{proposition}{独立随机变量的函数}{functions-of-independent-variables}
+设 $X_1,\ldots,X_n$ 相互独立，$g_i:\mathbb R\to\mathbb R$ 为博雷尔函数，$\varphi:\mathbb R^k\to\mathbb R$ 为博雷尔函数，$1\leq k<n$。则：
+\begin{enumerate}
+\item $g_1(X_1),\ldots,g_n(X_n)$ 相互独立；
+\item $\varphi(X_1,\ldots,X_k),X_{k+1},\ldots,X_n$ 相互独立。
+\end{enumerate}
+多元博雷尔函数指任意一维博雷尔集的原像均为相应维数的博雷尔集。
+\end{proposition}
+\origin{原笔记第3.2节，命题“独立随机变量的函数”；源码第711行。}
+
+\begin{mytheorem}{独立性的分布判据}{independence-distribution-criteria}
+设 $F$ 为 $(X_1,\ldots,X_n)$ 的联合分布函数。
+\begin{enumerate}
+\item $X_1,\ldots,X_n$ 相互独立，当且仅当对所有实数 $t_i$，
+\[
+F(t_1,\ldots,t_n)=\prod_{i=1}^nF_{X_i}(t_i).
+\]
+\item 若向量为离散型，则独立当且仅当其联合分布列在所有取值组合上满足
+\[
+p(x_1,\ldots,x_n)=\prod_{i=1}^np_{X_i}(x_i).
+\]
+\item 若向量具有联合密度 $f$，则独立当且仅当
+\[
+f(x_1,\ldots,x_n)=\prod_{i=1}^nf_{X_i}(x_i)
+\quad\text{在 }\mathbb R^n\text{ 上几乎处处成立}.
+\]
+密度均采用前述非负博雷尔可测版本，可在零测异常集上改取 $0$ 为有限版本。
+\end{enumerate}
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“独立性的分布判据”；源码第754行。}
+
+\begin{mycorollary}{独立的连续型分量具有联合密度}{independent-continuous-joint-density}
+若 $X,Y$ 都是一维连续型随机变量且相互独立，则 $(X,Y)$ 是二维连续型随机向量，其联合密度可取为 $f_X(x)f_Y(y)$。进一步，对相互独立的连续型变量 $X_1,\ldots,X_n$，联合密度可取为 $\prod_i f_{X_i}(x_i)$。
+\end{mycorollary}
+\origin{原笔记第3.2节，推论“独立的连续型分量具有联合密度”；源码第835行。}
+
+\subsection{例题：泊松总人数的随机分流}\label{note:c3:e7}
+\basis{原笔记第3.2节，例“泊松总人数的随机分流”；源码\texttt{chapters/chapter3.tex}第856行。}
+设一天进入邮局的总人数 $Z\sim P(\lambda)$，$\lambda>0$。给定 $Z=m$ 时，将这 $m$ 人独立地以概率 $p$ 标记为男性，以概率 $1-p$ 标记为女性，$0<p<1$。这一条件模型由“各人的标记相互独立且独立于总人数”保证。记男性人数为 $X$、女性人数为 $Y$，则 $Z=X+Y$，且
+\[
+P(X=k\mid Z=m)=\binom mkp^k(1-p)^{m-k},\qquad 0\leq k\leq m.
+\]
+对 $k=0,1,\ldots$，由全概率公式，
+\begin{align*}
+P(X=k)
+&=\sum_{m=k}^{\infty}\binom mkp^k(1-p)^{m-k}
+ \frac{\lambda^m}{m!}e^{-\lambda}\\
+&=\frac{e^{-\lambda}(p\lambda)^k}{k!}
+ \sum_{m=k}^{\infty}\frac{[(1-p)\lambda]^{m-k}}{(m-k)!}\\
+&=\frac{e^{-\lambda}(p\lambda)^k}{k!}e^{(1-p)\lambda}
+=\frac{(p\lambda)^k}{k!}e^{-p\lambda}.
+\end{align*}
+所以 $X\sim P(p\lambda)$。将“男性”与“女性”的标记交换，条件成功概率变为 $1-p$，同一求和给出
+\[
+P(Y=j)=\frac{[(1-p)\lambda]^j}{j!}e^{-(1-p)\lambda},
+\qquad Y\sim P((1-p)\lambda).
+\]
+还须计算联合分布，而不能仅凭两个边缘都是泊松分布推出独立。对 $k,j\geq0$，
+\begin{align*}
+P(X=k,Y=j)
+&=P(X=k,Z=k+j)\\
+&=\binom{k+j}{k}p^k(1-p)^j
+  \frac{\lambda^{k+j}}{(k+j)!}e^{-\lambda}\\
+&=\frac{(p\lambda)^k}{k!}e^{-p\lambda}
+  \frac{[(1-p)\lambda]^j}{j!}e^{-(1-p)\lambda}\\
+&=P(X=k)P(Y=j).
+\end{align*}
+故由分布列判据，$X,Y$ 相互独立。$p=0$ 或 $1$ 时，一类人数恒为零，另一类等于 $Z$，结论相应退化为常量与 $Z$ 的独立性。
+
+\begin{proposition}{非负函数分解判据}{independence-factorization}
+\begin{enumerate}
+\item 对二维离散型向量，$X,Y$ 独立当且仅当联合分布列可写为
+\[
+p(x,y)=h(x)g(y)
+\]
+在全部取值组合上成立，其中 $h,g$ 为非负有限值函数。
+\item 对具有联合密度 $f$ 的二维向量，$X,Y$ 独立当且仅当存在非负有限值博雷尔函数 $h,g$，使
+\[
+f(x,y)=h(x)g(y)\qquad\text{几乎处处}.
+\]
+$h,g$ 本身不必各自归一化。区域外的零值也须包含在分解中。
+\end{enumerate}
+\end{proposition}
+\origin{原笔记第3.2节，命题“非负函数分解判据”；源码第889行。}
+
+\subsection{例题：乘积区域与三角形区域中的独立性}\label{note:c3:e8}
+\basis{原笔记第3.2节，例“乘积区域与三角形区域中的独立性”；源码\texttt{chapters/chapter3.tex}第930行。}
+记 $I_A$ 为集合 $A$ 的示性函数：在 $A$ 内取 $1$，外取 $0$。
+
+（1）设联合密度为
+\[
+f(x,y)=6xy^2 I_{(0,1)\times(0,1)}(x,y).
+\]
+由于 $I_{(0,1)\times(0,1)}(x,y)=I_{(0,1)}(x)I_{(0,1)}(y)$，
+\[
+f(x,y)=[6xI_{(0,1)}(x)]\,[y^2I_{(0,1)}(y)].
+\]
+两个非负因子的积分分别为 $3$ 和 $1/3$，乘积为 $1$，故满足分解判据。更直接地，
+\[
+f_X(x)=2xI_{(0,1)}(x),\qquad
+f_Y(y)=3y^2I_{(0,1)}(y),
+\]
+二者乘积正是联合密度，所以 $X,Y$ 独立。
+
+（2）设联合密度为
+\[
+f(x,y)=24xyI_T(x,y),\qquad
+T=\{(x,y):x>0,\ y>0,\ x+y<1\}.
+\]
+虽然 $24xy$ 是乘积，但三角形限制也必须计入。取
+\[
+A=\{X>1/2\},\qquad B=\{Y>1/2\}.
+\]
+两个事件的交集在 $T$ 上为空，故 $P(A\cap B)=0$。边缘密度为
+\[
+f_X(x)=\int_0^{1-x}24xy\,dy=12x(1-x)^2,\qquad 0<x<1.
+\]
+区域与密度交换 $x,y$ 后不变，故 $f_Y(y)=12y(1-y)^2$（$0<y<1$），区域外均为 $0$。因此
+\[
+P(A)=\int_{1/2}^1 12x(1-x)^2\,dx=\frac5{16},
+\qquad P(B)=\frac5{16}.
+\]
+于是 $P(A\cap B)=0\ne25/256=P(A)P(B)$，所以 $X,Y$ 不独立。这也具体说明了区域限制不能忽略。
+
+\begin{mydefinition}{独立同分布}{iid-random-variables}
+若 $X_1,\ldots,X_n$ 相互独立，并且
+\[
+F_{X_1}(t)=\cdots=F_{X_n}(t),\qquad \forall t\in\mathbb R,
+\]
+则称它们\textbf{独立同分布}，简写为 i.i.d.。
+\end{mydefinition}
+\origin{原笔记第3.2节，定义“独立同分布”；源码第969行。}
+
+\subsection{例题：独立同分布的指数变量的联合密度}\label{note:c3:e9}
+\basis{原笔记第3.2节，例“独立同分布的指数变量的联合密度”；源码\texttt{chapters/chapter3.tex}第979行。}
+设 $X,Y$ 独立同分布于 $\operatorname{Exp}(\lambda)$，$\lambda>0$，则
+\[
+f_X(x)=\lambda e^{-\lambda x}I_{(0,\infty)}(x),\qquad
+f_Y(y)=\lambda e^{-\lambda y}I_{(0,\infty)}(y).
+\]
+由独立连续型分量的联合密度公式，
+\[
+f(x,y)=
+\begin{cases}
+\lambda^2e^{-\lambda(x+y)},&x>0,\ y>0,\\
+0,&\text{其他}.
+\end{cases}
+\]
+其全积分等于两个边缘密度积分之积 $1\cdot1=1$。
+
+\begin{mytheorem}{独立随机变量求和的卷积公式}{sum-convolution}
+设 $X,Y$ 相互独立。
+\begin{enumerate}
+\item 若二者为离散型，不同可能取值分别为 $a_i,b_j$，则
+\[
+p_{X+Y}(z)=\sum_i p_X(a_i)p_Y(z-a_i)
+=\sum_jp_X(z-b_j)p_Y(b_j).
+\]
+不属于相应取值集合的单点概率取 $0$，有限取值时求和亦为有限和。
+\item 若二者为连续型，密度分别为 $f_X,f_Y$，则 $X+Y$ 也是连续型，一个密度版本为
+\[
+f_{X+Y}(z)=\int_{\mathbb R}f_X(x)f_Y(z-x)\,dx
+=\int_{\mathbb R}f_X(z-y)f_Y(y)\,dy.
+\]
+积分几乎处处有限，异常点可另取 $0$。这些求和或积分公式称为\textbf{卷积公式}。
+\end{enumerate}
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“独立随机变量求和的卷积公式”；源码第998行。}
+
+\begin{mytheorem}{二项分布的可加性}{binomial-additivity}
+设 $X_1,\ldots,X_n$ 相互独立，且 $X_i\sim B(m_i,p)$，各变量具有相同的成功概率 $p$，则
+\[
+\sum_{i=1}^nX_i\sim B\left(\sum_{i=1}^nm_i,p\right).
+\]
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“二项分布的可加性”；源码第1051行。}
+
+\begin{mytheorem}{泊松分布的可加性}{poisson-additivity}
+设 $X_1,\ldots,X_n$ 相互独立，$X_i\sim P(\lambda_i)$，$\lambda_i>0$，则
+\[
+\sum_{i=1}^nX_i\sim P\left(\sum_{i=1}^n\lambda_i\right).
+\]
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“泊松分布的可加性”；源码第1084行。}
+
+\begin{mytheorem}{Gamma 分布的可加性}{gamma-additivity}
+设 $X_1,\ldots,X_n$ 相互独立，且 $X_i\sim\Gamma(\alpha_i,\lambda)$，其中 $\alpha_i>0$，公共率参数 $\lambda>0$，则
+\[
+\sum_{i=1}^nX_i\sim\Gamma\left(\sum_{i=1}^n\alpha_i,\lambda\right).
+\]
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“Gamma 分布的可加性”；源码第1105行。}
+
+\begin{mydefinition}{卡方分布}{chi-square-distribution}
+设 $Z_1,\ldots,Z_n$ 独立同分布于 $N(0,1)$，$n$ 为正整数。称
+\[
+Y=\sum_{i=1}^nZ_i^2
+\]
+服从自由度为 $n$ 的\textbf{卡方分布}，记为 $Y\sim\chi^2(n)$。
+\end{mydefinition}
+\origin{原笔记第3.2节，定义“卡方分布”；源码第1142行。}
+
+\begin{proposition}{卡方分布与 Gamma 分布}{chi-square-gamma}
+自由度为 $n$ 的卡方分布就是 $\Gamma(n/2,1/2)$，其中第二参数为率参数。
+\end{proposition}
+\origin{原笔记第3.2节，命题“卡方分布与 Gamma 分布”；源码第1150行。}
+
+\begin{mytheorem}{独立正态随机变量的线性组合}{normal-linear-combination}
+设 $X_i\sim N(\mu_i,\sigma_i^2)$ 相互独立，$\sigma_i>0$，$a_i,c\in\mathbb R$。记
+\[
+M=\sum_{i=1}^na_i\mu_i+c,\qquad V=\sum_{i=1}^na_i^2\sigma_i^2.
+\]
+若 $V>0$，则
+\[
+\sum_{i=1}^na_iX_i+c\sim N(M,V).
+\]
+若 $V=0$，则所有 $a_i=0$，该线性组合恒等于 $c$。
+\end{mytheorem}
+\origin{原笔记第3.2节，定理“独立正态随机变量的线性组合”；源码第1169行。}
+
+\subsection{例题：两个独立均匀变量之和}\label{note:c3:e10}
+\basis{原笔记第3.2节，例“两个独立均匀变量之和”；源码\texttt{chapters/chapter3.tex}第1209行。}
+设 $X,Y$ 独立同分布于 $U(0,1)$。卷积的被积函数在
+\[
+0<x<1,\qquad 0<z-x<1
+\]
+时为 $1$，其余为 $0$。两个不等式同时成立等价于
+\[
+\max(0,z-1)<x<\min(1,z).
+\]
+$0<z\leq1$ 时截面为 $(0,z)$，$1<z<2$ 时截面为 $(z-1,1)$，其他情形为空或退化。因此
+\[
+f_{X+Y}(z)=
+\begin{cases}
+\displaystyle\int_0^z1\,dx=z,&0<z\leq1,\\
+\displaystyle\int_{z-1}^11\,dx=2-z,&1<z<2,\\
+0,&\text{其他}.
+\end{cases}
+\]
+这个分布称为三角分布，密度全积分为 $1/2+1/2=1$。
+
+\clearpage\section{条件分布}\label{k:conditionaldist}
+
+\begin{mydefinition}{给定事件的条件分布函数}{conditional-cdf-event}
+对事件 $B$，若 $P(B)>0$，定义
+\[
+F_X(t\mid B)=P(X\leq t\mid B),\qquad t\in\mathbb R,
+\]
+称为 $B$ 发生条件下 $X$ 的\textbf{条件分布函数}。
+\end{mydefinition}
+\origin{原笔记第3.3节，定义“给定事件的条件分布函数”；源码第1239行。}
+
+\begin{mydefinition}{离散型条件分布列与条件分布函数}{discrete-conditional-distribution}
+设 $(X,Y)$ 的不同可能坐标值分别列为 $x_i,y_j$。
+\begin{enumerate}
+\item 固定满足 $P(Y=y_j)>0$ 的 $y_j$，定义
+\[
+p_{X\mid Y}(x_i\mid y_j)=P(X=x_i\mid Y=y_j)
+=\frac{P(X=x_i,Y=y_j)}{P(Y=y_j)}.
+\]
+这些概率构成 $Y=y_j$ 条件下 $X$ 的条件分布列，其条件分布函数为
+\[
+F_{X\mid Y}(t\mid y_j)=\sum_{x_i\leq t}p_{X\mid Y}(x_i\mid y_j).
+\]
+\item 固定满足 $P(X=x_i)>0$ 的 $x_i$，定义
+\[
+p_{Y\mid X}(y_j\mid x_i)=P(Y=y_j\mid X=x_i)
+=\frac{P(X=x_i,Y=y_j)}{P(X=x_i)}.
+\]
+相应条件分布函数为
+\[
+F_{Y\mid X}(t\mid x_i)=\sum_{y_j\leq t}p_{Y\mid X}(y_j\mid x_i).
+\]
+\end{enumerate}
+求和遍历有限个或可数个取值，分母为零时不使用这些比值公式。
+\end{mydefinition}
+\origin{原笔记第3.3节，定义“离散型条件分布列与条件分布函数”；源码第1249行。}
+
+\begin{proposition}{条件分布列的归一化}{conditional-pmf-normalization}
+上述两种条件分布列，分别是概率空间 $(\Omega,\mathcal F,P(\cdot\mid Y=y_j))$ 下 $X$ 的分布列，以及 $(\Omega,\mathcal F,P(\cdot\mid X=x_i))$ 下 $Y$ 的分布列。
+\end{proposition}
+\origin{原笔记第3.3节，命题“条件分布列的归一化”；源码第1274行。}
+
+\subsection{例题：给定独立泊松变量的和}\label{note:c3:e11}
+\basis{原笔记第3.3节，例“给定独立泊松变量的和”；源码\texttt{chapters/chapter3.tex}第1298行。}
+设 $X\sim P(\lambda_1)$、$Y\sim P(\lambda_2)$ 相互独立，$\lambda_1,\lambda_2>0$，求给定 $X+Y=n$ 时 $X$ 的分布，$n$ 为非负整数。
+
+泊松可加性给出 $X+Y\sim P(\lambda_1+\lambda_2)$，故该条件事件具有正概率。对 $0\leq k\leq n$，
+\begin{align*}
+P(X=k\mid X+Y=n)
+&=\frac{P(X=k,Y=n-k)}{P(X+Y=n)}\\
+&=\frac{\dfrac{\lambda_1^k}{k!}e^{-\lambda_1}
+ \dfrac{\lambda_2^{n-k}}{(n-k)!}e^{-\lambda_2}}
+ {\dfrac{(\lambda_1+\lambda_2)^n}{n!}e^{-(\lambda_1+\lambda_2)}}\\
+&=\binom nk\left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^k
+ \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{n-k}.
+\end{align*}
+其他 $k$ 的条件概率为 $0$。所以条件分布为
+\[
+X\mid(X+Y=n)\sim B\left(n,\frac{\lambda_1}{\lambda_1+\lambda_2}\right).
+\]
+当 $n=0$ 时，条件下 $X=0$ 的概率为 $1$。
+
+\begin{mydefinition}{连续型条件概率的邻域极限}{continuous-conditional-neighborhood}
+固定 $y$ 及博雷尔集 $A$。若充分小的 $\varepsilon>0$ 均满足
+\[
+P(y-\varepsilon<Y\leq y+\varepsilon)>0,
+\]
+且下列极限存在，则用邻域极限记
+\[
+P(X\in A\mid Y=y)
+=\lim_{\varepsilon\downarrow0}
+\frac{P(X\in A,\ y-\varepsilon<Y\leq y+\varepsilon)}
+ {P(y-\varepsilon<Y\leq y+\varepsilon)}.
+\]
+即先计算 $P(X\in A\mid y-\varepsilon<Y\leq y+\varepsilon)$，再令 $\varepsilon\downarrow0$。
+\end{mydefinition}
+\origin{原笔记第3.3节，定义“连续型条件概率的邻域极限”；源码第1326行。}
+
+\begin{mytheorem}{由联合密度求条件密度}{conditional-density-ratio}
+设 $(X,Y)$ 的联合密度为 $f$，边缘密度选为截面积分
+\[
+f_Y(y)=\int_{\mathbb R}f(x,y)\,dx,\qquad
+f_X(x)=\int_{\mathbb R}f(x,y)\,dy.
+\]
+\begin{enumerate}
+\item 对 $0<f_Y(y)<\infty$ 的 $y$，定义
+\[
+f_{X\mid Y}(x\mid y)=\frac{f(x,y)}{f_Y(y)},\qquad
+P(X\in A\mid Y=y)=\int_Af_{X\mid Y}(x\mid y)\,dx.
+\]
+它给出 $X$ 在 $Y=y$ 条件下的一个条件密度版本。
+\item 对 $0<f_X(x)<\infty$ 的 $x$，相应定义为
+\[
+f_{Y\mid X}(y\mid x)=\frac{f(x,y)}{f_X(x)},\qquad
+P(Y\in A\mid X=x)=\int_Af_{Y\mid X}(y\mid x)\,dy.
+\]
+\end{enumerate}
+进一步，固定 $A$，若 $g_A(v)=\int_Af(u,v)\,du$ 及 $f_Y(v)$ 在 $v=y$ 连续，且 $f_Y(y)>0$，则第（1）项与该集合 $A$ 的邻域极限一致。第（2）项有交换坐标后的对应结论。
+\end{mytheorem}
+\origin{原笔记第3.3节，定理“由联合密度求条件密度”；源码第1350行。}
+
+\begin{mycorollary}{条件分布函数的积分公式}{conditional-cdf-density}
+在上述有效条件值处，
+\begin{enumerate}
+\item $F_{X\mid Y}(t\mid y)=\displaystyle\int_{-\infty}^t
+f_{X\mid Y}(x\mid y)\,dx$；
+\item $F_{Y\mid X}(t\mid x)=\displaystyle\int_{-\infty}^t
+f_{Y\mid X}(y\mid x)\,dy$。
+\end{enumerate}
+\end{mycorollary}
+\origin{原笔记第3.3节，推论“条件分布函数的积分公式”；源码第1422行。}
+
+\subsection{例题：固定条件值与区间条件事件}\label{note:c3:e12}
+\basis{原笔记第3.3节，例“固定条件值与区间条件事件”；源码\texttt{chapters/chapter3.tex}第1445行。}
+设
+\[
+f(x,y)=
+\begin{cases}
+xe^{-y},&0<x<y,\\
+0,&\text{其他}.
+\end{cases}
+\]
+求 $f_{X\mid Y}(x\mid y)$、$f_{X\mid Y}(x\mid1/2)$，以及
+$P(-1<X\leq1/4\mid Y=1/2)$ 和 $P(-1<X\leq1/4\mid Y\leq1/2)$。
+
+固定 $y>0$，有
+\[
+f_Y(y)=\int_0^yxe^{-y}\,dx=\frac{y^2}2e^{-y},
+\]
+$y\leq0$ 时取 $0$。其积分为 $\Gamma(3)/2=1$，故给定联合密度也已归一化。因此
+\[
+f_{X\mid Y}(x\mid y)=
+\begin{cases}
+2x/y^2,&0<x<y,\\
+0,&\text{其他},
+\end{cases}\qquad y>0.
+\]
+代入 $y=1/2$ 得
+\[
+f_{X\mid Y}(x\mid1/2)=
+\begin{cases}
+8x,&0<x<1/2,\\
+0,&\text{其他}.
+\end{cases}
+\]
+所以
+\[
+P(-1<X\leq1/4\mid Y=1/2)=\int_0^{1/4}8x\,dx=\frac14.
+\]
+
+对于条件事件 $Y\leq1/2$，应对整个条件区域积分。固定 $y$ 时，$x$ 的上限为 $\min(y,1/4)$，需在 $y=1/4$ 处分段：
+\begin{align*}
+&P(-1<X\leq1/4\mid Y\leq1/2)\\
+&=\frac{\displaystyle
+ \int_0^{1/4}\int_0^yxe^{-y}\,dx\,dy+
+ \int_{1/4}^{1/2}\int_0^{1/4}xe^{-y}\,dx\,dy}
+ {\displaystyle\int_0^{1/2}\frac{y^2}2e^{-y}\,dy}\\
+&=\frac{\displaystyle
+ \int_0^{1/4}\frac{y^2}2e^{-y}\,dy+
+ \frac1{32}\int_{1/4}^{1/2}e^{-y}\,dy}
+ {\displaystyle\int_0^{1/2}\frac{y^2}2e^{-y}\,dy}\\
+&=\frac{1-\frac54e^{-1/4}-\frac1{32}e^{-1/2}}
+ {1-\frac{13}8e^{-1/2}}
+\approx0.524403.
+\end{align*}
+它与给定单点条件值 $Y=1/2$ 时的结果不同。
+
+\subsection{例题：\texorpdfstring{$t$ 分布的密度}{t 分布的密度}}\label{note:c3:e13}
+\basis{原笔记第3.3节，例“$t$ 分布的密度”；源码\texttt{chapters/chapter3.tex}第1500行。}
+设 $Z\sim N(0,1)$、$Y\sim\chi^2(n)$ 相互独立，$n$ 为正整数。定义
+\[
+T=\frac{Z}{\sqrt{Y/n}}.
+\]
+称 $T$ 服从自由度为 $n$ 的 \textbf{$t$ 分布}。由于 $Y>0$ 以概率 $1$ 成立，该比值在全概率事件上有定义；其他样本点上可另定义为 $0$。
+
+固定 $y>0$，由独立性，$Z$ 在条件 $Y=y$ 下仍服从 $N(0,1)$，故可取
+\[
+T\mid(Y=y)\sim N(0,n/y),\qquad
+f_{T\mid Y}(t\mid y)=\sqrt{\frac{y}{2\pi n}}e^{-yt^2/(2n)}.
+\]
+又因 $\chi^2(n)=\Gamma(n/2,1/2)$，
+\[
+f_Y(y)=\frac{y^{n/2-1}e^{-y/2}}{2^{n/2}\Gamma(n/2)},\qquad y>0.
+\]
+条件密度与边缘密度相乘，得到
+\[
+f_{T,Y}(t,y)=
+\frac{y^{(n-1)/2}e^{-\frac y2(1+t^2/n)}}
+ {2^{(n+1)/2}\sqrt{n\pi}\Gamma(n/2)},
+\qquad t\in\mathbb R,\ y>0,
+\]
+其他地方取 $0$。这一乘法也可直接从变换 $z=t\sqrt{y/n}$ 核验：其雅可比绝对值为 $\sqrt{y/n}$，原联合密度为 $f_Z(z)f_Y(y)$。
+
+令 $a=(n+1)/2$、$b=(1+t^2/n)/2>0$，再作 $u=by$ 的换元，得
+\[
+\int_0^\infty y^{a-1}e^{-by}\,dy=b^{-a}\Gamma(a).
+\]
+所以
+\begin{align*}
+f_T(t)
+&=\int_0^\infty f_{T,Y}(t,y)\,dy\\
+&=\frac{\Gamma((n+1)/2)}{\sqrt{n\pi}\Gamma(n/2)}
+ \left(1+\frac{t^2}n\right)^{-(n+1)/2},
+\qquad t\in\mathbb R.
+\end{align*}
+
+\begin{proposition}{离散与连续变量的条件分布乘法公式}{mixed-conditional-bayes}
+设 $X$ 连续型，$Y$ 离散型。对 $p_j=P(Y=y_j)>0$ 的取值，设 $q_j(x)=f_{X\mid Y}(x\mid y_j)$ 是条件密度。则 $X$ 的边缘密度可取为
+\[
+f_X(x)=\sum_jp_jq_j(x).
+\]
+在 $0<f_X(x)<\infty$ 处，可取
+\[
+P(Y=y_j\mid X=x)=\frac{p_jq_j(x)}{f_X(x)}.
+\]
+从而
+\[
+P(Y=y_j\mid X=x)f_X(x)
+=f_{X\mid Y}(x\mid y_j)P(Y=y_j)
+\quad\text{几乎处处}.
+\]
+求和仅遍历正概率取值；$p_j=0$ 的项可按零项处理。
+\end{proposition}
+\origin{原笔记第3.3节，命题“离散与连续变量的条件分布乘法公式”；源码第1549行。}
+
+\subsection{例题：均匀先验与二项抽样}\label{note:c3:e14}
+\basis{原笔记第3.3节，例“均匀先验与二项抽样”；源码\texttt{chapters/chapter3.tex}第1588行。}
+设 $X\sim U(0,1)$，给定 $X=x$ 时 $Y\sim B(M,x)$，其中 $M$ 为正整数。求给定 $Y=n$ 时 $X$ 的分布，$0\leq n\leq M$。
+
+由乘法公式，对 $0<x<1$，
+\[
+f_{X\mid Y}(x\mid n)
+=\frac{f_X(x)P(Y=n\mid X=x)}{P(Y=n)}
+=\frac{\binom Mn x^n(1-x)^{M-n}}{P(Y=n)}.
+\]
+分母由积分归一化：
+\begin{align*}
+P(Y=n)
+&=\binom Mn\int_0^1x^n(1-x)^{M-n}\,dx\\
+&=\binom Mn B(n+1,M-n+1)\\
+&=\frac{M!}{n!(M-n)!}\frac{n!(M-n)!}{(M+1)!}
+=\frac1{M+1}>0.
+\end{align*}
+所以
+\[
+f_{X\mid Y}(x\mid n)=
+\begin{cases}
+\displaystyle\frac{x^n(1-x)^{M-n}}{B(n+1,M-n+1)},&0<x<1,\\
+0,&\text{其他}.
+\end{cases}
+\]
+即 $X\mid(Y=n)\sim\operatorname{Beta}(n+1,M-n+1)$。
+
+这里 $X$ 是未知成功概率，$Y$ 是给定 $X$ 后 $M$ 次条件独立伯努利试验的成功次数。先验为 $U(0,1)=\operatorname{Beta}(1,1)$，观察到 $n$ 次成功后，后验参数变为 $1+n$、$1+M-n$。独立性是给定同一个成功概率 $X=x$ 后的条件独立性。
+
+\clearpage\section{次序统计量}\label{k:order}
+本节公式中的样本$X_1,\ldots,X_n$独立同分布，公共分布函数为$F$；涉及密度时假设公共分布连续型且密度为$f$。
+
+\begin{mydefinition}{次序统计量}{order-statistics}
+对每个样本点 $\omega$，将实数 $X_1(\omega),\ldots,X_n(\omega)$ 按从小到大排列，保留重复值，得到
+\[
+X_{(1)}(\omega)\leq\cdots\leq X_{(n)}(\omega).
+\]
+对应的随机变量 $X_{(1)},\ldots,X_{(n)}$ 称为 $X_1,\ldots,X_n$ 的\textbf{次序统计量}。
+\end{mydefinition}
+\origin{原笔记第3.4节，定义“次序统计量”；源码第1621行。}
+
+\subsection{例题：三个变量的排序}\label{note:c3:e15}
+\basis{原笔记第3.4节，例“三个变量的排序”；源码\texttt{chapters/chapter3.tex}第1635行。}
+若在样本点 $\omega$ 上，
+\[
+(X_1(\omega),X_2(\omega),X_3(\omega))=(2,1,3),
+\]
+则
+\[
+(X_{(1)}(\omega),X_{(2)}(\omega),X_{(3)}(\omega))=(1,2,3),
+\]
+分别取自 $X_2,X_1,X_3$。若在另一样本点 $\widetilde\omega$ 上，原取值为 $(0,2,1)$，则排序取值为 $(0,1,2)$，分别取自 $X_1,X_3,X_2$。因此对应原变量的排列会随样本点改变。
+
+\begin{proposition}{最小值与最大值的分布}{minimum-maximum-cdf}
+对任意 $t\in\mathbb R$，
+\[
+F_{X_{(1)}}(t)=1-(1-F(t))^n,\qquad
+F_{X_{(n)}}(t)=F(t)^n.
+\]
+\end{proposition}
+\origin{原笔记第3.4节，命题“最小值与最大值的分布”；源码第1649行。}
+
+\begin{proposition}{连续独立样本无相同取值}{no-ties-continuous-sample}
+对 $i\ne j$，$P(X_i=X_j)=0$。因此以概率 $1$ 有
+\[
+X_{(1)}<X_{(2)}<\cdots<X_{(n)}.
+\]
+\end{proposition}
+\origin{原笔记第3.4节，命题“连续独立样本无相同取值”；源码第1673行。}
+
+\begin{mytheorem}{次序统计量的联合密度}{joint-density-order-statistics}
+次序统计量 $(X_{(1)},\ldots,X_{(n)})$ 的联合密度可取为
+\[
+f_{\mathrm{ord}}(t_1,\ldots,t_n)=
+\begin{cases}
+\displaystyle n!\prod_{i=1}^nf(t_i),&t_1<\cdots<t_n,\\
+0,&\text{其他}.
+\end{cases}
+\]
+\end{mytheorem}
+\origin{原笔记第3.4节，定理“次序统计量的联合密度”；源码第1687行。}
+
+\subsection{例题：路上随机位置的最小间距}\label{note:c3:e16}
+\basis{原笔记第3.4节，例“路上随机位置的最小间距”；源码\texttt{chapters/chapter3.tex}第1718行。}
+三个人的位置 $X_1,X_2,X_3$ 相互独立且都服从 $U(0,1)$，距离以英里为单位。设 $0\leq d\leq1/2$，求任意两人之间的距离都大于 $d$ 的概率。
+
+将位置排序后，任意两点的距离都大于 $d$，当且仅当两个相邻间距都大于 $d$。排序向量的密度在 $0<t_1<t_2<t_3<1$ 内为 $3!=6$，所以
+\begin{align*}
+P&=P(X_{(2)}>X_{(1)}+d,\ X_{(3)}>X_{(2)}+d)\\
+&=6\int_0^{1-2d}\int_{t_1+d}^{1-d}\int_{t_2+d}^1
+ dt_3\,dt_2\,dt_1\\
+&=6\int_0^{1-2d}\int_{t_1+d}^{1-d}(1-t_2-d)\,dt_2\,dt_1\\
+&=3\int_0^{1-2d}(1-t_1-2d)^2\,dt_1
+=(1-2d)^3.
+\end{align*}
+$d=1/2$ 时概率为 $0$，$d=0$ 时由于无相同取值，概率为 $1$。
+
+若有 $n\geq2$ 个人，位置仍独立同分布于 $U(0,1)$，对 $0\leq d<1/(n-1)$，令
+\[
+s_i=t_i-(i-1)d,\qquad L=1-(n-1)d.
+\]
+相邻间距大于 $d$ 的区域恰好变为
+\[
+0<s_1<s_2<\cdots<s_n<L.
+\]
+平移的雅可比为 $1$；这个有序区域的体积是立方体 $(0,L)^n$ 体积的 $1/n!$，因为除了坐标相等的零测边界外，立方体分成 $n!$ 个等体积的排列区域。乘上排序密度 $n!$，所求概率为
+\[
+[1-(n-1)d]^n.
+\]
+当 $d\geq1/(n-1)$ 时，$n-1$ 个相邻间距之和无法严格小于 $1$，所求概率为 $0$。
+
+\begin{mytheorem}{单个次序统计量的密度}{single-order-density}
+设 $X_1,\ldots,X_n$ 独立同分布于连续型变量，共同分布函数为 $F$、密度为 $f$。第 $k$ 个次序统计量的密度可取为
+\[
+f_{X_{(k)}}(t)=
+\frac{n!}{(k-1)!(n-k)!}
+F(t)^{k-1}(1-F(t))^{n-k}f(t),
+\qquad 1\leq k\leq n.
+\]
+指数为 $0$ 的因子按 $1$ 处理，包括 $F(t)=0$ 或 $1$ 的端点情形。
+\end{mytheorem}
+\origin{原笔记第3.4节，定理“单个次序统计量的密度”；源码第1747行。}
+
+\begin{mytheorem}{两个次序统计量的联合密度}{pair-order-density}
+对 $1\leq i<j\leq n$，记
+\[
+C_{ij}=\frac{n!}{(i-1)!(j-i-1)!(n-j)!}.
+\]
+则 $(X_{(i)},X_{(j)})$ 的联合密度在 $x<y$ 时可取为
+\[
+\begin{aligned}
+f_{i,j}(x,y)
+={}&C_{ij}\,F(x)^{i-1}[F(y)-F(x)]^{j-i-1}\\
+&{}\cdot[1-F(y)]^{n-j}f(x)f(y),
+\end{aligned}
+\]
+在 $x\geq y$ 时取 $0$。其中零次幂仍按 $1$ 处理。
+\end{mytheorem}
+\origin{原笔记第3.4节，定理“两个次序统计量的联合密度”；源码第1779行。}
+
+\subsection{例题：样本极差的分布}\label{note:c3:e17}
+\basis{原笔记第3.4节，例“样本极差的分布”；源码\texttt{chapters/chapter3.tex}第1817行。}
+设 $n\geq2$，称
+\[
+R=X_{(n)}-X_{(1)}
+\]
+为样本的\textbf{极差}。由两个次序统计量的密度公式，
+\[
+f_{1,n}(x,y)=n(n-1)[F(y)-F(x)]^{n-2}f(x)f(y),
+\qquad x<y.
+\]
+$r<0$ 时 $F_R(r)=0$。对 $r\geq0$，积分区域为 $x<y\leq x+r$，所以
+\begin{align*}
+F_R(r)
+&=n(n-1)\int_{\mathbb R}f(x)
+ \int_x^{x+r}[F(y)-F(x)]^{n-2}f(y)\,dy\,dx\\
+&=n\int_{\mathbb R}[F(x+r)-F(x)]^{n-1}f(x)\,dx.
+\end{align*}
+内层积分利用 $F$ 的绝对连续性及 $F'=f$ 几乎处处；原函数为
+$[F(y)-F(x)]^{n-1}/(n-1)$，在下端点为 $0$。
+
+若原样本服从 $U(0,1)$，则 $r\geq1$ 时 $F_R(r)=1$。对 $0<r<1$，在 $x=1-r$ 处分段：
+\begin{align*}
+F_R(r)
+&=n\int_0^1[F(x+r)-F(x)]^{n-1}\,dx\\
+&=n\left[\int_0^{1-r}r^{n-1}\,dx+
+ \int_{1-r}^1(1-x)^{n-1}\,dx\right]\\
+&=nr^{n-1}(1-r)+r^n
+=nr^{n-1}-(n-1)r^n.
+\end{align*}
+因此
+\[
+F_R(r)=
+\begin{cases}
+0,&r\leq0,\\
+nr^{n-1}-(n-1)r^n,&0<r<1,\\
+1,&r\geq1,
+\end{cases}
+\]
+且一个密度版本为
+\[
+f_R(r)=
+\begin{cases}
+n(n-1)r^{n-2}(1-r),&0<r<1,\\
+0,&\text{其他}.
+\end{cases}
+\]
+因为 $B(n-1,2)=1/[n(n-1)]$，故 $R\sim\operatorname{Beta}(n-1,2)$。若样本只有一个变量，则极差恒为 $0$，不使用上述 $n\geq2$ 的密度公式。
+
+\clearpage\section{随机变量函数的联合分布}\label{k:jacobian}
+
+\begin{mytheorem}{二维一一变换的密度公式}{bivariate-density-transformation}
+设 $(X,Y)$ 具有联合密度 $f_{X,Y}$，且以概率 $1$ 落在开区域 $D$。设
+\[
+g:D\to E,\qquad (u,v)=(g_1(x,y),g_2(x,y))
+\]
+为到开区域 $E$ 的一一映射，$g_1,g_2$ 有连续偏导数，且在 $D$ 上
+\[
+J_g(x,y)=\det
+\begin{pmatrix}
+\partial g_1/\partial x&\partial g_1/\partial y\\
+\partial g_2/\partial x&\partial g_2/\partial y
+\end{pmatrix}\ne0.
+\]
+记逆变换为 $h=(h_1,h_2)$。则 $(U,V)=g(X,Y)$ 具有联合密度
+\[
+f_{U,V}(u,v)=
+\begin{cases}
+f_{X,Y}(h_1(u,v),h_2(u,v))\,|J_h(u,v)|,&(u,v)\in E,\\
+0,&(u,v)\notin E,
+\end{cases}
+\]
+其中
+\[
+J_h(u,v)=\frac{\partial(h_1,h_2)}{\partial(u,v)},\qquad
+|J_h(u,v)|=\frac1{|J_g(h_1(u,v),h_2(u,v))|}.
+\]
+\end{mytheorem}
+\origin{原笔记第3.5节，定理“二维一一变换的密度公式”；源码第1869行。}
+
+\subsection{例题：引入辅助变量求和的密度}\label{note:c3:e18}
+\basis{原笔记第3.5节，例“引入辅助变量求和的密度”；源码\texttt{chapters/chapter3.tex}第1915行。}
+设 $(X,Y)$ 的联合密度为 $f(x,y)$，求 $U=X+Y$ 的密度。增加辅助变量 $V=X$，则
+\[
+U=X+Y,\quad V=X
+\quad\Longleftrightarrow\quad
+X=V,\quad Y=U-V.
+\]
+逆雅可比为
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\det\begin{pmatrix}0&1\\1&-1\end{pmatrix}=-1.
+\]
+故
+\[
+f_{U,V}(u,v)=f(v,u-v).
+\]
+对辅助变量积分，得到
+\[
+f_{X+Y}(u)=\int_{\mathbb R}f(v,u-v)\,dv.
+\]
+若 $X,Y$ 独立，则可取 $f(x,y)=f_X(x)f_Y(y)$，于是
+\[
+f_{X+Y}(u)=\int_{\mathbb R}f_X(v)f_Y(u-v)\,dv
+=\int_{\mathbb R}f_X(u-v)f_Y(v)\,dv,
+\]
+与卷积公式一致。
+
+\subsection{例题：独立 Gamma 变量的和与比例}\label{note:c3:e19}
+\basis{原笔记第3.5节，例“独立 Gamma 变量的和与比例”；源码\texttt{chapters/chapter3.tex}第1943行。}
+设 $X\sim\Gamma(\alpha,\lambda)$、$Y\sim\Gamma(\beta,\lambda)$ 相互独立，$\alpha,\beta,\lambda>0$，$\lambda$ 为公共率参数。令
+\[
+U=X+Y,\qquad V=\frac{X}{X+Y}.
+\]
+因 $X,Y>0$ 以概率 $1$ 成立，该变换在全概率区域上有定义。求联合密度、两个边缘密度并判断独立性。
+
+逆变换为
+\[
+x=uv,\qquad y=u(1-v),
+\]
+故
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=\det\begin{pmatrix}v&u\\1-v&-u\end{pmatrix}=-u.
+\]
+原区域 $x>0,y>0$ 等价于 $u>0,0<v<1$；该区域中 $u>0$，所以逆雅可比绝对值为 $u$。
+
+由独立性，原联合密度在正象限为
+\[
+f_{X,Y}(x,y)=
+\frac{\lambda^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}
+x^{\alpha-1}y^{\beta-1}e^{-\lambda(x+y)}.
+\]
+代入逆变换并乘上 $u$：
+\begin{align*}
+f_{U,V}(u,v)
+&=\frac{\lambda^{\alpha+\beta}
+ (uv)^{\alpha-1}[u(1-v)]^{\beta-1}}
+ {\Gamma(\alpha)\Gamma(\beta)}e^{-\lambda u}\,u\\
+&=\frac{\lambda^{\alpha+\beta}
+ u^{\alpha+\beta-1}e^{-\lambda u}}
+ {\Gamma(\alpha+\beta)}
+ \frac{v^{\alpha-1}(1-v)^{\beta-1}}{B(\alpha,\beta)},
+\qquad u>0,\ 0<v<1.
+\end{align*}
+区域外取 $0$。最后一步使用
+$B(\alpha,\beta)=\Gamma(\alpha)\Gamma(\beta)/\Gamma(\alpha+\beta)$。
+
+右侧已经分解成一个 Gamma 密度和一个 Beta 密度的乘积，两因子各自积分为 $1$。因此
+\[
+f_U(u)=
+\begin{cases}
+\displaystyle\frac{\lambda^{\alpha+\beta}}{\Gamma(\alpha+\beta)}
+u^{\alpha+\beta-1}e^{-\lambda u},&u>0,\\
+0,&\text{其他},
+\end{cases}
+\]
+\[
+f_V(v)=
+\begin{cases}
+\displaystyle\frac{v^{\alpha-1}(1-v)^{\beta-1}}{B(\alpha,\beta)},&0<v<1,\\
+0,&\text{其他}.
+\end{cases}
+\]
+所以 $U\sim\Gamma(\alpha+\beta,\lambda)$、$V\sim\operatorname{Beta}(\alpha,\beta)$，并且 $U,V$ 相互独立。
+
+\subsection{例题：标准正态变量的极坐标变换}\label{note:c3:e20}
+\basis{原笔记第3.5节，例“标准正态变量的极坐标变换”；源码\texttt{chapters/chapter3.tex}第2013行。}
+设 $X,Y$ 相互独立，均服从 $N(0,1)$。令
+\[
+R=\sqrt{X^2+Y^2},
+\]
+并以 $\Theta\in[0,2\pi)$ 表示点 $(X,Y)$ 的极角；在原点约定 $\Theta=0$。求 $R,\Theta$ 的联合分布，并利用均匀分布模拟标准正态变量。
+
+原联合密度为
+\[
+f_{X,Y}(x,y)=\frac{1}{2\pi}e^{-(x^2+y^2)/2}.
+\]
+去掉原点和非负横轴后，剩余区域的概率为 $1$。极坐标变换将其一一映到 $r>0,\ 0<\theta<2\pi$，逆变换为
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+其雅可比为
+\[
+\left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
+=\left|\det
+\begin{pmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{pmatrix}\right|=r.
+\]
+所以可取联合密度
+\[
+f_{R,\Theta}(r,\theta)=
+\begin{cases}
+\displaystyle\frac{r}{2\pi}e^{-r^2/2},&r>0,\ 0<\theta<2\pi,\\
+0,&\text{其他}.
+\end{cases}
+\]
+两个边缘密度分别为
+\[
+f_R(r)=
+\begin{cases}re^{-r^2/2},&r>0,\\0,&\text{其他},\end{cases}
+\qquad
+f_\Theta(\theta)=
+\begin{cases}\displaystyle\frac{1}{2\pi},&0<\theta<2\pi,\\0,&\text{其他}.\end{cases}
+\]
+联合密度等于边缘密度的乘积，故 $R,\Theta$ 相互独立，且 $\Theta\sim U(0,2\pi)$。$R$ 的分布称为\textbf{瑞利分布}。对于 $t\geq0$，
+\[
+P(R^2>t)=\int_{\sqrt t}^{\infty}re^{-r^2/2}\,dr=e^{-t/2},
+\]
+故 $R^2\sim\operatorname{Exp}(1/2)=\Gamma(1,1/2)=\chi^2(2)$，其中指数分布和 Gamma 分布均采用率参数。
+
+反过来，取相互独立的 $U_1,U_2\sim U(0,1)$，令
+\[
+R=\sqrt{-2\ln U_1},\qquad \Theta=2\pi U_2.
+\]
+由于这两个变量分别由独立的 $U_1,U_2$ 决定，它们仍相互独立。对于 $t\geq0$，
+\[
+P(-2\ln U_1>t)=P(U_1<e^{-t/2})=e^{-t/2},
+\]
+因而 $R,\Theta$ 具有上面求出的分布。
+
+令
+\[
+X=\sqrt{-2\ln U_1}\cos(2\pi U_2),\qquad
+Y=\sqrt{-2\ln U_1}\sin(2\pi U_2).
+\]
+在去掉非负横轴的平面上，正向极坐标变换的雅可比绝对值为 $1/r$，于是
+\begin{align*}
+f_{X,Y}(x,y)
+&=\frac{r}{2\pi}e^{-r^2/2}\frac1r\\
+&=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+  \frac{1}{\sqrt{2\pi}}e^{-y^2/2}.
+\end{align*}
+被去掉的边界对应 $\Theta=0$，其概率为 $0$，不影响分布。密度分解说明生成的 $X,Y$ 相互独立，且均服从 $N(0,1)$。
+
+\textbf{注：}\quad 设随机向量 $\boldsymbol X=(X_1,\ldots,X_n)$ 的密度为 $f_{\boldsymbol X}$，开集 $D\subseteq\mathbb R^n$ 满足 $P(\boldsymbol X\in D)=1$。若 $g:D\to E$ 是开集之间的一一映射，连续可微且处处满足 $\det Dg\ne0$，则逆映射 $h=g^{-1}$ 连续可微。$\boldsymbol Y=g(\boldsymbol X)$ 的密度可取为
+\[
+f_{\boldsymbol Y}(\boldsymbol y)=
+\begin{cases}
+f_{\boldsymbol X}(h(\boldsymbol y))|\det Dh(\boldsymbol y)|,
+&\boldsymbol y\in E,\\
+0,&\boldsymbol y\notin E.
+\end{cases}
+\]
+在 $D$ 外可将变换固定定义为某个向量；由于 $P(\boldsymbol X\notin D)=0$，这不影响分布。
+
+\subsection{例题：独立指数变量的部分和}\label{note:c3:e21}
+\basis{原笔记第3.5节，例“独立指数变量的部分和”；源码\texttt{chapters/chapter3.tex}第2112行。}
+设 $X_1,\ldots,X_n$ 相互独立，均服从 $\operatorname{Exp}(\lambda)$，$\lambda>0$。令
+\[
+Y_i=\sum_{j=1}^{i}X_j,\qquad i=1,\ldots,n.
+\]
+\begin{enumerate}
+\item 求 $(Y_1,\ldots,Y_n)$ 的联合密度。
+
+逆变换为 $x_1=y_1$、$x_i=y_i-y_{i-1}$（$i\geq2$），其导数矩阵是对角元为 $1$、紧邻对角线下方为 $-1$ 的下三角矩阵，行列式为 $1$。原区域 $x_i>0$ 等价于 $0<y_1<\cdots<y_n$，且 $\sum_i x_i=y_n$，故
+\[
+f_{Y_1,\ldots,Y_n}(y_1,\ldots,y_n)=
+\begin{cases}
+\lambda^ne^{-\lambda y_n},&0<y_1<\cdots<y_n,\\
+0,&\text{其他}.
+\end{cases}
+\]
+\item 求 $Y_n$ 的边缘分布。
+
+当 $n\geq2$、$z>0$ 时，对前 $n-1$ 个坐标积分，得
+\begin{align*}
+f_{Y_n}(z)
+&=\lambda^ne^{-\lambda z}
+  \int_{0<y_1<\cdots<y_{n-1}<z}dy_1\cdots dy_{n-1}\\
+&=\frac{\lambda^n}{(n-1)!}z^{n-1}e^{-\lambda z}.
+\end{align*}
+积分区域的体积为 $z^{n-1}/(n-1)!$：除去坐标相等的零体积集合，立方体 $(0,z)^{n-1}$ 按坐标的 $(n-1)!$ 种排列分成体积相同的区域。$z\leq0$ 时密度取 $0$，所以 $Y_n\sim\Gamma(n,\lambda)$；$n=1$ 时结论就是指数分布本身。
+
+\item 设 $n\geq2$，求给定 $Y_n=z$ 时前 $n-1$ 个部分和的条件联合密度。
+
+对每个 $z>0$，$f_{Y_n}(z)>0$，因此
+\[
+f_{Y_1,\ldots,Y_{n-1}\mid Y_n}(y_1,\ldots,y_{n-1}\mid z)=
+\begin{cases}
+\displaystyle\frac{(n-1)!}{z^{n-1}},
+&0<y_1<\cdots<y_{n-1}<z,\\
+0,&\text{其他}.
+\end{cases}
+\]
+这正是 $n-1$ 个相互独立的 $U(0,z)$ 变量的次序统计量联合密度。排序前的变量独立；当 $n-1\geq2$ 时，排序后的变量受到大小次序的约束，并不相互独立。
+\end{enumerate}

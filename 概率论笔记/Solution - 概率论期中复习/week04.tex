@@ -1,0 +1,223 @@
+% !TEX root = 概率论期中复习.tex
+\section{第四周：条件概率与独立性}
+
+\subsection{教材第25页第3题}
+\label{ex:w04-t25-3}
+考试中的一道多选题共有5个选项，某同学知道正确答案的概率为$p$，他在不知道答案时猜中答案的概率为$1/5$。
+\begin{enumerate}
+\item 求该同学做对一道多选题的概率；
+\item 设对某道题该同学选对了答案，求他确实知道正确答案的概率。
+\end{enumerate}
+\textbf{作业订正：}本题为单选题，题面中的“多选题”按“单选题”理解。
+\basis{原笔记第1章第3节“全概率公式”“贝叶斯公式”；见\hyperref[k:conditional]{条件概率与贝叶斯公式}。}
+\paragraph{思路}按是否知道正确答案分类；已答对后的概率再用贝叶斯公式。
+\begin{proof}[解答]
+记$K$为“知道正确答案”，$D$为“答对”。知道答案时必能答对，所以
+\[
+\P(K)=p,\qquad \P(D\mid K)=1,\qquad \P(D\mid K^c)=\frac15.
+\]
+\begin{enumerate}
+\item 由全概率公式，
+\[
+\P(D)=\P(K)\P(D\mid K)+\P(K^c)\P(D\mid K^c)
+=p+\frac{1-p}{5}=\frac{1+4p}{5}.
+\]
+\item 因$\P(D)>0$，由贝叶斯公式，
+\[
+\P(K\mid D)=\frac{\P(K)\P(D\mid K)}{\P(D)}=\frac{5p}{1+4p}.
+\]
+\end{enumerate}
+当$p=0$或$p=1$时，直接判断也得到上述结果，不需要对零概率的$K$或$K^c$作条件化。
+\end{proof}
+\paragraph{答案}$\P(D)=(1+4p)/5$；$\P(K\mid D)=5p/(1+4p)$。
+
+\subsection{教材第25页第5题}
+\label{ex:w04-t25-5}
+在信号传递中发送信号“0”或“1”占比分别为$1/3$和$2/3$。由于外界干扰等原因，接收到的信号可能出现错误。已知出错的概率为$0.05$。设接收到的信号为“1”，求发送的信号确实为“1”的概率。
+\basis{原笔记第1章第3节“贝叶斯公式”；见\hyperref[k:conditional]{条件概率与贝叶斯公式}。}
+\paragraph{思路}区分发送信号与接收信号，写出接收到“1”的两条途径。
+\begin{proof}[解答]
+记$S_i$为“发送信号$i$”，$R_i$为“接收到信号$i$”。按照本题通常采用的模型，“出错的概率为$0.05$”解释为发送0、1时各自的条件误码率均为$0.05$，即
+\[
+\P(R_1\mid S_0)=0.05,\qquad \P(R_0\mid S_1)=0.05.
+\]
+于是
+\begin{align*}
+\P(R_1)&=\frac13\cdot0.05+\frac23\cdot0.95=\frac{39}{60},\\
+\P(S_1\mid R_1)&=\frac{\P(S_1)\P(R_1\mid S_1)}{\P(R_1)}
+=\frac{(2/3)\cdot0.95}{(1/3)\cdot0.05+(2/3)\cdot0.95}=\frac{38}{39}.
+\end{align*}
+若题意仅给出总误码率$\P(R_1S_0\cup R_0S_1)=0.05$，而不对两种信号的条件误码率作规定，则答案不能唯一确定。事实上，设$e_0=\P(R_1\mid S_0)$、$e_1=\P(R_0\mid S_1)$，题设只给出$e_0+2e_1=0.15$，而待求概率为
+\[
+\frac{2(1-e_1)}{e_0+2(1-e_1)},
+\]
+其值随$e_0,e_1$改变。
+\end{proof}
+\paragraph{答案}两种信号的条件误码率均为$0.05$时，答案为$38/39$；只给总误码率则条件不足。
+
+\subsection{教材第25页第6题}
+\label{ex:w04-t25-6}
+盒子里有标号为$0,1,\ldots,k$的$k+1$枚不均匀的硬币。已知投掷第$i$号硬币正面朝上的概率为$i/k$。从盒中随机取一枚硬币重复投掷。设前$n$次投掷的结果都是正面朝上，求第$n+1$次也是正面朝上的概率。
+\textbf{作业说明：}取定一枚硬币后，重复独立地投掷这一枚硬币，不换硬币。
+\basis{原笔记第1章第3节“全概率公式”“贝叶斯公式”和第4节“独立试验”。}
+\paragraph{思路}投掷在给定硬币后独立，但在未给定硬币时不能直接认为独立。先分别求前$n$次、前$n+1$次全为正面的概率。
+\begin{proof}[解答]
+设$K_i$为“取到第$i$号硬币”，$H_n$为“前$n$次均为正面”，其中$k\geq1$、$n\geq1$。由取币等可能以及给定硬币后的独立性，
+\[
+\P(K_i)=\frac1{k+1},\qquad \P(H_n\mid K_i)=\left(\frac ik\right)^n.
+\]
+用全概率公式得到
+\[
+\P(H_n)=\frac1{k+1}\sum_{i=0}^k\left(\frac ik\right)^n>0.
+\]
+记第$n+1$次为正面的事件为$H$。由于$H\cap H_n=H_{n+1}$，
+\begin{align*}
+\P(H\mid H_n)
+&=\frac{\P(H_{n+1})}{\P(H_n)}\\
+&=\frac{\sum_{i=0}^k(i/k)^{n+1}}{\sum_{i=0}^k(i/k)^n}
+=\frac{\sum_{i=1}^ki^{n+1}}{k\sum_{i=1}^ki^n}.
+\end{align*}
+\end{proof}
+\paragraph{答案}$\displaystyle\frac{\sum_{i=1}^ki^{n+1}}{k\sum_{i=1}^ki^n}$。
+
+\subsection{教材第32页第1题}
+\label{ex:w04-t32-1}
+证明：
+\begin{enumerate}
+\item 若事件$A$与自身独立，则$\P(A)=0$或$1$；
+\item 若$\P(A)=0$或$1$，则$A$与任意事件独立。
+\end{enumerate}
+\basis{原笔记第1章第4节“两个事件的独立性”；见\hyperref[k:independence]{事件独立性}。}
+\paragraph{思路}将独立性的定义写成概率等式，并分别处理概率为0与1的情形。
+\begin{proof}
+\begin{enumerate}
+\item 因$A\cap A=A$，独立性给出
+\[
+\P(A)=\P(A)^2,\qquad \P(A)(1-\P(A))=0.
+\]
+故$\P(A)=0$或$1$。
+\item 任取事件$B$。若$\P(A)=0$，由$A\cap B\subseteq A$可得
+\[
+0\leq\P(A\cap B)\leq\P(A)=0,
+\]
+所以$\P(A\cap B)=0=\P(A)\P(B)$。
+
+若$\P(A)=1$，则$\P(A^c)=0$，从而$\P(A^c\cap B)=0$。将$B$分解成两个互斥事件，得到
+\[
+\P(B)=\P(A\cap B)+\P(A^c\cap B)=\P(A\cap B).
+\]
+故仍有$\P(A\cap B)=\P(A)\P(B)$。两种情形均满足独立性的定义。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}两个结论均成立；事件与自身独立当且仅当其概率为0或1。
+
+\subsection{教材第32页第2题}
+\label{ex:w04-t32-2}
+对于某个家庭考察两个事件$A=\{\text{至多有一个女孩}\}$和$B=\{\text{男女孩都有}\}$。设男女孩的出生率都是$1/2$。证明：对3孩之家，事件$A$和$B$独立；而对4孩之家，事件$A$和$B$不独立。
+\basis{原笔记第1章第1节“古典概率模型”和第4节“两个事件的独立性”。}
+\paragraph{思路}按女孩人数计数，比较$\P(AB)$和$\P(A)\P(B)$。采用题目通常隐含的模型：不同孩子的性别独立。
+\begin{proof}
+按出生次序记录性别。$n$个孩子共有$2^n$个等可能结果。$A\cap B$等价于“恰有一个女孩”。
+
+对3孩之家，
+\[
+\P(A)=\frac{\binom30+\binom31}{2^3}=\frac12,
+\qquad \P(B)=1-\frac2{2^3}=\frac34,
+\qquad \P(AB)=\frac{\binom31}{2^3}=\frac38.
+\]
+因此$\P(AB)=\P(A)\P(B)$，二者独立。
+
+对4孩之家，
+\[
+\P(A)=\frac{\binom40+\binom41}{2^4}=\frac5{16},
+\qquad \P(B)=1-\frac2{2^4}=\frac78,
+\qquad \P(AB)=\frac{\binom41}{2^4}=\frac14.
+\]
+而$\P(A)\P(B)=35/128\ne1/4$，故二者不独立。
+\end{proof}
+\paragraph{答案}3孩时独立；4孩时不独立。
+
+\subsection{教材第33页第6题}
+\label{ex:w04-t33-6}
+重复投掷硬币，设第一次出现正面的概率为$c$（$0\leq c\leq1$），之后每次与上次出现相同面的概率为$p$（$0<p<1$）。求第$n$次出现正面的概率$p_n$，并讨论当$n\to\infty$时$p_n$的极限。
+
+\textbf{提示：}根据全概率公式有$p_n=(1-p)+(2p-1)p_{n-1}$，于是有
+\[
+\begin{aligned}
+p_n&=(1-p)[1+(2p-1)+\cdots+(2p-1)^{n-2}]+c(2p-1)^{n-1}\\
+&=\frac12-\frac12(2p-1)^{n-1}+c(2p-1)^{n-1}.
+\end{aligned}
+\]
+\basis{原笔记第1章第3节“全概率公式”及第5节“不独立子试验与转移概率”。}
+\paragraph{思路}沿教材提示，先按上一次的结果分类，再将递推式的常数平衡值$1/2$减去。
+\begin{proof}[解答]
+设$H_n$为“第$n$次出现正面”。题设转移概率给出
+\[
+\P(H_n\mid H_{n-1})=p,\qquad
+\P(H_n\mid H_{n-1}^c)=1-p.
+\]
+因而$n\geq2$时，
+\begin{align*}
+p_n&=pp_{n-1}+(1-p)(1-p_{n-1})\\
+&=(1-p)+(2p-1)p_{n-1},\\
+p_n-\frac12&=(2p-1)\left(p_{n-1}-\frac12\right).
+\end{align*}
+结合$p_1=c$，反复使用最后一个等式，得到
+\[
+p_n=\frac12+\left(c-\frac12\right)(2p-1)^{n-1}.
+\]
+对$n=1$此式直接取值为$c$；$p=1/2$时从$n=2$开始$p_n=1/2$。由于$|2p-1|<1$，无论初始概率$c$如何，都有$p_n\to1/2$。
+\end{proof}
+\paragraph{答案}$p_n=\frac12+(c-\frac12)(2p-1)^{n-1}$，极限为$1/2$。
+
+\subsection{作业第2题：讲义例1.101第(3)问}
+\label{ex:w04-h2}
+9月21日讲义例1.101第(3)题，可直接用第(1)(2)小题结论。
+
+本次提供材料中未找到可核对的题面，按要求略去。
+
+\subsection{作业第3题：两个并事件的独立性}
+\label{ex:w04-h3}
+设事件$A_1,A_2,A_3,A_4$相互独立。求证：$A_1\cup A_2$和$A_3\cup A_4$相互独立。
+\basis{原笔记第1章第4节“相互独立”与命题“独立性对补事件保持”；见\hyperref[k:independence]{事件独立性}。}
+\paragraph{思路}将并事件取补；先利用容斥公式说明相互独立的事件可同时换成补事件。
+\begin{proof}
+记$p_i=\P(A_i)$。对任意有限指标集$J\subseteq\{1,2,3,4\}$，容斥公式与相互独立性给出
+\begin{align*}
+\P\left(\bigcap_{j\in J}A_j^c\right)
+&=1-\P\left(\bigcup_{j\in J}A_j\right)\\
+&=\sum_{S\subseteq J}(-1)^{|S|}\prod_{j\in S}p_j
+=\prod_{j\in J}(1-p_j).
+\end{align*}
+这里空集对应的乘积为1。因此，令$C=A_1\cup A_2$、$D=A_3\cup A_4$，就有
+\begin{align*}
+\P(C^c\cap D^c)&=\prod_{i=1}^4(1-p_i),\\
+\P(C^c)\P(D^c)&=[(1-p_1)(1-p_2)][(1-p_3)(1-p_4)]
+=\prod_{i=1}^4(1-p_i).
+\end{align*}
+故$C^c,D^c$独立。引用独立性对补事件保持的结论，即得$C,D$独立。
+\end{proof}
+\paragraph{答案}$A_1\cup A_2$与$A_3\cup A_4$相互独立。
+
+\subsection{作业第4题：失败无穷多次}
+\label{ex:w04-h4}
+做独立重复试验，每次试验成功的概率为$p$，$0<p<1$。设$A$表示试验失败无穷多次，求$\P(A)$。
+\basis{原笔记第1章第2节概率的连续性、第4节“伯努利试验中的常用计算”；见\hyperref[k:events]{事件与概率}、\hyperref[k:independence]{独立试验}。}
+\paragraph{思路}补事件“只失败有限次”表示从某一次开始一直成功；先证明每个这样的尾事件概率为0。
+\begin{proof}[解答]
+设$S_j$为“第$j$次成功”，并对$m\geq1$定义
+\[
+E_m=\bigcap_{j=m}^\infty S_j.
+\]
+事件$E_m$表示“从第$m$次开始全都成功”。当$N\to\infty$时，$\bigcap_{j=m}^{m+N-1}S_j\downarrow E_m$。由独立性和概率的上连续性，
+\[
+\P(E_m)=\lim_{N\to\infty}\P\left(\bigcap_{j=m}^{m+N-1}S_j\right)
+=\lim_{N\to\infty}p^N=0.
+\]
+失败只有有限次，当且仅当存在某个$m$使第$m$次起不再失败，因此
+\[
+A^c=\bigcup_{m=1}^\infty E_m.
+\]
+由可列次可加性（布尔不等式），$\P(A^c)\leq\sum_{m=1}^\infty\P(E_m)=0$，故$\P(A)=1$。
+\end{proof}
+\paragraph{答案}$\P(A)=1$。

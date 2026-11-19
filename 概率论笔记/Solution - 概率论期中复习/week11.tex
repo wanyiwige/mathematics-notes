@@ -1,0 +1,312 @@
+% !TEX root = 概率论期中复习.tex
+\section{第十一周：独立性、卷积与条件分布}
+
+\subsection{教材第80页第1题}\label{ex:w11-b80-1}
+设矩形 $(0,\pi/2)^2$ 上的随机向量 $(\xi,\eta)$ 有联合分布密度
+\[
+p(x,y)=\frac12\sin(x+y).
+\]
+对于 $0<y<\pi/2$ 求给定 $\eta=y$ 时 $\xi$ 的条件密度函数。
+\basis{原笔记第3章第3节“由联合密度求条件密度”。}
+\paragraph{思路}先对 $x$ 积分求条件变量的边缘密度，再取比值。
+\begin{proof}[解答]
+对 $0<y<\pi/2$，
+\begin{align*}
+f_\eta(y)&=\int_0^{\pi/2}\frac12\sin(x+y)dx\\
+&=\frac12\bigl(\cos y-\cos(\pi/2+y)\bigr)
+=\frac12(\cos y+\sin y)>0.
+\end{align*}
+所以相应条件密度可取为
+\[
+f_{\xi\mid\eta}(x\mid y)=
+\begin{cases}\dfrac{\sin(x+y)}{\sin y+\cos y},&0<x<\pi/2,\\0,&\text{其他}.\end{cases}
+\]
+分子在此区间非负，其对 $x$ 的积分正好等于分母，所以该条件密度已归一化。
+\end{proof}
+\paragraph{答案}$f_{\xi\mid\eta}(x\mid y)=\sin(x+y)/(\sin y+\cos y)$，$0<x<\pi/2$；区间外为 $0$。
+
+\subsection{教材第80页第2题}\label{ex:w11-b80-2}
+设 $\eta$ 服从几何分布 $G(\lambda)$。令 $\xi$ 是成功概率为 $p$（$0<p<1$）的 $\eta$ 重伯努利试验的成功次数。求离散型随机向量 $(\xi,\eta)$ 的联合分布列。
+
+作业对题意的说明：当 $\eta=n$ 时，$\xi$ 的条件分布为 $B(n,p)$。几何分布采用取值 $1,2,\ldots$ 的约定，$0<\lambda<1$。
+\basis{原笔记第2章几何分布、二项分布，第3章第3节条件分布列的乘法公式。}
+\paragraph{思路}把条件二项分布与几何分布相乘。
+\begin{proof}[解答]
+对整数 $n\geq1$ 和 $k=0,\ldots,n$，
+\[
+P(\eta=n)=\lambda(1-\lambda)^{n-1},\qquad
+P(\xi=k\mid\eta=n)=\binom nkp^k(1-p)^{n-k}.
+\]
+由乘法公式，
+\[
+P(\xi=k,\eta=n)=\binom nkp^k(1-p)^{n-k}\lambda(1-\lambda)^{n-1}.
+\]
+其他取值对的联合概率为 $0$。对固定 $n$ 先对 $k$ 求和得到 $P(\eta=n)$，再对 $n$ 求和得到 $1$，故该联合分布归一化。
+\end{proof}
+\paragraph{答案}联合分布列如上，支持为 $n\geq1,0\leq k\leq n$ 的整数对。
+
+\subsection{教材第81页第3题}\label{ex:w11-b81-3}
+设 $\eta$ 服从指数分布 $\operatorname{Exp}(\lambda)$，而在给定 $\eta$ 的条件下 $\xi$ 服从正态分布 $N(0,\eta^2)$。求绝对连续型随机向量 $(\xi,\eta)$ 的联合分布密度。
+\basis{原笔记第3章第3节“由联合密度求条件密度”，第2章指数分布、正态分布密度。}
+\paragraph{思路}联合密度等于条件密度乘以条件变量的边缘密度。
+\begin{proof}[解答]
+对 $y>0$，给定 $\eta=y$ 时，$\xi$ 的标准差为 $y$，因此
+\[
+f_{\xi\mid\eta}(x\mid y)=\frac1{\sqrt{2\pi}y}
+\exp\left(-\frac{x^2}{2y^2}\right),\qquad x\in\R.
+\]
+乘以 $f_\eta(y)=\lambda e^{-\lambda y}$，可得
+\[
+f_{\xi,\eta}(x,y)=
+\begin{cases}
+\dfrac{\lambda}{\sqrt{2\pi}y}
+\exp\left(-\lambda y-\dfrac{x^2}{2y^2}\right),&x\in\R,\ y>0,\\
+0,&y\leq0.
+\end{cases}
+\]
+对 $x$ 积分先得到 $f_\eta(y)$，再对 $y$ 积分得到 $1$，所以表达式确为联合密度。
+\end{proof}
+\paragraph{答案}联合密度如上。
+
+\subsection{教材第81页第5题}\label{ex:w11-b81-5}
+设随机向量 $(\xi,\eta)$ 的联合分布密度为
+\[
+p(x,y)=8xyI_{\{0<x<y<1\}}.
+\]
+求 $\xi$ 和 $\eta$ 的边缘分布密度，并说明 $\xi$ 和 $\eta$ 是否相互独立。
+\basis{原笔记第3章第1节边缘密度公式，第2节例“乘积区域与三角形区域中的独立性”。}
+\paragraph{思路}先求两个边缘密度，再利用 $\xi<\eta$ 必然成立这一限制排除独立。
+\begin{proof}[解答]
+对 $0<x<1$ 与 $0<y<1$，分别有
+\begin{align*}
+f_\xi(x)&=\int_x^18xy\,dy=4x(1-x^2),\\
+f_\eta(y)&=\int_0^y8xy\,dx=4y^3.
+\end{align*}
+区间外密度为 $0$。
+
+事件 $A=\{\xi>3/4\}$ 与 $B=\{\eta<1/4\}$ 的概率都严格大于 $0$：它们分别是上述正密度在非空区间上的积分。但 $AB$ 要求同时有 $\xi>\eta$，与联合密度的支持 $\xi<\eta$ 矛盾，故 $P(AB)=0$。于是 $P(AB)\ne P(A)P(B)$，二者不独立。
+\end{proof}
+\paragraph{答案}$f_\xi(x)=4x(1-x^2)I_{\{0<x<1\}}$，$f_\eta(y)=4y^3I_{\{0<y<1\}}$；不独立。
+
+\subsection{作业第2题：中间次序与两个变量之和}\label{ex:w11-h2}
+设 $X_1,X_2,X_3$ 独立同分布，共同密度函数为 $f(x)=2x$，$0<x<1$，其他处为 $0$。
+（1）求 $X_2$ 的取值在 $X_1$ 和 $X_3$ 之间的概率；（2）求 $X_1+X_2$ 的密度函数。
+\basis{原笔记第3章第2节“独立随机变量求和的卷积公式”，第4节“连续独立样本无相同取值”。}
+\paragraph{思路}第一问用独立同分布的排列对称性；第二问按两个自变量均落在 $(0,1)$ 来确定卷积上下限。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 连续独立样本相同取值的概率为 $0$，所以三个值以概率 $1$ 恰有一个中间值。三个变量独立同分布，交换下标不改变联合分布，因而 $X_1,X_2,X_3$ 为中间值的概率相同。这三个互斥事件的概率和为 $1$，故所求概率为 $1/3$。
+\item 令 $S=X_1+X_2$。卷积中须同时有 $0<x<1$ 与 $0<s-x<1$，即
+\[
+\max(0,s-1)<x<\min(1,s).
+\]
+当 $0<s\leq1$ 时，
+\[
+f_S(s)=\int_0^s4x(s-x)dx
+=4\left[\frac{s x^2}{2}-\frac{x^3}{3}\right]_0^s
+=\frac23s^3.
+\]
+当 $1<s<2$ 时，
+\begin{align*}
+f_S(s)&=\int_{s-1}^14x(s-x)dx\\
+&=4\left[\frac{s x^2}{2}-\frac{x^3}{3}\right]_{s-1}^1
+=-\frac23s^3+4s-\frac83.
+\end{align*}
+当 $s\notin(0,2)$ 时，积分区域为空，密度取 $0$。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}（1）$1/3$；（2）
+\[
+f_S(s)=\begin{cases}\frac23s^3,&0<s\leq1,\\-\frac23s^3+4s-\frac83,&1<s<2,\\0,&\text{其他}.\end{cases}
+\]
+
+\subsection{作业第3题：首次非零结果与等待次数}\label{ex:w11-h3}
+考虑独立重复试验，每次可能结果为 $0,1,\ldots,k$，第 $i$ 个结果出现的概率为 $p_i$，其中 $0<p_i<1$，$\sum_{i=0}^kp_i=1$。
+令 $N$ 为首次出现非 $0$ 结果时所需的试验次数，$X$ 为这次出现的具体结果，$X\in\{1,\ldots,k\}$。
+（1）求 $N$ 的分布列；（2）求 $X$ 的分布列；（3）证明 $X$ 与 $N$ 独立。
+\basis{原笔记第1章独立重复试验，第3章第1节边缘分布列，第2节独立性判据。}
+\paragraph{思路}事件 $\{N=n,X=j\}$ 表示前 $n-1$ 次均为 $0$，第 $n$ 次为 $j$。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 对 $n\geq1$，由各次试验独立，
+\[
+P(N=n)=p_0^{n-1}(1-p_0).
+\]
+一直为 $0$ 的概率是 $\lim_{n\to\infty}p_0^n=0$，故 $N$ 以概率 $1$ 为有限正整数；$N\sim G(1-p_0)$。
+\item 对 $n\geq1$、$j=1,\ldots,k$，
+\[
+P(N=n,X=j)=p_0^{n-1}p_j.
+\]
+事件 $\{N=n,X=j\}$ 对不同 $n$ 互斥，故
+\[
+P(X=j)=\sum_{n=1}^\infty p_0^{n-1}p_j=\frac{p_j}{1-p_0}.
+\]
+\item 对所有上述 $n,j$，
+\[
+P(N=n)P(X=j)=p_0^{n-1}(1-p_0)\frac{p_j}{1-p_0}
+=P(N=n,X=j).
+\]
+联合概率处处分解为边缘概率乘积，故 $N,X$ 独立。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}$N\sim G(1-p_0)$，$P(X=j)=p_j/(1-p_0)$，且 $N,X$ 独立。
+
+\subsection{作业第4题：保龄球得分}\label{ex:w11-h4}
+甲的保龄球得分近似服从 $N(170,20^2)$，乙的得分近似服从 $N(160,15^2)$。甲、乙每人玩一局，得分相互独立。求以下事件的近似概率，保留4位小数：（1）甲得分高一些；（2）两人总得分超过 $350$。提示：正态分布的线性性。
+\basis{原笔记第3章第2节独立正态随机变量的线性组合，第2章标准正态分布函数 $\Phi$。}
+\paragraph{思路}分别把两人得分之差、之和化成一个正态变量，再标准化。
+\begin{proof}[解答]
+记甲、乙得分为 $A,B$。由独立正态变量线性组合的结论，
+\[
+A-B\sim N(10,20^2+15^2)=N(10,25^2),\qquad
+A+B\sim N(330,25^2).
+\]
+于是
+\begin{align*}
+P(A>B)&=P\left(\frac{A-B-10}{25}>-0.4\right)
+=\Phi(0.4)\approx0.6554,\\
+P(A+B>350)&=P\left(\frac{A+B-330}{25}>0.8\right)
+=1-\Phi(0.8)\approx0.2119.
+\end{align*}
+\end{proof}
+\paragraph{答案}（1）$0.6554$；（2）$0.2119$。
+
+\subsection{作业第5题：正态分布的等尾概率}\label{ex:w11-h5}
+设 $X,Y$ 独立同分布于 $N(10,4)$。求数 $x$，使得 $P(X+Y>x)=P(X>15)$。
+\basis{原笔记第3章第2节独立正态变量的线性组合，第2章正态分布的标准化。}
+\paragraph{思路}两个标准正态尾概率相等时，相应标准化端点相等。
+\begin{proof}[解答]
+独立性给出 $X+Y\sim N(20,8)$，故所给等式等价于
+\[
+1-\Phi\left(\frac{x-20}{2\sqrt2}\right)
+=1-\Phi\left(\frac{15-10}{2}\right).
+\]
+标准正态密度处处严格为正，$\Phi$ 严格递增，所以
+\[
+\frac{x-20}{2\sqrt2}=\frac52,
+\qquad x=20+5\sqrt2.
+\]
+\end{proof}
+\paragraph{答案}$x=20+5\sqrt2$。
+
+\subsection{作业第6题：逐次选数的条件分布}\label{ex:w11-h6}
+从数集 $\{1,2,3,4,5\}$ 中随机选一个数 $X$，再从比 $X$ 小的数集（即集合 $\{1,2,\ldots,X\}$）中随机取第二个数，记为 $Y$。
+（a）求 $X,Y$ 的联合分布列；（b）在 $Y=i$ 的条件下求 $X$ 的条件分布列，$i=1,\ldots,5$；（c）$X,Y$ 是否独立？为什么？
+
+题目文字“比 $X$ 小”与括号中的集合不一致。以下按题目明确给出的集合 $\{1,2,\ldots,X\}$，即允许 $Y=X$ 解答；否则 $X=1$ 时第二次选取无法进行。
+\basis{原笔记第3章第1节边缘分布列，第3节“离散型条件分布列与条件分布函数”。}
+\paragraph{思路}先写 $X$ 的均匀分布，再写给定 $X$ 后 $Y$ 的均匀分布，最后由联合分布反求条件分布。
+\begin{proof}[解答]
+\begin{enumerate}[label=(\alph*)]
+\item 对整数 $1\leq j\leq k\leq5$，
+\[
+P(X=k,Y=j)=P(X=k)P(Y=j\mid X=k)=\frac1{5k}.
+\]
+其他取值对概率为 $0$，所以联合分布表为
+\[
+\begin{array}{c|ccccc}
+X\backslash Y&1&2&3&4&5\\\hline
+1&1/5&0&0&0&0\\
+2&1/10&1/10&0&0&0\\
+3&1/15&1/15&1/15&0&0\\
+4&1/20&1/20&1/20&1/20&0\\
+5&1/25&1/25&1/25&1/25&1/25
+\end{array}
+\]
+\item 对 $i=1,\ldots,5$，
+\[
+P(Y=i)=\frac15\sum_{r=i}^5\frac1r>0.
+\]
+因此
+\[
+P(X=k\mid Y=i)=
+\begin{cases}
+\dfrac{1/k}{\sum_{r=i}^5 1/r},& k=i,i+1,\ldots,5,\\
+0,&\text{其他}.
+\end{cases}
+\]
+若将各个条件分布按 $k=1,\ldots,5$ 排列，可写成
+\[
+\begin{array}{c|ccccc}
+i&k=1&k=2&k=3&k=4&k=5\\\hline
+1&60/137&30/137&20/137&15/137&12/137\\
+2&0&30/77&20/77&15/77&12/77\\
+3&0&0&20/47&15/47&12/47\\
+4&0&0&0&5/9&4/9\\
+5&0&0&0&0&1
+\end{array}
+\]
+\item $P(X=1)=1/5$、$P(Y=5)=1/25$，但 $P(X=1,Y=5)=0$。联合概率不等于边缘概率的乘积，故不独立。
+\end{enumerate}
+\end{proof}
+\paragraph{答案}联合分布为 $1/(5k)$（$1\leq j\leq k\leq5$）；条件分布如表；$X,Y$ 不独立。
+
+\subsection{作业第7题：三角形区域上的条件密度}\label{ex:w11-h7}
+设 $(X,Y)$ 的联合密度为 $f(x,y)=3y$，$0<x<y<1$，区域外为 $0$。
+（1）已知 $X=x$（$0<x<1$）时，求 $f_{Y\mid X}(y\mid x)$；（2）求 $P(\frac13<Y<\frac34\mid X=\frac12)$。
+\basis{原笔记第3章第3节“由联合密度求条件密度”。}
+\paragraph{思路}条件值确定后，仍须把积分区间与支持条件 $y>x$ 取交。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 对 $0<x<1$，
+\[
+f_X(x)=\int_x^1 3y\,dy=\frac32(1-x^2)>0.
+\]
+所以
+\[
+f_{Y\mid X}(y\mid x)=\begin{cases}\dfrac{2y}{1-x^2},&x<y<1,\\0,&\text{其他}.\end{cases}
+\]
+\item 条件 $X=1/2$ 下 $Y>1/2$，故
+\begin{align*}
+P\left(\frac13<Y<\frac34\,\middle|\,X=\frac12\right)
+&=\int_{1/2}^{3/4}\frac{2y}{1-1/4}\,dy\\
+&=\frac43\left[ y^2\right]_{1/2}^{3/4}
+=\frac43\left(\frac9{16}-\frac14\right)=\frac5{12}.
+\end{align*}
+\end{enumerate}
+\end{proof}
+\paragraph{答案}条件密度如上；条件概率为 $5/12$。
+
+\subsection{作业第8题：对称三角形区域上的条件密度}\label{ex:w11-h8}
+设二维连续型随机变量 $(X,Y)$ 的联合密度为
+\[
+f(x,y)=\frac32x,\qquad |y|<x,\quad0<x<1,
+\]
+区域外为 $0$。（1）求 $f_{X\mid Y}(x\mid y)$ 和 $f_{Y\mid X}(y\mid x)$；（2）求
+\[
+P\left(\frac13<Y<\frac34\,\middle|\,X=\frac12\right),\qquad
+P\left(X>\frac23\,\middle|\,Y=-\frac12\right).
+\]
+\basis{原笔记第3章第1节边缘密度公式，第3节“由联合密度求条件密度”。}
+\paragraph{思路}固定 $x$ 时 $y\in(-x,x)$；固定 $y$ 时 $x\in(|y|,1)$。
+\begin{proof}[解答]
+\begin{enumerate}
+\item 两个边缘密度分别为
+\[
+f_X(x)=\int_{-x}^x\frac32x\,dy=3x^2,\quad0<x<1,
+\]
+\[
+f_Y(y)=\int_{|y|}^1\frac32x\,dx=\frac34(1-y^2),\quad |y|<1,
+\]
+区间外为 $0$。因此，对 $|y|<1$，
+\[
+f_{X\mid Y}(x\mid y)=\begin{cases}\dfrac{2x}{1-y^2},&|y|<x<1,\\0,&\text{其他},\end{cases}
+\]
+而对 $0<x<1$，
+\[
+f_{Y\mid X}(y\mid x)=\begin{cases}\dfrac1{2x},&-x<y<x,\\0,&\text{其他}.\end{cases}
+\]
+\item 当 $X=1/2$ 时，条件支持为 $(-1/2,1/2)$，故
+\[
+P\left(\frac13<Y<\frac34\,\middle|\,X=\frac12\right)
+=\int_{1/3}^{1/2}1\,dy=\frac16.
+\]
+当 $Y=-1/2$ 时，$x>1/2$，于是
+\[
+P\left(X>\frac23\,\middle|\,Y=-\frac12\right)
+=\int_{2/3}^1\frac{2x}{1-1/4}dx
+=\frac43\left(1-\frac49\right)=\frac{20}{27}.
+\]
+\end{enumerate}
+\end{proof}
+\paragraph{答案}条件密度如上；两个条件概率为 $1/6$、$20/27$。
