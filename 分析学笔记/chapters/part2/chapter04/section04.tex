@@ -1,0 +1,220 @@
+% !TEX root = ../../../../main.tex
+% 第二部分第四章第四节：微分形式的外微分
+\section{微分形式的外微分}
+
+\subsection*{外微分}
+设 $U\subset\mathbb R^n$ 为区域，$f$ 为 $U$ 上具有连续偏导数的函数，则其全微分为
+\[
+\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i.
+\]
+这可以理解为对一个 $0$-形式进行微分，得到一个 $1$-形式。
+
+\begin{definition}
+设 $\omega$ 为 $U$ 上的 $k$-形式，标准形式为
+\[
+\omega=\sum_{1\le i_1<\cdots<i_k\le n}
+ g_{i_1\cdots i_k}(x)\,\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k},
+\]
+且各系数函数具有连续偏导数。定义 $\omega$ 的\textbf{外微分}为
+\begin{align*}
+\dd\omega
+&=\sum_{1\le i_1<\cdots<i_k\le n}
+ (\dd g_{i_1\cdots i_k})\wedge\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}\\
+&=\sum_{1\le i_1<\cdots<i_k\le n}\sum_{j=1}^n
+ \frac{\partial g_{i_1\cdots i_k}}{\partial x_j}\,
+ \dd x_j\wedge\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}.
+\end{align*}
+它是一个 $(k+1)$-形式。对 $0$-形式，外微分就是函数的全微分；当 $k=n$ 时，每项都有重复的微分符号，因而 $\dd\omega=0$。
+
+对不同次数的形式之和 $\omega=\omega_0+\cdots+\omega_n$，其中 $\omega_i$ 为 $i$-形式，定义
+\[
+\dd\omega=\dd\omega_0+\cdots+\dd\omega_n.
+\]
+\end{definition}
+% 外微分降低系数的可微阶数，不能无条件把 C^1 系数空间映入自身。
+外微分的系数是原系数的一阶偏导数，因此原系数为 $C^1$ 时，所得系数一般仅连续。以下涉及一次外微分时假设系数为 $C^1$；涉及连续两次外微分时假设系数为 $C^2$，从而两次运算都有意义。
+
+\begin{proposition}
+外微分关于实常数是线性的：若 $a,b\in\mathbb R$，则
+\[
+\dd(a\omega+b\eta)=a\,\dd\omega+b\,\dd\eta.
+\]
+而且对任意常系数基形式，有
+\[
+\dd(\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k})=0.
+\]
+\end{proposition}
+\begin{proof}
+将 $a\omega+b\eta$ 按同一组基展开，其系数是一一对应的系数函数的线性组合。由函数微分的线性性，逐项微分即得第一个等式。
+
+基形式的系数为常数 $1$，由定义，
+\[
+\dd(\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k})
+=(\dd1)\wedge\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}=0.
+\]
+\end{proof}
+
+\begin{example}
+设 $\omega=P(x,y)\,\dd x+Q(x,y)\,\dd y$ 为平面上的 $1$-形式，则
+\begin{align*}
+\dd\omega
+&=(\dd P)\wedge\dd x+(\dd Q)\wedge\dd y\\
+&=(P_x\,\dd x+P_y\,\dd y)\wedge\dd x
+ +(Q_x\,\dd x+Q_y\,\dd y)\wedge\dd y\\
+&=P_y\,\dd y\wedge\dd x+Q_x\,\dd x\wedge\dd y\\
+&=(Q_x-P_y)\,\dd x\wedge\dd y.
+\end{align*}
+\end{example}
+
+\begin{example}
+设 $\omega=P(x,y,z)\,\dd x+Q(x,y,z)\,\dd y+R(x,y,z)\,\dd z$ 为空间中的 $1$-形式，则
+\begin{align*}
+\dd\omega
+&=(\dd P)\wedge\dd x+(\dd Q)\wedge\dd y+(\dd R)\wedge\dd z\\
+&=(P_x\,\dd x+P_y\,\dd y+P_z\,\dd z)\wedge\dd x\\
+&\quad+(Q_x\,\dd x+Q_y\,\dd y+Q_z\,\dd z)\wedge\dd y\\
+&\quad+(R_x\,\dd x+R_y\,\dd y+R_z\,\dd z)\wedge\dd z\\
+&=(R_y-Q_z)\,\dd y\wedge\dd z
+ +(P_z-R_x)\,\dd z\wedge\dd x\\
+&\quad+(Q_x-P_y)\,\dd x\wedge\dd y.
+\end{align*}
+\end{example}
+
+\begin{example}
+设
+\[
+\omega=P(x,y,z)\,\dd y\wedge\dd z
++Q(x,y,z)\,\dd z\wedge\dd x
++R(x,y,z)\,\dd x\wedge\dd y
+\]
+为空间中的 $2$-形式，则
+\begin{align*}
+\dd\omega
+&=(\dd P)\wedge\dd y\wedge\dd z
+ +(\dd Q)\wedge\dd z\wedge\dd x
+ +(\dd R)\wedge\dd x\wedge\dd y\\
+&=P_x\,\dd x\wedge\dd y\wedge\dd z
+ +Q_y\,\dd y\wedge\dd z\wedge\dd x
+ +R_z\,\dd z\wedge\dd x\wedge\dd y\\
+&=(P_x+Q_y+R_z)\,\dd x\wedge\dd y\wedge\dd z.
+\end{align*}
+这里每个含有重复微分符号的项均为零；将后两项的符号次序改为 $\dd x\wedge\dd y\wedge\dd z$，各需交换两次，所以符号均为正。
+\end{example}
+
+\begin{proposition}
+若 $\omega$ 为 $k$-形式，$\eta$ 为 $l$-形式，且系数具有连续偏导数，则
+\[
+\dd(\omega\wedge\eta)
+=\dd\omega\wedge\eta+(-1)^k\omega\wedge\dd\eta.
+\]
+\end{proposition}
+\begin{proof}
+由外微分的线性性和外积的双线性性，只需证明
+\[
+\omega=a(x)\,\dd x_I,\qquad \eta=b(x)\,\dd x_J,
+\]
+其中 $\dd x_I=\dd x_{i_1}\wedge\cdots\wedge\dd x_{i_k}$，$\dd x_J=\dd x_{j_1}\wedge\cdots\wedge\dd x_{j_l}$ 的情形。
+
+由函数微分的乘积法则，
+\begin{align*}
+\dd(\omega\wedge\eta)
+&=\dd(ab)\wedge\dd x_I\wedge\dd x_J\\
+&=b\,\dd a\wedge\dd x_I\wedge\dd x_J
+ +a\,\dd b\wedge\dd x_I\wedge\dd x_J.
+\end{align*}
+第一项为 $\dd\omega\wedge\eta$。第二项中，将 $1$-形式 $\dd b$ 移到 $k$ 个微分符号之后，需要交换 $k$ 次，故
+\[
+a\,\dd b\wedge\dd x_I\wedge\dd x_J
+=(-1)^ka\,\dd x_I\wedge\dd b\wedge\dd x_J
+=(-1)^k\omega\wedge\dd\eta.
+\]
+两项相加即得结论。若两组指标有重复，相关外积为零，上述等式仍成立。
+\end{proof}
+
+\begin{proposition}
+若微分形式 $\omega$ 的各系数函数具有二阶连续偏导数，记 $\dd^2\omega=\dd(\dd\omega)$，则
+\[
+\dd^2\omega=0.
+\]
+\end{proposition}
+\begin{proof}
+先对 $C^2$ 函数 $a$ 计算：
+\[
+\dd^2a=\sum_{i=1}^n\sum_{j=1}^n
+ \frac{\partial^2a}{\partial x_j\partial x_i}\,\dd x_j\wedge\dd x_i.
+\]
+当 $i=j$ 时，$\dd x_i\wedge\dd x_i=0$。当 $i\ne j$ 时，把 $(i,j)$ 和 $(j,i)$ 对应的两项合并，混合偏导数相等而外积符号相反，所以它们的和为零。因此 $\dd^2a=0$。
+
+对一般形式，由线性性只需考虑 $\omega=a\,\dd x_I$。由外微分定义，$\dd\omega=\dd a\wedge\dd x_I$；再用乘积公式以及 $\dd(\dd x_I)=0$，得到
+\begin{align*}
+\dd^2\omega
+&=\dd(\dd a\wedge\dd x_I)\\
+&=\dd^2a\wedge\dd x_I-\dd a\wedge\dd(\dd x_I)\\
+&=0.
+\end{align*}
+\end{proof}
+
+\subsection*{外微分的应用}
+在定向平面区域上，$\dd x\wedge\dd y$ 表示有向面积元；区域取与标准坐标次序一致的正向时，其积分按普通的面积元 $\dd x\dd y$ 计算。在正向定向的空间区域上，同样把 $\dd x\wedge\dd y\wedge\dd z$ 按体积元 $\dd x\dd y\dd z$ 计算。曲线上 $1$-形式的积分和曲面上 $2$-形式的积分分别按前面第二类曲线积分、第二类曲面积分的定义解释。
+
+\begin{enumerate}
+\item 对平面 $1$-形式 $\omega=P\,\dd x+Q\,\dd y$，有
+\[
+\dd\omega=(Q_x-P_y)\,\dd x\wedge\dd y.
+\]
+于是 Green 公式
+\[
+\oint_{\partial D}P\,\dd x+Q\,\dd y
+=\displaystyle\iint_D(Q_x-P_y)\,\dd x\dd y
+\]
+可以写为
+\[
+\int_{\partial D}\omega=\int_D\dd\omega,
+\]
+其中边界取区域的诱导定向。
+
+\item 对空间 $1$-形式 $\omega=P\,\dd x+Q\,\dd y+R\,\dd z$，有
+\[
+\dd\omega=(R_y-Q_z)\,\dd y\wedge\dd z
+ +(P_z-R_x)\,\dd z\wedge\dd x+(Q_x-P_y)\,\dd x\wedge\dd y.
+\]
+由 $2$-形式的曲面积分定义，Stokes 公式写为
+\[
+\int_{\partial\Sigma}\omega=\int_\Sigma\dd\omega,
+\]
+其中 $\partial\Sigma$ 取所选曲面一侧的诱导定向。
+
+\item 对空间 $2$-形式
+\[
+\omega=P\,\dd y\wedge\dd z+Q\,\dd z\wedge\dd x+R\,\dd x\wedge\dd y,
+\]
+有
+\[
+\dd\omega=(P_x+Q_y+R_z)\,\dd x\wedge\dd y\wedge\dd z.
+\]
+于是 Gauss 公式
+\[
+\displaystyle\iint_{\partial\Omega}P\,\dd y\dd z+Q\,\dd z\dd x+R\,\dd x\dd y
+=\iiint_\Omega(P_x+Q_y+R_z)\,\dd x\dd y\dd z
+\]
+可以写为
+\[
+\int_{\partial\Omega}\omega=\int_\Omega\dd\omega,
+\]
+其中 $\partial\Omega$ 取外侧，即区域的诱导定向。
+
+\item 对区间 $D=[a,b]$，规定其诱导定向边界为右端点 $b$ 取正号、左端点 $a$ 取负号。$0$-形式 $f$ 在这一边界上的积分定义为
+\[
+\int_{\partial D}f=f(b)-f(a).
+\]
+当 $f\in C^1([a,b])$ 时，$\dd f=f'(x)\,\dd x$，Newton--Leibniz 公式即为
+\[
+\int_{\partial D}f=\int_D\dd f.
+\]
+\end{enumerate}
+
+上述公式可统一写为
+\[
+\boxed{\int_{\partial M}\omega=\int_M\dd\omega.}
+\]
+这里 $M$ 分别为前面所述的定向区间、平面区域、曲面或空间区域；$\partial M$ 取诱导定向，$\omega$ 的次数比 $M$ 的维数低 $1$，并满足相应积分公式的光滑性条件。对不同次数的形式使用统一的积分符号 $\displaystyle \int$，具体含义由积分对象及形式的次数确定。这个统一的写法称为 Stokes 公式：高一次的微分形式 $\dd\omega$ 在区域上的积分，等于低一次的形式 $\omega$ 在其边界上的积分。
