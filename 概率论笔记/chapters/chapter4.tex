@@ -213,3 +213,283 @@ X_n(\omega)=\min\left\{n,\frac{\lfloor2^n x\rfloor}{2^n}\right\},
 
 若 $X(\omega)=+\infty$，则每个 $n$ 都有 $X_n(\omega)=n$，同样单调趋于 $X(\omega)$。因此结论在每个 $\omega$ 上均成立。
 \end{proof}
+
+\subsection*{非负简单函数的积分}
+
+\begin{mydefinition}{非负简单函数的积分}{integral-simple}
+设 $X$ 为测度空间 $(\Omega,\mathcal F,\mu)$ 上的非负简单函数，写成
+\[
+X=\sum_{i=1}^N a_i I_{A_i},\qquad a_i\geq0,
+\]
+其中 $A_1,\ldots,A_N\in\mathcal F$ 两两不交且并为 $\Omega$，称为 $\Omega$ 的一个\textbf{有限可测划分}。定义
+\[
+\int_\Omega X(\omega)\,\mu(d\omega)
+:=\sum_{i=1}^N a_i\mu(A_i),
+\]
+也简记为 $\int_\Omega X\,d\mu$。积分取值于 $[0,+\infty]$。
+\end{mydefinition}
+
+\textbf{注：}\quad 本节在非负扩展实数的乘法中约定 $0\cdot(+\infty)=0$。因此，即使 $\mu(A_i)=+\infty$，零系数项仍贡献 $0$；零函数的积分恒为 $0$。
+
+\textbf{注：}\quad 上述积分不依赖于非负简单函数所采用的划分和表示，因而是良定义的。
+
+% 积分良定义性的证明在材料中未展开；用两个有限划分的共同细化补全。
+\begin{proof}
+设同一非负简单函数具有两种表示
+\[
+X=\sum_{i=1}^N a_iI_{A_i}
+ =\sum_{j=1}^M b_jI_{B_j},\qquad a_i,b_j\geq0,
+\]
+其中 $\{A_i\}$ 与 $\{B_j\}$ 均为 $\Omega$ 的有限可测划分。集合 $A_i\cap B_j$ 两两不交且并为 $\Omega$，构成这两个划分的共同细化。
+
+在每个非空的 $A_i\cap B_j$ 上，$X$ 同时等于 $a_i$ 和 $b_j$，故 $a_i=b_j$；若交集为空，则其测度为 $0$，相应的两项均为 $0$。利用测度的有限可加性，
+\begin{align*}
+\sum_{i=1}^N a_i\mu(A_i)
+&=\sum_{i=1}^N\sum_{j=1}^M a_i\mu(A_i\cap B_j)\\
+&=\sum_{i=1}^N\sum_{j=1}^M b_j\mu(A_i\cap B_j)\\
+&=\sum_{j=1}^M b_j\mu(B_j).
+\end{align*}
+所以两种表示给出的积分值相同。
+\end{proof}
+
+\begin{proposition}{非负简单函数积分的性质}{integral-simple-properties}
+在测度空间 $(\Omega,\mathcal F,\mu)$ 上，有下列结论。
+\begin{enumerate}
+\item 对任意 $A\in\mathcal F$，
+\[
+\int_\Omega I_A\,d\mu=\mu(A).
+\]
+\item 若 $X$ 是非负简单函数，则 $\int_\Omega X\,d\mu\geq0$。
+\item 若 $X$ 是非负简单函数，$a\geq0$ 为实常数，则
+\[
+\int_\Omega aX\,d\mu=a\int_\Omega X\,d\mu.
+\]
+\item 若 $X,Y$ 都是非负简单函数，则
+\[
+\int_\Omega(X+Y)\,d\mu
+=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\]
+\item 若非负简单函数 $X,Y$ 处处满足 $X\geq Y$，则
+\[
+\int_\Omega X\,d\mu\geq\int_\Omega Y\,d\mu.
+\]
+\item 若 $Y$ 是非负简单函数，$\{X_n\}$ 是逐点单调不减的非负简单函数列，且处处有 $\lim_{n\to\infty}X_n\geq Y$，则
+\[
+\lim_{n\to\infty}\int_\Omega X_n\,d\mu
+\geq\int_\Omega Y\,d\mu.
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item 以 $A$ 和 $\Omega\setminus A$ 为划分，由定义及零系数约定，
+\[
+\int_\Omega I_A\,d\mu
+=1\cdot\mu(A)+0\cdot\mu(\Omega\setminus A)=\mu(A).
+\]
+\item 写成 $X=\sum_{i=1}^N a_iI_{A_i}$，其中 $a_i\geq0$，则
+\[
+\int_\Omega X\,d\mu=\sum_{i=1}^N a_i\mu(A_i)\geq0.
+\]
+\item 若 $a=0$，两侧均为 $0$。若 $a>0$，沿用 $X$ 的划分，有
+\begin{align*}
+\int_\Omega aX\,d\mu
+&=\sum_{i=1}^N aa_i\mu(A_i)\\
+&=a\sum_{i=1}^N a_i\mu(A_i)
+=a\int_\Omega X\,d\mu.
+\end{align*}
+所有项非负，等式也适用于积分为 $+\infty$ 的情形。
+\item 设
+\[
+X=\sum_{i=1}^N a_iI_{A_i},\qquad
+Y=\sum_{j=1}^M b_jI_{B_j}.
+\]
+在共同细化 $\{A_i\cap B_j\}$ 上，
+\[
+X+Y=\sum_{i=1}^N\sum_{j=1}^M(a_i+b_j)I_{A_i\cap B_j}.
+\]
+因此
+\begin{align*}
+\int_\Omega(X+Y)\,d\mu
+&=\sum_{i=1}^N\sum_{j=1}^M(a_i+b_j)\mu(A_i\cap B_j)\\
+&=\sum_{i=1}^N a_i\sum_{j=1}^M\mu(A_i\cap B_j)
+ +\sum_{j=1}^M b_j\sum_{i=1}^N\mu(A_i\cap B_j)\\
+&=\sum_{i=1}^N a_i\mu(A_i)+\sum_{j=1}^M b_j\mu(B_j)\\
+&=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\end{align*}
+这里对每个 $i$，集合 $\{A_i\cap B_j\}_{j=1}^M$ 划分 $A_i$；对每个 $j$，集合 $\{A_i\cap B_j\}_{i=1}^N$ 划分 $B_j$，所以可分别应用有限可加性。
+\item 因为 $X-Y$ 是非负简单函数，由 (2)、(4) 得
+\[
+\int_\Omega X\,d\mu
+=\int_\Omega(X-Y)\,d\mu+\int_\Omega Y\,d\mu
+\geq\int_\Omega Y\,d\mu.
+\]
+此处不对积分作减法，即使积分为无穷，推理仍成立。
+\item 由 (5)，$\int_\Omega X_n\,d\mu$ 单调不减，故其极限
+\[
+L:=\lim_{n\to\infty}\int_\Omega X_n\,d\mu
+\]
+在 $[0,+\infty]$ 中存在。固定 $0<\alpha<1$，令
+\[
+E_n=\{X_n\geq\alpha Y\}.
+\]
+由于 $X_n,Y$ 都是可测函数，$E_n\in\mathcal F$；由 $X_n\leq X_{n+1}$，有 $E_n\subseteq E_{n+1}$。
+
+若 $Y(\omega)=0$，则 $X_n(\omega)\geq0$，所以该点属于每个 $E_n$。若 $Y(\omega)>0$，则
+\[
+\lim_{n\to\infty}X_n(\omega)\geq Y(\omega)>\alpha Y(\omega),
+\]
+因而充分大的 $n$ 满足 $X_n(\omega)\geq\alpha Y(\omega)$。所以
+\[
+E_n\uparrow\Omega.
+\]
+设 $Y=\sum_{j=1}^M b_jI_{B_j}$，其中 $b_j\geq0$。由测度的下连续性，
+\[
+\mu(B_j\cap E_n)\uparrow\mu(B_j).
+\]
+而 $X_nI_{E_n}$ 和 $\alpha YI_{E_n}$ 均为非负简单函数，且
+\[
+X_n\geq X_nI_{E_n}\geq\alpha YI_{E_n}.
+\]
+由 (3)、(5) 及积分定义，
+\begin{align*}
+\int_\Omega X_n\,d\mu
+&\geq\int_\Omega X_nI_{E_n}\,d\mu\\
+&\geq\alpha\int_\Omega YI_{E_n}\,d\mu\\
+&=\alpha\sum_{j=1}^M b_j\mu(B_j\cap E_n).
+\end{align*}
+有限个非负项可以逐项取单调极限；零系数项恒为 $0$。令 $n\to\infty$，得
+\[
+L\geq\alpha\sum_{j=1}^M b_j\mu(B_j)
+=\alpha\int_\Omega Y\,d\mu.
+\]
+若 $\int_\Omega Y\,d\mu=+\infty$，任取一个 $\alpha>0$ 即知 $L=+\infty$；若该积分有限，再令 $\alpha\uparrow1$，得 $L\geq\int_\Omega Y\,d\mu$。
+\end{enumerate}
+\end{proof}
+
+\subsection*{非负可测函数的积分}
+
+\begin{mydefinition}{非负可测函数的积分}{integral-nonnegative}
+设 $X:\Omega\to[0,+\infty]$ 可测，定义
+\[
+\int_\Omega X\,d\mu
+:=
+\sup\left\{
+\int_\Omega Y\,d\mu:
+Y\text{ 为非负简单函数，且 }Y\leq X
+\right\}.
+\]
+其中 $Y\leq X$ 指对每个 $\omega\in\Omega$ 都成立。该值称为 $X$ 关于 $\mu$ 的\textbf{积分}，也写作 $\int_\Omega X(\omega)\,\mu(d\omega)$。
+\end{mydefinition}
+
+\textbf{注：}\quad 非负简单函数逼近定理给出了满足 $Y\leq X$ 的简单函数；零函数本身也满足此条件。因此，上述取上确界的集合非空，并且包含于 $[0,+\infty]$，积分总能在 $[0,+\infty]$ 中定义。
+
+\begin{proposition}{非负可测函数积分的性质}{integral-nonnegative-properties}
+在测度空间 $(\Omega,\mathcal F,\mu)$ 上，有下列结论。
+\begin{enumerate}
+\item 若 $X$ 为非负简单函数，则以上两种积分定义给出相同的值。
+\item 若 $X_n$ 为非负简单函数，且 $X_n\uparrow X$ 逐点成立，则
+\[
+\lim_{n\to\infty}\int_\Omega X_n\,d\mu=\int_\Omega X\,d\mu.
+\]
+\item 若 $X$ 为非负可测函数，则 $\int_\Omega X\,d\mu\geq0$。
+\item 若 $X$ 为非负可测函数，$a\geq0$ 为实常数，则
+\[
+\int_\Omega aX\,d\mu=a\int_\Omega X\,d\mu.
+\]
+\item 若 $X,Y$ 为非负可测函数，则
+\[
+\int_\Omega(X+Y)\,d\mu
+=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\]
+\item 若非负可测函数 $X,Y$ 处处满足 $X\geq Y$，则
+\[
+\int_\Omega X\,d\mu\geq\int_\Omega Y\,d\mu.
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item 将简单函数积分定义给出的值暂记为 $J_s(X)$，由上确界定义给出的值记为 $J(X)$。因为 $X$ 本身是满足 $X\leq X$ 的非负简单函数，所以
+\[
+J(X)\geq J_s(X).
+\]
+对任意满足 $0\leq Y\leq X$ 的简单函数 $Y$，简单函数积分的单调性给出
+\[
+J_s(Y)\leq J_s(X).
+\]
+对所有这样的 $Y$ 取上确界，得 $J(X)\leq J_s(X)$，故两种积分相同。
+\item 由简单函数积分的单调性，$\int_\Omega X_n\,d\mu$ 单调不减。记其极限为 $L$。由于 $X_n\leq X$，由积分的上确界定义及 (1)，
+\[
+\int_\Omega X_n\,d\mu\leq\int_\Omega X\,d\mu,
+\qquad L\leq\int_\Omega X\,d\mu.
+\]
+另一方面，对任意满足 $Y\leq X$ 的非负简单函数 $Y$，有
+\[
+Y\leq X=\lim_{n\to\infty}X_n.
+\]
+由前述非负简单函数列的比较性质，$L\geq\int_\Omega Y\,d\mu$。对所有这样的 $Y$ 取上确界，得到
+\[
+L\geq\int_\Omega X\,d\mu.
+\]
+两向不等式合起来即得结论。
+\item 上确界定义中的每个简单函数积分都非负，且零函数给出的值为 $0$，故 $\int_\Omega X\,d\mu\geq0$。
+\item 当 $a=0$ 时，约定 $0\cdot(+\infty)=0$，所以两侧均为 $0$。当 $a>0$ 时，由简单函数逼近定理，取 $X_n\uparrow X$，则 $aX_n\uparrow aX$。这也说明 $aX$ 是非负可测函数。利用 (2) 及简单函数积分的齐次性，
+\begin{align*}
+\int_\Omega aX\,d\mu
+&=\lim_{n\to\infty}\int_\Omega aX_n\,d\mu\\
+&=\lim_{n\to\infty}a\int_\Omega X_n\,d\mu
+=a\int_\Omega X\,d\mu.
+\end{align*}
+\item 取非负简单函数列 $X_n\uparrow X$、$Y_n\uparrow Y$，则 $X_n+Y_n$ 是非负简单函数，且
+\[
+X_n+Y_n\uparrow X+Y.
+\]
+由可测函数列极限的可测性，$X+Y$ 可测。再由 (2) 和简单函数积分的可加性，
+\begin{align*}
+\int_\Omega(X+Y)\,d\mu
+&=\lim_{n\to\infty}\int_\Omega(X_n+Y_n)\,d\mu\\
+&=\lim_{n\to\infty}
+ \left(\int_\Omega X_n\,d\mu+\int_\Omega Y_n\,d\mu\right)\\
+&=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\end{align*}
+最后一步只涉及非负数列的单调极限，即使有积分为 $+\infty$，也不会出现无穷减无穷。
+\item 任取满足 $0\leq Z\leq Y$ 的简单函数 $Z$，由 $Y\leq X$，也有 $Z\leq X$。因此
+\[
+\int_\Omega Z\,d\mu\leq\int_\Omega X\,d\mu.
+\]
+对所有满足 $0\leq Z\leq Y$ 的简单函数取上确界，便得
+\[
+\int_\Omega Y\,d\mu\leq\int_\Omega X\,d\mu.
+\]
+\end{enumerate}
+\end{proof}
+
+\subsection*{一般可测函数的积分}
+
+对实值可测函数 $X:\Omega\to\mathbb R$，令
+\[
+X^+=\max\{X,0\},\qquad X^-=-\min\{X,0\}.
+\]
+分别称 $X^+$ 和 $X^-$ 为 $X$ 的\textbf{正部}和\textbf{负部}。它们都是非负可测函数，并且逐点有 $X=X^+-X^-$。
+
+\begin{mydefinition}{积分存在与可积性}{integrable-function}
+设 $X:\Omega\to\mathbb R$ 可测。若
+\[
+\min\left\{\int_\Omega X^+\,d\mu,\int_\Omega X^-\,d\mu\right\}<+\infty,
+\]
+即正部和负部的积分至少有一个有限，则称 $X$ 的\textbf{积分存在}，或称其\textbf{积分有意义}，并定义
+\[
+\int_\Omega X\,d\mu
+:=\int_\Omega X^+\,d\mu-\int_\Omega X^-\,d\mu.
+\]
+若进一步满足
+\[
+\max\left\{\int_\Omega X^+\,d\mu,\int_\Omega X^-\,d\mu\right\}<+\infty,
+\]
+即两个积分都有限，则称 $X$ 关于 $\mu$ \textbf{可积}。
+\end{mydefinition}
+
+\textbf{注：}\quad 积分存在时，其值可以是实数、$+\infty$ 或 $-\infty$；可积时积分为有限实数。若正部和负部的积分均为 $+\infty$，则不能用 $+\infty-(+\infty)$ 定义积分。
