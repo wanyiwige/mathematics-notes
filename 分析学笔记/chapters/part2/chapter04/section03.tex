@@ -98,7 +98,7 @@ D&=\{(x,y):a\le x\le b,\ y_1(x)\le y\le y_2(x)\}\\
 &=-\int\left[\int_{\varphi(x)}^{+\infty}f_y(x,y)\,\dd y\right]\,\dd x\\
 &=\int f(x,\varphi(x))\,\dd x.
 \end{align*}
-这里无穷积分限只是简写，实际被积函数在有界范围外恒为零。区域在曲线上方时，正向边界从左向右，故右端就是 $\oint_{\partial D}f\,\dd x$。
+这里无穷积分限只是简写，实际被积函数在有界范围外恒为零。区域在曲线上方时，正向边界从左向右，故右端就是 $\displaystyle \oint_{\partial D}f\,\dd x$。
 
 为同时处理另一分量，令
 \[
@@ -109,7 +109,7 @@ H(x)=\int_{\varphi(x)}^{+\infty} f(x,y)\,\dd y.
 H'(x)=\int_{\varphi(x)}^{+\infty}f_x(x,y)\,\dd y
 -f(x,\varphi(x))\varphi'(x).
 \]
-$H$ 在一个有界区间外为零，所以 $\int H'(x)\,\dd x=0$，从而
+$H$ 在一个有界区间外为零，所以 $\displaystyle \int H'(x)\,\dd x=0$，从而
 \[
 \displaystyle\iint_D f_x\,\dd x\dd y
 =\int f(x,\varphi(x))\varphi'(x)\,\dd x
@@ -271,7 +271,7 @@ I=\frac{m\pi a^2}{2}.
 
 \subsection*{曲线积分与路径无关}
 \begin{definition}
-设 $D$ 为平面区域，$P,Q$ 在 $D$ 上连续。若对任意 $A,B\in D$，曲线积分 $\int_LP\,\dd x+Q\,\dd y$ 只与端点 $A,B$ 有关，与 $D$ 内连接它们的分段光滑路径 $L$ 无关，则称该曲线积分与路径无关；否则称为与路径有关。
+设 $D$ 为平面区域，$P,Q$ 在 $D$ 上连续。若对任意 $A,B\in D$，曲线积分 $\displaystyle \int_LP\,\dd x+Q\,\dd y$ 只与端点 $A,B$ 有关，与 $D$ 内连接它们的分段光滑路径 $L$ 无关，则称该曲线积分与路径无关；否则称为与路径有关。
 \end{definition}
 \begin{theorem}[Green 定理]
 (Green 定理)设 $D$ 为平面单连通区域，$P,Q\in C^1(D)$。以下四个命题等价：
@@ -675,7 +675,7 @@ B_u-A_v
 
 若曲面由有限片光滑面拼成，对每片使用此式。公共棱的两侧诱导方向相反，边界积分相互抵消；曲面积分按相容定向相加，故公式也适用于这样的分片光滑定向曲面。参数域的角点已由一般 Green 公式处理。
 
-对于仅为 $C^1$ 的正则参数片，在包含相关紧支集的稍大参数邻域内，用光滑函数 $\boldsymbol r_k$ 逼近 $\boldsymbol r$，使函数及一阶导数一致收敛。具体地，取光滑非负函数 $\eta$，使其支集在单位圆盘内且 $\int_{\mathbb R^2}\eta(t)\,\dd t=1$；对 $\delta_k\downarrow0$，定义
+对于仅为 $C^1$ 的正则参数片，在包含相关紧支集的稍大参数邻域内，用光滑函数 $\boldsymbol r_k$ 逼近 $\boldsymbol r$，使函数及一阶导数一致收敛。具体地，取光滑非负函数 $\eta$，使其支集在单位圆盘内且 $\displaystyle \int_{\mathbb R^2}\eta(t)\,\dd t=1$；对 $\delta_k\downarrow0$，定义
 \[
 \boldsymbol r_k(p)=\int_{\mathbb R^2}\eta(t)\boldsymbol r(p-\delta_kt)\,\dd t.
 \]
