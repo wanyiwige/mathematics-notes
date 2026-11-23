@@ -2,82 +2,148 @@
 \basis{第5.1--5.6节，教材第114--159页。}
 \problem{5.1.1}{121}{在矩形 $|t-t_0|\le a,|x-x_0|\le b$ 上，$f$ 连续且关于 $x$ 的 Lipschitz 常数为 $L$。设 $M=\max|f|$，$h=\min(a,b/M)$，$\varphi$ 是初值解，$\varphi_n$ 是从 $\varphi_0=x_0$ 开始的第 $n$ 次 Picard 迭代。证明误差估计。}
 \begin{proof}
-初值解的积分式给 $|\varphi(t)-x_0|\le M|t-t_0|$。若第 $n-1$ 步误差已满足相应估计，则由 Lipschitz 条件
+记误差 $e_n(t)=|\varphi_n(t)-\varphi(t)|$。从积分方程和 $\varphi_0=x_0$ 出发，先估计第0步：
 \[
- \begin{aligned}
- |\varphi_n(t)-\varphi(t)|
- &\le L\left|\int_{t_0}^t|\varphi_{n-1}(s)-\varphi(s)|\dd s\right|\\
- &\le\dfrac{ML^n}{n!}\left|\int_{t_0}^t|s-t_0|^n\dd s\right|
- =\dfrac{ML^n|t-t_0|^{n+1}}{(n+1)!}.
- \end{aligned}
+e_0(t)=\left|\int_{t_0}^tf(s,\varphi(s))\dd s\right|
+\le M|t-t_0|.
 \]
-反向 $t<t_0$ 时将积分改写为从 $t$ 到 $t_0$ 的非负积分，结论相同。归纳得
+第1步则满足 $\displaystyle e_1(t)\le L\int_{t_0}^te_0(s)\dd s\le ML(t-t_0)^2/2$，此处先写 $t\ge t_0$。
+
+若 $e_{n-1}(s)\le ML^{n-1}(s-t_0)^n/n!$，由两份积分式相减并使用 Lipschitz 条件，
+\[
+\begin{aligned}
+e_n(t)&\le\int_{t_0}^t|f(s,\varphi_{n-1}(s))-f(s,\varphi(s))|\dd s\\
+&\le L\int_{t_0}^te_{n-1}(s)\dd s\\
+&\le\dfrac{ML^n}{n!}\int_{t_0}^t(s-t_0)^n\dd s
+=\dfrac{ML^n(t-t_0)^{n+1}}{(n+1)!}.
+\end{aligned}
+\]
+这证明了归纳步。若 $t<t_0$，把取绝对值后的积分改为 $\displaystyle \int_t^{t_0}$，以 $|s-t_0|$ 替代 $s-t_0$，计算结果为同一绝对值公式。最后在 $|t-t_0|\le h$ 上取上界。
 \ans{|\varphi_n(t)-\varphi(t)|\le\dfrac{ML^nh^{n+1}}{(n+1)!},\quad |t-t_0|\le h.}
 $L=0$ 时一次迭代就已精确，另行按此解释，不需使用 $0^0$。
 \end{proof}
 \problem{5.1.2}{121}{证明 $x'=Ax,x(0)=x_0$ 的 Picard 迭代收敛到 $\exp(At)x_0$，$A$ 为常矩阵。}
-从 $\varphi_0=x_0$ 开始，连续积分得到
+Picard 迭代从常函数 $\varphi_0(t)=x_0$ 开始，递推为 $\displaystyle \varphi_{n+1}(t)=x_0+\int_0^tA\varphi_n(s)\dd s$。先算前两步：
 \[
- \varphi_1=(I+At)x_0,\quad
- \varphi_2=(I+At+A^2t^2/2)x_0,\quad
- \varphi_n=\sum_{k=0}^n\dfrac{A^kt^k}{k!}x_0.
+\begin{aligned}
+\varphi_1&=x_0+\int_0^tAx_0\dd s=(I+At)x_0,\\
+\varphi_2&=x_0+\int_0^t[A+A^2s]x_0\dd s
+=\left(I+At+\dfrac{A^2t^2}{2}\right)x_0.
+\end{aligned}
 \]
-归纳一步将 $A\varphi_n$ 逐项积分即可。任意有限区间 $|t|\le T$ 上，矩阵范数由 $\sum\|A\|^kT^k/k!$ 控制，故一致收敛。
+若第 $n$ 步为 $\sum_{k=0}^nA^kt^kx_0/k!$，则代回积分式：
+\[
+\begin{aligned}
+\varphi_{n+1}
+&=x_0+\sum_{k=0}^n\dfrac{A^{k+1}x_0}{k!}\int_0^t s^k\dd s\\
+&=x_0+\sum_{k=0}^n\dfrac{A^{k+1}t^{k+1}}{(k+1)!}x_0
+=\sum_{j=0}^{n+1}\dfrac{A^jt^j}{j!}x_0.
+\end{aligned}
+\]
+故通式由归纳法成立。在 $|t|\le T$ 上，第 $k$ 项范数不超过 $\|x_0\|\|A\|^kT^k/k!$，控制级数为收敛的指数级数，因此可一致取极限，得到矩阵指数定义。
 \ans{x(t)=\e^{At}x_0.}
 级数逐项求导得到 $x'=Ax$，在0处为 $x_0$，由唯一性即为初值解。
 \problem{5.1.3}{121}{求 $x'=x^2,x(0)=1$ 的第三次 Picard 近似解。}
-迭代为 $\varphi_{n+1}=1+\displaystyle\int_0^t\varphi_n(s)^2\dd s$，依次得到
+按 $\varphi_0=1$、$\displaystyle \varphi_{n+1}=1+\int_0^t\varphi_n(s)^2\dd s$ 逐步计算。第一次：
 \[
- \varphi_0=1,\qquad \varphi_1=1+t,\qquad
- \varphi_2=1+t+t^2+\dfrac{t^3}{3}.
+\varphi_1=1+\int_0^t1\dd s=1+t.
 \]
-平方第二次结果：$\varphi_2^2=1+2t+3t^2+8t^3/3+5t^4/3+2t^5/3+t^6/9$，逐项积分。
+第二次先平方，再积分：
+\[
+\varphi_2=1+\int_0^t(1+2s+s^2)\dd s
+=1+t+t^2+\dfrac{t^3}{3}.
+\]
+第三次需要把四项多项式平方完整展开：
+\[
+\begin{aligned}
+\left(1+s+s^2+\dfrac{s^3}{3}\right)^2
+&=1+2s+3s^2+\dfrac83s^3+\dfrac53s^4+\dfrac23s^5+\dfrac19s^6.
+\end{aligned}
+\]
+因此 $\varphi_3$ 是1加上该多项式从0到 $t$ 的积分；各系数依次除以新的幂次，得到 $1,1,1,2/3,1/3,1/9,1/63$，如下所列。不要把精确解的三阶 Taylor 多项式当作“第三次迭代”，两者不是同一对象。
 \ans{\varphi_3=1+t+t^2+t^3+\dfrac{2t^4}{3}+\dfrac{t^5}{3}+\dfrac{t^6}{9}+\dfrac{t^7}{63}.}
 \checknote{$\varphi_3(0)=1$ 且 $\varphi_3'=\varphi_2^2$；精确解 $1/(1-t)$ 的前四项与之相同，最大存在区间为 $(-\infty,1)$。}
 \problem{5.1.4}{121}{对矩形 $|t|\le1,|x|\le1$ 内的方程 $x'=x^2-t$，求过 $(0,0)$ 的解由 Picard 定理保证的存在区间、第三次近似解及该区间上的误差估计。}
-$M=2$，由 $|f_x|=|2x|\le2$ 可取 $L=2$，故 $h=1/2$。迭代为
+先估计矩形内的常数。$|x^2-t|\le1+1=2$，且在 $(t,x)=(-1,\pm1)$ 取到2，故 $M=2$；由 $|f_x|=|2x|\le2$，可取 $L=2$。矩形半宽和半高均为1，所以
 \[
- \varphi_0=0,\quad\varphi_1=-\dfrac{t^2}{2},\quad
- \varphi_2=-\dfrac{t^2}{2}+\dfrac{t^5}{20}.
+h=\min\left(1,\dfrac12\right)=\dfrac12.
 \]
-第三步将 $\varphi_2^2-s$ 积分，得
+从 $\varphi_0=0$ 开始，递推为 $\displaystyle \varphi_{n+1}=\int_0^t[\varphi_n(s)^2-s]\dd s$。逐步得到
+\[
+\begin{aligned}
+\varphi_1&=\int_0^t(-s)\dd s=-\dfrac{t^2}{2},\\
+\varphi_2&=\int_0^t\left(\dfrac{s^4}{4}-s\right)\dd s
+=-\dfrac{t^2}{2}+\dfrac{t^5}{20}.
+\end{aligned}
+\]
+第三次的被积函数为
+\[
+\left(-\dfrac{s^2}{2}+\dfrac{s^5}{20}\right)^2-s
+=\dfrac{s^4}{4}-\dfrac{s^7}{20}+\dfrac{s^{10}}{400}-s.
+\]
+逐项积分得到下面的 $\varphi_3$。误差公式取 $n=3$，将 $M=L=2,h=1/2$ 逐一代入：$ML^3h^4/4!=2\cdot8\cdot(1/16)/24=1/24$。
 \ans{I=[-1/2,1/2],\qquad
 \varphi_3=-\dfrac{t^2}{2}+\dfrac{t^5}{20}-\dfrac{t^8}{160}+\dfrac{t^{11}}{4400},\\
 |\varphi_3-\varphi|\le\dfrac{2\cdot2^3(1/2)^4}{4!}=\dfrac1{24}.}
 这里 $I$ 是该矩形给出的保证区间，不代表真实最大存在区间。
 \problem{5.1.5}{121}{对同一矩形内的 $x'=x^2+t,x(0)=0$，求保证存在区间及在此区间误差不超过0.05的近似解。}
-仍可取 $M=L=2,h=1/2$。依次得到
+矩形上 $|x^2+t|\le2$ 且取到2，故 $M=2$；$|f_x|\le2$，取 $L=2$。由 $h=\min(1,1/2)=1/2$ 得保证区间。为选迭代次数，先列通用误差界：
 \[
- \varphi_1=\dfrac{t^2}{2},\qquad
- \varphi_2=\dfrac{t^2}{2}+\dfrac{t^5}{20}.
+E_n=\dfrac{ML^nh^{n+1}}{(n+1)!}
+=\dfrac{2\cdot2^n(1/2)^{n+1}}{(n+1)!}=\dfrac1{(n+1)!}.
 \]
-第三次误差界为 $1/24<0.05$，所以可以选择
+$n=2$ 时界为 $1/6>0.05$；$n=3$ 时为 $1/24<0.05$，所以计算到第三次足够。
+
+由 $\displaystyle \varphi_{n+1}=\int_0^t[\varphi_n(s)^2+s]\dd s$、$\varphi_0=0$，
+\[
+\varphi_1=\dfrac{t^2}{2},\qquad
+\varphi_2=\int_0^t\left(\dfrac{s^4}{4}+s\right)\dd s
+=\dfrac{t^2}{2}+\dfrac{t^5}{20}.
+\]
+第三次先展开平方：$\varphi_2(s)^2=s^4/4+s^7/20+s^{10}/400$，再加 $s$ 逐项积分，得到下式。
 \ans{I=[-1/2,1/2],\qquad
 \varphi_3=\dfrac{t^2}{2}+\dfrac{t^5}{20}+\dfrac{t^8}{160}+\dfrac{t^{11}}{4400}.}
 第二次近似的通用误差界为 $1/6$，不足以用此估计保证题定精度；这不表示实际误差一定大于0.05。
 \problem{5.1.6}{121--122}{求 $x'=x+t+1,x(0)=0$ 的 Picard 迭代序列，并由其极限求解。}
-从 $\varphi_0=0$ 出发，$\varphi_{n+1}=\displaystyle\int_0^t[\varphi_n(s)+s+1]\dd s$。前三步为
+由积分式 $\displaystyle x(t)=\int_0^t[x(s)+s+1]\dd s$，取 $\varphi_0=0$，逐次代入：
 \[
- \varphi_1=t+\dfrac{t^2}{2},\quad
- \varphi_2=t+t^2+\dfrac{t^3}{6},\quad
- \varphi_3=t+t^2+\dfrac{t^3}{3}+\dfrac{t^4}{24}.
+\begin{aligned}
+\varphi_1&=\int_0^t(s+1)\dd s=t+\dfrac{t^2}{2},\\
+\varphi_2&=\int_0^t\left(1+2s+\dfrac{s^2}{2}\right)\dd s
+=t+t^2+\dfrac{t^3}{6},\\
+\varphi_3&=\int_0^t\left(1+2s+s^2+\dfrac{s^3}{6}\right)\dd s
+=t+t^2+\dfrac{t^3}{3}+\dfrac{t^4}{24}.
+\end{aligned}
 \]
-归纳可得下面的通式；将通式代入积分，指数级数每项的阶数依次增加1。
+这提示 $\varphi_n=2\sum_{k=0}^nt^k/k!-t-2+t^{n+1}/(n+1)!$。为验证通式，将它代入下一次的被积函数，$-s$ 与外加的 $s$ 抵消、$-2$ 与外加1合并为 $-1$。积分后成为
+\[
+2\sum_{k=0}^n\dfrac{t^{k+1}}{(k+1)!}-t+\dfrac{t^{n+2}}{(n+2)!},
+\]
+这正是通式的 $n+1$ 形式。有限区间上指数级数一致收敛，末尾单项趋零，故可取极限。
 \ans{\varphi_n=2\sum_{k=0}^n\dfrac{t^k}{k!}-t-2+\dfrac{t^{n+1}}{(n+1)!},\quad
 x=\lim_{n\to\infty}\varphi_n=2\e^t-t-2.}
 \checknote{极限满足 $x'=2\e^t-1=x+t+1$ 且 $x(0)=0$；有限区间上一致收敛。}
 \problem{5.1.7}{122}{求 $x'=P(t)x+Q(t),x(t_0)=x_0$ 的 Picard 序列及其极限，其中 $P,Q$ 连续。}
-设 $A(t)=\displaystyle\int_{t_0}^tP(s)\dd s$，$\varphi_0=x_0$。反复代入积分并交换有限重积分顺序，归纳得到
+设 $\displaystyle A(t)=\int_{t_0}^tP(s)\dd s$，并取 $\varphi_0=x_0$。第一步为
 \[
- \varphi_n(t)=x_0\sum_{j=0}^n\dfrac{A(t)^j}{j!}
- +\int_{t_0}^tQ(s)\sum_{j=0}^{n-1}\dfrac{[A(t)-A(s)]^j}{j!}\dd s.
+\varphi_1=x_0+x_0A(t)+\int_{t_0}^tQ(s)\dd s.
 \]
-$n=0$ 时第二个和为空。归纳使用 $A'=P$，以及
+第二步代入时，$P(s)A(s)$ 的积分为 $A(t)^2/2$；对 $Q$ 产生的重积分交换次序，得
 \[
- \int_s^t P(u)\dfrac{[A(u)-A(s)]^j}{j!}\dd u
- =\dfrac{[A(t)-A(s)]^{j+1}}{(j+1)!}.
+\varphi_2=x_0\left[1+A(t)+\dfrac{A(t)^2}{2}\right]
++\int_{t_0}^tQ(s)[1+A(t)-A(s)]\dd s.
 \]
-在每个有限闭区间上 $A,Q$ 有界，指数级数一致收敛，故可取极限并穿过积分号。
+这两类项分别由初值和外力 $Q$ 产生。归纳式为
+\[
+\varphi_n=x_0\sum_{j=0}^n\dfrac{A(t)^j}{j!}
++\int_{t_0}^tQ(s)\sum_{j=0}^{n-1}\dfrac{[A(t)-A(s)]^j}{j!}\dd s.
+\]
+归纳一步对每个 $s$ 使用 $\displaystyle \int_s^tP(u)[A(u)-A(s)]^j\dd u=[A(t)-A(s)]^{j+1}/(j+1)$。在任意有限闭区间上相关连续函数有界，指数级数一致收敛，故可以在积分号内取极限：
+\[
+\varphi_n\longrightarrow x_0\e^{A(t)}+
+\int_{t_0}^tQ(s)\e^{A(t)-A(s)}\dd s.
+\]
+提出只依赖 $t$ 的 $\e^{A(t)}$，得到标准的线性方程求解公式。
 \ans{x(t)=\e^{A(t)}\left[x_0+\int_{t_0}^t\e^{-A(s)}Q(s)\dd s\right].}
 对该式求导并代入 $t_0$，也独立恢复线性方程及初值。
 \problem{5.1.8}{122}{用逐步逼近证明：$|\lambda|$ 充分小时，积分方程 $\varphi(t)=f(t)+\lambda\displaystyle\int_a^bK(t,s)\varphi(s)\dd s$ 在 $[a,b]$ 上有唯一连续解，其中 $f,K$ 连续。}
@@ -90,9 +156,22 @@ $n=0$ 时第二个和为空。归纳使用 $A'=P$，以及
 \]
 几何级数收敛，故序列一致收敛到连续函数 $\varphi$。$T$ 的上述范数界保证可把极限移入积分，从而 $\varphi=f+\lambda T\varphi$。
 若另有解 $\psi$，则 $\|\varphi-\psi\|\le q\|\varphi-\psi\|$。因为 $q<1$，必有 $\varphi=\psi$。若 $M=0$，方程直接成为 $\varphi=f$，任意 $\lambda$ 都可。
+收敛的定量理由是对 $m>n$ 有 $\|\varphi_m-\varphi_n\|_\infty\le\|f\|_\infty\sum_{j=n+1}^mq^j\le\|f\|_\infty q^{n+1}/(1-q)$，它与 $m$ 无关且趋零。因此一致 Cauchy 性并非只由相邻差趋零得到，而是由相邻差的可求和几何上界得到。
 \end{proof}
 \problem{5.2.1}{128}{对 $x'=x,x(0)=1$，把 $[-1,1]$ 分为8等份，构造 Euler 折线，与精确曲线比较。计算各等分点近似值及误差，精确到小数点后第五位。}
-步长绝对值为 $h=1/4$，但初值位于区间中点0，应分别向两边推进。正向 $X_{k+1}=(1+h)X_k$；负向取步长 $-h$，$X_{-(k+1)}=(1-h)X_{-k}$，所以
+八等分给出节点 $t_k=k/4$，$k=-4,\ldots,4$，初值位于中间的 $t_0=0$，不是左端点。精确解由分离变量为 $x(t)=\e^t$。
+
+正向步长 $h=1/4$，Euler 公式为 $X_{k+1}=X_k+hX_k=(5/4)X_k$。从 $X_0=1$ 出发，依次为
+\[
+X_1=1.25,\quad X_2=1.5625,\quad X_3=1.953125,\quad X_4=2.44140625.
+\]
+反向仍从0处初值出发，但取步长 $-1/4$：
+\[
+X_{-(k+1)}=X_{-k}-\dfrac14X_{-k}=\dfrac34X_{-k}.
+\]
+因此 $X_{-1}=0.75,X_{-2}=0.5625,X_{-3}=0.421875,X_{-4}=0.31640625$。
+
+对每一步，以推进的起点 $(t_j,X_j)$ 为基点画线段 $\varphi(t)=X_j+(t-t_j)X_j$。例如正向首段为 $1+t$（$0\le t\le1/4$），反向首段也是 $1+t$（$-1/4\le t\le0$）；后续负向区间应取其右端点作为推进起点。节点误差逐项计算 $|\e^{t_k}-X_k|$，最后才四舍五入到五位小数。
 \ans{X_k=(5/4)^k\ (k=0,1,\ldots,4),\qquad
  X_{-k}=(3/4)^k\ (k=0,1,\ldots,4).}
 在相邻节点之间用 $\varphi(t)=X_j+(t-t_j)X_j$（沿相应积分方向选择起点 $t_j$）作直线段。精确解为 $\e^t$。
@@ -104,6 +183,7 @@ $n=0$ 时第二个和为空。归纳使用 $A'=P$，以及
 设最大区间为 $(\alpha,\beta)$。若 $\beta<T_1$ 且为有限内点，取 $c\in(\alpha,\beta)$。由解有界，其图像在 $[c,\beta)$ 上落在 $[c,\beta]\times[-K,K]$ 这个 $G$ 内的紧矩形中，$|f|$ 有界，故 $x'$ 有界。于是 $t\uparrow\beta$ 时 $x(t)$ 为 Cauchy，存在有限极限 $\xi$。
 
 点 $(\beta,\xi)\in G$，由 Peano 定理可从该点继续解；与原解接合后，积分式保证接合函数可微且仍满足原方程，矛盾。因此右端只能为 $T_1$。对左端完全相同地反向积分，得 $\alpha=T_0$。无限端点按同样的有限内点排除法处理。
+端点极限存在可直接由导数界检验：若紧矩形上 $|f|\le M$，则 $|x(t)-x(s)|\le M|t-s|$。当 $s,t$ 同时趋于有限右端 $\beta$ 时，这个差趋零，故 $x(t)$ 的有限极限存在。把极限作为接合点函数值，左右导数均由 $f$ 的连续性趋于 $f(\beta,\xi)$，接合处也满足原方程。
 \end{proof}
 \problem{5.3.4}{135}{证明 $x'=x^2+t^2$ 的任一解的最大存在区间两端均有限。}
 \begin{proof}
@@ -114,14 +194,32 @@ $n=0$ 时第二个和为空。归纳使用 $A'=P$，以及
 所以某个 $T$ 以后 $x>0$。此后 $(1/x)'=-x'/x^2\le-1$，故 $1/x(t)\le1/x(T)-(t-T)$，在 $t>T+1/x(T)$ 时右端为负，与左端正矛盾。因此右端有限。
 
 若能向左存在至负无穷，同一积分不等式说明 $x(t)\to-\infty$。令 $u(s)=-x(-s)$，则 $u'=u^2+s^2$，而 $s\to+\infty$ 时 $u>0$，由前一论证也不可能全局向右存在。因此原解左端也有限。
+右向矛盾给出一个具体的存在时间上界：一旦选到 $x(T)>0$，后续寿命至多为 $1/x(T)$。若在这个时长之前解已失去定义，右端自然更早有限；若仍存在到更晚时刻，则倒数不等式产生矛盾。两种情形均排除了右端为无穷。
 \end{proof}
 \problem{5.3.5(1)}{135}{求 $x'=1+\ln t,x(1)=0$ 的最大存在区间及两端性质。}
-原方程定义在 $t>0$。积分 $1+\ln t$ 得 $t\ln t$，初值决定积分常数为0。
+原方程的 $\ln t$ 要求 $t>0$。先分部积分：
+\[
+\int\ln t\dd t=t\ln t-\int1\dd t=t\ln t-t.
+\]
+所以 $\displaystyle x=\int(1+\ln t)\dd t=t\ln t+C$。由 $x(1)=0$ 得 $C=0$。
+
+所得表达式在所有 $t>0$ 都可微，且右端也在该区间连续，因此最大区间是 $(0,\infty)$。左端极限用 $t\ln t=\ln t/(1/t)$ 求出为0；右端随 $t\to\infty$ 趋于正无穷。尽管左端有有限函数极限，$\ln t$ 仍不能定义于0，故不能据此延拓原方程的解。
 \ans{x=t\ln t,\quad (\alpha,\beta)=(0,\infty),\quad
 \lim_{t\downarrow0}x(t)=0,\quad\lim_{t\to\infty}x(t)=+\infty.}
 $t=0$ 虽有有限函数极限，但原方程右端未定义，不能作为该方程的延拓点。
 \problem{5.3.5(2)}{135}{求 $x'=(x^2-1)/2,x(\ln2)=-3$ 的最大存在区间及两端性质。}
-分离变量得 $\ln|(x-1)/(x+1)|=t+C$。由初值的比例为2，且 $\e^{\ln2}=2$，得 $(x-1)/(x+1)=\e^t$。
+初值 $-3$ 不等于平衡点 $\pm1$。分离变量并作部分分式：
+\[
+\begin{aligned}
+\dfrac{2\dd x}{x^2-1}&=\dd t,\\
+\ln\left|\dfrac{x-1}{x+1}\right|&=t+C_0.
+\end{aligned}
+\]
+初值点处 $(x-1)/(x+1)=(-4)/(-2)=2>0$，故相应分支写为 $(x-1)/(x+1)=K\e^t$。由 $t=\ln2$ 得 $2=2K$，所以 $K=1$。交叉相乘并移项：
+\[
+x-1=\e^t(x+1),\qquad (1-\e^t)x=1+\e^t.
+\]
+分母仅在0处为零，包含初值时刻 $\ln2>0$ 的最大连通区间是 $(0,\infty)$。$t\downarrow0$ 时分子趋2、分母从负侧趋0，故解趋负无穷；$t\to\infty$ 时分子分母同除以 $\e^t$，极限为 $1/(-1)=-1$。
 \ans{x=\dfrac{1+\e^t}{1-\e^t},\quad(\alpha,\beta)=(0,\infty),\quad
 \lim_{t\downarrow0}x(t)=-\infty,\quad\lim_{t\to\infty}x(t)=-1.}
 分母在0处为零；负半轴上同一公式的另一分支不是包含初值点的解。
@@ -132,13 +230,31 @@ $t=0$ 虽有有限函数极限，但原方程右端未定义，不能作为该�
  \dfrac\dd{\dd t}\left[H(t)\e^{-\int_{t_0}^tf(s)\dd s}\right]\le0.
 \]
 从 $t_0$ 到 $t$ 积分，得 $\displaystyle H(t)\le g\e^{\int_{t_0}^tf}$，再用 $x\le H$ 即得结论。此法无需假设 $x$ 或 $g$ 非负。
+积分因子的求导为
+\[
+(H\e^{-A})'=\e^{-A}(H'-A'H)=\e^{-A}(H'-fH)\le0,
+\quad A(t)=\int_{t_0}^tf(s)\dd s.
+\]
+因 $A(t_0)=0$、$H(t_0)=g$，从单调性得 $H(t)\e^{-A(t)}\le g$。再乘恒正的 $\e^{A(t)}$，不论 $g$ 正负，不等号方向都保持不变。
 \end{proof}
 \problem{5.4.2}{142--143}{设 $f$ 关于 $x$ 的 Lipschitz 常数为 $L$，$\varphi_i$ 为方程 $x'=f(t,x)$ 的 $\varepsilon_i$ 近似解，且 $|\varphi_1(t_0)-\varphi_2(t_0)|\le\delta$。估计两近似解之差，$t\ge t_0$。}
-近似解意为 $|\varphi_i'-f(t,\varphi_i)|\le\varepsilon_i$。记 $u=|\varphi_1-\varphi_2|$、$\varepsilon=\varepsilon_1+\varepsilon_2$，从积分式得
+近似解的定义给出残差 $r_i(t)=\varphi_i'(t)-f(t,\varphi_i(t))$，满足 $|r_i|\le\varepsilon_i$。令 $d=\varphi_1-\varphi_2$，由积分式
 \[
- u(t)\le\delta+\varepsilon(t-t_0)+L\int_{t_0}^tu(s)\dd s.
+d(t)=d(t_0)+\int_{t_0}^t[f(s,\varphi_1)-f(s,\varphi_2)+r_1-r_2]\dd s.
 \]
-以右端为 $H$，则 $H'\le\varepsilon+LH,H(t_0)=\delta$，乘 $\e^{-L(t-t_0)}$ 积分。
+取绝对值，使用初始误差界、Lipschitz 条件及 $|r_1-r_2|\le\varepsilon_1+\varepsilon_2=\varepsilon$，得到
+\[
+u(t):=|d(t)|\le\delta+L\int_{t_0}^tu(s)\dd s+\varepsilon(t-t_0).
+\]
+把右端记为 $H(t)$，则 $u\le H$、$H(t_0)=\delta$，且 $H'=Lu+\varepsilon\le LH+\varepsilon$。当 $L>0$ 时，乘 $\e^{-L(t-t_0)}$ 并积分：
+\[
+\begin{aligned}
+H(t)\e^{-L(t-t_0)}-\delta
+&\le\varepsilon\int_{t_0}^t\e^{-L(s-t_0)}\dd s\\
+&=\dfrac\varepsilon L[1-\e^{-L(t-t_0)}].
+\end{aligned}
+\]
+再乘回正指数并用 $u\le H$，得到所需误差界。$L=0$ 时直接由 $H'\le\varepsilon$ 积分，无需作除以 $L$ 的运算。
 \ans{u(t)\le\delta\e^{L(t-t_0)}+\dfrac\varepsilon L[\e^{L(t-t_0)}-1]\quad(L>0),\\
 u(t)\le\delta+\varepsilon(t-t_0)\quad(L=0).}
 $L\to0$ 的极限正是第二式；两近似解为精确解时 $\varepsilon=0$，恢复初值敏感性估计。
@@ -149,15 +265,23 @@ $L\to0$ 的极限正是第二式；两近似解为精确解时 $\varepsilon=0$�
  H(t)\le\e^{A(t)}\left[C+K\int_{t_0}^t\e^{-A(s)}\dd s\right].
 \]
 因 $f\ge0$，$A(s)\ge0$，所以积分不超过 $t-t_0$。结合 $K\ge0$ 与 $x\le H$ 得所求估计。
+这里 $H(t_0)=C$，所以积分因子步骤的初始项就是 $C$。最后的估计只把 $\displaystyle K\int_{t_0}^t\e^{-A(s)}\dd s$ 替为 $K(t-t_0)$，利用的是 $K\ge0$；若没有这个符号条件，不能保持相同方向地作该替换。
 \end{proof}
 \problem{5.5.1}{152}{设 $f,g$ 在平面区域 $G$ 连续并满足 Lipschitz 条件，$(x_0,y_0)\in G$。证明 $f(x_0,y_0)=g(x_0,y_0)=0$ 当且仅当系统 $x'=f(x,y),y'=g(x,y)$ 在该点任意邻域内都有时间长度任意大的轨道段。这里把解 $(x(t),y(t))$ 看作平面上以 $t$ 为参数的曲线，称为轨道。}
 \begin{proof}
 若两者均为零，常值解 $(x,y)=(x_0,y_0)$ 在任意长时间内都停留于每个邻域中，结论成立。
 
 反之，若向量场在该点非零，至少一个分量非零。不妨 $f(x_0,y_0)>0$。由连续性，可取闭小矩形 $|x-x_0|\le r,|y-y_0|\le r$ 包含于 $G$，且其内 $f\ge c>0$。任何完全留在该矩形内的轨道段，在时间长度 $T$ 内都有 $x(t_2)-x(t_1)\ge cT$，而矩形内横坐标差至多 $2r$，所以 $T\le2r/c$。这与任意长轨道段矛盾。其他分量或负号情形只需反向比较相应坐标。
+以 $f(x_0,y_0)>0$ 的情形说明，连续性允许取 $c=f(x_0,y_0)/2$ 并缩小矩形，使整个矩形内 $f\ge c$。若非零分量为负，改用 $-x$；若非零的是 $g$，改用 $y$ 或 $-y$。四种情况都得到同一有限停留时间上界，因而分类完备。
 \end{proof}
 \problem{5.5.3}{152}{对 $x'=\sin(tx)$，求解关于初始时刻及初值的导数在 $t_0=0,x_0=0$ 的表达式；若 $\varphi(t,\eta)$ 满足 $x(0)=\eta$，证明 $\partial\varphi/\partial\eta>0$。}
-基准解为 $x=0$。沿它 $f_x=t\cos(tx)=t$。因此初值导数 $U$ 满足 $U'=tU,U(0)=1$；初始时刻导数为 $-Uf(0,0)=0$。
+在 $t_0=0,x_0=0$ 时，零函数满足初值，且 $f_x=t\cos(tx)$ 连续，故由唯一性基准解就是 $x(t)=0$。初值导数 $U=\partial x/\partial x_0$ 满足变分方程
+\[
+U'=f_x(t,0)U=tU,\qquad U(0)=1.
+\]
+分离积分给 $\ln U=t^2/2$，所以 $U=\e^{t^2/2}$。
+
+对初始时刻导数，使用 $\partial x/\partial t_0=-U(t)f(t_0,x_0)$。本题 $f(0,0)=\sin0=0$，故该导数为0。这里求的是初始时刻的偏导，不是 $\partial x/\partial t=f(t,x)$，两者的含义不同。
 \ans{\left.\dfrac{\partial x}{\partial t_0}\right|_{t_0=x_0=0}=0,\qquad
 \left.\dfrac{\partial x}{\partial x_0}\right|_{t_0=x_0=0}=\e^{t^2/2}.}
 对一般 $\eta$，变分方程为 $U'=t\cos(t\varphi(t,\eta))U,U(0)=1$，所以
@@ -181,26 +305,56 @@ $f$ 有界使所有解可延拓到全实轴，上式对所有有限 $t$ 都有�
  x_{t_0}(t;t_0,x_0)+D_{x_0}x(t;t_0,x_0)\,f(t_0,x_0).
 \]
 按矩阵乘法把第二项逐列展开，即为题述恒等式。这里 $x_{t_0}$ 与 $x_{x_0^i}$ 均为列向量，不能把分量下标与自变量混淆。
+按分量展开链式法则，第 $j$ 个分量的导数为
+\[
+\dfrac{\partial x_j}{\partial t_0}
++\sum_{i=1}^n\dfrac{\partial x_j}{\partial x_0^i}
+\left.\dfrac\dd{\dd s}x_i(s;t_0,x_0)\right|_{s=t_0}.
+\]
+最后一个导数由原微分方程等于 $f_i(t_0,x_0)$。对 $j=1,\ldots,n$ 集合这些标量式，便得到向量恒等式。
 \end{proof}
 \problem{5.6.2}{159}{编写 Euler、改进 Euler、四阶 Runge--Kutta 程序，以 $h=0.1$ 计算 $x'=x+\sin t,x(0)=1/2$，$0\le t\le1$，并与解析解 $x=\e^t-(\sin t+\cos t)/2$ 比较。}
-先用一阶线性公式可得题给解析解。各法的递推规则见方法汇总；第一步具体为
+先核对解析解。将方程乘 $\e^{-t}$，得到 $(x\e^{-t})'=\e^{-t}\sin t$，而
 \[
- \begin{aligned}
- \text{Euler:}\quad&X_1=0.5+0.1(0.5+\sin0)=0.55;\\
- \text{改进Euler:}\quad&\widetilde X_1=0.55,\quad
- X_1=0.5+0.05[0.5+0.55+\sin0.1];\\
- \text{RK4:}\quad&K_1=0.5,\quad K_2=0.525+\sin0.05,\\
- &K_3=0.5+0.05K_2+\sin0.05,\quad
- K_4=0.5+0.1K_3+\sin0.1.
- \end{aligned}
+\int\e^{-t}\sin t\dd t=-\dfrac12\e^{-t}(\sin t+\cos t).
 \]
-以下各节点由未舍入的上一步结果推进。每法同时列绝对误差，程序随源码附在 \texttt{numerics.py}。
+故 $x=C\e^t-(\sin t+\cos t)/2$，初值 $1/2=C-1/2$ 给 $C=1$。
+
+现在三种算法都从 $t_0=0,X_0=0.5$、$h=0.1$ 开始。首步分别算如下。
+\begin{enumerate}
+\item Euler 法只有一个起点斜率 $f(0,0.5)=0.5$，所以 $X_1=0.5+0.1\cdot0.5=0.55$。
+\item 改进 Euler 法先预测 $\widetilde X_1=0.55$，再计算预测终点的斜率 $f(0.1,0.55)=0.55+\sin0.1$。于是
+\[
+X_1=0.5+0.05[0.5+0.55+\sin0.1]\approx0.557491671.
+\]
+\item RK4 法的四个斜率逐个使用上一步的结果：
+\[
+\begin{aligned}
+K_1&=0.5,\\
+K_2&=0.5+0.05K_1+\sin0.05\approx0.574979169,\\
+K_3&=0.5+0.05K_2+\sin0.05\approx0.578728128,\\
+K_4&=0.5+0.1K_3+\sin0.1\approx0.657706229,\\
+X_1&=0.5+\dfrac{0.1}{6}(K_1+2K_2+2K_3+K_4)
+\approx0.557752014.
+\end{aligned}
+\]
+\end{enumerate}
+后续每步将 $t_n,X_n$ 代入相同的递推，必须分别保存三种算法各自的 $X_n$，不能混用。表中精确值逐点代入解析式，绝对误差用 $|X_n-x(t_n)|$ 计算；推进时保存完整精度，最后显示时再舍入。可运行程序见 \texttt{numerics.py}。
 \input{numerical-table}
 \problem{5.6.3}{159}{取 $h=0.1$，用四阶 Runge--Kutta 法计算 $\displaystyle\int_0^1\e^{-t^2}\dd t$。}
-令 $u'=\e^{-t^2},u(0)=0$，则目标为 $u(1)$。右端不依赖 $u$，所以每一步 RK4 化为
+把积分转为初值问题 $u'=f(t)=\e^{-t^2},u(0)=0$，这样 $u(1)$ 就是目标积分。因右端不依赖 $u$，每一步 RK4 中
 \[
- u_{n+1}=u_n+\dfrac h6\left[\e^{-t_n^2}+4\e^{-(t_n+h/2)^2}+\e^{-(t_n+h)^2}\right].
+K_1=f(t_n),\quad K_2=K_3=f(t_n+h/2),\quad K_4=f(t_n+h).
 \]
-例如第一步由 $t_0=0$ 到0.1，增量为 $[1+4\e^{-0.05^2}+\e^{-0.1^2}]/60$；将10步增量相加。
+所以其加权平均恰为
+\[
+u_{n+1}-u_n=\dfrac h6[f(t_n)+4f(t_n+h/2)+f(t_n+h)].
+\]
+首步 $t_0=0,h=0.1$，三个不同取样值为
+\[
+1,\quad\e^{-0.0025}\approx0.997503122397,\quad
+\e^{-0.01}\approx0.990049833749.
+\]
+加权后首步增量为 $[1+4\e^{-0.0025}+\e^{-0.01}]/60\approx0.099667671389$。将起点依次换为 $0,0.1,\ldots,0.9$，得到下面10个增量；从 $u_0=0$ 累加所有增量就是最终近似值。表中每行只展示舍入结果，最终和使用未舍入的数值计算。
 \input{integral-result}
 \checknote{该递推与复合 Simpson 求积在20个半步小区间上的权重一致。另用高精度积分独立计算参考值，误差见结果；这里的 $h=0.1$ 是 RK4 的整步长。}

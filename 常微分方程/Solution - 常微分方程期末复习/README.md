@@ -3,7 +3,7 @@
 教材：张伟年、杜正东、徐冰《常微分方程》第2版。范围：前五章所有计算题，以及课堂照片指定的其余习题。详见“范围与核验清单.md”。
 
 - 主文件：`常微分方程期末复习.tex`。
-- 成品：`常微分方程期末复习.pdf`，77页。
+- 成品：`常微分方程期末复习.pdf`，110页。
 - `methods.tex`：13类方法汇总，包括选法、公式、适用条件及遗漏分支检查。
 - `chapter1.tex` 至 `chapter5.tex`：原题数据、逐题推导、答案与必要条件。
 - `answers.tex`：可点击回到原题的答案速查。
@@ -27,7 +27,10 @@ xelatex -interaction=nonstopmode -halt-on-error 常微分方程期末复习.tex
 python numerics.py
 python qa/verify_symbolic.py
 python qa/build_index.py
+python qa/check_detail_revision.py
 ```
+
+`check_detail_revision.py` 需在本Git仓库内运行，用提交 `3561ded` 核对题面和标准答案未改变。
 
 数值脚本需要 `mpmath`；符号验证需要 `sympy`。重新生成示意图需 `numpy`、`scipy`，运行 `python qa/make_figures.py`。重新生成页面检查图需 `pymupdf`、`Pillow`，运行 `python qa/render_review.py`。
 
@@ -41,7 +44,13 @@ python qa/build_index.py
 - 224项符号校验通过，包括微分残差、势函数、参数解、特征向量、完整方程组、级数系数及初值。校验的具体覆盖项见 `qa/symbolic-check.json`；不是对所有文字证明的自动验证。
 - 数值题用高精度积分、独立ODE求解及步长减半核对；报告见 `qa/numerical-check.json`。
 - 最终XeLaTeX编译退出码0，无LaTeX警告、缺字、Overfull或Underfull。
-- 全77页均作缩略图排版审阅，图表及关键公式另检查；自动文字边界检查未发现靠近纸张边缘的裁切候选。缩略图检查不等于以阅读字号逐字复读所有页面。
+- 全110页均作缩略图排版审阅，图表及关键公式另检查；自动文字边界检查未发现靠近纸张边缘的裁切候选。缩略图检查不等于以阅读字号逐字复读所有页面。
 - 题面以教材渲染页核对，OCR仅供检索；源PDF摘要与页码偏移见 `qa/source-provenance.json`。
 
 2026年11月24日，经AI辅助整理、计算、核验。原有教材笔记正文和用户已有修改未纳入本次变更。
+
+## 逐题详细化修订
+
+按2026年11月24日的追加要求，对180个题号条目逐题扩写，成品由77页增至110页。计算中补出分离变量、部分分式、积分因子的构造、换元化简、积分、初值定常数、参数分支、特征向量、级数递推与数值首步。原题和标准答案与首版逐章一致。
+
+新增17项中间恒等式校验，以及RK4首步的独立高精度校验，全部通过；具体见 `qa/detail-revision-check.json`。逐题扩写记录见 `qa/detail-expansion.json`。本次重新编译三遍稳定目录与交叉引用，最终无LaTeX警告，110页缩略图均检查，自动文字边界检查无裁切候选。首版的224项符号检查也重新通过。

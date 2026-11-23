@@ -1,48 +1,89 @@
 \section{第一章：绪论}
 \problem{1.1.1}{6}{船以相对水流恒定速度 $v_0$ 垂直向对岸行驶。水流沿河岸方向，速率与船到两岸的距离乘积成正比，比例系数 $k$，河宽 $a$。求轨迹满足的微分方程。}
-\method{选取沿河岸坐标 $x$、横渡坐标 $y$，叠加速度。}
-设出发岸为 $y=0$，对岸为 $y=a$，水流向 $x$ 正方向。两岸距离为 $y,a-y$，故
+取 $x$ 轴沿水流方向，$y$ 轴垂直河岸，出发岸为 $y=0$、对岸为 $y=a$。船在横渡位置 $y$ 时到两岸的距离分别为 $y$ 和 $a-y$，所以当地水流速度为 $ky(a-y)$。
+
+船相对于水的速度为 $(0,v_0)$，水相对于河岸的速度为 $(ky(a-y),0)$。两者相加得到船相对于河岸的速度：
 \[
- \dfrac{\dd x}{\dd t}=ky(a-y),\qquad \dfrac{\dd y}{\dd t}=v_0.
+\dfrac{\dd x}{\dd t}=ky(a-y),\qquad \dfrac{\dd y}{\dd t}=v_0.
 \]
-消去 $t$，再积分，得到
+因 $v_0>0$，可用第二式消去时间：
+\[
+\begin{aligned}
+\dfrac{\dd x}{\dd y}&=\dfrac{\dd x/\dd t}{\dd y/\dd t}
+=\dfrac{k}{v_0}(ay-y^2),\\
+x(y)-x(0)&=\dfrac{k}{v_0}\int_0^y(a\eta-\eta^2)\dd\eta\\
+&=\dfrac{k}{v_0}\left(\dfrac{ay^2}{2}-\dfrac{y^3}{3}\right).
+\end{aligned}
+\]
+令出发点沿岸坐标 $x(0)=x_0$，便得轨迹公式。
 \ans{\dfrac{\dd x}{\dd y}=\dfrac{k}{v_0}y(a-y),\qquad
 x-x_0=\dfrac{k}{v_0}\left(\dfrac{ay^2}{2}-\dfrac{y^3}{3}\right).}
 这里 $y=v_0t$（出发时刻取零）。到岸时间 $a/v_0$，漂移 $ka^3/(6v_0)$。
 \checknote{轨迹求导恢复速度比；$k=0$ 时轨迹垂直河岸，量纲与渡河时间一致。}
 \problem{1.1.2}{6}{求平面曲线满足的微分方程，使各点处切线、该点向径和 $Ox$ 轴构成等腰三角形。}
-原题未指明哪两边为腰，应区分构型。设 $P=(x,y)$，切线与横轴交于 $T=(a,0)$，$r=\sqrt{x^2+y^2}$，$y\ne0$，三角形非退化。切线斜率 $p=y/(x-a)$。
+原题没有指定哪两边为腰，故应分别讨论三种构型。设 $O=(0,0)$、切点 $P=(x,y)$，切线与横轴交于 $T=(a,0)$，三角形非退化。三条边的平方为
+\[
+OP^2=x^2+y^2,\quad PT^2=(x-a)^2+y^2,\quad OT^2=a^2.
+\]
+记切线斜率 $p=y'$，由两点斜率公式 $p=y/(x-a)$，即 $(x-a)p=y$。
 \begin{enumerate}
-\item 若 $OP=PT$，平方得 $x^2+y^2=(a-x)^2+y^2$，排除 $a=0$ 的退化情形，得 $a=2x$，所以 $xp+y=0$。
-\item 若 $OP=OT$，则 $a=\pm r$，所以 $(x\mp r)p=y$。
-\item 若 $OT=PT$，则 $a^2=(a-x)^2+y^2$，得 $2ax=r^2$，所以 $(x^2-y^2)p=2xy$。
+\item $OP=PT$ 时，$x^2=(x-a)^2$，展开得 $a(a-2x)=0$。$a=0$ 会使 $T=O$、三角形退化，故取 $a=2x$。代入切线式有 $-xp=y$。
+\item $OP=OT$ 时，$a^2=x^2+y^2$，所以 $a=\pm\sqrt{x^2+y^2}$，代入 $(x-a)p=y$ 即得相应两种朝向的方程。
+\item $OT=PT$ 时，$a^2=x^2-2ax+a^2+y^2$，即 $2ax=x^2+y^2$。在非退化构型中 $x\ne0$，故 $a=(x^2+y^2)/(2x)$。代回切线式并乘 $2x$，得到 $(x^2-y^2)p=2xy$。
 \end{enumerate}
 \ans{OP=PT:\ xy'+y=0;\qquad OP=OT:\ (x\mp\sqrt{x^2+y^2})y'=y;\\
 OT=PT:\ (x^2-y^2)y'=2xy.}
 竖直切线处用相应微分形式解释。若课堂约定切线段与向径为两腰，则取第一式，积分为 $xy=C$。
 \checknote{将各式对应的截距代入三条边长，分别恢复所要求的等长关系。}
 \problem{1.2.1}{11}{证明 $x(t)=C\e^{-3t}+2t+1$ 为 $x'+3x=6t+5$ 的解，并求满足 $x(0)=3$ 的解。}
+先对题给函数逐项求导，再代入方程左端：
 \[
- x'=-3C\e^{-3t}+2,\qquad x'+3x=2+6t+3=6t+5.
+\begin{aligned}
+x'&=-3C\e^{-3t}+2,\\
+x'+3x&=(-3C\e^{-3t}+2)+3(C\e^{-3t}+2t+1)\\
+&=-3C\e^{-3t}+3C\e^{-3t}+2+6t+3\\
+&=6t+5.
+\end{aligned}
 \]
-由 $C+1=3$ 得 $C=2$。
+其中含任意常数的两项恰好抵消，故任意 $C$ 都给出解。最后由初值 $x(0)=C+1=3$ 得 $C=2$，将这个值代入函数族。
 \ans{x(t)=2\e^{-3t}+2t+1.}
 \checknote{代入方程及 $t=0$ 均满足要求，定义域为 $\R$。}
 \problem{1.2.2}{12}{放射性物质镭的衰变速率与存余量成正比，比例系数 $k$。已知 $R(t_0)=R_0$，求 $R(t)$。}
-衰变使质量减少，故 $R'=-kR$，$k>0$。非零分支分离变量给出 $\ln|R|=-kt+C$；零初值另得零解。
+“衰变速率与存余量成正比”表示 $-R'=kR$，其中 $k>0$，负号反映质量随时间减少。若 $R_0>0$，采用带初值的定积分分离变量：
+\[
+\begin{aligned}
+\dfrac{\dd R}{R}&=-k\dd t,\\
+\int_{R_0}^{R(t)}\dfrac{\dd r}{r}&=-k\int_{t_0}^t\dd s,\\
+\ln\dfrac{R(t)}{R_0}&=-k(t-t_0).
+\end{aligned}
+\]
+两端取指数，得到质量随时间的变化。若 $R_0=0$，原方程的零解满足初值，且线性方程的唯一性保证没有其他初值解。
 \ans{R(t)=R_0\e^{-k(t-t_0)}.}
 \checknote{初值正确，$R'=-kR$；$R_0\ge0$ 时质量非负并随时间不增。}
 \problem{1.2.3}{12}{物体以初速度 $v_0$ 在空气中竖直上抛，质量 $m$，阻力大小为 $k^2v^2$。求运动规律及到达最高点的时间。}
-取向上为正，位置 $s(0)=s_0$。上升阶段 $v\ge0$，由 Newton 定律
+取向上为正，$s(0)=s_0$，$v=s'$。上升时 $v\ge0$，重力和阻力都向下，所以 $mv'=-mg-k^2v^2$。记 $V=\sqrt{mg}/k$，则
 \[
- m v'=-mg-k^2v^2.
+\begin{aligned}
+\dfrac{\dd v}{1+(v/V)^2}&=-g\dd t,\\
+V\left[\arctan\dfrac vV-\arctan\dfrac{v_0}{V}\right]&=-gt.
+\end{aligned}
 \]
-记 $V=\sqrt{mg}/k$，$\omega=k\sqrt{g/m}$，$\theta=\arctan(v_0/V)$。分离变量并代入初值得
+令 $\omega=g/V=k\sqrt{g/m}$、$\theta=\arctan(v_0/V)$，得 $v=V\tan(\theta-\omega t)$。再积分求位置，使用 $\displaystyle \int\tan u\dd u=-\ln|\cos u|$：
 \[
- \arctan(v/V)=\theta-\omega t,
- \qquad s-s_0=\dfrac m{k^2}\ln\dfrac{\cos(\theta-\omega t)}{\cos\theta}.
+\begin{aligned}
+s(t)-s_0&=\int_0^t V\tan(\theta-\omega\tau)\dd\tau\\
+&=\dfrac V\omega\ln\dfrac{\cos(\theta-\omega t)}{\cos\theta}
+=\dfrac m{k^2}\ln\dfrac{\cos(\theta-\omega t)}{\cos\theta}.
+\end{aligned}
 \]
-令 $v=0$ 得最高点时刻。下降时阻力改为向上，方程改为 $mv'=-mg+k^2v^2$，以最高点为新的初值。
+最高点由 $v(t_*)=0$ 给 $t_*=\theta/\omega$；又 $1/\cos\theta=\sqrt{1+(v_0/V)^2}$，代入位置式得到 $s_*$。
+
+下降时 $v<0$，阻力向上，故改用 $mv'=-mg+k^2v^2$。令 $w=-v/V$、$\tau=t-t_*$，则 $w'=\omega(1-w^2),w(0)=0$。分离积分给
+\[
+\dfrac12\ln\dfrac{1+w}{1-w}=\omega\tau,
+\quad w=\tanh(\omega\tau).
+\]
+因此 $v=-V\tanh(\omega\tau)$，再由 $\displaystyle \int\tanh u\dd u=\ln\cosh u$ 积分得到下降位置。
 \ans{v=V\tan(\theta-\omega t),\quad 0\le t\le t_*;\qquad t_*=\dfrac1\omega\arctan\dfrac{kv_0}{\sqrt{mg}},\\
 s_*=s_0+\dfrac m{2k^2}\ln\left(1+\dfrac{k^2v_0^2}{mg}\right),\\
 v=-V\tanh[\omega(t-t_*)],\quad
@@ -50,53 +91,118 @@ s=s_*-\dfrac m{k^2}\ln\cosh[\omega(t-t_*)]\quad(t\ge t_*).}
 下降公式使用至触地时。$k=0$ 的情形取极限，得到 $s=s_0+v_0t-gt^2/2$、$t_*=v_0/g$。
 \checknote{各阶段求导恢复正确方向的阻力；最高点位置与速度连续，$k\to0$ 恢复无阻力公式。}
 \problem{1.2.4}{12}{将例1.2和例1.3的方程化为规范的一阶方程组。}
-例1.2为 $\theta''=-(g/l)\sin\theta$。令 $u=\theta,v=\theta'$。
-例1.3为 $mx''+\mu x'+kx=0$。令 $u=x,v=x'$。
+把二阶未知函数与其一阶导数分别作为两个新未知函数。
+\begin{enumerate}
+\item 单摆原式为 $\theta''=-(g/l)\sin\theta$。令 $u=\theta,v=\theta'$，则 $u'=\theta'=v$，$v'=\theta''=-(g/l)\sin u$。
+\item 弹簧原式为 $mx''+\mu x'+kx=0$，先将最高阶导数解出：$x''=-(\mu/m)x'-(k/m)x$。再令 $u=x,v=x'$，得到 $u'=v$ 与 $v'=-(\mu/m)v-(k/m)u$。
+\end{enumerate}
+二阶初值 $x(t_0),x'(t_0)$ 分别转为 $u(t_0),v(t_0)$，没有增加也没有丢失初始数据。
 \ans{\text{单摆：}\ \begin{cases}u'=v,\\v'=-(g/l)\sin u;\end{cases}\qquad
 \text{弹簧：}\ \begin{cases}u'=v,\\v'=-(k/m)u-(\mu/m)v.\end{cases}}
 \checknote{对第一式再求导并用第二式消去 $v$，分别恢复两个二阶方程；两个初值也一一对应。}
 \problem{1.2.5(1)}{12}{作 $x'=|x|$ 的方向场，画出经过 $(0,0),(0,-1)$ 的积分曲线。}
-$x>0$ 时 $x'=x$，$x<0$ 时 $x'=-x$；在 $x=0$ 上斜率为零。由唯一性，零解不能与非零解交叉。
+按未知函数的符号把绝对值展开：
+\[
+x'=\begin{cases}x,&x>0,\\-x,&x<0,\\0,&x=0.\end{cases}
+\]
+因此正半平面上分离得 $\ln x=t+C_0$，解为 $x=C\e^t,C>0$；负半平面上有 $\dd x/x=-\dd t$，解为 $x=C\e^{-t},C<0$。
+
+过 $(0,-1)$ 时由 $C=-1$ 得 $x=-\e^{-t}$，该式始终负，符合推导所用的区域。过 $(0,0)$ 时零解成立；因 $||x_1|-|x_2||\le|x_1-x_2|$，右端满足 Lipschitz 条件，所以该零初值解唯一。方向场中每一水平线上斜率相同，且各点斜率均非负。
 \ans{x(t;0,0)=0,\qquad x(t;0,-1)=-\e^{-t}.}
 方向场与指定曲线见本节末图；所有非零曲线随 $t$ 增大向上，零解为水平线。
 \problem{1.2.5(2)}{12}{作 $x'=t^2+x^2$ 的方向场，画经过 $(0,0),(0,-1/2),(\sqrt2,0)$ 的积分曲线。}
-斜率除原点外均为正；在两坐标轴上分别为 $t^2,x^2$。这些方程一般不要求初等闭式。为准确规定每条曲线，令 $x=-u'/u$，得
+方向场的斜率 $f(t,x)=t^2+x^2$，除 $(0,0)$ 外恒正。因此三条指定曲线在非原点处都严格上升；在 $(0,0),(0,-1/2),(\sqrt2,0)$ 的起始斜率依次为 $0,1/4,2$。
+
+此题要求方向场与曲线，不必强求初等闭式。若用线性方程准确规定所画的解，令 $x=-u'/u$，逐项求导：
 \[
- u''+t^2u=0,\qquad u(t_0)=1,\quad u'(t_0)=-x_0.
+\begin{aligned}
+x'&=-\dfrac{u''}{u}+\dfrac{(u')^2}{u^2},\\
+t^2+x^2&=t^2+\dfrac{(u')^2}{u^2},\\
+u''+t^2u&=0.
+\end{aligned}
 \]
+在初始时刻取归一化 $u(t_0)=1$，由 $x(t_0)=x_0$ 得 $u'(t_0)=-x_0$，三种初始数据分别为 $(1,0),(1,1/2),(1,0)$，最后一种的初始时刻为 $\sqrt2$。在 $u\ne0$ 的区间回代即可。
 \ans{x=-\dfrac{u'}u,\quad u''+t^2u=0;\qquad
 (t_0,x_0)=(0,0),(0,-1/2),(\sqrt2,0).}
 取包含 $t_0$ 且 $u\ne0$ 的最大区间；图用原方程数值积分作出。经过原点的曲线为奇函数；它在原点有水平切线，但不为零解。由 $x'>0$（原点外），各曲线严格递增，不能相交。
 \checknote{由 $x'=-u''/u+(u'/u)^2=t^2+x^2$，且初值为 $x_0$。}
 \problem{1.2.5(3)}{12}{作 $x'=t^2-x^2$ 的方向场，画经过 $(0,0),(0,1)$ 的积分曲线。}
-零斜率线为 $x=t$ 与 $x=-t$；$|x|<|t|$ 时斜率为正，$|x|>|t|$ 时斜率为负。令 $x=u'/u$，得到
+由 $t^2-x^2=(t-x)(t+x)$，零斜率线是 $x=\pm t$；在 $|x|<|t|$ 的区域曲线上升，在 $|x|>|t|$ 的区域下降。因此过 $(0,0)$ 的曲线初始水平，过 $(0,1)$ 的曲线初始斜率为 $-1$。
+
+令 $x=u'/u$，代入并约去相同项：
+\[
+\begin{aligned}
+x'&=\dfrac{u''}{u}-\dfrac{(u')^2}{u^2},\\
+\dfrac{u''}{u}-\dfrac{(u')^2}{u^2}&=t^2-\dfrac{(u')^2}{u^2},\\
+u''&=t^2u.
+\end{aligned}
+\]
+仍取 $u(0)=1$，由 $x(0)=u'(0)$，两条曲线分别取 $u'(0)=0,1$。这给出图示数值解对应的精确初值问题。
 \ans{x=\dfrac{u'}u,\quad u''=t^2u,\quad u(0)=1,\quad
 u'(0)=0\ \text{或}\ 1.}
 上式中的 $u'(0)$ 分别对应两条指定曲线。经过 $(0,0)$ 的曲线为奇函数；经过 $(0,1)$ 的曲线在 $t=0$ 处斜率为 $-1$。
 \checknote{直接求导恢复 $x'=t^2-x^2$；分母不为零的区间才可作为解的定义区间。}
 \input{direction-fields}
 \problem{1.3.1(1)}{13}{求曲线族 $x=Ct+C^2$ 满足的微分方程。}
-求导得 $x'=C$，代回原式消去常数。
+原曲线族只含一个常数 $C$，所以先求一次导数来消去它。因为求导时 $C$ 与 $t$ 无关，
+\[
+\dfrac\dd{\dd t}(Ct+C^2)=C,\qquad x'=C.
+\]
+将 $C=x'$ 代回原式 $x=Ct+C^2$，得到 $x=tx'+(x')^2$。消元后没有留下任何任意常数，即为所求微分方程。
 \ans{x=tx'+(x')^2.}
 这是一阶 Clairaut 方程，除了原直线族还可能有奇解；题目只要求构造方程，不要求解集恰好等于原族。
 \problem{1.3.1(2)}{14}{求 $x=C_1\e^t\cos t+C_2\e^t\sin t$ 满足的微分方程。}
-令 $u=\e^{-t}x$，则 $u''+u=0$。展开 $(\e^{-t}x)''+\e^{-t}x=0$。
+先除去公共指数因子，令 $u=\e^{-t}x=C_1\cos t+C_2\sin t$。两次求导有
+\[
+u'=-C_1\sin t+C_2\cos t,\quad
+u''=-C_1\cos t-C_2\sin t=-u.
+\]
+因此 $u''+u=0$，已经消去两个常数。再把 $u=\e^{-t}x$ 的导数展开：
+\[
+\begin{aligned}
+u'&=\e^{-t}(x'-x),\\
+u''&=\e^{-t}(x''-2x'+x),\\
+u''+u&=\e^{-t}(x''-2x'+2x)=0.
+\end{aligned}
+\]
+指数因子从不为零，可以约去。
 \ans{x''-2x'+2x=0.}
 \checknote{特征根 $1\pm\ii$ 与给定曲线族一致，两基函数的 Wronski 行列式为 $\e^{2t}\ne0$。}
 \problem{1.3.1(3)}{14}{求 $(t-C_1)^2+(x-C_2)^2=1$ 满足的微分方程。}
-局部写成 $x=x(t)$，记 $q=x-C_2$。一次与二次求导给出
+在圆能表示为可微函数 $x=x(t)$ 的局部区间，令 $q=x-C_2$，原式为 $(t-C_1)^2+q^2=1$。连续两次求导并各除以2：
 \[
- (t-C_1)+qx'=0,\qquad 1+(x')^2+qx''=0.
+(t-C_1)+qx'=0,\qquad 1+(x')^2+qx''=0.
 \]
-又由原式 $q^2[1+(x')^2]=1$。消去 $q$ 得
+由第一式，$t-C_1=-qx'$，代回原圆方程得
+\[
+q^2[1+(x')^2]=1.
+\]
+把第二式平方为 $q^2(x'')^2=[1+(x')^2]^2$，再用 $q^2=1/[1+(x')^2]$ 消去 $q$，就得到不含两个常数的二阶方程。因为 $1+(x')^2>0$，这里的除法没有额外零分支。
 \ans{(x'')^2=[1+(x')^2]^3.}
 \checknote{该式表示曲率绝对值为1；单位圆的上下函数分支均满足，竖直切线处需换局部坐标。}
 \problem{1.3.2}{14}{长为 $2a$ 的细磁棒，简化为两端异性点磁荷 $+1,-1$。求磁场满足的微分方程，画方向场并分析积分曲线。}
-取正磁荷在 $(-a,0)$，负磁荷在 $(a,0)$。记 $r_+=\sqrt{(x+a)^2+y^2}$，$r_-=\sqrt{(x-a)^2+y^2}$。忽略公共比例常数，叠加两点磁场：
+取正磁荷在 $(-a,0)$，负磁荷在 $(a,0)$。由点磁荷场的反平方规律，每个贡献等于“带符号的单位径向量除以距离平方”。记
 \[
- B_x=\dfrac{x+a}{r_+^3}-\dfrac{x-a}{r_-^3},\qquad
- B_y=y\left(\dfrac1{r_+^3}-\dfrac1{r_-^3}\right).
+r_+=\sqrt{(x+a)^2+y^2},\qquad r_-=\sqrt{(x-a)^2+y^2},
 \]
+把两点磁场按坐标相加，忽略共同的正比例系数：
+\[
+\begin{aligned}
+(B_x,B_y)&=\dfrac{(x+a,y)}{r_+^3}-\dfrac{(x-a,y)}{r_-^3},\\
+B_x&=\dfrac{x+a}{r_+^3}-\dfrac{x-a}{r_-^3},\\
+B_y&=y\left(\dfrac1{r_+^3}-\dfrac1{r_-^3}\right).
+\end{aligned}
+\]
+场线的切向量与 $B$ 平行，所以在 $B_x\ne0$ 处满足 $y'=B_y/B_x$；竖直方向处保留参数方程 $\dot x=B_x,\dot y=B_y$。
+
+为找到第一积分，取 $F=(x+a)/r_+-(x-a)/r_-$。逐项求导时使用
+\[
+\dfrac\partial{\partial x}\dfrac{x\pm a}{r_\pm}
+=\dfrac{y^2}{r_\pm^3},\qquad
+\dfrac\partial{\partial y}\dfrac{x\pm a}{r_\pm}
+=-\dfrac{y(x\pm a)}{r_\pm^3}.
+\]
+于是 $F_x=yB_y,F_y=-yB_x$，沿场线 $\dot F=F_xB_x+F_yB_y=0$，所以 $F$ 为常数。
 \ans{\dfrac{\dd y}{\dd x}=\dfrac{B_y}{B_x}\ (B_x\ne0),\qquad
 \dfrac{x+a}{r_+}-\dfrac{x-a}{r_-}=C.}
 事实上，令左端为 $F$，则 $F_x=yB_y,F_y=-yB_x$，所以沿场线 $\dd F/\dd s=F_xB_x+F_yB_y=0$。场线从正端发出，进入负端；关于横轴及纵轴的曲线形状均对称。两磁荷处场未定义，不能把场线通过奇点继续成光滑解。横轴的各连通分段也是场线，需直接由 $B_y=0$ 另行记录。图取 $a=1$。

@@ -1,0 +1,61 @@
+{
+  "baseline_commit": "3561ded",
+  "question_and_answer_checks": [
+    {
+      "chapter": 1,
+      "question_headers_unchanged": true,
+      "standard_answers_unchanged": true,
+      "old_characters": 4792,
+      "new_characters": 8414
+    },
+    {
+      "chapter": 2,
+      "question_headers_unchanged": true,
+      "standard_answers_unchanged": true,
+      "old_characters": 19081,
+      "new_characters": 41572
+    },
+    {
+      "chapter": 3,
+      "question_headers_unchanged": true,
+      "standard_answers_unchanged": true,
+      "old_characters": 8526,
+      "new_characters": 13641
+    },
+    {
+      "chapter": 4,
+      "question_headers_unchanged": true,
+      "standard_answers_unchanged": true,
+      "old_characters": 8494,
+      "new_characters": 16272
+    },
+    {
+      "chapter": 5,
+      "question_headers_unchanged": true,
+      "standard_answers_unchanged": true,
+      "old_characters": 10123,
+      "new_characters": 16092
+    }
+  ],
+  "intermediate_symbolic_checks": [
+    "separable rational",
+    "rational y2-1",
+    "nonhomogeneous substitution rational",
+    "linear inverse integration",
+    "linear quotient integration",
+    "Bernoulli integration",
+    "exact integral twice by parts",
+    "implicit folium rational",
+    "implicit folium primitive",
+    "angle primitive",
+    "parameter derivative implicit 2.4.1(3)",
+    "constant variation c1 primitive",
+    "constant variation c2 primitive",
+    "IVP exponential sine primitive",
+    "Picard square coefficients",
+    "Picard negative square",
+    "Picard positive square"
+  ],
+  "rk4_worked_step": "0.5577520137238338420814870254494318150682",
+  "all_180_items_expanded": true
+}

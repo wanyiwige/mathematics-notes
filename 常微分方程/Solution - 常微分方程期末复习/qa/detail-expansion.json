@@ -1,0 +1,907 @@
+{
+  "count": 180,
+  "calculations": 159,
+  "proofs": 21,
+  "items": [
+    {
+      "id": "1.1.1",
+      "kind": "expanded_calculation",
+      "characters": 830
+    },
+    {
+      "id": "1.1.2",
+      "kind": "expanded_calculation",
+      "characters": 760
+    },
+    {
+      "id": "1.2.1",
+      "kind": "expanded_calculation",
+      "characters": 378
+    },
+    {
+      "id": "1.2.2",
+      "kind": "expanded_calculation",
+      "characters": 439
+    },
+    {
+      "id": "1.2.3",
+      "kind": "expanded_calculation",
+      "characters": 1363
+    },
+    {
+      "id": "1.2.4",
+      "kind": "expanded_calculation",
+      "characters": 575
+    },
+    {
+      "id": "1.2.5(1)",
+      "kind": "expanded_calculation",
+      "characters": 465
+    },
+    {
+      "id": "1.2.5(2)",
+      "kind": "expanded_calculation",
+      "characters": 727
+    },
+    {
+      "id": "1.2.5(3)",
+      "kind": "expanded_calculation",
+      "characters": 660
+    },
+    {
+      "id": "1.3.1(1)",
+      "kind": "expanded_calculation",
+      "characters": 283
+    },
+    {
+      "id": "1.3.1(2)",
+      "kind": "expanded_calculation",
+      "characters": 446
+    },
+    {
+      "id": "1.3.1(3)",
+      "kind": "expanded_calculation",
+      "characters": 412
+    },
+    {
+      "id": "1.3.2",
+      "kind": "expanded_calculation",
+      "characters": 1059
+    },
+    {
+      "id": "2.1.1",
+      "kind": "expanded_proof",
+      "characters": 521
+    },
+    {
+      "id": "2.1.2(1)",
+      "kind": "expanded_calculation",
+      "characters": 356
+    },
+    {
+      "id": "2.1.2(2)",
+      "kind": "expanded_calculation",
+      "characters": 303
+    },
+    {
+      "id": "2.1.2(3)",
+      "kind": "expanded_calculation",
+      "characters": 277
+    },
+    {
+      "id": "2.1.2(4)",
+      "kind": "expanded_calculation",
+      "characters": 485
+    },
+    {
+      "id": "2.1.2(5)",
+      "kind": "expanded_calculation",
+      "characters": 369
+    },
+    {
+      "id": "2.1.2(6)",
+      "kind": "expanded_calculation",
+      "characters": 352
+    },
+    {
+      "id": "2.1.2(7)",
+      "kind": "expanded_calculation",
+      "characters": 415
+    },
+    {
+      "id": "2.1.2(8)",
+      "kind": "expanded_calculation",
+      "characters": 350
+    },
+    {
+      "id": "2.1.2(9)",
+      "kind": "expanded_calculation",
+      "characters": 472
+    },
+    {
+      "id": "2.1.2(10)",
+      "kind": "expanded_calculation",
+      "characters": 269
+    },
+    {
+      "id": "2.1.2(11)",
+      "kind": "expanded_calculation",
+      "characters": 374
+    },
+    {
+      "id": "2.1.2(12)",
+      "kind": "expanded_calculation",
+      "characters": 352
+    },
+    {
+      "id": "2.1.2(13)",
+      "kind": "expanded_calculation",
+      "characters": 377
+    },
+    {
+      "id": "2.1.3(1)",
+      "kind": "expanded_calculation",
+      "characters": 447
+    },
+    {
+      "id": "2.1.3(2)",
+      "kind": "expanded_calculation",
+      "characters": 565
+    },
+    {
+      "id": "2.1.3(3)",
+      "kind": "expanded_calculation",
+      "characters": 409
+    },
+    {
+      "id": "2.1.3(4)",
+      "kind": "expanded_calculation",
+      "characters": 348
+    },
+    {
+      "id": "2.1.3(5)",
+      "kind": "expanded_calculation",
+      "characters": 403
+    },
+    {
+      "id": "2.1.3(6)",
+      "kind": "expanded_calculation",
+      "characters": 458
+    },
+    {
+      "id": "2.1.3(7)",
+      "kind": "expanded_calculation",
+      "characters": 291
+    },
+    {
+      "id": "2.1.3(8)",
+      "kind": "expanded_calculation",
+      "characters": 330
+    },
+    {
+      "id": "2.1.3(9)",
+      "kind": "expanded_calculation",
+      "characters": 284
+    },
+    {
+      "id": "2.1.3(10)",
+      "kind": "expanded_calculation",
+      "characters": 509
+    },
+    {
+      "id": "2.1.3(11)",
+      "kind": "expanded_calculation",
+      "characters": 448
+    },
+    {
+      "id": "2.1.3(12)",
+      "kind": "expanded_calculation",
+      "characters": 503
+    },
+    {
+      "id": "2.1.3(13)",
+      "kind": "expanded_calculation",
+      "characters": 361
+    },
+    {
+      "id": "2.1.3(14)",
+      "kind": "expanded_calculation",
+      "characters": 519
+    },
+    {
+      "id": "2.1.3(15)",
+      "kind": "expanded_calculation",
+      "characters": 512
+    },
+    {
+      "id": "2.1.4(1)",
+      "kind": "expanded_calculation",
+      "characters": 436
+    },
+    {
+      "id": "2.1.4(2)",
+      "kind": "expanded_calculation",
+      "characters": 280
+    },
+    {
+      "id": "2.1.4(3)",
+      "kind": "expanded_calculation",
+      "characters": 300
+    },
+    {
+      "id": "2.1.4(4)",
+      "kind": "expanded_calculation",
+      "characters": 390
+    },
+    {
+      "id": "2.1.4(5)",
+      "kind": "expanded_calculation",
+      "characters": 354
+    },
+    {
+      "id": "2.1.4(6)",
+      "kind": "expanded_calculation",
+      "characters": 279
+    },
+    {
+      "id": "2.1.5(1)",
+      "kind": "expanded_calculation",
+      "characters": 487
+    },
+    {
+      "id": "2.1.5(2)",
+      "kind": "expanded_calculation",
+      "characters": 375
+    },
+    {
+      "id": "2.1.5(3)",
+      "kind": "expanded_calculation",
+      "characters": 719
+    },
+    {
+      "id": "2.1.6(1)",
+      "kind": "expanded_calculation",
+      "characters": 305
+    },
+    {
+      "id": "2.1.6(2)",
+      "kind": "expanded_calculation",
+      "characters": 363
+    },
+    {
+      "id": "2.1.6(3)",
+      "kind": "expanded_calculation",
+      "characters": 437
+    },
+    {
+      "id": "2.1.6(4)",
+      "kind": "expanded_calculation",
+      "characters": 270
+    },
+    {
+      "id": "2.1.6(5)",
+      "kind": "expanded_calculation",
+      "characters": 363
+    },
+    {
+      "id": "2.1.6(6)",
+      "kind": "expanded_calculation",
+      "characters": 314
+    },
+    {
+      "id": "2.1.7(1)",
+      "kind": "expanded_calculation",
+      "characters": 365
+    },
+    {
+      "id": "2.1.7(2)",
+      "kind": "expanded_calculation",
+      "characters": 409
+    },
+    {
+      "id": "2.1.7(3)",
+      "kind": "expanded_calculation",
+      "characters": 427
+    },
+    {
+      "id": "2.1.7(4)",
+      "kind": "expanded_calculation",
+      "characters": 391
+    },
+    {
+      "id": "2.1.8",
+      "kind": "expanded_calculation",
+      "characters": 521
+    },
+    {
+      "id": "2.1.9",
+      "kind": "expanded_calculation",
+      "characters": 412
+    },
+    {
+      "id": "2.2.1(1)",
+      "kind": "expanded_calculation",
+      "characters": 417
+    },
+    {
+      "id": "2.2.1(2)",
+      "kind": "expanded_calculation",
+      "characters": 457
+    },
+    {
+      "id": "2.2.1(3)",
+      "kind": "expanded_calculation",
+      "characters": 478
+    },
+    {
+      "id": "2.2.1(4)",
+      "kind": "expanded_calculation",
+      "characters": 426
+    },
+    {
+      "id": "2.2.1(5)",
+      "kind": "expanded_calculation",
+      "characters": 448
+    },
+    {
+      "id": "2.2.1(6)",
+      "kind": "expanded_calculation",
+      "characters": 439
+    },
+    {
+      "id": "2.2.1(7)",
+      "kind": "expanded_calculation",
+      "characters": 416
+    },
+    {
+      "id": "2.2.1(8)",
+      "kind": "expanded_calculation",
+      "characters": 517
+    },
+    {
+      "id": "2.2.1(9)",
+      "kind": "expanded_calculation",
+      "characters": 427
+    },
+    {
+      "id": "2.2.2(1)",
+      "kind": "expanded_calculation",
+      "characters": 420
+    },
+    {
+      "id": "2.2.2(2)",
+      "kind": "expanded_calculation",
+      "characters": 469
+    },
+    {
+      "id": "2.2.4(1)",
+      "kind": "expanded_calculation",
+      "characters": 490
+    },
+    {
+      "id": "2.2.4(2)",
+      "kind": "expanded_calculation",
+      "characters": 513
+    },
+    {
+      "id": "2.2.4(3)",
+      "kind": "expanded_calculation",
+      "characters": 617
+    },
+    {
+      "id": "2.2.4(4)",
+      "kind": "expanded_calculation",
+      "characters": 449
+    },
+    {
+      "id": "2.2.4(5)",
+      "kind": "expanded_calculation",
+      "characters": 525
+    },
+    {
+      "id": "2.2.5",
+      "kind": "expanded_calculation",
+      "characters": 687
+    },
+    {
+      "id": "2.2.6",
+      "kind": "expanded_calculation",
+      "characters": 474
+    },
+    {
+      "id": "2.2.7",
+      "kind": "expanded_calculation",
+      "characters": 516
+    },
+    {
+      "id": "2.2.8",
+      "kind": "expanded_calculation",
+      "characters": 549
+    },
+    {
+      "id": "2.2.9",
+      "kind": "expanded_calculation",
+      "characters": 570
+    },
+    {
+      "id": "2.4.1(1)",
+      "kind": "expanded_calculation",
+      "characters": 448
+    },
+    {
+      "id": "2.4.1(2)",
+      "kind": "expanded_calculation",
+      "characters": 466
+    },
+    {
+      "id": "2.4.1(3)",
+      "kind": "expanded_calculation",
+      "characters": 661
+    },
+    {
+      "id": "2.4.1(4)",
+      "kind": "expanded_calculation",
+      "characters": 778
+    },
+    {
+      "id": "2.4.1(5)",
+      "kind": "expanded_calculation",
+      "characters": 825
+    },
+    {
+      "id": "2.4.1(6)",
+      "kind": "expanded_calculation",
+      "characters": 623
+    },
+    {
+      "id": "2.4.2(1)",
+      "kind": "expanded_calculation",
+      "characters": 402
+    },
+    {
+      "id": "2.4.2(2)",
+      "kind": "expanded_calculation",
+      "characters": 494
+    },
+    {
+      "id": "2.4.2(3)",
+      "kind": "expanded_calculation",
+      "characters": 387
+    },
+    {
+      "id": "2.4.2(4)",
+      "kind": "expanded_calculation",
+      "characters": 535
+    },
+    {
+      "id": "2.4.2(5)",
+      "kind": "expanded_calculation",
+      "characters": 454
+    },
+    {
+      "id": "2.4.2(6)",
+      "kind": "expanded_calculation",
+      "characters": 482
+    },
+    {
+      "id": "2.4.3(1)",
+      "kind": "expanded_calculation",
+      "characters": 458
+    },
+    {
+      "id": "2.4.3(2)",
+      "kind": "expanded_calculation",
+      "characters": 385
+    },
+    {
+      "id": "2.4.3(3)",
+      "kind": "expanded_calculation",
+      "characters": 350
+    },
+    {
+      "id": "2.4.3(4)",
+      "kind": "expanded_calculation",
+      "characters": 382
+    },
+    {
+      "id": "2.4.3(5)",
+      "kind": "expanded_calculation",
+      "characters": 485
+    },
+    {
+      "id": "2.4.3(6)",
+      "kind": "expanded_calculation",
+      "characters": 416
+    },
+    {
+      "id": "2.4.3(7)",
+      "kind": "expanded_calculation",
+      "characters": 330
+    },
+    {
+      "id": "2.4.3(8)",
+      "kind": "expanded_calculation",
+      "characters": 583
+    },
+    {
+      "id": "2.4.3(9)",
+      "kind": "expanded_calculation",
+      "characters": 420
+    },
+    {
+      "id": "2.4.4",
+      "kind": "expanded_calculation",
+      "characters": 404
+    },
+    {
+      "id": "2.4.6",
+      "kind": "expanded_proof",
+      "characters": 563
+    },
+    {
+      "id": "3.1.1",
+      "kind": "expanded_proof",
+      "characters": 695
+    },
+    {
+      "id": "3.1.2",
+      "kind": "expanded_calculation",
+      "characters": 465
+    },
+    {
+      "id": "3.1.3",
+      "kind": "expanded_proof",
+      "characters": 591
+    },
+    {
+      "id": "3.2.1",
+      "kind": "expanded_calculation",
+      "characters": 607
+    },
+    {
+      "id": "3.2.2",
+      "kind": "expanded_proof",
+      "characters": 296
+    },
+    {
+      "id": "3.2.3",
+      "kind": "expanded_calculation",
+      "characters": 614
+    },
+    {
+      "id": "3.2.4",
+      "kind": "expanded_proof",
+      "characters": 425
+    },
+    {
+      "id": "3.2.6",
+      "kind": "expanded_proof",
+      "characters": 580
+    },
+    {
+      "id": "3.3.1",
+      "kind": "expanded_calculation",
+      "characters": 1339
+    },
+    {
+      "id": "3.3.2",
+      "kind": "expanded_proof",
+      "characters": 624
+    },
+    {
+      "id": "3.3.3",
+      "kind": "expanded_proof",
+      "characters": 563
+    },
+    {
+      "id": "3.4.1",
+      "kind": "expanded_proof",
+      "characters": 482
+    },
+    {
+      "id": "3.4.2",
+      "kind": "expanded_proof",
+      "characters": 362
+    },
+    {
+      "id": "3.4.3",
+      "kind": "expanded_calculation",
+      "characters": 577
+    },
+    {
+      "id": "3.4.4",
+      "kind": "expanded_calculation",
+      "characters": 693
+    },
+    {
+      "id": "3.4.5",
+      "kind": "expanded_calculation",
+      "characters": 820
+    },
+    {
+      "id": "3.4.6",
+      "kind": "expanded_calculation",
+      "characters": 809
+    },
+    {
+      "id": "3.5.1",
+      "kind": "expanded_calculation",
+      "characters": 903
+    },
+    {
+      "id": "3.5.2",
+      "kind": "expanded_calculation",
+      "characters": 839
+    },
+    {
+      "id": "3.5.3",
+      "kind": "expanded_calculation",
+      "characters": 1008
+    },
+    {
+      "id": "3.5.4",
+      "kind": "expanded_proof",
+      "characters": 399
+    },
+    {
+      "id": "4.1.1(1)",
+      "kind": "expanded_calculation",
+      "characters": 279
+    },
+    {
+      "id": "4.1.1(2)",
+      "kind": "expanded_calculation",
+      "characters": 353
+    },
+    {
+      "id": "4.1.1(3)",
+      "kind": "expanded_calculation",
+      "characters": 417
+    },
+    {
+      "id": "4.1.1(4)",
+      "kind": "expanded_calculation",
+      "characters": 353
+    },
+    {
+      "id": "4.1.1(5)",
+      "kind": "expanded_calculation",
+      "characters": 302
+    },
+    {
+      "id": "4.1.1(6)",
+      "kind": "expanded_calculation",
+      "characters": 378
+    },
+    {
+      "id": "4.1.1(7)",
+      "kind": "expanded_calculation",
+      "characters": 304
+    },
+    {
+      "id": "4.1.1(8)",
+      "kind": "expanded_calculation",
+      "characters": 408
+    },
+    {
+      "id": "4.1.2",
+      "kind": "expanded_proof",
+      "characters": 369
+    },
+    {
+      "id": "4.1.3",
+      "kind": "expanded_calculation",
+      "characters": 889
+    },
+    {
+      "id": "4.2.1(1)",
+      "kind": "expanded_calculation",
+      "characters": 399
+    },
+    {
+      "id": "4.2.1(2)",
+      "kind": "expanded_calculation",
+      "characters": 447
+    },
+    {
+      "id": "4.2.1(3)",
+      "kind": "expanded_calculation",
+      "characters": 483
+    },
+    {
+      "id": "4.2.1(4)",
+      "kind": "expanded_calculation",
+      "characters": 475
+    },
+    {
+      "id": "4.2.1(5)",
+      "kind": "expanded_calculation",
+      "characters": 461
+    },
+    {
+      "id": "4.2.1(6)",
+      "kind": "expanded_calculation",
+      "characters": 384
+    },
+    {
+      "id": "4.2.1(7)",
+      "kind": "expanded_calculation",
+      "characters": 353
+    },
+    {
+      "id": "4.2.1(8)",
+      "kind": "expanded_calculation",
+      "characters": 350
+    },
+    {
+      "id": "4.2.2",
+      "kind": "expanded_calculation",
+      "characters": 635
+    },
+    {
+      "id": "4.3.1",
+      "kind": "expanded_calculation",
+      "characters": 856
+    },
+    {
+      "id": "4.3.3(1)",
+      "kind": "expanded_calculation",
+      "characters": 830
+    },
+    {
+      "id": "4.3.3(2)",
+      "kind": "expanded_calculation",
+      "characters": 291
+    },
+    {
+      "id": "4.3.3(3)",
+      "kind": "expanded_calculation",
+      "characters": 810
+    },
+    {
+      "id": "4.3.3(4)",
+      "kind": "expanded_calculation",
+      "characters": 766
+    },
+    {
+      "id": "4.3.3(5)",
+      "kind": "expanded_calculation",
+      "characters": 688
+    },
+    {
+      "id": "4.3.3(6)",
+      "kind": "expanded_calculation",
+      "characters": 421
+    },
+    {
+      "id": "4.3.3(7)",
+      "kind": "expanded_calculation",
+      "characters": 753
+    },
+    {
+      "id": "4.3.4",
+      "kind": "expanded_proof",
+      "characters": 675
+    },
+    {
+      "id": "4.4.1",
+      "kind": "expanded_calculation",
+      "characters": 602
+    },
+    {
+      "id": "4.4.2",
+      "kind": "expanded_calculation",
+      "characters": 530
+    },
+    {
+      "id": "4.4.3",
+      "kind": "expanded_calculation",
+      "characters": 915
+    },
+    {
+      "id": "5.1.1",
+      "kind": "expanded_calculation",
+      "characters": 986
+    },
+    {
+      "id": "5.1.2",
+      "kind": "expanded_calculation",
+      "characters": 757
+    },
+    {
+      "id": "5.1.3",
+      "kind": "expanded_calculation",
+      "characters": 727
+    },
+    {
+      "id": "5.1.4",
+      "kind": "expanded_calculation",
+      "characters": 942
+    },
+    {
+      "id": "5.1.5",
+      "kind": "expanded_calculation",
+      "characters": 746
+    },
+    {
+      "id": "5.1.6",
+      "kind": "expanded_calculation",
+      "characters": 816
+    },
+    {
+      "id": "5.1.7",
+      "kind": "expanded_calculation",
+      "characters": 833
+    },
+    {
+      "id": "5.1.8",
+      "kind": "expanded_proof",
+      "characters": 854
+    },
+    {
+      "id": "5.2.1",
+      "kind": "expanded_calculation",
+      "characters": 912
+    },
+    {
+      "id": "5.3.1",
+      "kind": "expanded_proof",
+      "characters": 643
+    },
+    {
+      "id": "5.3.4",
+      "kind": "expanded_proof",
+      "characters": 489
+    },
+    {
+      "id": "5.3.5(1)",
+      "kind": "expanded_calculation",
+      "characters": 510
+    },
+    {
+      "id": "5.3.5(2)",
+      "kind": "expanded_calculation",
+      "characters": 646
+    },
+    {
+      "id": "5.4.1",
+      "kind": "expanded_proof",
+      "characters": 670
+    },
+    {
+      "id": "5.4.2",
+      "kind": "expanded_calculation",
+      "characters": 1038
+    },
+    {
+      "id": "5.4.3",
+      "kind": "expanded_proof",
+      "characters": 613
+    },
+    {
+      "id": "5.5.1",
+      "kind": "expanded_proof",
+      "characters": 629
+    },
+    {
+      "id": "5.5.3",
+      "kind": "expanded_calculation",
+      "characters": 806
+    },
+    {
+      "id": "5.5.4",
+      "kind": "expanded_proof",
+      "characters": 704
+    },
+    {
+      "id": "5.6.2",
+      "kind": "expanded_calculation",
+      "characters": 1039
+    },
+    {
+      "id": "5.6.3",
+      "kind": "expanded_calculation",
+      "characters": 675
+    }
+  ]
+}

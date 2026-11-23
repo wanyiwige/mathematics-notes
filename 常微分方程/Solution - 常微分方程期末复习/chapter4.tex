@@ -1,81 +1,271 @@
 \section{第四章：常系数线性方程}
 \basis{第4.1--4.4节，教材第89--113页。}
 \problem{4.1.1(1)}{94}{求 $x''+4x=0$ 的实通解。}
-特征方程 $r^2+4=0$ 的根为 $\pm2\ii$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^2+4=0.
+\]
+计算根或因式分解如下：
+\[
+r^2=-4,\qquad r=\pm2\ii.
+\]
+两个单复根给出两个独立实解。因此可取实基本解组
+\[
+\cos2t,\sin2t.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=C_1\cos2t+C_2\sin2t.}
 \problem{4.1.1(2)}{94}{求 $x'''-x''+2x'-2x=0$ 的实通解。}
-特征多项式分组因式分解：$r^2(r-1)+2(r-1)=(r-1)(r^2+2)$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^3-r^2+2r-2=0.
+\]
+计算根或因式分解如下：
+\[
+r^2(r-1)+2(r-1)=(r-1)(r^2+2)=0.
+\]
+实根为1；另两根为正负 $\sqrt2\ii$。因此可取实基本解组
+\[
+\e^t,\cos(\sqrt2t),\sin(\sqrt2t).
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=C_1\e^t+C_2\cos(\sqrt2t)+C_3\sin(\sqrt2t).}
 \problem{4.1.1(3)}{94}{求 $x^{(4)}+4x=0$ 的实通解。}
-$r^4+4=(r^2-2r+2)(r^2+2r+2)$，根为 $1\pm\ii,-1\pm\ii$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^4+4=0.
+\]
+计算根或因式分解如下：
+\[
+r^4+4=(r^2+2)^2-(2r)^2=(r^2-2r+2)(r^2+2r+2).
+\]
+两个二次因式分别为 $(r-1)^2+1$、$(r+1)^2+1$，故根为 $1\pm\ii,-1\pm\ii$。因此可取实基本解组
+\[
+\e^t\cos t,\e^t\sin t,\e^{-t}\cos t,\e^{-t}\sin t.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=\e^t(C_1\cos t+C_2\sin t)+\e^{-t}(C_3\cos t+C_4\sin t).}
 \problem{4.1.1(4)}{94}{求 $x^{(4)}-2x'''+2x'-x=0$ 的实通解。}
-$r^4-2r^3+2r-1=(r-1)^3(r+1)$，根1为三重根，$-1$ 为单根。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^4-2r^3+2r-1=0.
+\]
+计算根或因式分解如下：
+\[
+r^4-2r^3+2r-1=(r-1)^3(r+1).
+\]
+根1的重数为3，故同一指数因子前要配齐0、1、2次幂；根 $-1$ 为单根。因此可取实基本解组
+\[
+\e^t,t\e^t,t^2\e^t,\e^{-t}.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=(C_1+C_2t+C_3t^2)\e^t+C_4\e^{-t}.}
 \problem{4.1.1(5)}{94}{求 $x''+4x'+4x=0$ 的实通解。}
-特征多项式 $(r+2)^2$，应补上 $t\e^{-2t}$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^2+4r+4=0.
+\]
+计算根或因式分解如下：
+\[
+r^2+4r+4=(r+2)^2.
+\]
+根 $-2$ 为二重根，第二个解必须乘 $t$ 才能与第一个独立。因此可取实基本解组
+\[
+\e^{-2t},t\e^{-2t}.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=(C_1+C_2t)\e^{-2t}.}
 \problem{4.1.1(6)}{94}{求 $x''+2x'+4x=0$ 的实通解。}
-$r^2+2r+4=(r+1)^2+3$，根为 $-1\pm\sqrt3\ii$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^2+2r+4=0.
+\]
+计算根或因式分解如下：
+\[
+(r+1)^2=-3,\qquad r=-1\pm\sqrt3\ii.
+\]
+把指数 $\e^{(-1+\sqrt3\ii)t}$ 展成实部与虚部，得到一组实基本解。因此可取实基本解组
+\[
+\e^{-t}\cos(\sqrt3t),\e^{-t}\sin(\sqrt3t).
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=\e^{-t}[C_1\cos(\sqrt3t)+C_2\sin(\sqrt3t)].}
 \problem{4.1.1(7)}{94}{求 $x'''+4x'=0$ 的实通解。}
-特征多项式 $r(r^2+4)$，根为 $0,\pm2\ii$。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^3+4r=0.
+\]
+计算根或因式分解如下：
+\[
+r(r^2+4)=0,\qquad r=0,\pm2\ii.
+\]
+零特征根对应常数函数1，不能只保留两项三角函数。因此可取实基本解组
+\[
+1,\cos2t,\sin2t.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=C_1+C_2\cos2t+C_3\sin2t.}
 \problem{4.1.1(8)}{94}{求 $x^{(4)}+8x''+16x=0$ 的实通解。}
-$r^4+8r^2+16=(r^2+4)^2$，两共轭根均为二重根。
+令试探解为 $x=\e^{rt}$，则 $x^{(k)}=r^k\e^{rt}$。代回原方程并除去恒非零的 $\e^{rt}$，特征方程为
+\[
+r^4+8r^2+16=0.
+\]
+计算根或因式分解如下：
+\[
+r^4+8r^2+16=(r^2+4)^2.
+\]
+根 $2\ii,-2\ii$ 各二重；每个实三角基函数都需要再乘一次 $t$。因此可取实基本解组
+\[
+\cos2t,t\cos2t,\sin2t,t\sin2t.
+\]
+将它们作任意常数的线性组合，得到通解；项数按重数计与方程阶数相等。
 \ans{x=(C_1+C_2t)\cos2t+(C_3+C_4t)\sin2t.}
 \checknote{每一小问的基解对应全部特征根及重数，任意常数的数目等于阶数；将 $D$ 代入对应因式即可核验。}
 \problem{4.1.2}{94}{设 $a,b,c>0$，证明 $ax''+bx'+cx=0$ 的每个解在 $t\to+\infty$ 时趋零。}
 \begin{proof}
 根为 $r_{1,2}=(-b\pm\sqrt{b^2-4ac})/(2a)$。若判别式非负，因 $c>0$，$\sqrt{b^2-4ac}<b$，故两根均负；重根时通解为 $(C_1+C_2t)\e^{-bt/(2a)}$，仍趋零。若判别式为负，两根实部为 $-b/(2a)<0$，实解为衰减指数乘有界三角函数，也趋零。
+重根时出现的项 $t\e^{-ct}$（$c>0$）满足 $\lim_{t\to\infty}t/\e^{ct}=0$，可对这个商使用一次 L'Hôpital 法则得到 $1/(c\e^{ct})\to0$。因此仅证明指数因子衰减还不够，还需检查重根额外产生的多项式因子；这里也已完成检查。
 \end{proof}
 \problem{4.1.3}{94}{分析 $x''+2\delta x'+\omega^2x=0$ 的特征根并给出通解，其中 $\delta\ge0,\omega>0$。}
-特征根为 $-\delta\pm\sqrt{\delta^2-\omega^2}$，按判别式分三种情况。
+令 $x=\e^{rt}$，得到 $r^2+2\delta r+\omega^2=0$。先配方：
+\[
+(r+\delta)^2=\delta^2-\omega^2,
+\quad r=-\delta\pm\sqrt{\delta^2-\omega^2}.
+\]
+\begin{enumerate}
+\item $\delta<\omega$ 时，令 $\nu=\sqrt{\omega^2-\delta^2}>0$，根为 $-\delta\pm\ii\nu$，取指数解的实部、虚部，得到 $\e^{-\delta t}\cos\nu t$ 与 $\e^{-\delta t}\sin\nu t$。
+\item $\delta=\omega$ 时，两根重合于 $-\omega$，因此基本解为 $\e^{-\omega t},t\e^{-\omega t}$。
+\item $\delta>\omega$ 时，两根互异且为实数，分别对应两项实指数函数。因 $\sqrt{\delta^2-\omega^2}<\delta$，两指数的系数均负。
+\end{enumerate}
 \ans{\delta<\omega:\ x=\e^{-\delta t}(C_1\cos\nu t+C_2\sin\nu t),\quad\nu=\sqrt{\omega^2-\delta^2};\\
 \delta=\omega:\ x=(C_1+C_2t)\e^{-\omega t};\\
 \delta>\omega:\ x=C_1\e^{(-\delta+\sqrt{\delta^2-\omega^2})t}
 +C_2\e^{(-\delta-\sqrt{\delta^2-\omega^2})t}.}
 $\delta=0$ 为无阻尼振动，$0<\delta<\omega$ 为衰减振动；后两种为临界阻尼和过阻尼。
 \problem{4.2.1(1)}{99}{求 $x''+x'=1+t^2$ 的实通解。}
-齐次根为0和 $-1$。多项式右端与根0共振，设 $x_p=at^3+bt^2+ct$，代入得
+齐次特征多项式为 $r(r+1)$，故齐次通解 $C_1+C_2\e^{-t}$。右端是二次多项式，而0为一个单特征根，试特解时乘一次 $t$，设 $x_p=at^3+bt^2+ct$。逐项求导并代入：
 \[
- 3at^2+(6a+2b)t+(2b+c)=t^2+1.
+\begin{aligned}
+x_p'&=3at^2+2bt+c,\qquad x_p''=6at+2b,\\
+x_p''+x_p'&=3at^2+(6a+2b)t+(2b+c).
+\end{aligned}
 \]
-因此 $a=1/3,b=-1,c=3$。
+与 $t^2+1$ 比较三个系数：
+\[
+3a=1,\quad6a+2b=0,\quad2b+c=1.
+\]
+依次得到 $a=1/3,b=-1,c=3$。最后将该特解加到齐次通解上。
 \ans{x=C_1+C_2\e^{-t}+\dfrac{t^3}{3}-t^2+3t.}
 \problem{4.2.1(2)}{99}{求 $x''+4x=\cos2t+\cos4t$ 的实通解。}
-对第一项共振，试 $at\sin2t$，有 $(D^2+4)(t\sin2t)=4\cos2t$，故 $a=1/4$。第二项试 $b\cos4t$，有 $-12b=1$。
+先解齐次方程，得到 $x_h=C_1\cos2t+C_2\sin2t$。右端可分两项分别求特解。
+\begin{enumerate}
+\item $\cos2t$ 与齐次频率相同，设 $u=at\sin2t$。由
+\[
+u'=a\sin2t+2at\cos2t,\quad
+u''=4a\cos2t-4at\sin2t,
+\]
+得 $u''+4u=4a\cos2t$，所以 $a=1/4$。
+\item $\cos4t$ 不共振，设 $v=b\cos4t$，则 $v''+4v=(-16+4)b\cos4t=-12b\cos4t$，所以 $b=-1/12$。
+\end{enumerate}
+由线性叠加，$u+v$ 为整个右端的一个特解，再加 $x_h$。
 \ans{x=C_1\cos2t+C_2\sin2t+\dfrac t4\sin2t-\dfrac1{12}\cos4t.}
 \problem{4.2.1(3)}{99}{求 $x''+4x=t\sin2t$ 的实通解。}
-因 $\pm2\ii$ 为单根，试 $x_p=at^2\cos2t+bt\sin2t$。代入得 $-8at\sin2t+(2a+4b)\cos2t=t\sin2t$，所以 $a=-1/8,b=1/16$。
+齐次通解为 $C_1\cos2t+C_2\sin2t$。右端 $t\sin2t$ 在频率2处共振，试 $x_p=at^2\cos2t+bt\sin2t$。需要的两个算子作用分别为
+\[
+\begin{aligned}
+(D^2+4)(t^2\cos2t)&=2\cos2t-8t\sin2t,\\
+(D^2+4)(t\sin2t)&=4\cos2t.
+\end{aligned}
+\]
+故 $(D^2+4)x_p=-8at\sin2t+(2a+4b)\cos2t$。比较独立项 $t\sin2t,\cos2t$ 的系数：
+\[
+-8a=1,\quad2a+4b=0,
+\qquad a=-\dfrac18,\quad b=\dfrac1{16}.
+\]
+将特解与齐次解相加即得通解。
 \ans{x=C_1\cos2t+C_2\sin2t-\dfrac{t^2}{8}\cos2t+\dfrac t{16}\sin2t.}
 这是习题3.4.6的独立计算方法，两法一致。
 \problem{4.2.1(4)}{99}{求 $x'''-4x''+3x'=t^2$ 的实通解。}
-特征多项式 $r(r-1)(r-3)$。试 $x_p=at^3+bt^2+ct$，比较系数得到
+齐次特征多项式 $P(r)=r(r-1)(r-3)$，所以齐次解为 $C_1+C_2\e^t+C_3\e^{3t}$。右端是二次多项式且0为单根，设 $x_p=at^3+bt^2+ct$。三个导数为
 \[
- 9a=1,\qquad 6b-24a=0,\qquad6a-8b+3c=0.
+x_p'=3at^2+2bt+c,\quad x_p''=6at+2b,\quad x_p'''=6a.
+\]
+代入并按幂次排列：
+\[
+x_p'''-4x_p''+3x_p'
+=9at^2+(6b-24a)t+(6a-8b+3c).
+\]
+与 $t^2$ 比较系数，依次得 $a=1/9$、$b=4a=4/9$，最后
+\[
+3c=8b-6a=\dfrac{32}{9}-\dfrac{6}{9}=\dfrac{26}{9},
+\quad c=\dfrac{26}{27}.
 \]
 \ans{x=C_1+C_2\e^t+C_3\e^{3t}+\dfrac{t^3}{9}+\dfrac{4t^2}{9}+\dfrac{26t}{27}.}
 \problem{4.2.1(5)}{99}{求 $x''-3x'+2x=\sin(\e^{-t})$ 的实通解。}
-该右端不属于通常多项式乘指数的待定系数形式。令 $u=\e^{-t}$，$X(u)=x(t)$，则
+先解齐次方程，其根为1和2。右端 $\sin(\e^{-t})$ 不是有限个指数乘多项式，故改作替换 $u=\e^{-t}>0$、$x(t)=X(u)$。因为 $u'=-u$，
 \[
- x'=-uX',\quad x''=u^2X''+uX',\quad
- u^2X''+4uX'+2X=(u^2X)''=\sin u.
+x'=-uX_u,\qquad x''=u^2X_{uu}+uX_u.
 \]
-两次积分得 $u^2X=-\sin u+Au+B$。
+代入后
+\[
+u^2X_{uu}+4uX_u+2X=\sin u.
+\]
+左端恰为 $\dd^2(u^2X)/\dd u^2$。令 $Z=u^2X$，连续两次积分：
+\[
+Z''=\sin u,\quad Z'=-\cos u+A,\quad Z=-\sin u+Au+B.
+\]
+所以 $X=-\sin u/u^2+A/u+B/u^2$。最后用 $u^{-1}=\e^t,u^{-2}=\e^{2t}$ 回代，齐次项与两个积分常数自然一致。
 \ans{x=C_1\e^t+C_2\e^{2t}-\e^{2t}\sin(\e^{-t}).}
 \problem{4.2.1(6)}{99}{求 $x'''-5x''+8x'-4x=\e^{3t}$ 的实通解。}
-$P(r)=(r-1)(r-2)^2$，而 $P(3)=2$，故特解为 $\e^{3t}/2$。
+特征多项式先试根1，再作除法：
+\[
+P(r)=r^3-5r^2+8r-4=(r-1)(r^2-4r+4)=(r-1)(r-2)^2.
+\]
+故齐次通解为 $C_1\e^t+(C_2+C_3t)\e^{2t}$。右端为 $\e^{3t}$，3不是特征根，可设 $x_p=A\e^{3t}$。其三个导数分别为 $3A\e^{3t},9A\e^{3t},27A\e^{3t}$，代入给
+\[
+(27-5\cdot9+8\cdot3-4)A\e^{3t}=2A\e^{3t}.
+\]
+令其等于右端，得 $2A=1$，所以 $A=1/2$，再加齐次通解。
 \ans{x=C_1\e^t+(C_2+C_3t)\e^{2t}+\dfrac12\e^{3t}.}
 \problem{4.2.1(7)}{99}{求 $x''-2x=4t^2\e^{t^2}$ 的实通解。}
-由 $(\e^{t^2})''=(2+4t^2)\e^{t^2}$，直接识别 $x_p=\e^{t^2}$。齐次根为 $\pm\sqrt2$。
+齐次方程 $x''-2x=0$ 的特征根为 $\pm\sqrt2$。为匹配右端含有的 $t^2\e^{t^2}$，先计算简单候选 $u=\e^{t^2}$ 的导数：
+\[
+\begin{aligned}
+u'&=2t\e^{t^2},\\
+u''&=2\e^{t^2}+4t^2\e^{t^2},\\
+u''-2u&=4t^2\e^{t^2}.
+\end{aligned}
+\]
+因此该候选本身就是所需特解，没有必要为非线性的指数 $t^2$ 套用有限待定系数模板。加上两个齐次指数解即为通解。
 \ans{x=C_1\e^{\sqrt2t}+C_2\e^{-\sqrt2t}+\e^{t^2}.}
 \problem{4.2.1(8)}{99}{求 $x''-2x'+x=t\e^t$ 的实通解。}
-令 $x=\e^tu$，由算子移位 $(D-1)^2x=\e^tu''$ 得 $u''=t$，两次积分。
+齐次算子是 $(D-1)^2$。为消去公共指数，令 $x=\e^tu$，直接展开：
+\[
+x'=\e^t(u+u'),\qquad x''=\e^t(u+2u'+u'').
+\]
+原式左端因此为 $\e^t[(u+2u'+u'')-2(u+u')+u]=\e^tu''$，约去非零指数因子得 $u''=t$。逐次积分为
+\[
+u'=\dfrac{t^2}{2}+C_2,\qquad
+u=\dfrac{t^3}{6}+C_2t+C_1.
+\]
+最后乘回 $\e^t$，两个积分常数也给出了齐次通解。
 \ans{x=\e^t\left(C_1+C_2t+\dfrac{t^3}{6}\right).}
 \problem{4.2.2}{99}{证明 Cauchy--Euler 方程 $a_2t^2x''+a_1tx'+a_0x=f(t)$ 可经适当替换化为常系数方程，其中 $a_2\ne0$。}
 \begin{proof}
-在不跨越0的区间上令 $s=\ln|t|$、$x(t)=u(s)$。链式法则给出 $tx'=u_s,t^2x''=u_{ss}-u_s$，代入得
+在不跨越 $t=0$ 的区间取 $s=\ln|t|$、$x(t)=u(s)$。由 $\dd s/\dd t=1/t$，链式法则给
+\[
+x'=\dfrac{u_s}{t}.
+\]
+再求一次导数，两个因子都需求导：
+\[
+x''=\dfrac1t\dfrac{\dd u_s}{\dd t}-\dfrac{u_s}{t^2}
+=\dfrac{u_{ss}}{t^2}-\dfrac{u_s}{t^2}.
+\]
+所以 $tx'=u_s$、$t^2x''=u_{ss}-u_s$。代入原式并合并一阶项：
+\[
+a_2(u_{ss}-u_s)+a_1u_s+a_0u=f(t).
+\]
+在正、负半轴分别有 $t=\varepsilon\e^s$，$\varepsilon=\pm1$。这样右端成为 $f(\varepsilon\e^s)$，左端三个系数均为常数。
 \ans{a_2u_{ss}+(a_1-a_2)u_s+a_0u=f(\varepsilon\e^s),\quad
 \varepsilon=\operatorname{sgn}(t).}
 左端各系数均为常数。$t=0$ 是原方程的退化点，不能用同一个对数替换越过。
@@ -84,72 +274,160 @@ $P(r)=(r-1)(r-2)^2$，而 $P(3)=2$，故特解为 $\e^{3t}/2$。
 \[
  x_1'-x_2'+x_1=-t,\qquad x_1''-x_2'+3x_1-x_2=\e^{2t}.
 \]}
-第一式给 $x_2'=x_1'+x_1+t$，代入第二式得
+先从第一式解出 $x_2'=x_1'+x_1+t$。把它代入第二式后得到
 \[
- x_2=x_1''-x_1'+2x_1-t-\e^{2t}.
+x_2=x_1''-x_1'+2x_1-t-\e^{2t}.
 \]
-再求导并使用第一式，消去 $x_2$：
+此式给出 $x_2$ 对 $x_1$ 的恢复关系；它的一阶导数必须再次满足第一式，所以
 \[
- (D^3-D^2+D-1)x_1=t+1+2\e^{2t},\qquad
- P(D)=(D-1)(D^2+1).
+\begin{aligned}
+x_2'&=x_1'''-x_1''+2x_1'-1-2\e^{2t},\\
+x_1'''-x_1''+2x_1'-1-2\e^{2t}&=x_1'+x_1+t,\\
+x_1'''-x_1''+x_1'-x_1&=t+1+2\e^{2t}.
+\end{aligned}
 \]
-多项式特解为 $-t-2$，指数特解为 $2\e^{2t}/5$。从恢复公式计算 $x_2$，注意各常数不能独立重取。
+特征多项式为 $(r-1)(r^2+1)$。对多项式右端试 $at+b$，算子作用为 $-at+(a-b)$，比较得 $a=-1,b=-2$；对指数项试 $c\e^{2t}$，因 $P(2)=5$，得 $c=2/5$。于是 $x_1$ 为下述通解。
+
+恢复 $x_2$ 时逐类计算 $x_1''-x_1'+2x_1-t-\e^{2t}$：指数 $\e^t$ 的系数乘 $1-1+2=2$；三角项合成 $(C_2-C_3)\cos t+(C_2+C_3)\sin t$；多项式项为 $1-2t-4-t=-3t-3$；$\e^{2t}$ 的系数为 $(2/5)(4-2+2)-1=3/5$。
 \ans{x_1=C_1\e^t+C_2\cos t+C_3\sin t-t-2+\dfrac25\e^{2t},\\
 x_2=2C_1\e^t+(C_2-C_3)\cos t+(C_2+C_3)\sin t-3t-3+\dfrac35\e^{2t}.}
 \checknote{两式的差导数加 $x_1$ 为 $-t$；按恢复公式代回第二式即为 $\e^{2t}$，常数总数为3。}
 \problem{4.3.3(1)}{108}{求 $x'=-3x+48y-28z,\ y'=-4x+40y-22z,\ z'=-6x+57y-31z$。}
-系数矩阵的特征多项式为 $(r-1)(r-2)(r-3)$。分别解 $(A-rI)v=0$，可取
+令 $\boldsymbol u=(x,y,z)^T$，写成 $\boldsymbol u'=A\boldsymbol u$。特征行列式为
 \[
- v_1=(3,2,3)^T,\qquad v_2=(4,1,1)^T,\qquad v_3=(2,2,3)^T.
+\det(rI-A)=\begin{vmatrix}r+3&-48&28\\4&r-40&22\\6&-57&r+31\end{vmatrix}
+=r^3-6r^2+11r-6=(r-1)(r-2)(r-3).
 \]
+按三个特征根分别把 $A-rI$ 行化简，得到齐次方程的等价约束：
+\[
+\begin{array}{c|cc|c}
+r&\multicolumn{2}{c|}{\text{行化简后的非零方程}}&\text{自由参数的选择}\\\hline
+1&x-z=0&y-2z/3=0&z=3\\
+2&x-4z=0&y-z=0&z=1\\
+3&x-2z/3=0&y-2z/3=0&z=3
+\end{array}
+\]
+所以依次取 $v_1=(3,2,3)^T,v_2=(4,1,1)^T,v_3=(2,2,3)^T$。每对 $(r_i,v_i)$ 产生解 $\e^{r_it}v_i$，因为求导后为 $r_i\e^{r_it}v_i=A\e^{r_it}v_i$。三个根互异，对应特征向量独立，故相加即可得到全体解。
 \ans{\begin{pmatrix}x\\y\\z\end{pmatrix}
 =C_1\e^t\begin{pmatrix}3\\2\\3\end{pmatrix}
 +C_2\e^{2t}\begin{pmatrix}4\\1\\1\end{pmatrix}
 +C_3\e^{3t}\begin{pmatrix}2\\2\\3\end{pmatrix}.}
 三根互异，三向量独立，直接计算 $Av_i=i v_i$ 核验。
 \problem{4.3.3(2)}{108}{求 $x'=y,\ y'=x$。}
-由第一式再求导得 $x''=x$，再用 $y=x'$ 恢复第二分量。
+第一式给 $x'=y$，再求导并用第二式，得到 $x''=y'=x$。这个二阶方程的特征根为 $1,-1$，所以
+\[
+x=C_1\e^t+C_2\e^{-t}.
+\]
+不能为 $y$ 另取两个独立积分常数，而必须用第一式恢复：
+\[
+y=x'=C_1\e^t-C_2\e^{-t}.
+\]
+再求导可得 $y'=C_1\e^t+C_2\e^{-t}=x$，第二式也满足，常数总数为2。
 \ans{x=C_1\e^t+C_2\e^{-t},\qquad y=C_1\e^t-C_2\e^{-t}.}
 \problem{4.3.3(3)}{108}{求 $x'=-5x-10y-20z,\ y'=5x+5y+10z,\ z'=2x+4y+9z$。}
-特征多项式为 $(r-5)(r^2-4r+5)$，根为 $5,2\pm\ii$。可取实根向量 $v=(-2,0,1)^T$，复根 $2+\ii$ 的向量 $a+\ii b$，其中
+系数矩阵为 $A=\begin{pmatrix}-5&-10&-20\\5&5&10\\2&4&9\end{pmatrix}$。其特征多项式为
 \[
- a=(-3,-2,2)^T,\quad b=(-1,1,0)^T.
+\det(rI-A)=r^3-9r^2+25r-25=(r-5)[(r-2)^2+1].
 \]
-实部、虚部组成实基本解组。
+所以根为 $5,2\pm\ii$。解 $Av=5v$ 时，行化简得 $y=0,x=-2z$，取 $z=1$ 得 $v=(-2,0,1)^T$。
+
+对 $r=2+\ii$，将 $(A-rI)w=0$ 行化简为
+\[
+w_1=-\left(\dfrac32+\dfrac\ii2\right)w_3,
+\qquad w_2=\left(-1+\dfrac\ii2\right)w_3.
+\]
+取 $w_3=2$，得 $w=a+\ii b$，其中 $a=(-3,-2,2)^T,b=(-1,1,0)^T$。为得到实解，将复解展开：
+\[
+\begin{aligned}
+\e^{(2+\ii)t}(a+\ii b)
+&=\e^{2t}(\cos t+\ii\sin t)(a+\ii b)\\
+&=\e^{2t}(a\cos t-b\sin t)
++\ii\e^{2t}(a\sin t+b\cos t).
+\end{aligned}
+\]
+其两个实向量函数和 $\e^{5t}v$ 组成实基本解组。
 \ans{\begin{pmatrix}x\\y\\z\end{pmatrix}=C_1\e^{5t}v+
 \e^{2t}\{C_2(a\cos t-b\sin t)+C_3(a\sin t+b\cos t)\}.}
 \checknote{$Av=5v$，$Aa=2a-b$，$Ab=a+2b$；这些等式也直接验证上述三列解。}
 \problem{4.3.3(4)}{108}{求 $x'=3x-y,\ y'=-4x-y,\ z'=4x-8y-2z$。}
-特征根为 $-2$ 和 $\lambda_\pm=1\pm2\sqrt2$。对 $\lambda=\lambda_\pm$ 取
+矩阵分块结构使特征行列式可按第三列展开：
 \[
- v(\lambda)=\bigl(\lambda+2,(3-\lambda)(\lambda+2),8\lambda-20\bigr)^T.
+\det(rI-A)=(r+2)\begin{vmatrix}r-3&1\\4&r+1\end{vmatrix}
+=(r+2)(r^2-2r-7).
 \]
-前两分量由 $y=(3-\lambda)x$ 确定，第三分量由 $(\lambda+2)z=4x-8y$ 确定。
+所以根为 $-2$、$\lambda_\pm=1\pm2\sqrt2$。根 $-2$ 时前两分量只能为零，第三分量任取，故取 $(0,0,1)^T$。
+
+对 $\lambda=\lambda_\pm$，特征向量方程按原组逐行写为
+\[
+\begin{cases}
+y=(3-\lambda)x,\\
+-4x-y=\lambda y,\\
+(\lambda+2)z=4x-8y.
+\end{cases}
+\]
+代入第一式后第二式等价于 $\lambda^2-2\lambda-7=0$，自动成立。第三式给 $z=(8\lambda-20)x/(\lambda+2)$。取 $x=\lambda+2\ne0$ 清去分母，得到
+\[
+v(\lambda)=\bigl(\lambda+2,(3-\lambda)(\lambda+2),8\lambda-20\bigr)^T.
+\]
+分别乘对应的指数，再将三项线性组合。
 \ans{\begin{pmatrix}x\\y\\z\end{pmatrix}=C_1\e^{-2t}\begin{pmatrix}0\\0\\1\end{pmatrix}
 +C_2\e^{\lambda_+t}v(\lambda_+)+C_3\e^{\lambda_-t}v(\lambda_-).}
 利用 $\lambda^2-2\lambda-7=0$ 可逐行验证特征向量关系。
 \problem{4.3.3(5)}{108}{求 $x'=9x-5y,\ y'=-y+5z,\ z'=-y+5z$。}
-特征根为 $0,4,9$。解相应齐次代数组，取向量 $(25,45,9)^T,(1,1,1)^T,(1,0,0)^T$。
+系数矩阵为 $A=\begin{pmatrix}9&-5&0\\0&-1&5\\0&-1&5\end{pmatrix}$。按第一列展开特征行列式：
+\[
+\det(rI-A)=(r-9)[(r+1)(r-5)+5]=(r-9)r(r-4).
+\]
+因此逐根求向量：
+\begin{enumerate}
+\item $r=0$ 时，$-y+5z=0$ 给 $y=5z$，$9x-5y=0$ 给 $x=25z/9$。取 $z=9$，得到 $(25,45,9)^T$。
+\item $r=4$ 时，第二式成为 $-y+5z=4y$，所以 $y=z$；第一式 $9x-5y=4x$ 给 $x=y$。取三者为1，得 $(1,1,1)^T$。
+\item $r=9$ 时，第一式给 $y=0$，第二式再给 $z=0$，取 $x=1$，得 $(1,0,0)^T$。
+\end{enumerate}
+对应指数分别为 $1,\e^{4t},\e^{9t}$，三个特征向量独立。
 \ans{\begin{pmatrix}x\\y\\z\end{pmatrix}
 =C_1\begin{pmatrix}25\\45\\9\end{pmatrix}
 +C_2\e^{4t}\begin{pmatrix}1\\1\\1\end{pmatrix}
 +C_3\e^{9t}\begin{pmatrix}1\\0\\0\end{pmatrix}.}
 零根对应常值向量，不能漏去这一项。
 \problem{4.3.3(6)}{108}{求 $x'=3x-2y,\ y'=-2x+3y,\ z'=5z$。}
-前两式相加得到 $(x+y)'=x+y$，相减得到 $(x-y)'=5(x-y)$，第三式独立积分。
+前两式相加、相减分别得到
+\[
+(x+y)'=(3x-2y)+(-2x+3y)=x+y,
+\]
+\[
+(x-y)'=(3x-2y)-(-2x+3y)=5(x-y).
+\]
+因此 $x+y=A\e^t$、$x-y=B\e^{5t}$。把两式再相加、相减：
+\[
+x=\dfrac A2\e^t+\dfrac B2\e^{5t},\qquad
+y=\dfrac A2\e^t-\dfrac B2\e^{5t}.
+\]
+第三式独立给 $z=C_3\e^{5t}$。令 $C_1=A/2,C_2=B/2$ 后，三个自由常数互相独立。
 \ans{x=C_1\e^t+C_2\e^{5t},\quad y=C_1\e^t-C_2\e^{5t},\quad z=C_3\e^{5t}.}
 根5虽重，但有两个独立特征向量，不需乘 $t$。
 \problem{4.3.3(7)}{108}{求 $x'=2x+y+3z,\ y'=2y-z,\ z'=2z$。}
-系数矩阵只有特征根2，且
+矩阵是上三角，三个特征根都为2。写 $A=2I+N$，其中
 \[
- A=2I+N,\quad N=\begin{pmatrix}0&1&3\\0&0&-1\\0&0&0\end{pmatrix},\quad
- N^2=\begin{pmatrix}0&0&-1\\0&0&0\\0&0&0\end{pmatrix},\quad N^3=0.
+N=\begin{pmatrix}0&1&3\\0&0&-1\\0&0&0\end{pmatrix},\quad
+N^2=\begin{pmatrix}0&0&-1\\0&0&0\\0&0&0\end{pmatrix},\quad N^3=0.
 \]
-所以 $\e^{At}=\e^{2t}(I+tN+t^2N^2/2)$。也可令 $x=\e^{2t}u,y=\e^{2t}v,z=\e^{2t}w$，从最后一式向上依次积分：
+因此矩阵指数级数在二次项终止：$\e^{At}=\e^{2t}(I+tN+t^2N^2/2)$。
+
+也可完全用逐层积分求得分量。令 $x=\e^{2t}u,y=\e^{2t}v,z=\e^{2t}w$，代回原组约去公共指数与 $2u,2v,2w$，得到
 \[
- w'=0,\quad v'=-w,\quad u'=v+3w,
+w'=0,\qquad v'=-w,\qquad u'=v+3w.
 \]
-因此 $w=C_3,v=C_2-C_3t,u=C_1+C_2t+C_3(3t-t^2/2)$。
+从下向上积分：
+\[
+\begin{aligned}
+w&=C_3,\\
+v&=-C_3t+C_2,\\
+u'&=C_2+3C_3-C_3t,\\
+u&=C_1+C_2t+3C_3t-\dfrac{C_3t^2}{2}.
+\end{aligned}
+\]
+最后把每个分量分别乘回 $\e^{2t}$，得到通解。
 \ans{x=\e^{2t}[C_1+C_2t+C_3(3t-t^2/2)],\\
 y=\e^{2t}(C_2-C_3t),\qquad z=C_3\e^{2t}.}
 \checknote{基本解矩阵为 $\e^{2t}\begin{pmatrix}1&t&3t-t^2/2\\0&1&-t\\0&0&1\end{pmatrix}$，行列式 $\e^{6t}\ne0$。由 $N^3=0$ 计算的矩阵指数与逐层积分相同。}
@@ -159,21 +437,44 @@ y=\e^{2t}(C_2-C_3t),\qquad z=C_3\e^{2t}.}
 \item 实部为负的 Jordan 项仍衰减且在 $[0,\infty)$ 有界。实部为零的根为单根时没有 $t^k$（$k\ge1$）因子，只有模为1的指数项，故有界。更一般地，该条件可放宽为虚轴上的 Jordan 块均为一阶。
 \item 设 $A$ 有正实部的特征根，构造一个范数趋于无穷的解。若正实部根为实数，取对应实特征向量即可；若为 $a+\ii b$、$a>0,b\ne0$，取复向量 $u+\ii v$ 的实部解 $\e^{at}(u\cos bt-v\sin bt)$。$u,v$ 在实域独立，括号作为单位圆的线性单射像，其范数有正下界，所以该解范数趋于无穷。
 \end{enumerate}
+在第一、二条中，从 Jordan 坐标回到原坐标只需乘一个固定可逆矩阵。固定矩阵把有界函数映成有界函数，也把趋零函数映成趋零函数，因此对 Jordan 坐标逐项的估计足以推出原向量解的结论。第三条只构造一个增长解，并不要求所有初值都含增长方向的非零分量。
+
 \problem{4.4.1}{113}{1 kg 重物挂在弹簧上使其伸长 $49/320$ m 后平衡。从平衡位置向下拉 $1/4$ m 后静止释放，忽略阻力，求振动规律，$g=9.8\ \mathrm{m/s^2}$。}
-静平衡给 $k(49/320)=mg=9.8$，所以 $k=64\ \mathrm{N/m}$。以向下为正，平衡点为原点，方程与初值为 $x''+64x=0,x(0)=1/4,x'(0)=0$。
+先用静平衡时的胡克定律确定弹性系数。设静伸长为 $l=49/320$ m，则
+\[
+kl=mg,\qquad k=\dfrac{mg}{l}
+=\dfrac{1\cdot9.8}{49/320}=\dfrac{49}{5}\cdot\dfrac{320}{49}=64\ \mathrm{N/m}.
+\]
+以平衡位置为位移原点、向下为正，重力已与静弹力抵消，运动中净恢复力为 $-kx$，所以
+\[
+x''+64x=0,\qquad x(0)=\dfrac14,\quad x'(0)=0.
+\]
+特征根为 $\pm8\ii$，先写 $x=A\cos8t+B\sin8t$。代入位移初值得 $A=1/4$；由 $x'=-8A\sin8t+8B\cos8t$，速度初值给 $8B=0$，即 $B=0$。角频率8对应周期 $2\pi/8=\pi/4$ 秒。
 \ans{x(t)=\dfrac14\cos8t\ \mathrm m,\qquad T=\dfrac\pi4\ \mathrm s.}
 \checknote{初值与释放条件一致；$kx$ 与 $mx''$ 单位同为力。}
 \problem{4.4.2}{113}{电感 $L$ 与电容 $C$ 串联组成无电源闭合电路，证明电容器电位差 $v(t)$ 为周期函数。}
 \begin{proof}
-由电感电压与电容电压之和为零，且 $i=Cv'$，得到 $LCv''+v=0$。设 $L,C>0$，其解为
+取电流方向与电容电荷 $q$ 的增加方向一致，则 $i=q'=Cv'$，电感电压为 $Li'=LCv''$。无电源且无电阻，Kirchhoff 电压定律给
+\[
+LCv''+v=0,\qquad v''+\dfrac1{LC}v=0.
+\]
+因 $L,C>0$，令 $\omega_0=1/\sqrt{LC}$，特征根为 $\pm\ii\omega_0$。两项独立实解是 $\cos\omega_0t,\sin\omega_0t$，所以通解为下式。若 $T=2\pi/\omega_0$，则 $\omega_0(t+T)=\omega_0t+2\pi$，三角函数的值不变，从而 $v(t+T)=v(t)$。
 \ans{v=A\cos(\omega_0t)+B\sin(\omega_0t),\quad \omega_0=\dfrac1{\sqrt{LC}},\quad T=2\pi\sqrt{LC}.}
 非零解具有上述周期；零函数也为周期函数，但无最小正周期。
 \end{proof}
 \problem{4.4.3}{113}{电感 $L$、电容 $C$、电源 $E=E_0\sin\omega t$ 串联。证明 $\omega=1/\sqrt{LC}$ 时发生共振，并讨论电位差随时间的变化。}
-由 $LCv''+v=E_0\sin\omega t$，得 $v''+\omega_0^2v=E_0\omega_0^2\sin\omega t$。共振时试 $v_p=at\cos\omega_0t$，因
+仍由电压定律与 $i=Cv'$，得到 $LCv''+v=E_0\sin\omega t$。记 $\omega_0=1/\sqrt{LC}$，规范式为
 \[
- (D^2+\omega_0^2)(t\cos\omega_0t)=-2\omega_0\sin\omega_0t,
+v''+\omega_0^2v=E_0\omega_0^2\sin\omega t.
 \]
-得到
+若 $\omega\ne\omega_0$，试特解 $A\sin\omega t$，则 $A=E_0\omega_0^2/(\omega_0^2-\omega^2)$，振幅有限。共振条件 $\omega=\omega_0$ 时这个试探式失效，应改试 $v_p=at\cos\omega_0t$：
+\[
+\begin{aligned}
+v_p'&=a\cos\omega_0t-a\omega_0t\sin\omega_0t,\\
+v_p''&=-2a\omega_0\sin\omega_0t-a\omega_0^2t\cos\omega_0t,\\
+v_p''+\omega_0^2v_p&=-2a\omega_0\sin\omega_0t.
+\end{aligned}
+\]
+与 $E_0\omega_0^2\sin\omega_0t$ 比较，得 $a=-E_0\omega_0/2$。加上齐次解 $A\cos\omega_0t+B\sin\omega_0t$，得到下式，含 $t$ 的项使振幅包络线性增长。
 \ans{v=A\cos\omega_0t+B\sin\omega_0t-\dfrac{E_0\omega_0}{2}t\cos\omega_0t.}
 $E_0\ne0$ 时振幅无界。教材“$t\to+\infty$ 时电位差变得无界”应理解为解函数无界，不能理解为 $v(t)\to+\infty$ 或 $|v(t)|\to\infty$：在 $\cos\omega_0t=0$ 的无穷多个时刻，$v(t)=\pm B$ 仍有界。共振增长的是振幅包络。

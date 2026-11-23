@@ -4,402 +4,1366 @@
 \begin{proof}
 先求 $g$ 的所有实零点 $a$，每个零点给出 $y\equiv a$。在 $g(y)\ne0$ 的开区间内，原方程等价于 $\dd y/g(y)=h(x)\dd x$，积分后取可微分支。
 若 $g$ 在零点附近满足局部 Lipschitz 条件，唯一性使非常值解不能在有限时刻接触相应常值解；若只有连续性，还须检查非常值分支能否在有限时刻到达 $a$ 并与常值段拼接。拼接时函数及其导数都须连续，且原方程处处成立。只把方程除以 $g(y)$ 而不检查这些情况会漏解。
+例如在一个 $g(y)\ne0$ 的区间内，先选定 $a_*$，定义 $\displaystyle G(y)=\int_{a_*}^y\dd\eta/g(\eta)$。链式法则给 $(G(y(x)))'=y'/g(y)=h(x)$，所以 $\displaystyle G(y)=\int h(x)\dd x+C$。反向求导也恢复原方程，这说明分离步骤的等价性只在所选非零区间内成立。
 \end{proof}
 \problem{2.1.2(1)}{25}{用分离变量法解 $y'=-x/y$。}
-原方程要求 $y\ne0$。由 $y\,\dd y=-x\,\dd x$ 积分得
+原方程的分母要求 $y\ne0$。先乘 $y\dd x$，将两种变量分开，再对两端积分：
+\[
+\begin{aligned}
+y\,\dd y&=-x\,\dd x,\\
+\int y\,\dd y&=-\int x\,\dd x,\\
+\dfrac{y^2}{2}&=-\dfrac{x^2}{2}+C_0.
+\end{aligned}
+\]
+两端乘2，并将 $2C_0$ 重新记为 $C$，得到下列隐式解。若写成显式解，则为 $y=\pm\sqrt{C-x^2}$，每个分支在 $C-x^2>0$ 的区间内固定符号。
 \ans{x^2+y^2=C,\quad y\ne0.}
 取圆的可微函数分支，不能越过 $y=0$。
 \problem{2.1.2(2)}{25}{解 $y'=y^2\cos x$。}
-非零解满足 $\dd y/y^2=\cos x\,\dd x$，故 $-1/y=\sin x+C$。
+先检查常值分支：$y=0$ 使两端都为零，确为解。对 $y\ne0$ 的分支除以 $y^2$：
+\[
+\begin{aligned}
+\dfrac{\dd y}{y^2}&=\cos x\,\dd x,\\
+\int y^{-2}\,\dd y&=\int\cos x\,\dd x,\\
+-y^{-1}&=\sin x+C.
+\end{aligned}
+\]
+最后对非零分支取倒数。所得分母必须始终非零；取倒数的计算不能包含先前记录的零解。
 \ans{y=-\dfrac1{\sin x+C},\qquad y=0.}
 \problem{2.1.2(3)}{25}{解 $y'=2xy$。}
-非零解满足 $\dd y/y=2x\,\dd x$，积分为 $\ln|y|=x^2+C$，并入零解得
+当 $y\ne0$ 时，将方程除以 $y$ 并积分：
+\[
+\begin{aligned}
+\dfrac{\dd y}{y}&=2x\,\dd x,\\
+\ln|y|&=x^2+C_0,\\
+|y|&=\e^{C_0}\e^{x^2}.
+\end{aligned}
+\]
+在一个不经过零点的连通区间内，$y$ 的符号固定，故把符号与正数 $\e^{C_0}$ 合并为非零常数 $C$。此外 $y=0$ 满足原方程，可用 $C=0$ 一并表示。
 \ans{y=C\e^{x^2}.}
 \problem{2.1.2(4)}{25}{解 $xy(1+x^2)\,\dd y=(1+y^2)\,\dd x$。}
-函数解不可能经过 $x=0$ 或 $y=0$。分离并积分：
+若函数解经过 $x=0$ 或 $y=0$，代回 $xy(1+x^2)y'=1+y^2$ 都产生矛盾。因此在解的区间上 $xy\ne0$。分离变量时右端先作分式拆分：
 \[
- \dfrac{y\,\dd y}{1+y^2}=\dfrac{\dd x}{x(1+x^2)},\qquad
- \dfrac12\ln(1+y^2)=\ln|x|-\dfrac12\ln(1+x^2)+C.
+\begin{aligned}
+\dfrac{y}{1+y^2}\,\dd y
+ &=\dfrac1{x(1+x^2)}\,\dd x
+ =\left(\dfrac1x-\dfrac{x}{1+x^2}\right)\dd x,\\
+\dfrac12\ln(1+y^2)
+ &=\ln|x|-\dfrac12\ln(1+x^2)+C_0,\\
+\ln[(1+x^2)(1+y^2)]&=\ln(x^2)+2C_0.
+\end{aligned}
 \]
+两端取指数，将正数 $\e^{2C_0}$ 记为 $C$。只有能使 $y^2=Cx^2/(1+x^2)-1>0$ 的区间才给出原方程的函数解。
 \ans{(1+x^2)(1+y^2)=Cx^2,\quad x y\ne0.}
 \problem{2.1.2(5)}{25}{解 $y'=\e^{2y-4x}$。}
-乘 $\e^{-2y}$ 后积分，得到 $-\e^{-2y}/2=-\e^{-4x}/4+C$。
+因为指数函数恒正，可以把含 $y$ 的指数移到左端：
+\[
+\begin{aligned}
+\e^{-2y}\,\dd y&=\e^{-4x}\,\dd x,\\
+-\dfrac12\e^{-2y}&=-\dfrac14\e^{-4x}+C_0,\\
+\e^{-2y}&=\dfrac12\e^{-4x}+C,\qquad C=-2C_0.
+\end{aligned}
+\]
+由左端恒正，右端也必须为正。在这个条件下取自然对数，再除以 $-2$，得到显式解。
 \ans{\e^{-2y}=\dfrac12\e^{-4x}+C,\qquad
  y=-\dfrac12\ln\left(\dfrac12\e^{-4x}+C\right).}
 括号须为正。
 \problem{2.1.2(6)}{25}{解 $y'=2/(x^2-1)$。}
-用 $2/(x^2-1)=1/(x-1)-1/(x+1)$ 积分。
+先因式分解分母，原方程要求 $x\ne\pm1$。设部分分式为 $A/(x-1)+B/(x+1)$，比较分子得
+\[
+2=A(x+1)+B(x-1),\qquad A+B=0,\quad A-B=2.
+\]
+所以 $A=1,B=-1$，逐项积分：
+\[
+\begin{aligned}
+y&=\int\left(\dfrac1{x-1}-\dfrac1{x+1}\right)\dd x\\
+ &=\ln|x-1|-\ln|x+1|+C.
+\end{aligned}
+\]
+再用对数的商法则合并两项。
 \ans{y=\ln\left|\dfrac{x-1}{x+1}\right|+C,\quad x\ne\pm1.}
 \problem{2.1.2(7)}{25}{解 $y'=(y^2-1)/2$。}
-先记录 $y=\pm1$。其余分支满足
+先由 $y^2-1=0$ 记录两个常值解 $y=1,-1$。其余分支满足
 \[
- \int\dfrac{2\,\dd y}{y^2-1}=x+C,
- \qquad\ln\left|\dfrac{y-1}{y+1}\right|=x+C.
+\begin{aligned}
+\dfrac{2\,\dd y}{y^2-1}&=\dd x,\\
+\left(\dfrac1{y-1}-\dfrac1{y+1}\right)\dd y&=\dd x,\\
+\ln\left|\dfrac{y-1}{y+1}\right|&=x+C_0.
+\end{aligned}
 \]
+在连通区间内把比例的符号并入常数，写成 $(y-1)/(y+1)=C\e^x$。交叉相乘有 $y-1=C\e^xy+C\e^x$，故 $(1-C\e^x)y=1+C\e^x$。除以非零分母即得结果。
 \ans{y=\dfrac{1+C\e^x}{1-C\e^x},\qquad y=-1.}
 其中 $C=0$ 包括 $y=1$，分母不为零。
 \problem{2.1.2(8)}{25}{解 $y'=\e^x\cos^2 y$。}
-在 $\cos y\ne0$ 处乘 $\sec^2 y$ 积分；$\cos y=0$ 另给常值解。
+若 $\cos y=0$，则 $y=\pi/2+k\pi$ 是常值解。对于 $\cos y\ne0$ 的分支，分离并积分：
+\[
+\begin{aligned}
+\sec^2y\,\dd y&=\e^x\,\dd x,\\
+\int\sec^2y\,\dd y&=\int\e^x\,\dd x,\\
+\tan y&=\e^x+C.
+\end{aligned}
+\]
+若解出 $y$，应写 $y=\arctan(\e^x+C)+k\pi$，其中一个连通解区间内的整数 $k$ 固定。
 \ans{\tan y=\e^x+C,\qquad y=\dfrac\pi2+k\pi\ (k\in\mathbb Z).}
 \problem{2.1.2(9)}{25}{解 $y'=\sqrt{1-y^2}/\sqrt{1-x^2}$。}
-原方程要求 $|x|<1,|y|\le1$。在 $|y|<1$ 上分离得 $\arcsin y=\arcsin x+C$。
+分母要求 $|x|<1$，分子要求 $|y|\le1$。先检查 $y=\pm1$，它们的两端都为零。对 $|y|<1$ 的分支：
+\[
+\begin{aligned}
+\dfrac{\dd y}{\sqrt{1-y^2}}&=\dfrac{\dd x}{\sqrt{1-x^2}},\\
+\arcsin y&=\arcsin x+C,\\
+y&=\sin(\arcsin x+C).
+\end{aligned}
+\]
+由于反正弦取值在 $[-\pi/2,\pi/2]$，非常值段中相位必须位于该区间内部。此时求导产生的余弦为正，才等于原式中的非负平方根。
 \ans{y=\sin(\arcsin x+C),\quad -\pi/2<\arcsin x+C<\pi/2;\qquad y=\pm1.}
 相位范围不能删去，否则求导后可能得到负的平方根。到达 $y=\pm1$ 时可与相应常值段作 $C^1$ 拼接，拼接解也须保留。
 \problem{2.1.2(10)}{25}{解 $y'=2xy^2$。}
-非零分支积分 $\dd y/y^2=2x\,\dd x$，得 $-1/y=x^2+C$。
+零函数先单独保留。对 $y\ne0$，计算为
+\[
+\begin{aligned}
+y^{-2}\,\dd y&=2x\,\dd x,\\
+-\dfrac1y&=x^2+C,\\
+y&=-\dfrac1{x^2+C}.
+\end{aligned}
+\]
+最后一步仅在 $x^2+C\ne0$ 时成立。把所得式子求导，可得 $y'=2x/(x^2+C)^2=2xy^2$，符号与原式一致。
 \ans{y=-\dfrac1{x^2+C},\qquad y=0.}
 \problem{2.1.2(11)}{25}{解 $(x+1)y'=2y$。}
-在 $x\ne-1$ 上有 $\dd y/y=2\,\dd x/(x+1)$，并入零解：
+在 $x\ne-1,y\ne0$ 的区间内，分离变量并积分：
+\[
+\begin{aligned}
+\dfrac{\dd y}{y}&=\dfrac{2\,\dd x}{x+1},\\
+\ln|y|&=2\ln|x+1|+C_0,\\
+y&=C(x+1)^2.
+\end{aligned}
+\]
+常数 $C$ 的符号吸收 $y$ 的符号；$C=0$ 包括先前除去的零解。对原方程的退化点 $x=-1$，必须另由原式确定 $y(-1)=0$，而不能用除以 $x+1$ 后的方程判断。
 \ans{y=C(x+1)^2.}
 若定义区间跨越 $x=-1$，可在左右分别取常数 $C_-,C_+$，于 $x=-1$ 取 $y=y'=0$；这仍是原退化方程的 $C^1$ 解。
 \problem{2.1.2(12)}{25}{解 $y'=\cos x/(3y^2+\e^y)$。}
-分母恒正，乘回分母积分得
+对任意实数 $y$，都有 $3y^2+\e^y>0$，所以乘回分母不丢失分支。积分时分别处理多项式和指数项：
+\[
+\begin{aligned}
+(3y^2+\e^y)\,\dd y&=\cos x\,\dd x,\\
+\int3y^2\,\dd y+\int\e^y\,\dd y&=\int\cos x\,\dd x,\\
+y^3+\e^y&=\sin x+C.
+\end{aligned}
+\]
+对最后一式求导得到 $(3y^2+\e^y)y'=\cos x$，即原方程。
 \ans{y^3+\e^y=\sin x+C.}
 左端严格递增，故每个 $C$ 都在全实轴上唯一确定 $y(x)$。
 \problem{2.1.2(13)}{25}{解 $x(y^2-1)\,\dd x+y(x^2-1)\,\dd y=0$。}
-左端是 $\dfrac12\dd[(x^2-1)(y^2-1)]$，所以直接积分，无须除去可能为零的因子。
+用乘积微分公式检查原式：
+\[
+\begin{aligned}
+\dd[(x^2-1)(y^2-1)]
+ &=(y^2-1)\,\dd(x^2-1)+(x^2-1)\,\dd(y^2-1)\\
+ &=2x(y^2-1)\,\dd x+2y(x^2-1)\,\dd y.
+\end{aligned}
+\]
+因此原式等价于上述乘积的微分为零。沿每一条积分曲线积分，乘积就是常数。这种做法没有除以 $x^2-1$ 或 $y^2-1$，故不需在计算中把其零点分支排除。
 \ans{(x^2-1)(y^2-1)=C.}
 $C=0$ 的函数解为 $y=\pm1$；竖直直线 $x=\pm1$ 是微分形式的积分曲线，但不是 $y(x)$。
 \problem{2.1.3(1)}{25}{化为分离变量方程并解 $y'=y/x+\tan(y/x)$。}
-令 $u=y/x$，则 $xu'=\tan u$。非平衡分支积分 $\cot u\,\dd u=\dd x/x$，得 $\ln|\sin u|=\ln|x|+C$。
+右端只依赖比值 $y/x$，故在 $x\ne0$ 处令 $y=xu(x)$。由乘积求导法则：
+\[
+\begin{aligned}
+y'&=u+xu',\\
+u+xu'&=u+\tan u,\\
+xu'&=\tan u.
+\end{aligned}
+\]
+若 $\tan u=0$，则 $u=k\pi$，给直线解 $y=k\pi x$。其余分支分离变量：
+\[
+\int\dfrac{\cos u}{\sin u}\,\dd u=\int\dfrac{\dd x}x,
+\qquad \ln|\sin u|=\ln|x|+C_0.
+\]
+取指数并把符号并入常数，得到 $\sin u=Cx$，最后用 $u=y/x$ 回代。
 \ans{\sin(y/x)=Cx,\quad x\ne0,\ \cos(y/x)\ne0.}
 $C=0$ 包括 $y=k\pi x$；反三角函数取局部分支。
 \problem{2.1.3(2)}{25}{解 $y'=(x-y+1)/(x+y-3)$。}
-令 $X=x-1,Y=y-2,u=Y/X$，则 $Xu'=(1-2u-u^2)/(1+u)$。积分
+先求两条仿射直线的交点：$x-y+1=0,x+y-3=0$，解得 $(x,y)=(1,2)$。令 $X=x-1,Y=y-2$，再令 $Y=Xu$，则
 \[
- -\dfrac12\ln|1-2u-u^2|=\ln|X|+C
+\begin{aligned}
+\dfrac{\dd Y}{\dd X}&=\dfrac{X-Y}{X+Y}=\dfrac{1-u}{1+u},\\
+u+X\dfrac{\dd u}{\dd X}&=\dfrac{1-u}{1+u},\\
+X\dfrac{\dd u}{\dd X}&=\dfrac{1-2u-u^2}{1+u}.
+\end{aligned}
 \]
-得到下式，平衡直线也已包括在零常数情形中。
+分离后，分母多项式的导数是 $-2(1+u)$，故
+\[
+\int\dfrac{1+u}{1-2u-u^2}\,\dd u=\ln|X|+C_0,
+\quad -\dfrac12\ln|1-2u-u^2|=\ln|X|+C_0.
+\]
+整理成 $X^2(1-2u-u^2)=C$，回代 $Xu=Y$ 得 $X^2-2XY-Y^2=C$。被除去的平衡比例根满足 $1-2u-u^2=0$，正好对应 $C=0$。
 \ans{(x-1)^2-2(x-1)(y-2)-(y-2)^2=C,\quad x+y\ne3.}
 \problem{2.1.3(3)}{25}{解 $y^2+x^2y'=xyy'$。}
-令 $y=xu$，非零分支满足 $xu'=u/(u-1)$。积分 $(1-1/u)\dd u=\dd x/x$，有
+先移项为 $x(y-x)y'=y^2$。在 $x\ne0$ 处令 $y=xu$，代入后：
+\[
+\begin{aligned}
+x^2(u-1)(u+xu')&=x^2u^2,\\
+x(u-1)u'&=u,\\
+\left(1-\dfrac1u\right)\dd u&=\dfrac{\dd x}x \quad(u\ne0).
+\end{aligned}
+\]
+积分得 $u-\ln|u|=\ln|x|+C$。因为 $\ln|u|+\ln|x|=\ln|xu|=\ln|y|$，回代后便是 $y/x-\ln|y|=C$。除以 $u$ 前另检查 $u=0$，得到零解。
 \ans{\dfrac yx-\ln|y|=C\quad(xy\ne0),\qquad y=0.}
 原式在 $x=0$ 退化；上述公式描述非零的局部函数分支。
 \problem{2.1.3(4)}{25}{解 $y'=1/(x+y)$。}
-反置为 $\dd x/\dd y=x+y$。乘 $\e^{-y}$ 积分：$\dd(x\e^{-y})/\dd y=y\e^{-y}$。
+原式在 $x+y\ne0$ 时有 $y'\ne0$，可局部把 $x$ 看作 $y$ 的函数。取倒数后成为一阶线性方程：
+\[
+\dfrac{\dd x}{\dd y}-x=y.
+\]
+积分因子为 $\e^{-y}$，因此
+\[
+\begin{aligned}
+\dfrac{\dd}{\dd y}(x\e^{-y})&=y\e^{-y},\\
+x\e^{-y}&=\int y\e^{-y}\,\dd y
+=-(y+1)\e^{-y}+C.
+\end{aligned}
+\]
+其中原函数用分部积分得到。两端乘 $\e^y$，再移项，便得隐式关系。
 \ans{x+y+1=C\e^y,\qquad x+y\ne0.}
 \problem{2.1.3(5)}{25}{解 $(2x+y-4)\,\dd x+(x+y-1)\,\dd y=0$。}
-平移 $X=x-3,Y=y+2$，方程成为 $(2X+Y)\dd X+(X+Y)\dd Y=0$；其左端是 $\dfrac12\dd[X^2+(X+Y)^2]$。
+令 $2x+y-4=0,x+y-1=0$，交点为 $(3,-2)$。以它为新原点，取 $X=x-3,Y=y+2$，则
+\[
+(2X+Y)\dd X+(X+Y)\dd Y=0.
+\]
+展开并配成两个完整微分：
+\[
+\begin{aligned}
+(2X+Y)\dd X+(X+Y)\dd Y
+ &=X\dd X+(X+Y)(\dd X+\dd Y)\\
+ &=\dfrac12\dd(X^2)+\dfrac12\dd[(X+Y)^2].
+\end{aligned}
+\]
+积分得到 $X^2+(X+Y)^2=C$。由于 $X+Y=x+y-1$，逐一回代即得所求曲线。
 \ans{(x-3)^2+(x+y-1)^2=C.}
 非退化积分曲线要求 $C>0$，写成函数时选取非竖直分支。
 \problem{2.1.3(6)}{26}{解 $(x^3+y^3)\,\dd x-3xy^2\,\dd y=0$。}
-令 $u=y/x$，得到 $3u^2\,\dd u/(1-2u^3)=\dd x/x$。积分后为 $x^2(1-2u^3)=C$。
+在 $x\ne0$ 处令 $y=xu$，于是 $\dd y=(u+xu')\dd x$。代入原式并除去 $x^3$ 得
+\[
+\begin{aligned}
+1+u^3-3u^2(u+xu')&=0,\\
+3xu^2u'&=1-2u^3.
+\end{aligned}
+\]
+非平衡分支积分为
+\[
+\int\dfrac{3u^2}{1-2u^3}\dd u=\int\dfrac{\dd x}x,
+\quad -\dfrac12\ln|1-2u^3|=\ln|x|+C_0.
+\]
+取指数整理为 $x^2(1-2u^3)=C$；回代 $u=y/x$，再乘 $x$ 得最终式。$1-2u^3=0$ 的分支单独验证后并入 $C=0$。
 \ans{x^3-2y^3=Cx\quad(x\ne0).}
 平衡比例解 $y=2^{-1/3}x$ 对应 $C=0$，已包含；各曲线只取原式允许的可微函数段。
 \problem{2.1.3(7)}{26}{解 $y'=1/(x-y)+1$。}
-令 $z=x-y$，则 $z'=-1/z$，积分 $z\dd z=-\dd x$。
+方程反复出现 $x-y$，令 $z=x-y$，则 $z'=1-y'$。代入并化简：
+\[
+\begin{aligned}
+z'&=1-\left(1+\dfrac1z\right)=-\dfrac1z,\\
+z\,\dd z&=-\dd x,\\
+\dfrac{z^2}{2}&=-x+C_0.
+\end{aligned}
+\]
+两端乘2，回代 $z=x-y$，把 $2C_0$ 记为 $C$。原方程的分母仍要求 $z\ne0$。
 \ans{(x-y)^2+2x=C,\quad x\ne y.}
 \problem{2.1.3(8)}{26}{解 $y'=(x^2+y^2)/(xy)$。}
-令 $y=xu$，则 $xu'=1/u$，所以 $u\dd u=\dd x/x$。
+原式要求 $xy\ne0$。令 $y=xu$，则
+\[
+\begin{aligned}
+u+xu'&=\dfrac{x^2+x^2u^2}{x^2u}=u+\dfrac1u,\\
+xu'&=\dfrac1u,\\
+u\,\dd u&=\dfrac{\dd x}x.
+\end{aligned}
+\]
+积分得 $u^2/2=\ln|x|+C_0$。将 $2C_0$ 记为 $C$，再用 $u^2=y^2/x^2$ 回代。所取区间中右端必须为正，否则会违反 $y\ne0$。
 \ans{\dfrac{y^2}{x^2}=2\ln|x|+C,\quad xy\ne0.}
 \problem{2.1.3(9)}{26}{解 $y'=(x-y+5)/(x-y-2)$。}
-令 $z=x-y-2$，则 $z'=1-(z+7)/z=-7/z$。
+令 $z=x-y-2$，原式成为 $y'=(z+7)/z$。因此
+\[
+\begin{aligned}
+z'&=1-y'=1-\dfrac{z+7}{z}=-\dfrac7z,\\
+z\,\dd z&=-7\dd x,\\
+\dfrac{z^2}{2}&=-7x+C_0.
+\end{aligned}
+\]
+乘2并移项，得到 $z^2+14x=C$；最后回代 $z=x-y-2$，并保留分母限制。
 \ans{(x-y-2)^2+14x=C,\quad x-y\ne2.}
 \problem{2.1.3(10)}{26}{解 $y'=2[(y+2)/(x+y-1)]^2$。}
-令 $X=x-3,Y=y+2,u=Y/X$，得
+平移交点 $(3,-2)$，令 $X=x-3,Y=y+2$，于是 $Y'=2Y^2/(X+Y)^2$。再令 $Y=Xu$：
 \[
- X u'=-\dfrac{u(u^2+1)}{(u+1)^2},\qquad
- -\left(\dfrac1u+\dfrac2{1+u^2}\right)\dd u=\dfrac{\dd X}X.
+\begin{aligned}
+u+Xu'&=\dfrac{2u^2}{(1+u)^2},\\
+Xu'&=\dfrac{2u^2-u(1+u)^2}{(1+u)^2}
+=-\dfrac{u(1+u^2)}{(1+u)^2}.
+\end{aligned}
 \]
+$u=0$ 给出 $y=-2$。在 $u\ne0$ 上，利用分式恒等式
+\[
+\dfrac{(1+u)^2}{u(1+u^2)}=\dfrac1u+\dfrac2{1+u^2},
+\]
+得到 $-\ln|u|-2\arctan u=\ln|X|+C_0$。把对数合成 $\ln|Xu|=\ln|Y|$，并回代，得到结果。
 \ans{\ln|y+2|+2\arctan\dfrac{y+2}{x-3}=C,\qquad y=-2.}
 反正切须在局部连续地取角度；$x=3$ 处可换角度分支解释，始终排除 $x+y-1=0$。
 \problem{2.1.3(11)}{26}{解 $y'=2\sqrt{y/x}+y/x$。}
-令 $u=y/x\ge0$。$u>0$ 时 $xu'=2\sqrt u$，故 $\sqrt u=\ln|x|+C$。
+定义域要求 $x\ne0$、$y/x\ge0$。令 $u=y/x$，原方程化为
+\[
+u+xu'=2\sqrt u+u,\qquad xu'=2\sqrt u.
+\]
+$u=0$ 给零解。对 $u>0$，分离变量并积分：
+\[
+\begin{aligned}
+\dfrac{\dd u}{2\sqrt u}&=\dfrac{\dd x}x,\\
+\sqrt u&=\ln|x|+C,\\
+u&=(\ln|x|+C)^2.
+\end{aligned}
+\]
+平方前的等式要求 $\ln|x|+C>0$，到边界时可取等号；不能因为最后写成平方就取消这个限制。用 $y=xu$ 回代。
 \ans{y=x(\ln|x|+C)^2,\quad \ln|x|+C\ge0,\ x\ne0;\qquad y=0.}
 在相位为零处，导数为零，可与零解作 $C^1$ 拼接。相位为负的平方表达式不满足原平方根方程。
 \problem{2.1.3(12)}{26}{解 $y'=(y-x-2)/(x+y+4)$。}
-令 $X=x+3,Y=y+1,u=Y/X$，则 $Xu'=-(1+u^2)/(1+u)$。积分后得
+两条直线 $y-x-2=0,x+y+4=0$ 相交于 $(-3,-1)$。令 $X=x+3,Y=y+1$、$u=Y/X$，则
+\[
+\begin{aligned}
+u+Xu'&=\dfrac{u-1}{u+1},\\
+Xu'&=-\dfrac{u^2+1}{u+1},\\
+\left(\dfrac{u}{1+u^2}+\dfrac1{1+u^2}\right)\dd u&=-\dfrac{\dd X}X.
+\end{aligned}
+\]
+逐项积分得 $\dfrac12\ln(1+u^2)+\arctan u=-\ln|X|+C$。由于
+\[
+\dfrac12\ln(1+u^2)+\ln|X|=\dfrac12\ln(X^2+Y^2),
+\]
+回代后即得所列第一积分，角度在局部连续取值。
 \ans{\dfrac12\ln[(x+3)^2+(y+1)^2]+\arctan\dfrac{y+1}{x+3}=C.}
 角度取局部连续分支，且 $x+y+4\ne0$。这类对数与角度的组合可用极坐标检验。
 \problem{2.1.3(13)}{26}{解 $2x^2y'=x^2+y^2$。}
-令 $y=xu$，则 $2xu'=(u-1)^2$。若 $u\ne1$，积分得 $-2/(u-1)=\ln|x|+C$。
+在 $x\ne0$ 处令 $y=xu$，代入 $y'=u+xu'$：
+\[
+\begin{aligned}
+2u+2xu'&=1+u^2,\\
+2xu'&=(u-1)^2.
+\end{aligned}
+\]
+若 $u=1$，得 $y=x$。其余分支积分：
+\[
+\int\dfrac{2\,\dd u}{(u-1)^2}=\int\dfrac{\dd x}x,
+\quad -\dfrac2{u-1}=\ln|x|+C_0.
+\]
+解出 $u=1+2/(C-\ln|x|)$，其中 $C=-C_0$，再乘 $x$ 回代。
 \ans{y=x+\dfrac{2x}{C-\ln|x|}\quad(x\ne0),\qquad y=x.}
 \problem{2.1.3(14)}{26}{解 $y'=\sin(x+y+1)$。}
-令 $u=x+y+1$，则 $u'=1+\sin u$。非平衡分支积分得
+令 $u=x+y+1$，则 $u'=1+y'=1+\sin u$。若 $1+\sin u=0$，得到 $u=-\pi/2+2k\pi$，对应一族直线解。对其余分支，计算原函数：
 \[
- \int\dfrac{\dd u}{1+\sin u}=\tan u-\sec u=x+C.
+\begin{aligned}
+\int\dfrac{\dd u}{1+\sin u}
+ &=\int\dfrac{1-\sin u}{\cos^2u}\,\dd u\\
+ &=\int(\sec^2u-\sec u\tan u)\,\dd u\\
+ &=\tan u-\sec u=-\dfrac{\cos u}{1+\sin u}.
+\end{aligned}
 \]
+故最后一项等于 $x+C$。有理化形式在 $\sin u=1$ 处仍有意义，避免用 $\tan u-\sec u$ 形式人为增加奇点。
 \ans{-\dfrac{\cos(x+y+1)}{1+\sin(x+y+1)}=x+C;\qquad
  y=-x-1-\dfrac\pi2+2k\pi.}
 第一式在 $\sin u\ne-1$ 处成立，避免 $\tan u-\sec u$ 的可去奇点。
 \problem{2.1.3(15)}{26}{解 $xy'=\sqrt{x^2-y^2}+y$。}
-在 $x\ne0$ 处令 $u=y/x$，则 $x^2u'=|x|\sqrt{1-u^2}$。在 $|u|<1$ 上积分得
+在 $x\ne0$ 处令 $y=xu$，则 $|u|\le1$，并注意 $\sqrt{x^2}=|x|$。代入得到
+\[
+\begin{aligned}
+x(u+xu')&=|x|\sqrt{1-u^2}+xu,\\
+x^2u'&=|x|\sqrt{1-u^2},\\
+\dfrac{\dd u}{\sqrt{1-u^2}}&=\dfrac{\dd x}{|x|}\quad(|u|<1).
+\end{aligned}
+\]
+若 $x>0$，右端原函数是 $\ln x$；若 $x<0$，则为 $-\ln(-x)$。合写为 $\operatorname{sgn}(x)\ln|x|$，得反正弦关系。另查 $u=\pm1$，得到 $y=\pm x$。
 \ans{\arcsin(y/x)=\operatorname{sgn}(x)\ln|x|+C,\qquad y=\pm x.}
 反正弦相位在 $[-\pi/2,\pi/2]$ 内；到达边界时可与相应直线段拼接。原式在 $(0,0)$ 退化，跨越原点时须另外检查可微性。
 \problem{2.1.4(1)}{26}{解 $y'-2y/(x+1)=(x+1)^{5/2}$。}
-在 $x>-1$ 上乘积分因子 $(x+1)^{-2}$，得到 $(y/(x+1)^2)'=(x+1)^{1/2}$。
+将方程与 $y'+p(x)y=q(x)$ 对照，$p=-2/(x+1)$。在 $x>-1$ 上，积分因子为
+\[
+\mu=\exp\left(\int-\dfrac2{x+1}\dd x\right)=(x+1)^{-2}.
+\]
+乘因子并积分：
+\[
+\begin{aligned}
+\dfrac{y'}{(x+1)^2}-\dfrac{2y}{(x+1)^3}&=(x+1)^{1/2},\\
+\left[\dfrac y{(x+1)^2}\right]'&=(x+1)^{1/2},\\
+\dfrac y{(x+1)^2}&=\dfrac23(x+1)^{3/2}+C.
+\end{aligned}
+\]
+两端乘 $(x+1)^2$ 即得结果，幂指数相加为 $3/2+2=7/2$。
 \ans{y=\dfrac23(x+1)^{7/2}+C(x+1)^2.}
 \problem{2.1.4(2)}{26}{解 $y'+y/x=\sin x/x$。}
-乘 $x$ 得 $(xy)'=\sin x$。
+原方程要求 $x\ne0$。可取积分因子 $\mu=x$；它在每个不跨零的区间上非零。乘后，左端由乘积求导合并：
+\[
+\begin{aligned}
+xy'+y&=\sin x,\\
+(xy)'&=\sin x,\\
+xy&=\int\sin x\dd x=-\cos x+C.
+\end{aligned}
+\]
+最后除以 $x$。用所得表达式再乘 $x$ 求导，可以直接恢复原方程。
 \ans{y=\dfrac{C-\cos x}{x},\quad x\ne0.}
 \problem{2.1.4(3)}{26}{解 $xy'+y=\e^x$，$x>0$。}
-左端是 $(xy)'$，直接积分。
+这里 $xy'+y$ 正是 $xy$ 的导数，故不必先把方程展开为积分因子形式：
+\[
+\begin{aligned}
+\dfrac\dd{\dd x}(xy)&=\e^x,\\
+xy&=\int\e^x\dd x=\e^x+C.
+\end{aligned}
+\]
+由题设 $x>0$，可直接除以 $x$。等价地，规范式中 $p(x)=1/x$ 的积分因子是 $\displaystyle \exp(\int\dd x/x)=x$。
 \ans{y=\dfrac{\e^x+C}{x},\quad x>0.}
 \problem{2.1.4(4)}{26}{解 $x^2\,\dd y+(3xy+x-4)\,\dd x=0$。}
-在 $x\ne0$ 上乘积分因子 $x^3$，得到 $(x^3y)'=-x^2+4x$。
+先写成 $x^2y'+3xy=4-x$，在 $x\ne0$ 上除以 $x^2$：
+\[
+y'+\dfrac3xy=\dfrac4{x^2}-\dfrac1x.
+\]
+取非零积分因子 $\mu=x^3$，乘后逐步计算：
+\[
+\begin{aligned}
+x^3y'+3x^2y&=4x-x^2,\\
+(x^3y)'&=4x-x^2,\\
+x^3y&=\int(4x-x^2)\dd x=2x^2-\dfrac{x^3}{3}+C.
+\end{aligned}
+\]
+分别把右端三项除以 $x^3$，便得到最终式。
 \ans{y=-\dfrac13+\dfrac2x+\dfrac C{x^3}.}
 $x=0$ 时原式要求 $-4=0$，故函数解不能经过该点。
 \problem{2.1.4(5)}{26}{解 $(x+1)y'-y=x$，$x>-1$。}
-除以 $(x+1)^2$ 得 $[y/(x+1)]'=x/(x+1)^2$，积分为 $\ln(x+1)+1/(x+1)+C$。
+在 $x>-1$ 上，规范式为 $y'-y/(x+1)=x/(x+1)$，积分因子 $\mu=(x+1)^{-1}$。于是
+\[
+\begin{aligned}
+\left(\dfrac y{x+1}\right)'&=\dfrac x{(x+1)^2},\\
+\dfrac y{x+1}
+ &=\int\left(\dfrac1{x+1}-\dfrac1{(x+1)^2}\right)\dd x\\
+ &=\ln(x+1)+\dfrac1{x+1}+C.
+\end{aligned}
+\]
+两端乘 $x+1$，第二项变为1；这一步容易漏掉该常数项。
 \ans{y=(x+1)[\ln(x+1)+C]+1.}
 \problem{2.1.4(6)}{26}{解 $y'-2xy=x$。}
-积分因子 $\e^{-x^2}$ 给出 $(y\e^{-x^2})'=x\e^{-x^2}$。
+$y$ 的系数为 $-2x$，积分因子是 $\mu=\e^{-x^2}$。相乘后有
+\[
+\begin{aligned}
+(y\e^{-x^2})'&=x\e^{-x^2},\\
+y\e^{-x^2}&=\int x\e^{-x^2}\dd x.
+\end{aligned}
+\]
+令 $u=-x^2$，$\dd u=-2x\dd x$，故该积分等于 $-\e^{-x^2}/2+C$。再乘 $\e^{x^2}$，得到通解。
 \ans{y=C\e^{x^2}-\dfrac12.}
 \problem{2.1.5(1)}{26}{求 $y'=y/(2x-y^2)$ 的通解。}
-反置得 $\dd x/\dd y-2x/y=-y$，所以 $\dd(x/y^2)/\dd y=-1/y$。
+先记录 $y=0$：在 $x\ne0$ 上它满足原式。对 $y\ne0$ 的非恒定分支，局部反置自变量：
+\[
+\dfrac{\dd x}{\dd y}=\dfrac{2x-y^2}{y},\qquad
+\dfrac{\dd x}{\dd y}-\dfrac2y x=-y.
+\]
+这是关于 $x(y)$ 的线性方程，取积分因子 $y^{-2}$：
+\[
+\begin{aligned}
+\dfrac\dd{\dd y}\left(\dfrac x{y^2}\right)&=-\dfrac1y,\\
+\dfrac x{y^2}&=-\ln|y|+C,\\
+x&=y^2(C-\ln|y|).
+\end{aligned}
+\]
+最后只选取能局部反解为 $y(x)$ 且 $2x-y^2\ne0$ 的分支。
 \ans{x=y^2(C-\ln|y|),\qquad y=0.}
 第一式取 $y\ne0$ 的函数分支，原方程还要求 $2x-y^2\ne0$；零解需取 $x\ne0$。
 \problem{2.1.5(2)}{26}{求 $y\,\dd x+(x-y^3)\,\dd y=0$ 的通解。}
-把 $x$ 看作 $y$ 的函数，得到 $\dd(yx)/\dd y=y^3$。
+对 $y\ne0$ 的分支，把 $x$ 作为未知函数，得到
+\[
+\dfrac{\dd x}{\dd y}+\dfrac xy=y^2.
+\]
+乘积分因子 $y$ 后：
+\[
+\begin{aligned}
+y\dfrac{\dd x}{\dd y}+x&=y^3,\\
+\dfrac\dd{\dd y}(yx)&=y^3,\\
+yx&=\dfrac{y^4}{4}+C.
+\end{aligned}
+\]
+把最后一式移项即可。原方程中的 $y=0$ 也成立，作为 $C=0$ 的一个分支单独保留，不因先前的除法而舍去。
 \ans{xy-\dfrac{y^4}{4}=C.}
 $y=0$ 是 $C=0$ 的一个函数分支，已经包括。
 \problem{2.1.5(3)}{26}{求 $y\,\dd x-(x+\sqrt{x^2+y^2})\,\dd y=0$ 的通解。}
-在 $y\ne0$ 处令 $u=x/y$，得 $\dd u/\sqrt{1+u^2}=\dd y/|y|$。故 $\operatorname{arsinh}u=\operatorname{sgn}(y)\ln|y|+C$。整理得到
+先检查 $y=0$ 为原微分式的积分曲线。在 $y\ne0$ 处，把 $x$ 视为 $y$ 的函数，再令 $x=yu$：
+\[
+\begin{aligned}
+y\dfrac{\dd x}{\dd y}&=x+\sqrt{x^2+y^2},\\
+y\left(u+y\dfrac{\dd u}{\dd y}\right)&=yu+|y|\sqrt{1+u^2},\\
+\dfrac{\dd u}{\sqrt{1+u^2}}&=\dfrac{\dd y}{|y|}.
+\end{aligned}
+\]
+因此 $\ln(u+\sqrt{1+u^2})=\operatorname{sgn}(y)\ln|y|+C_0$。当 $y>0$，乘回 $y$ 得 $x+\sqrt{x^2+y^2}=Ay^2$；当 $y<0$，先得到 $\sqrt{x^2+y^2}-x=B$，再用
+\[
+(\sqrt{x^2+y^2}-x)(\sqrt{x^2+y^2}+x)=y^2
+\]
+也化为同一关系，常数 $A>0$。由此平方：$x^2+y^2=(Ay^2-x)^2$，在 $y\ne0$ 上约去 $y^2$ 得 $1=A^2y^2-2Ax$，解出 $x$ 即为所求。
 \ans{x=\dfrac12\left(Ay^2-\dfrac1A\right),\quad A>0;\qquad y=0.}
 由该式 $\sqrt{x^2+y^2}=(Ay^2+A^{-1})/2$，代回微分式可直接验证；$A>0$ 不能省去。
 \problem{2.1.6(1)}{26}{解 $(1+\e^y)y'=\cos x$，$y(\pi/2)=3$。}
-积分得 $y+\e^y=\sin x+C$，初值给出 $C=3+\e^3-1$。
+先乘 $\dd x$ 并积分，然后把给定点代入积分关系：
+\[
+\begin{aligned}
+(1+\e^y)\dd y&=\cos x\dd x,\\
+y+\e^y&=\sin x+C,\\
+3+\e^3&=\sin(\pi/2)+C=1+C.
+\end{aligned}
+\]
+故 $C=2+\e^3$。把这个固定数代回积分关系，而不是重新把 $C$ 留作任意常数。
 \ans{y+\e^y=\sin x+2+\e^3.}
 左端导数 $1+\e^y>0$，所以在全实轴上唯一确定解。
 \problem{2.1.6(2)}{26}{解 $y(1+x^2)\,\dd y=x(1+y^2)\,\dd x$，$y(0)=-1$。}
-积分得到 $\ln(1+y^2)=\ln(1+x^2)+C$，初值给出 $\e^C=2$。按初值取负根。
+因为 $1+x^2,1+y^2$ 恒正，可以分离并积分：
+\[
+\begin{aligned}
+\dfrac{y\dd y}{1+y^2}&=\dfrac{x\dd x}{1+x^2},\\
+\dfrac12\ln(1+y^2)&=\dfrac12\ln(1+x^2)+C_0,\\
+1+y^2&=K(1+x^2),\qquad K>0.
+\end{aligned}
+\]
+由 $y(0)=-1$，得 $2=K$，所以 $y^2=1+2x^2$。这个量在全实轴严格为正，解不能改变符号；由负初值只能选择负根。
 \ans{y=-\sqrt{1+2x^2},\quad x\in\R.}
 \problem{2.1.6(3)}{27}{解 $(1+\e^x)yy'=\e^x$，$y(0)=1$。}
-积分 $y\dd y=\e^x\dd x/(1+\e^x)$，用初值定常数并取正根。
+由 $1+\e^x>0$，先写成 $yy'=\e^x/(1+\e^x)$。两端积分并代初值：
+\[
+\begin{aligned}
+\dfrac{y^2}{2}&=\ln(1+\e^x)+C,\\
+\dfrac12&=\ln2+C,\\
+y^2&=1+2\ln\dfrac{1+\e^x}{2}.
+\end{aligned}
+\]
+初值为正，故取正根。原式在 $y=0$ 时左端为零、右端为正，不能经过零点，因而根号内必须严格为正：
+\[
+1+\e^x>2\e^{-1/2}\quad\Longleftrightarrow\quad
+x>\ln(2\e^{-1/2}-1).
+\]
 \ans{y=\sqrt{1+2\ln\dfrac{1+\e^x}{2}},\quad
  x>\ln(2\e^{-1/2}-1).}
 下端根号为零而原式右端非零，不能继续为可微解。
 \problem{2.1.6(4)}{27}{解 $y'+y\sin x=0$，$y(0)=3/2$。}
-非零分支满足 $\ln|y|=\cos x+C$，用初值确定常数。
+由于初值非零，在所求解附近先分离变量：
+\[
+\begin{aligned}
+\dfrac{\dd y}y&=-\sin x\dd x,\\
+\ln|y|&=\cos x+C,\\
+\ln\dfrac32&=1+C.
+\end{aligned}
+\]
+因此 $\ln|y|=\cos x-1+\ln(3/2)$。取指数后，由初值为正确定 $y$ 的符号，得到所列正值解。
 \ans{y=\dfrac32\e^{\cos x-1}.}
 \problem{2.1.6(5)}{27}{解 $\e^y y'-x-x^3=0$，$y(1)=1$。}
-积分得 $\e^y=x^2/2+x^4/4+C$，由初值 $C=\e-3/4$。
+左端 $\e^y y'$ 是 $\e^y$ 的导数。积分并利用 $x=1,y=1$：
+\[
+\begin{aligned}
+(\e^y)'&=x+x^3,\\
+\e^y&=\dfrac{x^2}{2}+\dfrac{x^4}{4}+C,\\
+\e&=\dfrac12+\dfrac14+C.
+\end{aligned}
+\]
+所以 $C=\e-3/4>0$。右端两个幂次项也非负，故可在所有实数 $x$ 上取自然对数，不会产生额外的定义域端点。
 \ans{y=\ln\left(\dfrac{x^2}{2}+\dfrac{x^4}{4}+\e-\dfrac34\right),\quad x\in\R.}
 括号恒正。
 \problem{2.1.6(6)}{27}{解 $y'+2xy=x$，$y(1)=2$。}
-乘 $\e^{x^2}$，积分得 $y=1/2+C\e^{-x^2}$，初值给出 $C=3\e/2$。
+积分因子为 $\displaystyle \exp(\int2x\dd x)=\e^{x^2}$。乘后积分：
+\[
+\begin{aligned}
+(y\e^{x^2})'&=x\e^{x^2},\\
+y\e^{x^2}&=\dfrac12\e^{x^2}+C,\\
+y&=\dfrac12+C\e^{-x^2}.
+\end{aligned}
+\]
+把 $y(1)=2$ 代入，得 $2=1/2+C\e^{-1}$，故 $C=3\e/2$；再把常数并入指数。
 \ans{y=\dfrac12+\dfrac32\e^{1-x^2}.}
 \problem{2.1.7(1)}{27}{解 Bernoulli 方程 $y'=6y/x-xy^2$。}
-令 $z=1/y$，得 $z'+6z/x=x$，乘 $x^6$ 积分：$x^6z=x^8/8+C$。
+先保留零解。对 $y\ne0$ 令 $z=y^{-1}$，有 $z'=-y^{-2}y'$。原式乘 $-y^{-2}$ 得
+\[
+z'+\dfrac6x z=x.
+\]
+在 $x\ne0$ 处取积分因子 $x^6$，于是
+\[
+\begin{aligned}
+(x^6z)'&=x^7,\\
+x^6z&=\dfrac{x^8}{8}+C_0,\\
+z&=\dfrac{x^8+8C_0}{8x^6}.
+\end{aligned}
+\]
+令 $C=8C_0$，再由 $y=1/z$ 回代。分母为零的点必须从所取区间中排除。
 \ans{y=\dfrac{8x^6}{x^8+C}\ (x\ne0),\qquad y=0.}
 \problem{2.1.7(2)}{27}{解 $y'+y/x=y^2\ln x$。}
-原题右端为 $y^2\ln x$。令 $z=1/y$，有 $z'-z/x=-\ln x$，故 $(z/x)'=-\ln x/x$。
+这里的非线性项是 $y^2\ln x$，并且 $x>0$。保留零解后，在非零分支令 $z=1/y$，由 $z'=-y'/y^2$ 得
+\[
+z'-\dfrac zx=-\ln x.
+\]
+乘积分因子 $1/x$ 后计算：
+\[
+\begin{aligned}
+\left(\dfrac zx\right)'&=-\dfrac{\ln x}{x},\\
+\dfrac zx&=-\dfrac12(\ln x)^2+C,\\
+z&=x\left[C-\dfrac12(\ln x)^2\right].
+\end{aligned}
+\]
+最后取倒数。积分用替换 $u=\ln x$，$\dd u=\dd x/x$。
 \ans{y=\dfrac1{x[C-\dfrac12(\ln x)^2]}\ (x>0),\qquad y=0.}
 \problem{2.1.7(3)}{27}{解 $xy'-4y=2x^2\sqrt y$，$x\ne0,y>0$。}
-令 $u=\sqrt y>0$，代入并除以 $2u$ 得 $u'-2u/x=x$。于是 $(u/x^2)'=1/x$。
+题设 $y>0$，故可以令 $u=\sqrt y>0$，并用 $y'=2uu'$。代入后除以 $2u$：
+\[
+\begin{aligned}
+2xuu'-4u^2&=2x^2u,\\
+xu'-2u&=x^2,\\
+u'-\dfrac2xu&=x.
+\end{aligned}
+\]
+积分因子为 $x^{-2}$，所以
+\[
+\left(\dfrac u{x^2}\right)'=\dfrac1x,
+\qquad \dfrac u{x^2}=\ln|x|+C.
+\]
+得到 $u=x^2(\ln|x|+C)$ 后再平方。因为 $x^2>0,u>0$，必须保留 $\ln|x|+C>0$。
 \ans{y=x^4(\ln|x|+C)^2,\quad \ln|x|+C>0.}
 由于原题要求 $y>0$，不加入零解，也不能允许相位为负。
 \problem{2.1.7(4)}{27}{解 $y'-2xy=2x^3y^2$。}
-令 $z=1/y$，得 $z'+2xz=-2x^3$；乘 $\e^{x^2}$ 积分，有 $z\e^{x^2}=(1-x^2)\e^{x^2}+C$。
+先记录零解。在 $y\ne0$ 上令 $z=1/y$，原方程乘 $-1/y^2$ 后变为
+\[
+z'+2xz=-2x^3.
+\]
+乘积分因子 $\e^{x^2}$，并令 $v=x^2$ 计算原函数：
+\[
+\begin{aligned}
+(z\e^{x^2})'&=-2x^3\e^{x^2},\\
+z\e^{x^2}&=-\int v\e^v\dd v
+=(1-v)\e^v+C,\\
+z&=1-x^2+C\e^{-x^2}.
+\end{aligned}
+\]
+其中 $\displaystyle \int v\e^v\dd v=(v-1)\e^v$ 由分部积分得到。最后以 $y=1/z$ 回代。
 \ans{y=\dfrac1{1-x^2+C\e^{-x^2}},\qquad y=0.}
 \problem{2.1.8}{27}{过原点的曲线在各点的切线斜率为 $\sqrt{1-y^2}/(1+x^2)$，求曲线方程。}
-在 $|y|<1$ 上分离变量，得到 $\arcsin y=\arctan x+C$。由 $y(0)=0$ 得 $C=0$，且 $\arctan x\in(-\pi/2,\pi/2)$。
+由几何条件与过原点条件，所求函数满足
+\[
+y'=\dfrac{\sqrt{1-y^2}}{1+x^2},\qquad y(0)=0.
+\]
+在原点附近有 $|y|<1$，分离后积分：
+\[
+\begin{aligned}
+\dfrac{\dd y}{\sqrt{1-y^2}}&=\dfrac{\dd x}{1+x^2},\\
+\arcsin y&=\arctan x+C,\\
+0&=\arctan0+C,
+\end{aligned}
+\]
+故 $C=0$。令 $\theta=\arctan x\in(-\pi/2,\pi/2)$，则 $\tan\theta=x$、$\cos\theta=1/\sqrt{1+x^2}$，从而 $\sin\theta=x/\sqrt{1+x^2}$，得到显式解。
 \ans{y=\dfrac{x}{\sqrt{1+x^2}},\quad x\in\R.}
 \checknote{求导为 $(1+x^2)^{-3/2}$，与右端相等；始终 $|y|<1$，不需拼接。}
 \problem{2.1.9}{27}{曲线过 $(4,6)$，两坐标轴之间的每段切线都被切点平分，求曲线。}
-切点 $(x,y)$ 为两个截距点的中点，故截距点为 $(2x,0),(0,2y)$，斜率为 $-y/x$。因此 $(xy)'=0$，初值给 $xy=24$。
+设切点为 $P=(x,y)$，切线与横、纵轴分别交于 $A=(a,0),B=(0,b)$。因为 $P$ 是 $AB$ 的中点，
+\[
+x=\dfrac a2,\qquad y=\dfrac b2,
+\]
+所以 $A=(2x,0),B=(0,2y)$，切线斜率为 $-b/a=-y/x$。于是
+\[
+\begin{aligned}
+y'&=-\dfrac yx,\\
+xy'+y&=0,\\
+(xy)'&=0,\qquad xy=C.
+\end{aligned}
+\]
+利用曲线经过 $(4,6)$，得 $C=4\cdot6=24$。由初值点在第一象限，选取 $x>0$ 的连通分支。
 \ans{y=\dfrac{24}{x},\quad x>0.}
 取经过 $(4,6)$ 的连通分支；另一支不属于这条初值解。
 \problem{2.2.1(1)}{36}{验证恰当性并解 $(3x^2+6xy^2)\dd x+(6x^2y+4y^3)\dd y=0$。}
-$M_y=N_x=12xy$。对 $M$ 关于 $x$ 积分得 $F=x^3+3x^2y^2+g(y)$，由 $F_y=N$ 得 $g'=4y^3$。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=12xy,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=x^3+3x^2y^2+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=6x^2y+g'(y)=N,\\
+g'(y)&=4y^3,\\
+g(y)&=y^4+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{x^3+3x^2y^2+y^4=C.}
 \problem{2.2.1(2)}{36}{验证并解 $(\cos x+1/y)\dd x+(1/y-x/y^2)\dd y=0$。}
-$M_y=N_x=-1/y^2$。由 $F=\sin x+x/y+g(y)$，比较 $F_y$ 得 $g'=1/y$。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=-1/y^2,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=\sin x+\dfrac xy+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=-\dfrac{x}{y^2}+g'(y)=N,\\
+g'(y)&=\dfrac1y,\\
+g(y)&=\ln|y|+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{\sin x+\dfrac xy+\ln|y|=C,\quad y\ne0.}
 \problem{2.2.1(3)}{36}{验证并解 $(5x^4+3xy^2-y^3)\dd x+(3x^2y-3xy^2+y^2)\dd y=0$。}
-$M_y=N_x=6xy-3y^2$。积分得到 $F=x^5+3x^2y^2/2-xy^3+g(y)$，再由 $g'=y^2$ 定出势函数。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=6xy-3y^2,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=x^5+\dfrac32x^2y^2-xy^3+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=3x^2y-3xy^2+g'(y)=N,\\
+g'(y)&=y^2,\\
+g(y)&=\dfrac{y^3}{3}+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{x^5+\dfrac32x^2y^2-xy^3+\dfrac{y^3}{3}=C.}
 \problem{2.2.1(4)}{36}{验证并解 $(x^2+y)\dd x+(x+y)\dd y=0$。}
-$M_y=N_x=1$。取 $F=x^3/3+xy+g(y)$，得 $g'=y$。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=1,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=\dfrac{x^3}{3}+xy+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=x+g'(y)=N,\\
+g'(y)&=y,\\
+g(y)&=\dfrac{y^2}{2}+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{\dfrac{x^3}{3}+xy+\dfrac{y^2}{2}=C.}
 \problem{2.2.1(5)}{36}{解 $y'=-(6x+y+2)/(x+8y-3)$，验证对应微分式恰当。}
-写为 $(6x+y+2)\dd x+(x+8y-3)\dd y=0$，有 $M_y=N_x=1$。先积分 $M$ 再补上 $y$ 的函数。
+先把方程写为 $M\dd x+N\dd y=0$。本题移项后的 $M=6x+y+2,N=x+8y-3$。两个交叉偏导为
+\[
+M_y=N_x=1,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=3x^2+xy+2x+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=x+g'(y)=N,\\
+g'(y)&=8y-3,\\
+g(y)&=4y^2-3y+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{3x^2+xy+2x+4y^2-3y=C,\quad x+8y-3\ne0.}
 \problem{2.2.1(6)}{36}{验证并解 $xy\dd x+(x^2/2+1/y)\dd y=0$。}
-$M_y=N_x=x$。积分 $M$ 得 $x^2y/2+g(y)$，比较得 $g'=1/y$。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=x,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=\dfrac{x^2y}{2}+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=\dfrac{x^2}{2}+g'(y)=N,\\
+g'(y)&=\dfrac1y,\\
+g(y)&=\ln|y|+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{\dfrac{x^2y}{2}+\ln|y|=C,\quad y\ne0.}
 \problem{2.2.1(7)}{36}{验证并解 $3x^2-2y^2+(1-4xy)y'=0$。}
-微分式的 $M_y=N_x=-4y$，势函数由 $F_x=3x^2-2y^2$ 得 $F=x^3-2xy^2+g(y)$，再得 $g'=1$。
+先把方程写为 $M\dd x+N\dd y=0$。把含 $y^{\prime}$ 的整项作为 $N\dd y$。两个交叉偏导为
+\[
+M_y=N_x=-4y,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=x^3-2xy^2+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=-4xy+g'(y)=N,\\
+g'(y)&=1,\\
+g(y)&=y+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{x^3-2xy^2+y=C.}
 \problem{2.2.1(8)}{36}{验证并解 $(x^3+xy^2)\dd x+(x^2y+y^3)\dd y=0$。}
-两交叉偏导均为 $2xy$，原式等于 $(x^2+y^2)(x\dd x+y\dd y)$。
+先把方程写为 $M\dd x+N\dd y=0$。两个交叉偏导为
+\[
+M_y=N_x=2xy,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=\dfrac{x^4}{4}+\dfrac{x^2y^2}{2}+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=x^2y+g'(y)=N,\\
+g'(y)&=y^3,\\
+g(y)&=\dfrac{y^4}{4}+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
+最后利用 $x^4+2x^2y^2+y^4=(x^2+y^2)^2$ 合并。
 \ans{\dfrac14(x^2+y^2)^2=C.}
 可等价写成 $x^2+y^2=C_1\ge0$；原点是退化积分曲线。
 \problem{2.2.1(9)}{36}{验证并解 $3y+\e^x+(3x+\cos y)y'=0$。}
-有 $M_y=N_x=3$。取 $F=3xy+\e^x+g(y)$，比较得 $g'=\cos y$。
+先把方程写为 $M\dd x+N\dd y=0$。把含 $y^{\prime}$ 的整项作为 $N\dd y$。两个交叉偏导为
+\[
+M_y=N_x=3,
+\]
+故在原式有定义的适当区域内可求势函数 $F$。先把 $y$ 当成常数，对 $M$ 关于 $x$ 积分，再补上只依赖 $y$ 的函数：
+\[
+F(x,y)=3xy+\e^x+g(y).
+\]
+对它关于 $y$ 求偏导，与原方程的 $N$ 比较：
+\[
+\begin{aligned}
+F_y&=3x+g'(y)=N,\\
+g'(y)&=\cos y,\\
+g(y)&=\sin y+C_0.
+\end{aligned}
+\]
+把 $g(y)$ 代回 $F$，常数 $C_0$ 收入最终的积分常数，所以积分曲线由 $F=C$ 给出。
 \ans{3xy+\e^x+\sin y=C.}
 \problem{2.2.2(1)}{36}{解 $3x^2y+8xy^2+(x^3+8x^2y+12y^2)y'=0$，$y(2)=1$。}
-两交叉偏导均为 $3x^2+16xy$。势函数为 $F=x^3y+4x^2y^2+4y^3$，初值给 $F(2,1)=28$。
+记 $M=3x^2y+8xy^2,N=x^3+8x^2y+12y^2$。计算得 $M_y=N_x=3x^2+16xy$，故方程恰当。逐项对 $x$ 积分：
+\[
+F=x^3y+4x^2y^2+g(y).
+\]
+由 $F_y=x^3+8x^2y+g'(y)=N$，得 $g'(y)=12y^2$，从而 $g=4y^3$，任意常数可并入最终常数。因此
+\[
+x^3y+4x^2y^2+4y^3=C.
+\]
+把初值点 $(2,1)$ 逐项代入：
+\[
+C=2^3\cdot1+4\cdot2^2\cdot1^2+4\cdot1^3=8+16+4=28.
+\]
 \ans{x^3y+4x^2y^2+4y^3=28.}
 初值处 $F_y=8+32+12=52\ne0$，隐函数定理保证局部唯一的函数分支。
 \problem{2.2.2(2)}{36}{解 $4x^3\e^{x+y}+x^4\e^{x+y}+2x+(x^4\e^{x+y}+2y)y'=0$，$y(0)=1$。}
-原式为 $\dd[x^4\e^{x+y}+x^2+y^2]=0$，初值给常数1。
+先观察乘积 $x^4\e^{x+y}$ 的两个偏导：
+\[
+\begin{aligned}
+\dfrac\partial{\partial x}(x^4\e^{x+y})&=4x^3\e^{x+y}+x^4\e^{x+y},\\
+\dfrac\partial{\partial y}(x^4\e^{x+y})&=x^4\e^{x+y}.
+\end{aligned}
+\]
+原式中其余两项 $2x\dd x+2y\dd y=\dd(x^2+y^2)$，所以整个微分式为
+\[
+\dd[x^4\e^{x+y}+x^2+y^2]=0.
+\]
+积分得方括号为常数。初值 $(0,1)$ 给出 $C=0^4\e^1+0^2+1^2=1$。
 \ans{x^4\e^{x+y}+x^2+y^2=1.}
 初值处 $F_y=2$，故在该点附近选取经过 $(0,1)$ 的唯一分支。
 \problem{2.2.4(1)}{36}{用积分因子法解 $y\dd x+(y-x)\dd y=0$。}
-在 $y\ne0$ 上取 $\mu=y^{-2}$，乘后为
+先计算 $M_y=1,N_x=-1$，原式不恰当。因
 \[
- \dfrac1y\dd x+\left(\dfrac1y-\dfrac{x}{y^2}\right)\dd y
- =\dd\left(\dfrac xy+\ln|y|\right).
+\dfrac{N_x-M_y}{M}=-\dfrac2y,
 \]
+它只依赖 $y$，可取 $\displaystyle \mu=\exp(\int-2\dd y/y)=y^{-2}$，限于 $y\ne0$。
+乘后 $\widetilde M=1/y,\widetilde N=1/y-x/y^2$。求势函数：
+\[
+\begin{aligned}
+F&=\int\dfrac1y\dd x+g(y)=\dfrac xy+g(y),\\
+F_y&=-\dfrac{x}{y^2}+g'(y)=\dfrac1y-\dfrac{x}{y^2},\\
+g'(y)&=\dfrac1y,\qquad g(y)=\ln|y|.
+\end{aligned}
+\]
+故 $F=C$。积分因子在 $y=0$ 失效，但零函数代回原微分式成立，须单独加入。
 \ans{\dfrac xy+\ln|y|=C,\qquad y=0.}
 \problem{2.2.4(2)}{36}{用积分因子法解 $y'=-x/y+\sqrt{1+(x/y)^2}$，$y>0$。}
-记 $r=\sqrt{x^2+y^2}$，因 $y>0$，方程等价于 $(x-r)\dd x+y\dd y=0$。乘 $\mu=1/r$ 得 $\dd(r-x)=0$。
+由于 $y>0$，$\sqrt{1+(x/y)^2}=\sqrt{x^2+y^2}/y$。记 $r=\sqrt{x^2+y^2}>0$，乘 $y\dd x$ 后原式化为
+\[
+(x-r)\dd x+y\dd y=0.
+\]
+注意 $\dd r=(x\dd x+y\dd y)/r$。取积分因子 $\mu=1/r$，有
+\[
+\begin{aligned}
+\dfrac{x-r}{r}\dd x+\dfrac yr\dd y
+ &=\dfrac{x\dd x+y\dd y}{r}-\dd x\\
+ &=\dd r-\dd x=\dd(r-x).
+\end{aligned}
+\]
+积分得 $r-x=C$。因为 $y>0$，有 $r>|x|$，所以 $C>0$。若解出 $y$，先写 $r=x+C$，平方得 $y^2=2Cx+C^2$，按题设选择正根。
 \ans{\sqrt{x^2+y^2}-x=C>0,\quad y>0.}
 或 $y=\sqrt{2Cx+C^2}$，取根号内为正的区间。
 \problem{2.2.4(3)}{36}{用积分因子法解 $(x^2+y^2+y)\dd x-x\dd y=0$。}
-取 $\mu=(x^2+y^2)^{-1}$。乘后势函数为 $F=x-\arg(x+\ii y)$，因为局部 $\dd\arg(x+\ii y)=(x\dd y-y\dd x)/(x^2+y^2)$。
+取 $M=x^2+y^2+y,N=-x$，在 $(x,y)\ne(0,0)$ 试用 $\mu=(x^2+y^2)^{-1}$。乘后系数为
+\[
+\widetilde M=1+\dfrac y{x^2+y^2},\qquad
+\widetilde N=-\dfrac x{x^2+y^2}.
+\]
+检查交叉偏导：
+\[
+\widetilde M_y=\dfrac{x^2-y^2}{(x^2+y^2)^2}
+=\widetilde N_x.
+\]
+局部令角度 $\theta=\arg(x+\ii y)$，由 $\theta_x=-y/(x^2+y^2),\theta_y=x/(x^2+y^2)$，得到
+\[
+\widetilde M\dd x+\widetilde N\dd y=\dd(x-\theta).
+\]
+所以 $x-\theta$ 为常数，改记常数后即为 $\theta-x=C$。在 $x\ne0$ 的坐标片上可用 $\theta=\arctan(y/x)$ 表示。
 \ans{\arctan(y/x)-x=C\quad\text{（局部连续角度）}.}
 在 $x\ne0$ 处等价于 $y=x\tan(x+C)$。原点积分因子失效，跨原点时必须回代原微分式并检查导数；不存在额外的恒零函数解。
 \problem{2.2.4(4)}{36}{用积分因子法解 $(2xy+x^2y+y^3/3)\dd x+(x^2+y^2)\dd y=0$。}
-有 $(M_y-N_x)/N=1$，取 $\mu=\e^x$。乘后是 $\dd[\e^x(x^2y+y^3/3)]$。
+本题 $M_y=2x+x^2+y^2$、$N_x=2x$，所以
+\[
+\dfrac{M_y-N_x}{N}=\dfrac{x^2+y^2}{x^2+y^2}=1
+\]
+在非零点成立，提示积分因子 $\mu=\e^x$；该因子在全平面非零。求乘后势函数时，先对 $\widetilde N=\e^x(x^2+y^2)$ 关于 $y$ 积分：
+\[
+F=\e^x\left(x^2y+\dfrac{y^3}{3}\right)+h(x).
+\]
+再对 $x$ 求导：
+\[
+F_x=\e^x\left(x^2y+\dfrac{y^3}{3}+2xy\right)+h'(x)=\e^xM.
+\]
+故 $h'=0$，它的常数并入积分曲线的常数，得到 $F=C$。
 \ans{\e^x\left(x^2y+\dfrac{y^3}{3}\right)=C.}
 \problem{2.2.4(5)}{36}{用积分因子法解 $2xy\ln y\dd x+(x^2+y^2\sqrt{1+y^2})\dd y=0$。}
-原式要求 $y>0$。取 $\mu=1/y$，得 $2x\ln y\dd x+(x^2/y+y\sqrt{1+y^2})\dd y=0$。
+由 $\ln y$ 知 $y>0$。计算 $M_y=2x(\ln y+1),N_x=2x$，因而
+\[
+\dfrac{N_x-M_y}{M}=-\dfrac1y.
+\]
+可取 $\mu=1/y$，乘后的系数为 $\widetilde M=2x\ln y$、$\widetilde N=x^2/y+y\sqrt{1+y^2}$。
+先由 $F_x=\widetilde M$ 得 $F=x^2\ln y+g(y)$，再比较
+\[
+F_y=\dfrac{x^2}{y}+g'(y)=\dfrac{x^2}{y}+y\sqrt{1+y^2}.
+\]
+于是 $g'=y\sqrt{1+y^2}$。令 $v=1+y^2$，$\dd v=2y\dd y$，计算
+\[
+g=\dfrac12\int v^{1/2}\dd v=\dfrac13v^{3/2}=\dfrac13(1+y^2)^{3/2}.
+\]
 \ans{x^2\ln y+\dfrac13(1+y^2)^{3/2}=C,\quad y>0.}
 \problem{2.2.5}{36--37}{求 Bernoulli 方程 $y'=a(x)y+f(x)y^\alpha$，$\alpha\ne0,1$ 的积分因子。}
-在幂函数有定义且 $y\ne0$ 的区域，令 $A(x)=\displaystyle\int a(x)\dd x$。把微分式写成 $[-ay-fy^\alpha]\dd x+\dd y=0$，乘
+把原方程写成 $M\dd x+N\dd y=0$，其中 $M=-a(x)y-f(x)y^\alpha,N=1$。在所选幂函数有定义且 $y\ne0$ 的区域，先乘 $y^{-\alpha}$，左端变为
 \[
- \mu=y^{-\alpha}\e^{-(1-\alpha)A(x)}
+-a(x)y^{1-\alpha}\dd x-f(x)\dd x+y^{-\alpha}\dd y.
 \]
-后等于
+令 $z=y^{1-\alpha}$，则 $\dd z=(1-\alpha)y^{-\alpha}\dd y$。因此它等于
 \[
- \dfrac1{1-\alpha}\dd[y^{1-\alpha}\e^{-(1-\alpha)A(x)}]
- -f(x)\e^{-(1-\alpha)A(x)}\dd x.
+\dfrac1{1-\alpha}\bigl[\dd z-(1-\alpha)a(x)z\dd x\bigr]-f(x)\dd x.
 \]
+令 $\displaystyle A(x)=\int a(x)\dd x$，再乘线性方程的积分因子 $\e^{-(1-\alpha)A(x)}$，上式化为
+\[
+\dfrac1{1-\alpha}\dd\bigl[z\e^{-(1-\alpha)A(x)}\bigr]
+-f(x)\e^{-(1-\alpha)A(x)}\dd x.
+\]
+后一个系数只依赖 $x$，也是一个完整微分；故总式恰当。把先后两个乘数相乘，就得到原方程的积分因子。
 \ans{\mu(x,y)=y^{-\alpha}\e^{-(1-\alpha)\int a(x)\,\dd x}.}
 只在该表达式实且非零的区域使用；零解须由原方程另判。
 \problem{2.2.6}{37}{求 $M(x)N(y)\dd x+P(x)Q(y)\dd y=0$ 的积分因子。}
-在 $P(x)N(y)\ne0$ 上乘 $1/[P(x)N(y)]$，得到分离变量式。
+目标是乘一个因子，使 $\dd x$ 的系数只含 $x$、$\dd y$ 的系数只含 $y$。在 $P(x)N(y)\ne0$ 处取其倒数，得
+\[
+\dfrac{M(x)}{P(x)}\dd x+\dfrac{Q(y)}{N(y)}\dd y=0.
+\]
+此时第一个系数对 $y$ 的偏导为零，第二个系数对 $x$ 的偏导也为零，故已经恰当。分别对各自变量积分，令
+\[
+F(x,y)=\int\dfrac{M(x)}{P(x)}\dd x+\int\dfrac{Q(y)}{N(y)}\dd y,
+\]
+便有 $\dd F=0$。由乘数构造和所得势函数，得到以下答案。
 \ans{\mu=\dfrac1{P(x)N(y)},\qquad
  \int\dfrac{M(x)}{P(x)}\dd x+\int\dfrac{Q(y)}{N(y)}\dd y=C.}
 $P$ 或 $N$ 的零点所对应的原方程积分曲线另行检查。
 \problem{2.2.7}{37}{求使 $x^2\sin x\dd x+yf(x)\dd y=0$ 恰当的所有 $f(x)$，并据此求解。}
-交叉偏导分别为0和 $yf'(x)$，故在开区域内恰当当且仅当 $f'=0$，即 $f=c$。
+取 $M=x^2\sin x,N=yf(x)$，则 $M_y=0,N_x=yf'(x)$。要求在开区域内恰当，必须 $f'=0$，故 $f=c$。此时需要计算
+\[
+F=\int x^2\sin x\dd x+\dfrac c2y^2.
+\]
+对第一个积分连续两次分部积分：
+\[
+\begin{aligned}
+\int x^2\sin x\dd x&=-x^2\cos x+2\int x\cos x\dd x,\\
+\int x\cos x\dd x&=x\sin x-\int\sin x\dd x
+=x\sin x+\cos x.
+\end{aligned}
+\]
+代回得 $F=-x^2\cos x+2x\sin x+2\cos x+cy^2/2$，所以 $F=C$。
 \ans{f(x)=c,\qquad -x^2\cos x+2x\sin x+2\cos x+\dfrac c2y^2=C.}
 若 $c=0$，所得微分式可能退化，应按其积分曲线而非非退化函数解理解。
 \problem{2.2.8}{37}{已知 $(x^2+y)\dd x+f(x)\dd y=0$ 有积分因子 $\mu=x$，求所有 $f$。}
-在 $x\ne0$ 上，乘后两交叉偏导相等要求 $x=(xf)'$。积分得 $xf=x^2/2+c$。
+乘给定的 $\mu=x$ 后，系数为 $\widetilde M=x^3+xy$、$\widetilde N=xf(x)$。由恰当条件：
+\[
+\begin{aligned}
+\widetilde M_y&=x,\\
+\widetilde N_x&=f(x)+xf'(x),\\
+(xf(x))'&=x.
+\end{aligned}
+\]
+积分得到 $xf(x)=x^2/2+c$，所以在 $x\ne0$ 处 $f=x/2+c/x$。求势函数时，对 $\widetilde M$ 积分：
+\[
+F=\dfrac{x^4}{4}+\dfrac{x^2y}{2}+g(y).
+\]
+再由 $F_y=x^2/2+g'=xf=x^2/2+c$ 得 $g'=c$，所以 $g=cy$。
 \ans{f(x)=\dfrac x2+\dfrac cx,\qquad
  \dfrac{x^4}{4}+\dfrac{x^2y}{2}+cy=C.}
 若要求 $f$ 在含零的区间连续，必须 $c=0$；$\mu=x$ 本身只能在 $x\ne0$ 的区域作为非零积分因子。
 \problem{2.2.9}{37}{方程 $y'=\tan y-\e^x\sec y$ 有形如 $\e^{-ax}\cos y$ 的积分因子，求 $a$ 并解方程。}
-写成 $(\e^x\sec y-\tan y)\dd x+\dd y=0$。乘因子后，$M=\e^{(1-a)x}-\e^{-ax}\sin y$，$N=\e^{-ax}\cos y$。
-由 $M_y=-\e^{-ax}\cos y$、$N_x=-a\e^{-ax}\cos y$ 得 $a=1$。
+先移项为 $(\e^x\sec y-\tan y)\dd x+\dd y=0$。乘题设因子 $\e^{-ax}\cos y$ 后有
+\[
+\widetilde M=\e^{(1-a)x}-\e^{-ax}\sin y,\qquad
+\widetilde N=\e^{-ax}\cos y.
+\]
+恰当条件要求
+\[
+-\e^{-ax}\cos y=-a\e^{-ax}\cos y.
+\]
+原方程要求 $\cos y\ne0$，因此可约去非零因子，得到 $a=1$。此时微分式为
+\[
+(1-\e^{-x}\sin y)\dd x+\e^{-x}\cos y\dd y
+=\dd[x+\e^{-x}\sin y]=0.
+\]
+因此该方括号沿积分曲线为常数。
 \ans{a=1,\qquad \e^{-x}\sin y+x=C,\quad\cos y\ne0.}
 \subsection*{第二版第2.3节的题号说明}
 第二版第37--44页为隐式方程的方法与例题，没有单独的“习题2.3”。下一组“习题2.4”中的全部计算题列在下面；不另编造第三版习题2.3的题面。
 \problem{2.4.1(1)}{58}{求 $(y')^2+2y'-x=0$ 的通解。}
-令 $p=y'$，由原式 $x=p^2+2p$，于是 $\dd y=p\dd x=2p(p+1)\dd p$。
+原式没有直接出现 $y$，令 $p=y'$ 作为参数。先解出自变量，再用 $\dd y=p\dd x$：
+\[
+\begin{aligned}
+x&=p^2+2p,\qquad \dfrac{\dd x}{\dd p}=2p+2,\\
+\dfrac{\dd y}{\dd p}&=p(2p+2)=2p^2+2p,\\
+y&=\int(2p^2+2p)\dd p=\dfrac23p^3+p^2+C.
+\end{aligned}
+\]
+若希望直接写 $y(x)$，由 $p^2+2p=x$ 得 $p=-1\pm\sqrt{x+1}$。参数表示同时保留这两个实分支；每个分支的实定义域要求 $x\ge-1$。
 \ans{x=p^2+2p,\qquad y=\dfrac23p^3+p^2+C.}
 选取 $p=-1\pm\sqrt{x+1}$ 的局部分支，故 $x\ge-1$；无恒定 $p$ 的区间解。
 \problem{2.4.1(2)}{58}{求 $y=(y')^2-xy'+x^2/2$ 的通解。}
-令 $p=y'$，求导得 $(2p-x)(p'-1)=0$。若 $p'=1$，则 $p=x+C$，代回原式；若 $2p=x$，得另一个解。
+记 $p=y'$，对 $y=p^2-xp+x^2/2$ 关于 $x$ 求导，每个乘积都展开：
+\[
+\begin{aligned}
+p&=2pp'-(p+xp')+x,\\
+0&=(2p-x)p'-(2p-x),\\
+(2p-x)(p'-1)&=0.
+\end{aligned}
+\]
+在 $p'=1$ 的分支上，积分得 $p=x+C$，代回未求导的原式：
+\[
+y=(x+C)^2-x(x+C)+\dfrac{x^2}{2}
+=\dfrac{x^2}{2}+Cx+C^2.
+\]
+在 $2p-x=0$ 的分支上，$p=x/2$，原式给 $y=x^2/4$；该函数求导恰为 $x/2$，因此也为解。它不能由一个固定 $C$ 从前一族得到。
 \ans{y=\dfrac{x^2}{2}+Cx+C^2;\qquad y=\dfrac{x^2}{4}\ \text{（奇解）}.}
 奇解与通解族相切，且不能由单个固定 $C$ 得到。
 \problem{2.4.1(3)}{58}{求 $y^2(1-y')=(2-y')^2$ 的通解。}
-记 $p=y'$。原式不可能有 $p=1$；令 $u=\sqrt{1-p}>0$，则 $y=\varepsilon(u+u^{-1})$，$\varepsilon=\pm1$。在 $p\ne0$ 时
+令 $p=y'$，原式为 $y^2(1-p)=(2-p)^2$。$p=1$ 时右端为1、左端为0，不成立，故可令 $u=\sqrt{1-p}>0$。于是
 \[
- \dd x=\dfrac{\dd y}{p}=-\dfrac{\varepsilon}{u^2}\dd u,
- \qquad x-C=\dfrac{\varepsilon}{u}.
+p=1-u^2,\quad y^2=\dfrac{(1+u^2)^2}{u^2},\quad
+ y=\varepsilon\left(u+\dfrac1u\right),\quad\varepsilon=\pm1.
 \]
-消去 $u$，并另查 $p=0$。
+对 $p\ne0$ 的分支，以 $u$ 为参数：
+\[
+\begin{aligned}
+\dfrac{\dd y}{\dd u}&=\varepsilon\left(1-\dfrac1{u^2}\right),\\
+\dfrac{\dd x}{\dd u}&=\dfrac1p\dfrac{\dd y}{\dd u}
+=-\dfrac\varepsilon{u^2},\\
+x-C&=\dfrac\varepsilon u.
+\end{aligned}
+\]
+由 $\varepsilon u=1/(x-C)$，回代 $y=\varepsilon u+\varepsilon/u$ 即得非恒定族。被除去的 $p=0$ 另代原式：$y^2=4$，给出两个常值解。
 \ans{y=x-C+\dfrac1{x-C},\quad x\ne C;\qquad y=\pm2.}
 $y=\pm2$ 在原式中均对应 $p=0$，是不能漏去的常值解。
 \problem{2.4.1(4)}{58}{求 $(y')^3-4xyy'+8y^2=0$ 的通解。}
-在 $y\ne0$ 的分支写 $y=\sigma u^2$，$\sigma=\pm1$、$u>0$，记 $q=u'$。原式化为 $u=xq-\sigma q^3$，这是 Clairaut 方程。
-$q=a$ 给出 $u=ax-\sigma a^3$，用 $C=\sigma a^2$ 重写；包络条件 $x=3\sigma q^2$ 给出额外解。
+为降低 $y$ 与导数的幂次，在 $y\ne0$ 的局部区间写 $y=\sigma u^2$，其中 $\sigma=\operatorname{sgn}y=\pm1$、$u>0$，记 $q=u'$。则 $y'=2\sigma uq$。原式化为
+\[
+8\sigma u^3q^3-8xu^3q+8u^4=0,
+\qquad u=xq-\sigma q^3.
+\]
+这是关于 $u$ 的 Clairaut 方程。求导并用 $u'=q$：
+\[
+q=q+(x-3\sigma q^2)q',\qquad (x-3\sigma q^2)q'=0.
+\]
+若 $q'=0$，则 $q=a$，$u=ax-\sigma a^3=a(x-\sigma a^2)$。因此 $y=\sigma a^2(x-\sigma a^2)^2$，令 $C=\sigma a^2$ 得通解族。
+
+若 $x=3\sigma q^2$，由 $u=xq-\sigma q^3=2\sigma q^3$，得到
+\[
+y=\sigma u^2=4\sigma q^6,
+\qquad x^3=27\sigma q^6,
+\]
+故 $y=4x^3/27$。最后直接代回原式确认该奇解，并将零函数加入通解族的 $C=0$ 情形。
 \ans{y=C(x-C)^2\quad(C\in\R),\qquad y=\dfrac4{27}x^3\ \text{（奇解）}.}
 $C=0$ 包括零解。非恒定号区域的推导还须以原式回代延伸到零点。
 \checknote{对两种表达式求导，代入三项均相消；包络由对参数 $C$ 求导所得 $(x-C)(x-3C)=0$ 得到，其中 $y=0$ 已在原族中。}
 \problem{2.4.1(5)}{58}{求 $y^3+(y')^3-3yy'=0$ 的通解。}
-记 $p=y'$，在 $y\ne0$ 时令 $u=p/y$，得到 $y=3u/(1+u^3)$、$p=3u^2/(1+u^3)$。于是
+记 $p=y'$。零函数先保留；在 $y\ne0$ 时令 $u=p/y$。代入后有
 \[
- \dfrac{\dd x}{\dd u}=\dfrac{1-2u^3}{u^2(1+u^3)}
- =\dfrac1{u^2}-\dfrac{3u}{1+u^3}.
+y^3(1+u^3)-3uy^2=0,
+\quad y=\dfrac{3u}{1+u^3},\quad p=\dfrac{3u^2}{1+u^3}.
 \]
-把第二项作部分分式积分，得参数解
+因此用链式法则得
+\[
+\begin{aligned}
+\dfrac{\dd y}{\dd u}&=\dfrac{3(1-2u^3)}{(1+u^3)^2},\\
+\dfrac{\dd x}{\dd u}&=\dfrac{\dd y/\dd u}{p}
+=\dfrac{1-2u^3}{u^2(1+u^3)}
+=\dfrac1{u^2}-\dfrac{3u}{1+u^3}.
+\end{aligned}
+\]
+将后一项拆为
+\[
+\dfrac{3u}{1+u^3}=-\dfrac1{u+1}+\dfrac{u+1}{u^2-u+1}.
+\]
+又 $u+1=(2u-1)/2+3/2$、$u^2-u+1=(u-1/2)^2+3/4$，所以其原函数为
+\[
+-\ln|u+1|+\dfrac12\ln(u^2-u+1)
++\sqrt3\arctan\dfrac{2u-1}{\sqrt3}.
+\]
+连同 $\displaystyle \int u^{-2}\dd u=-1/u$，得到参数 $x(u)$。取 $u\ne0,-1$ 并选局部函数分支。
 \ans{y=\dfrac{3u}{1+u^3},\quad u\ne0,-1,\\
 x=C-\dfrac1u+\ln|u+1|-\dfrac12\ln(u^2-u+1)
 -\sqrt3\arctan\dfrac{2u-1}{\sqrt3};\qquad y=0.}
 参数曲线取能够表示可微函数的局部分支；直接由 $\dd y/\dd x=p$ 核验。
 \problem{2.4.1(6)}{58}{求 $(y')^7-5(y')^2+1=0$ 的通解。}
-设 $P(r)=r^7-5r^2+1$。$P$ 的实根为有限个数，而导数 $y'$ 作为 Darboux 函数不能在离散根之间跳跃，所以每个区间解的斜率恒定。
+令 $P(r)=r^7-5r^2+1$。原式要求每个 $x$ 上的导数 $y'(x)$ 都是 $P$ 的实根。$P$ 是非零多项式，实根集合有限；导数具有介值性质，故在连通解区间内不能在不同根之间跳变。因此必有 $y'=r$，其中 $r$ 是某个固定实根。
+\[
+y'=r\quad\Longrightarrow\quad y=rx+C.
+\]
+要判断实根个数，求导得 $P'(r)=r(7r^5-10)$。负半轴上 $P'>0$，且 $P(-\infty)=-\infty,P(0)=1$，所以有且仅有一个负根。正半轴上，$P$ 先减后增，唯一极小点为 $r_*=(10/7)^{1/5}>1$；又 $P(1)=-3<0$，故正半轴上有两个根。三根近似为
+\[
+r_1\approx-0.44642275,\quad r_2\approx0.44802305,\quad r_3\approx1.34792079.
+\]
+精确答案以多项式根的定义表示，不把近似值代替精确斜率。
 \ans{y=rx+C,\qquad r\in\R,\quad r^7-5r^2+1=0.}
 $P$ 有三个实根：由 $P'=r(7r^5-10)$ 的符号可将实轴分成三个单调区间，各区间端点的符号变化给出一个根。代入原式即核验；不必把七次多项式强行写为根式。
 \problem{2.4.2(1)}{58}{解 $(y')^2+y^2-1=0$，并求奇解。}
-在 $|y|<1$ 的非恒定分支，$y'=\pm\sqrt{1-y^2}$，积分得到正弦族。$F_p=2p=0$ 给出 $y=\pm1$，代回成立。
+先由 $(y')^2=1-y^2$ 知 $|y|\le1$。在 $|y|<1$ 的分支，导数不为零，符号在局部固定，故
+\[
+\dfrac{\dd y}{\sqrt{1-y^2}}=\pm\dd x,
+\quad\arcsin y=\pm x+C_0.
+\]
+取正弦后，正、负两种符号都可通过平移相位写成 $y=\sin(x+C)$。
+
+求奇解时记 $F=p^2+y^2-1$，联立 $F=0,F_p=2p=0$，得候选 $p=0,y=\pm1$。代回原式，两条常值曲线确为解，而且不是固定相位的一条正弦曲线。
 \ans{y=\sin(x+C),\qquad y=\pm1\ \text{（奇解）}.}
 完整的 $C^1$ 解还包括在极值点与 $y=\pm1$ 常值段拼接的解，不能跨越 $|y|>1$。
 \problem{2.4.2(2)}{58}{解 $x(y')^2-yy'+1=0$，并求奇解。}
-$p=y'$ 不可能为零，原式为 $y=xp+1/p$。求导得 $(x-p^{-2})p'=0$。
+令 $p=y'$，若 $p=0$ 原式左端为1，故 $p\ne0$。除以 $p$ 得 $y=xp+1/p$。对 $x$ 求导：
+\[
+\begin{aligned}
+p&=p+xp'-\dfrac{p'}{p^2},\\
+\left(x-\dfrac1{p^2}\right)p'&=0.
+\end{aligned}
+\]
+$p'=0$ 时 $p=C\ne0$，代回原式得直线族 $y=Cx+1/C$。
+
+另一分支由 $x=p^{-2}$ 给出，代回得 $y=2/p$，故 $y^2=4x$。因为 $p$ 为有限非零实数，此处 $x>0$；于是奇解为两条函数分支 $y=\pm2\sqrt x$。其导数为 $\pm1/\sqrt x$，分别与参数关系一致。
 \ans{y=Cx+\dfrac1C\ (C\ne0);\qquad
  y=\pm2\sqrt x\ (x>0)\ \text{（奇解）}.}
 奇解来自 $x=p^{-2},y=2/p$；在 $x=0$ 处不为有限导数的函数解。
 \problem{2.4.2(3)}{58}{解 $y=(y')^2$，并求奇解。}
-令 $p=y'$，求导得 $p=2pp'$。$p\ne0$ 时 $p'=1/2$，而 $p=0$ 对应 $y=0$。
+令 $p=y'$，则 $y=p^2\ge0$。对两端求导，得到
+\[
+p=2pp',\qquad p(1-2p')=0.
+\]
+在 $p\ne0$ 的分支上，$p'=1/2$，积分为 $p=(x-C)/2$，再代回 $y=p^2$，得到 $y=(x-C)^2/4$。在 $p=0$ 分支上，原式直接给出 $y=0$。
+
+零解是抛物线族的包络候选：对 $y=(x-C)^2/4$ 关于 $C$ 求导得 $x=C$，代回得到 $y=0$。由于它自身满足原式且不属于任意一条固定 $C$ 的抛物线，因此是奇解。
 \ans{y=\dfrac{(x-C)^2}{4},\qquad y=0\ \text{（奇解）}.}
 也可把不同抛物线段与零解段在顶点作 $C^1$ 拼接；这解释了零初值不唯一。
 \problem{2.4.2(4)}{58}{解 $x-y=4(y')^2/9-8(y')^3/27$，并求奇解。}
-令 $p=y'$，微分得到 $(p-1)[1-(8p/9)p']=0$。非恒定斜率分支积分 $\dd x=(8p/9)\dd p$，再代回求 $y$。
+把原式写为 $y=x-4p^2/9+8p^3/27$，$p=y'$。求导并因式分解：
+\[
+\begin{aligned}
+p&=1+\left(-\dfrac89p+\dfrac89p^2\right)p',\\
+p-1&=\dfrac89p(p-1)p',\\
+(p-1)\left(1-\dfrac89pp'\right)&=0.
+\end{aligned}
+\]
+若 $p\ne1$，则 $\dd x/\dd p=8p/9$，积分得 $x=C+4p^2/9$，代回原式得到 $y=C+8p^3/27$。
+
+若 $p=1$，代回未求导的原式得 $x-y=4/9-8/27=4/27$，所以还有直线 $y=x-4/27$。它与参数族相切，且不能由一个固定 $C$ 表示，为奇解。
 \ans{x=C+\dfrac49p^2,\qquad y=C+\dfrac8{27}p^3;\qquad
  y=x-\dfrac4{27}\ \text{（奇解）}.}
 $p=1$ 分支给出直线。半立方抛物线在 $p=0$ 处选取可微函数段；可在相切点与奇解拼接。
 \problem{2.4.2(5)}{59}{解 $y'=-\sqrt{y-x}+1$，并求奇解。}
-令 $z=y-x\ge0$，得 $z'=-\sqrt z$。$z>0$ 时 $2\sqrt z=C-x$，所以必须 $x<C$；$z=0$ 另给奇解。
+根号要求 $y-x\ge0$，令 $z=y-x$，则 $z'=y'-1=-\sqrt z$。在 $z>0$ 的分支上：
+\[
+\begin{aligned}
+\dfrac{\dd z}{\sqrt z}&=-\dd x,\\
+2\sqrt z&=C-x,\\
+z&=\dfrac{(C-x)^2}{4}.
+\end{aligned}
+\]
+平方前必须有 $C-x>0$，所以非常值分支只取 $x<C$。再用 $y=x+z$ 回代。
+
+被除去的 $z=0$ 给出 $y=x$，直接检验有 $y'=1=1-0$，成立。非常值分支在 $x=C$ 时与此直线相切，故可接上奇解继续向右延拓。
 \ans{y=x+\dfrac{(C-x)^2}{4}\ (x<C),\qquad y=x\ \text{（奇解）}.}
 可在 $x=C$ 后接上 $y=x$；不可把同一抛物线延伸到 $x>C$，因为平方根的符号会错误。
 \problem{2.4.2(6)}{59}{解 $y'=-x+\sqrt{x^2+2y}$，并求奇解。}
-令 $u=\sqrt{x^2+2y}\ge0$。在 $u>0$ 处有 $u'=1$，即 $u=x+C$；$u=0$ 另外检查。
+令 $u=\sqrt{x^2+2y}\ge0$，于是 $u^2=x^2+2y$。沿可微解求导并利用原方程：
+\[
+\begin{aligned}
+2uu'&=2x+2y'=2x+2(-x+u)=2u,\\
+u(u'-1)&=0.
+\end{aligned}
+\]
+若 $u>0$，则 $u'=1$，故 $u=x+C>0$。由 $y=(u^2-x^2)/2$，得到
+\[
+y=\dfrac{(x+C)^2-x^2}{2}=Cx+\dfrac{C^2}{2}.
+\]
+若 $u=0$，则 $y=-x^2/2$，其导数 $-x$ 与右端一致，给出奇解。边界 $x=-C$ 上两类曲线的函数值与导数相等，可按根号符号条件拼接。
 \ans{y=Cx+\dfrac{C^2}{2},\quad x+C>0;\qquad
  y=-\dfrac{x^2}{2}\ \text{（奇解）}.}
 可在 $x=-C$ 将奇解段接到直线段，且方向应满足 $u=x+C\ge0$。
 \problem{2.4.3(1)}{59}{解 $y^{(5)}-y^{(4)}/x=0$。}
-令 $u=y^{(4)}$，则 $u'=u/x$，所以 $u=Ax$。连续积分四次得到
+令 $u=y^{(4)}$，则原式降为 $u'-u/x=0$。在 $x\ne0$ 上，非零分支有 $\ln|u|=\ln|x|+C$，并入零分支可写 $u=Ax$。连续积分四次：
+\[
+\begin{aligned}
+y^{(4)}&=Ax,\\
+y'''&=\dfrac A2x^2+B,\\
+y''&=\dfrac A6x^3+Bx+D,\\
+y'&=\dfrac A{24}x^4+\dfrac B2x^2+Dx+E,\\
+y&=\dfrac A{120}x^5+\dfrac B6x^3+\dfrac D2x^2+Ex+F.
+\end{aligned}
+\]
+最后把五个互相独立的系数重新记为 $C_1,\ldots,C_5$。
 \ans{y=C_1x^5+C_2x^3+C_3x^2+C_4x+C_5,\quad x\ne0.}
 $x^4$ 项不能加入，因为其四阶导数为非零常数，不满足 $u'=u/x$。
 \problem{2.4.3(2)}{59}{解 $yy''+(y')^2=0$。}
-左端为 $(yy')'$，故 $yy'=A/2$，再积分得 $y^2=Ax+B$。
+利用乘积求导公式，原式左端满足 $(yy')'=(y')^2+yy''$。所以可以连续积分两次：
+\[
+\begin{aligned}
+(yy')'&=0,\\
+yy'&=C_1,\\
+\dfrac12(y^2)'&=C_1,\\
+y^2&=2C_1x+C_2.
+\end{aligned}
+\]
+将 $2C_1$ 记为 $A$、$C_2$ 记为 $B$。若 $A\ne0$，显式解为固定符号的 $\sqrt{Ax+B}$，必须取 $Ax+B>0$；若 $A=0$，只保留使 $B\ge0$ 的常值分支。
 \ans{y^2=Ax+B.}
 在根号内为正的区间取固定符号；$A=0$ 包括所有常值解。$A\ne0$ 时不能经过 $y=0$，否则原式要求 $y'=0$ 而平方根导数发散。
 \problem{2.4.3(3)}{59}{解 $(1+x^2)y''=2xy'$。}
-令 $p=y'$，得到 $p'=2xp/(1+x^2)$，积分得 $p=A(1+x^2)$，再积分。
+方程不含 $y$ 本身，令 $p=y'$，得到一阶方程 $(1+x^2)p'=2xp$。先记录 $p=0$，它对应常值解；非零分支分离变量：
+\[
+\begin{aligned}
+\dfrac{\dd p}p&=\dfrac{2x}{1+x^2}\dd x,\\
+\ln|p|&=\ln(1+x^2)+C_0,\\
+p&=A(1+x^2).
+\end{aligned}
+\]
+最后由 $y'=p$ 再积分一次，得到 $\displaystyle y=A\int(1+x^2)\dd x+B$，并允许 $A=0$ 包括常值解。
 \ans{y=A\left(x+\dfrac{x^3}{3}\right)+B.}
 \problem{2.4.3(4)}{59}{解 $yy''=(y')^2$。}
-在 $y\ne0$ 处，$[y'/y]'=0$，所以 $y'/y=k$。加入零解可写为
+先检查 $y=0$ 确为解。对 $y\ne0$ 的区间，将原方程改写为
+\[
+\left(\dfrac{y'}y\right)'=\dfrac{yy''-(y')^2}{y^2}=0.
+\]
+因此 $y'/y=k$ 为常数，再积分：
+\[
+\dfrac{\dd y}y=k\dd x,\qquad \ln|y|=kx+C_0,\qquad y=A\e^{kx}.
+\]
+非零分支中 $A$ 吸收符号和 $\e^{C_0}$。允许 $A=0$ 即并入零解；允许 $k=0$ 即并入其他常值解。若直接求导，有 $y'=ky,y''=k^2y$，可验证两边相等。
 \ans{y=A\e^{kx},\quad A,k\in\R.}
 非零指数分支不在有限点到达零，故没有额外的有限点拼接解。
 \problem{2.4.3(5)}{59}{解 $(y'')^2=y'$。}
-令 $p=y'\ge0$，则 $(p')^2=p$。在 $p>0$ 处积分得到 $p=(x-a)^2/4$，再积分；$p=0$ 给常值函数。
+令 $p=y'$，原方程成为 $(p')^2=p$，故 $p\ge0$。在 $p>0$ 的区间，$p'$ 不为零，可固定符号分离：
+\[
+\dfrac{\dd p}{\sqrt p}=\pm\dd x,
+\quad 2\sqrt p=\pm(x-a),
+\quad p=\dfrac{(x-a)^2}{4}.
+\]
+这里每种平方根符号先在对应的一侧使用。把 $p$ 代回 $y'=p$ 后积分：
+\[
+y=\int\dfrac{(x-a)^2}{4}\dd x=\dfrac{(x-a)^3}{12}+b.
+\]
+另有 $p=0$ 对应的 $y=b$。在 $x=a$ 上非恒定段满足 $y'=y''=0$，所以可以与常值段拼接，得到完整的 $C^2$ 解。
 \ans{y=\dfrac{(x-a)^3}{12}+b,\qquad y=b.}
 全部 $C^2$ 解还可在 $x=a$ 处把立方段与常值段拼接，因为此处 $y'=y''=0$。不同非零段之间可有一段 $y'=0$ 的停留区间。
 \problem{2.4.3(6)}{59}{解 $y''+(y')^2/(1-y)=0$。}
-原式要求 $y\ne1$。可直接计算
+原式的分母要求 $y\ne1$。将其乘以 $1-y$，得到 $(1-y)y''+(y')^2=0$。观察商的导数：
 \[
- \left(\dfrac{y'}{1-y}\right)'=
- \dfrac{(1-y)y''+(y')^2}{(1-y)^2}=0.
+\left(\dfrac{y'}{1-y}\right)'
+=\dfrac{(1-y)y''+(y')^2}{(1-y)^2}=0.
 \]
-因此 $y'=k(1-y)$，再分离变量。
+故 $y'/(1-y)=k$。利用 $\dd(1-y)=-\dd y$，分离并积分：
+\[
+\dfrac{\dd y}{1-y}=k\dd x,
+\quad-\ln|1-y|=kx+C_0,
+\quad y=1+A\e^{-kx}.
+\]
+令 $B=-k$，得到所列形式。$A\ne0$ 保证分母不为零；$B=0$ 时得到任意非1的常值解。
 \ans{y=1+A\e^{Bx},\quad A\ne0.}
 $B=0$ 包括除1以外的全部常值解；$y=1$ 不是原方程的解。
 \problem{2.4.3(7)}{59}{解 $4y^{(4)}=y''$。}
-令 $u=y''$，得 $4u''=u$，其特征根为 $\pm1/2$。积分两次，把系数重新记作常数。
+最低阶导数是 $y''$，令 $u=y''$ 后有 $4u''-u=0$。其特征方程 $4r^2-1=0$ 给出 $r=\pm1/2$，故
+\[
+u=A\e^{x/2}+B\e^{-x/2}.
+\]
+再积分两次，注意负指数的积分系数：
+\[
+\begin{aligned}
+y'&=2A\e^{x/2}-2B\e^{-x/2}+C,\\
+y&=4A\e^{x/2}+4B\e^{-x/2}+Cx+D.
+\end{aligned}
+\]
+把 $4A,4B,C,D$ 重记为四个常数即得通解。
 \ans{y=C_1\e^{x/2}+C_2\e^{-x/2}+C_3x+C_4.}
 \problem{2.4.3(8)}{59}{解 $(1+x^2)y''+(y')^2+1=0$。}
-令 $p=y'$，分离得 $\arctan p+\arctan x=C$。若 $a=\tan C$ 有限，$p=(a-x)/(1+ax)$；另有 $p=1/x$。
+令 $p=y'$，则 $(1+x^2)p'=-(1+p^2)$。分离并积分：
+\[
+\dfrac{\dd p}{1+p^2}=-\dfrac{\dd x}{1+x^2},
+\qquad \arctan p+\arctan x=C_0.
+\]
+若 $a=\tan C_0$ 有限，利用正切差公式得到 $p=(a-x)/(1+ax)$。当 $a\ne0$ 时先拆分：
+\[
+p=-\dfrac1a+\dfrac{a+1/a}{1+ax}.
+\]
+逐项积分得 $y=-x/a+(1+a^2)\ln|1+ax|/a^2+b$。当 $a=0$ 时，必须单独积分 $p=-x$，得 $y=-x^2/2+b$。
+
+若 $\cos C_0=0$，则 $p=\cot(\arctan x)=1/x$，积分得 $y=\ln|x|+b$。这第三类不能由一个有限 $a$ 表示，所以需要单独列出。
 \ans{y=-\dfrac xa+\dfrac{1+a^2}{a^2}\ln|1+ax|+b\quad(a\ne0),\\
 y=-\dfrac{x^2}{2}+b\quad(a=0),\qquad y=\ln|x|+b.}
 分别排除 $1+ax=0$ 和 $x=0$，按相应分支取区间。
 \problem{2.4.3(9)}{59}{解 $y'y'''-(y'')^2=0$。}
-令 $p=y'$，在 $p\ne0$ 上有 $(p'/p)'=0$，所以 $p=A\e^{kx}$。$k\ne0$ 时再积分给出指数型；$k=0$ 时为一次函数。
+令 $p=y'$，原式成为 $pp''-(p')^2=0$。在 $p\ne0$ 的区间，
+\[
+\left(\dfrac{p'}p\right)'=0,\qquad p'=kp,\qquad p=A_0\e^{kx}.
+\]
+分两种情况积分回 $y$：
+\[
+\begin{aligned}
+k\ne0:&\quad y=\dfrac{A_0}{k}\e^{kx}+B,\\
+k=0:&\quad y=A_0x+B.
+\end{aligned}
+\]
+第一种把 $A_0/k$ 重新记为 $A$。最初未包含的 $p=0$ 对应常值解，它已由结果中的零系数包含。
 \ans{y=A\e^{kx}+B\quad(k\ne0),\qquad y=Ax+B.}
 这些公式也包括常值解。非零 $p$ 的指数分支无法在有限点接上 $p=0$，故没有额外拼接。
 \problem{2.4.4}{59}{曲线满足 $xy'+(y')^2=y$，且与 $y=\e^{-x}$ 在 $(0,1)$ 相切，求曲线。}
-这是 Clairaut 方程，通解为 $y=Cx+C^2$，奇解为 $y=-x^2/4$。相切要求 $y(0)=1$、$y'(0)=-1$，故 $C=-1$；奇解不经过该点。
+先令 $p=y'$，原方程为 $y=xp+p^2$。对 $x$ 求导：
+\[
+p=p+xp'+2pp',\qquad (x+2p)p'=0.
+\]
+若 $p'=0$，则 $p=C$，代回得到 $y=Cx+C^2$。若 $x+2p=0$，则 $p=-x/2$、$y=-x^2/4$，为奇解。
+
+与 $\e^{-x}$ 在 $(0,1)$ 相切，既要求相同函数值，也要求相同斜率：
+\[
+y(0)=1,\qquad y'(0)=\left.(\e^{-x})'\right|_{x=0}=-1.
+\]
+通解族中 $y'=C$，所以斜率先决定 $C=-1$，再检查 $C^2=1$ 恰好满足函数值。奇解在0处函数值为0，不能满足相切条件。
 \ans{y=1-x.}
 \problem{2.4.6}{59}{若 $p(x)$ 在 $\R$ 连续，$\varphi$ 为 $y'=p(x)\sin y$ 满足 $\varphi(0)=0$ 的解，证明 $\varphi\equiv0$。}
 \begin{proof}
 零函数满足原方程。任取解的存在区间内包含0的紧区间 $J$，$|p|$ 在 $J$ 上有上界 $M$。由 $|\sin u-\sin v|\le|u-v|$，右端关于 $y$ 的 Lipschitz 常数可取 $M$，故初值解在 $J$ 上唯一，必须与零解相同。沿存在区间逐段使用局部唯一性，即得 $\varphi=0$。
 零解本身可定义在全实轴上，所以最大初值解就是全实轴上的零函数。
+也可直接看见误差如何归零：在 $t\ge0$ 的紧区间上，积分式给 $\displaystyle |\varphi(t)|\le M\int_0^t|\varphi(s)|\dd s$，Gronwall 不等式取初始常数0即得 $|\varphi(t)|\le0$。负向区间把积分方向反过来，得到同样结论。
 \end{proof}
 \checknote{本章隐式结果可通过对势函数或第一积分求导恢复原式。分离变量与 Bernoulli 题另查零因子和平方根符号；高阶题另查积分常数个数。}

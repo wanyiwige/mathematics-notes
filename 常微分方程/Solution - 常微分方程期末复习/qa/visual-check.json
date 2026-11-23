@@ -31,7 +31,7 @@
   },
   {
     "page": 7,
-    "chars": 1825,
+    "chars": 1826,
     "edge_candidates": []
   },
   {
@@ -61,327 +61,492 @@
   },
   {
     "page": 13,
-    "chars": 962,
+    "chars": 992,
     "edge_candidates": []
   },
   {
     "page": 14,
-    "chars": 932,
+    "chars": 924,
     "edge_candidates": []
   },
   {
     "page": 15,
-    "chars": 976,
+    "chars": 1064,
     "edge_candidates": []
   },
   {
     "page": 16,
-    "chars": 746,
+    "chars": 1077,
     "edge_candidates": []
   },
   {
     "page": 17,
-    "chars": 717,
+    "chars": 916,
     "edge_candidates": []
   },
   {
     "page": 18,
-    "chars": 740,
+    "chars": 737,
     "edge_candidates": []
   },
   {
     "page": 19,
-    "chars": 664,
+    "chars": 884,
     "edge_candidates": []
   },
   {
     "page": 20,
-    "chars": 697,
+    "chars": 398,
     "edge_candidates": []
   },
   {
     "page": 21,
-    "chars": 811,
+    "chars": 848,
     "edge_candidates": []
   },
   {
     "page": 22,
-    "chars": 792,
+    "chars": 789,
     "edge_candidates": []
   },
   {
     "page": 23,
-    "chars": 689,
+    "chars": 746,
     "edge_candidates": []
   },
   {
     "page": 24,
-    "chars": 885,
+    "chars": 817,
     "edge_candidates": []
   },
   {
     "page": 25,
-    "chars": 691,
+    "chars": 759,
     "edge_candidates": []
   },
   {
     "page": 26,
-    "chars": 691,
+    "chars": 802,
     "edge_candidates": []
   },
   {
     "page": 27,
-    "chars": 804,
+    "chars": 898,
     "edge_candidates": []
   },
   {
     "page": 28,
-    "chars": 647,
+    "chars": 836,
     "edge_candidates": []
   },
   {
     "page": 29,
-    "chars": 769,
+    "chars": 697,
     "edge_candidates": []
   },
   {
     "page": 30,
-    "chars": 838,
+    "chars": 887,
     "edge_candidates": []
   },
   {
     "page": 31,
-    "chars": 774,
+    "chars": 917,
     "edge_candidates": []
   },
   {
     "page": 32,
-    "chars": 832,
+    "chars": 908,
     "edge_candidates": []
   },
   {
     "page": 33,
-    "chars": 870,
+    "chars": 758,
     "edge_candidates": []
   },
   {
     "page": 34,
-    "chars": 847,
+    "chars": 737,
     "edge_candidates": []
   },
   {
     "page": 35,
-    "chars": 863,
+    "chars": 709,
     "edge_candidates": []
   },
   {
     "page": 36,
-    "chars": 926,
+    "chars": 895,
     "edge_candidates": []
   },
   {
     "page": 37,
-    "chars": 812,
+    "chars": 776,
     "edge_candidates": []
   },
   {
     "page": 38,
-    "chars": 856,
+    "chars": 602,
     "edge_candidates": []
   },
   {
     "page": 39,
-    "chars": 726,
+    "chars": 689,
     "edge_candidates": []
   },
   {
     "page": 40,
-    "chars": 799,
+    "chars": 805,
     "edge_candidates": []
   },
   {
     "page": 41,
-    "chars": 535,
+    "chars": 790,
     "edge_candidates": []
   },
   {
     "page": 42,
-    "chars": 769,
+    "chars": 776,
     "edge_candidates": []
   },
   {
     "page": 43,
-    "chars": 771,
+    "chars": 772,
     "edge_candidates": []
   },
   {
     "page": 44,
-    "chars": 1035,
+    "chars": 708,
     "edge_candidates": []
   },
   {
     "page": 45,
-    "chars": 1020,
+    "chars": 789,
     "edge_candidates": []
   },
   {
     "page": 46,
-    "chars": 874,
+    "chars": 863,
     "edge_candidates": []
   },
   {
     "page": 47,
-    "chars": 1010,
+    "chars": 893,
     "edge_candidates": []
   },
   {
     "page": 48,
-    "chars": 1173,
+    "chars": 944,
     "edge_candidates": []
   },
   {
     "page": 49,
-    "chars": 316,
+    "chars": 907,
     "edge_candidates": []
   },
   {
     "page": 50,
-    "chars": 723,
+    "chars": 964,
     "edge_candidates": []
   },
   {
     "page": 51,
-    "chars": 800,
+    "chars": 850,
     "edge_candidates": []
   },
   {
     "page": 52,
-    "chars": 922,
+    "chars": 845,
     "edge_candidates": []
   },
   {
     "page": 53,
-    "chars": 783,
+    "chars": 1027,
     "edge_candidates": []
   },
   {
     "page": 54,
-    "chars": 815,
+    "chars": 1053,
     "edge_candidates": []
   },
   {
     "page": 55,
-    "chars": 984,
+    "chars": 844,
     "edge_candidates": []
   },
   {
     "page": 56,
-    "chars": 882,
+    "chars": 899,
     "edge_candidates": []
   },
   {
     "page": 57,
-    "chars": 1098,
+    "chars": 806,
     "edge_candidates": []
   },
   {
     "page": 58,
-    "chars": 792,
+    "chars": 751,
     "edge_candidates": []
   },
   {
     "page": 59,
-    "chars": 899,
+    "chars": 924,
     "edge_candidates": []
   },
   {
     "page": 60,
-    "chars": 918,
+    "chars": 895,
     "edge_candidates": []
   },
   {
     "page": 61,
-    "chars": 928,
+    "chars": 1093,
     "edge_candidates": []
   },
   {
     "page": 62,
-    "chars": 1003,
+    "chars": 843,
     "edge_candidates": []
   },
   {
     "page": 63,
-    "chars": 1029,
+    "chars": 923,
     "edge_candidates": []
   },
   {
     "page": 64,
-    "chars": 1030,
+    "chars": 1116,
     "edge_candidates": []
   },
   {
     "page": 65,
-    "chars": 1139,
+    "chars": 1207,
     "edge_candidates": []
   },
   {
     "page": 66,
-    "chars": 1568,
+    "chars": 1212,
     "edge_candidates": []
   },
   {
     "page": 67,
-    "chars": 956,
+    "chars": 939,
     "edge_candidates": []
   },
   {
     "page": 68,
-    "chars": 967,
+    "chars": 1006,
     "edge_candidates": []
   },
   {
     "page": 69,
-    "chars": 899,
+    "chars": 1135,
     "edge_candidates": []
   },
   {
     "page": 70,
-    "chars": 948,
+    "chars": 1115,
     "edge_candidates": []
   },
   {
     "page": 71,
-    "chars": 851,
+    "chars": 1158,
     "edge_candidates": []
   },
   {
     "page": 72,
-    "chars": 937,
+    "chars": 222,
     "edge_candidates": []
   },
   {
     "page": 73,
-    "chars": 929,
+    "chars": 652,
     "edge_candidates": []
   },
   {
     "page": 74,
-    "chars": 1111,
+    "chars": 867,
     "edge_candidates": []
   },
   {
     "page": 75,
-    "chars": 1194,
+    "chars": 782,
     "edge_candidates": []
   },
   {
     "page": 76,
-    "chars": 1100,
+    "chars": 1026,
     "edge_candidates": []
   },
   {
     "page": 77,
-    "chars": 822,
+    "chars": 1056,
+    "edge_candidates": []
+  },
+  {
+    "page": 78,
+    "chars": 960,
+    "edge_candidates": []
+  },
+  {
+    "page": 79,
+    "chars": 882,
+    "edge_candidates": []
+  },
+  {
+    "page": 80,
+    "chars": 879,
+    "edge_candidates": []
+  },
+  {
+    "page": 81,
+    "chars": 1154,
+    "edge_candidates": []
+  },
+  {
+    "page": 82,
+    "chars": 1087,
+    "edge_candidates": []
+  },
+  {
+    "page": 83,
+    "chars": 958,
+    "edge_candidates": []
+  },
+  {
+    "page": 84,
+    "chars": 987,
+    "edge_candidates": []
+  },
+  {
+    "page": 85,
+    "chars": 1096,
+    "edge_candidates": []
+  },
+  {
+    "page": 86,
+    "chars": 1003,
+    "edge_candidates": []
+  },
+  {
+    "page": 87,
+    "chars": 461,
+    "edge_candidates": []
+  },
+  {
+    "page": 88,
+    "chars": 983,
+    "edge_candidates": []
+  },
+  {
+    "page": 89,
+    "chars": 936,
+    "edge_candidates": []
+  },
+  {
+    "page": 90,
+    "chars": 1086,
+    "edge_candidates": []
+  },
+  {
+    "page": 91,
+    "chars": 1129,
+    "edge_candidates": []
+  },
+  {
+    "page": 92,
+    "chars": 1215,
+    "edge_candidates": []
+  },
+  {
+    "page": 93,
+    "chars": 1024,
+    "edge_candidates": []
+  },
+  {
+    "page": 94,
+    "chars": 1039,
+    "edge_candidates": []
+  },
+  {
+    "page": 95,
+    "chars": 1162,
+    "edge_candidates": []
+  },
+  {
+    "page": 96,
+    "chars": 1310,
+    "edge_candidates": []
+  },
+  {
+    "page": 97,
+    "chars": 1059,
+    "edge_candidates": []
+  },
+  {
+    "page": 98,
+    "chars": 1738,
+    "edge_candidates": []
+  },
+  {
+    "page": 99,
+    "chars": 1027,
+    "edge_candidates": []
+  },
+  {
+    "page": 100,
+    "chars": 191,
+    "edge_candidates": []
+  },
+  {
+    "page": 101,
+    "chars": 968,
+    "edge_candidates": []
+  },
+  {
+    "page": 102,
+    "chars": 900,
+    "edge_candidates": []
+  },
+  {
+    "page": 103,
+    "chars": 949,
+    "edge_candidates": []
+  },
+  {
+    "page": 104,
+    "chars": 852,
+    "edge_candidates": []
+  },
+  {
+    "page": 105,
+    "chars": 938,
+    "edge_candidates": []
+  },
+  {
+    "page": 106,
+    "chars": 930,
+    "edge_candidates": []
+  },
+  {
+    "page": 107,
+    "chars": 1112,
+    "edge_candidates": []
+  },
+  {
+    "page": 108,
+    "chars": 1195,
+    "edge_candidates": []
+  },
+  {
+    "page": 109,
+    "chars": 1101,
+    "edge_candidates": []
+  },
+  {
+    "page": 110,
+    "chars": 823,
     "edge_candidates": []
   }
 ]
