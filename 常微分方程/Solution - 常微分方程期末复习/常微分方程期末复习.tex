@@ -1,0 +1,35 @@
+% !TEX program = xelatex
+\documentclass[UTF8,a4paper,11pt,fontset=windows]{ctexart}
+\usepackage[margin=2.15cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,enumitem,booktabs,longtable,array,graphicx,tikz,fancyhdr}
+\usepackage[unicode,hidelinks]{hyperref}
+\allowdisplaybreaks[2]
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{常微分方程期末复习}\fancyhead[R]{前五章习题与求解方法}\fancyfoot[C]{\thepage}
+\setlength{\parskip}{0.35em}\setlength{\emergencystretch}{2em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em}
+\setcounter{tocdepth}{2}
+\newcommand{\dd}{\mathrm d}\newcommand{\R}{\mathbb R}\newcommand{\e}{\mathrm e}\newcommand{\ii}{\mathrm i}
+\newcommand{\problem}[3]{\subsection{习题 #1}\label{q:#1}\noindent\textbf{题目}\quad #3\par\noindent{\small 教材印刷页 #2；扫描 PDF 页码加 10。}\par\smallskip}
+\newcommand{\method}[1]{\par\noindent\textbf{方法}\quad #1\par}
+\newcommand{\ans}[1]{\par\noindent\textbf{标准答案}\[\boxed{\begin{gathered}#1\end{gathered}}\]}
+\newcommand{\checknote}[1]{\par\noindent{\small\textbf{核对}\quad #1}\par}
+\newcommand{\basis}[1]{\par\noindent{\small\textbf{知识点依据}\quad #1}\par}
+\renewcommand{\proofname}{证明}
+\title{常微分方程期末复习\\\large 张伟年、杜正东、徐冰《常微分方程》第2版\\前五章计算题全解与指定理论题}
+\author{}\date{2026年11月24日}
+\begin{document}\maketitle
+本册计算题覆盖教材前五章各节习题中的全部计算小问，包括建模、消去常数、求通解与初值解、积分因子、奇解、降阶、线性方程组、级数、Picard 迭代、数值计算及解对初值的导数。其余理论题按所提供课堂照片选取。题目沿用第二版编号；每题列出所需条件、计算步骤和结果。
+
+照片中的“习题2.3（第三版）1、2”不能按题号直接移植：所供第二版第2.3节没有单列习题，相关隐式方程计算集中于习题2.4，本册已全部收入。没有取得第三版题面，因此不声称已核对两版这两道题的一一对应关系。
+
+常数在各题、各小问中独立使用。通解默认在使原方程及所写表达式有意义的连通开区间上取值；除法前另行检查被除因子的零点。隐式解需要选取可微函数分支，不能把整条代数曲线都视为一条函数解。理论题证明为依据教材本节方法所作的完整推导，不声称教材提供了原题证明。
+\tableofcontents\clearpage
+\input{methods}
+\clearpage\input{chapter1}
+\clearpage\input{chapter2}
+\clearpage\input{chapter3}
+\clearpage\input{chapter4}
+\clearpage\input{chapter5}
+\clearpage\input{answers}
+\end{document}

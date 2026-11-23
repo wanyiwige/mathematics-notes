@@ -1,0 +1,163 @@
+\section{求解方法与选法顺序}
+\subsection{先检查什么}
+先明确自变量、未知函数、阶数、初值和定义域。求解后检查原方程、初值、被除去的因子及最大存在区间。求一阶显式方程时，依次检查能否直接积分、分离变量、化为齐次方程、一阶线性方程、Bernoulli 方程或恰当方程；导数没有解出时，再检查可否解出 $y$、解出 $x$、因式分解或参数化。高阶方程先检查缺项降阶，再检查线性结构。
+\subsection{分离变量与可化为分离变量的方程}
+\basis{第2.1节，教材第15--27页。}
+对 $y'=h(x)g(y)$，先记录每个 $g(a)=0$ 给出的常值解 $y=a$，再在 $g(y)\ne0$ 的区间上积分：
+\[
+ \int\dfrac{\dd y}{g(y)}=\int h(x)\,\dd x+C.
+\]
+若 $y'=F(y/x)$，令 $y=xu$，则
+\[
+ y'=u+xu',\qquad xu'=F(u)-u.
+\]
+先检查 $F(u)-u=0$ 对应的直线解，再分离变量。
+对线性分式 $y'=F((a_1x+b_1y+c_1)/(a_2x+b_2y+c_2))$，两直线相交时平移交点为原点；两组系数成比例时，用 $u=ax+by$。对 $y'=F(ax+by+c)$，同样令 $u=ax+by+c$，得到 $u'=a+bF(u)$。
+\subsection{一阶线性、反置变量与 Bernoulli 方程}
+\basis{第2.1节，第17--22页。}
+对 $y'+p(x)y=q(x)$，乘积分因子 $\mu=\exp(\displaystyle\int p(x)\,\dd x)$，得
+\[
+ (\mu y)'=\mu q,\qquad y=\mu^{-1}\left(C+\int\mu q\,\dd x\right).
+\]
+若方程关于 $y(x)$ 非线性而关于 $x(y)$ 线性，交换自变量与因变量。反置过程只能用于导数非零的分支，另查常值解。
+
+对 $y'=a(x)y+b(x)y^\alpha$，$\alpha\ne0,1$，在非零分支令 $z=y^{1-\alpha}$：
+\[
+ z'=(1-\alpha)a(x)z+(1-\alpha)b(x).
+\]
+当分数幂出现时，回代必须满足原有符号条件；平方后的式子可能增加伪解。
+\subsection{恰当方程与积分因子}
+\basis{第2.2节，第27--37页。}
+对 $M\,\dd x+N\,\dd y=0$，在适当的单连通区域检查 $M_y=N_x$。若成立，先积分 $F=\displaystyle\int M\,\dd x+g(y)$，再用 $F_y=N$ 求 $g$，解为 $F=C$。
+若不恰当，检查
+\[
+ \dfrac{M_y-N_x}{N}=f(x)\Rightarrow\mu(x)=\e^{\int f(x)\,\dd x},\qquad
+ \dfrac{N_x-M_y}{M}=g(y)\Rightarrow\mu(y)=\e^{\int g(y)\,\dd y}.
+\]
+若 $M,N$ 同次齐次且 $xM+yN\ne0$，可试 $\mu=(xM+yN)^{-1}$。找不到上述形式时可试 $x^ay^b$，代入 $(\mu M)_y=(\mu N)_x$ 比较系数。积分因子不应在所取区域为零；其奇点处的原方程解需另查。
+\subsection{隐式一阶方程、参数法和奇解}
+\basis{第2.3--2.4节，第37--49页。}
+记 $p=y'$。若 $y=f(x,p)$，求微分后得到
+\[
+ p=f_x+f_p\dfrac{\dd p}{\dd x}.
+\]
+若便于求 $x(p)$，改写为它的一阶方程，再由 $y=f(x(p),p)$ 回代。若 $y=xp+f(p)$ 是 Clairaut 方程，则
+\[
+ (x+f'(p))p'=0.
+\]
+$p=C$ 给出直线族，$x=-f'(p),\ y=f(p)-pf'(p)$ 给出包络候选。必须代回原方程验证，才能确认为奇解。一般 $F(x,y,p)=0$ 的 $p$ 判别曲线由 $F=F_p=0$ 得到，也只给出候选。
+若可解出 $x=f(y,p)$，则由 $\dd x=f_y\dd y+f_p\dd p$、$\dd y=p\dd x$ 得
+\[
+ (1-pf_y)\dd y=pf_p\dd p.
+\]
+将 $y$ 视为 $p$ 的函数求解，再回代求 $x$。若方程只含 $x,p$，先求出 $p$ 的分支，再积分 $y'=p(x)$；若只含 $y,p$，可先求 $p(y)$，再用 $\dd x=\dd y/p(y)$。
+
+Lagrange 方程 $y=x\phi(p)+\psi(p)$ 求导后为
+\[
+ p-\phi(p)=[x\phi'(p)+\psi'(p)]\dfrac{\dd p}{\dd x}.
+\]
+在 $p\ne\phi(p)$ 的分支上，反置为线性方程
+\[
+ \dfrac{\dd x}{\dd p}-\dfrac{\phi'(p)}{p-\phi(p)}x
+ =\dfrac{\psi'(p)}{p-\phi(p)}.
+\]
+解出 $x(p)$ 后由原式给出 $y(p)$；每个 $p_0=\phi(p_0)$ 还给出直线候选 $y=p_0x+\psi(p_0)$，应直接回代。Clairaut 方程是 $\phi(p)=p$ 的特殊情形，不能用上式除以恒为零的分母。
+\subsection{高阶非线性方程降阶}
+\basis{第2.4节，第49--54页。}
+缺 $y$ 时令 $p=y'$；缺 $x$ 时在非恒定分支令 $p=p(y)$，用 $y''=p\,\dd p/\dd y$。若出现 $yy''-(y')^2$，用
+\[
+ \left(\dfrac{y'}y\right)'=\dfrac{yy''-(y')^2}{y^2}.
+\]
+出现连续高阶导数时，也可先把最高的共同低阶导数作为新未知函数。降阶后每积分一次都应加入一个独立常数，并另查除法遗漏的常值解。
+\subsection{Riccati 方程的已知特解法}
+\basis{第2.4节，第54--57页。}
+对 $y'=a(x)y^2+b(x)y+c(x)$，若已知一个特解 $y_1$，令 $z=y-y_1$，利用 $y_1$ 满足原方程，得到
+\[
+ z'=(2ay_1+b)z+az^2.
+\]
+$z=0$ 就是已知特解；对 $z\ne0$ 令 $u=1/z$，化成
+\[
+ u'+(2ay_1+b)u=-a,\qquad y=y_1+\dfrac1u.
+\]
+若没有已知特解，一般不能保证用初等积分求解。不能因为方程是一阶就强行寻找初等闭式；可转用级数、Picard 迭代或数值法。
+\subsection{变系数线性方程与方程组}
+\basis{第3.2--3.4节，第65--80页。}
+已知基本解矩阵 $X$ 时，齐次通解 $x=Xc$，非齐次解为
+\[
+ x(t)=X(t)\left[X^{-1}(t_0)x_0+\int_{t_0}^tX^{-1}(s)f(s)\,\dd s\right].
+\]
+若已知二阶齐次方程 $y''+a_1y'+a_2y=0$ 的非零解 $y_1$，令 $y=y_1u$，得
+\[
+ y_1u''+(2y_1'+a_1y_1)u'=0,
+ \qquad y_2=y_1\int\dfrac{\e^{-\int a_1\,\dd t}}{y_1^2}\,\dd t.
+\]
+$y_1$ 的零点处可分区间计算，再用原方程的唯一性拼接。二阶非齐次方程可用常数变易：设 $y=c_1(t)y_1+c_2(t)y_2$，联立
+\[
+ c_1'y_1+c_2'y_2=0,\qquad c_1'y_1'+c_2'y_2'=f.
+\]
+\subsection{常系数线性方程：特征根与待定系数}
+\basis{第4.1--4.2节，第90--99页。}
+把 $D=\dd/\dd t$ 代入多项式 $P(D)$。特征根 $\lambda$ 的重数为 $m$ 时，贡献 $\e^{\lambda t},t\e^{\lambda t},\ldots,t^{m-1}\e^{\lambda t}$；共轭根 $\alpha\pm\ii\beta$ 的重数为 $m$ 时，取相应的实部和虚部。
+
+右端为 $\e^{\alpha t}Q_k(t)$ 时，试 $t^s\e^{\alpha t}R_k(t)$，其中 $s$ 为 $\alpha$ 的重数；右端有 $\cos\beta t$ 或 $\sin\beta t$ 时，可将 $\alpha$ 换成 $\alpha+\ii\beta$ 取实部或虚部。代入原方程比较系数。最后加齐次通解。
+
+算子移位公式为
+\[
+ P(D)(\e^{\alpha t}u)=\e^{\alpha t}P(D+\alpha)u.
+\]
+对多项式右端的 $P(D)^{-1}$ 展开在有限次求导后终止；$D^{-1}$ 代表积分，积分常数统一收入齐次解。对一般右端可用常数变易，不把形式逆算子当成普通数分式。
+Cauchy--Euler 方程在 $t>0$ 或 $t<0$ 上令 $s=\ln|t|$，则
+\[
+ ty'=u_s,\qquad t^2y''=u_{ss}-u_s.
+\]
+\subsection{常系数方程组：特征向量、Jordan 链与消元}
+\basis{第4.3节，第99--108页。}
+对 $x'=Ax$，先求 $\det(\lambda I-A)$。每个特征向量 $v$ 给出 $\e^{\lambda t}v$。若 $(A-\lambda I)v_1=v_0$，则第二个解为 $\e^{\lambda t}(v_1+tv_0)$。长度三的链再给出 $\e^{\lambda t}(v_2+tv_1+t^2v_0/2)$。用 $Av_0=\lambda v_0$ 和链关系逐一核验，不能只看特征值。
+
+也可先消元求某一分量，再从原方程恢复其余分量。算子行列式消元给出的标量方程是必要条件；各分量积分常数必须回代原组建立关系。
+\subsection{幂级数法和 Frobenius 法}
+\basis{第3.5节，第80--87页。}
+在普通点 $t_0$ 令 $y=\sum_{n\ge0}a_n(t-t_0)^n$，求导、统一幂次、逐项比较，写出递推及首项。普通点到最近复奇点的距离给出至少可保证的收敛半径，整系数的首项系数恒不为零时解可为整函数。
+正则奇点可试 $y=(t-t_0)^r\sum_{n\ge0}a_n(t-t_0)^n$，先由最低次项求指标方程，再求递推；重根或根差为整数时可能需要对数项。多项式解来自递推在某一项终止。
+
+例如教材的 Bessel 型方程 $t^2y''+ty'+(t^2-\nu^2)y=0$，取 $t>0$，令 $y=t^r\sum_{n\ge0}a_nt^n$、$a_0\ne0$。最低次项给出指标方程 $r^2-\nu^2=0$，其余系数满足
+\[
+ [(r+n)^2-\nu^2]a_n=-a_{n-2},\qquad a_{-1}=a_{-2}=0.
+\]
+选择一个指标根后，先查每一步分母是否为零，再递推；若分母为零，应检查兼容性并另求第二解，不能继续作除法。
+\subsection{Picard 迭代、存在区间与误差}
+\basis{第5.1节，第115--122页。}
+在 $|t-t_0|\le a,|x-x_0|\le b$ 上，取 $M=\max|f|$ 及关于 $x$ 的 Lipschitz 常数 $L$，令 $h=\min(a,b/M)$。$M=0$ 时可取 $h=a$。迭代为
+\[
+ \varphi_0=x_0,\qquad\varphi_{n+1}(t)=x_0+\int_{t_0}^tf(s,\varphi_n(s))\,\dd s.
+\]
+误差满足
+\[
+ |\varphi_n-\varphi|\le\dfrac{ML^n|t-t_0|^{n+1}}{(n+1)!}.
+\]
+由此选择最小足够的 $n$；局部定理给出的区间不能直接当成最大存在区间。最大区间要检查显式解的奇点、原方程定义域，或使用延拓定理。
+\subsection{数值方法、比较估计和参数导数}
+\basis{第5.2、5.4--5.6节，第122--129、136--159页。}
+Euler 法：$x_{n+1}=x_n+hf(t_n,x_n)$。改进 Euler 法（显式梯形法）先预测，再校正：
+\[
+ \widetilde x_{n+1}=x_n+hf(t_n,x_n),\qquad
+ x_{n+1}=x_n+\dfrac h2[f(t_n,x_n)+f(t_n+h,\widetilde x_{n+1})].
+\]
+四阶 Runge--Kutta 法：
+\[
+ \begin{aligned}
+ K_1&=f(t_n,x_n),&K_2&=f(t_n+h/2,x_n+hK_1/2),\\
+ K_3&=f(t_n+h/2,x_n+hK_2/2),&K_4&=f(t_n+h,x_n+hK_3),\\
+ x_{n+1}&=x_n+\dfrac h6(K_1+2K_2+2K_3+K_4).
+ \end{aligned}
+\]
+若满足足够光滑性，在固定有限区间上三者全局误差分别为 $O(h),O(h^2),O(h^4)$。反向计算时步长取负，仍从给定初值出发，不能把左端点误作初值点。
+
+对 $u(t)\le c+\displaystyle\int_{t_0}^ta(s)u(s)\,\dd s$，$a\ge0$，Gronwall 估计为 $u(t)\le c\exp(\displaystyle\int_{t_0}^ta(s)\,\dd s)$。由积分式取差、取模，再应用该估计可处理近似解误差与初值敏感性。
+
+若 $x=\varphi(t;t_0,x_0,\mu)$，则变分方程为
+\[
+ U'=f_xU,\ U(t_0)=I;\qquad V'=f_xV+f_\mu,\ V(t_0)=0;
+ \qquad \varphi_{t_0}=-U(t)f(t_0,x_0,\mu).
+\]
+先代入所讨论的基准解，再解这个线性方程，通常比先求非线性通解简单。

@@ -1,0 +1,6 @@
+qa/render/
+*.aux
+*.log
+*.out
+*.toc
+__pycache__/

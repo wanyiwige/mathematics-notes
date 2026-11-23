@@ -1,0 +1,179 @@
+\section{第四章：常系数线性方程}
+\basis{第4.1--4.4节，教材第89--113页。}
+\problem{4.1.1(1)}{94}{求 $x''+4x=0$ 的实通解。}
+特征方程 $r^2+4=0$ 的根为 $\pm2\ii$。
+\ans{x=C_1\cos2t+C_2\sin2t.}
+\problem{4.1.1(2)}{94}{求 $x'''-x''+2x'-2x=0$ 的实通解。}
+特征多项式分组因式分解：$r^2(r-1)+2(r-1)=(r-1)(r^2+2)$。
+\ans{x=C_1\e^t+C_2\cos(\sqrt2t)+C_3\sin(\sqrt2t).}
+\problem{4.1.1(3)}{94}{求 $x^{(4)}+4x=0$ 的实通解。}
+$r^4+4=(r^2-2r+2)(r^2+2r+2)$，根为 $1\pm\ii,-1\pm\ii$。
+\ans{x=\e^t(C_1\cos t+C_2\sin t)+\e^{-t}(C_3\cos t+C_4\sin t).}
+\problem{4.1.1(4)}{94}{求 $x^{(4)}-2x'''+2x'-x=0$ 的实通解。}
+$r^4-2r^3+2r-1=(r-1)^3(r+1)$，根1为三重根，$-1$ 为单根。
+\ans{x=(C_1+C_2t+C_3t^2)\e^t+C_4\e^{-t}.}
+\problem{4.1.1(5)}{94}{求 $x''+4x'+4x=0$ 的实通解。}
+特征多项式 $(r+2)^2$，应补上 $t\e^{-2t}$。
+\ans{x=(C_1+C_2t)\e^{-2t}.}
+\problem{4.1.1(6)}{94}{求 $x''+2x'+4x=0$ 的实通解。}
+$r^2+2r+4=(r+1)^2+3$，根为 $-1\pm\sqrt3\ii$。
+\ans{x=\e^{-t}[C_1\cos(\sqrt3t)+C_2\sin(\sqrt3t)].}
+\problem{4.1.1(7)}{94}{求 $x'''+4x'=0$ 的实通解。}
+特征多项式 $r(r^2+4)$，根为 $0,\pm2\ii$。
+\ans{x=C_1+C_2\cos2t+C_3\sin2t.}
+\problem{4.1.1(8)}{94}{求 $x^{(4)}+8x''+16x=0$ 的实通解。}
+$r^4+8r^2+16=(r^2+4)^2$，两共轭根均为二重根。
+\ans{x=(C_1+C_2t)\cos2t+(C_3+C_4t)\sin2t.}
+\checknote{每一小问的基解对应全部特征根及重数，任意常数的数目等于阶数；将 $D$ 代入对应因式即可核验。}
+\problem{4.1.2}{94}{设 $a,b,c>0$，证明 $ax''+bx'+cx=0$ 的每个解在 $t\to+\infty$ 时趋零。}
+\begin{proof}
+根为 $r_{1,2}=(-b\pm\sqrt{b^2-4ac})/(2a)$。若判别式非负，因 $c>0$，$\sqrt{b^2-4ac}<b$，故两根均负；重根时通解为 $(C_1+C_2t)\e^{-bt/(2a)}$，仍趋零。若判别式为负，两根实部为 $-b/(2a)<0$，实解为衰减指数乘有界三角函数，也趋零。
+\end{proof}
+\problem{4.1.3}{94}{分析 $x''+2\delta x'+\omega^2x=0$ 的特征根并给出通解，其中 $\delta\ge0,\omega>0$。}
+特征根为 $-\delta\pm\sqrt{\delta^2-\omega^2}$，按判别式分三种情况。
+\ans{\delta<\omega:\ x=\e^{-\delta t}(C_1\cos\nu t+C_2\sin\nu t),\quad\nu=\sqrt{\omega^2-\delta^2};\\
+\delta=\omega:\ x=(C_1+C_2t)\e^{-\omega t};\\
+\delta>\omega:\ x=C_1\e^{(-\delta+\sqrt{\delta^2-\omega^2})t}
++C_2\e^{(-\delta-\sqrt{\delta^2-\omega^2})t}.}
+$\delta=0$ 为无阻尼振动，$0<\delta<\omega$ 为衰减振动；后两种为临界阻尼和过阻尼。
+\problem{4.2.1(1)}{99}{求 $x''+x'=1+t^2$ 的实通解。}
+齐次根为0和 $-1$。多项式右端与根0共振，设 $x_p=at^3+bt^2+ct$，代入得
+\[
+ 3at^2+(6a+2b)t+(2b+c)=t^2+1.
+\]
+因此 $a=1/3,b=-1,c=3$。
+\ans{x=C_1+C_2\e^{-t}+\dfrac{t^3}{3}-t^2+3t.}
+\problem{4.2.1(2)}{99}{求 $x''+4x=\cos2t+\cos4t$ 的实通解。}
+对第一项共振，试 $at\sin2t$，有 $(D^2+4)(t\sin2t)=4\cos2t$，故 $a=1/4$。第二项试 $b\cos4t$，有 $-12b=1$。
+\ans{x=C_1\cos2t+C_2\sin2t+\dfrac t4\sin2t-\dfrac1{12}\cos4t.}
+\problem{4.2.1(3)}{99}{求 $x''+4x=t\sin2t$ 的实通解。}
+因 $\pm2\ii$ 为单根，试 $x_p=at^2\cos2t+bt\sin2t$。代入得 $-8at\sin2t+(2a+4b)\cos2t=t\sin2t$，所以 $a=-1/8,b=1/16$。
+\ans{x=C_1\cos2t+C_2\sin2t-\dfrac{t^2}{8}\cos2t+\dfrac t{16}\sin2t.}
+这是习题3.4.6的独立计算方法，两法一致。
+\problem{4.2.1(4)}{99}{求 $x'''-4x''+3x'=t^2$ 的实通解。}
+特征多项式 $r(r-1)(r-3)$。试 $x_p=at^3+bt^2+ct$，比较系数得到
+\[
+ 9a=1,\qquad 6b-24a=0,\qquad6a-8b+3c=0.
+\]
+\ans{x=C_1+C_2\e^t+C_3\e^{3t}+\dfrac{t^3}{9}+\dfrac{4t^2}{9}+\dfrac{26t}{27}.}
+\problem{4.2.1(5)}{99}{求 $x''-3x'+2x=\sin(\e^{-t})$ 的实通解。}
+该右端不属于通常多项式乘指数的待定系数形式。令 $u=\e^{-t}$，$X(u)=x(t)$，则
+\[
+ x'=-uX',\quad x''=u^2X''+uX',\quad
+ u^2X''+4uX'+2X=(u^2X)''=\sin u.
+\]
+两次积分得 $u^2X=-\sin u+Au+B$。
+\ans{x=C_1\e^t+C_2\e^{2t}-\e^{2t}\sin(\e^{-t}).}
+\problem{4.2.1(6)}{99}{求 $x'''-5x''+8x'-4x=\e^{3t}$ 的实通解。}
+$P(r)=(r-1)(r-2)^2$，而 $P(3)=2$，故特解为 $\e^{3t}/2$。
+\ans{x=C_1\e^t+(C_2+C_3t)\e^{2t}+\dfrac12\e^{3t}.}
+\problem{4.2.1(7)}{99}{求 $x''-2x=4t^2\e^{t^2}$ 的实通解。}
+由 $(\e^{t^2})''=(2+4t^2)\e^{t^2}$，直接识别 $x_p=\e^{t^2}$。齐次根为 $\pm\sqrt2$。
+\ans{x=C_1\e^{\sqrt2t}+C_2\e^{-\sqrt2t}+\e^{t^2}.}
+\problem{4.2.1(8)}{99}{求 $x''-2x'+x=t\e^t$ 的实通解。}
+令 $x=\e^tu$，由算子移位 $(D-1)^2x=\e^tu''$ 得 $u''=t$，两次积分。
+\ans{x=\e^t\left(C_1+C_2t+\dfrac{t^3}{6}\right).}
+\problem{4.2.2}{99}{证明 Cauchy--Euler 方程 $a_2t^2x''+a_1tx'+a_0x=f(t)$ 可经适当替换化为常系数方程，其中 $a_2\ne0$。}
+\begin{proof}
+在不跨越0的区间上令 $s=\ln|t|$、$x(t)=u(s)$。链式法则给出 $tx'=u_s,t^2x''=u_{ss}-u_s$，代入得
+\ans{a_2u_{ss}+(a_1-a_2)u_s+a_0u=f(\varepsilon\e^s),\quad
+\varepsilon=\operatorname{sgn}(t).}
+左端各系数均为常数。$t=0$ 是原方程的退化点，不能用同一个对数替换越过。
+\end{proof}
+\problem{4.3.1}{107--108}{用算子消元求解
+\[
+ x_1'-x_2'+x_1=-t,\qquad x_1''-x_2'+3x_1-x_2=\e^{2t}.
+\]}
+第一式给 $x_2'=x_1'+x_1+t$，代入第二式得
+\[
+ x_2=x_1''-x_1'+2x_1-t-\e^{2t}.
+\]
+再求导并使用第一式，消去 $x_2$：
+\[
+ (D^3-D^2+D-1)x_1=t+1+2\e^{2t},\qquad
+ P(D)=(D-1)(D^2+1).
+\]
+多项式特解为 $-t-2$，指数特解为 $2\e^{2t}/5$。从恢复公式计算 $x_2$，注意各常数不能独立重取。
+\ans{x_1=C_1\e^t+C_2\cos t+C_3\sin t-t-2+\dfrac25\e^{2t},\\
+x_2=2C_1\e^t+(C_2-C_3)\cos t+(C_2+C_3)\sin t-3t-3+\dfrac35\e^{2t}.}
+\checknote{两式的差导数加 $x_1$ 为 $-t$；按恢复公式代回第二式即为 $\e^{2t}$，常数总数为3。}
+\problem{4.3.3(1)}{108}{求 $x'=-3x+48y-28z,\ y'=-4x+40y-22z,\ z'=-6x+57y-31z$。}
+系数矩阵的特征多项式为 $(r-1)(r-2)(r-3)$。分别解 $(A-rI)v=0$，可取
+\[
+ v_1=(3,2,3)^T,\qquad v_2=(4,1,1)^T,\qquad v_3=(2,2,3)^T.
+\]
+\ans{\begin{pmatrix}x\\y\\z\end{pmatrix}
+=C_1\e^t\begin{pmatrix}3\\2\\3\end{pmatrix}
++C_2\e^{2t}\begin{pmatrix}4\\1\\1\end{pmatrix}
++C_3\e^{3t}\begin{pmatrix}2\\2\\3\end{pmatrix}.}
+三根互异，三向量独立，直接计算 $Av_i=i v_i$ 核验。
+\problem{4.3.3(2)}{108}{求 $x'=y,\ y'=x$。}
+由第一式再求导得 $x''=x$，再用 $y=x'$ 恢复第二分量。
+\ans{x=C_1\e^t+C_2\e^{-t},\qquad y=C_1\e^t-C_2\e^{-t}.}
+\problem{4.3.3(3)}{108}{求 $x'=-5x-10y-20z,\ y'=5x+5y+10z,\ z'=2x+4y+9z$。}
+特征多项式为 $(r-5)(r^2-4r+5)$，根为 $5,2\pm\ii$。可取实根向量 $v=(-2,0,1)^T$，复根 $2+\ii$ 的向量 $a+\ii b$，其中
+\[
+ a=(-3,-2,2)^T,\quad b=(-1,1,0)^T.
+\]
+实部、虚部组成实基本解组。
+\ans{\begin{pmatrix}x\\y\\z\end{pmatrix}=C_1\e^{5t}v+
+\e^{2t}\{C_2(a\cos t-b\sin t)+C_3(a\sin t+b\cos t)\}.}
+\checknote{$Av=5v$，$Aa=2a-b$，$Ab=a+2b$；这些等式也直接验证上述三列解。}
+\problem{4.3.3(4)}{108}{求 $x'=3x-y,\ y'=-4x-y,\ z'=4x-8y-2z$。}
+特征根为 $-2$ 和 $\lambda_\pm=1\pm2\sqrt2$。对 $\lambda=\lambda_\pm$ 取
+\[
+ v(\lambda)=\bigl(\lambda+2,(3-\lambda)(\lambda+2),8\lambda-20\bigr)^T.
+\]
+前两分量由 $y=(3-\lambda)x$ 确定，第三分量由 $(\lambda+2)z=4x-8y$ 确定。
+\ans{\begin{pmatrix}x\\y\\z\end{pmatrix}=C_1\e^{-2t}\begin{pmatrix}0\\0\\1\end{pmatrix}
++C_2\e^{\lambda_+t}v(\lambda_+)+C_3\e^{\lambda_-t}v(\lambda_-).}
+利用 $\lambda^2-2\lambda-7=0$ 可逐行验证特征向量关系。
+\problem{4.3.3(5)}{108}{求 $x'=9x-5y,\ y'=-y+5z,\ z'=-y+5z$。}
+特征根为 $0,4,9$。解相应齐次代数组，取向量 $(25,45,9)^T,(1,1,1)^T,(1,0,0)^T$。
+\ans{\begin{pmatrix}x\\y\\z\end{pmatrix}
+=C_1\begin{pmatrix}25\\45\\9\end{pmatrix}
++C_2\e^{4t}\begin{pmatrix}1\\1\\1\end{pmatrix}
++C_3\e^{9t}\begin{pmatrix}1\\0\\0\end{pmatrix}.}
+零根对应常值向量，不能漏去这一项。
+\problem{4.3.3(6)}{108}{求 $x'=3x-2y,\ y'=-2x+3y,\ z'=5z$。}
+前两式相加得到 $(x+y)'=x+y$，相减得到 $(x-y)'=5(x-y)$，第三式独立积分。
+\ans{x=C_1\e^t+C_2\e^{5t},\quad y=C_1\e^t-C_2\e^{5t},\quad z=C_3\e^{5t}.}
+根5虽重，但有两个独立特征向量，不需乘 $t$。
+\problem{4.3.3(7)}{108}{求 $x'=2x+y+3z,\ y'=2y-z,\ z'=2z$。}
+系数矩阵只有特征根2，且
+\[
+ A=2I+N,\quad N=\begin{pmatrix}0&1&3\\0&0&-1\\0&0&0\end{pmatrix},\quad
+ N^2=\begin{pmatrix}0&0&-1\\0&0&0\\0&0&0\end{pmatrix},\quad N^3=0.
+\]
+所以 $\e^{At}=\e^{2t}(I+tN+t^2N^2/2)$。也可令 $x=\e^{2t}u,y=\e^{2t}v,z=\e^{2t}w$，从最后一式向上依次积分：
+\[
+ w'=0,\quad v'=-w,\quad u'=v+3w,
+\]
+因此 $w=C_3,v=C_2-C_3t,u=C_1+C_2t+C_3(3t-t^2/2)$。
+\ans{x=\e^{2t}[C_1+C_2t+C_3(3t-t^2/2)],\\
+y=\e^{2t}(C_2-C_3t),\qquad z=C_3\e^{2t}.}
+\checknote{基本解矩阵为 $\e^{2t}\begin{pmatrix}1&t&3t-t^2/2\\0&1&-t\\0&0&1\end{pmatrix}$，行列式 $\e^{6t}\ne0$。由 $N^3=0$ 计算的矩阵指数与逐层积分相同。}
+\problem{4.3.4}{108}{对 $x'=Ax$，讨论：(1) 全部特征根实部小于0时各解趋零；(2) 实部非正且实部为零者为单特根时，各解在 $t\ge0$ 有界；(3) 有特征根实部大于0时，有解趋向无穷。}
+\begin{enumerate}
+\item 每个 Jordan 块产生有限项 $t^k\e^{\lambda t}$。当 $\Re\lambda<0$ 时，$t^k\e^{\Re\lambda t}\to0$，故各分量都趋零，有限线性组合也趋零。
+\item 实部为负的 Jordan 项仍衰减且在 $[0,\infty)$ 有界。实部为零的根为单根时没有 $t^k$（$k\ge1$）因子，只有模为1的指数项，故有界。更一般地，该条件可放宽为虚轴上的 Jordan 块均为一阶。
+\item 设 $A$ 有正实部的特征根，构造一个范数趋于无穷的解。若正实部根为实数，取对应实特征向量即可；若为 $a+\ii b$、$a>0,b\ne0$，取复向量 $u+\ii v$ 的实部解 $\e^{at}(u\cos bt-v\sin bt)$。$u,v$ 在实域独立，括号作为单位圆的线性单射像，其范数有正下界，所以该解范数趋于无穷。
+\end{enumerate}
+\problem{4.4.1}{113}{1 kg 重物挂在弹簧上使其伸长 $49/320$ m 后平衡。从平衡位置向下拉 $1/4$ m 后静止释放，忽略阻力，求振动规律，$g=9.8\ \mathrm{m/s^2}$。}
+静平衡给 $k(49/320)=mg=9.8$，所以 $k=64\ \mathrm{N/m}$。以向下为正，平衡点为原点，方程与初值为 $x''+64x=0,x(0)=1/4,x'(0)=0$。
+\ans{x(t)=\dfrac14\cos8t\ \mathrm m,\qquad T=\dfrac\pi4\ \mathrm s.}
+\checknote{初值与释放条件一致；$kx$ 与 $mx''$ 单位同为力。}
+\problem{4.4.2}{113}{电感 $L$ 与电容 $C$ 串联组成无电源闭合电路，证明电容器电位差 $v(t)$ 为周期函数。}
+\begin{proof}
+由电感电压与电容电压之和为零，且 $i=Cv'$，得到 $LCv''+v=0$。设 $L,C>0$，其解为
+\ans{v=A\cos(\omega_0t)+B\sin(\omega_0t),\quad \omega_0=\dfrac1{\sqrt{LC}},\quad T=2\pi\sqrt{LC}.}
+非零解具有上述周期；零函数也为周期函数，但无最小正周期。
+\end{proof}
+\problem{4.4.3}{113}{电感 $L$、电容 $C$、电源 $E=E_0\sin\omega t$ 串联。证明 $\omega=1/\sqrt{LC}$ 时发生共振，并讨论电位差随时间的变化。}
+由 $LCv''+v=E_0\sin\omega t$，得 $v''+\omega_0^2v=E_0\omega_0^2\sin\omega t$。共振时试 $v_p=at\cos\omega_0t$，因
+\[
+ (D^2+\omega_0^2)(t\cos\omega_0t)=-2\omega_0\sin\omega_0t,
+\]
+得到
+\ans{v=A\cos\omega_0t+B\sin\omega_0t-\dfrac{E_0\omega_0}{2}t\cos\omega_0t.}
+$E_0\ne0$ 时振幅无界。教材“$t\to+\infty$ 时电位差变得无界”应理解为解函数无界，不能理解为 $v(t)\to+\infty$ 或 $|v(t)|\to\infty$：在 $\cos\omega_0t=0$ 的无穷多个时刻，$v(t)=\pm B$ 仍有界。共振增长的是振幅包络。

@@ -1,0 +1,1126 @@
+{
+  "count": 224,
+  "passed": 224,
+  "checks": [
+    {
+      "name": "2.1.2(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(7)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(8)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(9)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(10)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(11)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(12)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.2(13)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(7)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(8)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(9)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(10)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(11) positive phase",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(12)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(13)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(14)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.3(15) positive x phase",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.4(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.5(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.5(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.5(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.7(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.7(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.7(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.7(3) positive root",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.8",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.9",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(1) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(1) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(2) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(2) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(3) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(3) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(4) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(4) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(5) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(5) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(6) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(6) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(7) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(7) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(8) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(8) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(9) potential x",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.1(9) potential y",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.2(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.2(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.4(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.4(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.4(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.4(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.4(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.7",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.8",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.2.9",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(2) family",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(2) singular",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(4) family",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(4) singular",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.2(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.2(2) family",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.2(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.1(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.2(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(7)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(8)a",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(8)b",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(8)c",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.4.3(9)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.1.2 det derivative",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.1.2 derivative det",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.4.3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.1.4 Picard",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.1.5 Picard",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.1.3 Picard",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(1) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(2) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(3) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(4) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(5) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(6) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(7) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.1.1(8) factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(1)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(2)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(3)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(4)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(5)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(6)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(7)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.2.1(8)",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector2 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector2 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(1) vector2 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(2) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(2) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(2) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(2) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(3) vector1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector2 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector2 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(4) vector2 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector2 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector2 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(5) vector2 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector1 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector2 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector2 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(6) vector2 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) vector0 row0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) vector0 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) vector0 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 7",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) full matrix 8",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.3(7) determinant",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.1 row1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "4.3.1 row2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "1.2.1 IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(2) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(4) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(5) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "2.1.6(6) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.1.6 IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.3.5(1) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "5.3.5(2) IV",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff7",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff8",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff9",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff10",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff11",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.1 coeff12",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff7",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff8",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff9",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff10",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.2 coeff11",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "3.5.3 Hermite n=7",
+      "passed": true,
+      "residual": "0"
+    }
+  ]
+}

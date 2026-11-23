@@ -1,0 +1,202 @@
+\section{第三章：线性方程}
+\basis{第3.1--3.5节，教材第60--88页。}
+\problem{3.1.1}{64--65}{证明可微矩阵函数 $A(t)=(a_{ij}(t))$ 的行列式导数等于依次将一行换成该行导数所得的 $n$ 个行列式之和。}
+\begin{proof}
+由 Leibniz 展开式
+\[
+ \det A(t)=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+ \prod_{j=1}^na_{j,\sigma(j)}(t).
+\]
+对每个有限乘积求导：
+\[
+ (\det A)'=\sum_{k=1}^n\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+ a'_{k,\sigma(k)}\prod_{j\ne k}a_{j,\sigma(j)}.
+\]
+固定 $k$ 后内层和正是第 $k$ 行被其导数替换后的行列式，逐项相加即为所求公式。该式不要求 $A$ 可逆，也不等于 $\det A'$。
+\end{proof}
+\problem{3.1.2}{65}{设 $A=\begin{pmatrix}2t^3+1&t^2\\t&4t^2\end{pmatrix}$，计算并比较 $\det A'$ 与 $(\det A)'$。}
+\[
+ A'=\begin{pmatrix}6t^2&2t\\1&8t\end{pmatrix},\qquad
+ \det A=8t^5-t^3+4t^2.
+\]
+\ans{\det A'=48t^3-2t,\qquad (\det A)'=40t^4-3t^2+8t.}
+例如 $t=1$ 时两者分别为46与45，通常不相等。
+\problem{3.1.3}{65}{设 $x$ 在 $[\alpha,\beta]$ 连续，且 $|x(t)|\le L+M\displaystyle\int_\alpha^t|x(s)|\dd s$，$L,M\ge0$。用逐次逼近证明 $|x(t)|\le L\e^{M(t-\alpha)}$。}
+\begin{proof}
+记 $K=\max|x(t)|$。反复将原不等式代入右端积分，归纳得到
+\[
+ |x(t)|\le L\sum_{j=0}^{n-1}\dfrac{[M(t-\alpha)]^j}{j!}
+ +K\dfrac{[M(t-\alpha)]^n}{n!}.
+\]
+归纳一步使用 $\displaystyle\int_\alpha^t(s-\alpha)^j\dd s=(t-\alpha)^{j+1}/(j+1)$。由于有限区间上阶乘增长快于固定底数幂，最后一项一致趋零，前一项趋于指数级数，故得结论。
+\end{proof}
+\problem{3.2.1}{70--71}{验证 $X(t)=\begin{pmatrix}\e^{2t}&t\e^{2t}\\0&\e^{2t}\end{pmatrix}$ 是 $x'=\begin{pmatrix}2&1\\0&2\end{pmatrix}x$ 的基本解矩阵。}
+记系数矩阵为 $A$，直接计算
+\[
+ X'=\begin{pmatrix}2\e^{2t}&(1+2t)\e^{2t}\\0&2\e^{2t}\end{pmatrix}=AX,
+ \qquad\det X=\e^{4t}\ne0.
+\]
+\ans{x=X(t)c,\qquad X(0)=I.}
+两列既为解又线性无关，所以是基本解矩阵，且在0处标准化。
+\problem{3.2.2}{71}{两个齐次方程组 $x'=A_1(t)x$、$x'=A_2(t)x$ 有同一个基本解矩阵，证明 $A_1=A_2$。}
+\begin{proof}
+设共同基本解矩阵为 $X$，则 $A_1X=X'=A_2X$。每个 $t$ 上 $X$ 可逆，右乘 $X^{-1}$ 即得 $A_1=A_2$。
+\end{proof}
+\problem{3.2.3}{71}{若 $(\sin t,\cos t)^T,(\cos t,-\sin t)^T$ 是 $x'=(a_{ij}(t))x$ 的基本解组，求各 $a_{ij}$。}
+令 $X=\begin{pmatrix}\sin t&\cos t\\\cos t&-\sin t\end{pmatrix}$，有 $X^2=I$。因此
+\[
+ A=X'X^{-1}=
+ \begin{pmatrix}\cos t&-\sin t\\-\sin t&-\cos t\end{pmatrix}
+ \begin{pmatrix}\sin t&\cos t\\\cos t&-\sin t\end{pmatrix}.
+\]
+\ans{A=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.}
+\checknote{两列分别满足 $x_1'=x_2,x_2'=-x_1$；$\det X=-1$，反演合法。}
+\problem{3.2.4}{71}{用存在唯一性证明：$x'=A(t)x$ 的 $n$ 个解线性无关，当且仅当其 Wronski 行列式在某一点不为零。}
+\begin{proof}
+若 $\det X(t_0)\ne0$，而 $\sum c_kx_k(t)=0$，代入 $t_0$ 得 $X(t_0)c=0$，所以 $c=0$，解组线性无关。
+
+反之，若 $\det X(t_0)=0$，存在 $c\ne0$ 使 $X(t_0)c=0$。线性组合 $z=Xc$ 满足 $z'=Az,z(t_0)=0$，由唯一性 $z\equiv0$，故解组线性相关。于是线性无关时行列式不但在某一点，而且在每一点都非零。
+\end{proof}
+\problem{3.2.6}{71}{$A(t)$ 是 $\omega$ 周期连续矩阵，$X(t)$ 为 $x'=A(t)x$ 的基本解矩阵。证明 $X(t+\omega)$ 也是基本解矩阵，且存在可逆常矩阵 $C$ 使 $X(t+\omega)=X(t)C$。}
+\begin{proof}
+周期性给出
+\[
+ \dfrac\dd{\dd t}X(t+\omega)=A(t+\omega)X(t+\omega)=A(t)X(t+\omega).
+\]
+其行列式非零，所以是基本解矩阵。令 $C(t)=X^{-1}(t)X(t+\omega)$，使用 $(X^{-1})'=-X^{-1}A$，得到 $C'=0$，因此 $C$ 为常矩阵。两因子均可逆，故 $C$ 可逆，且
+\[
+ C=X^{-1}(t_0)X(t_0+\omega).
+\]
+\end{proof}
+\problem{3.3.1}{73--74}{设 $x'=A(t)x+f(t)$，其中
+\[
+ A=\begin{pmatrix}\cos^2t&\dfrac12\sin2t-1\\\dfrac12\sin2t+1&\sin^2t\end{pmatrix},\quad
+ f=\binom{\cos t}{\sin t}.
+\]
+(1) 验证 $\Phi=\begin{pmatrix}\e^t\cos t&-\sin t\\\e^t\sin t&\cos t\end{pmatrix}$ 为齐次方程组的基本解矩阵；(2) 求 $x(0)=(-1,2)^T$ 的解。}
+\begin{enumerate}
+\item 令 $r=(\cos t,\sin t)^T,s=(-\sin t,\cos t)^T$。则 $r'=s,s'=-r$，而 $Ar=r+s,As=-r$。所以 $(\e^tr)'=A(\e^tr)$、$s'=As$。又 $\det\Phi=\e^t\ne0$，验证完成。
+\item 设 $x=\Phi c$，由常数变易得
+\[
+ c'=\Phi^{-1}f=\binom{\e^{-t}}0,\qquad c(0)=\binom{-1}2.
+\]
+积分得 $c_1=-\e^{-t},c_2=2$，故
+\ans{x(t)=\binom{-\cos t-2\sin t}{-\sin t+2\cos t}.}
+\end{enumerate}
+\checknote{$t=0$ 得 $(-1,2)^T$；用 $Ar=r+s,As=-r$ 可核验 $(-r+2s)'=A(-r+2s)+r$。}
+\problem{3.3.2}{74}{$A(t),f(t)$ 在 $[\alpha,\beta]$ 连续，且 $f$ 不恒为零。证明非齐次组 $x'=Ax+f$ 存在且至多存在 $n+1$ 个线性无关的解。}
+\begin{proof}
+取一个特解 $x_p$ 和齐次基本解组 $u_1,\ldots,u_n$。每个非齐次解均为 $x_p+\sum c_iu_i$，所以所有非齐次解都在至多 $n+1$ 维空间 $\operatorname{span}\{x_p,u_1,\ldots,u_n\}$ 中。
+
+考虑 $x_p,x_p+u_1,\ldots,x_p+u_n$。若它们有线性关系，则
+\[
+ \left(a_0+\sum_{i=1}^na_i\right)x_p+\sum_{i=1}^na_iu_i=0.
+\]
+作用算子 $Lx=x'-Ax$，得到 $(a_0+\sum a_i)f=0$。由于 $f$ 不恒为零，括号为零，于是 $\sum a_iu_i=0$，从而所有 $a_i=0$，再得 $a_0=0$。故恰可构造 $n+1$ 个线性无关的解。
+\end{proof}
+\problem{3.3.3}{74}{证明 $x'=A(t)x+f(t,x),x(t_0)=x_0$ 等价于
+\[
+ x(t)=X(t)X^{-1}(t_0)x_0+\int_{t_0}^tX(t)X^{-1}(s)f(s,x(s))\dd s,
+\]
+其中 $X$ 是对应齐次方程的基本解矩阵。}
+\begin{proof}
+若 $x$ 满足初值问题，令 $c=X^{-1}x$，则
+\[
+ c'=(X^{-1})'x+X^{-1}x'=X^{-1}f(t,x(t)).
+\]
+从 $t_0$ 到 $t$ 积分再左乘 $X(t)$，即得所列积分式。
+
+反之，若连续函数 $x$ 满足该积分式，由被积函数连续，右端可微。求导时 $X'=AX$，上限求导项为 $f(t,x(t))$，故 $x'=Ax+f(t,x)$。令 $t=t_0$ 又得 $x(t_0)=x_0$，所以两者等价。
+\end{proof}
+\problem{3.4.1}{79}{若 $x_s$ 分别满足 $Lx_s=f_s$，$s=1,\ldots,m$，其中 $L=D^n+a_1(t)D^{n-1}+\cdots+a_n(t)$，证明 $\sum C_sx_s$ 满足 $Lx=\sum C_sf_s$。}
+\begin{proof}
+$C_s$ 为常数，有限次求导可以逐项进行。由每一项乘法与加法的分配律，
+\[
+ L\left(\sum_s C_sx_s\right)=\sum_s C_sLx_s=\sum_s C_sf_s,
+\]
+即得结论。这里若所有 $f_s$ 相同，则右端为 $(\sum C_s)f$，不能直接写成 $f$。
+\end{proof}
+\problem{3.4.2}{79}{若 $x$ 为 $x''+a_1(t)x'+a_2(t)x=0$ 的非零解，证明 $x(t_0)=0$ 时 $x'(t_0)\ne0$。}
+\begin{proof}
+若同时 $x'(t_0)=0$，把方程化为 $(x,x')$ 的一阶线性方程组。零函数满足相同的两个初值，由唯一性，$x\equiv0$，与“非零解”矛盾。故 $x'(t_0)\ne0$。
+\end{proof}
+\problem{3.4.3}{79}{验证 $x=\sin t/t$ 是 $x''+2x'/t+x=0$ 的解，并求通解。}
+取 $x=u/t$，直接展开得到
+\[
+ x'=\dfrac{u'}t-\dfrac u{t^2},\quad x''=\dfrac{u''}t-\dfrac{2u'}{t^2}+\dfrac{2u}{t^3},\quad
+ x''+\dfrac2t x'+x=\dfrac{u''+u}t.
+\]
+所以 $u=\sin t$ 确为解，且全部 $u$ 为 $C_1\cos t+C_2\sin t$。
+\ans{x=\dfrac{C_1\cos t+C_2\sin t}{t},\quad t\ne0.}
+两基解 Wronski 行列式为 $1/t^2$，在所取区间非零。
+\problem{3.4.4}{79}{不使用 Liouville 公式，直接令 $x=x_1(t)y$，对二阶齐次方程降阶并求通解，其中 $x_1$ 为已知非零解。}
+代入并利用 $x_1''+a_1x_1'+a_2x_1=0$，得到
+\[
+ x_1y''+(2x_1'+a_1x_1)y'=0.
+\]
+在 $x_1\ne0$ 的区间令 $v=y'$，分离变量得
+\[
+ v=C\dfrac{\e^{-\int a_1\dd t}}{x_1^2}.
+\]
+\ans{x=x_1(t)\left[C_1+C_2\int\dfrac{\e^{-\int a_1(t)\dd t}}{x_1(t)^2}\dd t\right].}
+第二基解与 $x_1$ 的 Wronski 行列式是非零常数倍的 $\displaystyle \e^{-\int a_1\dd t}$，故独立；$x_1$ 的孤立零点处用原方程延拓。
+\problem{3.4.5}{79}{设 $x_1,x_2$ 是 $x''+a_1x'+a_2x=f$ 对应齐次方程的基本解组，证明常数变易给出的通解表达式。}
+\begin{proof}
+设 $W=x_1x_2'-x_1'x_2\ne0$，令 $x=c_1(t)x_1+c_2(t)x_2$，附加 $c_1'x_1+c_2'x_2=0$。代回方程得到 $c_1'x_1'+c_2'x_2'=f$，Cramer 法则给出
+\[
+ c_1'=-\dfrac{x_2f}W,\qquad c_2'=\dfrac{x_1f}W.
+\]
+从固定 $t_0$ 积分，合并得到
+\ans{x(t)=C_1x_1(t)+C_2x_2(t)+
+\int_{t_0}^t\dfrac{x_1(s)x_2(t)-x_1(t)x_2(s)}{W(s)}f(s)\dd s.}
+积分项及其一阶导数在 $t_0$ 均为零，而其二阶求导的上限项为 $f(t)$，故它为特解。任意另一解与此特解之差为齐次解，所以表达式涵盖全部解。
+\end{proof}
+\problem{3.4.6}{79--80}{已知基本解组 $\cos2t,\sin2t$，求 $x''+4x=t\sin2t$ 的通解。}
+$W=2$。常数变易得 $c_1'=-t\sin^22t/2$，$c_2'=t\sin2t\cos2t/2$。可取
+\[
+ c_1=-\dfrac{t^2}{8}+\dfrac{t\sin4t}{16}+\dfrac{\cos4t}{64},\quad
+ c_2=-\dfrac{t\cos4t}{16}+\dfrac{\sin4t}{64}.
+\]
+代回并合并三角函数，常数倍齐次项收入 $C_1,C_2$。
+\ans{x=C_1\cos2t+C_2\sin2t-\dfrac{t^2}{8}\cos2t+\dfrac t{16}\sin2t.}
+\checknote{$(D^2+4)(t^2\cos2t)=2\cos2t-8t\sin2t$，$(D^2+4)(t\sin2t)=4\cos2t$，代入即为右端。}
+\problem{3.5.1}{87}{求 Airy 方程 $x''-tx=0$ 在 $t=0$ 展开的幂级数解，$t\in\R$。}
+设 $x=\sum_{n=0}^\infty a_nt^n$，比较系数得 $a_2=0$，以及
+\[
+ a_{n+3}=\dfrac{a_n}{(n+3)(n+2)},\quad n\ge0.
+\]
+因此 $3k+2$ 类系数全为零，另两类由 $a_0,a_1$ 决定。
+\ans{x=a_0\left(1+\dfrac{t^3}{6}+\dfrac{t^6}{180}+\dfrac{t^9}{12960}+\cdots\right)
++a_1\left(t+\dfrac{t^4}{12}+\dfrac{t^7}{504}+\dfrac{t^{10}}{45360}+\cdots\right),\\
+a_{3k}=\dfrac{a_0}{\prod_{j=1}^k(3j)(3j-1)},\qquad
+ a_{3k+1}=\dfrac{a_1}{\prod_{j=1}^k(3j+1)(3j)}.}
+空积取1。每个子级数相邻项绝对值之比对固定 $t$ 趋于零，故收敛半径为无穷；两解在0处初值为 $(1,0)$ 与 $(0,1)$，故独立。
+\problem{3.5.2}{87}{用级数法求 $(t^2-2t)x''+5(t-1)x'+3x=0$，$x(1)=10,x'(1)=3$。}
+令 $s=t-1$，方程为 $(s^2-1)x_{ss}+5sx_s+3x=0$。设 $x=\sum a_ns^n$，比较 $s^n$ 系数得
+\[
+ (n+2)(n+1)a_{n+2}=(n^2+4n+3)a_n,
+ \qquad a_{n+2}=\dfrac{n+3}{n+2}a_n.
+\]
+初值给出 $a_0=10,a_1=3$。
+\ans{x=10+3s+15s^2+4s^3+\dfrac{75}{4}s^4+\dfrac{24}{5}s^5+\cdots,\quad s=t-1,\ |s|<1,\\
+a_{2k}=10\prod_{j=1}^k\dfrac{2j+1}{2j},\qquad
+ a_{2k+1}=3\prod_{j=1}^k\dfrac{2j+2}{2j+1}.}
+相邻同奇偶项的系数比趋于1，且两类非零，故收敛半径恰为1；区间 $0<t<2$ 包含初值点，并避开首项系数零点。
+\problem{3.5.3}{87}{解 Hermite 方程 $x''-2tx'+\lambda x=0$，并证明 $\lambda=2n$ 时存在次数为 $n$ 的多项式解。}
+设 $x=\sum a_kt^k$，得到
+\[
+ a_{k+2}=\dfrac{2k-\lambda}{(k+2)(k+1)}a_k.
+\]
+$a_0,a_1$ 自由，分别生成偶解、奇解，同奇偶相邻项的绝对值比对固定 $t$ 都趋于零，故收敛半径均为无穷。令 $\lambda=2n$，取与 $n$ 同奇偶的首项非零，另一首项为零。递推至 $k=n$ 时分子为零，此后全为零，而 $k<n$ 的同奇偶分子均非零，所以次数恰为 $n$。
+\ans{x=a_0\sum_{k\ge0}\left[\prod_{j=0}^{k-1}\dfrac{4j-\lambda}{(2j+2)(2j+1)}\right]t^{2k}
++a_1\sum_{k\ge0}\left[\prod_{j=0}^{k-1}\dfrac{4j+2-\lambda}{(2j+3)(2j+2)}\right]t^{2k+1},\\
+\lambda=2n:\quad H_n(t)=n!\sum_{j=0}^{\lfloor n/2\rfloor}\dfrac{(-1)^j(2t)^{n-2j}}{j!(n-2j)!}.}
+$H_n$ 的首项系数为 $2^n\ne0$；代入递推即可核验各系数满足原方程。$n=0$ 时为非零常数。
+\problem{3.5.4}{87--88}{设复向量 $z=x+\ii y$ 为 $z'=A(t)z+f_R(t)+\ii f_I(t)$ 的复值解，其中系数为实。证明实部和虚部分别满足相应实方程。}
+\begin{proof}
+由 $A$ 为实矩阵，
+\[
+ x'+\ii y'=Ax+f_R+\ii(Ay+f_I).
+\]
+复数相等当且仅当实部、虚部分别相等，故 $x'=Ax+f_R$，$y'=Ay+f_I$。此结论依赖 $A$ 为实矩阵；若 $A$ 本身有虚部，则实虚部会耦合，不能直接套用。
+\end{proof}
