@@ -1,0 +1,177 @@
+{
+  "note:c2:e1": {
+    "question": "给定概率空间 $(\\Omega,\\mathscr F,P)$。设 $A\\in\\mathscr F$，定义\n\\[\nI_A(\\omega)=\n\\begin{cases}\n1,&\\omega\\in A,\\\\\n0,&\\omega\\notin A.\n\\end{cases}\n\\]\n称 $I_A$ 为事件 $A$ 的\\textbf{示性函数}。\n\\begin{enumerate}\n\\item 验证 $I_A$ 是随机变量。\n\\item 求 $P(I_A=1)$ 与 $P(I_A=0)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由于\n\\[\n\\{I_A\\leq t\\}=\n\\begin{cases}\n\\varnothing,&t<0,\\\\\nA^{\\mathrm c},&0\\leq t<1,\\\\\n\\Omega,&t\\geq1,\n\\end{cases}\n\\]\n上述集合均属于 $\\mathscr F$，所以 $I_A$ 是随机变量。\n\\item \\[\nP(I_A=1)=P(A),\\qquad P(I_A=0)=P(A^{\\mathrm c}).\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "保留示性函数定义，先列可测性验证与两点概率两项所求，再逐项解答。"
+  },
+  "note:c2:e2": {
+    "question": "随机变量 $X$ 的分布函数为\n\\[\nF(t)=\n\\begin{cases}\n0,&t<0,\\\\[0.3em]\n\\dfrac t2,&0\\leq t<1,\\\\[0.5em]\n\\dfrac23,&1\\leq t<2,\\\\[0.5em]\n\\dfrac{11}{12},&2\\leq t<3,\\\\[0.5em]\n1,&t\\geq3.\n\\end{cases}\n\\]\n分别计算下列概率：\n\\begin{enumerate}\n\\item $P(X<3)$。\n\\item $P(X=1)$。\n\\item $P(X>\\frac12)$。\n\\item $P(2<X\\leq4)$。\n\\item $P(\\frac12\\leq X<2)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item \\[\nP(X<3)=F(3^-)=\\frac{11}{12},\n\\]\n\\item \\[\nP(X=1)=F(1)-F(1^-)=\\frac23-\\frac12=\\frac16,\n\\]\n\\item \\[\nP\\left(X>\\frac12\\right)=1-F\\left(\\frac12\\right)\n=1-\\frac14=\\frac34,\n\\]\n\\item \\[\nP(2<X\\leq4)=F(4)-F(2)=1-\\frac{11}{12}=\\frac1{12},\n\\]\n\\item \\[\nP\\left(\\frac12\\leq X<2\\right)\n=F(2^-)-F\\left(\\left(\\frac12\\right)^-\\right)\n=\\frac23-\\frac14=\\frac5{12}.\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将五项概率的所求统一前置，计算逐项对应。"
+  },
+  "note:c2:e3": {
+    "question": "设 $\\{F_m\\}_{m\\geq1}$ 是一列分布函数，$a_m\\geq0$ 且\n\\[\n\\sum_{m=1}^{\\infty}a_m=1.\n\\]\n令\n\\[\nF(t)=\\sum_{m=1}^{\\infty}a_mF_m(t).\n\\]\n称 $F$ 为这些分布函数的\\textbf{凸组合}。证明 $F$ 也是分布函数。",
+    "solution": "首先，\n\\[\n0\\leq\\sum_{m=1}^{\\infty}a_mF_m(t)\n\\leq\\sum_{m=1}^{\\infty}a_m=1,\n\\]\n所以级数收敛，且 $F$ 定义良好。\n\n（1）若 $a\\leq b$，则每个 $F_m(a)\\leq F_m(b)$，从而\n\\[\nF(a)=\\sum_{m=1}^{\\infty}a_mF_m(a)\n\\leq\\sum_{m=1}^{\\infty}a_mF_m(b)=F(b).\n\\]\n\n（2）固定 $a\\in\\mathbb R$ 和 $\\varepsilon>0$。选择正整数 $M$，使\n\\[\n\\sum_{m=M+1}^{\\infty}a_m<\\frac{\\varepsilon}{2}.\n\\]\n由 $F_1,\\ldots,F_M$ 右连续，存在 $\\delta>0$，使 $a<t<a+\\delta$ 时，对所有 $1\\leq m\\leq M$ 都有\n\\[\n0\\leq F_m(t)-F_m(a)<\\frac{\\varepsilon}{2}.\n\\]\n因此\n\\[\n\\begin{aligned}\n0\\leq F(t)-F(a)\n&=\\sum_{m=1}^{M}a_m\\bigl(F_m(t)-F_m(a)\\bigr)\\\\\n&\\quad+\\sum_{m=M+1}^{\\infty}a_m\\bigl(F_m(t)-F_m(a)\\bigr)\\\\\n&\\leq\\frac{\\varepsilon}{2}\\sum_{m=1}^{M}a_m\n+\\sum_{m=M+1}^{\\infty}a_m\\\\\n&<\\varepsilon.\n\\end{aligned}\n\\]\n故 $F$ 右连续。\n\n（3）仍选取上述 $M$。由于有限个分布函数 $F_1,\\ldots,F_M$ 在负无穷处均趋于 $0$，当 $t$ 足够小时，\n\\[\n0\\leq F(t)\n\\leq\\frac{\\varepsilon}{2}\\sum_{m=1}^{M}a_m\n+\\sum_{m=M+1}^{\\infty}a_m\n<\\varepsilon.\n\\]\n故 $\\lim_{t\\to-\\infty}F(t)=0$。同理，当 $t$ 足够大时，$1-F_m(t)<\\varepsilon/2$ 对所有 $1\\leq m\\leq M$ 成立，于是\n\\[\n0\\leq1-F(t)\n=\\sum_{m=1}^{\\infty}a_m\\bigl(1-F_m(t)\\bigr)\n<\\varepsilon.\n\\]\n故 $\\lim_{t\\to+\\infty}F(t)=1$。\n\n综上，$F$ 满足分布函数的三个本质条件，因此 $F$ 是一个分布函数。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e4": {
+    "question": "有 $r$ 种不同优惠券，每次收集一张，每一种被收集到的概率均为 $1/r$，各次收集相互独立。设 $T$ 为首次收集齐全部 $r$ 种优惠券时累计收集的张数，求 $P(T=n)$。",
+    "solution": "当 $r=1$ 时，$P(T=1)=1$。以下设 $r\\geq2$；显然 $n<r$ 时，$P(T=n)=0$。\n\n先求 $P(T>m)$。设 $A_j^{(m)}$ 表示前 $m$ 次收集中没有第 $j$ 种优惠券，则\n\\[\n\\{T>m\\}=\\bigcup_{j=1}^rA_j^{(m)}.\n\\]\n对任意不同的 $j_1,\\ldots,j_k$，由独立性，\n\\[\nP\\left(A_{j_1}^{(m)}\\cap\\cdots\\cap A_{j_k}^{(m)}\\right)\n=\\left(1-\\frac kr\\right)^m.\n\\]\n当 $m\\geq r-1\\geq1$ 时，容斥公式给出\n\\[\n\\begin{aligned}\nP(T>m)\n&=\\sum_{k=1}^r(-1)^{k+1}\\binom rk\n\\left(1-\\frac kr\\right)^m\\\\\n&=\\sum_{k=1}^{r-1}(-1)^{k+1}\\binom rk\n\\left(1-\\frac kr\\right)^m,\n\\end{aligned}\n\\]\n其中 $k=r$ 对应的项为 $0$。于是对 $n\\geq r$，\n\\[\n\\begin{aligned}\nP(T=n)\n&=P(T>n-1)-P(T>n)\\\\\n&=\\sum_{k=1}^{r-1}(-1)^{k+1}\\binom rk\n\\left[\n\\left(1-\\frac kr\\right)^{n-1}\n-\\left(1-\\frac kr\\right)^n\n\\right].\n\\end{aligned}\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e5": {
+    "question": "独立地抛一枚均匀硬币 $2n$ 次，设 $X_n$ 为正面出现的次数。\n\\begin{enumerate}\n\\item 写出 $X_n$ 所服从的分布。\n\\item 求最可能出现的正面次数及其概率，并给出该概率在 $n\\to\\infty$ 时的渐近表达式与极限。\n\\item 对每个固定的非负整数 $k$，求 $\\displaystyle\\lim_{n\\to\\infty}P(X_n=k)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item \\[\nX_n\\sim B\\left(2n,\\frac12\\right).\n\\]\n\\item 由于 $(2n+1)/2=n+1/2$ 不是整数，唯一的最可能正面次数为 $n$，且\n\\[\nP(X_n=n)=\\binom{2n}{n}\\frac1{2^{2n}}\n=\\frac{(2n)!}{(n!)^2}\\frac1{2^{2n}}.\n\\]\n由斯特林（Stirling）公式\n\\[\nn!\\sim\\sqrt{2\\pi n}\\left(\\frac ne\\right)^n,\n\\qquad n\\to\\infty,\n\\]\n可得\n\\[\n\\begin{aligned}\nP(X_n=n)\n&\\sim\n\\frac{\\sqrt{4\\pi n}(2n/e)^{2n}}\n{2\\pi n(n/e)^{2n}}\\frac1{2^{2n}}\\\\\n&=\\frac1{\\sqrt{\\pi n}}\\longrightarrow0.\n\\end{aligned}\n\\]\n这里 $u_n\\sim v_n$ 表示 $u_n/v_n\\to1$。\n\\item 对所有 $0\\leq k\\leq2n$，\n\\[\n0\\leq P(X_n=k)\\leq P(X_n=n).\n\\]\n因此，对每个固定的非负整数 $k$，由夹逼定理，\n\\[\n\\lim_{n\\to\\infty}P(X_n=k)=0.\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "依据原例已有分布、众数、渐近式和固定次数极限，前置三项所求并逐项保留原计算。"
+  },
+  "note:c2:e6": {
+    "question": "设一本书某一页上的印刷错误数 $X$ 服从参数为 $\\lambda=1/2$ 的泊松分布。求这一页上至少有一处印刷错误的概率。",
+    "solution": "\\[\nP(X\\geq1)=1-P(X=0)=1-e^{-1/2}\\approx0.393469.\n\\]",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将原例已计算的至少一次印刷错误概率明确列为所求。"
+  },
+  "note:c2:e7": {
+    "question": "设某仪器在一定时间内发射的粒子总数 $\\xi\\sim\\mathcal P(\\lambda)$。给定 $\\xi=n$ 时，每个粒子以相同概率 $p$ 被捕捉记录，且各粒子的捕捉结果相互独立，其中 $0<p<1$。记捕捉到的粒子总数为 $\\eta$，证明 $\\eta\\sim\\mathcal P(\\lambda p)$。",
+    "solution": "令 $q=1-p$。给定 $\\xi=n$ 时，$\\eta$ 的条件分布为 $B(n,p)$。对任意非负整数 $k$，由全概率公式，\n\\[\n\\begin{aligned}\nP(\\eta=k)\n&=\\sum_{n=k}^{\\infty}P(\\xi=n)P(\\eta=k\\mid\\xi=n)\\\\\n&=\\sum_{n=k}^{\\infty}\\frac{\\lambda^n}{n!}e^{-\\lambda}\n\\binom nk p^kq^{n-k}\\\\\n&=\\frac{e^{-\\lambda}(\\lambda p)^k}{k!}\n\\sum_{n=k}^{\\infty}\\frac{(\\lambda q)^{n-k}}{(n-k)!}\\\\\n&=\\frac{e^{-\\lambda}(\\lambda p)^k}{k!}\n\\sum_{j=0}^{\\infty}\\frac{(\\lambda q)^j}{j!}\\\\\n&=\\frac{(\\lambda p)^k}{k!}e^{-\\lambda}e^{\\lambda q}\n=\\frac{(\\lambda p)^k}{k!}e^{-\\lambda p}.\n\\end{aligned}\n\\]\n其中换元 $j=n-k$，所以 $\\eta\\sim\\mathcal P(\\lambda p)$。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e8": {
+    "question": "某患病人群中，每人因该病死亡的概率为 $0.2\\%$。在 $1000$ 人的结果相互独立且具有相同概率的模型下，设死亡人数为 $X$。求 $1000$ 人中死亡人数不超过 $5$ 人的概率：\n\\begin{enumerate}\n\\item 写出该概率的精确表达式。\n\\item 用泊松分布近似计算。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item \\[\nX\\sim B(1000,0.002).\n\\]\n精确概率为\n\\[\nP(X\\leq5)\n=\\sum_{k=0}^{5}\\binom{1000}{k}0.002^k0.998^{1000-k}.\n\\]\n\\item 令 $Z\\sim\\mathcal P(2)$，因为 $np=1000\\times0.002=2$，所以\n\\[\nP(X\\leq5)\\approx P(Z\\leq5)\n=e^{-2}\\sum_{k=0}^{5}\\frac{2^k}{k!}\n\\approx0.983436\\approx0.9834.\n\\]\n这是对原二项分布概率的近似，不能将 $X$ 的实际分布直接改写为泊松分布。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将精确概率与泊松近似两项所求前置并逐项解答，保留原模型说明。"
+  },
+  "note:c2:e9": {
+    "question": "一个人左右口袋各放一盒火柴，每盒最初有 $N$ 根，$N$ 为正整数。每次需要火柴时，相互独立地以概率 $1/2$ 选择一盒；若盒内有火柴，就取出一根。求他首次选到一个空盒、发现该盒已用光时，另一盒恰好剩下 $k$ 根的概率，其中 $0\\leq k\\leq N$。",
+    "solution": "设 $A_k$ 为首次发现右盒为空时，左盒恰好剩下 $k$ 根的事件。由于左右对称，两种首次发现空盒的事件互斥，所求概率为 $2P(A_k)$。\n\n$A_k$ 发生时，这是第 $N+1$ 次选择右盒，而此前共选择左盒 $N-k$ 次。将选择右盒视为成功，则\n\\[\nT\\sim\\mathrm{Pa}\\left(N+1,\\frac12\\right),\n\\]\n其中 $T$ 表示第 $N+1$ 次选择右盒的时刻。$A_k$ 等价于 $T=2N-k+1$；此前选择左盒的次数不超过 $N$，因而还没有发现左盒为空。于是\n\\[\n\\begin{aligned}\nP(A_k)\n&=\\binom{2N-k}{N}\n\\left(\\frac12\\right)^{N+1}\n\\left(\\frac12\\right)^{N-k}\\\\\n&=\\binom{2N-k}{N}\\frac1{2^{2N-k+1}}.\n\\end{aligned}\n\\]\n因此所求概率为\n\\[\n\\boxed{\\,P(\\text{另一盒剩下 }k\\text{ 根})\n=\\binom{2N-k}{N}\\frac1{2^{2N-k}},\\quad 0\\leq k\\leq N.\\,}\n\\]\n\n\\textbf{注：}\\quad 停止时刻是“首次选到空盒并发现已经用光”，不是“刚取走某盒的最后一根火柴”；区分这两个时刻才能得到正确的分布。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e10": {
+    "question": "设 $X$ 的概率密度为\n\\[\nf(x)=\n\\begin{cases}\n\\dfrac18,&0<x<2,\\\\[0.4em]\nkx,&2\\leq x<4,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n\\begin{enumerate}\n\\item 求参数 $k$。\n\\item 求 $P(1<X\\leq3)$。\n\\item 求分布函数 $F$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由密度的规范性，\n\\[\n1=\\int_0^2\\frac18\\,dx+\\int_2^4kx\\,dx\n=\\frac14+6k,\n\\]\n故 $k=1/8$，也满足非负性要求。\n\n\\item 区间跨越密度的分段点 $2$，因此\n\\[\nP(1<X\\leq3)\n=\\int_1^2\\frac18\\,dx+\\int_2^3\\frac{x}{8}\\,dx\n=\\frac18+\\frac5{16}=\\frac7{16}.\n\\]\n\n\\item 由 $F(t)=\\int_{-\\infty}^t f(x)\\,dx$ 分段计算。特别地，$2\\leq t<4$ 时，\n\\[\nF(t)=\\int_0^2\\frac18\\,dx+\\int_2^t\\frac{x}{8}\\,dx\n=\\frac14+\\frac{t^2-4}{16}=\\frac{t^2}{16}.\n\\]\n综上，\n\\[\nF(t)=\n\\begin{cases}\n0,&t<0,\\\\[0.3em]\n\\dfrac t8,&0\\leq t<2,\\\\[0.5em]\n\\dfrac{t^2}{16},&2\\leq t<4,\\\\[0.5em]\n1,&t\\geq4.\n\\end{cases}\n\\]\n在 $0,2,4$ 处左右极限与函数值均相同，故 $F$ 连续。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将参数、区间概率与分布函数三问统一列在题面，解答按相同编号对应。"
+  },
+  "note:c2:e11": {
+    "question": "某类电子管的寿命 $X$（单位：小时）具有密度\n\\[\nf(x)=\n\\begin{cases}\n\\dfrac{100}{x^2},&x>100,\\\\[0.4em]\n0,&x\\leq100.\n\\end{cases}\n\\]\n现有 $5$ 个具有相同寿命分布且相互独立的电子管，求 $150$ 小时内恰有 $2$ 个原装电子管因寿命耗尽需要更换的概率。",
+    "solution": "单个电子管在 $150$ 小时内需要更换的概率为\n\\[\np=P(X\\leq150)\n=\\int_{100}^{150}\\frac{100}{x^2}\\,dx\n=\\left[-\\frac{100}{x}\\right]_{100}^{150}\n=\\frac13.\n\\]\n记需要更换的原装电子管个数为 $Y$。由寿命的独立性，\n\\[\nY\\sim B\\left(5,\\frac13\\right),\n\\]\n所以\n\\[\nP(Y=2)=\\binom52\\left(\\frac13\\right)^2\n\\left(\\frac23\\right)^3=\\frac{80}{243}.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e12": {
+    "question": "设连续型随机变量 $X$ 的分布函数为\n\\[\nF(t)=\n\\begin{cases}\n0,&t<0,\\\\\nt^2,&0\\leq t<1,\\\\\n1,&t\\geq1.\n\\end{cases}\n\\]\n求 $X$ 的概率密度函数。",
+    "solution": "在各个开区间上求导，可选择一个密度版本为\n\\[\nf(x)=\n\\begin{cases}\n2x,&0<x<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n因为 $F$ 在 $1$ 处不可微，$f(1)=0$ 是选定的密度值，不是该点的导数；零测集上的取值可以另作非负指定。并且\n\\[\n\\int_0^1 2x\\,dx=1,\n\\]\n将此密度从 $-\\infty$ 积分到 $t$，恰好还原上面的 $F(t)$。\n\n\\textbf{注：}\\quad 可简写为“$f(x)=2x,\\ 0<x<1$，其余处为 $0$”；不能把区间外的零值条件省略成对所有实数都有 $f(x)=2x$。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e13": {
+    "question": "公交车从 $7$ 点起每隔 $15$ 分钟到站一次。乘客到站时间服从 $7$ 点至 $7$ 点 $30$ 分之间的均匀分布，求等车时间不超过 $5$ 分钟的概率。",
+    "solution": "设 $X$ 为乘客到站时距 $7$ 点的分钟数，则 $X\\sim U(0,30)$。在本时间段内公交车于 $0,15,30$ 分钟到站，所求事件为\n\\[\nA=\\{X=0\\}\\cup\\{10\\leq X\\leq15\\}\\cup\\{25\\leq X\\leq30\\}.\n\\]\n上述事件互斥，且 $P(X=0)=0$，因此\n\\[\n\\begin{aligned}\nP(A)\n&=P(X=0)+P(10\\leq X\\leq15)+P(25\\leq X\\leq30)\\\\\n&=0+\\int_{10}^{15}\\frac1{30}\\,dx+\\int_{25}^{30}\\frac1{30}\\,dx\\\\\n&=\\frac5{30}+\\frac5{30}=\\frac13.\n\\end{aligned}\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e14": {
+    "question": "邮局有两位职员。$A$ 到达时，$B$、$C$ 正分别接受服务；其中一人办完后，$A$ 立即开始接受服务。假定各人的服务时间相互独立，均服从同一 $\\operatorname{Exp}(\\lambda)$ 分布，求 $A$ 在三人中最后办完的概率。",
+    "solution": "由无记忆性，$A$ 开始服务时，另一位尚未办完者的剩余服务时间 $R$ 仍服从 $\\operatorname{Exp}(\\lambda)$。$A$ 的服务时间 $T$ 也服从同一分布，且与 $R$ 独立。此时已有一人办完，因此\n\\[\n\\{A\\text{ 最后办完}\\}=\\{T>R\\}.\n\\]\n独立同分布给出对称性，\n\\[\nP(T>R)=P(R>T).\n\\]\n两者独立且为连续型，$P(T=R)=0$，所以\n\\[\nP(T>R)+P(R>T)=1,\n\\qquad\nP(A\\text{ 最后办完})=\\frac12.\n\\]\n\n\\textbf{注：}\\quad 该模型要求服务时间相互独立；仅有相同的指数边缘分布，并不足以推出上述比较结论。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e15": {
+    "question": "设 $N(t)$ 表示商场从开门时刻 $0$ 到时刻 $t$ 的顾客到达人数，且对每个 $t>0$，\n\\[\nN(t)\\sim\\mathcal P(\\lambda t),\\qquad \\lambda>0.\n\\]\n令 $S$ 为第一位顾客的到达时刻。求 $S$ 的分布。",
+    "solution": "对 $t>0$，\n\\[\n\\{S>t\\}=\\{N(t)=0\\},\n\\]\n所以\n\\[\n\\begin{aligned}\nP(S>t)\n&=P(N(t)=0)\\\\\n&=e^{-\\lambda t}.\n\\end{aligned}\n\\]\n结合到达时刻非负可知，$S\\sim\\operatorname{Exp}(\\lambda)$。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将第一位顾客到达时刻的分布明确列为所求，保留尾概率方法。"
+  },
+  "note:c2:e16": {
+    "question": "设商场从开门时刻 $0$ 起，在 $[0,t]$ 内的到达人数满足\n\\[\nN(t)\\sim\\mathcal P(\\lambda t),\\qquad t>0,\\quad\\lambda>0.\n\\]\n令 $S_n$ 为第 $n$ 位顾客的到达时刻，$n\\geq1$。证明 $S_n\\sim\\Gamma(n,\\lambda)$。",
+    "solution": "先求分布函数，再求导。对 $t>0$，\n\\[\n\\{S_n\\leq t\\}=\\{N(t)\\geq n\\}.\n\\]\n所以\n\\[\n\\begin{aligned}\nF_{S_n}(t)\n&=P(N(t)\\geq n)\\\\\n&=1-P(N(t)\\leq n-1)\\\\\n&=1-e^{-\\lambda t}\\sum_{k=0}^{n-1}\\frac{(\\lambda t)^k}{k!}.\n\\end{aligned}\n\\]\n$t\\leq0$ 时取 $F_{S_n}(t)=0$，与右侧在 $0$ 处的极限一致。\n\n对 $t>0$ 求导，将乘积的两部分分别列出：\n\\[\n\\begin{aligned}\nf_{S_n}(t)\n&=e^{-\\lambda t}\\sum_{k=0}^{n-1}\n\\frac{\\lambda^{k+1}t^k}{k!}\n-e^{-\\lambda t}\\sum_{k=1}^{n-1}\n\\frac{\\lambda^kt^{k-1}}{(k-1)!}\\\\\n&=e^{-\\lambda t}\\left[\n\\sum_{k=0}^{n-1}\\frac{\\lambda^{k+1}t^k}{k!}\n-\\sum_{j=0}^{n-2}\\frac{\\lambda^{j+1}t^j}{j!}\n\\right]\\\\\n&=\\frac{\\lambda^nt^{n-1}}{(n-1)!}e^{-\\lambda t}\\\\\n&=\\frac{(\\lambda t)^{n-1}}{\\Gamma(n)}\n\\lambda e^{-\\lambda t}.\n\\end{aligned}\n\\]\n前两式中两个求和的共有项逐项抵消；$n=1$ 时第二个求和为空和，按 $0$ 处理。取 $t\\leq0$ 时密度为 $0$，便得到 Gamma 密度，故\n\\[\nS_n\\sim\\Gamma(n,\\lambda).\n\\]\n特别地，$S_1\\sim\\Gamma(1,\\lambda)=\\operatorname{Exp}(\\lambda)$，与第一位顾客的结果一致。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e17": {
+    "question": "设 $X\\sim N(0,1)$，$a>0$，定义\n\\[\nY=\n\\begin{cases}\nX,&|X|\\leq a,\\\\\n-X,&|X|>a.\n\\end{cases}\n\\]\n证明 $Y\\sim N(0,1)$。",
+    "solution": "先写出分布函数：\n\\[\n\\begin{aligned}\nF_Y(y)\n&=P(X\\leq y,\\ |X|\\leq a)\n+P(-X\\leq y,\\ |X|>a)\\\\\n&=P(X\\leq y,\\ |X|\\leq a)\n+P(X\\geq-y,\\ |X|>a).\n\\end{aligned}\n\\]\n分三种情况计算。\n\n（1）若 $y>a$，三个相应区间互不相交，\n\\[\n\\begin{aligned}\nF_Y(y)\n&=P(|X|\\leq a)+P(-y\\leq X<-a)+P(X>a)\\\\\n&=P(X\\geq-y)=\\Phi(y).\n\\end{aligned}\n\\]\n\n（2）若 $-a\\leq y\\leq a$，利用两侧尾概率相等，\n\\[\n\\begin{aligned}\nF_Y(y)\n&=P(-a\\leq X\\leq y)+P(X>a)\\\\\n&=P(-a\\leq X\\leq y)+P(X<-a)\\\\\n&=P(X\\leq y)=\\Phi(y).\n\\end{aligned}\n\\]\n\n（3）若 $y<-a$，中间区间不贡献概率，\n\\[\nF_Y(y)=0+P(X\\geq-y)=\\Phi(y).\n\\]\n综上 $F_Y=\\Phi$，故 $Y\\sim N(0,1)$。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e18": {
+    "question": "设 $X\\sim N(\\mu,\\sigma^2)$，求 $P(|X-\\mu|<3\\sigma)$。",
+    "solution": "\\[\n\\begin{aligned}\nP(|X-\\mu|<3\\sigma)\n&=P\\left(-3<\\frac{X-\\mu}{\\sigma}<3\\right)\\\\\n&=\\Phi(3)-\\Phi(-3)\\\\\n&=2\\Phi(3)-1\\approx0.9973002.\n\\end{aligned}\n\\]\n若先取 $\\Phi(3)\\approx0.9987$，再计算得到 $0.9974$，这是粗查表近似；较精细的概率约为 $99.73\\%$。\n\n\\textbf{注：}\\quad 这称为 $3\\sigma$ 原则，可用于理解质量控制中的异常提示。但区间外仍有约 $0.27\\%$ 的概率，并非概率为 $0$；一次观测落在区间外，不能单凭这一点就断言随机变量不服从该正态分布。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "明确三倍尺度区间概率为所求，保留精细值、粗查表值与原注。"
+  },
+  "note:c2:e19": {
+    "question": "共有 $10000$ 人报考，成绩大致服从正态分布；$90$ 分以上有 $359$ 人，$60$ 分以下有 $1151$ 人，现从高到低录取 $2500$ 人，估计最低录取分数。",
+    "solution": "设成绩模型为 $X\\sim N(\\mu,\\sigma^2)$，将人数比例近似为概率。首先，\n\\[\n\\begin{aligned}\nP(X\\geq90)&\\approx\\frac{359}{10000}=0.0359,\\\\\n\\Phi\\left(\\frac{90-\\mu}{\\sigma}\\right)&\\approx0.9641.\n\\end{aligned}\n\\]\n查表得到\n\\[\n\\frac{90-\\mu}{\\sigma}\\approx1.8.\n\\]\n另一方面，\n\\[\n\\begin{aligned}\n\\Phi\\left(\\frac{60-\\mu}{\\sigma}\\right)\n&\\approx0.1151,\\\\\n\\Phi\\left(\\frac{\\mu-60}{\\sigma}\\right)\n&\\approx1-0.1151=0.8849.\n\\end{aligned}\n\\]\n所以 $(\\mu-60)/\\sigma\\approx1.2$。联立两式，\n\\[\n\\begin{cases}\n90-\\mu\\approx1.8\\sigma,\\\\\n\\mu-60\\approx1.2\\sigma,\n\\end{cases}\n\\qquad\n\\sigma\\approx10,\\quad \\mu\\approx72.\n\\]\n\n设最低录取分为 $c$。取前 $25\\%$，意味着\n\\[\n\\begin{aligned}\nP(X\\geq c)&\\approx0.25,\\\\\n\\Phi\\left(\\frac{c-72}{10}\\right)&\\approx0.75.\n\\end{aligned}\n\\]\n按粗查表值 $(c-72)/10\\approx0.68$，得到 $c\\approx78.8$ 分。若用较精细的 $0.75$ 分位数 $0.67449$，在同一 $\\mu\\approx72,\\sigma\\approx10$ 的近似下，\n\\[\nc\\approx72+10\\times0.67449\\approx78.74\\text{ 分}.\n\\]\n$78.8$ 分是粗查表结果，不是精确分位数。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e20": {
+    "question": "已知 $X$ 的分布列为\n\\[\n\\begin{array}{c|ccccc}\nX&-2&-1&0&1&2\\\\ \\hline\nP&0.2&0.1&0.1&0.3&0.3\n\\end{array},\n\\]\n求 $Y=X^2+X$ 的分布列。",
+    "solution": "逐项计算并保留原来的概率：\n\\[\n\\begin{array}{c|ccccc}\nX&-2&-1&0&1&2\\\\ \\hline\nY=X^2+X&2&0&0&2&6\\\\\nP&0.2&0.1&0.1&0.3&0.3\n\\end{array}.\n\\]\n$Y=0$ 对应 $X=-1,0$，$Y=2$ 对应 $X=-2,1$，$Y=6$ 对应 $X=2$。合并后得到\n\\[\n\\begin{array}{c|ccc}\nY&0&2&6\\\\ \\hline\nP&0.2&0.5&0.3\n\\end{array}.\n\\]\n三个概率之和为 $1$。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e21": {
+    "question": "设 $X$ 的密度为 $f_X$，求 $Y=aX+b$（$a\\ne0$）的密度。",
+    "solution": "先按 $a$ 的符号求分布函数。$a>0$ 时，\n\\[\n\\begin{aligned}\nF_Y(t)\n&=P\\left(X\\leq\\frac{t-b}{a}\\right)\\\\\n&=F_X\\left(\\frac{t-b}{a}\\right).\n\\end{aligned}\n\\]\n$a<0$ 时，利用 $X$ 无单点质量，\n\\[\n\\begin{aligned}\nF_Y(t)\n&=P\\left(X\\geq\\frac{t-b}{a}\\right)\\\\\n&=1-F_X\\left(\\frac{t-b}{a}\\right).\n\\end{aligned}\n\\]\n分别对上式求导，合并得到一个密度版本\n\\[\n\\boxed{\\quad f_Y(t)=\\frac1{|a|}f_X\\left(\\frac{t-b}{a}\\right).\\quad}\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e22": {
+    "question": "设随机变量 $X$ 的密度为 $f_X$，令 $Y=aX+b$，$a\\ne0$。用分支反函数的密度变换公式求 $Y$ 的密度。",
+    "solution": "变换在整个实轴上只有一个反函数分支\n\\[\nh(y)=\\frac{y-b}{a},\\qquad |h'(y)|=\\frac1{|a|}.\n\\]\n所以\n\\[\nf_Y(y)=\\frac1{|a|}f_X\\left(\\frac{y-b}{a}\\right).\n\\]\n这与分布函数法的结果一致。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "补明原例所用密度条件及反函数公式求密度的目标。"
+  },
+  "note:c2:e23": {
+    "question": "设随机变量 $X$ 的密度为\n\\[\nf_X(x)=\n\\begin{cases}\n\\dfrac14|x|,&-2\\leq x<0,\\\\\nx,&0\\leq x\\leq1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n求 $Y=X^2$ 的密度。",
+    "solution": "负半轴的概率为 $\\int_{-2}^0|x|/4\\,dx=1/2$，正半轴的概率为 $\\int_0^1x\\,dx=1/2$，所以给定密度归一化。由 $-2\\leq X\\leq1$ 以概率 $1$ 成立，$Y$ 可限制在 $[0,4]$。\n\n对 $y>0$，两个反函数分支为 $h_1(y)=\\sqrt y$ 和 $h_2(y)=-\\sqrt y$，它们的导数绝对值都为 $1/(2\\sqrt y)$，因此\n\\[\nf_Y(y)=\\frac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}.\n\\]\n当 $0<y<1$ 时，正、负两个原像均落在原密度的非零区间内，故\n\\[\nf_Y(y)=\\frac{\\sqrt y+\\sqrt y/4}{2\\sqrt y}=\\frac58.\n\\]\n当 $1<y<4$ 时，正原像超过 $1$，只有负分支贡献，故\n\\[\nf_Y(y)=\\frac{0+\\sqrt y/4}{2\\sqrt y}=\\frac18.\n\\]\n当 $y<0$ 或 $y>4$ 时，概率密度可取 $0$。在 $y=0$ 处不能代入含 $1/\\sqrt y$ 的公式；但\n\\[\nP(Y=0)=P(X=0)=0,\n\\]\n可另指定该点的密度值。取密度版本为\n\\[\nf_Y(y)=\n\\begin{cases}\n\\dfrac58,&0\\leq y\\leq1,\\\\\n\\dfrac18,&1<y\\leq4,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n检查全积分：\n\\[\n\\int_{\\mathbb R}f_Y(y)\\,dy=\\frac58+\\frac18(4-1)=1.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e24": {
+    "question": "设 $X\\sim U(0,6\\pi)$，求 $Y=\\cos X$ 的密度。",
+    "solution": "$Y\\in[-1,1]$。对 $-1<y<1$，令 $\\theta=\\arccos y\\in(0,\\pi)$。区间 $(0,6\\pi)$ 包含三个完整周期，每个周期上余弦先减后增，所以所有原像恰为六个互不相同的点\n\\[\nh_{k,1}(y)=\\arccos y+2k\\pi,\\qquad\nh_{k,2}(y)=2\\pi-\\arccos y+2k\\pi,\n\\quad k=0,1,2.\n\\]\n六个反函数分支的导数绝对值均为 $1/\\sqrt{1-y^2}$，原密度均为 $1/(6\\pi)$，于是\n\\begin{align*}\nf_Y(y)\n&=\\sum_{k=0}^2\n\\left[\n\\frac1{6\\pi\\sqrt{1-y^2}}+\n\\frac1{6\\pi\\sqrt{1-y^2}}\n\\right]\\\\\n&=\\frac1{\\pi\\sqrt{1-y^2}},\\qquad -1<y<1.\n\\end{align*}\n在 $y=\\pm1$ 处，原像为有限个点，概率为零；分支导数公式在端点不适用，可将密度另取为 $0$。所以一个完整版本为\n\\[\nf_Y(y)=\n\\begin{cases}\n\\dfrac1{\\pi\\sqrt{1-y^2}},&-1<y<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n虽然密度在两端附近无界，但积分收敛，并且\n\\[\n\\int_{-1}^1\\frac{dy}{\\pi\\sqrt{1-y^2}}\n=\\frac1\\pi\\left[\\arcsin y\\right]_{-1}^1=1.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将完整题面与原解答分开陈述。"
+  },
+  "note:c2:e25": {
+    "question": "设 $X\\sim U(0,1)$，令 $Y$ 为 $1/X$ 的小数部分。记 $\\lfloor u\\rfloor$ 为不超过 $u$ 的最大整数，即向下取整，因而\n\\[\nY=\\frac1X-\\left\\lfloor\\frac1X\\right\\rfloor\\in[0,1).\n\\]\n在零概率事件 $\\{X\\notin(0,1)\\}$ 上，可另定义 $Y=0$。\n\n求 $Y$ 的概率密度函数。",
+    "solution": "对 $0<y<1$，若 $Y=y$，则唯一的整数部分 $k=\\lfloor1/X\\rfloor$ 满足 $k\\geq1$，且\n\\[\n\\frac1X=k+y\n\\quad\\Longleftrightarrow\\quad X=h_k(y)=\\frac1{k+y}.\n\\]\n反过来，每个 $k\\geq1$ 给出的 $h_k(y)\\in(0,1)$ 都是有效原像。各分支对应互不相交的区间\n\\[\nI_k=\\left(\\frac1{k+1},\\frac1k\\right).\n\\]\n这些区间只遗漏可数个点 $1/k$，其总概率为零，满足分支公式的全概率条件。由于\n\\[\n|h_k'(y)|=\\frac1{(k+y)^2},\n\\]\n得到一个密度版本\n\\[\nf_Y(y)=\n\\begin{cases}\n\\displaystyle\\sum_{k=1}^{\\infty}\\frac1{(k+y)^2},&0\\leq y<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n这里在 $y=0$ 处的值是另选的密度值；该点的原像是可数集，$P(Y=0)=0$。对 $0\\leq y<1$，各项不超过 $1/k^2$，所以级数收敛。\n\n利用非负求和与积分交换，再作望远镜求和，核验\n\\begin{align*}\n\\int_0^1 f_Y(y)\\,dy\n&=\\sum_{k=1}^{\\infty}\\int_0^1\\frac{dy}{(k+y)^2}\\\\\n&=\\sum_{k=1}^{\\infty}\\left(\\frac1k-\\frac1{k+1}\\right)\n=1.\n\\end{align*}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将倒数小数部分的密度明确列为所求，保留可数分支、端点与归一化核验。"
+  }
+}

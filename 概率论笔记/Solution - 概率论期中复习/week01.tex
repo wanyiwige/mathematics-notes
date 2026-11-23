@@ -1,6 +1,7 @@
 % !TEX root = 概率论期中复习.tex
 \clearpage\section{第一周：事件运算与古典、几何概型}
 \subsection{教材第9--10页第1题}\label{ex:w01-t1}
+\paragraph{题目}
 设$A,B,C$是三个事件。用它们给出下列事件的表示：
 \begin{enumerate}[label=(\arabic*)]
 \item 至少有一个事件发生；\item 至少有两个事件发生；\item 所有事件都不发生；\item 至多一个事件发生；\item 至多两个事件发生；\item 恰有两个事件发生。
@@ -23,6 +24,7 @@
 \paragraph{答案}依次为$A\cup B\cup C$，$AB\cup AC\cup BC$，$A^cB^cC^c$，$(AB\cup AC\cup BC)^c$，$(ABC)^c$，$ABC^c\cup AB^cC\cup A^cBC$。
 
 \subsection{教材第10页第2题}\label{ex:w01-t2}
+\paragraph{题目}
 从$0,1,2,3,4,5$中任取4个数排成一行。求恰好构成四位偶数的概率。
 \basis{原笔记第1.1节古典概型与计数乘法原理。}
 \paragraph{思路}采用有序无放回抽取，按末位是否为0分类；首位不能为0。
@@ -37,6 +39,7 @@
 \paragraph{答案}$13/30$。
 
 \subsection{教材第10页第4题}\label{ex:w01-t4}
+\paragraph{题目}
 信封里有8把钥匙，其中只有一把能打开房门，现取出钥匙试开。分有放回和无放回两种情形，求3次以内能打开房门的概率。
 \basis{原笔记第1.1节古典概型；第1.4节独立重复试验。}
 \paragraph{思路}有放回取“前三次均失败”的补事件；无放回看正确钥匙在随机排列中的位置。
@@ -49,6 +52,7 @@
 \paragraph{答案}有放回$169/512$；无放回$3/8$。
 
 \subsection{教材第10页第5题}\label{ex:w01-t5}
+\paragraph{题目}
 袋子里有$m$个白球，$n$个黑球（$m,n\geq1$）。
 \begin{enumerate}[label=(\arabic*)]
 \item 从袋中随机取两个球，求两球同色的概率；
@@ -76,6 +80,7 @@ p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
 \paragraph{答案}$p_1=[m(m-1)+n(n-1)]/[M(M-1)]$，$p_2=(m^2+n^2)/M^2$，且$p_2-p_1=2mn/[M^2(M-1)]>0$。
 
 \subsection{教材第10页第6题}\label{ex:w01-t6}
+\paragraph{题目}
 在区间$(0,1)$中随机地取出三个数，以它们作为三条线段的长度。求这些线段能连接成一个三角形的概率。
 \basis{原笔记第1.1节几何概率模型；按三个数相互独立且均匀抽取理解。}
 \paragraph{思路}在单位立方体内去掉一条边不小于另外两边之和的区域。
@@ -93,6 +98,7 @@ p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
 \paragraph{答案}$1/2$。
 
 \subsection{教材第10页第7题}\label{ex:w01-t7}
+\paragraph{题目}
 在打好方格的白纸上投掷一枚直径为1的硬币。问方格的边长至少应为多少才能使硬币与方格的边不交的概率小于$1/100$。
 \basis{原笔记第1.1节几何概率模型。}
 \paragraph{思路}硬币中心到网格线的距离必须都大于半径$1/2$；先按原题求概率条件，再检查“至少”的方向。
@@ -106,6 +112,7 @@ p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
 \paragraph{答案}按原题“小于”理解，$0<a<10/9$，不存在正的最小边长。
 
 \subsection{作业第2题：可列德摩根律}\label{ex:w01-h2}
+\paragraph{题目}
 设$A_i$，$i\geq1$是一列事件。求证：
 \[\left(\bigcup_{i=1}^{\infty}A_i\right)^c=\bigcap_{i=1}^{\infty}A_i^c,\qquad
 \left(\bigcap_{i=1}^{\infty}A_i\right)^c=\bigcup_{i=1}^{\infty}A_i^c.\]
@@ -131,6 +138,7 @@ p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
 \paragraph{答案}两式均成立。
 
 \subsection{作业第3题：恰有两个事件发生}\label{ex:w01-h3}
+\paragraph{题目}
 设$A,B,C$是三个事件。求证：
 \[ABC^c\cup AB^cC\cup A^cBC=(AB\cup AC\cup BC)\setminus ABC.\]
 \basis{原笔记第1.1节事件运算；与\hyperref[ex:w01-t1]{本周教材第1题(6)}相联系。}
@@ -147,5 +155,6 @@ p_2-p_1&=\frac{(m^2+n^2)(M-1)-M(m^2+n^2-M)}{M^2(M-1)}\\
 \paragraph{答案}两边均表示恰有两个事件发生。
 
 \subsection{作业第4项：绳子连接问题（阅读）}\label{ex:w01-h4}
+\paragraph{原作业要求}
 阅读：自己去查找一些关于“$n$根绳子，$2n$个端头任意连接”的相关类型的古典概型的题目和解答。（自己找来看明白即可，不需要上交。）
 \paragraph{整理说明}原作业这一项是开放阅读要求，没有指定待求事件。保留原项以便核对作业范围，不将任意选定的连接问题冒充原题。

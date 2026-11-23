@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-23",
   "entry": "概率论期中复习.tex",
   "pdf": "概率论期中复习.pdf",
-  "pages": 164,
+  "pages": 177,
   "compile_command": "xelatex -interaction=nonstopmode -halt-on-error -file-line-error 概率论期中复习.tex",
-  "final_log": "qa/compile-pass5.txt（本地保留，不纳入Git）",
+  "final_log": "qa/structure-compile2.txt（本地保留，不纳入Git）",
   "compile_success": true,
   "warnings_overfull_missing_undefined": [],
   "visual_review": false,
@@ -30,7 +30,18 @@
       "has_answer": false
     }
   ],
-  "original_files_equal_start_hash": {
+  "independent_reviews": {
+    "week01_03": "PASS",
+    "week04_09": "PASS",
+    "week10_12": "PASS",
+    "notes_final": "PASS；8处上下文缺失由新执行者修复后复核；78例与8段紧随证明保留",
+    "structure_chapter1_2": "PASS；57例与源文核对；i=0边界由新执行者修复后复核",
+    "structure_chapter3_homework": "PASS；21例与12周题目边界核对；多问对应完整"
+  },
+  "pdf_sha256": "6ec91e4c7f7081eb28239561dea07c1fe458969a2b47be09757fbcfb5fe7de0a",
+  "image_dependencies": [],
+  "initial_creation_date": "2026-11-20",
+  "initial_creation_original_files_equal_start_hash": {
     "概率论笔记\\chapters\\chapter1.tex": true,
     "概率论笔记\\chapters\\chapter2.tex": true,
     "概率论笔记\\chapters\\chapter3.tex": true,
@@ -38,12 +49,16 @@
     "概率论笔记\\main.tex": true,
     "概率论笔记\\main.pdf": true
   },
-  "independent_reviews": {
-    "week01_03": "PASS",
-    "week04_09": "PASS",
-    "week10_12": "PASS",
-    "notes_final": "PASS；8处上下文缺失由新执行者修复后复核；78例与8段紧随证明保留"
+  "editor_compile": {
+    "path": "C:\\Users\\WANYIWIGE\\Desktop\\我的笔记\\概率论笔记\\Solution - 概率论期中复习\\概率论期中复习.tex",
+    "result": "success",
+    "compiler": "desktop editor built-in compiler"
   },
-  "pdf_sha256": "55b23867d0304763d07bf7c687bccdc96c23d835b4fbbc695591ee2b2d885461",
-  "image_dependencies": []
+  "revision_scope": "78例重组为完整题目与独立解答；101道已解作业题增加题目分界；两项非具体题目保留原作业要求说明",
+  "example_structure_files": [
+    "example_structure01.json",
+    "example_structure02.json",
+    "example_structure03.json"
+  ],
+  "homework_original_content_preserved": true
 }

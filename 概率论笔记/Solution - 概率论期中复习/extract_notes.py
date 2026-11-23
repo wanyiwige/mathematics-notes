@@ -59,6 +59,17 @@ def source_context(s,ch,stage,key):
     return ''.join(result)
 
 manifest=[]
+structured_examples={}
+for chapter in range(1,4):
+    structure_file=BASE/f'example_structure{chapter:02d}.json'
+    if not structure_file.exists():
+        raise FileNotFoundError(f'缺少例题的题目与解答分组文件：{structure_file}')
+    chapter_examples=json.loads(structure_file.read_text(encoding='utf8'))
+    source_count=len(re.findall(r'\\begin\{example\}',(SOURCE/f'chapter{chapter}.tex').read_text(encoding='utf8')))
+    expected={f'note:c{chapter}:e{index}' for index in range(1,source_count+1)}
+    if set(chapter_examples)!=expected:
+        raise ValueError(f'第{chapter}章例题分组与原笔记题数不一致')
+    structured_examples.update(chapter_examples)
 for ch in range(1,4):
     p=SOURCE/f'chapter{ch}.tex';s=p.read_text(encoding='utf8')
     chunks=[f'% !TEX root = 概率论期中复习.tex\n% 自动抽取自 chapters/chapter{ch}.tex；原例题及其解答保留。\n']
@@ -92,9 +103,19 @@ for ch in range(1,4):
             if s.startswith(r'\begin{proof}',ps):
                 end=env_end(s,ps,'proof');body+='\n'+s[ps:end]
             chunks.append(f'\n\\subsection{{例题：{heading}}}\\label{{note:c{ch}:e{ex}}}\n')
-            chunks.append(f'\\basis{{原笔记第{ch}.{sec}节，例“{title}”；源码\\texttt{{chapters/chapter{ch}.tex}}第{line}行。}}\n')
-            chunks.append(body.strip()+'\n')
+            basis_text=f'\\basis{{原笔记第{ch}.{sec}节，例“{title}”；源码\\texttt{{chapters/chapter{ch}.tex}}第{line}行。}}\n'
             key=f'note:c{ch}:e{ex}'
+            if key in structured_examples:
+                item=structured_examples[key]
+                if item['kind'] not in ('解答','证明','验证'):
+                    raise ValueError(f'unknown solution kind: {key}')
+                chunks.append('\\paragraph{题目}\n'+item['question'].strip()+'\n\n')
+                chunks.append(basis_text)
+                proof_start='\\begin{proof}' if item['kind']=='证明' else '\\begin{proof}['+item['kind']+']'
+                chunks.append(proof_start+'\n'+item['solution'].strip()+'\n\\end{proof}\n')
+            else:
+                chunks.append(basis_text)
+                chunks.append(body.strip()+'\n')
         else:
             pos=len('\\begin{'+env+'}')
             if not block[pos:].lstrip().startswith('{'):

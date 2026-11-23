@@ -1,6 +1,7 @@
 % !TEX root = 概率论期中复习.tex
 \clearpage\section{第三周：可列可加性、容斥与条件概率}
 \subsection{教材第19页第3题}\label{ex:w03-t3}
+\paragraph{题目}
 设$(\Omega_1,\mathscr F_1,\mu_1),\ldots,(\Omega_n,\mathscr F_n,\mu_n)$是$n$个有限测度空间，其中$\Omega_1,\ldots,\Omega_n$两两不相交。令$\Omega=\bigcup_{k=1}^n\Omega_k$。
 \begin{enumerate}[label=(\arabic*)]
 \item 证明$\mathscr F=\{A\subseteq\Omega:A\cap\Omega_k\in\mathscr F_k,\ 1\leq k\leq n\}$是$\Omega$上的$\sigma$代数；
@@ -38,6 +39,7 @@
 \paragraph{答案}两项均成立，且$\mu(\Omega)=\sum_{k=1}^n\mu_k(\Omega_k)$。
 
 \subsection{教材第19页第6题}\label{ex:w03-t6}
+\paragraph{题目}
 对于随机事件序列$A_1,A_2,\ldots\in\mathscr F$，证明：若对一切$k\geq1$有$P(A_k)=1$，则
 \[P\left(\bigcap_{k=1}^{\infty}A_k\right)=1.\]
 \basis{原笔记第1.2节可列次可加性、例“可列个零概率事件的并”。}
@@ -53,6 +55,7 @@
 \paragraph{答案}可列个满概率事件的交仍为满概率事件。
 
 \subsection{教材第24页第1题}\label{ex:w03-t241}
+\paragraph{题目}
 对于事件$A,B$，证明：若$P(A\mid B)>P(A)$，则$P(B\mid A)>P(B)$。
 \basis{原笔记第1.3节条件概率的定义；见\hyperref[k:conditional]{条件概率}。}
 \paragraph{思路}两个条件概率不等式都等价于$P(AB)>P(A)P(B)$，但要先确认分母为正。
@@ -65,6 +68,7 @@
 \paragraph{答案}结论成立，且题设自动保证$P(A)>0$。
 
 \subsection{教材第24页第2题}\label{ex:w03-t242}
+\paragraph{题目}
 假设有三个事件$A,B,C$。
 \begin{enumerate}[label=(\arabic*)]
 \item 已知$P(A\mid C)>P(B\mid C)$和$P(A\mid C^c)>P(B\mid C^c)$，是否一定有$P(A)>P(B)$？若是，加以证明；否则举出反例。
@@ -92,6 +96,7 @@ P(A)-P(B)
 \paragraph{答案}(1)一定成立；(2)不一定，以上反例中$P(A)=3/10<P(B)=7/10$。
 
 \subsection{教材第25页第4题}\label{ex:w03-t254}
+\paragraph{题目}
 盒子里有15个乒乓球，其中9个是新球。第一场比赛时从中取出3个用完后放回盒中。第二场比赛时再从中取出3个，求这3个都是新球的概率。
 \basis{原笔记第1.3节全概率公式与古典计数。}
 \paragraph{思路}以第一场取出的新球数作分割；新球使用后变为旧球。也可固定第二场取出的三个球，要求它们原本为新球且第一场未用过。
@@ -109,6 +114,7 @@ P(A)-P(B)
 \paragraph{答案}$528/5915\approx0.08926$。
 
 \subsection{作业第2题：一排夫妻均不相邻}\label{ex:w03-h2}
+\paragraph{题目}
 有$n$对夫妇随机地坐成一排，求没有任何妻子坐在她丈夫身边的概率。
 \basis{原笔记第1.2节例“圆桌夫妻问题”的捆绑计数与容斥方法；本题为一排座位，不能使用圆排列总数。}
 \paragraph{思路}令$A_i$为第$i$对夫妻相邻；指定$r$对相邻后把各对捆为一个整体。
@@ -124,6 +130,7 @@ P(A)-P(B)
 \paragraph{答案}$\displaystyle\sum_{r=0}^n(-1)^r\binom nr2^r(2n-r)!/(2n)!$。
 
 \subsection{作业第3题：已知补事件条件概率}\label{ex:w03-h3}
+\paragraph{题目}
 设$P(A)=0.7$，$P(B\mid\overline A)=0.1$。求$P(A\cup B)$。
 \basis{原笔记第1.3节条件概率乘法公式。}
 \paragraph{思路}将并事件拆为两个互斥事件$A$与$A^cB$。
@@ -138,6 +145,7 @@ P(A\cup B)&=P(A)+P(A^cB)\\
 \paragraph{答案}$0.73$。
 
 \subsection{作业第4题：玻璃器皿连续三次未摔坏}\label{ex:w03-h4}
+\paragraph{题目}
 某玻璃器皿第一次落下时摔坏的概率为0.3。若第一次落下没有摔坏，则第二次落下摔坏的条件概率为0.6；若前两次落下都没有摔坏，则第三次落下摔坏的条件概率为0.9。求该玻璃器皿三次落下都没有摔坏的概率。
 \basis{原笔记第1.3节条件概率的乘法公式。}
 \paragraph{思路}按存活到每一次的条件顺序相乘，无须假设三次独立。
@@ -151,6 +159,7 @@ P(A\cup B)&=P(A)+P(A^cB)\\
 \paragraph{答案}$0.028$。
 
 \subsection{作业第5题：两种天气的递推}\label{ex:w03-h5}
+\paragraph{题目}
 只考虑有雨、无雨两种天气。已知今天天气时，明天天气保持不变的条件概率为$p$，$0<p<1$，改变的条件概率为$1-p$。设第一天无雨，求第$n$天也无雨的概率，$n\geq1$。
 \basis{原笔记第1.3节全概率公式；原笔记第1.5节“不独立子试验与转移概率”。}
 \paragraph{思路}以第$n$天是否无雨作分割，写递推式后减去平衡值$1/2$。

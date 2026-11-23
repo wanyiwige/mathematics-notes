@@ -1,0 +1,149 @@
+{
+  "note:c3:e1": {
+    "question": "设 $Y\\sim\\operatorname{Exp}(1)$，令\n\\[\nX_k=\n\\begin{cases}\n0,&Y\\leq k,\\\\\n1,&Y>k,\n\\end{cases}\n\\qquad k=1,2.\n\\]\n求 $(X_1,X_2)$ 的联合分布列。",
+    "solution": "两个变量都由同一个 $Y$ 决定，四种组合必须先还原为 $Y$ 的事件，不能把各自的概率直接相乘。逐项计算：\n\\begin{align*}\nP(X_1=0,X_2=0)\n&=P(Y\\leq1,Y\\leq2)\\\\\n&=P(Y\\leq1)=\\int_0^1e^{-y}\\,dy\n=1-e^{-1},\\\\\nP(X_1=0,X_2=1)\n&=P(Y\\leq1,Y>2)=P(\\varnothing)=0,\\\\\nP(X_1=1,X_2=0)\n&=P(Y>1,Y\\leq2)\\\\\n&=\\int_1^2e^{-y}\\,dy=e^{-1}-e^{-2},\\\\\nP(X_1=1,X_2=1)\n&=P(Y>1,Y>2)=P(Y>2)=e^{-2}.\n\\end{align*}\n按行表示 $X_1$、按列表示 $X_2$，得到\n\\[\n\\begin{array}{c|cc}\nX_1\\backslash X_2&0&1\\\\ \\hline\n0&1-e^{-1}&0\\\\\n1&e^{-1}-e^{-2}&e^{-2}\n\\end{array}.\n\\]\n三段 $(0,1]$、$(1,2]$、$(2,+\\infty)$ 覆盖 $Y$ 的全概率取值，故这些概率非负且总和为 $1$。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e2": {
+    "question": "已知 $(X,Y)$ 的联合分布列为\n\\[\n\\begin{array}{c|cc}\nX\\backslash Y&0&1\\\\ \\hline\n0&\\dfrac13&\\dfrac16\\\\[2pt]\n1&\\dfrac14&\\dfrac14\n\\end{array}.\n\\]\n求 $X,Y$ 的边缘分布列。",
+    "solution": "按行求和，\n\\begin{align*}\nP(X=0)&=\\frac13+\\frac16=\\frac12,\\\\\nP(X=1)&=\\frac14+\\frac14=\\frac12.\n\\end{align*}\n按列求和，\n\\begin{align*}\nP(Y=0)&=\\frac13+\\frac14=\\frac7{12},\\\\\nP(Y=1)&=\\frac16+\\frac14=\\frac5{12}.\n\\end{align*}\n将边缘概率写在联合分布表旁边：\n\\[\n\\begin{array}{c|cc|c}\nX\\backslash Y&0&1&P(X=x)\\\\ \\hline\n0&\\dfrac13&\\dfrac16&\\dfrac12\\\\[2pt]\n1&\\dfrac14&\\dfrac14&\\dfrac12\\\\[2pt] \\hline\nP(Y=y)&\\dfrac7{12}&\\dfrac5{12}&1\n\\end{array}.\n\\]\n两组边缘概率分别加和为 $1$，与联合分布总概率一致。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e3": {
+    "question": "设联合密度在 $x^2\\leq y\\leq1$ 内为 $cx^2y$，区域外为 $0$。\n\\begin{enumerate}\n\\item 求归一化常数 $c$。\n\n\\item 求 $P(X>Y)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 区域要求 $-1\\leq x\\leq1$。先固定 $x$，再沿 $y$ 积分：\n\\begin{align*}\n1&=c\\int_{-1}^1x^2\\left(\\int_{x^2}^1y\\,dy\\right)dx\\\\\n&=\\frac c2\\int_{-1}^1(x^2-x^6)\\,dx\\\\\n&=\\frac c2\\left(\\frac23-\\frac27\\right)=\\frac{4c}{21}.\n\\end{align*}\n所以 $c=21/4$。\n\n\\item 事件 $X>Y$ 还要求 $y<x$。结合 $y\\geq x^2\\geq0$，得到 $0<x<1$，且 $x^2\\leq y<x$。边界曲线为零测集，不影响积分，故\n\\begin{align*}\nP(X>Y)\n&=\\frac{21}4\\int_0^1x^2\\left(\\int_{x^2}^{x}y\\,dy\\right)dx\\\\\n&=\\frac{21}8\\int_0^1(x^4-x^6)\\,dx\n=\\frac{21}8\\left(\\frac15-\\frac17\\right)=\\frac3{20}.\n\\end{align*}\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e4": {
+    "question": "设 $G=\\{(x,y):x^2+y^2\\leq R^2\\}$，$R>0$，且 $(X,Y)\\sim U(G)$。\n\\begin{enumerate}\n\\item 求 $P(|X|\\leq R/2)$。\n\n\\item 令 $D=\\sqrt{X^2+Y^2}$，求 $D$ 的分布函数。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 联合密度在圆盘内为 $1/(\\pi R^2)$，外部为 $0$。利用关于两轴的对称性，\n\\[\nP(|X|\\leq R/2)=\\frac4{\\pi R^2}\\int_0^{R/2}\\sqrt{R^2-x^2}\\,dx.\n\\]\n取 $x=R\\sin\\theta$，则 $dx=R\\cos\\theta\\,d\\theta$，上下限为 $0,\\pi/6$，于是\n\\begin{align*}\nP(|X|\\leq R/2)\n&=\\frac4\\pi\\int_0^{\\pi/6}\\cos^2\\theta\\,d\\theta\\\\\n&=\\frac4\\pi\\left[\\frac\\theta2+\\frac{\\sin2\\theta}4\\right]_0^{\\pi/6}\\\\\n&=\\frac13+\\frac{\\sqrt3}{2\\pi}.\n\\end{align*}\n\n\\item $t<0$ 时事件为空，$t\\geq R$ 时覆盖整个圆盘。$0\\leq t<R$ 时，事件对应半径为 $t$ 的同心圆盘，其面积与原圆盘面积之比为 $t^2/R^2$。所以\n\\[\nF_D(t)=\n\\begin{cases}\n0,&t<0,\\\\\nt^2/R^2,&0\\leq t<R,\\\\\n1,&t\\geq R.\n\\end{cases}\n\\]\n它在 $0,R$ 两端连续。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e5": {
+    "question": "设联合密度在 $x^2\\leq y\\leq x$ 内为 $6$，其余为 $0$。\n\\begin{enumerate}\n\\item 求边缘密度 $f_X,f_Y$。\n\n\\item 求 $P(-1<X\\leq1/2)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由 $x^2\\leq x$ 可得 $0\\leq x\\leq1$。固定 $x\\in(0,1)$ 时，$y$ 从 $x^2$ 到 $x$，所以\n\\[\nf_X(x)=\n\\begin{cases}\n\\displaystyle\\int_{x^2}^x6\\,dy=6(x-x^2),&0<x<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n\n\n固定 $y$ 时，$y\\leq x$ 给出 $x\\geq y$，$x^2\\leq y$ 结合 $x\\geq0$ 给出 $x\\leq\\sqrt y$。只有 $0<y<1$ 时存在非退化截面，所以\n\\[\nf_Y(y)=\n\\begin{cases}\n\\displaystyle\\int_y^{\\sqrt y}6\\,dx=6(\\sqrt y-y),&0<y<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n端点取 $0$ 不影响积分。核验两个边缘的归一化：\n\\[\n\\int_0^1 6(x-x^2)\\,dx=1,\\qquad\n\\int_0^1 6(\\sqrt y-y)\\,dy=6\\left(\\frac23-\\frac12\\right)=1.\n\\]\n\n\\item \\begin{align*}\nP(-1<X\\leq1/2)\n&=\\int_0^{1/2}6(x-x^2)\\,dx\\\\\n&=[3x^2-2x^3]_0^{1/2}=\\frac12.\n\\end{align*}\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e6": {
+    "question": "设 $X$ 是一维连续型随机变量，令 $Y=X$。\n\\begin{enumerate}\n\\item 证明 $Y$ 也是一维连续型随机变量，但 $(X,Y)$ 不存在二维联合密度。\n\n\\item 求 $(X,Y)$ 的联合分布函数，并说明联合分布函数连续是否足以保证存在联合密度。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由于 $Y=X$，$Y$ 与 $X$ 同分布，所以也是一维连续型随机变量。\n\n事实上，$(X,Y)$ 必落在直线 $L=\\{(x,y):x=y\\}$ 上，所以 $P((X,Y)\\in L)=1$。这条直线的二维面积为 $0$。补充一个面积说明：在 $[-M,M]^2$ 内，将对角线分成 $N$ 段，每段可放入边长 $2M/N$ 的正方形，总面积不超过 $4M^2/N$；令 $N\\to\\infty$，得这段对角线零测。整条直线是 $M=1,2,\\ldots$ 所对应线段的可数并，故仍零测。\n\n若存在联合密度 $f$，则应有\n\\[\n1=P((X,Y)\\in L)=\\int_Lf(x,y)\\,dx\\,dy=0,\n\\]\n矛盾。因此各分量分别具有密度，不足以保证存在联合密度。\n\n\\item 联合分布函数为：\n\\begin{align*}\nF(t,s)&=P(X\\leq t,Y\\leq s)\\\\\n&=P(X\\leq t,X\\leq s)=F_X(\\min\\{t,s\\}).\n\\end{align*}\n由于 $\\min\\{t,s\\}=(t+s-|t-s|)/2$ 连续，且 $F_X$ 连续，$F$ 也是连续函数。这说明即使联合分布函数连续，向量仍可能没有联合密度。\n\\end{enumerate}",
+    "kind": "证明",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e7": {
+    "question": "设一天进入邮局的总人数 $Z\\sim P(\\lambda)$，$\\lambda>0$。给定 $Z=m$ 时，将这 $m$ 人独立地以概率 $p$ 标记为男性，以概率 $1-p$ 标记为女性，$0<p<1$。这一条件模型由“各人的标记相互独立且独立于总人数”保证。记男性人数为 $X$、女性人数为 $Y$，则 $Z=X+Y$，且\n\\[\nP(X=k\\mid Z=m)=\\binom mkp^k(1-p)^{m-k},\\qquad 0\\leq k\\leq m.\n\\]\n\\begin{enumerate}\n\\item 求男性人数 $X$ 与女性人数 $Y$ 的分布。\n\n\\item 求 $(X,Y)$ 的联合分布列，判断 $X,Y$ 是否独立，并说明 $p=0$ 或 $1$ 时的退化情形。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 对 $k=0,1,\\ldots$，由全概率公式，\n\\begin{align*}\nP(X=k)\n&=\\sum_{m=k}^{\\infty}\\binom mkp^k(1-p)^{m-k}\n \\frac{\\lambda^m}{m!}e^{-\\lambda}\\\\\n&=\\frac{e^{-\\lambda}(p\\lambda)^k}{k!}\n \\sum_{m=k}^{\\infty}\\frac{[(1-p)\\lambda]^{m-k}}{(m-k)!}\\\\\n&=\\frac{e^{-\\lambda}(p\\lambda)^k}{k!}e^{(1-p)\\lambda}\n=\\frac{(p\\lambda)^k}{k!}e^{-p\\lambda}.\n\\end{align*}\n所以 $X\\sim P(p\\lambda)$。将“男性”与“女性”的标记交换，条件成功概率变为 $1-p$，同一求和给出\n\\[\nP(Y=j)=\\frac{[(1-p)\\lambda]^j}{j!}e^{-(1-p)\\lambda},\n\\qquad Y\\sim P((1-p)\\lambda).\n\\]\n\n\\item 还须计算联合分布，而不能仅凭两个边缘都是泊松分布推出独立。对 $k,j\\geq0$，\n\\begin{align*}\nP(X=k,Y=j)\n&=P(X=k,Z=k+j)\\\\\n&=\\binom{k+j}{k}p^k(1-p)^j\n  \\frac{\\lambda^{k+j}}{(k+j)!}e^{-\\lambda}\\\\\n&=\\frac{(p\\lambda)^k}{k!}e^{-p\\lambda}\n  \\frac{[(1-p)\\lambda]^j}{j!}e^{-(1-p)\\lambda}\\\\\n&=P(X=k)P(Y=j).\n\\end{align*}\n故由分布列判据，$X,Y$ 相互独立。$p=0$ 或 $1$ 时，一类人数恒为零，另一类等于 $Z$，结论相应退化为常量与 $Z$ 的独立性。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e8": {
+    "question": "记 $I_A$ 为集合 $A$ 的示性函数：在 $A$ 内取 $1$，外取 $0$。\n在下列两种情形中，分别求边缘密度并判断 $X,Y$ 是否独立，说明理由。\n\\begin{enumerate}\n\\item 设联合密度为\n\\[\nf(x,y)=6xy^2 I_{(0,1)\\times(0,1)}(x,y).\n\\]\n\n\\item 设联合密度为\n\\[\nf(x,y)=24xyI_T(x,y),\\qquad\nT=\\{(x,y):x>0,\\ y>0,\\ x+y<1\\}.\n\\]\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由于 $I_{(0,1)\\times(0,1)}(x,y)=I_{(0,1)}(x)I_{(0,1)}(y)$，\n\\[\nf(x,y)=[6xI_{(0,1)}(x)]\\,[y^2I_{(0,1)}(y)].\n\\]\n两个非负因子的积分分别为 $3$ 和 $1/3$，乘积为 $1$，故满足分解判据。更直接地，\n\\[\nf_X(x)=2xI_{(0,1)}(x),\\qquad\nf_Y(y)=3y^2I_{(0,1)}(y),\n\\]\n二者乘积正是联合密度，所以 $X,Y$ 独立。\n\n\\item 虽然 $24xy$ 是乘积，但三角形限制也必须计入。取\n\\[\nA=\\{X>1/2\\},\\qquad B=\\{Y>1/2\\}.\n\\]\n两个事件的交集在 $T$ 上为空，故 $P(A\\cap B)=0$。边缘密度为\n\\[\nf_X(x)=\\int_0^{1-x}24xy\\,dy=12x(1-x)^2,\\qquad 0<x<1.\n\\]\n区域与密度交换 $x,y$ 后不变，故 $f_Y(y)=12y(1-y)^2$（$0<y<1$），区域外均为 $0$。因此\n\\[\nP(A)=\\int_{1/2}^1 12x(1-x)^2\\,dx=\\frac5{16},\n\\qquad P(B)=\\frac5{16}.\n\\]\n于是 $P(A\\cap B)=0\\ne25/256=P(A)P(B)$，所以 $X,Y$ 不独立。这也具体说明了区域限制不能忽略。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e9": {
+    "question": "设 $X,Y$ 独立同分布于 $\\operatorname{Exp}(\\lambda)$，$\\lambda>0$。求 $(X,Y)$ 的联合密度并核验其归一化。",
+    "solution": "\\[\nf_X(x)=\\lambda e^{-\\lambda x}I_{(0,\\infty)}(x),\\qquad\nf_Y(y)=\\lambda e^{-\\lambda y}I_{(0,\\infty)}(y).\n\\]\n由独立连续型分量的联合密度公式，\n\\[\nf(x,y)=\n\\begin{cases}\n\\lambda^2e^{-\\lambda(x+y)},&x>0,\\ y>0,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n其全积分等于两个边缘密度积分之积 $1\\cdot1=1$。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e10": {
+    "question": "设 $X,Y$ 独立同分布于 $U(0,1)$。求 $X+Y$ 的密度。",
+    "solution": "卷积的被积函数在\n\\[\n0<x<1,\\qquad 0<z-x<1\n\\]\n时为 $1$，其余为 $0$。两个不等式同时成立等价于\n\\[\n\\max(0,z-1)<x<\\min(1,z).\n\\]\n$0<z\\leq1$ 时截面为 $(0,z)$，$1<z<2$ 时截面为 $(z-1,1)$，其他情形为空或退化。因此\n\\[\nf_{X+Y}(z)=\n\\begin{cases}\n\\displaystyle\\int_0^z1\\,dx=z,&0<z\\leq1,\\\\\n\\displaystyle\\int_{z-1}^11\\,dx=2-z,&1<z<2,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n这个分布称为三角分布，密度全积分为 $1/2+1/2=1$。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e11": {
+    "question": "设 $X\\sim P(\\lambda_1)$、$Y\\sim P(\\lambda_2)$ 相互独立，$\\lambda_1,\\lambda_2>0$，求给定 $X+Y=n$ 时 $X$ 的分布，$n$ 为非负整数。",
+    "solution": "泊松可加性给出 $X+Y\\sim P(\\lambda_1+\\lambda_2)$，故该条件事件具有正概率。对 $0\\leq k\\leq n$，\n\\begin{align*}\nP(X=k\\mid X+Y=n)\n&=\\frac{P(X=k,Y=n-k)}{P(X+Y=n)}\\\\\n&=\\frac{\\dfrac{\\lambda_1^k}{k!}e^{-\\lambda_1}\n \\dfrac{\\lambda_2^{n-k}}{(n-k)!}e^{-\\lambda_2}}\n {\\dfrac{(\\lambda_1+\\lambda_2)^n}{n!}e^{-(\\lambda_1+\\lambda_2)}}\\\\\n&=\\binom nk\\left(\\frac{\\lambda_1}{\\lambda_1+\\lambda_2}\\right)^k\n \\left(\\frac{\\lambda_2}{\\lambda_1+\\lambda_2}\\right)^{n-k}.\n\\end{align*}\n其他 $k$ 的条件概率为 $0$。所以条件分布为\n\\[\nX\\mid(X+Y=n)\\sim B\\left(n,\\frac{\\lambda_1}{\\lambda_1+\\lambda_2}\\right).\n\\]\n当 $n=0$ 时，条件下 $X=0$ 的概率为 $1$。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e12": {
+    "question": "设\n\\[\nf(x,y)=\n\\begin{cases}\nxe^{-y},&0<x<y,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n\\begin{enumerate}\n\\item 求 $f_{X\\mid Y}(x\\mid y)$（$y>0$）。\n\n\\item 求 $f_{X\\mid Y}(x\\mid1/2)$。\n\n\\item 求 $P(-1<X\\leq1/4\\mid Y=1/2)$。\n\n\\item 求 $P(-1<X\\leq1/4\\mid Y\\leq1/2)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 固定 $y>0$，有\n\\[\nf_Y(y)=\\int_0^yxe^{-y}\\,dx=\\frac{y^2}2e^{-y},\n\\]\n$y\\leq0$ 时取 $0$。其积分为 $\\Gamma(3)/2=1$，故给定联合密度也已归一化。因此\n\\[\nf_{X\\mid Y}(x\\mid y)=\n\\begin{cases}\n2x/y^2,&0<x<y,\\\\\n0,&\\text{其他},\n\\end{cases}\\qquad y>0.\n\\]\n\n\\item 代入 $y=1/2$ 得\n\\[\nf_{X\\mid Y}(x\\mid1/2)=\n\\begin{cases}\n8x,&0<x<1/2,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n\n\\item \\[\nP(-1<X\\leq1/4\\mid Y=1/2)=\\int_0^{1/4}8x\\,dx=\\frac14.\n\\]\n\n\\item 对于条件事件 $Y\\leq1/2$，应对整个条件区域积分。固定 $y$ 时，$x$ 的上限为 $\\min(y,1/4)$，需在 $y=1/4$ 处分段：\n\\begin{align*}\n&P(-1<X\\leq1/4\\mid Y\\leq1/2)\\\\\n&=\\frac{\\displaystyle\n \\int_0^{1/4}\\int_0^yxe^{-y}\\,dx\\,dy+\n \\int_{1/4}^{1/2}\\int_0^{1/4}xe^{-y}\\,dx\\,dy}\n {\\displaystyle\\int_0^{1/2}\\frac{y^2}2e^{-y}\\,dy}\\\\\n&=\\frac{\\displaystyle\n \\int_0^{1/4}\\frac{y^2}2e^{-y}\\,dy+\n \\frac1{32}\\int_{1/4}^{1/2}e^{-y}\\,dy}\n {\\displaystyle\\int_0^{1/2}\\frac{y^2}2e^{-y}\\,dy}\\\\\n&=\\frac{1-\\frac54e^{-1/4}-\\frac1{32}e^{-1/2}}\n {1-\\frac{13}8e^{-1/2}}\n\\approx0.524403.\n\\end{align*}\n它与给定单点条件值 $Y=1/2$ 时的结果不同。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e13": {
+    "question": "设 $Z\\sim N(0,1)$、$Y\\sim\\chi^2(n)$ 相互独立，$n$ 为正整数。定义\n\\[\nT=\\frac{Z}{\\sqrt{Y/n}}.\n\\]\n称 $T$ 服从自由度为 $n$ 的 \\textbf{$t$ 分布}。由于 $Y>0$ 以概率 $1$ 成立，该比值在全概率事件上有定义；其他样本点上可另定义为 $0$。\n求 $T$ 的密度。",
+    "solution": "固定 $y>0$，由独立性，$Z$ 在条件 $Y=y$ 下仍服从 $N(0,1)$，故可取\n\\[\nT\\mid(Y=y)\\sim N(0,n/y),\\qquad\nf_{T\\mid Y}(t\\mid y)=\\sqrt{\\frac{y}{2\\pi n}}e^{-yt^2/(2n)}.\n\\]\n又因 $\\chi^2(n)=\\Gamma(n/2,1/2)$，\n\\[\nf_Y(y)=\\frac{y^{n/2-1}e^{-y/2}}{2^{n/2}\\Gamma(n/2)},\\qquad y>0.\n\\]\n条件密度与边缘密度相乘，得到\n\\[\nf_{T,Y}(t,y)=\n\\frac{y^{(n-1)/2}e^{-\\frac y2(1+t^2/n)}}\n {2^{(n+1)/2}\\sqrt{n\\pi}\\Gamma(n/2)},\n\\qquad t\\in\\mathbb R,\\ y>0,\n\\]\n其他地方取 $0$。这一乘法也可直接从变换 $z=t\\sqrt{y/n}$ 核验：其雅可比绝对值为 $\\sqrt{y/n}$，原联合密度为 $f_Z(z)f_Y(y)$。\n\n令 $a=(n+1)/2$、$b=(1+t^2/n)/2>0$，再作 $u=by$ 的换元，得\n\\[\n\\int_0^\\infty y^{a-1}e^{-by}\\,dy=b^{-a}\\Gamma(a).\n\\]\n所以\n\\begin{align*}\nf_T(t)\n&=\\int_0^\\infty f_{T,Y}(t,y)\\,dy\\\\\n&=\\frac{\\Gamma((n+1)/2)}{\\sqrt{n\\pi}\\Gamma(n/2)}\n \\left(1+\\frac{t^2}n\\right)^{-(n+1)/2},\n\\qquad t\\in\\mathbb R.\n\\end{align*}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e14": {
+    "question": "设 $X\\sim U(0,1)$，给定 $X=x$ 时 $Y\\sim B(M,x)$，其中 $M$ 为正整数。求给定 $Y=n$ 时 $X$ 的分布，$0\\leq n\\leq M$。",
+    "solution": "由乘法公式，对 $0<x<1$，\n\\[\nf_{X\\mid Y}(x\\mid n)\n=\\frac{f_X(x)P(Y=n\\mid X=x)}{P(Y=n)}\n=\\frac{\\binom Mn x^n(1-x)^{M-n}}{P(Y=n)}.\n\\]\n分母由积分归一化：\n\\begin{align*}\nP(Y=n)\n&=\\binom Mn\\int_0^1x^n(1-x)^{M-n}\\,dx\\\\\n&=\\binom Mn B(n+1,M-n+1)\\\\\n&=\\frac{M!}{n!(M-n)!}\\frac{n!(M-n)!}{(M+1)!}\n=\\frac1{M+1}>0.\n\\end{align*}\n所以\n\\[\nf_{X\\mid Y}(x\\mid n)=\n\\begin{cases}\n\\displaystyle\\frac{x^n(1-x)^{M-n}}{B(n+1,M-n+1)},&0<x<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n即 $X\\mid(Y=n)\\sim\\operatorname{Beta}(n+1,M-n+1)$。\n\n这里 $X$ 是未知成功概率，$Y$ 是给定 $X$ 后 $M$ 次条件独立伯努利试验的成功次数。先验为 $U(0,1)=\\operatorname{Beta}(1,1)$，观察到 $n$ 次成功后，后验参数变为 $1+n$、$1+M-n$。独立性是给定同一个成功概率 $X=x$ 后的条件独立性。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e15": {
+    "question": "在样本点 $\\omega$ 和 $\\widetilde\\omega$ 上，分别有\n\\[\n(X_1(\\omega),X_2(\\omega),X_3(\\omega))=(2,1,3),\n\\qquad\n(X_1(\\widetilde\\omega),X_2(\\widetilde\\omega),X_3(\\widetilde\\omega))=(0,2,1).\n\\]\n求这两个样本点上的次序统计量取值，并指出排序后的三个值分别来自哪个原变量。",
+    "solution": "若在样本点 $\\omega$ 上，\n\\[\n(X_1(\\omega),X_2(\\omega),X_3(\\omega))=(2,1,3),\n\\]\n则\n\\[\n(X_{(1)}(\\omega),X_{(2)}(\\omega),X_{(3)}(\\omega))=(1,2,3),\n\\]\n分别取自 $X_2,X_1,X_3$。若在另一样本点 $\\widetilde\\omega$ 上，原取值为 $(0,2,1)$，则排序取值为 $(0,1,2)$，分别取自 $X_1,X_3,X_2$。因此对应原变量的排列会随样本点改变。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e16": {
+    "question": "三个人的位置 $X_1,X_2,X_3$ 相互独立且都服从 $U(0,1)$，距离以英里为单位。\n\\begin{enumerate}\n\\item 设 $0\\leq d\\leq1/2$，求任意两人之间的距离都大于 $d$ 的概率。\n\n\\item 推广到 $n\\geq2$ 个人的位置独立同分布于 $U(0,1)$ 的情形，求 $d\\geq0$ 时任意两人之间的距离都大于 $d$ 的概率。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 将位置排序后，任意两点的距离都大于 $d$，当且仅当两个相邻间距都大于 $d$。排序向量的密度在 $0<t_1<t_2<t_3<1$ 内为 $3!=6$，所以\n\\begin{align*}\nP&=P(X_{(2)}>X_{(1)}+d,\\ X_{(3)}>X_{(2)}+d)\\\\\n&=6\\int_0^{1-2d}\\int_{t_1+d}^{1-d}\\int_{t_2+d}^1\n dt_3\\,dt_2\\,dt_1\\\\\n&=6\\int_0^{1-2d}\\int_{t_1+d}^{1-d}(1-t_2-d)\\,dt_2\\,dt_1\\\\\n&=3\\int_0^{1-2d}(1-t_1-2d)^2\\,dt_1\n=(1-2d)^3.\n\\end{align*}\n$d=1/2$ 时概率为 $0$，$d=0$ 时由于无相同取值，概率为 $1$。\n\n\\item 若有 $n\\geq2$ 个人，位置仍独立同分布于 $U(0,1)$，对 $0\\leq d<1/(n-1)$，令\n\\[\ns_i=t_i-(i-1)d,\\qquad L=1-(n-1)d.\n\\]\n相邻间距大于 $d$ 的区域恰好变为\n\\[\n0<s_1<s_2<\\cdots<s_n<L.\n\\]\n平移的雅可比为 $1$；这个有序区域的体积是立方体 $(0,L)^n$ 体积的 $1/n!$，因为除了坐标相等的零测边界外，立方体分成 $n!$ 个等体积的排列区域。乘上排序密度 $n!$，所求概率为\n\\[\n[1-(n-1)d]^n.\n\\]\n当 $d\\geq1/(n-1)$ 时，$n-1$ 个相邻间距之和无法严格小于 $1$，所求概率为 $0$。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e17": {
+    "question": "设 $X_1,\\ldots,X_n$ 独立同分布，公共分布为连续型，分布函数为 $F$、密度为 $f$，$n\\geq2$。称\n\\[R=X_{(n)}-X_{(1)}\\]\n为样本的极差。\n\\begin{enumerate}\n\\item 求 $R$ 的分布函数。\n\n\\item 若原样本服从 $U(0,1)$，求 $R$ 的分布函数与密度，指出其分布，并说明 $n=1$ 时的情形。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由两个次序统计量的密度公式，\n\\[\nf_{1,n}(x,y)=n(n-1)[F(y)-F(x)]^{n-2}f(x)f(y),\n\\qquad x<y.\n\\]\n$r<0$ 时 $F_R(r)=0$。对 $r\\geq0$，积分区域为 $x<y\\leq x+r$，所以\n\\begin{align*}\nF_R(r)\n&=n(n-1)\\int_{\\mathbb R}f(x)\n \\int_x^{x+r}[F(y)-F(x)]^{n-2}f(y)\\,dy\\,dx\\\\\n&=n\\int_{\\mathbb R}[F(x+r)-F(x)]^{n-1}f(x)\\,dx.\n\\end{align*}\n内层积分利用 $F$ 的绝对连续性及 $F'=f$ 几乎处处；原函数为\n$[F(y)-F(x)]^{n-1}/(n-1)$，在下端点为 $0$。\n\n\\item 若原样本服从 $U(0,1)$，则 $r\\geq1$ 时 $F_R(r)=1$。对 $0<r<1$，在 $x=1-r$ 处分段：\n\\begin{align*}\nF_R(r)\n&=n\\int_0^1[F(x+r)-F(x)]^{n-1}\\,dx\\\\\n&=n\\left[\\int_0^{1-r}r^{n-1}\\,dx+\n \\int_{1-r}^1(1-x)^{n-1}\\,dx\\right]\\\\\n&=nr^{n-1}(1-r)+r^n\n=nr^{n-1}-(n-1)r^n.\n\\end{align*}\n因此\n\\[\nF_R(r)=\n\\begin{cases}\n0,&r\\leq0,\\\\\nnr^{n-1}-(n-1)r^n,&0<r<1,\\\\\n1,&r\\geq1,\n\\end{cases}\n\\]\n且一个密度版本为\n\\[\nf_R(r)=\n\\begin{cases}\nn(n-1)r^{n-2}(1-r),&0<r<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n因为 $B(n-1,2)=1/[n(n-1)]$，故 $R\\sim\\operatorname{Beta}(n-1,2)$。若样本只有一个变量，则极差恒为 $0$，不使用上述 $n\\geq2$ 的密度公式。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e18": {
+    "question": "设 $(X,Y)$ 的联合密度为 $f(x,y)$，令 $U=X+Y$。\n\\begin{enumerate}\n\\item 通过引入辅助变量求 $U$ 的密度。\n\n\\item 若 $X,Y$ 独立，将结果写为边缘密度的卷积公式。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 增加辅助变量 $V=X$，则\n\\[\nU=X+Y,\\quad V=X\n\\quad\\Longleftrightarrow\\quad\nX=V,\\quad Y=U-V.\n\\]\n逆雅可比为\n\\[\n\\frac{\\partial(x,y)}{\\partial(u,v)}\n=\\det\\begin{pmatrix}0&1\\\\1&-1\\end{pmatrix}=-1.\n\\]\n故\n\\[\nf_{U,V}(u,v)=f(v,u-v).\n\\]\n对辅助变量积分，得到\n\\[\nf_{X+Y}(u)=\\int_{\\mathbb R}f(v,u-v)\\,dv.\n\\]\n\n\\item 若 $X,Y$ 独立，则可取 $f(x,y)=f_X(x)f_Y(y)$，于是\n\\[\nf_{X+Y}(u)=\\int_{\\mathbb R}f_X(v)f_Y(u-v)\\,dv\n=\\int_{\\mathbb R}f_X(u-v)f_Y(v)\\,dv,\n\\]\n与卷积公式一致。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e19": {
+    "question": "设 $X\\sim\\Gamma(\\alpha,\\lambda)$、$Y\\sim\\Gamma(\\beta,\\lambda)$ 相互独立，$\\alpha,\\beta,\\lambda>0$，$\\lambda$ 为公共率参数。令\n\\[\nU=X+Y,\\qquad V=\\frac{X}{X+Y}.\n\\]\n因 $X,Y>0$ 以概率 $1$ 成立，该变换在全概率区域上有定义。\n\\begin{enumerate}\n\\item 求 $(U,V)$ 的联合密度。\n\n\\item 求 $U,V$ 的边缘密度并指出其分布。\n\n\\item 判断 $U,V$ 是否独立。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 逆变换为\n\\[\nx=uv,\\qquad y=u(1-v),\n\\]\n故\n\\[\n\\frac{\\partial(x,y)}{\\partial(u,v)}\n=\\det\\begin{pmatrix}v&u\\\\1-v&-u\\end{pmatrix}=-u.\n\\]\n原区域 $x>0,y>0$ 等价于 $u>0,0<v<1$；该区域中 $u>0$，所以逆雅可比绝对值为 $u$。\n\n由独立性，原联合密度在正象限为\n\\[\nf_{X,Y}(x,y)=\n\\frac{\\lambda^{\\alpha+\\beta}}{\\Gamma(\\alpha)\\Gamma(\\beta)}\nx^{\\alpha-1}y^{\\beta-1}e^{-\\lambda(x+y)}.\n\\]\n代入逆变换并乘上 $u$：\n\\begin{align*}\nf_{U,V}(u,v)\n&=\\frac{\\lambda^{\\alpha+\\beta}\n (uv)^{\\alpha-1}[u(1-v)]^{\\beta-1}}\n {\\Gamma(\\alpha)\\Gamma(\\beta)}e^{-\\lambda u}\\,u\\\\\n&=\\frac{\\lambda^{\\alpha+\\beta}\n u^{\\alpha+\\beta-1}e^{-\\lambda u}}\n {\\Gamma(\\alpha+\\beta)}\n \\frac{v^{\\alpha-1}(1-v)^{\\beta-1}}{B(\\alpha,\\beta)},\n\\qquad u>0,\\ 0<v<1.\n\\end{align*}\n区域外取 $0$。最后一步使用\n$B(\\alpha,\\beta)=\\Gamma(\\alpha)\\Gamma(\\beta)/\\Gamma(\\alpha+\\beta)$。\n\n\\item 右侧已经分解成一个 Gamma 密度和一个 Beta 密度的乘积，两因子各自积分为 $1$。因此\n\\[\nf_U(u)=\n\\begin{cases}\n\\displaystyle\\frac{\\lambda^{\\alpha+\\beta}}{\\Gamma(\\alpha+\\beta)}\nu^{\\alpha+\\beta-1}e^{-\\lambda u},&u>0,\\\\\n0,&\\text{其他},\n\\end{cases}\n\\]\n\\[\nf_V(v)=\n\\begin{cases}\n\\displaystyle\\frac{v^{\\alpha-1}(1-v)^{\\beta-1}}{B(\\alpha,\\beta)},&0<v<1,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n所以 $U\\sim\\Gamma(\\alpha+\\beta,\\lambda)$、$V\\sim\\operatorname{Beta}(\\alpha,\\beta)$。\n\n\\item 由第（1）问所得联合密度等于第（2）问两个边缘密度之积，故 $U,V$ 相互独立。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e20": {
+    "question": "设 $X,Y$ 相互独立，均服从 $N(0,1)$。令\n\\[\nR=\\sqrt{X^2+Y^2},\n\\]\n并以 $\\Theta\\in[0,2\\pi)$ 表示点 $(X,Y)$ 的极角；在原点约定 $\\Theta=0$。\n\\begin{enumerate}\n\\item 求 $R,\\Theta$ 的联合密度及两个边缘密度，判断独立性，并求 $R^2$ 的分布。\n\n\\item 反过来，取相互独立的 $U_1,U_2\\sim U(0,1)$，令\n\\[X=\\sqrt{-2\\ln U_1}\\cos(2\\pi U_2),\\qquad Y=\\sqrt{-2\\ln U_1}\\sin(2\\pi U_2).\\]\n证明生成的 $X,Y$ 相互独立且均服从 $N(0,1)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 原联合密度为\n\\[\nf_{X,Y}(x,y)=\\frac{1}{2\\pi}e^{-(x^2+y^2)/2}.\n\\]\n去掉原点和非负横轴后，剩余区域的概率为 $1$。极坐标变换将其一一映到 $r>0,\\ 0<\\theta<2\\pi$，逆变换为\n\\[\nx=r\\cos\\theta,\\qquad y=r\\sin\\theta.\n\\]\n其雅可比为\n\\[\n\\left|\\frac{\\partial(x,y)}{\\partial(r,\\theta)}\\right|\n=\\left|\\det\n\\begin{pmatrix}\n\\cos\\theta&-r\\sin\\theta\\\\\n\\sin\\theta&r\\cos\\theta\n\\end{pmatrix}\\right|=r.\n\\]\n所以可取联合密度\n\\[\nf_{R,\\Theta}(r,\\theta)=\n\\begin{cases}\n\\displaystyle\\frac{r}{2\\pi}e^{-r^2/2},&r>0,\\ 0<\\theta<2\\pi,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n两个边缘密度分别为\n\\[\nf_R(r)=\n\\begin{cases}re^{-r^2/2},&r>0,\\\\0,&\\text{其他},\\end{cases}\n\\qquad\nf_\\Theta(\\theta)=\n\\begin{cases}\\displaystyle\\frac{1}{2\\pi},&0<\\theta<2\\pi,\\\\0,&\\text{其他}.\\end{cases}\n\\]\n联合密度等于边缘密度的乘积，故 $R,\\Theta$ 相互独立，且 $\\Theta\\sim U(0,2\\pi)$。$R$ 的分布称为\\textbf{瑞利分布}。对于 $t\\geq0$，\n\\[\nP(R^2>t)=\\int_{\\sqrt t}^{\\infty}re^{-r^2/2}\\,dr=e^{-t/2},\n\\]\n故 $R^2\\sim\\operatorname{Exp}(1/2)=\\Gamma(1,1/2)=\\chi^2(2)$，其中指数分布和 Gamma 分布均采用率参数。\n\n\\item 反过来，取相互独立的 $U_1,U_2\\sim U(0,1)$，令\n\\[\nR=\\sqrt{-2\\ln U_1},\\qquad \\Theta=2\\pi U_2.\n\\]\n由于这两个变量分别由独立的 $U_1,U_2$ 决定，它们仍相互独立。对于 $t\\geq0$，\n\\[\nP(-2\\ln U_1>t)=P(U_1<e^{-t/2})=e^{-t/2},\n\\]\n因而 $R,\\Theta$ 具有上面求出的分布。\n\n令\n\\[\nX=\\sqrt{-2\\ln U_1}\\cos(2\\pi U_2),\\qquad\nY=\\sqrt{-2\\ln U_1}\\sin(2\\pi U_2).\n\\]\n在去掉非负横轴的平面上，正向极坐标变换的雅可比绝对值为 $1/r$，于是\n\\begin{align*}\nf_{X,Y}(x,y)\n&=\\frac{r}{2\\pi}e^{-r^2/2}\\frac1r\\\\\n&=\\frac{1}{\\sqrt{2\\pi}}e^{-x^2/2}\n  \\frac{1}{\\sqrt{2\\pi}}e^{-y^2/2}.\n\\end{align*}\n被去掉的边界对应 $\\Theta=0$，其概率为 $0$，不影响分布。密度分解说明生成的 $X,Y$ 相互独立，且均服从 $N(0,1)$。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  },
+  "note:c3:e21": {
+    "question": "设 $X_1,\\ldots,X_n$ 相互独立，均服从 $\\operatorname{Exp}(\\lambda)$，$\\lambda>0$。令\n\\[\nY_i=\\sum_{j=1}^{i}X_j,\\qquad i=1,\\ldots,n.\n\\]\n\\begin{enumerate}\n\\item 求 $(Y_1,\\ldots,Y_n)$ 的联合密度。\n\n\\item 求 $Y_n$ 的边缘分布。\n\n\\item 设 $n\\geq2$，求给定 $Y_n=z$ 时前 $n-1$ 个部分和的条件联合密度。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 逆变换为 $x_1=y_1$、$x_i=y_i-y_{i-1}$（$i\\geq2$），其导数矩阵是对角元为 $1$、紧邻对角线下方为 $-1$ 的下三角矩阵，行列式为 $1$。原区域 $x_i>0$ 等价于 $0<y_1<\\cdots<y_n$，且 $\\sum_i x_i=y_n$，故\n\\[\nf_{Y_1,\\ldots,Y_n}(y_1,\\ldots,y_n)=\n\\begin{cases}\n\\lambda^ne^{-\\lambda y_n},&0<y_1<\\cdots<y_n,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n\n\\item 当 $n\\geq2$、$z>0$ 时，对前 $n-1$ 个坐标积分，得\n\\begin{align*}\nf_{Y_n}(z)\n&=\\lambda^ne^{-\\lambda z}\n  \\int_{0<y_1<\\cdots<y_{n-1}<z}dy_1\\cdots dy_{n-1}\\\\\n&=\\frac{\\lambda^n}{(n-1)!}z^{n-1}e^{-\\lambda z}.\n\\end{align*}\n积分区域的体积为 $z^{n-1}/(n-1)!$：除去坐标相等的零体积集合，立方体 $(0,z)^{n-1}$ 按坐标的 $(n-1)!$ 种排列分成体积相同的区域。$z\\leq0$ 时密度取 $0$，所以 $Y_n\\sim\\Gamma(n,\\lambda)$；$n=1$ 时结论就是指数分布本身。\n\n\\item 对每个 $z>0$，$f_{Y_n}(z)>0$，因此\n\\[\nf_{Y_1,\\ldots,Y_{n-1}\\mid Y_n}(y_1,\\ldots,y_{n-1}\\mid z)=\n\\begin{cases}\n\\displaystyle\\frac{(n-1)!}{z^{n-1}},\n&0<y_1<\\cdots<y_{n-1}<z,\\\\\n0,&\\text{其他}.\n\\end{cases}\n\\]\n这正是 $n-1$ 个相互独立的 $U(0,z)$ 变量的次序统计量联合密度。排序前的变量独立；当 $n-1\\geq2$ 时，排序后的变量受到大小次序的约束，并不相互独立。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "先集中列出已知条件和全部所求，再按题面顺序组织原例解答。"
+  }
+}

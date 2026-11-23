@@ -2,6 +2,7 @@
 \section{第七周：离散分布与密度计算}
 
 \subsection{教材第52页第1题}\label{ex:w07-b52-1}
+\paragraph{题目}
 设某市不同路口的红绿灯独立工作，每个路口的红灯、绿灯出现的时间相同。用 $X$ 表示一辆汽车首次遇到红灯时已经经过的路口数。求 $X$ 的概率分布。
 \basis{原笔记第2章第2节“几何分布”；第1章第4节“独立试验”。}
 \paragraph{思路} 将经过一个绿灯路口看成一次失败，第一次遇红灯看成首次成功；先明确计数是否包含当前红灯路口。
@@ -17,6 +18,7 @@
 \paragraph{答案} 已通过的路口数满足 $\P(X=k)=2^{-(k+1)}$，$k\geq0$；包含当前路口的计数服从参数 $1/2$ 的几何分布。
 
 \subsection{教材第52页第2题}\label{ex:w07-b52-2}
+\paragraph{题目}
 用 $\xi$ 表示成功概率为 $p$（$0\leq p\leq1$）的伯努利实验中第一个游程（即连续成功或连续失败）的长度。求 $\xi$ 的分布。
 
 作业说明：用 $1$ 表示成功、$0$ 表示失败。对 $11000111$，第一个游程为最左端的 $11$，长度为 $2$；对 $010000111$，第一个游程为最左端的 $0$，长度为 $1$；对 $00011100$，第一个游程为最左端的 $000$，长度为 $3$。
@@ -40,6 +42,7 @@
 \paragraph{答案} $0<p<1$ 时，$\P(\xi=k)=p^k(1-p)+(1-p)^kp$，$k\geq1$；$p=0,1$ 时游程无限长。
 
 \subsection{教材第53页第3题}\label{ex:w07-b53-3}
+\paragraph{题目}
 连续射击某个目标，直至第一次击中目标或者射击次数达到 $5$ 次就停止。假定一次射击击中目标的概率为 $p$（$0\leq p\leq1$）且各次射击结果独立。用 $X$ 表示停止时的射击次数。求 $X$ 的概率分布。
 \basis{原笔记第2章第2节“几何分布”；第1章第4节“独立试验”。}
 \paragraph{思路} 前四次停止必须因为当次首次击中；第五次停止则只要求前四次未击中。
@@ -57,6 +60,7 @@
 \paragraph{答案} $\P(X=k)=(1-p)^{k-1}p$（$1\leq k\leq4$），$\P(X=5)=(1-p)^4$。
 
 \subsection{教材第53页第4题}\label{ex:w07-b53-4}
+\paragraph{题目}
 某种昆虫在单位时间内产卵的个数 $\xi$ 服从泊松分布 $P(\lambda)$，其中每个卵孵化出幼虫的概率为 $p$，各个卵是否孵化相互独立，并且虫子产卵的个数和产出卵是否孵化相互独立。以 $\eta$ 表示单位时间内幼虫的个数。求 $\eta$ 的概率分布。
 \basis{原笔记第2章第2节“二项分布”“泊松分布”，例“泊松粒子数的独立捕捉”。}
 \paragraph{思路} 给定产卵数后，幼虫数是二项分布；再对产卵数用全概率公式求和。
@@ -78,6 +82,7 @@
 \paragraph{答案} $\eta\sim P(\lambda p)$，即 $\P(\eta=k)=e^{-\lambda p}(\lambda p)^k/k!$。
 
 \subsection{教材第53页第5题}\label{ex:w07-b53-5}
+\paragraph{题目}
 设随机变量 $X$ 服从泊松分布 $P(\lambda)$。记 $p=\P(X\text{ 为奇数})$ 和 $q=\P(X\text{ 为偶数})$。证明
 \[
 p=e^{-\lambda}\sinh\lambda=\frac12(1-e^{-2\lambda}),\qquad
@@ -104,6 +109,7 @@ q=\frac{(p+q)+(q-p)}2=\frac{1+e^{-2\lambda}}2.
 \paragraph{答案} 奇数概率为 $(1-e^{-2\lambda})/2$，偶数概率为 $(1+e^{-2\lambda})/2$。
 
 \subsection{教材第58页第3题}\label{ex:w07-b58-3}
+\paragraph{题目}
 设绝对连续型随机变量 $X$ 的密度函数 $p$ 满足
 \[
 p(x)=\begin{cases}2ax,&0\leq x\leq1,\\2-x,&1<x\leq2,\\0,&\text{其他。}\end{cases}
@@ -127,6 +133,7 @@ p(x)=\begin{cases}2ax,&0\leq x\leq1,\\2-x,&1<x\leq2,\\0,&\text{其他。}\end{ca
 \paragraph{答案} $a=1/2$，$\P(X<3/2)=7/8$。
 
 \subsection{作业第2题：三角形密度的区间概率}\label{ex:w07-h2}
+\paragraph{题目}
 设连续型随机变量 $X$ 的密度函数为
 \[
 f(x)=\begin{cases}1-|x|,&-1\leq x\leq1,\\0,&\text{其他。}\end{cases}
@@ -147,6 +154,7 @@ f(x)=\begin{cases}1-|x|,&-1\leq x\leq1,\\0,&\text{其他。}\end{cases}
 \paragraph{答案} $59/72$。
 
 \subsection{作业第3题：储油量}\label{ex:w07-h3}
+\paragraph{题目}
 一个加油站每周补给一次油。如果它每周的销售量（单位：千升）为随机变量 $X$，且 $X$ 的密度为
 \[
 f(x)=\begin{cases}0.05(1-x/100)^4,&0\leq x\leq100,\\0,&\text{其他。}\end{cases}
@@ -173,6 +181,7 @@ a>100(1-0.01^{1/5})\approx60.1893.
 \paragraph{答案} 至少 $61$ 千升。
 
 \subsection{作业第4题：由归一化求密度参数}\label{ex:w07-h4}
+\paragraph{题目}
 设连续型随机变量 $X$ 的密度函数为
 \[
 f(x)=\begin{cases}Cxe^{-x/2},&x>0,\\0,&\text{其他。}\end{cases}

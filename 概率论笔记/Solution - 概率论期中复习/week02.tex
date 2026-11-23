@@ -1,6 +1,7 @@
 % !TEX root = 概率论期中复习.tex
 \clearpage\section{第二周：概率空间、概率界与事件极限}
 \subsection{教材第19页第1题}\label{ex:w02-t1}
+\paragraph{题目}
 假设某个随机试验包含可数无穷多个不同的结果，且每个结果出现的概率均严格大于零。解释为何不会所有结果发生的概率都相同。
 \basis{原笔记第1.2节概率的可列可加性。}
 \paragraph{思路}若各个结果具有同一个正概率，有限多个互斥结果的总概率也将超过1。
@@ -12,6 +13,7 @@
 \paragraph{答案}不存在可数无穷等可能且每个结果有正概率的模型。
 
 \subsection{教材第19页第2题(1)}\label{ex:w02-t2}
+\paragraph{题目}
 设$(\Omega,\mathscr F)$为可测空间。给定非空集$E\subseteq\Omega$，记$\mathscr E=\{E\cap A:A\in\mathscr F\}$。证明$\mathscr E$是$E$上的$\sigma$代数。（按本周要求不做第(2)小题。）
 \basis{原笔记第1.2节“可测空间”中$\sigma$代数的定义。}
 \paragraph{思路}以$E$为新的全集，分别验证包含全集、相对补封闭和可列并封闭。
@@ -29,6 +31,7 @@
 \paragraph{答案}$\mathscr E$是$E$上的$\sigma$代数，补运算必须相对于$E$进行。
 
 \subsection{教材第19页第4题}\label{ex:w02-t4}
+\paragraph{题目}
 设$(\Omega,\mathscr F,P)$为概率空间。证明对$A,B\in\mathscr F$有
 \[P(A\cap B)\geq P(A)+P(B)-1.\]
 \basis{原笔记第1.2节命题“一般加法公式”。}
@@ -42,6 +45,7 @@
 \paragraph{答案}所给下界成立；结合非负性还可写成$P(AB)\geq\max\{0,P(A)+P(B)-1\}$。
 
 \subsection{教材第19页第5题}\label{ex:w02-t5}
+\paragraph{题目}
 设事件$A,B$满足$P(A)=3/4$和$P(B)=1/3$。证明$1/12\leq P(A\cap B)\leq1/3$。
 \basis{原笔记第1.2节单调性、加法公式；\hyperref[ex:w02-t4]{上一题}。}
 \paragraph{思路}下界用$P(A)+P(B)-1$，上界用$A\cap B\subseteq B$。
@@ -53,6 +57,7 @@
 \paragraph{答案}$P(A\cap B)\in[1/12,1/3]$。
 
 \subsection{作业第2题：偏离独立乘积的界}\label{ex:w02-h2}
+\paragraph{题目}
 求证：对任意事件$A,B\in\mathscr F$，有
 \[|P(AB)-P(A)P(B)|\leq\frac14.\]
 提示：不妨设$P(A)\leq P(B)$。注意不等式$ab\leq((a+b)/2)^2$。
@@ -76,6 +81,7 @@ ab-q&\leq ab-a-b+1=(1-a)(1-b)\\
 \paragraph{答案}$1/4$为可达到的界，例如$A=B$且$P(A)=1/2$时取等号。
 
 \subsection{作业第3题：开区间的可列表示}\label{ex:w02-h3}
+\paragraph{题目}
 求证：对任意实数$a<b$，有
 \[(a,b)=\bigcup_{k=1}^{\infty}(a,b-1/k].\]
 \basis{原笔记第1.2节常用博雷尔集合与阿基米德性质。}
@@ -90,6 +96,7 @@ ab-q&\leq ab-a-b+1=(1-a)(1-b)\\
 \paragraph{答案}该可列并表示成立。
 
 \subsection{作业第4题：无限重复试验的事件极限}\label{ex:w02-h4}
+\paragraph{题目}
 不断重复地做一个试验。设$0<p<1$，$A_n$表示前$n$次试验都不成功，且$P(A_n)=(1-p)^n$，$n\geq1$。
 \begin{enumerate}[label=(\arabic*)]
 \item 判断$A_n$是单增序列还是单减序列，并说明理由。

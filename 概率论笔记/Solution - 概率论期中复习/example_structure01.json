@@ -1,0 +1,226 @@
+{
+  "note:c1:e1": {
+    "question": "设 $n,m$ 为正整数。求下列计数问题中的不同结果数：\n\\begin{enumerate}\n\\item 从 $n$ 个不同的球中有放回地每次取一个，依次取 $m$ 次，按取出顺序排成一列。\n\\item 从 $n$ 个不同的球中无放回地取出 $m$ 个球，按顺序排成一列，其中 $m\\leq n$。\n\\item $n$ 个不同的人围圆桌坐一圈，将旋转后重合的坐法视为同一种坐法。\n\\item 从 $n$ 个不同的球中无放回地取出 $m$ 个球，不计顺序，其中 $m\\leq n$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 每次都有 $n$ 种选择，由乘法原理，结果数为\n\\[n^m.\\]\n\\item 依次有 $n,n-1,\\ldots,n-m+1$ 种选择，因此排列数为\n\\[A_n^m=n(n-1)\\cdots(n-m+1)=\\frac{n!}{(n-m)!}.\\]\n\\item 固定其中一人的位置，其余 $n-1$ 人按顺序安排，恰好消除旋转造成的重复，故圆排列数为\n\\[(n-1)!.\\]\n\\item 每个不计顺序的组合对应 $m!$ 个有序排列，因此组合数为\n\\[C_n^m=\\binom nm=\\frac{A_n^m}{m!}=\\frac{n!}{(n-m)!m!}.\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e2": {
+    "question": "随机地从半径为 $r$ 的圆中取一根弦，求该弦长度大于圆内接正三角形边长 $\\sqrt{3}r$ 的概率。设事件 $A$ 表示“弦长大于 $\\sqrt{3}r$”。\n\n\\begin{enumerate}\n\\item 以弦中点 $M$ 确定弦，规定 $M$ 在圆内均匀取值，求 $P(A)$。\n\\item 固定弦的一个端点，规定弦与该端点处切线的夹角 $\\theta$ 在 $[0,\\pi]$ 上均匀取值，求 $P(A)$。\n\\item 规定弦到圆心的距离 $D$ 在 $[0,r]$ 上均匀取值，求 $P(A)$。\n\\end{enumerate}\n说明三种结果为何不同。",
+    "solution": "“随机取弦”的说法本身并未说明等可能的参照标准，因此可以得到不同的概率。\n\\begin{enumerate}\n\\item 若以弦的中点 $M$ 确定一根弦，并规定 $M$ 在大圆内均匀取值，则弦长大于 $\\sqrt{3}r$ 当且仅当 $M$ 落在半径为 $r/2$ 的同心小圆内。因此\n\\[\nP(A)=\\dfrac{\\pi(r/2)^2}{\\pi r^2}=\\dfrac14.\n\\]\n\n\\item 若固定弦的一个端点，并规定弦与该端点处切线的夹角 $\\theta$ 在 $[0,\\pi]$ 上均匀取值，则\n\\[\nA=\\left(\\dfrac{\\pi}{3},\\dfrac{2\\pi}{3}\\right),\n\\qquad\nP(A)=\\dfrac{\\pi/3}{\\pi}=\\dfrac13.\n\\]\n\n\\item 若以弦到圆心的距离 $D$ 确定一根弦，并规定 $D$ 在 $[0,r]$ 上均匀取值，则 $A=\\{0\\leq D<r/2\\}$，从而\n\\[\nP(A)=\\dfrac{r/2}{r}=\\dfrac12.\n\\]\n\\end{enumerate}\n\n三种理解得到不同答案的原因在于：它们分别选择了不同的样本空间和等可能标准。求概率前，必须先明确随机试验的样本空间以及概率模型。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e3": {
+    "question": "在平面上画出间距为 $d$ 的一组平行直线。随机投掷一根长度为 $l$ 的针，设\n\\[\n0<l\\leq d.\n\\]\n记针与任一直线相交为事件 $A$。令 $X$ 表示针的中点到最近平行线的距离，$\\Theta$ 表示针与平行线的夹角。按照几何概型，取\n\\[\n0\\leq X\\leq \\dfrac d2,\n\\qquad\n0\\leq \\Theta\\leq \\dfrac{\\pi}{2},\n\\]\n并把 $(X,\\Theta)$ 看作在该矩形内等可能取值。\n\n\\begin{enumerate}\n\\item 求针与任一平行线相交的概率 $P(A)$。\n\\item 若独立投针 $N$ 次，其中 $H>0$ 次与直线相交，给出 $N$ 较大时 $\\pi$ 的实验估计式。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 针与直线相交当且仅当\n\\[\nX\\leq \\dfrac l2\\sin\\Theta.\n\\]\n因此，事件 $A$ 对应的面积为\n\\[\n\\int_0^{\\pi/2}\\dfrac l2\\sin\\theta\\,\\mathrm{d}\\theta\n=\\dfrac l2,\n\\]\n而样本空间的面积为 $\\dfrac d2\\cdot\\dfrac{\\pi}{2}=\\dfrac{d\\pi}{4}$。故\n\\[\nP(A)=\\dfrac{l/2}{d\\pi/4}=\\dfrac{2l}{\\pi d}.\n\\]\n\\item 若独立投针 $N$ 次，其中有 $H$ 次与直线相交，则当 $N$ 较大时，频率 $H/N$ 可近似看作 $P(A)$，从而得到 $\\pi$ 的实验估计式\n\\[\n\\pi\\approx\\dfrac{2lN}{dH}.\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e4": {
+    "question": "设 $\\Omega$ 为非空集合，$A\\subseteq\\Omega$。验证下列集合类是 $\\sigma$-域，并验证前两项所述的最小性：\n\\begin{enumerate}\n\\item $\\{\\varnothing,\\Omega\\}$ 是 $\\Omega$ 上所含事件最少的 $\\sigma$-域；\n\\item 对任意 $A\\subseteq\\Omega$，集合类\n\\[\n\\{\\varnothing,\\Omega,A,A^c\\}\n\\]\n是包含 $A$ 的最小的 $\\sigma$-域；\n\\item $\\mathcal{P}(\\Omega):=\\{A\\mid A\\subseteq\\Omega\\}$ 是 $\\Omega$ 的所有子集构成的 $\\sigma$-域。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 集合类 $\\{\\varnothing,\\Omega\\}$ 含 $\\Omega$，取补仍在其中；其中任意可列个集合的并只能是 $\\varnothing$ 或 $\\Omega$，所以它是 $\\sigma$-域。任意 $\\sigma$-域都必须含 $\\Omega$ 及其补集 $\\varnothing$，故它所含事件最少。\n\\item 将 $\\Omega$ 分为 $A$ 与 $A^c$ 两部分，所列集合恰为这两部分的所有可能并集，故取补和可列并仍为其中一个集合。它含 $\\Omega$，所以是 $\\sigma$-域。任意包含 $A$ 的 $\\sigma$-域还必须包含 $A^c,\\varnothing,\\Omega$，故所列集合类是包含 $A$ 的最小 $\\sigma$-域。若 $A$ 为空集或全集，重复项合并后即为第一项。\n\\item $\\mathcal P(\\Omega)$ 含 $\\Omega$，其任意元素的补集和任意可列个元素的并仍是 $\\Omega$ 的子集，故仍属于 $\\mathcal P(\\Omega)$。因此它是 $\\sigma$-域。\n\\end{enumerate}",
+    "kind": "验证",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e5": {
+    "question": "证明：对任意 $n$ 个事件 $A_1,\\ldots,A_n$，有\n\\[\nP\\left(\\bigcup_{r=1}^{n}A_r\\right)\n\\leq\\min_{1\\leq k\\leq n}\n\\left\\{\n\\sum_{r=1}^{n}P(A_r)-\\sum_{\\substack{1\\leq r\\leq n\\\\ r\\ne k}}P(A_r\\cap A_k)\n\\right\\}.\n\\]",
+    "solution": "固定 $k$。由有限次次可加性，\n\\[\n\\begin{aligned}\n\\sum_{r=1}^{n}P(A_r)-\\sum_{r\\ne k}P(A_r\\cap A_k)\n&=P(A_k)+\\sum_{r\\ne k}P(A_r\\cap A_k^c)\\\\\n&\\geq P\\left(A_k\\cup\\bigcup_{r\\ne k}(A_r\\cap A_k^c)\\right)\\\\\n&=P\\left(\\bigcup_{r=1}^{n}A_r\\right).\n\\end{aligned}\n\\]\n对 $k=1,\\ldots,n$ 取最小值即得结论。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e6": {
+    "question": "证明：若事件列 $\\{A_i\\}_{i\\geq1}$ 满足 $P(A_i)=0$（$i\\geq1$），则\n\\[\nP\\left(\\bigcup_{i=1}^{\\infty}A_i\\right)=0.\n\\]",
+    "solution": "由布尔不等式，\n\\[\n0\\leq P\\left(\\bigcup_{i=1}^{\\infty}A_i\\right)\n\\leq\\sum_{i=1}^{\\infty}P(A_i)=0.\n\\]",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e7": {
+    "question": "设 $\\Omega$ 是非空集合，$\\varnothing\\subsetneq A\\subsetneq\\Omega$，并令\n\\[\n\\mathscr{F}=\\{\\varnothing,\\Omega,A,A^c\\}.\n\\]\n给定 $0<p<1$，定义\n\\[\nP(\\varnothing)=0,\\qquad P(\\Omega)=1,\n\\qquad P(A)=p,\\qquad P(A^c)=1-p.\n\\]\n验证 $(\\Omega,\\mathscr F,P)$ 是概率空间，并说明此模型表示的试验。",
+    "solution": "$\\mathscr F$ 是由 $A,A^c$ 的所有并集构成的 $\\sigma$-域。所给四个概率均非负，且 $P(\\Omega)=1$。\n\n任取 $\\mathscr F$ 中两两互斥的可列事件，非空事件至多有两个。若只有一个非空事件，可列可加性直接成立；若有两个，则只能为 $A$ 与 $A^c$，且\n\\[P(A\\cup A^c)=1=p+(1-p)=P(A)+P(A^c).\\]\n若全部为空集，两边均为零。因此 $P$ 满足可列可加性，$(\\Omega,\\mathscr F,P)$ 构成概率空间，称为\\textbf{伯努利概率空间}（或伯努利概率模型），用于讨论单个事件 $A$ 是否发生。",
+    "kind": "验证",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e8": {
+    "question": "设 $\\Omega$ 是只含有限个样本点的非空集合，并取\n\\[\n\\mathscr{F}=2^\\Omega=\\{A:A\\subseteq\\Omega\\}.\n\\]\n若 $n(A)$ 表示集合 $A$ 中元素的个数，定义\n\\[\nP(A)=\\frac{n(A)}{n(\\Omega)},\\qquad A\\in\\mathscr{F},\n\\]\n验证 $(\\Omega,\\mathscr F,P)$ 是概率空间，并求每个单点事件的概率。",
+    "solution": "$\\mathscr F=2^\\Omega$ 是 $\\Omega$ 上的 $\\sigma$-域。由计数的非负性，$P(A)\\geq0$；又有 $P(\\Omega)=n(\\Omega)/n(\\Omega)=1$。\n\n若 $A_1,A_2,\\ldots$ 两两互斥，由 $\\Omega$ 有限，至多有限个 $A_i$ 非空。各非空集合的元素不重复，故\n\\[P\\left(\\bigcup_{i=1}^\\infty A_i\\right)=\\frac{n(\\bigcup_i A_i)}{n(\\Omega)}=\\sum_{i=1}^\\infty\\frac{n(A_i)}{n(\\Omega)}=\\sum_{i=1}^\\infty P(A_i).\\]\n因此它构成古典概率空间。每个 $\\omega\\in\\Omega$ 都满足\n\\[P(\\{\\omega\\})=\\frac1{n(\\Omega)}.\\]",
+    "kind": "验证",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e9": {
+    "question": "某城市有编号为 $1,2,\\ldots,N$ 的 $N$ 部卡车。独立记录遇到的 $n$ 辆卡车的编号，允许重复，且每次记录到各编号的概率均为 $1/N$。求记录到的最大编号为 $k$（$1\\leq k\\leq N$）的概率。",
+    "solution": "令 $B_k$ 表示最大编号恰为 $k$，$A_k$ 表示最大编号不超过 $k$。则\n\\[\nB_1=A_1,\\qquad B_k=A_k\\setminus A_{k-1}\\quad(2\\leq k\\leq N),\n\\]\n且\n\\[\nP(A_k)=\\left(\\frac{k}{N}\\right)^n.\n\\]\n因此\n\\[\nP(B_1)=\\frac{1}{N^n},\n\\]\n而当 $2\\leq k\\leq N$ 时，\n\\[\nP(B_k)=P(A_k)-P(A_{k-1})\n=\\frac{k^n-(k-1)^n}{N^n}.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "明确原解采用的等可能抽样条件，分开题面和外附证明。"
+  },
+  "note:c1:e10": {
+    "question": "在有 $n$ 人参加的晚会上，每人带来一顶各不相同的帽子。离场时，每人从随机混放的帽子中无放回地抽取一顶，所有分配方式等可能。求：\n\\begin{enumerate}\n\\item 至少有一人抽到自己帽子的概率。\n\\item 当 $n\\to\\infty$ 时，至少有一人抽到自己帽子与无人抽到自己帽子的概率极限。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 给人和帽子分别编号 $1,2,\\ldots,n$，令 $A_i$ 表示第 $i$ 人抽到自己的帽子。对任意\n$1\\leq i_1<i_2<\\cdots<i_r\\leq n$，有\n\\[\nP(A_{i_1}\\cap\\cdots\\cap A_{i_r})=\\frac{(n-r)!}{n!}.\n\\]\n同阶交事件共有 $\\binom{n}{r}$ 个，故\n\\[\n\\sum_{1\\leq i_1<\\cdots<i_r\\leq n}\nP(A_{i_1}\\cap\\cdots\\cap A_{i_r})\n=\\binom{n}{r}\\frac{(n-r)!}{n!}=\\frac{1}{r!}.\n\\]\n由容斥恒等式，所求概率为\n\\[\nP\\left(\\bigcup_{i=1}^{n}A_i\\right)\n=\\sum_{r=1}^{n}\\frac{(-1)^{r+1}}{r!}\n=1-\\sum_{r=0}^{n}\\frac{(-1)^r}{r!}.\n\\]\n\\item 因此\n\\[\n\\lim_{n\\to\\infty}P\\left(\\bigcup_{i=1}^{n}A_i\\right)\n=1-e^{-1}\\approx0.6321,\n\\]\n而无人抽到自己帽子的概率趋于 $e^{-1}\\approx0.3679$。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e11": {
+    "question": "十对夫妻随机地沿圆桌坐下，求没有妻子坐在丈夫身边的概率。",
+    "solution": "令 $A_i$ 表示第 $i$ 对夫妻相邻（$i=1,2,\\ldots,10$）。总坐法数为\n$(20-1)!=19!$。指定 $r$ 对夫妻相邻时，将每对夫妻看作一个整体，并计入夫妻内部的两种次序，故\n\\[\nP(A_{i_1}\\cap\\cdots\\cap A_{i_r})\n=\\frac{2^r(20-r-1)!}{19!}\n=\\frac{2^r(19-r)!}{19!}.\n\\]\n由容斥恒等式，至少有一对夫妻相邻的概率为\n\\[\nP\\left(\\bigcup_{i=1}^{10}A_i\\right)\n=\\sum_{r=1}^{10}(-1)^{r+1}\\binom{10}{r}\n\\frac{2^r(19-r)!}{19!}\n\\approx0.6605.\n\\]\n所以，没有夫妻相邻的概率约为\n\\[\n1-0.6605=0.3395.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e12": {
+    "question": "从一副 $54$ 张的扑克牌中反复抽牌，每次等可能地抽取一张，记录后放回并混匀，各次抽取相互独立。求：\n\\begin{enumerate}\n\\item 一直抽不到大王的概率；\n\\item 无穷多次抽到大王的概率。\n\\end{enumerate}",
+    "solution": "设 $E_n$ 表示第 $n$ 次抽到大王。\n\n\\begin{enumerate}\n\\item 令\n\\[\nC_n=\\bigcap_{k=1}^{n}E_k^c.\n\\]\n则 $C_n$ 表示前 $n$ 次均未抽到大王，且 $\\{C_n\\}$ 为递减序列。令\n\\[\nC=\\bigcap_{n=1}^{\\infty}C_n,\n\\]\n则 $C$ 表示始终抽不到大王。由独立性和概率的上连续性，\n\\[\nP(C)=\\lim_{n\\to\\infty}P(C_n)\n=\\lim_{n\\to\\infty}\\left(\\frac{53}{54}\\right)^n=0.\n\\]\n因此，最终至少抽到一次大王的概率为 $1$。\n\\item 令 $B$ 表示无穷多次抽到大王，则\n\\[\nB=\\limsup_{n\\to\\infty}E_n\n=\\bigcap_{n=1}^{\\infty}\\bigcup_{k=n}^{\\infty}E_k.\n\\]\n再令\n\\[\nB_n=\\bigcup_{k=n}^{\\infty}E_k.\n\\]\n事件 $B_n$ 表示“从第 $n$ 次抽牌起至少抽到一次大王”。由第一个问题同样的计算，\n$P(B_n^c)=0$，故 $P(B_n)=1$。由于 $\\{B_n\\}$ 为递减序列，\n\\[\nP(B)=P\\left(\\bigcap_{n=1}^{\\infty}B_n\\right)\n=\\lim_{n\\to\\infty}P(B_n)=1.\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e13": {
+    "question": "在 $\\mathscr{B}(\\mathbb{R}^d)$ 上存在唯一的测度 $\\lambda$，使得对任意半开长方体\n\\[\n(a_1,b_1]\\times(a_2,b_2]\\times\\cdots\\times(a_d,b_d]\n\\]\n（其中 $a_i\\leq b_i$，$1\\leq i\\leq d$），都有\n\\[\n\\lambda\\left((a_1,b_1]\\times\\cdots\\times(a_d,b_d]\\right)\n=(b_1-a_1)(b_2-a_2)\\cdots(b_d-a_d).\n\\]\n该测度称为 $\\mathbb{R}^d$ 上的\\textbf{Lebesgue 测度}，它给出了通常所说的长度、面积和体积。以该测度及其长方体公式为已知，验证它在 $d=1,2,3$ 时分别给出半开区间、矩形和长方体的通常长度、面积和体积。",
+    "solution": "由题设公式，当 $d=1$ 时，\n\\[\\lambda((a_1,b_1])=b_1-a_1,\\]\n正是区间的长度。当 $d=2$ 时，\n\\[\\lambda((a_1,b_1]\\times(a_2,b_2])=(b_1-a_1)(b_2-a_2),\\]\n正是矩形面积。当 $d=3$ 时，\n\\[\\lambda((a_1,b_1]\\times(a_2,b_2]\\times(a_3,b_3])=(b_1-a_1)(b_2-a_2)(b_3-a_3),\\]\n正是长方体体积。若某一边长为零，公式同样给出零。",
+    "kind": "验证",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "保留原测度存在唯一性及定义作为已知，仅验证原例所述长度、面积和体积含义，不补证测度构造定理。"
+  },
+  "note:c1:e14": {
+    "question": "独立地依次掷两枚均匀骰子。已知第一枚骰子的点数为 $4$，求两枚骰子点数之和为偶数的概率。",
+    "solution": "设 $B$ 表示“第一枚骰子的点数为 $4$”，$A$ 表示“两枚骰子点数之和为偶数”。在 $B$ 已经发生时，第二枚骰子共有 $6$ 种等可能结果；其中点数为 $2,4,6$ 时 $A$ 发生，故\n\\[\nP(A\\mid B)=\\frac{3}{6}=\\frac12.\n\\]",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e15": {
+    "question": "一串钥匙可能落在左口袋或右口袋。设 $L$ 表示“钥匙在左口袋”，$R$ 表示“钥匙在右口袋”，且\n\\[\nP(L)=0.4,\\qquad P(R)=0.4,\\qquad R\\subseteq L^{\\mathrm c}.\n\\]\n检查左口袋后发现没有钥匙，即已知 $L^{\\mathrm c}$ 发生。求此时钥匙在右口袋的条件概率 $P(R\\mid L^{\\mathrm c})$。",
+    "solution": "由 $R\\subseteq L^{\\mathrm c}$，有 $R\\cap L^{\\mathrm c}=R$，因此\n\\[\nP(R\\mid L^{\\mathrm c})\n=\\frac{P(R\\cap L^{\\mathrm c})}{P(L^{\\mathrm c})}\n=\\frac{P(R)}{1-P(L)}\n=\\frac{0.4}{0.6}\n=\\frac23.\n\\]",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e16": {
+    "question": "设 $A$ 表示“双胞胎为同卵”，$B$ 表示“双胞胎性别相同”。已知同卵双胞胎性别必然相同，异卵双胞胎两人的性别可视为独立且各以 $1/2$ 的概率为男或女，所以\n\\[\nP(B\\mid A)=1,\n\\qquad\nP(B\\mid A^{\\mathrm c})=\\frac12.\n\\]\n总体中双胞胎性别相同的比例为 $P(B)=0.64$，求同卵双胞胎所占比例 $P(A)$。",
+    "solution": "若总体中双胞胎性别相同的比例为 $P(B)=0.64$，记 $P(A)=x$。由全概率公式，\n\\[\n0.64=x+\\frac12(1-x),\n\\]\n解得\n\\[\nx=0.28.\n\\]\n因此同卵双胞胎约占 $28\\%$。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e17": {
+    "question": "罐中原有 $a$ 个红球与 $b$ 个蓝球，其中 $a,b$ 为正整数。每次随机取出一个球，放回后再加入 $c$ 个同色球，其中 $c$ 为非负整数。证明：任意第 $k$ 次取到红球的概率都等于\n\\[\n\\frac{a}{a+b}.\n\\]",
+    "solution": "对所有允许的初始红、蓝球数同时作关于 $k$ 的归纳。$k=1$ 时，红球占全部球的比例为 $a/(a+b)$，结论成立。假设对任意初始红、蓝球数，结论对第 $k-1$ 次抽取成立。\n\n以第一次抽取的颜色作分割：若第一次取到红球，则此后罐中有 $a+c$ 个红球与 $b$ 个蓝球；若第一次取到蓝球，则有 $a$ 个红球与 $b+c$ 个蓝球。\n\n由归纳假设和全概率公式，\n\\[\n\\begin{aligned}\nP(\\text{第 $k$ 次为红球})\n&=\\frac{a}{a+b}\\cdot\\frac{a+c}{a+b+c}\n+\\frac{b}{a+b}\\cdot\\frac{a}{a+b+c}\\\\\n&=\\frac{a}{a+b}.\n\\end{aligned}\n\\]\n故结论对所有 $k\\geq1$ 成立。",
+    "kind": "证明",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e18": {
+    "question": "将 $n$ 封信等可能地一一放入写有相应地址的 $n$ 个信封中。令 $E_n$ 表示没有一封信放入正确信封，记\n\\[q_n=P(E_n),\\qquad q_0=1,\\quad q_1=0.\\]\n\\begin{enumerate}\n\\item 证明当 $n\\geq2$ 时\n\\[q_n=\\frac1n q_{n-2}+\\frac{n-1}{n}q_{n-1},\\]\n并据此求 $q_n$。\n\\item 求恰有 $k$ 封信放入正确信封的概率，其中 $0\\leq k\\leq n$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 记 $D_n=n!q_n$ 为 $n$ 个元素的错排数。第一封信只能放入其余 $n-1$ 个信封。固定其中一个信封 $j$，将它对应的信记为第 $j$ 封信。\n\n若第 $j$ 封信放入第一封信的信封，则这两封信互换，余下 $n-2$ 封信须全部错排，有 $D_{n-2}$ 种。\n\n若第 $j$ 封信不放入第一封信的信封，则删去第一封信及信封 $j$，并把第一封信的信封改记为信封 $j$。剩余放法与 $n-1$ 封信的错排一一对应：第 $j$ 封信不在改记后的信封 $j$，其他信也不在各自信封；反过来可恢复原放法。因此这一类有 $D_{n-1}$ 种。\n\n两类互斥且穷尽所有错排，所以\n\\[D_n=(n-1)(D_{n-1}+D_{n-2}).\\]\n除以 $n!$ 得\n\\[q_n=\\frac1n q_{n-2}+\\frac{n-1}{n}q_{n-1}.\\]\n移项并用 $q_1-q_0=-1$，得到\n\\begin{align*}\nq_n-q_{n-1}&=-\\frac1n(q_{n-1}-q_{n-2})=\\frac{(-1)^n}{n!},\\\\\nq_n&=q_0+\\sum_{r=1}^n(q_r-q_{r-1})=\\sum_{r=0}^n\\frac{(-1)^r}{r!}.\n\\end{align*}\n\\item 先选出放置正确的 $k$ 封信，有 $\\binom nk$ 种选择，再将其余 $n-k$ 封信完全错排，有 $D_{n-k}=(n-k)!q_{n-k}$ 种。总放法有 $n!$ 种，因此\n\\[P(\\text{恰有 $k$ 封信放置正确})=\\binom nk\\frac{(n-k)!q_{n-k}}{n!}=\\frac1{k!}\\sum_{r=0}^{n-k}\\frac{(-1)^r}{r!}.\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e19": {
+    "question": "设 $A$ 表示“事故较容易发生”，$B$ 表示“发生事故”。已知\n\\[\nP(A)=0.3,\n\\qquad\nP(B\\mid A)=0.4,\n\\qquad\nP(B\\mid A^{\\mathrm c})=0.2.\n\\]\n求：\n\\begin{enumerate}\n\\item 发生事故的概率 $P(B)$。\n\\item 已发生事故时，属于事故较容易发生这一情形的条件概率 $P(A\\mid B)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由全概率公式，\n\\[\nP(B)=0.3\\times0.4+0.7\\times0.2=0.26.\n\\]\n\\item 再由贝叶斯公式，\n\\[\nP(A\\mid B)\n=\\frac{0.3\\times0.4}{0.26}\n=\\frac6{13}\n\\approx0.4615.\n\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e20": {
+    "question": "汽车以相同概率位于三扇门中的任意一扇门后；三扇门后分别藏有一辆汽车和两只山羊。参赛者先选择第 $1$ 扇门；主持人知道汽车的位置，随后一定在第 $2,3$ 扇门中打开一扇藏有山羊的门。若两扇门都可打开，主持人以相同概率选择其中一扇。已知主持人打开了第 $3$ 扇门，求不换门与换门的获胜概率，并判断是否应改选第 $2$ 扇门。",
+    "solution": "令 $A_i$ 表示“汽车在第 $i$ 扇门后”，$B$ 表示“主持人打开第 $3$ 扇门”。则\n\\[\nP(A_1)=P(A_2)=P(A_3)=\\frac13,\n\\]\n且\n\\[\nP(B\\mid A_1)=\\frac12,\n\\qquad\nP(B\\mid A_2)=1,\n\\qquad\nP(B\\mid A_3)=0.\n\\]\n因此\n\\[\nP(B)=\\frac13\\cdot\\frac12+\\frac13\\cdot1+\\frac13\\cdot0=\\frac12.\n\\]\n由贝叶斯公式，\n\\[\nP(A_1\\mid B)=\\frac13,\n\\qquad\nP(A_2\\mid B)=\\frac23.\n\\]\n所以改选第 $2$ 扇门的获胜概率为 $2/3$，应当换门。",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e21": {
+    "question": "某项血液化验对患者有 $95\\%$ 的概率检出阳性，对健康人有 $1\\%$ 的概率出现伪阳性，患者占总人口的 $0.5\\%$。记 $A$ 为患病，$B$ 为第一次阳性，$B_2$ 为第二次阳性。\n\\begin{enumerate}\n\\item 若一次化验呈阳性，求此人确实患病的条件概率 $P(A\\mid B)$。\n\\item 再次接受同样化验，假设两次化验在给定患病状态后条件独立，即\n\\[P(B_2\\mid A\\cap B)=P(B_2\\mid A)=0.95,\\qquad P(B_2\\mid A^{\\mathrm c}\\cap B)=P(B_2\\mid A^{\\mathrm c})=0.01.\\]\n求连续两次呈阳性后的患病概率 $P(A\\mid B\\cap B_2)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 设 $A$ 表示“此人患病”，$B$ 表示“第一次化验呈阳性”。则\n\\[\nP(A)=0.005,\n\\qquad\nP(B\\mid A)=0.95,\n\\qquad\nP(B\\mid A^{\\mathrm c})=0.01.\n\\]\n由贝叶斯公式，\n\\[\n\\begin{aligned}\nP(A\\mid B)\n&=\\frac{P(A)P(B\\mid A)}\n{P(A)P(B\\mid A)+P(A^{\\mathrm c})P(B\\mid A^{\\mathrm c})}\\\\\n&=\\frac{0.005\\times0.95}\n{0.005\\times0.95+(1-0.005)\\times0.01}\\\\\n&\\approx0.323.\n\\end{aligned}\n\\]\n因此，即使检验对患者的阳性检出率很高，一次阳性结果所对应的患病概率也只有约 $32.3\\%$。原因在于患病率很低，健康人数量很大，伪阳性在全部阳性结果中占据了不可忽略的比例。\n\\item 由题设的条件独立性，连续两次呈阳性后，\n\\[\n\\begin{aligned}\nP(A\\mid B\\cap B_2)\n&=\\frac{P(A)P(B\\mid A)P(B_2\\mid A)}\n{P(A)P(B\\mid A)P(B_2\\mid A)\n+P(A^{\\mathrm c})P(B\\mid A^{\\mathrm c})P(B_2\\mid A^{\\mathrm c})}\\\\\n&=\\frac{0.005\\times0.95^2}\n{0.005\\times0.95^2+0.995\\times0.01^2}\\\\\n&\\approx0.978.\n\\end{aligned}\n\\]\n连续两次阳性使后验患病概率提高到约 $97.8\\%$。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e22": {
+    "question": "一架飞机失踪，并且等可能地落在第 $1,2,3$ 号区域。设 $B_i$ 表示“飞机落在第 $i$ 个区域”，$A_i$ 表示“搜索第 $i$ 个区域后没有找到飞机”，并设\n\\[\nP(A_i\\mid B_i)=\\beta_i,\n\\qquad 0<\\beta_i<1,\n\\qquad i=1,2,3.\n\\]\n若飞机不在被搜索的区域，则在那里搜索必然找不到飞机。\n\n\\begin{enumerate}\n\\item 只搜索第 $1$ 号区域且未找到飞机，求 $P(B_i\\mid A_1)$（$i=1,2,3$）。\n\\item 随后搜索第 $2$ 号区域仍未找到飞机，求 $P(B_i\\mid A_1\\cap A_2)$（$i=1,2,3$）。\n\\item 最后搜索第 $3$ 号区域仍未找到飞机，求 $P(B_i\\mid A_1\\cap A_2\\cap A_3)$（$i=1,2,3$）。\n\\end{enumerate}",
+    "solution": "$B_1,B_2,B_3$ 构成完备事件组，且 $P(B_i)=1/3$。若给定 $B_i$，在其他区域搜索必然失败。因此计算多个搜索失败的交事件时，只留下在真实所在区域漏检的条件；不需要假设各次搜索相互独立。\n\\begin{enumerate}\n\\item 由 $P(A_1\\mid B_1)=\\beta_1$、$P(A_1\\mid B_2)=P(A_1\\mid B_3)=1$，全概率公式给出\n\\[P(A_1)=\\frac{\\beta_1+2}{3}.\\]\n用贝叶斯公式分别计算：\n\\begin{align*}\nP(B_1\\mid A_1)&=\\frac{(1/3)\\beta_1}{(\\beta_1+2)/3}=\\frac{\\beta_1}{\\beta_1+2},\\\\\nP(B_2\\mid A_1)&=P(B_3\\mid A_1)=\\frac{(1/3)\\cdot1}{(\\beta_1+2)/3}=\\frac1{\\beta_1+2}.\n\\end{align*}\n\\item 给定 $B_1$，事件 $A_2$ 必然发生，故 $P(A_1\\cap A_2\\mid B_1)=\\beta_1$；给定 $B_2$，事件 $A_1$ 必然发生，故该条件概率为 $\\beta_2$；给定 $B_3$，两次搜索均必然失败，故该条件概率为 $1$。于是\n\\[P(A_1\\cap A_2)=\\frac{\\beta_1+\\beta_2+1}{3}.\\]\n由贝叶斯公式，\n\\begin{align*}\nP(B_1\\mid A_1\\cap A_2)&=\\frac{(1/3)\\beta_1}{(\\beta_1+\\beta_2+1)/3}=\\frac{\\beta_1}{\\beta_1+\\beta_2+1},\\\\\nP(B_2\\mid A_1\\cap A_2)&=\\frac{\\beta_2}{\\beta_1+\\beta_2+1},\\\\\nP(B_3\\mid A_1\\cap A_2)&=\\frac1{\\beta_1+\\beta_2+1}.\n\\end{align*}\n\\item 给定 $B_i$，另外两个区域的搜索失败是必然事件，故\n\\[P(A_1\\cap A_2\\cap A_3\\mid B_i)=P(A_i\\mid B_i)=\\beta_i.\\]\n因此\n\\[P(A_1\\cap A_2\\cap A_3)=\\frac{\\beta_1+\\beta_2+\\beta_3}{3},\\]\n进而\n\\[P(B_i\\mid A_1\\cap A_2\\cap A_3)=\\frac{(1/3)\\beta_i}{(\\beta_1+\\beta_2+\\beta_3)/3}=\\frac{\\beta_i}{\\beta_1+\\beta_2+\\beta_3},\\quad i=1,2,3.\\]\n每次搜索失败后，都可将当前后验概率作为下一次更新的先验概率。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将三个搜索阶段分别列为明确求后验概率的子问并逐项展开贝叶斯证明，不引入搜索独立假设。"
+  },
+  "note:c1:e23": {
+    "question": "设 $a$ 为正整数，质点从整数点 $i\\in\\{0,1,\\ldots,a\\}$ 出发。只要质点位于 $1,2,\\ldots,a-1$ 中，它就以概率 $p$ 向右移动一步，以概率 $q=1-p$ 向左移动一步，其中 $0<p<1$；一旦到达 $0$ 或 $a$，便停留在那里。\n\n\\begin{enumerate}\n\\item 分别求质点最终到达 $0$ 与到达 $a$ 的概率，并说明它是否以概率 $1$ 被端点吸收。\n\\item 将位置解释为甲的赌本：甲、乙初始赌本为 $i$ 元和 $a-i$ 元，每局胜者从败者处获得 $1$ 元，甲每局获胜概率为 $p$。固定 $i$，令 $a\\to\\infty$，求甲最终破产概率的极限。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 设 $E_i$ 表示“质点从 $i$ 出发”，$F$ 表示“最终到达 $0$”，并记\n\\[\nQ_i=P(F\\mid E_i).\n\\]\n按第一次移动的方向使用全概率公式，得到\n\\[\nQ_i=pQ_{i+1}+qQ_{i-1},\n\\qquad 1\\leq i\\leq a-1,\n\\]\n边界条件为\n\\[\nQ_0=1,\n\\qquad\nQ_a=0.\n\\]\n递推式可改写为\n\\[\nQ_{i+1}-Q_i=\\frac{q}{p}(Q_i-Q_{i-1}).\n\\]\n\n令 $d_j=Q_j-Q_{j-1}$。当 $p=q=1/2$ 时，$d_j=d_1$，故\n\\[Q_i=1+id_1,\\qquad 0=Q_a=1+ad_1.\\]\n由此得到\n\\[\nQ_i=\\frac{a-i}{a}.\n\\]\n当 $p\\ne q$ 时，令 $\\rho=q/p\\ne1$，则 $d_j=\\rho^{j-1}d_1$。对差分求和，\n\\begin{align*}\nQ_i&=1+d_1\\sum_{j=1}^i\\rho^{j-1}=1+d_1\\frac{1-\\rho^i}{1-\\rho},\\\\\n0=Q_a&=1+d_1\\frac{1-\\rho^a}{1-\\rho}.\n\\end{align*}\n消去 $d_1$，得到\n\\[\nQ_i\n=\\frac{\\left(\\dfrac qp\\right)^i-\\left(\\dfrac qp\\right)^a}\n{1-\\left(\\dfrac qp\\right)^a}.\n\\]\n因此\n\\[\nP(F\\mid E_i)=\n\\begin{cases}\n\\dfrac{\\left(\\dfrac qp\\right)^i-\\left(\\dfrac qp\\right)^a}\n{1-\\left(\\dfrac qp\\right)^a},&p\\ne q,\\\\[1.2em]\n\\dfrac{a-i}{a},&p=q=\\dfrac12.\n\\end{cases}\n\\]\n\n同理，若 $M$ 表示“最终到达 $a$”，则\n\\[\nP(M\\mid E_i)=\n\\begin{cases}\n\\dfrac{1-\\left(\\dfrac qp\\right)^i}\n{1-\\left(\\dfrac qp\\right)^a},&p\\ne q,\\\\[1.2em]\n\\dfrac{i}{a},&p=q=\\dfrac12.\n\\end{cases}\n\\]\n两式相加得到\n\\[\nP(F\\cup M\\mid E_i)=P(F\\mid E_i)+P(M\\mid E_i)=1,\n\\]\n即质点以概率 $1$ 被某一个端点吸收。\n\\item 这个模型也可解释为赌徒破产问题：甲、乙的初始赌本分别为 $i$ 元和 $a-i$ 元，每局胜者从败者处获得 $1$ 元，甲每局获胜的概率为 $p$。固定甲的初始赌本 $i$，令乙的初始赌本趋于无穷，即令 $a\\to\\infty$，则\n\\[\n\\lim_{a\\to\\infty}P(F\\mid E_i)=\n\\begin{cases}\n\\left(\\dfrac qp\\right)^i,&p>\\dfrac12,\\\\[0.8em]\n1,&p\\leq\\dfrac12.\n\\end{cases}\n\\]\n因此，当 $i>0$ 且 $p>1/2$ 时，甲有正概率永不破产；当 $p\\leq1/2$ 时，面对拥有无限赌资的对手，甲以概率 $1$ 破产。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "原题明确",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e24": {
+    "question": "向区间 $[0,1]$ 内均匀随机投入一个粒子，以下区间表示粒子落入其中的事件。分别判断每对事件是否互斥、是否相互独立：\n\\begin{enumerate}\n\\item \\[\nA_1=\\left[0,\\frac12\\right],\n\\qquad\nB_1=\\left[\\frac14,\\frac34\\right].\n\\]\n\\item \\[\nA_2=\\left[\\frac15,\\frac13\\right],\n\\qquad\nB_2=\\left[\\frac14,1\\right].\n\\]\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 有\n\\[\nA_1\\cap B_1=\\left[\\frac14,\\frac12\\right],\n\\]\n并且\n\\[\nP(A_1)=\\frac12,\n\\qquad\nP(B_1)=\\frac12,\n\\qquad\nP(A_1\\cap B_1)=\\frac14=P(A_1)P(B_1).\n\\]\n所以 $A_1$ 与 $B_1$ 不互斥，但相互独立。\n\\item 有\n\\[\nA_2\\cap B_2=\\left[\\frac14,\\frac13\\right],\n\\]\n且\n\\[\nP(A_2)=\\frac{2}{15},\n\\qquad\nP(B_2)=\\frac34,\n\\qquad\nP(A_2\\cap B_2)=\\frac1{12}\\ne\\frac1{10}=P(A_2)P(B_2).\n\\]\n所以 $A_2$ 与 $B_2$ 既不互斥，也不相互独立。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e25": {
+    "question": "独立地掷两枚均匀骰子。令 $E$ 表示“两枚骰子的点数之和为 $7$”，$F$ 表示“第一枚骰子的点数为 $4$”，$G$ 表示“第二枚骰子的点数为 $3$”。判断 $E,F,G$ 是否两两独立、是否相互独立。",
+    "solution": "有\n\\[\nP(E)=P(F)=P(G)=\\frac16,\n\\]\n并且\n\\[\nP(E\\cap F)=P(E\\cap G)=P(F\\cap G)=P(E\\cap F\\cap G)=\\frac1{36}.\n\\]\n因此\n\\[\nP(E\\cap F)=P(E)P(F),\n\\qquad\nP(E\\cap G)=P(E)P(G),\n\\qquad\nP(F\\cap G)=P(F)P(G),\n\\]\n所以 $E,F,G$ 两两独立。但是\n\\[\nP(E\\cap F\\cap G)=\\frac1{36}\n\\ne\\frac1{216}=P(E)P(F)P(G),\n\\]\n故它们并不相互独立。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e26": {
+    "question": "袋中有 $4$ 个球：一个只涂白色，一个只涂蓝色，一个只涂红色，另一个同时涂有白、蓝、红三色。等可能地取出一个球。设 $A,B,C$ 分别表示“取出的球涂有白色、蓝色、红色”。判断 $A,B,C$ 是否两两独立、是否相互独立。",
+    "solution": "有\n\\[\nP(A)=P(B)=P(C)=\\frac12,\n\\]\n且\n\\[\nP(A\\cap B)=P(A\\cap C)=P(B\\cap C)=P(A\\cap B\\cap C)=\\frac14.\n\\]\n因此\n\\[\nP(A\\cap B)=P(A)P(B),\n\\quad\nP(A\\cap C)=P(A)P(C),\n\\quad\nP(B\\cap C)=P(B)P(C),\n\\]\n所以 $A,B,C$ 两两独立；但\n\\[\nP(A\\cap B\\cap C)=\\frac14\n\\ne\\frac18=P(A)P(B)P(C),\n\\]\n故它们不相互独立。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e27": {
+    "question": "进行独立重复伯努利试验，每次成功的概率为 $p$，失败的概率为 $q=1-p$。\n其中 $0<p<1$。求：\n\\begin{enumerate}\n\\item 前 $n$ 次中恰好成功 $k$ 次的概率（$0\\leq k\\leq n$）。\n\\item 第一次成功发生在第 $k$ 次的概率（$k\\geq1$）。\n\\item 第 $r$ 次成功发生在第 $k$ 次的概率（$1\\leq r\\leq k$）。\n\\item 永远不成功及最终至少成功一次的概率。\n\\item 第 $n$ 次成功出现在第 $m$ 次失败之前的概率（$m,n\\geq1$），分别按第 $n$ 次成功前的失败次数、第 $m$ 次失败前的成功次数、前 $m+n-1$ 次成功总数分类，写出三种等价形式。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 指定某 $k$ 次成功、其余 $n-k$ 次失败，概率为 $p^kq^{n-k}$。成功位置有 $\\binom nk$ 种，各种情况互斥，故概率为\n\\[\\binom nk p^kq^{n-k}.\\]\n\\item 前 $k-1$ 次必须失败，第 $k$ 次成功，由独立性得\n\\[q^{k-1}p.\\]\n\\item 前 $k-1$ 次中须恰好有 $r-1$ 次成功，第 $k$ 次还须成功，故概率为\n\\[\\binom{k-1}{r-1}p^{r-1}q^{k-r}p=\\binom{k-1}{r-1}p^rq^{k-r}.\\]\n\\item 令 $F_n$ 表示前 $n$ 次全部失败，则\n\\[F_n\\downarrow\\bigcap_{n=1}^\\infty F_n=\\{\\text{永远不成功}\\}.\\]\n由概率的上连续性，\n\\[P(\\text{永远不成功})=\\lim_{n\\to\\infty}P(F_n)=\\lim_{n\\to\\infty}q^n=0.\\]\n所以最终至少成功一次的概率为 $1$。\n\\item 记所求事件为 $E$。若第 $n$ 次成功前恰有 $k$ 次失败，则 $0\\leq k\\leq m-1$；前 $n+k-1$ 次有 $n-1$ 次成功，下一次成功。因此\n\\[P(E)=\\sum_{k=0}^{m-1}\\binom{k+n-1}{n-1}p^nq^k.\\]\n若按第 $m$ 次失败前的成功次数 $k$ 分类，则 $E$ 等价于 $k\\geq n$。第 $m$ 次失败发生在第 $k+m$ 次，故\n\\[P(E)=\\sum_{k=n}^{\\infty}\\binom{k+m-1}{k}p^kq^m.\\]\n将成功与失败互换，上一项说明以后至少还会失败一次的概率为 $1$。每次失败后的剩余试验仍为同样的独立重复试验，重复此论证并作有限次归纳，可知第 $m$ 次失败以概率 $1$ 最终发生。因此上述分类遗漏的事件只有零概率。\n\n也可考察前 $m+n-1$ 次试验：$E$ 发生当且仅当其中至少有 $n$ 次成功。若至少有 $n$ 次成功，则失败至多 $m-1$ 次，第 $n$ 次成功已发生而第 $m$ 次失败尚未发生；反之，若成功至多 $n-1$ 次，则已有至少 $m$ 次失败，第 $m$ 次失败先发生。因此\n\\[P(E)=\\sum_{k=n}^{m+n-1}\\binom{m+n-1}{k}p^kq^{m+n-1-k}.\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e28": {
+    "question": "甲、乙约定先胜 $t$ 局者获得全部赌注。比赛在甲已胜 $r$ 局、乙已胜 $s$ 局时中止，其中 $r<t$、$s<t$。以后每局甲获胜的概率为 $p$，且各局相互独立。求甲、乙最终获胜的概率，并说明中止时应如何分配全部赌注。",
+    "solution": "有\n\\[\n\\begin{aligned}\nP(\\text{甲最终先胜 }t\\text{ 局})\n&=P(t-r\\text{ 次成功发生在 }t-s\\text{ 次失败之前})\\\\\n&=\\sum_{k=0}^{t-s-1}\n\\binom{k+t-r-1}{t-r-1}p^{t-r}(1-p)^k.\n\\end{aligned}\n\\]\n合理的分配方式是按甲、乙最终先胜 $t$ 局的概率分配赌注。记上式结果为 $u$，则乙最终先胜 $t$ 局的概率为 $1-u$，甲、乙应分别取得赌注的 $u$ 与 $1-u$ 部分。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e29": {
+    "question": "进行独立重复试验。每次试验中，互斥事件 $A,B$ 发生的概率分别为 $p_A,p_B$，并设 $p_A+p_B>0$。求 $A$ 先于 $B$ 发生的概率，分别用按首次出现时刻求和和按第一次试验分类两种方法计算。",
+    "solution": "$A$ 首次出现且早于 $B$ 发生在第 $n$ 次，当且仅当前 $n-1$ 次二者均未发生，第 $n$ 次发生 $A$。这些事件两两互斥，故\n\n\\[\n\\begin{aligned}\nP(A\\text{ 先于 }B\\text{ 发生})\n&=\\sum_{n=1}^{\\infty}(1-p_A-p_B)^{n-1}p_A\\\\\n&=\\frac{p_A}{p_A+p_B}.\n\\end{aligned}\n\\]\n也可以令所求概率为 $x$。按第一次试验分类，\n\\[\nx=p_A+(1-p_A-p_B)x,\n\\]\n解得同一结果。",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e30": {
+    "question": "设 $s>1$，在正整数集合 $\\mathbb Z_{>0}$ 上定义\n\\[\nP(A)=\\frac{\\displaystyle\\sum_{k\\in A}k^{-s}}\n{\\displaystyle\\sum_{k=1}^{\\infty}k^{-s}}.\n\\]\n将所有素数依次记为 $p_1,p_2,\\ldots$，令\n\\[\nA_i=\\{mp_i:m\\in\\mathbb Z_{>0}\\}.\n\\]\n\\begin{enumerate}\n\\item 证明事件列 $A_1,A_2,\\ldots$ 相互独立。\n\\item 利用概率的连续性证明欧拉乘积公式\n\\[\\sum_{k=1}^{\\infty}\\frac1{k^s}=\\prod_{i=1}^{\\infty}\\left(1-\\frac1{p_i^s}\\right)^{-1}.\\]\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 由定义，\n\\[P(A_i)=\\frac{\\sum_{m=1}^\\infty(mp_i)^{-s}}{\\sum_{k=1}^\\infty k^{-s}}=p_i^{-s}.\\]\n任取不同的 $i_1,\\ldots,i_r$，有\n\\[\nA_{i_1}\\cap\\cdots\\cap A_{i_r}\n=\\{mp_{i_1}\\cdots p_{i_r}:m\\in\\mathbb Z_{>0}\\},\n\\]\n所以\n\\[\nP(A_{i_1}\\cap\\cdots\\cap A_{i_r})\n=\\frac1{p_{i_1}^s\\cdots p_{i_r}^s}\n=\\prod_{j=1}^{r}P(A_{i_j}).\n\\]\n因此 $A_1,A_2,\\ldots$ 相互独立。\n\\item 记 $C_n=\\bigcap_{i=1}^n A_i^{\\mathrm c}$，则 $C_n$ 递减。对每个 $n$，由有限个独立事件的补事件仍相互独立，\n\\[P(C_n)=\\prod_{i=1}^n(1-p_i^{-s}).\\]\n又因为每个大于 $1$ 的正整数至少有一个素因子，\n\\[\n\\{1\\}=\\bigcap_{i=1}^{\\infty}A_i^{\\mathrm c}.\n\\]\n由概率的上连续性和独立性，\n\\[\nP(\\{1\\})\n=\\prod_{i=1}^{\\infty}\\left(1-\\frac1{p_i^s}\\right).\n\\]\n另一方面，\n\\[\nP(\\{1\\})=\\left(\\sum_{k=1}^{\\infty}\\frac1{k^s}\\right)^{-1}.\n\\]\n故得到欧拉乘积公式\n\\[\n\\sum_{k=1}^{\\infty}\\frac1{k^s}\n=\\prod_{i=1}^{\\infty}\\left(1-\\frac1{p_i^s}\\right)^{-1}.\n\\]\n\\end{enumerate}",
+    "kind": "证明",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e31": {
+    "question": "子试验 $1$ 为掷一枚均匀骰子，$\\Omega_1=\\{1,2,3,4,5,6\\}$；子试验 $2$ 为从红、白、蓝三个球中等概率取一个，$\\Omega_2=\\{\\text{红},\\text{白},\\text{蓝}\\}$。两个子试验相互独立。\n\\begin{enumerate}\n\\item 求每个联合结果 $(i,c)\\in\\Omega_1\\times\\Omega_2$ 的概率。\n\\item 对任意 $A\\subseteq\\Omega_1$、$B\\subseteq\\Omega_2$，验证 $P(A\\times B)=P_1(A)P_2(B)$。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 每个联合结果 $(i,c)\\in\\Omega_1\\times\\Omega_2$ 的概率为\n\\[\nP(\\{(i,c)\\})=\\frac16\\cdot\\frac13=\\frac1{18}.\n\\]\n\\item $A\\times B$ 中共有 $n(A)n(B)$ 个联合结果，每个结果的概率为 $1/18$，故\n\\[P(A\\times B)=\\frac{n(A)n(B)}{18}=\\frac{n(A)}6\\frac{n(B)}3=P_1(A)P_2(B).\\]\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  },
+  "note:c1:e32": {
+    "question": "先掷一枚均匀骰子。若点数为偶数，则从红、白两球中等概率取一个；若点数为奇数，则取蓝球。用\n\\[\np(\\omega_1,\\{\\omega_2\\})\n=P(\\text{第二步取出 }\\omega_2\\mid\\text{第一步点数为 }\\omega_1)\n\\]\n表示转移概率。其中 $\\Omega_1=\\{1,2,3,4,5,6\\}$，$\\Omega_2=\\{\\text{红},\\text{白},\\text{蓝}\\}$。\n\\begin{enumerate}\n\\item 列出各点数条件下取出各颜色球的转移概率。\n\\item 对任意 $A\\subseteq\\Omega_1$、$B\\subseteq\\Omega_2$，写出联合概率 $P(A\\times B)$ 的表达式。\n\\item 求取出红球、骰子点数为 $2$、以及点数为 $2$ 且取出红球的概率，并判断两个子试验是否独立。\n\\end{enumerate}",
+    "solution": "\\begin{enumerate}\n\\item 若 $\\omega_1=2,4,6$，则\n\\[\np(\\omega_1,\\{\\text{红}\\})=p(\\omega_1,\\{\\text{白}\\})=\\frac12,\n\\qquad\np(\\omega_1,\\{\\text{蓝}\\})=0;\n\\]\n若 $\\omega_1=1,3,5$，则\n\\[\np(\\omega_1,\\{\\text{红}\\})=p(\\omega_1,\\{\\text{白}\\})=0,\n\\qquad\np(\\omega_1,\\{\\text{蓝}\\})=1.\n\\]\n\\item 由全概率公式，对事件 $A\\subseteq\\Omega_1$ 和颜色集合 $B\\subseteq\\Omega_2$，联合概率可写为\n\\[\nP(A\\times B)\n=\\sum_{\\omega_1\\in A}P_1(\\{\\omega_1\\})\n\\sum_{\\omega_2\\in B}p(\\omega_1,\\{\\omega_2\\}).\n\\]\n\\item 有\n\\[\nP(\\text{取出红球})=\\frac14,\n\\qquad\nP(\\text{骰子点数为 }2)=\\frac16,\n\\]\n而\n\\[\nP(\\text{点数为 }2\\text{ 且取出红球})=\\frac1{12}\n\\ne\\frac16\\cdot\\frac14.\n\\]\n所以两个子试验不独立。\n\\end{enumerate}",
+    "kind": "解答",
+    "question_basis": "按原例已有内容整理所求",
+    "changes": "将已知和所求集中为题面，保留原计算并对应解答。"
+  }
+}

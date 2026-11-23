@@ -13,7 +13,9 @@
 
 教材原题核对用户提供的李增沪、张梅、何辉《概率论（上册）》2025年版。本地PDF的页序比书页大15。引用概念和方法以当前原笔记为准；教材习题未附解答时，本册解答不声称是教材原解。
 
-`notes01.tex` 至 `notes03.tex` 由 `extract_notes.py` 从原笔记提取；各例题附原节名、例题名及源码行号。`week01.tex` 至 `week12.tex` 保存逐周题面和解答，由主入口用 `input` 合订。`build_indexes.py` 从各周实际答案生成 `answers.tex` 与覆盖清单。原笔记源码不被生成器修改。
+`notes01.tex` 至 `notes03.tex` 由 `extract_notes.py` 从原笔记提取概念与结论，并结合 `example_structure01.json` 至 `example_structure03.json` 中的题目、解答分组重新生成。各例题保留原节名、例题名及源码行号；原例未单独列出所求时，按该例已有内容明确计算、证明或验证的目标，不把解答直接接在背景条件之后。多问例题先集中列完题目，再逐问解答。
+
+`week01.tex` 至 `week12.tex` 保存逐周题面和解答，由主入口用 `input` 合订；各题以“题目”标出已知与所求。`build_indexes.py` 从各周实际答案生成 `answers.tex` 与覆盖清单。原笔记源码不被生成器修改。
 
 生成与编译：
 

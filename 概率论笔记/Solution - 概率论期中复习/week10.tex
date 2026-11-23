@@ -2,6 +2,7 @@
 \section{第十周：联合分布与边缘分布}
 
 \subsection{教材第72页第1题}\label{ex:w10-b72-1}
+\paragraph{题目}
 从 $1,2,\ldots,n$ 中随机选取一个数记为 $\eta$，再从 $1,2,\ldots,\eta$ 中随机选取一数记为 $\xi$。求 $(\xi,\eta)$ 的联合分布和边缘分布。
 \basis{原笔记第3章第1节“离散型随机向量的联合分布列与边缘分布列”，第3节“离散型条件分布列与条件分布函数”。}
 \paragraph{思路}先按选取顺序相乘得到联合概率，再沿另一坐标求和。
@@ -22,6 +23,7 @@ P(\eta=j)=\sum_{i=1}^j\frac1{nj}=\frac1n,\qquad j=1,\ldots,n.
 \paragraph{答案}联合分布为 $p(i,j)=1/(nj)$（$1\leq i\leq j\leq n$）；两个边缘分布如上。
 
 \subsection{教材第72页第2题}\label{ex:w10-b72-2}
+\paragraph{题目}
 设 $(\xi,\eta)$ 为绝对连续型随机向量。证明 $P(\xi=\eta)=0$。
 \basis{原笔记第3章第1节“联合密度的基本性质”及例“各分量连续型不保证向量连续型”。}
 \paragraph{思路}把等值事件写成平面上对角线的概率，对联合密度积分。
@@ -40,6 +42,7 @@ P(\xi=\eta)=\iint_{\{x=y\}}f(x,y)\,dx\,dy
 \paragraph{答案}$P(\xi=\eta)=0$。
 
 \subsection{教材第72页第4题}\label{ex:w10-b72-4}
+\paragraph{题目}
 随机向量 $(\xi,\eta)$ 的联合分布密度为
 \[
 p(x,y)=ae^{-(2x+y)}I_{\{x>0\}}I_{\{y>0\}}.
@@ -76,6 +79,7 @@ P(\xi+\eta\leq2)
 \paragraph{答案}$a=2$；$f_\xi(x)=2e^{-2x}I_{\{x>0\}}$；后两问为 $(1-e^{-4})(1-e^{-1})$、$(1-e^{-2})^2$。
 
 \subsection{教材第72页第5题}\label{ex:w10-b72-5}
+\paragraph{题目}
 设随机向量 $(\xi,\eta)$ 的联合分布密度为
 \[
 p(x,y)=3(1-x)I_{\{0<x<y<1\}}.
@@ -101,6 +105,7 @@ f_\eta(y)=\int_0^y3(1-x)\,dx=3y-\frac32y^2.
 \paragraph{答案}$f_\xi(x)=3(1-x)^2I_{\{0<x<1\}}$，$f_\eta(y)=(3y-\frac32y^2)I_{\{0<y<1\}}$。
 
 \subsection{教材第72页第6题}\label{ex:w10-b72-6}
+\paragraph{题目}
 函数
 \[
 F(x,y)=(1-e^{-xy})I_{\{x>0,y>0\}}
@@ -120,6 +125,7 @@ P(1<X\leq2,1<Y\leq2)
 \paragraph{答案}不是二维概率分布函数。
 
 \subsection{教材第81页第4题}\label{ex:w10-b81-4}
+\paragraph{题目}
 设随机向量 $(\xi,\eta)$ 的联合分布密度为
 \[
 p(x,y)=4xyI_{\{0<x,y<1\}}.
@@ -135,6 +141,7 @@ p(x,y)=4xyI_{\{0<x,y<1\}}.
 \paragraph{答案}$f_\xi(x)=2xI_{\{0<x<1\}}$、$f_\eta(y)=2yI_{\{0<y<1\}}$，且二者独立。
 
 \subsection{作业第2题：由事件独立性确定联合分布}\label{ex:w10-h2}
+\paragraph{题目}
 已知 $(X,Y)$ 的联合分布列如下，其中 $a,b$ 是常数，事件 $\{X=1\}$ 和 $\{X+Y=1\}$ 相互独立。
 \[
 \begin{array}{c|cc}
@@ -169,6 +176,7 @@ P(Y=0)=P(Y=1)=0.5.
 \paragraph{答案}$a=0.4,b=0.1$；$X$ 的分布为 $(0.8,0.2)$，$Y$ 的分布为 $(0.5,0.5)$；相互独立。
 
 \subsection{作业第3题：三项分布的边缘分布}\label{ex:w10-h3}
+\paragraph{题目}
 设正整数 $n\geq1$，$0<p_1,p_2,p_3<1$，$p_1+p_2+p_3=1$。二维离散型随机变量 $(X_1,X_2)$ 服从三项分布，即对非负整数 $k_1,k_2$，$k_1+k_2\leq n$，
 \[
 P(X_1=k_1,X_2=k_2)=\frac{n!}{k_1!k_2!(n-k_1-k_2)!}
@@ -196,6 +204,7 @@ P(X_2=k)=\binom nkp_2^k(p_1+p_3)^{n-k}
 \paragraph{答案}$X_1\sim B(n,p_1)$，$X_2\sim B(n,p_2)$，分布列如上。
 
 \subsection{作业第4题：双曲线之间的联合密度}\label{ex:w10-h4}
+\paragraph{题目}
 设 $(X,Y)$ 有联合密度函数
 \[
 f(x,y)=Ax^{-3}y^{-2},\qquad 1<x,\quad x^{-1}<y<x,

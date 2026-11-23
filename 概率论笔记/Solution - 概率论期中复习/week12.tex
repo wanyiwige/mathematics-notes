@@ -2,6 +2,7 @@
 \section{第十二周：随机变量函数与次序统计量}
 
 \subsection{教材第90页第1题}\label{ex:w12-b90-1}
+\paragraph{题目}
 设随机变量 $\xi$ 和 $\eta$ 独立且都服从均匀分布 $U(0,1)$。求 $\xi+\eta$ 的分布密度。
 \basis{原笔记第3章第2节“独立随机变量求和的卷积公式”，例“两个独立均匀变量之和”。}
 \paragraph{思路}卷积积分等于区间 $(0,1)$ 与 $(z-1,z)$ 的交集长度。
@@ -18,6 +19,7 @@ f_S(s)=\begin{cases}s,&0<s\leq1,\\2-s,&1<s<2,\\0,&\text{其他}.\end{cases}
 \paragraph{答案}$\xi+\eta$ 服从上述三角形密度。
 
 \subsection{教材第90页第3题}\label{ex:w12-b90-3}
+\paragraph{题目}
 设随机变量 $\xi_1,\xi_2$ 独立且分别服从泊松分布 $P(\lambda_1)$ 和 $P(\lambda_2)$。求：（1）$\xi_1+\xi_2$ 的分布列；（2）在给定 $\xi_1+\xi_2=n$ 时 $\xi_1$ 的条件分布列。
 \basis{原笔记第3章第2节泊松分布的可加性，第3节例“给定独立泊松变量的和”。}
 \paragraph{思路}和的分布用离散卷积；条件分布用“联合概率除以条件事件概率”。
@@ -51,6 +53,7 @@ P(\xi_1=k\mid S=n)
 \paragraph{答案}$S\sim P(\lambda_1+\lambda_2)$，$\xi_1\mid(S=n)\sim B(n,\lambda_1/(\lambda_1+\lambda_2))$。
 
 \subsection{教材第90页第4题}\label{ex:w12-b90-4}
+\paragraph{题目}
 设随机变量 $\xi_1,\xi_2$ 独立且均服从指数分布 $\operatorname{Exp}(\lambda)$。证明 $\xi_1+\xi_2$ 与 $\xi_1/\xi_2$ 独立。
 \basis{原笔记第3章第5节“二维一一变换的密度公式”，例“独立 Gamma 变量的和与比例”，第2节密度分解判据。}
 \paragraph{思路}将和与比值一起作为新坐标，计算联合密度并分解。
@@ -83,6 +86,7 @@ f_V(v)=\frac{I_{\{v>0\}}}{(1+v)^2},
 \paragraph{答案}$\xi_1+\xi_2$ 与 $\xi_1/\xi_2$ 独立。
 
 \subsection{教材第90页第6题}\label{ex:w12-b90-6}
+\paragraph{题目}
 设随机变量 $\xi_1,\ldots,\xi_n$ 独立且分别服从指数分布
 $\operatorname{Exp}(\lambda_1),\ldots,\operatorname{Exp}(\lambda_n)$。求
 $\eta_n=\xi_1\wedge\cdots\wedge\xi_n$ 的分布。
@@ -106,6 +110,7 @@ f_{\eta_n}(t)=\Lambda e^{-\Lambda t}I_{\{t>0\}}.
 \paragraph{答案}$\eta_n\sim\operatorname{Exp}(\lambda_1+\cdots+\lambda_n)$。
 
 \subsection{作业第2题：Gamma--泊松条件分布}\label{ex:w12-h2}
+\paragraph{题目}
 设某天内空气中的水分含量 $W\sim\Gamma(t,\beta)$，其密度为
 \[
 f_W(w)=\frac{(\beta w)^{t-1}}{\Gamma(t)}\beta e^{-\beta w},\qquad w>0,
@@ -143,6 +148,7 @@ w^{t+n-1}e^{-(\beta+1)w},\qquad w>0,
 \paragraph{答案}$W\mid(N=n)\sim\Gamma(t+n,\beta+1)$。
 
 \subsection{作业第3题：差、积、商的密度}\label{ex:w12-h3}
+\paragraph{题目}
 设 $(X,Y)$ 的联合密度为 $f(x,y)=3y$，$0<x<y<1$，区域外为 $0$。
 （1）求 $Y-X$ 的密度；（2）求 $XY$ 的密度；（3）求 $X/Y$ 的密度。
 \basis{原笔记第3章第5节“二维一一变换的密度公式”及例“引入辅助变量求和的密度”。}
@@ -185,6 +191,7 @@ f_{X/Y}(z)=I_{\{0<z<1\}}.
 \]
 
 \subsection{作业第4题：指数样本的极差}\label{ex:w12-h4}
+\paragraph{题目}
 设 $X_1,\ldots,X_n$ 独立同分布于参数为 $\lambda$ 的指数分布。求极差 $R=X_{(n)}-X_{(1)}$ 的密度函数。
 \basis{原笔记第3章第4节“两个次序统计量的联合密度”及例“样本极差的分布”。}
 \paragraph{思路}将原笔记的极差分布函数公式代入指数分布，再对 $r$ 求导。
@@ -214,6 +221,7 @@ f_R(r)=(n-1)\lambda e^{-\lambda r}(1-e^{-\lambda r})^{n-2},
 \paragraph{答案}$n\geq2$ 时，$f_R(r)=(n-1)\lambda e^{-\lambda r}(1-e^{-\lambda r})^{n-2}I_{\{r>0\}}$；$n=1$ 时 $R=0$ 几乎必然。
 
 \subsection{作业第5题：五台发动机组成的机器寿命}\label{ex:w12-h5}
+\paragraph{题目}
 某机器里有五台发动机，寿命独立同分布，密度为 $f(t)=te^{-t}$，$t>0$，其他处为 $0$。只要五台发动机中至少有三台正常工作，机器就能正常工作。求机器正常工作时间的密度。提示：机器寿命可以表示为某个次序统计量。
 \basis{原笔记第3章第4节“次序统计量”及“单个次序统计量的密度”。}
 \paragraph{思路}机器在第三台发动机失效时停止工作，寿命为五个发动机寿命的第三次序统计量。
@@ -240,6 +248,7 @@ f_T(t)=30t(1+t)^2e^{-3t}[1-(1+t)e^{-t}]^2I_{\{t>0\}}.
 \]
 
 \subsection{作业第6题：平方和与比值的联合分布}\label{ex:w12-h6}
+\paragraph{题目}
 设 $X,Y$ 独立同分布于标准正态分布 $N(0,1)$。令 $U=X^2+Y^2$、$V=X/Y$。求 $(U,V)$ 的联合密度和边缘密度，并判断 $U,V$ 是否相互独立。
 \basis{原笔记第3章第5节“二维一一变换的密度公式”及例“标准正态变量的极坐标变换”，第2节独立性判据。}
 \paragraph{思路}变换在整个平面上不是一一的，按 $Y>0$ 与 $Y<0$ 分成两个分支，分别换元后相加。
@@ -273,6 +282,7 @@ f_V(v)=\frac1{\pi(1+v^2)},\quad v\in\R,
 \paragraph{答案}$U\sim\operatorname{Exp}(1/2)=\chi^2(2)$，$V$ 服从标准柯西分布；联合密度如上，二者独立。
 
 \subsection{作业第7题：不同指数变量的最先发生概率}\label{ex:w12-h7}
+\paragraph{题目}
 设 $X_1,\ldots,X_n$ 相互独立，且 $X_i\sim\operatorname{Exp}(\lambda_i)$，$1\leq i\leq n$。证明
 \[
 P(X_i=\min\{X_1,\ldots,X_n\})

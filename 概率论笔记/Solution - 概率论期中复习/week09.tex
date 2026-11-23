@@ -2,6 +2,7 @@
 \section{第九周：正态计算与随机变量函数的分布}
 
 \subsection{教材第58页第4题（再次布置）}\label{ex:w09-b58-4}
+\paragraph{题目}
 设 $\R$ 上的绝对连续型随机变量 $\xi$ 有密度函数 $f(x)=e^{-x-e^{-x}}$。求 $\xi$ 的分布函数 $F$（称为极值分布）。
 \basis{原笔记第2章第3节“密度与分布函数的关系”。}
 \paragraph{思路} 本题在第八周已经布置，保留此次作业题号，并沿用同一换元。
@@ -17,6 +18,7 @@ F(t)=\int_{-\infty}^{t}e^{-x}\exp(-e^{-x})\,dx
 \paragraph{答案} $F(t)=\exp(-e^{-t})$，$t\in\R$。
 
 \subsection{教材第58页第5题}\label{ex:w09-b58-5}
+\paragraph{题目}
 设随机变量 $\xi$ 服从标准正态分布 $N(0,1)$。令 $X=\sigma\xi+a$，其中 $\sigma\ne0$ 和 $a$ 为常数。证明 $X$ 服从正态分布 $N(a,\sigma^2)$。
 \basis{原笔记第2章第3节“正态分布的线性变换与标准化”；第4节例“一般连续型随机变量的线性变换”。}
 \paragraph{思路} 沿原笔记的线性密度变换，绝对值 $|\sigma|$ 同时处理正、负的尺度。
@@ -33,6 +35,7 @@ f_X(x)
 \paragraph{答案} $X\sim N(a,\sigma^2)$，密度如上。
 
 \subsection{教材第62页第1题}\label{ex:w09-b62-1}
+\paragraph{题目}
 设随机变量 $\xi$ 服从均匀分布 $U(0,1)$。求方程 $x^2+3\xi x+1=0$ 有实根的概率。
 \basis{原笔记第2章第3节“均匀分布”。}
 \paragraph{思路} 将有实根转化为判别式非负，再计算均匀随机变量落入相应区间的概率。
@@ -50,6 +53,7 @@ f_X(x)
 \paragraph{答案} $1/3$。
 
 \subsection{作业第2题：正态分布的区间概率}\label{ex:w09-h2}
+\paragraph{题目}
 设 $X\sim N(10,36)$，求以下概率（可以利用软件、计算器等，结果保留4位小数）：
 \begin{enumerate}
 \item $\P(X>5)$；
@@ -80,6 +84,7 @@ f_X(x)
 \paragraph{答案} 依次为 $0.7977$、$0.6827$、$0.8413$。
 
 \subsection{作业第3题：由分位点确定收入分布}\label{ex:w09-h3}
+\paragraph{题目}
 设某领域的物理学家的年收入近似服从正态分布。已知该群物理学家中年收入低于180000元的占25\%，而高于320000元的占25\%。
 \begin{enumerate}
 \item 近似求年收入少于200000元的概率。（结果保留4位小数）
@@ -120,6 +125,7 @@ z_{0.75}=\Phi^{-1}(0.75)\approx0.67448975.
 \paragraph{答案} $\mu=250000$、$\sigma\approx103782.1553$；两问概率分别为 $0.3150$、$0.1363$。
 
 \subsection{作业第4题：正态分位点}\label{ex:w09-h4}
+\paragraph{题目}
 设 $X\sim N(12,4)$。若 $\P(X>c)=0.1$，求 $c$（结果保留2位小数）。
 \basis{原笔记第2章第3节“正态分布的线性变换与标准化”。}
 \paragraph{思路} 右尾为 $0.1$ 对应左尾分位点 $0.9$；标准差为 $2$。
@@ -137,6 +143,7 @@ c=12+2\Phi^{-1}(0.9)\approx14.56310313.
 \paragraph{答案} $c\approx14.56$。
 
 \subsection{作业第5题：线段分割的长短比}\label{ex:w09-h5}
+\paragraph{题目}
 从长为 $L$ 的线段上随机等可能地选取一点将线段截断。设 $X$ 表示从线段左端到该断点的距离。求短的那一截长度相对于长的那一截长度之比小于 $1/4$ 的概率。
 \basis{原笔记第2章第3节“均匀分布”；第4节“先分布函数，后密度”中求取值集合的方法。}
 \paragraph{思路} 在断点位于左半段、右半段时分别解比例不等式。
@@ -164,6 +171,7 @@ c=12+2\Phi^{-1}(0.9)\approx14.56310313.
 \paragraph{答案} $2/5$。
 
 \subsection{作业第6题：由均匀分布构造指数分布}\label{ex:w09-h6}
+\paragraph{题目}
 设 $X\sim U(0,1)$，令 $Y=-\lambda^{-1}\ln X$，$\lambda>0$。求 $Y$ 的密度函数并判断 $Y$ 服从什么常用分布。
 \basis{原笔记第2章第4节“求随机变量函数密度的一般方法”；第3节“指数分布”。}
 \paragraph{思路} 变换严格递减，解 $Y\leq y$ 时必须反向改变关于 $X$ 的不等号。
@@ -184,6 +192,7 @@ f_Y(y)=\begin{cases}\lambda e^{-\lambda y},&y>0,\\0,&y\leq0.\end{cases}
 \paragraph{答案} $Y\sim\operatorname{Exp}(\lambda)$，密度为 $\lambda e^{-\lambda y}$（$y>0$），其他处取 $0$。
 
 \subsection{作业第7题：指数变量的尺度变换}\label{ex:w09-h7}
+\paragraph{题目}
 设 $X\sim\operatorname{Exp}(\lambda)$，常数 $c>0$。令 $Y=cX$，求 $Y$ 的密度函数，并判断 $Y$ 服从什么常用分布。
 \basis{原笔记第2章第4节例“用反函数公式求线性变换的密度”；第3节指数分布的率参数约定。}
 \paragraph{思路} 对线性变换使用密度公式，同时换算率参数。
@@ -198,6 +207,7 @@ f_Y(y)=\frac1c f_X(y/c)
 \paragraph{答案} $Y\sim\operatorname{Exp}(\lambda/c)$。
 
 \subsection{作业第8题：均匀变量的绝对值}\label{ex:w09-h8}
+\paragraph{题目}
 设 $X\sim U(-1/2,1/2)$。令 $Y=|X|$。求 $Y$ 的密度函数，并判断 $Y$ 服从什么常用分布。
 \basis{原笔记第2章第4节“求随机变量函数密度的一般方法”；第3节“均匀分布”。}
 \paragraph{思路} $|X|\leq y$ 等价于 $-y\leq X\leq y$，区间长度加倍。
@@ -216,6 +226,7 @@ f_Y(y)=\begin{cases}2,&0<y<1/2,\\0,&\text{其他。}\end{cases}
 \paragraph{答案} $Y\sim U(0,1/2)$。
 
 \subsection{作业第9题：指数变量的余弦}\label{ex:w09-h9}
+\paragraph{题目}
 设 $X\sim\operatorname{Exp}(1)$，令 $Y=\cos X$。求 $Y$ 的密度函数。
 \basis{原笔记第2章第4节定理“分支反函数的密度变换公式”，例“均匀随机变量的余弦变换”“倒数的小数部分与可数个反函数分支”。}
 \paragraph{思路} 余弦在正半轴有无穷多个单调分支，必须将每个原像的密度贡献相加。
@@ -248,6 +259,7 @@ f_Y(y)=\begin{cases}
 \]
 
 \subsection{作业第10题及思考题：概率积分变换}\label{ex:w09-h10}
+\paragraph{题目}
 设连续型随机变量 $X$ 的分布函数为 $F(t)$，且 $F(t)$ 严格单增。令 $Y=F(X)$（即 $Y$ 是随机变量 $X$ 和分布函数 $F$ 的复合）。求证：$Y\sim U(0,1)$。
 
 思考题：如果去掉以上 $F(t)$ 严格单增的条件，结论对吗？
