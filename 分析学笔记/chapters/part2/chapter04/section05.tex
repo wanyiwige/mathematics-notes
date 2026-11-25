@@ -1,0 +1,306 @@
+% !TEX root = ../../../../main.tex
+% 第二部分第四章第五节：场论初步
+% 暂不录入 Page1 (1).png 中两处红框内的局部运动、角速度与旋度物理推导。
+\section{场论初步}
+
+\begin{definition}
+设 $\Omega\subset\mathbb R^n$ 为区域。在时刻 $t$，若对 $\Omega$ 内每一点 $\boldsymbol x$，都有一个确定的数值 $f(\boldsymbol x,t)$ 或向量值 $\boldsymbol F(\boldsymbol x,t)$ 与之对应，则分别称其为 $\Omega$ 内的\textbf{数量场}或\textbf{向量场}。若场与时刻 $t$ 无关，称为\textbf{稳定场}；否则称为\textbf{不稳定场}。以下主要讨论稳定场。
+\end{definition}
+
+\subsection*{数量场的梯度场}
+\begin{definition}
+设 $f(x,y,z)$ 在 $\Omega\subset\mathbb R^3$ 上具有连续偏导数，称向量场
+\[
+\operatorname{grad}f=\frac{\partial f}{\partial x}\boldsymbol i
++\frac{\partial f}{\partial y}\boldsymbol j
++\frac{\partial f}{\partial z}\boldsymbol k
+\]
+为 $f$ 的\textbf{梯度场}。
+\end{definition}
+定义 Hamilton 算子
+\[
+\nabla=\boldsymbol i\frac{\partial}{\partial x}
++\boldsymbol j\frac{\partial}{\partial y}
++\boldsymbol k\frac{\partial}{\partial z},
+\]
+于是 $\operatorname{grad}f=\nabla f$。算子中的偏导数符号作用于其后的函数。
+
+\subsection*{向量场的通量与散度场}
+设 $\boldsymbol v=(P,Q,R)$ 为具有连续偏导数的向量场。通过定向曲面 $\Sigma$ 的通量为
+\[
+\Phi=\displaystyle\iint_\Sigma\boldsymbol v\cdot\boldsymbol n\,\dd S.
+\]
+若 $\Sigma$ 为简单闭曲面并取外侧，则 $\Phi>0$ 表示净流出，$\Phi<0$ 表示净流入。把曲面所围区域看作一个整体，前者表现为有“源”，后者表现为有“汇”。
+
+取 $A_0\in\Omega$。设 $V$ 为包含 $A_0$、闭包仍在 $\Omega$ 内的分片光滑小区域，记其体积为 $m(V)>0$，边界取外侧。由 Gauss 公式，
+\[
+\frac1{m(V)}\displaystyle\iint_{\partial V}\boldsymbol v\cdot\boldsymbol n\,\dd S
+=\frac1{m(V)}\iiint_V(P_x+Q_y+R_z)\,\dd x\dd y\dd z.
+\]
+令 $V$ 的直径趋于零。由于 $P_x+Q_y+R_z$ 在 $A_0$ 连续，右端趋于 $(P_x+Q_y+R_z)(A_0)$。确实，其与该值之差的绝对值不超过
+\[
+\sup_{A\in V}|(P_x+Q_y+R_z)(A)-(P_x+Q_y+R_z)(A_0)|\longrightarrow0.
+\]
+\begin{definition}
+向量场 $\boldsymbol v=(P,Q,R)$ 的\textbf{散度}定义为
+\[
+\operatorname{div}\boldsymbol v=\nabla\cdot\boldsymbol v
+=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}.
+\]
+它是一个数量场，表示单位体积的极限净流出强度，也称源强。Gauss 公式可写为
+\[
+\displaystyle\iint_{\partial\Omega}\boldsymbol v\cdot\boldsymbol n\,\dd S
+=\iiint_\Omega\nabla\cdot\boldsymbol v\,\dd x\dd y\dd z.
+\]
+\end{definition}
+
+\subsection*{向量线}
+\begin{definition}
+设 $\boldsymbol a=P\boldsymbol i+Q\boldsymbol j+R\boldsymbol k$ 为向量场。若一条正则曲线在每一点的切向量都与该点的非零向量 $\boldsymbol a$ 平行，则称它为该场的\textbf{向量线}。在 $\boldsymbol a=0$ 的点，不能用场向量确定切向方向。
+\end{definition}
+若向量线有参数表示 $\boldsymbol r(t)=(x(t),y(t),z(t))$，则在场不为零处存在非零数函数 $\lambda(t)$，使
+\[
+\boldsymbol r'(t)=\lambda(t)\boldsymbol a(\boldsymbol r(t)).
+\]
+在各分母非零时，可简写为
+\[
+\frac{\dd x}{P(x,y,z)}=\frac{\dd y}{Q(x,y,z)}=\frac{\dd z}{R(x,y,z)}.
+\]
+不含除法的写法为
+\[
+\begin{cases}
+P\,\dd y-Q\,\dd x=0,\\
+R\,\dd y-Q\,\dd z=0,\\
+R\,\dd x-P\,\dd z=0.
+\end{cases}
+\]
+三式表示切向量与场向量的叉积为零。在 $P\ne0$ 的邻域内，以 $x$ 为参数，只需解
+\[
+\frac{\dd y}{\dd x}=\frac{Q(x,y,z)}{P(x,y,z)},\qquad
+\frac{\dd z}{\dd x}=\frac{R(x,y,z)}{P(x,y,z)}.
+\]
+若 $P,Q,R\in C^1$，右端在该邻域内为 $C^1$，给定一点的局部解存在且唯一。随初值变化，所得向量线族可表示为
+\[
+x=x,\qquad y=y(x;C_1,C_2),\qquad z=z(x;C_1,C_2).
+\]
+在 $Q\ne0$ 或 $R\ne0$ 的邻域内，也可分别以 $y$ 或 $z$ 为参数。
+
+\subsection*{环量与旋度}
+\begin{definition}
+设 $\boldsymbol a=P\boldsymbol i+Q\boldsymbol j+R\boldsymbol k$ 的分量在 $\Omega$ 内具有连续偏导数。沿有向曲线 $\Gamma$ 的积分
+\[
+\int_\Gamma\boldsymbol a\cdot\dd\boldsymbol s
+=\int_\Gamma P\,\dd x+Q\,\dd y+R\,\dd z
+\]
+称为向量场沿 $\Gamma$ 的\textbf{环量}。
+
+称向量场
+\[
+\begin{aligned}
+\operatorname{rot}\boldsymbol a
+=\operatorname{curl}\boldsymbol a
+=\nabla\times\boldsymbol a
+&=\begin{vmatrix}
+\boldsymbol i&\boldsymbol j&\boldsymbol k\\
+\partial_x&\partial_y&\partial_z\\
+P&Q&R
+\end{vmatrix}\\
+&=(R_y-Q_z)\boldsymbol i+(P_z-R_x)\boldsymbol j+(Q_x-P_y)\boldsymbol k
+\end{aligned}
+\]
+为 $\boldsymbol a$ 的\textbf{旋度场}。若它在 $\Omega$ 内处处为零，则称 $\boldsymbol a$ 为\textbf{无旋场}。
+\end{definition}
+Stokes 公式可写为
+\[
+\displaystyle\iint_\Sigma\operatorname{rot}\boldsymbol a\cdot\boldsymbol n\,\dd S
+=\oint_{\partial\Sigma}\boldsymbol a\cdot\dd\boldsymbol s.
+\]
+
+在点 $M$ 处取单位向量 $\boldsymbol n$，在过 $M$ 且以 $\boldsymbol n$ 为单位法向量的平面内取小平面片 $\Sigma$，其面积记为 $m(\Sigma)>0$，边界按右手定则定向。当小片包含 $M$ 且直径趋于零时，若极限
+\[
+\lim_{\operatorname{diam}\Sigma\to0}
+\frac1{m(\Sigma)}\oint_{\partial\Sigma}\boldsymbol a\cdot\dd\boldsymbol s
+\]
+存在，称为 $\boldsymbol a$ 在 $M$ 沿方向 $\boldsymbol n$ 的\textbf{环量密度}。
+
+\begin{theorem}
+向量场在点 $M$ 沿单位方向 $\boldsymbol n$ 的环量密度为
+\[
+\operatorname{rot}\boldsymbol a(M)\cdot\boldsymbol n.
+\]
+其对方向的最大值为 $|\operatorname{rot}\boldsymbol a(M)|$；当旋度非零时，沿旋度方向达到这个最大值。当旋度为零时，各方向的环量密度均为零。
+\end{theorem}
+\begin{proof}
+小平面片上的单位法向量恒为 $\boldsymbol n$。由 Stokes 公式，
+\[
+\frac1{m(\Sigma)}\oint_{\partial\Sigma}\boldsymbol a\cdot\dd\boldsymbol s
+=\frac1{m(\Sigma)}\displaystyle\iint_\Sigma\operatorname{rot}\boldsymbol a\cdot\boldsymbol n\,\dd S.
+\]
+由于被积函数连续，其平均值与 $\operatorname{rot}\boldsymbol a(M)\cdot\boldsymbol n$ 之差的绝对值不超过
+\[
+\sup_{X\in\Sigma}|\operatorname{rot}\boldsymbol a(X)-\operatorname{rot}\boldsymbol a(M)|\longrightarrow0.
+\]
+这就证明了环量密度的表达式。再由内积的不等式，
+\[
+\operatorname{rot}\boldsymbol a(M)\cdot\boldsymbol n
+\le |\operatorname{rot}\boldsymbol a(M)|.
+\]
+旋度非零时取 $\boldsymbol n=\operatorname{rot}\boldsymbol a(M)/|\operatorname{rot}\boldsymbol a(M)|$ 即达到等号；旋度为零时结论也成立。
+\end{proof}
+
+\subsection*{Hamilton 算子与 Laplace 算子}
+将 $\nabla$ 形式地看作向量算子，它作用于数量场 $f$ 时给出梯度 $\nabla f$；与向量场作形式内积时给出散度 $\nabla\cdot\boldsymbol a$，作形式叉积时给出旋度 $\nabla\times\boldsymbol a$。这些写法均按相应分量的偏导数计算，不能把微分算子当作常向量随意交换位置。
+
+\begin{definition}
+对具有二阶连续偏导数的函数 $f$，定义 \textbf{Laplace 算子}
+\[
+\Delta=\nabla\cdot\nabla
+=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}.
+\]
+于是
+\[
+\operatorname{div}(\operatorname{grad}f)=\nabla\cdot\nabla f=\Delta f.
+\]
+满足 Laplace 方程 $\Delta u=0$ 的 $C^2$ 函数称为\textbf{调和函数}。
+\end{definition}
+在相应的定向及光滑性条件下，Gauss、Stokes 公式分别写为
+\[
+\displaystyle\iint_{\partial\Omega}\boldsymbol a\cdot\dd\boldsymbol S
+=\iiint_\Omega\nabla\cdot\boldsymbol a\,\dd V,
+\qquad
+\oint_{\partial\Sigma}\boldsymbol a\cdot\dd\boldsymbol s
+=\displaystyle\iint_\Sigma(\nabla\times\boldsymbol a)\cdot\dd\boldsymbol S,
+\]
+其中 $\dd V=\dd x\dd y\dd z$，$\dd\boldsymbol S=\boldsymbol n\,\dd S$。
+
+\subsection*{Green 第一公式与第二公式}
+设 $\Omega$ 满足 Gauss 公式的边界条件，$f,g$ 在 $\overline\Omega$ 的邻域内具有二阶连续偏导数。在边界的光滑点，定义沿单位外法向量的\textbf{法向导数}为
+\[
+\frac{\partial f}{\partial n}=\nabla f\cdot\boldsymbol n.
+\]
+\begin{proposition}
+有
+\begin{align*}
+\iiint_\Omega(\nabla f\cdot\nabla g+f\Delta g)\,\dd V
+&=\displaystyle\iint_{\partial\Omega}f\frac{\partial g}{\partial n}\,\dd S,\\
+\iiint_\Omega(f\Delta g-g\Delta f)\,\dd V
+&=\displaystyle\iint_{\partial\Omega}\left(f\frac{\partial g}{\partial n}-g\frac{\partial f}{\partial n}\right)\,\dd S.
+\end{align*}
+它们分别称为 Green 第一公式和 Green 第二公式。
+\end{proposition}
+\begin{proof}
+由各分量的乘积求导法则，
+\begin{align*}
+\nabla\cdot(g\nabla f)
+&=\partial_x(gf_x)+\partial_y(gf_y)+\partial_z(gf_z)\\
+&=g_xf_x+g_yf_y+g_zf_z+g(f_{xx}+f_{yy}+f_{zz})\\
+&=\nabla g\cdot\nabla f+g\Delta f.
+\end{align*}
+对向量场 $g\nabla f$ 应用 Gauss 公式，得到
+\[
+\iiint_\Omega(\nabla g\cdot\nabla f+g\Delta f)\,\dd V
+=\displaystyle\iint_{\partial\Omega}g\nabla f\cdot\boldsymbol n\,\dd S
+=\displaystyle\iint_{\partial\Omega}g\frac{\partial f}{\partial n}\,\dd S.
+\]
+交换 $f,g$ 即得所述第一公式。将交换后所得等式减去上式，内积项相消，便得到第二公式。
+\end{proof}
+
+\subsection*{向量微分运算的性质}
+\begin{proposition}
+设 $\boldsymbol a=(a_1,a_2,a_3)$、$\boldsymbol b=(b_1,b_2,b_3)$ 为向量场，$f$ 为数量场，$\lambda,\mu$ 为实常数。一阶运算假设相应函数为 $C^1$，以下涉及二阶运算的第六、七条假设相应函数为 $C^2$。有
+\begin{enumerate}
+\item $\operatorname{div}(\lambda\boldsymbol a+\mu\boldsymbol b)=\lambda\operatorname{div}\boldsymbol a+\mu\operatorname{div}\boldsymbol b$，即
+\[
+\nabla\cdot(\lambda\boldsymbol a+\mu\boldsymbol b)=\lambda\nabla\cdot\boldsymbol a+\mu\nabla\cdot\boldsymbol b.
+\]
+\item $\operatorname{rot}(\lambda\boldsymbol a+\mu\boldsymbol b)=\lambda\operatorname{rot}\boldsymbol a+\mu\operatorname{rot}\boldsymbol b$，即
+\[
+\nabla\times(\lambda\boldsymbol a+\mu\boldsymbol b)=\lambda\nabla\times\boldsymbol a+\mu\nabla\times\boldsymbol b.
+\]
+\item $\operatorname{div}(f\boldsymbol a)=f\operatorname{div}\boldsymbol a+\operatorname{grad}f\cdot\boldsymbol a$，即
+\[
+\nabla\cdot(f\boldsymbol a)=f(\nabla\cdot\boldsymbol a)+(\nabla f)\cdot\boldsymbol a.
+\]
+\item $\operatorname{rot}(f\boldsymbol a)=f\operatorname{rot}\boldsymbol a+\operatorname{grad}f\times\boldsymbol a$，即
+\[
+\nabla\times(f\boldsymbol a)=f(\nabla\times\boldsymbol a)+(\nabla f)\times\boldsymbol a.
+\]
+\item $\operatorname{div}(\boldsymbol a\times\boldsymbol b)=\boldsymbol b\cdot\operatorname{rot}\boldsymbol a-\boldsymbol a\cdot\operatorname{rot}\boldsymbol b$，即
+\[
+\nabla\cdot(\boldsymbol a\times\boldsymbol b)=\boldsymbol b\cdot(\nabla\times\boldsymbol a)-\boldsymbol a\cdot(\nabla\times\boldsymbol b).
+\]
+\item $\operatorname{rot}(\operatorname{grad}f)=\boldsymbol0$，即 $\nabla\times(\nabla f)=\boldsymbol0$。
+\item $\operatorname{div}(\operatorname{rot}\boldsymbol a)=0$，即 $\nabla\cdot(\nabla\times\boldsymbol a)=0$。
+\end{enumerate}
+\end{proposition}
+% 展开原文列出而未逐条给出的验证。
+\begin{proof}
+用 $x_1=x,x_2=y,x_3=z$ 记坐标，$\partial_i$ 表示对 $x_i$ 求偏导数。
+\begin{enumerate}
+\item 逐项求导并相加，得
+\[
+\sum_{i=1}^3\partial_i(\lambda a_i+\mu b_i)
+=\lambda\sum_{i=1}^3\partial_i a_i+\mu\sum_{i=1}^3\partial_i b_i.
+\]
+\item 对 $(i,j,k)=(1,2,3),(2,3,1),(3,1,2)$，旋度的第 $i$ 个分量为 $\partial_j a_k-\partial_k a_j$。由偏导数的线性性，
+\[
+\partial_j(\lambda a_k+\mu b_k)-\partial_k(\lambda a_j+\mu b_j)
+=\lambda(\partial_j a_k-\partial_k a_j)+\mu(\partial_j b_k-\partial_k b_j).
+\]
+这就逐分量给出了等式。
+\item 由乘积法则，
+\[
+\sum_{i=1}^3\partial_i(fa_i)
+=f\sum_{i=1}^3\partial_i a_i+\sum_{i=1}^3(\partial_i f)a_i.
+\]
+右端第二项正是 $\nabla f\cdot\boldsymbol a$。
+\item 仍取上述三组 $(i,j,k)$，有
+\begin{align*}
+\partial_j(fa_k)-\partial_k(fa_j)
+&=f(\partial_j a_k-\partial_k a_j)
+ +(\partial_jf)a_k-(\partial_kf)a_j.
+\end{align*}
+后两项是 $\nabla f\times\boldsymbol a$ 的第 $i$ 个分量，故等式对三个分量均成立。
+\item 展开叉积并分别求导，再按 $\boldsymbol a$ 和 $\boldsymbol b$ 的分量归并，得到
+\begin{align*}
+\nabla\cdot(\boldsymbol a\times\boldsymbol b)
+&=\partial_1(a_2b_3-a_3b_2)+\partial_2(a_3b_1-a_1b_3)
+ +\partial_3(a_1b_2-a_2b_1)\\
+&=b_1(\partial_2a_3-\partial_3a_2)+b_2(\partial_3a_1-\partial_1a_3)
+ +b_3(\partial_1a_2-\partial_2a_1)\\
+&\quad-a_1(\partial_2b_3-\partial_3b_2)-a_2(\partial_3b_1-\partial_1b_3)
+ -a_3(\partial_1b_2-\partial_2b_1)\\
+&=\boldsymbol b\cdot(\nabla\times\boldsymbol a)-\boldsymbol a\cdot(\nabla\times\boldsymbol b).
+\end{align*}
+\item 由混合偏导数相等，旋度的三个分量依次为
+\[
+\partial_y\partial_zf-\partial_z\partial_yf=0,\quad
+\partial_z\partial_xf-\partial_x\partial_zf=0,\quad
+\partial_x\partial_yf-\partial_y\partial_xf=0.
+\]
+故 $\nabla\times\nabla f=\boldsymbol0$。
+\item 直接展开，
+\begin{align*}
+\nabla\cdot(\nabla\times\boldsymbol a)
+&=\partial_1\partial_2a_3-\partial_1\partial_3a_2
+ +\partial_2\partial_3a_1-\partial_2\partial_1a_3\\
+&\quad+\partial_3\partial_1a_2-\partial_3\partial_2a_1=0.
+\end{align*}
+各分量的二阶偏导数连续，故上述六项两两抵消。
+\end{enumerate}
+\end{proof}
+
+\subsection*{分部积分公式}
+设 $f$ 与 $\boldsymbol a$ 在 $\overline\Omega$ 的邻域内为 $C^1$，且 $\Omega$ 满足 Gauss 公式的条件。由
+\[
+f\operatorname{div}\boldsymbol a=\operatorname{div}(f\boldsymbol a)-\nabla f\cdot\boldsymbol a,
+\]
+对两端积分并应用 Gauss 公式，得
+\begin{align*}
+\iiint_\Omega f\operatorname{div}\boldsymbol a\,\dd V
+&=\iiint_\Omega\operatorname{div}(f\boldsymbol a)\,\dd V
+ -\iiint_\Omega\nabla f\cdot\boldsymbol a\,\dd V\\
+&=\displaystyle\iint_{\partial\Omega}f\boldsymbol a\cdot\boldsymbol n\,\dd S
+ -\iiint_\Omega\nabla f\cdot\boldsymbol a\,\dd V.
+\end{align*}
+这表明，通过边界积分项，可以把向量场的散度运算转移到数量函数的梯度上。
