@@ -493,3 +493,355 @@ X^+=\max\{X,0\},\qquad X^-=-\min\{X,0\}.
 \end{mydefinition}
 
 \textbf{注：}\quad 积分存在时，其值可以是实数、$+\infty$ 或 $-\infty$；可积时积分为有限实数。若正部和负部的积分均为 $+\infty$，则不能用 $+\infty-(+\infty)$ 定义积分。
+
+\subsection*{几乎处处关系与积分的性质}
+
+\begin{mydefinition}{几乎处处成立}{almost-everywhere}
+设 $(\Omega,\mathcal F,\mu)$ 为测度空间。若 $A\in\mathcal F$ 满足 $\mu(A^c)=0$，则称 $A$ \textbf{几乎处处成立}，简记为 $A,\ \mathrm{a.e.}$。
+
+若一个条件除去某个可测零测集后处处成立，也称该条件几乎处处成立。例如
+\[
+X=Y,\ \mathrm{a.e.}\quad\Longleftrightarrow\quad
+\mu(\{X\ne Y\})=0,
+\]
+\[
+X\geq Y,\ \mathrm{a.e.}\quad\Longleftrightarrow\quad
+\mu(\{X<Y\})=0.
+\]
+\end{mydefinition}
+
+对 $A\in\mathcal F$，定义
+\[
+\int_A X\,d\mu:=\int_\Omega I_AX\,d\mu,
+\]
+只要右侧积分有意义。当 $X$ 的积分存在时，由
+\[
+(I_AX)^+=I_AX^+,\qquad (I_AX)^-=I_AX^-,
+\]
+以及 $0\leq I_AX^\pm\leq X^\pm$，可知右侧的两个非负部分至少有一个积分有限，所以 $\displaystyle\int_A X\,d\mu$ 也存在。
+
+\begin{proposition}{积分与几乎处处关系}{integral-almost-everywhere}
+以下有符号可测函数取实值，非负可测函数也允许取 $+\infty$。
+\begin{enumerate}
+\item 若 $X$ 的积分存在，则
+\[
+\left|\int_\Omega X\,d\mu\right|
+\leq\int_\Omega|X|\,d\mu.
+\]
+\item $X$ 可积当且仅当 $|X|$ 可积。
+\item 若 $X$ 的积分存在，且 $A\in\mathcal F$ 满足 $\mu(A)=0$，则
+\[
+\int_A X\,d\mu=0.
+\]
+\item 若 $X,Y$ 的积分分别存在，且 $X\geq Y,\ \mathrm{a.e.}$，则
+\[
+\int_\Omega X\,d\mu\geq\int_\Omega Y\,d\mu.
+\]
+\item 若 $X=Y,\ \mathrm{a.e.}$，且其中一个的积分存在，则另一个的积分也存在，且
+\[
+\int_\Omega X\,d\mu=\int_\Omega Y\,d\mu.
+\]
+\item 若 $X=0,\ \mathrm{a.e.}$，则 $X$ 可积，且 $\displaystyle\int_\Omega X\,d\mu=0$。
+\item 若 $X\geq0,\ \mathrm{a.e.}$，且 $\displaystyle\int_\Omega X\,d\mu=0$，则 $X=0,\ \mathrm{a.e.}$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+\item 由 $|X|=X^++X^-$ 及非负函数积分的可加性，
+\[
+\int_\Omega|X|\,d\mu
+=\int_\Omega X^+\,d\mu+\int_\Omega X^-\,d\mu.
+\]
+若右侧为 $+\infty$，所需不等式成立。若右侧有限，则两个积分均有限，由非负实数的差的绝对值不超过其和，得
+\[
+\left|\int_\Omega X\,d\mu\right|
+=\left|\int_\Omega X^+\,d\mu-\int_\Omega X^-\,d\mu\right|
+\leq\int_\Omega|X|\,d\mu.
+\]
+\item 若 $|X|$ 可积，由 $0\leq X^+,X^-\leq|X|$ 及非负积分的单调性，
+\[
+\max\left\{\int_\Omega X^+\,d\mu,\int_\Omega X^-\,d\mu\right\}
+\leq\int_\Omega|X|\,d\mu<+\infty,
+\]
+所以 $X$ 可积。反过来，若 $X$ 可积，则由上一项的恒等式，
+\[
+\int_\Omega|X|\,d\mu
+=\int_\Omega X^+\,d\mu+\int_\Omega X^-\,d\mu<+\infty,
+\]
+故 $|X|$ 可积。
+\item 先设 $X=\sum_{i=1}^N a_iI_{A_i}$ 为非负简单函数。由 $\mu(A)=0$，有 $\mu(A_i\cap A)=0$，所以
+\[
+\int_A X\,d\mu
+=\sum_{i=1}^N a_i\mu(A_i\cap A)=0.
+\]
+若 $X$ 为非负可测函数，取非负简单函数 $X_n\uparrow X$，则 $I_AX_n\uparrow I_AX$，由已证的简单函数逼近积分公式，
+\[
+\int_A X\,d\mu
+=\lim_{n\to\infty}\int_A X_n\,d\mu=0.
+\]
+若 $X$ 为一般实值可测函数，分别对 $X^+,X^-$ 应用上述结论，得到
+\[
+\int_\Omega I_AX^+\,d\mu
+=\int_\Omega I_AX^-\,d\mu=0.
+\]
+因此限制在 $A$ 上的积分存在，并且等于 $0-0=0$。
+\item 先设 $X,Y\geq0$，令 $N=\{X<Y\}$，则 $\mu(N)=0$，并且
+\[
+I_{N^c}X\geq I_{N^c}Y.
+\]
+由非负积分的单调性、可加性及 (3)，
+\begin{align*}
+\int_\Omega X\,d\mu
+&=\int_\Omega I_NX\,d\mu+\int_\Omega I_{N^c}X\,d\mu\\
+&=\int_\Omega I_{N^c}X\,d\mu\\
+&\geq\int_\Omega I_{N^c}Y\,d\mu
+=\int_\Omega Y\,d\mu.
+\end{align*}
+
+对一般实值函数，先比较正部和负部。若 $X^+<Y^+$，则 $Y>0$；在 $X\leq0$ 时有 $X<Y$，在 $X>0$ 时也有 $X=X^+<Y^+=Y$，所以
+\[
+\{X^+<Y^+\}\subseteq\{X<Y\}.
+\]
+若 $X^->Y^-$，则 $X<0$；在 $Y\geq0$ 时有 $X<Y$，在 $Y<0$ 时有 $X=-X^-<-Y^-=Y$，所以
+\[
+\{X^->Y^-\}\subseteq\{X<Y\}.
+\]
+故 $X^+\geq Y^+,\ \mathrm{a.e.}$，$X^-\leq Y^-,\ \mathrm{a.e.}$。应用已证的非负情形，得
+\[
+\int_\Omega X^+\,d\mu\geq\int_\Omega Y^+\,d\mu,\qquad
+\int_\Omega X^-\,d\mu\leq\int_\Omega Y^-\,d\mu.
+\]
+若 $\displaystyle\int_\Omega X\,d\mu=+\infty$ 或 $\displaystyle\int_\Omega Y\,d\mu=-\infty$，结论直接成立。其余情形下，由积分存在的定义，$\displaystyle\int_\Omega X^+\,d\mu$ 与 $\displaystyle\int_\Omega Y^-\,d\mu$ 均有限；上面两式又保证其余两个积分有限。因此可以相减，得到
+\[
+\int_\Omega X\,d\mu
+=\int_\Omega X^+\,d\mu-\int_\Omega X^-\,d\mu
+\geq\int_\Omega Y^+\,d\mu-\int_\Omega Y^-\,d\mu
+=\int_\Omega Y\,d\mu.
+\]
+\item 先对非负 $X,Y$ 分别应用 (4) 的两个方向，即得积分相等，包括积分为 $+\infty$ 的情形。
+
+对一般实值函数，由 $X=Y,\ \mathrm{a.e.}$，有 $X^+=Y^+,\ \mathrm{a.e.}$ 和 $X^-=Y^-,\ \mathrm{a.e.}$。由非负情形，
+\[
+\int_\Omega X^+\,d\mu=\int_\Omega Y^+\,d\mu,\qquad
+\int_\Omega X^-\,d\mu=\int_\Omega Y^-\,d\mu.
+\]
+若 $X$ 的积分存在，则左侧至少有一个有限，右侧也如此，所以 $Y$ 的积分存在。将这两式相减，便得所需等式。若先知 $Y$ 的积分存在，交换两者即可。
+\item 对 $X$ 与零函数应用 (5)，便有 $\displaystyle\int_\Omega X\,d\mu=0$。同时对非负函数 $|X|$ 与零函数应用 (5)，得 $\displaystyle\int_\Omega|X|\,d\mu=0$，所以由 (2)，$X$ 可积。
+\item 对每个正整数 $k$，有
+\[
+\frac1k I_{\{X>1/k\}}\leq XI_{\{X>1/k\}}\leq X,
+\qquad\mathrm{a.e.}
+\]
+中间函数非负，且积分不超过 $\displaystyle\int_\Omega X^+\,d\mu$。由 $X\geq0,\ \mathrm{a.e.}$，$X^-=0,\ \mathrm{a.e.}$，所以由 (6) 及积分为零的假设，
+\[
+\int_\Omega X^-\,d\mu=0,\qquad
+\int_\Omega X^+\,d\mu=0.
+\]
+因此中间函数的积分存在。由 (4)，
+\[
+0\leq\frac1k\mu(\{X>1/k\})
+=\int_\Omega\frac1k I_{\{X>1/k\}}\,d\mu
+\leq\int_\Omega XI_{\{X>1/k\}}\,d\mu
+\leq\int_\Omega X\,d\mu=0.
+\]
+于是每个 $\{X>1/k\}$ 都为零测集。由
+\[
+\{X>0\}=\bigcup_{k=1}^{\infty}\{X>1/k\}
+\]
+及测度的可数次可加性，
+\[
+\mu(\{X>0\})\leq\sum_{k=1}^{\infty}\mu(\{X>1/k\})=0.
+\]
+再结合 $\mu(\{X<0\})=0$，得到 $\mu(\{X\ne0\})=0$。
+\end{enumerate}
+\end{proof}
+
+\subsection*{可积函数积分的线性}
+
+\begin{mytheorem}{积分的线性}{integral-linearity}
+设 $X,Y$ 为测度空间 $(\Omega,\mathcal F,\mu)$ 上的可积实值函数。
+\begin{enumerate}
+\item 对任意实常数 $a$，$aX$ 可积，且
+\[
+\int_\Omega aX\,d\mu=a\int_\Omega X\,d\mu.
+\]
+\item $X+Y$ 可积，且
+\[
+\int_\Omega(X+Y)\,d\mu
+=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\]
+\end{enumerate}
+\end{mytheorem}
+
+\begin{proof}
+\begin{enumerate}
+\item 若 $a\geq0$，则
+\[
+(aX)^+=aX^+,\qquad (aX)^-=aX^-.
+\]
+由非负积分的齐次性及 $X$ 可积，
+\[
+\int_\Omega(aX)^+\,d\mu=a\int_\Omega X^+\,d\mu<+\infty,\qquad
+\int_\Omega(aX)^-\,d\mu=a\int_\Omega X^-\,d\mu<+\infty.
+\]
+所以 $aX$ 可积，且
+\begin{align*}
+\int_\Omega aX\,d\mu
+&=a\int_\Omega X^+\,d\mu-a\int_\Omega X^-\,d\mu\\
+&=a\int_\Omega X\,d\mu.
+\end{align*}
+若 $a<0$，正负部交换：
+\[
+(aX)^+=(-a)X^-,\qquad (aX)^-=(-a)X^+.
+\]
+由于 $-a>0$，这两个非负函数的积分均有限，故 $aX$ 可积，并且
+\begin{align*}
+\int_\Omega aX\,d\mu
+&=(-a)\int_\Omega X^-\,d\mu-(-a)\int_\Omega X^+\,d\mu\\
+&=a\int_\Omega X\,d\mu.
+\end{align*}
+\item 先验证一种非负分解的积分公式。若可积函数 $Z$ 写成 $Z=U-V$，其中 $U,V$ 均非负可积，则
+\[
+U+Z^-=V+Z^+.
+\]
+由非负积分的可加性，
+\[
+\int_\Omega U\,d\mu+\int_\Omega Z^-\,d\mu
+=\int_\Omega V\,d\mu+\int_\Omega Z^+\,d\mu.
+\]
+所有积分均有限，可以移项，得到
+\[
+\int_\Omega Z\,d\mu
+=\int_\Omega Z^+\,d\mu-\int_\Omega Z^-\,d\mu
+=\int_\Omega U\,d\mu-\int_\Omega V\,d\mu.
+\]
+
+现令 $U=X^++Y^+$、$V=X^-+Y^-$，则 $X+Y=U-V$。由于 $X,Y$ 可积，由非负积分的可加性，
+\[
+\int_\Omega U\,d\mu
+=\int_\Omega X^+\,d\mu+\int_\Omega Y^+\,d\mu<+\infty,
+\]
+\[
+\int_\Omega V\,d\mu
+=\int_\Omega X^-\,d\mu+\int_\Omega Y^-\,d\mu<+\infty.
+\]
+又由 $-V\leq X+Y\leq U$，有
+\[
+(X+Y)^+\leq U,\qquad (X+Y)^-\leq V.
+\]
+利用非负积分的单调性，两个正负部的积分均有限，所以 $X+Y$ 可积。应用刚验证的非负分解公式，
+\begin{align*}
+\int_\Omega(X+Y)\,d\mu
+&=\int_\Omega U\,d\mu-\int_\Omega V\,d\mu\\
+&=\left(\int_\Omega X^+\,d\mu+\int_\Omega Y^+\,d\mu\right)
+ -\left(\int_\Omega X^-\,d\mu+\int_\Omega Y^-\,d\mu\right)\\
+&=\left(\int_\Omega X^+\,d\mu-\int_\Omega X^-\,d\mu\right)
+ +\left(\int_\Omega Y^+\,d\mu-\int_\Omega Y^-\,d\mu\right)\\
+&=\int_\Omega X\,d\mu+\int_\Omega Y\,d\mu.
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{mytheorem}{由集合上的积分判别大小与相等}{integral-order-determination}
+设 $X,Y$ 为测度空间 $(\Omega,\mathcal F,\mu)$ 上的可积实值函数。
+\begin{enumerate}
+\item 若对每个 $A\in\mathcal F$ 都有
+\[
+\int_A X\,d\mu\geq\int_A Y\,d\mu,
+\]
+则 $X\geq Y,\ \mathrm{a.e.}$。
+\item 若对每个 $A\in\mathcal F$ 都有
+\[
+\int_A X\,d\mu=\int_A Y\,d\mu,
+\]
+则 $X=Y,\ \mathrm{a.e.}$。
+\end{enumerate}
+\end{mytheorem}
+
+\begin{proof}
+\begin{enumerate}
+\item 令 $A=\{X<Y\}\in\mathcal F$。在 $A$ 上 $X<Y$，在 $A^c$ 上两个示性函数乘积均为 $0$，所以 $I_AX\leq I_AY$ 处处成立。
+
+由 $|I_AX|\leq|X|$ 和 $|I_AY|\leq|Y|$，这两个限制函数的绝对值积分均有限，因而都是可积函数。由积分的单调性及题设，
+\[
+\int_A X\,d\mu\leq\int_A Y\,d\mu
+\leq\int_A X\,d\mu,
+\]
+故两个积分相等。再由积分的线性，
+\[
+\int_\Omega I_A(Y-X)\,d\mu
+=\int_A Y\,d\mu-\int_A X\,d\mu=0.
+\]
+函数 $I_A(Y-X)$ 非负，由非负函数积分为零的判别，它几乎处处为零。而在 $A$ 上它严格大于 $0$，在 $A^c$ 上等于 $0$，所以
+\[
+A=\{I_A(Y-X)\ne0\},\qquad\mu(A)=0.
+\]
+即 $X\geq Y,\ \mathrm{a.e.}$。
+\item 等式蕴含两个方向的不等式，分别应用 (1)，得 $X\geq Y,\ \mathrm{a.e.}$ 和 $Y\geq X,\ \mathrm{a.e.}$。因此
+\[
+\mu(\{X\ne Y\})
+\leq\mu(\{X<Y\})+\mu(\{Y<X\})=0,
+\]
+即 $X=Y,\ \mathrm{a.e.}$。
+\end{enumerate}
+\end{proof}
+
+\subsection*{几乎处处收敛与单调收敛定理}
+
+\begin{mydefinition}{几乎处处收敛}{convergence-almost-everywhere}
+设 $X_n$（$n\geq1$）和 $X$ 为同一测度空间上的可测函数。若存在 $A\in\mathcal F$，使 $\mu(A^c)=0$，且对每个 $\omega\in A$，
+\[
+\lim_{n\to\infty}X_n(\omega)=X(\omega),
+\]
+则称 $X_n$ \textbf{几乎处处收敛}于 $X$，记为
+\[
+X_n\xrightarrow{\mathrm{a.e.}}X.
+\]
+\end{mydefinition}
+
+\textbf{注：}\quad 几乎处处收敛允许在一个固定的零测集上不收敛；去掉该零测集后必须逐点收敛。逐点收敛也蕴含几乎处处收敛。
+
+\begin{mytheorem}{Levi 单调收敛定理}{levi-monotone-convergence}
+设 $X_n$（$n\geq1$）和 $X$ 为测度空间 $(\Omega,\mathcal F,\mu)$ 上的非负可测函数，允许取 $+\infty$。若 $X_n\leq X_{n+1}$ 处处成立，且 $X_n\xrightarrow{\mathrm{a.e.}}X$，则
+\[
+\lim_{n\to\infty}\int_\Omega X_n\,d\mu
+=\int_\Omega\lim_{n\to\infty}X_n\,d\mu
+=\int_\Omega X\,d\mu.
+\]
+上述等式允许各积分为 $+\infty$。
+\end{mytheorem}
+
+% 材料未提供 Levi 定理证明；以下用积分的上确界定义与 alpha 截集补证，
+% 沿用前述简单函数列比较性质的方法，不引用本定理本身或后续收敛定理。
+\begin{proof}
+取 $A\in\mathcal F$，使 $\mu(A^c)=0$，且在 $A$ 上 $X_n\to X$。将所有 $X_n$ 和 $X$ 在 $A^c$ 上同时改为 $0$，得到的函数仍非负可测、仍逐点单调，且处处收敛。由几乎处处相等不改变非负积分，所有积分值均不变。因此先证明处处有 $X_n\uparrow X$ 的情形。
+
+由非负积分的单调性，$\displaystyle\int_\Omega X_n\,d\mu$ 单调不减，故其极限 $L\in[0,+\infty]$ 存在。又由 $X_n\leq X$，
+\[
+L\leq\int_\Omega X\,d\mu.
+\]
+任取非负简单函数 $Y=\sum_{j=1}^M b_jI_{B_j}\leq X$，固定 $0<\alpha<1$，令
+\[
+E_n=\{X_n\geq\alpha Y\}.
+\]
+由于 $X_n$ 单调，$E_n$ 递增。若 $Y(\omega)=0$，该点属于每个 $E_n$；若 $Y(\omega)>0$，由 $X_n(\omega)\uparrow X(\omega)\geq Y(\omega)>\alpha Y(\omega)$，该点最终属于 $E_n$。因此 $E_n\uparrow\Omega$。
+
+非负简单函数 $\alpha YI_{E_n}$ 不超过 $X_n$。由积分的上确界定义及简单函数积分公式，
+\[
+\int_\Omega X_n\,d\mu
+\geq\alpha\sum_{j=1}^M b_j\mu(B_j\cap E_n).
+\]
+由测度的下连续性，$\mu(B_j\cap E_n)\uparrow\mu(B_j)$。有限个非负项可逐项取极限，零系数项按约定恒为 $0$，于是
+\[
+L\geq\alpha\sum_{j=1}^M b_j\mu(B_j)
+=\alpha\int_\Omega Y\,d\mu.
+\]
+若 $\displaystyle\int_\Omega Y\,d\mu=+\infty$，此式已给出 $L=+\infty$；若该积分有限，令 $\alpha\uparrow1$，得 $L\geq\displaystyle\int_\Omega Y\,d\mu$。再对所有满足 $Y\leq X$ 的非负简单函数取上确界，得到
+\[
+L\geq\int_\Omega X\,d\mu.
+\]
+结合反向不等式，证明了处处收敛时的结论，也就证明了原来的几乎处处收敛情形。
+
+原函数列因非负且单调，在每点都有扩展实值极限 $Z=\lim_{n\to\infty}X_n$，且 $Z$ 可测。由假设，$Z=X,\ \mathrm{a.e.}$，所以 $\displaystyle\int_\Omega Z\,d\mu=\int_\Omega X\,d\mu$。这给出定理中间的等号。
+\end{proof}
